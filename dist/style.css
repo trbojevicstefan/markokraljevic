@@ -8,3 +8,5 @@
 
 .quest small,.quest strong{text-shadow:0 1px 2px #000,0 0 14px #0a1a1acc,0 0 3px #000}
 #dialogue{bottom:26px}#controls{bottom:6px}@media(max-width:600px){#dialogue{bottom:72px}}@media(max-height:560px){#dialogue{bottom:8px}}
+.combat-meters{display:flex;gap:14px;margin-top:10px;font-size:8px;letter-spacing:1px;color:#c8d9ca}.mini-meter{width:98px;height:3px;margin-top:5px;background:#142924}.mini-meter i{display:block;height:100%;width:0}.rage i{background:linear-gradient(90deg,#d37b32,#ffe5a5)}.guard i{background:#98c8c2;width:100%}#rage-label.ready{color:#ffe09a;text-shadow:0 0 10px #ffb43b}#controls{gap:10px;flex-wrap:wrap;padding:0 10px}
+#touch>div:last-child{flex-wrap:wrap;justify-content:flex-end;max-width:70vw}

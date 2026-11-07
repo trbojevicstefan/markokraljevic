@@ -27,4 +27,19 @@ for(const type of ['sword','shield','archer','musa']){
 for(const [name,scale] of Object.entries({'cast/marko':0.36676,'marko-run':0.55381,'marko-attack':0.47312,'mounted-run':0.55748,'fairy-cast':0.235})){
   assert(Math.abs(rig[name].scale-scale)<0.00002,`${name}: preserve user scale`);
 }
-console.log('PASS 24 locomotion frames, distance-driven gait, grounded soles, preserved character scales');
+const deathFn=source.match(/function deathPose\(c\)\{[^\n]+\}/)[0];
+const death=new Function('clamp',deathFn+';return deathPose;')((x,a,b)=>Math.max(a,Math.min(b,x)));
+for(const type of ['marko','sword','shield','archer','musa']){
+  const r=rig[type+'-death'];assert.equal(r.frames.length,6);await fs.access('dist/assets/'+r.image);
+  const seen=new Set();for(let t=0;t<1.3;t+=.02)seen.add(death({type,t}).frame);
+  assert.equal(seen.size,6);assert.equal(death({type,t:20,persist:true}).frame,5,'death must not loop');
+  assert.equal(death({type,t:20,persist:true}).alpha,1,'hero/boss final pose persists');
+  assert.equal(death({type,t:3.2}).alpha,0,'ordinary corpse fades after settling');
+  assert((r.frames[5][4]-r.frames[5][5])<(r.frames[0][4]-r.frames[0][5])*.6,'final pose lies down');
+}
+for(const name of ['marko-crouch','marko-block','marko-super']){
+  const r=rig[name];assert.equal(r.frames.length,6);await fs.access('dist/assets/'+r.image);
+  const upright=r.frames[5];assert(Math.abs((upright[4]-upright[5])*r.scale-128)<.1,'new actions retain hero scale');
+}
+const cr=rig['marko-crouch'];assert((cr.frames[2][4]-cr.frames[2][5])*cr.scale<90,'crouch is visibly lower');
+console.log('PASS 24 locomotion, 30 death and 18 combat frames; grounded soles and preserved character scales');

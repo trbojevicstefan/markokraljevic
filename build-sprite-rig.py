@@ -62,6 +62,24 @@ def analyse(cell):
     return {'top': top, 'sole': sole, 'feet': feet_x, 'torso': torso_x, 'center': center_x}
 
 
+# The opening defeat pose is nearly upright. Match its body height once;
+# retain that fixed scale as the character kneels and lies down.
+for character, height in {'marko': 125, 'sword': 110, 'shield': 103, 'archer': 115, 'musa': 161}.items():
+    name = character + '-death'
+    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    c = list(manifest['frame_layout']['rows'].values())[0][0]
+    im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
+    info = analyse(im[c['y']:c['y']+c['h'], c['x']:c['x']+c['w']])
+    SCALES[name] = (height / (info['sole'] - info['top']), 'center')
+
+for action in ['crouch', 'block', 'super']:
+    name = 'marko-' + action
+    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    c = list(manifest['frame_layout']['rows'].values())[0][5]  # upright return pose, no raised weapon
+    im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
+    info = analyse(im[c['y']:c['y']+c['h'], c['x']:c['x']+c['w']])
+    SCALES[name] = (128 / (info['sole'] - info['top']), 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):
