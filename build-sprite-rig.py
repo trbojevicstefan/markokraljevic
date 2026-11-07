@@ -30,12 +30,16 @@ SCALES = {
     'cast/sarac':    (MARKO * 1.01, 'center'),  # horse body length matched to mounted-jump
     'cast/sword':    (0.325, 'feet'),
     'sword-attack':  (0.325 * 1.30, 'feet'),
+    'sword-run':     (0.325 * 1.03, 'torso'),
     'cast/shield':   (0.302, 'feet'),
     'shield-attack': (0.302 * 1.22, 'feet'),
+    'shield-run':    (0.302 * 1.04, 'torso'),
     'cast/archer':   (0.372, 'feet'),
     'archer-shoot':  (0.372, 'feet'),
+    'archer-run':    (0.372 * 0.94, 'torso'),
     'cast/musa':     (0.475, 'feet'),           # Musa's head is ~1.6x Marko's: he is the giant of the song
     'musa-attack':   (0.475 * 1.78, 'feet'),
+    'musa-run':      (0.475, 'torso'),
     'cast/fairy':    (0.235, 'center'),
     'fairy-cast':    (0.235, 'center'),
 }
