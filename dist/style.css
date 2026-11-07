@@ -11,3 +11,22 @@
 .combat-meters{display:flex;gap:14px;margin-top:10px;font-size:8px;letter-spacing:1px;color:#c8d9ca}.mini-meter{width:98px;height:3px;margin-top:5px;background:#142924}.mini-meter i{display:block;height:100%;width:0}.rage i{background:linear-gradient(90deg,#d37b32,#ffe5a5)}.guard i{background:#98c8c2;width:100%}#rage-label.ready{color:#ffe09a;text-shadow:0 0 10px #ffb43b}#controls{gap:10px;flex-wrap:wrap;padding:0 10px}
 #touch>div:last-child{flex-wrap:wrap;justify-content:flex-end;max-width:70vw}
 @media(max-width:600px){.quest{margin-top:24px}}#game-shell:has(#touch:not([hidden])) #dialogue{bottom:132px}
+
+/* mobile: bigger, thumb-friendly controls */
+#touch{bottom:max(10px,env(safe-area-inset-bottom));left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));align-items:flex-end;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;z-index:5}
+#touch>div{max-width:none!important;flex-wrap:nowrap!important}
+#touch .pad{display:flex;gap:10px;align-items:flex-end}
+#touch .actions{display:flex!important;flex-direction:column;align-items:flex-end;gap:8px}
+#touch .row{display:flex;gap:8px;align-items:flex-end}
+#touch button{width:54px;height:54px;font:700 17px Georgia,serif;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;background:#10302ccc;border:1.5px solid #e1ce8b88;box-shadow:0 3px 10px #0007;-webkit-tap-highlight-color:transparent;padding:0}
+#touch button small{font:700 7px Arial;letter-spacing:.5px;margin-top:3px;opacity:.8}
+#touch button.mid{width:62px;height:62px}
+#touch button.big{width:76px;height:76px;font-size:24px}
+#touch button.attack{background:#5a2420dd;border-color:#f0b878}
+#touch button.rage{border-color:#ff8a5a;color:#ffc9a8}
+#touch button:active{background:#b79054;transform:scale(.94)}
+@media(pointer:coarse){#controls{display:none!important}.vignette{display:none}}
+@media(max-height:430px){#touch button{width:46px;height:46px;font-size:15px}#touch button.mid{width:52px;height:52px}#touch button.big{width:62px;height:62px;font-size:20px}#touch .row{gap:6px}#touch .actions{gap:6px}}
+#game-shell:has(#touch:not([hidden])) #dialogue{bottom:auto;top:112px;width:min(560px,70vw)}
+.modal-card label input[type=range]{margin-top:8px}
+.hud-tools #fullscreen{font-size:18px}

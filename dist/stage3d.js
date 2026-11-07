@@ -25,7 +25,10 @@ const NOISE = /* glsl */`
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
  return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
-float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.03;a*=.5;}return v;}
+#ifndef OCTAVES
+#define OCTAVES 5
+#endif
+float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<OCTAVES;i++){v+=a*noise(p);p*=2.03;a*=.5;}return v;}
 `;
 
 const SCREEN_VERT = /* glsl */`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`;
@@ -504,11 +507,23 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
 
   // ---------- sizing ----------
   let width = 0, height = 0;
+  // 'auto' picks the fast path on phones/tablets and weak CPUs.
+  const lowQuality = () => settings.quality === 'low' || (settings.quality !== 'high' && (matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4));
+  let lastLow = null;
+  function applyQuality() {
+    const low = lowQuality();
+    if (low === lastLow) return;
+    lastLow = low;
+    for (const m of [bgMat, valleyMat, hazeMat]) { m.defines = {...(m.defines || {}), OCTAVES: low ? 3 : 5}; m.needsUpdate = true; }
+    bloom.enabled = !low;
+    width = 0;
+  }
   function resize() {
+    applyQuality();
     const box = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, lastLow ? 1.25 : 2);
     const cssW = Math.min(box.width || W, (box.height || H) * W / H);
-    const w = Math.round(Math.max(640, Math.min(2560, cssW * dpr)));
+    const w = Math.round(Math.max(640, Math.min(lastLow ? 1280 : 2560, cssW * dpr)));
     const h = Math.round(w * H / W);
     if (w === width && h === height) return;
     width = w; height = h;
@@ -516,7 +531,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     composer.setSize(w, h);
     grade.uniforms.uRes.value.set(w, h);
     pointScale.value = h / (2 * tanHalf); // screen px per world unit at distance 1
-    const lw = Math.min(w, 1920), lh = Math.round(lw * H / W);
+    const lw = Math.min(w, lastLow ? 1152 : 1920), lh = Math.round(lw * H / W);
     layer.width = lw; layer.height = lh;
     glow.width = Math.round(lw / 2); glow.height = Math.round(lh / 2);
     layerTex.dispose(); glowTex.dispose();
@@ -627,7 +642,8 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
 
       // ambient particles
       const r = reduced() ? .45 : 1;
-      leavesBack.geometry.instanceCount = Math.round(leavesBack.userData.max * Math.min(1, look.leaves) * r);
+      const q = lastLow ? .45 : 1;
+      leavesBack.geometry.instanceCount = Math.round(leavesBack.userData.max * Math.min(1, look.leaves) * r * q);
       leavesFront.geometry.instanceCount = Math.round(leavesFront.userData.max * Math.min(1, look.leaves) * r);
       leavesBack.material.uniforms.uWind.value = leavesFront.material.uniforms.uWind.value = 30 * look.wind;
       motes.material.uniforms.uIntensity.value = .55 * look.rays;
