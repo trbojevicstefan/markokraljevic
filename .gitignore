@@ -1,0 +1,8 @@
+node_modules/
+output/
+.playwright-cli/
+*.tar.gz
+*.zip
+.DS_Store
+
+.openai/

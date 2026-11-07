@@ -1,0 +1,190 @@
+{
+  "kind": "sprite-gen-slice-sheet",
+  "version": 1,
+  "sheet": "props-source.png",
+  "grid": [
+    3,
+    2
+  ],
+  "canvas": {
+    "w": 384,
+    "h": 384
+  },
+  "baseline_y": 370.0,
+  "target_height": 350.0,
+  "scale": "cell",
+  "fit": "contain",
+  "factor": null,
+  "factor_from": null,
+  "alpha_cleanup": "alpha-cleanup.json",
+  "cells": [
+    {
+      "name": "sword",
+      "file": "sword.png",
+      "factor": 0.7128309572301426,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 396,
+          "h": 491
+        },
+        "canvas": {
+          "w": 282,
+          "h": 350
+        }
+      },
+      "box": {
+        "x": 51,
+        "y": 20,
+        "w": 282,
+        "h": 350
+      },
+      "anchor": [
+        192.0,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "shield",
+      "file": "shield.png",
+      "factor": 0.6986027944111777,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 372,
+          "h": 501
+        },
+        "canvas": {
+          "w": 260,
+          "h": 350
+        }
+      },
+      "box": {
+        "x": 62,
+        "y": 20,
+        "w": 260,
+        "h": 350
+      },
+      "anchor": [
+        192.0,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "archer",
+      "file": "archer.png",
+      "factor": 0.693069306930693,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 422,
+          "h": 505
+        },
+        "canvas": {
+          "w": 292,
+          "h": 350
+        }
+      },
+      "box": {
+        "x": 46,
+        "y": 20,
+        "w": 292,
+        "h": 350
+      },
+      "anchor": [
+        192.0,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "tree",
+      "file": "tree.png",
+      "factor": 0.7306889352818372,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 488,
+          "h": 479
+        },
+        "canvas": {
+          "w": 357,
+          "h": 350
+        }
+      },
+      "box": {
+        "x": 14,
+        "y": 20,
+        "w": 357,
+        "h": 350
+      },
+      "anchor": [
+        192.5,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "platform",
+      "file": "platform.png",
+      "factor": 0.732824427480916,
+      "factor_from": "fit",
+      "subject": {
+        "sheet": {
+          "w": 523,
+          "h": 252
+        },
+        "canvas": {
+          "w": 383,
+          "h": 185
+        }
+      },
+      "box": {
+        "x": 1,
+        "y": 185,
+        "w": 383,
+        "h": 185
+      },
+      "anchor": [
+        192.5,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "arch",
+      "file": "arch.png",
+      "factor": 0.7314285714285714,
+      "factor_from": "fit",
+      "subject": {
+        "sheet": {
+          "w": 524,
+          "h": 466
+        },
+        "canvas": {
+          "w": 383,
+          "h": 341
+        }
+      },
+      "box": {
+        "x": 1,
+        "y": 29,
+        "w": 383,
+        "h": 341
+      },
+      "anchor": [
+        192.5,
+        370.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    }
+  ]
+}

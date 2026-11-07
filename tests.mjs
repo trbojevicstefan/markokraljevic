@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import{makeWorld,integrate,chapters,chapterAt}from'./dist/world.js';
+const w=makeWorld();let checks=0;
+const check=(name,fn)=>{fn();checks++;console.log('PASS '+name);};
+check('six ordered chapters cover the complete level',()=>{assert.equal(chapters.length,6);chapters.slice(1).forEach((c,i)=>assert.equal(c.start,chapters[i].end));assert.equal(chapterAt(29000),5);});
+check('every checkpoint spawns on solid terrain',()=>{for(const z of chapters)assert(w.platforms.some(p=>p.kind==='stone'&&p.y===590&&z.start+130>=p.x&&z.start+130<=p.x+p.w));});
+check('falling bodies land without tunneling',()=>{const b={x:200,y:400,w:34,vy:1500,vx:0};for(let i=0;i<20;i++)integrate(b,1/120,w.platforms,w.runes);assert.equal(b.y,590);assert(b.grounded);});
+check('closed magic bridge cannot support the hero',()=>{const bridge=w.platforms.find(p=>p.kind==='magic');const b={x:bridge.x+120,y:560,w:34,vy:200,vx:0};for(let i=0;i<20;i++)integrate(b,1/120,w.platforms,w.runes);assert(b.y>600);});
+check('activated magic bridge supports the hero',()=>{const bridge=w.platforms.find(p=>p.kind==='magic');w.runes[0].active=true;const b={x:bridge.x+120,y:550,w:34,vy:200,vx:0};for(let i=0;i<20;i++)integrate(b,1/120,w.platforms,w.runes);assert.equal(b.y,575);});
+check('normal jumps cross the widest ordinary gap',()=>{const b={x:1815,y:590,w:34,vy:-665,vx:265};for(let i=0;i<98;i++)integrate(b,1/120,w.platforms,w.runes);assert(b.x>1990);assert.equal(b.y,590);});
+check('horse jumps cross a 190px ravine',()=>{const floor=w.platforms.find(p=>p.x===10800);const b={x:floor.x+floor.w-55,y:590,w:34,vy:-780,vx:480};for(let i=0;i<110;i++)integrate(b,1/120,w.platforms,w.runes);assert(b.x>floor.x+floor.w+190);assert.equal(b.y,590);});
+check('enemy IDs and collectible IDs remain unique for checkpoint saves',()=>{assert.equal(new Set(w.enemies.map(e=>e.id)).size,w.enemies.length);assert.equal(new Set(w.items.map(e=>e.id)).size,w.items.length);assert(w.enemies.length>=25);});
+check('each fairy stone can be reached before its bridge',()=>{for(const r of w.runes)assert(w.platforms.some(p=>p.kind==='stone'&&r.x>p.x&&r.x<p.x+p.w));});
+console.log(`${checks} gameplay checks passed.`);
