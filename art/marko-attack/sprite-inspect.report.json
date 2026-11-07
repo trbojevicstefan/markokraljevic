@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "kind": "sprite-gen-inspect-report",
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\marko-attack",
+  "states": [
+    "motion"
+  ],
+  "thresholds": {
+    "histogram_min": 0.0,
+    "dhash_min": 0.55,
+    "motion_min": 0.01
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "source": "frames",
+      "expected_frames": 6,
+      "found_frames": 6,
+      "natural_pose_count": 6,
+      "frame_files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9289028905417311,
+          "mean": 0.9506715733552061
+        },
+        "dhash_similarity": {
+          "min": 0.8125,
+          "mean": 0.89375
+        },
+        "motion_presence": 0.05945676317401961,
+        "centroid_sigma": {
+          "x": 4.895152927573022,
+          "y": 14.289007416955974
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

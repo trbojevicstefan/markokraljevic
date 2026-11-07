@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\archer-death",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 18,
+    "safe_margin_y": 18,
+    "size": 512,
+    "safe_margin": 18
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "death",
+      "frames": 6,
+      "method": "components",
+      "files": [
+        "frames/death/frame-0.png",
+        "frames/death/frame-1.png",
+        "frames/death/frame-2.png",
+        "frames/death/frame-3.png",
+        "frames/death/frame-4.png",
+        "frames/death/frame-5.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 51517,
+          "bbox": [
+            115,
+            127,
+            423,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 49534,
+          "bbox": [
+            111,
+            172,
+            418,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 39361,
+          "bbox": [
+            125,
+            201,
+            412,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 45151,
+          "bbox": [
+            112,
+            220,
+            460,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "nontransparent_pixels": 37099,
+          "bbox": [
+            68,
+            284,
+            478,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "nontransparent_pixels": 31982,
+          "bbox": [
+            84,
+            358,
+            481,
+            494
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

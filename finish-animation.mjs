@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+let s=await fs.readFile('dist/game.js','utf8');
+s=s.replaceAll("p.y,355,p.face","p.y,250,p.face").replaceAll("),355,p.face","),250,p.face").replaceAll("p.y+bob,355,p.face","p.y+bob,250,p.face");
+s=s.replace("150*(.85+.15*enter)","108*(.85+.15*enter)").replace("fy-110","fy-86").replaceAll('RAVИJOJLA','RAVIJOJLA');
+s=s.replace(":chapters[zone].goal;$('progress')",":zone===3&&horseMounted?'Šarčev galop · Space za skok':chapters[zone].goal;$('progress')");
+await fs.writeFile('dist/game.js',s);
+let readme=await fs.readFile('README.md','utf8');
+readme=readme.replace('oko 5:01','oko 5:34').replace('Markovo trčanje koristi šest kadrova; napad i skok koriste različite poze i proceduralne efekte. Šarac i neprijatelji u ovoj prvoj verziji koriste proceduralno pomeranje pojedinačnih ilustracija, a ne pune višekadarske animacije.','Markovo trčanje i zamah koriste po šest kadrova. Šarac sa Markom u sedlu koristi šest kadrova galopa i četiri poze mirovanja, odraza, leta i doskoka. Ravijojla ima šest kadrova pojavljivanja i čaranja, putanju do cilja i sinhronizovan efekat čarolije. Njeno puno telo se vidi na poziv E, a tokom odmora predstavlja je svetleća tačka. Priprema, aktivni deo i povratak zamaha odvojeni su: pogodak je moguć samo u aktivnom delu. Neprijatelji i pojedine sporedne radnje i dalje koriste proceduralne pokrete ilustracija, a ne pune višekadarske cikluse.');
+readme+='\nNova animaciona grafika i izvorni promptovi: `art/animation-prompts.json`; atlasi `dist/assets/mounted-run.png`, `mounted-jump.png`, `fairy-cast.png`, `marko-attack.png` sa odgovarajućim manifestima. Svi su generisani ugrađenim Imagegen alatom, izdvojeni originalnim sprite-gen komponentnim ekstraktorom i poravnati opcijom centroid.\n';
+await fs.writeFile('README.md',readme);

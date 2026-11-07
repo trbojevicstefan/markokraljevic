@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "kind": "sprite-gen-inspect-report",
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\marko-run",
+  "states": [
+    "run"
+  ],
+  "thresholds": {
+    "histogram_min": 0.0,
+    "dhash_min": 0.55,
+    "motion_min": 0.01
+  },
+  "rows": [
+    {
+      "state": "run",
+      "source": "frames",
+      "expected_frames": 6,
+      "found_frames": 6,
+      "natural_pose_count": 6,
+      "frame_files": [
+        "frames/run/frame-0.png",
+        "frames/run/frame-1.png",
+        "frames/run/frame-2.png",
+        "frames/run/frame-3.png",
+        "frames/run/frame-4.png",
+        "frames/run/frame-5.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9708244293610148,
+          "mean": 0.9779732430167264
+        },
+        "dhash_similarity": {
+          "min": 0.6875,
+          "mean": 0.7802083333333333
+        },
+        "motion_presence": 0.08381668390012255,
+        "centroid_sigma": {
+          "x": 18.635357535655395,
+          "y": 4.71502370469298
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

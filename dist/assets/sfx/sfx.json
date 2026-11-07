@@ -1,0 +1,117 @@
+{
+ "hit_body": [
+  "hit_body_0",
+  "hit_body_1",
+  "hit_body_2",
+  "hit_body_3"
+ ],
+ "hit_armor": [
+  "hit_armor_0",
+  "hit_armor_1",
+  "hit_armor_2",
+  "hit_armor_3"
+ ],
+ "hit_heavy": [
+  "hit_heavy_0",
+  "hit_heavy_1",
+  "hit_heavy_2"
+ ],
+ "clang": [
+  "clang_0",
+  "clang_1",
+  "clang_2",
+  "clang_3"
+ ],
+ "ring": [
+  "ring_0",
+  "ring_1"
+ ],
+ "shield": [
+  "shield_0",
+  "shield_1",
+  "shield_2"
+ ],
+ "step": [
+  "step_0",
+  "step_1",
+  "step_2",
+  "step_3",
+  "step_4"
+ ],
+ "land": [
+  "land_0",
+  "land_1"
+ ],
+ "fall": [
+  "fall_0",
+  "fall_1",
+  "fall_2"
+ ],
+ "rock": [
+  "rock_0",
+  "rock_1",
+  "rock_2"
+ ],
+ "draw": [
+  "draw_0",
+  "draw_1",
+  "draw_2"
+ ],
+ "cloth": [
+  "cloth_0",
+  "cloth_1",
+  "cloth_2",
+  "cloth_3"
+ ],
+ "coins": [
+  "coins_0",
+  "coins_1"
+ ],
+ "leather": [
+  "leather_0",
+  "leather_1",
+  "leather_2"
+ ],
+ "gate": [
+  "gate_0",
+  "gate_1"
+ ],
+ "whoosh": [
+  "whoosh_0",
+  "whoosh_1"
+ ],
+ "whoosh_heavy": [
+  "whoosh_heavy_0"
+ ],
+ "bow": [
+  "bow_0"
+ ],
+ "arrow": [
+  "arrow_0"
+ ],
+ "magic": [
+  "magic_0",
+  "magic_1"
+ ],
+ "magic_big": [
+  "magic_big_0"
+ ],
+ "pickup": [
+  "pickup_0"
+ ],
+ "thunder": [
+  "thunder_0"
+ ],
+ "boom": [
+  "boom_0"
+ ],
+ "hoof": [
+  "hoof_0"
+ ],
+ "gulp": [
+  "gulp_0"
+ ],
+ "horn_call": [
+  "horn_call_0"
+ ]
+}

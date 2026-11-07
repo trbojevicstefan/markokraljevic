@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "kind": "sprite-gen-inspect-report",
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\fairy-cast",
+  "states": [
+    "motion"
+  ],
+  "thresholds": {
+    "histogram_min": 0.0,
+    "dhash_min": 0.55,
+    "motion_min": 0.01
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "source": "frames",
+      "expected_frames": 6,
+      "found_frames": 6,
+      "natural_pose_count": 6,
+      "frame_files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9167928582830756,
+          "mean": 0.953875672405142
+        },
+        "dhash_similarity": {
+          "min": 0.875,
+          "mean": 0.9145833333333333
+        },
+        "motion_presence": 0.05415508195465686,
+        "centroid_sigma": {
+          "x": 16.852926996607334,
+          "y": 8.445405262397534
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

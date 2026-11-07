@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "kind": "sprite-gen-request",
+  "engine": "component-row",
+  "character": {
+    "id": "marko-run",
+    "description": "",
+    "base_image": "base-source.png"
+  },
+  "cell": {
+    "shape": "square",
+    "width": 256,
+    "height": 256,
+    "safe_margin_x": 12,
+    "safe_margin_y": 12,
+    "size": 256,
+    "safe_margin": 12
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "states": {
+    "run": {
+      "frames": 6,
+      "fps": 12,
+      "loop": true,
+      "action": "side view running right with spiked mace and flowing red cape"
+    }
+  },
+  "style": "hand painted cel shaded",
+  "layout": "taxonomy/v1",
+  "fit": {
+    "pixel_unfake": false,
+    "align_x": "centroid",
+    "align_y": "bottom",
+    "ground_frames": true
+  },
+  "chroma": {
+    "mode": "rgb",
+    "unmix_reach": 4,
+    "spill_max_fraction": 0.005
+  }
+}

@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+let s=await fs.readFile('dist/game.js','utf8');
+function patch(a,b){if(!s.includes(a))throw Error('Missing '+a.slice(0,70));s=s.replace(a,b);}
+patch("['mounted-run','mounted-jump','fairy-cast','marko-attack']","['mounted-run','mounted-jump','fairy-cast','marko-attack','musa-attack','sword-attack','shield-attack','archer-shoot','marko-jump','marko-drink']");
+patch('if(p.cooldown>0||p.dash>0)return;','if(p.cooldown>0||p.dash>0||p.drink>0)return;');
+patch('const target=axis*speed*(p.attack>0?.5:1);','const target=axis*speed*(p.attack>0?.5:p.drink>0?.45:1);');
+patch('p.wine--;p.buff=12;p.drink=.6;p.hp=Math.min(p.maxHp,p.hp+18);sound(\'wine\');toast(\'Junačko vino · +30% snage · 12 sekundi\',3);burst(p.x,p.y-45,\'#e0a95a\',20);',"p.wine--;p.drink=.85;p.drinkApplied=false;p.attack=0;");
+patch("if(p.wine>0&&p.buff<=0){","if(p.wine>0&&p.buff<=0&&p.drink<=0){");
+patch('p.anim+=dt;p.gait+=','if(p.drink>0&&p.drink<.38&&!p.drinkApplied){p.drinkApplied=true;p.buff=12;p.hp=Math.min(p.maxHp,p.hp+18);sound("wine");toast("Junačko vino · +30% snage · 12 sekundi",3);burst(p.x,p.y-65,"#e0a95a",20);}p.anim+=dt;p.gait+=');
+patch("const angle=clamp(p.vy/2600,-.17,.17);sprite('jump',p.x,p.y+3,125,p.face,angle,alpha);","const pose=p.vy< -520?2:p.vy< -120?3:p.vy<220?3:4;if(!atlasPose('marko-jump',pose,p.x,p.y,170,p.face,alpha))sprite('jump',p.x,p.y+3,125,p.face,0,alpha);");
+patch("}else if(run&&runManifest&&assets.run){","}else if(p.drink>0){atlasPose('marko-drink',Math.min(5,Math.floor((1-p.drink/.85)*6)),p.x,p.y,150,p.face,alpha);\n }else if(p.landing>0){atlasPose('marko-jump',5,p.x,p.y,170,p.face,alpha);\n }else if(run&&runManifest&&assets.run){");
+// The actual drinking sequence now owns the flask; do not draw a second procedural bottle.
+const drinkStart=s.indexOf(' if(p.drink>0){const a=Math.sin('),drinkEnd=s.indexOf('\n drawFairy();}',drinkStart);if(drinkStart>=0&&drinkEnd>drinkStart)s=s.slice(0,drinkStart)+s.slice(drinkEnd);
+patch("e.mode='windup';e.timer=(e.type==='archer'?1.05:.7)*(settings.difficulty==='story'?1.35:1);","e.mode='windup';e.timer=(e.type==='archer'?1.05:.7)*(settings.difficulty==='story'?1.35:1);e.windupDuration=e.timer;");
+patch("sprite(e.type,e.x,e.y+bob,e.type==='shield'?121:114,e.face,e.mode==='windup'?-.12:e.mode==='recover'?.12:moving?.04:0,e.flash>0?.6:1);","const anim=e.type==='archer'?'archer-shoot':e.type+'-attack';let frame=0;if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);frame=e.type==='archer'?Math.min(3,Math.floor(progress*4)):Math.min(2,Math.floor(progress*3));}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;frame=e.type==='archer'?4+Math.min(1,Math.floor((1-e.timer/duration)*2)):3+Math.min(2,Math.floor((1-e.timer/duration)*3));}if((e.mode==='windup'||e.mode==='recover')&&motionAtlases[anim])atlasPose(anim,frame,e.x,e.y,e.type==='shield'?178:170,e.face,e.flash>0?.6:1);else sprite(e.type,e.x,e.y+bob,e.type==='shield'?121:114,e.face,moving?.04:0,e.flash>0?.6:1);");
+patch("sprite('musa',boss.x,boss.y+3,160,boss.face,a);","const attackFrame=boss.mode==='windup'?Math.min(2,Math.floor((1-boss.timer/(settings.difficulty==='story'?1.3:.95))*3)):boss.mode==='second'?2:boss.mode==='swing'?3:4; if(['windup','second','swing','open'].includes(boss.mode)&&motionAtlases['musa-attack'])atlasPose('musa-attack',attackFrame,boss.x,boss.y,210,boss.face);else sprite('musa',boss.x,boss.y+3,160,boss.face,a);");
+await fs.writeFile('dist/game.js',s);

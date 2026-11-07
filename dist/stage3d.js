@@ -557,7 +557,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     burst,
     hit(x, y, heavy) {
       burst(x, y, '#ffcf8a', heavy ? 26 : 16, heavy ? 260 : 190, {power: 3, gravity: 700});
-      burst(x, y, '#fff3d6', heavy ? 8 : 4, 90, {power: 4, size: 1.8, life: .4, gravity: 0});
+      burst(x, y, '#fff3d6', heavy ? 5 : 3, 90, {power: 2.6, size: 1.3, life: .35, gravity: 0});
       if (heavy) { shockwave(x, y, .7); punch = Math.max(punch, .018); aberr = Math.max(aberr, .5); }
       else punch = Math.max(punch, .007);
     },
@@ -568,8 +568,8 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       aberr = Math.max(aberr, .9); punch = Math.max(punch, .02);
     },
     kill(x, y) {
-      burst(x, y - 40, '#ffd27a', 22, 200, {power: 2.6, gravity: 300});
-      for (let i = 0; i < 10; i++) spawn(x + rand(-25, 25), y - rand(10, 90), rand(-20, 20), rand(-15, 15), -rand(40, 110), 0, hdr('#ffe7b0', 1.8), rand(1, 1.8), rand(6, 10), -20);
+      burst(x, y - 40, '#ffd27a', 12, 200, {power: 1.7, gravity: 300});
+      for (let i = 0; i < 6; i++) spawn(x + rand(-25, 25), y - rand(10, 90), rand(-20, 20), rand(-15, 15), -rand(40, 110), 0, hdr('#ffe7b0', 1.2), rand(1, 1.8), rand(5, 8), -20);
     },
     spell(x, y) {
       burst(x, y, '#9dffd6', 46, 220, {power: 3, gravity: -60, life: 1.4});
@@ -584,7 +584,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       burst(x, y - 70, '#ff7a5a', 70, 330, {power: 3.2, gravity: 250});
       shockwave(x, y - 60, 1.6);
       flash = Math.max(flash, .2); flashColor.set(1, .3, .25);
-      lightning = 1; aberr = 1;
+      lightning = 1; aberr = 1; settings.onThunder?.();
     },
     flash(hex, amount) { flashColor.set(hex); flash = Math.max(flash, amount); },
     shake(amount) { shakeAmt = Math.max(shakeAmt, amount); },
@@ -618,7 +618,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       u.uHaze.value.setRGB(...look.haze);
       if (state.zone === 5 && !menu && !reduced()) {
         nextBolt -= dt;
-        if (nextBolt <= 0) { lightning = .55 + Math.random() * .4; nextBolt = 5 + Math.random() * 7; }
+        if (nextBolt <= 0) { lightning = .55 + Math.random() * .4; nextBolt = 5 + Math.random() * 7; settings.onThunder?.(); }
       }
       lightning = Math.max(0, lightning - dt * 3.2);
       u.uLightning.value = lightning > .02 ? lightning * (.6 + .4 * Math.sin(clock.time * 60)) : 0;
@@ -680,7 +680,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       grade.uniforms.uSat.value = look.sat;
       grade.uniforms.uContrast.value = look.contrast;
       grade.uniforms.uGrain.value = reduced() ? .015 : .03;
-      bloom.strength = reduced() ? .5 : .85;
+      bloom.strength = reduced() ? .45 : .72;
 
       layerTex.needsUpdate = true;
       glowTex.needsUpdate = true;
