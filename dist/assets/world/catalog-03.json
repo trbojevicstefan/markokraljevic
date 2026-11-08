@@ -1942,6 +1942,24 @@
       ],
       "kind": "preview",
       "group": 3
+    },
+    {
+      "id": "prop-medjas",
+      "file": "prop-medjas.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        322,
+        704,
+        701,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "reusedFrom": "../world-pack-01/assets/prop-kamen-putokaz.png",
+      "baseline": 1023
     }
   ]
 }

@@ -9,7 +9,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame',source+'\nreturn {start,update,keys,pressed,die,slay,win,pause,deathPose,damage,state:()=>({p,boss,world,mode,zone,elapsed,kills,horseMounted,horseX,corpses,arrows}),settings,restore,save};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{});
-api.settings.difficulty='normal';
+api.settings.difficulty='classic'; // exact numbers below are checked against the original balance
 // Isolated mechanic checks use explicit fixture setup; the complete run below starts fresh.
 api.start();api.pressed.add('KeyE');api.update(1/120);
 assert.equal(window.markoState().fairyVisible,true,'summoning must show Ravijojla');
@@ -69,6 +69,7 @@ for(let i=0;i<30;i++)api.update(1/120);
 assert.equal(sf.world.enemies[0].alive,false,'super contact deals finishing damage');
 assert.equal(api.state().corpses.length,1);assert(sf.p.superImpact,'super impact FX triggered');
 console.log('PASS crouch arrow collision, directional block, guard break, super cost and contact timing');
+api.settings.difficulty='normal'; // the full run is played on Junak, the harder default
 api.start();api.save();let previousZone=-1;const stageTimes=[];let log=[];
 const tap=c=>api.pressed.add(c);
 for(let frame=0;frame<120*900;frame++){
