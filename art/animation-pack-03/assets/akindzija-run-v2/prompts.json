@@ -1,0 +1,45 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "pose-0",
+      "phase": "near-contact",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: NEAR / camera-side leg with embroidered knee panel extends FORWARD far RIGHT and its heel contacts ground; FAR darker leg extends BACK far LEFT, toe trailing. Wide stride. Torso at neutral height. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-1",
+      "phase": "near-down",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: NEAR embroidered leg is planted in FRONT, bent knee compresses; FAR darker leg folds behind and starts forward. Torso 8 pixels lower than neutral. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-2",
+      "phase": "near-pass",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: NEAR embroidered leg is vertical directly UNDER pelvis supporting weight; FAR darker knee passes FORWARD with boot lifted. Torso rising. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-3",
+      "phase": "near-push",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: NEAR embroidered leg pushes OFF behind body far LEFT on toe; FAR darker knee leads FORWARD far RIGHT, foot reaching. Torso 8 pixels above neutral. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-4",
+      "phase": "far-contact",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: FAR DARKER leg extends FORWARD far RIGHT, heel contacting; NEAR embroidered leg is clearly BEHIND body far LEFT, extended back. This is the OPPOSITE lead from pose 1. Show the embroidered knee behind hips, never in front. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-5",
+      "phase": "far-down",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: FAR darker leg planted FORWARD and bent under weight; NEAR embroidered knee folds BEHIND hips, foot lifted backward. Opposite of pose 2. Torso 8 pixels lower. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-6",
+      "phase": "far-pass",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: FAR darker leg vertical directly UNDER pelvis; NEAR embroidered knee passes FORWARD with boot lifted. Opposite of pose 3. Torso rising. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    },
+    {
+      "id": "pose-7",
+      "phase": "far-push",
+      "prompt": "Use case: identity-preserve. One full-body painterly cel-shaded 2D game animation pose of the EXACT referenced Akindzija: teal embroidered tunic, red turban with bronze ornament, cream scarf, ochre sash, cream trousers, leather bronze armor, brown boots, TWO curved short swords, one per hand. Strict SIDE PROFILE FACING RIGHT, same body proportions and head size as reference. NO mirrored identity. Distinguish near leg by brighter embroidered knee panel, far leg by darker shading. RUN phase: FAR darker leg pushes OFF BEHIND hips far LEFT on toe; NEAR embroidered knee leads FORWARD far RIGHT, foot reaches. Opposite of pose 4. Torso 8 pixels above neutral. This is ONE isolated pose, no duplicates. Stable torso lean and same sword hand positions as reference. Whole body plus swords and scarf visible, ample padding, no shadows, no floor, no text, no effects. True transparent background."
+    }
+  ]
+}

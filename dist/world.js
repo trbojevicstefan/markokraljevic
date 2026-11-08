@@ -38,12 +38,36 @@ export function integrate(body,dt,platforms,runes=[]){
 // ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
 const THEME_FOES={selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['akindzija','oklopnik','sword','archer','shield','palikuca']};
 export const LEVEL_ZONE=6;
+// What each campaign asks before its end banner counts. use: press E beside it; take: walk over it;
+// gate: blocks the road until everything before it is done (guarded gates also wait for nearby foes); finish: art by the banner.
+const GATE=['cilj-kapija-zatvorena','cilj-kapija-otvorena'],LEVER=['cilj-poluga','cilj-poluga-povucena'];
+const GOAL_PLAN={
+ selo:{goals:[{kind:'gate',at:.5,art:GATE,h:290,label:'Oslobodi seosku kapiju',guarded:true},{kind:'finish',art:['cilj-bunar-svetli'],h:170,dx:-210}],finish:'Pronađi put do bunara'},
+ klisura:{goals:[{kind:'use',at:.4,art:LEVER,h:120,label:'Povuci polugu uz reku',done:'Lanac je popustio. Prolaz uz reku je otvoren.'},{kind:'gate',at:.62,art:GATE,h:290,label:'Otvori prolaz uz reku'}],finish:'Pređi do kraja klisure'},
+ suma:{goals:[.25,.5,.75].map(at=>({kind:'use',at,art:['cilj-vilinski-kamen','cilj-vilinski-kamen-budan'],h:150,label:'Probudi vilinske kamenove',glow:'#9fffe0',gy:.5,done:'Kamen se probudio.'})),finish:'Otkrij skriveno svetilište'},
+ manastir:{goals:[{kind:'take',at:.58,art:['cilj-relikvija'],h:110,label:'Pronađi relikviju',glow:'#ffe39a',gy:.8,done:'Relikvija je spasena.'}],finish:'Podigni manastirski barjak'},
+ tvrdjava:{goals:[{kind:'use',at:.4,art:['cilj-opsadna-sprava','cilj-opsadna-sprava-srusena'],h:160,label:'Onesposobi opsadnu spravu',done:'Sprava je slomljena.',smash:true},{kind:'gate',at:.66,art:GATE,h:290,label:'Otvori tvrđavsku kapiju'}],finish:'Prođi kroz tvrđavu'},
+ prevoj:{goals:[],finish:'Prati barjake do kule na prevoju'},
+ pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje Ravijojla',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao prolaz.'}],finish:'Prođi kristalnim prolazom'},
+ podrum:{goals:[],finish:'Nađi izlaz iz podruma'},
+ mocvara:{goals:[.2,.4,.6,.8].map(at=>({kind:'use',at,art:['cilj-svetiljka','cilj-svetiljka-upaljena'],h:190,label:'Upali svetiljke preko močvare',glow:'#ffcf7a',gx:.3,gy:.66,done:'Svetiljka gori.'})),finish:'Prati svetiljke do kraja močvare'},
+ rudnik:{goals:[{kind:'use',at:.45,art:LEVER,h:120,label:'Pronađi polugu starog okna',done:'Negde napred zaškripala je rešetka.'},{kind:'gate',at:'end',art:['cilj-rudarski-izlaz-zatvoren','cilj-rudarski-izlaz-otvoren'],h:260,label:'Otvori rudarski izlaz'}],finish:'Izađi iz rudnika'},
+ rusevine:{goals:[],finish:'Popni se do poslednjeg barjaka'},
+ reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'}
+};
+export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
+export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
+function makeGoals(L,floorAt){
+ const near=x=>{for(let d=0;d<700;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
+ return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
+  return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
+}
 export function makeLevel(L,index,variant='day'){
  const zone=LEVEL_ZONE+index,platforms=L.platforms.map(q=>({x:q.x,y:q.y,w:q.w,h:q.h||150,kind:'stone'})),enemies=[],items=[];
  const mix=L.design?.enemyMix,pool=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer']),floorAt=x=>platforms.find(q=>(q.y>=585||q.h>=150)&&x>q.x+40&&x<q.x+q.w-40),ground=x=>!!floorAt(x);
  let k=0;const gap=470;for(let x=620;x<L.width-260;x+=gap){const xx=x+((k*137)%120)-60;if(!ground(xx)||Math.abs(xx-L.spawn.x)<420)continue;const type=pool[k%pool.length],hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+k,x:xx,y:floorAt(xx).y,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(k%4)*.23,stun:0,flash:0,alive:true,home:xx,attackId:0});const px=xx+85;if(variant==='storm'&&k%2===0&&floorAt(px)===floorAt(xx)){const t2=pool[(k+1)%pool.length],h2=FOE_HP[t2]??90;enemies.push({id:5050+index*100+k,x:px,y:floorAt(px).y,w:36,h:75,hp:h2,maxHp:h2,type:t2,zone,face:-1,mode:'idle',timer:.8+(k%3)*.2,stun:0,flash:0,alive:true,home:px,attackId:0});}k++;}
  let j=0;for(let x=900;x<L.width-300;x+=1300){if(ground(x))items.push({id:7000+index*50+j,x,y:floorAt(x).y-35,type:j%2?'herb':'wine',taken:false});j++;}
  const high=platforms.filter(q=>q.y<585).sort((a,b)=>a.y-b.y)[0];if(high)items.push({id:7045+index,x:high.x+high.w/2,y:high.y-35,type:'relic',taken:false});
- chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:L.width,goal:'Stigni do barjaka na kraju puta',message:''};
- return{platforms,enemies,items,runes:[],barriers:[],level:L};
+ chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:L.width,goal:goalFinish(L),message:''};
+ return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L,floorAt),level:L};
 }

@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        31,
+        130,
+        481,
+        488
+      ],
+      "footY": 487,
+      "height": 358
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        53,
+        134,
+        459,
+        488
+      ],
+      "footY": 487,
+      "height": 354
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        45,
+        130,
+        466,
+        488
+      ],
+      "footY": 487,
+      "height": 358
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        42,
+        126,
+        470,
+        488
+      ],
+      "footY": 487,
+      "height": 362
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        21,
+        130,
+        490,
+        488
+      ],
+      "footY": 487,
+      "height": 358
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        44,
+        134,
+        468,
+        488
+      ],
+      "footY": 487,
+      "height": 354
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        47,
+        130,
+        465,
+        488
+      ],
+      "footY": 487,
+      "height": 358
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        43,
+        126,
+        468,
+        488
+      ],
+      "footY": 487,
+      "height": 362
+    }
+  ],
+  "oldFootY": 487,
+  "fps": 12,
+  "bodyBobPixels": 8,
+  "phases": [
+    "contact",
+    "down",
+    "pass",
+    "push",
+    "contact",
+    "down",
+    "pass",
+    "push"
+  ]
+}

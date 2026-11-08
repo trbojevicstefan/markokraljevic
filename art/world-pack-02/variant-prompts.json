@@ -1,0 +1,40 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "cilj-kapija-otvorena",
+      "base": "cilj-kapija-zatvorena",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Open both timber gate doors wide outward, keep EXACT roof, posts, masonry and scale/placement. Transparent opening, no scenery behind. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-poluga-povucena",
+      "base": "cilj-poluga",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Move ONLY the lever handle to the opposite pulled position leaning RIGHT and tighten chain; retain exact base, chain anchors, materials and scale. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-vilinski-kamen-budan",
+      "base": "cilj-vilinski-kamen",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Wake the fairy stone: illuminate ONLY the carved spiral patterns with turquoise-gold light, subtle attached glow; keep exact rock outline, plants, scale and position. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-opsadna-sprava-srusena",
+      "base": "cilj-opsadna-sprava",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. The SAME catapult now collapsed and broken: snapped main arm, cracked wheels and loose timbers lying together in a low grounded pile. Retain recognizable materials and crimson banner scraps. No smoke or detached floating debris. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-kristal-svetli",
+      "base": "cilj-kristal",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Activate the SAME crystal: bright turquoise internal illumination with gold highlights and subtle attached glow. Keep exact crystal shapes, rock base and scale. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-svetiljka-upaljena",
+      "base": "cilj-svetiljka",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Light ONLY the lantern with a bright warm golden flame contained inside it. Preserve exact pole, ornament, stone footing, scale and position. No ellipse shadow. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    },
+    {
+      "id": "cilj-rudarski-izlaz-otvoren",
+      "base": "cilj-rudarski-izlaz-zatvoren",
+      "prompt": "Use case: precise-object-edit. Edit the supplied asset. Raise/remove ONLY the iron grate so entrance is completely open with dark interior. Preserve exact timber portal and rock frame, foliage, scale and position; no additional scenery. Preserve the painterly cel-shaded style and all unchanged details. ONE isolated whole object, true transparent background, no labels, no floor plane, no shadow ellipse. Do not add detached sparkles or new objects."
+    }
+  ]
+}

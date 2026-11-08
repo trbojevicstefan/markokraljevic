@@ -1,0 +1,802 @@
+{
+  "generator": "built-in image_gen + requested technical normalization",
+  "images": [
+    {
+      "id": "tlo-klisura",
+      "file": "tlo-klisura.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        24,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-klisura-kraj",
+      "file": "tlo-klisura-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        33,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-manastir",
+      "file": "tlo-manastir.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        41,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-manastir-kraj",
+      "file": "tlo-manastir-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        45,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-mocvara",
+      "file": "tlo-mocvara.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        32,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-mocvara-kraj",
+      "file": "tlo-mocvara-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        45,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-pecina",
+      "file": "tlo-pecina.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        42,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-pecina-kraj",
+      "file": "tlo-pecina-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        43,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-podrum",
+      "file": "tlo-podrum.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        47,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-podrum-kraj",
+      "file": "tlo-podrum-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        47,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-prevoj",
+      "file": "tlo-prevoj.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        36,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-prevoj-kraj",
+      "file": "tlo-prevoj-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        41,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-reka",
+      "file": "tlo-reka.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        25,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-reka-kraj",
+      "file": "tlo-reka-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        46,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-rudnik",
+      "file": "tlo-rudnik.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        38,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-rudnik-kraj",
+      "file": "tlo-rudnik-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        39,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-rusevine",
+      "file": "tlo-rusevine.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        25,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-rusevine-kraj",
+      "file": "tlo-rusevine-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        25,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-selo",
+      "file": "tlo-selo.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        39,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-selo-kraj",
+      "file": "tlo-selo-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        41,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-suma",
+      "file": "tlo-suma.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        40,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-suma-kraj",
+      "file": "tlo-suma-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        42,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "tlo-tvrdjava",
+      "file": "tlo-tvrdjava.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        29,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "walkY": 64,
+      "seamCheck": {
+        "meanDifference": 0.0,
+        "halfShiftMeanDifference": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true,
+        "retouch": "32px premultiplied wrap blend after half-width offset; second offset join retouched"
+      }
+    },
+    {
+      "id": "tlo-tvrdjava-kraj",
+      "file": "tlo-tvrdjava-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        37,
+        152,
+        384
+      ],
+      "kind": "ground-end",
+      "walkY": 64,
+      "joinToStripPassed": true
+    },
+    {
+      "id": "cilj-bunar-svetli",
+      "file": "cilj-bunar-svetli.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        345,
+        584,
+        679,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-kapija-otvorena",
+      "file": "cilj-kapija-otvorena.png",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        93,
+        118,
+        930,
+        768
+      ],
+      "kind": "objective",
+      "baseline": 767
+    },
+    {
+      "id": "cilj-kapija-zatvorena",
+      "file": "cilj-kapija-zatvorena.png",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        92,
+        118,
+        932,
+        768
+      ],
+      "kind": "objective",
+      "baseline": 767
+    },
+    {
+      "id": "cilj-kristal-svetli",
+      "file": "cilj-kristal-svetli.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        275,
+        584,
+        749,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-kristal",
+      "file": "cilj-kristal.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        271,
+        584,
+        753,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-opsadna-sprava-srusena",
+      "file": "cilj-opsadna-sprava-srusena.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        32,
+        642,
+        992,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-opsadna-sprava",
+      "file": "cilj-opsadna-sprava.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        125,
+        584,
+        898,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-poluga-povucena",
+      "file": "cilj-poluga-povucena.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        296,
+        584,
+        727,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-poluga",
+      "file": "cilj-poluga.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        295,
+        584,
+        728,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-relikvija",
+      "file": "cilj-relikvija.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        350,
+        584,
+        673,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-rudarski-izlaz-otvoren",
+      "file": "cilj-rudarski-izlaz-otvoren.png",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        32,
+        232,
+        992,
+        768
+      ],
+      "kind": "objective",
+      "baseline": 767
+    },
+    {
+      "id": "cilj-rudarski-izlaz-zatvoren",
+      "file": "cilj-rudarski-izlaz-zatvoren.png",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        32,
+        237,
+        992,
+        768
+      ],
+      "kind": "objective",
+      "baseline": 767
+    },
+    {
+      "id": "cilj-svetiljka-upaljena",
+      "file": "cilj-svetiljka-upaljena.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        424,
+        584,
+        599,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-svetiljka",
+      "file": "cilj-svetiljka.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        425,
+        584,
+        599,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-vilinski-kamen-budan",
+      "file": "cilj-vilinski-kamen-budan.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        296,
+        584,
+        728,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-vilinski-kamen",
+      "file": "cilj-vilinski-kamen.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        297,
+        584,
+        727,
+        1024
+      ],
+      "kind": "objective",
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-vodenica",
+      "file": "cilj-vodenica.png",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        32,
+        159,
+        992,
+        768
+      ],
+      "kind": "objective",
+      "baseline": 767
+    },
+    {
+      "id": "predmeti-preview",
+      "file": "predmeti-preview.png",
+      "size": [
+        1200,
+        1500
+      ],
+      "bounds": [
+        0,
+        0,
+        1200,
+        1500
+      ],
+      "kind": "preview"
+    },
+    {
+      "id": "tlo-preview",
+      "file": "tlo-preview.png",
+      "size": [
+        3072,
+        4992
+      ],
+      "bounds": [
+        0,
+        0,
+        3072,
+        4992
+      ],
+      "kind": "preview"
+    },
+    {
+      "id": "tlo-offset-preview",
+      "file": "tlo-offset-preview.png",
+      "size": [
+        3072,
+        4992
+      ],
+      "bounds": [
+        0,
+        0,
+        3072,
+        4992
+      ],
+      "kind": "preview"
+    }
+  ]
+}

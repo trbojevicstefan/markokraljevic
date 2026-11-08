@@ -1,0 +1,126 @@
+{
+  "generator": "built-in image_gen",
+  "reference": "../world-pack-01/reference/style-reference.png",
+  "jobs": [
+    {
+      "id": "tlo-selo",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: grass, soil and small rocks. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-klisura",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: pale limestone. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-suma",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: moss and roots. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-manastir",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: flat dressed stone paving slabs. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-tvrdjava",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: cobblestones over masonry. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-prevoj",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: snow over rock. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-pecina",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: wet rock and small turquoise crystals. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-podrum",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: brick with old timber planks. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-mocvara",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: mud with sparse reeds. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-rudnik",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: gravel with embedded mine rails and timber beams. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-rusevine",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: broken stone with ivy. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "tlo-reka",
+      "kind": "ground",
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless side-scrolling ground TEXTURE STRIP, NOT an island or platform prop. Material: sand, rounded pebbles and dock planks. A long rectangular terrain cross section, continuous all the way to BOTH left and right edges with absolutely NO rounded ends and NO silhouette cutout at either side. Straight horizontal walkable top at about one-sixth canvas height. Above it empty transparent alpha, only sparse tiny material details. Dense solid continuous soil or rock interior from top surface all the way down to the bottom, becoming near black #0b0f10 at bottom. Flat side elevation, no perspective. Wide landscape 1024x384 intended canvas. Match both horizontal edges. No scenery, no mountains, no standalone plants except tiny surface grass/reeds."
+    },
+    {
+      "id": "cilj-kapija-zatvorena",
+      "kind": "objective",
+      "wide": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: closed medieval Serbian village timber gate with two posts and a small terracotta pitched roof, doors closed. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Landscape 1024x768 intended canvas, object under 700px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-bunar-svetli",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: village stone well, golden light coming FROM INSIDE its opening, small timber canopy and bucket. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-poluga",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: a wooden lever mechanism on an oak base, iron chain attached, lever upright leaning to LEFT, unpulled. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-vilinski-kamen",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: upright fairy stone with carved geometric spirals, INACTIVE unlit engravings, mossy rocky base. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-relikvija",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: small medieval reliquary casket with an Orthodox cross mounted on a stone pedestal. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-opsadna-sprava",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: intact Ottoman medieval timber catapult with wheels, ropes, arm and sling, ready position. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-kristal",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: one large turquoise crystal cluster growing from a grey rock base, dormant, NO internal light. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-svetiljka",
+      "kind": "objective",
+      "wide": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: UNLIT iron lantern on a full wooden post rising from a small attached stone footing wet at the waterline, no detached water plane. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Square 1024x1024 intended canvas, object 300–500px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-rudarski-izlaz-zatvoren",
+      "kind": "objective",
+      "wide": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: wooden mine entrance portal with heavy oak supports, rocky frame, closed iron grate, complete freestanding entrance. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Landscape 1024x768 intended canvas, object under 700px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    },
+    {
+      "id": "cilj-vodenica",
+      "kind": "objective",
+      "wide": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated objective object: complete Balkan medieval watermill with terracotta roof, timber and white plaster walls, large water wheel, side elevation. Strict side elevation or very shallow three-quarter game view. Entire object visible on true transparent alpha, no floor plane, no ellipse shadow, no text or detached effects. Landscape 1024x768 intended canvas, object under 700px high. Object rests at bottom of canvas, generous empty space above and to the sides. Crisp clean alpha silhouette."
+    }
+  ]
+}

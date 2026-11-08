@@ -1,18 +1,18 @@
 {
-  "characterId": "akindzija-run",
+  "characterId": "akindzija-run-v2",
   "engine": "component-row",
-  "game_input": "sprite-sheet-alpha.png",
+  "game_input": "atlas.png",
   "degraded_static_fallback": false,
   "curation_applied": false,
   "frame_variant": "pixel",
-  "sprite_sheet_alpha": "sprite-sheet-alpha.png",
+  "sprite_sheet_alpha": "atlas.png",
   "sprite_sheet_alpha_report": "sprite-sheet-alpha.report.json",
   "base_image": "base-source.png",
   "cell": {
     "shape": "square",
     "width": 512,
     "height": 512,
-    "safe_margin_x": 24,
+    "safe_margin_x": 4,
     "safe_margin_y": 24,
     "size": 512,
     "safe_margin": 24
@@ -30,13 +30,15 @@
   "animation": {
     "cellWidth": 512,
     "cellHeight": 512,
-    "columns": 6,
+    "columns": 8,
     "rows": {
       "motion": {
         "row": 0,
-        "frames": 6,
+        "frames": 8,
         "fps": 12,
         "durations_ms": [
+          83,
+          83,
           83,
           83,
           83,
@@ -50,7 +52,7 @@
     }
   },
   "frame_layout": {
-    "sheetWidth": 3072,
+    "sheetWidth": 4096,
     "sheetHeight": 512,
     "cellWidth": 512,
     "cellHeight": 512,
@@ -88,6 +90,18 @@
         },
         {
           "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3584,
           "y": 0,
           "w": 512,
           "h": 512
