@@ -85,7 +85,7 @@ function useFairy(){
 function updatePlayer(dt){
  for(const key of ['invuln','attack','cooldown','parry','parryCooldown','dash','dashCooldown','buff','landing','mountTime','hurt','drink','castLock','guardBreak','down','comboWindow','wallJumpT','plungeT','hurtLock','drop'])p[key]=Math.max(0,p[key]-dt);if(p.attackKind==='heavy'&&p.attack>0&&p.chargeable){const ph=1-p.attack/attackDuration();if(ph>=.36&&isDown('KeyK')&&!p.chargeReleased){p.attack+=dt;p.cooldown+=dt;p.charge=Math.min(1.1,p.charge+dt);if(p.charge>=1.1&&!p.chargeFull){p.chargeFull=true;fx('flash','#ffd27a',.06);sfx('ring',{gain:.6});label('PUN ZAMAH',p.x,p.y-150,'#ffd890');}}else if(ph>=.36&&p.charge>.15&&!p.chargeReleased){p.chargeReleased=true;sayGrunt(true);}}p.energy=Math.min(100,p.energy+dt*(perks.has('vilino-pero')?7.5:5.5));if(p.drink>0&&p.drink<.38&&!p.drinkApplied){p.drinkApplied=true;p.buff=12;p.hp=Math.min(p.maxHp,p.hp+18);sound("wine");say('wine',{priority:2,delay:.5});say('vila_wine',{chance:.5,delay:3.4});toast("Junačko vino · +30% snage · 12 sekundi",3);burst(p.x,p.y-65,"#e0a95a",20);fx('flash','#ffb040',.08);}p.anim+=dt;p.gait+=Math.abs(p.vx)*dt/(horseMounted?42:25);fairy.age+=dt;if(pendingMagic){pendingMagic.delay-=dt;if(pendingMagic.delay<=0){const effect=pendingMagic;pendingMagic=null;effect.apply();}}
  if(p.grounded){p.coyote=.12;p.airLift=false;}else p.coyote-=dt;
- if(level&&climbInput())p.jumpBuffer=0;else if(tap('Space','KeyW','ArrowUp')&&!p.climb)p.jumpBuffer=.14;else p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
+ if(climbInput())p.jumpBuffer=0;else if(tap('Space','KeyW','ArrowUp')&&!p.climb)p.jumpBuffer=.14;else p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
  p.crouching=p.grounded&&!horseMounted&&p.attack<=0&&p.drink<=0&&isDown('KeyS','ArrowDown');p.crouch=clamp(p.crouch+(p.crouching?1:-1)*dt*7,0,1);p.h=112-48*p.crouch;
  p.blocking=isDown('KeyL')&&p.grounded&&!horseMounted&&!p.crouching&&p.attack<=0&&p.drink<=0&&p.dash<=0&&p.guardBreak<=0&&p.guard>0;
  p.blockTime=clamp(p.blockTime+(p.blocking?1:-1)*dt*8,0,1);p.guard=clamp(p.guard+dt*(p.blocking?-12:p.guardBreak>0?0:26),0,100);if(p.guard<=0&&p.blocking){p.guardBreak=.85;p.blocking=false;toast('Gard je slomljen',1);sfx('clang',{rate:.7});say('hurt',{priority:2});}
@@ -515,7 +515,7 @@ function climbInput(){if(horseMounted||p.down>0||p.ledgeT>0||p.attack>0||p.climb
  if(isDown('KeyW','ArrowUp')){const l=ladderNear();if(l){startClimb(l);return true;}}
  if(p.grounded&&isDown('KeyS','ArrowDown')){const l=ladderBelow();if(l){startClimb(l);p.y=l.top+6;return true;}}
  // S + Space drops through a plank or the deck of a watchtower
- if(p.grounded&&p.on&&!p.on.solid&&p.on.kind!=='magic'&&isDown('KeyS','ArrowDown')&&tap('Space')){p.drop=.28;p.grounded=false;p.y+=3;p.vy=60;return true;}
+ if(p.grounded&&p.on&&!p.on.solid&&p.on.kind!=='magic'&&(level||!isFloor(p.on))&&isDown('KeyS','ArrowDown')&&tap('Space')){p.drop=.35;p.dropFrom=p.on;p.grounded=false;p.y+=3;p.vy=80;p.crouching=false;p.crouch=0;p.h=112;sfx('cloth',{gain:.4});return true;}
  return false;}
 function startClimb(l){p.climb=l;p.x=l.x;p.vx=0;p.vy=0;p.grounded=false;p.crouching=false;p.crouch=0;p.h=112;p.wall=0;sfx('cloth',{gain:.5});}
 function updateClimb(dt){const l=p.climb;if(!l)return false;const dir=(isDown('KeyS','ArrowDown')?1:0)-(isDown('KeyW','ArrowUp')?1:0);
@@ -893,7 +893,7 @@ let slowMo=0;
 function levelStars(L){const done=levelsDone().some(k=>k===L.id||k.startsWith(L.id+'@'));let slova=false;try{slova=JSON.parse(localStorage.getItem('marko-slova')||'[]').includes(L.id);}catch{}const c=CUDA.find(c=>c.land===L.id),cudo=c?ownedCuda().has(c.id):null;return{done,slova,cudo};}
 function starText(L){const s=levelStars(L);return(s.done?'★':'☆')+(s.slova?'★':'☆')+(s.cudo===null?'':s.cudo?'★':'☆');}
 // ---------- Ravijojla explains each new danger the first time Marko meets it ----------
-const HINTS={ladder:'Lestve! Priđi i drži W (ili gore na džojstiku).',spikes:'Kolje! Preskoči ga — a Turčina možeš baciti na njega.',crumble:'Ove daske popuštaju. Ne zastaj na njima!',log:'Balvan se njiše. Sačekaj da prođe, pa protrči ispod.',rocks:'Kamenje pada sa litice. Prati senke na zemlji!',barrels:'Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.',timed:'Povuci polugu, pa trči — kapija se brzo zatvara.',slovo:'Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.',moc:'Vilinska moć! Uzmi je i topuz će ti zasijati.',chest:'Kovčeg! Udari ga topuzom da ga otvoriš.',shaft:'Između ova dva zida možeš da se penješ odskakanjem.',boss:'Megdan! Pazi na svaki njegov treći napad.'};
+const HINTS={ladder:'Lestve! Priđi i drži W (ili gore na džojstiku).',spikes:'Kolje! Preskoči ga — a Turčina možeš baciti na njega.',crumble:'Ove daske popuštaju. Ne zastaj na njima!',log:'Balvan se njiše. Sačekaj da prođe, pa protrči ispod.',rocks:'Kamenje pada sa litice. Prati senke na zemlji!',barrels:'Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.',timed:'Povuci polugu, pa trči — kapija se brzo zatvara.',slovo:'Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.',moc:'Vilinska moć! Uzmi je i topuz će ti zasijati.',chest:'Kovčeg! Udari ga topuzom da ga otvoriš.',shaft:'Između ova dva zida možeš da se penješ odskakanjem.',boss:'Megdan! Pazi na svaki njegov treći napad.',drop:'Sa daske ili poda kule siđeš sa S + Space (na džojstiku dole + A).'};
 let hintsSeen=null,hintT=0;
 function hintOnce(key){if(!level)return;hintsSeen??=(()=>{try{return new Set(JSON.parse(localStorage.getItem('marko-hints')||'[]'));}catch{return new Set();}})();if(hintsSeen.has(key)||hintT>0)return;hintsSeen.add(key);hintT=6;try{localStorage.setItem('marko-hints',JSON.stringify([...hintsSeen]));}catch{}speak(HINTS[key],5);}
 function updateHints(dt){hintT=Math.max(0,hintT-dt);if(!level||hintT>0)return;const near=(x,y,r=420)=>Math.abs(x-p.x)<r&&Math.abs(y-p.y)<260;
@@ -903,6 +903,6 @@ function updateHints(dt){hintT=Math.max(0,hintT-dt);if(!level||hintT>0)return;co
  for(const q of world.platforms)if(q.hang&&has('zid')&&near(q.x,q.y+q.h,360))return hintOnce('shaft');
  for(const i of world.items){if(i.taken)continue;if(i.type==='slovo'&&near(i.x,i.y,360))return hintOnce('slovo');if(i.type==='moc'&&near(i.x,i.y,360))return hintOnce('moc');}
  for(const b of world.breakables||[])if(b.kind==='kovceg'&&!b.opened&&near(b.x,b.y,300))return hintOnce('chest');
- if(arena)hintOnce('boss');}
+ if(arena)hintOnce('boss');if(p.grounded&&p.on&&!p.on.solid&&(p.on.kind==='plank'||p.on.kind==='deck'))hintOnce('drop');}
 // ---------- elites: a few janissaries in every pohod are veterans — tougher, quicker, richer ----------
 function makeElites(){let k=0;for(const e of world.enemies){if(e.champion||e.perch)continue;if((e.id*7+levelIndex*3)%7===0){e.elite=true;e.hp=e.maxHp=Math.round(e.maxHp*1.7);k++;}}return k;}

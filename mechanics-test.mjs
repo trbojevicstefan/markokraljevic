@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank()})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank()})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -80,6 +80,12 @@ await climbShaft('rusevine',true);
 {const w=await start('oranje');quiet(w);const pl=w.plowTeams[0];stand(pl.x-700,pl.y);const x0=pl.x;step(120*2);ok(pl.x<x0,'plow: the team plows the road toward Marko');
  stand(pl.x-120,pl.y);S().p.face=1;for(let i=0;i<40&&!pl.broken;i++){tap('KeyK');step(80);}ok(pl.broken,'plow: heavy blows break the plow');
  ok(w.items.some(i=>i.type==='tovar'&&i.plow===pl),'plow: the broken plow leaves a load of treasure');}
+// ---- down + jump drops through planks in a pohod, and through the floating stones of the Kačanik story ----
+{const w=await start('selo');quiet(w);const q=w.platforms.find(q=>q.kind==='plank'&&!q.bridge&&!q.crumble);stand(q.x+q.w/2,q.y);step(5);api.keys.add('KeyS');step(3);tap('Space');step(30);api.keys.clear();step(60);
+ ok(S().p.y>q.y+60&&S().p.grounded,`drop: S+Space leaves a plank ${Math.round(S().p.y-q.y)}px above the road`);}
+{api.start();const w=S().world;const q=w.platforms.find(q=>q.y<585&&q.kind!=='magic');stand(q.x+q.w/2,q.y);S().p.invuln=99;step(5);api.keys.add('KeyS');step(3);tap('Space');step(30);api.keys.clear();step(80);
+ ok(S().p.y===590&&S().p.grounded,'drop: the Kačanik story too: down through a floating stone onto the road');
+ stand(q.x+q.w/2-300,590);step(5);api.keys.add('KeyS');step(3);tap('Space');step(60);api.keys.clear();step(200);ok(S().p.y===590&&S().p.grounded,'drop: the road itself never gives way');}
 // ---- the letters М-А-Р-К-О: all five heal and pay ----
 {const w=await start('suma');quiet(w);const ls=w.items.filter(i=>i.type==='slovo');ok(ls.length===5,'letters: five letters hide in a pohod');S().p.hp=20;const before=S().bank;
  for(const l of ls){stand(l.x,l.y+40);step(3);}step(200);ok(S().p.letters===31&&S().p.hp===S().p.maxHp,'letters: all five restore Marko');ok(S().bank-before>=40,'letters: and pay 40 ducats');ok(JSON.parse(storage.get('marko-slova')).includes('suma'),'letters: the pohod is marked МАРКО');}

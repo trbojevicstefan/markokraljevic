@@ -46,8 +46,8 @@ export function integrate(body,dt,platforms,runes=[]){
  body.x=nx;body.y=feet;const old=body.y;body.y+=body.vy*dt;body.grounded=false;
  if(body.vy<0){for(const q of platforms){if(!q.solid||q.off)continue;const bottom=q.y+q.h;if(body.x+hw>q.x+2&&body.x-hw<q.x+q.w-2&&old-h>=bottom-1&&body.y-h<bottom){body.y=bottom+h;body.vy=0;}}}
  if(body.vy>=0){let best=null;
-  for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&old<=q.y+2&&body.y>=q.y&&(!best||q.y<best.y))best=q;}
-  if(!best&&ground&&body.vy<320){for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&q.y>body.y&&q.y-body.y<=STEP_UP-2&&(!best||q.y<best.y))best=q;}}
+  for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid)))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&old<=q.y+2&&body.y>=q.y&&(!best||q.y<best.y))best=q;}
+  if(!best&&ground&&body.vy<320){for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid)))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&q.y>body.y&&q.y-body.y<=STEP_UP-2&&(!best||q.y<best.y))best=q;}}
   if(best){body.y=best.y;body.vy=0;body.grounded=true;body.on=best;}else body.on=null;}
  else body.on=null;
 }
