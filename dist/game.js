@@ -953,10 +953,12 @@ function musaPose(){const m=boss.mode,story=settings.difficulty==='story';
  if(boss.moveT>0&&rig?.['musa-run'])return locomotionPose({...boss,type:'musa'});
  if(rig?.['musa-idle'])return{name:'musa-idle',frame:Math.floor(time*8)%6,...(m==='roar'?{dx:(Math.random()-.5)*5,sy:1.03}:{})};
  return{name:'cast/musa',frame:0,sy:1+Math.sin(time*2)*.014};}
-function drawMusaWindow(){if(!MUSA_OPEN.includes(boss.mode)||!boss.windowMax)return;const k=clamp(boss.timer/boss.windowMax,0,1),x=boss.x,y=boss.y-250;
- for(const [g,w,al] of[[gctx,7,.8],[ctx,4,1]]){g.save();g.globalAlpha=al;g.beginPath();g.arc(x,y,24,-Math.PI/2,-Math.PI/2+Math.PI*2*k);g.strokeStyle=k<.3?'#ff9a7a':'#9dffb0';g.lineWidth=w;g.stroke();g.restore();}
- ellipse(x,y,17,17,'rgba(10,20,16,.75)');textLabel('UDRI',x,y+4,{font:'bold 10px Georgia',color:'#e9ffe0',glow:'#9dffb0'});
- if(boss.combo>1)textLabel(`NIZ ×${boss.combo}`,x,y-36,{font:'bold 15px Georgia',color:boss.combo>=5?'#ffe39a':'#e9ffe0',glow:'#ffcf6a'});
+function drawMusaWindow(){if(!MUSA_OPEN.includes(boss.mode)||!boss.windowMax)return;const k=clamp(boss.timer/boss.windowMax,0,1),x=boss.x,y=boss.y-232,col=k<.3?'#ff8a6a':'#8dffa8';
+ ellipse(x,y,31,31,'rgba(6,14,12,.82)');ctx.beginPath();ctx.arc(x,y,27,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,.12)';ctx.lineWidth=6;ctx.stroke();
+ ctx.beginPath();ctx.arc(x,y,27,-Math.PI/2,-Math.PI/2+Math.PI*2*k);ctx.strokeStyle=col;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();ctx.lineCap='butt';
+ gctx.save();gctx.globalAlpha=.3;gctx.beginPath();gctx.arc(x,y,27,-Math.PI/2,-Math.PI/2+Math.PI*2*k);gctx.strokeStyle=col;gctx.lineWidth=5;gctx.stroke();gctx.restore();
+ textLabel(boss.timer.toFixed(1),x,y+6,{font:'bold 16px Georgia',color:'#ffffff'});textLabel('UDRI!',x,y+50,{font:'bold 13px Georgia',color:'#e9ffe0',glow:'#4a9a5a'});
+ if(boss.combo>1)textLabel(`NIZ ×${boss.combo}`,x,y-44,{font:'bold 15px Georgia',color:boss.combo>=5?'#ffe39a':'#e9ffe0',glow:'#ffcf6a'});
  if(boss.mode==='dazed'||boss.mode==='staggered')for(let s=0;s<3;s++){const a=time*5+s*2.1;textLabel('✦',x+Math.cos(a)*30,boss.y-195+Math.sin(a)*8,{font:'16px Georgia',color:'#fff3c0',glow:'#ffd27a'});}}
 
 // ================= interface: the map of pohodi, title cards, stars, the ledger, embers, sounds =================
