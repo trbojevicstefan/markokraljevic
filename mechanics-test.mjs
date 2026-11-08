@@ -138,4 +138,13 @@ await climbShaft('rusevine',true);
 // ---- combos ----
 {const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const gy=floorAt(w,e.x).y;Object.assign(e,{type:'sword',y:gy,hp:999,maxHp:999,stun:5});stand(e.x-80,gy);S().p.face=1;
  tap('KeyJ');step(46);tap('KeyJ');step(46);let kind='';for(let i=0;i<40&&kind!=='lomilac';i++){tap('KeyK');kind=S().p.attackKind;}ok(kind==='lomilac','combo: J J K is the Lomilac');step(60);ok(e.vx>0||!e.grounded||e.x>gy,'combo: the Lomilac throws the janissary back');}
+// ---- the launcher and the air string ----
+async function juggle(id,tresak){const w=await start(id);const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const gy=floorAt(w,e.x).y;Object.assign(e,{type:'sword',y:gy,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1});stand(e.x-70,gy);S().p.face=1;
+ api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);const lifted=e.vy<0||e.y<gy-10;tap('Space');step(1);const follow=S().p.vy<-700;let hits=0,hp=e.hp;
+ for(let i=0;i<120*2&&!S().p.grounded;i++){if(i%22===2){tap(tresak&&hits>=1?'KeyK':'KeyJ');}step();if(e.hp<hp){hits++;hp=e.hp;}}
+ for(let i=0;i<120*2&&!(e.grounded&&!e.air);i++)step();return{e,lifted,follow,hits,slam:600-e.hp};}
+{const r=await juggle('selo',false);ok(r.lifted,'launch: W+J lifts a janissary into the air (no skill needed)');ok(r.follow,'launch: Space right after it follows him up');ok(r.hits>=2,`launch: blows land in the air (${r.hits})`);ok(r.slam>=110,`launch: the string ends slamming him into the ground (−${Math.round(r.slam)})`);}
+{const r=await juggle('selo',true);ok(r.slam>=130,`tresak: K in the air drives him into the ground (−${Math.round(r.slam)})`);}
+{api.start();const w=S().world;const e=w.enemies.find(e=>e.zone===0&&e.type==='sword');for(const o of w.enemies)if(o!==e)o.alive=false;Object.assign(e,{stun:0,mode:'idle',timer:9,hp:300,maxHp:300});stand(e.x-70,e.y);S().p.face=1;S().p.invuln=99;
+ api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);ok(e.y<580,'launch: in the Kačanik story too the janissary flies');step(240);ok(e.y===590,'launch: and lands back on the road');}
 console.log(`${checks} pohod mechanics checks passed.`);
