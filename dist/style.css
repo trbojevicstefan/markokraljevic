@@ -93,3 +93,8 @@
 .vestine div{padding:9px 12px;background:#0c2224aa;border:1px solid #c8ab6f33}
 .vestine div.have{border-color:#e7c27a99;background:linear-gradient(160deg,#2a3a2a,#12282a)}
 .vestine b{display:block;font:14px Georgia,serif;color:#f1dfb8}.vestine small{display:block;font:11px/1.4 Arial;color:#a9b9ad;margin-top:3px}
+#niz{position:absolute;right:40px;top:110px;text-align:right;pointer-events:none;text-shadow:0 2px 6px #000}
+#niz b{display:block;font:bold 40px Georgia,serif;color:#ffe39a;line-height:1}
+#niz span{font:11px Arial;letter-spacing:4px;color:#f1d096}
+#niz i{display:block;height:3px;background:#ffcf6a;margin-top:5px;margin-left:auto;transition:width .1s}
+.level-list button b em.stars{opacity:1;filter:none;color:#ffd98a;letter-spacing:2px;font-size:13px}
