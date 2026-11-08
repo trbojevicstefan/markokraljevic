@@ -3,6 +3,7 @@ from PIL import Image
 import json
 root=Path(__file__).resolve().parent
 plan=json.loads((root/'plan.json').read_text(encoding='utf8'))
+if (root/'extra-plan.json').exists(): plan['jobs']+=json.loads((root/'extra-plan.json').read_text(encoding='utf8'))
 assets=[]
 for job in plan['jobs']:
     p=root/'assets'/f"{job['id']}.png"
@@ -15,8 +16,11 @@ for n,(theme,title,scene,palette) in enumerate(plan['themes']):
     platforms=[]
     for i in range(12):
         x=i*520
-        platforms.append({'x':x,'y':590,'w':400 if i%3 else 460,'h':180,'kind':'stone'})
-        if i%2==1: platforms.append({'x':x+130,'y':450-(i%3)*25,'w':170,'h':28,'kind':'stone'})
+        base_y=590 if n in [0,1,5] else 590-((i+n)%3)*30
+        width=[440,360,390,415,400,420][n]+(20 if i%3==0 else 0)
+        platforms.append({'x':x,'y':base_y,'w':width,'h':180,'kind':'stone'})
+        if i%2==1 or n==2: platforms.append({'x':x+130,'y':450-(i%3)*25-n*5,'w':170,'h':28,'kind':'stone'})
+        if n in [3,4] and i%3==0: platforms.append({'x':x+220,'y':320,'w':160,'h':35,'kind':'stone'})
     props=[{'id':'prop-barjak-srpski','x':150,'y':590,'height':175},{'id':'prop-barjak-srpski','x':6100,'y':590,'height':175}]
     themed=[['prop-taraba-ravna','prop-kuca','prop-bunar','prop-ambar','prop-kola'],['prop-stena-visoka','prop-most-drveni','prop-stena-luk','prop-trska'],['prop-drvo-hrast','prop-panj','prop-svetiliste','prop-run-kamen','prop-cvece'],['prop-ograda-manastir','prop-barjak-manastir','prop-kapija-tvrdjava','prop-krcag'],['prop-palisada','prop-sator','prop-strassarnica','prop-kapija-tvrdjava','prop-sanduci'],['prop-drvo-sneg','prop-platforma-sneg','prop-stena-visoka','prop-balvan']][n]
     for i in range(18): props.append({'id':themed[i%len(themed)],'x':300+i*320,'y':590,'height':[140,240,180,125][i%4]})

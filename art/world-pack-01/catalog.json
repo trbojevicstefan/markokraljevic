@@ -36,6 +36,42 @@
     ]
   },
   {
+    "id": "selo-mid",
+    "theme": "selo",
+    "title": "Kosovsko selo · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/selo-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "selo-near",
+    "theme": "selo",
+    "title": "Kosovsko selo · near",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "file": "assets/selo-near.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
     "id": "selo-vista",
     "theme": "selo",
     "title": "Kosovsko selo · vista",
@@ -50,6 +86,548 @@
       0,
       0,
       2172,
+      724
+    ]
+  },
+  {
+    "id": "klisura-sky",
+    "theme": "klisura",
+    "title": "Klisura Ibra · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/klisura-sky.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      1774,
+      887
+    ]
+  },
+  {
+    "id": "klisura-far",
+    "theme": "klisura",
+    "title": "Klisura Ibra · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/klisura-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      19,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "klisura-mid",
+    "theme": "klisura",
+    "title": "Klisura Ibra · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/klisura-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      23,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "klisura-near",
+    "theme": "klisura",
+    "title": "Klisura Ibra · near",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "file": "assets/klisura-near.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "klisura-vista",
+    "theme": "klisura",
+    "title": "Klisura Ibra · vista",
+    "kind": "vista",
+    "alpha": false,
+    "depth": 1,
+    "file": "assets/klisura-vista.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "suma-sky",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/suma-sky.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "suma-far",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/suma-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      36,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "suma-mid",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/suma-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "suma-near",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · near",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "file": "assets/suma-near.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "suma-vista",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · vista",
+    "kind": "vista",
+    "alpha": false,
+    "depth": 1,
+    "file": "assets/suma-vista.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "manastir-sky",
+    "theme": "manastir",
+    "title": "Manastirski vis · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/manastir-sky.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "manastir-far",
+    "theme": "manastir",
+    "title": "Manastirski vis · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/manastir-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      97,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "manastir-mid",
+    "theme": "manastir",
+    "title": "Manastirski vis · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/manastir-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      31,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "manastir-near",
+    "theme": "manastir",
+    "title": "Manastirski vis · near",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "file": "assets/manastir-near.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "manastir-vista",
+    "theme": "manastir",
+    "title": "Manastirski vis · vista",
+    "kind": "vista",
+    "alpha": false,
+    "depth": 1,
+    "file": "assets/manastir-vista.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "tvrdjava-sky",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/tvrdjava-sky.png",
+    "width": 1934,
+    "height": 813,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      1934,
+      813
+    ]
+  },
+  {
+    "id": "tvrdjava-far",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/tvrdjava-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "tvrdjava-mid",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/tvrdjava-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      9,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "tvrdjava-near",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · near",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "file": "assets/tvrdjava-near.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "tvrdjava-vista",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · vista",
+    "kind": "vista",
+    "alpha": false,
+    "depth": 1,
+    "file": "assets/tvrdjava-vista.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "prevoj-sky",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/prevoj-sky.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      1774,
+      887
+    ]
+  },
+  {
+    "id": "prevoj-far",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/prevoj-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      9,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "prevoj-mid",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · mid",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "file": "assets/prevoj-mid.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      9,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "prop-taraba-ravna-variant",
+    "title": "long straight rustic split-oak picket fence section, irregular slats, horizontal rails, complete section",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-taraba-ravna-variant.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      41,
+      0,
+      2148,
+      670
+    ]
+  },
+  {
+    "id": "prop-taraba-slomljena-variant",
+    "title": "broken rustic picket fence section, snapped slats, loose ends still connected",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-taraba-slomljena-variant.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      2140,
+      666
+    ]
+  },
+  {
+    "id": "prop-taraba-kapija-variant",
+    "title": "rustic timber farm gate between two tall posts, closed, carved traditional Balkan details",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-taraba-kapija-variant.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      1756,
+      887
+    ]
+  },
+  {
+    "id": "prop-ograda-pleter-variant",
+    "title": "woven hazel wattle fence section with three uprights",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-ograda-pleter-variant.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      9,
+      1773,
+      887
+    ]
+  },
+  {
+    "id": "prop-ograda-balvani-variant",
+    "title": "heavy stacked horizontal log barrier with cross supports",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-ograda-balvani-variant.png",
+    "width": 1983,
+    "height": 793,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      1967,
+      793
+    ]
+  },
+  {
+    "id": "prop-palisada-variant",
+    "title": "pointed timber palisade section, lashed heavy oak logs",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-palisada-variant.png",
+    "width": 1536,
+    "height": 1024,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      1530,
+      1024
+    ]
+  },
+  {
+    "id": "prop-palisada-kapija-variant",
+    "title": "large pointed palisade gate with reinforced timber doors",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-palisada-kapija-variant.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      0,
+      1764,
+      887
+    ]
+  },
+  {
+    "id": "prop-ograda-kamen-variant",
+    "title": "low dry-stacked limestone wall section, lichen and weathered cap stones",
+    "kind": "prop",
+    "alpha": true,
+    "file": "assets/prop-ograda-kamen-variant.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      19,
+      37,
+      2148,
       724
     ]
   }

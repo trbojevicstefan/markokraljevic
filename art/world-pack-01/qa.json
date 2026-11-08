@@ -1,5 +1,5 @@
 {
-  "images": 3,
+  "images": 36,
   "transparentRequestedButOpaque": [],
   "sizes": {
     "selo-sky": [
@@ -10,7 +10,139 @@
       2172,
       724
     ],
+    "selo-mid": [
+      2172,
+      724
+    ],
+    "selo-near": [
+      2172,
+      724
+    ],
     "selo-vista": [
+      2172,
+      724
+    ],
+    "klisura-sky": [
+      1774,
+      887
+    ],
+    "klisura-far": [
+      2172,
+      724
+    ],
+    "klisura-mid": [
+      2172,
+      724
+    ],
+    "klisura-near": [
+      2172,
+      724
+    ],
+    "klisura-vista": [
+      2172,
+      724
+    ],
+    "suma-sky": [
+      2172,
+      724
+    ],
+    "suma-far": [
+      2172,
+      724
+    ],
+    "suma-mid": [
+      2172,
+      724
+    ],
+    "suma-near": [
+      2172,
+      724
+    ],
+    "suma-vista": [
+      2172,
+      724
+    ],
+    "manastir-sky": [
+      2172,
+      724
+    ],
+    "manastir-far": [
+      2172,
+      724
+    ],
+    "manastir-mid": [
+      2172,
+      724
+    ],
+    "manastir-near": [
+      2172,
+      724
+    ],
+    "manastir-vista": [
+      2172,
+      724
+    ],
+    "tvrdjava-sky": [
+      1934,
+      813
+    ],
+    "tvrdjava-far": [
+      2172,
+      724
+    ],
+    "tvrdjava-mid": [
+      2172,
+      724
+    ],
+    "tvrdjava-near": [
+      2172,
+      724
+    ],
+    "tvrdjava-vista": [
+      2172,
+      724
+    ],
+    "prevoj-sky": [
+      1774,
+      887
+    ],
+    "prevoj-far": [
+      2172,
+      724
+    ],
+    "prevoj-mid": [
+      2172,
+      724
+    ],
+    "prop-taraba-ravna-variant": [
+      2172,
+      724
+    ],
+    "prop-taraba-slomljena-variant": [
+      2172,
+      724
+    ],
+    "prop-taraba-kapija-variant": [
+      1774,
+      887
+    ],
+    "prop-ograda-pleter-variant": [
+      1774,
+      887
+    ],
+    "prop-ograda-balvani-variant": [
+      1983,
+      793
+    ],
+    "prop-palisada-variant": [
+      1536,
+      1024
+    ],
+    "prop-palisada-kapija-variant": [
+      1774,
+      887
+    ],
+    "prop-ograda-kamen-variant": [
       2172,
       724
     ]

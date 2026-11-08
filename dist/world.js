@@ -34,3 +34,16 @@ export function integrate(body,dt,platforms,runes=[]){
  const old=body.y;body.vy+=GRAVITY*dt;body.x+=body.vx*dt;body.y+=body.vy*dt;body.grounded=false;
  if(body.vy>=0){for(const p of platforms){if(p.kind==='magic'&&!runes[p.rune]?.active)continue;if(body.x+body.w/2>p.x&&body.x-body.w/2<p.x+p.w&&old<=p.y+2&&body.y>=p.y){body.y=p.y;body.vy=0;body.grounded=true;break;}}}
 }
+
+// ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
+const THEME_FOES={selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['akindzija','oklopnik','sword','archer','shield','palikuca']};
+export const LEVEL_ZONE=6;
+export function makeLevel(L,index){
+ const zone=LEVEL_ZONE+index,platforms=L.platforms.map(q=>({x:q.x,y:q.y,w:q.w,h:q.h||150,kind:'stone'})),enemies=[],items=[];
+ const pool=THEME_FOES[L.id]||['sword','archer'],floorAt=x=>platforms.find(q=>(q.y>=585||q.h>=150)&&x>q.x+40&&x<q.x+q.w-40),ground=x=>!!floorAt(x);
+ let k=0;for(let x=620;x<L.width-260;x+=470){const xx=x+((k*137)%120)-60;if(!ground(xx)||Math.abs(xx-L.spawn.x)<420)continue;const type=pool[k%pool.length],hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+k,x:xx,y:floorAt(xx).y,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(k%4)*.23,stun:0,flash:0,alive:true,home:xx,attackId:0});k++;}
+ let j=0;for(let x=900;x<L.width-300;x+=1300){if(ground(x))items.push({id:7000+index*50+j,x,y:floorAt(x).y-35,type:j%2?'herb':'wine',taken:false});j++;}
+ const high=platforms.filter(q=>q.y<585).sort((a,b)=>a.y-b.y)[0];if(high)items.push({id:7045+index,x:high.x+high.w/2,y:high.y-35,type:'relic',taken:false});
+ chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}`,start:0,end:L.width,goal:'Stigni do barjaka na kraju puta',message:''};
+ return{platforms,enemies,items,runes:[],barriers:[],level:L};
+}

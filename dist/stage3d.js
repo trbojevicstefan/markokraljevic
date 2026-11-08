@@ -21,6 +21,10 @@ const LOOKS = [
   {gain: [1.06, 0.84, 0.82], lift: [0.04, 0.0, 0.03], sat: .96, contrast: 1.14, dusk: 1, rays: .35, magic: 0, leaves: .35, wind: 1.6, fireflies: 0, embers: 1, haze: [0.55, 0.36, 0.38]},
 ];
 
+// Winter pass (prevoj): cold grade, no leaves, snowfall.
+LOOKS.push({gain: [0.94, 1.0, 1.1], lift: [0.03, 0.04, 0.06], sat: .82, contrast: 1.05, dusk: 0, rays: .7, magic: 0, leaves: 0, wind: 1.6, fireflies: 0, embers: 0, haze: [0.8, 0.86, 0.96], snow: 1});
+for (const l of LOOKS) l.snow ??= 0;
+
 const NOISE = /* glsl */`
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
@@ -567,7 +571,36 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     }
   }
 
+  const snow = sparks(340, -520, 260, 1700, 1000, 8, [1.5, 1.6, 1.8], -55, 45, 14);
+  // Level backgrounds: the artist's layers, each scaled to screen height and tiled horizontally.
+  let levelLayers = [];
+  function setLevel(layers) {
+    for (const l of levelLayers) { scene.remove(l.mesh); l.mat.dispose(); l.tex.dispose(); }
+    levelLayers = [];
+    bg.visible = !(layers && layers.length);
+    (layers || []).forEach((L, i) => {
+      const tex = new THREE.Texture(L.image);
+      tex.colorSpace = THREE.SRGBColorSpace; tex.wrapS = THREE.RepeatWrapping; tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false; tex.needsUpdate = true;
+      const w = L.image.width, h = L.image.height, k = Math.max(H / h, i === 0 ? W / w : 0);
+      const mat = new THREE.ShaderMaterial({
+        uniforms: {uTex: {value: tex}, uOff: {value: 0}, uOffY: {value: 0}, uK: {value: k}, uSize: {value: new THREE.Vector2(w, h)}, uFog: {value: (1 - L.speed) * .26}, uHaze: bgMat.uniforms.uHaze, uDusk: bgMat.uniforms.uDusk, uLightning: bgMat.uniforms.uLightning},
+        vertexShader: SCREEN_VERT,
+        fragmentShader: `uniform sampler2D uTex;uniform float uOff,uOffY,uK,uFog,uDusk,uLightning;uniform vec2 uSize;uniform vec3 uHaze;varying vec2 vUv;
+          void main(){vec2 s=vec2(vUv.x,1.-vUv.y)*vec2(${W.toFixed(1)},${H.toFixed(1)});float th=uSize.y*uK;float ty=(s.y-(${H.toFixed(1)}-th)+uOffY)/th;
+            if(ty<0.||ty>1.){gl_FragColor=vec4(0.);return;}vec4 c=texture2D(uTex,vec2((s.x/uK+uOff)/uSize.x,1.-ty));
+            vec3 col=mix(c.rgb,uHaze,uFog);col=mix(col,col*vec3(1.05,.62,.58),uDusk*.55);col+=vec3(.6,.7,1.)*uLightning*.6;
+            gl_FragColor=vec4(col*${ART.toFixed(2)},c.a);}`,
+        transparent: i > 0, depthTest: false, depthWrite: false,
+      });
+      const mesh = new THREE.Mesh(fullQuad, mat);
+      mesh.frustumCulled = false; mesh.renderOrder = -100 + i * .5;
+      scene.add(mesh);
+      levelLayers.push({mesh, mat, tex, speed: L.speed, k});
+    });
+  }
+
   const api = {
+    setLevel,
     viewW, viewH,
     burst,
     hit(x, y, heavy) {
@@ -612,7 +645,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       camState = {x: state.camX, y: state.camY};
 
       // blend toward the chapter's look
-      const target = LOOKS[state.zone] || LOOKS[0];
+      const target = LOOKS[state.look ?? state.zone] || LOOKS[0];
       const k = Math.min(1, dt * .9);
       for (const key of Object.keys(look)) {
         if (Array.isArray(look[key])) look[key] = look[key].map((v, i) => v + (target[key][i] - v) * k);
@@ -649,6 +682,8 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       motes.material.uniforms.uIntensity.value = .55 * look.rays;
       fireflies.material.uniforms.uIntensity.value = look.fireflies;
       embers.material.uniforms.uIntensity.value = look.embers * 1.2;
+      snow.material.uniforms.uIntensity.value = look.snow * .85;
+      for (const l of levelLayers) { l.mat.uniforms.uOff.value = state.camX * zoom * l.speed / l.k; l.mat.uniforms.uOffY.value = (state.camY - 58) * zoom * l.speed * .35; }
 
       // continuous emitters requested by the game (fairy trail, wine aura, runes, bridges)
       for (const e of state.emitters || []) {
