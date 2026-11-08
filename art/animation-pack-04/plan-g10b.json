@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "marko-crouch-walk",
+      "group": 10,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "targetHeight": 230,
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Game sprite animation EXACTLY 8 sequential poses in 4 columns 2 rows equal square cells, 2048x1024. Reference is exact Marko identity and painterly cel shaded costume/mace. A seamless CROUCH WALK loop facing RIGHT in every cell, no camera-facing head. Deep bent knees and torso make height 60 percent of his standing height, NOT a scaled down person: unchanged head, boots, arm lengths. Mace held ready low in both hands, red cape trails left close to ground. Anatomical scale identical across 8 poses, root stationary. Real alternating leg phases: 1 near boot forward contact far boot behind; 2 weight lowers onto near leg; 3 far boot passes near ankle; 4 far boot extends forward; 5 far boot forward contact near boot behind; 6 weight lowers onto far leg; 7 near boot passes far ankle; 8 near boot extends preparing pose1. Knees stay deeply bent all time. Far limbs visibly darker. Smooth small evenly spaced changes in hip/head positions, no bouncing up to standing. Same foot contact baseline in each cell. Full body/cape/spiked mace within each cell with wide empty green gutters. Pure solid #00FF00 chroma background, no floor/shadows, no labels/grid/effects. Exactly eight unique poses, smooth last to first."
+    }
+  ]
+}

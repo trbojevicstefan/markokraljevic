@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -174,4 +174,15 @@ function openGround(w){return w.platforms.filter(q=>q.ground&&q.w>=760).find(q=>
  ok(p.hang&&p.ledgeT>0,'hang: Marko catches the ledge and hangs');step(60);ok(p.hang&&Math.abs(p.y-(q.y+112))<1,'hang: he stays hanging while nothing is pressed');
  api.keys.add('KeyD');step(120);api.keys.clear();ok(!p.hang&&Math.abs(S().p.y-q.y)<1,'hang: toward the wall he climbs up');
  stand(q.x-20,q.y+112);const p2=S().p;p2.grounded=false;p2.vy=0;p2.face=1;p2.hang=false;p2.ledgeCool=0;step(2);api.keys.add('KeyS');step(30);api.keys.clear();ok(!p2.hang&&!(p2.ledgeT>0)&&p2.y>q.y+112,'hang: S lets go of the ledge');}
+// ---- fluid animation: idle, walking crouched / behind the block / while charging, the whirlwind's dizziness, fewer grunts ----
+async function flat(){const w=await start('selo');quiet(w);const q=openGround(w);stand(q.x+150,q.y);S().p.face=1;step(30);return q;}
+{await flat();const seen=[];let runLen=0,minRun=99,last=-1,firstDone=false;for(let i=0;i<120*4;i++){step();const ps=api.playerPose();if(ps.name!=='marko-idle'&&ps.name!=='marko-idle-2')continue;seen.push(ps.name==='marko-idle-2'?-1:ps.frame);if(ps.frame===last)runLen++;else{if(last>=0&&firstDone)minRun=Math.min(minRun,runLen);if(last>=0)firstDone=true;runLen=1;last=ps.frame;}}
+ ok(seen.length>400&&!seen.some(f=>f===2||f===3||f===4),'idle: Marko never shows the frames that jerk his head to the camera');ok(minRun>=18,`idle: each idle frame holds ${(minRun/120).toFixed(2)}s, calm and slow`);}
+async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(const k of keysDown)press(k);api.keys.add('KeyD');let pose=null;for(let i=0;i<120;i++){step();if(i===90)pose=api.playerPose();}api.keys.clear();return{pose,dx:S().p.x-x0};}
+{const r=await walkWith(['KeyS']);ok(r.dx>40&&r.pose.name==='marko-crouch'&&r.pose.frame>=2&&r.pose.frame<=3,`crouch-walk: S+D walks crouched (${Math.round(r.dx)}px)`);}
+{const r=await walkWith(['KeyL']);ok(r.dx>30&&r.pose.name==='marko-block'&&r.pose.dy!==undefined,`block-walk: L+D steps forward behind the block (${Math.round(r.dx)}px)`);}
+{const r=await walkWith(['KeyK']);ok(r.dx>40&&r.pose.name==='marko-charge-hold',`charge-walk: holding K Marko still walks while the blow charges (${Math.round(r.dx)}px)`);}
+{await flat();const p=S().p;p.rage=100;api.keys.add('KeyF');step(120*1.2);api.keys.clear();step(2);ok(p.dizzy>0,'whirlwind: when it ends Marko is dizzy');const x=p.x;api.keys.add('KeyD');step(60);ok(Math.abs(p.x-x)<12,'whirlwind: dizzy, he cannot walk away');api.keys.clear();
+ step(60);ok(p.down>0,'whirlwind: then he falls to the ground');let up=0;while(p.down>0&&up<600){step();up++;}ok(up>100,`whirlwind: and takes ${(up/120).toFixed(1)}s to get up`);}
+{await flat();const g0=api.grunts();for(let i=0;i<10;i++){tap('KeyJ');step(35);}ok(api.grunts()-g0<=3,`voice: ten blows in three seconds, only ${api.grunts()-g0} grunts`);}
 console.log(`${checks} pohod mechanics checks passed.`);

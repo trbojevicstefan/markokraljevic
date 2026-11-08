@@ -1,1 +1,1 @@
-{"name":"marko-tri-srca","private":true,"version":"1.0.0","type":"module","scripts":{"start":"node server.mjs","check":"node --check dist/game.js","test":"node tests.mjs && node levels-test.mjs && node mechanics-test.mjs"},"dependencies":{"three":"0.187.0"}}
+{"name":"marko-tri-srca","private":true,"version":"1.0.0","type":"module","scripts":{"start":"node server.mjs","check":"node --check dist/game.js","test":"node tests.mjs && node heights-test.mjs && node levels-test.mjs && node mechanics-test.mjs"},"dependencies":{"three":"0.187.0"}}

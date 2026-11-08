@@ -120,3 +120,9 @@ Nacrtan i izvezen sword-launch: 6 novih kadrova, jednom, 512×512, atlas/manifes
 
 ## DOPUNA-4 — 2/9: shield-launch GOTOVO
 Šest novih kadrova štitonoše je završeno u animation-pack-04/assets/shield-launch/: atlas, manifest, frames/, preview.gif, qa. Provereni odvajanje nogu od tla, prevrat/glava dole (4), pad i odskok na leđima (6); štit i sablja ostaju vidljivi u svim pozama, bez odsečenih delova. Proverena veličina uz shield-idle, ćelije 512×512, broj kadrova, alfa i GIF. STATUS, katalog i README osveženi. Launch napredak: sword i shield gotovi, sledeći archer-launch. Ukupno 42 klipa / 262 kadra.
+
+## DOPUNA-5 - 1/8: marko-idle-2 GOTOVO
+Osam nacrtanih kadrova disanja, petlja 12 FPS, 512x512; atlas, manifest, frames, preview.gif i qa.json u animation-pack-04/assets/marko-idle-2/. Proveren desni profil, svi oslonci y=487, 8 GIF kadrova, visina prema aktuelnom marko-idle 383 px. Postojece slike sacuvane. Sledeci: marko-crouch-walk.
+
+## DOPUNA-5 - 2/8: marko-crouch-walk GOTOVO
+Osam kadrova hoda u cucnju, petlja 12 FPS, atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-crouch-walk/. Niska poza 230 px prema stajacih 383 px, oslonac y=487; provereni svi kadrovi i GIF. Sledeci: marko-block-walk.

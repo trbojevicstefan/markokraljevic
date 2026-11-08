@@ -73,7 +73,7 @@ for j in jobs:
         (out/'qa.json').write_text(json.dumps({'frames':qa,'referenceHeight':reference_height,'targetMaxHeight':target,'scale':scale,'loop':j['loop']},indent=2),encoding='utf8')
     published.append(j);print('Published',j['id'],j['frames'],flush=True)
 allready=[j for j in jobs if (ROOT/'assets'/j['id']/'atlas.png').exists()]
-if allready and '9' not in sys.argv[1:]:
+if allready and '9' not in sys.argv[1:] and '10' not in sys.argv[1:]:
     board=Image.new('RGBA',(1536,len(allready)*540),(24,37,36,255));d=ImageDraw.Draw(board)
     for row,j in enumerate(allready):
         old=GAME/f"art/animation-pack-03/assets/{j['who']}-idle/frames/motion/frame-0.png"

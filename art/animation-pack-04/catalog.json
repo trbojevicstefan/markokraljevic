@@ -1,5 +1,23 @@
 [
   {
+    "id": "marko-idle-2",
+    "group": 10,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-idle-2/atlas.png",
+    "manifest": "assets/marko-idle-2/manifest.json"
+  },
+  {
+    "id": "marko-crouch-walk",
+    "group": 10,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-crouch-walk/atlas.png",
+    "manifest": "assets/marko-crouch-walk/manifest.json"
+  },
+  {
     "id": "marko-climb",
     "group": 2,
     "frames": 8,

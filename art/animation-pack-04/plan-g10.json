@@ -1,0 +1,22 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-idle-2",
+      "group": 10,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Create a professional 2D game animation spritesheet, EXACTLY 8 full-body poses in 4 columns by 2 rows, equal square cells, reading left to right top then bottom. Reference image defines Marko Kraljevic's exact identity: dark wavy hair and mustache, brown leather armor, ivory embroidered sleeves, red and gold cape, dark trousers, brown boots and large spiked metal mace. Match its painterly cel-shaded artwork precisely. New animation marko-idle-2: subtle calm breathing seamless loop, strict right-facing side view in EVERY frame, never turn face to camera. Mace held relaxed in right hand at waist, left hand may support handle, identical weapon geometry. Boots remain planted exactly same positions and same baseline in all 8 cells. Fixed scale, no perspective change, no head jumps. Phase1 neutral mid-breath; 2 chest rises slightly; 3 slightly higher chest; 4 gentle peak inhale; 5 settles slightly; 6 lower chest; 7 soft exhale; 8 approaches phase1, NOT a duplicate. Shoulder and head vertical change at most 2 pixels at 512px cell scale. Cape hem gentle delayed sway, only small changes. No stepping or action. Full figure including mace fits inside each cell with empty gutters; identical anatomical size. Pure flat chroma #00FF00 green background, no shadows, no floor, no text, no grid lines, no effects. Output 2048x1024."
+    }
+  ]
+}

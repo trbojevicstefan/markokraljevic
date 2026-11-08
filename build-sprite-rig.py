@@ -125,6 +125,7 @@ PACK4_REF.update({'marko-kick': 'marko-idle', 'marko-slide': 'marko-idle', 'mark
 # Marko's 7d clips and the foes thrown into the air (DOPUNA-4)
 PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['combo-4', 'air-1', 'air-2', 'uppercut', 'dash-strike', 'charge-hold', 'push', 'lever']})
 PACK4_REF.update({f'{c}-launch': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'akindzija', 'palikuca', 'oklopnik']})
+PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['idle-2', 'crouch-walk', 'block-walk', 'charge-walk', 'dizzy', 'turn', 'run-start', 'land']})  # DOPUNA-5
 PACK4_REF.update({'shield-guardbreak': 'shield-idle', 'oklopnik-armorbreak': 'oklopnik-idle', 'akindzija-backstep': 'akindzija-idle', 'palikuca-burn': 'palikuca-idle'})
 for name, ref in PACK4_REF.items():
     if not os.path.exists(os.path.join(ROOT, name + '.json')):
@@ -150,6 +151,47 @@ for who, height in NEW_FOES.items():
     for k in ['idle', 'run', 'attack', 'shoot', 'hurt', 'death', 'jump', 'launch']:
         if os.path.exists(os.path.join(ROOT, f'{who}-{k}.json')):
             SCALES[f'{who}-{k}'] = (scale, 'feet' if k not in ('death', 'launch') else 'center')
+
+# Marko keeps one height: the standing frame of each clip is scaled so sole-to-crown is MARKO_H world px
+# (idle used to be 136 and run 127, so Marko shrank when he started to run). Clips drawn at the idle zoom follow the idle.
+MARKO_H = 128
+MARKO_REF = {'marko-idle': 0, 'marko-idle-2': 'median', 'marko-block': 0, 'marko-crouch': 0, 'marko-drink': 0, 'marko-hurt': 0,
+             'marko-combo-1': 0, 'marko-combo-2': 0, 'marko-combo-3': 5, 'marko-getup': 5, 'marko-jump': 0, 'marko-charged': 0, 'marko-kick': 0}  # run and attack are the user's calibration (128)
+def visible_px(name, ref):
+    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    cells = list(manifest['frame_layout']['rows'].values())[0]
+    im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
+    hs = [analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells]
+    hs = [h['sole'] - h['top'] for h in hs]
+    return max(hs) if ref == 'max' else float(np.median(hs)) if ref == 'median' else hs[ref]
+idle_factor = 1
+for name, ref in MARKO_REF.items():
+    if name not in SCALES:
+        continue
+    new = MARKO_H / visible_px(name, ref)
+    if name == 'marko-idle':
+        idle_factor = new / SCALES[name][0]
+    SCALES[name] = (new, SCALES[name][1])
+for name, ref in PACK4_REF.items():
+    if ref == 'marko-idle' and name in SCALES and name not in MARKO_REF:
+        SCALES[name] = (SCALES[name][0] * idle_factor, SCALES[name][1])
+# the foes too: idle, run and the first attack frame stand equally tall (palikuca was 118 idle, 129 running)
+FOE_H = {'sword': 118, 'shield': 112, 'archer': 120, 'akindzija': 120, 'palikuca': 124, 'oklopnik': 137, 'kopljanik': 125, 'tufekdzija': 122}
+FOE_REF = {'idle': 'median', 'run': 'median', 'walk': 'median', 'attack': 0, 'shoot': 0, 'hurt': 0}
+for who, height in FOE_H.items():
+    factor, done = 1, set()
+    for k, ref in FOE_REF.items():
+        name = f'{who}-{k}'
+        if name not in SCALES or name == 'kopljanik-attack':
+            continue
+        new = height / visible_px(name, ref)
+        if k == 'idle':
+            factor = new / SCALES[name][0]
+        SCALES[name] = (new, SCALES[name][1]); done.add(name)
+    for name in list(SCALES):
+        follows = PACK4_REF.get(name) == f'{who}-idle' or (who in NEW_FOES and name.startswith(who + '-'))
+        if follows and name not in done:
+            SCALES[name] = (SCALES[name][0] * factor, SCALES[name][1])
 
 rig = {}
 for name, (scale, mode) in SCALES.items():
