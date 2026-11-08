@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank()})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -25,10 +25,14 @@ const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sor
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 
 // ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
-{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: only the first pohod is open at the start');
+{ok(!api.levelOpen(0),'journey: the pohodi wait until Musa falls in the story');storage.set('marko-kacanik','won');ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: then only the first pohod is open');
  const w=await start('manastir');quiet(w);ok(!api.has('zid'),'journey: the wall jump is still locked');
  const a=w.platforms.find(q=>q.hang),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
  await start('selo');api.completeLevel();ok(api.has('niz')&&api.levelOpen(1),'journey: finishing the village teaches the combo and opens the gorge');}
+// ---- story chapters start where the map says: the horse in IV, Musa in VI ----
+{api.startChapter(3);ok(S().mode==='play'&&api.state().zone===3,'story: chapter IV starts at Šarac');step(10);
+ api.startChapter(5);ok(api.state().zone===5&&api.state().boss.alive,'story: chapter VI starts at the duel with Musa');
+ api.startChapter(1);ok(api.state().zone===1,'story: chapter II starts at the gate and its waves');}
 storage.set('marko-skills',JSON.stringify(api.SKILLS.map(k=>k.id)));
 
 // ---- ladders: W climbs to the top and steps off onto the platform ----

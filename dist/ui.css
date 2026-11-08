@@ -127,3 +127,17 @@
 .skill-card{margin:8px 0;padding:10px 16px}
 #controls{transition:opacity 1.6s}
 #controls.faded{opacity:0}
+/* ---------- the two parts of the journey ---------- */
+#level-variants{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+#level-variants [data-tab]{flex:1;min-width:220px;padding:10px 14px;font:700 17px var(--display);color:#e9d7ad;background:#0e2425;border:1px solid #d9b56a55;text-align:left}
+#level-variants [data-tab] small{display:block;font:11px Arial;letter-spacing:1px;color:#a9b9ad;margin-top:2px}
+#level-variants [data-tab].on{background:linear-gradient(180deg,#a3323c,#6a1c23);color:var(--gold2);border-color:var(--gold)}
+#level-variants .variants{display:flex;gap:6px;width:100%}
+#level-variants .variants button{flex:1}
+.order-note{font:16px/1.4 var(--display)!important;color:#d8cfb6!important;margin:8px 0 0!important}
+.order-note b{color:var(--gold2)}
+.map-field.story{background:radial-gradient(ellipse at 30% 30%,#e3c9a0 0%,#cfae7c 45%,#a8834e 100%)}
+.map-node.chapter{background-color:#5c151c;background-size:118%;background-position:center 20%;border-color:#a3323c}
+.map-node.chapter.done{border-color:#d9b56a}
+.map-node.chapter span{font-size:13px;letter-spacing:1px}
+.map-detail .vista.portrait{background-size:contain;background-color:#132a2a;background-position:center bottom}
