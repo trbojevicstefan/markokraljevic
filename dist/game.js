@@ -257,7 +257,7 @@ function draw(dt=1/60){
  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,layer.width,layer.height);gctx.setTransform(1,0,0,1,0,0);gctx.clearRect(0,0,glowLayer.width,glowLayer.height);
  ctx.setTransform(pxScale,0,0,pxScale,(-camera+sx)*pxScale,(-camY+sy)*pxScale);gctx.setTransform(glowScale,0,0,glowScale,-camera*glowScale,-camY*glowScale);
  const solid=x=>world.platforms.some(q=>q.kind==='stone'&&q.y===590&&x>q.x+30&&x<q.x+q.w-30),open=x=>solid(x)&&!world.platforms.some(q=>q.y<585&&x>q.x-30&&x<q.x+q.w+100);
- drawEagles();if(level)drawTerrain();else world.platforms.forEach(q=>{if(q.kind==='stone'&&isFloor(q))drawFloor(q);});drawBraziers();
+ drawEagles();if(level){if(p?.vault)drawVaults();else drawTerrain();}else world.platforms.forEach(q=>{if(q.kind==='stone'&&isFloor(q))drawFloor(q);});drawBraziers();
  if(!level){for(let x=Math.floor(camera/900)*900;x<camera+VIEW_W+500;x+=900){if((x<10800||x>24500)&&solid(x+210))tree(x+210,590);}}else drawLevelDecor(solid);
  if(!level&&(zone===1||zone===4||zone===5)){for(let x=Math.floor(camera/780)*780;x<camera+VIEW_W+780;x+=780){if(solid(x+430))sprite('arch',x+430,594,280,1);}}
  if(!level)for(let x=150;x<29900;x+=1450){if(x>camera-100&&x<camera+VIEW_W+100&&open(x)&&Math.abs(x-chapters[zone].start-90)>160)flag(x,590,true);}if(!level&&open(chapters[zone].start+90))flag(chapters[zone].start+90,590);
@@ -267,7 +267,7 @@ function draw(dt=1/60){
  world.items.forEach(drawItem);
  world.barriers.forEach(drawBarrier);
  if(!horseMounted&&Math.abs(horseX-camera-VIEW_W/2)<VIEW_W){shadow(horseX,590,62,.5);rigDraw('cast/sarac',0,horseX,591,1,{sy:1+Math.sin(time*1.8)*.008});if(zone===3)textLabel('E · UZJAŠI ŠARCA',horseX,430,{font:'bold 15px Georgia',color:'#fff0bd',glow:'#ffd27a'});}
- if(mode!=='menu'){drawDecals();for(const f of fires)drawFire(f);for(const c of corpses)drawCorpse(c);for(const e of world.enemies)if(e.alive)drawSoldier(e);drawBoss();if(p)drawPlayer();drawCoins();drawThrown();if(level)drawTrapsFront();drawPowers();}
+ if(mode!=='menu'){drawDecals();for(const f of fires)drawFire(f);for(const c of corpses)drawCorpse(c);for(const e of world.enemies)if(e.alive)drawSoldier(e);drawBoss();if(p)drawPlayer();drawCoins();drawThrown();if(level)drawTrapsFront();drawPowers();if(vaultFade>0){vaultFade=Math.max(0,vaultFade-dt);ctx.fillStyle=`rgba(0,0,0,${Math.min(1,vaultFade*3)})`;ctx.fillRect(camera-20,camY-20,VIEW_W+40,VIEW_H+40);}}
  for(const a of arrows){if(a.torch){ctx.save();ctx.translate(a.x,a.y);ctx.rotate(a.rot||0);ctx.fillStyle='#5a3a22';ctx.fillRect(-16,-2.5,26,5);ctx.restore();drawFlame(a.x+Math.cos(a.rot||0)*12,a.y+Math.sin(a.rot||0)*12+6,16,26,a.x);emitters.push({id:'torch'+Math.round(a.x/40),kind:'fire',x:a.x,y:a.y,w:10,rate:30});continue;}if(a.wave){halo(a.x,a.y-4,40,'rgba(255,120,80,.8)');ellipse(a.x,a.y,11,19,'#ffc29a');emitters.push({id:'wave',kind:'boss',color:'#ff7a5a',x:a.x,y:a.y+60,rate:50});}else drawArrow(a);}
  for(const a of particles){const k=clamp(a.life/(a.max||1),0,1);if(a.kind==='blood'){ctx.globalAlpha=Math.min(1,k*1.6);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x-a.vx*.022,a.y-a.vy*.022);ctx.strokeStyle=a.color;ctx.lineWidth=a.r;ctx.lineCap='round';ctx.stroke();}else if(a.kind==='dust'){ctx.globalAlpha=k*.38;ellipse(a.x,a.y,a.r*(1.6-k*.6),a.r*(1.2-k*.4),a.color);}else{gctx.globalAlpha=k;ellipse(a.x,a.y,a.r,a.r,a.color,gctx);}}ctx.globalAlpha=1;gctx.globalAlpha=1;
  for(const f of floating){const pop=1+Math.max(0,f.life-.95)*3;textLabel(f.text,f.x,f.y,{font:`bold ${Math.round(17*pop)}px Georgia`,color:f.color,glow:f.color,alpha:clamp(f.life,0,1)});}
@@ -423,7 +423,7 @@ function drawLevelDecor(solid){
  drawGoals();
  const banner=x=>level.props.some(pr=>pr.id.startsWith('prop-barjak')&&Math.abs(pr.x-x)<140);if(!banner(level.spawn.x+80))flag(level.spawn.x+80,level.spawn.y);if(!banner(level.goal.x))flag(level.goal.x,level.goal.y);}
 async function startLevel(i,v=levelVariant){const L=LEVELS[i];if(!L)return;if(!VARIANTS[v])v='day';levelVariant=v;initAudio();$('loading').hidden=false;await loadLevelArt(L,v);$('loading').hidden=true;
- world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();setupBreakables();setupTowers();setupPlows();clearProps();decorate();setupTraps();arena=null;bolts=[];p.letters=0;p.pow=null;skillCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;makeElites();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
+ world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();setupBreakables();setupTowers();setupPlows();clearProps();decorate();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;makeElites();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
  particles=[];arrows=[];floating=[];corpses=[];ghosts=[];fires=[];decals=[];endSequence=null;camera=0;camY=CAM_Y0;lastSafe=p.x;elapsed=0;kills=0;relics=0;
  hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;keys.clear();pressed.clear();pendingMagic=null;
  fairy={x:p.x-55,y:p.y-125,age:99,duration:3.2,targetX:p.x,targetY:p.y-80,kind:'hover'};
@@ -502,7 +502,7 @@ function drawCrateFallback(b,wob){const x=b.x-b.w/2+wob,y=b.y-b.h,k=b.kind;
 // ---------- ladders: W/S climb, Space jumps off ----------
 function ladderNear(){for(const l of world.ladders||[]){if(Math.abs(p.x-l.x)<24&&p.y>l.top+3&&p.y<=l.bottom+4)return l;}return null;}
 function ladderBelow(){for(const l of world.ladders||[]){if(Math.abs(p.x-l.x-(l.side||0)*20)<34&&Math.abs(p.y-l.top)<6)return l;}return null;}
-function climbInput(){if(horseMounted||p.down>0||p.ledgeT>0||p.attack>0||p.climb)return false;
+function climbInput(){if(horseMounted||p.down>0||p.ledgeT>0||p.attack>0||p.climb)return false;if(level&&p.grounded&&tap('KeyW','ArrowUp')&&vaultDoor())return true;
  if(isDown('KeyW','ArrowUp')){const l=ladderNear();if(l){startClimb(l);return true;}}
  if(p.grounded&&isDown('KeyS','ArrowDown')){const l=ladderBelow();if(l){startClimb(l);p.y=l.top+6;return true;}}
  // S + Space drops through a plank or the deck of a watchtower
@@ -709,7 +709,7 @@ function drawWatchtowers(){const im=levelArt['kula-strazara'];for(const t of wor
 function drawTerrain(){const plats=world.platforms;
  plats.filter(q=>q.ground&&!q.tower).sort((a,b)=>b.y-a.y).forEach(drawFloor);
  drawShafts();drawWatchtowers();
- for(const q of plats){if(q.kind!=='step'&&q.solid&&q.kind==='stone'&&(!q.ground||q.tower))drawBlock(q);}
+ for(const q of plats){if(q.kind!=='step'&&q.solid&&q.kind==='stone'&&!q.vault&&(!q.ground||q.tower))drawBlock(q);}
  drawStairs();
  for(const q of plats)if(q.kind==='plank')drawPlank(q);}
 
@@ -886,12 +886,12 @@ let slowMo=0;
 function levelStars(L){const done=levelsDone().some(k=>k===L.id||k.startsWith(L.id+'@'));let slova=false;try{slova=JSON.parse(localStorage.getItem('marko-slova')||'[]').includes(L.id);}catch{}const c=CUDA.find(c=>c.land===L.id),cudo=c?ownedCuda().has(c.id):null;return{done,slova,cudo};}
 function starText(L){const s=levelStars(L);return(s.done?'★':'☆')+(s.slova?'★':'☆')+(s.cudo===null?'':s.cudo?'★':'☆');}
 // ---------- Ravijojla explains each new danger the first time Marko meets it ----------
-const HINTS={ladder:'Lestve! Priđi i drži W (ili gore na džojstiku).',spikes:'Kolje! Preskoči ga — a Turčina možeš baciti na njega.',crumble:'Ove daske popuštaju. Ne zastaj na njima!',log:'Balvan se njiše. Sačekaj da prođe, pa protrči ispod.',rocks:'Kamenje pada sa litice. Prati senke na zemlji!',barrels:'Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.',timed:'Povuci polugu, pa trči — kapija se brzo zatvara.',slovo:'Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.',moc:'Vilinska moć! Uzmi je i topuz će ti zasijati.',chest:'Kovčeg! Udari ga topuzom da ga otvoriš.',shaft:'Između ova dva zida možeš da se penješ odskakanjem.',boss:'Megdan! Pazi na svaki njegov treći napad.',drop:'Sa daske ili poda kule siđeš sa S + Space (na džojstiku dole + A).',launch:'W + J diže Turčina u vazduh! Odmah Space za njim, pa J J J u skoku — treći udarac ga zakuca o zemlju.'};
+const HINTS={ladder:'Lestve! Priđi i drži W (ili gore na džojstiku).',spikes:'Kolje! Preskoči ga — a Turčina možeš baciti na njega.',crumble:'Ove daske popuštaju. Ne zastaj na njima!',log:'Balvan se njiše. Sačekaj da prođe, pa protrči ispod.',rocks:'Kamenje pada sa litice. Prati senke na zemlji!',barrels:'Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.',timed:'Povuci polugu, pa trči — kapija se brzo zatvara.',plate:'Iza ove kapije je riznica. Ploča u zemlji otvara kapiju dok je nešto pritiska: dogurni teški sanduk na ploču (samo hodaj u njega), pa uđi sa W.',slovo:'Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.',moc:'Vilinska moć! Uzmi je i topuz će ti zasijati.',chest:'Kovčeg! Udari ga topuzom da ga otvoriš.',shaft:'Između ova dva zida možeš da se penješ odskakanjem.',boss:'Megdan! Pazi na svaki njegov treći napad.',drop:'Sa daske ili poda kule siđeš sa S + Space (na džojstiku dole + A).',launch:'W + J diže Turčina u vazduh! Odmah Space za njim, pa J J J u skoku — treći udarac ga zakuca o zemlju.'};
 let hintsSeen=null,hintT=0;
 function hintOnce(key,any=false){if(!level&&!any)return;hintsSeen??=(()=>{try{return new Set(JSON.parse(localStorage.getItem('marko-hints')||'[]'));}catch{return new Set();}})();if(hintsSeen.has(key)||hintT>0)return;hintsSeen.add(key);hintT=6;try{localStorage.setItem('marko-hints',JSON.stringify([...hintsSeen]));}catch{}speak(HINTS[key],5);}
 function updateHints(dt){hintT=Math.max(0,hintT-dt);if(hintT<=0&&world.enemies.some(e=>e.alive&&!e.perch&&Math.abs(e.x-p.x)<240&&Math.abs(e.y-p.y)<60))hintOnce('launch',true);if(!level||hintT>0)return;const near=(x,y,r=420)=>Math.abs(x-p.x)<r&&Math.abs(y-p.y)<260;
  for(const l of world.ladders||[])if(near(l.x,l.bottom,300))return hintOnce('ladder');
- for(const t of world.traps||[]){if(t.kind==='spikes'&&near(t.x,t.y))return hintOnce('spikes');if(t.kind==='log'&&near(t.x,t.y,520))return hintOnce('log');if(t.kind==='rocks'&&near(t.x0,t.y))return hintOnce('rocks');if(t.kind==='barrels'&&near(t.x-400,t.y,700))return hintOnce('barrels');if(t.kind==='timed'&&near(t.lever.x,t.lever.y))return hintOnce('timed');}
+ for(const t of world.traps||[]){if(t.kind==='spikes'&&near(t.x,t.y))return hintOnce('spikes');if(t.kind==='log'&&near(t.x,t.y,520))return hintOnce('log');if(t.kind==='rocks'&&near(t.x0,t.y))return hintOnce('rocks');if(t.kind==='barrels'&&near(t.x-400,t.y,700))return hintOnce('barrels');if(t.kind==='timed'&&near(t.lever.x,t.lever.y))return hintOnce('timed');if(t.kind==='plate'&&near(t.x,t.y,600))return hintOnce('plate');}
  for(const q of world.platforms)if(q.crumble&&near(q.x,q.y,380))return hintOnce('crumble');
  for(const q of world.platforms)if(q.hang&&has('zid')&&near(q.x,q.y+q.h,360))return hintOnce('shaft');
  for(const i of world.items){if(i.taken)continue;if(i.type==='slovo'&&near(i.x,i.y,360))return hintOnce('slovo');if(i.type==='moc'&&near(i.x,i.y,360))return hintOnce('moc');}
@@ -1082,11 +1082,11 @@ function updateFoeStates(dt){for(const e of world.enemies){if(!e.alive)continue;
 // ---------- puzzles ----------
 function updatePuzzles(dt){
  // a crate that Marko pushes by walking into it
- p.pushing=false;if(p.grounded&&p.wallQ?.push){const q=p.wallQ,dir=p.wallHit,axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);if(axis===dir){const nx=q.x+dir*115*dt,cx=nx+q.w/2;const blocked=world.platforms.some(o=>o!==q&&o.solid&&!o.off&&nx<o.x+o.w&&nx+q.w>o.x&&q.y<o.y+o.h&&q.y+q.h>o.y+2);const under=supportAt(cx,q.y+q.h,4);if(!blocked&&under){q.x=nx;p.x+=dir*115*dt;p.pushing=true;if(Math.random()<.3)dust(q.x+(dir>0?0:q.w),q.y+q.h,1,.6);if((p.pushT=(p.pushT||0)-dt)<=0){p.pushT=.45;sfx('rock',{gain:.25,rate:1.6});}}}}
+ p.pushing=false;if(p.grounded&&p.wallQ?.push){const q=p.wallQ,dir=p.wallHit,axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);if(axis===dir){const nx=q.x+dir*115*dt,cx=nx+q.w/2;const blocked=world.platforms.some(o=>o!==q&&o.solid&&!o.off&&nx<o.x+o.w&&nx+q.w>o.x&&q.y<o.y+o.h&&q.y+q.h>o.y+2)||(world.traps||[]).some(t=>t.kind==='plate'&&!(t.open>0)&&nx+q.w>t.gate.x-60&&nx<t.gate.x+40);const under=supportAt(cx,q.y+q.h,4);if(!blocked&&under){q.x=nx;const pl=(world.traps||[]).find(t=>t.kind==='plate'&&Math.abs(cx-(t.x+t.w/2))<12&&Math.abs(q.y+q.h-t.y)<6);if(pl){q.x=pl.x+pl.w/2-q.w/2;q.push=false;q.locked=true;sfx('clang',{gain:.8,rate:.8});sfx('gate',{gain:.7,x:pl.gate.x});dust(q.x+q.w/2,q.y+q.h,14,1.6);shake=settings.reduced?0:4;label('SANDUK JE NA PLOČI',q.x+q.w/2,q.y-30,'#ffe39a');hintT=0;speak('Kapija riznice je otvorena! Stani u nju i pritisni W (gore) da uđeš.',5);}p.x+=dir*115*dt;p.pushing=true;if(Math.random()<.3)dust(q.x+(dir>0?0:q.w),q.y+q.h,1,.6);if((p.pushT=(p.pushT||0)-dt)<=0){p.pushT=.45;sfx('rock',{gain:.25,rate:1.6});}}}}
  for(const t of world.traps||[]){
-  if(t.kind==='plate'){const crate=world.platforms.find(q=>q.push&&q.x+q.w>t.x+10&&q.x<t.x+t.w-10&&Math.abs(q.y+q.h-t.y)<6),man=p.grounded&&Math.abs(p.y-t.y)<4&&p.x>t.x-8&&p.x<t.x+t.w+8,foe=world.enemies.some(e=>e.alive&&e.grounded&&Math.abs(e.y-t.y)<4&&e.x>t.x&&e.x<t.x+t.w);
+  if(t.kind==='plate'){const crate=world.platforms.find(q=>(q.push||q.locked)&&q.x+q.w>t.x+10&&q.x<t.x+t.w-10&&Math.abs(q.y+q.h-t.y)<6),man=p.grounded&&Math.abs(p.y-t.y)<4&&p.x>t.x-8&&p.x<t.x+t.w+8,foe=world.enemies.some(e=>e.alive&&e.grounded&&Math.abs(e.y-t.y)<4&&e.x>t.x&&e.x<t.x+t.w);
    const pressed=!!(crate||man||foe);if(pressed&&!t.pressed){sfx('gate',{gain:.6,x:t.gate.x});sfx('rock',{gain:.4,rate:1.4,x:t.x});}t.pressed=pressed;t.open=pressed?1:Math.max(0,(t.open||0)-dt/.35);
-   if(!(t.open>0)){if(p.x>t.gate.x-60&&p.x<t.gate.x+30&&Math.abs(p.y-t.gate.y)<220){p.x=t.gate.x-60;goalHint(crate?'Kapija je zatvorena.':'Ploča drži kapiju otvorenom samo dok je nešto pritiska. Dogurni teški sanduk na nju!');}for(const e of world.enemies)if(e.alive&&e.x>t.gate.x-50&&e.x<t.gate.x+30)e.x=e.x<t.gate.x?t.gate.x-50:t.gate.x+30;}}
+   }
   if(t.kind==='lift'){const q=world.platforms.find(q=>q.kind==='lift'&&Math.abs(q.x+q.w/2-t.x)<2);if(!q)continue;t.q=q;q.t+=dt;
    if(q.state==='wait'&&q.t>1){q.state='up';q.t=0;sfx('gate',{gain:.6,x:t.x});}
    if(q.state==='up'){const k=clamp(q.t/2.6,0,1);q.y=Math.round(q.base+(q.top-q.base)*k*k*(3-2*k));if(k>=1){q.state='top';q.t=0;}}
@@ -1106,7 +1106,8 @@ function drawPuzzles(){for(const t of world.traps||[]){
  if(t.kind==='plate'){if(t.x>camera+VIEW_W+100||t.x+t.w<camera-100)continue;const down=t.pressed?4:0,im=levelArt[t.pressed?'ploca-pritisak-stisnuta':'ploca-pritisak'];
   if(im){const b=propBounds(im),h=b.h*t.w/b.w;ctx.drawImage(im,b.x,b.y,b.w,b.h,t.x,t.y-h+10,t.w,h);}else{ctx.fillStyle='#4a4640';ctx.fillRect(t.x-4,t.y-2,t.w+8,8);ctx.fillStyle=t.pressed?'#8a7a5a':'#b8a98a';ctx.fillRect(t.x,t.y-10+down,t.w,10-down);line(t.x,t.y-10+down,t.x+t.w,t.y-10+down,'rgba(255,240,200,.6)',2);}
   textLabel('ᛟ',t.x+t.w/2,t.y-12+down,{font:'bold 12px Georgia',color:t.pressed?'#9dffb0':'#e8d6a8',glow:t.pressed?'#4aff8a':null});
-  const gt=levelArt[t.open>0?'cilj-kapija-otvorena':'cilj-kapija-zatvorena'];if(gt){const b=propBounds(gt),h=270,w=b.w*h/b.h;ctx.drawImage(gt,b.x,b.y,b.w,b.h,t.gate.x-w/2,t.gate.y-h+6,w,h);}else if(!(t.open>0))for(let j=0;j<6;j++)line(t.gate.x-50+j*20,t.gate.y-230,t.gate.x-50+j*20,t.gate.y,'#4a4a4a',7);}
+  const gt=levelArt[t.open>0?'cilj-kapija-otvorena':'cilj-kapija-zatvorena'];if(gt){const b=propBounds(gt),h=270,w=b.w*h/b.h;ctx.drawImage(gt,b.x,b.y,b.w,b.h,t.gate.x-w/2,t.gate.y-h+6,w,h);}else if(!(t.open>0))for(let j=0;j<6;j++)line(t.gate.x-50+j*20,t.gate.y-230,t.gate.x-50+j*20,t.gate.y,'#4a4a4a',7);
+  if(Math.abs(p.x-t.gate.x)<520)textLabel(t.open>0?(t.emptied?'RIZNICA · ISPRAŽNJENA':'W · UĐI U RIZNICU'):'RIZNICA · PLOČA OTVARA KAPIJU',t.gate.x,t.gate.y-290,{font:'bold 13px Georgia',color:t.open>0?'#d9ffe0':'#fff0c8',glow:t.open>0?'#4aff8a':'#ffd27a'});}
  if(t.kind==='lift'&&t.q){const q=t.q,cx=q.x+q.w/2;line(t.x-20,q.top-150,t.x+150,q.top-150,'#3a2614',12);ellipse(cx,q.top-150,18,18,'#6a4426');ellipse(cx,q.top-150,6,6,'#2a1a0c');for(const dx of[-44,44])line(cx+dx*.3,q.top-150,cx+dx,q.y,'#5a5a5a',3);
   ctx.fillStyle='#7a5530';ctx.fillRect(q.x,q.y,q.w,16);for(let x=q.x+16;x<q.x+q.w;x+=24)line(x,q.y+1,x,q.y+15,'rgba(30,20,10,.6)',2);line(q.x,q.y+1,q.x+q.w,q.y+1,'rgba(255,226,170,.5)',2);line(q.x,q.y+16,q.x+q.w,q.y+16,'#3a2614',3);
   const lv=levelArt[q.state==='down'||q.state==='down-idle'?'cilj-poluga':'cilj-poluga-povucena'];if(lv){const b=propBounds(lv),h=110,w=b.w*h/b.h;ctx.drawImage(lv,b.x,b.y,b.w,b.h,t.lever.x-w/2,t.lever.y-h+6,w,h);}
@@ -1114,7 +1115,7 @@ function drawPuzzles(){for(const t of world.traps||[]){
  if(t.kind==='water'){if(t.x>camera+VIEW_W+60||t.x+t.w<camera-60)continue;const y=t.y+46,g=ctx.createLinearGradient(0,y,0,y+200);g.addColorStop(0,'rgba(40,80,90,.92)');g.addColorStop(1,'rgba(6,16,20,1)');ctx.fillStyle=g;ctx.fillRect(t.x,y,t.w,240);for(let k=0;k<3;k++){ctx.beginPath();for(let x=t.x;x<=t.x+t.w;x+=12)ctx.lineTo(x,y+k*14+Math.sin(time*2+x*.05+k)*3);ctx.strokeStyle=`rgba(180,230,230,${.35-k*.1})`;ctx.lineWidth=2;ctx.stroke();}}}
  for(const q of world.platforms){
   if(q.kind==='teret'){const im=levelArt['teret-sanduk']||levelArt['razbi-sanduk']||levelArt['prop-sanduci'];if(im){const b=propBounds(im);ctx.drawImage(im,b.x,b.y,b.w,b.h,q.x-4,q.y-4,q.w+8,q.h+8);if(!levelArt['teret-sanduk']){ctx.fillStyle='rgba(40,44,50,.35)';ctx.fillRect(q.x,q.y,q.w,q.h);for(const y of[q.y+12,q.y+q.h-16])line(q.x,y,q.x+q.w,y,'#3a3c40',5);}}else{ctx.fillStyle='#6a4a2a';ctx.fillRect(q.x,q.y,q.w,q.h);}
-   if(Math.abs(p.x-(q.x+q.w/2))<220&&Math.abs(p.y-(q.y+q.h))<20&&!p.pushing)textLabel('GURAJ ⇄',q.x+q.w/2,q.y-18,{font:'bold 11px Georgia',color:'#fff0c8',glow:'#ffd27a'});}
+   if(!q.locked&&Math.abs(p.x-(q.x+q.w/2))<220&&Math.abs(p.y-(q.y+q.h))<20&&!p.pushing)textLabel('GURAJ →',q.x+q.w/2,q.y-18,{font:'bold 11px Georgia',color:'#fff0c8',glow:'#ffd27a'});}
   if(q.kind==='cracked'&&!q.off){const G=levelGround();if(G){const S=G.S;ctx.save();ctx.beginPath();ctx.rect(q.x,q.y-G.walk*S,q.w,(G.walk+60)*S);ctx.clip();G.pattern.setTransform(new DOMMatrix([S,0,0,S,0,q.y-G.walk*S]));ctx.fillStyle=G.pattern;ctx.fillRect(q.x,q.y-G.walk*S,q.w,(G.walk+60)*S);ctx.restore();}else{ctx.fillStyle='#8a8070';ctx.fillRect(q.x,q.y,q.w,q.h);}
    ctx.strokeStyle='rgba(20,14,10,.85)';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(q.x+20,q.y+2);ctx.lineTo(q.x+44,q.y+14);ctx.lineTo(q.x+38,q.y+28);ctx.moveTo(q.x+44,q.y+14);ctx.lineTo(q.x+76,q.y+8);ctx.lineTo(q.x+98,q.y+22);ctx.moveTo(q.x+76,q.y+8);ctx.lineTo(q.x+84,q.y+30);ctx.stroke();}
   if(q.kind==='raft'){const im=levelArt['splav']||levelArt['prop-balvan'];const bob=Math.sin(time*2+q.x*.01)*2;if(im){const b=propBounds(im);ctx.drawImage(im,b.x,b.y,b.w,b.h,q.x-8,q.y-6+bob,q.w+16,Math.max(26,b.h*(q.w+16)/b.w*.6));}else{ctx.fillStyle='#7a5530';ctx.fillRect(q.x,q.y+bob,q.w,18);}}}}
@@ -1154,3 +1155,21 @@ function decorate(){if(!level||!hasDom)return;const pal=decorIds(level).filter(i
  for(const q of world.platforms.filter(q=>q.ground&&!q.tower).sort((a,b)=>a.x-b.x)){let x=q.x+60;while(x<q.x+q.w-60){const id=pal[k%pal.length],h=(DECOR_H[id]||120)*(.88+rnd()*.24),bb=propBounds(levelArt[id]),w=bb.w*h/bb.h;
    if(x+w>q.x+q.w-30)break;if(free(x,x+w)){level.props.push({id,x:x+w/2,y:q.y,height:h});placed.push([x,x+w]);k++;x+=w+90+rnd()*170;}else x+=60;}}
  level.props.sort((a,b)=>(DECOR_H[b.id]||120)-(DECOR_H[a.id]||120));}
+
+// ---------- vaults: a plate opens a gate, the gate leads into a vaulted room of treasure ----------
+let vaultFade=0;
+function vaultDoor(){if(p.vault){const v=p.vault;if(Math.abs(p.x-(v.x0+70))<70&&Math.abs(p.y-v.y)<10){goVault(null);return true;}return false;}
+ for(const t of world.traps||[]){if(t.kind!=='plate'||!(t.open>0)||Math.abs(p.x-t.gate.x)>70||Math.abs(p.y-t.gate.y)>10)continue;const v=world.vaults?.[t.vault];if(!v)continue;v.from=t;goVault(v);return true;}return false;}
+function goVault(v){vaultFade=.5;sfx('gate',{gain:.8});sfx('cloth',{gain:.5});
+ if(v){p.vault=v;p.x=v.x0+110;p.y=v.y;p.vx=0;p.vy=0;p.face=1;camFocus=p.y;camY=v.y-532+60;toast('Riznica',1.6);}
+ else{const t=p.vault.from,box=p.vault;p.vault=null;p.x=t.gate.x;p.y=t.gate.y;p.vx=0;p.vy=0;camFocus=p.y;camY=Math.min(CAM_Y0+90,p.y-532+60);t.emptied=(world.breakables||[]).every(b=>b.y!==box.y||b.broken||b.opened);}
+ p.grounded=true;lastSafe=p.x;lastSafeY=p.y;}
+function drawVaults(){for(const v of world.vaults||[]){if(v.x0>camera+VIEW_W+200||v.x0+v.w<camera-200||v.y<camY-200||v.y-500>camY+VIEW_H)continue;
+ // the whole view becomes the vault: dark masonry, a vaulted ceiling, torches, the way out
+ const P=wallPattern(true),x0=camera-40,y0=camY-40,W2=VIEW_W+80,H2=VIEW_H+80;if(P){P.setTransform(new DOMMatrix([WALL_SCALE,0,0,WALL_SCALE,0,0]));ctx.fillStyle=P;}else ctx.fillStyle='#1c1814';ctx.fillRect(x0,y0,W2,H2);
+ const g=ctx.createRadialGradient(v.x0+v.w/2,v.y-160,40,v.x0+v.w/2,v.y-160,v.w*.9);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.72)');ctx.fillStyle=g;ctx.fillRect(x0,y0,W2,H2);
+ ctx.strokeStyle='rgba(255,226,170,.25)';ctx.lineWidth=5;for(let a=0;a<3;a++){const cx=v.x0+v.w*(a+.5)/3;ctx.beginPath();ctx.arc(cx,v.y-250,v.w/6,Math.PI,0);ctx.stroke();line(cx-v.w/6,v.y-250,cx-v.w/6,v.y,'rgba(0,0,0,.35)',10);}
+ const torch=levelArt['prop-baklja-drzac'];for(const tx of[v.x0+40,v.x0+v.w-40]){if(torch){const b=propBounds(torch),h=110,w=b.w*h/b.h;ctx.drawImage(torch,b.x,b.y,b.w,b.h,tx-w/2,v.y-260,w,h);}drawFlame(tx,v.y-240,22,40,tx,.9);halo(tx,v.y-230,140,'rgba(255,170,80,.35)',.6+.15*Math.sin(time*7+tx));}
+ const door=v.x0+70;ctx.fillStyle='#0a0806';ctx.beginPath();ctx.moveTo(door-38,v.y);ctx.lineTo(door-38,v.y-110);ctx.quadraticCurveTo(door,v.y-150,door+38,v.y-110);ctx.lineTo(door+38,v.y);ctx.fill();ctx.strokeStyle='#c9a46a';ctx.lineWidth=3;ctx.stroke();
+ if(p.vault===v&&Math.abs(p.x-door)<90)textLabel('W · IZAĐI',door,v.y-165,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ffd27a'});
+ ctx.fillStyle='#3a2e22';ctx.fillRect(v.x0-90,v.y,v.w+180,18);line(v.x0-90,v.y+1,v.x0+v.w+90,v.y+1,'rgba(255,226,170,.4)',2);}}

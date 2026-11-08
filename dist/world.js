@@ -122,7 +122,7 @@ export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gr
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
 export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[];let x=0,gy=590,run=null,boss=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[];let x=0,gy=590,run=null,boss=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -171,7 +171,7 @@ export function buildLayout(L,variant='day'){
   // a boulder (or an avalanche in the snow) rolls after Marko down a course that ends at a ravine
   chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:L.id==='prevoj'});},
   // a heavy iron-bound crate and a stone plate: the gate stays open only while something weighs the plate down
-  plate(){const x0=x,len=ri(760,840);ground(len);const bx=x0+150,px=x0+Math.round(len*.52),gx=x0+len-110;platforms.push({x:bx,y:gy-76,w:76,h:76,kind:'teret',solid:true,push:true});traps.push({kind:'plate',x:px,w:84,y:gy,gate:{x:gx,y:gy}});busy.push([x0,x0+len]);},
+  plate(){const x0=x,len=ri(760,840);ground(len);const bx=x0+150,px=x0+Math.round(len*.52),gx=x0+len-110;platforms.push({x:bx,y:gy-76,w:76,h:76,kind:'teret',solid:true,push:true});traps.push({kind:'plate',x:px,w:84,y:gy,gate:{x:gx,y:gy},vault:vaults.length});vaults.push({door:{x:gx,y:gy}});busy.push([x0,x0+len]);},
   // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
   cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});
@@ -191,6 +191,10 @@ export function buildLayout(L,variant='day'){
  rewards.sort((a,b)=>b.prio-a.prio);const cudo=CUDA.find(c=>c.land===L.id);
  rewards.forEach((r,i)=>{if(i===0&&cudo)r.cudo=cudo.id;else crate(r.x,'kovceg',{y:r.y,loot:{coins:ri(14,22)}});});
  if(cudo&&!rewards.length)rewards.push({x:goal.x-260,y:goal.y,cudo:cudo.id});
+ // each vault: a vaulted room high above the land, reached through the gate the plate opens
+ const top=Math.min(...platforms.map(q=>q.y));vaults.forEach((v,k)=>{const vy=top-760-k*560,x0=Math.round(v.door.x-300),w=600;Object.assign(v,{x0,w,y:vy});
+  platforms.push({x:x0-90,y:vy,w:w+180,h:140,kind:'stone',solid:true,vault:true},{x:x0-90,y:vy-420,w:90,h:420,kind:'stone',solid:true,vault:true},{x:x0+w,y:vy-420,w:90,h:420,kind:'stone',solid:true,vault:true});
+  let bx=x0+190;for(const kind of['cup','kovceg','cup','kovceg','korpa'])bx+=crate(bx,kind,{y:vy,loot:kind==='kovceg'?{coins:ri(16,24)}:{coins:ri(3,7)}})+ri(26,44);});
  // places worth reaching: the five letters М-А-Р-К-О and a power orb go to the best of them along the road
  const cands=[],grounds=platforms.filter(q=>q.ground).sort((a,b)=>a.x-b.x),taken=r=>rewards.some(o=>Math.abs(o.x-r.x)<90&&Math.abs(o.y-r.y)<90);
  for(const q of platforms){if(q.kind==='plank'&&!q.bridge)cands.push({x:q.x+q.w/2,y:q.y-44,s:2});else if(q.kind==='deck')cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.hang)cands.push({x:q.x+q.w/2,y:q.y-44,s:3});else if(q.tower&&!q.ground)cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.pillar)cands.push({x:q.x+q.w/2,y:q.y-80,s:1});}
@@ -200,7 +204,7 @@ export function buildLayout(L,variant='day'){
  const end=boss?boss.x0:goal.x-150,free=cands.filter(c=>!taken(c)&&c.x>500&&c.x<end),letters=[];
  for(let i=0;i<5;i++){const a=500+(end-500)*i/5,b=500+(end-500)*(i+1)/5,bin=free.filter(c=>c.x>=a&&c.x<b).sort((u,v)=>v.s-u.s||u.x-v.x);const c=bin[Math.floor(R()*Math.min(2,bin.length))];if(c){letters.push({...c,i});free.splice(free.indexOf(c),1);}}
  const mid=free.filter(c=>c.x>end*.35&&c.x<end*.75).sort((u,v)=>v.s-u.s)[0];
- return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,letters,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
  layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
@@ -230,5 +234,5 @@ export function makeLevel(L,index,variant='day',opts={}){
  const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x));
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
- return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }
