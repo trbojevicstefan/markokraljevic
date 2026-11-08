@@ -1,0 +1,146 @@
+<!doctype html><html lang="sr-Latn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marko · paket animacija 03 (opisi)</title><style>
+:root{--bg:#0d1d1c;--card:#132826;--line:#2c4a46;--ink:#efe3c3;--dim:#a9b9ad;--gold:#d9b46f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Georgia,serif}
+main{max-width:1180px;margin:auto;padding:28px 16px 60px}h1{font-size:34px;margin:6px 0}.lead{color:var(--dim);max-width:780px}
+h2{margin:40px 0 12px;font-size:22px;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+article{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column}
+article small{font:11px Arial;letter-spacing:2px;color:var(--gold);text-transform:uppercase}h3{margin:2px 0;font:600 17px Arial}
+.meta{margin:2px 0 8px;color:var(--dim);font:12px Arial}img{width:100%;height:150px;object-fit:contain;background:#1b3532;border-radius:6px}
+.use{font:13px Arial;color:#f1d9a8;margin:10px 0 6px}ol{list-style:none;padding:0;margin:0;font:13px/1.45 Arial;color:var(--ink)}
+ol b{display:inline-block;width:20px;color:var(--gold)}footer{margin-top:auto;padding-top:10px;font:12px Arial}a{color:var(--gold)}
+.steps{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 18px;font:14px/1.6 Arial;color:var(--dim)}
+</style></head><body><main><p class="meta">MARKO · BIBLIOTEKA ANIMACIJA / 03 · OPISI I ŠABLONI</p>
+<h1>Pokret i borba kao u The Lost Crown</h1>
+<p class="lead">32 klipova, 182 kadrova u 10 tema. Svaki klip ima zahtev za sprite-gen, prompt sa opisom kadar po kadar, šablon rasporeda (512×512 polja) i referentnu sliku lika. Ništa još nije nacrtano i igra nije menjana.</p>
+<div class="steps"><b style="color:var(--ink)">Postupak (isti kao paket 02):</b> generator slika dobija <code>prompts/motion.txt</code> + <code>base-source.png</code> + šablon → sačuvaj red kao <code>raw/motion.png</code> → <code>sprite-gen extract</code>, <code>compose-atlas</code>, <code>compose-gif</code> → u igri razmera po veličini glave (build-sprite-rig.py).</div>
+<h2>1 · Markovo mirovanje</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-idle</h3>
+<p class="meta">8 kadrova · 10 FPS · petlja</p></header>
+<img src="sources/marko-idle/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Zamenjuje statičnu sliku dok Marko stoji. Petlja 10 FPS.</p><ol><li><b>1</b> miran stav, topuz spušten u desnoj ruci</li><li><b>2</b> udah: grudi se šire, ramena se dižu</li><li><b>3</b> vrh udaha, ogrtač se blago njiše nazad</li><li><b>4</b> izdah, težina prelazi na prednju nogu</li><li><b>5</b> glava se kratko okreće ka posmatraču</li><li><b>6</b> prsti stežu dršku topuza, pogled napred</li><li><b>7</b> ogrtač se smiruje</li><li><b>8</b> povratak u poziciju 1, bez skoka</li></ol>
+<footer><a href="sources/marko-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-idle/prompts/motion.txt">prompt</a> · <a href="sources/marko-idle/sprite-request.json">zahtev</a></footer></article></div><h2>2 · Niz od 3 laka udarca</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-combo-1</h3>
+<p class="meta">6 kadrova · 14 FPS · jednom</p></header>
+<img src="sources/marko-combo-1/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">J (1. pritisak). Pogodak na kadru 3. Kadrovi 5–6: prozor za sledeći J.</p><ol><li><b>1</b> gard, topuz kod kuka</li><li><b>2</b> kratak zamah unazad u visini ramena</li><li><b>3</b> brz vodoravan udarac napred u visini grudi — KONTAKT</li><li><b>4</b> topuz prolazi preko tela, trup zarotiran</li><li><b>5</b> oporavak, topuz kod levog ramena</li><li><b>6</b> poza iz koje kreće drugi udarac</li></ol>
+<footer><a href="sources/marko-combo-1/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-combo-1/prompts/motion.txt">prompt</a> · <a href="sources/marko-combo-1/sprite-request.json">zahtev</a></footer></article><article><header><small>Kraljević Marko</small><h3>marko-combo-2</h3>
+<p class="meta">6 kadrova · 14 FPS · jednom</p></header>
+<img src="sources/marko-combo-2/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">J (2. pritisak). Pogodak na kadru 3. Kadrovi 5–6: prozor za treći J.</p><ol><li><b>1</b> topuz kod levog ramena (nastavak prvog udarca)</li><li><b>2</b> korak napred, kukovi se okreću</li><li><b>3</b> povratni udarac dijagonalno nadole s leva na desno — KONTAKT</li><li><b>4</b> topuz nisko desno</li><li><b>5</b> diže topuz ka desnom ramenu</li><li><b>6</b> spreman za završni udarac</li></ol>
+<footer><a href="sources/marko-combo-2/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-combo-2/prompts/motion.txt">prompt</a> · <a href="sources/marko-combo-2/sprite-request.json">zahtev</a></footer></article><article><header><small>Kraljević Marko</small><h3>marko-combo-3</h3>
+<p class="meta">6 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/marko-combo-3/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">J (3. pritisak), završni udarac. Pogodak na kadru 4 sa talasom prašine.</p><ol><li><b>1</b> obe ruke hvataju dršku, topuz iza glave</li><li><b>2</b> mali odskok, telo se izvija unazad</li><li><b>3</b> vrh: topuz visoko iznad glave, kolena savijena</li><li><b>4</b> snažan udar nadole u tlo ispred — KONTAKT, čučanj</li><li><b>5</b> topuz zariven u tlo, ogrtač pada</li><li><b>6</b> ispravljanje u gard</li></ol>
+<footer><a href="sources/marko-combo-3/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-combo-3/prompts/motion.txt">prompt</a> · <a href="sources/marko-combo-3/sprite-request.json">zahtev</a></footer></article></div><h2>3 · Kolut za izmicanje</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-roll</h3>
+<p class="meta">6 kadrova · 16 FPS · jednom</p></header>
+<img src="sources/marko-roll/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Shift. Kolut traje ~0,4 s; neranjiv od kadra 2 do 4.</p><ol><li><b>1</b> nagnut napred, kreće u kolut</li><li><b>2</b> rame dodiruje tlo, ogrtač obavija telo</li><li><b>3</b> kolut: leđa ka tlu, kolena uz grudi, topuz uz telo</li><li><b>4</b> izlazi iz koluta u čučanj</li><li><b>5</b> klečeći se diže</li><li><b>6</b> nastavlja u trk, jedna noga ispred</li></ol>
+<footer><a href="sources/marko-roll/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-roll/prompts/motion.txt">prompt</a> · <a href="sources/marko-roll/sprite-request.json">zahtev</a></footer></article></div><h2>4 · Marko: primljen udarac, pad i ustajanje</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/marko-hurt/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Lak pogodak (bez obaranja).</p><ol><li><b>1</b> udarac u grudi: glava i ramena trznu nazad</li><li><b>2</b> korak nazad, slobodna ruka štiti telo</li><li><b>3</b> stabilizuje se, stisnutih zuba</li><li><b>4</b> vraća se u gard</li></ol>
+<footer><a href="sources/marko-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-hurt/prompts/motion.txt">prompt</a> · <a href="sources/marko-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Kraljević Marko</small><h3>marko-knockdown</h3>
+<p class="meta">6 kadrova · 10 FPS · jednom</p></header>
+<img src="sources/marko-knockdown/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Jak udarac (Musa, oklopnik, eksplozija). Kadar 5 se drži dok ne ustane.</p><ol><li><b>1</b> snažan pogodak: telo savijeno nazad, stopala se odvajaju od tla</li><li><b>2</b> leti unazad vodoravno, ogrtač leprša</li><li><b>3</b> pada leđima na tlo</li><li><b>4</b> klizi po leđima</li><li><b>5</b> leži na leđima, topuz pored ruke</li><li><b>6</b> leži, glava se podiže</li></ol>
+<footer><a href="sources/marko-knockdown/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-knockdown/prompts/motion.txt">prompt</a> · <a href="sources/marko-knockdown/sprite-request.json">zahtev</a></footer></article><article><header><small>Kraljević Marko</small><h3>marko-getup</h3>
+<p class="meta">6 kadrova · 10 FPS · jednom</p></header>
+<img src="sources/marko-getup/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Posle pada; kadrovi 1–3 neranjiv.</p><ol><li><b>1</b> leži na leđima</li><li><b>2</b> oslanja se na lakat</li><li><b>3</b> na jedno koleno</li><li><b>4</b> ustaje oslanjajući se na topuz</li><li><b>5</b> stoji pognut, hvata dah</li><li><b>6</b> gard</li></ol>
+<footer><a href="sources/marko-getup/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-getup/prompts/motion.txt">prompt</a> · <a href="sources/marko-getup/sprite-request.json">zahtev</a></footer></article></div><h2>5 · Kontra posle savršenog odbijanja</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-counter</h3>
+<p class="meta">8 kadrova · 16 FPS · jednom</p></header>
+<img src="sources/marko-counter/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Posle savršenog L. Usporenje 0,3 s na kadru 4; pogoci na kadrovima 4 i 7.</p><ol><li><b>1</b> savršeno odbijanje: topuz vodoravno ispred lica</li><li><b>2</b> protivnikovo oružje odbačeno, okret u kukovima</li><li><b>3</b> korak unutra, topuz nisko iza</li><li><b>4</b> aperkat: topuz udara odozdo nagore — KONTAKT</li><li><b>5</b> topuz visoko iznad glave, telo ispruženo</li><li><b>6</b> okret za drugi udarac</li><li><b>7</b> vodoravni udarac — KONTAKT 2</li><li><b>8</b> junačka poza, topuz na ramenu</li></ol>
+<footer><a href="sources/marko-counter/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-counter/prompts/motion.txt">prompt</a> · <a href="sources/marko-counter/sprite-request.json">zahtev</a></footer></article></div><h2>6 · Udar topuzom nadole iz skoka</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-plunge</h3>
+<p class="meta">6 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/marko-plunge/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Dole + J u skoku. Kadar 3 se drži dok ne dodirne tlo; pogodak i talas na kadru 4.</p><ol><li><b>1</b> u vazduhu, obe ruke dižu topuz iza glave</li><li><b>2</b> telo se savija napred, topuz iznad</li><li><b>3</b> pada nadole, topuz okrenut ka tlu</li><li><b>4</b> udar u tlo: čučanj, topuz zariven — KONTAKT</li><li><b>5</b> kleči, oslanja se na topuz</li><li><b>6</b> ustaje u gard</li></ol>
+<footer><a href="sources/marko-plunge/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-plunge/prompts/motion.txt">prompt</a> · <a href="sources/marko-plunge/sprite-request.json">zahtev</a></footer></article></div><h2>7 · Trzaj na udarac (svi protivnici)</h2><div class="grid"><article><header><small>Sabljaš</small><h3>sword-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/sword-hurt/base-source.png" alt="Referenca: Sabljaš" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> trzaj glave nazad, kraj turbana leti</li><li><b>2</b> korak nazad, sablja spuštena</li><li><b>3</b> povija se, drži se za stomak</li><li><b>4</b> vraća se u stav</li></ol>
+<footer><a href="sources/sword-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/sword-hurt/prompts/motion.txt">prompt</a> · <a href="sources/sword-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Štitonoša</small><h3>shield-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/shield-hurt/base-source.png" alt="Referenca: Štitonoša" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> udarac kroz štit: štit odbačen u stranu</li><li><b>2</b> posrće nazad</li><li><b>3</b> hvata ravnotežu, štit nisko (otvoren gard)</li><li><b>4</b> diže štit</li></ol>
+<footer><a href="sources/shield-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/shield-hurt/prompts/motion.txt">prompt</a> · <a href="sources/shield-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Strelac</small><h3>archer-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/archer-hurt/base-source.png" alt="Referenca: Strelac" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> trzaj, luk izbačen iz pozicije</li><li><b>2</b> korak nazad</li><li><b>3</b> povijen</li><li><b>4</b> vraća luk u ruke</li></ol>
+<footer><a href="sources/archer-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/archer-hurt/prompts/motion.txt">prompt</a> · <a href="sources/archer-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Akindžija</small><h3>akindzija-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/akindzija-hurt/base-source.png" alt="Referenca: Akindžija" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> trzaj, sablje razbacane u stranu</li><li><b>2</b> odskače nazad na prste</li><li><b>3</b> čučne i trese glavom</li><li><b>4</b> ponovo u nizak stav</li></ol>
+<footer><a href="sources/akindzija-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/akindzija-hurt/prompts/motion.txt">prompt</a> · <a href="sources/akindzija-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Oklopnik</small><h3>oklopnik-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/oklopnik-hurt/base-source.png" alt="Referenca: Oklopnik" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> jedva se pomera: ramena trznu, oklop zvekne</li><li><b>2</b> zanese se pola koraka</li><li><b>3</b> štit nisko, otvoren</li><li><b>4</b> vraća se u težak stav</li></ol>
+<footer><a href="sources/oklopnik-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/oklopnik-hurt/prompts/motion.txt">prompt</a> · <a href="sources/oklopnik-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Palikuća</small><h3>palikuca-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/palikuca-hurt/base-source.png" alt="Referenca: Palikuća" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> trzaj, baklja zamahne</li><li><b>2</b> posrće nazad</li><li><b>3</b> kašlje, povijen</li><li><b>4</b> diže baklju</li></ol>
+<footer><a href="sources/palikuca-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/palikuca-hurt/prompts/motion.txt">prompt</a> · <a href="sources/palikuca-hurt/sprite-request.json">zahtev</a></footer></article><article><header><small>Musa Kesedžija</small><h3>musa-hurt</h3>
+<p class="meta">4 kadrova · 12 FPS · jednom</p></header>
+<img src="sources/musa-hurt/base-source.png" alt="Referenca: Musa Kesedžija" loading="lazy">
+<p class="use">Svaki pogodak koji ne ubija; zamenjuje proceduralni nagib.</p><ol><li><b>1</b> veliki trzaj, zareži od bola</li><li><b>2</b> korak nazad, sablja nisko</li><li><b>3</b> stisne zube, pogled pun besa</li><li><b>4</b> vraća se u stav</li></ol>
+<footer><a href="sources/musa-hurt/references/layout-guides/motion.png">šablon</a> · <a href="sources/musa-hurt/prompts/motion.txt">prompt</a> · <a href="sources/musa-hurt/sprite-request.json">zahtev</a></footer></article></div><h2>8 · Hod/trk i smrt novih protivnika</h2><div class="grid"><article><header><small>Akindžija</small><h3>akindzija-run</h3>
+<p class="meta">6 kadrova · 12 FPS · petlja</p></header>
+<img src="sources/akindzija-run/base-source.png" alt="Referenca: Akindžija" loading="lazy">
+<p class="use">Kretanje akindžije; korak ~90 px po ciklusu.</p><ol><li><b>1</b> kontakt desnom nogom, telo nisko nagnuto, sablje unazad</li><li><b>2</b> odraz, šal leti</li><li><b>3</b> let, obe noge od tla</li><li><b>4</b> kontakt levom nogom</li><li><b>5</b> odraz</li><li><b>6</b> let, povratak u kadar 1</li></ol>
+<footer><a href="sources/akindzija-run/references/layout-guides/motion.png">šablon</a> · <a href="sources/akindzija-run/prompts/motion.txt">prompt</a> · <a href="sources/akindzija-run/sprite-request.json">zahtev</a></footer></article><article><header><small>Akindžija</small><h3>akindzija-death</h3>
+<p class="meta">6 kadrova · 10 FPS · jednom</p></header>
+<img src="sources/akindzija-death/base-source.png" alt="Referenca: Akindžija" loading="lazy">
+<p class="use">Smrt; poslednji kadar leži ceo na tlu (kao postojeće smrti).</p><ol><li><b>1</b> pogođen, sablje ispadaju</li><li><b>2</b> pada na kolena</li><li><b>3</b> pada unazad</li><li><b>4</b> udara o tlo</li><li><b>5</b> leži</li><li><b>6</b> nepomičan</li></ol>
+<footer><a href="sources/akindzija-death/references/layout-guides/motion.png">šablon</a> · <a href="sources/akindzija-death/prompts/motion.txt">prompt</a> · <a href="sources/akindzija-death/sprite-request.json">zahtev</a></footer></article><article><header><small>Oklopnik</small><h3>oklopnik-walk</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/oklopnik-walk/base-source.png" alt="Referenca: Oklopnik" loading="lazy">
+<p class="use">Težak hod oklopnika; korak ~70 px po ciklusu.</p><ol><li><b>1</b> težak korak desnom, štit napred</li><li><b>2</b> prenosi težinu</li><li><b>3</b> čekić na ramenu se zanese</li><li><b>4</b> težak korak levom</li><li><b>5</b> prenosi težinu</li><li><b>6</b> povratak u kadar 1</li></ol>
+<footer><a href="sources/oklopnik-walk/references/layout-guides/motion.png">šablon</a> · <a href="sources/oklopnik-walk/prompts/motion.txt">prompt</a> · <a href="sources/oklopnik-walk/sprite-request.json">zahtev</a></footer></article><article><header><small>Oklopnik</small><h3>oklopnik-death</h3>
+<p class="meta">6 kadrova · 8 FPS · jednom</p></header>
+<img src="sources/oklopnik-death/base-source.png" alt="Referenca: Oklopnik" loading="lazy">
+<p class="use">Smrt; oklop zvekne o tlo.</p><ol><li><b>1</b> pogođen, kleči na jedno koleno</li><li><b>2</b> oslanja se na čekić</li><li><b>3</b> čekić klizi</li><li><b>4</b> pada na stranu</li><li><b>5</b> štit se otkotrlja</li><li><b>6</b> leži nepomičan</li></ol>
+<footer><a href="sources/oklopnik-death/references/layout-guides/motion.png">šablon</a> · <a href="sources/oklopnik-death/prompts/motion.txt">prompt</a> · <a href="sources/oklopnik-death/sprite-request.json">zahtev</a></footer></article><article><header><small>Palikuća</small><h3>palikuca-run</h3>
+<p class="meta">6 kadrova · 12 FPS · petlja</p></header>
+<img src="sources/palikuca-run/base-source.png" alt="Referenca: Palikuća" loading="lazy">
+<p class="use">Trk palikuće sa bakljom visoko.</p><ol><li><b>1</b> kontakt desnom, baklja visoko</li><li><b>2</b> odraz</li><li><b>3</b> let</li><li><b>4</b> kontakt levom</li><li><b>5</b> odraz</li><li><b>6</b> let, povratak u kadar 1</li></ol>
+<footer><a href="sources/palikuca-run/references/layout-guides/motion.png">šablon</a> · <a href="sources/palikuca-run/prompts/motion.txt">prompt</a> · <a href="sources/palikuca-run/sprite-request.json">zahtev</a></footer></article><article><header><small>Palikuća</small><h3>palikuca-death</h3>
+<p class="meta">6 kadrova · 10 FPS · jednom</p></header>
+<img src="sources/palikuca-death/base-source.png" alt="Referenca: Palikuća" loading="lazy">
+<p class="use">Smrt; baklja pada pored i gori dalje.</p><ol><li><b>1</b> pogođen, baklja ispada</li><li><b>2</b> posrće</li><li><b>3</b> pada unazad</li><li><b>4</b> udara o tlo</li><li><b>5</b> leži, baklja gori pored</li><li><b>6</b> nepomičan</li></ol>
+<footer><a href="sources/palikuca-death/references/layout-guides/motion.png">šablon</a> · <a href="sources/palikuca-death/prompts/motion.txt">prompt</a> · <a href="sources/palikuca-death/sprite-request.json">zahtev</a></footer></article></div><h2>9 · Mirovanje protivnika</h2><div class="grid"><article><header><small>Sabljaš</small><h3>sword-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/sword-idle/base-source.png" alt="Referenca: Sabljaš" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 1</li><li><b>2</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 2</li><li><b>3</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 3</li><li><b>4</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 4</li><li><b>5</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 5</li><li><b>6</b> stav sa sabljom, disanje, sablja se blago pomera, kraj turbana leprša — kadar 6</li></ol>
+<footer><a href="sources/sword-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/sword-idle/prompts/motion.txt">prompt</a> · <a href="sources/sword-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Štitonoša</small><h3>shield-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/shield-idle/base-source.png" alt="Referenca: Štitonoša" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> štit ispred, viri preko štita, diše — kadar 1</li><li><b>2</b> štit ispred, viri preko štita, diše — kadar 2</li><li><b>3</b> štit ispred, viri preko štita, diše — kadar 3</li><li><b>4</b> štit ispred, viri preko štita, diše — kadar 4</li><li><b>5</b> štit ispred, viri preko štita, diše — kadar 5</li><li><b>6</b> štit ispred, viri preko štita, diše — kadar 6</li></ol>
+<footer><a href="sources/shield-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/shield-idle/prompts/motion.txt">prompt</a> · <a href="sources/shield-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Strelac</small><h3>archer-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/archer-idle/base-source.png" alt="Referenca: Strelac" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> luk spušten, proverava strelu, gleda napred — kadar 1</li><li><b>2</b> luk spušten, proverava strelu, gleda napred — kadar 2</li><li><b>3</b> luk spušten, proverava strelu, gleda napred — kadar 3</li><li><b>4</b> luk spušten, proverava strelu, gleda napred — kadar 4</li><li><b>5</b> luk spušten, proverava strelu, gleda napred — kadar 5</li><li><b>6</b> luk spušten, proverava strelu, gleda napred — kadar 6</li></ol>
+<footer><a href="sources/archer-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/archer-idle/prompts/motion.txt">prompt</a> · <a href="sources/archer-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Akindžija</small><h3>akindzija-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/akindzija-idle/base-source.png" alt="Referenca: Akindžija" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> poskakuje na prstima, vrti sablju — kadar 1</li><li><b>2</b> poskakuje na prstima, vrti sablju — kadar 2</li><li><b>3</b> poskakuje na prstima, vrti sablju — kadar 3</li><li><b>4</b> poskakuje na prstima, vrti sablju — kadar 4</li><li><b>5</b> poskakuje na prstima, vrti sablju — kadar 5</li><li><b>6</b> poskakuje na prstima, vrti sablju — kadar 6</li></ol>
+<footer><a href="sources/akindzija-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/akindzija-idle/prompts/motion.txt">prompt</a> · <a href="sources/akindzija-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Oklopnik</small><h3>oklopnik-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/oklopnik-idle/base-source.png" alt="Referenca: Oklopnik" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> težak dah, čekić na ramenu, štit oslonjen — kadar 1</li><li><b>2</b> težak dah, čekić na ramenu, štit oslonjen — kadar 2</li><li><b>3</b> težak dah, čekić na ramenu, štit oslonjen — kadar 3</li><li><b>4</b> težak dah, čekić na ramenu, štit oslonjen — kadar 4</li><li><b>5</b> težak dah, čekić na ramenu, štit oslonjen — kadar 5</li><li><b>6</b> težak dah, čekić na ramenu, štit oslonjen — kadar 6</li></ol>
+<footer><a href="sources/oklopnik-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/oklopnik-idle/prompts/motion.txt">prompt</a> · <a href="sources/oklopnik-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Palikuća</small><h3>palikuca-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/palikuca-idle/base-source.png" alt="Referenca: Palikuća" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> baklja treperi, nervozno gleda okolo — kadar 1</li><li><b>2</b> baklja treperi, nervozno gleda okolo — kadar 2</li><li><b>3</b> baklja treperi, nervozno gleda okolo — kadar 3</li><li><b>4</b> baklja treperi, nervozno gleda okolo — kadar 4</li><li><b>5</b> baklja treperi, nervozno gleda okolo — kadar 5</li><li><b>6</b> baklja treperi, nervozno gleda okolo — kadar 6</li></ol>
+<footer><a href="sources/palikuca-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/palikuca-idle/prompts/motion.txt">prompt</a> · <a href="sources/palikuca-idle/sprite-request.json">zahtev</a></footer></article><article><header><small>Musa Kesedžija</small><h3>musa-idle</h3>
+<p class="meta">6 kadrova · 8 FPS · petlja</p></header>
+<img src="sources/musa-idle/base-source.png" alt="Referenca: Musa Kesedžija" loading="lazy">
+<p class="use">Petlja dok protivnik stoji (zamenjuje statičnu sliku).</p><ol><li><b>1</b> prezrivo diše, sablja preko ramena — kadar 1</li><li><b>2</b> prezrivo diše, sablja preko ramena — kadar 2</li><li><b>3</b> prezrivo diše, sablja preko ramena — kadar 3</li><li><b>4</b> prezrivo diše, sablja preko ramena — kadar 4</li><li><b>5</b> prezrivo diše, sablja preko ramena — kadar 5</li><li><b>6</b> prezrivo diše, sablja preko ramena — kadar 6</li></ol>
+<footer><a href="sources/musa-idle/references/layout-guides/motion.png">šablon</a> · <a href="sources/musa-idle/prompts/motion.txt">prompt</a> · <a href="sources/musa-idle/sprite-request.json">zahtev</a></footer></article></div><h2>10 · Ivica i zid</h2><div class="grid"><article><header><small>Kraljević Marko</small><h3>marko-ledge</h3>
+<p class="meta">8 kadrova · 12 FPS · jednom · slobodno po visini</p></header>
+<img src="sources/marko-ledge/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Hvatanje ivice i penjanje. Šake na istoj visini (ivica) u kadrovima 2–6; topuz okačen o pojas.</p><ol><li><b>1</b> skok, ruka ispružena ka ivici gore desno</li><li><b>2</b> hvata ivicu jednom rukom</li><li><b>3</b> visi, noge slobodne</li><li><b>4</b> druga ruka hvata ivicu</li><li><b>5</b> povlači se nagore, lakat preko ivice</li><li><b>6</b> koleno na ivici</li><li><b>7</b> ustaje na ivici</li><li><b>8</b> stoji, uzima topuz</li></ol>
+<footer><a href="sources/marko-ledge/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-ledge/prompts/motion.txt">prompt</a> · <a href="sources/marko-ledge/sprite-request.json">zahtev</a></footer></article><article><header><small>Kraljević Marko</small><h3>marko-walljump</h3>
+<p class="meta">6 kadrova · 14 FPS · jednom · slobodno po visini</p></header>
+<img src="sources/marko-walljump/base-source.png" alt="Referenca: Kraljević Marko" loading="lazy">
+<p class="use">Klizanje niz zid i skok od zida. Zid se ne crta; zid je desno od Marka.</p><ol><li><b>1</b> klizi niz zid desno, ruka i stopalo na zidu</li><li><b>2</b> klizanje, ogrtač se diže</li><li><b>3</b> skuplja se uz zid</li><li><b>4</b> odraz nogom od zida, telo kreće ulevo</li><li><b>5</b> u vazduhu, okrenut ULEVO</li><li><b>6</b> vrh skoka okrenut ulevo</li></ol>
+<footer><a href="sources/marko-walljump/references/layout-guides/motion.png">šablon</a> · <a href="sources/marko-walljump/prompts/motion.txt">prompt</a> · <a href="sources/marko-walljump/sprite-request.json">zahtev</a></footer></article></div></main></body></html>
