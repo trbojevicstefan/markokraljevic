@@ -10,10 +10,11 @@ export const chapters=[
 export function chapterAt(x){return Math.max(0,chapters.findIndex(z=>x<z.end));}
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+const FOE_HP={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70};
 export function makeWorld(){
  const platforms=[],enemies=[],items=[],runes=[],barriers=[];let serial=0;
  const floor=(x,w,y=590,kind='stone')=>platforms.push({x,y,w,h:150,kind});
- const enemy=(x,type='sword',zone=chapterAt(x))=>enemies.push({id:serial++,x,y:590,w:36,h:75,hp:type==='shield'?125:type==='archer'?65:90,maxHp:type==='shield'?125:type==='archer'?65:90,type,zone,face:-1,mode:'idle',timer:.5+(serial%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0});
+ const enemy=(x,type='sword',zone=chapterAt(x))=>enemies.push({id:serial++,x,y:590,w:36,h:75,hp:FOE_HP[type]??90,maxHp:FOE_HP[type]??90,type,zone,face:-1,mode:'idle',timer:.5+(serial%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0});
  floor(-200,1100);floor(1030,810);floor(1990,1210);floor(600,160,480);floor(1550,150,465);floor(2400,180,475);
  [650,1280,1640,2210,2640,2880].forEach((x,i)=>enemy(x,['sword','sword','archer'][i%3]));
  floor(3200,3800);[3550,3890,4230,4610,4980,5260,5590,5940,6300,6650].forEach((x,i)=>enemy(x,['shield','sword','archer','sword'][i%4]));
@@ -23,7 +24,7 @@ export function makeWorld(){
  floor(7400,100,475);floor(8270,130,465);floor(9320,130,475);floor(10250,150,465);
  [8180,9200,10300].forEach(x=>enemy(x,'archer'));
  let x=10800;while(x<24500){const len=Math.min(900+((x*13)%300),24500-x);floor(x,len);if(x+len>=24500)break;barriers.push({x:x+len-310,y:590,w:45,h:65,horse:true});x+=len+190;}floor(24300,200);
- floor(24500,3500);[24840,25180,25530,25910,26200,26540,26880,27240,27600].forEach((x,i)=>enemy(x,['sword','shield','archer'][i%3]));
+ floor(24500,3500);[[2050,'akindzija'],[4400,'oklopnik'],[5750,'palikuca'],[8600,'akindzija'],[9300,'palikuca'],[25350,'oklopnik'],[26700,'palikuca'],[27450,'akindzija']].forEach(([x,t])=>enemy(x,t));[24840,25180,25530,25910,26200,26540,26880,27240,27600].forEach((x,i)=>enemy(x,['sword','shield','archer'][i%3]));
  [25250,26450,27350].forEach(x=>floor(x,150,465));floor(28000,1900);
  [450,1500,2600,3400,4450,5400,6500,7150,8400,10100,11100,15600,20500,24700,25800,27000,28200].forEach((x,i)=>items.push({id:i,x,y:555,type:i%3===0?'wine':'herb',taken:false}));
  [[1600,430],[8350,430],[27400,430]].forEach(([x,y],i)=>items.push({id:100+i,x,y,type:'relic',taken:false}));

@@ -30,3 +30,19 @@
 #game-shell:has(#touch:not([hidden])) #dialogue{bottom:auto;top:112px;width:min(560px,70vw)}
 .modal-card label input[type=range]{margin-top:8px}
 .hud-tools #fullscreen{font-size:18px}
+
+/* touch v2: icon buttons, thumb fan around the mace button, compact d-pad */
+#touch{bottom:max(8px,env(safe-area-inset-bottom));left:max(10px,env(safe-area-inset-left));right:max(10px,env(safe-area-inset-right));height:0;overflow:visible}
+#touch .pad{position:absolute;left:0;bottom:0;display:flex;align-items:flex-end;gap:6px}
+#touch .fan{position:absolute;right:0;bottom:0;width:0;height:0}
+#touch button{position:static;width:var(--s,48px);height:var(--s,48px);padding:0;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1d4a44e6,#0d2422e6);border:1.5px solid #e1ce8b80;color:#f6e3b0;box-shadow:0 2px 8px #0008,inset 0 1px 0 #ffffff22}
+#touch .pad button{--s:54px}
+#touch .pad button.crouch{--s:40px;margin-bottom:28px}
+#touch .fan button{position:absolute;--s:42px}
+#touch .fan button.main{--s:66px;right:0;bottom:0;background:radial-gradient(circle at 35% 30%,#8a2f26f0,#4a1512f0);border-color:#f3be7d}
+#touch .fan button[data-ring="1"]{--s:50px}
+#touch .fan button.rage{border-color:#ff8c5c;color:#ffd0b0}
+#touch svg{width:56%;height:56%;pointer-events:none;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#touch button.main svg{width:60%;height:60%}
+#touch button:active{background:#b79054;color:#1a1208;transform:scale(.93)}
+@media(max-height:430px){#touch .pad button{--s:48px}#touch .pad button.crouch{--s:36px;margin-bottom:24px}#touch .fan button{--s:38px}#touch .fan button[data-ring="1"]{--s:44px}#touch .fan button.main{--s:58px}}

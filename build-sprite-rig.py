@@ -40,6 +40,16 @@ SCALES = {
     'cast/musa':     (0.475, 'feet'),           # Musa's head is ~1.6x Marko's: he is the giant of the song
     'musa-attack':   (0.475 * 1.78, 'feet'),
     'musa-run':      (0.475, 'torso'),
+    # animation pack 02 (scales matched by head size: turban/helmet top to beard bottom)
+    'marko-vihor':   (0.40, 'feet'),            # 8-frame spin, upright pose ~128 high
+    'marko-charged': (0.362, 'feet'),           # head 42 src px
+    'akindzija-charge': (0.345, 'feet'),        # turban-to-chin 55 src px -> 19 world
+    'akindzija-jump':   (0.345, 'feet'),
+    'oklopnik-slam':    (0.36, 'feet'),         # helmet-to-beard 78 src px, the heavy of the squad
+    'oklopnik-rush':    (0.312, 'feet'),        # same head drawn at 90 src px
+    'palikuca-torch':   (0.267, 'feet'),        # turban-to-chin 75 src px -> 20 world
+    'palikuca-fire':    (0.345, 'feet'),        # turban-to-chin 58 src px
+    'orao-flight':      (0.3, 'center'),
     'cast/fairy':    (0.235, 'center'),
     'fairy-cast':    (0.235, 'center'),
 }
