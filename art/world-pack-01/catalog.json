@@ -1,0 +1,56 @@
+[
+  {
+    "id": "selo-sky",
+    "theme": "selo",
+    "title": "Kosovsko selo · sky",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "file": "assets/selo-sky.png",
+    "width": 1774,
+    "height": 887,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      1774,
+      887
+    ]
+  },
+  {
+    "id": "selo-far",
+    "theme": "selo",
+    "title": "Kosovsko selo · far",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "file": "assets/selo-far.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": true,
+    "bounds": [
+      0,
+      23,
+      2172,
+      724
+    ]
+  },
+  {
+    "id": "selo-vista",
+    "theme": "selo",
+    "title": "Kosovsko selo · vista",
+    "kind": "vista",
+    "alpha": false,
+    "depth": 1,
+    "file": "assets/selo-vista.png",
+    "width": 2172,
+    "height": 724,
+    "hasTransparency": false,
+    "bounds": [
+      0,
+      0,
+      2172,
+      724
+    ]
+  }
+]

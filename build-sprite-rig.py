@@ -90,6 +90,32 @@ for action in ['crouch', 'block', 'super']:
     info = analyse(im[c['y']:c['y']+c['h'], c['x']:c['x']+c['w']])
     SCALES[name] = (128 / (info['sole'] - info['top']), 'feet')
 
+# Animation pack 03: every clip was generated separately, so its zoom differs. Each sheet is scaled so the
+# character's most upright frame (thin raised weapons ignored) matches that character's standing height.
+STANDING = {'marko': 128, 'sword': 115, 'shield': 108, 'archer': 116, 'musa': 168, 'akindzija': 120, 'oklopnik': 132, 'palikuca': 112}
+
+
+def body_height(cell):
+    a = cell[:, :, 3] > SOLID
+    w = a.sum(1)
+    rows = np.where(w > 0)[0]
+    wide = np.where(w >= .35 * np.median(w[rows]))[0]
+    return rows[-1] + 1 - wide[0]
+
+
+PACK3 = ['marko-idle', 'marko-combo-1', 'marko-combo-2', 'marko-combo-3', 'marko-roll', 'marko-hurt', 'marko-knockdown', 'marko-getup',
+         'marko-counter', 'marko-plunge', 'marko-ledge', 'marko-walljump'] +         [f'{c}-{k}' for c in ['sword', 'shield', 'archer', 'akindzija', 'oklopnik', 'palikuca', 'musa'] for k in ['hurt', 'idle']] +         ['akindzija-run', 'akindzija-death', 'oklopnik-walk', 'oklopnik-death', 'palikuca-run', 'palikuca-death']
+PACK3_FIX = {'marko-combo-3': 1.25, 'marko-counter': 1.2, 'marko-plunge': 1.1, 'marko-knockdown': .82, 'marko-roll': .95, 'palikuca-run': 1.12, 'oklopnik-death': .92}  # visual review vs. the idle reference
+for name in PACK3:
+    if not os.path.exists(os.path.join(ROOT, name + '.json')):
+        continue
+    who = name.split('-')[0]
+    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    cells = list(manifest['frame_layout']['rows'].values())[0]
+    im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
+    tallest = max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
+    SCALES[name] = (STANDING[who] / tallest * PACK3_FIX.get(name, 1), 'feet' if not name.endswith(('ledge', 'walljump', 'roll')) else 'center')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

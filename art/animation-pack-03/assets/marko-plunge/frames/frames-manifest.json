@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-03\\sources\\marko-plunge",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "frames": 6,
+      "method": "components",
+      "files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 65435,
+          "bbox": [
+            118,
+            80,
+            397,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 57173,
+          "bbox": [
+            119,
+            24,
+            381,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 56028,
+          "bbox": [
+            121,
+            134,
+            410,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 50762,
+          "bbox": [
+            93,
+            208,
+            395,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "nontransparent_pixels": 49571,
+          "bbox": [
+            79,
+            209,
+            387,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "nontransparent_pixels": 65068,
+          "bbox": [
+            121,
+            98,
+            431,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

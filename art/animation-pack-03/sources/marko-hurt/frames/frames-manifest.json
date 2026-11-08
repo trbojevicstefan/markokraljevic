@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-03\\sources\\marko-hurt",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "frames": 4,
+      "method": "components",
+      "files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 94088,
+          "bbox": [
+            99,
+            33,
+            439,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 89618,
+          "bbox": [
+            118,
+            46,
+            468,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 91014,
+          "bbox": [
+            84,
+            44,
+            432,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 91142,
+          "bbox": [
+            98,
+            24,
+            442,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

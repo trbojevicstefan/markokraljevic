@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-03\\sources\\akindzija-run",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "frames": 6,
+      "method": "components",
+      "files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 57795,
+          "bbox": [
+            81,
+            130,
+            460,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 47635,
+          "bbox": [
+            117,
+            126,
+            436,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 49904,
+          "bbox": [
+            86,
+            138,
+            438,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 57793,
+          "bbox": [
+            50,
+            131,
+            454,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "nontransparent_pixels": 45691,
+          "bbox": [
+            121,
+            126,
+            442,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "nontransparent_pixels": 45168,
+          "bbox": [
+            125,
+            151,
+            434,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

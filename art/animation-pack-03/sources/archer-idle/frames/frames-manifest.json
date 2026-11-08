@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-03\\sources\\archer-idle",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "frames": 6,
+      "method": "components",
+      "files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 68021,
+          "bbox": [
+            137,
+            32,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 67946,
+          "bbox": [
+            137,
+            32,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 67863,
+          "bbox": [
+            136,
+            32,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 67894,
+          "bbox": [
+            137,
+            33,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "nontransparent_pixels": 67964,
+          "bbox": [
+            138,
+            33,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "nontransparent_pixels": 67944,
+          "bbox": [
+            138,
+            33,
+            393,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

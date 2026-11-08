@@ -1,0 +1,145 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "engine_revision": "db8ab1c245df",
+  "extract_args": {},
+  "run_dir": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-03\\sources\\marko-counter",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "selection": "manual"
+  },
+  "rows": [
+    {
+      "state": "motion",
+      "frames": 8,
+      "method": "components",
+      "files": [
+        "frames/motion/frame-0.png",
+        "frames/motion/frame-1.png",
+        "frames/motion/frame-2.png",
+        "frames/motion/frame-3.png",
+        "frames/motion/frame-4.png",
+        "frames/motion/frame-5.png",
+        "frames/motion/frame-6.png",
+        "frames/motion/frame-7.png"
+      ],
+      "frame_records": [
+        {
+          "index": 0,
+          "nontransparent_pixels": 52378,
+          "bbox": [
+            145,
+            139,
+            388,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "nontransparent_pixels": 50209,
+          "bbox": [
+            118,
+            147,
+            438,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "nontransparent_pixels": 43104,
+          "bbox": [
+            118,
+            182,
+            386,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "nontransparent_pixels": 46884,
+          "bbox": [
+            122,
+            125,
+            418,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "nontransparent_pixels": 55243,
+          "bbox": [
+            133,
+            34,
+            372,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "nontransparent_pixels": 46596,
+          "bbox": [
+            139,
+            158,
+            370,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "nontransparent_pixels": 45405,
+          "bbox": [
+            129,
+            165,
+            463,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "nontransparent_pixels": 52937,
+          "bbox": [
+            141,
+            136,
+            383,
+            488
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ],
+      "ok": true,
+      "engine_revision": "db8ab1c245df"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

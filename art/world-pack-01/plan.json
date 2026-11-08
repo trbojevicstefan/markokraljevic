@@ -1,0 +1,663 @@
+{
+  "generator": "built-in image_gen",
+  "themes": [
+    [
+      "selo",
+      "Kosovsko selo",
+      "sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains",
+      "zlatna jutarnja svetlost"
+    ],
+    [
+      "klisura",
+      "Klisura Ibra",
+      "dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings",
+      "tirkizna reka i zlatne litice"
+    ],
+    [
+      "suma",
+      "Ravijojlina šuma",
+      "enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls",
+      "plavozeleni sumrak"
+    ],
+    [
+      "manastir",
+      "Manastirski vis",
+      "medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners",
+      "toplo popodne"
+    ],
+    [
+      "tvrdjava",
+      "Opsednuta tvrđava",
+      "Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners",
+      "ljubičasti oblaci i žar"
+    ],
+    [
+      "prevoj",
+      "Zimski prevoj",
+      "snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks",
+      "hladna plava i bledo zlato"
+    ]
+  ],
+  "jobs": [
+    {
+      "id": "selo-sky",
+      "theme": "selo",
+      "title": "Kosovsko selo · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "selo-far",
+      "theme": "selo",
+      "title": "Kosovsko selo · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "selo-mid",
+      "theme": "selo",
+      "title": "Kosovsko selo · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "selo-near",
+      "theme": "selo",
+      "title": "Kosovsko selo · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "selo-vista",
+      "theme": "selo",
+      "title": "Kosovsko selo · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "klisura-sky",
+      "theme": "klisura",
+      "title": "Klisura Ibra · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "klisura-far",
+      "theme": "klisura",
+      "title": "Klisura Ibra · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "klisura-mid",
+      "theme": "klisura",
+      "title": "Klisura Ibra · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "klisura-near",
+      "theme": "klisura",
+      "title": "Klisura Ibra · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "klisura-vista",
+      "theme": "klisura",
+      "title": "Klisura Ibra · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "suma-sky",
+      "theme": "suma",
+      "title": "Ravijojlina šuma · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "suma-far",
+      "theme": "suma",
+      "title": "Ravijojlina šuma · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "suma-mid",
+      "theme": "suma",
+      "title": "Ravijojlina šuma · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "suma-near",
+      "theme": "suma",
+      "title": "Ravijojlina šuma · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "suma-vista",
+      "theme": "suma",
+      "title": "Ravijojlina šuma · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "manastir-sky",
+      "theme": "manastir",
+      "title": "Manastirski vis · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "manastir-far",
+      "theme": "manastir",
+      "title": "Manastirski vis · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "manastir-mid",
+      "theme": "manastir",
+      "title": "Manastirski vis · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "manastir-near",
+      "theme": "manastir",
+      "title": "Manastirski vis · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "manastir-vista",
+      "theme": "manastir",
+      "title": "Manastirski vis · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "tvrdjava-sky",
+      "theme": "tvrdjava",
+      "title": "Opsednuta tvrđava · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "tvrdjava-far",
+      "theme": "tvrdjava",
+      "title": "Opsednuta tvrđava · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "tvrdjava-mid",
+      "theme": "tvrdjava",
+      "title": "Opsednuta tvrđava · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "tvrdjava-near",
+      "theme": "tvrdjava",
+      "title": "Opsednuta tvrđava · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "tvrdjava-vista",
+      "theme": "tvrdjava",
+      "title": "Opsednuta tvrđava · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "prevoj-sky",
+      "theme": "prevoj",
+      "title": "Zimski prevoj · sky",
+      "kind": "sky",
+      "alpha": false,
+      "depth": 0.04,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "prevoj-far",
+      "theme": "prevoj",
+      "title": "Zimski prevoj · far",
+      "kind": "far",
+      "alpha": true,
+      "depth": 0.16,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "prevoj-mid",
+      "theme": "prevoj",
+      "title": "Zimski prevoj · mid",
+      "kind": "mid",
+      "alpha": true,
+      "depth": 0.38,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "prevoj-near",
+      "theme": "prevoj",
+      "title": "Zimski prevoj · near",
+      "kind": "near",
+      "alpha": true,
+      "depth": 0.72,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color."
+    },
+    {
+      "id": "prevoj-vista",
+      "theme": "prevoj",
+      "title": "Zimski prevoj · vista",
+      "kind": "vista",
+      "alpha": false,
+      "depth": 1,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. A gorgeous wide complete establishing panorama for a new game level, with layered depth and a readable route for a side-scrolling hero across platforms and crossings in lower third. Environment concept, no characters. Wide panoramic landscape, not a square composition. Fully painted opaque background."
+    },
+    {
+      "id": "prop-taraba-ravna",
+      "title": "long straight rustic split-oak picket fence section, irregular slats, horizontal rails, complete section",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: long straight rustic split-oak picket fence section, irregular slats, horizontal rails, complete section. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-taraba-slomljena",
+      "title": "broken rustic picket fence section, snapped slats, loose ends still connected",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: broken rustic picket fence section, snapped slats, loose ends still connected. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-taraba-kapija",
+      "title": "rustic timber farm gate between two tall posts, closed, carved traditional Balkan details",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: rustic timber farm gate between two tall posts, closed, carved traditional Balkan details. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ograda-pleter",
+      "title": "woven hazel wattle fence section with three uprights",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: woven hazel wattle fence section with three uprights. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ograda-balvani",
+      "title": "heavy stacked horizontal log barrier with cross supports",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: heavy stacked horizontal log barrier with cross supports. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-palisada",
+      "title": "pointed timber palisade section, lashed heavy oak logs",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: pointed timber palisade section, lashed heavy oak logs. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-palisada-kapija",
+      "title": "large pointed palisade gate with reinforced timber doors",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: large pointed palisade gate with reinforced timber doors. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ograda-kamen",
+      "title": "low dry-stacked limestone wall section, lichen and weathered cap stones",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: low dry-stacked limestone wall section, lichen and weathered cap stones. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ograda-kamen-rusevina",
+      "title": "broken dry stone wall section with collapsed ends",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: broken dry stone wall section with collapsed ends. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ograda-manastir",
+      "title": "ornate carved medieval monastery stone balustrade section",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: ornate carved medieval monastery stone balustrade section. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-most-drveni",
+      "title": "horizontal narrow wooden footbridge with rope rails, complete bridge and both anchors",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal narrow wooden footbridge with rope rails, complete bridge and both anchors. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-most-slomljen",
+      "title": "broken wooden footbridge with hanging connected ropes and planks, both broken halves composed as one asset",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: broken wooden footbridge with hanging connected ropes and planks, both broken halves composed as one asset. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-most-kameni",
+      "title": "small complete arched limestone bridge in side elevation",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: small complete arched limestone bridge in side elevation. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-platforma-drvo",
+      "title": "horizontal thick oak plank platform with underside diagonal supports",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal thick oak plank platform with underside diagonal supports. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-platforma-kamen",
+      "title": "horizontal mossy limestone ledge chunk, flat walkable top, rock underneath",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal mossy limestone ledge chunk, flat walkable top, rock underneath. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-platforma-sneg",
+      "title": "horizontal snow-capped jagged rock platform chunk, flat upper lip",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal snow-capped jagged rock platform chunk, flat upper lip. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-merdevine",
+      "title": "long straight handmade wooden ladder with rope lashings",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: long straight handmade wooden ladder with rope lashings. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-lanac",
+      "title": "long vertical iron chain with hook, all links connected",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: long vertical iron chain with hook, all links connected. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-uže",
+      "title": "long hanging hemp rope with knots and frayed end",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: long hanging hemp rope with knots and frayed end. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-stena-mala",
+      "title": "low cluster of three weathered limestone rocks",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: low cluster of three weathered limestone rocks. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-stena-visoka",
+      "title": "tall limestone pillar with climbable ledges",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: tall limestone pillar with climbable ledges. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-stena-luk",
+      "title": "large natural limestone arch with empty opening",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: large natural limestone arch with empty opening. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-drvo-hrast",
+      "title": "ancient Balkan oak, entire trunk and leafy orange canopy, roots visible",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: ancient Balkan oak, entire trunk and leafy orange canopy, roots visible. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-drvo-bukva",
+      "title": "slender full beech tree, silver bark and rich green canopy",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: slender full beech tree, silver bark and rich green canopy. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-drvo-jela",
+      "title": "tall dark mountain fir, entire tree",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: tall dark mountain fir, entire tree. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-drvo-sneg",
+      "title": "full snow-covered fir tree",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: full snow-covered fir tree. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-panj",
+      "title": "large hollow cut tree stump with moss",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: large hollow cut tree stump with moss. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-balvan",
+      "title": "horizontal fallen tree trunk with broken limbs",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal fallen tree trunk with broken limbs. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-zbun",
+      "title": "low rich green bramble bush",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: low rich green bramble bush. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-trska",
+      "title": "small dense reed cluster with cattails",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: small dense reed cluster with cattails. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-trava",
+      "title": "horizontal tuft of dry golden grass",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: horizontal tuft of dry golden grass. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-cvece",
+      "title": "low patch of Serbian ramonda violet flowers among small rocks",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: low patch of Serbian ramonda violet flowers among small rocks. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-kuca",
+      "title": "complete small medieval Balkan whitewashed house, stone base, timber beams, terracotta roof, side/front three-quarter shallow view",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: complete small medieval Balkan whitewashed house, stone base, timber beams, terracotta roof, side/front three-quarter shallow view. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ambar",
+      "title": "medieval timber grain barn on short stone stilts, full structure",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: medieval timber grain barn on short stone stilts, full structure. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-bunar",
+      "title": "stone village well with timber roof and rope bucket",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: stone village well with timber roof and rope bucket. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-kola",
+      "title": "empty old wooden ox cart, two visible wheels, no animals",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: empty old wooden ox cart, two visible wheels, no animals. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-bure",
+      "title": "single large oak wine barrel with iron hoops",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: single large oak wine barrel with iron hoops. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-sanduci",
+      "title": "stack of three rough timber supply crates",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: stack of three rough timber supply crates. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-dzakovi",
+      "title": "stack of tied linen grain sacks",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: stack of tied linen grain sacks. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-krcag",
+      "title": "terracotta wine amphora and small jug grouped together",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: terracotta wine amphora and small jug grouped together. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-nakovanj",
+      "title": "medieval blacksmith anvil mounted on oak stump",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: medieval blacksmith anvil mounted on oak stump. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-ognjiste",
+      "title": "unlit stone campfire ring with stacked connected firewood, no flame",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: unlit stone campfire ring with stacked connected firewood, no flame. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-baklja-drzac",
+      "title": "iron wall torch sconce with small stylized amber flame attached",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: iron wall torch sconce with small stylized amber flame attached. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-barjak-srpski",
+      "title": "medieval crimson Serbian swallowtail banner with white double-headed eagle, entire wooden pole and stone foot, draped still fabric",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: medieval crimson Serbian swallowtail banner with white double-headed eagle, entire wooden pole and stone foot, draped still fabric. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-barjak-manastir",
+      "title": "crimson gold-trimmed Orthodox processional banner with embroidered cross, entire staff and base",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: crimson gold-trimmed Orthodox processional banner with embroidered cross, entire staff and base. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-sator",
+      "title": "complete large medieval military canvas tent, dark red stripes, no emblem",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: complete large medieval military canvas tent, dark red stripes, no emblem. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-strassarnica",
+      "title": "complete small timber lookout tower with ladder and pitched roof",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: complete small timber lookout tower with ladder and pitched roof. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-kapija-tvrdjava",
+      "title": "massive medieval limestone gateway with oak portcullis, freestanding facade",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: massive medieval limestone gateway with oak portcullis, freestanding facade. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-run-kamen",
+      "title": "ancient upright fairy rune stone with subtle carved turquoise inlay, no floating particles",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: ancient upright fairy rune stone with subtle carved turquoise inlay, no floating particles. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    },
+    {
+      "id": "prop-svetiliste",
+      "title": "small mossy Serbian fairy forest shrine with stone basin and carved wooden arch",
+      "kind": "prop",
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game environment prop: small mossy Serbian fairy forest shrine with stone basin and carved wooden arch. Entire object fully visible with generous empty transparent padding around it. Strict side-scrolling readable side elevation or very shallow three-quarter elevation, no isometric top down view. Ground contact at same lower baseline. True transparent alpha background. No scenery, no terrain slab underneath, no cast shadow. High detail, clean silhouette."
+    }
+  ]
+}

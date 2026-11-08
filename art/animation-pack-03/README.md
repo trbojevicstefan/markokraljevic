@@ -1,4 +1,6 @@
-# Marko — paket animacija 03 (opisi i šabloni)
+# Marko — paket animacija 03
+
+**Nacrtani resursi:** otvori [generated.html](generated.html) za animirani pregled 32 klipa / 182 kadra. PNG atlasi i pojedinačni kadrovi su u `assets/`, GIF pregledi u `previews/`. Detalji izvoza su u [GENERATED.md](GENERATED.md). Ispod je originalna priprema paketa.
 
 Sledeći korak ka osećaju *Prince of Persia: The Lost Crown*: pokret i borba. Ovde je **samo priprema**: za svaki klip postoji zahtev, prompt sa opisom kadar po kadar, šablon rasporeda i referentna slika lika. Ništa još nije nacrtano i igra nije menjana.
 

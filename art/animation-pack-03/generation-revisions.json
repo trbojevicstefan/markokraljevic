@@ -1,0 +1,8 @@
+{
+  "generator": "built-in image_gen",
+  "basePrompts": "prompts.json",
+  "revisions": {
+    "akindzija-run": "SIX frame run cycle with physically DIFFERENT left and right leg phases. 1 RIGHT foot forward contact LEFT leg back. 2 RIGHT leg bearing weight LEFT knee passing forwards. 3 airborne LEFT knee leads RIGHT leg trails. 4 LEFT foot forward contact RIGHT leg back. 5 LEFT leg bearing weight RIGHT knee passing forwards. 6 airborne RIGHT knee leads LEFT leg trails. BOTH feet must alternate lead; do not repeat first three poses. Both swords remain in hands. Constant anatomical scale.",
+    "oklopnik-death": "SIX phases of collapsing death. standing hit, drops to one knee, doubles over, falls sideways, lies with knees bent, lies fully still. Shield and hammer MUST stay attached to hand/forearm/body in ALL poses; no detached items or floating shield. ONE connected silhouette per pose. Full body with whole weapons and generous gaps."
+  }
+}

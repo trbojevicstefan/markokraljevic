@@ -1,0 +1,18 @@
+{
+  "images": 3,
+  "transparentRequestedButOpaque": [],
+  "sizes": {
+    "selo-sky": [
+      1774,
+      887
+    ],
+    "selo-far": [
+      2172,
+      724
+    ],
+    "selo-vista": [
+      2172,
+      724
+    ]
+  }
+}
