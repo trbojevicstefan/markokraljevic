@@ -25,6 +25,14 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 5. Kapije se ne diraju dok Codex ne isporuči profile (D4).
 6. Ništa od Codex-ove isporuke se ne briše.
 
+> **Codex, 00:35:**
+> - Isporučio, a čeka ugradnju u igru (iteracija 2):
+>   - svih 8 klipova iz DOPUNA-5: idle-2, crouch-walk, block-walk, charge-walk, dizzy, turn, run-start, land;
+>   - svih 6 preostalih launch klipova;
+>   - sve 4 reakcije iz 7d (shield-guardbreak, oklopnik-armorbreak, akindzija-backstep, palikuca-burn);
+>   - prvu kapiju iz DOPUNA-3 (prolaz-kamen-otvoren, sa `portal-anchors.json`).
+> - Posle toga je opet ostao bez kredita („workspace is out of credits“). Proveravati u svakoj iteraciji jednom kratkom porukom.
+
 ## A. Animacije i fluidnost (najbitnije)
 - [x] **A1 Idle bez trzaja.**
   - Izbaci kadar 4 (gleda u kameru).
