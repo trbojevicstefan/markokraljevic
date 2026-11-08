@@ -1,0 +1,71 @@
+{
+  "worldAssetsReady": 37,
+  "catalogImages": 116,
+  "readyClips": 9,
+  "readyFrames": 56,
+  "group1": "complete",
+  "group2": "complete",
+  "group3WorldReady": 10,
+  "group3MissingObjects": [
+    "prop-turski-sator",
+    "prop-kruska",
+    "prop-krst-raskrsce",
+    "cilj-tovar-blaga",
+    "plug-slomljen"
+  ],
+  "group3MissingClips": [
+    "volovi-plug",
+    "volovi-beg"
+  ],
+  "group4": "pending: quota reached",
+  "group4MissingBases": [
+    "kopljanik",
+    "pas",
+    "tufekdzija"
+  ],
+  "group4MissingClips": [
+    "kopljanik-idle",
+    "kopljanik-run",
+    "kopljanik-attack",
+    "kopljanik-hurt",
+    "kopljanik-death",
+    "kopljanik-jump",
+    "pas-idle",
+    "pas-run",
+    "pas-attack",
+    "pas-hurt",
+    "pas-death",
+    "tufekdzija-idle",
+    "tufekdzija-run",
+    "tufekdzija-shoot",
+    "tufekdzija-hurt",
+    "tufekdzija-death",
+    "tufekdzija-jump"
+  ],
+  "group5": "pending: quota reached",
+  "group5MissingImages": [
+    "oranje-sky-night",
+    "oranje-sky-storm",
+    "oranje-far-night",
+    "oranje-far-storm",
+    "oranje-mid-night",
+    "oranje-mid-storm",
+    "oranje-near-night",
+    "oranje-near-storm",
+    "oranje-vista-night",
+    "oranje-vista-storm"
+  ],
+  "group5MissingClips": [
+    "marko-kick"
+  ],
+  "quotaResetBelgrade": "2026-11-08T22:00:49+01:00",
+  "checksPassed": [
+    "catalog files and bounds",
+    "tile XY joins",
+    "ladder vertical join and 128px repetition",
+    "tower deck fields",
+    "animation frame counts and requested cells",
+    "feet y=487",
+    "GIF frame counts"
+  ]
+}

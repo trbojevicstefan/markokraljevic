@@ -1,0 +1,135 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "oranje-sky-night",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        1774,
+        887
+      ],
+      "alpha": false,
+      "height": 887,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Night: cool midnight indigo, subtle moonlight, sparse warm camp lights; no daylight. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. Opaque full background.",
+      "reference": "art/world-pack-03/oranje-sky.png"
+    },
+    {
+      "id": "oranje-sky-storm",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        1774,
+        887
+      ],
+      "alpha": false,
+      "height": 887,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Storm: brooding blue-violet overcast, rain-dark materials and wind mood; no baked rain streaks or lightning bolts. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. Opaque full background.",
+      "reference": "art/world-pack-03/oranje-sky.png"
+    },
+    {
+      "id": "oranje-far-night",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Night: cool midnight indigo, subtle moonlight, sparse warm camp lights; no daylight. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-far.png"
+    },
+    {
+      "id": "oranje-far-storm",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Storm: brooding blue-violet overcast, rain-dark materials and wind mood; no baked rain streaks or lightning bolts. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-far.png"
+    },
+    {
+      "id": "oranje-mid-night",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Night: cool midnight indigo, subtle moonlight, sparse warm camp lights; no daylight. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-mid.png"
+    },
+    {
+      "id": "oranje-mid-storm",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Storm: brooding blue-violet overcast, rain-dark materials and wind mood; no baked rain streaks or lightning bolts. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-mid.png"
+    },
+    {
+      "id": "oranje-near-night",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Night: cool midnight indigo, subtle moonlight, sparse warm camp lights; no daylight. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-near.png"
+    },
+    {
+      "id": "oranje-near-storm",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Storm: brooding blue-violet overcast, rain-dark materials and wind mood; no baked rain streaks or lightning bolts. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. True transparent alpha background stays transparent.",
+      "reference": "art/world-pack-03/oranje-near.png"
+    },
+    {
+      "id": "oranje-vista-night",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": false,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Night: cool midnight indigo, subtle moonlight, sparse warm camp lights; no daylight. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. Opaque full background.",
+      "reference": "art/world-pack-03/oranje-vista.png"
+    },
+    {
+      "id": "oranje-vista-storm",
+      "group": 5,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": false,
+      "height": 724,
+      "prompt": "Precise lighting/weather edit of supplied Prilep summer scene. Preserve EXACT geography, fortress towers, fields, pear trees, composition and alpha empty areas. Storm: brooding blue-violet overcast, rain-dark materials and wind mood; no baked rain streaks or lightning bolts. Same painterly cel-shaded style. Same depth layer and canvas proportions. No new objects, people, animals or lettering. Opaque full background.",
+      "reference": "art/world-pack-03/oranje-vista.png"
+    }
+  ]
+}

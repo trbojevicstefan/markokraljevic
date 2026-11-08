@@ -1,0 +1,7 @@
+{
+  "generator": "built-in image_gen",
+  "prompts": {
+    "openChest": "Precise object edit of the supplied closed medieval treasure chest. Open ONLY the lid on its rear hinges, revealing a pile of shining gold coins inside. Keep the exact wooden body, metal bands, red Serbian eagle panel, handle, perspective, scale and placement. Gold shine confined to coins and inside chest; NO halo or haze outside. True transparent background, no floor, shadow ellipse, text or other objects.",
+    "towerKey": "Edit the supplied wooden watchtower ONLY to replace ALL background and empty gaps with perfectly flat pure #00FF00 green, opaque. Preserve EXACT complete tower geometry and ALL FOUR legs, including both darker rear legs and stone feet, intact. No hole or missing strip in the timber. Keep colors, side view, railings and floor. No roof, no archer, no shadows, no haze or glow. Entire full tower with generous green margins. This is a chroma-key production intermediate, not a final environment illustration."
+  }
+}

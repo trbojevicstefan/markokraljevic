@@ -9,7 +9,7 @@ const storage=new Map();const localStorage={getItem:k=>storage.get(k)||null,setI
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,state:()=>({p,world,mode,level})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 assert(api.LEVELS.length>=12,'all campaigns load');
@@ -39,6 +39,7 @@ for(let i=0;i<api.LEVELS.length;i++){
  }
  for(const e of world.enemies)e.alive=false;
  stand(L.goal.x-40,L.goal.y);step();
+ if(api.state().mode!=='levelDone')console.log('DEBUG',L.id,'p',Math.round(api.state().p.x),api.state().p.y,'goal',L.goal,'pending',JSON.stringify(api.state().world.goals.filter(g=>!g.done).map(g=>[g.kind,g.label,Math.round(g.x)])));
  assert.equal(api.state().mode,'levelDone',`${L.id}: banner completes the level`);
  console.log(`PASS ${L.id}: ${tasks.length} goals`);
 }

@@ -57,12 +57,11 @@ for j in jobs:
     published.append(j);print('Published',j['id'],j['frames'],flush=True)
 allready=[j for j in jobs if (ROOT/'assets'/j['id']/'atlas.png').exists()]
 if allready:
-    board=Image.new('RGBA',(1024,len(allready)*540),(24,37,36,255));d=ImageDraw.Draw(board)
+    board=Image.new('RGBA',(1536,len(allready)*540),(24,37,36,255));d=ImageDraw.Draw(board)
     for row,j in enumerate(allready):
         old=GAME/f"art/animation-pack-03/assets/{j['who']}-idle/frames/motion/frame-0.png"
         if not old.exists():old=GAME/'art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png'
         ref=Image.open(old).convert('RGBA');frame=Image.open(ROOT/f"assets/{j['id']}/frames/motion/frame-0.png").convert('RGBA')
-        if frame.width>512:frame.thumbnail((512,512),Image.Resampling.LANCZOS)
         board.alpha_composite(ref,(0,row*540));board.alpha_composite(frame,(512,row*540));d.text((12,row*540+515),'PACK03 reference / '+j['id'],fill='white')
     board.save(ROOT/'preview.png')
 (ROOT/'catalog.json').write_text(json.dumps([{'id':j['id'],'group':j['group'],'frames':j['frames'],'fps':j['fps'],'loop':j['loop'],'file':f"assets/{j['id']}/atlas.png",'manifest':f"assets/{j['id']}/manifest.json"} for j in allready],indent=2),encoding='utf8')

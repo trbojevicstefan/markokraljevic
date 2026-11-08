@@ -1,0 +1,328 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "kopljanik-idle",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Six subtle breathing/weight-shift poses, weapon stays in ready hands, seamless loop."
+    },
+    {
+      "id": "kopljanik-run",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 8,
+      "loop": true,
+      "fps": 14,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Alternate legs explicitly: near contact, down, passing, push, FAR contact with near leg behind hips, down, passing, push. Keep long weapon close enough to body to fit cell."
+    },
+    {
+      "id": "kopljanik-attack",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Guard, pull spear back, step forward, long forward spear thrust CONTACT, follow-through, withdraw, recover, guard. Small shield retained."
+    },
+    {
+      "id": "kopljanik-hurt",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 4 full-body poses in 2 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Ready, sharp hit recoil, stagger, recover. Weapon retained."
+    },
+    {
+      "id": "kopljanik-death",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Hit, knees buckle, drop to knee, fall sideways, body hits ground, legs settle, weapon lies against body, fully still corpse on ground. No gore or disconnected weapon."
+    },
+    {
+      "id": "kopljanik-jump",
+      "group": 4,
+      "who": "kopljanik",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Crouch, toe push-off, rising tucked knees, apex, legs toward ground, landing crouch. Weapon held against body."
+    },
+    {
+      "id": "pas-idle",
+      "group": 4,
+      "who": "pas",
+      "frames": 4,
+      "loop": true,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 192,
+      "targetHeight": 192,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "prompt": "EXACTLY 4 full-body poses in 2 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Panting breath, small weight shift, ears turn, tail settles into seamless loop."
+    },
+    {
+      "id": "pas-run",
+      "group": 4,
+      "who": "pas",
+      "frames": 8,
+      "loop": true,
+      "fps": 14,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 192,
+      "targetHeight": 192,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Clear alternating four-legged gallop: near foreleg contact, compress, hindlegs pass, suspension push, opposite foreleg contact, opposite compression, hindlegs pass, suspension. Never repeat same leading leg."
+    },
+    {
+      "id": "pas-attack",
+      "group": 4,
+      "who": "pas",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 192,
+      "targetHeight": 192,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Crouch, spring forward, jaws open lunge, bite CONTACT, land on forelegs, settle."
+    },
+    {
+      "id": "pas-hurt",
+      "group": 4,
+      "who": "pas",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 192,
+      "targetHeight": 192,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "prompt": "EXACTLY 4 full-body poses in 2 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Hit recoil, head winces, brief stagger back, recover."
+    },
+    {
+      "id": "pas-death",
+      "group": 4,
+      "who": "pas",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 192,
+      "targetHeight": 192,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Hit, forelegs buckle, hindquarters lower, fall on side, settle, fully still on ground. No gore."
+    },
+    {
+      "id": "tufekdzija-idle",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Six subtle breathing/weight-shift poses, weapon stays in ready hands, seamless loop."
+    },
+    {
+      "id": "tufekdzija-run",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 8,
+      "loop": true,
+      "fps": 14,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Alternate legs explicitly: near contact, down, passing, push, FAR contact with near leg behind hips, down, passing, push. Keep long weapon close enough to body to fit cell."
+    },
+    {
+      "id": "tufekdzija-shoot",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Ready, raise musket, aim, FIRE with small attached muzzle flash and short connected smoke puff at barrel tip, recoil, lower weapon, settle, ready. Only pose 4 has flash; no detached projectiles."
+    },
+    {
+      "id": "tufekdzija-hurt",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 4 full-body poses in 2 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Ready, sharp hit recoil, stagger, recover. Weapon retained."
+    },
+    {
+      "id": "tufekdzija-death",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 8 full-body poses in 4 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Hit, knees buckle, drop to knee, fall sideways, body hits ground, legs settle, weapon lies against body, fully still corpse on ground. No gore or disconnected weapon."
+    },
+    {
+      "id": "tufekdzija-jump",
+      "group": 4,
+      "who": "tufekdzija",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Crouch, toe push-off, rising tucked knees, apex, legs toward ground, landing crouch. Weapon held against body."
+    }
+  ]
+}

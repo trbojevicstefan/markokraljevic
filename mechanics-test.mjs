@@ -10,9 +10,9 @@ const storage=new Map();const localStorage={getItem:k=>storage.get(k)??null,setI
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank()})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank()})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -23,6 +23,13 @@ const tap=k=>{press(k);step();release(k);};
 const quiet=(w,keep=[])=>{for(const e of w.enemies)if(!keep.includes(e))e.alive=false;};
 const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sort((a,b)=>a.y-b.y)[0];
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
+
+// ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
+{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: only the first pohod is open at the start');
+ const w=await start('manastir');quiet(w);ok(!api.has('zid'),'journey: the wall jump is still locked');
+ const a=w.platforms.find(q=>q.hang),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
+ await start('selo');api.completeLevel();ok(api.has('niz')&&api.levelOpen(1),'journey: finishing the village teaches the combo and opens the gorge');}
+storage.set('marko-skills',JSON.stringify(api.SKILLS.map(k=>k.id)));
 
 // ---- ladders: W climbs to the top and steps off onto the platform ----
 {const w=await start('klisura');quiet(w);const l=w.ladders.find(l=>l.side===1);stand(l.x,l.bottom);press('KeyW');step(240);release('KeyW');step(20);const {p}=S();
@@ -73,4 +80,30 @@ await climbShaft('rusevine',true);
 {const w=await start('oranje');quiet(w);const pl=w.plowTeams[0];stand(pl.x-700,pl.y);const x0=pl.x;step(120*2);ok(pl.x<x0,'plow: the team plows the road toward Marko');
  stand(pl.x-120,pl.y);S().p.face=1;for(let i=0;i<40&&!pl.broken;i++){tap('KeyK');step(80);}ok(pl.broken,'plow: heavy blows break the plow');
  ok(w.items.some(i=>i.type==='tovar'&&i.plow===pl),'plow: the broken plow leaves a load of treasure');}
+// ---- the letters М-А-Р-К-О: all five heal and pay ----
+{const w=await start('suma');quiet(w);const ls=w.items.filter(i=>i.type==='slovo');ok(ls.length===5,'letters: five letters hide in a pohod');S().p.hp=20;const before=S().bank;
+ for(const l of ls){stand(l.x,l.y+40);step(3);}step(200);ok(S().p.letters===31&&S().p.hp===S().p.maxHp,'letters: all five restore Marko');ok(S().bank-before>=40,'letters: and pay 40 ducats');ok(JSON.parse(storage.get('marko-slova')).includes('suma'),'letters: the pohod is marked МАРКО');}
+// ---- enchanted maces: thunder jumps from foe to foe ----
+{const w=await start('selo');const [e1,e2,e3]=w.enemies.filter(e=>!e.perch);quiet(w,[e1,e2,e3]);const gy=floorAt(w,e1.x).y;for(const [e,dx] of[[e1,0],[e2,90],[e3,170]]){e.x=e1.x+dx;e.y=gy;e.type='sword';e.stun=5;e.hp=e.maxHp=200;}
+ stand(e1.x-80,gy);S().p.face=1;S().p.pow={id:'grom',t:20};tap('KeyJ');step(40);ok(e2.hp<200&&e3.hp<200,'powers: the thunder mace strikes the foes behind the first');}
+// ---- new blows ----
+{const w=await start('selo');const e=w.enemies.find(e=>!e.perch);quiet(w,[e]);const gy=floorAt(w,e.x).y;e.y=gy;e.type='sword';e.stun=5;e.hp=e.maxHp=300;stand(e.x-70,gy);S().p.face=1;
+ api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);ok(e.vy<0||e.y<gy-20,'blows: W+J throws a janissary into the air');
+ step(200);stand(e.x-260,floorAt(w,e.x).y);e.stun=5;S().p.face=1;const hp=e.hp;tap('ShiftLeft');step(10);tap('KeyJ');step(50);ok(e.hp<hp,'blows: Shift then J charges through a foe');}
+// ---- traps ----
+{const w=await start('selo');quiet(w);const t=w.traps.find(t=>t.kind==='spikes');stand(t.x+t.w/2,t.y);S().p.invuln=0;const hp=S().p.hp;step(3);ok(S().p.hp<hp&&S().p.vy<0,'traps: the stakes hurt and throw Marko up');}
+{const w=await start('pecina');quiet(w);const q=w.platforms.find(q=>q.crumble);stand(q.x+q.w/2,q.y);step(30);ok(!q.off,'traps: a crumbling plank holds for a moment');step(60);ok(q.off&&S().p.y>q.y+20,'traps: then it gives way');}
+{const w=await start('suma');quiet(w);const t=w.traps.find(t=>t.kind==='log');let hit=false;stand(t.x,t.y);S().p.invuln=0;for(let i=0;i<120*5&&!hit;i++){const hp=S().p.hp;step();if(S().p.hp<hp)hit=true;S().p.x=t.x;if(S().p.y>t.y){S().p.y=t.y;}}ok(hit,'traps: the swinging log knocks Marko down');}
+{const w=await start('podrum');quiet(w);const t=w.traps.find(t=>t.kind==='barrels');stand(t.x-500,floorAt(w,t.x-500).y);S().p.invuln=99;step(120*3);ok(t.list.length>0&&t.list.some(b=>b.x<t.x-100),'traps: barrels roll down at Marko');}
+{const w=await start('manastir');quiet(w);const t=w.traps.find(t=>t.kind==='timed');stand(t.gate.x-200,t.gate.y);api.keys.add('KeyD');step(120);api.keys.clear();ok(S().p.x<=t.gate.x-59,'traps: the timed gate is shut');
+ stand(t.lever.x,t.lever.y);tap('KeyE');step(2);ok(t.open>0,'traps: the lever opens it');api.keys.add('KeyD');for(let i=0;i<120*5&&S().p.x<t.gate.x+80;i++){step();const pl=w.platforms.find(q=>q.pillar&&Math.abs(q.x-S().p.x-40)<30);if(S().p.grounded&&(pl||w.traps.some(o=>o.kind==='spikes'&&o.x-S().p.x<70&&o.x-S().p.x>20)))tap('Space');}api.keys.clear();ok(S().p.x>t.gate.x,'traps: running through before it shuts');}
+// ---- the chase: run, and the boulder ends in the ravine ----
+{const w=await start('klisura');quiet(w);const t=w.traps.find(t=>t.kind==='boulder');stand(t.x0+100,t.y);S().p.invuln=0;api.keys.add('KeyD');
+ for(let i=0;i<120*12&&t.state!=='done';i++){const {p}=S();const ahead=w.platforms.find(q=>q.pillar&&q.x-p.x>10&&q.x-p.x<60)||w.traps.find(o=>o.kind==='spikes'&&o.x-p.x>10&&o.x-p.x<70)||(p.x>t.end-60&&p.x<t.end);if(p.grounded&&ahead)tap('Space');else step();}
+ api.keys.clear();ok(t.state==='done'&&S().mode==='play','chase: Marko outruns the boulder and it falls into the ravine');}
+// ---- a champion locks the arena until he falls ----
+{const w=await start('tvrdjava');const c=w.enemies.find(e=>e.champion);quiet(w,[c]);ok(c&&c.name==='Hasan-aga Oklopnik','champions: the fortress ends with Hasan-aga');
+ stand(c.arena.x0+150,c.y);S().p.invuln=99;step(4);S().p.x=c.arena.x0-200;step(2);ok(S().p.x>=c.arena.x0+30,'champions: the arena holds Marko in');
+ c.hp=1;c.stun=5;stand(c.x-80,c.y);S().p.face=1;tap('KeyK');step(80);ok(!c.alive,'champions: the aga falls');step(5);S().p.x=c.arena.x1+40;step(2);ok(S().p.x>c.arena.x1,'champions: the arena opens again');
+ ok(w.items.some(i=>i.type==='moc'&&i.id===8990),'champions: he leaves an enchanted mace behind');}
 console.log(`${checks} pohod mechanics checks passed.`);

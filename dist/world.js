@@ -75,7 +75,7 @@ const GOAL_PLAN={
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
 function makeGoals(L,floorAt){
- const near=x=>{for(let d=0;d<700;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
+ const near=x=>{for(let d=0;d<1400;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
  return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
   return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
 }
@@ -99,25 +99,30 @@ export const CUDA=[
  {id:'zlatno-ralo',name:'Zlatno ralo',song:'Oranje Marka Kraljevića',perk:'Teški udarci jači',land:'oranje'},
  {id:'musina-sablja',name:'Musina sablja',song:'Marko Kraljević i Musa Kesedžija',perk:'Manje primljene štete',land:'kacanik'},
 ];
+// Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
+// gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch flat stairs- ledges flat pillars crates terrace+ flat terrace- watch flat',
- klisura:'flat terrace+ ladder+ flat tower drop bridge flat chimney flat stairs+ watch drop crates flat',
- suma:'flat watch crates terrace+ flat watch terrace- ledges flat pillars watch stairs+ flat stairs- chimney flat',
- manastir:'flat stairs+ flat stairs+ crates tower flat chimney flat stairs- ledges flat stairs+ tower flat',
- tvrdjava:'flat crates tower flat chimney^ flat tower crates drop flat pillars ladder+ tower flat crates',
- prevoj:'flat stairs+ terrace+ ladder+ flat gap flat watch stairs+ chimney flat terrace+ crates flat drop',
- pecina:'flat terrace- crates flat chimney flat ledges terrace+ flat pillars gap flat tower crates flat',
- podrum:'flat crates stairs- crates flat ladder+ crates flat chimney crates stairs+ flat tower crates drop',
- mocvara:'flat bridge watch flat bridge crates flat watch ledges flat bridge pillars watch flat',
- rudnik:'flat ladder+ crates flat drop ledges tower flat chimney crates ladder+ flat drop crates flat',
- rusevine:'flat stairs+ ladder+ chimney^ flat stairs+ tower ladder+ crates chimney^ terrace+ flat ladder+ watch stairs+ flat',
- reka:'flat crates bridge flat watch stairs+ flat stairs- bridge crates flat ledges watch flat',
+ selo:'flat crates stairs+ watch flat spikes stairs- ledges flat pillars crates terrace+ flat terrace- watch flat',
+ klisura:'flat terrace+ ladder+ flat tower chase flat chimney crumble flat stairs+ watch rocks crates flat',
+ suma:'flat watch crates logs flat watch terrace+ ledges flat spikes watch stairs+ flat stairs- chimney flat',
+ manastir:'flat stairs+ flat stairs+ crates tower lever flat chimney stairs- ledges flat stairs+ tower flat',
+ tvrdjava:'flat crates tower barrels flat chimney^ flat tower lever crates pillars ladder+ tower flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase flat watch stairs+ chimney rocks flat terrace+ crates flat boss:akindzija',
+ pecina:'flat terrace- crates crumble flat chimney ledges terrace+ spikes flat pillars gap flat tower crumble crates flat',
+ podrum:'flat crates stairs- barrels flat ladder+ crates spikes flat chimney crates stairs+ barrels tower crates boss:palikuca',
+ mocvara:'flat bridge watch crumble flat bridge crates logs flat watch ledges flat bridge pillars watch flat',
+ rudnik:'flat ladder+ crates rocks flat ledges tower lever flat chimney crates crumble ladder+ barrels crates flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower ladder+ crates chimney^ logs terrace+ flat ladder+ watch stairs+ flat',
+ reka:'flat crates bridge flat watch stairs+ logs stairs- bridge crumble crates ledges watch flat boss:sword',
  oranje:'flat plow crates flat plow watch stairs+ flat stairs- plow crates flat',
 };
+export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:760},akindzija:{name:'Akindžijski beg',hp:560},palikuca:{name:'Ognjeni aga',hp:520},shield:{name:'Bajraktar sa štitom',hp:620},sword:{name:'Janičarski aga',hp:540}};
+export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
+
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
 export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[];let x=0,gy=590,run=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[];let x=0,gy=590,run=null,boss=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -151,15 +156,39 @@ export function buildLayout(L,variant='day'){
   gap(){busy.push([x-40,x+200]);x+=ri(130,165);run=null;ground(ri(260,340));},
   bridge(){const w=ri(280,340);busy.push([x-40,x+w+40]);platforms.push({x:x-10,y:gy,w:w+20,h:18,kind:'plank',bridge:true});x+=w;run=null;ground(ri(260,340));},
   plow(){const x0=x,len=ri(1000,1150);ground(len);plows.push({x:x0+len*.8,y:gy});spots.push({x:x0+len*.55,y:gy});busy.push([x0+len*.6,x0+len]);},
+  // sharpened stakes across the road: jump them, or knock a janissary onto them
+  spikes(){const x0=x,len=ri(440,520);ground(len);const w=ri(90,130),sx=Math.round(x0+len*.45);traps.push({kind:'spikes',x:sx,w,y:gy});busy.push([sx-30,sx+w+30]);spots.push({x:x0+len*.85,y:gy});},
+  // planks over a pit that give way a moment after Marko steps on them
+  crumble(){const w=ri(300,360),n=3,x0=x;busy.push([x-40,x+w+40]);for(let i=0;i<n;i++){const seg=(w-20)/n;platforms.push({x:Math.round(x0+10+i*seg+5),y:gy,w:Math.round(seg-10),h:18,kind:'plank',crumble:true});}x+=w;run=null;ground(ri(260,340));},
+  // a log hung on two chains swings across the road
+  logs(){const x0=x,len=ri(720,780);ground(len);const beam=[Math.round(x0+40),Math.round(x0+len-40)],ph=R()*6.28;for(const [k,o] of[[.3,0],[.7,Math.PI]])traps.push({kind:'log',x:Math.round(x0+len*k),y:gy,pivot:gy-330,arm:240,amp:.85,phase:ph+o,beam});busy.push([x0,x0+len]);},
+  // rocks fall from the cliffs; a shadow on the ground warns where
+  rocks(){const x0=x,len=ri(560,660);ground(len);traps.push({kind:'rocks',x0:x0+70,x1:x0+len-70,y:gy,every:1.05});spots.push({x:x0+len*.5,y:gy});},
+  // barrels roll down from above: jump them or smash them with a heavy blow
+  barrels(){steps(-1);const x0=x;ground(420);traps.push({kind:'barrels',x:x0+380,y:gy,every:2.3});spots.push({x:x0+300,y:gy});},
+  // pull the lever, then run: the gate stays open only a few heartbeats
+  lever(){const x0=x,len=ri(760,840);ground(len);traps.push({kind:'timed',lever:{x:x0+90,y:gy},gate:{x:x0+len-90,y:gy},time:5.2});block(x0+len*.38,80,gy-80,{pillar:true});traps.push({kind:'spikes',x:Math.round(x0+len*.6),w:90,y:gy});busy.push([x0,x0+len]);},
+  // a boulder (or an avalanche in the snow) rolls after Marko down a course that ends at a ravine
+  chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:L.id==='prevoj'});},
+  boss(type){const x0=x,len=ri(1000,1080);ground(len);boss={type,x:Math.round(x0+len*.68),y:gy,x0,x1:x0+len};busy.push([x0,x0+len]);},
  };
  ground(ri(600,680));const spawn={x:80,y:590};
- for(const name of(RECIPES[L.id]||'flat crates stairs+ watch flat stairs- ledges flat tower flat').split(' '))room[name]?.();
- room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
+ for(const name of(RECIPES[L.id]||'flat crates stairs+ watch flat stairs- ledges flat tower flat').split(' ')){const [r,arg]=name.split(':');room[r]?.(arg);}
+ if(!boss)room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
  // the best reward hides the land's marvel, the others become chests
  rewards.sort((a,b)=>b.prio-a.prio);const cudo=CUDA.find(c=>c.land===L.id);
  rewards.forEach((r,i)=>{if(i===0&&cudo)r.cudo=cudo.id;else crate(r.x,'kovceg',{y:r.y,loot:{coins:ri(14,22)}});});
  if(cudo&&!rewards.length)rewards.push({x:goal.x-260,y:goal.y,cudo:cudo.id});
- return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+ // places worth reaching: the five letters М-А-Р-К-О and a power orb go to the best of them along the road
+ const cands=[],grounds=platforms.filter(q=>q.ground).sort((a,b)=>a.x-b.x),taken=r=>rewards.some(o=>Math.abs(o.x-r.x)<90&&Math.abs(o.y-r.y)<90);
+ for(const q of platforms){if(q.kind==='plank'&&!q.bridge)cands.push({x:q.x+q.w/2,y:q.y-44,s:2});else if(q.kind==='deck')cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.hang)cands.push({x:q.x+q.w/2,y:q.y-44,s:3});else if(q.tower&&!q.ground)cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.pillar)cands.push({x:q.x+q.w/2,y:q.y-80,s:1});}
+ for(const t of traps)if(t.kind==='spikes')cands.push({x:t.x+t.w/2,y:t.y-150,s:2});
+ for(let i=1;i<grounds.length;i++){const a=grounds[i-1],b=grounds[i],g=b.x-(a.x+a.w);if(g>60&&Math.abs(a.y-b.y)<30)cands.push({x:a.x+a.w+g/2,y:Math.min(a.y,b.y)-140,s:2});}
+ for(let cx=700;cx<goal.x-300;cx+=650){const q=grounds.find(q=>cx>q.x+30&&cx<q.x+q.w-30);if(q)cands.push({x:cx,y:q.y-175,s:1});}
+ const end=boss?boss.x0:goal.x-150,free=cands.filter(c=>!taken(c)&&c.x>500&&c.x<end),letters=[];
+ for(let i=0;i<5;i++){const a=500+(end-500)*i/5,b=500+(end-500)*(i+1)/5,bin=free.filter(c=>c.x>=a&&c.x<b).sort((u,v)=>v.s-u.s||u.x-v.x);const c=bin[Math.floor(R()*Math.min(2,bin.length))];if(c){letters.push({...c,i});free.splice(free.indexOf(c),1);}}
+ const mid=free.filter(c=>c.x>end*.35&&c.x<end*.75).sort((u,v)=>v.s-u.s)[0];
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,letters,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
  layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
@@ -178,10 +207,13 @@ export function makeLevel(L,index,variant='day',opts={}){
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
  for(const r of B.rewards)if(r.cudo)items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
+ for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
+ const powerIds=Object.keys(POWERS);if(B.power)items.push({id:7055+index,x:Math.round(B.power.x),y:Math.round(B.power.y),type:'moc',power:powerIds[index%3],taken:false});
+ if(B.boss){const S=BOSSES[B.boss.type];foe(B.boss.type,B.boss.x,B.boss.y,{champion:true,scale:1.35,hp:S.hp,maxHp:S.hp,name:S.name,w:50,h:100,arena:{x0:B.boss.x0,x1:B.boss.x1}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
  const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
  const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
  chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
- return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L2,floorAt),level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x)),level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }

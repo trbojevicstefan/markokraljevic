@@ -405,7 +405,7 @@
       ],
       "bounds": [
         16,
-        356,
+        406,
         496,
         512
       ],
@@ -1925,7 +1925,23 @@
         794
       ],
       "kind": "animation-reference",
-      "group": 4
+      "group": 3
+    },
+    {
+      "id": "oranje-tlo-preview",
+      "file": "oranje-tlo-preview.png",
+      "size": [
+        3072,
+        384
+      ],
+      "bounds": [
+        0,
+        0,
+        3072,
+        384
+      ],
+      "kind": "preview",
+      "group": 3
     }
   ]
 }

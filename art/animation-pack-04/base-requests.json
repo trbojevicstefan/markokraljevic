@@ -1,0 +1,41 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "kopljanik",
+      "height": 426,
+      "description": "Janissary spearman matching the reference warrior's painterly style and proportions: moustache, conical helmet with ivory wrap, rust-red embroidered coat, bronze lamellar armor, ochre sash. Long spear roughly twice a saber's length held across body at waist with shaft extending right, small round shield on forearm. Whole spear visible without extreme foreshortening.",
+      "canvas": [
+        512,
+        512
+      ],
+      "footY": 487,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "prompt": "Painterly cel-shaded medieval Serbian epic fantasy 2D game character reference, gold/teal lighting and crisp details matching supplied Janissary. Janissary spearman matching the reference warrior's painterly style and proportions: moustache, conical helmet with ivory wrap, rust-red embroidered coat, bronze lamellar armor, ochre sash. Long spear roughly twice a saber's length held across body at waist with shaft extending right, small round shield on forearm. Whole spear visible without extreme foreshortening. ONE full-body figure facing RIGHT, neutral ready stance, far limbs darker, entire body and weapon visible, ample padding. Flat pure #00FF00 green background. No floor, shadows, text, grid or extra figures."
+    },
+    {
+      "id": "pas",
+      "height": 192,
+      "description": "Large realistic medieval war hound, strong brindled brown body, alert ears, leather collar with bronze buckles, compact curled tail. No armor or fantasy glowing eyes. Side view right. Its full height is about 45 percent of Janissary reference.",
+      "canvas": [
+        512,
+        512
+      ],
+      "footY": 487,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "prompt": "Painterly cel-shaded medieval Serbian epic fantasy 2D game character reference, gold/teal lighting and crisp details matching supplied Janissary. Large realistic medieval war hound, strong brindled brown body, alert ears, leather collar with bronze buckles, compact curled tail. No armor or fantasy glowing eyes. Side view right. Its full height is about 45 percent of Janissary reference. ONE full-body figure facing RIGHT, neutral ready stance, far limbs darker, entire body and weapon visible, ample padding. Flat pure #00FF00 green background. No floor, shadows, text, grid or extra figures."
+    },
+    {
+      "id": "tufekdzija",
+      "height": 426,
+      "description": "Janissary matchlock musketeer matching reference proportions and style: moustache, conical helmet and ivory turban wrap, deep blue embroidered coat, bronze armor, red sash. Long antique wood-and-iron tufek musket, no modern rifle, held diagonally in front, entire barrel visible.",
+      "canvas": [
+        512,
+        512
+      ],
+      "footY": 487,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "prompt": "Painterly cel-shaded medieval Serbian epic fantasy 2D game character reference, gold/teal lighting and crisp details matching supplied Janissary. Janissary matchlock musketeer matching reference proportions and style: moustache, conical helmet and ivory turban wrap, deep blue embroidered coat, bronze armor, red sash. Long antique wood-and-iron tufek musket, no modern rifle, held diagonally in front, entire barrel visible. ONE full-body figure facing RIGHT, neutral ready stance, far limbs darker, entire body and weapon visible, ample padding. Flat pure #00FF00 green background. No floor, shadows, text, grid or extra figures."
+    }
+  ]
+}

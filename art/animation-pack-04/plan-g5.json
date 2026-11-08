@@ -1,0 +1,22 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-kick",
+      "group": 5,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body poses in 3 columns and TWO rows, read left to right then down. Invisible equal slots, no grid. Pure flat #00FF00 green everywhere empty. Same exact identity, head size, clothing, limbs and weapons as approved supplied reference. Painterly cel shaded. Whole silhouette inside own slot, generous gutters. Facing RIGHT, far limbs darker, shared foot baseline. No shadows, floor, text, decorative effects. Marko kick: 1 guard with mace hooked to belt; 2 raise right knee; 3 extend boot forward; 4 full pushing kick CONTACT at waist height; 5 retract knee; 6 settle to guard. Supporting leg bears weight. Do NOT draw a shield, crate or target."
+    }
+  ]
+}

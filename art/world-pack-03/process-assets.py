@@ -1,6 +1,6 @@
 from pathlib import Path
 from PIL import Image,ImageDraw
-import numpy as np,json,subprocess
+import numpy as np,json,subprocess,sys
 ROOT=Path(__file__).resolve().parent
 SG=ROOT.parents[2]/'tools/sprite-gen/.venv/Scripts/sprite-gen.exe'
 def stitch(a,axis,j,radius=24):
@@ -16,6 +16,9 @@ def periodic(im,axes):
     a=np.clip(np.rint(a),0,255).astype('uint8');a[a[:,:,3]==0,:3]=0
     return Image.fromarray(a)
 def clean(src):
+    if src.stem=='cudo-musina-sablja':
+        a=np.array(Image.open(src).convert('RGBA'));a[:,:,3]=np.clip((a[:,:,3].astype(float)-128)*255/124,0,255).astype('uint8');a[a[:,:,3]==0,:3]=0
+        return Image.fromarray(a)
     dst=ROOT/'cleaned'/src.name;dst.parent.mkdir(exist_ok=True)
     if not dst.exists():subprocess.run([str(SG),'cutout',str(src),'--out',str(dst),'--erode','1.4','--decontam','auto'],check=True,stdout=subprocess.DEVNULL)
     return Image.open(dst).convert('RGBA')
@@ -54,9 +57,10 @@ for j in jobs:
     src=ROOT/'sources'/f"{j['id']}.png"
     if j['id']=='kula-strazara' and (ROOT/'sources/kula-strazara-key.png').exists():src=ROOT/'sources/kula-strazara-key.png'
     if not src.exists():continue
-    if (ROOT/f"{j['id']}.png").exists() and j['id'] in old:
+    if (ROOT/f"{j['id']}.png").exists() and j['id'] in old and j['id'] not in sys.argv[1:]:
         entries.append(old[j['id']]);continue
     kind=j['kind'];size=tuple(j['canvas']);extra={}
+    if 'reusedFrom' in j:extra['reusedFrom']=j['reusedFrom']
     if kind=='ground':entries.extend(ground(src,j));continue
     if kind=='background':
         im=Image.open(src).convert('RGBA').resize(size,Image.Resampling.LANCZOS)
@@ -101,7 +105,7 @@ for j in jobs:
     dst=ROOT/f"{j['id']}.png";im.save(dst)
     entries.append(dict(id=j['id'],file=dst.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind=kind,group=j['group'],**extra))
 for prefix,name,columns in [('cudo-','cuda-preview.png',4),('razbi-','razbi-preview.png',3)]:
-    if (ROOT/name).exists() and name[:-4] in old:
+    if (ROOT/name).exists() and name[:-4] in old and not any(a.startswith(prefix) for a in sys.argv[1:]):
         entries.append(old[name[:-4]]);continue
     selected=[e for e in entries if e['id'].startswith(prefix)]
     if not selected:continue
@@ -123,4 +127,6 @@ if (anim/'preview.png').exists():
 merged={k:e for k,e in old.items() if (ROOT/e['file']).exists()};merged.update({e['id']:e for e in entries});entries=list(merged.values())
 for p in ROOT.glob('*preview.png'):
     if p.stem not in merged:
-        im=Image.open(p).convert('RGBA');entries.append(dict(id=p.stem,file=p.name,size=list(im.size),bounds=im.getchannel('A').getb
+        im=Image.open(p).convert('RGBA');entries.append(dict(id=p.stem,file=p.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind='preview',group=3 if p.stem.startswith('oranje') else 1))
+temp=ROOT/'catalog.json.tmp';temp.write_text(json.dumps({'generator':'built-in image_gen','images':entries},ensure_ascii=False,indent=2),encoding='utf8');temp.replace(ROOT/'catalog.json')
+print('Published',len(entries),'images')

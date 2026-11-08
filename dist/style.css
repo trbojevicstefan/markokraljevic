@@ -81,3 +81,15 @@
 .smith button b{font:13px Arial;color:#f3cf7a;white-space:nowrap;margin-left:10px}
 .smith button:disabled{cursor:default}
 #level-stats{flex-wrap:wrap}
+#slova{display:flex;justify-content:center;gap:6px;margin-top:2px}
+#slova i{font:bold 15px Georgia,serif;font-style:normal;color:#ffffff30;width:22px;height:22px;line-height:22px;border-radius:50%;border:1px solid #e7c27a33}
+#slova i.on{color:#fff3c8;background:radial-gradient(circle,#c99a3c,#7a5214);border-color:#ffe39a;text-shadow:0 0 6px #ffcf6a}
+.skill-card{margin:14px 0;padding:14px 18px;border:1px solid #e7c27a88;background:linear-gradient(140deg,#3a3420,#1a2a26)}
+.skill-card h3{font:24px Georgia,serif;color:#ffe6a8;margin:6px 0}
+.skill-card p{margin:4px 0}
+.level-list button.locked{opacity:.45;cursor:default}
+.pad-focus{outline:2px solid #f7d88f!important;outline-offset:4px}
+.vestine{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:10px 0}
+.vestine div{padding:9px 12px;background:#0c2224aa;border:1px solid #c8ab6f33}
+.vestine div.have{border-color:#e7c27a99;background:linear-gradient(160deg,#2a3a2a,#12282a)}
+.vestine b{display:block;font:14px Georgia,serif;color:#f1dfb8}.vestine small{display:block;font:11px/1.4 Arial;color:#a9b9ad;margin-top:3px}

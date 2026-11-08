@@ -119,7 +119,8 @@
       ],
       "height": 320,
       "alpha": true,
-      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: old rough upright stone field boundary marker. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: old rough upright stone field boundary marker. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas.",
+      "reusedFrom": "../world-pack-01/assets/prop-kamen-putokaz.png"
     },
     {
       "id": "prop-kruska",
