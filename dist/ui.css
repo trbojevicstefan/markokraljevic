@@ -1,0 +1,129 @@
+/* Marko — interface in the manner of a medieval Serbian charter: crimson and gold, interlace corners, carved plaques. */
+:root{--gold:#d9b56a;--gold2:#f3dca0;--gold3:#8a6a2c;--crimson:#7a1f27;--crimson2:#a3323c;--ink:#0a1718;--teal:#10292a;--display:'Cormorant Garamond',Georgia,serif}
+
+/* ---------- buttons: carved plaques with clipped corners ---------- */
+.primary,.secondary{position:relative;font-family:var(--display);clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);transition:filter .2s,transform .2s,box-shadow .2s}
+.primary{background:linear-gradient(180deg,#a3323c 0%,#7a1f27 55%,#5c151c 100%);color:var(--gold2);border:0;box-shadow:inset 0 0 0 1px #f3dca0aa,inset 0 0 0 4px #5c151c,inset 0 0 0 5px #d9b56a77;font-size:19px;font-weight:700;letter-spacing:1.5px;padding:16px 28px;text-shadow:0 2px 0 #3a0c10}
+.primary span{color:var(--gold2)}
+.primary:hover,.primary.pad-focus,.primary:focus-visible{filter:brightness(1.18);transform:translateX(4px);box-shadow:inset 0 0 0 1px #f3dca0,inset 0 0 0 4px #5c151c,inset 0 0 0 5px #f3dca0,0 0 28px #d9b56a66}
+.secondary{background:linear-gradient(180deg,#183a39,#0f2526);border:0;box-shadow:inset 0 0 0 1px #d9b56a88,inset 0 0 0 4px #0f2526,inset 0 0 0 5px #d9b56a33;color:#f1e3c0;font-size:16px;font-weight:600;letter-spacing:.6px;padding:13px 22px}
+.secondary:hover,.secondary.pad-focus,.secondary:focus-visible{background:linear-gradient(180deg,#24504c,#143433);transform:translateX(4px);box-shadow:inset 0 0 0 1px var(--gold2),inset 0 0 0 4px #143433,inset 0 0 0 5px #d9b56a88,0 0 20px #d9b56a40}
+.text-button{font-family:var(--display);font-size:16px!important;color:#e9d7ad!important;letter-spacing:.5px}
+.text-button:hover{color:var(--gold2)!important;text-shadow:0 0 10px #d9b56a88}
+
+/* ---------- main menu ---------- */
+#menu{background:radial-gradient(ellipse at 72% 60%,#0000 0%,#06121380 55%,#030a0bd0 100%),linear-gradient(90deg,#05121499 0%,#08181a66 40%,#0000 70%)}
+#menu .menu-copy{padding:38px 44px 30px;background:linear-gradient(160deg,#0b1d1fe6,#0b1d1fb0 70%,#0b1d1f70);box-shadow:0 30px 80px #000a,inset 0 0 0 1px #d9b56a40;
+ background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),linear-gradient(160deg,#0b1d1fe6,#0b1d1fb0 70%,#0b1d1f80);background-repeat:no-repeat;background-position:6px 6px,calc(100% - 6px) 6px,6px calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),0 0;background-size:54px,54px,54px,54px,auto;width:500px}
+#menu .menu-copy h1{font-family:var(--display);font-weight:700;font-size:118px;letter-spacing:12px;margin:14px 0 6px;background:linear-gradient(100deg,#b8913f 0%,#f3dca0 30%,#fff8e0 40%,#f3dca0 50%,#b8913f 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 3px 0 #5a3c14) drop-shadow(0 10px 30px #000c);animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+#menu .subtitle{font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:6px;color:var(--gold2)}
+#menu .subtitle span{width:60px;height:12px;background:url(assets/ui/divider.svg) center/180px 12px no-repeat}
+#menu .eyebrow{font-family:var(--display);font-size:13px;letter-spacing:5px;color:#e6c27f}
+#menu .intro{font-family:var(--display);font-size:22px;line-height:1.55;color:#eadfc4;margin:18px 0 22px}
+#menu .primary,#menu .secondary{width:100%;min-width:0;text-align:left}
+#menu .menu-links button{font-family:var(--display);font-size:15px;color:#e8d7ad}
+#menu .menu-links button:hover{color:var(--gold2);text-shadow:0 0 8px #d9b56a99}
+#menu .menu-decoration span:last-child{font-family:var(--display);font-size:13px;letter-spacing:5px}
+.menu-marko{animation:breathe 6s ease-in-out infinite;filter:drop-shadow(0 12px 25px #0b252bb0) drop-shadow(0 0 30px #ffb45a22)!important}
+@keyframes breathe{50%{transform:translateY(-6px) scale(1.01)}}
+#menu-ledger{display:flex;gap:10px;margin:16px 0 4px}
+#menu-ledger div{flex:1;text-align:center;padding:8px 4px;background:#08151688;box-shadow:inset 0 0 0 1px #d9b56a33}
+#menu-ledger b{display:block;font:700 22px var(--display);color:var(--gold2)}
+#menu-ledger small{font:10px Arial;letter-spacing:2px;color:#b9c4b4}
+#menu .embers{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+#menu .embers i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#ffcf7a;box-shadow:0 0 8px 2px #ff9a3a;opacity:0;animation:ember linear infinite}
+@keyframes ember{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}100%{transform:translate(var(--dx),-105vh);opacity:0}}
+#menu .quote{position:absolute;right:6%;bottom:72px;max-width:360px;font:italic 17px/1.5 var(--display);color:#e9dcbd;text-align:right;text-shadow:0 2px 6px #000;z-index:2}
+#menu .quote small{display:block;font:10px Arial;letter-spacing:3px;color:#c9a96a;margin-top:6px;font-style:normal}
+
+/* ---------- modal cards: a charter with interlace corners ---------- */
+.modal{background:radial-gradient(ellipse at center,#0a1c1fcc,#030b0cf0)}
+.modal-card{position:relative;background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),linear-gradient(165deg,#1a3a39,#0f2426 60%,#0b1c1e);background-repeat:no-repeat;background-position:8px 8px,calc(100% - 8px) 8px,8px calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),0 0;background-size:48px,48px,48px,48px,auto;
+ border:1px solid #d9b56a66;outline:1px solid #d9b56a22;outline-offset:-10px;box-shadow:0 40px 120px #000c,inset 0 0 60px #0007;animation:cardIn .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.modal-card h2{font-family:var(--display);font-weight:700;font-size:40px;color:var(--gold2);text-shadow:0 2px 0 #3a2a10,0 0 30px #d9b56a33;margin:8px 0 6px}
+.modal-card h2::after{content:'';display:block;width:240px;height:16px;margin:10px 0 4px;background:url(assets/ui/divider.svg) left center/240px 16px no-repeat}
+.modal-card .eyebrow{font:700 12px var(--display)!important;letter-spacing:5px!important;color:#e6c27f!important}
+.modal-card p{font-family:var(--display);font-size:18px}
+.modal-card h3{font-family:var(--display)}
+
+/* ---------- toasts and Ravijojla's words ---------- */
+#toast{font-family:var(--display);font-size:20px;font-weight:600;background:linear-gradient(180deg,#132b2bf2,#0b1c1ef2);border:0;box-shadow:inset 0 1px 0 #d9b56a99,inset 0 -1px 0 #d9b56a99,0 10px 30px #0008;padding:12px 30px 13px;color:#f6e7c4}
+#toast::before,#toast::after{content:'✦';color:var(--gold);margin:0 12px;font-size:12px;vertical-align:middle}
+#dialogue{background:linear-gradient(90deg,#14403ce8,#0e2427ee);border:0;box-shadow:inset 0 0 0 1px #8fe0c766,0 12px 40px #0009}
+#dialogue p{font-family:var(--display);font-size:19px;font-weight:600}
+
+/* ---------- HUD ---------- */
+.hero-card{background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-br.svg),linear-gradient(90deg,#102322f2,#10232299);background-repeat:no-repeat;background-position:3px 3px,calc(100% - 3px) calc(100% - 3px),0 0;background-size:30px,30px,auto;border:1px solid #d7bb7155}
+.hero-label{font-family:var(--display);font-size:13px!important;letter-spacing:3px!important;color:var(--gold2)}
+.meter{border-color:#d9b56a99!important}
+.quest strong{font-family:var(--display);font-size:24px;font-weight:600;color:#f6e7c4}
+.quest small{font-family:var(--display);font-size:12px;font-weight:700}
+#boss-hud h2{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold2)}
+#boss-hud small{font-family:var(--display);font-weight:700;letter-spacing:6px}
+.boss-meter{border-color:#d9b56aaa!important;box-shadow:0 0 18px #a3323c55}
+
+/* ---------- the opening title of a pohod ---------- */
+#title-card{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:5}
+#title-card small{display:block;font:700 15px var(--display);letter-spacing:9px;color:#e6c27f}
+#title-card h1{font:700 64px var(--display);margin:6px 0;color:var(--gold2);text-shadow:0 3px 0 #3a2a10,0 0 40px #000,0 0 24px #d9b56a55;letter-spacing:2px}
+#title-card i{display:block;margin:0 auto;width:360px;height:24px;background:url(assets/ui/divider.svg) center/360px 24px no-repeat}
+#title-card p{font:italic 20px var(--display);color:#efe2c2;text-shadow:0 2px 8px #000;margin:8px 0 0}
+#title-card.show{animation:titleIn 3.2s ease forwards}
+@keyframes titleIn{0%{opacity:0;transform:translate(-50%,-40%) scale(1.05);letter-spacing:6px}14%{opacity:1;transform:translate(-50%,-50%) scale(1)}78%{opacity:1}100%{opacity:0;transform:translate(-50%,-56%)}}
+
+/* ---------- the map of pohodi ---------- */
+#levels .modal-card.lore{width:min(1120px,100%);padding:28px 30px}
+.pohod-map{position:relative;display:grid;grid-template-columns:1fr 320px;gap:18px;margin:12px 0}
+.map-field{position:relative;height:430px;border:1px solid #d9b56a55;background:radial-gradient(ellipse at 30% 30%,#e8d6a8 0%,#d8c08a 45%,#b89a5e 100%);box-shadow:inset 0 0 60px #6a4a1a99,inset 0 0 0 6px #e9d9b444;overflow:hidden}
+.map-field::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(35deg,#0000 0 22px,#5a3c1408 22px 23px),radial-gradient(circle at 80% 70%,#5a3c1422,#0000 40%);pointer-events:none}
+.map-field svg.road{position:absolute;inset:0;width:100%;height:100%}
+.map-title{position:absolute;left:16px;top:10px;font:italic 700 20px var(--display);color:#5a3c14;letter-spacing:1px}
+.map-node{position:absolute;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;padding:0;border:3px solid #8a6a2c;background:#3a2a14 center/cover no-repeat;box-shadow:0 4px 10px #0008,inset 0 0 0 2px #f3dca0aa;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.map-node span{position:absolute;left:50%;top:-12px;transform:translateX(-50%);font:700 14px var(--display);color:#3a2610;background:#f3dca0;border:1px solid #8a6a2c;border-radius:10px;padding:0 7px;line-height:18px}
+.map-node em{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);font-style:normal;font-size:13px;color:#8a5a10;letter-spacing:1px;white-space:nowrap;text-shadow:0 1px 0 #f3dca0}
+.map-node:hover,.map-node.pad-focus,.map-node:focus-visible,.map-node.sel{transform:scale(1.14);box-shadow:0 0 0 3px #f3dca0,0 0 26px #ffcf6a,0 6px 14px #0009;outline:none}
+.map-node.done{border-color:#d9b56a}
+.map-node.next{animation:nodePulse 1.6s ease-in-out infinite}
+@keyframes nodePulse{50%{box-shadow:0 0 0 4px #f3dca0,0 0 30px #ff9a3a,0 6px 14px #0009}}
+.map-node:disabled{filter:grayscale(1) brightness(.55);cursor:default;transform:none}
+.map-node:disabled::after{content:'';position:absolute;inset:18px;background:url(assets/ui/lock.svg) center/contain no-repeat}
+.map-detail{border:1px solid #d9b56a55;background:#0b1c1ecc;display:flex;flex-direction:column}
+.map-detail .vista{height:150px;background:#132 center/cover no-repeat;box-shadow:inset 0 -40px 40px #0b1c1e}
+.map-detail .info{padding:12px 16px 14px;flex:1;display:flex;flex-direction:column}
+.map-detail h3{font:700 26px var(--display);color:var(--gold2);margin:2px 0 4px}
+.map-detail .stars{font-size:22px;color:#ffd98a;letter-spacing:4px;margin:2px 0}
+.map-detail .stars small{display:block;font:10px Arial;letter-spacing:1px;color:#a9b9ad}
+.map-detail p{font:16px/1.4 var(--display);color:#d5dccb;margin:6px 0}
+.map-detail .reward{color:#ffe39a}
+.map-detail .primary{margin-top:auto;width:100%;min-width:0}
+@media(max-width:900px){.pohod-map{grid-template-columns:1fr}.map-field{height:340px}.map-node{width:52px;height:52px;margin:-26px 0 0 -26px}.map-detail .vista{height:100px}}
+
+/* ---------- the end of a pohod ---------- */
+#level-stars{font-size:46px;letter-spacing:10px;text-align:center;margin:4px 0 2px;color:#ffd98a}
+#level-stars i{display:inline-block;font-style:normal;opacity:0;transform:scale(2.4);animation:starPop .45s cubic-bezier(.2,1.6,.4,1) forwards;text-shadow:0 0 18px #ffb43a}
+#level-stars i.off{color:#5a5a50;text-shadow:none}
+@keyframes starPop{to{opacity:1;transform:scale(1)}}
+.skill-card{animation:skillIn .8s .9s both;box-shadow:0 0 30px #d9b56a33}
+@keyframes skillIn{from{opacity:0;transform:translateY(12px);filter:brightness(2)}}
+#death .modal-card{border-color:#a3323c99;box-shadow:0 0 120px #7a1f2788,inset 0 0 60px #2a060888}
+/* ---------- fit and finish ---------- */
+#menu .menu-copy{top:50%;transform:translateY(-50%);padding:30px 40px 24px}
+#menu .menu-copy h1{font-size:100px;letter-spacing:7px;margin:8px 0 4px;white-space:nowrap}
+#menu .intro{font-size:20px;margin:12px 0 16px}
+#menu .menu-note{display:none}
+#menu .secondary{margin-top:10px}
+#levels .modal-card h2{font-size:34px;margin:2px 0}
+#levels .modal-card h2::after{margin:6px 0 0}
+#levels .variant-pick{margin:6px 0 0}
+.map-field{height:400px}
+#level-done .modal-card{padding:26px 30px;width:min(520px,100%)}
+#level-done .modal-card h2{font-size:34px}
+#level-stats{display:grid!important;grid-template-columns:repeat(4,1fr);gap:10px 14px!important;margin:12px 0!important}
+#level-stats b{font:700 22px var(--display)!important;margin-bottom:2px!important;white-space:nowrap}
+#level-stats div{font-size:11px}
+#level-stars{font-size:40px;margin:0}
+.skill-card{margin:8px 0;padding:10px 16px}
+#controls{transition:opacity 1.6s}
+#controls.faded{opacity:0}
