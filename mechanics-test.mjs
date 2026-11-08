@@ -54,7 +54,7 @@ async function climbShaft(id,mandatory){const w=await start(id);quiet(w);const a
 await climbShaft('manastir',false);
 await climbShaft('rusevine',true);
 // ---- crates and jars break, ducats fly out and are collected; chests open ----
-{const w=await start('selo');quiet(w);const b=w.breakables.find(b=>b.kind==='sanduk');stand(b.x-70,b.y);S().p.face=1;const before=S().bank;
+{const w=await start('selo');quiet(w);const b=w.breakables.find(b=>['sanduk','bure','plast'].includes(b.kind)&&b.y===floorAt(w,b.x)?.y);stand(b.x-70,b.y);S().p.face=1;const before=S().bank;
  for(let i=0;i<6&&!b.broken;i++){tap('KeyJ');step(70);}
  ok(b.broken,'crates: J breaks a crate');ok(!w.platforms.includes(b.plat),'crates: a broken crate no longer blocks the road');
  step(240);const got=S().bank-before;ok(b.loot.coins?got>=b.loot.coins:true,`crates: ducats from the crate reach the purse (+${got})`);

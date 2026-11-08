@@ -1,64 +1,20 @@
 {
-  "worldAssetsReady": 37,
-  "catalogImages": 116,
-  "readyClips": 9,
-  "readyFrames": 56,
+  "worldAssetsReady": 89,
+  "catalogImages": 369,
+  "readyClips": 32,
+  "readyFrames": 204,
   "group1": "complete",
   "group2": "complete",
-  "group3WorldReady": 10,
-  "group3MissingObjects": [
-    "prop-turski-sator",
-    "prop-kruska",
-    "prop-krst-raskrsce",
-    "cilj-tovar-blaga",
-    "plug-slomljen"
-  ],
-  "group3MissingClips": [
-    "volovi-plug",
-    "volovi-beg"
-  ],
-  "group4": "pending: quota reached",
-  "group4MissingBases": [
-    "kopljanik",
-    "pas",
-    "tufekdzija"
-  ],
-  "group4MissingClips": [
-    "kopljanik-idle",
-    "kopljanik-run",
-    "kopljanik-attack",
-    "kopljanik-hurt",
-    "kopljanik-death",
-    "kopljanik-jump",
-    "pas-idle",
-    "pas-run",
-    "pas-attack",
-    "pas-hurt",
-    "pas-death",
-    "tufekdzija-idle",
-    "tufekdzija-run",
-    "tufekdzija-shoot",
-    "tufekdzija-hurt",
-    "tufekdzija-death",
-    "tufekdzija-jump"
-  ],
-  "group5": "pending: quota reached",
-  "group5MissingImages": [
-    "oranje-sky-night",
-    "oranje-sky-storm",
-    "oranje-far-night",
-    "oranje-far-storm",
-    "oranje-mid-night",
-    "oranje-mid-storm",
-    "oranje-near-night",
-    "oranje-near-storm",
-    "oranje-vista-night",
-    "oranje-vista-storm"
-  ],
-  "group5MissingClips": [
-    "marko-kick"
-  ],
-  "quotaResetBelgrade": "2026-11-08T22:00:49+01:00",
+  "group3WorldReady": 15,
+  "group3MissingObjects": [],
+  "group3MissingClips": [],
+  "group4": "complete",
+  "group4MissingBases": [],
+  "group4MissingClips": [],
+  "group5": "complete",
+  "group5MissingImages": [],
+  "group5MissingClips": [],
+  "quotaResetBelgrade": null,
   "checksPassed": [
     "catalog files and bounds",
     "tile XY joins",
@@ -66,6 +22,35 @@
     "tower deck fields",
     "animation frame counts and requested cells",
     "feet y=487",
-    "GIF frame counts"
-  ]
+    "GIF frame counts",
+    "corrected ground: actual road y=64, clear above, end-cap join",
+    "kolje: horizontal repeat join",
+    "siljci: horizontal repeat join",
+    "pressure plate: matching footprint, lower pressed state",
+    "wall cracks: transparent overlay",
+    "open doorway: transparent opening",
+    "hanging grip anchors lie on hand pixels"
+  ],
+  "group3MissingImages": [],
+  "group3": "complete",
+  "group4MissingImages": [],
+  "group6MissingImages": [],
+  "group6MissingClips": [],
+  "group6": "complete",
+  "group7MissingImages": [],
+  "group7MissingClips": [
+    "marko-combo-4",
+    "marko-air-1",
+    "marko-air-2",
+    "marko-uppercut",
+    "marko-dash-strike",
+    "marko-charge-hold",
+    "marko-push",
+    "marko-lever",
+    "shield-guardbreak",
+    "oklopnik-armorbreak",
+    "akindzija-backstep",
+    "palikuca-burn"
+  ],
+  "group7": "pending"
 }

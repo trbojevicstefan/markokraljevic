@@ -1,7 +1,42 @@
 # Animacije — paket 04
 
-**Gotovo: 9 klipova / 56 kadrova, prioritet 2.** `marko-climb` 8, `marko-wallslide` 4, `marko-throw` 8; `sword-jump`, `shield-jump`, `archer-jump`, `palikuca-jump`, `oklopnik-jump`, `archer-shoot-down` po 6. U svakom `assets/<klip>/` su atlas.png, manifest.json, frames/, preview.gif, reference.png i qa.json. Ćelije su 512×512; stopala su y=487. Veličina se vezuje za postojeći idle istog lika, uz prostor za podignutu ruku/topuz. Preview.png poredi prvi kadar sa likom iz paketa 03.
+Gotovo: 32 klipova / 204 kadrova. Stvarni gotovi klipovi su navedeni ispod i u catalog.json. Spisak preostalog i stanje generatora: ../world-pack-03/STATUS.md i DELIVERY.json.
 
-Izvoz ide kroz sprite-gen extract → compose-atlas → compose-gif. Ulazne slike su raspoređene u mrežu; `export-clips.py` ih pre ekstrakcije preslaže u red. Penjanje ima četiri dodatno nacrtane poze za drugu ruku. `plan-g*.json` i `climb-revision-prompts.json` čuvaju tačne opise za ugrađeni Imagegen. Sirovi izvori u `sources/` ne idu u git. GIF-ovi ponavljaju klip radi pregleda; za igru koristi loop i fps iz manifesta.
+U assets/<klip>/ su atlas.png, manifest.json, frames/motion/, preview.gif, reference.png i qa.json. Ćelije su 512×512, a volovi koriste 1024×512. Donja linija sadržaja je y=487. Veličina se vezuje za postojeći idle istog lika, uz prostor za oružje. Preview.png poredi prve kadrove sa ranijim likovima. Nove baze kopljanika, psa, tufekdžije i volova su u odgovarajućim assets/<lik>/base-source.png.
 
-`assets/volovi/base-source.png` je samo gotova referenca dva vola, pluga i orača, **nije gotov animacioni klip**. `volovi-plug` i `volovi-beg` blokirani su limitom generatora. Isto važi za sva tri nova protivnika i `marko-kick`. Planovi za njih su pripremljeni, ali atlas ili kadrovi nisu izmišljeni niti zamenjeni statičnom slikom. Za kompletnu predaju i listu nedovršenog vidi `../world-pack-03/STATUS.md`.
+Izvoz: sprite-gen extract → compose-atlas → compose-gif. Mreže se pre ekstrakcije preslažu u red. Penjanje Marka ima četiri dodatne poze za smenu ruku; trkovi kopljanika i tufekdžije su precrtani radi različitih faza nogu. Opisi su u plan-g*.json i *prompts.json. sources/ ne ide u git. GIF se ponavlja radi pregleda; u igri koristiti loop i fps iz manifesta. Marko-kick se isporučuje samo jednom.
+
+| Klip | Kadrovi | FPS | Petlja |
+|---|---:|---:|---|
+| marko-climb | 8 | 12 | da |
+| marko-wallslide | 4 | 12 | da |
+| marko-throw | 8 | 12 | ne |
+| sword-jump | 6 | 12 | ne |
+| shield-jump | 6 | 12 | ne |
+| archer-jump | 6 | 12 | ne |
+| palikuca-jump | 6 | 12 | ne |
+| oklopnik-jump | 6 | 12 | ne |
+| archer-shoot-down | 6 | 12 | ne |
+| volovi-plug | 8 | 10 | da |
+| volovi-beg | 8 | 14 | da |
+| kopljanik-idle | 6 | 12 | da |
+| kopljanik-run | 8 | 14 | da |
+| kopljanik-attack | 8 | 12 | ne |
+| kopljanik-hurt | 4 | 12 | ne |
+| kopljanik-death | 8 | 12 | ne |
+| kopljanik-jump | 6 | 12 | ne |
+| pas-idle | 4 | 12 | da |
+| pas-run | 8 | 14 | da |
+| pas-attack | 6 | 12 | ne |
+| pas-hurt | 4 | 12 | ne |
+| pas-death | 6 | 12 | ne |
+| tufekdzija-idle | 6 | 12 | da |
+| tufekdzija-run | 8 | 14 | da |
+| tufekdzija-shoot | 8 | 12 | ne |
+| tufekdzija-hurt | 4 | 12 | ne |
+| tufekdzija-death | 8 | 12 | ne |
+| tufekdzija-jump | 6 | 12 | ne |
+| marko-kick | 6 | 12 | ne |
+| marko-slide | 6 | 12 | ne |
+| marko-hang | 6 | 12 | da |
+| sword-climb | 6 | 12 | da |

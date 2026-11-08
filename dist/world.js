@@ -83,7 +83,9 @@ function makeGoals(L,floorAt){
 // Ground is solid and rises and falls by stairs and cliffs. Archers wait on towers and watchtowers that Marko has to
 // climb (ladders, ledge grabs); chimneys are climbed by jumping wall to wall. Pits are rare and short.
 const RISE=24,RUN=46,LOW=660;
-export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1}};
+export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true}};
+// each land breaks its own things
+export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['santa','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast']};
 // Marvels from the songs about Marko, one hidden in each land; each one strengthens him for good.
 export const CUDA=[
  {id:'sarceva-potkova',name:'Šarčeva potkova',song:'Šarac, Markov verni konj',perk:'Brži trk',land:'selo'},
@@ -136,7 +138,7 @@ export function buildLayout(L,variant='day'){
  const room={
   flat(){const len=ri(440,620),x0=x;ground(len);spots.push({x:x0+len*.55,y:gy});if(R()<.5)crate(x0+len*.2,pick(['cup','korpa','sanduk','cup']));},
   arena(){const len=ri(760,880),x0=x;ground(len);spots.push({x:x0+len*.35,y:gy},{x:x0+len*.68,y:gy});},
-  crates(){const len=ri(380,480),x0=x;ground(len);let bx=x0+80;for(let i=ri(2,4);i>0;i--)bx+=crate(bx,pick(['sanduk','cup','bure','korpa','cup','sanduk']))+ri(16,44);if(R()<.6)spots.push({x:x0+len-70,y:gy});},
+  crates(){const len=ri(380,480),x0=x;ground(len);let bx=x0+80;const own=LAND_CRATES[L.id]||[];for(let i=ri(2,4);i>0;i--)bx+=crate(bx,pick(['sanduk','cup','bure','korpa','cup','sanduk',...own,...own]))+ri(16,44);if(R()<.6)spots.push({x:x0+len-70,y:gy});},
   'stairs+'(){steps(-1);ground(ri(160,240));},
   'stairs-'(){steps(1);ground(ri(160,240));},
   'terrace+'(){cliff(-ri(80,104));const x0=x,len=ri(300,420);ground(len);spots.push({x:x0+len*.6,y:gy});},

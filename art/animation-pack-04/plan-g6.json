@@ -1,0 +1,56 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-slide",
+      "group": 6,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 crouch; 2 drop onto hip; 3 side slide with boots extended forward; 4 low sliding extension; 5 tuck knees and brace; 6 stand. Mace held securely, no obstacle drawn."
+    },
+    {
+      "id": "marko-hang",
+      "group": 6,
+      "who": "marko",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 52,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Continuous loop hanging by ONE hand above head, body fully below hand, legs sway left then right and back. Hand stays at same top anchor. Do NOT draw ledge or platform."
+    },
+    {
+      "id": "sword-climb",
+      "group": 6,
+      "who": "sword",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 52,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Janissary climbing ladder, three-quarter rear view, saber SHEATHED on belt. Alternate near arm high then far arm high, opposite knee lifts, smooth repeating 6-phase climb. NO ladder drawn."
+    }
+  ]
+}

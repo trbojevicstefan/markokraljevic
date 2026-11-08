@@ -506,13 +506,13 @@
       "file": "cuda-preview.png",
       "size": [
         1120,
-        900
+        1200
       ],
       "bounds": [
         0,
         0,
         1120,
-        900
+        1200
       ],
       "kind": "preview",
       "group": 1
@@ -522,13 +522,13 @@
       "file": "razbi-preview.png",
       "size": [
         840,
-        600
+        1800
       ],
       "bounds": [
         0,
         0,
         840,
-        600
+        1800
       ],
       "kind": "preview",
       "group": 1
@@ -1721,14 +1721,14 @@
       "id": "animations-preview",
       "file": "../animation-pack-04/preview.png",
       "size": [
-        1024,
-        4860
+        1536,
+        17280
       ],
       "bounds": [
         0,
         0,
-        1024,
-        4860
+        1536,
+        17280
       ],
       "kind": "preview",
       "group": 0
@@ -1847,7 +1847,7 @@
       ],
       "bounds": [
         0,
-        24,
+        64,
         1024,
         384
       ],
@@ -1869,8 +1869,8 @@
       ],
       "bounds": [
         0,
-        24,
-        154,
+        64,
+        152,
         384
       ],
       "kind": "ground-end",
@@ -1959,6 +1959,4193 @@
       "kind": "object",
       "group": 3,
       "reusedFrom": "../world-pack-01/assets/prop-kamen-putokaz.png",
+      "baseline": 1023
+    },
+    {
+      "id": "prop-turski-sator",
+      "file": "prop-turski-sator.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        87,
+        424,
+        937,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "prop-kruska",
+      "file": "prop-kruska.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        32,
+        144,
+        992,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "prop-krst-raskrsce",
+      "file": "prop-krst-raskrsce.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        361,
+        424,
+        662,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "cilj-tovar-blaga",
+      "file": "cilj-tovar-blaga.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        247,
+        524,
+        777,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "plug-slomljen",
+      "file": "plug-slomljen.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        158,
+        674,
+        865,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "volovi-beg:atlas",
+      "file": "../animation-pack-04/assets/volovi-beg/atlas.png",
+      "size": [
+        8192,
+        512
+      ],
+      "bounds": [
+        58,
+        158,
+        8180,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-0",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-0.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        58,
+        158,
+        965,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-1",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-1.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        79,
+        171,
+        945,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-2",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-2.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        76,
+        182,
+        947,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-3",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-3.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        31,
+        166,
+        993,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-4",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-4.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        34,
+        158,
+        990,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-5",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-5.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        72,
+        174,
+        951,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-6",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-6.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        76,
+        178,
+        947,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:frame-7",
+      "file": "../animation-pack-04/assets/volovi-beg/frames/motion/frame-7.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        12,
+        158,
+        1012,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-beg:reference",
+      "file": "../animation-pack-04/assets/volovi-beg/reference.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        3,
+        81,
+        1753,
+        794
+      ],
+      "kind": "animation-reference",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:atlas",
+      "file": "../animation-pack-04/assets/volovi-plug/atlas.png",
+      "size": [
+        8192,
+        512
+      ],
+      "bounds": [
+        11,
+        148,
+        8186,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-0",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-0.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        11,
+        154,
+        1012,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-1",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-1.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        29,
+        154,
+        994,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-2",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-2.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        34,
+        148,
+        990,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-3",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-3.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        10,
+        148,
+        1013,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-4",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-4.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        10,
+        154,
+        1014,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-5",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-5.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        32,
+        154,
+        992,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-6",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-6.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        24,
+        150,
+        1000,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:frame-7",
+      "file": "../animation-pack-04/assets/volovi-plug/frames/motion/frame-7.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        6,
+        150,
+        1018,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 3
+    },
+    {
+      "id": "volovi-plug:reference",
+      "file": "../animation-pack-04/assets/volovi-plug/reference.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        3,
+        81,
+        1753,
+        794
+      ],
+      "kind": "animation-reference",
+      "group": 3
+    },
+    {
+      "id": "kopljanik:base-source",
+      "file": "../animation-pack-04/assets/kopljanik/base-source.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-attack/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        63,
+        132,
+        4041,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        63,
+        132,
+        449,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        77,
+        132,
+        434,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        133,
+        430,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        156,
+        506,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-4",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        12,
+        157,
+        499,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-5",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        59,
+        136,
+        452,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-6",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        77,
+        135,
+        435,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:frame-7",
+      "file": "../animation-pack-04/assets/kopljanik-attack/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        132,
+        457,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-attack:reference",
+      "file": "../animation-pack-04/assets/kopljanik-attack/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-death/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        29,
+        62,
+        4072,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        29,
+        62,
+        482,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        42,
+        75,
+        470,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        47,
+        128,
+        464,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        44,
+        159,
+        468,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-4",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        51,
+        183,
+        460,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-5",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        53,
+        294,
+        459,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-6",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        31,
+        342,
+        481,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:frame-7",
+      "file": "../animation-pack-04/assets/kopljanik-death/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        23,
+        348,
+        488,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-death:reference",
+      "file": "../animation-pack-04/assets/kopljanik-death/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/atlas.png",
+      "size": [
+        2048,
+        512
+      ],
+      "bounds": [
+        25,
+        62,
+        2019,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        25,
+        62,
+        486,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        44,
+        92,
+        468,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        40,
+        85,
+        472,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        28,
+        62,
+        483,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-hurt:reference",
+      "file": "../animation-pack-04/assets/kopljanik-hurt/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-idle/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        38,
+        62,
+        3034,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        38,
+        78,
+        474,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        38,
+        68,
+        474,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        38,
+        62,
+        473,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        38,
+        63,
+        474,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-4",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        37,
+        73,
+        474,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:frame-5",
+      "file": "../animation-pack-04/assets/kopljanik-idle/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        37,
+        77,
+        474,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-idle:reference",
+      "file": "../animation-pack-04/assets/kopljanik-idle/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        45,
+        62,
+        3025,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        45,
+        140,
+        467,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        35,
+        89,
+        476,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        40,
+        110,
+        472,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        53,
+        147,
+        459,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-4",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        54,
+        62,
+        458,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:frame-5",
+      "file": "../animation-pack-04/assets/kopljanik-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        47,
+        133,
+        465,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-jump:reference",
+      "file": "../animation-pack-04/assets/kopljanik-jump/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:atlas",
+      "file": "../animation-pack-04/assets/kopljanik-run/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        28,
+        62,
+        4070,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-0",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        28,
+        73,
+        483,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-1",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        35,
+        75,
+        476,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-2",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        32,
+        63,
+        480,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-3",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        28,
+        84,
+        484,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-4",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        27,
+        72,
+        484,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-5",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        35,
+        72,
+        476,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-6",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        31,
+        62,
+        480,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:frame-7",
+      "file": "../animation-pack-04/assets/kopljanik-run/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        26,
+        77,
+        486,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "kopljanik-run:reference",
+      "file": "../animation-pack-04/assets/kopljanik-run/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        83,
+        506,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas:base-source",
+      "file": "../animation-pack-04/assets/pas/base-source.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:atlas",
+      "file": "../animation-pack-04/assets/pas-attack/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        148,
+        296,
+        2927,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-0",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        148,
+        345,
+        364,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-1",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        124,
+        302,
+        387,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-2",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        115,
+        302,
+        396,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-3",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        120,
+        339,
+        392,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-4",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        130,
+        328,
+        381,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:frame-5",
+      "file": "../animation-pack-04/assets/pas-attack/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        145,
+        296,
+        367,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-attack:reference",
+      "file": "../animation-pack-04/assets/pas-attack/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas-death:atlas",
+      "file": "../animation-pack-04/assets/pas-death/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        153,
+        296,
+        2936,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-0",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        153,
+        296,
+        358,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-1",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        144,
+        333,
+        368,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-2",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        153,
+        362,
+        358,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-3",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        145,
+        366,
+        366,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-4",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        137,
+        397,
+        375,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:frame-5",
+      "file": "../animation-pack-04/assets/pas-death/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        135,
+        409,
+        376,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-death:reference",
+      "file": "../animation-pack-04/assets/pas-death/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:atlas",
+      "file": "../animation-pack-04/assets/pas-hurt/atlas.png",
+      "size": [
+        2048,
+        512
+      ],
+      "bounds": [
+        163,
+        296,
+        1887,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:frame-0",
+      "file": "../animation-pack-04/assets/pas-hurt/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        163,
+        300,
+        348,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:frame-1",
+      "file": "../animation-pack-04/assets/pas-hurt/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        175,
+        296,
+        336,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:frame-2",
+      "file": "../animation-pack-04/assets/pas-hurt/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        160,
+        319,
+        352,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:frame-3",
+      "file": "../animation-pack-04/assets/pas-hurt/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        160,
+        309,
+        351,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-hurt:reference",
+      "file": "../animation-pack-04/assets/pas-hurt/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:atlas",
+      "file": "../animation-pack-04/assets/pas-idle/atlas.png",
+      "size": [
+        2048,
+        512
+      ],
+      "bounds": [
+        152,
+        296,
+        1897,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:frame-0",
+      "file": "../animation-pack-04/assets/pas-idle/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        152,
+        296,
+        359,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:frame-1",
+      "file": "../animation-pack-04/assets/pas-idle/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        153,
+        296,
+        359,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:frame-2",
+      "file": "../animation-pack-04/assets/pas-idle/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        151,
+        297,
+        361,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:frame-3",
+      "file": "../animation-pack-04/assets/pas-idle/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        150,
+        296,
+        361,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-idle:reference",
+      "file": "../animation-pack-04/assets/pas-idle/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "pas-run:atlas",
+      "file": "../animation-pack-04/assets/pas-run/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        130,
+        296,
+        3976,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-0",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        130,
+        296,
+        381,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-1",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        155,
+        296,
+        357,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-2",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        146,
+        306,
+        366,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-3",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        119,
+        328,
+        393,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-4",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        131,
+        297,
+        381,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-5",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        155,
+        298,
+        357,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-6",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        144,
+        304,
+        367,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:frame-7",
+      "file": "../animation-pack-04/assets/pas-run/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        119,
+        325,
+        392,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "pas-run:reference",
+      "file": "../animation-pack-04/assets/pas-run/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        147,
+        296,
+        365,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija:base-source",
+      "file": "../animation-pack-04/assets/tufekdzija/base-source.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-death/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        78,
+        62,
+        4074,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        78,
+        62,
+        434,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        90,
+        82,
+        422,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        73,
+        129,
+        439,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        59,
+        186,
+        453,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-4",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        41,
+        277,
+        470,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-5",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        37,
+        343,
+        475,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-6",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        23,
+        353,
+        489,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:frame-7",
+      "file": "../animation-pack-04/assets/tufekdzija-death/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        22,
+        367,
+        490,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-death:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-death/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/atlas.png",
+      "size": [
+        2048,
+        512
+      ],
+      "bounds": [
+        70,
+        62,
+        1986,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        70,
+        66,
+        442,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        47,
+        84,
+        465,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        58,
+        94,
+        453,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        61,
+        62,
+        450,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-hurt:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-hurt/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        99,
+        62,
+        2972,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        99,
+        71,
+        412,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        101,
+        68,
+        410,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        102,
+        62,
+        410,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        99,
+        65,
+        412,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-4",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        100,
+        68,
+        412,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:frame-5",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        100,
+        68,
+        412,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-idle:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-idle/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        74,
+        62,
+        2993,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        74,
+        133,
+        438,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        56,
+        77,
+        456,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        83,
+        102,
+        429,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        96,
+        144,
+        416,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-4",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        89,
+        62,
+        422,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:frame-5",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        78,
+        131,
+        433,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-jump:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-jump/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-run/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        47,
+        62,
+        4050,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        47,
+        86,
+        464,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        77,
+        77,
+        435,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        80,
+        64,
+        432,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        47,
+        81,
+        464,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-4",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        46,
+        86,
+        465,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-5",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        78,
+        78,
+        434,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-6",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        77,
+        62,
+        434,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:frame-7",
+      "file": "../animation-pack-04/assets/tufekdzija-run/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        46,
+        81,
+        466,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-run:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-run/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:atlas",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        82,
+        62,
+        4009,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-0",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        64,
+        429,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-1",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        78,
+        68,
+        434,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-2",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        67,
+        69,
+        445,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-3",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        69,
+        456,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-4",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        77,
+        65,
+        435,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-5",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        84,
+        62,
+        427,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-6",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        87,
+        64,
+        425,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:frame-7",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        86,
+        63,
+        425,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 4
+    },
+    {
+      "id": "tufekdzija-shoot:reference",
+      "file": "../animation-pack-04/assets/tufekdzija-shoot/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        55,
+        62,
+        456,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    },
+    {
+      "id": "oranje-sky-night",
+      "file": "oranje-sky-night.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        0,
+        0,
+        1774,
+        887
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-sky-storm",
+      "file": "oranje-sky-storm.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        0,
+        0,
+        1774,
+        887
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-far-night",
+      "file": "oranje-far-night.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        27,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-far-storm",
+      "file": "oranje-far-storm.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        19,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-mid-night",
+      "file": "oranje-mid-night.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        29,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-mid-storm",
+      "file": "oranje-mid-storm.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-near-night",
+      "file": "oranje-near-night.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-near-storm",
+      "file": "oranje-near-storm.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-vista-night",
+      "file": "oranje-vista-night.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "marko-kick:atlas",
+      "file": "../animation-pack-04/assets/marko-kick/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        134,
+        105,
+        2934,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-0",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        134,
+        108,
+        378,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-1",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        131,
+        108,
+        381,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-2",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        93,
+        108,
+        419,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-3",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        84,
+        106,
+        428,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-4",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        134,
+        106,
+        378,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:frame-5",
+      "file": "../animation-pack-04/assets/marko-kick/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        137,
+        105,
+        374,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 5
+    },
+    {
+      "id": "marko-kick:reference",
+      "file": "../animation-pack-04/assets/marko-kick/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 5
+    },
+    {
+      "id": "oranje-vista-storm",
+      "file": "oranje-vista-storm.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 5,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-varijante-preview",
+      "file": "oranje-varijante-preview.png",
+      "size": [
+        1440,
+        1350
+      ],
+      "bounds": [
+        0,
+        0,
+        1440,
+        1350
+      ],
+      "kind": "preview",
+      "group": 3
+    },
+    {
+      "id": "cudo-sokolovo-pero",
+      "file": "cudo-sokolovo-pero.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        360,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 6,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-prelomljeno-koplje",
+      "file": "cudo-prelomljeno-koplje.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        466,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 6,
+      "baseline": 511
+    },
+    {
+      "id": "marko-hang:atlas",
+      "file": "../animation-pack-04/assets/marko-hang/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        142,
+        53,
+        2934,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-0",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        142,
+        64,
+        369,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-1",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        132,
+        63,
+        380,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-2",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        116,
+        65,
+        396,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-3",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        123,
+        53,
+        388,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-4",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        135,
+        64,
+        377,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:frame-5",
+      "file": "../animation-pack-04/assets/marko-hang/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        138,
+        79,
+        374,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-hang:reference",
+      "file": "../animation-pack-04/assets/marko-hang/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:atlas",
+      "file": "../animation-pack-04/assets/marko-slide/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        73,
+        105,
+        2974,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-0",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        73,
+        203,
+        438,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-1",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        69,
+        237,
+        443,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-2",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        52,
+        249,
+        459,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-3",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        46,
+        258,
+        466,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-4",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        107,
+        244,
+        405,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:frame-5",
+      "file": "../animation-pack-04/assets/marko-slide/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        98,
+        105,
+        414,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "marko-slide:reference",
+      "file": "../animation-pack-04/assets/marko-slide/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:atlas",
+      "file": "../animation-pack-04/assets/sword-climb/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        135,
+        10,
+        2933,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-0",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        135,
+        12,
+        376,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-1",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        142,
+        19,
+        370,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-2",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        143,
+        15,
+        369,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-3",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        136,
+        10,
+        375,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-4",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        137,
+        17,
+        374,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:frame-5",
+      "file": "../animation-pack-04/assets/sword-climb/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        138,
+        10,
+        373,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 6
+    },
+    {
+      "id": "sword-climb:reference",
+      "file": "../animation-pack-04/assets/sword-climb/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        51,
+        20,
+        333,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 6
+    },
+    {
+      "id": "razbi-kosnica",
+      "file": "razbi-kosnica.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        329,
+        624,
+        695,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-plast",
+      "file": "razbi-plast.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        262,
+        624,
+        761,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-tikve",
+      "file": "razbi-tikve.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        130,
+        624,
+        893,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-stena-napukla",
+      "file": "razbi-stena-napukla.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        213,
+        624,
+        811,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-panj",
+      "file": "razbi-panj.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        196,
+        624,
+        828,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-crkveni-sanduk",
+      "file": "razbi-crkveni-sanduk.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        295,
+        624,
+        728,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-bure-baruta",
+      "file": "razbi-bure-baruta.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        360,
+        624,
+        663,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-tobolac",
+      "file": "razbi-tobolac.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        327,
+        624,
+        697,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-santa",
+      "file": "razbi-santa.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        203,
+        624,
+        821,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-vagon",
+      "file": "razbi-vagon.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        270,
+        624,
+        754,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "predmet-slovo-m",
+      "file": "predmet-slovo-m.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        111,
+        212,
+        401,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-zapis",
+      "file": "predmet-zapis.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        366,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-moc-oganj",
+      "file": "predmet-moc-oganj.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        139,
+        212,
+        372,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-slovo-a",
+      "file": "predmet-slovo-a.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        111,
+        212,
+        400,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-slovo-r",
+      "file": "predmet-slovo-r.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        109,
+        212,
+        402,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-slovo-k",
+      "file": "predmet-slovo-k.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        112,
+        212,
+        399,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-slovo-o",
+      "file": "predmet-slovo-o.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        112,
+        212,
+        400,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-srce-deo",
+      "file": "predmet-srce-deo.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        103,
+        212,
+        408,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-kljuc",
+      "file": "predmet-kljuc.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        342,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-moc-grom",
+      "file": "predmet-moc-grom.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        148,
+        212,
+        363,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-moc-vila",
+      "file": "predmet-moc-vila.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        139,
+        212,
+        372,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-trava",
+      "file": "predmet-trava.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        290,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-cutura",
+      "file": "predmet-cutura.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        124,
+        212,
+        387,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "collectibles-preview",
+      "file": "collectibles-preview.png",
+      "size": [
+        1200,
+        1360
+      ],
+      "bounds": [
+        0,
+        0,
+        1200,
+        1360
+      ],
+      "kind": "preview",
+      "group": 7
+    },
+    {
+      "id": "vrata-zakljucana",
+      "file": "vrata-zakljucana.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        106,
+        174,
+        917,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "ploca-pritisak",
+      "file": "ploca-pritisak.png",
+      "size": [
+        512,
+        256
+      ],
+      "bounds": [
+        42,
+        156,
+        470,
+        256
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 255
+    },
+    {
+      "id": "teret-sanduk",
+      "file": "teret-sanduk.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        296,
+        574,
+        727,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "pod-napukao",
+      "file": "pod-napukao.png",
+      "size": [
+        512,
+        256
+      ],
+      "bounds": [
+        16,
+        186,
+        496,
+        256
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 255
+    },
+    {
+      "id": "zid-napukao",
+      "file": "zid-napukao.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        0,
+        4,
+        508,
+        512
+      ],
+      "kind": "overlay",
+      "group": 7
+    },
+    {
+      "id": "splav",
+      "file": "splav.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        221,
+        282,
+        802,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "ploca-pritisak-stisnuta",
+      "file": "ploca-pritisak-stisnuta.png",
+      "size": [
+        512,
+        256
+      ],
+      "bounds": [
+        42,
+        182,
+        470,
+        256
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 255
+    },
+    {
+      "id": "lift-platforma",
+      "file": "lift-platforma.png",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        66,
+        32,
+        958,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "kotur",
+      "file": "kotur.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        141,
+        112,
+        370,
+        512
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 511
+    },
+    {
+      "id": "kolje",
+      "file": "kolje.png",
+      "size": [
+        512,
+        192
+      ],
+      "bounds": [
+        0,
+        12,
+        512,
+        192
+      ],
+      "kind": "repeat-row",
+      "group": 7,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "siljci",
+      "file": "siljci.png",
+      "size": [
+        512,
+        192
+      ],
+      "bounds": [
+        0,
+        12,
+        512,
+        192
+      ],
+      "kind": "repeat-row",
+      "group": 7,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "vrata-otkljucana",
+      "file": "vrata-otkljucana.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        105,
+        174,
+        918,
+        1024
+      ],
+      "kind": "object",
+      "group": 7,
+      "baseline": 1023
+    },
+    {
+      "id": "puzzles-preview",
+      "file": "puzzles-preview.png",
+      "size": [
+        1200,
+        1020
+      ],
+      "bounds": [
+        0,
+        0,
+        1200,
+        1020
+      ],
+      "kind": "preview",
+      "group": 7
+    },
+    {
+      "id": "prepreke-spoj-preview",
+      "file": "prepreke-spoj-preview.png",
+      "size": [
+        1536,
+        440
+      ],
+      "bounds": [
+        0,
+        0,
+        1536,
+        440
+      ],
+      "kind": "preview",
+      "group": 7
+    },
+    {
+      "id": "resetka",
+      "file": "resetka.png",
+      "size": [
+        512,
+        1024
+      ],
+      "bounds": [
+        29,
+        24,
+        483,
+        1024
+      ],
+      "kind": "portcullis",
+      "group": 8,
+      "orientation": "profile-component",
+      "baseline": 1023,
+      "passX0": 29,
+      "passX1": 483,
+      "archY": 24,
+      "anchorNote": "archY is upper mounting line; standalone portcullis has no arch"
+    },
+    {
+      "id": "ulaz-riznica",
+      "file": "ulaz-riznica.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        20,
+        24,
+        1004,
+        1024
+      ],
+      "kind": "treasury",
+      "group": 8,
+      "orientation": "front",
       "baseline": 1023
     }
   ]

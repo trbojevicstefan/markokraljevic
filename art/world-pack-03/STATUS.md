@@ -1,6 +1,6 @@
 # Paket 03 — napredak
 
-> AKTUELNO: prioriteti 1 i 2 gotovi; prioritet 3 delimično; nastavak blokiran limitom ugrađenog generatora. Obnova prema alatu: 8.11.2026. oko 22:01, Beograd. Potpun spisak je na kraju ovog fajla.
+> AKTUELNO: prvo se radi 8 Markovih klipova 7d, pa 4 reakcije protivnika, zatim DOPUNA-3 kapije. Prioriteti 1–6 i 7a–7c su gotovi. Ranije završene slike ostaju netaknute.
 
 ## Prioritet 1 — u toku
 Generišu se predmeti, 12 čuda, lestve, stražarnica i četiri ponovljiva zida. Izvorne slike ostaju u ignorisanom `sources/`. Završene slike i katalog biće objavljeni u ovom folderu po proveri dimenzija i spojeva.
@@ -54,3 +54,51 @@ Nastavak ide redom: prvo pet nedostajućih predmeta i oba klipa volova iz priori
 Ponovo je zatražen prop-turski-sator ugrađenim generatorom. Zahtev je ponovo odbijen sa usage_limit_reached (HTTP 429); servis i dalje navodi 8.11.2026. 22:00:49 CET kao obnovu. Nove slike nisu nastale.
 Dovršena je tehnička priprema za nastavak: animation-pack-04/prepare-actor-bases.py izveze buduće odobrene baze na traženu veličinu i stopala y=487; audit-delivery.py sada proverava i pravougaone ćelije 1024×512 i računa nedovršene grupe dinamički. Poređenje animacija više neće smanjivati široke klipove volova na pola veličine. Svi postojeći isporučeni PNG-ovi ostali su netaknuti.
 Aktuelno stanje je nepromenjeno: 37 elemenata sveta, 9 klipova / 56 kadrova. Prve dve grupe gotove; grupa 3 delimično; grupe 4 i 5 čekaju obnovu limita. DELIVERY.json ponovo je proveren i osvežen.
+
+
+## 8.11.2026 — nastavak posle obnove / Prioritet 3 GOTOVO
+Generator je ponovo dostupan posle 22:00 CET. Dodati su prop-turski-sator, prop-kruska, prop-krst-raskrsce, cilj-tovar-blaga i plug-slomljen u world-pack-03/. Prop-medjas je već bio gotov i nije prepisan. Tovar blaga je ispravljen: samo samar i tri kovčega, bez konja.
+Volovi-plug i volovi-beg su gotovi u animation-pack-04/assets/, svaki 8 kadrova, ćelije 1024×512, atlas, manifest, pojedinačni kadrovi i preview.gif. Izvoz je prošao sprite-gen extract → compose-atlas → compose-gif. Vizuelno provereni izvori i atlasi; automatski provereni broj kadrova, dimenzije i donja linija kopita y=487.
+Ukupno sada 42 elementa sveta, 11 klipova / 72 kadra, 141 katalogizovan PNG. Tlo i dalje čeka zatraženu vizuelnu ispravku — prethodna tvrdnja walkY=64 nije dovoljna jer je izvor sadržao zgrade. Sledeće: DOPUNA A pa prioriteti 4, 5, 6 i 7. Neuspele stavke ove grupe: nema. Kod igre i dist/ nisu menjani.
+
+## DOPUNA A — GOTOVO: tlo ispravljeno
+Nova nacrtana tekstura zamenjuje samo eksplicitno tražene tlo-oranje.png (1024×384) i tlo-oranje-kraj.png (192×384). Pravi ravni hodni rub je y=64; svi pikseli iznad su providni. Nema kuća, zidova ni ograda. Ispod je zemlja s korenjem, dno skoro crno. Izostavljeni su opcioni buseni radi potpuno čistog gornjeg ruba. Horizontalni i pomereni spoj su 0/255; leva ivica završnog komada odgovara desnoj ivici trake. Osveženi catalog.json i oranje-tlo-preview.png. Prethodni izvor sa scenografijom sačuvan je samo u ignorisanom sources/. Sledeći prioritet: 4, novi protivnici.
+
+## Prioritet 4 — završna provera
+Reference kopljanika, psa i tufekdžije su nacrtane i izvezene u animation-pack-04/assets/<lik>/base-source.png. Svih 17 traženih klipova je nacrtano i izvezeno. Grupa još nije zatvorena: trk kopljanika je već precrtan radi smene nogu; trk tufekdžije se sada na isti način dorađuje. Ne preuzimati tufekdzija-run dok sledeći upis ne označi grupu kao gotovu. Pas je samostalan, bez ljudske figure. Nisu menjane slike ranijih paketa, osim izričito zatražena dva komada tla.
+
+## Prioritet 4 — GOTOVO
+Kopljanik: idle 6, run 8, attack 8, hurt 4, death 8, jump 6. Pas: idle 4, run 8, attack 6, hurt 4, death 6. Tufekdžija: idle 6, run 8, shoot 8, hurt 4, death 8, jump 6. Ukupno 17 klipova / 108 kadrova u animation-pack-04/assets/. Svaki ima atlas, manifest, frames/, preview.gif i qa.json. Sva tri lika imaju base-source.png; pas je visok 192 px (oko 45% ratnika). Trkovi kopljanika i tufekdžije su ponovo nacrtani radi različitih faza nogu; preuzeti završne atlase oba klipa. Pucanj: kontakt/bljesak kadar 4. Pregledane sve sekvence na kontaktnim listovima; provera broja kadrova, ćelija 512×512, donje linije y=487 i GIF broja kadrova je prošla. Ukupno 28 klipova / 180 kadrova sa ranijim grupama, 286 katalogizovanih PNG. Neuspele stavke: nema. Sledeći prioritet 5: noć/oluja i marko-kick.
+
+
+## Prioritet 5 — GOTOVO
+Svih deset pozadina Oranje je spremno: sky/far/mid/near/vista, svaka night i storm varijanta. Sky je 1774×887, ostale 2172×724; far/mid/near zadržavaju providnost, sky/vista su neprovidne. Horizontalni spojevi su provereni (0/255). Pregled: oranje-varijante-preview.png. Dnevni originali nisu menjani.
+Marko-kick: 6 kadrova, ćelije 512×512, jednom, kontakt kadar 4, topuz za pojasom. Gotov atlas/manifest/frames/preview.gif u animation-pack-04/assets/marko-kick/. Ovaj klip iz DOPUNA se ne radi drugi put. Provera kataloga, kadrova, stopala i GIF-a je prošla. Ukupno 52 elementa sveta, 29 klipova / 186 kadrova, 305 PNG u katalogu. Neuspele stavke: nema. Sledeći prioritet 6.
+
+
+## Prioritet 6 — GOTOVO
+Dodati cudo-sokolovo-pero i cudo-prelomljeno-koplje (512×512, providni), osvežen cuda-preview.png. Marko-slide, marko-hang i sword-climb: po 6 kadrova, 512×512, puni izvoz u animation-pack-04/assets/. Slide je jednom; hang i climb su petlje. Penjanje janičara je precrtano radi hvatanja prečki i smene ruku; lestve nisu nacrtane. Hang/climb imaju dodatni prostor za podignutu ruku, do 478 px visine sadržaja, isti donji oslonac y=487.
+Za integraciju visenja: manifest marko-hang ima gripAnchors po kadru. Tu tačku vezati za stalnu tačku ivice platforme, da šaka ostane zakačena dok se telo njiše. Marko-kick već je u grupi 5 i nije dupliran. Pregledani kontaktni listovi, dimenzije i svi kadrovi; provere su prošle. Ukupno 54 elementa sveta, 32 klipa / 204 kadra, 331 PNG u katalogu. Neuspele stavke: nema. Sledeći prioritet 7a.
+
+
+## Prioritet 7a — GOTOVO
+Svih deset novih predmeta za razbijanje: razbi-kosnica, razbi-plast, razbi-tikve, razbi-stena-napukla, razbi-panj, razbi-crkveni-sanduk, razbi-bure-baruta, razbi-tobolac, razbi-santa, razbi-vagon. PNG 1024×1024, sadržaj do 400 px visine, providna pozadina, osnova pri dnu. Bure baruta ima fitilj i pečat s polumesecom; crkveni sanduk knjige i krst. Pregledano u osveženom razbi-preview.png. Katalog i README su ažurirani: 64 elementa sveta, 32 klipa / 204 kadra, 341 PNG. Neuspele stavke: nema. Sledeći prioritet 7b, predmeti za skupljanje.
+
+
+## Prioritet 7b — GOTOVO
+Trinaest predmeta za skupljanje je spremno: pet medaljona sa ćiriličnim М, А, Р, К, О; zapis, četvrtina zlatnog srca, ključ s crvenom vrpcom, tri kugle moći (oganj/grom/vila), lekovita trava i čutura. PNG 512×512, providni, predmeti pri dnu. Medaljoni dele isti zlatno-tirkizni okvir; vizuelno provereni znakovi i prikaz na 40 px. Deo srca je precrtan iz medaljona u zaseban gornji levi fragment srca sa ravnim unutrašnjim rezovima — koristiti završni predmet-srce-deo.png, raniji nacrt nije isporuka. Pregled: collectibles-preview.png, uključuje i umanjene 40 px uzorke. Ukupno 77 elemenata sveta, 32 klipa / 204 kadra, 355 PNG u katalogu. Neuspele stavke: nema. Sledeći prioritet 7c, delovi zagonetki.
+
+
+## Prioritet 7c — GOTOVO
+Svih dvanaest elemenata zagonetki je spremno: ploca-pritisak / ploca-pritisak-stisnuta, teret-sanduk, pod-napukao, zid-napukao, lift-platforma, kotur, splav, kolje, siljci, vrata-zakljucana / vrata-otkljucana. Dimenzije odgovaraju tabeli iz DOPUNA-2. Usklađena pritisna ploča ima istu širinu/osnovu, a utisnuta varijanta je niža. Otvor vrata i prostor između pukotina su zaista providni. Kolje i šiljci imaju horizontalni spoj 0/255; vizuelno proverena tri ponavljanja u prepreke-spoj-preview.png. Pregled svih delova: puzzles-preview.png. Ispravljeni su i podaci dimenzija preglednih slika u katalogu; same stare slike nisu menjane.
+Ukupno 89 elemenata sveta, 32 klipa / 204 kadra, 369 PNG u katalogu. Sve tražene slike sveta iz prioriteta 1–7c su gotove. Neuspele stavke: nema. Ostaje 7d, dvanaest klipova kombinacija i reakcija.
+
+
+## HITNO DOPUNA-3 — preuzeto pre 7d
+Tačka povratka je tačno početak 7d: nijedan od poslednjih dvanaest klipova još nije generisan. Prioriteti 1–6 i 7a–7c su gotovi. Sada se prvo dodaje devet NOVIH slika kapija/riznice iz DOPUNA-3; nijedna ranija kapija ili druga završena slika neće biti obrisana ili precrtana. Za prolazne kapije bira se bočni uzdužni presek kule/tunela: put ide sleva nadesno; rešetka se diže vertikalno. Ulaz riznice ostaje spreda i ima mali osvetljen ulaz. Posle ove hitne grupe nastavlja se 7d.
+
+
+## Promena reda od Claude-a — 7d sada ima prednost
+Kapije iz DOPUNA-3 su ODLOŽENE do završetka animacija. Sve njihove dosadašnje slike/probe ostaju sačuvane u sources/: prolaz-kamen-otvoren.png (frontalna proba, nije isporuka), prolaz-kamen-otvoren-profile-v2.png (bočni presek, još zahteva korekciju prolaza), ulaz-riznica.png i resetka.png. Već pokrenuta korekcija profila v3 biće sačuvana kad stigne; novi zahtevi za kapije se do tada ne pokreću.
+Novi red rada: prvo osam Markovih klipova 7d (combo-4, air-1, air-2, uppercut, dash-strike, charge-hold, push, lever), zatim četiri reakcije protivnika 7d, pa nastavak devet kapija/riznice iz DOPUNA-3. Ostali prioriteti 1–6 i 7a–7c već su završeni. Markovih prvih osam klipova je sada u generisanju.
+

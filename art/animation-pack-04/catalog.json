@@ -79,5 +79,212 @@
     "loop": false,
     "file": "assets/archer-shoot-down/atlas.png",
     "manifest": "assets/archer-shoot-down/manifest.json"
+  },
+  {
+    "id": "volovi-plug",
+    "group": 3,
+    "frames": 8,
+    "fps": 10,
+    "loop": true,
+    "file": "assets/volovi-plug/atlas.png",
+    "manifest": "assets/volovi-plug/manifest.json"
+  },
+  {
+    "id": "volovi-beg",
+    "group": 3,
+    "frames": 8,
+    "fps": 14,
+    "loop": true,
+    "file": "assets/volovi-beg/atlas.png",
+    "manifest": "assets/volovi-beg/manifest.json"
+  },
+  {
+    "id": "kopljanik-idle",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/kopljanik-idle/atlas.png",
+    "manifest": "assets/kopljanik-idle/manifest.json"
+  },
+  {
+    "id": "kopljanik-run",
+    "group": 4,
+    "frames": 8,
+    "fps": 14,
+    "loop": true,
+    "file": "assets/kopljanik-run/atlas.png",
+    "manifest": "assets/kopljanik-run/manifest.json"
+  },
+  {
+    "id": "kopljanik-attack",
+    "group": 4,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/kopljanik-attack/atlas.png",
+    "manifest": "assets/kopljanik-attack/manifest.json"
+  },
+  {
+    "id": "kopljanik-hurt",
+    "group": 4,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/kopljanik-hurt/atlas.png",
+    "manifest": "assets/kopljanik-hurt/manifest.json"
+  },
+  {
+    "id": "kopljanik-death",
+    "group": 4,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/kopljanik-death/atlas.png",
+    "manifest": "assets/kopljanik-death/manifest.json"
+  },
+  {
+    "id": "kopljanik-jump",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/kopljanik-jump/atlas.png",
+    "manifest": "assets/kopljanik-jump/manifest.json"
+  },
+  {
+    "id": "pas-idle",
+    "group": 4,
+    "frames": 4,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/pas-idle/atlas.png",
+    "manifest": "assets/pas-idle/manifest.json"
+  },
+  {
+    "id": "pas-run",
+    "group": 4,
+    "frames": 8,
+    "fps": 14,
+    "loop": true,
+    "file": "assets/pas-run/atlas.png",
+    "manifest": "assets/pas-run/manifest.json"
+  },
+  {
+    "id": "pas-attack",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/pas-attack/atlas.png",
+    "manifest": "assets/pas-attack/manifest.json"
+  },
+  {
+    "id": "pas-hurt",
+    "group": 4,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/pas-hurt/atlas.png",
+    "manifest": "assets/pas-hurt/manifest.json"
+  },
+  {
+    "id": "pas-death",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/pas-death/atlas.png",
+    "manifest": "assets/pas-death/manifest.json"
+  },
+  {
+    "id": "tufekdzija-idle",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/tufekdzija-idle/atlas.png",
+    "manifest": "assets/tufekdzija-idle/manifest.json"
+  },
+  {
+    "id": "tufekdzija-run",
+    "group": 4,
+    "frames": 8,
+    "fps": 14,
+    "loop": true,
+    "file": "assets/tufekdzija-run/atlas.png",
+    "manifest": "assets/tufekdzija-run/manifest.json"
+  },
+  {
+    "id": "tufekdzija-shoot",
+    "group": 4,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/tufekdzija-shoot/atlas.png",
+    "manifest": "assets/tufekdzija-shoot/manifest.json"
+  },
+  {
+    "id": "tufekdzija-hurt",
+    "group": 4,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/tufekdzija-hurt/atlas.png",
+    "manifest": "assets/tufekdzija-hurt/manifest.json"
+  },
+  {
+    "id": "tufekdzija-death",
+    "group": 4,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/tufekdzija-death/atlas.png",
+    "manifest": "assets/tufekdzija-death/manifest.json"
+  },
+  {
+    "id": "tufekdzija-jump",
+    "group": 4,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/tufekdzija-jump/atlas.png",
+    "manifest": "assets/tufekdzija-jump/manifest.json"
+  },
+  {
+    "id": "marko-kick",
+    "group": 5,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-kick/atlas.png",
+    "manifest": "assets/marko-kick/manifest.json"
+  },
+  {
+    "id": "marko-slide",
+    "group": 6,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-slide/atlas.png",
+    "manifest": "assets/marko-slide/manifest.json"
+  },
+  {
+    "id": "marko-hang",
+    "group": 6,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-hang/atlas.png",
+    "manifest": "assets/marko-hang/manifest.json"
+  },
+  {
+    "id": "sword-climb",
+    "group": 6,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/sword-climb/atlas.png",
+    "manifest": "assets/sword-climb/manifest.json"
   }
 ]

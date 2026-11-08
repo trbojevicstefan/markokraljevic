@@ -121,11 +121,19 @@ for name in PACK3:
 PACK4_REF = {'marko-climb': 'marko-idle', 'marko-wallslide': 'marko-idle', 'marko-throw': 'marko-idle',
              'archer-shoot-down': 'archer-idle', 'volovi-plug': None, 'volovi-beg': None}
 PACK4_REF.update({f'{c}-jump': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'palikuca', 'oklopnik']})
+PACK4_REF.update({'marko-kick': 'marko-idle', 'marko-slide': 'marko-idle', 'marko-hang': 'marko-idle', 'sword-climb': 'sword-idle'})
 for name, ref in PACK4_REF.items():
     if not os.path.exists(os.path.join(ROOT, name + '.json')):
         continue
     mode = 'center' if name in ('marko-climb', 'marko-wallslide') or name.startswith('volovi') else 'feet'
-    SCALES[name] = (SCALES[ref][0] if ref else 0.62, mode)
+    if ref:
+        SCALES[name] = (SCALES[ref][0], mode)
+    else:  # the oxen team: the tallest frame (yoke horns to hooves) stands 165 world px
+        manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+        cells = list(manifest['frame_layout']['rows'].values())[0]
+        im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
+        tall = max(analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['sole'] - analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['top'] for c in cells)
+        SCALES[name] = (165 / tall, mode)
 # new characters (spearman, hound, musketeer): their own clips, matched to their idle body height
 NEW_FOES = {'kopljanik': 118, 'tufekdzija': 116, 'pas': 58}
 for who, height in NEW_FOES.items():

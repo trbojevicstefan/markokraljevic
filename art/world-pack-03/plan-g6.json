@@ -1,0 +1,29 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "cudo-sokolovo-pero",
+      "group": 6,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: grey-white falcon feather, one clear water droplet at the tip. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "cudo-prelomljeno-koplje",
+      "group": 6,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: Marko's broken wooden spear, three splintered pieces tied together with a leather belt, iron spearhead visible. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    }
+  ]
+}

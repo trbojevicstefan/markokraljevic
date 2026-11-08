@@ -30,5 +30,49 @@ missing5=[j['id'] for j in json.loads((ROOT/'plan-g5.json').read_text(encoding='
 bases=json.loads((ANIM/'base-requests.json').read_text(encoding='utf8'))['jobs'];missing_bases=[j['id'] for j in bases if not (ANIM/'assets'/j['id']/'base-source.png').exists()]
 g3ready=sum(e.get('group')==3 and e['kind'] in ['background','ground','ground-end','object'] for e in catalog)
 report={'worldAssetsReady':len(world_done),'catalogImages':len(catalog),'readyClips':len(clips),'readyFrames':sum(c['frames'] for c in clips),'group1':'complete','group2':'complete','group3WorldReady':g3ready,'group3MissingObjects':missing3,'group3MissingClips':missing_clips[3],'group4':'complete' if not missing_bases and not missing_clips[4] else 'pending: quota reached','group4MissingBases':missing_bases,'group4MissingClips':missing_clips[4],'group5':'complete' if not missing5 and not missing_clips[5] else 'pending: quota reached','group5MissingImages':missing5,'group5MissingClips':missing_clips[5],'quotaResetBelgrade':None if not any(missing_clips.values()) and not missing3 and not missing5 else '2026-11-08T22:00:49+01:00','checksPassed':['catalog files and bounds','tile XY joins','ladder vertical join and 128px repetition','tower deck fields','animation frame counts and requested cells','feet y=487','GIF frame counts']}
+report['quotaResetBelgrade']=None
+ground=np.array(Image.open(ROOT/'tlo-oranje.png').convert('RGBA'))
+assert not ground[:64,:,3].any() and (ground[64:,:,3]==255).all()
+assert np.array_equal(ground[:,0],ground[:,-1])
+end=np.array(Image.open(ROOT/'tlo-oranje-kraj.png').convert('RGBA'))
+assert not end[:64,:,3].any() and np.array_equal(end[:,0],ground[:,-1])
+report['checksPassed'].append('corrected ground: actual road y=64, clear above, end-cap join')
+for id in ['kolje','siljci']:
+    p=ROOT/(id+'.png')
+    if p.exists():
+        arr=np.array(Image.open(p).convert('RGBA')).astype(float)
+        assert arr.shape==(192,512,4) and abs(arr[:,0]-arr[:,-1]).mean()<6,id
+        report['checksPassed'].append(id+': horizontal repeat join')
+if (ROOT/'ploca-pritisak-stisnuta.png').exists():
+    p1=Image.open(ROOT/'ploca-pritisak.png').getchannel('A').getbbox();p2=Image.open(ROOT/'ploca-pritisak-stisnuta.png').getchannel('A').getbbox()
+    assert abs((p1[2]-p1[0])-(p2[2]-p2[0]))<=1 and p1[3]==p2[3]==256
+    assert p2[3]-p2[1]<p1[3]-p1[1],(p1,p2)
+    report['checksPassed'].append('pressure plate: matching footprint, lower pressed state')
+if (ROOT/'zid-napukao.png').exists():
+    alpha=np.array(Image.open(ROOT/'zid-napukao.png').convert('RGBA'))[:,:,3]
+    assert (alpha>128).mean()<.65,'Crack overlay must have transparent areas'
+    report['checksPassed'].append('wall cracks: transparent overlay')
+if (ROOT/'vrata-otkljucana.png').exists():
+    closed=np.array(Image.open(ROOT/'vrata-zakljucana.png').convert('RGBA'))[:,:,3]
+    opened=np.array(Image.open(ROOT/'vrata-otkljucana.png').convert('RGBA'))[:,:,3]
+    assert (opened>128).mean()<(closed>128).mean()*.92,'Open doorway must have a transparent opening'
+    report['checksPassed'].append('open doorway: transparent opening')
+hang=json.loads((ANIM/'assets/marko-hang/manifest.json').read_text(encoding='utf8')) if (ANIM/'assets/marko-hang/manifest.json').exists() else {}
+if 'gripAnchors' in hang:
+    for anchor in hang['gripAnchors']:
+        xx,yy=anchor['point'];im=Image.open(ANIM/f"assets/marko-hang/frames/motion/frame-{anchor['frame']}.png").convert('RGBA')
+        assert 0<=xx<512 and 0<=yy<512 and im.getpixel((xx,yy))[3]>0,anchor
+    report['checksPassed'].append('hanging grip anchors lie on hand pixels')
+for g in [3,4,5,6,7,8]:
+    p=ROOT/f'plan-g{g}.json'
+    missing_world=[j['id'] for j in json.loads(p.read_text(encoding='utf8'))['jobs'] if not (ROOT/(j['id']+'.png')).exists()] if p.exists() else []
+    missing_anim=[j['id'] for j in plans.values() if j['group']==g and not (ANIM/'assets'/j['id']/'atlas.png').exists()]
+    report[f'group{g}MissingImages']=missing_world
+    report[f'group{g}MissingClips']=missing_anim
+    report[f'group{g}']='complete' if not missing_world and not missing_anim and (g!=4 or not missing_bases) else 'pending'
+if (ROOT/'sources/quota-block.json').exists():
+    quota=json.loads((ROOT/'sources/quota-block.json').read_text(encoding='utf8'))
+    report['quotaResetBelgrade']=quota.get('resetBelgrade')
+    report['generatorBlock']=quota
 (ROOT/'DELIVERY.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
 print(json.dumps(report,ensure_ascii=False))

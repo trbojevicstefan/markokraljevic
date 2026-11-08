@@ -1,0 +1,209 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-combo-4",
+      "group": 7,
+      "who": "marko",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 8 full-body animation poses in 4 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Overhead finisher: 1 guard; 2 step; 3 mace winds behind head; 4 raised highest; 5 explosive downward strike with forward shoulder bash CONTACT; 6 follow through; 7 recoil; 8 guard."
+    },
+    {
+      "id": "marko-air-1",
+      "group": 7,
+      "who": "marko",
+      "frames": 5,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 5 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Airborne horizontal mace strike: 1 tucked jump guard; 2 wind back; 3 horizontal CONTACT to right; 4 follow through; 5 airborne recovery. No floor. The sixth final bottom-right slot is EMPTY pure green; exactly five actual poses."
+    },
+    {
+      "id": "marko-air-2",
+      "group": 7,
+      "who": "marko",
+      "frames": 5,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 5 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Second aerial strike rising from below: 1 airborne mace low; 2 twist; 3 rising diagonal CONTACT; 4 mace high; 5 airborne recovery. The sixth final bottom-right slot is EMPTY pure green; exactly five actual poses."
+    },
+    {
+      "id": "marko-uppercut",
+      "group": 7,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 crouch; 2 mace low behind; 3 drive up with legs; 4 upward mace CONTACT; 5 fully extended rising body; 6 recovery."
+    },
+    {
+      "id": "marko-dash-strike",
+      "group": 7,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Low rushing mace thrust: 1 crouch; 2 coil; 3 push off; 4 mace extended forward CONTACT; 5 low follow through; 6 recovery. Small attached dust behind boots, no detached effect clouds."
+    },
+    {
+      "id": "marko-charge-hold",
+      "group": 7,
+      "who": "marko",
+      "frames": 4,
+      "loop": true,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Tense charge hold looping: mace behind shoulder glows gold, subtle breath and weight shift through four unique poses, return smoothly to first. Glow tightly attached to mace."
+    },
+    {
+      "id": "marko-push",
+      "group": 7,
+      "who": "marko",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Loop pushing heavy crate with shoulder: brace bent torso forward, arms forward, six alternating walking effort phases. NO crate drawn; game draws it separately. Fixed root, real alternating legs. Mace secured on belt, both hands EMPTY for this action. Do not hold mace across the arms."
+    },
+    {
+      "id": "marko-lever",
+      "group": 7,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 reach forward; 2 grasp invisible lever; 3 brace; 4 pull down and back; 5 full pull; 6 release. NO lever drawn; game draws it separately. Mace secured on belt, both hands EMPTY for this action. Do not hold mace across the arms."
+    },
+    {
+      "id": "shield-guardbreak",
+      "group": 7,
+      "who": "shield",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/shield-idle/base-source.png",
+      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 shield guard; 2 impact forces shield to outside; 3 stagger backward, guard wide open; 4 vulnerable recovery, same shield held."
+    },
+    {
+      "id": "oklopnik-armorbreak",
+      "group": 7,
+      "who": "oklopnik",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/oklopnik-idle/base-source.png",
+      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 armored guard; 2 armor hit; 3 breastplate cracks with a few nearby flying armor pieces inside cell; 4 exposed stagger. Keep face and body identity."
+    },
+    {
+      "id": "akindzija-backstep",
+      "group": 7,
+      "who": "akindzija",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/akindzija-idle/base-source.png",
+      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Backwards evade while FACING RIGHT: 1 tense guard; 2 plant front boot; 3 low backwards hop with back knee reaching left; 4 land in guard. No mirrored facing."
+    },
+    {
+      "id": "palikuca-burn",
+      "group": 7,
+      "who": "palikuca",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/palikuca-idle/base-source.png",
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Loop panicking from own torch fire: attached orange flames on sleeves, alternately wave arms and stomp feet, recoiling from heat. Same actor and torch identity; no ground flame patch."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generator": "built-in image_gen",
+  "id": "sword-climb",
+  "prompt": "Produce a correct LADDER CLIMB cycle, NOT WALKING. Image1 is the Janissary identity: keep his wrapped helmet, red embroidered coat, lamellar armor and sheathed curved saber. Image2 is ONLY a climbing-pose reference; DO NOT copy Marko's face, cloak or mace. SIX full-body Janissary poses in THREE columns TWO rows, equal square cells with green gutters, pure #00FF00 empty background. Three-quarter BACK view facing RIGHT, looking UP. Both hands grip invisible ladder rungs IN FRONT OF HIS CHEST/HEAD; NO hand hangs behind the hips. 1 NEAR hand reaches ABOVE HEAD, FAR hand grips at CHEST, far knee lifts. 2 near elbow bends to pull, far hand reaches upward, hips rise. 3 near hand grips chest level, FAR hand passing beside head, near knee starts lifting. 4 FAR HAND stretched ABOVE HEAD, NEAR hand grips at CHEST, NEAR ELBOW DOWN visibly in front of chest, near knee lifted. 5 far elbow pulls, near hand starts reach, hips rise. 6 FAR hand grips chest rung, NEAR hand reaching past head, return to pose1. The LOWER ROW must feature the FAR ARM raised and the NEAR ARM lowered, opposite to first row. Saber SHEATHED at belt, empty hands. Do NOT draw ladder, floor, shadows, scenery, particles or labels. Same scale and contact baseline per cell; full hands and feet visible.",
+  "references": [
+    "art/animation-pack-03/sources/sword-idle/base-source.png",
+    "art/animation-pack-04/sources/marko-climb/revised-grid.png"
+  ]
+}

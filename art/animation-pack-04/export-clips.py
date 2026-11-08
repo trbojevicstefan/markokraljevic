@@ -46,11 +46,19 @@ for j in jobs:
             im=im.resize((max(1,round(im.width*scale)),max(1,round(im.height*scale))),Image.Resampling.LANCZOS)
             cell=Image.new('RGBA',(w,h));cell.alpha_composite(im,((w-im.width)//2,bottom-im.height));cell.save(run/f'frames/motion/frame-{i}.png')
             box=cell.getchannel('A').getbbox();assert box and box[3]==bottom and box[0]>=0 and box[2]<=w
-            qa.append({'frame':i,'bounds':box,'footY':bottom-1})
+            entry={'frame':i,'bounds':box,'footY':bottom-1}
+            if j['id']=='marko-hang':
+                pixels=np.array(cell);mask=pixels[:,:,3]>100
+                ys,xs=np.where(mask);top=int(ys.min());hy,hx=np.where(mask[top:top+10])
+                entry['grip']=[int(np.median(hx)),top+4]
+            qa.append(entry)
         subprocess.run([str(SG),'compose-atlas','--run-dir',str(run)],check=True,stdout=subprocess.DEVNULL)
         shutil.copy2(run/'sprite-sheet-alpha.png',out/'atlas.png');shutil.copytree(run/'frames',out/'frames',dirs_exist_ok=True)
         manifest=json.loads((run/'manifest.json').read_text());manifest['game_input']='atlas.png';manifest['sprite_sheet_alpha']='atlas.png';manifest['base_image']='reference.png'
         manifest['scaleReference']={'character':j['who'],'referenceHeight':reference_height,'targetMaxHeight':target,'actualMaxHeight':max(x['bounds'][3]-x['bounds'][1] for x in qa),'footY':bottom-1}
+        if j['id']=='marko-hang':
+            manifest['gripAnchors']=[{'frame':x['frame'],'point':x['grip']} for x in qa]
+            manifest['alignmentNote']='Pin each frame gripAnchors point to the same ledge position; body sway stays below the raised hand.'
         (out/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf8');shutil.copy2(ref,out/'reference.png')
         subprocess.run([str(SG),'compose-gif',*[str(out/f'frames/motion/frame-{i}.png') for i in range(j['frames'])],'--output',str(out/'preview.gif'),'--delay-ticks',str(round(100/j['fps'])),'--loop-count','0'],check=True,stdout=subprocess.DEVNULL)
         (out/'qa.json').write_text(json.dumps({'frames':qa,'referenceHeight':reference_height,'targetMaxHeight':target,'scale':scale,'loop':j['loop']},indent=2),encoding='utf8')
@@ -63,6 +71,7 @@ if allready:
         if not old.exists():old=GAME/'art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png'
         ref=Image.open(old).convert('RGBA');frame=Image.open(ROOT/f"assets/{j['id']}/frames/motion/frame-0.png").convert('RGBA')
         board.alpha_composite(ref,(0,row*540));board.alpha_composite(frame,(512,row*540));d.text((12,row*540+515),'PACK03 reference / '+j['id'],fill='white')
-    board.save(ROOT/'preview.png')
+    preview_name='preview-group-7.png' if '7' in sys.argv[1:] else 'preview.png'
+    board.save(ROOT/preview_name)
 (ROOT/'catalog.json').write_text(json.dumps([{'id':j['id'],'group':j['group'],'frames':j['frames'],'fps':j['fps'],'loop':j['loop'],'file':f"assets/{j['id']}/atlas.png",'manifest':f"assets/{j['id']}/manifest.json"} for j in allready],indent=2),encoding='utf8')
 

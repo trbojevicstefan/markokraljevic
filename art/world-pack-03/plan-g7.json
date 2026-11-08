@@ -1,0 +1,432 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "razbi-kosnica",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: woven beehive on a stump. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-plast",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: small haystack tied with rope. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-tikve",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: compact pile of gourds and pumpkins. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-stena-napukla",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: large cracked rock, clear deep fractures. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-panj",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: rotting tree stump with mushrooms. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-crkveni-sanduk",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: ironbound monastery chest with books and an Orthodox cross. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-bure-baruta",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: gunpowder oak barrel with fuse and Ottoman crescent seal, NO Christian cross. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-tobolac",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: woven basket full of arrows. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-santa",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: angular chunk of blue-white ice. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "razbi-vagon",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: small medieval mining cart with iron wheels filled with ore. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-slovo-m",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one round gold medallion, engraved central LARGE single Cyrillic letter \"М\". Render EXACTLY this one character, bold readable at tiny scale, no other writing. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, only the explicitly requested single letter, no other text. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Medallion face is STRAIGHT-ON, no tilt; bold single letter fills central 70 percent. Keep the same circular gold frame and ornament as the supplied medallion reference when available."
+    },
+    {
+      "id": "predmet-slovo-a",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one round gold medallion, engraved central LARGE single Cyrillic letter \"А\". Render EXACTLY this one character, bold readable at tiny scale, no other writing. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, only the explicitly requested single letter, no other text. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Medallion face is STRAIGHT-ON, no tilt; bold single letter fills central 70 percent. Keep the same circular gold frame and ornament as the supplied medallion reference when available.",
+      "reference": "art/world-pack-03/predmet-slovo-m.png"
+    },
+    {
+      "id": "predmet-slovo-r",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one round gold medallion, engraved central LARGE single Cyrillic letter \"Р\". Render EXACTLY this one character, bold readable at tiny scale, no other writing. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, only the explicitly requested single letter, no other text. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Medallion face is STRAIGHT-ON, no tilt; bold single letter fills central 70 percent. Keep the same circular gold frame and ornament as the supplied medallion reference when available.",
+      "reference": "art/world-pack-03/predmet-slovo-m.png"
+    },
+    {
+      "id": "predmet-slovo-k",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one round gold medallion, engraved central LARGE single Cyrillic letter \"К\". Render EXACTLY this one character, bold readable at tiny scale, no other writing. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, only the explicitly requested single letter, no other text. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Medallion face is STRAIGHT-ON, no tilt; bold single letter fills central 70 percent. Keep the same circular gold frame and ornament as the supplied medallion reference when available.",
+      "reference": "art/world-pack-03/predmet-slovo-m.png"
+    },
+    {
+      "id": "predmet-slovo-o",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one round gold medallion, engraved central LARGE single Cyrillic letter \"О\". Render EXACTLY this one character, bold readable at tiny scale, no other writing. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, only the explicitly requested single letter, no other text. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Medallion face is STRAIGHT-ON, no tilt; bold single letter fills central 70 percent. Keep the same circular gold frame and ornament as the supplied medallion reference when available.",
+      "reference": "art/world-pack-03/predmet-slovo-m.png"
+    },
+    {
+      "id": "predmet-zapis",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: rolled parchment tied with a red wax seal. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-srce-deo",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: one quarter of a golden heart, clearly part of a four-piece heart. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-kljuc",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: old iron key tied with red ribbon. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-moc-oganj",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: spherical fire power orb, orange flame enclosed in glowing glass. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-moc-grom",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: spherical lightning power orb, bright gold branching lightning enclosed in dark blue glass. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-moc-vila",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: spherical turquoise fairy power orb, delicate wing-shaped light enclosed in teal glass. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-trava",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: tied bundle of medicinal herbs. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "predmet-cutura",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 300,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: wooden wine gourd with stopper and leather strap. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "ploca-pritisak",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        256
+      ],
+      "height": 100,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: raised stone pressure plate on a low base, side view. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "ploca-pritisak-stisnuta",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        256
+      ],
+      "height": 100,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: SAME stone pressure plate pressed down flush into the base, matching reference footprint and baseline. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Preserve the SAME base footprint and camera angle as the reference. Only lower the movable pressure plate into the base. Keep base width unchanged; the whole object becomes thinner.",
+      "reference": "art/world-pack-03/ploca-pritisak.png",
+      "widthReference": "art/world-pack-03/ploca-pritisak.png"
+    },
+    {
+      "id": "teret-sanduk",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 450,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: very heavy reinforced wooden crate with large iron bands, pushable puzzle weight. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "pod-napukao",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        256
+      ],
+      "height": 100,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: wide shallow stone floor slab with deep central cracks. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "zid-napukao",
+      "group": 7,
+      "kind": "overlay",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 480,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: ONLY branching dark cracks as a transparent overlay for a stone wall; no stone panel and no solid background. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "lift-platforma",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        512
+      ],
+      "height": 480,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: wide timber lift platform reinforced with iron, two chains going vertically upward at its ends. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "kotur",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: wooden pulley wheel with a hanging iron chain. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "splav",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        512
+      ],
+      "height": 230,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: wide raft made from lashed logs, clear side view. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "kolje",
+      "group": 7,
+      "kind": "repeat-row",
+      "canvas": [
+        512,
+        192
+      ],
+      "height": 180,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: seamlessly repeating horizontal row of sharpened timber stakes, equal height and spacing, no end posts. True transparent alpha, crisp readable silhouette, horizontal tile extends to left and right canvas edges, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. HORIZONTAL REPEAT TILE: continuous support rail touches BOTH side edges. Equally spaced stakes; first and last edges pass through matching mid-gaps, no end caps or end posts. Leave no side margin. Side profile, wide 8:3 strip, transparent above and between spikes."
+    },
+    {
+      "id": "siljci",
+      "group": 7,
+      "kind": "repeat-row",
+      "canvas": [
+        512,
+        192
+      ],
+      "height": 180,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: seamlessly repeating horizontal row of iron spikes on a low rail, equal height and spacing, no end posts. True transparent alpha, crisp readable silhouette, horizontal tile extends to left and right canvas edges, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. HORIZONTAL REPEAT TILE: continuous support rail touches BOTH side edges. Equally spaced stakes; first and last edges pass through matching mid-gaps, no end caps or end posts. Leave no side margin. Side profile, wide 8:3 strip, transparent above and between spikes."
+    },
+    {
+      "id": "vrata-zakljucana",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 850,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: closed ironbound medieval double wooden door in a stone frame, large iron padlock visible. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference."
+    },
+    {
+      "id": "vrata-otkljucana",
+      "group": 7,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 850,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism.  ONE isolated complete side-view game asset: SAME doorway and ironbound double wooden doors swung open, padlock released, transparent opening, matching frame silhouette and baseline. True transparent alpha, crisp readable silhouette, whole object visible, no terrain slab, no ellipse shadow, no text except any explicitly requested single letter. Object rests at bottom of canvas. Keep painterly gold highlights and teal shadows consistent with reference. Open both door leaves INWARD inside the SAME stone frame silhouette; do not widen the frame or draw leaves outside it.",
+      "reference": "art/world-pack-03/vrata-zakljucana.png"
+    }
+  ]
+}

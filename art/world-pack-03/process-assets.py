@@ -37,6 +37,8 @@ def ground(src,j):
         result.alpha_composite(Image.fromarray(da),(0,64-dh))
     a=np.array(result).astype(float);fade=np.clip((np.arange(384)-200)/183,0,1)**1.3
     a[64:,:,:3]=a[64:,:,:3]*(1-fade[64:,None,None])+np.array([11,15,16])*fade[64:,None,None];a[-12:,:,:3]=[11,15,16];a[64:,:,3]=255
+    # DOPUNA A: exact road line; omit optional tufts and extraction fringe above it.
+    a[:64]=0
     result=periodic(Image.fromarray(np.rint(a).astype('uint8')),[1]);a=np.array(result)
     seam=float(abs(a[:,0].astype(float)-a[:,-1]).mean()/255);shift=np.roll(a,512,axis=1);offset=float(abs(shift[:,0].astype(float)-shift[:,-1]).mean()/255)
     walk=next(y for y in range(384) if (a[y,:,3]==255).mean()>=.95);assert walk==64 and seam<6/255 and offset<6/255
@@ -54,19 +56,27 @@ old={}
 if (ROOT/'catalog.json').exists():old={e['id']:e for e in json.loads((ROOT/'catalog.json').read_text(encoding='utf8'))['images']}
 entries=[]
 for j in jobs:
-    src=ROOT/'sources'/f"{j['id']}.png"
+    src=ROOT/j.get('source','sources/'+j['id']+'.png')
     if j['id']=='kula-strazara' and (ROOT/'sources/kula-strazara-key.png').exists():src=ROOT/'sources/kula-strazara-key.png'
     if not src.exists():continue
     if (ROOT/f"{j['id']}.png").exists() and j['id'] in old and j['id'] not in sys.argv[1:]:
         entries.append(old[j['id']]);continue
     kind=j['kind'];size=tuple(j['canvas']);extra={}
     if 'reusedFrom' in j:extra['reusedFrom']=j['reusedFrom']
+    if 'orientation' in j:extra['orientation']=j['orientation']
     if kind=='ground':entries.extend(ground(src,j));continue
     if kind=='background':
         im=Image.open(src).convert('RGBA').resize(size,Image.Resampling.LANCZOS)
         if not j['alpha']:
             opaque=Image.new('RGBA',size,(11,15,16,255));opaque.alpha_composite(im);im=opaque
         im=periodic(im,[1]);a=np.array(im).astype(float);diff=float(abs(a[:,0]-a[:,-1]).mean()/255);assert diff<6/255
+        extra['seamCheck']={'horizontal':diff,'threshold':6/255,'passed':True}
+    elif kind=='overlay':
+        im=Image.open(src).convert('RGBA').resize(size,Image.Resampling.LANCZOS)
+    elif kind=='repeat-row':
+        ob=clean(src);ob=ob.crop(ob.getchannel('A').getbbox()).resize((size[0],j['height']),Image.Resampling.LANCZOS)
+        im=Image.new('RGBA',size);im.alpha_composite(ob,(0,size[1]-ob.height));im=periodic(im,[1])
+        a=np.array(im).astype(float);diff=float(abs(a[:,0]-a[:,-1]).mean()/255);assert diff<6/255
         extra['seamCheck']={'horizontal':diff,'threshold':6/255,'passed':True}
     elif kind=='tile':
         im=Image.open(src).convert('RGB').resize(size,Image.Resampling.LANCZOS).convert('RGBA');im=periodic(im,[1,0])
@@ -91,7 +101,11 @@ for j in jobs:
         ob=ob.crop(box)
         if kind=='ladder-top':target=(168,240);ob=ob.resize(target,Image.Resampling.LANCZOS)
         else:
-            s=min(j['height']/ob.height,(size[0]-32)/ob.width);ob=ob.resize((round(ob.width*s),round(ob.height*s)),Image.Resampling.LANCZOS)
+            s=min(j['height']/ob.height,(size[0]-32)/ob.width)
+            if 'widthReference' in j:
+                ref=Image.open(ROOT.parents[1]/j['widthReference']).convert('RGBA');rb=ref.getchannel('A').getbbox()
+                s=min((rb[2]-rb[0])/ob.width,(size[1]-8)/ob.height)
+            ob=ob.resize((round(ob.width*s),round(ob.height*s)),Image.Resampling.LANCZOS)
         im=Image.new('RGBA',size);im.alpha_composite(ob,((size[0]-ob.width)//2,size[1]-ob.height))
         if kind=='tower' and not (ROOT/'tower-anchor.json').exists():
             im.save(ROOT/'sources/kula-candidate.png');continue
@@ -102,6 +116,23 @@ for j in jobs:
             im=Image.new('RGBA',(1024,1024));im.alpha_composite(top);im.alpha_composite(low,(0,new))
             extra.update(deckY=new,deckX0=anchor['deckX0'],deckX1=anchor['deckX1'])
         extra['baseline']=size[1]-1
+        if kind in ['portal-open','portal-closed']:
+            af=ROOT/'portal-anchors.json';anchors=json.loads(af.read_text(encoding='utf8')) if af.exists() else {}
+            key=j.get('anchorReference',j['id']);anchor=anchors.get(key,{})
+            xs=anchor.get('xScale',1)
+            if xs!=1:
+                box=im.getchannel('A').getbbox();ob=im.crop(box);nw=round(ob.width*xs)
+                assert nw<=size[0]-16,'Portal horizontal normalization clips artwork'
+                ob=ob.resize((nw,ob.height),Image.Resampling.LANCZOS);im=Image.new('RGBA',size);im.alpha_composite(ob,((size[0]-nw)//2,size[1]-ob.height))
+            if not all(k in anchor for k in ['passX0','passX1','archY']):
+                qa=ROOT/'sources/review';qa.mkdir(parents=True,exist_ok=True);im.save(qa/(j['id']+'-candidate.png'));print('Awaiting passage anchors:',j['id']);continue
+            extra.update({k:anchor[k] for k in ['passX0','passX1','archY']});extra['normalizationXScale']=xs
+            assert 220<=extra['passX1']-extra['passX0']<=300 and size[1]-extra['archY']>=420
+            if kind=='portal-open':
+                a=np.array(im);rect=a[extra['archY']:,extra['passX0']:extra['passX1'],3]
+                assert (rect<64).mean()>.995,'Open passage is obstructed'
+        if kind=='portcullis':
+            box=im.getchannel('A').getbbox();extra.update(passX0=box[0],passX1=box[2],archY=box[1],anchorNote='archY is upper mounting line; standalone portcullis has no arch')
     dst=ROOT/f"{j['id']}.png";im.save(dst)
     entries.append(dict(id=j['id'],file=dst.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind=kind,group=j['group'],**extra))
 for prefix,name,columns in [('cudo-','cuda-preview.png',4),('razbi-','razbi-preview.png',3)]:
@@ -122,11 +153,14 @@ for folder in sorted((anim/'assets').glob('*')):
         if p.name not in ['atlas.png','reference.png','base-source.png'] and not p.name.startswith('frame-'):continue
         im=Image.open(p).convert('RGBA');kind='animation-frame' if p.name.startswith('frame-') else 'animation-atlas' if p.name=='atlas.png' else 'animation-reference'
         entries.append(dict(id=folder.name+':'+p.stem,file='../animation-pack-04/'+p.relative_to(anim).as_posix(),size=list(im.size),bounds=im.getchannel('A').getbbox(),kind=kind,group=groups.get(folder.name,3 if folder.name=='volovi' else 4)))
-if (anim/'preview.png').exists():
-    im=Image.open(anim/'preview.png').convert('RGBA');entries.append(dict(id='animations-preview',file='../animation-pack-04/preview.png',size=list(im.size),bounds=im.getchannel('A').getbbox(),kind='preview',group=0))
+for p in anim.glob('preview*.png'):
+    im=Image.open(p).convert('RGBA');entries.append(dict(id='animations-'+p.stem,file='../animation-pack-04/'+p.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind='preview',group=0))
 merged={k:e for k,e in old.items() if (ROOT/e['file']).exists()};merged.update({e['id']:e for e in entries});entries=list(merged.values())
+final={e['id']:e for e in entries}
 for p in ROOT.glob('*preview.png'):
-    if p.stem not in merged:
-        im=Image.open(p).convert('RGBA');entries.append(dict(id=p.stem,file=p.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind='preview',group=3 if p.stem.startswith('oranje') else 1))
+    im=Image.open(p).convert('RGBA')
+    group=7 if p.stem in ['collectibles-preview','puzzles-preview','prepreke-spoj-preview'] else 3 if p.stem.startswith('oranje') else 1
+    final[p.stem]=dict(id=p.stem,file=p.name,size=list(im.size),bounds=im.getchannel('A').getbbox(),kind='preview',group=group)
+entries=list(final.values())
 temp=ROOT/'catalog.json.tmp';temp.write_text(json.dumps({'generator':'built-in image_gen','images':entries},ensure_ascii=False,indent=2),encoding='utf8');temp.replace(ROOT/'catalog.json')
 print('Published',len(entries),'images')
