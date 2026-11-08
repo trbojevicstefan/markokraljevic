@@ -1,0 +1,1931 @@
+{
+  "generator": "built-in image_gen",
+  "images": [
+    {
+      "id": "razbi-kovceg-otvoren",
+      "file": "razbi-kovceg-otvoren.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        230,
+        574,
+        794,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-sanduk",
+      "file": "razbi-sanduk.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        308,
+        624,
+        715,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-cup",
+      "file": "razbi-cup.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        385,
+        624,
+        638,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-bure",
+      "file": "razbi-bure.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        301,
+        624,
+        723,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-korpa",
+      "file": "razbi-korpa.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        316,
+        624,
+        708,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "razbi-kovceg",
+      "file": "razbi-kovceg.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        241,
+        624,
+        783,
+        1024
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 1023
+    },
+    {
+      "id": "lestve",
+      "file": "lestve.png",
+      "size": [
+        256,
+        1024
+      ],
+      "bounds": [
+        44,
+        0,
+        212,
+        1024
+      ],
+      "kind": "ladder",
+      "group": 1,
+      "railCenters": [
+        56,
+        200
+      ],
+      "rungCenters": [
+        64,
+        192,
+        320,
+        448,
+        576,
+        704,
+        832,
+        960
+      ],
+      "rungSpacing": 128,
+      "seamCheck": {
+        "vertical": 0.0,
+        "passed": true
+      }
+    },
+    {
+      "id": "lestve-vrh",
+      "file": "lestve-vrh.png",
+      "size": [
+        256,
+        256
+      ],
+      "bounds": [
+        44,
+        16,
+        212,
+        256
+      ],
+      "kind": "ladder-top",
+      "group": 1,
+      "baseline": 255
+    },
+    {
+      "id": "kula-strazara",
+      "file": "kula-strazara.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        196,
+        135,
+        827,
+        1024
+      ],
+      "kind": "tower",
+      "group": 1,
+      "deckY": 341,
+      "deckX0": 270,
+      "deckX1": 684,
+      "baseline": 1023
+    },
+    {
+      "id": "predmet-topuz",
+      "file": "predmet-topuz.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        357,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "predmet-dukat",
+      "file": "predmet-dukat.png",
+      "size": [
+        256,
+        256
+      ],
+      "bounds": [
+        37,
+        66,
+        219,
+        256
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 255
+    },
+    {
+      "id": "cudo-sarceva-potkova",
+      "file": "cudo-sarceva-potkova.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        98,
+        192,
+        414,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-vilino-pero",
+      "file": "cudo-vilino-pero.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        75,
+        192,
+        436,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-orlovo-pero",
+      "file": "cudo-orlovo-pero.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        58,
+        192,
+        454,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-pehar-vina",
+      "file": "cudo-pehar-vina.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        150,
+        192,
+        362,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-carska-knjiga",
+      "file": "cudo-carska-knjiga.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        205,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-zlatno-ralo",
+      "file": "cudo-zlatno-ralo.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        276,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-tri-kese-dukata",
+      "file": "cudo-tri-kese-dukata.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        65,
+        192,
+        447,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-oceva-sablja",
+      "file": "cudo-oceva-sablja.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        399,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-buzdovan",
+      "file": "cudo-buzdovan.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        362,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-gusle",
+      "file": "cudo-gusle.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        191,
+        192,
+        321,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-kljuc-kule",
+      "file": "cudo-kljuc-kule.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        338,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "cudo-musina-sablja",
+      "file": "cudo-musina-sablja.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        356,
+        496,
+        512
+      ],
+      "kind": "object",
+      "group": 1,
+      "baseline": 511
+    },
+    {
+      "id": "zid-kamen",
+      "file": "zid-kamen.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "kind": "tile",
+      "group": 1,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "vertical": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "zid-stena",
+      "file": "zid-stena.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "kind": "tile",
+      "group": 1,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "vertical": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "zid-drvo",
+      "file": "zid-drvo.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "kind": "tile",
+      "group": 1,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "vertical": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "zid-cigla",
+      "file": "zid-cigla.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "kind": "tile",
+      "group": 1,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "vertical": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "cuda-preview",
+      "file": "cuda-preview.png",
+      "size": [
+        1120,
+        900
+      ],
+      "bounds": [
+        0,
+        0,
+        1120,
+        900
+      ],
+      "kind": "preview",
+      "group": 1
+    },
+    {
+      "id": "razbi-preview",
+      "file": "razbi-preview.png",
+      "size": [
+        840,
+        600
+      ],
+      "bounds": [
+        0,
+        0,
+        840,
+        600
+      ],
+      "kind": "preview",
+      "group": 1
+    },
+    {
+      "id": "archer-jump:atlas",
+      "file": "../animation-pack-04/assets/archer-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        58,
+        33,
+        3020,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-0",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        58,
+        133,
+        454,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-1",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        32,
+        65,
+        480,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-2",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        63,
+        66,
+        448,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-3",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        81,
+        137,
+        431,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-4",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        70,
+        33,
+        441,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:frame-5",
+      "file": "../animation-pack-04/assets/archer-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        51,
+        136,
+        460,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-jump:reference",
+      "file": "../animation-pack-04/assets/archer-jump/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        46,
+        20,
+        338,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:atlas",
+      "file": "../animation-pack-04/assets/archer-shoot-down/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        101,
+        33,
+        2973,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-0",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        101,
+        33,
+        410,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-1",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        60,
+        61,
+        451,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-2",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        65,
+        62,
+        446,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-3",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        21,
+        58,
+        490,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-4",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        73,
+        61,
+        438,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:frame-5",
+      "file": "../animation-pack-04/assets/archer-shoot-down/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        99,
+        34,
+        413,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "archer-shoot-down:reference",
+      "file": "../animation-pack-04/assets/archer-shoot-down/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        46,
+        20,
+        338,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:atlas",
+      "file": "../animation-pack-04/assets/marko-climb/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        91,
+        55,
+        3957,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-0",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        91,
+        55,
+        420,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-1",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        106,
+        76,
+        405,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-2",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        112,
+        82,
+        399,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-3",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        109,
+        73,
+        403,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-4",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        128,
+        55,
+        384,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-5",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        136,
+        76,
+        375,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-6",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        139,
+        82,
+        372,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:frame-7",
+      "file": "../animation-pack-04/assets/marko-climb/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        139,
+        73,
+        373,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-climb:reference",
+      "file": "../animation-pack-04/assets/marko-climb/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:atlas",
+      "file": "../animation-pack-04/assets/marko-throw/atlas.png",
+      "size": [
+        4096,
+        512
+      ],
+      "bounds": [
+        82,
+        45,
+        3983,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-0",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        71,
+        430,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-1",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        96,
+        90,
+        416,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-2",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        85,
+        45,
+        427,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-3",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        20,
+        93,
+        492,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-4",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        49,
+        91,
+        462,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-5",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        76,
+        76,
+        435,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-6",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-6.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        76,
+        68,
+        436,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:frame-7",
+      "file": "../animation-pack-04/assets/marko-throw/frames/motion/frame-7.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        112,
+        67,
+        399,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-throw:reference",
+      "file": "../animation-pack-04/assets/marko-throw/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:atlas",
+      "file": "../animation-pack-04/assets/marko-wallslide/atlas.png",
+      "size": [
+        2048,
+        512
+      ],
+      "bounds": [
+        107,
+        85,
+        1933,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:frame-0",
+      "file": "../animation-pack-04/assets/marko-wallslide/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        107,
+        85,
+        404,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:frame-1",
+      "file": "../animation-pack-04/assets/marko-wallslide/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        115,
+        105,
+        396,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:frame-2",
+      "file": "../animation-pack-04/assets/marko-wallslide/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        119,
+        129,
+        393,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:frame-3",
+      "file": "../animation-pack-04/assets/marko-wallslide/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        115,
+        92,
+        397,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "marko-wallslide:reference",
+      "file": "../animation-pack-04/assets/marko-wallslide/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        50,
+        20,
+        335,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:atlas",
+      "file": "../animation-pack-04/assets/oklopnik-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        82,
+        60,
+        2990,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-0",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        152,
+        429,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-1",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        93,
+        429,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-2",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        94,
+        97,
+        417,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-3",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        94,
+        137,
+        417,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-4",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        61,
+        60,
+        450,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:frame-5",
+      "file": "../animation-pack-04/assets/oklopnik-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        82,
+        133,
+        430,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "oklopnik-jump:reference",
+      "file": "../animation-pack-04/assets/oklopnik-jump/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        110,
+        127,
+        374,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:atlas",
+      "file": "../animation-pack-04/assets/palikuca-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        108,
+        32,
+        2973,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-0",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        108,
+        114,
+        404,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-1",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        83,
+        54,
+        429,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-2",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        106,
+        74,
+        406,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-3",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        116,
+        109,
+        395,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-4",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        99,
+        32,
+        412,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:frame-5",
+      "file": "../animation-pack-04/assets/palikuca-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        99,
+        113,
+        413,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "palikuca-jump:reference",
+      "file": "../animation-pack-04/assets/palikuca-jump/reference.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        160,
+        32,
+        369,
+        488
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:atlas",
+      "file": "../animation-pack-04/assets/shield-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        74,
+        31,
+        2997,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-0",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        74,
+        124,
+        437,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-1",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        73,
+        62,
+        438,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-2",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        104,
+        72,
+        407,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-3",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        106,
+        102,
+        406,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-4",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        83,
+        31,
+        428,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:frame-5",
+      "file": "../animation-pack-04/assets/shield-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        74,
+        122,
+        437,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "shield-jump:reference",
+      "file": "../animation-pack-04/assets/shield-jump/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        62,
+        20,
+        322,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:atlas",
+      "file": "../animation-pack-04/assets/sword-jump/atlas.png",
+      "size": [
+        3072,
+        512
+      ],
+      "bounds": [
+        75,
+        62,
+        3006,
+        488
+      ],
+      "kind": "animation-atlas",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-0",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-0.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        75,
+        139,
+        436,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-1",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-1.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        60,
+        83,
+        451,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-2",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-2.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        86,
+        96,
+        426,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-3",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-3.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        92,
+        126,
+        420,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-4",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-4.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        81,
+        62,
+        431,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:frame-5",
+      "file": "../animation-pack-04/assets/sword-jump/frames/motion/frame-5.png",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        66,
+        127,
+        446,
+        488
+      ],
+      "kind": "animation-frame",
+      "group": 2
+    },
+    {
+      "id": "sword-jump:reference",
+      "file": "../animation-pack-04/assets/sword-jump/reference.png",
+      "size": [
+        384,
+        384
+      ],
+      "bounds": [
+        51,
+        20,
+        333,
+        370
+      ],
+      "kind": "animation-reference",
+      "group": 2
+    },
+    {
+      "id": "animations-preview",
+      "file": "../animation-pack-04/preview.png",
+      "size": [
+        1024,
+        4860
+      ],
+      "bounds": [
+        0,
+        0,
+        1024,
+        4860
+      ],
+      "kind": "preview",
+      "group": 0
+    },
+    {
+      "id": "oranje-sky",
+      "file": "oranje-sky.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        0,
+        0,
+        1774,
+        887
+      ],
+      "kind": "background",
+      "group": 3,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-far",
+      "file": "oranje-far.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 3,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-mid",
+      "file": "oranje-mid.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 3,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-near",
+      "file": "oranje-near.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 3,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "oranje-vista",
+      "file": "oranje-vista.png",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "kind": "background",
+      "group": 3,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "threshold": 0.023529411764705882,
+        "passed": true
+      }
+    },
+    {
+      "id": "tlo-oranje",
+      "file": "tlo-oranje.png",
+      "size": [
+        1024,
+        384
+      ],
+      "bounds": [
+        0,
+        24,
+        1024,
+        384
+      ],
+      "kind": "ground",
+      "group": 3,
+      "walkY": 64,
+      "seamCheck": {
+        "horizontal": 0.0,
+        "halfShift": 0.0,
+        "passed": true
+      }
+    },
+    {
+      "id": "tlo-oranje-kraj",
+      "file": "tlo-oranje-kraj.png",
+      "size": [
+        192,
+        384
+      ],
+      "bounds": [
+        0,
+        24,
+        154,
+        384
+      ],
+      "kind": "ground-end",
+      "group": 3,
+      "walkY": 64
+    },
+    {
+      "id": "prop-plast-sena",
+      "file": "prop-plast-sena.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        211,
+        574,
+        813,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "prop-kola-seno",
+      "file": "prop-kola-seno.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        94,
+        474,
+        929,
+        1024
+      ],
+      "kind": "object",
+      "group": 3,
+      "baseline": 1023
+    },
+    {
+      "id": "volovi:base-source",
+      "file": "../animation-pack-04/assets/volovi/base-source.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        3,
+        81,
+        1753,
+        794
+      ],
+      "kind": "animation-reference",
+      "group": 4
+    }
+  ]
+}

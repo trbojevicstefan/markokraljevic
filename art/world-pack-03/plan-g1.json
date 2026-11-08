@@ -1,0 +1,317 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "razbi-sanduk",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: iron-banded solid wooden supply crate. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "razbi-cup",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: solid terracotta amphora with two handles and Serbian geometric ornament. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "razbi-bure",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: solid oak wine barrel with iron hoops. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "razbi-korpa",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: woven basket filled with large red apples. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "razbi-kovceg",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 400,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: closed medieval ironbound oak treasure chest. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "lestve",
+      "group": 1,
+      "kind": "ladder",
+      "canvas": [
+        256,
+        256
+      ],
+      "height": 128,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: ONE short repeating ladder MODULE: two straight vertical oak rails, one single horizontal rung at middle. Rails continue through TOP and BOTTOM edges, no caps, no feet, no knots at ends. Wide 2:1 module shape.. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "lestve-vrh",
+      "group": 1,
+      "kind": "ladder-top",
+      "canvas": [
+        256,
+        256
+      ],
+      "height": 256,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: two upper rounded wooden ladder rail tips with one cross rung near bottom. Both rail centers at 22% and 78% canvas width.. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "kula-strazara",
+      "group": 1,
+      "kind": "tower",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 900,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: complete freestanding medieval timber lookout tower with FOUR visible supporting legs, two far legs darker. NO roof. Flat horizontal upper deck with timber railings on TOP of deck, room for an archer but NO person. Deck around upper third of whole structure, long braced legs reach ground. Shallow side elevation, whole structure visible.. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "predmet-topuz",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 260,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: Marko Kraljevic's exact spiked iron mace (topuz) alone, horizontal handle on LEFT, heavy round spiked head on RIGHT. Entire weapon, no hand.. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "predmet-dukat",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        256,
+        256
+      ],
+      "height": 190,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one bold gold ducat coin, simple embossed double headed eagle relief, thick rim, legible icon silhouette at 24px, no letters. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. No labels or text."
+    },
+    {
+      "id": "cudo-sarceva-potkova",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one large bronze-gold horseshoe of Sarac, open end upwards. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-vilino-pero",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one white and gold fairy feather of Ravijojla. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-orlovo-pero",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one dark eagle feather with warm gold rim. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-pehar-vina",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one ornate silver goblet full of dark ruby wine. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-carska-knjiga",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one bundled imperial parchment charter tied with cord and large red wax seal, no readable writing. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-zlatno-ralo",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one miniature golden old Balkan wooden-style plough, simple readable silhouette. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-tri-kese-dukata",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: three small leather pouches overflowing with distinct gold coins as ONE grouped icon. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-oceva-sablja",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one old royal curved saber inside richly decorated scabbard. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-buzdovan",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one heavy flanged iron mace with ribs, ornamented handle, different from spiked mace. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-gusle",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one Serbian single-string gusle instrument with carved HORSE head and separate bow placed against instrument, ONE grouped icon. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-kljuc-kule",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one large medieval iron tower key with bold ornate bow and simple teeth. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "cudo-musina-sablja",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated game asset: one imposing curved saber of Musa Kesedzija, dark steel blade and violet-bronze grip. True transparent background, no floor slab or ellipse shadow. Full object visible, side elevation or shallow three-quarter view, clear alpha edges. Bold readable collectible icon at 48px, tiny attached gold edge light ONLY, NO halo. No labels or text."
+    },
+    {
+      "id": "zid-kamen",
+      "group": 1,
+      "kind": "tile",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 512,
+      "alpha": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Seamlessly repeating square wall texture: dressed limestone blocks with mortar. Strict flat side elevation, evenly lit, opaque texture fills EVERY pixel. Both horizontal and vertical edges match seamlessly. No outline, no sky, no ground, no top cap, no perspective, no isolated wall panel. 512x512 intended tile."
+    },
+    {
+      "id": "zid-stena",
+      "group": 1,
+      "kind": "tile",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 512,
+      "alpha": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Seamlessly repeating square wall texture: natural mountain rock with cracks. Strict flat side elevation, evenly lit, opaque texture fills EVERY pixel. Both horizontal and vertical edges match seamlessly. No outline, no sky, no ground, no top cap, no perspective, no isolated wall panel. 512x512 intended tile."
+    },
+    {
+      "id": "zid-drvo",
+      "group": 1,
+      "kind": "tile",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 512,
+      "alpha": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Seamlessly repeating square wall texture: closely packed vertical timber palisade logs. Strict flat side elevation, evenly lit, opaque texture fills EVERY pixel. Both horizontal and vertical edges match seamlessly. No outline, no sky, no ground, no top cap, no perspective, no isolated wall panel. 512x512 intended tile."
+    },
+    {
+      "id": "zid-cigla",
+      "group": 1,
+      "kind": "tile",
+      "canvas": [
+        512,
+        512
+      ],
+      "height": 512,
+      "alpha": false,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Seamlessly repeating square wall texture: old medieval red brick masonry. Strict flat side elevation, evenly lit, opaque texture fills EVERY pixel. Both horizontal and vertical edges match seamlessly. No outline, no sky, no ground, no top cap, no perspective, no isolated wall panel. 512x512 intended tile."
+    }
+  ]
+}

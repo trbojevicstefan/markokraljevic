@@ -64,3 +64,20 @@
 .level-list button b em{font-style:normal;font-size:12px;opacity:.28;filter:grayscale(1)}
 .level-list button b em.won{opacity:1;filter:none;color:#f3d28f}
 #levels .modal-card{max-width:min(920px,94vw)}
+.resources #coins{color:#f3cf7a;letter-spacing:1px}
+#touch .pad button.up{--s:40px;margin-bottom:84px}
+@media(max-height:430px){#touch .pad button.up{--s:36px;margin-bottom:72px}}
+.cuda-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:16px 0}
+.cudo{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px;background:#0c2224aa;border:1px solid #c8ab6f33;min-height:150px}
+.cudo img{width:64px;height:64px;object-fit:contain;filter:grayscale(1) brightness(.35)}
+.cudo.have{border-color:#e7c27a99;background:linear-gradient(160deg,#2a3a2a,#12282a)}
+.cudo.have img{filter:drop-shadow(0 0 8px #ffd98088)}
+.cudo b{font:14px Georgia,serif;color:#f1dfb8;margin-top:6px}
+.cudo small{font:11px/1.4 Arial;color:#a9b9ad;margin-top:4px}
+.modal-card h3{font:20px Georgia,serif;color:#f1dfb8;margin:18px 0 4px}
+.smith{display:grid;gap:8px}
+.smith button{display:flex;justify-content:space-between;align-items:center;text-align:left;padding:11px 14px;background:#10272588;border:1px solid #c8ab6f66;color:#f1dfb8;font:15px Georgia,serif}
+.smith button small{display:block;font:11px Arial;color:#e7c27a;letter-spacing:2px;margin-top:3px}
+.smith button b{font:13px Arial;color:#f3cf7a;white-space:nowrap;margin-left:10px}
+.smith button:disabled{cursor:default}
+#level-stats{flex-wrap:wrap}

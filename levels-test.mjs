@@ -9,15 +9,15 @@ const storage=new Map();const localStorage={getItem:k=>storage.get(k)||null,setI
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,state:()=>({p,world,mode,level})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,state:()=>({p,world,mode,level})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 assert(api.LEVELS.length>=12,'all campaigns load');
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const stand=(x,y)=>{const {p}=api.state();p.x=x;p.y=y;p.vy=0;p.vx=0;p.hp=p.maxHp;};
 let total=0;
 for(let i=0;i<api.LEVELS.length;i++){
- const L=api.LEVELS[i];await api.startLevel(i,'day');const {world}=api.state();
+ await api.startLevel(i,'day');const {world,level:L}=api.state();
  assert.equal(api.state().mode,'play',`${L.id}: level starts`);
  const tasks=world.goals.filter(g=>!g.done);total+=tasks.length;
  // the banner must wait while anything is left
@@ -30,6 +30,9 @@ for(let i=0;i<api.LEVELS.length;i++){
    step();assert(g.done,`${L.id}: gate opens once everything before it is done`);
   }else if(g.kind==='use'){
    stand(g.x-50,g.y);api.pressed.add('KeyE');step();api.pressed.clear();assert(g.done,`${L.id}: E completes ${g.off}`);step(80);
+  }else if(g.kind==='plow'){
+   api.breakPlow(g.plow);const t=world.items.find(it=>it.type==='tovar'&&it.plow===g.plow);assert(t,`${L.id}: a broken plow drops its treasure`);
+   stand(t.x,t.y+30);step();step();assert(g.done,`${L.id}: taking the treasure completes the plow goal`);
   }else if(g.kind==='take'){
    stand(g.x,g.y);step();assert(g.done,`${L.id}: walking over ${g.off} takes it`);
   }

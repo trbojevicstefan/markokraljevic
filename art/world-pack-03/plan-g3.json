@@ -1,0 +1,173 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "oranje-sky",
+      "group": 3,
+      "kind": "background",
+      "canvas": [
+        1774,
+        887
+      ],
+      "alpha": false,
+      "height": 887,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: summer imperial road through golden wheat fields and ploughed furrows near Prilep, lone PEAR trees with green leaves, earth field boundaries. In distance jagged rocks topped by Marko's medieval stone fortress towers, NO domed monastery. ONLY warm summer sky and scattered clouds, no landscape. Wide landscape composition, horizontal edges continue seamlessly with similar height and color at each edge. No animals or people, no text. Fully painted opaque background."
+    },
+    {
+      "id": "oranje-far",
+      "group": 3,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: summer imperial road through golden wheat fields and ploughed furrows near Prilep, lone PEAR trees with green leaves, earth field boundaries. In distance jagged rocks topped by Marko's medieval stone fortress towers, NO domed monastery. ONLY distant low hills and Marko's stone fortress towers on rocky heights, along bottom half, upper half transparent. Wide landscape composition, horizontal edges continue seamlessly with similar height and color at each edge. No animals or people, no text. True transparent alpha background."
+    },
+    {
+      "id": "oranje-mid",
+      "group": 3,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: summer imperial road through golden wheat fields and ploughed furrows near Prilep, lone PEAR trees with green leaves, earth field boundaries. In distance jagged rocks topped by Marko's medieval stone fortress towers, NO domed monastery. ONLY middle-distance golden fields, ploughed earth, lone green pear trees and a few Ottoman canvas tents. Upper half transparent, no sky fill. Wide landscape composition, horizontal edges continue seamlessly with similar height and color at each edge. No animals or people, no text. True transparent alpha background."
+    },
+    {
+      "id": "oranje-near",
+      "group": 3,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": true,
+      "height": 724,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: summer imperial road through golden wheat fields and ploughed furrows near Prilep, lone PEAR trees with green leaves, earth field boundaries. In distance jagged rocks topped by Marko's medieval stone fortress towers, NO domed monastery. ONLY foreground wheat and sparse reeds along lower fifth, upper area transparent, no full scene. Wide landscape composition, horizontal edges continue seamlessly with similar height and color at each edge. No animals or people, no text. True transparent alpha background."
+    },
+    {
+      "id": "oranje-vista",
+      "group": 3,
+      "kind": "background",
+      "canvas": [
+        2172,
+        724
+      ],
+      "alpha": false,
+      "height": 724,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: summer imperial road through golden wheat fields and ploughed furrows near Prilep, lone PEAR trees with green leaves, earth field boundaries. In distance jagged rocks topped by Marko's medieval stone fortress towers, NO domed monastery. A complete gorgeous wide side-scrolling game-level panorama with imperial dirt road, wheat, furrows, pear trees and distant fortress. No characters. Wide landscape composition, horizontal edges continue seamlessly with similar height and color at each edge. No animals or people, no text. Fully painted opaque background."
+    },
+    {
+      "id": "tlo-oranje",
+      "group": 3,
+      "kind": "ground",
+      "canvas": [
+        1024,
+        384
+      ],
+      "height": 384,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. A horizontally seamless rectangular cross-section strip of hard-packed earth road with ploughed furrows at its grassy edges. Strict side elevation, no scenery or perspective. Flat walkable top at one-sixth height, transparent above, continuous dense soil all the way to both side edges and bottom, NO rounded island ends. Bottom fades to near-black #0b0f10. Wide 1024x384 intended canvas."
+    },
+    {
+      "id": "prop-plast-sena",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 450,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: rounded mound of golden hay, tied at top. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "prop-kola-seno",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 550,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: complete wooden two-wheel hay cart loaded high with golden hay, no draft animal. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "prop-turski-sator",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 600,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: complete Ottoman military canvas tent with red patterned panels, crescent finial, no writing. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "prop-medjas",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 320,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: old rough upright stone field boundary marker. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "prop-kruska",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 880,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: one complete isolated green-leafed pear tree with visible ripe pears, entire roots and canopy. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "prop-krst-raskrsce",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 600,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: weathered wooden roadside Orthodox cross on a small stone footing. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "cilj-tovar-blaga",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 500,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: one pack saddle set on ground supporting THREE ironbound treasure chests overflowing with gold, grouped together. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    },
+    {
+      "id": "plug-slomljen",
+      "group": 3,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 350,
+      "alpha": true,
+      "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated whole side-view object: broken wooden plough and broken ox yoke lying together in one grounded pile. Entire object visible, true transparent alpha background, no terrain slab or ellipse shadow, no detached effects, no text. Base rests on bottom of canvas."
+    }
+  ]
+}

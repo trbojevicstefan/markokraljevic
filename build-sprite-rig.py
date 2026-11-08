@@ -116,6 +116,29 @@ for name in PACK3:
     tallest = max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
     SCALES[name] = (STANDING[who] / tallest * PACK3_FIX.get(name, 1), 'feet' if not name.endswith(('ledge', 'walljump', 'roll')) else 'center')
 
+# Animation pack 04 and later: the artist draws each new clip at the same zoom as that character's idle clip
+# (art/animation-pack-04/preview.png compares them side by side), so it shares the idle scale.
+PACK4_REF = {'marko-climb': 'marko-idle', 'marko-wallslide': 'marko-idle', 'marko-throw': 'marko-idle',
+             'archer-shoot-down': 'archer-idle', 'volovi-plug': None, 'volovi-beg': None}
+PACK4_REF.update({f'{c}-jump': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'palikuca', 'oklopnik']})
+for name, ref in PACK4_REF.items():
+    if not os.path.exists(os.path.join(ROOT, name + '.json')):
+        continue
+    mode = 'center' if name in ('marko-climb', 'marko-wallslide') or name.startswith('volovi') else 'feet'
+    SCALES[name] = (SCALES[ref][0] if ref else 0.62, mode)
+# new characters (spearman, hound, musketeer): their own clips, matched to their idle body height
+NEW_FOES = {'kopljanik': 118, 'tufekdzija': 116, 'pas': 58}
+for who, height in NEW_FOES.items():
+    if not os.path.exists(os.path.join(ROOT, who + '-idle.json')):
+        continue
+    manifest = json.load(open(os.path.join(ROOT, who + '-idle.json')))
+    cells = list(manifest['frame_layout']['rows'].values())[0]
+    im = np.array(Image.open(os.path.join(ROOT, who + '-idle.png')).convert('RGBA'))
+    scale = height / max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
+    for k in ['idle', 'run', 'attack', 'shoot', 'hurt', 'death', 'jump']:
+        if os.path.exists(os.path.join(ROOT, f'{who}-{k}.json')):
+            SCALES[f'{who}-{k}'] = (scale, 'feet' if k != 'death' else 'center')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

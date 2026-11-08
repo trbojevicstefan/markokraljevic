@@ -1,0 +1,83 @@
+[
+  {
+    "id": "marko-climb",
+    "group": 2,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-climb/atlas.png",
+    "manifest": "assets/marko-climb/manifest.json"
+  },
+  {
+    "id": "marko-wallslide",
+    "group": 2,
+    "frames": 4,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-wallslide/atlas.png",
+    "manifest": "assets/marko-wallslide/manifest.json"
+  },
+  {
+    "id": "marko-throw",
+    "group": 2,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-throw/atlas.png",
+    "manifest": "assets/marko-throw/manifest.json"
+  },
+  {
+    "id": "sword-jump",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/sword-jump/atlas.png",
+    "manifest": "assets/sword-jump/manifest.json"
+  },
+  {
+    "id": "shield-jump",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/shield-jump/atlas.png",
+    "manifest": "assets/shield-jump/manifest.json"
+  },
+  {
+    "id": "archer-jump",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/archer-jump/atlas.png",
+    "manifest": "assets/archer-jump/manifest.json"
+  },
+  {
+    "id": "palikuca-jump",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/palikuca-jump/atlas.png",
+    "manifest": "assets/palikuca-jump/manifest.json"
+  },
+  {
+    "id": "oklopnik-jump",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/oklopnik-jump/atlas.png",
+    "manifest": "assets/oklopnik-jump/manifest.json"
+  },
+  {
+    "id": "archer-shoot-down",
+    "group": 2,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/archer-shoot-down/atlas.png",
+    "manifest": "assets/archer-shoot-down/manifest.json"
+  }
+]

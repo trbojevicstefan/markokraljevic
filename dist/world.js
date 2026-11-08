@@ -30,9 +30,26 @@ export function makeWorld(){
  [[1600,430],[8350,430],[27400,430]].forEach(([x,y],i)=>items.push({id:100+i,x,y,type:'relic',taken:false}));
  return {platforms,enemies,items,runes,barriers};
 }
+// Bodies stand on platform tops. Thin platforms are one-way; `solid` blocks (pohod terrain, towers, crates) also stop
+// sideways movement and bump heads. A grounded body climbs low steps (stairs) and stays glued to them going down.
+export const STEP_UP=30;
 export function integrate(body,dt,platforms,runes=[]){
- const old=body.y;body.vy+=GRAVITY*dt;body.x+=body.vx*dt;body.y+=body.vy*dt;body.grounded=false;
- if(body.vy>=0){for(const p of platforms){if(p.kind==='magic'&&!runes[p.rune]?.active)continue;if(body.x+body.w/2>p.x&&body.x-body.w/2<p.x+p.w&&old<=p.y+2&&body.y>=p.y){body.y=p.y;body.vy=0;body.grounded=true;break;}}}
+ const hw=(body.w||34)/2,h=body.h||100,ground=body.grounded;let feet=body.y;
+ body.vy+=GRAVITY*dt;body.wallHit=0;
+ let nx=body.x+body.vx*dt;
+ if(nx!==body.x){const dir=Math.sign(nx-body.x);
+  for(const q of platforms){if(!q.solid||q.off)continue;if(feet<=q.y+1||feet-h>=q.y+q.h)continue;
+   const face=dir>0?q.x:q.x+q.w,edge=body.x+dir*hw,next=nx+dir*hw;
+   if(dir>0?(edge<=face+.5&&next>face):(edge>=face-.5&&next<face)){
+    if(ground&&body.vy>=0&&q.y>=feet-STEP_UP&&!platforms.some(o=>o.solid&&!o.off&&o!==q&&o.y+o.h>q.y-h&&o.y<q.y&&nx+hw>o.x&&nx-hw<o.x+o.w)){feet=q.y;continue;}
+    nx=face-dir*hw;body.wallHit=dir;}}}
+ body.x=nx;body.y=feet;const old=body.y;body.y+=body.vy*dt;body.grounded=false;
+ if(body.vy<0){for(const q of platforms){if(!q.solid||q.off)continue;const bottom=q.y+q.h;if(body.x+hw>q.x+2&&body.x-hw<q.x+q.w-2&&old-h>=bottom-1&&body.y-h<bottom){body.y=bottom+h;body.vy=0;}}}
+ if(body.vy>=0){let best=null;
+  for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&old<=q.y+2&&body.y>=q.y&&(!best||q.y<best.y))best=q;}
+  if(!best&&ground&&body.vy<320){for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&q.y>body.y&&q.y-body.y<=STEP_UP-2&&(!best||q.y<best.y))best=q;}}
+  if(best){body.y=best.y;body.vy=0;body.grounded=true;body.on=best;}else body.on=null;}
+ else body.on=null;
 }
 
 // ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
@@ -62,12 +79,109 @@ function makeGoals(L,floorAt){
  return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
   return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
 }
-export function makeLevel(L,index,variant='day'){
- const zone=LEVEL_ZONE+index,platforms=L.platforms.map(q=>({x:q.x,y:q.y,w:q.w,h:q.h||150,kind:'stone'})),enemies=[],items=[];
- const mix=L.design?.enemyMix,pool=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer']),floorAt=x=>platforms.find(q=>(q.y>=585||q.h>=150)&&x>q.x+40&&x<q.x+q.w-40),ground=x=>!!floorAt(x);
- let k=0;const gap=470;for(let x=620;x<L.width-260;x+=gap){const xx=x+((k*137)%120)-60;if(!ground(xx)||Math.abs(xx-L.spawn.x)<420)continue;const type=pool[k%pool.length],hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+k,x:xx,y:floorAt(xx).y,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(k%4)*.23,stun:0,flash:0,alive:true,home:xx,attackId:0});const px=xx+85;if(variant==='storm'&&k%2===0&&floorAt(px)===floorAt(xx)){const t2=pool[(k+1)%pool.length],h2=FOE_HP[t2]??90;enemies.push({id:5050+index*100+k,x:px,y:floorAt(px).y,w:36,h:75,hp:h2,maxHp:h2,type:t2,zone,face:-1,mode:'idle',timer:.8+(k%3)*.2,stun:0,flash:0,alive:true,home:px,attackId:0});}k++;}
- let j=0;for(let x=900;x<L.width-300;x+=1300){if(ground(x))items.push({id:7000+index*50+j,x,y:floorAt(x).y-35,type:j%2?'herb':'wine',taken:false});j++;}
- const high=platforms.filter(q=>q.y<585).sort((a,b)=>a.y-b.y)[0];if(high)items.push({id:7045+index,x:high.x+high.w/2,y:high.y-35,type:'relic',taken:false});
- chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:L.width,goal:goalFinish(L),message:''};
- return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L,floorAt),level:L};
+// ================= pohod layout: rooms read left to right =================
+// Ground is solid and rises and falls by stairs and cliffs. Archers wait on towers and watchtowers that Marko has to
+// climb (ladders, ledge grabs); chimneys are climbed by jumping wall to wall. Pits are rare and short.
+const RISE=24,RUN=46,LOW=660;
+export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1}};
+// Marvels from the songs about Marko, one hidden in each land; each one strengthens him for good.
+export const CUDA=[
+ {id:'sarceva-potkova',name:'Šarčeva potkova',song:'Šarac, Markov verni konj',perk:'Brži trk',land:'selo'},
+ {id:'gusle',name:'Gusle',song:'Guslar peva o Marku',perk:'Bes se puni brže',land:'klisura'},
+ {id:'orlovo-pero',name:'Orlovo pero',song:'Marko Kraljević i orao',perk:'Drži skok da lebdiš pri padu',land:'suma'},
+ {id:'carska-knjiga',name:'Carska knjiga',song:'Uroš i Mrnjavčevići',perk:'+15 zdravlja',land:'manastir'},
+ {id:'oceva-sablja',name:'Očeva sablja',song:'Marko Kraljević poznaje očinu sablju',perk:'Laki udarci jači',land:'tvrdjava'},
+ {id:'buzdovan',name:'Buzdovan',song:'Marko Kraljević i Musa Kesedžija',perk:'Bačen topuz jači',land:'prevoj'},
+ {id:'vilino-pero',name:'Vilino pero',song:'Marko Kraljević i vila',perk:'Ravijojla se brže vraća',land:'pecina'},
+ {id:'pehar-vina',name:'Pehar rujnog vina',song:'Marko pije uz ramazan vino',perk:'Čutura prima još jedno vino',land:'podrum'},
+ {id:'tri-kese-dukata',name:'Tri kese dukata',song:'Smrt Marka Kraljevića',perk:'Više dukata',land:'rudnik'},
+ {id:'kljuc-kule',name:'Ključ arapske kule',song:'Marko Kraljević ukida svadbarinu',perk:'Kovčezi daju duplo',land:'rusevine'},
+ {id:'zlatno-ralo',name:'Zlatno ralo',song:'Oranje Marka Kraljevića',perk:'Teški udarci jači',land:'oranje'},
+ {id:'musina-sablja',name:'Musina sablja',song:'Marko Kraljević i Musa Kesedžija',perk:'Manje primljene štete',land:'kacanik'},
+];
+export const RECIPES={
+ selo:'flat crates stairs+ watch flat stairs- ledges flat pillars crates terrace+ flat terrace- watch flat',
+ klisura:'flat terrace+ ladder+ flat tower drop bridge flat chimney flat stairs+ watch drop crates flat',
+ suma:'flat watch crates terrace+ flat watch terrace- ledges flat pillars watch stairs+ flat stairs- chimney flat',
+ manastir:'flat stairs+ flat stairs+ crates tower flat chimney flat stairs- ledges flat stairs+ tower flat',
+ tvrdjava:'flat crates tower flat chimney^ flat tower crates drop flat pillars ladder+ tower flat crates',
+ prevoj:'flat stairs+ terrace+ ladder+ flat gap flat watch stairs+ chimney flat terrace+ crates flat drop',
+ pecina:'flat terrace- crates flat chimney flat ledges terrace+ flat pillars gap flat tower crates flat',
+ podrum:'flat crates stairs- crates flat ladder+ crates flat chimney crates stairs+ flat tower crates drop',
+ mocvara:'flat bridge watch flat bridge crates flat watch ledges flat bridge pillars watch flat',
+ rudnik:'flat ladder+ crates flat drop ledges tower flat chimney crates ladder+ flat drop crates flat',
+ rusevine:'flat stairs+ ladder+ chimney^ flat stairs+ tower ladder+ crates chimney^ terrace+ flat ladder+ watch stairs+ flat',
+ reka:'flat crates bridge flat watch stairs+ flat stairs- bridge crates flat ledges watch flat',
+ oranje:'flat plow crates flat plow watch stairs+ flat stairs- plow crates flat',
+};
+function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
+export function buildLayout(L,variant='day'){
+ const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[];let x=0,gy=590,run=null;
+ const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
+ // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
+ const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
+ const loot=()=>{const r=R();return r<.15?{herb:1}:r<.25?{wine:1}:{coins:ri(2,6)};};
+ const crate=(bx,kind,o={})=>{const S=BREAK[kind];breakables.push({id:breakables.length,x:Math.round(bx),y:o.y??gy,kind,hp:S.hp,w:S.w,h:S.h,solid:!!S.solid,loot:o.loot||loot()});return S.w;};
+ const steps=dir=>{const n=ri(4,7),x0=x,base=gy;busy.push([x0-60,x0+n*RUN+60]);
+  if(dir<0){ground(n*RUN);for(let i=0;i<n;i++)block(x0+i*RUN,(n-i)*RUN+40,base-RISE*(i+1),{kind:'step'});gy=base-RISE*n;}
+  else{const m=Math.min(n,Math.floor((LOW-base)/RISE));if(m<2)return;for(let i=0;i<m;i++)block(x0-40,(i+1)*RUN+40,base+RISE*(i+1),{kind:'step'});gy=base+RISE*m;run=block(x0-40,m*RUN+40,gy,{ground:true});x+=m*RUN;}};
+ // the road never sinks far below the start, so a fall is a pit only where the land has a real gap
+ const cliff=d=>{if(gy+d>LOW)return;busy.push([x-60,x+60]);gy+=d;};
+ const room={
+  flat(){const len=ri(440,620),x0=x;ground(len);spots.push({x:x0+len*.55,y:gy});if(R()<.5)crate(x0+len*.2,pick(['cup','korpa','sanduk','cup']));},
+  arena(){const len=ri(760,880),x0=x;ground(len);spots.push({x:x0+len*.35,y:gy},{x:x0+len*.68,y:gy});},
+  crates(){const len=ri(380,480),x0=x;ground(len);let bx=x0+80;for(let i=ri(2,4);i>0;i--)bx+=crate(bx,pick(['sanduk','cup','bure','korpa','cup','sanduk']))+ri(16,44);if(R()<.6)spots.push({x:x0+len-70,y:gy});},
+  'stairs+'(){steps(-1);ground(ri(160,240));},
+  'stairs-'(){steps(1);ground(ri(160,240));},
+  'terrace+'(){cliff(-ri(80,104));const x0=x,len=ri(300,420);ground(len);spots.push({x:x0+len*.6,y:gy});},
+  'terrace-'(){cliff(ri(80,104));ground(ri(300,400));},
+  drop(){cliff(ri(150,230));ground(ri(320,420));},
+  'ladder+'(){ground(ri(130,170));const h=ri(190,250),cx=x;cliff(-h);ladders.push({x:cx-24,top:gy,bottom:gy+h,side:1});const x0=x,len=ri(320,420);ground(len);spots.push({x:x0+110,y:gy,perch:true});},
+  tower(){ground(ri(160,220));const H=ri(200,240),w=ri(160,190),tx=x;block(tx,w,gy-H,{tower:true});ladders.push({x:tx-22,top:gy-H,bottom:gy,side:1});spots.push({x:tx+w*.6,y:gy-H,perch:true});if(R()<.5)rewards.push({x:tx+w*.3,y:gy-H,prio:1});busy.push([tx-90,tx+w+60]);ground(w);ground(ri(200,280));},
+  watch(){const x0=x,len=ri(400,460);ground(len);const cx=x0+len*.55,top=gy-ri(220,245);platforms.push({x:Math.round(cx-85),y:top,w:170,h:18,kind:'deck'});ladders.push({x:Math.round(cx-62),top,bottom:gy,side:0});towers.push({kind:'watch',x:Math.round(cx),top,base:gy});spots.push({x:cx+30,y:top,perch:true});busy.push([cx-130,cx+130]);},
+  // an open shaft above the road: jump in, climb wall to wall, a reward waits on top
+  chimney(){const x0=x,len=ri(520,600);ground(len);const aw=ri(100,120),gap=ri(150,162),bw=ri(150,180),ax=x0+ri(100,140),top=gy-ri(420,470),low=gy-150;
+   block(ax,aw,top,{hang:true,h:low-top});block(ax+aw+gap,bw,top-20,{hang:true,h:low-top+20});rewards.push({x:ax+aw+gap+bw/2,y:top-20,prio:3});busy.push([ax-40,ax+aw+gap+bw+40]);},
+  // the road itself climbs: walk under the hanging wall, jump wall to wall, go on from the top of the tower
+  'chimney^'(){ground(ri(150,200));const aw=ri(100,120),gap=ri(150,162),bw=ri(180,220),ax=x,H=ri(330,370);
+   block(ax,aw,gy-H,{hang:true,h:H-150});ground(aw+gap+bw);const b=block(x-bw,bw,gy-H-20,{tower:true,ground:true});busy.push([ax-40,x+40]);rewards.push({x:b.x+bw*.4,y:b.y,prio:2});gy=b.y;run=null;},
+  ledges(){const x0=x,len=ri(480,560);ground(len);const d=R()<.5?1:-1;let px=d>0?x0+60:x0+len-200;for(let i=1;i<=3;i++){platforms.push({x:Math.round(px),y:gy-110*i,w:140,h:18,kind:'plank'});if(i<3)px+=d*ri(150,170);}rewards.push({x:px+70,y:gy-330,prio:2});busy.push([x0,x0+len]);},
+  pillars(){const x0=x,len=ri(460,540);ground(len);for(const k of[.3,.68]){const pw=ri(70,90),ph=ri(60,90);block(x0+len*k,pw,gy-ph,{pillar:true});}busy.push([x0+len*.25,x0+len*.8]);spots.push({x:x0+len*.5,y:gy});},
+  gap(){busy.push([x-40,x+200]);x+=ri(130,165);run=null;ground(ri(260,340));},
+  bridge(){const w=ri(280,340);busy.push([x-40,x+w+40]);platforms.push({x:x-10,y:gy,w:w+20,h:18,kind:'plank',bridge:true});x+=w;run=null;ground(ri(260,340));},
+  plow(){const x0=x,len=ri(1000,1150);ground(len);plows.push({x:x0+len*.8,y:gy});spots.push({x:x0+len*.55,y:gy});busy.push([x0+len*.6,x0+len]);},
+ };
+ ground(ri(600,680));const spawn={x:80,y:590};
+ for(const name of(RECIPES[L.id]||'flat crates stairs+ watch flat stairs- ledges flat tower flat').split(' '))room[name]?.();
+ room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
+ // the best reward hides the land's marvel, the others become chests
+ rewards.sort((a,b)=>b.prio-a.prio);const cudo=CUDA.find(c=>c.land===L.id);
+ rewards.forEach((r,i)=>{if(i===0&&cudo)r.cudo=cudo.id;else crate(r.x,'kovceg',{y:r.y,loot:{coins:ri(14,22)}});});
+ if(cudo&&!rewards.length)rewards.push({x:goal.x-260,y:goal.y,cudo:cudo.id});
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+}
+export const EXTRA_LEVELS=[{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
+ layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
+ fallbackLayers:[{id:'selo-sky',speed:.04},{id:'selo-far',speed:.16},{id:'selo-mid',speed:.38},{id:'selo-near',speed:.72}],ground:'selo',
+ props:[{id:'prop-plast-sena',x:700,y:590,height:150},{id:'prop-kruska',x:1500,y:590,height:300},{id:'prop-medjas',x:2100,y:590,height:70},{id:'prop-kola-seno',x:2700,y:590,height:170},{id:'prop-krst-raskrsce',x:3400,y:590,height:190},{id:'prop-turski-sator',x:4100,y:590,height:200},{id:'prop-plast-sena',x:4800,y:590,height:150},{id:'prop-kruska',x:5500,y:590,height:300},{id:'prop-taraba-ravna',x:6000,y:590,height:140}],
+ design:{goal:'Zaustavi turska rala i uzmi tri tovara blaga'}}];
+export function makeLevel(L,index,variant='day',opts={}){
+ const zone=LEVEL_ZONE+index,B=buildLayout(L,variant),enemies=[],items=[],platforms=B.platforms;
+ const mix=L.design?.enemyMix,base=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer','akindzija']);
+ const pool=[...base,...(opts.extraFoes||[]).filter(t=>!base.includes(t)&&t!=='tufekdzija')];
+ const floorAt=x=>{let best=null;for(const q of platforms)if(q.ground&&x>q.x+40&&x<q.x+q.w-40&&(!best||q.y<best.y))best=q;return best;};
+ const foe=(type,x,y,o={})=>{const hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+enemies.length,x:Math.round(x),y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
+ let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(Math.abs(s.x-B.spawn.x)<480)continue;
+  if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
+  if(s.x-lastX<260)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
+  if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
+ let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
+ for(const r of B.rewards)if(r.cudo)items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
+ // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
+ const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}
+ props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
+ const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
+ chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
+ return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L2,floorAt),level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }

@@ -1,0 +1,17 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "razbi-kovceg-otvoren",
+      "group": 1,
+      "kind": "object",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "height": 450,
+      "alpha": true,
+      "prompt": "Precise edit of sources/razbi-kovceg.png: open lid and reveal shining gold coins. Preserve same chest, Serbian eagle panel, metal bands, perspective and scale. True transparent background, no outside halo or ellipse shadow."
+    }
+  ]
+}

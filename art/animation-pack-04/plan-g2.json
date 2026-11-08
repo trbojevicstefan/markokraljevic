@@ -1,0 +1,158 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-climb",
+      "group": 2,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 50,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 8 full-body poses arranged in 4 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 8-phase alternating ladder climb, THREE QUARTER BACK VIEW facing upward/right. 1 left hand reaches high right foot raises; 2 left hand grips and right foot plants; 3 pushes upward; 4 right hand passes; 5 RIGHT hand high LEFT foot raises; 6 right hand grips left foot plants; 7 pushes; 8 returns. Mace hangs attached to belt. NO ladder drawn. Body centered in each slot."
+    },
+    {
+      "id": "marko-wallslide",
+      "group": 2,
+      "who": "marko",
+      "frames": 4,
+      "loop": true,
+      "fps": 12,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 20,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 4 full-body poses arranged in 2 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: Four phases of slow wall slide facing RIGHT: right palm and boot pressed against imaginary wall directly at body's right edge; left knee bent; shoulders compress; cloak settles; return. NO wall drawn."
+    },
+    {
+      "id": "marko-throw",
+      "group": 2,
+      "who": "marko",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 60,
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 8 full-body poses arranged in 4 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 guard gripping spiked mace; 2 draw mace over shoulder; 3 maximum backswing above shoulder; 4 arm extends forward and mace just leaving fingertips, still almost touching hand; 5 empty extended hand follows through, NO mace; 6 empty arm settles, NO mace; 7 empty hand ready to catch; 8 empty-hand guard. Mace appears ONLY poses 1–4. No airborne extra weapon in later frames."
+    },
+    {
+      "id": "sword-jump",
+      "group": 2,
+      "who": "sword",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 deep crouch anticipation; 2 toe push-off; 3 rising tucked knees; 4 apex tucked stance; 5 legs extend toward landing; 6 deep landing crouch. Saber retained in hand."
+    },
+    {
+      "id": "shield-jump",
+      "group": 2,
+      "who": "shield",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/shield-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 deep crouch anticipation; 2 toe push-off; 3 rising tucked knees; 4 apex tucked stance; 5 legs extend toward landing; 6 deep landing crouch. Round shield stays in front of chest, saber retained."
+    },
+    {
+      "id": "archer-jump",
+      "group": 2,
+      "who": "archer",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/archer-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 deep crouch anticipation; 2 toe push-off; 3 rising tucked knees; 4 apex tucked stance; 5 legs extend toward landing; 6 deep landing crouch. Bow retained in hand."
+    },
+    {
+      "id": "palikuca-jump",
+      "group": 2,
+      "who": "palikuca",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/palikuca-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 deep crouch anticipation; 2 toe push-off; 3 rising tucked knees; 4 apex tucked stance; 5 legs extend toward landing; 6 deep landing crouch. Lit torch retained in hand, attached flame only."
+    },
+    {
+      "id": "oklopnik-jump",
+      "group": 2,
+      "who": "oklopnik",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/oklopnik-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 deep crouch anticipation; 2 toe push-off; 3 rising tucked knees; 4 apex tucked stance; 5 legs extend toward landing; 6 deep landing crouch. Heavy low jump, warhammer and shield retained, visibly heavy deep landing."
+    },
+    {
+      "id": "archer-shoot-down",
+      "group": 2,
+      "who": "archer",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/archer-idle/base-source.png",
+      "prompt": "Production painterly cel-shaded 2D game animation, EXACT identity, clothing, face, colors and weapons of supplied character reference. EXACTLY 6 full-body poses arranged in 3 columns and TWO rows, read left to right top row then lower row. Invisible equal slots, no drawn grid or text. Pure flat #00FF00 green background in every empty pixel; NO shadows, floor, glows or decorative motion streaks. Whole character and weapons inside each slot, generous green gutters. Same anatomical head size and body proportions in every pose. Facing RIGHT except specified back view. Far limbs darker. Shared foot baseline within each row, jumping height is controlled by game, poses convey action. Action: 1 ready standing stance; 2 raise bow aimed DOWN and RIGHT at 35 degrees; 3 full draw while aiming down 35 degrees; 4 release at same angle, arrow just leaving bow; 5 recoil empty bow; 6 return. No platform drawn, no floating projectiles detached from silhouette."
+    }
+  ]
+}

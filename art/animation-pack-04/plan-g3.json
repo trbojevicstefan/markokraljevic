@@ -1,0 +1,43 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "volovi-plug",
+      "group": 3,
+      "who": "volovi",
+      "frames": 8,
+      "loop": true,
+      "fps": 10,
+      "cols": 2,
+      "rows": 4,
+      "cell": [
+        1024,
+        512
+      ],
+      "extra": 0,
+      "targetHeight": 426,
+      "referenceHeight": 426,
+      "reference": "art/animation-pack-04/assets/volovi/base-source.png",
+      "prompt": "Exact oxen, yoke and Janissary identity from supplied reference, painterly cel-shaded 2D game animation. EXACTLY EIGHT wide full-group poses arranged TWO COLUMNS and FOUR ROWS, invisible equal 2:1 cells; read left to right then next row. Pure flat #00FF00 green, no grid, labels, floor strip, shadow or haze. All figures and tools fully inside own cell with green gutters. Same anatomical scale across poses, shared lowest hoof/plough contact line in each row. Far ox darker. The SAME two yoked oxen WALK right pulling plough. Janissary follows, one hand on handles, other holds switch. 1 near front hoof forward contact; 2 compression; 3 opposite hind hoof passes; 4 push; 5 OPPOSITE front hoof contact; 6 compression opposite legs; 7 passing opposite; 8 push returning to 1. Farmer alternates feet, yoke slightly rocks. Plough share touches ground line and pushes a few attached soil clods. No detached particles."
+    },
+    {
+      "id": "volovi-beg",
+      "group": 3,
+      "who": "volovi",
+      "frames": 8,
+      "loop": true,
+      "fps": 14,
+      "cols": 2,
+      "rows": 4,
+      "cell": [
+        1024,
+        512
+      ],
+      "extra": 0,
+      "targetHeight": 330,
+      "referenceHeight": 426,
+      "reference": "art/animation-pack-04/assets/volovi/base-source.png",
+      "prompt": "Exact oxen, yoke and Janissary identity from supplied reference, painterly cel-shaded 2D game animation. EXACTLY EIGHT wide full-group poses arranged TWO COLUMNS and FOUR ROWS, invisible equal 2:1 cells; read left to right then next row. Pure flat #00FF00 green, no grid, labels, floor strip, shadow or haze. All figures and tools fully inside own cell with green gutters. Same anatomical scale across poses, shared lowest hoof/plough contact line in each row. Far ox darker. ONLY the SAME TWO OXEN now fleeing right, with BROKEN halves of yoke on shoulders and loose rope. NO plough, NO farmer, NO human, NO dirt pile. 8 alternating gallop phases: contact near forelegs, compression, gathered under body, extended push, opposite contact, opposite compression, gathered, extended push. Both heads and horn pairs distinct, near ox golden brown and far ox dark brown."
+    }
+  ]
+}
