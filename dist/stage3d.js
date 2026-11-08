@@ -23,7 +23,31 @@ const LOOKS = [
 
 // Winter pass (prevoj): cold grade, no leaves, snowfall.
 LOOKS.push({gain: [0.94, 1.0, 1.1], lift: [0.03, 0.04, 0.06], sat: .82, contrast: 1.05, dusk: 0, rays: .7, magic: 0, leaves: 0, wind: 1.6, fireflies: 0, embers: 0, haze: [0.8, 0.86, 0.96], snow: 1});
-for (const l of LOOKS) l.snow ??= 0;
+// Second set of places: cave, cellar, swamp, mine, hilltop ruins, river before dawn.
+LOOKS.push(
+  {gain: [0.92, 1.02, 1.07], lift: [0.0, 0.03, 0.045], sat: 1.08, contrast: 1.07, dusk: 0, rays: .25, magic: .8, leaves: 0, wind: .3, fireflies: .7, embers: 0, haze: [0.3, 0.6, 0.62], grass: 0},
+  {gain: [1.08, 0.95, 0.84], lift: [0.03, 0.015, 0.0], sat: 1.0, contrast: 1.1, dusk: .2, rays: .15, magic: 0, leaves: 0, wind: .2, fireflies: 0, embers: .5, haze: [0.46, 0.34, 0.26], grass: 0},
+  {gain: [0.92, 1.0, 0.96], lift: [0.01, 0.03, 0.03], sat: .95, contrast: 1.06, dusk: 0, rays: .3, magic: .3, leaves: .3, wind: .6, fireflies: 1, embers: 0, haze: [0.42, 0.56, 0.48]},
+  {gain: [1.05, 0.96, 0.88], lift: [0.02, 0.012, 0.0], sat: .9, contrast: 1.12, dusk: .1, rays: .2, magic: 0, leaves: 0, wind: .3, fireflies: 0, embers: .35, haze: [0.5, 0.42, 0.34], grass: 0},
+  {gain: [1.08, 0.98, 0.9], lift: [0.02, 0.01, 0.02], sat: 1.06, contrast: 1.08, dusk: .25, rays: 1.2, magic: 0, leaves: .8, wind: 1.8, fireflies: 0, embers: 0, haze: [0.82, 0.7, 0.58]},
+  {gain: [1.0, 0.97, 1.04], lift: [0.03, 0.02, 0.05], sat: 1.0, contrast: 1.04, dusk: .15, rays: .8, magic: 0, leaves: .5, wind: 1, fireflies: .3, embers: 0, haze: [0.72, 0.7, 0.8]},
+);
+for (const l of LOOKS) { l.snow ??= 0; l.grass ??= 1; l.rain = 0; l.night = 0; l.storm = 0; }
+
+// Night and storm versions of any look: the painted layers are already dark, so the grade
+// only cools things down; characters and props are tinted separately (see layerMat).
+const weatherLooks = new Map();
+function weatherLook(index, weather) {
+  const base = LOOKS[index] || LOOKS[0];
+  if (weather !== 'night' && weather !== 'storm') return base;
+  const key = index + weather;
+  if (weatherLooks.has(key)) return weatherLooks.get(key);
+  const l = structuredClone(base), mul = (a, m) => a.map((v, i) => v * m[i]);
+  if (weather === 'night') Object.assign(l, {gain: mul(l.gain, [.92, .95, 1.04]), lift: l.lift.map((v, i) => v + [0, .008, .025][i]), sat: l.sat * .86, rays: 0, dusk: 0, leaves: l.leaves * .3, fireflies: Math.max(l.fireflies, .8), magic: Math.max(l.magic, .3), embers: l.embers * .6, haze: mul(l.haze, [.42, .5, .72]), night: 1});
+  else Object.assign(l, {gain: mul(l.gain, [.95, .97, 1.02]), sat: l.sat * .8, contrast: l.contrast * 1.06, rays: 0, dusk: 0, wind: 2.8, leaves: base.grass ? Math.min(1, l.leaves + .3) : 0, fireflies: 0, embers: l.embers * .3, snow: 0, haze: mul(l.haze, [.6, .65, .74]), rain: base.grass ? 1 : .3, night: .45, storm: 1});
+  weatherLooks.set(key, l);
+  return l;
+}
 
 const NOISE = /* glsl */`
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
@@ -112,6 +136,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
   const scene = new THREE.Scene();
   const clock = {time: 0};
   let look = structuredClone(LOOKS[0]);
+  let lastTarget = null;
 
   // ---------- background painting with sky, sun rays and valley mist ----------
   const gorgeTex = new THREE.Texture(gorge);
@@ -335,10 +360,13 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     return t;
   }
   let layerTex = canvasTexture(layer), glowTex = canvasTexture(glow);
+  const tintUniform = {value: new THREE.Vector3(1, 1, 1)};
   const layerMat = new THREE.ShaderMaterial({
-    uniforms: {uTex: {value: layerTex}},
+    uniforms: {uTex: {value: layerTex}, uTint: tintUniform, uLight: {value: new THREE.Vector3(.5, .3, .5)}, uLightAmt: {value: 0}},
     vertexShader: SCREEN_VERT,
-    fragmentShader: `uniform sampler2D uTex;varying vec2 vUv;void main(){vec4 c=texture2D(uTex,vUv);gl_FragColor=vec4(c.rgb*${ART.toFixed(2)},c.a);}`,
+    fragmentShader: `uniform sampler2D uTex;uniform vec3 uTint,uLight;uniform float uLightAmt;varying vec2 vUv;void main(){vec4 c=texture2D(uTex,vUv);
+      vec2 d=(vUv-uLight.xy)*vec2(${(W / H).toFixed(3)},1.);float pool=uLightAmt*(1.-smoothstep(0.,uLight.z,length(d)));
+      gl_FragColor=vec4(c.rgb*mix(uTint,vec3(1.04,1.,.92),pool*.8)*${ART.toFixed(2)},c.a);}`,
     transparent: true, depthTest: false, depthWrite: false,
   });
   const layerMesh = new THREE.Mesh(fullQuad, layerMat);
@@ -429,7 +457,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     grassGeo.instanceCount = n;
   }
   const grassMat = new THREE.ShaderMaterial({
-    uniforms: {uTex: {value: grassTex}, uTime: clockUniform, uCam: camUniform, uTan: {value: tanHalf}, uDusk: bgMat.uniforms.uDusk},
+    uniforms: {uTex: {value: grassTex}, uTime: clockUniform, uCam: camUniform, uTan: {value: tanHalf}, uDusk: bgMat.uniforms.uDusk, uTint: tintUniform},
     vertexShader: /* glsl */`
       attribute vec4 aSeed; uniform float uTime,uTan; uniform vec3 uCam; varying vec2 vUv; varying float vSeed;
       void main(){
@@ -444,15 +472,42 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
         gl_Position=projectionMatrix*viewMatrix*vec4(p,1.);
       }`,
     fragmentShader: /* glsl */`
-      uniform sampler2D uTex; uniform float uDusk; varying vec2 vUv; varying float vSeed;
+      uniform sampler2D uTex; uniform float uDusk; uniform vec3 uTint; varying vec2 vUv; varying float vSeed;
       void main(){vec4 c=texture2D(uTex,vUv);if(c.a<.5)discard;
         vec3 rim=mix(vec3(.16,.12,.05),vec3(.18,.05,.06),uDusk)*smoothstep(.5,1.,vUv.y);
-        gl_FragColor=vec4((c.rgb+rim)*${ART.toFixed(2)},.96);}`,
+        gl_FragColor=vec4((c.rgb+rim)*uTint*${ART.toFixed(2)},.96);}`,
     transparent: true, depthTest: false, depthWrite: false,
   });
   const grass = new THREE.Mesh(grassGeo, grassMat);
   grass.frustumCulled = false; grass.renderOrder = 40;
   scene.add(grass);
+
+  // ---------- rain: slanted streaks in three depths over the world ----------
+  const rainMat = new THREE.ShaderMaterial({
+    uniforms: {uTime: clockUniform, uCam: {value: new THREE.Vector2()}, uRain: {value: 0}, uBolt: {value: 0}},
+    vertexShader: SCREEN_VERT,
+    fragmentShader: /* glsl */`
+      uniform float uTime,uRain,uBolt; uniform vec2 uCam; varying vec2 vUv;
+      float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+      float streaks(vec2 s,float cw,float period,float speed,float len,float par,float density){
+        vec2 p=s+uCam*par;
+        float x=(p.x+p.y*.24)/cw,col=floor(x),r=h(vec2(col,cw));
+        float v=(p.y-uTime*speed)/period+r*7.,cell=floor(v),fy=fract(v);
+        if(h(vec2(col,cell))>density) return 0.;
+        float lf=len/period,head=.15+.7*h(vec2(cell,col));
+        float y=smoothstep(head-lf,head,fy)*step(fy,head);
+        return y*(1.-smoothstep(.05,.22,abs(fract(x)-.5)));
+      }
+      void main(){
+        vec2 s=vec2(vUv.x,1.-vUv.y)*vec2(${W.toFixed(1)},${H.toFixed(1)});
+        float a=streaks(s,7.,240.,1150.,24.,.3,.55)*.16+streaks(s,13.,360.,1600.,44.,.6,.5)*.24+streaks(s,24.,560.,2300.,80.,1.,.45)*.3;
+        gl_FragColor=vec4(vec3(.6,.68,.8)*a*uRain*(1.+uBolt*2.),1.);
+      }`,
+    transparent: true, blending: THREE.AdditiveBlending, depthTest: false, depthWrite: false,
+  });
+  const rain = new THREE.Mesh(fullQuad, rainMat);
+  rain.frustumCulled = false; rain.renderOrder = 30;
+  scene.add(rain);
 
   // ---------- post processing ----------
   const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(W, H, {type: THREE.HalfFloatType}));
@@ -645,7 +700,10 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       camState = {x: state.camX, y: state.camY};
 
       // blend toward the chapter's look
-      const target = LOOKS[state.look ?? state.zone] || LOOKS[0];
+      const target = weatherLook(state.look ?? state.zone, state.weather);
+      // a campaign level's painted layers appear at once, so its grade must not lag behind
+      if (state.weather && target !== lastTarget) look = structuredClone(target);
+      lastTarget = target;
       const k = Math.min(1, dt * .9);
       for (const key of Object.keys(look)) {
         if (Array.isArray(look[key])) look[key] = look[key].map((v, i) => v + (target[key][i] - v) * k);
@@ -664,7 +722,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       u.uPanY.value = Math.max(-30, Math.min(30, (state.camY - 58) * .25));
       u.uDusk.value = look.dusk; u.uRays.value = look.rays; u.uMagic.value = look.magic;
       u.uHaze.value.setRGB(...look.haze);
-      if (state.zone === 5 && !menu && !reduced()) {
+      if ((state.zone === 5 || target.storm) && !menu && !reduced()) {
         nextBolt -= dt;
         if (nextBolt <= 0) { lightning = .55 + Math.random() * .4; nextBolt = 5 + Math.random() * 7; settings.onThunder?.(); }
       }
@@ -683,6 +741,15 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       fireflies.material.uniforms.uIntensity.value = look.fireflies;
       embers.material.uniforms.uIntensity.value = look.embers * 1.2;
       snow.material.uniforms.uIntensity.value = look.snow * .85;
+      grass.visible = target.grass > .5;
+      rain.visible = look.rain > .02;
+      rainMat.uniforms.uRain.value = look.rain * (reduced() ? .5 : 1);
+      rainMat.uniforms.uBolt.value = u.uLightning.value;
+      rainMat.uniforms.uCam.value.set(state.camX * zoom, state.camY * zoom);
+      const nightTint = [.27, .31, .52]; // linear light: about half the brightness on screen
+      tintUniform.value.set(...nightTint.map(v => 1 + (v - 1) * look.night + u.uLightning.value * .5 * look.storm));
+      layerMat.uniforms.uLightAmt.value = look.night;
+      if (state.player) { const [lu, lv] = toScreen(state.player.x, state.player.y - 70); layerMat.uniforms.uLight.value.set(lu, lv, .55); }
       for (const l of levelLayers) { l.mat.uniforms.uOff.value = state.camX * zoom * l.speed / l.k; l.mat.uniforms.uOffY.value = (state.camY - 58) * zoom * l.speed * .35; }
 
       // continuous emitters requested by the game (fairy trail, wine aura, runes, bridges)

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "prop-tlo-trava",
+    "title": "long horizontal grass-topped earth platform chunk, flat walkable upper edge, visible soil cross-section with stones and roots below",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long horizontal grass-topped earth platform chunk, flat walkable upper edge, visible soil cross-section with stones and roots below. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-tlo-suvo",
+    "title": "long dry ochre dirt platform chunk with sparse golden grass, flat upper edge and earthy side",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long dry ochre dirt platform chunk with sparse golden grass, flat upper edge and earthy side. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-tlo-sneg",
+    "title": "long snow-capped soil and ice platform chunk with clear flat walkable lip",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long snow-capped soil and ice platform chunk with clear flat walkable lip. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-tlo-mahovina",
+    "title": "long damp moss-covered rock platform chunk, flat walkable upper edge",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long damp moss-covered rock platform chunk, flat walkable upper edge. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-tlo-cigla",
+    "title": "long weathered medieval red-brick walkway platform chunk with stone coping",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long weathered medieval red-brick walkway platform chunk with stone coping. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-tlo-daske",
+    "title": "long horizontal timber deck platform chunk with visible thick planks and underside bracing",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long horizontal timber deck platform chunk with visible thick planks and underside bracing. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-nagib-trava-levo",
+    "title": "grass and soil slope platform ascending from left to right, strict side cross section",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: grass and soil slope platform ascending from left to right, strict side cross section. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-nagib-trava-desno",
+    "title": "grass and soil slope platform descending from left to right, strict side cross section",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: grass and soil slope platform descending from left to right, strict side cross section. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-zid-penjanje",
+    "title": "tall narrow limestone wall chunk with obvious handhold cracks and shallow ledges, strict side elevation",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: tall narrow limestone wall chunk with obvious handhold cracks and shallow ledges, strict side elevation. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-stub-tlo",
+    "title": "tall narrow rock pillar with flat grass-capped top, side elevation",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: tall narrow rock pillar with flat grass-capped top, side elevation. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-platforma-viseca",
+    "title": "suspended wooden platform with two ropes reaching to connected top crossbeam",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: suspended wooden platform with two ropes reaching to connected top crossbeam. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-most-segment",
+    "title": "modular horizontal rope bridge deck middle section with posts at each end",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: modular horizontal rope bridge deck middle section with posts at each end. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-potpora-rudnik",
+    "title": "complete heavy oak mine support frame with connected top beam and two upright posts",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: complete heavy oak mine support frame with connected top beam and two upright posts. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-sine",
+    "title": "long straight mine rail track section in strict side elevation, visible timber sleepers",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: long straight mine rail track section in strict side elevation, visible timber sleepers. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-sine-slomljene",
+    "title": "broken mine rail track section with bent rails and damaged sleepers",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: broken mine rail track section with bent rails and damaged sleepers. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-vagon",
+    "title": "empty medieval wooden ore cart on small iron wheels, side view",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: empty medieval wooden ore cart on small iron wheels, side view. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-voda-traka",
+    "title": "wide shallow horizontal strip of translucent turquoise river water, crisp hand-painted ripples, transparent above and below, no land",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: wide shallow horizontal strip of translucent turquoise river water, crisp hand-painted ripples, transparent above and below, no land. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-vodopad",
+    "title": "tall narrow turquoise waterfall strip with white foam at bottom, transparent surround, no rocks or scenery",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: tall narrow turquoise waterfall strip with white foam at bottom, transparent surround, no rocks or scenery. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-kamen-izlaz",
+    "title": "small ornate medieval stone doorway frame with an empty dark recess, carved Serbian geometric relief",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: small ornate medieval stone doorway frame with an empty dark recess, carved Serbian geometric relief. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-paukova-mreza",
+    "title": "large cobweb stretched across an L-shaped fragment of rough timber beam, true transparent empty gaps",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: large cobweb stretched across an L-shaped fragment of rough timber beam, true transparent empty gaps. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-most-mali-luk",
+    "title": "small mossy natural stone stepping arch, flat traversable upper lip",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: small mossy natural stone stepping arch, flat traversable upper lip. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  },
+  {
+    "id": "prop-kamen-putokaz",
+    "title": "short old stone milestone with carved geometric sun motif, no lettering",
+    "kind": "prop",
+    "alpha": true,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. ONE isolated modular side-scrolling game environment asset: short old stone milestone with carved geometric sun motif, no lettering. Strict side view, full asset with padding. True transparent alpha background. No people, scenery or detached effects. Clean readable silhouette, no cast shadow. For long ground chunks use wide landscape composition, not an isometric slab."
+  }
+]

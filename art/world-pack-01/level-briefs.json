@@ -1,0 +1,14 @@
+{
+ "selo":{"goal":"Oslobodi seosku kapiju i pronađi put do bunara.","movement":"Krovovi, tarabe i niske platforme; kratak obilazni put kroz ambar.","enemyMix":["sword","shield","akindzija"]},
+ "klisura":{"goal":"Pređi urušene mostove i otvori prolaz uz reku.","movement":"Skokovi preko ponora, kameni lukovi i viseći mostovi.","enemyMix":["archer","sword","akindzija"]},
+ "suma":{"goal":"Probudi tri vilinska kamena i otkrij skriveno svetilište.","movement":"Uspon preko korenja i kamenih polica; mesto za Ravijojlin most.","enemyMix":["archer","akindzija"]},
+ "manastir":{"goal":"Pronađi relikviju i podigni manastirski barjak.","movement":"Dvorište, visoke galerije i prolazi kroz kamene lukove.","enemyMix":["shield","archer","oklopnik"]},
+ "tvrdjava":{"goal":"Onesposobi opsadni logor i otvori tvrđavsku kapiju.","movement":"Palisade, stražarnice i put preko bedema.","enemyMix":["oklopnik","palikuca","shield"]},
+ "prevoj":{"goal":"Prati barjake do kule na prevoju.","movement":"Duge deonice za Šarca, snežne police i kratki prolazi kroz stene.","enemyMix":["akindzija","archer"]},
+ "pecina":{"goal":"Pronađi kristalni prolaz koji pokazuje Ravijojla.","movement":"Kameni stubovi iznad vode, uske police i tajna odaja.","enemyMix":["sword","archer"]},
+ "podrum":{"goal":"Pronađi prolaz iz podruma tvrđave i zalihe vina.","movement":"Niski svodovi, prolazi za čučanj i uspon preko drvenih galerija.","enemyMix":["shield","palikuca"]},
+ "mocvara":{"goal":"Prati svetiljke preko potopljenih prelaza.","movement":"Kratki mostovi, trska i razdvojene bezbedne obale.","enemyMix":["archer","palikuca"]},
+ "rudnik":{"goal":"Otvori stari rudarski izlaz.","movement":"Viseće platforme, šine, drvene potpore i vertikalne kamene police.","enemyMix":["oklopnik","sword"]},
+ "rusevine":{"goal":"Popni se do poslednjeg sačuvanog barjaka.","movement":"Urušeni zidovi, penjanje uz pukotine i obilazak kroz bršljan.","enemyMix":["akindzija","archer","shield"]},
+ "reka":{"goal":"Stigni do vodenice i pronađi prelaz uz obalu.","movement":"Pristaništa, niski mostovi i prostor za buduće pokretne platforme na točku.","enemyMix":["sword","palikuca","archer"]}
+}

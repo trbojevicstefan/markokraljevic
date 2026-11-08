@@ -215,7 +215,7 @@
       },
       {
         "id": "prop-bunar",
-        "x": 2540,
+        "x": 2300.0,
         "y": 590,
         "height": 125
       },
@@ -245,7 +245,7 @@
       },
       {
         "id": "prop-bunar",
-        "x": 4140,
+        "x": 4380.0,
         "y": 590,
         "height": 140
       },
@@ -280,7 +280,53 @@
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "selo-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "selo-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "selo-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "selo-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "selo-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "selo-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "selo-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "selo-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Oslobodi seosku kapiju i pronađi put do bunara.",
+      "movement": "Krovovi, tarabe i niske platforme; kratak obilazni put kroz ambar.",
+      "enemyMix": [
+        "sword",
+        "shield",
+        "akindzija"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   },
   {
     "id": "klisura",
@@ -450,7 +496,7 @@
       },
       {
         "id": "prop-barjak-srpski",
-        "x": 6100,
+        "x": 5900.0,
         "y": 590,
         "height": 175
       },
@@ -468,7 +514,7 @@
       },
       {
         "id": "prop-stena-luk",
-        "x": 940,
+        "x": 700.0,
         "y": 590,
         "height": 180
       },
@@ -498,7 +544,7 @@
       },
       {
         "id": "prop-trska",
-        "x": 2540,
+        "x": 2780.0,
         "y": 590,
         "height": 125
       },
@@ -528,7 +574,7 @@
       },
       {
         "id": "prop-stena-visoka",
-        "x": 4140,
+        "x": 4340.0,
         "y": 590,
         "height": 140
       },
@@ -546,7 +592,7 @@
       },
       {
         "id": "prop-trska",
-        "x": 5100,
+        "x": 4870.0,
         "y": 590,
         "height": 125
       },
@@ -563,7 +609,53 @@
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "klisura-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "klisura-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "klisura-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "klisura-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "klisura-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "klisura-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "klisura-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "klisura-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Pređi urušene mostove i otvori prolaz uz reku.",
+      "movement": "Skokovi preko ponora, kameni lukovi i viseći mostovi.",
+      "enemyMix": [
+        "archer",
+        "sword",
+        "akindzija"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   },
   {
     "id": "suma",
@@ -571,11 +663,11 @@
     "width": 6240,
     "spawn": {
       "x": 80,
-      "y": 590
+      "y": 530
     },
     "goal": {
       "x": 6100,
-      "y": 590
+      "y": 560
     },
     "palette": "plavozeleni sumrak",
     "layers": [
@@ -770,19 +862,19 @@
       {
         "id": "prop-barjak-srpski",
         "x": 150,
-        "y": 590,
+        "y": 530,
         "height": 175
       },
       {
         "id": "prop-barjak-srpski",
         "x": 6100,
-        "y": 590,
+        "y": 560,
         "height": 175
       },
       {
         "id": "prop-drvo-hrast",
         "x": 300,
-        "y": 590,
+        "y": 530,
         "height": 140
       },
       {
@@ -793,26 +885,26 @@
       },
       {
         "id": "prop-svetiliste",
-        "x": 940,
+        "x": 715.0,
         "y": 590,
         "height": 180
       },
       {
         "id": "prop-run-kamen",
         "x": 1260,
-        "y": 590,
+        "y": 560,
         "height": 125
       },
       {
         "id": "prop-cvece",
         "x": 1580,
-        "y": 590,
+        "y": 530,
         "height": 140
       },
       {
         "id": "prop-drvo-hrast",
         "x": 1900,
-        "y": 590,
+        "y": 530,
         "height": 240
       },
       {
@@ -823,26 +915,26 @@
       },
       {
         "id": "prop-svetiliste",
-        "x": 2540,
-        "y": 590,
+        "x": 2795.0,
+        "y": 560,
         "height": 125
       },
       {
         "id": "prop-run-kamen",
         "x": 2860,
-        "y": 590,
+        "y": 560,
         "height": 140
       },
       {
         "id": "prop-cvece",
         "x": 3180,
-        "y": 590,
+        "y": 530,
         "height": 240
       },
       {
         "id": "prop-drvo-hrast",
         "x": 3500,
-        "y": 590,
+        "y": 530,
         "height": 180
       },
       {
@@ -853,26 +945,26 @@
       },
       {
         "id": "prop-svetiliste",
-        "x": 4140,
-        "y": 590,
+        "x": 4355.0,
+        "y": 560,
         "height": 140
       },
       {
         "id": "prop-run-kamen",
         "x": 4460,
-        "y": 590,
+        "y": 560,
         "height": 240
       },
       {
         "id": "prop-cvece",
         "x": 4780,
-        "y": 590,
+        "y": 530,
         "height": 180
       },
       {
         "id": "prop-drvo-hrast",
-        "x": 5100,
-        "y": 590,
+        "x": 4885.0,
+        "y": 530,
         "height": 125
       },
       {
@@ -884,11 +976,56 @@
       {
         "id": "prop-svetiliste",
         "x": 5740,
-        "y": 590,
+        "y": 560,
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "suma-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "suma-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "suma-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "suma-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "suma-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "suma-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "suma-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "suma-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Probudi tri vilinska kamena i otkrij skriveno svetilište.",
+      "movement": "Uspon preko korenja i kamenih polica; mesto za Ravijojlin most.",
+      "enemyMix": [
+        "archer",
+        "akindzija"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   },
   {
     "id": "manastir",
@@ -900,7 +1037,7 @@
     },
     "goal": {
       "x": 6100,
-      "y": 590
+      "y": 530
     },
     "palette": "toplo popodne",
     "layers": [
@@ -1087,7 +1224,7 @@
       {
         "id": "prop-barjak-srpski",
         "x": 6100,
-        "y": 590,
+        "y": 530,
         "height": 175
       },
       {
@@ -1099,19 +1236,19 @@
       {
         "id": "prop-barjak-manastir",
         "x": 620,
-        "y": 590,
+        "y": 560,
         "height": 240
       },
       {
         "id": "prop-kapija-tvrdjava",
-        "x": 940,
-        "y": 590,
+        "x": 727.5,
+        "y": 560,
         "height": 180
       },
       {
         "id": "prop-krcag",
         "x": 1260,
-        "y": 590,
+        "y": 530,
         "height": 125
       },
       {
@@ -1129,19 +1266,19 @@
       {
         "id": "prop-kapija-tvrdjava",
         "x": 2220,
-        "y": 590,
+        "y": 560,
         "height": 180
       },
       {
         "id": "prop-krcag",
-        "x": 2540,
-        "y": 590,
+        "x": 2287.5,
+        "y": 560,
         "height": 125
       },
       {
         "id": "prop-ograda-manastir",
         "x": 2860,
-        "y": 590,
+        "y": 530,
         "height": 140
       },
       {
@@ -1159,19 +1296,19 @@
       {
         "id": "prop-krcag",
         "x": 3820,
-        "y": 590,
+        "y": 560,
         "height": 125
       },
       {
         "id": "prop-ograda-manastir",
-        "x": 4140,
-        "y": 590,
+        "x": 4367.5,
+        "y": 530,
         "height": 140
       },
       {
         "id": "prop-barjak-manastir",
         "x": 4460,
-        "y": 590,
+        "y": 530,
         "height": 240
       },
       {
@@ -1189,17 +1326,63 @@
       {
         "id": "prop-ograda-manastir",
         "x": 5420,
-        "y": 590,
+        "y": 560,
         "height": 140
       },
       {
         "id": "prop-barjak-manastir",
         "x": 5740,
-        "y": 590,
+        "y": 530,
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "manastir-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "manastir-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "manastir-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "manastir-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "manastir-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "manastir-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "manastir-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "manastir-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Pronađi relikviju i podigni manastirski barjak.",
+      "movement": "Dvorište, visoke galerije i prolazi kroz kamene lukove.",
+      "enemyMix": [
+        "shield",
+        "archer",
+        "oklopnik"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   },
   {
     "id": "tvrdjava",
@@ -1207,7 +1390,7 @@
     "width": 6240,
     "spawn": {
       "x": 80,
-      "y": 590
+      "y": 560
     },
     "goal": {
       "x": 6100,
@@ -1392,7 +1575,7 @@
       {
         "id": "prop-barjak-srpski",
         "x": 150,
-        "y": 590,
+        "y": 560,
         "height": 175
       },
       {
@@ -1404,19 +1587,19 @@
       {
         "id": "prop-palisada",
         "x": 300,
-        "y": 590,
+        "y": 560,
         "height": 140
       },
       {
         "id": "prop-sator",
         "x": 620,
-        "y": 590,
+        "y": 530,
         "height": 240
       },
       {
         "id": "prop-strassarnica",
-        "x": 940,
-        "y": 590,
+        "x": 720.0,
+        "y": 530,
         "height": 180
       },
       {
@@ -1428,25 +1611,25 @@
       {
         "id": "prop-sanduci",
         "x": 1580,
-        "y": 590,
+        "y": 560,
         "height": 140
       },
       {
         "id": "prop-palisada",
         "x": 1900,
-        "y": 590,
+        "y": 560,
         "height": 240
       },
       {
         "id": "prop-sator",
         "x": 2220,
-        "y": 590,
+        "y": 530,
         "height": 180
       },
       {
         "id": "prop-strassarnica",
-        "x": 2540,
-        "y": 590,
+        "x": 2280.0,
+        "y": 530,
         "height": 125
       },
       {
@@ -1458,24 +1641,24 @@
       {
         "id": "prop-sanduci",
         "x": 3180,
-        "y": 590,
+        "y": 560,
         "height": 240
       },
       {
         "id": "prop-palisada",
         "x": 3500,
-        "y": 590,
+        "y": 560,
         "height": 180
       },
       {
         "id": "prop-sator",
         "x": 3820,
-        "y": 590,
+        "y": 530,
         "height": 125
       },
       {
         "id": "prop-strassarnica",
-        "x": 4140,
+        "x": 4360.0,
         "y": 590,
         "height": 140
       },
@@ -1488,19 +1671,19 @@
       {
         "id": "prop-sanduci",
         "x": 4780,
-        "y": 590,
+        "y": 560,
         "height": 180
       },
       {
         "id": "prop-palisada",
         "x": 5100,
-        "y": 590,
+        "y": 560,
         "height": 125
       },
       {
         "id": "prop-sator",
         "x": 5420,
-        "y": 590,
+        "y": 530,
         "height": 140
       },
       {
@@ -1510,7 +1693,53 @@
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "tvrdjava-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "tvrdjava-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "tvrdjava-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "tvrdjava-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "tvrdjava-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "tvrdjava-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "tvrdjava-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "tvrdjava-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Onesposobi opsadni logor i otvori tvrđavsku kapiju.",
+      "movement": "Palisade, stražarnice i put preko bedema.",
+      "enemyMix": [
+        "oklopnik",
+        "palikuca",
+        "shield"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   },
   {
     "id": "prevoj",
@@ -1728,7 +1957,7 @@
       },
       {
         "id": "prop-balvan",
-        "x": 2540,
+        "x": 2290.0,
         "y": 590,
         "height": 125
       },
@@ -1758,7 +1987,7 @@
       },
       {
         "id": "prop-drvo-sneg",
-        "x": 4140,
+        "x": 4370.0,
         "y": 590,
         "height": 140
       },
@@ -1793,6 +2022,2021 @@
         "height": 240
       }
     ],
-    "status": "environment layout, not integrated into campaign"
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "prevoj-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "prevoj-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "prevoj-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "prevoj-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "prevoj-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "prevoj-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "prevoj-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "prevoj-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Prati barjake do kule na prevoju.",
+      "movement": "Duge deonice za Šarca, snežne police i kratki prolazi kroz stene.",
+      "enemyMix": [
+        "akindzija",
+        "archer"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "pecina",
+    "name": "Vilinska pećina",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 590
+    },
+    "goal": {
+      "x": 6100,
+      "y": 530
+    },
+    "palette": "tirkizna podzemna svetlost",
+    "layers": [
+      {
+        "id": "pecina-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "pecina-far",
+        "speed": 0.16
+      },
+      {
+        "id": "pecina-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "pecina-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 590,
+        "w": 460,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 560,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 395,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 590,
+        "w": 460,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 420,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 560,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 370,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 590,
+        "w": 460,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 560,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 395,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 590,
+        "w": 460,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 420,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 560,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 370,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 590,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 6100,
+        "y": 530,
+        "height": 175
+      },
+      {
+        "id": "prop-kristal",
+        "x": 300,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-mala",
+        "x": 620,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-stena-luk",
+        "x": 940,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-run-kamen",
+        "x": 1260,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-kristal",
+        "x": 1580,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-mala",
+        "x": 1900,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-stena-luk",
+        "x": 2220,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-run-kamen",
+        "x": 2300.0,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-kristal",
+        "x": 2860,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-mala",
+        "x": 3180,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-stena-luk",
+        "x": 3500,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-run-kamen",
+        "x": 3820,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-kristal",
+        "x": 4380.0,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-mala",
+        "x": 4460,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-stena-luk",
+        "x": 4780,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-run-kamen",
+        "x": 5100,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-kristal",
+        "x": 5420,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-mala",
+        "x": 5740,
+        "y": 530,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "pecina-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "pecina-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "pecina-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "pecina-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "pecina-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "pecina-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "pecina-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "pecina-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Pronađi kristalni prolaz koji pokazuje Ravijojla.",
+      "movement": "Kameni stubovi iznad vode, uske police i tajna odaja.",
+      "enemyMix": [
+        "sword",
+        "archer"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "podrum",
+    "name": "Zaboravljeni podrum",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 560
+    },
+    "goal": {
+      "x": 6100,
+      "y": 590
+    },
+    "palette": "ambar i vlažni kamen",
+    "layers": [
+      {
+        "id": "podrum-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "podrum-far",
+        "speed": 0.16
+      },
+      {
+        "id": "podrum-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "podrum-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 560,
+        "w": 380,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 530,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 390,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 590,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 560,
+        "w": 380,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 415,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 530,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 590,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 365,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 560,
+        "w": 380,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 530,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 390,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 590,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 560,
+        "w": 380,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 415,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 530,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 590,
+        "w": 360,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 365,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 560,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 5900.0,
+        "y": 590,
+        "height": 175
+      },
+      {
+        "id": "prop-bure",
+        "x": 300,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 620,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-baklja-drzac",
+        "x": 700.0,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-krcag",
+        "x": 1260,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-bure",
+        "x": 1580,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 1900,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-baklja-drzac",
+        "x": 2220,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-krcag",
+        "x": 2780.0,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-bure",
+        "x": 2860,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 3180,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-baklja-drzac",
+        "x": 3500,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-krcag",
+        "x": 3820,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-bure",
+        "x": 4340.0,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 4460,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-baklja-drzac",
+        "x": 4780,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-krcag",
+        "x": 4870.0,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-bure",
+        "x": 5420,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 5740,
+        "y": 590,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "podrum-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "podrum-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "podrum-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "podrum-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "podrum-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "podrum-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "podrum-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "podrum-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Pronađi prolaz iz podruma tvrđave i zalihe vina.",
+      "movement": "Niski svodovi, prolazi za čučanj i uspon preko drvenih galerija.",
+      "enemyMix": [
+        "shield",
+        "palikuca"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "mocvara",
+    "name": "Noćna močvara",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 530
+    },
+    "goal": {
+      "x": 6100,
+      "y": 560
+    },
+    "palette": "mesečina i srebrna magla",
+    "layers": [
+      {
+        "id": "mocvara-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "mocvara-far",
+        "speed": 0.16
+      },
+      {
+        "id": "mocvara-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "mocvara-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 530,
+        "w": 410,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 590,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 385,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 560,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 530,
+        "w": 410,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 410,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 590,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 560,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 360,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 530,
+        "w": 410,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 590,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 385,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 560,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 530,
+        "w": 410,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 410,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 590,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 560,
+        "w": 390,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 360,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 530,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 6100,
+        "y": 560,
+        "height": 175
+      },
+      {
+        "id": "prop-trska",
+        "x": 300,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-most-uzad",
+        "x": 620,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-korenje",
+        "x": 715.0,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-balvan",
+        "x": 1260,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-trska",
+        "x": 1580,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-most-uzad",
+        "x": 1900,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-korenje",
+        "x": 2220,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-balvan",
+        "x": 2795.0,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-trska",
+        "x": 2860,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-most-uzad",
+        "x": 3180,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-korenje",
+        "x": 3500,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-balvan",
+        "x": 3820,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-trska",
+        "x": 4355.0,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-most-uzad",
+        "x": 4460,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-korenje",
+        "x": 4780,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-balvan",
+        "x": 4885.0,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-trska",
+        "x": 5420,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-most-uzad",
+        "x": 5740,
+        "y": 560,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "mocvara-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "mocvara-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "mocvara-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "mocvara-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "mocvara-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "mocvara-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "mocvara-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "mocvara-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Prati svetiljke preko potopljenih prelaza.",
+      "movement": "Kratki mostovi, trska i razdvojene bezbedne obale.",
+      "enemyMix": [
+        "archer",
+        "palikuca"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "rudnik",
+    "name": "Stari rudnik",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 590
+    },
+    "goal": {
+      "x": 6100,
+      "y": 530
+    },
+    "palette": "srebro i tople svetiljke",
+    "layers": [
+      {
+        "id": "rudnik-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "rudnik-far",
+        "speed": 0.16
+      },
+      {
+        "id": "rudnik-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "rudnik-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 590,
+        "w": 435,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 560,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 380,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 530,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 590,
+        "w": 435,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 405,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 560,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 530,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 355,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 590,
+        "w": 435,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 560,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 380,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 530,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 590,
+        "w": 435,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 405,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 560,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 530,
+        "w": 415,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 355,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 590,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 6100,
+        "y": 530,
+        "height": 175
+      },
+      {
+        "id": "prop-lanac",
+        "x": 300,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-visoka",
+        "x": 620,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-sanduci",
+        "x": 727.5,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-svetiljka",
+        "x": 1260,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-lanac",
+        "x": 1580,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-visoka",
+        "x": 1900,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-sanduci",
+        "x": 2220,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-svetiljka",
+        "x": 2287.5,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-lanac",
+        "x": 2860,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-visoka",
+        "x": 3180,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-sanduci",
+        "x": 3500,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-svetiljka",
+        "x": 3820,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-lanac",
+        "x": 4367.5,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-visoka",
+        "x": 4460,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-sanduci",
+        "x": 4780,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-svetiljka",
+        "x": 5100,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-lanac",
+        "x": 5420,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-stena-visoka",
+        "x": 5740,
+        "y": 530,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "rudnik-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "rudnik-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "rudnik-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "rudnik-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "rudnik-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "rudnik-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "rudnik-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "rudnik-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Otvori stari rudarski izlaz.",
+      "movement": "Viseće platforme, šine, drvene potpore i vertikalne kamene police.",
+      "enemyMix": [
+        "oklopnik",
+        "sword"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "rusevine",
+    "name": "Ruševine na brdu",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 560
+    },
+    "goal": {
+      "x": 6100,
+      "y": 590
+    },
+    "palette": "ljubičasto svitanje",
+    "layers": [
+      {
+        "id": "rusevine-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "rusevine-far",
+        "speed": 0.16
+      },
+      {
+        "id": "rusevine-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "rusevine-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 530,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 375,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 590,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 400,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 530,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 590,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 350,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 530,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 375,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 590,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 400,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 530,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 590,
+        "w": 400,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 350,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 560,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 6100,
+        "y": 590,
+        "height": 175
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 300,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-loza",
+        "x": 620,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 720.0,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 1260,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-loza",
+        "x": 1580,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 1900,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 2220,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-loza",
+        "x": 2280.0,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 2860,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 3180,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-loza",
+        "x": 3500,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 3820,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 4360.0,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-loza",
+        "x": 4460,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 4780,
+        "y": 560,
+        "height": 180
+      },
+      {
+        "id": "prop-luk-kameni",
+        "x": 5100,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-loza",
+        "x": 5420,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-ograda-kamen-rusevina",
+        "x": 5740,
+        "y": 590,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "rusevine-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "rusevine-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "rusevine-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "rusevine-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "rusevine-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "rusevine-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "rusevine-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "rusevine-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Popni se do poslednjeg sačuvanog barjaka.",
+      "movement": "Urušeni zidovi, penjanje uz pukotine i obilazak kroz bršljan.",
+      "enemyMix": [
+        "akindzija",
+        "archer",
+        "shield"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
+  },
+  {
+    "id": "reka",
+    "name": "Obala pred zoru",
+    "width": 6240,
+    "spawn": {
+      "x": 80,
+      "y": 530
+    },
+    "goal": {
+      "x": 6100,
+      "y": 560
+    },
+    "palette": "ružičasta zora i plava reka",
+    "layers": [
+      {
+        "id": "reka-sky",
+        "speed": 0.04
+      },
+      {
+        "id": "reka-far",
+        "speed": 0.16
+      },
+      {
+        "id": "reka-mid",
+        "speed": 0.38
+      },
+      {
+        "id": "reka-near",
+        "speed": 0.72
+      }
+    ],
+    "platforms": [
+      {
+        "x": 0,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 520,
+        "y": 590,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 650,
+        "y": 370,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 1040,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1560,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 1690,
+        "y": 395,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 2080,
+        "y": 590,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2600,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 2730,
+        "y": 345,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 3120,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3640,
+        "y": 590,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 3770,
+        "y": 370,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 4160,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4680,
+        "y": 530,
+        "w": 440,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 4810,
+        "y": 395,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      },
+      {
+        "x": 5200,
+        "y": 590,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5720,
+        "y": 560,
+        "w": 420,
+        "h": 180,
+        "kind": "stone"
+      },
+      {
+        "x": 5850,
+        "y": 345,
+        "w": 170,
+        "h": 28,
+        "kind": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "prop-barjak-srpski",
+        "x": 150,
+        "y": 530,
+        "height": 175
+      },
+      {
+        "id": "prop-barjak-srpski",
+        "x": 6100,
+        "y": 560,
+        "height": 175
+      },
+      {
+        "id": "prop-mlin",
+        "x": 300,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-dok",
+        "x": 620,
+        "y": 590,
+        "height": 240
+      },
+      {
+        "id": "prop-trska",
+        "x": 940,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-tocak-vodeni",
+        "x": 1260,
+        "y": 560,
+        "height": 125
+      },
+      {
+        "id": "prop-mlin",
+        "x": 1580,
+        "y": 530,
+        "height": 140
+      },
+      {
+        "id": "prop-dok",
+        "x": 1900,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-trska",
+        "x": 2220,
+        "y": 590,
+        "height": 180
+      },
+      {
+        "id": "prop-tocak-vodeni",
+        "x": 2290.0,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-mlin",
+        "x": 2860,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-dok",
+        "x": 3180,
+        "y": 530,
+        "height": 240
+      },
+      {
+        "id": "prop-trska",
+        "x": 3500,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-tocak-vodeni",
+        "x": 3820,
+        "y": 590,
+        "height": 125
+      },
+      {
+        "id": "prop-mlin",
+        "x": 4370.0,
+        "y": 560,
+        "height": 140
+      },
+      {
+        "id": "prop-dok",
+        "x": 4460,
+        "y": 560,
+        "height": 240
+      },
+      {
+        "id": "prop-trska",
+        "x": 4780,
+        "y": 530,
+        "height": 180
+      },
+      {
+        "id": "prop-tocak-vodeni",
+        "x": 5100,
+        "y": 530,
+        "height": 125
+      },
+      {
+        "id": "prop-mlin",
+        "x": 5420,
+        "y": 590,
+        "height": 140
+      },
+      {
+        "id": "prop-dok",
+        "x": 5740,
+        "y": 560,
+        "height": 240
+      }
+    ],
+    "status": "environment layout, not integrated into campaign",
+    "nightLayers": [
+      {
+        "id": "reka-sky-night",
+        "speed": 0.04
+      },
+      {
+        "id": "reka-far-night",
+        "speed": 0.16
+      },
+      {
+        "id": "reka-mid-night",
+        "speed": 0.38
+      },
+      {
+        "id": "reka-near-night",
+        "speed": 0.72
+      }
+    ],
+    "stormLayers": [
+      {
+        "id": "reka-sky-storm",
+        "speed": 0.04
+      },
+      {
+        "id": "reka-far-storm",
+        "speed": 0.16
+      },
+      {
+        "id": "reka-mid-storm",
+        "speed": 0.38
+      },
+      {
+        "id": "reka-near-storm",
+        "speed": 0.72
+      }
+    ],
+    "design": {
+      "goal": "Stigni do vodenice i pronađi prelaz uz obalu.",
+      "movement": "Pristaništa, niski mostovi i prostor za buduće pokretne platforme na točku.",
+      "enemyMix": [
+        "sword",
+        "palikuca",
+        "archer"
+      ]
+    },
+    "implementationStatus": "layout-only; objectives and movement features require game integration"
   }
 ]

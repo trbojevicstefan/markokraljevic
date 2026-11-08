@@ -1,0 +1,482 @@
+[
+  {
+    "id": "selo-sky-storm",
+    "theme": "selo",
+    "title": "Kosovsko selo · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "selo-far-storm",
+    "theme": "selo",
+    "title": "Kosovsko selo · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "selo-mid-storm",
+    "theme": "selo",
+    "title": "Kosovsko selo · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "selo-near-storm",
+    "theme": "selo",
+    "title": "Kosovsko selo · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "klisura-sky-storm",
+    "theme": "klisura",
+    "title": "Klisura Ibra · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "klisura-far-storm",
+    "theme": "klisura",
+    "title": "Klisura Ibra · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "klisura-mid-storm",
+    "theme": "klisura",
+    "title": "Klisura Ibra · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "klisura-near-storm",
+    "theme": "klisura",
+    "title": "Klisura Ibra · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "suma-sky-storm",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "suma-far-storm",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "suma-mid-storm",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "suma-near-storm",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "manastir-sky-storm",
+    "theme": "manastir",
+    "title": "Manastirski vis · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "manastir-far-storm",
+    "theme": "manastir",
+    "title": "Manastirski vis · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "manastir-mid-storm",
+    "theme": "manastir",
+    "title": "Manastirski vis · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "manastir-near-storm",
+    "theme": "manastir",
+    "title": "Manastirski vis · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "tvrdjava-sky-storm",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "tvrdjava-far-storm",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "tvrdjava-mid-storm",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "tvrdjava-near-storm",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "prevoj-sky-storm",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "prevoj-far-storm",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "prevoj-mid-storm",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "prevoj-near-storm",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "pecina-sky-storm",
+    "theme": "pecina",
+    "title": "Vilinska pećina · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "pecina-far-storm",
+    "theme": "pecina",
+    "title": "Vilinska pećina · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "pecina-mid-storm",
+    "theme": "pecina",
+    "title": "Vilinska pećina · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "pecina-near-storm",
+    "theme": "pecina",
+    "title": "Vilinska pećina · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "podrum-sky-storm",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "podrum-far-storm",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "podrum-mid-storm",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "podrum-near-storm",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "mocvara-sky-storm",
+    "theme": "mocvara",
+    "title": "Noćna močvara · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "mocvara-far-storm",
+    "theme": "mocvara",
+    "title": "Noćna močvara · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "mocvara-mid-storm",
+    "theme": "mocvara",
+    "title": "Noćna močvara · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "mocvara-near-storm",
+    "theme": "mocvara",
+    "title": "Noćna močvara · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rudnik-sky-storm",
+    "theme": "rudnik",
+    "title": "Stari rudnik · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rudnik-far-storm",
+    "theme": "rudnik",
+    "title": "Stari rudnik · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rudnik-mid-storm",
+    "theme": "rudnik",
+    "title": "Stari rudnik · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rudnik-near-storm",
+    "theme": "rudnik",
+    "title": "Stari rudnik · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rusevine-sky-storm",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rusevine-far-storm",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rusevine-mid-storm",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "rusevine-near-storm",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "reka-sky-storm",
+    "theme": "reka",
+    "title": "Obala pred zoru · sky · storm",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "reka-far-storm",
+    "theme": "reka",
+    "title": "Obala pred zoru · far · storm",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "reka-mid-storm",
+    "theme": "reka",
+    "title": "Obala pred zoru · mid · storm",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  },
+  {
+    "id": "reka-near-storm",
+    "theme": "reka",
+    "title": "Obala pred zoru · near · storm",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: storm-dark, cool desaturated blue and violet, wet surfaces with sparse amber lights. Outdoor settings have brooding thundercloud light, NO sunshine, NO rain-streak overlays or lightning bolts baked in. Underground settings are damp flooded chambers with cool reflections. Preserve requested single depth layer and transparent empty regions; never paint an opaque sky in a cutout layer. Readable silhouettes.",
+    "variant": "storm"
+  }
+]

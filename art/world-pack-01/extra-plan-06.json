@@ -1,0 +1,482 @@
+[
+  {
+    "id": "selo-sky-night",
+    "theme": "selo",
+    "title": "Kosovsko selo · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "selo-far-night",
+    "theme": "selo",
+    "title": "Kosovsko selo · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "selo-mid-night",
+    "theme": "selo",
+    "title": "Kosovsko selo · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "selo-near-night",
+    "theme": "selo",
+    "title": "Kosovsko selo · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: sunlit Kosovo valley village in late summer, ochre fields, timber fences, limestone houses with terracotta roofs, distant Sar mountains. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "klisura-sky-night",
+    "theme": "klisura",
+    "title": "Klisura Ibra · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "klisura-far-night",
+    "theme": "klisura",
+    "title": "Klisura Ibra · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "klisura-mid-night",
+    "theme": "klisura",
+    "title": "Klisura Ibra · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "klisura-near-night",
+    "theme": "klisura",
+    "title": "Klisura Ibra · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: dramatic Ibar river gorge, turquoise river, pale limestone cliffs, autumn orange oaks, suspended wooden crossings. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "suma-sky-night",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "suma-far-night",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "suma-mid-night",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "suma-near-night",
+    "theme": "suma",
+    "title": "Ravijojlina šuma · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: enchanted ancient Balkan oak and beech forest at blue twilight, mossy roots, subtle turquoise fairy stones, distant waterfalls. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "manastir-sky-night",
+    "theme": "manastir",
+    "title": "Manastirski vis · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "manastir-far-night",
+    "theme": "manastir",
+    "title": "Manastirski vis · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "manastir-mid-night",
+    "theme": "manastir",
+    "title": "Manastirski vis · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "manastir-near-night",
+    "theme": "manastir",
+    "title": "Manastirski vis · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian Byzantine monastery high on a plateau, patterned red brick and pale stone, Orthodox domes, crimson white double-headed eagle banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "tvrdjava-sky-night",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "tvrdjava-far-night",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "tvrdjava-mid-night",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "tvrdjava-near-night",
+    "theme": "tvrdjava",
+    "title": "Opsednuta tvrđava · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: Kosovo border fortress under storm clouds at dusk, massive limestone walls, wooden siege works, distant orange fires, dark crimson banners. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "prevoj-sky-night",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY sky, cloud bands and atmospheric light. No land, no silhouettes. Wide landscape composition suitable behind other layers. Wide panoramic landscape, not a square composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "prevoj-far-night",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a distant continuous mountain and valley silhouette band in the bottom half. The upper half must be transparent. Atmospheric faded colors. NO sky fill, NO foreground, no village close up. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "prevoj-mid-night",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a continuous middle-distance scenery band with small architecture and characteristic vegetation along the bottom half, upper half transparent. NO sky fill or close foreground. Broad horizontal strip. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "prevoj-near-night",
+    "theme": "prevoj",
+    "title": "Zimski prevoj · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: snowy Sar mountain pass under pale winter sunrise, dark fir forest, ancient stone watchtowers and snow-crusted rocks. ONLY a near scenery framing strip: detailed roots, cliff lips, tree trunks or walls appropriate to setting, concentrated at bottom quarter and outer edges, center and upper area transparent. NO full scene background. Wide panoramic landscape, not a square composition. True transparent alpha background, no matte color. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "pecina-sky-night",
+    "theme": "pecina",
+    "title": "Vilinska pećina · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "pecina-far-night",
+    "theme": "pecina",
+    "title": "Vilinska pećina · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "pecina-mid-night",
+    "theme": "pecina",
+    "title": "Vilinska pećina · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "pecina-near-night",
+    "theme": "pecina",
+    "title": "Vilinska pećina · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: huge limestone cavern with turquoise pools, hanging stalactites and subtle fairy crystals, moody teal and amber underground light. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "podrum-sky-night",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "podrum-far-night",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "podrum-mid-night",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "podrum-near-night",
+    "theme": "podrum",
+    "title": "Zaboravljeni podrum · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: medieval Serbian fortress underground vaults, dark Byzantine stone arches, wooden wine barrels, amber torchlight and damp moss. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "mocvara-sky-night",
+    "theme": "mocvara",
+    "title": "Noćna močvara · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "mocvara-far-night",
+    "theme": "mocvara",
+    "title": "Noćna močvara · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "mocvara-mid-night",
+    "theme": "mocvara",
+    "title": "Noćna močvara · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "mocvara-near-night",
+    "theme": "mocvara",
+    "title": "Noćna močvara · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: moonlit Balkan river marsh with reeds, ancient willow trees, half-sunken timber crossings and cold mist. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rudnik-sky-night",
+    "theme": "rudnik",
+    "title": "Stari rudnik · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rudnik-far-night",
+    "theme": "rudnik",
+    "title": "Stari rudnik · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rudnik-mid-night",
+    "theme": "rudnik",
+    "title": "Stari rudnik · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rudnik-near-night",
+    "theme": "rudnik",
+    "title": "Stari rudnik · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval silver mine, jagged grey rock, massive oak supports, rusty ore carts and warm lantern light. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rusevine-sky-night",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rusevine-far-night",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rusevine-mid-night",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "rusevine-near-night",
+    "theme": "rusevine",
+    "title": "Ruševine na brdu · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: abandoned medieval Serbian hilltop fortress overtaken by ivy, crumbling limestone arches, distant stormy purple mountains at sunrise. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "reka-sky-night",
+    "theme": "reka",
+    "title": "Obala pred zoru · sky · night",
+    "kind": "sky",
+    "alpha": false,
+    "depth": 0.04,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY the deepest atmospheric backdrop: sky for outdoor settings, a softly lit distant cavern/vault wall for underground settings. No near scenery. Broad landscape panoramic composition. Fully painted opaque background. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "reka-far-night",
+    "theme": "reka",
+    "title": "Obala pred zoru · far · night",
+    "kind": "far",
+    "alpha": true,
+    "depth": 0.16,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY a distant silhouette band appropriate to the setting, along the lower half; upper half transparent. No sky or opaque full backdrop. Wide horizontal panorama. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "reka-mid-night",
+    "theme": "reka",
+    "title": "Obala pred zoru · mid · night",
+    "kind": "mid",
+    "alpha": true,
+    "depth": 0.38,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY middle distance scenery, architectural fragments, reeds or rock columns appropriate to setting, in a wide low band with upper half transparent. No sky. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  },
+  {
+    "id": "reka-near-night",
+    "theme": "reka",
+    "title": "Obala pred zoru · near · night",
+    "kind": "near",
+    "alpha": true,
+    "depth": 0.72,
+    "prompt": "Production 2D side-scrolling medieval Serbian epic fantasy game art, hand-painted cel shaded with crisp silhouettes, rich texture, warm gold versus teal shadows, matching the supplied reference art. Historical Balkan timber and limestone architecture, expressive but readable at game scale. No lettering, no UI, no people, no animals or static birds, no ground shadow ovals, no photographic realism. Setting: wide Kosovo river floodplain at dawn, old wooden watermill, misty reed islands, warm village lights and distant blue mountains. ONLY close framing architecture, roots, reeds, mine supports or rock lips at the lower edge and outer margins; center and upper half empty transparent. No full background. Broad landscape panoramic composition. True transparent alpha background, no matte. OVERRIDE LIGHTING: NIGHT. Outdoor settings: midnight indigo and cool moonlight, faint warm windows or braziers, absolutely no daylight, no golden sun. Underground settings: dark chambers with very sparse warm torches and turquoise crystal glints. Preserve the requested single depth layer and all transparent empty regions; do not paint a sky or full scene in a transparent layer. Readable silhouettes with atmospheric separation.",
+    "variant": "night"
+  }
+]

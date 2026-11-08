@@ -1,0 +1,225 @@
+{
+  "images": 300,
+  "props": 120,
+  "backgrounds": 180,
+  "layouts": 12,
+  "sets": [
+    {
+      "theme": "selo",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "selo",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "selo",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "klisura",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "klisura",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "klisura",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "suma",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "suma",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "suma",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "manastir",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "manastir",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "manastir",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "prevoj",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "prevoj",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "prevoj",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "pecina",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "pecina",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "pecina",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "podrum",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "podrum",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "podrum",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "mocvara",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "mocvara",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "mocvara",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rudnik",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rudnik",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rudnik",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rusevine",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rusevine",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "rusevine",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "reka",
+      "variant": "day",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "reka",
+      "variant": "night",
+      "layers": 4,
+      "vista": true
+    },
+    {
+      "theme": "reka",
+      "variant": "storm",
+      "layers": 4,
+      "vista": true
+    }
+  ],
+  "notGenerated": []
+}
