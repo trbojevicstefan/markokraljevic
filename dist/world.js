@@ -35,14 +35,14 @@ export function makeWorld(){
 export const STEP_UP=30;
 export function integrate(body,dt,platforms,runes=[]){
  const hw=(body.w||34)/2,h=body.h||100,ground=body.grounded;let feet=body.y;
- body.vy+=GRAVITY*dt;body.wallHit=0;
+ body.vy+=GRAVITY*dt;body.wallHit=0;body.wallQ=null;
  let nx=body.x+body.vx*dt;
  if(nx!==body.x){const dir=Math.sign(nx-body.x);
   for(const q of platforms){if(!q.solid||q.off)continue;if(feet<=q.y+1||feet-h>=q.y+q.h)continue;
    const face=dir>0?q.x:q.x+q.w,edge=body.x+dir*hw,next=nx+dir*hw;
    if(dir>0?(edge<=face+.5&&next>face):(edge>=face-.5&&next<face)){
     if(ground&&body.vy>=0&&q.y>=feet-STEP_UP&&!platforms.some(o=>o.solid&&!o.off&&o!==q&&o.y+o.h>q.y-h&&o.y<q.y&&nx+hw>o.x&&nx-hw<o.x+o.w)){feet=q.y;continue;}
-    nx=face-dir*hw;body.wallHit=dir;}}}
+    nx=face-dir*hw;body.wallHit=dir;body.wallQ=q;}}}
  body.x=nx;body.y=feet;const old=body.y;body.y+=body.vy*dt;body.grounded=false;
  if(body.vy<0){for(const q of platforms){if(!q.solid||q.off)continue;const bottom=q.y+q.h;if(body.x+hw>q.x+2&&body.x-hw<q.x+q.w-2&&old-h>=bottom-1&&body.y-h<bottom){body.y=bottom+h;body.vy=0;}}}
  if(body.vy>=0){let best=null;
@@ -102,19 +102,19 @@ export const CUDA=[
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch flat spikes stairs- ledges flat pillars crates terrace+ flat terrace- watch flat',
- klisura:'flat terrace+ ladder+ flat tower chase flat chimney crumble flat stairs+ watch rocks crates flat',
- suma:'flat watch crates logs flat watch terrace+ ledges flat spikes watch stairs+ flat stairs- chimney flat',
- manastir:'flat stairs+ flat stairs+ crates tower lever flat chimney stairs- ledges flat stairs+ tower flat',
- tvrdjava:'flat crates tower barrels flat chimney^ flat tower lever crates pillars ladder+ tower flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase flat watch stairs+ chimney rocks flat terrace+ crates flat boss:akindzija',
- pecina:'flat terrace- crates crumble flat chimney ledges terrace+ spikes flat pillars gap flat tower crumble crates flat',
- podrum:'flat crates stairs- barrels flat ladder+ crates spikes flat chimney crates stairs+ barrels tower crates boss:palikuca',
- mocvara:'flat bridge watch crumble flat bridge crates logs flat watch ledges flat bridge pillars watch flat',
- rudnik:'flat ladder+ crates rocks flat ledges tower lever flat chimney crates crumble ladder+ barrels crates flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower ladder+ crates chimney^ logs terrace+ flat ladder+ watch stairs+ flat',
- reka:'flat crates bridge flat watch stairs+ logs stairs- bridge crumble crates ledges watch flat boss:sword',
- oranje:'flat plow crates flat plow watch stairs+ flat stairs- plow crates flat',
+ selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars crates terrace+ flat terrace- watch flat',
+ klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift crumble stairs+ watch rocks crates flat',
+ suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes watch stairs+ flat stairs- chimney flat',
+ manastir:'flat stairs+ flat stairs+ crates tower lever cellar chimney stairs- ledges lift stairs+ tower flat',
+ tvrdjava:'flat crates tower barrels plate chimney^ flat tower lever crates pillars ladder+ tower flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase flat watch lift stairs+ chimney rocks terrace+ crates flat boss:akindzija',
+ pecina:'flat terrace- crates crumble spikebed chimney ledges terrace+ cellar flat pillars gap tower crumble crates flat',
+ podrum:'flat crates stairs- barrels plate ladder+ crates spikebed chimney crates stairs+ barrels tower crates boss:palikuca',
+ mocvara:'flat bridge watch crumble ferry bridge crates logs spikebed watch ledges flat bridge pillars watch flat',
+ rudnik:'flat ladder+ crates rocks lift ledges tower lever flat chimney cellar crumble ladder+ barrels crates flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower spikebed ladder+ crates chimney^ logs terrace+ ladder+ watch stairs+ flat',
+ reka:'flat crates bridge flat watch ferry stairs+ logs stairs- plate bridge crumble crates ledges watch flat boss:sword',
+ oranje:'flat plow crates flat plow watch plate stairs+ flat stairs- plow crates flat',
 };
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:760},akindzija:{name:'Akindžijski beg',hp:560},palikuca:{name:'Ognjeni aga',hp:520},shield:{name:'Bajraktar sa štitom',hp:620},sword:{name:'Janičarski aga',hp:540}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
@@ -122,7 +122,7 @@ export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gr
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
 export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[];let x=0,gy=590,run=null,boss=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[];let x=0,gy=590,run=null,boss=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -170,6 +170,18 @@ export function buildLayout(L,variant='day'){
   lever(){const x0=x,len=ri(760,840);ground(len);traps.push({kind:'timed',lever:{x:x0+90,y:gy},gate:{x:x0+len-90,y:gy},time:5.2});block(x0+len*.38,80,gy-80,{pillar:true});traps.push({kind:'spikes',x:Math.round(x0+len*.6),w:90,y:gy});busy.push([x0,x0+len]);},
   // a boulder (or an avalanche in the snow) rolls after Marko down a course that ends at a ravine
   chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:L.id==='prevoj'});},
+  // a heavy iron-bound crate and a stone plate: the gate stays open only while something weighs the plate down
+  plate(){const x0=x,len=ri(760,840);ground(len);const bx=x0+150,px=x0+Math.round(len*.52),gx=x0+len-110;platforms.push({x:bx,y:gy-76,w:76,h:76,kind:'teret',solid:true,push:true});traps.push({kind:'plate',x:px,w:84,y:gy,gate:{x:gx,y:gy}});busy.push([x0,x0+len]);},
+  // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
+  cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
+   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});
+   crate(cx+40,'kovceg',{y:gy+deep,loot:{coins:ri(24,32)}});cellars.push({x:cx+w/2,y:gy+deep});busy.push([cx-60,cx+w+60]);spots.push({x:x0+len*.85,y:gy});},
+  // a bed of stakes too wide to jump: fall on it with a blow from above and bounce off (like a pogo)
+  spikebed(){const x0=x,len=ri(700,780);ground(len);const w=ri(300,330),sx=Math.round(x0+len*.5-w/2);traps.push({kind:'spikes',x:sx,w,y:gy,bed:true});busy.push([sx-60,sx+w+60]);},
+  // a cliff with no ladder: pull the lever, step on the lift, ride it up
+  lift(){ground(ri(320,380));const H=ri(290,330),cx=x,lx=cx-140;platforms.push({x:lx,y:gy,w:122,h:18,kind:'lift',base:gy,top:gy-H,state:'down',t:0});traps.push({kind:'lift',lever:{x:cx-270,y:gy},x:lx+61});busy.push([cx-330,cx+60]);cliff(-H);ground(ri(320,400));spots.push({x:x-150,y:gy});},
+  // a raft carries Marko over dark water, back and forth
+  ferry(){const w=ri(420,470),x0=x;busy.push([x-60,x+w+60]);platforms.push({x:x0+6,y:gy,w:132,h:18,kind:'raft',a:x0+6,b:x0+w-138,t:R()*6});x+=w;run=null;ground(ri(280,340));traps.push({kind:'water',x:x0,w,y:gy});},
   boss(type){const x0=x,len=ri(1000,1080);ground(len);boss={type,x:Math.round(x0+len*.68),y:gy,x0,x1:x0+len};busy.push([x0,x0+len]);},
  };
  ground(ri(600,680));const spawn={x:80,y:590};
@@ -182,7 +194,7 @@ export function buildLayout(L,variant='day'){
  // places worth reaching: the five letters М-А-Р-К-О and a power orb go to the best of them along the road
  const cands=[],grounds=platforms.filter(q=>q.ground).sort((a,b)=>a.x-b.x),taken=r=>rewards.some(o=>Math.abs(o.x-r.x)<90&&Math.abs(o.y-r.y)<90);
  for(const q of platforms){if(q.kind==='plank'&&!q.bridge)cands.push({x:q.x+q.w/2,y:q.y-44,s:2});else if(q.kind==='deck')cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.hang)cands.push({x:q.x+q.w/2,y:q.y-44,s:3});else if(q.tower&&!q.ground)cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.pillar)cands.push({x:q.x+q.w/2,y:q.y-80,s:1});}
- for(const t of traps)if(t.kind==='spikes')cands.push({x:t.x+t.w/2,y:t.y-150,s:2});
+ for(const t of traps)if(t.kind==='spikes')cands.push({x:t.x+t.w/2,y:t.y-(t.bed?230:150),s:t.bed?3:2});for(const c of cellars)cands.push({x:c.x+30,y:c.y-44,s:3});
  for(let i=1;i<grounds.length;i++){const a=grounds[i-1],b=grounds[i],g=b.x-(a.x+a.w);if(g>60&&Math.abs(a.y-b.y)<30)cands.push({x:a.x+a.w+g/2,y:Math.min(a.y,b.y)-140,s:2});}
  for(let cx=700;cx<goal.x-300;cx+=650){const q=grounds.find(q=>cx>q.x+30&&cx<q.x+q.w-30);if(q)cands.push({x:cx,y:q.y-175,s:1});}
  const end=boss?boss.x0:goal.x-150,free=cands.filter(c=>!taken(c)&&c.x>500&&c.x<end),letters=[];
@@ -215,5 +227,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
  const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
  chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
- return{platforms,enemies,items,runes:[],barriers:[],goals:makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x)),level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x));
+ // a guarded gate always has its guards
+ for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
+ return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }

@@ -141,3 +141,19 @@
 .map-node.chapter.done{border-color:#d9b56a}
 .map-node.chapter span{font-size:13px;letter-spacing:1px}
 .map-detail .vista.portrait{background-size:contain;background-color:#132a2a;background-position:center bottom}
+/* ---------- the ability bar: icons with a draining cooldown ---------- */
+#abilities{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;gap:8px;pointer-events:none;z-index:3}
+#abilities .ab{position:relative;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#1c3a38,#0b1c1e);box-shadow:inset 0 0 0 2px #d9b56a88,0 4px 10px #0008;display:grid;place-items:center;color:#f3dca0}
+#abilities .ab[hidden]{display:none}
+#abilities .ab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#abilities .ab .cd{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(5,10,12,.78) calc(var(--p,0)*1turn),transparent 0)}
+#abilities .ab .key{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font:700 10px Arial;color:#e8d7ad;white-space:nowrap;text-shadow:0 1px 3px #000}
+#abilities .ab.ready{box-shadow:inset 0 0 0 2px #f3dca0,0 0 14px #d9b56a88}
+#abilities .ab.denied{animation:abNo .3s}
+@keyframes abNo{30%{transform:translateX(-4px);box-shadow:inset 0 0 0 2px #ff6a4a}70%{transform:translateX(4px)}}
+.kombinacije{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:10px 0}
+.kombinacije div{padding:8px 12px;background:#0c2224aa;border:1px solid #c8ab6f33}
+.kombinacije kbd{margin-right:8px}.kombinacije b{font:600 15px var(--display);color:#f1dfb8}.kombinacije small{display:block;font:11px Arial;color:#a9b9ad;margin-top:3px}
+@media(max-width:600px){#abilities{bottom:120px;transform:translateX(-50%) scale(.82)}}
+#abilities{left:22px;bottom:74px;transform:none;display:grid;grid-template-columns:repeat(4,46px);gap:20px 10px}
+@media(max-width:600px){#abilities{bottom:150px;transform:scale(.8);transform-origin:left bottom}}
