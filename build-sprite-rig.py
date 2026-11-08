@@ -122,10 +122,14 @@ PACK4_REF = {'marko-climb': 'marko-idle', 'marko-wallslide': 'marko-idle', 'mark
              'archer-shoot-down': 'archer-idle', 'volovi-plug': None, 'volovi-beg': None}
 PACK4_REF.update({f'{c}-jump': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'palikuca', 'oklopnik']})
 PACK4_REF.update({'marko-kick': 'marko-idle', 'marko-slide': 'marko-idle', 'marko-hang': 'marko-idle', 'sword-climb': 'sword-idle'})
+# Marko's 7d clips and the foes thrown into the air (DOPUNA-4)
+PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['combo-4', 'air-1', 'air-2', 'uppercut', 'dash-strike', 'charge-hold', 'push', 'lever']})
+PACK4_REF.update({f'{c}-launch': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'akindzija', 'palikuca', 'oklopnik']})
+PACK4_REF.update({'shield-guardbreak': 'shield-idle', 'oklopnik-armorbreak': 'oklopnik-idle', 'akindzija-backstep': 'akindzija-idle', 'palikuca-burn': 'palikuca-idle'})
 for name, ref in PACK4_REF.items():
     if not os.path.exists(os.path.join(ROOT, name + '.json')):
         continue
-    mode = 'center' if name in ('marko-climb', 'marko-wallslide') or name.startswith('volovi') else 'feet'
+    mode = 'center' if name in ('marko-climb', 'marko-wallslide') or name.startswith('volovi') or name.endswith('-launch') else 'feet'
     if ref:
         SCALES[name] = (SCALES[ref][0], mode)
     else:  # the oxen team: the tallest frame (yoke horns to hooves) stands 165 world px
@@ -143,9 +147,9 @@ for who, height in NEW_FOES.items():
     cells = list(manifest['frame_layout']['rows'].values())[0]
     im = np.array(Image.open(os.path.join(ROOT, who + '-idle.png')).convert('RGBA'))
     scale = height / max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
-    for k in ['idle', 'run', 'attack', 'shoot', 'hurt', 'death', 'jump']:
+    for k in ['idle', 'run', 'attack', 'shoot', 'hurt', 'death', 'jump', 'launch']:
         if os.path.exists(os.path.join(ROOT, f'{who}-{k}.json')):
-            SCALES[f'{who}-{k}'] = (scale, 'feet' if k != 'death' else 'center')
+            SCALES[f'{who}-{k}'] = (scale, 'feet' if k not in ('death', 'launch') else 'center')
 
 rig = {}
 for name, (scale, mode) in SCALES.items():

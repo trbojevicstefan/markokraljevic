@@ -4,6 +4,7 @@ R=Path(__file__).resolve().parent;A=R.parent/'animation-pack-04'
 d=json.loads((R/'DELIVERY.json').read_text(encoding='utf8'))
 groups='\n'.join(f"- Prioritet {g}: {d.get('group'+str(g),'pending')}." for g in range(1,8))
 groups+='\n- Hitna DOPUNA-3: '+d.get('group8','pending')+'.'
+groups+='\n- Hitna DOPUNA-4 launch: '+d.get('group9','pending')+'.'
 block=('Generator je blokiran; obnova: '+str(d['quotaResetBelgrade'])+'.') if d.get('quotaResetBelgrade') else 'Nema prijavljene aktivne blokade generatora.'
 (R/'README.md').write_text(f'''# Paket 03 — svet
 

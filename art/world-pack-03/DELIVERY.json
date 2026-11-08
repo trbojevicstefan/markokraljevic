@@ -1,8 +1,8 @@
 {
-  "worldAssetsReady": 89,
-  "catalogImages": 369,
-  "readyClips": 32,
-  "readyFrames": 204,
+  "worldAssetsReady": 91,
+  "catalogImages": 458,
+  "readyClips": 43,
+  "readyFrames": 268,
   "group1": "complete",
   "group2": "complete",
   "group3WorldReady": 15,
@@ -39,18 +39,31 @@
   "group6": "complete",
   "group7MissingImages": [],
   "group7MissingClips": [
-    "marko-combo-4",
-    "marko-air-1",
-    "marko-air-2",
-    "marko-uppercut",
-    "marko-dash-strike",
-    "marko-charge-hold",
-    "marko-push",
-    "marko-lever",
     "shield-guardbreak",
     "oklopnik-armorbreak",
     "akindzija-backstep",
     "palikuca-burn"
   ],
-  "group7": "pending"
+  "group7": "pending",
+  "group8MissingImages": [
+    "prolaz-kamen-otvoren",
+    "prolaz-kamen-zatvoren",
+    "prolaz-drvo-otvoren",
+    "prolaz-drvo-zatvoren",
+    "prolaz-rudnik-otvoren",
+    "prolaz-rudnik-zatvoren",
+    "ulaz-riznica-otvoren"
+  ],
+  "group8MissingClips": [],
+  "group8": "pending",
+  "group9MissingImages": [],
+  "group9MissingClips": [
+    "akindzija-launch",
+    "kopljanik-launch",
+    "palikuca-launch",
+    "pas-launch",
+    "tufekdzija-launch",
+    "oklopnik-launch"
+  ],
+  "group9": "pending"
 }

@@ -24,13 +24,20 @@ for j in jobs:
                 scale=min((box[3]-box[1])/ob.height,(cw-20)/ob.width);ob=ob.resize((round(ob.width*scale),round(ob.height*scale)),Image.Resampling.LANCZOS)
                 cell=Image.new('RGB',(cw,ch),(0,255,0));cell.paste(ob,((cw-ob.width)//2,box[3]-ob.height));im.paste(cell,(k*cw,ch))
             im.save(run/'revised-grid.png')
-        strip=Image.new('RGB',(cw*j['frames'],ch),(0,255,0))
-        for i in range(j['frames']):strip.paste(im.crop(((i%j['cols'])*cw,(i//j['cols'])*ch,(i%j['cols']+1)*cw,(i//j['cols']+1)*ch)),(i*cw,0))
+        row_edges=[k*ch for k in range(j['rows']+1)]
+        if 'gridRowCuts' in j:row_edges=[round(k*im.height/j['gridRowCuts'][-1]) for k in j['gridRowCuts']]
+        raw_height=max(row_edges[k+1]-row_edges[k] for k in range(j['rows']))
+        strip=Image.new('RGB',(cw*j['frames'],raw_height),(0,255,0))
+        for i in range(j['frames']):
+            row=i//j['cols'];cell=im.crop(((i%j['cols'])*cw,row_edges[row],(i%j['cols']+1)*cw,row_edges[row+1]))
+            strip.paste(cell,(i*cw,raw_height-cell.height))
         (run/'raw').mkdir(exist_ok=True);strip.save(run/'raw/motion.png')
         w,h=j['cell'];ref=GAME/j['reference']
         if not (run/'sprite-request.json').exists():
             subprocess.run([str(SG),'prepare','--out-dir',str(run),'--force','--character-id',j['id'],'--base-image',str(ref),'--style','hand painted cel shaded','--cell-width',str(w),'--cell-height',str(h),'--safe-margin','24','--chroma-key','#00ff00','--no-fit-pixel-unfake','--fit-align-x','bbox-center','--fit-align-y','bottom','--fit-ground-frames','--request-json',json.dumps({'states':{'motion':{'frames':j['frames'],'fps':j['fps'],'loop':j['loop'],'action':j['id']}}})],check=True,stdout=subprocess.DEVNULL)
-        subprocess.run([str(SG),'extract','--run-dir',str(run),'--allow-slot-fallback'],check=True,stdout=subprocess.DEVNULL)
+        extract_args=[str(SG),'extract','--run-dir',str(run),'--allow-slot-fallback']
+        if 'decontam' in j:extract_args+=['--decontam',j['decontam']]
+        subprocess.run(extract_args,check=True,stdout=subprocess.DEVNULL)
         frames=[Image.open(run/f'frames/motion/frame-{i}.png').convert('RGBA') for i in range(j['frames'])]
         frames=[im.crop(im.getchannel('A').getbbox()) for im in frames]
         old=GAME/f"art/animation-pack-03/assets/{j['who']}-idle/frames/motion"
@@ -59,19 +66,21 @@ for j in jobs:
         if j['id']=='marko-hang':
             manifest['gripAnchors']=[{'frame':x['frame'],'point':x['grip']} for x in qa]
             manifest['alignmentNote']='Pin each frame gripAnchors point to the same ledge position; body sway stays below the raised hand.'
+        if 'groundImpactFrame' in j:
+            manifest['groundImpactFrame']=j['groundImpactFrame'];manifest['airborneFrames']=j['airborneFrames']
         (out/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf8');shutil.copy2(ref,out/'reference.png')
         subprocess.run([str(SG),'compose-gif',*[str(out/f'frames/motion/frame-{i}.png') for i in range(j['frames'])],'--output',str(out/'preview.gif'),'--delay-ticks',str(round(100/j['fps'])),'--loop-count','0'],check=True,stdout=subprocess.DEVNULL)
         (out/'qa.json').write_text(json.dumps({'frames':qa,'referenceHeight':reference_height,'targetMaxHeight':target,'scale':scale,'loop':j['loop']},indent=2),encoding='utf8')
     published.append(j);print('Published',j['id'],j['frames'],flush=True)
 allready=[j for j in jobs if (ROOT/'assets'/j['id']/'atlas.png').exists()]
-if allready:
+if allready and '9' not in sys.argv[1:]:
     board=Image.new('RGBA',(1536,len(allready)*540),(24,37,36,255));d=ImageDraw.Draw(board)
     for row,j in enumerate(allready):
         old=GAME/f"art/animation-pack-03/assets/{j['who']}-idle/frames/motion/frame-0.png"
         if not old.exists():old=GAME/'art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png'
         ref=Image.open(old).convert('RGBA');frame=Image.open(ROOT/f"assets/{j['id']}/frames/motion/frame-0.png").convert('RGBA')
         board.alpha_composite(ref,(0,row*540));board.alpha_composite(frame,(512,row*540));d.text((12,row*540+515),'PACK03 reference / '+j['id'],fill='white')
-    preview_name='preview-group-7.png' if '7' in sys.argv[1:] else 'preview.png'
+    preview_name='preview-group-7-enemies.png' if '7' in sys.argv[1:] and any(j['group']==7 and j['who']!='marko' for j in allready) else 'preview-group-7.png' if '7' in sys.argv[1:] else 'preview.png'
     board.save(ROOT/preview_name)
 (ROOT/'catalog.json').write_text(json.dumps([{'id':j['id'],'group':j['group'],'frames':j['frames'],'fps':j['fps'],'loop':j['loop'],'file':f"assets/{j['id']}/atlas.png",'manifest':f"assets/{j['id']}/manifest.json"} for j in allready],indent=2),encoding='utf8')
 

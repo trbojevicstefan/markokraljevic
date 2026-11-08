@@ -286,5 +286,104 @@
     "loop": true,
     "file": "assets/sword-climb/atlas.png",
     "manifest": "assets/sword-climb/manifest.json"
+  },
+  {
+    "id": "marko-combo-4",
+    "group": 7,
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-combo-4/atlas.png",
+    "manifest": "assets/marko-combo-4/manifest.json"
+  },
+  {
+    "id": "marko-air-1",
+    "group": 7,
+    "frames": 5,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-air-1/atlas.png",
+    "manifest": "assets/marko-air-1/manifest.json"
+  },
+  {
+    "id": "marko-air-2",
+    "group": 7,
+    "frames": 5,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-air-2/atlas.png",
+    "manifest": "assets/marko-air-2/manifest.json"
+  },
+  {
+    "id": "marko-uppercut",
+    "group": 7,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-uppercut/atlas.png",
+    "manifest": "assets/marko-uppercut/manifest.json"
+  },
+  {
+    "id": "marko-dash-strike",
+    "group": 7,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-dash-strike/atlas.png",
+    "manifest": "assets/marko-dash-strike/manifest.json"
+  },
+  {
+    "id": "marko-charge-hold",
+    "group": 7,
+    "frames": 4,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-charge-hold/atlas.png",
+    "manifest": "assets/marko-charge-hold/manifest.json"
+  },
+  {
+    "id": "marko-push",
+    "group": 7,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-push/atlas.png",
+    "manifest": "assets/marko-push/manifest.json"
+  },
+  {
+    "id": "marko-lever",
+    "group": 7,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/marko-lever/atlas.png",
+    "manifest": "assets/marko-lever/manifest.json"
+  },
+  {
+    "id": "sword-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/sword-launch/atlas.png",
+    "manifest": "assets/sword-launch/manifest.json"
+  },
+  {
+    "id": "shield-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/shield-launch/atlas.png",
+    "manifest": "assets/shield-launch/manifest.json"
+  },
+  {
+    "id": "archer-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/archer-launch/atlas.png",
+    "manifest": "assets/archer-launch/manifest.json"
   }
 ]

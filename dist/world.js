@@ -83,7 +83,7 @@ function makeGoals(L,floorAt){
 // Ground is solid and rises and falls by stairs and cliffs. Archers wait on towers and watchtowers that Marko has to
 // climb (ladders, ledge grabs); chimneys are climbed by jumping wall to wall. Pits are rare and short.
 const RISE=24,RUN=46,LOW=660;
-export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true}};
+export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true},zid:{w:74,h:205,hp:4,solid:true}};
 // each land breaks its own things
 export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['santa','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast']};
 // Marvels from the songs about Marko, one hidden in each land; each one strengthens him for good.
@@ -99,23 +99,25 @@ export const CUDA=[
  {id:'tri-kese-dukata',name:'Tri kese dukata',song:'Smrt Marka Kraljevića',perk:'Više dukata',land:'rudnik'},
  {id:'kljuc-kule',name:'Ključ arapske kule',song:'Marko Kraljević ukida svadbarinu',perk:'Kovčezi daju duplo',land:'rusevine'},
  {id:'zlatno-ralo',name:'Zlatno ralo',song:'Oranje Marka Kraljevića',perk:'Teški udarci jači',land:'oranje'},
+ {id:'sokolovo-pero',name:'Sokolovo pero',song:'Kraljević Marko i soko',perk:'Vazdušni udarci te duže drže u vazduhu',land:'mocvara'},
+ {id:'prelomljeno-koplje',name:'Prelomljeno koplje',song:'Smrt Marka Kraljevića',perk:'Juriš se brže hladi',land:'reka'},
  {id:'musina-sablja',name:'Musina sablja',song:'Marko Kraljević i Musa Kesedžija',perk:'Manje primljene štete',land:'kacanik'},
 ];
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars crates terrace+ flat terrace- watch flat',
- klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift crumble stairs+ watch rocks crates flat',
- suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes watch stairs+ flat stairs- chimney flat',
- manastir:'flat stairs+ flat stairs+ crates tower lever cellar chimney stairs- ledges lift stairs+ tower flat',
- tvrdjava:'flat crates tower barrels plate chimney^ flat tower lever crates pillars ladder+ tower flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase flat watch lift stairs+ chimney rocks terrace+ crates flat boss:akindzija',
- pecina:'flat terrace- crates crumble spikebed chimney ledges terrace+ cellar flat pillars gap tower crumble crates flat',
- podrum:'flat crates stairs- barrels plate ladder+ crates spikebed chimney crates stairs+ barrels tower crates boss:palikuca',
- mocvara:'flat bridge watch crumble ferry bridge crates logs spikebed watch ledges flat bridge pillars watch flat',
- rudnik:'flat ladder+ crates rocks lift ledges tower lever flat chimney cellar crumble ladder+ barrels crates flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower spikebed ladder+ crates chimney^ logs terrace+ ladder+ watch stairs+ flat',
- reka:'flat crates bridge flat watch ferry stairs+ logs stairs- plate bridge crumble crates ledges watch flat boss:sword',
+ selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars kljuc crates terrace+ flat terrace- watch flat',
+ klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift crumble zid stairs+ watch rocks crates flat',
+ suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes kljuc watch stairs+ flat stairs- chimney flat',
+ manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar chimney zid stairs- ledges lift stairs+ tower flat',
+ tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates pillars ladder+ tower flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase flat watch lift stairs+ chimney rocks zid terrace+ crates flat boss:akindzija',
+ pecina:'flat terrace- crates crumble spikebed chimney ledges terrace+ cellar flat pillars zid gap tower crumble crates flat',
+ podrum:'flat crates stairs- barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
+ mocvara:'flat bridge watch crumble ferry bridge crates logs kljuc spikebed watch ledges flat bridge pillars watch flat',
+ rudnik:'flat ladder+ crates rocks zid lift ledges tower lever flat chimney cellar crumble ladder+ barrels crates flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower spikebed zid ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch stairs+ flat',
+ reka:'flat crates bridge flat watch ferry stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
  oranje:'flat plow crates flat plow watch plate stairs+ flat stairs- plow crates flat',
 };
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:760},akindzija:{name:'Akindžijski beg',hp:560},palikuca:{name:'Ognjeni aga',hp:520},shield:{name:'Bajraktar sa štitom',hp:620},sword:{name:'Janičarski aga',hp:540}};
@@ -174,6 +176,10 @@ export function buildLayout(L,variant='day'){
   chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:L.id==='prevoj'});},
   // a heavy iron-bound crate and a stone plate: the gate stays open only while something weighs the plate down
   plate(){const x0=x,len=ri(760,840);ground(len);const bx=x0+150,px=x0+Math.round(len*.52),gx=x0+len-110;platforms.push({x:bx,y:gy-76,w:76,h:76,kind:'teret',solid:true,push:true});traps.push({kind:'plate',x:px,w:84,y:gy,gate:{x:gx,y:gy},vault:vaults.length});vaults.push({door:{x:gx,y:gy}});busy.push([x0,x0+len]);},
+  // a cracked wall closes the road: too tall to jump, only heavy blows (K) bring it down; a chest waits behind it
+  zid(){const x0=x,len=ri(560,640);ground(len);const wx=x0+Math.round(len*.5);crate(wx,'zid',{loot:{coins:ri(6,10)}});crate(wx+170,'kovceg',{loot:{coins:ri(18,26)}});busy.push([x0,x0+len]);spots.push({x:x0+140,y:gy});},
+  // a treasury tower beside the road: its iron-bound door opens only with the key the keeper carries
+  kljuc(){const x0=x,len=ri(760,840);ground(len);const dx=x0+Math.round(len*.64),kx=x0+Math.round(len*.3);traps.push({kind:'keydoor',x:dx,y:gy,gate:{x:dx,y:gy},vault:vaults.length,keeper:{x:kx,y:gy}});vaults.push({door:{x:dx,y:gy},key:true});spots.push({x:kx,y:gy});busy.push([x0,x0+len]);},
   // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
   cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});
@@ -206,7 +212,11 @@ export function buildLayout(L,variant='day'){
  const end=boss?boss.x0:goal.x-150,free=cands.filter(c=>!taken(c)&&c.x>500&&c.x<end),letters=[];
  for(let i=0;i<5;i++){const a=500+(end-500)*i/5,b=500+(end-500)*(i+1)/5,bin=free.filter(c=>c.x>=a&&c.x<b).sort((u,v)=>v.s-u.s||u.x-v.x);const c=bin[Math.floor(R()*Math.min(2,bin.length))];if(c){letters.push({...c,i});free.splice(free.indexOf(c),1);}}
  const mid=free.filter(c=>c.x>end*.35&&c.x<end*.75).sort((u,v)=>v.s-u.s)[0];
- return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+ // the heart piece hides in the first treasury (or the cellar, or the hardest place left); the scroll waits on the way
+ const hv=vaults[0],rest=free.filter(c=>c!==mid).sort((u,v)=>v.s-u.s||v.x-u.x);
+ const heart=hv?{x:hv.x0+hv.w-110,y:hv.y-44}:cellars[0]?{x:cellars[0].x-40,y:cellars[0].y-44}:rest[0]||null;
+ const zapis=rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
  layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
@@ -227,6 +237,11 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const r of B.rewards)if(r.cudo)items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
  for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
  const powerIds=Object.keys(POWERS);if(B.power)items.push({id:7055+index,x:Math.round(B.power.x),y:Math.round(B.power.y),type:'moc',power:powerIds[index%3],taken:false});
+ if(B.heart)items.push({id:7600+index*2,x:Math.round(B.heart.x),y:Math.round(B.heart.y),type:'srce',land:L.id,taken:false});
+ if(B.zapis)items.push({id:7601+index*2,x:Math.round(B.zapis.x),y:Math.round(B.zapis.y),type:'zapis',land:L.id,taken:false});
+ // the keeper of each treasury key: the nearest foe, a little tougher
+ for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
+  if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
  if(B.boss){const S=BOSSES[B.boss.type];foe(B.boss.type,B.boss.x,B.boss.y,{champion:true,scale:1.35,hp:S.hp,maxHp:S.hp,name:S.name,w:50,h:100,arena:{x0:B.boss.x0,x1:B.boss.x1}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
  const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}

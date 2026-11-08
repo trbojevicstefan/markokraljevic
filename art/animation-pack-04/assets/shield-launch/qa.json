@@ -1,0 +1,68 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        75,
+        87,
+        436,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        61,
+        63,
+        450,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        22,
+        127,
+        490,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        51,
+        31,
+        461,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        43,
+        181,
+        468,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        15,
+        186,
+        496,
+        488
+      ],
+      "footY": 487
+    }
+  ],
+  "referenceHeight": 457,
+  "targetMaxHeight": 457,
+  "scale": 1.036281179138322,
+  "loop": false
+}

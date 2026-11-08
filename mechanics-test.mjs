@@ -151,4 +151,27 @@ async function juggle(id,tresak){const w=await start(id);const e=w.enemies.find(
 {const r=await juggle('selo',true);ok(r.slam>=130,`tresak: K in the air drives him into the ground (−${Math.round(r.slam)})`);}
 {api.start();const w=S().world;const e=w.enemies.find(e=>e.zone===0&&e.type==='sword');for(const o of w.enemies)if(o!==e)o.alive=false;Object.assign(e,{stun:0,mode:'idle',timer:9,hp:300,maxHp:300});stand(e.x-70,e.y);S().p.face=1;S().p.invuln=99;
  api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);ok(e.y<580,'launch: in the Kačanik story too the janissary flies');step(240);ok(e.y===590,'launch: and lands back on the road');}
+// ---- heart pieces, lore scrolls, treasury keys, cracked walls ----
+{let all=true;for(let i=0;i<api.LEVELS.length;i++){await api.startLevel(i,'day');const w=S().world;if(!w.items.some(it=>it.type==='srce')||!w.items.some(it=>it.type==='zapis'))all=false;}ok(all,'relics: every pohod hides a heart piece and a lore scroll');}
+{storage.set('marko-srca',JSON.stringify(['klisura','suma','reka']));storage.delete('marko-zapisi');const w=await start('selo');quiet(w);const hp0=S().p.maxHp,h=w.items.find(it=>it.type==='srce');stand(h.x,h.y+44);step(2);
+ ok(h.taken&&S().p.maxHp===hp0+20,'heart: the fourth heart piece makes a whole heart (+20 health)');const z=w.items.find(it=>it.type==='zapis');stand(z.x,z.y+44);step(2);ok(JSON.parse(storage.get('marko-zapisi')).includes('selo'),'scroll: a found scroll is kept for the treasury');
+ const w2=await start('selo');ok(w2.items.find(it=>it.type==='srce').taken&&S().p.maxHp===hp0+20,'heart: a found piece stays found and the whole heart stays');storage.delete('marko-srca');storage.delete('marko-zapisi');}
+{const w=await start('selo');const t=w.traps.find(t=>t.kind==='keydoor'),h=w.enemies.find(e=>e.keyHolder);ok(t&&h&&t.holder===h.id,'key: a keeper carries the treasury key');quiet(w,[h]);
+ stand(t.x,t.y);step(2);tap('KeyW');step(3);ok(!S().p.vault&&!(t.open>0),'key: without the key the iron door stays shut');
+ h.alive=false;step(2);const k=w.items.find(it=>it.type==='kljuc');ok(k,'key: the fallen keeper drops the key');stand(k.x,k.y+40);step(2);ok(S().p.key,'key: Marko picks it up');
+ stand(t.x,t.y);step(2);tap('KeyW');step(3);ok(t.open>0&&S().p.vault,'key: W at the door unlocks it and Marko goes into the treasury');}
+{const w=await start('klisura');quiet(w);const b=w.breakables.find(b=>b.kind==='zid');ok(b,'wall: the gorge has a cracked wall across the road');stand(b.x-150,b.y);api.keys.add('KeyD');step(120);api.keys.clear();ok(S().p.x<b.x-b.w/2,'wall: it closes the road');
+ stand(b.x-80,b.y);S().p.face=1;const hp=b.hp;for(let i=0;i<3;i++){tap('KeyJ');step(50);}ok(b.hp===hp&&!b.broken,'wall: light blows only ring off it');
+ for(let i=0;i<4&&!b.broken;i++){stand(b.x-80,b.y);S().p.face=1;tap('KeyK');step(90);}ok(b.broken,'wall: heavy blows (K) bring it down');}
+function openGround(w){return w.platforms.filter(q=>q.ground&&q.w>=760).find(q=>!w.breakables.some(b=>b.x>q.x-40&&b.x<q.x+q.w+40&&Math.abs(b.y-q.y)<5)&&!(w.traps||[]).some(t=>t.x>q.x-60&&t.x<q.x+q.w+60&&Math.abs((t.y??q.y)-q.y)<5));}
+{const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);Object.assign(e,{type:'sword',x:q.x+360,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false});stand(q.x+120,q.y);S().p.face=1;
+ api.keys.add('KeyD');step(40);tap('KeyS');const slid=S().p.slide>0;let tripped=false;for(let i=0;i<70;i++){step();if(e.hp<600&&e.stun>0)tripped=true;}api.keys.clear();ok(slid,'slide: S while running sends Marko into a slide');ok(tripped,'slide: the slide cuts a janissary off his feet');}
+{const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);Object.assign(e,{type:'shield',x:q.x+300,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false});stand(q.x+220,q.y);S().p.face=1;
+ api.keys.add('KeyS');tap('KeyJ');step(40);api.keys.clear();step(40);ok(e.guardBroken>0&&e.x>q.x+330,'kick: S+J knocks the shield aside and shoves him back');}
+{const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);Object.assign(e,{type:'sword',x:q.x+300,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false});stand(q.x+230,q.y);S().p.face=1;
+ api.keys.add('KeyS');tap('KeyK');api.keys.clear();ok(S().p.attackKind==='uvis','uppercut: S+K is the uppercut');let up=false;for(let i=0;i<40;i++){step();if(e.y<q.y-40)up=true;}ok(up,'uppercut: it throws the janissary into the air');}
+{const w=await start('selo');quiet(w);const q=w.platforms.find(q=>q.pillar);const {p}=S();stand(q.x-20,q.y+112);p.grounded=false;p.vy=0;p.face=1;p.hang=false;p.ledgeCool=0;step(2);
+ ok(p.hang&&p.ledgeT>0,'hang: Marko catches the ledge and hangs');step(60);ok(p.hang&&Math.abs(p.y-(q.y+112))<1,'hang: he stays hanging while nothing is pressed');
+ api.keys.add('KeyD');step(120);api.keys.clear();ok(!p.hang&&Math.abs(S().p.y-q.y)<1,'hang: toward the wall he climbs up');
+ stand(q.x-20,q.y+112);const p2=S().p;p2.grounded=false;p2.vy=0;p2.face=1;p2.hang=false;p2.ledgeCool=0;step(2);api.keys.add('KeyS');step(30);api.keys.clear();ok(!p2.hang&&!(p2.ledgeT>0)&&p2.y>q.y+112,'hang: S lets go of the ledge');}
 console.log(`${checks} pohod mechanics checks passed.`);

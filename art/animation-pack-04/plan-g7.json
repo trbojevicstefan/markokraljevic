@@ -14,7 +14,7 @@
         512,
         512
       ],
-      "extra": 0,
+      "extra": 52,
       "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
       "prompt": "EXACTLY 8 full-body animation poses in 4 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Overhead finisher: 1 guard; 2 step; 3 mace winds behind head; 4 raised highest; 5 explosive downward strike with forward shoulder bash CONTACT; 6 follow through; 7 recoil; 8 guard."
     },
@@ -31,7 +31,7 @@
         512,
         512
       ],
-      "extra": 0,
+      "extra": 52,
       "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
       "prompt": "EXACTLY 5 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Airborne horizontal mace strike: 1 tucked jump guard; 2 wind back; 3 horizontal CONTACT to right; 4 follow through; 5 airborne recovery. No floor. The sixth final bottom-right slot is EMPTY pure green; exactly five actual poses."
     },
@@ -48,7 +48,7 @@
         512,
         512
       ],
-      "extra": 0,
+      "extra": 52,
       "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
       "prompt": "EXACTLY 5 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Second aerial strike rising from below: 1 airborne mace low; 2 twist; 3 rising diagonal CONTACT; 4 mace high; 5 airborne recovery. The sixth final bottom-right slot is EMPTY pure green; exactly five actual poses."
     },
@@ -65,9 +65,14 @@
         512,
         512
       ],
-      "extra": 0,
+      "extra": 52,
       "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
-      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 crouch; 2 mace low behind; 3 drive up with legs; 4 upward mace CONTACT; 5 fully extended rising body; 6 recovery."
+      "prompt": "EXACTLY 6 full-body animation poses in 3 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. 1 crouch; 2 mace low behind; 3 drive up with legs; 4 upward mace CONTACT; 5 fully extended rising body; 6 recovery.",
+      "gridRowCuts": [
+        0,
+        470,
+        1024
+      ]
     },
     {
       "id": "marko-dash-strike",
@@ -99,9 +104,10 @@
         512,
         512
       ],
-      "extra": 0,
+      "extra": 52,
       "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
-      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Tense charge hold looping: mace behind shoulder glows gold, subtle breath and weight shift through four unique poses, return smoothly to first. Glow tightly attached to mace."
+      "prompt": "EXACTLY 4 full-body animation poses in 2 columns and 2 rows, read left to right then down. Invisible equal square slots, no grid or labels. Pure flat #00FF00 green empty background. Same exact character identity, costume, weapons, anatomy and head size as supplied reference. Painterly cel shaded game art. Facing RIGHT, far limbs darker, entire pose fits in its own cell with green gutters. Shared grounded foot baseline, fixed anatomical scale, no camera movement, no ground shadows. Tense charge hold looping: mace behind shoulder glows gold, subtle breath and weight shift through four unique poses, return smoothly to first. Glow tightly attached to mace.",
+      "decontam": "palette"
     },
     {
       "id": "marko-push",

@@ -1,6 +1,6 @@
 # Paket 03 — svet
 
-Spremno je 89 elemenata sveta i 32 animacionih klipova / 204 kadrova u susednom animation-pack-04. Katalog sadrži 369 PNG slika, uključujući kadrove i preglede. Za najnoviji tok rada i odluke vidi STATUS.md; za tačan spisak nedostajućeg DELIVERY.json.
+Spremno je 91 elemenata sveta i 43 animacionih klipova / 268 kadrova u susednom animation-pack-04. Katalog sadrži 458 PNG slika, uključujući kadrove i preglede. Za najnoviji tok rada i odluke vidi STATUS.md; za tačan spisak nedostajućeg DELIVERY.json.
 
 - Prioritet 1: complete.
 - Prioritet 2: complete.
@@ -9,6 +9,8 @@ Spremno je 89 elemenata sveta i 32 animacionih klipova / 204 kadrova u susednom 
 - Prioritet 5: complete.
 - Prioritet 6: complete.
 - Prioritet 7: pending.
+- Hitna DOPUNA-3: pending.
+- Hitna DOPUNA-4 launch: pending.
 
 Predmeti su providni PNG sa osnovom pri dnu platna. Lestve: 256×1024, stranice x=56/200, prečke 64+128n. Zidovi: 512×512, neprovidni, ponovljivi u oba smera. Stražarnica: deckY=341, deckX0=270, deckX1=684. Ispravljeno tlo Oranje: 1024×384, hodni rub y=64, sve iznad providno; završetak 192×384. Nema kuća, zidova ni ograda u traci tla. Dnevne pozadine nisu prepisivane pri pravljenju noćnih/olujnih varijanti.
 

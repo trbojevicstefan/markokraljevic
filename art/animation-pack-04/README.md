@@ -1,6 +1,6 @@
 # Animacije — paket 04
 
-Gotovo: 32 klipova / 204 kadrova. Stvarni gotovi klipovi su navedeni ispod i u catalog.json. Spisak preostalog i stanje generatora: ../world-pack-03/STATUS.md i DELIVERY.json.
+Gotovo: 43 klipova / 268 kadrova. Stvarni gotovi klipovi su navedeni ispod i u catalog.json. Spisak preostalog i stanje generatora: ../world-pack-03/STATUS.md i DELIVERY.json.
 
 U assets/<klip>/ su atlas.png, manifest.json, frames/motion/, preview.gif, reference.png i qa.json. Ćelije su 512×512, a volovi koriste 1024×512. Donja linija sadržaja je y=487. Veličina se vezuje za postojeći idle istog lika, uz prostor za oružje. Preview.png poredi prve kadrove sa ranijim likovima. Nove baze kopljanika, psa, tufekdžije i volova su u odgovarajućim assets/<lik>/base-source.png.
 
@@ -40,3 +40,14 @@ Izvoz: sprite-gen extract → compose-atlas → compose-gif. Mreže se pre ekstr
 | marko-slide | 6 | 12 | ne |
 | marko-hang | 6 | 12 | da |
 | sword-climb | 6 | 12 | da |
+| marko-combo-4 | 8 | 12 | ne |
+| marko-air-1 | 5 | 12 | ne |
+| marko-air-2 | 5 | 12 | ne |
+| marko-uppercut | 6 | 12 | ne |
+| marko-dash-strike | 6 | 12 | ne |
+| marko-charge-hold | 4 | 12 | da |
+| marko-push | 6 | 12 | da |
+| marko-lever | 6 | 12 | ne |
+| sword-launch | 6 | 12 | ne |
+| shield-launch | 6 | 12 | ne |
+| archer-launch | 6 | 12 | ne |

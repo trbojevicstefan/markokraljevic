@@ -112,8 +112,8 @@
   "scaleReference": {
     "character": "marko",
     "referenceHeight": 383,
-    "targetMaxHeight": 383,
-    "actualMaxHeight": 383,
+    "targetMaxHeight": 435,
+    "actualMaxHeight": 435,
     "footY": 487
   }
 }

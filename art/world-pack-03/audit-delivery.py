@@ -63,7 +63,7 @@ if 'gripAnchors' in hang:
         xx,yy=anchor['point'];im=Image.open(ANIM/f"assets/marko-hang/frames/motion/frame-{anchor['frame']}.png").convert('RGBA')
         assert 0<=xx<512 and 0<=yy<512 and im.getpixel((xx,yy))[3]>0,anchor
     report['checksPassed'].append('hanging grip anchors lie on hand pixels')
-for g in [3,4,5,6,7,8]:
+for g in [3,4,5,6,7,8,9]:
     p=ROOT/f'plan-g{g}.json'
     missing_world=[j['id'] for j in json.loads(p.read_text(encoding='utf8'))['jobs'] if not (ROOT/(j['id']+'.png')).exists()] if p.exists() else []
     missing_anim=[j['id'] for j in plans.values() if j['group']==g and not (ANIM/'assets'/j['id']/'atlas.png').exists()]

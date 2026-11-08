@@ -1,6 +1,6 @@
 # Paket 03 — napredak
 
-> AKTUELNO: prvo se radi 8 Markovih klipova 7d, pa 4 reakcije protivnika, zatim DOPUNA-3 kapije. Prioriteti 1–6 i 7a–7c su gotovi. Ranije završene slike ostaju netaknute.
+> AKTUELNO: 8 Markovih klipova 7d GOTOVO. HITNO se radi DOPUNA-4 launch, redom sword → shield → archer → akindzija → kopljanik → palikuca → pas → tufekdzija → oklopnik. Reakcije 7d i kapije čekaju.
 
 ## Prioritet 1 — u toku
 Generišu se predmeti, 12 čuda, lestve, stražarnica i četiri ponovljiva zida. Izvorne slike ostaju u ignorisanom `sources/`. Završene slike i katalog biće objavljeni u ovom folderu po proveri dimenzija i spojeva.
@@ -102,3 +102,21 @@ Tačka povratka je tačno početak 7d: nijedan od poslednjih dvanaest klipova jo
 Kapije iz DOPUNA-3 su ODLOŽENE do završetka animacija. Sve njihove dosadašnje slike/probe ostaju sačuvane u sources/: prolaz-kamen-otvoren.png (frontalna proba, nije isporuka), prolaz-kamen-otvoren-profile-v2.png (bočni presek, još zahteva korekciju prolaza), ulaz-riznica.png i resetka.png. Već pokrenuta korekcija profila v3 biće sačuvana kad stigne; novi zahtevi za kapije se do tada ne pokreću.
 Novi red rada: prvo osam Markovih klipova 7d (combo-4, air-1, air-2, uppercut, dash-strike, charge-hold, push, lever), zatim četiri reakcije protivnika 7d, pa nastavak devet kapija/riznice iz DOPUNA-3. Ostali prioriteti 1–6 i 7a–7c već su završeni. Markovih prvih osam klipova je sada u generisanju.
 
+
+## Prioritet 7d — SVI MARKOVI KLIPOVI GOTOVI
+Osam klipova / 46 kadrova je završeno u animation-pack-04/assets/: marko-combo-4 (8), marko-air-1 (5), marko-air-2 (5), marko-uppercut (6), marko-dash-strike (6), marko-charge-hold (4, petlja), marko-push (6, petlja), marko-lever (6). Svaki ima atlas.png, manifest.json, frames/, preview.gif i qa.json. Marko-push i lever imaju topuz za pojasom, bez nacrtanog sanduka/poluge, da ih igra crta zasebno. U zamahu je dodat prostor za topuz uz poravnanje sa starom Markovom pozom. Cela glava topuza u aperkatu je sačuvana pravilnom podelom dva reda izvora; nije odsečena niti prešla u susedni kadar. Charge-hold je izvezen uz čišćenje palete, bez zelenih ivica.
+Pregledano svih 46 kadrova uz staru pozu, provereni broj kadrova, GIF-ovi, ćelije 512×512 i donji oslonac y=487. Novi zbirni pregled je animation-pack-04/preview-group-7.png; prethodni preview.png je ostao netaknut. Preservation-check proverio je 401 raniju sliku i sve su bit-identične. Ukupno je sada 40 klipova / 250 kadrova, 91 finalni element sveta (uključuje već izvezenu rešetku i zatvorenu riznicu), 434 PNG u katalogu. Neuspele Markove stavke: nema.
+Sledeće: shield-guardbreak, oklopnik-armorbreak, akindzija-backstep, palikuca-burn. Zatim kapije DOPUNA-3. Njihova profilna v3 proba je sačuvana u sources/prolaz-kamen-otvoren-profile-v3.png; nije završena kapija niti ubačena u katalog jer još čekaju tačne mere prolaza.
+
+
+## HITNO DOPUNA-4 — launch ima prednost
+Osam Markovih klipova iz 7d je gotovo. Sada, pre svega ostalog, ide redom sword-launch, shield-launch, archer-launch, akindzija-launch, kopljanik-launch, palikuca-launch, pas-launch, tufekdzija-launch, oklopnik-launch. Svaki je nov klip sa 6 kadrova, jednom, 512×512: udar odozdo, let, prevrat, glava dole, pad, odskok na leđima. Posle svakog će biti upisano stanje. Sword-launch je pokrenut odmah po čitanju DOPUNA-4.
+Četiri reakcije 7d već su bile poslate generatoru pre nove poruke; njihovi rezultati će biti sačuvani, a obrada/predaja dolazi posle launch klipova. Kapije i dalje čekaju; sve njihove probe i dva postojeća izvoza ostaju netaknuti.
+
+
+## DOPUNA-4 — 1/9: sword-launch GOTOVO
+Nacrtan i izvezen sword-launch: 6 novih kadrova, jednom, 512×512, atlas/manifest/frames/preview.gif u animation-pack-04/assets/sword-launch/. Proverene poze: udar odozdo, let, vrh leta, potpuno naopako glava dole u kadru 4, pad i odskok na leđima u kadru 6. Nije ponovljena animacija smrti. Proveren prikaz uz sword-idle, alfa, broj kadrova i GIF. Manifest ima airborneFrames 0–4 i groundImpactFrame=5 (indeksi od nule). Sledeći: shield-launch.
+Četiri ranije započete reakcije 7d (shield-guardbreak, oklopnik-armorbreak, akindzija-backstep, palikuca-burn) su nacrtane i trajno sačuvane u animation-pack-04/sources/<klip>/grid.png, ali još nisu izvezene/predate: launch klipovi imaju prednost.
+
+## DOPUNA-4 — 2/9: shield-launch GOTOVO
+Šest novih kadrova štitonoše je završeno u animation-pack-04/assets/shield-launch/: atlas, manifest, frames/, preview.gif, qa. Provereni odvajanje nogu od tla, prevrat/glava dole (4), pad i odskok na leđima (6); štit i sablja ostaju vidljivi u svim pozama, bez odsečenih delova. Proverena veličina uz shield-idle, ćelije 512×512, broj kadrova, alfa i GIF. STATUS, katalog i README osveženi. Launch napredak: sword i shield gotovi, sledeći archer-launch. Ukupno 42 klipa / 262 kadra.

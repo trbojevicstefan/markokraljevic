@@ -1,0 +1,249 @@
+{
+  "generator": "built-in image_gen",
+  "urgent": "DOPUNA-4, immediately after eight Marko clips",
+  "jobs": [
+    {
+      "id": "sword-launch",
+      "group": 9,
+      "who": "sword",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/sword-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME Janissary saber warrior in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve SAME face, wrapped helmet, red coat, lamellar armor, saber, body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and saber stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, saber arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, saber retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles.",
+      "decontam": "palette"
+    },
+    {
+      "id": "shield-launch",
+      "group": 9,
+      "who": "shield",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/shield-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME Janissary shield bearer in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Large round shield strapped to forearm and saber off balance, both retained.",
+      "decontam": "palette"
+    },
+    {
+      "id": "archer-launch",
+      "group": 9,
+      "who": "archer",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/archer-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME Janissary archer in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep bow, quiver and clothing identity, bow flails out of balance, no shot arrow.",
+      "decontam": "palette"
+    },
+    {
+      "id": "akindzija-launch",
+      "group": 9,
+      "who": "akindzija",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/akindzija-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME agile akindzija with two curved weapons in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep both curved sabers, green coat, red wrap and pale trousers.",
+      "decontam": "palette"
+    },
+    {
+      "id": "kopljanik-launch",
+      "group": 9,
+      "who": "kopljanik",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-04/assets/kopljanik/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME spear warrior in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep long spear and small shield, spear tips remain fully inside each slot, angle spear across body to fit.",
+      "decontam": "palette"
+    },
+    {
+      "id": "palikuca-launch",
+      "group": 9,
+      "who": "palikuca",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/palikuca-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME torch-bearing raider in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep torch and flasks, small flame attached to torch, no fire breath or shooting flames.",
+      "decontam": "palette"
+    },
+    {
+      "id": "pas-launch",
+      "group": 9,
+      "who": "pas",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-04/assets/pas/base-source.png",
+      "referenceHeight": 192,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME brindled war hound in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and paws stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, paws arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, paws retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. ONLY THE DOG, no human or weapon. Keep brindled coat, curled tail and leather collar. Replace human arms with front paws and human legs with hind paws; all four paws flail; invert dog with head below hips in phase4, then land on BACK in phase6.",
+      "decontam": "palette"
+    },
+    {
+      "id": "tufekdzija-launch",
+      "group": 9,
+      "who": "tufekdzija",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-04/assets/tufekdzija/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME antique matchlock musketeer in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep blue coat and antique musket, gun held off balance but does NOT fire; no muzzle flash.",
+      "decontam": "palette"
+    },
+    {
+      "id": "oklopnik-launch",
+      "group": 9,
+      "who": "oklopnik",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "extra": 0,
+      "reference": "art/animation-pack-03/sources/oklopnik-idle/base-source.png",
+      "referenceHeight": 426,
+      "airborneFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groundImpactFrame": 5,
+      "prompt": "EXACTLY SIX full-body poses of the SAME heavily armored warrior in supplied reference, painterly cel-shaded Serbian epic 2D game style. THREE columns TWO rows, equal square slots, generous PURE #00FF00 GREEN gutters of at least32 pixels around each entire pose; no grid, text, floor, shadows or scenery. This is a NEW LAUNCH / AIRBORNE KNOCKBACK animation, NOT an ordinary death or walking cycle. Preserve the EXACT character identity, outfit, equipment and body proportions and ANATOMICAL SCALE in all six poses. Base orientation facing RIGHT, far limbs darker. Compact limbs as needed so entire rotated body and weapon stay inside OWN slot, NEVER cross row/column boundaries. Read left to right then down: 1 struck strongly FROM BELOW, torso bends backward and rises, knees begin lifting; 2 launched UPWARD, BOTH feet clearly off the ground, weapon arm thrown off balance, alarmed expression; 3 apex of flight, backward somersault, torso almost horizontal, arms spread; 4 COMPLETELY INVERTED with HEAD BELOW HIPS and BOOTS ABOVE HEAD, panic, unmistakably upside down floating in air; 5 falls backward toward ground, back leading down and knees tucked, weapon retained loosely; 6 lands hard ON HIS BACK and bounces, back at common ground baseline, legs kicked upward, alive and stunned rather than corpse. All SIX phases visually distinct, no duplicated grounded standing frames, no gore, no enemy target, no detached particles. Keep heavy bronze armor, mace and small shield. Armor remains intact during this launch; no armor-break effects.",
+      "decontam": "palette"
+    }
+  ]
+}
