@@ -1,0 +1,272 @@
+[
+  {
+    "id": "marko-finisher",
+    "frames": 8,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/marko-finisher/atlas.png",
+    "manifest": "assets/marko-finisher/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "kosturi",
+    "frames": 4,
+    "loop": false,
+    "staticVariants": true,
+    "atlas": "assets/kosturi/atlas.png",
+    "manifest": "assets/kosturi/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "sword-lunge",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/sword-lunge/atlas.png",
+    "manifest": "assets/sword-lunge/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "shield-bash",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/shield-bash/atlas.png",
+    "manifest": "assets/shield-bash/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "archer-kick",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/archer-kick/atlas.png",
+    "manifest": "assets/archer-kick/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "akindzija-spin",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/akindzija-spin/atlas.png",
+    "manifest": "assets/akindzija-spin/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "oklopnik-grab",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/oklopnik-grab/atlas.png",
+    "manifest": "assets/oklopnik-grab/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "tufekdzija-butt",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/tufekdzija-butt/atlas.png",
+    "manifest": "assets/tufekdzija-butt/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "kopljanik-sweep",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/kopljanik-sweep/atlas.png",
+    "manifest": "assets/kopljanik-sweep/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "palikuca-bomb",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/palikuca-bomb/atlas.png",
+    "manifest": "assets/palikuca-bomb/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "musa-throw-up",
+    "frames": 8,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/musa-throw-up/atlas.png",
+    "manifest": "assets/musa-throw-up/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "musa-stomp",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/musa-stomp/atlas.png",
+    "manifest": "assets/musa-stomp/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "musa-roar",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/musa-roar/atlas.png",
+    "manifest": "assets/musa-roar/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "musa-block",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/musa-block/atlas.png",
+    "manifest": "assets/musa-block/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "azdaja-idle",
+    "frames": 6,
+    "loop": true,
+    "staticVariants": false,
+    "atlas": "assets/azdaja-idle/atlas.png",
+    "manifest": "assets/azdaja-idle/manifest.json",
+    "renderScale": 2.7537993920972643
+  },
+  {
+    "id": "azdaja-fire",
+    "frames": 8,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/azdaja-fire/atlas.png",
+    "manifest": "assets/azdaja-fire/manifest.json",
+    "renderScale": 3.3065693430656933
+  },
+  {
+    "id": "azdaja-bite",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/azdaja-bite/atlas.png",
+    "manifest": "assets/azdaja-bite/manifest.json",
+    "renderScale": 3.3308823529411766
+  },
+  {
+    "id": "azdaja-hurt",
+    "frames": 4,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/azdaja-hurt/atlas.png",
+    "manifest": "assets/azdaja-hurt/manifest.json",
+    "renderScale": 2.9704918032786884
+  },
+  {
+    "id": "azdaja-death",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/azdaja-death/atlas.png",
+    "manifest": "assets/azdaja-death/manifest.json",
+    "renderScale": 2.7537993920972643
+  },
+  {
+    "id": "dzelat-idle",
+    "frames": 6,
+    "loop": true,
+    "staticVariants": false,
+    "atlas": "assets/dzelat-idle/atlas.png",
+    "manifest": "assets/dzelat-idle/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "dzelat-run",
+    "frames": 8,
+    "loop": true,
+    "staticVariants": false,
+    "atlas": "assets/dzelat-run/atlas.png",
+    "manifest": "assets/dzelat-run/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "dzelat-attack",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/dzelat-attack/atlas.png",
+    "manifest": "assets/dzelat-attack/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "dzelat-hurt",
+    "frames": 4,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/dzelat-hurt/atlas.png",
+    "manifest": "assets/dzelat-hurt/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "dzelat-death",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/dzelat-death/atlas.png",
+    "manifest": "assets/dzelat-death/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-idle",
+    "frames": 6,
+    "loop": true,
+    "staticVariants": false,
+    "atlas": "assets/djemo-idle/atlas.png",
+    "manifest": "assets/djemo-idle/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-run",
+    "frames": 8,
+    "loop": true,
+    "staticVariants": false,
+    "atlas": "assets/djemo-run/atlas.png",
+    "manifest": "assets/djemo-run/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-attack",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/djemo-attack/atlas.png",
+    "manifest": "assets/djemo-attack/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-throw",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/djemo-throw/atlas.png",
+    "manifest": "assets/djemo-throw/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-hurt",
+    "frames": 4,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/djemo-hurt/atlas.png",
+    "manifest": "assets/djemo-hurt/manifest.json",
+    "renderScale": 1
+  },
+  {
+    "id": "djemo-death",
+    "frames": 6,
+    "loop": false,
+    "staticVariants": false,
+    "atlas": "assets/djemo-death/atlas.png",
+    "manifest": "assets/djemo-death/manifest.json",
+    "renderScale": 1
+  }
+]

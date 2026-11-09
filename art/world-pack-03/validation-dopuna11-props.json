@@ -1,0 +1,138 @@
+{
+  "zag-zvono": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 565050,
+    "bounds": [
+      106,
+      5,
+      903,
+      1019
+    ]
+  },
+  "zag-ogledalo": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 525277,
+    "bounds": [
+      29,
+      12,
+      990,
+      998
+    ]
+  },
+  "zag-led": {
+    "size": [
+      1536,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 573385,
+    "bounds": [
+      16,
+      120,
+      1520,
+      370
+    ]
+  },
+  "zag-led-pukao": {
+    "size": [
+      1536,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 583093,
+    "bounds": [
+      16,
+      121,
+      1520,
+      371
+    ]
+  },
+  "zag-kamen-kola": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 843664,
+    "bounds": [
+      152,
+      357,
+      862,
+      698
+    ]
+  },
+  "zag-kamen-kola-svetli": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 843660,
+    "bounds": [
+      153,
+      357,
+      864,
+      699
+    ]
+  },
+  "zag-top": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 725696,
+    "bounds": [
+      29,
+      210,
+      1000,
+      816
+    ]
+  },
+  "zag-protivteg": {
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 753773,
+    "bounds": [
+      204,
+      8,
+      820,
+      1012
+    ]
+  }
+}

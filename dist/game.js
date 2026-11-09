@@ -312,12 +312,16 @@ function drawMindPuzzles(){const art=id=>levelArt[id];
  for(const t of world.traps||[]){const tx=t.gate?.x??t.pulley?.x??0;if(tx<camera-1300||tx>camera+VIEW_W+1300)continue;
   if(t.gate)drawSideGate('mind'+Math.round(t.gate.x),t.gate.x,t.gate.y,!!t.done);
   if(t.kind==='bells'){const T=t.tablet;poly([[T.x-50,T.y],[T.x+50,T.y],[T.x+46,T.y-120],[T.x-46,T.y-120]],'#5a5048','#a89a80');textLabel('FRESKA',T.x,T.y-96,{font:'bold 11px Georgia',color:'#e8dcc0'});textLabel(t.order.map(i=>['I','II','III'][i]).join(' · '),T.x,T.y-60,{font:'bold 18px Georgia',color:'#ffe39a',glow:'#a07020'});
-   for(const [i,b] of t.bells.entries()){const sw=Math.sin(time*14)*.35*(b.swing||0),im=art('zag-zvono');line(b.x-34,b.y,b.x-34,b.y-150,'#4a3420',5);line(b.x+34,b.y,b.x+34,b.y-150,'#4a3420',5);line(b.x-40,b.y-150,b.x+40,b.y-150,'#4a3420',6);
+   for(const [i,b] of t.bells.entries()){const sw=Math.sin(time*14)*.35*(b.swing||0),im=art('zag-zvono');if(im){const B=propBounds(im),h=165,w=B.w*h/B.h;ctx.save();ctx.translate(b.x,b.y-h);ctx.rotate(sw*.12);ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,0,w,h);ctx.restore();textLabel(['I','II','III'][i],b.x,b.y-h-12,{font:'bold 14px Georgia',color:t.done?'#bfffe5':'#f5e6c0'});continue;}line(b.x-34,b.y,b.x-34,b.y-150,'#4a3420',5);line(b.x+34,b.y,b.x+34,b.y-150,'#4a3420',5);line(b.x-40,b.y-150,b.x+40,b.y-150,'#4a3420',6);
     ctx.save();ctx.translate(b.x,b.y-148);ctx.rotate(sw);if(im){const B=propBounds(im),h=96,w=B.w*h/B.h;ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,0,w,h);}else{poly([[-10,4],[10,4],[22,62],[-22,62]],'#b8863a','#6a4a1a');ellipse(0,64,24,6,'#8a6020');ellipse(0,70,5,5,'#5a3a10');}ctx.restore();
     textLabel(['I','II','III'][i],b.x,b.y-160,{font:'bold 14px Georgia',color:t.done?'#bfffe5':'#f5e6c0'});}}
   if(t.kind==='mirrors'){const P=t.beam?.pts;halo(t.src.x,t.src.y,60,'rgba(255,240,180,.7)');
    if(P){for(const [gc,w,col] of[[gctx,9,'rgba(255,230,150,.55)'],[ctx,3,'rgba(255,250,220,.95)']]){gc.beginPath();gc.moveTo(P[0][0],P[0][1]);for(const q of P.slice(1))gc.lineTo(q[0],q[1]);gc.strokeStyle=col;gc.lineWidth=w;gc.lineCap='round';gc.stroke();}}
-   for(const m of t.m){const im=art('zag-ogledalo'),rot=(m.s?-1:1)*Math.PI/4+(m.turn>0?Math.sin(m.turn*40)*.1:0);line(m.x,m.y+14,m.x,m.y+46,'#4a3420',5);ctx.save();ctx.translate(m.x,m.y);ctx.rotate(rot);if(im){const B=propBounds(im),h=64,w=B.w*h/B.h;ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,-h/2,w,h);}else{poly([[-5,-30],[5,-30],[5,30],[-5,30]],'#c89a4a','#6a4a1a');}ctx.restore();}
+   for(const m of t.m){const im=art('zag-ogledalo'),rot=(m.s?-1:1)*Math.PI/4+(m.turn>0?Math.sin(m.turn*40)*.1:0);
+    if(im){const B=propBounds(im),h=96,w=B.w*h/B.h,top=m.y-h*.36;ctx.save();ctx.beginPath();ctx.rect(m.x-w,top+h*.62,w*2,h);ctx.clip();ctx.drawImage(im,B.x,B.y,B.w,B.h,m.x-w/2,top,w,h);ctx.restore();
+     ctx.save();ctx.translate(m.x,m.y);ctx.rotate(rot*.9);ctx.translate(-m.x,-m.y);ctx.beginPath();ctx.rect(m.x-w,top-4,w*2,h*.66);ctx.clip();ctx.drawImage(im,B.x,B.y,B.w,B.h,m.x-w/2,top,w,h);ctx.restore();
+     ctx.save();ctx.translate(m.x,m.y);ctx.rotate(rot);line(0,-30,0,30,'rgba(255,250,220,.9)',3);line(0,-30,0,30,'rgba(255,230,150,.5)',8,gctx);ctx.restore();continue;}
+    line(m.x,m.y+14,m.x,m.y+46,'#4a3420',5);ctx.save();ctx.translate(m.x,m.y);ctx.rotate(rot);if(im){const B=propBounds(im),h=64,w=B.w*h/B.h;ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,-h/2,w,h);}else{poly([[-5,-30],[5,-30],[5,30],[-5,30]],'#c89a4a','#6a4a1a');}ctx.restore();}
    const cr=art(t.done?'cilj-kristal-svetli':'cilj-kristal');if(cr){const B=propBounds(cr),h=110,w=B.w*h/B.h;ctx.drawImage(cr,B.x,B.y,B.w,B.h,t.target.x-w/2,t.target.y-h,w,h);}else poly([[t.target.x,t.target.y-90],[t.target.x+22,t.target.y-40],[t.target.x,t.target.y],[t.target.x-22,t.target.y-40]],t.done?'#bff6ff':'#5a8a9a');
    if(t.done)halo(t.target.x,t.target.y-50,90,'rgba(150,240,255,.6)');}
   if(t.kind==='scale'){const P=t.pulley,im=art('kotur');for(const q of t.pans){line(q.x+8,q.y,P.x+(q.side<0?-14:14),P.y,'#7a6040',2);line(q.x+q.w-8,q.y,P.x+(q.side<0?-14:14),P.y,'#7a6040',2);drawPlank(q);}
@@ -999,7 +1003,7 @@ function drawTerrain(){const plats=world.platforms;
  drawShafts();drawWatchtowers();
  for(const q of plats){if(q.kind!=='step'&&q.solid&&q.kind==='stone'&&!q.vault&&(!q.ground||q.tower))drawBlock(q);}
  drawStairs();
- for(const q of plats)if(q.kind==='plank'&&!q.kolo&&!(q.off&&q.arena))drawPlank(q);}
+ for(const q of plats)if(q.kind==='plank'&&!q.kolo&&!(q.off&&q.arena)){if(q.crumble&&level?.id==='prevoj'&&levelArt['zag-led']){if(q.off)continue;const im=levelArt[q.shakeT>0&&levelArt['zag-led-pukao']?'zag-led-pukao':'zag-led'],B=propBounds(im),sh=q.shakeT>0?(Math.random()-.5)*3:0;ctx.drawImage(im,B.x,B.y,B.w,B.h,q.x-6+sh,q.y-8,q.w+12,(q.w+12)*B.h/B.w);continue;}drawPlank(q);}}
 
 // props are painted scenery: one that would cover a tower, a ladder, stairs or a shaft is left out
 function clearProps(){if(!level?.props||!world.busy)return;level.props=level.props.filter(pr=>{if(pr.id.startsWith('prop-barjak'))return true;const im=levelArt[pr.id];if(!im||!hasDom)return true;const b=propBounds(im),w=b.w*pr.height/b.h;if(world.busy.some(([a,c])=>pr.x+w/2>a&&pr.x-w/2<c))return false;const q=world.platforms.find(o=>o.ground&&Math.abs(o.y-pr.y)<2&&pr.x>=o.x&&pr.x<=o.x+o.w);return!!q&&pr.x-w/2>=q.x-10&&pr.x+w/2<=q.x+q.w+10&&clearAbove(pr.x-w/2,pr.x+w/2,pr.height,q)&&!(world.traps||[]).some(t=>{const tx=t.x??t.gate?.x??t.lever?.x??0;return tx+(t.w||0)>pr.x-w/2-60&&tx<pr.x+w/2+60;});});}

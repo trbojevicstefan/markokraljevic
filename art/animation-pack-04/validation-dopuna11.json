@@ -1,0 +1,152 @@
+[
+  {
+    "id": "marko-finisher",
+    "frames": 8,
+    "verified": true
+  },
+  {
+    "id": "kosturi",
+    "frames": 4,
+    "verified": true
+  },
+  {
+    "id": "sword-lunge",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "shield-bash",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "archer-kick",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "akindzija-spin",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "oklopnik-grab",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "tufekdzija-butt",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "kopljanik-sweep",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "palikuca-bomb",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "musa-throw-up",
+    "frames": 8,
+    "verified": true
+  },
+  {
+    "id": "musa-stomp",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "musa-roar",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "musa-block",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "azdaja-idle",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "azdaja-fire",
+    "frames": 8,
+    "verified": true
+  },
+  {
+    "id": "azdaja-bite",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "azdaja-hurt",
+    "frames": 4,
+    "verified": true
+  },
+  {
+    "id": "azdaja-death",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "dzelat-idle",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "dzelat-run",
+    "frames": 8,
+    "verified": true
+  },
+  {
+    "id": "dzelat-attack",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "dzelat-hurt",
+    "frames": 4,
+    "verified": true
+  },
+  {
+    "id": "dzelat-death",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "djemo-idle",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "djemo-run",
+    "frames": 8,
+    "verified": true
+  },
+  {
+    "id": "djemo-attack",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "djemo-throw",
+    "frames": 6,
+    "verified": true
+  },
+  {
+    "id": "djemo-hurt",
+    "frames": 4,
+    "verified": true
+  },
+  {
+    "id": "djemo-death",
+    "frames": 6,
+    "verified": true
+  }
+]

@@ -23,8 +23,8 @@
       "id": "zag-led",
       "pair": null,
       "size": [
-        1024,
-        1024
+        1536,
+        512
       ],
       "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Wide thin slab of translucent PALE BLUE ICE spanning a gap, viewed side-on with a slight visible top plane. Very wide horizontal FLAT WALKABLE upper edge, jagged icicle underside, left and right thick attachment ends but no cliffs or terrain. Semi-transparent frozen center so background can show THROUGH. Intact unbroken slab. Isolated slab only."
     },
@@ -32,8 +32,8 @@
       "id": "zag-led-pukao",
       "pair": "zag-led",
       "size": [
-        1024,
-        1024
+        1536,
+        512
       ],
       "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. EDIT reference ice slab ONLY: same exact canvas, position, outer silhouette, dimensions and top walking surface. Add a branching web of sharp white/blue cracks through the SAME ICE slab, several small fissures, still intact bridge, no falling debris, no scenery. Preserve original transparency and all unchanged pixels as closely as possible."
     },

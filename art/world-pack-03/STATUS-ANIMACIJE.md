@@ -178,3 +178,27 @@ DOPUNA-11: djemo-throw — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, f
 DOPUNA-11: djemo-hurt — GOTOVO; 4 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-hurt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
 
 DOPUNA-11: djemo-death — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-death/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: zag-zvono.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-ogledalo.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-led.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-led-pukao.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+DOPUNA-11: zag-led.png i zag-led-pukao.png su siroki par 1536x512, isti raspored i hodna povrsina; prethodni kvadratni izvoz leda sacuvan u sources/dopuna11-props/.
+
+DOPUNA-11: zag-kamen-kola.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-kamen-kola-svetli.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-top.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: zag-protivteg.png — GOTOVO; PNG 1024x1024 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna11-props-prompts.json; izvor: sources/dopuna11-props/.
+
+DOPUNA-11: sword-lunge — popravljen izvoz cele sablje koja je prelazila granicu izvorne celije. Bez novog generisanja; stari izvoz u sources/sword-lunge/export-before-blade-fix/.
+
+## DOPUNA-11 — ZAVRSENO A–E
+29 animacionih klipova (178 kadrova), kosturi kao 4 staticke varijante, i 8 providnih PNG predmeta. Ukupno 182 celija u 30 atlasnih paketa. Po jedno generisanje za svaki trazeni paket/sliku; sword-lunge tehnicki izvoz ispravljen bez novog crtanja. Provereni PNG/GIF brojevi, celije 512x512, alfa, y487, frame_layout i slaganje atlasa sa kadrovima. Sve stare slike i izvori sacuvani.
+Pregled klipova: animation-pack-04/preview-dopuna11.png; katalog: catalog-dopuna11.json; provera: validation-dopuna11.json. Predmeti: world-pack-03/preview-dopuna11-props.png; dimenzije i alfa: validation-dopuna11-props.json. Led je 1536x512, ostali predmeti 1024x1024.
+VAZNO ZA UBACIVANJE: kosturi nisu animacija — birati pojedinacne varijante prema variantNames u manifestu. Za azdaju koristiti renderScale i renderAnchor iz manifesta da telo bude oko 906 svetskih piksela (2x Musa); same atlasne celije ostaju 512x512. Nema preostalih stavki.

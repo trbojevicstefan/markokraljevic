@@ -97,8 +97,8 @@
   },
   "scaleReference": {
     "referenceHeight": 426,
-    "actualMaxHeight": 403,
+    "actualMaxHeight": 366,
     "footY": 487,
-    "uniformScale": 0.9940357852882704
+    "uniformScale": 0.9041591320072333
   }
 }
