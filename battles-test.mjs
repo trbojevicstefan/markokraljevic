@@ -184,4 +184,8 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  for(let i=0;i<40&&!kills;i++){safe();api.pressed.add('KeyJ');step(150);kills=G.kills||0;}ok(kills>0,'gun: a ball bursts among the horde and kills');
  safe();api.pressed.add('KeyE');step(2);api.keys.add('KeyD');step(20);api.keys.clear();ok(Math.abs(p.x-(G.x-74))>4,'gun: E leaves it and Marko walks again');}
 {const L=api.LEVELS.findIndex(l=>l.id==='tvrdjava');await api.startLevel(L);ok(S().world.guns?.length===1,'gun: the fortress has a gun for Marko');}
+// ---- a torch sent back sets the fire-thrower alight: he burns in his own clip and his health runs out ----
+{api.startTraining();step(20);const w=S().world;w.enemies.forEach(e=>e.alive=false);api.pressed.add('Digit6');step(200);const e=w.enemies.find(e=>e.alive&&e.type==='palikuca');
+ safe();e.enter=null;const hp0=e.hp;S().arrows.push({x:e.x-160,y:e.y-60,vx:420,vy:0,torch:true,enemy:false,life:3});until(()=>e.burn>0,120);ok(e.burn>0,'burn: his own torch sets the palikuća on fire');
+ step(60);ok(e.hp<hp0,'burn: his health runs down while he burns');until(()=>!e.alive,120*6);ok(!e.alive,'burn: the fire finishes him');}
 console.log(`${checks} battle checks passed.`);
