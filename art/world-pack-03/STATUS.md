@@ -242,3 +242,26 @@ Sacuvano u rukopis/minijature/minijatura-uros.png; 768x768 PNG, neprovidna zlatn
 
 ## DOPUNA-7 - minijatura-oranje GOTOVO
 Sacuvano u rukopis/minijature/minijatura-oranje.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-ramazan GOTOVO
+Sacuvano u rukopis/minijature/minijatura-ramazan.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-svadbarina GOTOVO
+Sacuvano u rukopis/minijature/minijatura-svadbarina.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-sablja GOTOVO
+Sacuvano u rukopis/minijature/minijatura-sablja.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-soko GOTOVO
+Sacuvano u rukopis/minijature/minijatura-soko.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-smrt GOTOVO
+Sacuvano u rukopis/minijature/minijatura-smrt.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-spava GOTOVO
+Sacuvano u rukopis/minijature/minijatura-spava.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-pesma GOTOVO
+Sacuvano u rukopis/minijature/minijatura-pesma.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+DOPUNA-7 ZAVRSENA: svih 14 minijatura sacuvano. Provereno 14/14 PNG, 768x768, potpuno neprovidno; zajednicki pregled rukopis/minijature/preview.png. Preostalih sedam uradjeno po jednim pokusajem, ugradjenim image_gen generatorom. Prompts: rukopis/minijature/prompts.json. Nema neuspelih stavki u DOPUNA-7.
