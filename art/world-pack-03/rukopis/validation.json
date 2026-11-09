@@ -43,5 +43,127 @@
       508,
       534
     ]
+  },
+  "rukopis-pergament": {
+    "id": "rukopis-pergament",
+    "size": [
+      1024,
+      1024
+    ],
+    "transparent": false,
+    "alphaZeroPixels": 0,
+    "bounds": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "horizontalSeamMax": 0,
+    "verticalSeamMax": 0
+  },
+  "rukopis-korice": {
+    "id": "rukopis-korice",
+    "size": [
+      1100,
+      1400
+    ],
+    "transparent": false,
+    "alphaZeroPixels": 0,
+    "bounds": [
+      0,
+      0,
+      1100,
+      1400
+    ]
+  },
+  "rukopis-ptica-1": {
+    "id": "rukopis-ptica-1",
+    "size": [
+      384,
+      384
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 102750,
+    "bounds": [
+      4,
+      50,
+      380,
+      333
+    ]
+  },
+  "rukopis-ptica-2": {
+    "id": "rukopis-ptica-2",
+    "size": [
+      384,
+      384
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 103772,
+    "bounds": [
+      4,
+      50,
+      380,
+      334
+    ]
+  },
+  "rukopis-loza": {
+    "id": "rukopis-loza",
+    "size": [
+      220,
+      1400
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 159598,
+    "bounds": [
+      47,
+      4,
+      172,
+      1396
+    ]
+  },
+  "rukopis-inicijal-k": {
+    "id": "rukopis-inicijal-k",
+    "size": [
+      512,
+      640
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 195998,
+    "bounds": [
+      4,
+      43,
+      508,
+      596
+    ]
+  },
+  "rukopis-inicijal-p": {
+    "id": "rukopis-inicijal-p",
+    "size": [
+      512,
+      640
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 214114,
+    "bounds": [
+      4,
+      58,
+      508,
+      582
+    ]
+  },
+  "rukopis-gusle": {
+    "id": "rukopis-gusle",
+    "size": [
+      256,
+      256
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 51488,
+    "bounds": [
+      62,
+      4,
+      193,
+      252
+    ]
   }
 }

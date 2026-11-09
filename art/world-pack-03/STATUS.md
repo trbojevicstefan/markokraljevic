@@ -195,3 +195,27 @@ PNG 512x512, providna pozadina. Sacuvan u rukopis/rukopis-okvir-inicijala.png; i
 
 ## DOPUNA-6 - rukopis-inicijal-m GOTOVO
 PNG 512x640, providna pozadina. Sacuvan u rukopis/rukopis-inicijal-m.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-pergament GOTOVO
+PNG 1024x1024, neprovidna podloga. Sacuvan u rukopis/rukopis-pergament.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal. Horizontalni i vertikalni spoj: 0 razlike.
+
+## DOPUNA-6 - rukopis-korice GOTOVO
+PNG 1100x1400, neprovidna podloga. Sacuvan u rukopis/rukopis-korice.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-ptica-1 GOTOVO
+PNG 384x384, providna pozadina. Sacuvan u rukopis/rukopis-ptica-1.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-ptica-2 GOTOVO
+PNG 384x384, providna pozadina. Sacuvan u rukopis/rukopis-ptica-2.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-loza GOTOVO
+PNG 220x1400, providna pozadina. Sacuvan u rukopis/rukopis-loza.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-inicijal-k GOTOVO
+PNG 512x640, providna pozadina. Sacuvan u rukopis/rukopis-inicijal-k.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-inicijal-p GOTOVO
+PNG 512x640, providna pozadina. Sacuvan u rukopis/rukopis-inicijal-p.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-gusle GOTOVO
+PNG 256x256, providna pozadina. Sacuvan u rukopis/rukopis-gusle.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.

@@ -360,3 +360,6 @@
 .ms-epi{margin:22px 10px 0;padding:14px 18px;border-left:3px solid var(--cinnabar);background:linear-gradient(90deg,#c8a24a22,#0000);font:italic 500 18px/1.45 var(--display);color:#3a2414}
 .ms-epi span{display:block}
 .ms-epi cite{display:block;margin-top:6px;font:700 11px Arial;letter-spacing:2px;text-transform:uppercase;color:var(--cinnabar);font-style:normal}
+/* a painted miniature fills the frame's opening edge to edge */
+.miniature.painted{padding:11.5%}
+.miniature.painted img{object-fit:cover;filter:none;border-radius:1px;box-shadow:0 0 0 1px #5a3a1a88}

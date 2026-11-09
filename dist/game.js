@@ -1454,14 +1454,14 @@ function foeSpread(i){const pg=BOOK_PAGES[i],known=bookKnown(pg),f=bookInfo(pg),
  return{left,right};}
 const VERSES=16;
 function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en=uiLang()==='en',out=[];
- for(const c of D.CHAPTERS){const t=c[en?'en':'sr'];out.push({group:c.id,tab:{img:c.img,label:t.title},
-  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature"><img src="${c.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
+ for(const c of D.CHAPTERS){const t=c[en?'en':'sr'],pic=c.mini||c.img;out.push({group:c.id,tab:{img:c.tab||pic,label:t.title},
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature${c.mini?' painted':''}"><img src="${pic}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="drop ms-text">${t.text}</p><p class="ms-end" aria-hidden="true">✠ ✠ ✠</p></div>`});}
  const S=D.SONG,T=S[en?'en':'sr'],sr=S.lines.sr,tr2=S.lines.en,n=sr.length;
  const verses=(arr,a,b)=>`<ol class="verses" data-notr>${arr.slice(a,b).map((l,k)=>`<li data-n="${a+k}"${reader?.line===a+k?' class="now"':''}><i>${(a+k+1)%5===0?a+k+1:''}</i>${l}</li>`).join('')}</ol>`;
  const readBar='<div class="read-bar"><button data-read="sr"><b>▶</b>Čitaj na srpskom</button><button data-read="en"><b>▶</b>Čitaj na engleskom</button></div>';
- out.push({group:'pesma',tab:{img:S.img,label:T.title,song:true},
-  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI · PESMA</p><figure class="miniature"><img src="${S.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${S.cy}</p><h3 class="foe-name">${T.title}</h3></div>`,
+ out.push({group:'pesma',tab:{img:S.tab||S.img,label:T.title,song:true},
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI · PESMA</p><figure class="miniature${S.mini?' painted':''}"><img src="${S.mini||S.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${S.cy}</p><h3 class="foe-name">${T.title}</h3></div>`,
   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="ms-text drop">${T.sub}.</p><p class="ms-note">${T.note}</p><p class="ms-note">${n} ${en?'lines':'stihova'}</p><blockquote class="ms-epi">${(en?tr2:sr).slice(251,256).map(l=>`<span>${l}</span>`).join('')}<cite>${en?'lines':'stihovi'} 252–256</cite></blockquote></div>${readBar}`,range:[0,0]});
  const per=en?VERSES:VERSES*2;
  for(let a=0;a<n;a+=per){const b=Math.min(n,a+per),mid=Math.min(n,a+VERSES);
