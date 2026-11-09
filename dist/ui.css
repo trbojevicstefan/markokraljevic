@@ -142,20 +142,31 @@
 .map-node.chapter span{font-size:13px;letter-spacing:1px}
 .map-detail .vista.portrait{background-size:contain;background-color:#132a2a;background-position:center bottom}
 /* ---------- the ability bar: icons with a draining cooldown ---------- */
-#abilities{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;gap:8px;pointer-events:none;z-index:3}
-#abilities .ab{position:relative;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#1c3a38,#0b1c1e);box-shadow:inset 0 0 0 2px #d9b56a88,0 4px 10px #0008;display:grid;place-items:center;color:#f3dca0}
+#abilities{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;pointer-events:none;z-index:3;padding:9px 14px 18px;border-radius:14px;background:linear-gradient(#0b1414e6,#081010ee);box-shadow:inset 0 0 0 1px #8a744877,0 6px 18px #0009}
+#abilities .ab{position:relative;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#24302d,#0d1514);box-shadow:inset 0 0 0 2px #6a5a3a,0 3px 8px #000a;display:grid;place-items:center;color:#e8d4a2}
 #abilities .ab[hidden]{display:none}
-#abilities .ab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-#abilities .ab .cd{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(5,10,12,.78) calc(var(--p,0)*1turn),transparent 0)}
-#abilities .ab .key{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font:700 10px Arial;color:#e8d7ad;white-space:nowrap;text-shadow:0 1px 3px #000}
-#abilities .ab.ready{box-shadow:inset 0 0 0 2px #f3dca0}
+#abilities .ab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#abilities .ab img{position:absolute;inset:1px;width:56px;height:56px;border-radius:50%;object-fit:cover}
+#abilities .ab .cd{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(4,8,9,.8) calc(var(--p,0)*1turn),transparent 0)}
+#abilities .ab .ring{position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#d9b56a calc(var(--r,1)*1turn),#2a2a24 0);-webkit-mask:radial-gradient(circle,transparent 30px,#000 31px);mask:radial-gradient(circle,transparent 30px,#000 31px);opacity:0}
+#abilities .ab.res .ring{opacity:1}
+#abilities .ab.res:not(.ready) img,#abilities .ab.res:not(.ready) svg{filter:saturate(.35) brightness(.7)}
+#abilities .ab .left{position:absolute;inset:0;display:grid;place-items:center;font:700 17px Georgia,serif;color:#f4e6c2;text-shadow:0 1px 3px #000,0 0 6px #000}
+#abilities .ab.res .left{font-size:12px;top:auto;bottom:6px;inset-inline:0;height:auto}
+#abilities .ab .key{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font:700 11px Arial;color:#f0e2bd;white-space:nowrap;background:#1a1712;border:1px solid #8a7448;border-radius:5px;padding:1px 6px}
+#abilities .ab .key[data-pad="A"]{background:#2f5a35;border-color:#6fbf78}#abilities .ab .key[data-pad="B"]{background:#6a2a24;border-color:#d86a5e}
+#abilities .ab .key[data-pad="X"]{background:#24426a;border-color:#6a96d8}#abilities .ab .key[data-pad="Y"]{background:#6a5a1e;border-color:#e0c25a}
+#abilities .ab.ready{box-shadow:inset 0 0 0 2px #d9b56a,0 3px 8px #000a}
+#abilities .ab.cooling img,#abilities .ab.cooling svg{filter:saturate(.4) brightness(.75)}
 #abilities .ab.denied{animation:abNo .3s}
+#abilities .ab-sep{width:1px;height:44px;background:#8a744877;margin:0 2px}
 @keyframes abNo{30%{transform:translateX(-4px);box-shadow:inset 0 0 0 2px #ff6a4a}70%{transform:translateX(4px)}}
 .kombinacije{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:10px 0}
 .kombinacije div{padding:8px 12px;background:#0c2224aa;border:1px solid #c8ab6f33}
 .kombinacije kbd{margin-right:8px}.kombinacije b{font:600 15px var(--display);color:#f1dfb8}.kombinacije small{display:block;font:11px Arial;color:#a9b9ad;margin-top:3px}
 @media(max-width:600px){#abilities{bottom:120px;transform:translateX(-50%) scale(.82)}}
-#abilities{left:22px;bottom:74px;transform:none;display:grid;grid-template-columns:repeat(4,46px);gap:20px 10px}
+#abilities{left:22px;bottom:46px;transform:none;display:grid;grid-template-columns:repeat(4,58px);gap:26px 14px;padding:12px 14px 26px}
+#abilities .ab-sep{display:none}
 @media(max-width:600px){#abilities{bottom:150px;transform:scale(.8);transform-origin:left bottom}}
 
 /* ---------- language: SR | EN ---------- */

@@ -1906,25 +1906,28 @@ function chapterDetail(i){const c=chapters[i],open=i<=storyReached();if(!$('map-
 // ---------- abilities on cooldown, shown in a bar at the bottom ----------
 const CD={throw:2.5,uvis:1.2,juris:3,plunge:1.1};
 const ABILITIES=[
- {id:'bacanje',key:'I',pad:'RB',name:'Bačeni topuz',cd:'throw',icon:'KeyI'},
+ {id:'bacanje',key:'I',pad:'RB',name:'Bačeni topuz',cd:'throw',icon:'KeyI',grp:1},
  {id:'uvis',key:'S+K',pad:'↓+Y',name:'Aperkat',cd:'uvis',icon:'up'},
  {id:'juris',key:'⇧→J',pad:'B→X',name:'Juriš',cd:'juris',icon:'dash'},
  {id:'nadole',key:'S+J',pad:'↓+X',name:'Udar nadole',cd:'plunge',icon:'down'},
- {id:'kolut',key:'⇧',pad:'B',name:'Kolut',cdv:()=>p.dashCooldown/.85,icon:'ShiftLeft'},
- {id:'vihor',key:'F',pad:'L3',name:'Vihor',res:()=>p.rage/SPIN_MIN,icon:'KeyF'},
+ {id:'kolut',key:'⇧',pad:'B',name:'Kolut',cdv:()=>p.dashCooldown/.85,cds:()=>p.dashCooldown,icon:'ShiftLeft'},
+ {id:'vihor',key:'F',pad:'L3',name:'Vihor',res:()=>p.rage/SPIN_MIN,icon:'KeyF',grp:2},
  {id:'junacki',key:'R',pad:'R3',name:'Junački udar',res:()=>p.rage/100,icon:'KeyR'},
- {id:'vila',key:'E',pad:'RT',name:'Ravijojla',res:()=>p.energy/35,icon:'KeyE'}];
+ {id:'vila',key:'E',pad:'RT',name:'Ravijojla',res:()=>p.energy/35,icon:'KeyE',grp:3}];
 const AB_ICON={up:'<path d="M12 20V6M6 11l6-6 6 6"/><circle cx="12" cy="20" r="2.4" fill="currentColor"/>',dash:'<path d="M3 12h13M12 7l5 5-5 5"/><path d="M4 7h5M4 17h5" opacity=".5"/>',down:'<path d="M12 3v13M6 11l6 6 6-6"/><path d="M5 21h14"/>'};
 function cdReady(k){return!(p.cd?.[k]>0);}
 function cdStart(k){p.cd??={};p.cd[k]=CD[k]*(k==='juris'&&perks.has('prelomljeno-koplje')?.6:1);}
 function cdDenied(k){p.cdFlash=k;p.cdFlashT=.35;sfx('cloth',{gain:.3,rate:.6});}
 let abBuilt=false,abTick=0;
 function abilityBar(dt){const el=$('abilities');if(!el||!p)return;if(mode!=='play'){el.hidden=true;return;}el.hidden=false;
- if(!abBuilt&&hasDom){abBuilt=true;el.innerHTML=ABILITIES.map(a=>`<div class="ab" data-ab="${a.id}" title="${a.name}"><svg viewBox="0 0 24 24">${AB_ICON[a.icon]||TOUCH_ICONS[a.icon]||''}</svg><i class="cd"></i><b class="key"></b></div>`).join('');}
+ if(!abBuilt&&hasDom){abBuilt=true;el.innerHTML=ABILITIES.map(a=>`${a.grp>1?'<i class="ab-sep"></i>':''}<div class="ab" data-ab="${a.id}" title="${tr(a.name)}"><svg viewBox="0 0 24 24">${AB_ICON[a.icon]||TOUCH_ICONS[a.icon]||''}</svg><img src="assets/world/ikona-${a.id}.webp" alt="" onerror="this.remove()"><i class="cd"></i><i class="ring"></i><span class="left"></span><b class="key"></b></div>`).join('');}
  if((abTick-=dt)>0)return;abTick=.08;const pad=padIndex!==null;
  for(const a of ABILITIES){const d=el.querySelector?.(`[data-ab="${a.id}"]`);if(!d)continue;const owned=a.id==='uvis'||has(a.id);d.hidden=!owned;if(!owned)continue;
-  let left=0,full=true;if(a.cd){left=(p.cd?.[a.cd]||0)/CD[a.cd];}else if(a.cdv){left=clamp(a.cdv(),0,1);}else if(a.res){const r=clamp(a.res(),0,1);left=1-r;full=r>=1;}
-  d.style.setProperty('--p',left.toFixed(3));d.classList.toggle('ready',left<=.001&&full);d.classList.toggle('denied',p.cdFlash===(a.cd||a.id)&&p.cdFlashT>0);d.querySelector('.key').textContent=pad?a.pad:a.key;}}
+  // cooldowns: a dark sweep that empties and the seconds left; rage and the fairy's strength: a ring that fills, with its percent
+  let left=0,full=true,secs=0,res=null;if(a.cd){secs=p.cd?.[a.cd]||0;left=secs/CD[a.cd];}else if(a.cdv){left=clamp(a.cdv(),0,1);secs=a.cds?.()||0;}else if(a.res){res=clamp(a.res(),0,1);full=res>=1;}
+  d.style.setProperty('--p',clamp(left,0,1).toFixed(3));d.style.setProperty('--r',res===null?'1':res.toFixed(3));d.classList.toggle('res',res!==null);d.classList.toggle('ready',left<=.001&&full);d.classList.toggle('cooling',left>.001);
+  d.classList.toggle('denied',p.cdFlash===(a.cd||a.id)&&p.cdFlashT>0);d.querySelector('.left').textContent=left>.001?(secs<3?secs.toFixed(1):Math.ceil(secs)):res!==null&&!full?Math.floor(res*100)+'%':'';
+  const k=d.querySelector('.key'),label=pad?a.pad:a.key;if(k.textContent!==label){k.textContent=label;k.dataset.pad=pad?label.replace(/[^ABXY]/g,'').slice(-1):'';}}}
 // ---------- the charge meter: three notches over Marko's head while K is held ----------
 function drawChargeMeter(){if(!(p.attackKind==='heavy'&&p.attack>0&&p.chargeable&&!p.chargeReleased))return;const k=clamp((p.charge||0)/1.1,0,1),x=p.x,y=p.y-158,full=p.chargeFull;
  ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fillStyle='rgba(8,10,10,.7)';ctx.fill();
