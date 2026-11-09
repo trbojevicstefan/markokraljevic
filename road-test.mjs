@@ -30,7 +30,7 @@ let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',
 storage.set('marko-kacanik','won');storage.set('marko-skills',JSON.stringify(api.SKILLS.map(k=>k.id)));
 const report=[];
 for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);const L=S().level,p=S().p,goalX=L.goal.x;let best=p.x,bestT=0,t=0,stuck=[],jumpCd=0;
- while(p.x<goalX-60&&t<520){t+=1/120;p.invuln=99;p.hp=p.maxHp;api.keys.clear();api.keys.add('KeyD');
+ while(p.x<goalX-60&&t<520){t+=1/120;p.invuln=99;p.hp=p.maxHp;api.keys.clear();api.keys.add('KeyD');if(p.hang)api.keys.add('KeyW');
   for(const e of w.enemies)if(e.alive&&e.x>p.x-80&&e.x<p.x+500&&Math.abs(e.y-p.y)<300)e.alive=false;
   const ahead=x=>w.platforms.some(q=>!q.off&&x>q.x&&x<q.x+q.w&&q.y>=p.y-6&&q.y<p.y+60);
   const lintel=w.platforms.find(q=>q.lintel&&q.x-p.x<130&&q.x+q.w>p.x-20);if(lintel)api.keys.add('KeyS');

@@ -838,7 +838,7 @@ function plungeImpact(){if(level&&p.on?.kind==='cracked'&&breakCracked()){p.plun
  if(zone===5&&boss.alive&&Math.abs(boss.x-p.x)<150&&MUSA_OPEN.includes(boss.mode)){boss.hp=Math.max(0,boss.hp-70*power);boss.flash=.16;boss.hurtT=.34;blood(boss.x,boss.y-90,p.face,16);bossAfterDamage();}}
 // Raised stone blocks: hands near the top while airborne and facing the edge -> grab and climb.
 function ledgeCheck(){if(level)return ledgeCheckLevel();if(p.ledgeT>0||horseMounted||p.plunge||p.vy< -150||p.attack>0||p.down>0)return;for(const q of world.platforms){if(q.kind!=='stone'||isFloor(q))continue;const hands=p.y-112;if(Math.abs(hands-q.y)>28||p.y<q.y+24)continue;const left=p.face>0&&p.x+17>q.x-12&&p.x+17<q.x+20,right=p.face<0&&p.x-17<q.x+q.w+12&&p.x-17>q.x+q.w-20;if(!left&&!right)continue;
-  const edge=left?q.x:q.x+q.w;p.ledge={x0:edge-p.face*18,y0:q.y+112,x1:edge+p.face*24,y1:q.y};p.ledgeT=LEDGE_TIME;p.vx=0;p.vy=0;p.wall=0;sfx('cloth',{gain:.6});sayGrunt(false);return;}}
+  const edge=left?q.x:q.x+q.w;p.ledge={x0:edge-p.face*18,y0:q.y+112,x1:edge+p.face*24,y1:q.y};p.ledgeT=LEDGE_TIME;p.vx=0;p.vy=0;p.wall=0;sfx('cloth',{gain:.6});p.hang=true;p.hangT=0;p.hangHeld=true;hangTip();sayGrunt(false);return;}}
 function ledgeUpdate(dt){if(!(p.ledgeT>0))return false;if(p.hang&&hangUpdate())return true;p.ledgeT=Math.max(0,p.ledgeT-dt);const L=p.ledge,k=1-p.ledgeT/LEDGE_TIME;if(k<.34){p.x=L.x0;p.y=L.y0;}else{const t=(k-.34)/.66,e=t*t*(3-2*t);p.x=L.x0+(L.x1-L.x0)*e;p.y=L.y0+(L.y1-L.y0)*Math.min(1,e*1.25);}p.vx=0;p.vy=0;p.grounded=p.ledgeT<=0;if(p.ledgeT<=0){p.y=L.y1;p.ledge=null;}return true;}
 // Pressing into the side of a raised block while airborne -> slide down it; Space jumps off.
 function wallCheck(){if(level)return wallCheckLevel();p.wall=0;if(horseMounted||p.ledgeT>0||p.plunge||p.down>0)return;const axis=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0);if(!axis)return;for(const q of world.platforms){if(q.kind!=='stone'||isFloor(q))continue;if(p.y<q.y+40||p.y-90>q.y+118)continue;const side=axis>0?q.x:q.x+q.w,edge=p.x+axis*17;if(Math.abs(edge-side)<12&&(axis>0?p.x<q.x:p.x>q.x+q.w)){p.x=side-axis*17;p.wall=axis;p.face=axis;if(p.vy>130)p.vy=130;if(Math.random()<.08)dust(side,p.y-30,1,.4);break;}}}
@@ -1082,7 +1082,7 @@ function ledgeCheckLevel(){if(p.ledgeCool>0)return;if(p.ledgeT>0||horseMounted||
  for(const q of world.platforms){if(q.off||q.kind==='crate'||q.kind==='step'||q.kind==='magic')continue;if(Math.abs(hands-q.y)>28||p.y<q.y+24)continue;
   const left=p.face>0&&p.x+17>q.x-12&&p.x+17<q.x+20,right=p.face<0&&p.x-17<q.x+q.w+12&&p.x-17>q.x+q.w-20;if(!left&&!right)continue;
   const edge=left?q.x:q.x+q.w;if(blockedAt(edge+(left?14:-14),q.y-40)||blockedAt(edge-(left?14:-14),q.y+8,q))continue;
-  p.ledge={x0:edge-p.face*18,y0:q.y+112,x1:edge+p.face*24,y1:q.y};p.ledgeT=LEDGE_TIME;p.vx=0;p.vy=0;p.wall=0;sfx('cloth',{gain:.6});p.hang=true;sayGrunt(false);return;}}
+  p.ledge={x0:edge-p.face*18,y0:q.y+112,x1:edge+p.face*24,y1:q.y};p.ledgeT=LEDGE_TIME;p.vx=0;p.vy=0;p.wall=0;sfx('cloth',{gain:.6});p.hang=true;p.hangT=0;p.hangHeld=true;hangTip();sayGrunt(false);return;}}
 function blockedAt(x,y,skip){return world.platforms.some(q=>q!==skip&&q.solid&&!q.off&&x>q.x&&x<q.x+q.w&&y>q.y&&y<q.y+q.h);}
 // pressing into a tall wall while in the air: slide down it; Space jumps off to the other side
 function wallCheckLevel(){p.wall=0;if(!has('zid'))return;if(horseMounted||p.ledgeT>0||p.plunge||p.down>0||p.climb)return;const axis=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0);if(!axis||(p.wallJumpT>.08&&axis===p.wallSide))return;
@@ -2016,10 +2016,13 @@ function kickHit(){const reach=105;let any=false;
  for(const b of world.breakables||[]){if(b.broken||b.opened||b.kind==='zid'||Math.abs(b.y-p.y)>60)continue;const dx=b.x-p.x;if(dx*p.face>-10&&Math.abs(dx)<reach+b.w/2){hitCrate(b,1);any=true;}}
  if(any){sfx('hit_heavy',{gain:.7});hitstop=.03;shake=settings.reduced?0:3;rumble(.35,90);}}
 // hanging from a ledge (Prince of Persia): toward the wall, W or Space climbs; S or away lets go
-function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0;p.y=L.y0;p.vx=0;p.vy=0;p.grounded=false;p.ledgeT=LEDGE_TIME;
- const down=(...c)=>c.some(k=>keys.has(k)),hit=(...c)=>c.some(k=>pressed.has(k));
- if(down(p.face>0?'KeyD':'KeyA',p.face>0?'ArrowRight':'ArrowLeft','KeyW','ArrowUp')||hit('Space')){p.hang=false;sfx('cloth',{gain:.5});return false;}
- if(down('KeyS','ArrowDown',p.face>0?'KeyA':'KeyD',p.face>0?'ArrowLeft':'ArrowRight')){p.hang=false;p.ledgeT=0;p.ledge=null;p.vy=40;p.x=L.x0-p.face*8;p.ledgeCool=.45;return true;}
+let hangTold=false;
+function hangTip(){if(hangTold)return;hangTold=true;toast('Visiš na ivici · W ili Space: popni se · S: pusti se',3.2);}
+function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0;p.y=L.y0;p.vx=0;p.vy=0;p.grounded=false;p.ledgeT=LEDGE_TIME;p.hangT=(p.hangT||0)+1/120;
+ const down=(...c)=>c.some(k=>keys.has(k)),hit=(...c)=>c.some(k=>pressed.has(k)),ready=p.hangT>.18,tw=down(p.face>0?'KeyD':'KeyA',p.face>0?'ArrowRight':'ArrowLeft');if(!tw)p.hangHeld=false;
+ // the key held through the jump does not count: it must be let go and pressed again (or W / Space)
+ if(ready&&((tw&&!p.hangHeld)||hit('KeyW','ArrowUp','Space')||(p.hangT>.45&&down('KeyW','ArrowUp')))){p.hang=false;sfx('cloth',{gain:.5});return false;}
+ if(ready&&down('KeyS','ArrowDown',p.face>0?'KeyA':'KeyD',p.face>0?'ArrowLeft':'ArrowRight')){p.hang=false;p.ledgeT=0;p.ledge=null;p.vy=40;p.x=L.x0-p.face*8;p.ledgeCool=.45;return true;}
  return true;}
 
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;o.frame=Math.min(n-1,Math.floor(phase*n));return o;}
@@ -2285,7 +2288,7 @@ function flowPose(){const once=(name,t,T)=>{const n=rig[name].frames.length;retu
  if(!p.grounded||p.attack>0)return null;
  if(p.rollLandT>0&&rig?.['marko-roll-land'])return once('marko-roll-land',p.rollLandT,ROLL_LAND_TIME);
  if(p.pickT>0&&p.attack<=0&&rig?.['marko-pickup'])return once('marko-pickup',p.pickT,PICK_TIME);
-  if(p.callT>0&&p.attack<=0&&p.grounded&&rig?.['marko-call'])return once('marko-call',p.callT,CALL_TIME);
+  if(p.callT>0&&p.attack<=0&&p.grounded){const mv=Math.abs(p.vx)>35;if(mv&&Math.abs(p.vx)<200&&rig?.['marko-call-walk'])return{name:'marko-call-walk',frame:Math.floor(p.gait*2)%rig['marko-call-walk'].frames.length};if(!mv&&rig?.['marko-call'])return once('marko-call',p.callT,CALL_TIME);}
   if(p.openT>0&&rig?.['marko-open'])return once('marko-open',p.openT,OPEN_TIME);
  if(p.recoverT>0&&Math.abs(p.vx)<80&&rig?.['marko-combo-recover'])return once('marko-combo-recover',p.recoverT,RECOVER_TIME);
  if(p.stopT>0&&Math.abs(p.vx)<150&&!p.blocking&&!p.crouching&&rig?.['marko-run-stop'])return once('marko-run-stop',p.stopT,STOP_TIME);
