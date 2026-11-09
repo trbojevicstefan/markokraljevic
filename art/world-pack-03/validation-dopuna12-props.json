@@ -1,128 +1,118 @@
 {
   "most-vila-segment": {
-    "file": "most-vila-segment.png",
     "size": [
       1536,
       384
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 62799,
     "bounds": [
       0,
       0,
       1536,
       384
-    ]
+    ],
+    "groundAnchor": null,
+    "verified": true,
+    "horizontalSeamMax": 0,
+    "repeatX": true,
+    "walkY": 4
   },
   "most-vila-kraj": {
-    "file": "most-vila-kraj.png",
     "size": [
       1024,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 300740,
     "bounds": [
       26,
       88,
       1022,
       422
-    ]
+    ],
+    "groundAnchor": null,
+    "verified": true
   },
   "prepreka-kola": {
-    "file": "prepreka-kola.png",
     "size": [
       768,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 259273,
     "bounds": [
       8,
       215,
       760,
       512
-    ]
+    ],
+    "groundAnchor": [
+      384,
+      512
+    ],
+    "verified": true
   },
   "prepreka-balvani": {
-    "file": "prepreka-balvani.png",
     "size": [
       768,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 279334,
     "bounds": [
       8,
       290,
       760,
       512
-    ]
+    ],
+    "groundAnchor": [
+      384,
+      512
+    ],
+    "verified": true
   },
   "prepreka-kolje": {
-    "file": "prepreka-kolje.png",
     "size": [
       768,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 257273,
     "bounds": [
       8,
       269,
       760,
       512
-    ]
+    ],
+    "groundAnchor": [
+      384,
+      512
+    ],
+    "verified": true
   },
   "prepreka-kamenje": {
-    "file": "prepreka-kamenje.png",
     "size": [
       768,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 303803,
     "bounds": [
       8,
       317,
       760,
       512
-    ]
+    ],
+    "groundAnchor": [
+      384,
+      512
+    ],
+    "verified": true
   },
   "prepreka-bure": {
-    "file": "prepreka-bure.png",
     "size": [
       768,
       512
     ],
-    "alphaExtrema": [
-      0,
-      255
-    ],
-    "transparentPixels": 242878,
     "bounds": [
       8,
       252,
       760,
       512
-    ]
+    ],
+    "groundAnchor": [
+      384,
+      512
+    ],
+    "verified": true
   }
 }

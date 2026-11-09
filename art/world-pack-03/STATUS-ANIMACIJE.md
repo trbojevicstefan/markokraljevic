@@ -226,3 +226,8 @@ DOPUNA-12: prepreka-bure.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u a
 DOPUNA-12: marko-crouch-throw — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-crouch-throw/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
 
 DOPUNA-12: vilinski-kamen-budan — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/vilinski-kamen-budan/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
+
+DOPUNA-12: vilinski-kamen-budan — ispravka GOTOVA; rune su upaljene u svih 6 kadrova, cista alfa bez svetle podloge. Prvi izvoz i crtez sacuvani u sources/vilinski-kamen-budan/export-before-lighting-fix/ i grid.png; odabrani izvor grid-v2.png.
+
+## DOPUNA-12 — ZAVRSENO
+4 klipa, 24 kadra, 2 slike mosta i 5 prepreka. Svi klipovi imaju atlas/manifest/frame_layout/frames/preview.gif/qa.json, 512x512, oslonac y487. Provereni alfa, broj GIF kadrova i slaganje sa atlasom. Segment mosta 1536x384, kraj 1024x512, prepreke 768x512 sa dnom na tlu. Vodoravni spoj segmenta: 0 razlike. Pregledi: animation-pack-04/preview-dopuna12.png i world-pack-03/preview-dopuna12-props.png. Katalog/provere: catalog-dopuna12.json, validation-dopuna12.json, validation-dopuna12-props.json. Ugradjeni image_gen, po jedan pokusaj osim drugog za budan kamen zbog ocigledne greske u osvetljenju/alfa podlozi. Sve prethodno sacuvano.

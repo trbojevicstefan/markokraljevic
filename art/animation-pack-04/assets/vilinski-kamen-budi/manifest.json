@@ -17,16 +17,7 @@
     "size": 512,
     "safe_margin": 24
   },
-  "chroma_key": {
-    "name": "green",
-    "hex": "#00FF00",
-    "rgb": [
-      0,
-      255,
-      0
-    ],
-    "selection": "manual"
-  },
+  "chroma_key": null,
   "animation": {
     "cellWidth": 512,
     "cellHeight": 512,
@@ -100,5 +91,12 @@
     "actualMaxHeight": 460,
     "footY": 487,
     "uniformScale": 0.9704641350210971
-  }
+  },
+  "objectId": "vilinski-kamen",
+  "objectAnchor": {
+    "x": 256,
+    "y": 488
+  },
+  "worldHeight": 460,
+  "lightingOnly": true
 }

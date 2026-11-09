@@ -1,0 +1,34 @@
+[
+  {
+    "id": "vilinski-kamen-spava",
+    "frames": 6,
+    "loop": true,
+    "atlas": "assets/vilinski-kamen-spava/atlas.png",
+    "manifest": "assets/vilinski-kamen-spava/manifest.json",
+    "verified": true
+  },
+  {
+    "id": "vilinski-kamen-budi",
+    "frames": 6,
+    "loop": false,
+    "atlas": "assets/vilinski-kamen-budi/atlas.png",
+    "manifest": "assets/vilinski-kamen-budi/manifest.json",
+    "verified": true
+  },
+  {
+    "id": "vilinski-kamen-budan",
+    "frames": 6,
+    "loop": true,
+    "atlas": "assets/vilinski-kamen-budan/atlas.png",
+    "manifest": "assets/vilinski-kamen-budan/manifest.json",
+    "verified": true
+  },
+  {
+    "id": "marko-crouch-throw",
+    "frames": 6,
+    "loop": false,
+    "atlas": "assets/marko-crouch-throw/atlas.png",
+    "manifest": "assets/marko-crouch-throw/manifest.json",
+    "verified": true
+  }
+]
