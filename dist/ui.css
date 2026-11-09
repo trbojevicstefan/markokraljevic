@@ -577,3 +577,10 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .riz-combos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
 .riz-combo{background:#0f1515cc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
 .riz-combo b{display:block;font:600 16px Georgia,serif;color:#f1e3bd}.riz-combo small{opacity:.85;font-size:14px}
+
+/* Ravijojla flying at the viewer */
+#vila-flyby{position:fixed;left:50%;top:42%;width:300px;height:300px;margin:-150px 0 0 -150px;pointer-events:none;z-index:35;opacity:0;
+ background:url(assets/world/vila-spreda.webp) 0 0/800% 100% no-repeat;filter:drop-shadow(0 0 18px #9dffd855)}
+#vila-flyby.go{animation:vilaFly 2s cubic-bezier(.4,0,.8,.6) forwards,vilaFrames .62s steps(8) infinite}
+@keyframes vilaFrames{to{background-position:114.2857% 0}}
+@keyframes vilaFly{0%{opacity:0;transform:translate(60px,-90px) scale(.18)}14%{opacity:1}62%{opacity:1;transform:translate(0,10px) scale(1.5)}100%{opacity:0;transform:translate(-40px,160px) scale(3.2)}}

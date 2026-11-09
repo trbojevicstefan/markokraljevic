@@ -78,7 +78,12 @@ const COMBO_TIME=[.36,.36,.5],COMBO_CD=[.3,.3,.56];function updateCooldowns(dt){
 function attackDuration(){return p.attackKind==='tresak'?.34:p.attackKind==='light'&&p.airAtk?.3:p.attackKind==='lomilac'?.56:p.attackKind==='uvis'?.42:p.attackKind==='juris'?.42:p.attackKind==='super'?.95:p.attackKind==='counter'?.55:p.attackKind==='heavy'?.52:COMBO_TIME[p.combo||0];}
 function superStrike(){if(!has('junacki')){locked('junacki');return;}if(p.rage<100){toast('Junački bes puni se pogocima i odbijanjem.',2);return;}if(p.cooldown>0||p.dash>0||p.drink>0||horseMounted||!p.grounded||p.guardBreak>0)return;p.rage=0;p.attack=.95;p.attackKind='super';p.cooldown=1.4;p.superImpact=false;p.blocking=false;p.crouching=false;p.crouch=0;p.invuln=Math.max(p.invuln,.7);sound('swing');toast('JUNAČKI UDAR',1.2);say('super',{priority:4,gap:0});say('tr_fear',{chance:.5,delay:1.2,x:p.x+p.face*200});say('vila_super',{chance:.3,delay:2.6});}
 function isDown(...codes){if(p&&(p.down>0||p.ledgeT>0||p.plunge===2||p.dizzy>0))return false;return codes.some(c=>keys.has(c));}function tap(...codes){if(p&&(p.down>0||p.ledgeT>0||p.plunge===2||p.dizzy>0))return false;return codes.some(c=>pressed.has(c));}
-function callFairy(kind,x,y){if(p&&p.grounded&&!horseMounted&&p.attack<=0&&rig?.['marko-call'])p.callT=CALL_TIME;say('vila_'+(kind==='stun'||kind==='bridge'||kind==='lift'?kind:'heal'),{priority:2,x:fairy.x,delay:.2});say('fairy',{chance:.3});fairy.age=0;fairy.duration=3.2;fairy.kind=kind;fairy.targetX=x;fairy.targetY=y;p.castLock=.8;burst(fairy.x,fairy.y-25,'#caffdf',24,95);sound('magic');}
+// Ravijojla flies at the viewer: small and far, then big as she passes the screen. The first call in each
+// chapter and a heal when Marko is nearly done for. A CSS sprite over the game: one image, no cost to the frame.
+let flybyZones=new Set(),flybyAt=-99;
+function fairyFlyby(){if(!hasDom||settings.reduced||time-flybyAt<30)return;flybyAt=time;let el=$('vila-flyby');if(!el){el=document.createElement('div');el.id='vila-flyby';document.body.appendChild(el);}
+ el.classList.remove('go');void el.offsetWidth;el.classList.add('go');sfx('magic',{gain:.5,rate:.8});}
+function callFairy(kind,x,y){if(!flybyZones.has(zone)||(kind==='heal'&&p&&p.hp<p.maxHp*.25)){flybyZones.add(zone);fairyFlyby();}if(p&&p.grounded&&!horseMounted&&p.attack<=0&&rig?.['marko-call'])p.callT=CALL_TIME;say('vila_'+(kind==='stun'||kind==='bridge'||kind==='lift'?kind:'heal'),{priority:2,x:fairy.x,delay:.2});say('fairy',{chance:.3});fairy.age=0;fairy.duration=3.2;fairy.kind=kind;fairy.targetX=x;fairy.targetY=y;p.castLock=.8;burst(fairy.x,fairy.y-25,'#caffdf',24,95);sound('magic');}
 function useFairy(){
  if(p.castLock>0)return;
  if(level&&(useGoal()||pullLever()||pullLift()))return;
