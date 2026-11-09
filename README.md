@@ -151,10 +151,26 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
   - noge (Shift): nizak zamah topuzom u visini kolena; noge odlete, a telo padne na batrljke i ostane da leži, dok krv šiklja (Markov zamah je Codexov `marko-finisher-legs`);
   - gaženje (Space): protivnik prvo padne, a Marko skoči i zakuca ga topuzom. Visina skoka se dodaje u kodu, jer crtež svaki kadar stavlja na stopala.
 
+**Dopuna 14–18**
+- **Y / K iz skoka:** Marko visoko skoči, zabaci topuz iza glave i udari pravo u glavu, kao kad se cepaju drva (Codexov `marko-finisher-skull`). Visina skoka u trenutku udarca se računa prema visini svakog neprijatelja.
+- **Polovine posle "bez nogu"** leže u mrtvoj pozi: gornji deo i noge se seku iz poslednjeg kadra pogibije svakog neprijatelja.
+- **Barjaci se vijore:** srpski (beli orao) i osmanski (zulfikar) su Codexove animacije od 8 kadrova u petlji (`barjak-*-vijori`). Svaki barjak u igri je jedna slika po kadru. Dok se te slike ne učitaju, služi talas iz ravne tkanine, iscrtan jednom u 20 kadrova.
+- **Đule** je Codexova slika (`djule`): mat liveno gvožđe koje se okreće dok se kotrlja.
+- **Turski top:**
+  - Gde je: poglavlje II, poglavlje V i pohodi Tvrđava, Prevoj i Reka.
+  - Topčija pali fitilj. Kad cev ostane ravna, đule se kotrlja po zemlji i treba ga preskočiti. Kad se cev podigne, đule leti u visini glave i treba se sagnuti.
+  - Đule obara Turke i razbija sanduke, a zid ga zaustavlja.
+  - Top ućutkuješ tako da ubiješ topčiju ili da ga razbiješ topuzom.
+- **Vilinski mostovi** stoje u ravni sa tlom, pa se na njih prelazi hodom, bez skoka. Nemaju više sjaja.
+- **Manje sjaja:**
+  - sloj sjaja i bloom su slabiji, oreoli upola manji;
+  - natpisi u svetu nemaju zlatni sjaj;
+  - meni nema zlatna svetlucanja.
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**
-- `node battles-test.mjs`: 82 provere.
+- `node battles-test.mjs`: 106 provera.
 - `node draw-test.mjs` iscrtava igru bez ekrana, kroz Kačanik, Musine etape, dokrajčivanje i svih 13 pohoda, i hvata greške u crtanju.
 
 ## Kontrole

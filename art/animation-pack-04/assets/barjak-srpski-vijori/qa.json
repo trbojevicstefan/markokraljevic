@@ -1,0 +1,110 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        149,
+        460,
+        332
+      ]
+    },
+    {
+      "frame": 1,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        148,
+        460,
+        335
+      ]
+    },
+    {
+      "frame": 2,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        142,
+        460,
+        335
+      ]
+    },
+    {
+      "frame": 3,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        134,
+        460,
+        338
+      ]
+    },
+    {
+      "frame": 4,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        142,
+        460,
+        336
+      ]
+    },
+    {
+      "frame": 5,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        149,
+        460,
+        335
+      ]
+    },
+    {
+      "frame": 6,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        149,
+        460,
+        332
+      ]
+    },
+    {
+      "frame": 7,
+      "hoistX": 40,
+      "hoistY0": 150,
+      "hoistY1": 330,
+      "bounds": [
+        40,
+        149,
+        460,
+        332
+      ]
+    }
+  ],
+  "loop": true,
+  "anchorVerified": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "fixedSleevePixelEquality": true,
+  "exactHoistEdge": {
+    "x": 40,
+    "y0": 150,
+    "y1": 330
+  }
+}

@@ -263,3 +263,11 @@ DOPUNA-14: marko-finisher-legs — GOTOVO; 8 kadrova; atlas, manifest sa frame_l
 DOPUNA-15: GOTOVO ? tkanina-barjak-srpski.png i tkanina-barjak-turski.png na vrhu art/world-pack-03/. Dve ravne PNG RGBA tkanine 1024x640, rukavac levo, srpski beli dvoglavi orao/zlatni krst i providan lastin rep, turski beli zulfikar/dva polumeseca/crvena ivica i kratke rese. Bez animacija i atlasa. Ugradjeni image_gen, po jedan pokusaj; dimenzije i alfa provereni. Promptovi prema DOPUNA-15.md: ravna frontalna damast svila, ravnomerno svetlo, bez nabora/koplja/senki, motivi i rubovi kako su zadati.
 
 DOPUNA-16: marko-finisher-skull — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-skull/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna16.json.
+
+DOPUNA-17: barjak-srpski-vijori — GOTOVO; 8 kadrova, petlja, 512x512, providni PNG, atlas 4096x512, manifest/frame_layout, frames, preview.gif, preview.png i qa.json u art/animation-pack-04/assets/barjak-srpski-vijori/. Ivica uz koplje fiksirana x40, y150–330 (provera alfa +/-1px), duzina oko420px; bez oslonca stopala. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna17.json.
+
+DOPUNA-17: barjak-turski-vijori — GOTOVO; 8 kadrova, petlja, 512x512, providni PNG, atlas 4096x512, manifest/frame_layout, frames, preview.gif, preview.png i qa.json u art/animation-pack-04/assets/barjak-turski-vijori/. Ivica uz koplje fiksirana x40, y150–330 (provera alfa +/-1px), duzina oko420px; bez oslonca stopala. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna17.json.
+
+DOPUNA-17 ? oba klipa proverena i zavrsena: 16 kadrova ukupno. Zavrsna registracija rukavca: identican nepomican rub x40, tacno y150?330 u svih 8 kadrova svakog klipa (proverena jednakost piksela). Manifest ima attachmentAnchor i renderAnchor; nema footY. Oba GIF-a imaju 8 kadrova.
+
+DOPUNA-18: djule.png ? GOTOVO u art/world-pack-03/djule.png. PNG RGBA512x512, precnik440px, centar(256,256), granice(36,36)-(476,476), alfa proverena. Ugradjeni image_gen, jedan pokusaj. Prompt prema DOPUNA-18.md: ogromno mat grubo liveno gvozdeno djule iz15.veka, trag livenja, malo rdje, tri udubljenja, meko svetlo odozgo levo; bez sjaja/belog odsjaja/senke na tlu/dima/plamena. Samo jedna PNG slika.

@@ -12,6 +12,12 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
             continue
         if 'frame_layout' not in json.load(open(manifest, encoding='utf8')):
             print('preskačem (nema frame_layout):', name); continue
+        if name.startswith('barjak-'):  # banner loops are world art: a light WebP strip, not part of the sprite rig
+            from PIL import Image
+            dst = os.path.join(OUT, 'world', name + '.webp')
+            if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(atlas):
+                Image.open(atlas).save(dst, 'WEBP', quality=84, method=5); n += 1; print('barjak', name)
+            continue
         dst = os.path.join(OUT, name + '.png')
         if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(atlas):
             continue
