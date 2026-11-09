@@ -20,7 +20,7 @@ export function makeWorld(){
  floor(3200,3800);[3550,3890,4230,4610,4980,5260,5590,5940,6300,6650].forEach((x,i)=>enemy(x,['shield','sword','archer','sword'][i%4]));
  [3800,4900,5950].forEach(x=>floor(x,160,460));
  floor(7000,700);floor(7940,820);floor(8900,800);floor(9940,860);
- [7580,8540,9580].forEach((x,i)=>{runes.push({x,y:590,active:false,id:i});platforms.push({x:x+120,y:575,w:240,h:30,kind:'magic',rune:i});});
+ [7580,8540,9580].forEach((x,i)=>{runes.push({x,y:590,active:false,id:i});platforms.push({x:x+116,y:590,w:248,h:30,kind:'magic',rune:i});});
  floor(7400,100,475);floor(8270,130,465);floor(9320,130,475);floor(10250,150,465);
  [8180,9200,10300].forEach(x=>enemy(x,'archer'));
  [[845,895,140],[1785,1835,160]].forEach(([sx,bx,bw],k)=>{runes.push({x:sx,y:590,active:false,id:3+k,road:true});platforms.push({x:bx,y:590,w:bw,h:30,kind:'magic',rune:3+k});});
@@ -29,8 +29,10 @@ export function makeWorld(){
  [25250,26450,27350].forEach(x=>floor(x,150,465));floor(28000,1900);
  [450,1500,2600,3400,4450,5400,6500,7150,8400,10100,11100,15600,20500,24700,25800,27000,28200].forEach((x,i)=>items.push({id:i,x,y:555,type:i%3===0?'wine':'herb',taken:false}));
  [[1600,430],[8350,430],[27400,430]].forEach(([x,y],i)=>items.push({id:100+i,x,y,type:'relic',taken:false}));
+ // Turkish cannons with their gunners: chapter II and the last siege before Musa
+ const cannons=[[5480,5560],[26080,26160]].map(([x,gx])=>{enemy(gx,'palikuca');enemies[enemies.length-1].gunner=true;return{kind:'top',x,y:590,face:-1};});
  const travelers=['kaluder','putnica','trgovac','starac'].map((who,i)=>({id:i,who,x:250+i*50,home:250+i*50,face:-1,state:'camp',walk:0}));
- return {platforms,enemies,items,runes,barriers,travelers};
+ return {platforms,enemies,items,runes,barriers,travelers,cannons};
 }
 // Bodies stand on platform tops. Thin platforms are one-way; `solid` blocks (pohod terrain, towers, crates) also stop
 // sideways movement and bump heads. A grounded body climbs low steps (stairs) and stays glued to them going down.
@@ -112,14 +114,14 @@ export const RECIPES={
  klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift greda crates crumble zid stairs+ watch rocks crates ledges flat boss:kopljanik',
  suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat stairs- chimney flat boss:lovac',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
- tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat barut flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase sator watch lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
+ tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase sator watch top lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney ledges terrace+ cellar flat ogledala pillars zid gap tower crumble crates flat boss:azdaja',
  podrum:'flat crates stairs- greda barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
  mocvara:'flat bridge watch crumble ferry bridge crates logs kljuc spikebed watch ledges flat bridge pillars watch flat boss:tufekdzija',
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crates crumble greda stairs+ tower flat spikebed zid ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch stairs+ flat boss:arapin',
- reka:'flat crates bridge flat watch ferry sator stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
+ reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
@@ -187,6 +189,7 @@ export function buildLayout(L,variant='day'){
   // a treasury tower beside the road: its iron-bound door opens only with the key the keeper carries
   kljuc(){const x0=x,len=ri(760,840);ground(len);const dx=x0+Math.round(len*.64),kx=x0+Math.round(len*.3);traps.push({kind:'keydoor',x:dx,y:gy,gate:{x:dx,y:gy},vault:vaults.length,keeper:{x:kx,y:gy}});vaults.push({door:{x:dx,y:gy},key:true});spots.push({x:kx,y:gy});busy.push([x0,x0+len]);},
   // a Turkish tent: Ottomans come out of it while Marko is near, until he tears it down
+  top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
   sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
   // a wall with a low gap at its foot: too low to walk through — crouch (S) or slide (S while running) under it
   greda(){const x0=x,len=ri(620,700);ground(len);const wx=x0+Math.round(len*.45),ww=170;platforms.push({x:wx,y:gy-1300,w:ww,h:1300-72,kind:'lintel',solid:true,lintel:true});crate(wx+ww+150,'kovceg',{loot:{coins:ri(14,20)}});busy.push([x0,x0+len]);spots.push({x:x0+90,y:gy});},
@@ -278,6 +281,7 @@ export function makeLevel(L,index,variant='day',opts={}){
   if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
   if(s.x-lastX<330)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
+ for(const t of B.traps)if(t.kind==='top')foe('palikuca',t.x+80,t.y,{gunner:true});
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
  for(const r of B.rewards)if(r.cudo)items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
  for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
@@ -299,5 +303,5 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
- return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }

@@ -373,7 +373,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
   layerMesh.frustumCulled = false; layerMesh.renderOrder = 0;
   scene.add(layerMesh);
   const glowMat = new THREE.ShaderMaterial({
-    uniforms: {uTex: {value: glowTex}, uGain: {value: 1.9}},
+    uniforms: {uTex: {value: glowTex}, uGain: {value: 1.05}},
     vertexShader: SCREEN_VERT,
     fragmentShader: `uniform sampler2D uTex;uniform float uGain;varying vec2 vUv;void main(){vec4 c=texture2D(uTex,vUv);gl_FragColor=vec4(c.rgb*uGain,c.a);}`,
     transparent: true, blending: THREE.AdditiveBlending, depthTest: false, depthWrite: false,
@@ -765,7 +765,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
           else if (e.kind === 'rune') spawn(e.x + rand(-18, 18), e.y - rand(10, 60), rand(-10, 10), rand(-8, 8), -rand(30, 80), 0, hdr('#8fffd2', 2.4), rand(.9, 1.6), rand(6, 10), -10);
           else if (e.kind === 'bridge') spawn(e.x + rand(0, e.w), e.y + rand(-4, 8), rand(-15, 15), rand(-6, 6), -rand(20, 70), 0, hdr(Math.random() < .3 ? '#ffffff' : '#9dffd8', 2.2), rand(.7, 1.4), rand(5, 9), -10);
           else if (e.kind === 'fire') spawn(e.x + rand(-(e.w || 20) / 2, (e.w || 20) / 2), e.y - rand(0, 25), rand(-20, 20), rand(-18, 18), -rand(70, 190), 0, hdr(Math.random() < .5 ? '#ff6a14' : Math.random() < .5 ? '#ffb030' : '#ffe080', 3.2), rand(.4, 1), rand(6, 13), -60);
-          else if (e.kind === 'item') spawn(e.x + rand(-10, 10), e.y + rand(-12, 12), 0, rand(-8, 8), -rand(15, 40), 0, hdr('#ffe39a', 2.4), rand(.5, 1), rand(4, 7), 0);
+          else if (e.kind === 'item') { if (Math.random() < .5) spawn(e.x + rand(-10, 10), e.y + rand(-12, 12), 0, rand(-8, 8), -rand(15, 40), 0, hdr('#f0d49a', 1.3), rand(.5, 1), rand(3, 6), 0); }
           else if (e.kind === 'boss') spawn(e.x + rand(-40, 40), e.y - rand(10, 150), rand(-20, 20), rand(-20, 20), -rand(40, 110), 0, hdr(e.color || '#ff6a4a', 2.6), rand(.4, .8), rand(6, 11), -30);
         }
       }
@@ -801,7 +801,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       grade.uniforms.uSat.value = look.sat;
       grade.uniforms.uContrast.value = look.contrast;
       grade.uniforms.uGrain.value = reduced() ? .015 : .03;
-      bloom.strength = reduced() ? .45 : .72;
+      bloom.strength = reduced() ? .3 : .48;
 
       layerTex.needsUpdate = true;
       glowTex.needsUpdate = true;

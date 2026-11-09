@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -51,13 +51,13 @@ const safe=()=>{const {p}=S();p.invuln=99;p.hp=p.maxHp;};
  ok(p.lowThrow,'throw: crouching, Marko throws the mace low');}
 
 // ---- the finish: only for a foe under a quarter of his strength, not every time, four buttons, four ends ----
-async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
+async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});e.x=2450;e.home=2450;Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
  Object.assign(e,{stun:30,mode:'stun',hp:e.maxHp*.2});until(()=>e.finT>0,120*30);const opened=e.finT>0;api.pressed.add(key);step(2);const started=!!S().finisher;step(150);return{e,opened,started};}
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
  Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(120*6);ok(!(e.finT>0),'finish: never while the foe is still strong');}
 {const r=await finishWith("KeyJ");ok(r.opened&&r.started&&!r.e.alive&&S().heads.length===1&&S().corpses.some(c=>c.headless),'finish: X / J takes the head');}
 {const r=await finishWith('KeyK');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.headless?.fast)&&S().heads.length===0,'finish: Y / K bursts his head under the mace');}
-{const r=await finishWith('ShiftLeft');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.launched),'finish: B / Shift lifts him and hurls him away');}
+{const r=await finishWith('ShiftLeft');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.legless)&&S().limbs.length===1,'finish: B / Shift takes his legs, he falls without them');step(120*3);ok(S().limbs[0]?.rest,'finish: the legs come to rest on the ground');}
 {const r=await finishWith('Space');ok(r.started&&!r.e.alive&&S().corpses.some(c=>!c.headless&&!c.launched),'finish: A / Space knocks him down and lands on him');}
 {let opens=0,tries=0;for(let n=0;n<12;n++){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,grounded:true});safe();Object.assign(e,{stun:9,mode:'stun',hp:e.maxHp*.2});step(3);tries++;if(e.finT>0)opens++;}
  ok(opens<tries,'finish: the chance does not come every time ('+opens+' of '+tries+')');}
@@ -165,4 +165,15 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  until(()=>e.move||e.recMove,120*2);ok(e.move||e.recMove,'moves: a janissary lunges from a distance');}
 {api.startChapter(5);const {boss}=S();boss.stage='duel';boss.phase=2;boss.mode='throwUp';boss.timer=.05;Object.assign(S().p,{x:boss.x-300});safe();step(10);ok(boss.mode==='unarmed'&&boss.drop,'musa: he throws his mace into the clouds and stands unarmed');
  until(()=>!boss.drop,120*3);ok(!boss.drop,'musa: the mace comes down where its shadow was');}
+// ---- the Turkish cannon: the gunner fires it, a low ball rolls into a standing man, a high one flies over a crouching one; the mace breaks it ----
+{api.startChapter(1);const w=S().world,c=w.cannons[0],p=S().p;w.enemies.forEach(e=>{if(!e.gunner)e.alive=false;});
+ const at=()=>{Object.assign(p,{x:c.x-700,y:590,vx:0,vy:0,grounded:true,invuln:0});};
+ ok(until(()=>{at();p.hp=p.maxHp;return c.balls?.length>0;},120*8),'cannon: the gunner lights the fuse and the cannon fires at Marko');
+ const low=c.balls[0];ok(!low.high,'cannon: the first ball comes low');
+ let hurt=false;until(()=>{p.x=c.x-700;p.invuln=0;if(p.hp<p.maxHp)hurt=true;return hurt||low.life<=0;},120*4);ok(hurt,'cannon: a low ball rolls into a man who stands');
+ until(()=>{at();p.hp=p.maxHp;return c.balls.some(b=>b.high);},120*8);const hi=c.balls.find(b=>b.high);hurt=false;api.keys.add('KeyS');
+ until(()=>{p.x=c.x-700;p.invuln=0;if(p.hp<p.maxHp)hurt=true;return hurt||hi.x<p.x-60||hi.life<=0;},120*4);api.keys.delete('KeyS');ok(!hurt&&hi.x<p.x-60,'cannon: the high ball flies over him when he crouches');
+ for(let i=0;i<16&&!c.broken;i++){Object.assign(p,{x:c.x-90,face:1,grounded:true});safe();tap('KeyK');step(70);}
+ ok(c.broken,'cannon: the mace breaks the cannon');const shots=c.shots;at();step(120*5);ok(c.shots===shots,'cannon: a broken cannon stays silent');}
+{const L=api.LEVELS.findIndex(l=>l.id==='tvrdjava');await api.startLevel(L);ok(S().world.cannons?.length===1&&S().world.enemies.some(e=>e.gunner),'cannon: the fortress has a cannon and its gunner');}
 console.log(`${checks} battle checks passed.`);

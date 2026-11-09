@@ -257,3 +257,9 @@ DOPUNA-13: kostac-pas-kraj — GOTOVO; 6 kadrova; atlas, manifest sa frame_layou
 
 ## DOPUNA-13 — ZAVRSENO
 10 klipova / 74 kadra. Tri zavrsna udarca, vino u hodu i sest klipova rvanja (janicar, oklopnik, pas; petlja i izlaz). Svi imaju atlas.png, manifest.json sa frame_layout, pojedinacne RGBA kadrove 512x512, preview.gif i qa.json. Provereni alfa, oslonac y487, atlas/kadrovi, raspored, broj GIF kadrova i loop oznake. Pregled: art/animation-pack-04/preview-dopuna13.png; katalog i validacija: catalog-dopuna13.json, validation-dopuna13.json; promptovi: plan-dopuna13.json. Ugradjeni image_gen: 11 generisanja, samo janicar ponovljen zbog ocigledno pogresnog kostima; prvi izvori i izvozi sacuvani. Nema preostalih stavki iz DOPUNA-13.
+
+DOPUNA-14: marko-finisher-legs — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-legs/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna14.json.
+
+DOPUNA-15: GOTOVO ? tkanina-barjak-srpski.png i tkanina-barjak-turski.png na vrhu art/world-pack-03/. Dve ravne PNG RGBA tkanine 1024x640, rukavac levo, srpski beli dvoglavi orao/zlatni krst i providan lastin rep, turski beli zulfikar/dva polumeseca/crvena ivica i kratke rese. Bez animacija i atlasa. Ugradjeni image_gen, po jedan pokusaj; dimenzije i alfa provereni. Promptovi prema DOPUNA-15.md: ravna frontalna damast svila, ravnomerno svetlo, bez nabora/koplja/senki, motivi i rubovi kako su zadati.
+
+DOPUNA-16: marko-finisher-skull — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-skull/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna16.json.

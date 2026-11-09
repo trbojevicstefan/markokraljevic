@@ -131,7 +131,7 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - **Četiri dokrajčivanja, jedno za svako dugme na džojstiku:**
   - X / J: odsecanje glave;
   - Y / K: smrskavanje odozgo, u zemlju;
-  - B / Shift: Marko ga podigne i baci daleko, i obori one na putu;
+  - B / Shift: nizak zamah topuzom mu odvali noge;
   - A / Space: skok i gaženje, koje ošamuti one oko njega.
 - **Kada se nude:** samo kad je neprijatelj ispod 25% snage, nikad dok je zdrav. Ponuda dođe u otprilike polovini slučajeva, a posle svakog dokrajčivanja sledeće ne može 7 sekundi.
 - **Rvanje na zemlji:**
@@ -148,7 +148,7 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - N bira da li neprijatelji napadaju ili samo stoje. Markovo zdravlje se stalno vraća.
 - Dokrajčivanja posle provere u sobi:
   - smrskavanje (K): glava pukne pod topuzom i telo se sruši bez nje;
-  - bacanje (Shift): Marko podigne protivnika vodoravno iznad glave i baci ga, a on leti u svojoj „leteć“ pozi i obara one na putu;
+  - noge (Shift): nizak zamah topuzom u visini kolena; noge odlete, a telo padne na batrljke i ostane da leži, dok krv šiklja (Markov zamah je Codexov `marko-finisher-legs`);
   - gaženje (Space): protivnik prvo padne, a Marko skoči i zakuca ga topuzom. Visina skoka se dodaje u kodu, jer crtež svaki kadar stavlja na stopala.
 
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.

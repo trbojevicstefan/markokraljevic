@@ -1,0 +1,26 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-finisher-legs",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 0,
+      "impactFrame": 3,
+      "prompt": "Use case: stylized-concept. Production 2D hand-painted cel-shaded game sprite sheet. Reference image is CHARACTER IDENTITY AND EXACT PAINTING STYLE reference, not a pose to copy throughout. Create EXACTLY EIGHT frames arranged 4 COLUMNS by 2 ROWS reading row-major, equal square slots. Full body Marko alone, rightward action, no enemy. Match black moustache, long dark hair, red cloak with gold embroidery, ivory embroidered sleeves, brown leather and mail armor, boots, large spiked mace. Same anatomical scale/head size in all eight frames. Action: LOW HORIZONTAL FINISHING SWEEP at an invisible opponent's knee height. Frame1 neutral standing right-facing stance matching reference. Frame2 bend knees deeply and lower center of gravity almost onto one knee, draw mace back to LEFT of torso. Frame3 low twisting windup, mace head behind him near ground. Frame4 EXACT IMPACT: torso strongly rotated, BOTH HANDS extend mace forward RIGHT, mace shaft HORIZONTAL at knee height, mace head immediately above ground and clearly IN FRONT of Marko. Frame5 low sweeping follow-through turning entire body. Frame6 continue FULL BODY TURN, back briefly visible with swirling cloak and mace low. Frame7 complete rotation facing right again, rise from crouch. Frame8 upright neutral stance matching frame1. Clear weight, anticipation, impact and recovery. No blood/gore, no opponent, no extra characters. Every pose and whole mace must fit inside its own slot, occupy central 75% of slot leaving wide clean gutters; no crossed cell boundaries. No scenery, text, labels, numbers, lines, ground, shadows, motion trails or effects. PURE FLAT CHROMA GREEN #00FF00 background everywhere empty, no green on costume. Output landscape 2048x1024, final extracted cells512x512 baseline y487. This is a single one-shot animation.\n"
+    }
+  ]
+}

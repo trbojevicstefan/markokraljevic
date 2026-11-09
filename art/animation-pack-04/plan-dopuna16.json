@@ -1,0 +1,26 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-finisher-skull",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 7,
+      "impactFrame": 4,
+      "prompt": "Use case: stylized-concept. Create ONE production hand-painted cel-shaded 2D game sprite sheet matching reference CHARACTER IDENTITY AND PAINTING STYLE precisely. EXACTLY EIGHT full-body frames, FOUR COLUMNS by TWO ROWS, row-major, separate equal square slots, landscape2048x1024. Marko ALONE facing right throughout: black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,boots,SPIKED MACE held TWO-HANDED. Action is HIGH LEAP OVERHEAD FINISHING STRIKE, like chopping wood but the target is HEAD HEIGHT, NOT THE GROUND. No target/opponent drawn. Frame1 crouch for takeoff,mace low behind him held both hands. Frame2 forceful upward takeoff,legs extending,mace moving overhead. Frame3 unmistakably AIRBORNE knees tucked,torso arched BACK like a bow, both hands hold mace FAR BEHIND HIS HEAD, anticipating force. Frame4 full overhead forward swing from behind head toward front,airborne. Frame5 EXACT IMPACT: airborne body pitching forward, both arms EXTENDED FORWARD AND DIAGONALLY DOWN, mace head in FRONT RIGHT at an imaginary standing adult opponent's HEAD HEIGHT (about1.7m above shared worldground), NOT near Marko's own boots or ground. Frame6 land in deep crouch,mace lowered in followthrough. Frame7 rising into stance. Frame8 neutral fully upright right-facing stance matching reference. Same head/body anatomical scale in all frames, NO shrinking airborne poses; game's code applies jump elevation so render airborne POSES rather than changing their vertical position in slots. Lowest contact/extremity baseline consistent in each cell, safe space above. Every complete figure, cape and mace fits central75% of OWN slot, broad empty gutters, no crossing boundaries or clipped weapons. Clean silhouette, clear anticipation/impact/recovery. Flat pure #00FF00 GREEN background in every empty space. No shadows, drawn floor, effects,motion trails,text,numbers,gridlines,scenery,extra characters,blood or gore. Final cells512x512, foot anchor y487. Single one-shot animation.\n"
+    }
+  ]
+}

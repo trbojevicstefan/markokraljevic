@@ -1,0 +1,16 @@
+{
+  "id": "marko-finisher-skull",
+  "frames": 8,
+  "cell": [
+    512,
+    512
+  ],
+  "baseline": 487,
+  "impactFrame": 4,
+  "loop": false,
+  "alpha": true,
+  "atlasMatchesFrames": true,
+  "frameLayout": true,
+  "gifFrames": 8,
+  "generationAttempts": 1
+}
