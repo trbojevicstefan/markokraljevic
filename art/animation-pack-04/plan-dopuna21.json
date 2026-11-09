@@ -1,0 +1,29 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-wounded-walk",
+      "kind": "marko",
+      "loop": true,
+      "frames": 8,
+      "fps": 12,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D game sprite sheet3COLUMNS x3ROWS equal square slots, rowmajor. FIRST8cells continuous8phase LIMPING WALK toRIGHT, LAST9thcell neutral healthySTANDING calibration matchingreference. Reference EXACT Markoidentity/costume/painting: BLACK moustache,longdarkhair,redgoldembroideredcloak,ivoryembroideredsleeves,brownleatherandmailarmor,brownboots,SPIKEDMACE. SAME headsize/anatomicalscale ALL9cells includingcrouched/limpingposes, NOT enlargedtofillspace. WOUNDED afterduel: body stoopedFORWARD, painedface, LEFT HAND presses SIDEWOUND atwaist throughout ALL8frames. Tiny darkred clothstain only,noopenwound/gore. RIGHT HAND holds mace LOW withshaft slantingdownBACKLEFT, heavySPIKEDMACEHEAD DRAGS ALONGGROUND BEHINDhim, NOT carried levelorup. 1 leadingfootheelcontact shortstep.2 weightload painfuldip.3 trailinglegweaklydragsforward.4 shortpassingstep.5 otherfootheelcontact.6 painfulweightshift.7 recoverlegforward uneven gait.8 reachnextshortstep into1. Actualalternatingfeet, walkingLIMPcycle not repeatedstaticposes. Cloak sways withunevenweight. Alwayssamehead/body size, feetandmacebottom atsamegroundline y487infinal512cell. Cell9 healthyneutralstandONLYforscale reference383px tall, notpartanimation. No horse,enemy,groundline,scenery,shadows,effects,text,numbers,gridlines. Pureflat #00FF00 GREENemptybackground; completebody/maceincentral75% ofOWNslot, broadgutters, unclipped. Output1536square."
+    },
+    {
+      "id": "vila-spreda",
+      "kind": "fairy",
+      "loop": true,
+      "frames": 8,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "fairyCellScale": 0.9,
+      "reference": "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png",
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D game sprite sheet EXACTLY8frames in FOURCOLUMNS xTWOROWS equal square slots, rowmajor, landscape2048x1024. Reference image ONLYestablishes exactfairyIDENTITY,COSTUME,PAINTING; CHANGEview to FRONT. Ravijojla flies DIRECTLY TOWARD CAMERA, FACE andCHESTsquareFRONTAL toviewer, NOTsideview, no3/4profile. Samefairy: blonde BRAID, WHITEflowerCROWN, ivoryWHITE dresswithRED Serbianembroidery, redflutteringwaistsash, BAREfeet GOLDANKLETS, translucentbutterflyWINGS with GOLDLEAFveinsandWHITEfloralpatterns. BOTHWINGSvisibleSYMmetrically either sideoftorso, realflapping:1 wideopenhigh,2 downsweep,3 nearlyedgeon/narrow,4 downclosedbehind,5 upsweepbegins,6 partlyspread,7 wideopen,8 approach1 seamlessly. ArmsheldgentlyFORWARD towardviewer, relaxeddelicatepalms, fingersnatural. Headfrontnearsamefixedheightallframes, bodycentered x256,y60..450 approx390pxtall ineach512cell, NOfootbaselinealignment, gentle5pxhoverbobONLY. Hairbraid,redbeltanddress trailandSWAY withdelayedmotion. Eightdifferentgracefulphases, nozoomin/out. FullwingsinsideOWNslotcentral90%, noguttercrossing orcroppedwings. TRUEtransparentRGBAemptybackground, translucentwingmembranes. NO glow,aura,halo,mist,fog,magic,effects,ground,shadow,scene,otherfigures,text,gridlines,numbers. Matchreference exactpaintedstyle/costume, justfrontalview. No sword,wand,boots,adultcontent."
+    }
+  ]
+}

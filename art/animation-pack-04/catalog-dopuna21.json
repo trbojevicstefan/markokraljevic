@@ -1,0 +1,82 @@
+[
+  {
+    "id": "minijatura-drum",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 2,
+    "verified": true
+  },
+  {
+    "id": "minijatura-kapija",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 2,
+    "verified": true
+  },
+  {
+    "id": "minijatura-trag",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 2,
+    "verified": true
+  },
+  {
+    "id": "minijatura-zalet",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 1,
+    "verified": true
+  },
+  {
+    "id": "minijatura-opsada",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 1,
+    "verified": true
+  },
+  {
+    "id": "minijatura-ranjen",
+    "kind": "miniature",
+    "size": [
+      768,
+      768
+    ],
+    "attempts": 1,
+    "verified": true
+  },
+  {
+    "id": "marko-wounded-walk",
+    "kind": "animation",
+    "frames": 8,
+    "loop": true,
+    "atlas": "assets/marko-wounded-walk/atlas.png",
+    "manifest": "assets/marko-wounded-walk/manifest.json",
+    "attempts": 1,
+    "verified": true
+  },
+  {
+    "id": "vila-spreda",
+    "kind": "animation",
+    "frames": 8,
+    "loop": true,
+    "atlas": "assets/vila-spreda/atlas.png",
+    "manifest": "assets/vila-spreda/manifest.json",
+    "attempts": 1,
+    "verified": true
+  }
+]

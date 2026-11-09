@@ -274,3 +274,17 @@ DOPUNA-21 A: minijatura-drum.png — GOTOVO; rukopis/minijature/minijatura-drum.
 DOPUNA-21 A: minijatura-kapija.png — GOTOVO; rukopis/minijature/minijatura-kapija.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
 
 DOPUNA-21 A: minijatura-trag.png — GOTOVO; rukopis/minijature/minijatura-trag.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-drum.png — GOTOVO; rukopis/minijature/minijatura-drum.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, drugi pokusaj zbog pogresno prenetih likova; prvi izvor sacuvan. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-kapija.png — GOTOVO; rukopis/minijature/minijatura-kapija.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, drugi pokusaj zbog pogresno prenetih likova; prvi izvor sacuvan. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-trag.png — GOTOVO; rukopis/minijature/minijatura-trag.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, drugi pokusaj zbog pogresno prenetih likova; prvi izvor sacuvan. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-zalet.png — GOTOVO; rukopis/minijature/minijatura-zalet.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-opsada.png — GOTOVO; rukopis/minijature/minijatura-opsada.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-ranjen.png — GOTOVO; rukopis/minijature/minijatura-ranjen.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A — ZAVRSENO: svih6 minijatura PNG768x768 provereno, zlatna neprovidna podloga. Pregled rukopis/minijature/preview-dopuna21.png. Drum, kapija i trag ispravljeni po josjednom zbog likova koji su pogresno preneti iz reference; prvi izvori sacuvani u sources/dopuna21/ uz v2. Ostale3 po jednim pokusajem. Stari preview.png i stare minijature nisu menjani.

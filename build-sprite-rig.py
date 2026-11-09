@@ -271,7 +271,7 @@ if _have('marko-crouch-throw') and 'marko-crouch' in SCALES:
 
 # DOPUNA-13: three more finishes and drinking on the move, at Marko's idle zoom; the grapples on the ground at the
 # zoom of Musa's (Marko lying full length is about as long in all of them)
-for name in ['marko-finisher-smash', 'marko-finisher-throw', 'marko-finisher-stomp', 'marko-drink-walk', 'marko-finisher-legs','marko-finisher-skull','marko-run-jump','marko-call','marko-pickup','marko-teeter','marko-idle-4','marko-blasted','marko-call-walk']:
+for name in ['marko-finisher-smash', 'marko-finisher-throw', 'marko-finisher-stomp', 'marko-drink-walk', 'marko-finisher-legs','marko-finisher-skull','marko-run-jump','marko-call','marko-pickup','marko-teeter','marko-idle-4','marko-blasted','marko-call-walk','marko-wounded-walk']:
     if _have(name):
         SCALES[name] = (SCALES['marko-idle'][0], 'feet')
 for who in ['janicar', 'oklopnik', 'pas']:
