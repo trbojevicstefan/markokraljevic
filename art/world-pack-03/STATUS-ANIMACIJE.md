@@ -271,3 +271,19 @@ DOPUNA-17: barjak-turski-vijori — GOTOVO; 8 kadrova, petlja, 512x512, providni
 DOPUNA-17 ? oba klipa proverena i zavrsena: 16 kadrova ukupno. Zavrsna registracija rukavca: identican nepomican rub x40, tacno y150?330 u svih 8 kadrova svakog klipa (proverena jednakost piksela). Manifest ima attachmentAnchor i renderAnchor; nema footY. Oba GIF-a imaju 8 kadrova.
 
 DOPUNA-18: djule.png ? GOTOVO u art/world-pack-03/djule.png. PNG RGBA512x512, precnik440px, centar(256,256), granice(36,36)-(476,476), alfa proverena. Ugradjeni image_gen, jedan pokusaj. Prompt prema DOPUNA-18.md: ogromno mat grubo liveno gvozdeno djule iz15.veka, trag livenja, malo rdje, tri udubljenja, meko svetlo odozgo levo; bez sjaja/belog odsjaja/senke na tlu/dima/plamena. Samo jedna PNG slika.
+
+DOPUNA-19: marko-run-jump — GOTOVO; 8 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-run-jump/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-call — GOTOVO; 6 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-call/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-call — GOTOVO; 6 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-call/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-pickup — GOTOVO; 6 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-pickup/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-teeter — GOTOVO; 6 kadrova, petlja, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-teeter/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-idle-4 — GOTOVO; 12 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-idle-4/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19: marko-blasted — GOTOVO; 6 kadrova, jednom, PNG RGBA512x512, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-blasted/. Zum prema383px idle-u uz neutralnu kalibraciju (383px); preview-idle-comparison.png. Ugradjeni image_gen, jedan pokusaj. Prompt: plan-dopuna19.json.
+
+DOPUNA-19 — ZAVRSENO: 6 klipova, 44 kadra, redom iz tabele. Po jedno generisanje za svaki klip. Svi izvozi provereni: alfa, atlas/pojedinacni kadrovi, frame_layout, broj GIF kadrova, loop zastavice i oslonac y487. Neutralna kalibracija383px prema idle referenci; pomocne poze nisu u atlasima. Poredjenje sa idle-om za svaki klip: preview-idle-comparison.png; zajednicki pregled art/animation-pack-04/preview-dopuna19.png. Katalog/validacija: catalog-dopuna19.json i validation-dopuna19.json. marko-call ponovo izvezen iz istog crteza nakon uklanjanja granicnih linija mreze; nije ponovo generisan. Kod igre i dist nisu menjani.

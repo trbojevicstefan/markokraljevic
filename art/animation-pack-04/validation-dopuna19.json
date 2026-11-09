@@ -1,0 +1,65 @@
+{
+  "clips": 6,
+  "frames": 44,
+  "generationAttempts": 6,
+  "checks": [
+    "alpha",
+    "cell512x512",
+    "baseline487",
+    "atlas pixel equality",
+    "frame_layout",
+    "GIF frame counts",
+    "loop flags",
+    "idle calibration <=383px"
+  ],
+  "results": [
+    {
+      "id": "marko-run-jump",
+      "frames": 8,
+      "loop": false,
+      "atlas": "assets/marko-run-jump/atlas.png",
+      "manifest": "assets/marko-run-jump/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-call",
+      "frames": 6,
+      "loop": false,
+      "atlas": "assets/marko-call/atlas.png",
+      "manifest": "assets/marko-call/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-pickup",
+      "frames": 6,
+      "loop": false,
+      "atlas": "assets/marko-pickup/atlas.png",
+      "manifest": "assets/marko-pickup/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-teeter",
+      "frames": 6,
+      "loop": true,
+      "atlas": "assets/marko-teeter/atlas.png",
+      "manifest": "assets/marko-teeter/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-idle-4",
+      "frames": 12,
+      "loop": false,
+      "atlas": "assets/marko-idle-4/atlas.png",
+      "manifest": "assets/marko-idle-4/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-blasted",
+      "frames": 6,
+      "loop": false,
+      "atlas": "assets/marko-blasted/atlas.png",
+      "manifest": "assets/marko-blasted/manifest.json",
+      "verified": true
+    }
+  ]
+}

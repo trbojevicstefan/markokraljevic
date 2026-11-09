@@ -1,0 +1,75 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        119,
+        105,
+        392,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        119,
+        106,
+        393,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        111,
+        79,
+        401,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        111,
+        80,
+        401,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        119,
+        104,
+        393,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        119,
+        105,
+        392,
+        488
+      ],
+      "footY": 487
+    }
+  ],
+  "loop": false,
+  "scaleReference": {
+    "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+    "referenceHeight": 383,
+    "calibrationHeight": 376,
+    "scaledCalibrationHeight": 383,
+    "uniformScale": 1.0186170212765957,
+    "footY": 487
+  },
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,83 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-run-jump",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 3 COLUMNS by 3 ROWS, row-major. Frames1-8 action: 1 push off ONE foot from forward-leaning sprint. 2 takeoff legs separate, left arm reaches forward RIGHT, mace in RIGHT hand held behind LEFT. 3-5 fully airborne long-distance BROAD STRIDE over chasm, leading leg extended right/trailing leg back left, cape streams behind, strong forward momentum, same scale not shrunk. 6 leading leg lowers for landing. 7 both legs prepare landing. 8 pre-landing legs tucked forward, still airborne, ready touchdown. No drawn ground or chasm. Game applies vertical translation; draw poses, not large vertical movement within cells. After the action frames draw ONE neutral scale calibration pose in cell9 matching the reference standing pose exactly in anatomical size; this calibration pose is NOT part of animation.  Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. One-shot."
+    },
+    {
+      "id": "marko-call",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 4 COLUMNS by 2 ROWS, row-major. Frames1-6:1 neutral right-facing standing. 2 turn head UP, open mouth to shout, lift LEFT hand. 3 LEFT arm stretched HIGH above toward sky with OPEN PALM, face looks up calling fairy. 4 sustain calling gesture and open mouth. 5 lower left hand. 6 neutral stance. RIGHT hand holds mace LOW throughout. Do not draw fairy or effects. After the action frames draw ONE neutral scale calibration pose in cell7 matching the reference standing pose exactly in anatomical size; this calibration pose is NOT part of animation. Cell8 empty green. Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. One-shot."
+    },
+    {
+      "id": "marko-pickup",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 4 COLUMNS by 2 ROWS, row-major. Frames1-6:1 neutral standing facing right. 2 lower onto ONE knee, LEFT hand reaching to ground. 3 pick up a TINY plain coin from ground using LEFT fingers, RIGHT hand holds mace low away from object. 4 lift tiny coin before face and inspect, still kneeling. 5 rise. 6 standing neutral, coin palm closes. No pile of treasure or scenery. After the action frames draw ONE neutral scale calibration pose in cell7 matching the reference standing pose exactly in anatomical size; this calibration pose is NOT part of animation. Cell8 empty green. Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. One-shot."
+    },
+    {
+      "id": "marko-teeter",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 4 COLUMNS by 2 ROWS, row-major. Frames1-6 form continuous loop of precarious balance at cliff edge to Marko's RIGHT, serious realistic action not comic. 1 lean torso forward right, one foot slightly lifted. 2 left arm sweeps high to counterbalance, right mace hand swings backward. 3 stronger forward pitch, arms rotate. 4 counterbalance begins, left arm sweeps outward, mace remains RIGHT hand. 5 recover slightly without fully standing, lifted foot wavers. 6 return toward exact frame1 position for seamless loop. Both arms circle for balance, tense face, weight on planted foot. NO drawn cliff or ground. After the action frames draw ONE neutral scale calibration pose in cell7 matching the reference standing pose exactly in anatomical size; this calibration pose is NOT part of animation. Cell8 empty green. Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. Loop smoothly from last action frame to first."
+    },
+    {
+      "id": "marko-idle-4",
+      "frames": 12,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 3,
+      "calibrationFrame": 11,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 4 COLUMNS by 3 ROWS, row-major. Exactly12 frames in4columns x3rows. 1 neutral standing. 2 raise LEFT sleeve to forehead. 3 wipe sweat off forehead with sleeve. 4 lower leftarm. 5 glance over shoulder BACK LEFT. 6 hold backward glance torso twists subtly. 7 turn face right again. 8 LEFT hand reaches cape at shoulder. 9 adjust red cape on shoulder. 10 settle cape and lower arm. 11 return to stance. 12 neutral standing matching reference. RIGHT hand holds mace low throughout. Casual serious long-idle gesture, no sweat droplets effects required. No extra poses or blank cells. Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. One-shot."
+    },
+    {
+      "id": "marko-blasted",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "prompt": "Use case: stylized-concept. Production hand-painted cel-shaded 2D game sprite sheet. Reference is EXACT CHARACTER IDENTITY, costume, and anatomical scale. Marko black moustache,long dark hair,red gold-embroidered cape,ivory embroidered sleeves,brown leather/mail armor,brown boots,spiked mace ALWAYS in RIGHT hand unless explicitly using both. Right-facing side-on platformer. IMPORTANT maintain SAME HEAD SIZE AND BODY PROPORTIONS in EVERY cell INCLUDING standing calibration; crouching or floating MUST NOT be enlarged to fill cells. Full figures/weapons in central75% of OWN cells with broad clean gutters, no cropping/crossing boundaries. Equal square slots, 4 COLUMNS by 2 ROWS, row-major. Frames1-6:1 explosive reaction to unseen cannonball hitting CHEST from RIGHT: shoulders thrown back LEFT, chest recoils, RIGHT hand keeps mace. 2 airborne thrown BACKWARD LEFT, torso curved, hands and feet point forward RIGHT. 3 continue backward flight, bent body, cape thrown over/around shoulders. 4 descend backward with legs and arms ahead, brace for impact. 5 LAND ON BACK, feet forward and upward, cape underneath, mace right hand extended safely. 6 backward roll into low CROUCH, ready recovery, body faces right again. Frame5 is landing on back, frame6 crouch. NO cannonball, enemy, blood, sparks, ground or impact effects. Game applies jump height; render airborne poses without translating entire figure vertically. After the action frames draw ONE neutral scale calibration pose in cell7 matching the reference standing pose exactly in anatomical size; this calibration pose is NOT part of animation. Cell8 empty green. Pure FLAT #00FF00 green in all empty space. No shadows, scenery, drawn floor, grid, text, numbers, effects or extra characters. Same painting as reference, strong readable silhouettes with smooth progression. Final cells512x512, lowest foot/body contact y487; uniform zoom compared to383px-tall idle reference. One-shot."
+    }
+  ]
+}

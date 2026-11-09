@@ -167,6 +167,15 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
   - natpisi u svetu nemaju zlatni sjaj;
   - meni nema zlatna svetlucanja.
 
+**Dopuna 19: nove Markove animacije**
+- **Skok iz trka** (`marko-run-jump`): kad skoči u punom trku, ide u širokom raskoraku.
+- **Dozivanje vile** (`marko-call`): podigne ruku ka nebu dok zove Ravijojlu.
+- **Podizanje** (`marko-pickup`): klekne i uzme deo srca, zapis, ključ ili čudo.
+- **Na ivici provalije** (`marko-teeter`): kad stoji na samom rubu okrenut ka provaliji, maše rukama da ne padne.
+- **Drugo dugo stajanje** (`marko-idle-4`): obriše znoj, pogleda preko ramena, popravi ogrtač. Smenjuje se sa topuzom na ramenu.
+- **Odbačaj od đuleta** (`marko-blasted`).
+- **Guranje sanduka i bacanje topuza** su bili nacrtani krupnije od ostalih Markovih animacija. Sada su smanjeni, pa je Marko iste veličine kao inače.
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**
