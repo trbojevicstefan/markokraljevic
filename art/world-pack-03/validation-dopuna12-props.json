@@ -70,5 +70,41 @@
       760,
       512
     ]
+  },
+  "prepreka-kolje": {
+    "file": "prepreka-kolje.png",
+    "size": [
+      768,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 257273,
+    "bounds": [
+      8,
+      269,
+      760,
+      512
+    ]
+  },
+  "prepreka-kamenje": {
+    "file": "prepreka-kamenje.png",
+    "size": [
+      768,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 303803,
+    "bounds": [
+      8,
+      317,
+      760,
+      512
+    ]
   }
 }

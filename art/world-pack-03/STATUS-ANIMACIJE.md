@@ -216,3 +216,7 @@ DOPUNA-12: most-vila-kraj.png — GOTOVO; PNG 1024x512 sa izvornom providnoscu u
 DOPUNA-12: prepreka-kola.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
 
 DOPUNA-12: prepreka-balvani.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
+
+DOPUNA-12: prepreka-kolje.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
+
+DOPUNA-12: prepreka-kamenje.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.

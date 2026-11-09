@@ -30,7 +30,8 @@ for(let i=0;i<api.LEVELS.length;i++){
    for(const e of world.enemies)if(e.alive&&e.x>g.x-1100&&e.x<g.x+220)e.alive=false;
    step();assert(g.done,`${L.id}: gate opens once everything before it is done`);
   }else if(g.kind==='use'){
-   stand(g.x-50,g.y);api.pressed.add('KeyE');step();api.pressed.clear();assert(g.done,`${L.id}: E completes ${g.off}`);step(80);
+   for(const e of world.enemies)if(e.alive&&Math.abs(e.x-g.x)<1100)e.alive=false;step();
+   stand(g.x-50,g.y);Object.assign(api.state().p,{down:0,pinned:false,invuln:99});api.pressed.add('KeyE');step();api.pressed.clear();assert(g.done,`${L.id}: E completes ${g.off}`);step(80);
   }else if(g.kind==='plow'){
    api.breakPlow(g.plow);const t=world.items.find(it=>it.type==='tovar'&&it.plow===g.plow);assert(t,`${L.id}: a broken plow drops its treasure`);
    stand(t.x,t.y+30);step();step();assert(g.done,`${L.id}: taking the treasure completes the plow goal`);
