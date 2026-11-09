@@ -551,3 +551,29 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .kontrole-box kbd,.kontrole-keys kbd{min-width:58px;text-align:center;font-size:14px;padding:3px 6px;flex:none}
 .kontrole-keys summary{cursor:pointer;color:#e8cf95;font:600 16px Georgia,serif}
 .kontrole-keys>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px 16px;margin-top:8px}
+
+/* the treasury: tabs, skill cards, key chips */
+.riznica-card{width:min(1080px,95vw);height:min(86vh,860px);display:flex;flex-direction:column}
+.riz-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px;border-bottom:1px solid #8a744866;padding-bottom:8px}
+.riz-tabs button{background:#0f1515;border:1px solid #8a744866;color:#eadbb4;font:600 16px Georgia,serif;padding:7px 14px;border-radius:5px;cursor:pointer}
+.riz-tabs button small{opacity:.7;font-weight:400;margin-left:4px}
+.riz-tabs button.on{background:#d9b56a;color:#1a1410;border-color:#d9b56a}
+.riz-panel{overflow:auto;flex:1;padding-right:6px}
+.riz-lead{opacity:.8;margin:0 0 10px}
+.riz-bar{height:6px;background:#0f1515;border-radius:3px;margin:0 0 12px;overflow:hidden}.riz-bar i{display:block;height:100%;background:#d9b56a}
+.riz-skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.riz-skill{display:flex;gap:12px;align-items:flex-start;background:#0f1515cc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
+.riz-skill.have{border-color:#d9b56a;box-shadow:inset 3px 0 0 #d9b56a}
+.riz-skill.locked{opacity:.72}
+.riz-num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1d2423;border:1px solid #8a7448;font:600 15px Georgia,serif;color:#e8cf95}
+.riz-skill.have .riz-num{background:#d9b56a;color:#1a1410}
+.riz-skill b{font:600 17px Georgia,serif;color:#f1e3bd}
+.riz-skill small{display:block;margin:4px 0;font-size:14px;line-height:1.4;opacity:.9}
+.riz-skill em{display:block;font-style:normal;font-size:13px;color:#d9b56a}
+.riz-skill.locked em{color:#b9a98a}
+.riz-keys{margin:5px 0 2px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.riz-keys kbd{font-size:13px;padding:2px 8px;min-width:24px;text-align:center}
+.riz-keys i{font-style:normal;opacity:.7}.riz-keys span{font-size:13px;opacity:.85}
+.riz-combos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.riz-combo{background:#0f1515cc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
+.riz-combo b{display:block;font:600 16px Georgia,serif;color:#f1e3bd}.riz-combo small{opacity:.85;font-size:14px}
