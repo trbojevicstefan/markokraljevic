@@ -203,7 +203,7 @@ export function buildLayout(L,variant='day'){
   // a cliff with no ladder: pull the lever, step on the lift, ride it up
   lift(){ground(ri(320,380));const H=ri(290,330),cx=x,lx=cx-140;platforms.push({x:lx,y:gy,w:122,h:18,kind:'lift',base:gy,top:gy-H,state:'down',t:0});traps.push({kind:'lift',lever:{x:cx-270,y:gy},x:lx+61});busy.push([cx-330,cx+60]);cliff(-H);ground(ri(320,400));spots.push({x:x-150,y:gy});},
   // a raft carries Marko over dark water, back and forth
-  ferry(){const w=ri(420,470),x0=x;busy.push([x-60,x+w+60]);platforms.push({x:x0+6,y:gy,w:132,h:18,kind:'raft',a:x0+6,b:x0+w-138,t:R()*6});x+=w;run=null;ground(ri(280,340));traps.push({kind:'water',x:x0,w,y:gy});},
+  ferry(){const w=ri(420,470),x0=x;busy.push([x-60,x+w+60]);platforms.push({x:x0+6,y:gy,w:176,h:18,kind:'raft',a:x0+6,b:x0+w-182,t:R()*6});x+=w;run=null;ground(ri(280,340));traps.push({kind:'water',x:x0,w,y:gy});},
   // ===== puzzles made by hand: once in a land Marko has to stop and think =====
   // three bells at three heights; the fresco by the road tells the order; rung right the gate opens, rung wrong the guard hears
   zvona(){const x0=x,len=900;ground(len);const B=[[x0+215,gy-140],[x0+450,gy-280],[x0+665,gy-140]];
