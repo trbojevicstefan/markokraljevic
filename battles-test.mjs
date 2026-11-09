@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -56,12 +56,18 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
  Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(120*6);ok(!(e.finT>0),'finish: never while the foe is still strong');}
 {const r=await finishWith("KeyJ");ok(r.opened&&r.started&&!r.e.alive&&S().heads.length===1&&S().corpses.some(c=>c.headless),'finish: X / J takes the head');}
-{const r=await finishWith('KeyK');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.crushed),'finish: Y / K smashes him into the ground');}
+{const r=await finishWith('KeyK');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.headless?.fast)&&S().heads.length===0,'finish: Y / K bursts his head under the mace');}
 {const r=await finishWith('ShiftLeft');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.launched),'finish: B / Shift lifts him and hurls him away');}
-{const r=await finishWith('Space');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.crushed),'finish: A / Space leaps and tramples him');}
+{const r=await finishWith('Space');ok(r.started&&!r.e.alive&&S().corpses.some(c=>!c.headless&&!c.launched),'finish: A / Space knocks him down and lands on him');}
 {let opens=0,tries=0;for(let n=0;n<12;n++){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,grounded:true});safe();Object.assign(e,{stun:9,mode:'stun',hp:e.maxHp*.2});step(3);tries++;if(e.finT>0)opens++;}
  ok(opens<tries,'finish: the chance does not come every time ('+opens+' of '+tries+')');}
 {const r=await finishWith('KeyJ');step(120*4);ok(S().heads.length===1&&S().heads[0].rest,'finish: the head comes to rest on the ground');}
+
+// ---- the training room: foes keep coming, every one of them can be finished at once ----
+{api.startTraining();step(120*3);const w=S().world;ok(w.enemies.filter(e=>e.alive).length>=2,'training: foes keep coming');
+ const e=w.enemies.find(e=>e.alive);until(()=>e.finT>0||!e.alive,120*6);ok(e.finT>0&&e.hp===e.maxHp,'training: a fresh foe can be finished right away');
+ tap('KeyK');step(160);ok(!e.alive,'training: and the finish takes him');step(120*2);ok(w.enemies.filter(e=>e.alive).length>=2,'training: the next ones come');
+ api.pressed.add('Digit9');step(120*4);ok(S().world.enemies.filter(e=>e.alive).every(e=>e.type==='pas'),'training: a number picks the kind of foe');}
 
 // ---- on the ground: a foe on top of Marko; mash to throw him off ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true,hp:S().p.maxHp,invuln:0});

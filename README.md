@@ -141,6 +141,16 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
   Brzo udaraj J (X) da se otmeš: tako protivnika odbaciš i udariš kontrom. Dok traje, ostali neprijatelji čekaju.
 - **Palica na džojstiku:** blag nagib je hod, pun nagib je trk. **Vino u hodu** ima svoju animaciju.
 
+**Trening soba** · https://trbojevicstefan.github.io/markokraljevic/trening.html (ili `index.html?trening`)
+- Neprijatelji stalno izlaze, po trojica u isto vreme.
+- Svaki može odmah da se dokrajči, bez čekanja i bez obzira na snagu.
+- Tasteri 1–9 biraju vrstu neprijatelja: janičar, štitonoša, strelac, akindžija, oklopnik, palikuća, kopljanik, tufekdžija, pas. Taster 0 ih pušta sve redom.
+- N bira da li neprijatelji napadaju ili samo stoje. Markovo zdravlje se stalno vraća.
+- Dokrajčivanja posle provere u sobi:
+  - smrskavanje (K): glava pukne pod topuzom i telo se sruši bez nje;
+  - bacanje (Shift): Marko podigne protivnika vodoravno iznad glave i baci ga, a on leti u svojoj „leteć“ pozi i obara one na putu;
+  - gaženje (Space): protivnik prvo padne, a Marko skoči i zakuca ga topuzom. Visina skoka se dodaje u kodu, jer crtež svaki kadar stavlja na stopala.
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**
