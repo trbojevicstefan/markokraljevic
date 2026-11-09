@@ -1,0 +1,226 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-finisher-smash",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 0,
+      "impactFrame": 4,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. Marko ALONE, no opponent. TWO-HANDED spiked mace smash. Frame1 neutral reference stance. 2 compress knees small jump windup. 3 small airborne hop mace lifting overhead. 4 start powerful downward arc. 5 EXACT IMPACT FRAME: both hands slam mace head into GROUND IMMEDIATELY IN FRONT OF HIM, deep crouch. 6 absorb impact crouched mace low. 7 straighten. 8 neutral standing recovery. Clear anticipation, hit, recovery. No effects or drawn ground. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "marko-finisher-throw",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 0,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. Marko ALONE, no opponent, no invisible silhouette. LEFT hand grabs unseen opponent at BELT HEIGHT, right hand keeps mace held low to side throughout. 1 neutral. 2 reaches left hand low-forward and grips. 3 left arm lifts unseen weight high ABOVE HEAD. 4 high overhead hold left arm raised. 5 whole body heaves and LEFT arm throws unseen opponent far FORWARD RIGHT. 6 empty left hand extended follow-through forward. 7 settle. 8 neutral ready. Right-facing body fixed anatomy; no extra arms. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "marko-finisher-stomp",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 0,
+      "impactFrame": 5,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. Marko ALONE, no opponent drawn. HIGH leap followed by downward mace impalement into unseen prone target just in front. 1 neutral ready. 2 deep takeoff. 3 upward leap knees folded mace held both hands. 4 apex, mace points DOWN. 5 descending, hands drive vertical mace downward. 6 EXACT IMPACT FRAME: landing in DEEP CROUCH with mace head driven DOWN into target area before boots. 7 stays crouched absorbing impact. 8 stands up to ready. Entire figure and mace fit every slot. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "marko-drink-walk",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-walk/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 383,
+      "referenceHeight": 383,
+      "neutralFrame": 0,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. Marko walks slowly while drinking from a leather WINE FLASK. RIGHT hand holds flask mouth at his lips, head tilted slightly back in strict right profile, LEFT hand carries spiked mace LOW. Eight actual slow walk phases: right heel contact, load, passing, lift, left contact, load, passing, lift into first. Same short stride as second walking reference, feet genuinely alternate; arms maintain drinking action while cape sways. No wine spill or symbols. Seamless loop, final phase leads into first without duplicate poses. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "kostac-janicar",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna11-reference/sword-idle.png"
+      ],
+      "targetHeight": 320,
+      "referenceHeight": 320,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO characters together in every frame: reference1 MARKO lies flat on his BACK, HEAD on LEFT, red cape spread beneath, legs to RIGHT. Reference2 JANISSARY in burgundy armor ivory turban kneels astride Marko, pushes ONE small KNIFE downward toward Marko's chest; Marko grips knife-wrist with BOTH hands preventing contact. Eight continuous struggle phases: wrist pressure, Marko pushes back, janissary leans, Marko twists, legs tense, pressure eases, reverses, approaches first. No stab, no wound or blood.  Seamless loop, final phase leads into first without duplicate poses. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487. CRITICAL ENEMY IDENTITY: second image ONLY defines JANISSARY, steel POINTED HELMET wrapped with ivory cloth, burgundy short tunic and GREY SEGMENTED LAMELLAR ARMOR on chest, short dark beard. NO long purple embroidered coat, NO bare turban without helmet. Do not draw Musa. Marko remains exact first reference. Enemy arms gripping ONE KNIFE, Marko blocks wrist.",
+      "sourceFile": "grid-v2.png"
+    },
+    {
+      "id": "kostac-janicar-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna11-reference/sword-idle.png",
+        "art/animation-pack-04/assets/kostac-janicar/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 320,
+      "referenceHeight": 320,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 6 full poses in 3 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO exact characters from reference: Marko red cape on back HEAD LEFT, janissary kneeling above holding knife resisted. 1 starts exact grapple. 2 Marko draws head/shoulders back, holding knife wrist safely aside. 3 Marko HEADBUTTS janissary's head/chest upward. 4 rolls/pushes janissary OFF toward RIGHT. 5 janissary falls right while Marko rolls to knee. 6 janissary lies on ground at RIGHT BEHIND Marko in depth, Marko is up on ONE KNEE facing right. Both full bodies including heads remain INSIDE slot with wide margins, use compact overlapping depth staging, NEVER enlarge end poses. No gore. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "kostac-oklopnik",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna11-reference/oklopnik-idle.png"
+      ],
+      "targetHeight": 330,
+      "referenceHeight": 330,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO characters together every frame: Marko reference1 lies on BACK HEAD LEFT red cape underneath, legs right. Heavy armored warrior reference2, gold armor burgundy quilted tunic black helmet, kneels on Marko's chest, BOTH hands gripping Marko's throat/collar. Warrior hammer and shield slung on back. Marko grips wrists trying to free himself, twists shoulders and bends knees across eight smooth struggle phases looping. No gore. Third reference compact staging only; replace Musa with exact armored warrior. Seamless loop, final phase leads into first without duplicate poses. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "kostac-oklopnik-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna11-reference/oklopnik-idle.png",
+        "art/animation-pack-04/assets/kostac-oklopnik/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 330,
+      "referenceHeight": 330,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 6 full poses in 3 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO exact characters, compact side-on grapple: Marko BACK HEAD LEFT red cape beneath; armored warrior kneeling on him. 1 restrained starting grapple. 2 Marko tucks BOTH knees to chest and plants feet against warrior torso. 3 Marko powerfully extends BOTH legs, throws armored warrior BACKWARD toward RIGHT. 4 warrior falls back airborne to right, Marko rolls onto elbow. 5 warrior lands on BACK to right behind Marko in depth, Marko rises. 6 warrior lies back right and Marko up on ONE KNEE facing right. Whole two bodies inside each cell, maintain anatomy scale and show complete heads, no gore. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "kostac-pas",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna13-reference/pas-idle.png"
+      ],
+      "targetHeight": 280,
+      "referenceHeight": 280,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 8 full poses in 4 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO exact characters: Marko red cape lies on BACK HEAD LEFT, boots right. Reference2 brindle brown striped DOG, pointed ears curled tail red collar, on Marko's CHEST lunging/snapping jaw toward his face. Marko holds dog's jaws apart safely with both hands, resisting, no visible bite wound. Eight smooth wrestling phases dog paws brace, neck pulls, Marko pushes muzzle away, dog leans, Marko twists, resets loop. Real four-legged dog anatomy, no extra limbs. Third reference staging only, replace human enemy with dog. Seamless loop, final phase leads into first without duplicate poses. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    },
+    {
+      "id": "kostac-pas-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna13-reference/pas-idle.png",
+        "art/animation-pack-04/assets/kostac-pas/frames/motion/frame-0.png"
+      ],
+      "targetHeight": 280,
+      "referenceHeight": 280,
+      "neutralFrame": null,
+      "impactFrame": null,
+      "prompt": "Use case: stylized-concept. Create ONE production-ready hand-painted cel-shaded 2D game sprite sheet EXACTLY 6 full poses in 3 COLUMNS x TWO ROWS, reading row-major. Match reference identities and painting style EXACTLY: Marko long dark hair BLACK MOUSTACHE, red gold embroidered cloak, leather/mail armor, ivory embroidered sleeves, brown boots, spiked mace when used. Fixed anatomical size, head size and costume across every slot, no zoom change. TWO exact characters: Marko on BACK HEAD LEFT red cape, brindle striped brown dog red collar on chest. 1 starts grapple with Marko holding jaws. 2 Marko shifts grip to dog's shoulders/chest and pulls knees in. 3 pushes and throws dog off toward RIGHT. 4 dog tumbles safely in air to right, Marko rolls onto elbow. 5 dog lands on side to right and Marko rises. 6 dog off to RIGHT BEHIND Marko in depth, Marko on ONE KNEE facing right, head free. Both bodies including dog's paws/tail/head entirely inside every cell; same proportions, no blood/gore. One-shot. Full subjects and weapons inside their OWN slots, occupy only central 75% width leaving wide blank gutters. For two-character scenes leave enough space for final falling poses from the START: small consistent bodies, not cropped heads, no body crossing cell boundaries. Side-on staging, rightward action; grappling may face opponents toward each other. No text, numbering, grid lines, scenery, floor, shadows, motion trails, gore or effects. PURE FLAT #00FF00 GREEN background in all blank space, no green costume. 512x512 final cells, baseline y487."
+    }
+  ]
+}

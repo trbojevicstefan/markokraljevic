@@ -216,7 +216,7 @@ const FIN_WINDOW=1.15;let finGlobal=0;
 // the four face buttons: X (J) takes the head, Y (K) smashes him into the ground, B (Shift) lifts and hurls him, A (Space) leaps on him
 const FIN_KEYS={KeyJ:'odsecanje',KeyU:'odsecanje',KeyK:'smrskaj',ShiftLeft:'bacanje',ShiftRight:'bacanje',Space:'gazi'};
 const FIN_INFO={odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.1,hit:.56,clip:'marko-finisher-smash',fb:'marko-combo-3'},
- bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},gazi:{dur:1.15,hit:.62,clip:'marko-finisher-stomp',fb:'marko-plunge'}};
+ bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},gazi:{dur:1.15,hit:.66,clip:'marko-finisher-stomp',fb:'marko-plunge'}};
 function finishable(e){return e.alive&&!e.champion&&!e.kit&&e.type!=='pas'&&e.zone===zone&&!e.enter&&!e.climb&&!e.held&&e.grounded!==false&&e.hp>0&&e.hp<=e.maxHp*.25&&Math.abs(e.x-p.x)<125&&Math.abs(e.y-p.y)<40;}
 function finishTarget(){let best=null;for(const e of world.enemies)if(e.finT>0&&finishable(e)&&(!best||Math.abs(e.x-p.x)<Math.abs(best.x-p.x)))best=e;return best;}
 function updateFinisher(dt){

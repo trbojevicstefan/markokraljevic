@@ -1,0 +1,105 @@
+{
+  "clips": 10,
+  "frames": 74,
+  "checks": [
+    "RGBA transparency",
+    "512x512 frames",
+    "baseline 488",
+    "atlas pixel equality",
+    "frame_layout",
+    "GIF frame count",
+    "loop flags"
+  ],
+  "results": [
+    {
+      "id": "marko-finisher-smash",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/marko-finisher-smash/atlas.png",
+      "manifest": "assets/marko-finisher-smash/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-finisher-throw",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/marko-finisher-throw/atlas.png",
+      "manifest": "assets/marko-finisher-throw/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-finisher-stomp",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/marko-finisher-stomp/atlas.png",
+      "manifest": "assets/marko-finisher-stomp/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "marko-drink-walk",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "atlas": "assets/marko-drink-walk/atlas.png",
+      "manifest": "assets/marko-drink-walk/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-janicar",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "atlas": "assets/kostac-janicar/atlas.png",
+      "manifest": "assets/kostac-janicar/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-janicar-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/kostac-janicar-kraj/atlas.png",
+      "manifest": "assets/kostac-janicar-kraj/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-oklopnik",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "atlas": "assets/kostac-oklopnik/atlas.png",
+      "manifest": "assets/kostac-oklopnik/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-oklopnik-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/kostac-oklopnik-kraj/atlas.png",
+      "manifest": "assets/kostac-oklopnik-kraj/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-pas",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "atlas": "assets/kostac-pas/atlas.png",
+      "manifest": "assets/kostac-pas/manifest.json",
+      "verified": true
+    },
+    {
+      "id": "kostac-pas-kraj",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "atlas": "assets/kostac-pas-kraj/atlas.png",
+      "manifest": "assets/kostac-pas-kraj/manifest.json",
+      "verified": true
+    }
+  ]
+}

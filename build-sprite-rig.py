@@ -251,6 +251,16 @@ if _have('vilinski-kamen-spava'):
 if _have('marko-crouch-throw') and 'marko-crouch' in SCALES:
     SCALES['marko-crouch-throw'] = (SCALES['marko-crouch'][0], 'feet')
 
+# DOPUNA-13: three more finishes and drinking on the move, at Marko's idle zoom; the grapples on the ground at the
+# zoom of Musa's (Marko lying full length is about as long in all of them)
+for name in ['marko-finisher-smash', 'marko-finisher-throw', 'marko-finisher-stomp', 'marko-drink-walk']:
+    if _have(name):
+        SCALES[name] = (SCALES['marko-idle'][0], 'feet')
+for who in ['janicar', 'oklopnik', 'pas']:
+    for name in [f'kostac-{who}', f'kostac-{who}-kraj']:
+        if _have(name):
+            SCALES[name] = (0.37, 'center')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

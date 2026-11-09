@@ -231,3 +231,29 @@ DOPUNA-12: vilinski-kamen-budan — ispravka GOTOVA; rune su upaljene u svih 6 k
 
 ## DOPUNA-12 — ZAVRSENO
 4 klipa, 24 kadra, 2 slike mosta i 5 prepreka. Svi klipovi imaju atlas/manifest/frame_layout/frames/preview.gif/qa.json, 512x512, oslonac y487. Provereni alfa, broj GIF kadrova i slaganje sa atlasom. Segment mosta 1536x384, kraj 1024x512, prepreke 768x512 sa dnom na tlu. Vodoravni spoj segmenta: 0 razlike. Pregledi: animation-pack-04/preview-dopuna12.png i world-pack-03/preview-dopuna12-props.png. Katalog/provere: catalog-dopuna12.json, validation-dopuna12.json, validation-dopuna12-props.json. Ugradjeni image_gen, po jedan pokusaj osim drugog za budan kamen zbog ocigledne greske u osvetljenju/alfa podlozi. Sve prethodno sacuvano.
+
+DOPUNA-13: marko-finisher-smash — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-smash/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: marko-finisher-throw — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-throw/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: marko-finisher-stomp — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher-stomp/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: marko-drink-walk — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-drink-walk/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-janicar — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-janicar/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-janicar — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-janicar/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+DOPUNA-13: kostac-janicar — ispravljena odeca/identitet janicara prema sword-idle; ponovljen samo zbog ocigledne greske. Prvi izvor grid.png i prvi izvoz export-before-identity-fix/ sacuvani; odabrani grid-v2.png.
+
+DOPUNA-13: kostac-janicar-kraj — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-janicar-kraj/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-oklopnik — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-oklopnik/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-oklopnik-kraj — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-oklopnik-kraj/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-pas — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-pas/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+DOPUNA-13: kostac-pas-kraj — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kostac-pas-kraj/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna13.json.
+
+## DOPUNA-13 — ZAVRSENO
+10 klipova / 74 kadra. Tri zavrsna udarca, vino u hodu i sest klipova rvanja (janicar, oklopnik, pas; petlja i izlaz). Svi imaju atlas.png, manifest.json sa frame_layout, pojedinacne RGBA kadrove 512x512, preview.gif i qa.json. Provereni alfa, oslonac y487, atlas/kadrovi, raspored, broj GIF kadrova i loop oznake. Pregled: art/animation-pack-04/preview-dopuna13.png; katalog i validacija: catalog-dopuna13.json, validation-dopuna13.json; promptovi: plan-dopuna13.json. Ugradjeni image_gen: 11 generisanja, samo janicar ponovljen zbog ocigledno pogresnog kostima; prvi izvori i izvozi sacuvani. Nema preostalih stavki iz DOPUNA-13.
