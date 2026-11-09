@@ -34,3 +34,6 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # the game is a few hundred MB of pictures and sound; give Pages time to take it in
+          timeout: 1800000
