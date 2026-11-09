@@ -409,6 +409,7 @@ const EN_PAIRS=[
 ["Dušmani koje je Marko sreo na drumu: snaga, slabost i broj savladanih.","The foes Marko has met on the road: their strength, their weakness and how many he has defeated."],
 ["Otvori knjigu dušmana","Open the Book of Foes"],
 ["Nijedan","None"],
+["Otvori knjigu","Open the book"],["Uvećana slika","Enlarged picture"],["Umanji","Zoom out"],["Uvećaj","Zoom in"],["Cela slika","Whole picture"],["Zatvori","Close"],
 ["priča od početka","the story from the start"],["Marko, Šarac, vila Ravijojla, Musa","Marko, Šarac, the vila Ravijojla, Musa"],["snaga i slabost svakog dušmana","the strength and weakness of every foe"],
 ["Uvod","Intro"],["Dalje · Enter","Next · Enter"],["Preskoči uvod · Esc","Skip the intro · Esc"],
 ["Kaže pesma…","So the song goes…"],["Klisura Kačanika","The Kačanik Gorge"],["Kula kraj mora","A tower by the sea"],["Pred sultanom","Before the sultan"],["Tri godine tamnice","Three years in the dungeon"],["Bez vojske","Without an army"],
@@ -515,14 +516,35 @@ function look1(core){
 function wordy(s){return /[a-zčćžšđ]{2}|[ČĆŽŠĐ]/.test(s)&&!INERT.test(s);}
 
 const store=(()=>{try{return globalThis.localStorage;}catch{return null;}})();
-function firstLang(){try{const s=store?.getItem(KEY);if(s==='sr'||s==='en')return s;}catch{}const L=globalThis.navigator?.languages||[globalThis.navigator?.language||'sr'];return L.some(l=>/^(sr|hr|bs|sh|cnr|me|mk|sl)\b/i.test(l||''))?'sr':'en';}
+// ---------- Serbian in Cyrillic ----------
+// The game is written in Latin; in 'sr' every Serbian line is shown in Cyrillic, letter for letter. Key names stay Latin
+// (J, K, S+K, SPACE…: they are the letters on the keyboard), as do Roman numerals and a few foreign words.
+const C={a:'а',b:'б',c:'ц',č:'ч',ć:'ћ',d:'д',đ:'ђ',e:'е',f:'ф',g:'г',h:'х',i:'и',j:'ј',k:'к',l:'л',m:'м',n:'н',o:'о',p:'п',r:'р',s:'с',š:'ш',t:'т',u:'у',v:'в',z:'з',ž:'ж',
+ lj:'љ',nj:'њ','dž':'џ'};
+for(const [k,v] of Object.entries({...C}))C[k.toUpperCase()]=v.toUpperCase(),C[k[0].toUpperCase()+k.slice(1)]=v.toUpperCase();
+const KEEP=/^(?:SPACE|Space|SHIFT|Shift|Esc|Enter|Tab|WASD|LB|RB|LT|RT|Three|js|iPhone|Logitech|II|III|IV|VI|VII|VIII)$/;
+const LETTER=/[A-Za-zČĆŽŠĐčćžšđ]+/g, UPWORD=/^\s+[A-ZČĆŽŠĐ]{2}/;
+function word(w){return w.replace(/[Dd][žŽ]|[LlNn][jJ]|./g,ch=>C[ch]??ch);}
+export function cyr(text,keys=true){if(typeof text!=='string'||!text)return text;
+ return text.replace(LETTER,(w,at,all)=>{
+  if(KEEP.test(w)||/[qwxyQWXY]/.test(w))return w;
+  if(keys&&w.length===1&&w>='A'&&w<='Z'){const after=all.slice(at+1),before=all.slice(0,at);
+   if(w==='U'||w==='O')return word(w);
+   if(w==='I')return /^\s*·/.test(after)||!(before+after).trim()?w:'И';          // a Roman one, the key, or the word "and"
+   if(w==='S')return UPWORD.test(after)?'С':w;                                   // "S LEĐA!" is a word; "S + K" a key
+   return w;}                                                                     // J, K, L, E, Q, R, W, A, D, V…: keys and numerals
+  return word(w);});}
+export function script(s){return lang==='sr-Latn'?s:cyr(s,false);}               // book and song text (no keys in it)
+
+const MODES=['sr','sr-Latn','en'];
+function firstLang(){try{const s=store?.getItem(KEY);if(MODES.includes(s))return s;}catch{}const L=globalThis.navigator?.languages||[globalThis.navigator?.language||'sr'];return L.some(l=>/^(sr|hr|bs|sh|cnr|me|mk|sl)\b/i.test(l||''))?'sr':'en';}
 let lang=firstLang();
 const cache=new Map();
 export function tr(s){
- if(lang!=='en'||typeof s!=='string'||!s)return s;
+ if(typeof s!=='string'||!s||lang==='sr-Latn')return s;
  let r=cache.get(s);if(r!==undefined)return r;
- const m=s.match(/^(\s*)([\s\S]*?)(\s*)$/),t=look(m[2]);
- if(t==null){r=s;if(wordy(m[2]))missing.add(m[2]);}else r=m[1]+t+m[3];
+ if(lang==='sr')r=cyr(s);
+ else{const m=s.match(/^(\s*)([\s\S]*?)(\s*)$/),t=look(m[2]);if(t==null){r=s;if(wordy(m[2]))missing.add(m[2]);}else r=m[1]+t+m[3];}
  if(cache.size>6000)cache.clear();cache.set(s,r);return r;
 }
 export function getLang(){return lang;}
@@ -533,26 +555,27 @@ const hasDom=typeof document!=='undefined'&&typeof MutationObserver!=='undefined
 const ATTRS=['title','aria-label','alt','placeholder'];
 const texts=new WeakMap(),attrs=new WeakMap();
 const skip=el=>!el||el.closest?.('script,style,[data-notr]');
-function doText(n){const rec=texts.get(n),cur=n.data;
- if(lang!=='en'){if(rec&&cur===rec[1])n.data=rec[0];return;}
- if(rec&&cur===rec[1])return;if(skip(n.parentElement))return;
- const en=tr(cur);if(en!==cur){texts.set(n,[cur,en]);n.data=en;}else texts.delete(n);}
-function doAttr(el,a){if(!el.hasAttribute?.(a))return;const map=attrs.get(el)||{},rec=map[a],cur=el.getAttribute(a);
- if(lang!=='en'){if(rec&&cur===rec[1])el.setAttribute(a,rec[0]);return;}
- if(rec&&cur===rec[1])return;if(skip(el))return;
- const en=tr(cur);if(en!==cur){map[a]=[cur,en];attrs.set(el,map);el.setAttribute(a,en);}}
+// each text keeps the page's own (Latin Serbian) words; what is shown is made from them for the current mode
+function doText(n){const rec=texts.get(n),cur=n.data,orig=rec&&cur===rec[1]?rec[0]:cur;
+ if(skip(n.parentElement)){if(rec&&cur===rec[1])n.data=rec[0];texts.delete(n);return;}
+ const out=tr(orig);if(out===cur)return;
+ if(out!==orig){texts.set(n,[orig,out]);n.data=out;}else{texts.delete(n);n.data=orig;}}
+function doAttr(el,a){if(!el.hasAttribute?.(a))return;const map=attrs.get(el)||{},rec=map[a],cur=el.getAttribute(a),orig=rec&&cur===rec[1]?rec[0]:cur;
+ if(skip(el))return;const out=tr(orig);if(out===cur)return;
+ if(out!==orig){map[a]=[orig,out];attrs.set(el,map);el.setAttribute(a,out);}else{delete map[a];el.setAttribute(a,orig);}}
 function walk(root){if(!root)return;if(root.nodeType===3){doText(root);return;}if(root.nodeType!==1&&root.nodeType!==9&&root.nodeType!==11)return;
  if(root.nodeType===1){if(root.matches('script,style'))return;for(const a of ATTRS)doAttr(root,a);}
  const w=document.createTreeWalker(root,5);let n;while((n=w.nextNode())){if(n.nodeType===3)doText(n);else{if(n.matches('script,style'))continue;for(const a of ATTRS)doAttr(n,a);}}}
 const listeners=[];
 export function onLang(fn){listeners.push(fn);}
+const htmlLang=()=>lang==='en'?'en':lang==='sr'?'sr-Cyrl':'sr-Latn';
 function paintPicker(){if(!hasDom)return;document.querySelectorAll('[data-lang]').forEach(b=>{const on=b.dataset.lang===lang;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});const sel=document.getElementById('language');if(sel)sel.value=lang;}
-export function setLang(l){if(l!=='sr'&&l!=='en'||l===lang){paintPicker();return;}lang=l;cache.clear();try{store?.setItem(KEY,l);}catch{}
- if(hasDom){document.documentElement.lang=l==='en'?'en':'sr-Latn';walk(document.documentElement);paintPicker();}
+export function setLang(l){if(!MODES.includes(l)||l===lang){paintPicker();return;}lang=l;cache.clear();try{store?.setItem(KEY,l);}catch{}
+ if(hasDom){document.documentElement.lang=htmlLang();walk(document.documentElement);paintPicker();}
  for(const fn of listeners){try{fn(l);}catch(e){console.error(e);}}}
 if(hasDom){
- document.documentElement.lang=lang==='en'?'en':'sr-Latn';
- if(lang==='en')walk(document.documentElement);
+ document.documentElement.lang=htmlLang();
+ if(lang!=='sr-Latn')walk(document.documentElement);
  new MutationObserver(list=>{for(const r of list){if(r.type==='characterData')doText(r.target);else if(r.type==='attributes')doAttr(r.target,r.attributeName);else for(const n of r.addedNodes)walk(n);}})
   .observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:ATTRS});
  document.addEventListener('click',e=>{const b=e.target.closest?.('[data-lang]');if(b){e.preventDefault();setLang(b.dataset.lang);}});
@@ -560,4 +583,4 @@ if(hasDom){
  paintPicker();
  if(/[?&]dev\b/.test(location.search))globalThis.markoMissing=()=>[...missing];
 }
-globalThis.markoI18n={tr,setLang,getLang,onLang,lookUp,missing};
+globalThis.markoI18n={tr,setLang,getLang,onLang,lookUp,missing,cyr,script};

@@ -34,7 +34,7 @@ for(const f of ['dist/game.js','dist/world.js']){const src=await fs.readFile(f,'
  for(const s of literals(src)){if(!prose(s)||IGNORE.has(s))continue;
   const segs=s.split(/<[^>]+>/);for(const seg of segs){if(!prose(seg))continue;ok(translates(seg)||glued(seg),`${f}: no English for «${seg.trim().slice(0,90)}»`);}}}
 // the page itself
-{const html=await fs.readFile('dist/index.html','utf8');const body=html.replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'');
+{const html=await fs.readFile('dist/index.html','utf8');const body=html.replace(/<div class="lang-pick"[\s\S]*?<\/div>/,'').replace(/<select id="language"[\s\S]*?<\/select>/,'').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'');
  for(const seg of body.split(/<[^>]+>/)){const t=seg.replace(/&\w+;/g,' ').trim();if(!t||!prose(t))continue;ok(translates(t),`index.html: no English for «${t.slice(0,90)}»`);}
  for(const m of body.matchAll(/(?:title|aria-label|alt)="([^"]+)"/g)){const t=m[1];if(!prose(t)||/Jezik \/ Language/.test(t))continue;ok(translates(t),`index.html attribute: no English for «${t}»`);}}
 // level names
@@ -51,5 +51,9 @@ for(const [sr,en] of [['POHOD 3 · RAVIJOJLINA ŠUMA · NOĆ','QUEST 3 · RAVIJO
  for(const c of D.CHAPTERS)ok(c.sr?.title&&c.sr?.text&&c.en?.title&&c.en?.text&&c.cy,`legends: chapter ${c.id} is missing a language`);
  ok(D.SONG.lines.sr.length===D.SONG.lines.en.length&&D.SONG.lines.sr.length>250,`song: ${D.SONG.lines.sr.length} Serbian lines, ${D.SONG.lines.en.length} English`);
  for(const c of D.CHAPTERS){try{await fs.access('dist/'+c.img);ok(true);}catch{ok(false,`legends: missing picture ${c.img}`);}}}
+// Serbian in Cyrillic: letter for letter, keys stay Latin
+for(const [lat,c] of [['Space za skok; J za topuz.','Space за скок; J за топуз.'],['UROŠ I MRNJAVČEVIĆI','УРОШ И МРЊАВЧЕВИЋИ'],['I · DRUM JUNAKA','I · ДРУМ ЈУНАКА'],['S LEĐA!','С ЛЕЂА!'],['S + K je aperkat','S + K је аперкат'],['R · BES 45','R · БЕС 45'],['O legendi','О легенди'],['Džojstik, hodže, Njegoš, ljuta','Џојстик, хоџе, Његош, љута'],['talasi u II i V','таласи у II и V']])
+ ok(i18n.cyr(lat)===c,`cyr «${lat}» → «${i18n.cyr(lat)}», expected «${c}»`);
+i18n.setLang('sr');ok(i18n.tr('Knjiga dušmana')==='Књига душмана','sr mode shows Cyrillic');i18n.setLang('sr-Latn');ok(i18n.tr('Knjiga dušmana')==='Knjiga dušmana','sr-Latn mode keeps Latin');i18n.setLang('en');
 if(fails.length){console.error(fails.slice(0,60).join('\n'));console.error(`${fails.length} of ${checks} translation checks failed.`);process.exit(1);}
 console.log(`${checks} translation checks passed.`);

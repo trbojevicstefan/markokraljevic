@@ -286,7 +286,7 @@ function draw(dt=1/60){
  if(screenCtx){screenCtx.setTransform(1,0,0,1,0,0);if(assets.gorge){const drawW=W+260,drawH=drawW*1024/1536;screenCtx.drawImage(assets.gorge,-130-Math.min(1,camera/29900)*180,-80,drawW,drawH);}else{screenCtx.fillStyle='#496f6b';screenCtx.fillRect(0,0,W,H);}screenCtx.drawImage(layer,0,0,W,H);screenCtx.globalCompositeOperation='lighter';screenCtx.drawImage(glowLayer,0,0,W,H);screenCtx.globalCompositeOperation='source-over';}
 }
 function pause(){if(mode==='play'){showControls();mode='pause';$('pause-menu').hidden=false;keys.clear();}else if(mode==='pause'){hideModals();mode='play';}}
-document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if(!$('intro').hidden){introEnd(true);return;}if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
+document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if($('zoom')&&!$('zoom').hidden){closeZoom();return;}if(!$('intro').hidden){introEnd(true);return;}if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
 document.querySelectorAll('[data-key]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);keys.add(b.dataset.key);pressed.add(b.dataset.key);});for(const ev of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>keys.delete(b.dataset.key));});
 $('start').onclick=()=>playIntro(()=>{saveState=null;try{localStorage.removeItem('marko-save');}catch{}start();save();});$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level)return startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
 function mainMenu(){menuLedger();level=null;levelIndex=-1;stage?.setLevel?.(null);endSequence=null;corpses=[];mode='menu';hideModals();$('menu').hidden=false;$('hud').hidden=true;$('controls').hidden=true;$('touch').hidden=true;$('dialogue').hidden=true;$('boss-hud').hidden=true;zone=0;camera=0;keys.clear();}
@@ -1419,6 +1419,7 @@ if(hasDom){
  $('menu-riznica')&&($('menu-riznica').onclick=openRiznica);$('menu-knjiga')&&($('menu-knjiga').onclick=()=>openBook());$('pause-knjiga')&&($('pause-knjiga').onclick=()=>openBook());
  // arrows (or W/S) move between buttons in any menu, Enter presses; in the book, left and right turn the page
  document.addEventListener('keydown',e=>{if(mode==='play')return;const tag=document.activeElement?.tagName;if(tag==='INPUT'||tag==='SELECT')return;
+  if($('zoom')&&!$('zoom').hidden){if(['Equal','NumpadAdd'].includes(e.code))zoomBy(1.25);else if(['Minus','NumpadSubtract'].includes(e.code))zoomBy(1/1.25);else if(e.code==='Digit0')zoomReset();e.preventDefault();return;}
   if(!$('intro').hidden){if(['Enter','Space','ArrowRight','KeyD'].includes(e.code)){e.preventDefault();introNext();}return;}
   if(!$('knjiga').hidden&&['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)){e.preventDefault();bookGo(bookAt+(e.code==='ArrowLeft'||e.code==='KeyA'?-1:1));return;}
   if(['ArrowUp','ArrowDown','KeyW','KeyS'].includes(e.code)){e.preventDefault();padMenu(0,e.code==='ArrowUp'||e.code==='KeyW'?-1:1,false,false);return;}
@@ -1446,6 +1447,7 @@ const BOOK_ONCE=new Set(['death','launch','armorbreak','guardbreak','backstep','
 // then the song of Marko and Musa — in Serbian it runs on across both pages, in English it faces its translation).
 let bookKind='dusmani',bookSpreads=[],bookAt=0,bookPose=0,bookAuto=true,bookPoseT=0,bookRaf=0,bookLast=0,bookBusy=null;
 const uiLang=()=>globalThis.markoI18n?.getLang?.()||'sr';
+const sc=s=>globalThis.markoI18n?.script?globalThis.markoI18n.script(s):s;   // Serbian book text in the chosen script
 const ZASTAVICA='<div class="zastavica" aria-hidden="true"></div>';
 const BOOK_COVER={dusmani:'КЊИГА<br>ДУШМАНА',legende:'КЊИГА<br>ЛЕГЕНДИ'};
 function bookKnown(pg){return pg.boss?kacanikWon():!!book()[pg.t];}
@@ -1464,14 +1466,14 @@ function foeSpread(i){const pg=BOOK_PAGES[i],known=bookKnown(pg),f=bookInfo(pg),
  return{left,right};}
 const VERSES=16;
 function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en=uiLang()==='en',out=[];
- for(const c of D.CHAPTERS){const t=c[en?'en':'sr'],pic=c.mini||c.img;out.push({group:c.id,tab:{img:c.tab||pic,label:t.title},
-  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature${c.mini?' painted':''}"><img src="${pic}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
+ for(const c of D.CHAPTERS){const t0=c[en?'en':'sr'],t=en?t0:{title:sc(t0.title),sub:sc(t0.sub),text:sc(t0.text)},pic=c.mini||c.img;out.push({group:c.id,tab:{img:c.tab||pic,label:t.title},
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature${c.mini?' painted':''}" data-zoom="${hdOf(pic)}" data-cap="${t.title}"><img src="${pic}" alt=""><span class="zoom-badge" aria-hidden="true">⤢</span></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="drop ms-text">${t.text}</p><div class="ms-birds" aria-hidden="true"><img src="assets/ui/rukopis-ptica-2.webp" alt=""><img src="assets/ui/rukopis-ptica-1.webp" alt=""></div></div>`});}
- const S=D.SONG,T=S[en?'en':'sr'],sr=S.lines.sr,tr2=S.lines.en,n=sr.length;
+ const S=D.SONG,T0=S[en?'en':'sr'],T=en?T0:{title:sc(T0.title),sub:sc(T0.sub),note:sc(T0.note)},sr=S.lines.sr.map(sc),tr2=S.lines.en,n=sr.length;
  const verses=(arr,a,b)=>`<ol class="verses" data-notr>${arr.slice(a,b).map((l,k)=>`<li data-n="${a+k}"${reader?.line===a+k?' class="now"':''}><i>${(a+k+1)%5===0?a+k+1:''}</i>${l}</li>`).join('')}</ol>`;
  const readBar='<div class="read-bar"><button data-read="sr"><b>▶</b>Čitaj na srpskom</button><button data-read="en"><b>▶</b>Čitaj na engleskom</button></div>';
  out.push({group:'pesma',tab:{img:S.tab||S.img,label:T.title,song:true},
-  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI · PESMA</p><figure class="miniature${S.mini?' painted':''}"><img src="${S.mini||S.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${S.cy}</p><h3 class="foe-name">${T.title}</h3></div>`,
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI · PESMA</p><figure class="miniature${S.mini?' painted':''}" data-zoom="${hdOf(S.mini||S.img)}" data-cap="${T.title}"><img src="${S.mini||S.img}" alt=""><span class="zoom-badge" aria-hidden="true">⤢</span></figure><div data-notr class="ms-head"><p class="ms-cy">${S.cy}</p><h3 class="foe-name">${T.title}</h3></div>`,
   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="ms-text drop">${T.sub}.</p><p class="ms-note">${T.note}</p><p class="ms-note">${n} ${en?'lines':'stihova'}</p><blockquote class="ms-epi">${(en?tr2:sr).slice(251,256).map(l=>`<span>${l}</span>`).join('')}<cite>${en?'lines':'stihovi'} 252–256</cite></blockquote></div>${readBar}`,range:[0,0]});
  const per=en?VERSES:VERSES*2;
  for(let a=0;a<n;a+=per){const b=Math.min(n,a+per),mid=Math.min(n,a+VERSES);
@@ -1481,7 +1483,7 @@ function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en
 function bookList(){return bookKind==='legende'?legendSpreads():BOOK_PAGES.map((pg,i)=>({group:'f'+i,foe:i,tab:{foe:i}}));}
 function spreadHTML(i){const s=bookSpreads[i];if(!s)return{left:'',right:''};if(s.foe!=null)return foeSpread(s.foe);return{left:s.left,right:typeof s.right==='function'?s.right(i,bookSpreads.length):s.right};}
 function copyCanvases(from,to){const a=from.querySelectorAll?.('canvas')||[],b=to.querySelectorAll?.('canvas')||[];a.forEach((c,k)=>{const d=b[k];if(!d)return;d.classList.remove('foe-canvas');d.getContext('2d')?.drawImage(c,0,0);});}
-function bookWire(){const L=$('book-left');L.querySelectorAll('[data-pose]').forEach(b=>b.onclick=()=>{bookPose=Number(b.dataset.pose);bookAuto=false;bookPoseT=0;bookSetPose();});readWire();}
+function bookWire(){const L=$('book-left');L.querySelectorAll('[data-zoom]').forEach(f=>f.onclick=()=>openZoom(f.dataset.zoom,f.dataset.cap));L.querySelectorAll('[data-pose]').forEach(b=>b.onclick=()=>{bookPose=Number(b.dataset.pose);bookAuto=false;bookPoseT=0;bookSetPose();});readWire();}
 function bookSetPose(){const c=$('book-left')?.querySelector('canvas.foe-canvas');if(c){c.dataset.pose=bookPose;c._t=0;}$('book-left')?.querySelectorAll('[data-pose]').forEach(b=>b.classList.toggle('on',Number(b.dataset.pose)===bookPose));}
 function bookTabs(){const box=$('book-tabs');if(!box)return;const cur=bookSpreads[bookAt]?.group;
  box.innerHTML=bookSpreads.map((s,i)=>{if(!s.tab)return'';const on=s.group===cur?' on':'';
@@ -1493,11 +1495,24 @@ function bookRender(){const g=bookSpreads[bookAt]?.group;bookSpreads=bookList();
  const {left,right}=spreadHTML(bookAt);$('book-left').innerHTML=left;$('book-right').innerHTML=right;bookWire();bookTabs();}
 function openBook(at,kind='dusmani'){if(!hasDom)return;if(kind!==bookKind){stopReading();bookKind=kind;bookAt=0;}bookSpreads=bookList();if(!bookSpreads.length)return;
  if(typeof at==='number')bookAt=at;else if(kind==='dusmani'){const first=BOOK_PAGES.findIndex(pg=>bookKnown(pg));if(!bookKnown(BOOK_PAGES[bookSpreads[bookAt]?.foe??0])&&first>=0)bookAt=first;}
- bookPose=0;bookAuto=true;bookPoseT=0;bookRender();const el=$('knjiga');el.hidden=false;const bk=$('book');bk.dataset.kind=kind;bk.classList.remove('opening');void bk.offsetWidth;
- if(!settings.reduced&&!matchMedia('(max-width:760px)').matches){bk.classList.add('opening');const cover=document.createElement('div');cover.className='leaf cover';cover.innerHTML=`<div class="leaf-face front"><span>${BOOK_COVER[kind]}</span></div><div class="leaf-face back"></div>`;bk.append(cover);cover.addEventListener('animationend',e=>{if(e.target===cover)cover.remove();});setTimeout(()=>cover.remove(),2600);}
- sfx('cloth',{gain:.5,rate:.8});setTimeout(()=>sfx('cloth',{gain:.35,rate:1.3}),380);bookLast=performance.now();if(!bookRaf)bookRaf=requestAnimationFrame(bookTick);$('book-next')?.focus?.();}
+ bookPose=0;bookAuto=true;bookPoseT=0;bookRender();bookPreload();const el=$('knjiga');el.hidden=false;const bk=$('book');bk.dataset.kind=kind;bk.classList.remove('opening','closed');bk.querySelectorAll('.leaf.cover').forEach(c=>c.remove());void bk.offsetWidth;
+ bookLast=performance.now();if(!bookRaf)bookRaf=requestAnimationFrame(bookTick);
+ if(!settings.reduced&&!matchMedia('(max-width:760px)').matches){bookClosed(bk,kind);sfx('cloth',{gain:.3,rate:.7});}else $('book-next')?.focus?.();}
+// the book first lies closed: Codex's binding with a gilt title plate; a click, Enter or an arrow opens it
+function bookClosed(bk,kind){bk.classList.add('closed');const cover=document.createElement('div');cover.className='leaf cover still';cover.tabIndex=0;cover.setAttribute('role','button');cover.setAttribute('aria-label','Otvori knjigu');
+ cover.innerHTML=`<div class="leaf-face front"><div class="plate"><span>${BOOK_COVER[kind]}</span></div><p class="cover-hint"><b>▶</b> Otvori knjigu</p></div><div class="leaf-face back"></div>`;bk.append(cover);
+ cover.onclick=bookOpenCover;cover.onkeydown=e=>{if(e.code==='Enter'||e.code==='Space'){e.preventDefault();bookOpenCover();}};setTimeout(()=>cover.focus?.(),60);}
+function bookIsClosed(){return !!$('book')?.querySelector?.('.leaf.cover.still');}
+function bookOpenCover(){const bk=$('book'),cover=bk.querySelector('.leaf.cover.still');if(!cover)return;cover.classList.remove('still');bk.classList.remove('closed');void bk.offsetWidth;bk.classList.add('opening');
+ sfx('cloth',{gain:.5,rate:.8});setTimeout(()=>sfx('cloth',{gain:.35,rate:1.3}),380);clearTimeout(openBook.t);openBook.t=setTimeout(()=>bk.classList.remove('opening'),1600);
+ cover.addEventListener('animationend',e=>{if(e.target===cover)cover.remove();});setTimeout(()=>cover.remove(),2600);$('book-next')?.focus?.();}
+// every picture of the book is fetched and decoded as it opens, so no page turns onto an empty frame
+const preloaded=new Map();
+function preload(src){if(!src||preloaded.has(src)||!hasDom)return;const im=new Image();im.decoding='async';im.src=src;im.decode?.().catch(()=>{});preloaded.set(src,im);}
+function bookPreload(){const D=globalThis.markoLegende;if(bookKind!=='legende'||!D)return;for(const c of D.CHAPTERS)preload(c.mini||c.img);preload(D.SONG.mini||D.SONG.img);preload(D.SONG.tab);}
+const hdOf=src=>src&&src.includes('/minijature/')?src.replace('/minijature/','/minijature/hd/'):src;
 function closeBook(){$('knjiga').hidden=true;stopReading();sfx('cloth',{gain:.4,rate:.7});}
-function bookGo(i,dir){const N=bookSpreads.length;if(!N||bookBusy)return;i=((i%N)+N)%N;if(i===bookAt)return;dir=dir||(i>bookAt?1:-1);
+function bookGo(i,dir){if(bookIsClosed()){bookOpenCover();return;}const N=bookSpreads.length;if(!N||bookBusy)return;i=((i%N)+N)%N;if(i===bookAt)return;dir=dir||(i>bookAt?1:-1);
  const L=$('book-left'),R=$('book-right'),bk=$('book');bookAt=i;bookPose=0;bookAuto=true;bookPoseT=0;const {left,right}=spreadHTML(i);
  sfx('cloth',{gain:.45,rate:1.5+Math.random()*.3});
  if(settings.reduced||matchMedia('(max-width:760px)').matches){L.innerHTML=left;R.innerHTML=right;bookWire();bookTabs();bk.classList.remove('fade');void bk.offsetWidth;bk.classList.add('fade');return;}
@@ -1594,7 +1609,7 @@ const INTRO=[
  {img:'smrt',eyebrow:'Vila Ravijojla',text:'Na izvoru pod planinom javi mu se posestrima, vila Ravijojla: „Idi, brate. Ja ću biti uz tebe.” Tako počinje pesma o tri srca Kačanika.',kb:'50% 20%'},
 ];
 let introAt=-1,introDone=null,introTimer=0,introVoice=null;
-function playIntro(done){if(!hasDom||settings.introOff){done?.();return;}introDone=done||null;introAt=-1;const el=$('intro');el.hidden=false;el.classList.remove('out');
+function playIntro(done){if(!hasDom||settings.introOff){done?.();return;}for(const s of INTRO)preload(`assets/ui/minijature/minijatura-${s.img}.webp`);introDone=done||null;introAt=-1;const el=$('intro');el.hidden=false;el.classList.remove('out');
  $('intro').querySelector('.intro-dots').innerHTML=INTRO.map(()=>'<i></i>').join('');sfx('horn_call',{gain:.5});introNext();$('intro-next')?.focus?.();}
 function introNext(){clearTimeout(introTimer);introVoice?.pause();introAt++;if(introAt>=INTRO.length){introEnd(false);return;}
  const s=INTRO[introAt],el=$('intro'),img=el.querySelector('.intro-pic img'),src=`assets/ui/minijature/minijatura-${s.img}.webp`;
@@ -1604,7 +1619,7 @@ function introNext(){clearTimeout(introTimer);introVoice?.pause();introAt++;if(i
  const stage=el.querySelector('.intro-stage');stage.classList.remove('show');void stage.offsetWidth;stage.classList.add('show');
  if(introAt)sfx('cloth',{gain:.4,rate:1.4});
  // with a recorded line the picture waits for it; otherwise it waits as long as reading takes
- const lang=uiLang(),wait=Math.max(6,s.text.split(/\s+/).length*.42);introVoice=null;
+ const lang=uiLang()==='en'?'en':'sr',wait=Math.max(6,s.text.split(/\s+/).length*.42);introVoice=null;
  const a=new Audio(`assets/voice/uvod-${lang}-${introAt+1}.mp3`);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;
  a.addEventListener('canplaythrough',()=>{if(introVoice!==a)return;clearTimeout(introTimer);a.play().catch(()=>{});a.onended=()=>{if(introVoice===a)introTimer=setTimeout(introNext,1300);};},{once:true});
  a.addEventListener('error',()=>{},{once:true});introVoice=a;a.load();
@@ -1612,6 +1627,26 @@ function introNext(){clearTimeout(introTimer);introVoice?.pause();introAt++;if(i
 function introEnd(skipped){clearTimeout(introTimer);introVoice?.pause();introVoice=null;const el=$('intro');el.classList.add('out');setTimeout(()=>{el.hidden=true;el.classList.remove('out');},450);
  const d=introDone;introDone=null;introAt=-1;if(d)d();else $('start')?.focus?.();}
 if(hasDom){$('intro-next')&&($('intro-next').onclick=introNext);$('intro-skip')&&($('intro-skip').onclick=()=>introEnd(true));
- $('intro').addEventListener('click',e=>{if(e.target.closest('button'))return;introNext();});
+ $('intro').addEventListener('click',e=>{if(e.target.closest('button'))return;if(e.target.closest('.intro-pic')&&introAt>=0){const s=INTRO[introAt];clearTimeout(introTimer);introVoice?.pause();openZoom(`assets/ui/minijature/hd/minijatura-${s.img}.webp`,s.eyebrow,()=>{introTimer=setTimeout(introNext,1800);});return;}introNext();});
  $('intro-open')&&($('intro-open').onclick=()=>playIntro(null));
  globalThis.markoI18n?.onLang?.(()=>setTimeout(menuInitials,0));}
+
+// ================= the magnifier: a miniature in full size; the wheel zooms toward the pointer, a drag pans =================
+let zoom={s:1,x:0,y:0,onClose:null,ptrs:new Map(),pinch:0,moved:0};
+function openZoom(src,cap,onClose){const z=$('zoom');if(!z||!src)return;const img=z.querySelector('img');img.src=src;z.querySelector('.zoom-cap').textContent=cap||'';zoom={s:1,x:0,y:0,onClose:onClose||null,ptrs:new Map(),pinch:0,moved:0};zoomApply();z.hidden=false;sfx('cloth',{gain:.3,rate:1.6});z.querySelector('[data-z="close"]')?.focus?.();}
+function closeZoom(){const z=$('zoom');if(!z||z.hidden)return;z.hidden=true;const f=zoom.onClose;zoom.onClose=null;f?.();}
+function zoomApply(){const z=$('zoom'),img=z.querySelector('img');img.style.transform=`translate(${zoom.x}px,${zoom.y}px) scale(${zoom.s})`;z.classList.toggle('zoomed',zoom.s>1.01);}
+function zoomClamp(){const img=$('zoom').querySelector('img'),w=img.offsetWidth,h=img.offsetHeight,mx=Math.max(0,(zoom.s-1)*w/2),my=Math.max(0,(zoom.s-1)*h/2);zoom.x=clamp(zoom.x,-mx,mx);zoom.y=clamp(zoom.y,-my,my);}
+function zoomBy(f,cx,cy){const v=$('zoom').querySelector('.zoom-view').getBoundingClientRect();cx??=v.left+v.width/2;cy??=v.top+v.height/2;
+ const s2=clamp(zoom.s*f,1,6),k=s2/zoom.s,ox=cx-(v.left+v.width/2),oy=cy-(v.top+v.height/2);zoom.x=ox-(ox-zoom.x)*k;zoom.y=oy-(oy-zoom.y)*k;zoom.s=s2;if(s2<=1.001){zoom.x=0;zoom.y=0;}zoomClamp();zoomApply();}
+function zoomReset(){zoom.s=1;zoom.x=0;zoom.y=0;zoomApply();}
+if(hasDom&&$('zoom')){const z=$('zoom'),view=z.querySelector('.zoom-view');
+ view.addEventListener('wheel',e=>{e.preventDefault();zoomBy(e.deltaY<0?1.18:1/1.18,e.clientX,e.clientY);},{passive:false});
+ view.addEventListener('dblclick',e=>{if(zoom.s>1.01)zoomReset();else zoomBy(2.6,e.clientX,e.clientY);});
+ view.addEventListener('pointerdown',e=>{view.setPointerCapture(e.pointerId);zoom.ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});zoom.moved=0;if(zoom.ptrs.size===2){const [a,b]=[...zoom.ptrs.values()];zoom.pinch=Math.hypot(a.x-b.x,a.y-b.y);}z.classList.add('dragging');});
+ view.addEventListener('pointermove',e=>{const q=zoom.ptrs.get(e.pointerId);if(!q)return;const dx=e.clientX-q.x,dy=e.clientY-q.y;q.x=e.clientX;q.y=e.clientY;zoom.moved+=Math.abs(dx)+Math.abs(dy);
+  if(zoom.ptrs.size===2){const [a,b]=[...zoom.ptrs.values()],d=Math.hypot(a.x-b.x,a.y-b.y);if(zoom.pinch)zoomBy(d/zoom.pinch,(a.x+b.x)/2,(a.y+b.y)/2);zoom.pinch=d;return;}
+  if(zoom.s>1.01){zoom.x+=dx;zoom.y+=dy;zoomClamp();zoomApply();}});
+ for(const ev of['pointerup','pointercancel'])view.addEventListener(ev,e=>{zoom.ptrs.delete(e.pointerId);if(zoom.ptrs.size<2)zoom.pinch=0;if(!zoom.ptrs.size)z.classList.remove('dragging');});
+ view.addEventListener('click',e=>{if(zoom.moved>6)return;if(e.target===view&&zoom.s<=1.01)closeZoom();});
+ z.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{const k=b.dataset.z;if(k==='in')zoomBy(1.3);else if(k==='out')zoomBy(1/1.3);else if(k==='fit')zoomReset();else closeZoom();});}
