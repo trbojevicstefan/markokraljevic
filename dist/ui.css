@@ -601,3 +601,37 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #krv-ekran i{position:absolute;background:center/contain no-repeat;opacity:0;animation:krvEkran 3.3s ease-out forwards;mix-blend-mode:multiply}
 #krv-ekran i.blob{background:radial-gradient(circle at 50% 45%,#6a0609e0 0 18%,#7a070bb0 26%,transparent 34%),radial-gradient(circle at 30% 70%,#6a0609b0 0 6%,transparent 8%),radial-gradient(circle at 72% 28%,#6a0609b0 0 5%,transparent 7%)}
 @keyframes krvEkran{0%{opacity:0;transform:scale(.55)}5%{opacity:.9;transform:scale(1)}65%{opacity:.75;transform:translateY(14px)}100%{opacity:0;transform:translateY(46px)}}
+
+/* ---------- the pause: a campfire scene beside Codex's carved frame ---------- */
+#pause-menu.pauza{background:radial-gradient(ellipse at 50% 60%,#0a0f0ec4,#030505f0);backdrop-filter:blur(4px)}
+.pauza-wrap{display:flex;align-items:center;justify-content:center;gap:36px;max-width:96vw}
+.pauza-scena{margin:0;position:relative;width:min(580px,46vw);aspect-ratio:3/2;border-radius:6px;overflow:hidden;box-shadow:0 0 0 2px #7a5c34,0 0 0 7px #1e150d,0 0 0 9px #6a5230,0 22px 46px #000d;animation:pauzaScena .6s cubic-bezier(.2,.8,.2,1) both}
+.pauza-logor{position:absolute;inset:0;background:url(assets/world/pauza-logor.webp) 0 0/800% 100% no-repeat;animation:pauzaVatra .95s steps(8) infinite}
+@keyframes pauzaVatra{to{background-position:114.2857% 0}}
+.pauza-iskre i{position:absolute;bottom:20%;left:47%;width:3px;height:3px;border-radius:50%;background:#ffb860;box-shadow:0 0 4px #ff8a30;opacity:0;animation:pauzaIskra 2.6s linear infinite}
+.pauza-iskre i:nth-child(2){left:49%;animation-delay:.35s;animation-duration:2.2s}.pauza-iskre i:nth-child(3){left:51%;animation-delay:.8s}
+.pauza-iskre i:nth-child(4){left:46%;animation-delay:1.2s;animation-duration:3s}.pauza-iskre i:nth-child(5){left:50%;animation-delay:1.6s}
+.pauza-iskre i:nth-child(6){left:48%;animation-delay:2s;animation-duration:2.4s}.pauza-iskre i:nth-child(7){left:52%;animation-delay:.6s;animation-duration:3.2s}
+@keyframes pauzaIskra{0%{opacity:0;transform:translate(0,0)}12%{opacity:.95}70%{opacity:.6}100%{opacity:0;transform:translate(18px,-170px)}}
+.pauza-scena figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;background:linear-gradient(transparent,#050807e6);text-align:left}
+.pauza-scena figcaption b{display:block;font:600 19px Georgia,serif;color:#f1e3bd;letter-spacing:.5px}
+.pauza-scena figcaption small{color:#c9b98f;font-size:14px}
+.pauza-ram{position:relative;height:min(90vh,690px);width:auto;max-width:46vw;aspect-ratio:900/1180;background:url(assets/world/pauza-ram.webp) center/100% 100% no-repeat;padding:15% 13% 11%;display:flex;flex-direction:column;padding-bottom:15.5%;filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .6s cubic-bezier(.2,.8,.2,1) both}
+.pauza-ram .eyebrow{margin:0;text-align:center;color:#d9b56a;font-size:11px;letter-spacing:4px}
+.pauza-ram h2{margin:2px 0 2px;text-align:center;font:700 30px Georgia,serif;line-height:1.1;color:#f3dfae;text-shadow:0 2px 0 #1a120a}
+.pauza-ram .pauza-note{margin:0 0 10px;text-align:center;color:#cbbd98;font-size:14px}
+.pauza-dugmad{display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.pauza-dugmad button{all:unset;box-sizing:border-box;cursor:pointer;height:38px;margin:0 -8px;display:flex;align-items:center;justify-content:center;font:600 16px Georgia,serif;color:#f1e3bd;text-shadow:0 1px 2px #000;
+ white-space:nowrap;border-style:solid;border-width:0 30px;border-image:url(assets/world/dugme-ploca.webp) 0 110 fill/0 38px stretch;transition:transform .12s,color .12s;animation:pauzaDugme .45s cubic-bezier(.2,.8,.2,1) both}
+.pauza-dugmad button.pad-focus,.pauza-dugmad button:focus-visible{outline:none!important;box-shadow:none!important;background:none!important;filter:none!important}
+.pauza-dugmad button:hover,.pauza-dugmad button:focus-visible,.pauza-dugmad button.pad-focus{border-image-source:url(assets/world/dugme-ploca-aktivno.webp);color:#fff4d6;transform:scale(1.035)}
+.pauza-dugmad button.text-button{border:0;border-image:none;height:26px;font-size:15px;color:#d8c79d;opacity:.9}
+.pauza-dugmad button.text-button:hover,.pauza-dugmad button.text-button:focus-visible{color:#fff4d6;transform:none;text-decoration:underline}
+.pauza-dugmad button:nth-child(1){animation-delay:.18s}.pauza-dugmad button:nth-child(2){animation-delay:.23s}.pauza-dugmad button:nth-child(3){animation-delay:.28s}
+.pauza-dugmad button:nth-child(4){animation-delay:.33s}.pauza-dugmad button:nth-child(5){animation-delay:.38s}.pauza-dugmad button:nth-child(6){animation-delay:.43s}.pauza-dugmad button:nth-child(7){animation-delay:.48s}
+@keyframes pauzaScena{from{opacity:0;transform:translateX(-46px) scale(.97)}}
+@keyframes pauzaRam{from{opacity:0;transform:translateX(46px) rotate(1.2deg) scale(.97)}}
+@keyframes pauzaDugme{from{opacity:0;transform:translateY(10px)}}
+@media(max-width:900px){.pauza-scena{display:none}.pauza-ram{max-width:94vw}}
+@media(max-height:640px){.pauza-scena{width:auto;height:60vh}}
+@media(prefers-reduced-motion:reduce){.pauza-scena,.pauza-ram,.pauza-dugmad button{animation:none}}
