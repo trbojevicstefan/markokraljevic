@@ -600,6 +600,10 @@ function drawBarrier(b){if(b.x<camera-200||b.x>camera+VIEW_W+100)return;const im
 function drawGate(){if(zone>=5)return;const end=chapters[zone].end-60;const locked=(defenses[zone]&&!defenses[zone].done)||world.enemies.some(e=>e.alive&&e.zone===zone&&!e.road)||(zone===2&&zoneRunes().some(r=>!r.active));drawSideGate('ch'+zone,end,590,!locked,'kamen');if(locked&&Math.abs(p.x-end)<600)textLabel('OSLOBODI PROLAZ',end,230,{font:'bold 13px Georgia',color:'#f5d79f',glow:'#ffcf7a'});}
 
 // ---------- characters ----------
+// The mace on the shoulder (idle-3): up in frames 0-2, then the shoulder frames 3-9 go back and forth for a good
+// while, ending on 9 so it comes down (10-11) without a jump.
+const SHOULDER_SEQ=[3,4,5,6,7,8,9,8,7,6,5,4],SHOULDER_FPS=4,SHOULDER_HOLD=(6+SHOULDER_SEQ.length+1)/SHOULDER_FPS;
+function shoulderFrame(t){if(t<.5)return Math.floor(t*6);t-=.5;if(t<SHOULDER_HOLD)return SHOULDER_SEQ[Math.floor(t*SHOULDER_FPS)%SHOULDER_SEQ.length];t-=SHOULDER_HOLD;return t<2/6?10+Math.floor(t*6):-1;}
 function playerPose(){
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,frame:Math.min(n-1,Math.floor(k*n)),dy:leap};}
@@ -623,7 +627,7 @@ function playerPose(){
  if(p.landing>0){if(rig?.['marko-land']&&Math.abs(p.vx)<60){const n=rig['marko-land'].frames.length;return{name:'marko-land',frame:Math.min(n-1,Math.floor((1-p.landing/.2)*n))};}const s=Math.sin(p.landing/.2*Math.PI)*.08;return{name:'marko-jump',frame:5,sx:1+s,sy:1-s};}
  if(Math.abs(p.vx)>35){if(Math.abs(p.vx)<170&&rig?.['marko-walk'])return{name:'marko-walk',frame:Math.floor(p.gait*2)%8};return{name:'marko-run',frame:Math.floor(p.gait)%6};}
  if(rig?.['marko-teeter']&&p.grounded&&!horseMounted&&Math.abs(p.vx)<12&&!supportAt(p.x+p.face*24,p.y,60)&&supportAt(p.x-p.face*4,p.y,6))return{name:'marko-teeter',frame:Math.floor(time*8)%rig['marko-teeter'].frames.length};
- if(p.idleT>IDLE3_AT&&rig?.['marko-idle-3']){const nm=(p.idleN||0)%2&&rig?.['marko-idle-4']?'marko-idle-4':'marko-idle-3',n=rig[nm].frames.length,k=Math.floor((p.idleT-IDLE3_AT)*6);if(k<n)return{name:nm,frame:k};p.idleT=0;p.idleN=(p.idleN||0)+1;}
+ if(p.idleT>IDLE3_AT&&rig?.['marko-idle-3']){const nm=(p.idleN||0)%2&&rig?.['marko-idle-4']?'marko-idle-4':'marko-idle-3',n=rig[nm].frames.length,t=p.idleT-IDLE3_AT,k=nm==='marko-idle-3'&&n>=12?shoulderFrame(t):t*6<n?Math.floor(t*6):-1;if(k>=0)return{name:nm,frame:k};p.idleT=0;p.idleN=(p.idleN||0)+1;}
  if(rig?.['marko-idle-2'])return{name:'marko-idle-2',frame:Math.floor(time*6)%rig['marko-idle-2'].frames.length,sy:1+Math.sin(time*2.2)*.004};if(rig?.['marko-idle'])return{name:'marko-idle',frame:IDLE_SEQ[Math.floor(time*IDLE_FPS)%IDLE_SEQ.length],sy:1+Math.sin(time*2.2)*.006,sx:1-Math.sin(time*2.2)*.003};return{name:'cast/marko',frame:0,sy:1+Math.sin(time*2.4)*.012,sx:1-Math.sin(time*2.4)*.005,rot:p.hurt>0?-.1:0};
 }
 function maceSmear(){const d=attackDuration(),phase=1-p.attack/d;if(p.attack<=0||phase<.4||phase>.97)return;const heavy=p.attackKind==='heavy',t=clamp((phase-.42)/.33,0,1),ease=1-Math.pow(1-t,3),head=-1.75+ease*2.6,tail=Math.max(-1.75,head-(heavy?1.05:.85)),fade=1-clamp((phase-.78)/.19,0,1),R=heavy?100:84,inner=R*(heavy?.8:.84);for(const g of[gctx,ctx]){g.save();g.translate(p.x+p.face*6,p.y-66);g.scale(p.face,1);g.beginPath();g.arc(0,0,R,tail,head);g.arc(Math.cos(head)*6,Math.sin(head)*6,inner,head,tail,true);g.closePath();const gr=g.createLinearGradient(Math.cos(tail)*R,Math.sin(tail)*R,Math.cos(head)*R,Math.sin(head)*R);const c=heavy?'255,190,100':'255,236,200';gr.addColorStop(0,`rgba(${c},0)`);gr.addColorStop(1,`rgba(${c},${(g===gctx?(heavy?.42:.34):.2)*fade})`);g.fillStyle=gr;g.fill();g.restore();}}

@@ -172,7 +172,7 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - **Dozivanje vile** (`marko-call`): podigne ruku ka nebu dok zove Ravijojlu.
 - **Podizanje** (`marko-pickup`): klekne i uzme deo srca, zapis, ključ ili čudo.
 - **Na ivici provalije** (`marko-teeter`): kad stoji na samom rubu okrenut ka provaliji, maše rukama da ne padne.
-- **Drugo dugo stajanje** (`marko-idle-4`): obriše znoj, pogleda preko ramena, popravi ogrtač. Smenjuje se sa topuzom na ramenu.
+- **Drugo dugo stajanje** (`marko-idle-4`): obriše znoj, pogleda preko ramena, popravi ogrtač. Smenjuje se sa topuzom na ramenu, koji sada ostaje na ramenu oko 5 sekundi: kadrovi na ramenu se vrte napred-nazad, pa se topuz glatko spusti.
 - **Odbačaj od đuleta** (`marko-blasted`).
 - **Guranje sanduka i bacanje topuza** su bili nacrtani krupnije od ostalih Markovih animacija. Sada su smanjeni, pa je Marko iste veličine kao inače.
 
