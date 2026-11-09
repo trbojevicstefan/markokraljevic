@@ -595,3 +595,9 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #vila-flyby.go{animation:vilaFly 2s cubic-bezier(.4,0,.8,.6) forwards,vilaFrames .62s steps(8) infinite}
 @keyframes vilaFrames{to{background-position:114.2857% 0}}
 @keyframes vilaFly{0%{opacity:0;transform:translate(60px,-90px) scale(.18)}14%{opacity:1}62%{opacity:1;transform:translate(0,10px) scale(1.5)}100%{opacity:0;transform:translate(-40px,160px) scale(3.2)}}
+
+/* blood on the lens */
+#krv-ekran{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+#krv-ekran i{position:absolute;background:center/contain no-repeat;opacity:0;animation:krvEkran 3.3s ease-out forwards;mix-blend-mode:multiply}
+#krv-ekran i.blob{background:radial-gradient(circle at 50% 45%,#6a0609e0 0 18%,#7a070bb0 26%,transparent 34%),radial-gradient(circle at 30% 70%,#6a0609b0 0 6%,transparent 8%),radial-gradient(circle at 72% 28%,#6a0609b0 0 5%,transparent 7%)}
+@keyframes krvEkran{0%{opacity:0;transform:scale(.55)}5%{opacity:.9;transform:scale(1)}65%{opacity:.75;transform:translateY(14px)}100%{opacity:0;transform:translateY(46px)}}
