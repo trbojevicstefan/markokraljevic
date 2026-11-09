@@ -1602,8 +1602,45 @@ function padMenu(dirX,dirY,a,b){const open=[...document.querySelectorAll('.modal
  const items=[...box.querySelectorAll('button,select,input')].filter(el=>!el.disabled&&el.offsetParent!==null);if(!items.length)return;let cur=items.indexOf(document.activeElement);
  if(dirX||dirY){cur=cur<0?0:(cur+(dirY||dirX)+items.length)%items.length;items[cur].focus();document.querySelectorAll('.pad-focus').forEach(el=>el.classList.remove('pad-focus'));items[cur].classList.add('pad-focus');items[cur].scrollIntoView?.({block:'nearest'});sfx('cloth',{gain:.25,rate:1.6});}
  if(a){const el=cur>=0?items[cur]:items[0];el.click();sfx('ring',{gain:.3,rate:1.5});}
- if(b){if(!$('settings').hidden){closeSettings();return;}const back=box.querySelector('#levels-close,#riznica-close,#resume,#lore-close,.text-button');if(back)back.click();}}
-function pollPads(){if(!hasDom||!navigator.getGamepads)return;const pads=navigator.getGamepads();const g=pads&&(pads[padIndex??-1]||[...pads].find(Boolean));if(!g){return;}if(padIndex===null)padConnected(g);
+ if(b){if(!$('settings').hidden){closeSettings();return;}if(!$('kontrole').hidden){$('kontrole').hidden=true;return;}const back=box.querySelector('#levels-close,#riznica-close,#resume,#lore-close,.text-button');if(back)back.click();}}
+// ================= the controls screen: a drawn gamepad whose buttons light up as they are pressed =================
+// [button index, glyph, x, y, shape, label side, action]
+const PAD_PARTS=[[6,'LT',118,40,'trig','l','Vino'],[4,'LB',132,70,'shoulder','l','Blok / odbij'],[7,'RT',402,40,'trig','r','Vila · Šarac · poluga · top'],[5,'RB',388,70,'shoulder','r','Baci topuz'],
+ [3,'Y',392,118,'face','r','Teški udarac'],[2,'X',360,150,'face','l2','Topuz'],[1,'B',424,150,'face','r','Kolut'],[0,'A',392,182,'face','r','Skok'],
+ [10,'L3',150,150,'stick','l','Kretanje · klik: vihor'],[11,'R3',326,222,'stick','b','Junački udar'],[9,'≡',300,128,'mini','t','Pauza'],
+ [12,'↑',200,198,'dpad','l','Lestve · popni se'],[13,'↓',200,246,'dpad','l','Čučanj · siđi'],[14,'←',176,222,'dpad','n',''],[15,'→',224,222,'dpad','n','']];
+const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga']]],
+ ['Top','priđi topu i pritisni RT',[['↑ ↓','Ugao cevi'],['← →','Više ili manje baruta'],['X','Pucaj'],['RT','Ostavi top']]],
+ ['Na ivici','kad visiš',[['↑ / A','Popni se'],['↓','Pusti se']]],
+ ['Kombinacije','',[['X X X','Niz udaraca'],['↑ + X','Uvis'],['↓','Klizanje u trku'],['↓ + A','Siđi s daske'],['LB','Odbij u pravom trenu i vrati udarac']]]];
+const KONTROLE_KEYS=[['A D','Kretanje'],['Space','Skok'],['J','Topuz'],['K','Teški udarac'],['L','Blok / odbij'],['Shift','Izmakni'],['S','Čučanj'],['S + K','Aperkat'],['S + J','Šut nogom'],['I','Baci topuz'],['E','Vila · Šarac · top'],['Q','Vino'],['F','Vihor'],['R','Junački udar'],['W','Lestve · popni se'],['Esc','Pauza']];
+function padSvg(){const T=s=>tr(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');let s=`<svg class="pad-svg" viewBox="-180 12 900 290" role="img" aria-label="${T('Raspored dugmadi na džojstiku')}">`;
+ s+='<path class="pad-body" d="M120 82 Q260 62 400 82 Q470 92 492 170 Q512 258 452 276 Q414 286 384 246 Q350 214 260 214 Q170 214 136 246 Q106 286 68 276 Q8 258 28 170 Q50 92 120 82Z"/>';
+ for(const [b,g,x,y,shape,side,act] of PAD_PARTS){
+  if(shape==='trig')s+=`<rect class="pad-btn" data-b="${b}" x="${x-26}" y="${y-14}" width="52" height="26" rx="10"/>`;
+  else if(shape==='shoulder')s+=`<rect class="pad-btn" data-b="${b}" x="${x-34}" y="${y-9}" width="68" height="18" rx="8"/>`;
+  else if(shape==='stick')s+=`<circle class="pad-well" cx="${x}" cy="${y}" r="27"/><circle class="pad-btn pad-stick" data-b="${b}" data-stick="${b===10?0:2}" cx="${x}" cy="${y}" r="18"/>`;
+  else if(shape==='dpad')s+=`<rect class="pad-btn" data-b="${b}" x="${x-11}" y="${y-11}" width="22" height="22" rx="4"/>`;
+  else if(shape==='mini')s+=`<rect class="pad-btn" data-b="${b}" x="${x-12}" y="${y-7}" width="24" height="14" rx="7"/>`;
+  else s+=`<circle class="pad-btn face f${g}" data-b="${b}" cx="${x}" cy="${y}" r="15"/>`;
+  s+=`<text class="pad-glyph" x="${x}" y="${y+4.5}">${g}</text>`;
+  if(!act)continue;
+  if(side==='l')s+=`<line class="pad-line" x1="${x-30}" y1="${y}" x2="14" y2="${y}"/><text class="pad-act" x="8" y="${y+5}" text-anchor="end">${T(act)}</text>`;
+  else if(side==='r')s+=`<line class="pad-line" x1="${x+30}" y1="${y}" x2="506" y2="${y}"/><text class="pad-act" x="512" y="${y+5}" text-anchor="start">${T(act)}</text>`;
+  else if(side==='l2')s+=`<text class="pad-act" x="${x-22}" y="${y+5}" text-anchor="end">${T(act)}</text>`;
+  else if(side==='b')s+=`<text class="pad-act" x="${x}" y="${y+50}" text-anchor="middle">${T(act)}</text>`;
+  else if(side==='t')s+=`<text class="pad-act" x="${x}" y="${y-22}" text-anchor="middle">${T(act)}</text>`;}
+ return s+'</svg>';}
+function openKontrole(){const T=s=>tr(s);const card=$('kontrole-card');if(!card)return;
+ card.innerHTML=`<p class="eyebrow">${T('DŽOJSTIK I TASTATURA')}</p><h2>${T('Kontrole')}</h2><p class="kontrole-note">${T(padIndex!==null?'Pritisni dugme na džojstiku i ono će zasvetleti.':'Poveži džojstik: dugmad će svetleti dok ih pritiskaš.')}</p>${padSvg()}
+  <div class="kontrole-cards">${KONTROLE_CARDS.map(([h,sub,rows])=>`<div class="kontrole-box"><h3>${T(h)}</h3>${sub?`<small>${T(sub)}</small>`:''}${rows.map(([k,a])=>`<p><kbd>${k}</kbd><span>${T(a)}</span></p>`).join('')}</div>`).join('')}</div>
+  <details class="kontrole-keys"><summary>${T('Tastatura')}</summary><div>${KONTROLE_KEYS.map(([k,a])=>`<p><kbd>${k}</kbd><span>${T(a)}</span></p>`).join('')}</div></details>
+  <button id="kontrole-close" class="text-button">${T('Zatvori')}</button>`;
+ $('kontrole-close').onclick=()=>{$('kontrole').hidden=true;};$('kontrole').hidden=false;}
+function markPad(g){const box=$('kontrole');if(!box||box.hidden)return;for(const el of box.querySelectorAll('[data-b]')){const i=+el.dataset.b,b=g.buttons[i];el.classList.toggle('on',!!b&&(b.pressed||b.value>.5));}
+ for(const el of box.querySelectorAll('[data-stick]')){const a=+el.dataset.stick,cx=+el.getAttribute('cx');el.style.transform=`translate(${(g.axes[a]||0)*9}px,${(g.axes[a+1]||0)*9}px)`;}}
+if(hasDom){$('kontrole-open')&&($('kontrole-open').onclick=openKontrole);$('pause-kontrole')&&($('pause-kontrole').onclick=openKontrole);}
+function pollPads(){if(!hasDom||!navigator.getGamepads)return;const pads=navigator.getGamepads();const g=pads&&(pads[padIndex??-1]||[...pads].find(Boolean));if(!g){return;}if(padIndex===null)padConnected(g);markPad(g);
  const raw=i=>!!g.buttons[i]&&(g.buttons[i].pressed||g.buttons[i].value>.5),btn=i=>{const v=raw(i);if(padRest.has(i)){if(!v)padRest.delete(i);return false;}return v;},ax=g.axes[0]||0,ay=g.axes[1]||0;
  stickMag=btn(14)||btn(15)?1:Math.abs(ax);const left=btn(14)||ax<-.22,right=btn(15)||ax>.22,up=btn(12)||ay<-.55,down=btn(13)||ay>.55;
  const edge=(k,v)=>{const was=padPrev[k];padPrev[k]=v;return v&&!was;};
