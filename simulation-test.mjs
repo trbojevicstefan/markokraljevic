@@ -78,7 +78,7 @@ for(let frame=0;frame<120*900;frame++){
  api.keys.clear();let target=physics.chapters[zone].end;
  const foes=world.enemies.filter(e=>e.alive&&e.zone===zone).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x));const near=foes[0];
  if(near){target=near.x;if(Math.abs(near.x-p.x)<140){api.keys.add('KeyK');if(near.mode==='windup'&&near.timer<.22&&p.parryCooldown<=0)tap('KeyL');}}
- if(zone===2){const rune=world.runes.find(r=>!r.active);if(rune&&(!near||rune.x<near.x)){target=rune.x;if(Math.abs(p.x-rune.x)<95&&p.energy>=30)tap('KeyE');}}
+ if(zone===2){const rune=world.runes.find(r=>!r.active&&physics.chapterAt(r.x)===2);if(rune&&(!near||rune.x<near.x)){target=rune.x;if(Math.abs(p.x-rune.x)<95&&p.energy>=30)tap('KeyE');}}
  if(zone===3&&!s.horseMounted){target=s.horseX;if(Math.abs(p.x-target)<160)tap('KeyE');}
  if(zone===5){target=boss.x;if(Math.abs(p.x-boss.x)<140){api.keys.add('KeyK');if((boss.mode==='windup'||boss.mode==='second')&&boss.timer<.23&&p.parryCooldown<=0)tap('KeyL');if(p.energy>=35&&boss.mode==='idle')tap('KeyE');}if(boss.mode==='leap'&&boss.timer<.22&&p.grounded)tap('Space');if(boss.mode==='stompPrep'&&boss.timer<.2&&p.grounded)tap('Space');if(boss.drop&&boss.drop.t<.7&&Math.abs(p.x-boss.drop.x)<110){api.keys.delete('KeyK');tap('ShiftLeft');}if(boss.mode==='charge'&&Math.abs(boss.x-p.x)<190&&p.dashCooldown<=0){api.keys.delete('KeyA');api.keys.delete('KeyD');api.keys.add(boss.x>p.x?'KeyD':'KeyA');tap('ShiftLeft');}}
  const fighting=(near&&target===near.x)||(zone===5);const stop=fighting?102:25;if(Math.abs(target-p.x)>stop)api.keys.add(target>p.x?'KeyD':'KeyA');else if(fighting&&Math.sign(target-p.x)!==p.face)api.keys.add(target>p.x?'KeyD':'KeyA');

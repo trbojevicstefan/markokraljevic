@@ -23,6 +23,7 @@ export function makeWorld(){
  [7580,8540,9580].forEach((x,i)=>{runes.push({x,y:590,active:false,id:i});platforms.push({x:x+120,y:575,w:240,h:30,kind:'magic',rune:i});});
  floor(7400,100,475);floor(8270,130,465);floor(9320,130,475);floor(10250,150,465);
  [8180,9200,10300].forEach(x=>enemy(x,'archer'));
+ [[845,895,140],[1785,1835,160]].forEach(([sx,bx,bw],k)=>{runes.push({x:sx,y:590,active:false,id:3+k,road:true});platforms.push({x:bx,y:590,w:bw,h:30,kind:'magic',rune:3+k});});
  let x=10800,seg=0;while(x<24500){const len=Math.min(900+((x*13)%300),24500-x);floor(x,len);if(seg%2===1&&x+len<24000){const n=enemies.length;enemy(x+len*.42,['sword','shield','sword'][seg%3]);enemy(x+len*.42+110,'sword');for(let k=n;k<enemies.length;k++)enemies[k].road=true;}seg++;if(x+len>=24500)break;barriers.push({x:x+len-310,y:590,w:45,h:65,horse:true});x+=len+190;}floor(24300,200);
  floor(24500,3500);[[2050,'akindzija'],[4400,'oklopnik'],[5750,'palikuca'],[8600,'akindzija'],[9300,'palikuca'],[25350,'oklopnik'],[26700,'palikuca'],[27450,'akindzija']].forEach(([x,t])=>enemy(x,t));[24840,25180,25530,25910,26200,26540,26880,27240,27600].forEach((x,i)=>enemy(x,['sword','shield','archer'][i%3]));
  [25250,26450,27350].forEach(x=>floor(x,150,465));floor(28000,1900);
@@ -122,10 +123,10 @@ export const RECIPES={
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
-export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:760,kit:'hasan'},akindzija:{name:'Akindžijski beg',hp:560,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:520,kit:'ognjeni'},shield:{name:'Bajraktar sa štitom',hp:620,kit:'bajraktar'},sword:{name:'Janičarski aga',hp:540,kit:'janicar'},
- arapin:{name:'Arapin',hp:900,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:480,kit:'basa',scale:1.3},lovac:{name:'Lovac-aga',hp:520,kit:'lovac',type:'sword'},
- azdaja:{name:'Aždaja',hp:1100,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:780,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:700,kit:'djemo',scale:1},
- trio:{name:'Tri janičara',hp:320,kit:'trio',type:'sword',scale:1.15},kopljanik:{name:'Kopljanik-baša',hp:600,kit:'kopljanik',scale:1.3}};
+export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar'},
+ arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword'},
+ azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
+ trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},kopljanik:{name:'Kopljanik-baša',hp:1560,kit:'kopljanik',scale:1.3}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
 
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}

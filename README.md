@@ -121,6 +121,12 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - **Tri janičara** (oranje): kad jedan padne, ostala dvojica se razjare.
 - **Kopljanik-baša** (klisura): gađa kopljem izdaleka i preskače Marka kad mu priđe.
 
+**Dopuna 12**
+- **Vilinski kamenovi na provalijama u I poglavlju.** Putnici čekaju na ivici. Kad Marko probudi kamen (E), diže se kameni most (crtež `most-vila-*`) i putnici pređu. Isti kamenovi i mostovi su i u III poglavlju. Ako Marko ode dalje bez njih, putnici ga sustignu u II poglavlju.
+- **Nisko bacanje.** Topuz bačen iz čučnja (S + I) leti tik iznad zemlje.
+- **Duže borbe sa bosovima.** Svaki bos u pohodima ima oko 2,6 puta više snage. Na 30% ulazi u treću fazu: brži je i češće koristi poseban napad, Bajraktar ponovo podiže barjak, Arapin baca koplja u salvama, a Lovac pušta četiri psa. Musa ima 40% više snage, a srca mu pucaju na trećinama.
+- **Prepreke koje Šarac preskače** su sada slike: kola, balvani, kolje, odron i bureta (`prepreka-*`).
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**

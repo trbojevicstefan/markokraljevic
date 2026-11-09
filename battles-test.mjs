@@ -38,10 +38,17 @@ const safe=()=>{const {p}=S();p.invuln=99;p.hp=p.maxHp;};
  ok(T2.every(t=>t.state==='flee'),'travellers: the defense begins and they run for the gate');
  until(()=>T2.every(t=>t.state==='safe'),120*90);ok(T2.every(t=>t.state==='safe'),'travellers: all of them get through');}
 
-// ---- Ravijojla lays a bridge of light over a gap in the road, and the travellers cross ----
-{api.startChapter(0);const T=S().world.travelers;S().world.enemies.forEach(e=>e.alive=false);Object.assign(S().p,{x:1800,y:590});safe();
- until(()=>(T.bridges||[]).length>0,120*30);ok((T.bridges||[]).length>0,'bridge: at the first gap Ravijojla lays a bridge');
- until(()=>T.every(t=>t.x>1060),120*30);ok(T.every(t=>t.x>1060),'bridge: the travellers cross it');}
+// ---- a fairy stone by each pit of chapter I: woken, it raises a stone bridge for the travellers ----
+{api.startChapter(0);const w=S().world,T=w.travelers;w.enemies.forEach(e=>e.alive=false);Object.assign(S().p,{x:1800,y:590});safe();
+ until(()=>T.some(t=>t.waitGap),120*30);ok(T.some(t=>t.waitGap)&&T.every(t=>t.x<905),'stones: at the first pit the travellers wait at the edge');
+ const r=w.runes.find(r=>r.road&&r.x<900);Object.assign(S().p,{x:r.x+40,y:590,grounded:true,energy:100});safe();tap('KeyE');step(120);ok(r.active,'stones: E wakes the fairy stone');
+ Object.assign(S().p,{x:1800});until(()=>T.every(t=>t.x>1040),120*30);ok(T.every(t=>t.x>1040),'stones: the travellers cross its stone bridge');
+ api.startChapter(0);const T2=S().world.travelers;Object.assign(S().p,{x:1200});safe();step(120*8);api.startChapter(1);step(2);ok(S().world.travelers.every(t=>t.x>physics.chapters[1].start),'stones: left at a pit, they still reach chapter II');
+ ok(S().world.runes.filter(r=>physics.chapterAt(r.x)===2).length===3,'stones: chapter III still asks for its own three stones');}
+
+// ---- from a crouch the mace is thrown low ----
+{storage.set('marko-skills',JSON.stringify(['bacanje']));api.startChapter(0);const p=S().p;Object.assign(p,{energy:100,face:1});safe();api.keys.add('KeyS');step(10);api.pressed.add('KeyI');step(80);api.keys.clear();
+ ok(p.lowThrow,'throw: crouching, Marko throws the mace low');}
 
 // ---- the finish: a stunned Turk, U, and his head flies ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,y:590,face:1,grounded:true});safe();
@@ -97,7 +104,9 @@ async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear(
  ok(S().world.platforms.filter(q=>q.arena).length===3,'ognjeni: three planks above the fire');}
 {const c=await arena('rudnik');ok(c.kit==='bajraktar','bajraktar: the standard-bearer in the mine');step(2);ok(c.flag?.up,'bajraktar: his banner stands on the rock');
  const F=c.flag;for(let i=0;i<3;i++){Object.assign(S().p,{x:F.x-50,y:F.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyJ');step(50);}
- ok(!F.up,'bajraktar: three blows bring the banner down');}
+ ok(!F.up,'bajraktar: three blows bring the banner down');
+ c.hp=c.maxHp*.25;Object.assign(S().p,{x:c.x-300});safe();step(20);ok(c.p3&&F.up,'bajraktar: in his last breath he raises the banner again');}
+{const c=await arena('tvrdjava');ok(c.maxHp>=1900,'champions: a fight lasts minutes now (Hasan-aga has '+c.maxHp+')');}
 {const c=await arena('reka');ok(c.kit==='janicar','janicar: the janissary aga by the river');const plank=S().world.platforms.find(q=>q.arena&&q.y<c.y-200);
  Object.assign(S().p,{x:plank.x+plank.w/2,y:plank.y,vx:0,vy:0,grounded:true});safe();c.kc=0;c.mode='idle';until(()=>c.ks==='leap',120*4);ok(c.ks==='leap','janicar: Marko on a high plank, he leaps after him');}
 {const c=await arena('rusevine');ok(c.kit==='arapin'&&c.type==='arapin','arapin: the Arab in the ruins, in his own picture');ok(Math.abs(c.y-c.arena.top)<2,'arapin: he stands on top of his tower');

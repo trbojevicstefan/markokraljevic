@@ -154,3 +154,19 @@ DOPUNA-11: azdaja-fire — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, f
 DOPUNA-11: azdaja-bite — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-bite/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
 
 DOPUNA-11: azdaja-hurt — GOTOVO; 4 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-hurt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
+
+DOPUNA-11: azdaja-death — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-death/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
+
+DOPUNA-11: dzelat-idle — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/dzelat-idle/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: dzelat-run — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/dzelat-run/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: dzelat-attack — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/dzelat-attack/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: dzelat-hurt — GOTOVO; 4 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/dzelat-hurt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: dzelat-death — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/dzelat-death/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-idle — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-idle/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-run — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-run/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
