@@ -61,6 +61,9 @@ def analyse(cell):
     a = cell[:, :, 3] > SOLID
     rows = np.where(a.any(1))[0]
     cols = np.where(a.any(0))[0]
+    if not len(rows):  # a fading effect can end on an empty cell
+        c = a.shape[1] / 2
+        return {'top': a.shape[0] // 2, 'sole': a.shape[0] // 2, 'feet': c, 'torso': c, 'center': c}
     top, sole = int(rows[0]), int(rows[-1] + 1)
     h = sole - top
     xs = np.arange(a.shape[1])
@@ -210,6 +213,15 @@ def _width(cell):
     return int(cols[-1] - cols[0] + 1)
 def _have(name):
     return os.path.exists(os.path.join(ROOT, name + '.json'))
+# DOPUNA-20: Ravijojla's own clips as tall as fairy-cast (she floats: anchored at the cell centre), and the magic
+FAIRY_H = 84
+for name in ['vila-let', 'vila-carolija', 'vila-isceljenje', 'vila-spreda']:
+    if _have(name):
+        hs = [analyse(c)['sole'] - analyse(c)['top'] for c in _cells(name)]
+        SCALES[name] = (FAIRY_H / float(np.median(hs)), 'center')
+for name, k in [('magija-bljesak', .4), ('magija-zrak', .5)]:
+    if _have(name):
+        SCALES[name] = (k, 'center')
 # horse and rider: the horse as long as Šarac in mounted-run (Musa's black horse a fifth longer: he is the giant of the song)
 if _have('mounted-run'):
     RIDE_W = float(np.median([_width(c) for c in _cells('mounted-run')])) * SCALES['mounted-run'][0]
@@ -259,7 +271,7 @@ if _have('marko-crouch-throw') and 'marko-crouch' in SCALES:
 
 # DOPUNA-13: three more finishes and drinking on the move, at Marko's idle zoom; the grapples on the ground at the
 # zoom of Musa's (Marko lying full length is about as long in all of them)
-for name in ['marko-finisher-smash', 'marko-finisher-throw', 'marko-finisher-stomp', 'marko-drink-walk', 'marko-finisher-legs','marko-finisher-skull','marko-run-jump','marko-call','marko-pickup','marko-teeter','marko-idle-4','marko-blasted']:
+for name in ['marko-finisher-smash', 'marko-finisher-throw', 'marko-finisher-stomp', 'marko-drink-walk', 'marko-finisher-legs','marko-finisher-skull','marko-run-jump','marko-call','marko-pickup','marko-teeter','marko-idle-4','marko-blasted','marko-call-walk']:
     if _have(name):
         SCALES[name] = (SCALES['marko-idle'][0], 'feet')
 for who in ['janicar', 'oklopnik', 'pas']:

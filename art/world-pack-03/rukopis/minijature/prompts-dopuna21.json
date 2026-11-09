@@ -1,0 +1,59 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "minijatura-drum",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: Musa Kesedzija and his armed men BLOCK the merchant road through narrow KACANIK GORGE, spearpoints form barrier across middle of winding road. Musa commanding in foreground, warriors behind with spears. Scared TRAVELERS turn back toward foreground: a hooded MONK, a WOMAN holding CHILD, a MERCHANT with laden pack mule/loaded bundles, and an ELDERLY MAN with staff. Clear storytelling, blocked road visible, frightened faces. Do not add Marko to this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    },
+    {
+      "id": "minijatura-kapija",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: Marko prominently swings his SPIKED MACE into wooden GATE blocking road, planks BREAK APART around impact, splintered hinged door opens passage. Freed travelers stream through opened gap: monk, woman with child, merchant with bundles, elder. JANISSARIES in whitewrapped helmets turn and FLEE RIGHT, visibly retreating. Strong composition showing Marko breaking gate and travelers passing safely. No gore. Reference is ONLY for painting/identities, NOT composition: do not copy wrestling scene or add hovering fairy/horses unless this new scene explicitly requests them. Include ONLY the characters and events specified in this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    },
+    {
+      "id": "minijatura-trag",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: FAIRY RAVIJOJLA hovers ABOVE a deep rocky CHASM, extends hand awakening patterned ENCHANTED STONE on brink with fine green-gold symbols. A BRIDGE OF PALE LUMINOUS STONE SLABS is growing across gap, newly forming slabs clearly span abyss. Marko stands on near bank watching, crown/redcloak/chainmail, mace low. Gold manuscript sky behind gorge; soft sacred-looking light but not neon or modern effects. Clear patterned stone and emerging bridge. Reference is ONLY for painting/identities, NOT composition: do not copy wrestling scene or add hovering fairy/horses unless this new scene explicitly requests them. Include ONLY the characters and events specified in this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    },
+    {
+      "id": "minijatura-zalet",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: Marko riding PIEBALD SARAC is mid-LEAP over BROKEN ROAD and deep rocky gap. Horse all FOUR HOOVES AIRBORNE, stretched rightward, dramatic but flat medieval miniature. Marko crowned,redcloak flowing,chainmail, SPIKED MACE in right hand. JANISSARIES scatter to either side at far bank, visibly retreating from leaping rider. Show collapsed road edges below horse and golden sky above. Reference is ONLY for painting/identities, NOT composition: do not copy wrestling scene or add hovering fairy/horses unless this new scene explicitly requests them. Include ONLY the characters and events specified in this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    },
+    {
+      "id": "minijatura-opsada",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: OTTOMAN HOST CHARGES across green field toward stone FORTRESS, spears/shields/green and red pennants, dynamic advancing men. Marko crowned/redcloak/chainmail stands ON FORTRESS RAMPART beside a period BRONZE CANNON pointing down toward host. A SINGLE BLACK IRON CANNONBALL clearly flies through open space from cannon toward advancing soldiers. Marko also carries recognizable spiked mace low. Flat medieval perspective, crowded army below left and fortress walls right/above, gold sky. No gore or explosions. Reference is ONLY for painting/identities, NOT composition: do not copy wrestling scene or add hovering fairy/horses unless this new scene explicitly requests them. Include ONLY the characters and events specified in this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    },
+    {
+      "id": "minijatura-ranjen",
+      "prompt": "Use case: illustration-story. ONE square full-bleed medieval SERBIAN MANUSCRIPT MINIATURE for Book of Legends, exact painting and character identities from reference minijatura-musa. Style Miroslav Gospel illumination and Sopocani/Decani fresco: FLAT perspective, DARK BLACK contours, flat mineral cinnabar, verdigris green, lapis, ochre, AGED GOLD sky/background, handmade tempera, subtly worn parchment edges. No text,letters,calligraphy,frame,border,modern3D,photorealism. Scene fills whole square. Marko always reference man with long DARK hair, thick BLACK moustache, GOLD CROWN with red jewels, RED cloak over CHAINMAIL, ornate belt, SPIKED MACE. Musa same reference bearded man in WHITE TURBAN, darkgreen gold-embroidered coat, mustard trousers, redbrown sash. Sarac reference WHITE AND CHESTNUT PIEBALD spotted horse with ornate tack. Fairy matches miniature reference's medieval winged white-robed figure (this is manuscript art, not game sprite). Keep same identities across new scenes. Scene: AFTER DUEL in Kacanik gorge at DUSK: wounded Marko walks slowly toward right through rocky defile, bent a little, LEFT HAND presses SIDE WOUND, RIGHT hand spikedmace low, crown/redcloak/chainmail. PIEBALD SARAC walks calmly beside him WITHOUT RIDER. BEHIND THEM MUSA lies still on GRASS, recognizable white turban and green coat. Injury non-graphic, small muted darkred cloth mark only, no openwound. Somber quiet scene, dusky lapis/purple gorge rocks under aged GOLD manuscript sky, subdued mineral colors. Marko and horse leaving Musa behind is clear. Reference is ONLY for painting/identities, NOT composition: do not copy wrestling scene or add hovering fairy/horses unless this new scene explicitly requests them. Include ONLY the characters and events specified in this scene.",
+      "size": [
+        768,
+        768
+      ],
+      "reference": "art/world-pack-03/rukopis/minijature/minijatura-musa.png"
+    }
+  ]
+}

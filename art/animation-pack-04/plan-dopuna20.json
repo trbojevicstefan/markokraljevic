@@ -1,0 +1,77 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-call-walk",
+      "kind": "marko",
+      "loop": true,
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded game sprite sheet:3COLUMNS x3ROWS equal square slots, row-major. FIRST EIGHT cells are eight successive WALKING WHILE CALLING animation poses, ninth is neutral STANDING scale calibration matching reference. SAME anatomical scale/headsize acrossALL9 poses, crouching must NOT be enlarged. Marko EXACTreference: black moustache,long darkhair,redgold-embroideredcape,ivoryembroideredsleeves,brownmail/leatherarmor,boots,spikedmaceLOW inRIGHT hand. Side-onRIGHT. Throughout frames1-8 head tiltedUP,mouthOPEN calling fairy, LEFT ARM RAISED HIGH SKYWARD OPEN PALM. Legs MUST MOVE in EVERY frame, TRUE slow walking 8-phase cycle:1 rightleadingheel contact/lefttrailingtoe;2 weightlowering;3 legsPASS, leftknee ahead;4 leftlegreaches;5 leftheelcontact/righttrailingtoe;6 weightloweringopposite;7 legsPASS rightkneeahead;8 rightlegreaches matching nextframe1. Alternate far/nearlegs, walking not running, grounded onefootalways. Leftarmstayselevated, smallnaturalbob,capesways. Ninthcell neutralstance ONLYforcalibration not partclip. No fairy, scenery, floor, shadows, effects, text, grid or numbers. Pureflat #00FF00 GREEN blankspace, central75% eachslot, completefigures/maceinsideOWNcells. Output1536square; extractedcells512squarebaseliney487, neutralstandingheight383px likeidle.",
+      "frames": 8,
+      "fps": 12
+    },
+    {
+      "id": "vila-let",
+      "kind": "fairy",
+      "loop": true,
+      "reference": "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png",
+      "cols": 4,
+      "rows": 2,
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded 2D game animation sprite sheet, EXACTLY EIGHT action frames in FOUR COLUMNS by TWO ROWS, reading row-major, equal square slots. Landscape2048x1024, final cells512x512. NO text, numbers, gridlines, scene, ground, drop shadows, watermark or extra figures. Full subjects fit OWN slots with transparent gutters and no cropped limbs/effects. Reference image is EXACT IDENTITY AND PAINTING STYLE, preserve it precisely: Serbian fairy RAVIJojla, golden blonde BRAID streaming behind LEFT, WHITE flower crown, ivory WHITE dress with RED Serbian embroidery and fluttering RED waist sash, translucent butterfly wings with GOLD LEAF VEINS and painted white floral/leaf pattern, BARE feet with GOLD ANKLETS. Side-on facing RIGHT, no wand, no boots, no other characters. Body about340px high, head near y90, toes aroundy430, float centered in each512cell, NO foot baseline alignment. Keep anatomical size and head position nearly fixed across all frames; gentle vertical bob up to8px ONLY. Actual articulated wing flapping through open/wide/edge-on/narrow wing poses, not mere wing translations. Braid,sash,skirt follow with delayed motion. Soft graceful motion. Eight equally spaced loop phases:1 wings high OPEN wide, relaxed arms near sides;2 wings start sweepingdown/back;3 narrow/near-edge-on wing silhouette;4 wingslow folded behind;5 opening upsweep;6 partially open;7 wide lifted;8 approach initial high-open pose. Arms relaxed gently outstretched downward, feet elegantly pointed. Gentle bob, hair and sash lag behind wings, full continuous cycle not duplicate static images. TRUE transparent RGBA background and partly translucent wing membranes, no checkerboard.",
+      "frames": 8,
+      "fps": 12
+    },
+    {
+      "id": "vila-carolija",
+      "kind": "fairy",
+      "loop": false,
+      "reference": "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png",
+      "cols": 4,
+      "rows": 2,
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded 2D game animation sprite sheet, EXACTLY EIGHT action frames in FOUR COLUMNS by TWO ROWS, reading row-major, equal square slots. Landscape2048x1024, final cells512x512. NO text, numbers, gridlines, scene, ground, drop shadows, watermark or extra figures. Full subjects fit OWN slots with transparent gutters and no cropped limbs/effects. Reference image is EXACT IDENTITY AND PAINTING STYLE, preserve it precisely: Serbian fairy RAVIJojla, golden blonde BRAID streaming behind LEFT, WHITE flower crown, ivory WHITE dress with RED Serbian embroidery and fluttering RED waist sash, translucent butterfly wings with GOLD LEAF VEINS and painted white floral/leaf pattern, BARE feet with GOLD ANKLETS. Side-on facing RIGHT, no wand, no boots, no other characters. Body about340px high, head near y90, toes aroundy430, float centered in each512cell, NO foot baseline alignment. Keep anatomical size and head position nearly fixed across all frames; gentle vertical bob up to8px ONLY. Actual articulated wing flapping through open/wide/edge-on/narrow wing poses, not mere wing translations. Braid,sash,skirt follow with delayed motion. Soft graceful motion. ONE-SHOT eightframes:1 hands approach chest;2 cup palms near chest and tiny softmint/palegoldlight gathers;3 wings spreadWIDE, hands cradle SMALL glow;4 extend BOTH hands forwardRIGHT releasing smalllight;5 arms fullyextend inRIGHT castingpose with a few gentlepetals leaving fingertips;6 hands withdraw;7 armslower wingsflap;8 return restinghover. Tiny softlight only, no laser, glare,whiteball orbigoverexposedflash. Actualwingflap and secondaryhair/sash motion throughout. TRUE transparent RGBA background, smooth alpha glowing petals.",
+      "frames": 8,
+      "fps": 12
+    },
+    {
+      "id": "vila-isceljenje",
+      "kind": "fairy",
+      "loop": false,
+      "reference": "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png",
+      "cols": 4,
+      "rows": 2,
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded 2D game animation sprite sheet, EXACTLY EIGHT action frames in FOUR COLUMNS by TWO ROWS, reading row-major, equal square slots. Landscape2048x1024, final cells512x512. NO text, numbers, gridlines, scene, ground, drop shadows, watermark or extra figures. Full subjects fit OWN slots with transparent gutters and no cropped limbs/effects. Reference image is EXACT IDENTITY AND PAINTING STYLE, preserve it precisely: Serbian fairy RAVIJojla, golden blonde BRAID streaming behind LEFT, WHITE flower crown, ivory WHITE dress with RED Serbian embroidery and fluttering RED waist sash, translucent butterfly wings with GOLD LEAF VEINS and painted white floral/leaf pattern, BARE feet with GOLD ANKLETS. Side-on facing RIGHT, no wand, no boots, no other characters. Body about340px high, head near y90, toes aroundy430, float centered in each512cell, NO foot baseline alignment. Keep anatomical size and head position nearly fixed across all frames; gentle vertical bob up to8px ONLY. Actual articulated wing flapping through open/wide/edge-on/narrow wing poses, not mere wing translations. Braid,sash,skirt follow with delayed motion. Soft graceful motion. ONE-SHOT eightframes:1 handsdrawtowardchest;2 armsopentowardsides;3 armswide outstretched palmsDOWN;4 palmsDOWN tinygentlerainofluminousPETALS falls beneathher;5 sustainhealing palmsDOWN fewerpetals drift;6 handsreturninward,petalsfade;7 palmscome togetherchest;8 clasp hands gracefully, gentle hover. Marko beinghealed is NOTDRAWN. Sparse translucent mintgreen #9dffd8 and palemutedgold #f3e3a0 petals, no hardwhitelight or strongbloom. Wingflapping, braid/cape sash/dress sway, head remains neary90, feet aroundy430. Petalsfadeinsidecellbottom. TRUE RGBAtransparentbackground. CORRECTION CRITICAL: NO AURA AROUND FAIRY BODY AT ALL. NO OUTLINE GLOW, NO white halo, NO mist, NO haze or fog, NO luminous background blobs or white plate. Fairy has clean sharp transparent-cutout edges just like reference. ONLY a FEW SMALL mint/gold PETALS beneath palms may glow faintly, never wash over body or background. Entire empty space alphaZERO, wing membranes gently translucent. This restriction overrides any generic magical-light styling.",
+      "frames": 8,
+      "fps": 12,
+      "sourceFile": "grid-v2.png",
+      "attempts": 2
+    },
+    {
+      "id": "magija-bljesak",
+      "kind": "magic",
+      "loop": false,
+      "reference": null,
+      "cols": 4,
+      "rows": 2,
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded 2D game animation sprite sheet, EXACTLY EIGHT action frames in FOUR COLUMNS by TWO ROWS, reading row-major, equal square slots. Landscape2048x1024, final cells512x512. NO text, numbers, gridlines, scene, ground, drop shadows, watermark or extra figures. Full subjects fit OWN slots with transparent gutters and no cropped limbs/effects. FAIRY MAGIC effect ONLY, absolutely NO character, hands, props or backdrop. Colors mint fairy green #9dffd8, pale muted gold #f3e3a0, just a little warm white. Low-intensity soft semitransparent particles, petals and delicate abstract rune strokes. NO overexposed white core, no strong glare, no thick neon, no bloom washing out detail. TRUE RGBA transparent background with smooth alpha falloff, no painted checkerboard, black matte, gray squares or colored background. Keep shared origin/center identical through all eight phases. ONE-SHOT8frames, face-on circular radial burst fixedcenter(256,256) EACHcell.1 tiny delicate seed of light center;2 small ring of fine runic strokes/petals radius40;3 expandingringradius85;4 ringradius130 with petals and sparks flyingout;5 ringradius175 breaksup;6 radius205 scattered dissipatingpetals and faintarcs;7 near-extinguished tinywisps radius220;8 almostinvisible fewsoftresidualspecks, fullyfadedcenter. Smooth expansion and fade, airy gracefulfairymagic, readablelowcontrast, do notdrawsolidcircleoropaque fill. Transparentcanvas.",
+      "frames": 8,
+      "fps": 12
+    },
+    {
+      "id": "magija-zrak",
+      "kind": "magic",
+      "loop": true,
+      "reference": null,
+      "cols": 4,
+      "rows": 2,
+      "prompt": "Use case: stylized-concept. Create ONE eight-frame game sprite sheet, FOUR COLUMNS x TWO ROWS equal square cells512x512, 2048x1024 landscape, row-major. Asset is a VERY DELICATE HORIZONTAL FAIRY BEAM, no characters/objects. Design is SPARSE 2-4 THIN MINT GREEN silk-like luminous STRANDS (color #9dffd8) and ONE THIN MUTED GOLD strand (#f3e3a0), with a handful of tiny falling leaf-shaped petals. Like translucent glowing embroidered threads, NOT a solid light beam or cloud. Threads flow LEFT TO RIGHT with different small curves and fluttering petals across eight successive phases of one seamless loop. All frames same fixed horizontal axis y256, soft band height40-70px only, full width512. At x0 and x511 thread opacity smoothly fades to ZERO; small dim glow only hugging individual lines, NEVER a blanket aura. Each frame changes flowing strand shape and advances petals to RIGHT, last phase returns to1. At least90% of EVERY CELL must be completely EMPTY TRANSPARENT ALPHA ZERO. Especially large clean transparent gaps between individual strands. VERY IMPORTANT: absolutely NO white background, NO white fog, NO haze, NO cloud, NO white wash, NO thick glow band, NO large halo, NO bright hotspot, NO opaque plate. Only narrow translucent MINT/GOLD threads and tiny petals on true RGBA transparent canvas, antialiased soft edges. No checkerboard painted in pixels. NO text, gridlines, borders, numbers, figures, scenery, extra effects. Matte hand-painted game VFX suitable for muted medieval fairy magic, overall very low intensity and no glare.",
+      "frames": 8,
+      "fps": 12,
+      "sourceFile": "grid-v2-alpha.png",
+      "attempts": 2,
+      "alphaExtracted": "white"
+    }
+  ]
+}

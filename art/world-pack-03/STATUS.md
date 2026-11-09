@@ -268,3 +268,9 @@ DOPUNA-7 ZAVRSENA: svih 14 minijatura sacuvano. Provereno 14/14 PNG, 768x768, po
 
 ## DOPUNA-9 - meni-tlo GOTOVO
 Sacuvano meni/meni-tlo.png, 1800x560 RGBA sa providnom pozadinom; stenovita izbočina, trava i jesenje zbunje, topla magla. Jedan pokusaj ugradjenim image_gen, referenca dist/assets/gorge.png. Kompozitni pregled meni/preview.png, prompt u meni/prompt.json. Proverene dimenzije i alfa kanal.
+
+DOPUNA-21 A: minijatura-drum.png — GOTOVO; rukopis/minijature/minijatura-drum.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-kapija.png — GOTOVO; rukopis/minijature/minijatura-kapija.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.
+
+DOPUNA-21 A: minijatura-trag.png — GOTOVO; rukopis/minijature/minijatura-trag.png, PNG768x768, zlatna neprovidna podloga, stil i likovi prema minijatura-musa.png. Ugradjeni image_gen, jedan pokusaj. Prompt: rukopis/minijature/prompts-dopuna21.json. Izvor sacuvan u sources/dopuna21/. Pregled: preview-dopuna21.png.

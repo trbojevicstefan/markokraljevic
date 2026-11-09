@@ -1,0 +1,361 @@
+{
+  "clips": 6,
+  "frames": 48,
+  "generationAttempts": 8,
+  "results": [
+    {
+      "id": "marko-call-walk",
+      "frames": 8,
+      "loop": true,
+      "atlas": "assets/marko-call-walk/atlas.png",
+      "manifest": "assets/marko-call-walk/manifest.json",
+      "attempts": 1,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6993
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6365
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6199
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6475
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6402
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6286
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5998
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 7131
+        }
+      ]
+    },
+    {
+      "id": "vila-let",
+      "frames": 8,
+      "loop": true,
+      "atlas": "assets/vila-let/atlas.png",
+      "manifest": "assets/vila-let/manifest.json",
+      "attempts": 1,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 64465
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 65953
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 61284
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 56648
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 53073
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 61085
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 62586
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 62709
+        }
+      ]
+    },
+    {
+      "id": "vila-carolija",
+      "frames": 8,
+      "loop": false,
+      "atlas": "assets/vila-carolija/atlas.png",
+      "manifest": "assets/vila-carolija/manifest.json",
+      "attempts": 1,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 52456
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 60317
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 69007
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 61007
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 63208
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 62860
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 53383
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 49661
+        }
+      ]
+    },
+    {
+      "id": "vila-isceljenje",
+      "frames": 8,
+      "loop": false,
+      "atlas": "assets/vila-isceljenje/atlas.png",
+      "manifest": "assets/vila-isceljenje/manifest.json",
+      "attempts": 2,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 167867
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 167972
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 168037
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 168100
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 168043
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 254,
+          "softAlphaPixels": 168026
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 254,
+          "softAlphaPixels": 166523
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 253,
+          "softAlphaPixels": 164551
+        }
+      ]
+    },
+    {
+      "id": "magija-bljesak",
+      "frames": 8,
+      "loop": false,
+      "atlas": "assets/magija-bljesak/atlas.png",
+      "manifest": "assets/magija-bljesak/manifest.json",
+      "attempts": 1,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 239,
+          "softAlphaPixels": 37248
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 235,
+          "softAlphaPixels": 53232
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 245,
+          "softAlphaPixels": 124993
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 244,
+          "softAlphaPixels": 170956
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 248,
+          "softAlphaPixels": 237677
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 233,
+          "softAlphaPixels": 251309
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 183,
+          "softAlphaPixels": 220149
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 106,
+          "softAlphaPixels": 81380
+        }
+      ]
+    },
+    {
+      "id": "magija-zrak",
+      "frames": 8,
+      "loop": true,
+      "atlas": "assets/magija-zrak/atlas.png",
+      "manifest": "assets/magija-zrak/manifest.json",
+      "attempts": 2,
+      "verified": true,
+      "alphaChecks": [
+        {
+          "frame": 0,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5189
+        },
+        {
+          "frame": 1,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6009
+        },
+        {
+          "frame": 2,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6149
+        },
+        {
+          "frame": 3,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5487
+        },
+        {
+          "frame": 4,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5541
+        },
+        {
+          "frame": 5,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5424
+        },
+        {
+          "frame": 6,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 6175
+        },
+        {
+          "frame": 7,
+          "alphaMin": 0,
+          "alphaMax": 255,
+          "softAlphaPixels": 5342
+        }
+      ]
+    }
+  ]
+}

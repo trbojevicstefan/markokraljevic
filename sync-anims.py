@@ -22,5 +22,11 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
         if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(atlas):
             continue
         shutil.copyfile(atlas, dst); shutil.copyfile(manifest, os.path.join(OUT, name + '.json')); n += 1
+        if name.startswith(('vila-', 'magija-')):  # a faint haze over the whole cell would show as a pale square in the game
+            from PIL import Image
+            import numpy as np
+            a = np.array(Image.open(dst).convert('RGBA')); al = a[:, :, 3].astype(float)
+            al = np.where(al < 14, 0, np.where(al < 40, (al - 14) / 26 * 40, al)); a[:, :, 3] = al.astype(np.uint8)
+            Image.fromarray(a).save(dst)
         print('klip', name)
 print(f'{n} novih klipova -> {OUT}')

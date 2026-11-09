@@ -1,0 +1,120 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        120,
+        93,
+        391,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        133,
+        91,
+        379,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        137,
+        94,
+        374,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        113,
+        91,
+        399,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        133,
+        89,
+        379,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        139,
+        90,
+        373,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        129,
+        85,
+        382,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        117,
+        86,
+        394,
+        488
+      ],
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  ],
+  "loop": true,
+  "scaleReference": {
+    "referenceHeight": 383,
+    "calibrationHeight": 363,
+    "scaledCalibrationHeight": 383,
+    "uniformScale": 1.0550964187327823,
+    "footY": 487
+  },
+  "nativeAlpha": false,
+  "fullCellCoordinates": false,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}
