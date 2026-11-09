@@ -106,5 +106,23 @@
       760,
       512
     ]
+  },
+  "prepreka-bure": {
+    "file": "prepreka-bure.png",
+    "size": [
+      768,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 242878,
+    "bounds": [
+      8,
+      252,
+      760,
+      512
+    ]
   }
 }

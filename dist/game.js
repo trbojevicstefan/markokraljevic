@@ -182,6 +182,8 @@ function updateTravelers(dt){const list=travelersAt();if(!list.length)return;
    if(world.enemies.some(e=>e.alive&&e.x>t.x&&e.x-t.x<330&&!e.enter)){goal=null;t.scared=.4;}}
   if(t.state==='flee'){t.wait-=dt;if(t.wait<=0){goal=chapters[1].end+260;v=95;}if(t.x>chapters[1].end+200){t.state='safe';say('pt_free',{chance:.5,priority:2});}}
   // a gap in the road: they wait at the edge until Ravijojla lays a bridge of light across it
+  // they keep a little apart: nobody walks into the one in front of him
+  if(goal!=null&&list.some(u=>u!==t&&u.state===t.state&&u.x-t.x>=0&&u.x-t.x<44&&(u.x>t.x||u.id>t.id)))goal=null;
   if(goal!=null&&goal-t.x>24&&!roadUnder(t.x+22)){goal=null;t.waitGap=true;if(!list.gapTold&&Math.abs(p.x-t.x)<900){list.gapTold=true;speak('Putnici ne mogu preko provalije. Probudi vilinski kamen kraj nje (E) i podići će kameni most.',6);}}else if(goal!=null)t.waitGap=false;
   // left behind when Marko goes on to the second chapter, they catch up by another way
   if(zone>=1&&t.state==='follow'&&t.x<chapters[1].start){t.x=chapters[1].start+40+i*36;t.waitGap=false;}
@@ -189,10 +191,10 @@ function updateTravelers(dt){const list=travelersAt();if(!list.length)return;
 }
 function roadUnder(x){return world.platforms.some(q=>q.y===590&&(q.kind!=='magic'||world.runes[q.rune]?.active)&&x>=q.x&&x<=q.x+q.w);}
 function zoneRunes(){return world.runes.filter(r=>chapterAt(r.x)===zone);}
-function drawTravelers(){for(const t of travelersAt()){if(t.state==='safe'||t.state==='gone'||t.x<camera-80||t.x>camera+VIEW_W+80)continue;const art=PUTNIK_ART[t.who],walking=t.moving>0,clip=rig?.[art+(walking?'-walk':'-idle')],y=590;shadow(t.x,y,26,.45);
+function drawTravelers(){drawTravelers.told=false;for(const t of travelersAt()){if(t.state==='safe'||t.state==='gone'||t.x<camera-80||t.x>camera+VIEW_W+80)continue;const art=PUTNIK_ART[t.who],walking=t.moving>0,clip=rig?.[art+(walking?'-walk':'-idle')],y=590;shadow(t.x,y,26,.45);
   if(clip){const n=clip.frames.length;rigDraw(art+(walking?'-walk':'-idle'),walking?Math.floor(t.walk/11)%n:Math.floor(time*5+t.id*2)%n,t.x,y,t.face,{dx:t.scared>0?Math.sin(time*40)*1.5:0});}
   else drawTravelerFallback(t,y,walking);
-  if(t.waitGap&&t.id===0){const r=world.runes.find(r=>r.road&&!r.active&&Math.abs(r.x-t.x)<260);if(r)textLabel('PUTNICI ČEKAJU MOST · PROBUDI KAMEN (E)',r.x,452,{font:'bold 12px Georgia',color:'#dfffee',glow:'#7fffd0'});}
+  if(t.waitGap&&!drawTravelers.told){drawTravelers.told=true;const r=world.runes.find(r=>r.road&&!r.active&&Math.abs(r.x-t.x)<260);if(r)textLabel('PUTNICI ČEKAJU MOST · PROBUDI KAMEN (E)',r.x,452,{font:'bold 12px Georgia',color:'#dfffee',glow:'#7fffd0'});}
   if(t.state==='camp'&&t.id===3&&Math.abs(p.x-t.x)<420)textLabel('PUTNICI · MUSA IM NE DA DA PROĐU',t.x-75,y-150,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ffcf7a'});}}
 // until the painter's pictures arrive: a cloaked figure with the colours of each traveller
 function drawTravelerFallback(t,y,walking){const [coat,head,kind]=PUTNIK_LOOK[t.who],b=walking?Math.sin(t.walk/9)*2:Math.sin(time*2+t.id)*1,f=t.face,s=t.who==='putnica'?.92:1;

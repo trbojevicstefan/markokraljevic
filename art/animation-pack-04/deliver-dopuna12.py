@@ -6,8 +6,8 @@ sg=game.parent/'tools/sprite-gen/.venv/Scripts/sprite-gen.exe'
 name,source=sys.argv[1:3]
 j=next(j for j in json.loads((root/'plan-dopuna12.json').read_text())['jobs'] if j['id']==name)
 out=root/'assets'/name;run=root/'sources'/name
-assert not (out/'atlas.png').exists(), 'Existing output preserved'
-run.mkdir(exist_ok=True);raw=run/'grid.png'
+assert not (out/'atlas.png').exists() or (j.get('sourceFile') and (run/'export-before-lighting-fix').exists()), 'Existing output preserved'
+run.mkdir(exist_ok=True);raw=run/j.get('sourceFile','grid.png')
 if raw.exists():
     assert Path(source).resolve()==raw.resolve(), 'Existing source preserved'
 else:
@@ -21,7 +21,7 @@ if j.get('nativeAlpha'):
         matte=run/'grid-white-matte.png';native.convert('RGB').save(matte)
         subprocess.run([str(sg),'cutout',str(matte),'--out',str(cut),'--key','white'],check=True,stdout=subprocess.DEVNULL)
 else:
-    subprocess.run([str(sg),'cutout',str(raw),'--out',str(cut),'--key','green','--decontam','palette'],check=True,stdout=subprocess.DEVNULL)
+    subprocess.run([str(sg),'cutout',str(raw),'--out',str(cut),'--key',j.get('chromaKey','green'),'--decontam','palette'],check=True,stdout=subprocess.DEVNULL)
 grid=Image.open(cut).convert('RGBA');pieces=[]
 for i in range(j['frames']):
     x=i%j['cols'];y=i//j['cols'];im=grid.crop((x*grid.width//j['cols'],y*grid.height//j['rows'],(x+1)*grid.width//j['cols'],(y+1)*grid.height//j['rows']))
@@ -31,7 +31,7 @@ if name.startswith('azdaja-') and name!='azdaja-idle':
     ref=Image.open(game/j['reference']).convert('RGBA');b=ref.getchannel('A').getbbox();height=b[3]-b[1]
 scale=min(height/max(im.height for im in pieces),500/max(im.width for im in pieces),480/max(im.height for im in pieces))
 if j.get('staticVariants'):scale=min(397/max(im.width for im in pieces),180/max(im.height for im in pieces))
-(out/'frames/motion').mkdir(parents=True);atlas=Image.new('RGBA',(512*j['frames'],512));qa=[]
+(out/'frames/motion').mkdir(parents=True,exist_ok=True);atlas=Image.new('RGBA',(512*j['frames'],512));qa=[]
 for i,im in enumerate(pieces):
     im=im.resize((max(1,round(im.width*scale)),max(1,round(im.height*scale))),Image.Resampling.LANCZOS)
     cell=Image.new('RGBA',(512,512));cell.alpha_composite(im,((512-im.width)//2,488-im.height));cell.save(out/f'frames/motion/frame-{i}.png');atlas.alpha_composite(cell,(512*i,0))
