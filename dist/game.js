@@ -860,7 +860,7 @@ function foeStrike(e,h){if(Math.abs(p.x-e.x)>h.range||Math.abs(p.y-e.y)>85||mode
 function addFire(x,y,life,w=70){if(fires.length>14)fires.shift();fires.push({x,y,life,max:life,w,seed:Math.random()*99});}
 function updateFires(dt){for(const f of fires){f.life-=dt;if(f.life>.3&&mode==='play'&&p.grounded&&Math.abs(p.x-f.x)<f.w*.5&&Math.abs(p.y-f.y)<10&&p.invuln<=0){damage(7,0);label('GORI',p.x,p.y-140,'#ffb070');}}fires=fires.filter(f=>f.life>0);}
 function blood(x,y,dir,n){if(settings.gore===false||!n)return;const gy=groundAt(x,y)??2000;for(let i=0;i<n;i++){const sp=.35+Math.random();particles.push({kind:'blood',x:x+(Math.random()-.5)*10,y:y+(Math.random()-.5)*14,vx:dir*(70+Math.random()*330)*sp+(Math.random()-.5)*90,vy:-(70+Math.random()*340)*sp,life:3,max:3,r:1.6+Math.random()*3.4,gy,color:['#7a070b','#9b0d12','#b5161a','#5e0508'][i%4]});}}
-function drawDecals(){if(settings.gore===false)return;for(const d of decals){d.t=(d.t||0)+1/60;const a=clamp(1-(d.t-34)/10,0,1)*.85;if(a<=0||d.x<camera-50||d.x>camera+VIEW_W+50)continue;ctx.globalAlpha=a;
+function drawDecals(){if(settings.gore===false)return;for(const d of decals){d.t=(d.t||0)+1/60;const a=clamp(1-(d.t-34)/10,0,1)*.72;if(a<=0||d.x<camera-50||d.x>camera+VIEW_W+50)continue;ctx.globalAlpha=a;
   if(d.streak){const L=d.streak*Math.min(1,d.t/1.3);line(d.x,d.y,d.x,d.y+L,'#6a070a',d.r*2);ellipse(d.x,d.y+L,d.r*1.1,d.r*1.6,'#7a070b');}
   else{const s=1+.55*Math.min(1,d.t/1.6);ellipse(d.x,d.y+1,d.r*1.6*s,d.r*.42*Math.min(s,1.25),'#6a070a');}}
  ctx.globalAlpha=1;decals=decals.filter(d=>d.t<44);}
@@ -868,7 +868,9 @@ function drawDecals(){if(settings.gore===false)return;for(const d of decals){d.t
 function surfaceBelow(a,py){const c=a.q;if(c&&a.x>=c.x&&a.x<=c.x+c.w&&c.y>=py-2&&!c.off)return c;let best=null;
  for(const q of world.platforms){if(q.off||a.x<q.x||a.x>q.x+q.w||q.y<py-2)continue;if(q.kind==='magic'&&!world.runes?.[q.rune]?.active)continue;if(!best||q.y<best.y)best=q;}a.q=best;return best;}
 // a pool where it lands; at the end of a plank or a ledge it runs over the edge and drips to the ground below
-function bloodLand(a,q){if(decals.length>520)decals.splice(0,20);const r=a.r*(1.4+Math.random()*1.8);decals.push({x:a.x,y:q.y,r,t:0});
+function bloodLand(a,q){if(decals.length>520)decals.splice(0,20);const r=a.r*(1.4+Math.random()*1.8);
+ // a drop beside a pool only widens it a little (up to a size), so a fight leaves pools, not one long red band
+ const near=decals.find(d=>!d.streak&&Math.abs(d.y-q.y)<3&&Math.abs(d.x-a.x)<d.r*1.8+r);if(near){near.r=Math.min(17,near.r+r*.12);near.t=Math.min(near.t,1);}else decals.push({x:a.x,y:q.y,r,t:0});
  for(const side of[-1,1]){const edge=side<0?q.x:q.x+q.w;if(Math.abs(a.x-edge)>r*1.6+5)continue;
   if(world.platforms.some(o=>o!==q&&!o.off&&Math.abs(o.y-q.y)<5&&edge+side*6>o.x&&edge+side*6<o.x+o.w))continue;
   const fall=q.solid||q.ground?24+Math.random()*40:10+Math.random()*6;decals.push({x:edge+side*1.5,y:q.y,streak:fall,r:1.3+Math.random(),t:0});
@@ -2247,8 +2249,9 @@ function spikeFoes(t){for(const e of world.enemies){if(!e.alive||e.champion||e.s
 // Codex's side-view gatehouse: the passage between the pillars spans x 380–640 of the 1024 drawing, its arch at y 600.
 const GATE_ART={x0:380,x1:640,arch:600,img:1024},GATE_PASS=210,GATE_STOP=80,gateFronts=[];
 const gateScale=()=>GATE_PASS/(GATE_ART.img-GATE_ART.arch);
-function gateBack(x,y){const s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s,top=y-GATE_PASS;const g=ctx.createLinearGradient(0,top,0,y);g.addColorStop(0,'rgba(8,6,4,.72)');g.addColorStop(1,'rgba(8,6,4,.35)');ctx.fillStyle=g;ctx.fillRect(x-w/2,top,w,GATE_PASS);
- const side=ctx.createLinearGradient(x-w/2,0,x+w/2,0);side.addColorStop(0,'rgba(0,0,0,.35)');side.addColorStop(.5,'rgba(0,0,0,0)');side.addColorStop(1,'rgba(0,0,0,.35)');ctx.fillStyle=side;ctx.fillRect(x-w/2,top,w,GATE_PASS);}
+// Codex's gatehouses are open arches you see through, so the passage gets no dark fill (it read as a black box);
+// only a soft shadow on the road under the arch
+function gateBack(x,y){const s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s;ctx.save();ctx.globalAlpha=.32;ellipse(x,y+3,w*.62,7,'#000');ctx.restore();}
 function drawGateFronts(){for(const G of gateFronts){const {art,x,y,k}=G,b=propBounds(art),s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s,left=x-((GATE_ART.x0+GATE_ART.x1)/2-b.x)*s,top=y-(GATE_ART.img-b.y)*s+4;
   const grate=levelArt['resetka'];if(k<.98){ctx.save();ctx.beginPath();ctx.rect(x-w/2,y-GATE_PASS-4,w,GATE_PASS+8);ctx.clip();const lift=k*GATE_PASS*.98;
    if(grate){const gb=propBounds(grate),gh=GATE_PASS+24;ctx.drawImage(grate,gb.x,gb.y,gb.w,gb.h,x-w/2-4,y-gh+4-lift,w+8,gh);}
