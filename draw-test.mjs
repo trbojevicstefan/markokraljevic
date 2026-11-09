@@ -26,7 +26,7 @@ api.startChapter(3);Object.assign(S().p,{x:10960});api.pressed.add('KeyE');look(
 api.startChapter(5);safe();look(120);const b=S().boss;b.stage='duel';b.phase=2;for(const m of['throwUp','unarmed','catch','stompPrep','stomp','slashPrep','slash','roar']){b.mode=m;b.timer=.5;if(m==='unarmed')b.drop={x:S().p.x,t:.3};look(3);}
 b.hp=1;b.mode='open';b.timer=2;look(2);b.stage='kostac';b.mode='pin';b.pinT=12;b.vila=true;b.vilaAt=1;b.look=true;S().p.pinned=true;look(6);b.mode='noz';b.timer=1;look(6);
 // a finish, blood, bones
-api.startChapter(0);{const e=S().world.enemies.find(e=>e.type==='sword');Object.assign(S().p,{x:e.x-90,face:1});safe();Object.assign(e,{stun:3,mode:'stun'});look(2);api.pressed.add('KeyU');look(20);step(120*12);look(4);}
+api.startChapter(0);{const e=S().world.enemies.find(e=>e.type==='sword');Object.assign(S().p,{x:e.x-90,face:1});safe();for(const key of['KeyJ','KeyK','ShiftLeft','Space']){api.startChapter(0);const f=S().world.enemies.find(e=>e.type==='sword');Object.assign(S().p,{x:f.x-90,face:1,grounded:true});safe();Object.assign(f,{stun:9,mode:'stun',hp:f.maxHp*.2});for(let n=0;n<40&&!(f.finT>0);n++)look(1);api.pressed.add(key);look(20);}step(120*12);look(4);}
 // every pohod: its road, its puzzle, its champion
 storage.set('marko-kacanik','won');
 for(let i=0;i<api.LEVELS.length;i++){await api.startLevel(i,'day');safe();look(6);const w=S().world;

@@ -127,6 +127,20 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - **Duže borbe sa bosovima.** Svaki bos u pohodima ima oko 2,6 puta više snage. Na 30% ulazi u treću fazu: brži je i češće koristi poseban napad, Bajraktar ponovo podiže barjak, Arapin baca koplja u salvama, a Lovac pušta četiri psa. Musa ima 40% više snage, a srca mu pucaju na trećinama.
 - **Prepreke koje Šarac preskače** su sada slike: kola, balvani, kolje, odron i bureta (`prepreka-*`).
 
+**Dopuna 13**
+- **Četiri dokrajčivanja, jedno za svako dugme na džojstiku:**
+  - X / J: odsecanje glave;
+  - Y / K: smrskavanje odozgo, u zemlju;
+  - B / Shift: Marko ga podigne i baci daleko, i obori one na putu;
+  - A / Space: skok i gaženje, koje ošamuti one oko njega.
+- **Kada se nude:** samo kad je neprijatelj ispod 25% snage, nikad dok je zdrav. Ponuda dođe u otprilike polovini slučajeva, a posle svakog dokrajčivanja sledeće ne može 7 sekundi.
+- **Rvanje na zemlji:**
+  - janičar može da skoči na oborenog Marka sa nožem;
+  - oklopnik ga pritisne i davi;
+  - pas ga obori i ujeda.
+  Brzo udaraj J (X) da se otmeš: tako protivnika odbaciš i udariš kontrom. Dok traje, ostali neprijatelji čekaju.
+- **Palica na džojstiku:** blag nagib je hod, pun nagib je trk. **Vino u hodu** ima svoju animaciju.
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**

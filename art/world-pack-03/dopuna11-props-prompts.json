@@ -1,0 +1,77 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "zag-zvono",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Large bronze church BELL suspended by iron fittings inside a rustic wooden belfry on TWO upright posts and crossbeam, simple small timber shingle roof. Side/front 3-quarter game prop, bell visible and accessible, rope hanging beside post."
+    },
+    {
+      "id": "zag-ogledalo",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Polished ROUND BRONZE MIRROR on a sturdy wooden stand with visible horizontal PIVOT AXLE allowing rotation. Mirror tilted slightly to show its bright warm reflective metal face, no reflected person or scenery."
+    },
+    {
+      "id": "zag-led",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Wide thin slab of translucent PALE BLUE ICE spanning a gap, viewed side-on with a slight visible top plane. Very wide horizontal FLAT WALKABLE upper edge, jagged icicle underside, left and right thick attachment ends but no cliffs or terrain. Semi-transparent frozen center so background can show THROUGH. Intact unbroken slab. Isolated slab only."
+    },
+    {
+      "id": "zag-led-pukao",
+      "pair": "zag-led",
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. EDIT reference ice slab ONLY: same exact canvas, position, outer silhouette, dimensions and top walking surface. Add a branching web of sharp white/blue cracks through the SAME ICE slab, several small fissures, still intact bridge, no falling debris, no scenery. Preserve original transparency and all unchanged pixels as closely as possible."
+    },
+    {
+      "id": "zag-kamen-kola",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Flat low ROUND DARK STONE puzzle disk on ground, shown as a shallow ellipse with visible engraved concentric ring and simple radial markings, weathered charcoal-gray stone, dark INACTIVE unlit grooves. No other symbols or text, no glow."
+    },
+    {
+      "id": "zag-kamen-kola-svetli",
+      "pair": "zag-kamen-kola",
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. EDIT reference stone ONLY: identical disk position, canvas, silhouette, cracks and markings. Make ONLY the engraved circle and radial patterns glow GREEN as activated magic. Restrained green light contained near the grooves; keep dark stone, transparent surroundings, no pedestal/scenery."
+    },
+    {
+      "id": "zag-top",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Old BRONZE CANNON mounted on a rough wooden carriage with TWO large wooden spoked wheels and iron bands. Barrel points RIGHT slightly upward, dark round muzzle, weathered medieval Ottoman artillery game prop. Full carriage and all barrel fit."
+    },
+    {
+      "id": "zag-protivteg",
+      "pair": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Use case: stylized-concept. One isolated production-ready 2D side-scroller WORLD PROP in the exact hand-painted cel-shaded medieval Balkan game style of reference, carved wood, aged bronze/stone, crisp dark outlines and warm earthy colors. Entire object inside image, no text, no UI, no scenery, no floor or cast shadow. TRUE TRANSPARENT background, including open gaps. Rustic suspended wooden BASKET/CRATE full of heavy gray STONES, hanging from taut rope slings meeting a single vertical rope above. Entire hanging counterweight visible, short rope segment cut cleanly at top canvas, no pulley or background structure."
+    }
+  ]
+}

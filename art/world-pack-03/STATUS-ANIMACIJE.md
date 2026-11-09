@@ -170,3 +170,11 @@ DOPUNA-11: dzelat-death — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, 
 DOPUNA-11: djemo-idle — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-idle/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
 
 DOPUNA-11: djemo-run — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-run/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-attack — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-attack/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-throw — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-throw/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-hurt — GOTOVO; 4 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-hurt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: djemo-death — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/djemo-death/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.

@@ -50,11 +50,23 @@ const safe=()=>{const {p}=S();p.invuln=99;p.hp=p.maxHp;};
 {storage.set('marko-skills',JSON.stringify(['bacanje']));api.startChapter(0);const p=S().p;Object.assign(p,{energy:100,face:1});safe();api.keys.add('KeyS');step(10);api.pressed.add('KeyI');step(80);api.keys.clear();
  ok(p.lowThrow,'throw: crouching, Marko throws the mace low');}
 
-// ---- the finish: a stunned Turk, U, and his head flies ----
-{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,y:590,face:1,grounded:true});safe();
- Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(3);ok(e.finT>0,'finish: a stunned foe offers the finish');
- tap('KeyU');ok(S().finisher,'finish: U begins it');step(140);ok(!e.alive&&S().heads.length===1,'finish: the head flies off');
- ok(S().corpses.some(c=>c.headless),'finish: the body falls without it');step(120*4);ok(S().heads[0].rest,'finish: the head comes to rest on the ground');}
+// ---- the finish: only for a foe under a quarter of his strength, not every time, four buttons, four ends ----
+async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
+ Object.assign(e,{stun:30,mode:'stun',hp:e.maxHp*.2});until(()=>e.finT>0,120*30);const opened=e.finT>0;api.pressed.add(key);step(2);const started=!!S().finisher;step(150);return{e,opened,started};}
+{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
+ Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(120*6);ok(!(e.finT>0),'finish: never while the foe is still strong');}
+{const r=await finishWith("KeyJ");ok(r.opened&&r.started&&!r.e.alive&&S().heads.length===1&&S().corpses.some(c=>c.headless),'finish: X / J takes the head');}
+{const r=await finishWith('KeyK');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.crushed),'finish: Y / K smashes him into the ground');}
+{const r=await finishWith('ShiftLeft');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.launched),'finish: B / Shift lifts him and hurls him away');}
+{const r=await finishWith('Space');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.crushed),'finish: A / Space leaps and tramples him');}
+{let opens=0,tries=0;for(let n=0;n<12;n++){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,grounded:true});safe();Object.assign(e,{stun:9,mode:'stun',hp:e.maxHp*.2});step(3);tries++;if(e.finT>0)opens++;}
+ ok(opens<tries,'finish: the chance does not come every time ('+opens+' of '+tries+')');}
+{const r=await finishWith('KeyJ');step(120*4);ok(S().heads.length===1&&S().heads[0].rest,'finish: the head comes to rest on the ground');}
+
+// ---- on the ground: a foe on top of Marko; mash to throw him off ----
+{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true,hp:S().p.maxHp,invuln:0});
+ for(let n=0;n<20&&!e.grappling;n++){S().p.down=1;S().p.downRolled=false;step(2);S().p.down=0;step(1);}ok(e.grappling&&S().p.pinned,'grapple: knocked down by a janissary, he jumps on Marko with his knife');
+ const hp0=S().p.hp;step(120);ok(S().p.hp<hp0,'grapple: held down, Marko bleeds');for(let i=0;i<40;i++){tap('KeyJ');step(4);}step(120);ok(!S().p.pinned&&!e.grappling&&(e.hp<e.maxHp||!e.alive),'grapple: mashing J throws him off and strikes back');}
 
 // ---- blood lands on a plank, not in the air; corpses stay and turn to bones ----
 {api.startChapter(0);const w=S().world,q=w.platforms.find(q=>q.y<500);S().particles.length=0;S().decals.length=0;
