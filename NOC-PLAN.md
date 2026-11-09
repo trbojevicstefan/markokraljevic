@@ -85,7 +85,7 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
   - poluga sa vremenom, pa klizanje (S u trku) ispod spuštene rešetke;
   - napukao pod i ključ u podrumu;
   - šut (S+J) gura neprijatelja na kolje.
-- [ ] **C2 Tok.**
+- [x] **C2 Tok.**
   - Headless bot prolazi svaki pohod do cilja bez zaglavljivanja.
   - Svaka zagonetka ima jasan natpis ili savet.
 
@@ -99,8 +99,8 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 - [ ] **D5** Ugradi sve što stigne (`sync-anims.py`, `sync-world.py`, `build-sprite-rig.py`).
 
 ## E. Ispolirani detalji
-- [ ] **E1** Prašina i zvuk pri doskoku, senke, trzaj kamere — ništa preterano.
-- [ ] **E2** Natpisi se ne preklapaju.
+- [x] **E1** Prašina i zvuk pri doskoku, senke, trzaj kamere — ništa preterano.
+- [x] **E2** Natpisi se ne preklapaju.
 - [ ] **E3** Jutarnji izveštaj (poslednja iteracija): šta je urađeno, šta čeka, i snimci.
 
 ## Dnevnik
@@ -111,3 +111,4 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 | 3/8 | 02:04–02:20 | Pozadine: svaki sloj se na spoju tila meko pretapa (12%), nema više naglih promena boje neba; seam-audit.py proverava svih 195 slojeva. Raspored: propovi stoje celi na svom tlu, ništa ih ne preseca (daske, kule, lestve), drže se dalje od zamki; mali propovi smeju i u sobe pa je gustina 19–36 po pohodu (bila 6–14); layoutAudit() u ?dev režimu čist za svih 13 pohoda. Poruka „Kapija se otvorila“ samo kad je Marko blizu. Codex i dalje bez kredita. | vidi git log |
 | 4/8 | 03:04–03:35 | Zagonetke: nizak zid s procepom pri dnu (pećina, rudnik, podrum, ruševine, manastir, klisura) — prolazi se samo čučeći ili klizanjem, ispod zida Marko ostaje čučeći; kolje sada ranjava neprijatelja koji padne na njega bačen, šutnut ili ošamućen (šut na kolje). Ritam: provera recepata (nikad 3 zamke zaredom, odmor ili nagrada bar svakih 6 soba), ispravljeni klisura, prevoj, pećina, ruševine; ciljevi traže slobodno mesto do 2600 px (opet 19 ciljeva). Codex bez kredita. 132 mehaničke provere. | vidi git log |
 | 5/8 | 04:04–04:40 | Kapije: Codex-ova bočna kamena kapija ugrađena tako da se crta ISPRED Marka — Marko ulazi između stubova, iza njega je taman tunel, rešetka (resetka) se diže u kulu kad se kapija otvori; staje 80 px ispred prolaza. Sve kapije (i na polugu) to koriste dok Codex ne nacrta drvenu i rudničku. U prolazu kapije nema više sanduka i ćupova (provera u levels-test). Codex bez kredita. | vidi git log |
+| 6/8 | 05:04–05:35 | Tok: road-test.mjs — bot prolazi svih 13 pohoda do cilja (17 s, deo npm test); staje samo na namernim zagonetkama (lift, okno za skok od zida, rala), nijedno zaglavljivanje. Doskok: prašina, zvuk i blago drmanje kamere rastu sa visinom pada. Natpisi u istom kadru se više ne preklapaju (slažu se naviše). 134 mehaničke provere. Codex bez kredita. | 7e933e9 |
