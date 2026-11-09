@@ -186,3 +186,12 @@ Novi PNG 1024x1024 sa drvenom podgradom, stenom i bocnim mehanizmom podizanja; o
 
 ## DOPUNA-3 - ulaz-riznica-otvoren GOTOVO
 Novi PNG 1024x1024: vrata otvorena ka unutra, baklje i blago u osvetljenoj odaji; spoljasnja pozadina providna. Portal-anchors.json: passX0=380, passX1=640, archY=612, orientation=front, transparentPassage=false. Koordinate oznacavaju ulaz ka unutrasnjosti ekrana, a ne bocni providan tunel. Vizuelno proveren kompozit na tamnoj pozadini. Katalog azuriran. Trazene otvorene varijante drvo/rudnik/riznica isporucene; postojece slike i kod igre nisu menjani.
+
+## DOPUNA-6 - rukopis-zastavica GOTOVO
+PNG 1600x240, providna pozadina. Sacuvan u rukopis/rukopis-zastavica.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-okvir-inicijala GOTOVO
+PNG 512x512, providna pozadina. Sacuvan u rukopis/rukopis-okvir-inicijala.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-6 - rukopis-inicijal-m GOTOVO
+PNG 512x640, providna pozadina. Sacuvan u rukopis/rukopis-inicijal-m.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.

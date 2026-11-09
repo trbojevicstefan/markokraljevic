@@ -1,5 +1,7 @@
 import{W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}from'./world.js';
 const $=id=>document.getElementById(id),canvas=$('game');
+const tr=s=>globalThis.markoI18n?globalThis.markoI18n.tr(s):s;
+var mmReady=false;
 // The camera shows the world 15% closer; ground sits at y=612 on a 720p screen.
 const ZOOM=1.15,VIEW_W=W/ZOOM,VIEW_H=H/ZOOM,GROUND=590,CAM_Y0=GROUND-612/ZOOM;
 const hasDom=typeof document.createElement==='function';
@@ -52,8 +54,8 @@ function speak(text,duration=7){$('dialogue-text').textContent=text;$('dialogue'
 // kind 'dust' stays in the painted layer; everything else becomes glowing 3D sparks.
 function burst(x,y,color,count=14,speed=150,kind='glow'){if(kind!=='dust'&&stage){stage.burst(x,y,color,count,speed);return;}for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=Math.random()*speed;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(kind==='dust'?speed*.35:0),life:.4+Math.random()*.5,max:1,color,r:(kind==='dust'?3:1)+Math.random()*3,kind});}}
 function dust(x,y,count=6,spread=1){for(let i=0;i<count;i++)particles.push({x:x+(Math.random()-.5)*20*spread,y:y-2,vx:(Math.random()-.5)*90*spread,vy:-20-Math.random()*45,life:.45+Math.random()*.4,max:.85,color:'#cdb68a',r:4+Math.random()*6,kind:'dust'});}
-function label(text,x,y,color='#f6d895'){floating.push({text,x,y,life:1.1,color});}
-function hideModals(){['menu','pause-menu','settings','lore','death','victory','levels','level-done'].forEach(id=>$(id).hidden=true);}
+function label(text,x,y,color='#f6d895'){floating.push({text:tr(text),x,y,life:1.1,color});}
+function hideModals(){['menu','pause-menu','settings','lore','death','victory','levels','level-done','knjiga','riznica'].forEach(id=>$(id).hidden=true);}
 function newPlayer(x=150){return{x,y:590,w:34,h:112,vx:0,vy:0,face:1,hp:120,maxHp:120,energy:100,wine:3,buff:0,invuln:0,attack:0,attackKind:'light',attackId:0,cooldown:0,parry:0,parryCooldown:0,dash:0,dashCooldown:0,grounded:true,coyote:.12,jumpBuffer:0,airLift:false,anim:0,gait:0,landing:0,mountTime:0,hurt:0,drink:0,castLock:0,crouch:0,crouching:false,blocking:false,blockTime:0,guard:100,guardBreak:0,rage:0,superImpact:false,spin:0,spinTick:0,spinTurns:0,climb:null,drop:0,throwT:0,wineMax:3,power:1,coins:0,down:0,comboWindow:0,wallJumpT:0,plungeT:0,hurtLock:0,wall:0,wallSide:0,cd:{throw:0,uvis:0,juris:0,plunge:0}};}
 function newBoss(){return{x:29100,y:590,w:50,h:100,hp:3120,maxHp:3120,phase:1,mode:'idle',timer:1.5,face:-1,flash:0,stun:0,alive:true,hitIds:new Set(),attack:0,attackDone:false};}
 function start(resume=false){showControls();level=null;perks=new Set();coins=[];chunks=[];thrown=null;levelIndex=-1;stage?.setLevel?.(null);endSequence=null;initAudio();world=makeWorld();defenses={0:{active:false,t:0,wave:0,done:false},1:{active:false,t:0,wave:0,done:false},4:{active:false,t:0,wave:0,done:false}};p=newPlayer();boss=newBoss();boss.hp=boss.maxHp=Math.round(3120*Math.max(1,D().hp*.92));hardenFoes(world.enemies);zone=0;checkpoint=0;camera=0;camY=CAM_Y0;elapsed=0;deaths=0;kills=0;relics=0;horseMounted=false;horseCompleted=false;horseX=10960;particles=[];arrows=[];floating=[];corpses=[];ghosts=[];if(resume&&saveState)restore(saveState);hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;speak(chapters[zone].message);keys.clear();pressed.clear();pendingMagic=null;fairy={x:p.x-55,y:p.y-125,age:99,duration:3.2,targetX:p.x,targetY:p.y-80,kind:"hover"};updateHud();}
@@ -156,7 +158,7 @@ function poly(points,fill,stroke,g=ctx){g.beginPath();points.forEach(([x,y],i)=>
 function ellipse(x,y,rx,ry,color,g=ctx){g.beginPath();g.ellipse(x,y,Math.max(.1,rx),Math.max(.1,ry),0,0,Math.PI*2);g.fillStyle=color;g.fill();}
 function line(x,y,x2,y2,color,width=2,g=ctx){g.beginPath();g.moveTo(x,y);g.lineTo(x2,y2);g.strokeStyle=color;g.lineWidth=width;g.stroke();}
 function halo(x,y,r,color,alpha=1){if(r<=0||alpha<=0)return;const g=gctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'rgba(0,0,0,0)');gctx.globalAlpha=alpha;gctx.fillStyle=g;gctx.fillRect(x-r,y-r,r*2,r*2);gctx.globalAlpha=1;}
-function textLabel(text,x,y,{font='bold 15px Georgia',color='#fff0c8',glow=null,alpha=1}={}){ctx.save();ctx.globalAlpha=alpha;ctx.font=font;if(ctx.measureText)y=placeLabel(x,y,ctx.measureText(text).width,+(font.match(/(\d+)px/)?.[1]||15));ctx.textAlign='center';ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(12,10,8,.75)';ctx.strokeText(text,x,y);ctx.fillStyle=color;ctx.fillText(text,x,y);ctx.restore();if(glow){gctx.save();gctx.globalAlpha=alpha*.55;gctx.font=font;gctx.textAlign='center';gctx.fillStyle=glow;gctx.fillText(text,x,y);gctx.restore();}}
+function textLabel(text,x,y,{font='bold 15px Georgia',color='#fff0c8',glow=null,alpha=1}={}){text=tr(text);ctx.save();ctx.globalAlpha=alpha;ctx.font=font;if(ctx.measureText)y=placeLabel(x,y,ctx.measureText(text).width,+(font.match(/(\d+)px/)?.[1]||15));ctx.textAlign='center';ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(12,10,8,.75)';ctx.strokeText(text,x,y);ctx.fillStyle=color;ctx.fillText(text,x,y);ctx.restore();if(glow){gctx.save();gctx.globalAlpha=alpha*.55;gctx.font=font;gctx.textAlign='center';gctx.fillStyle=glow;gctx.fillText(text,x,y);gctx.restore();}}
 // Draws one rig frame with its sole on (x,y). Silhouettes (flash, coloured glow rims) are built on a scratch canvas.
 function silhouette(im,f,w,h,color,outline){const pad=outline?Math.ceil(outline)+2:0,w2=w+pad*2,h2=h+pad*2;if(scratch.width<w2||scratch.height<h2){scratch.width=Math.max(scratch.width,w2);scratch.height=Math.max(scratch.height,h2);}sctx.setTransform(1,0,0,1,0,0);sctx.globalAlpha=1;sctx.globalCompositeOperation='source-over';sctx.clearRect(0,0,w2,h2);if(outline){for(let i=0;i<8;i++){const a=i*Math.PI/4;sctx.drawImage(im,f[0],f[1],f[2],f[3],pad+Math.cos(a)*outline,pad+Math.sin(a)*outline,w,h);}}else sctx.drawImage(im,f[0],f[1],f[2],f[3],0,0,w,h);sctx.globalCompositeOperation='source-in';sctx.fillStyle=color;sctx.fillRect(0,0,w2,h2);if(outline){sctx.globalCompositeOperation='destination-out';sctx.drawImage(im,f[0],f[1],f[2],f[3],pad,pad,w,h);}sctx.globalCompositeOperation='source-over';return{pad,w2,h2};}
 function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name],im=r&&rigImages[r.image];if(!im)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)],k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;const dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k;if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{g.drawImage(im,f[0],f[1],f[2],f[3],dx,dy,dw,dh);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
@@ -281,7 +283,7 @@ function draw(dt=1/60){
  if(screenCtx){screenCtx.setTransform(1,0,0,1,0,0);if(assets.gorge){const drawW=W+260,drawH=drawW*1024/1536;screenCtx.drawImage(assets.gorge,-130-Math.min(1,camera/29900)*180,-80,drawW,drawH);}else{screenCtx.fillStyle='#496f6b';screenCtx.fillRect(0,0,W,H);}screenCtx.drawImage(layer,0,0,W,H);screenCtx.globalCompositeOperation='lighter';screenCtx.drawImage(glowLayer,0,0,W,H);screenCtx.globalCompositeOperation='source-over';}
 }
 function pause(){if(mode==='play'){showControls();mode='pause';$('pause-menu').hidden=false;keys.clear();}else if(mode==='pause'){hideModals();mode='play';}}
-document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if(!$('settings').hidden){closeSettings();return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
+document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
 document.querySelectorAll('[data-key]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);keys.add(b.dataset.key);pressed.add(b.dataset.key);});for(const ev of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>keys.delete(b.dataset.key));});
 $('start').onclick=()=>{saveState=null;try{localStorage.removeItem('marko-save');}catch{}start();save();};$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level)return startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
 function mainMenu(){menuLedger();level=null;levelIndex=-1;stage?.setLevel?.(null);endSequence=null;corpses=[];mode='menu';hideModals();$('menu').hidden=false;$('hud').hidden=true;$('controls').hidden=true;$('touch').hidden=true;$('dialogue').hidden=true;$('boss-hud').hidden=true;zone=0;camera=0;keys.clear();}
@@ -450,9 +452,9 @@ function completeLevel(){if(mode!=='play')return;mode='levelDone';const done=new
  if(p.letters===31){try{const d=new Set(JSON.parse(localStorage.getItem('marko-slova')||'[]'));d.add(level.id);localStorage.setItem('marko-slova',JSON.stringify([...d]));}catch{}}const learned=SKILLS.find(k=>k.land===level.id),fresh=learned&&grantSkill(learned.id);$('level-skill').innerHTML=fresh?`<p class="eyebrow">NOVA VEŠTINA</p><h3>${fresh.name}</h3><p><kbd>${fresh.key}</kbd> ${fresh.text}</p>`:learned?`<p class="eyebrow">VEŠTINA IZ OVOG POHODA</p><h3>${learned.name}</h3>`:'';$('level-skill').hidden=!learned;{const st=levelStars(level);$('level-stars').innerHTML=[st.done,st.slova,st.cudo].filter(v=>v!==null).map((on,k)=>`<i class="${on?'':'off'}" style="animation-delay:${.25+k*.3}s">★</i>`).join('');}
  $('level-stats').innerHTML=`<div><b>${[...SLOVA].map((c,i)=>(p.letters||0)&(1<<i)?c:'·').join(' ')}</b>Slova</div><div><b>${formatTime(elapsed)}</b>Vreme</div><div><b>×${streak.best}</b>Najduži niz</div><div><b>${starText(level)}</b>Zvezde</div><div><b>${kills}</b>Poraženi</div><div><b>${p.coins||0}</b>Dukati</div><div><b>${p.cudoFound?'✦':'—'}</b>${p.cudoFound?CUDA.find(c=>c.id===p.cudoFound)?.name:'Čudo nije nađeno'}</div>`;
  const next=LEVELS[levelIndex+1];$('level-next').hidden=!next;if(next)$('level-next').textContent=`Sledeći pohod: ${next.name} →`;$('level-done').hidden=false;}
-$('levels-open').onclick=openLevels;$('menu-pohodi')&&($('menu-pohodi').onclick=openLevels);$('levels-close').onclick=()=>$('levels').hidden=true;$('victory-next').onclick=()=>startLevel(0);
+$('levels-open')&&($('levels-open').onclick=openLevels);$('menu-pohodi')&&($('menu-pohodi').onclick=openLevels);$('levels-close').onclick=()=>$('levels').hidden=true;$('victory-next').onclick=()=>startLevel(0);
 $('level-next').onclick=()=>startLevel(levelIndex+1);$('level-replay').onclick=()=>startLevel(levelIndex);$('level-menu').onclick=mainMenu;
-$('levels-open').hidden=!LEVELS.length;$('victory-next').hidden=!LEVELS.length;
+if($('levels-open'))$('levels-open').hidden=!LEVELS.length;$('victory-next').hidden=!LEVELS.length;
 
 function isFloor(q){return level?!!q.ground:q.y>=585;}
 
@@ -616,7 +618,7 @@ function openRiznica(){const have=ownedCuda(),s=smithLevels();
  $('cuda-grid').innerHTML=CUDA.map(c=>`<div class="cudo ${have.has(c.id)?'have':''}"><img src="assets/world/cudo-${c.id}.webp" alt="" onerror="this.style.visibility='hidden'"><b>${have.has(c.id)?c.name:'???'}</b><small>${have.has(c.id)?`„${c.song}” · ${c.perk}`:`Skriveno: ${c.land==='kacanik'?'pobedi Musu Kesedžiju':'pohod '+(LEVELS.find(L=>L.id===c.land)?.name||c.land)}`}</small></div>`).join('');
  {const hs=storedSet('marko-srca'),zs=storedSet('marko-zapisi'),nm=id=>LEVELS.find(L=>L.id===id)?.name||id;$('srca').textContent=`Delovi srca: ${hs.size}/${Object.keys(ZAPISI).length} · cela srca: ${Math.floor(hs.size/4)} (+${Math.floor(hs.size/4)*20} zdravlja u pohodima)`;$('zapisi').innerHTML=Object.entries(ZAPISI).map(([id,t])=>`<div class="${zs.has(id)?'have':''}"><b>${zs.has(id)?'Zapis · '+nm(id):'🔒 Zapis'}</b><small>${zs.has(id)?t:'Skriven u pohodu „'+nm(id)+'”'}</small></div>`).join('');}
  skillCache=null;const sk=ownedSkills();$('vestine').innerHTML=SKILLS.map(k=>`<div class="${sk.has(k.id)?'have':''}"><b>${sk.has(k.id)?k.name:'🔒 '+k.name}</b><small>${sk.has(k.id)?`<kbd>${k.key}</kbd> ${k.text}`:'Posle pohoda „'+(LEVELS.find(L=>L.id===k.land)?.name||k.land)+'”'}</small></div>`).join('');
- {const b=book();$('dusmani').innerHTML=Object.entries(FOE_BOOK).map(([t,f])=>{const e=b[t];return`<div class="${e?'have':''}"><b>${e?f.name:'???'}</b><small>${e?`<i>Jak:</i> ${f.strong}<br><i>Slab:</i> ${f.weak}<br>Poraženo: ${e.kills}`:'Još ga nisi sreo.'}</small></div>`;}).join('');}
+ {const b=book(),n=Object.keys(FOE_BOOK).filter(t=>b[t]).length;$('dusmani').innerHTML=`<p>Dušmani koje je Marko sreo na drumu: snaga, slabost i broj savladanih.</p><button class="secondary" id="riznica-knjiga">Otvori knjigu dušmana · ${n}/${Object.keys(FOE_BOOK).length}</button>`;$('riznica-knjiga').onclick=()=>openBook();}
  $('kombinacije').innerHTML=[['J J J','Junački niz','treći udarac obara'],['J J K','Lomilac','razbija štit i oklop, odbacuje'],['S+K, Space','Aperkat i skok za njim','jak udarac odozdo diže Turčina u vazduh, Marko skače za njim'],['S+J','Šut nogom','obija štit u stranu, odguruje (i sa ivice)'],['S u trku','Klizanje','podseca neprijatelje'],['u skoku J J J','Žongliranje','drži ga gore; treći ga zakuca o zemlju'],['u skoku K','Tresak','iz vazduha u zemlju, udarni talas'],['skok, J J J','Vazdušni niz','držiš se u vazduhu dok udaraš'],['SHIFT → J','Juriš','kroz red neprijatelja'],['S+J u skoku','Udar nadole','odskok od kolja i neprijatelja'],['drži K','Pun zamah','tri stepena, ★ kad je pun']].map(([k,n,t])=>`<div><kbd>${k}</kbd><b>${n}</b><small>${t}</small></div>`).join('');
  $('purse').textContent=`Dukati: ${bank()}`;
  $('smith').innerHTML=SMITH.map(u=>{const lv=s[u.id]||0,cost=u.cost[lv];return`<button data-up="${u.id}" ${cost===undefined||bank()<cost?'disabled':''}><span>${u.name} · ${u.text}<small>${'■'.repeat(lv)}${'□'.repeat(u.cost.length-lv)}</small></span><b>${cost===undefined?'NAJBOLJE':cost+' ⛁'}</b></button>`;}).join('');
@@ -991,9 +993,10 @@ function mapDetail(i){const L=LEVELS[i];if(!L||!$('map-detail'))return;const k=S
 // a title over the road when a pohod or a chapter begins
 let titleTimer=null;function showTitle(small,big,line=''){const el=$('title-card');if(!el||!hasDom)return;el.innerHTML=`<small>${small}</small><h1>${big}</h1><i></i>${line?`<p>${line}</p>`:''}`;el.hidden=false;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');clearTimeout(titleTimer);titleTimer=setTimeout(()=>{el.hidden=true;},3300);sfx('horn_call',{gain:.45});}
 // the ledger under the menu: how far the journey has gone
-function menuLedger(){const el=$('menu-ledger');if(!el)return;const done=LEVELS.filter(L=>levelStars(L).done).length;el.innerHTML=`<div><b>${done}/${LEVELS.length}</b><small>POHODI</small></div><div><b>${ownedCuda().size}/${CUDA.length}</b><small>ČUDA</small></div><div><b>${(skillCache=null,ownedSkills().size)}/${SKILLS.length}</b><small>VEŠTINE</small></div><div><b>${bank()}</b><small>DUKATI</small></div>`;}
+function menuLedger(){const el=$('menu-ledger');if(!el)return;const done=LEVELS.filter(L=>levelStars(L).done).length;el.innerHTML=`<button data-go="map"><b>${done}/${LEVELS.length}</b><small>POHODI</small></button><button data-go="riznica"><b>${ownedCuda().size}/${CUDA.length}</b><small>ČUDA</small></button><button data-go="riznica"><b>${(skillCache=null,ownedSkills().size)}/${SKILLS.length}</b><small>VEŠTINE</small></button><button data-go="riznica"><b>${bank()}</b><small>DUKATI</small></button>`;
+ el.querySelectorAll?.('[data-go]').forEach(b=>b.onclick=()=>b.dataset.go==='map'?openLevels():openRiznica());menuButtons();menuMarkoStart();}
 // embers rising over the menu
-function menuEmbers(){const box=document.querySelector?.('#menu .embers');if(!box||box.childElementCount)return;let html='';for(let i=0;i<28;i++){const left=Math.random()*100,dur=7+Math.random()*9,delay=-Math.random()*dur,dx=(Math.random()-.3)*160;html+=`<i style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s;--dx:${dx}px"></i>`;}box.innerHTML=html;}
+function menuEmbers(){fairyDust();const box=document.querySelector?.('#menu .embers');if(!box||box.childElementCount)return;let html='';for(let i=0;i<28;i++){const left=Math.random()*100,dur=7+Math.random()*9,delay=-Math.random()*dur,dx=(Math.random()-.3)*160;html+=`<i style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s;--dx:${dx}px"></i>`;}box.innerHTML=html;}
 // every button answers with a soft sound
 if(hasDom){document.addEventListener('pointerover',e=>{const b=e.target.closest?.('button');if(b&&!b.disabled&&b!==document.__lastHover){document.__lastHover=b;sfx('cloth',{gain:.12,rate:1.9});}});document.addEventListener('click',e=>{const b=e.target.closest?.('button');if(b&&!b.disabled)sfx('ring',{gain:.18,rate:1.7});});}
 menuLedger();menuEmbers();
@@ -1081,7 +1084,7 @@ const FOE_BOOK={
  tufekdzija:{name:'Tufekdžija',strong:'Pucanj iz tufeka razbija gard.',weak:'Posle pucnja dugo puni pušku: tada je bez odbrane.'}};
 let foeBook=null;function book(){if(foeBook)return foeBook;try{foeBook=JSON.parse(localStorage.getItem('marko-dusmani')||'{}');}catch{foeBook={};}return foeBook;}
 function saveBook(){try{localStorage.setItem('marko-dusmani',JSON.stringify(foeBook));}catch{}}
-function bookSee(e){const b=book(),t=e.type;if(!FOE_BOOK[t]||e.champion)return;if(!b[t]){b[t]={seen:1,kills:0};saveBook();if(hintT<=0){hintT=7;speak(`${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}`,6);}}}
+function bookSee(e){const b=book(),t=e.type;if(!FOE_BOOK[t]||e.champion)return;if(!b[t]){b[t]={seen:1,kills:0};saveBook();toast(`Nova stranica u knjizi dušmana: ${FOE_BOOK[t].name}`,3);if(hintT<=0){hintT=7;speak(`${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}`,6);}}}
 function bookKill(e){const b=book();if(!FOE_BOOK[e.type])return;b[e.type]??={seen:1,kills:0};b[e.type].kills++;saveBook();}
 function weakHit(text){label(text,p.x+p.face*60,p.y-175,'#ffe39a');sfx('ring',{gain:.6,rate:1.3});hitstop=Math.max(hitstop,.06);}
 // called from hitEnemy before damage: returns a damage multiplier, or 0 when the blow is turned aside
@@ -1393,3 +1396,156 @@ function placeLabel(x,y,w,h){if(labelSerial!==drawSerial){labelSerial=drawSerial
 // ---------- calm foe idles: the frames that follow each other smoothly, to and fro, at 5 fps ----------
 const FOE_IDLE={sword:[0,3,5,4,5,3],shield:[0,5,4,3,1,3,4,5],archer:[0,1,3,4,5,4,3,1],akindzija:[3,1,0,4,5,4,0,1],oklopnik:[0,5,4,1,4,5],palikuca:[2,1,0,5,3,4,3,5,0,1],kopljanik:[0,5,4,1,3,2,3,1,4,5],tufekdzija:[3,1,4,5,4,1],musa:[0,3,4,5,4,3]};
 function idleFrame(type,id){const seq=FOE_IDLE[type];if(seq)return seq[Math.floor(time*5+id*1.7)%seq.length];const n=rig?.[type+'-idle']?.frames.length||6;return Math.floor(time*6+id*1.7)%n;}
+
+// ================= the main menu: what to play next, keys and the stick, fairy dust =================
+// Returning players get "continue" as the main button: the story where they stopped, or the next pohod.
+function menuButtons(){const c=$('continue'),s=$('start');if(!c||!s||!hasDom)return;const won=kacanikWon(),story=!!saveState&&!won;let i=-1;if(won)i=LEVELS.findIndex((L,k)=>levelOpen(k)&&!levelStars(L).done);
+ c.hidden=!(story||i>=0);
+ if(story){c.innerHTML='Nastavi legendu <span>→</span>';c.onclick=()=>start(true);}
+ else if(i>=0){c.innerHTML=`Nastavi pohod <span>→</span><small>Pohod ${i+1} · ${LEVELS[i].name}</small>`;c.onclick=()=>startLevel(i);}
+ c.className=c.hidden?'secondary':'primary';s.className=c.hidden?'primary':'secondary';
+ s.innerHTML=c.hidden?(won?'Ponovo ispevaj legendu <span>→</span>':'Započni legendu <span>→</span>'):(story?'Nova legenda':'Ponovo ispevaj legendu');}
+function fairyDust(){const box=document.querySelector?.('#menu .fairy-dust');if(!box||box.childElementCount)return;let html='';for(let i=0;i<18;i++){const d=3+Math.random()*4;html+=`<i style="left:${Math.random()*100}%;top:${Math.random()*40}%;animation-duration:${d}s;animation-delay:${-Math.random()*d}s;--dx:${-20-Math.random()*60}px"></i>`;}box.innerHTML=html;}
+if(hasDom){
+ $('menu-riznica')&&($('menu-riznica').onclick=openRiznica);$('menu-knjiga')&&($('menu-knjiga').onclick=()=>openBook());$('pause-knjiga')&&($('pause-knjiga').onclick=()=>openBook());
+ // arrows (or W/S) move between buttons in any menu, Enter presses; in the book, left and right turn the page
+ document.addEventListener('keydown',e=>{if(mode==='play')return;const tag=document.activeElement?.tagName;if(tag==='INPUT'||tag==='SELECT')return;
+  if(!$('knjiga').hidden&&['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)){e.preventDefault();bookGo(bookAt+(e.code==='ArrowLeft'||e.code==='KeyA'?-1:1));return;}
+  if(['ArrowUp','ArrowDown','KeyW','KeyS'].includes(e.code)){e.preventDefault();padMenu(0,e.code==='ArrowUp'||e.code==='KeyW'?-1:1,false,false);return;}
+  if(e.code==='Enter'&&document.activeElement?.tagName!=='BUTTON'){e.preventDefault();padMenu(0,0,true,false);}});
+ globalThis.markoI18n?.onLang?.(()=>{if(!$('knjiga').hidden)bookRender();});
+}
+
+// ================= the book of foes: an open book, each foe alive on its page =================
+// Left page: the foe moves through his clips (rest, walk, attack, special, hit, in the air, fall); right page: who he is,
+// his strength and weakness, and a tally of how many Marko has put down. Unmet foes are ink silhouettes.
+const BOOK_PAGES=[
+ {t:'sword',role:'Pešak',about:'Pešadija carske vojske. Ide u paru, sabljom seče brzo i nisko.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'shield',role:'Pešak sa štitom',about:'Drži veliki štit kao zid i iza njega čeka da pogrešiš.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Štit izbijen','guardbreak'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'archer',role:'Strelac sa kule',about:'Krije se na kulama i stražarnicama; strela mu stiže pre nego što ga vidiš.',poses:[['U miru','idle'],['U pokretu','run'],['Gađa','shoot'],['Gađa nadole','shoot-down'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'akindzija',role:'Laki konjanik',about:'Laki konjanik i pljačkaš pograničja. Ne stoji u mestu ni trenutka.',poses:[['U miru','idle'],['U pokretu','run'],['Juriša','charge'],['Izmiče','backstep'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'oklopnik',role:'Teški pešak',about:'Okovan u gvožđe od glave do pete. Spor je, ali udarac mu ruši gard.',poses:[['U miru','idle'],['U pokretu','walk'],['Juriša','rush'],['Udar o zemlju','slam'],['Oklop puca','armorbreak'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'palikuca',role:'Paljevina',about:'Nosi baklju i lonac sa uljem. Gde prođe, ostaje garište.',poses:[['U miru','idle'],['U pokretu','run'],['Baklja','torch'],['Bljuje vatru','fire'],['Gori','burn'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'kopljanik',role:'Kopljanik iz prve linije',about:'Koplje mu je duže od tvog topuza; drži te tamo gde on hoće.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'pas',role:'Zver',about:'Pušten sa lanca ispred odreda. Laje, pa skače pravo za grlo.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'tufekdzija',role:'Puškar',about:'Nosi dugi tufek; pucanj čuješ pre nego što ga osetiš.',poses:[['U miru','idle'],['U pokretu','run'],['Gađa','shoot'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
+ {t:'musa',boss:true,name:'Musa Kesedžija',role:'Gospodar prolaza',about:'Odmetnik koji je zatvorio drumove i primorje. U grudima mu kucaju tri srca.',strong:'Težak udarac, skok i juriš; svaki treći napad je poseban.',weak:'Posle napada ostaje otvoren. Odbij (L) i udri nizom; Ravijojlin bljesak (E) otvara gard.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['Pada','death']]},
+].map(pg=>({...pg,poses:pg.poses.filter(([,c])=>rig?.[`${pg.t}-${c}`])})).filter(pg=>pg.poses.length);
+const BOOK_ONCE=new Set(['death','launch','armorbreak','guardbreak','backstep','hurt']),BOOK_POSE_TIME=2.8;
+// Two books share one binding: the Book of Foes (a spread per foe) and the Book of Legends (a spread per legend,
+// then the song of Marko and Musa — in Serbian it runs on across both pages, in English it faces its translation).
+let bookKind='dusmani',bookSpreads=[],bookAt=0,bookPose=0,bookAuto=true,bookPoseT=0,bookRaf=0,bookLast=0,bookBusy=null;
+const uiLang=()=>globalThis.markoI18n?.getLang?.()||'sr';
+const ZASTAVICA='<div class="zastavica" aria-hidden="true"></div>';
+const BOOK_COVER={dusmani:'КЊИГА<br>ДУШМАНА',legende:'КЊИГА<br>ЛЕГЕНДИ'};
+function bookKnown(pg){return pg.boss?kacanikWon():!!book()[pg.t];}
+function bookInfo(pg){const f=FOE_BOOK[pg.t]||{};return{name:pg.name||f.name||pg.t,strong:pg.strong||f.strong||'',weak:pg.weak||f.weak||'',kills:pg.boss?(kacanikWon()?1:0):(book()[pg.t]?.kills||0)};}
+function tallyMarks(n){const shown=Math.min(n,50),groups=Math.ceil(shown/5);let html='';
+ for(let g=0;g<groups;g++){const k=Math.min(5,shown-g*5);let lines='';for(let j=0;j<Math.min(k,4);j++)lines+=`<line x1="${4+j*6.5}" y1="3" x2="${3+j*6.5}" y2="25" style="animation-delay:${.35+(g*5+j)*.05}s"/>`;
+  if(k===5)lines+=`<line x1="-1" y1="21" x2="28" y2="7" style="animation-delay:${.35+(g*5+4)*.05}s"/>`;html+=`<svg viewBox="-3 0 34 28" class="mark" aria-hidden="true">${lines}</svg>`;}
+ return html+(n>50?`<b class="more">+${n-50}</b>`:'');}
+function foeSpread(i){const pg=BOOK_PAGES[i],known=bookKnown(pg),f=bookInfo(pg),N=BOOK_PAGES.length;
+ const chips=pg.poses.map(([lbl],k)=>`<button class="pose${k===bookPose?' on':''}" data-pose="${k}" ${known?'':'disabled'}>${lbl}</button>`).join('');
+ const left=`${ZASTAVICA}<p class="book-eyebrow">KNJIGA DUŠMANA</p><div class="foe-stage${known?'':' unknown'}"><canvas class="foe-canvas" width="640" height="440" data-page="${i}" data-pose="${bookPose}"></canvas></div>
+  <div class="pose-chips">${chips}</div><h3 class="foe-name">${known?f.name:'???'}</h3><p class="foe-role">${known?pg.role:'???'}</p>`;
+ const right=known?`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><h4>Ko je on</h4><p class="drop">${pg.about}</p><h4>Snaga</h4><p>${f.strong}</p><h4>Slabost</h4><p class="weak">${f.weak}</p>
+  <div class="tally"><h4>Savladano</h4><div class="marks">${f.kills?tallyMarks(f.kills):'<span class="none">Nijedan</span>'}</div><b class="count">${f.kills}</b></div>${f.kills?'<div class="seal" aria-hidden="true"><span>✦</span></div>':''}`
+  :`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div class="blank"><p>${pg.boss?'Pobedi Musu da otvoriš ovu stranicu.':'Stranica je prazna. Ovog dušmana još nisi sreo na drumu.'}</p><span class="blot" aria-hidden="true"></span></div>`;
+ return{left,right};}
+const VERSES=16;
+function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en=uiLang()==='en',out=[];
+ for(const c of D.CHAPTERS){const t=c[en?'en':'sr'];out.push({group:c.id,tab:{img:c.img,label:t.title},
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature"><img src="${c.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
+  right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="drop ms-text">${t.text}</p><p class="ms-end" aria-hidden="true">✠ ✠ ✠</p></div>`});}
+ const S=D.SONG,T=S[en?'en':'sr'],sr=S.lines.sr,tr2=S.lines.en,n=sr.length;
+ const verses=(arr,a,b)=>`<ol class="verses" data-notr>${arr.slice(a,b).map((l,k)=>`<li data-n="${a+k}"${reader?.line===a+k?' class="now"':''}><i>${(a+k+1)%5===0?a+k+1:''}</i>${l}</li>`).join('')}</ol>`;
+ const readBar='<div class="read-bar"><button data-read="sr"><b>▶</b>Čitaj na srpskom</button><button data-read="en"><b>▶</b>Čitaj na engleskom</button></div>';
+ out.push({group:'pesma',tab:{img:S.img,label:T.title,song:true},
+  left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI · PESMA</p><figure class="miniature"><img src="${S.img}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${S.cy}</p><h3 class="foe-name">${T.title}</h3></div>`,
+  right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="ms-text drop">${T.sub}.</p><p class="ms-note">${T.note}</p><p class="ms-note">${n} ${en?'lines':'stihova'}</p><blockquote class="ms-epi">${(en?tr2:sr).slice(251,256).map(l=>`<span>${l}</span>`).join('')}<cite>${en?'lines':'stihovi'} 252–256</cite></blockquote></div>${readBar}`,range:[0,0]});
+ const per=en?VERSES:VERSES*2;
+ for(let a=0;a<n;a+=per){const b=Math.min(n,a+per),mid=Math.min(n,a+VERSES);
+  out.push({group:'pesma',range:[a,b],left:`${ZASTAVICA}<p class="book-eyebrow">${en?'SRPSKI':'PESMA'}</p>${verses(sr,a,mid)}`,
+   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">${en?'ENGLISH':`Stranica ${i+1} od ${N}`}</p>${en?verses(tr2,a,b):verses(sr,mid,b)}${b>=n?'<p class="ms-end" aria-hidden="true">✠</p>':''}${a===0?readBar:''}`});}
+ return out;}
+function bookList(){return bookKind==='legende'?legendSpreads():BOOK_PAGES.map((pg,i)=>({group:'f'+i,foe:i,tab:{foe:i}}));}
+function spreadHTML(i){const s=bookSpreads[i];if(!s)return{left:'',right:''};if(s.foe!=null)return foeSpread(s.foe);return{left:s.left,right:typeof s.right==='function'?s.right(i,bookSpreads.length):s.right};}
+function copyCanvases(from,to){const a=from.querySelectorAll?.('canvas')||[],b=to.querySelectorAll?.('canvas')||[];a.forEach((c,k)=>{const d=b[k];if(!d)return;d.classList.remove('foe-canvas');d.getContext('2d')?.drawImage(c,0,0);});}
+function bookWire(){const L=$('book-left');L.querySelectorAll('[data-pose]').forEach(b=>b.onclick=()=>{bookPose=Number(b.dataset.pose);bookAuto=false;bookPoseT=0;bookSetPose();});readWire();}
+function bookSetPose(){const c=$('book-left')?.querySelector('canvas.foe-canvas');if(c){c.dataset.pose=bookPose;c._t=0;}$('book-left')?.querySelectorAll('[data-pose]').forEach(b=>b.classList.toggle('on',Number(b.dataset.pose)===bookPose));}
+function bookTabs(){const box=$('book-tabs');if(!box)return;const cur=bookSpreads[bookAt]?.group;
+ box.innerHTML=bookSpreads.map((s,i)=>{if(!s.tab)return'';const on=s.group===cur?' on':'';
+  if(s.tab.foe!=null){const pg=BOOK_PAGES[s.tab.foe],k=bookKnown(pg);return`<button class="tab${on}${k?'':' unknown'}" data-tab="${i}" aria-label="${k?bookInfo(pg).name:'???'}"><canvas width="96" height="96"></canvas></button>`;}
+  return`<button class="tab pic${on}${s.tab.song?' song':''}${s.tab.img.includes('/cast/')?' cast':''}" data-tab="${i}" aria-label="${s.tab.label}" data-notr><img src="${s.tab.img}" alt=""></button>`;}).join('');
+ box.querySelectorAll('[data-tab]').forEach(b=>{const i=Number(b.dataset.tab),s=bookSpreads[i];b.onclick=()=>bookGo(i);if(s.tab.foe!=null)drawFoe(b.querySelector('canvas'),BOOK_PAGES[s.tab.foe],'idle',0,{portrait:true});});
+ box.querySelector('.tab.on')?.scrollIntoView?.({block:'nearest',inline:'center'});}
+function bookRender(){const g=bookSpreads[bookAt]?.group;bookSpreads=bookList();if(g){const k=bookSpreads.findIndex(s=>s.group===g);if(k>=0&&bookSpreads[bookAt]?.group!==g)bookAt=k;}bookAt=clamp(bookAt,0,Math.max(0,bookSpreads.length-1));
+ const {left,right}=spreadHTML(bookAt);$('book-left').innerHTML=left;$('book-right').innerHTML=right;bookWire();bookTabs();}
+function openBook(at,kind='dusmani'){if(!hasDom)return;if(kind!==bookKind){stopReading();bookKind=kind;bookAt=0;}bookSpreads=bookList();if(!bookSpreads.length)return;
+ if(typeof at==='number')bookAt=at;else if(kind==='dusmani'){const first=BOOK_PAGES.findIndex(pg=>bookKnown(pg));if(!bookKnown(BOOK_PAGES[bookSpreads[bookAt]?.foe??0])&&first>=0)bookAt=first;}
+ bookPose=0;bookAuto=true;bookPoseT=0;bookRender();const el=$('knjiga');el.hidden=false;const bk=$('book');bk.dataset.kind=kind;bk.classList.remove('opening');void bk.offsetWidth;
+ if(!settings.reduced&&!matchMedia('(max-width:760px)').matches){bk.classList.add('opening');const cover=document.createElement('div');cover.className='leaf cover';cover.innerHTML=`<div class="leaf-face front"><span>${BOOK_COVER[kind]}</span></div><div class="leaf-face back"></div>`;bk.append(cover);cover.addEventListener('animationend',e=>{if(e.target===cover)cover.remove();});setTimeout(()=>cover.remove(),2600);}
+ sfx('cloth',{gain:.5,rate:.8});setTimeout(()=>sfx('cloth',{gain:.35,rate:1.3}),380);bookLast=performance.now();if(!bookRaf)bookRaf=requestAnimationFrame(bookTick);$('book-next')?.focus?.();}
+function closeBook(){$('knjiga').hidden=true;stopReading();sfx('cloth',{gain:.4,rate:.7});}
+function bookGo(i,dir){const N=bookSpreads.length;if(!N||bookBusy)return;i=((i%N)+N)%N;if(i===bookAt)return;dir=dir||(i>bookAt?1:-1);
+ const L=$('book-left'),R=$('book-right'),bk=$('book');bookAt=i;bookPose=0;bookAuto=true;bookPoseT=0;const {left,right}=spreadHTML(i);
+ sfx('cloth',{gain:.45,rate:1.5+Math.random()*.3});
+ if(settings.reduced||matchMedia('(max-width:760px)').matches){L.innerHTML=left;R.innerHTML=right;bookWire();bookTabs();bk.classList.remove('fade');void bk.offsetWidth;bk.classList.add('fade');return;}
+ const leaf=document.createElement('div');leaf.className='leaf '+(dir>0?'fwd':'back');
+ const front=(dir>0?R:L).cloneNode(true);copyCanvases(dir>0?R:L,front);front.removeAttribute('id');front.className=`leaf-face front page ${dir>0?'right':'left'}`;
+ const back=document.createElement('div');back.className=`leaf-face back page ${dir>0?'left':'right'}`;back.innerHTML=dir>0?left:right;
+ leaf.append(front,back);if(dir>0){R.innerHTML=right;readWire();}else{L.innerHTML=left;bookWire();}bk.append(leaf);bookTabs();
+ bookBusy=leaf;const done=()=>{if(bookBusy!==leaf)return;bookBusy=null;if(dir>0){L.innerHTML=left;bookWire();}else{R.innerHTML=right;readWire();}leaf.remove();if(reader)readMark(reader.line);};
+ leaf.addEventListener('animationend',e=>{if(e.target===leaf)done();});setTimeout(done,2000);}
+// draws one frame of a foe clip into a canvas: feet on a painted ground, unknown foes as ink silhouettes
+function drawFoe(c,pg,clip,t,o={}){const g=c?.getContext?.('2d');if(!g)return;const W2=c.width,H2=c.height,name=`${pg.t}-${clip}`,r=rig?.[name]||rig?.[`${pg.t}-idle`],im=r&&rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W2,H2);if(!im)return;
+ const n=r.frames.length,fps=clip==='idle'?7:11,once=BOOK_ONCE.has(clip),hold=Math.round(fps*.9),k=Math.floor(t*fps)%(n+(once?hold:0)),fi=Math.min(n-1,k),f=r.frames[fi];
+ // one size per foe, fitted from his idle: the stage shows him whole, a tab shows head and shoulders
+ const ri=rig[`${pg.t}-idle`]||r,fi0=ri.frames[0],bodyH=Math.max(1,(fi0[4]-fi0[5])*ri.scale),dog=pg.t==='pas';
+ const unit=o.portrait?(dog?H2*.62:H2*1.5)/bodyH:(dog?H2*.4:H2*.62)/bodyH,s=r.scale*unit,ground=o.portrait?(dog?H2*.86:H2*.1+bodyH*unit):H2*.86;
+ let y=ground,x=W2*(o.portrait&&!dog?.52:.5);if(clip==='launch'){y=ground-H2*.16-Math.sin(Math.min(1,fi/(n-1))*Math.PI)*H2*.12;}
+ if(!o.portrait){g.save();g.globalAlpha=.32;g.fillStyle='#3a2414';g.beginPath();g.ellipse(x,ground+4,W2*.16*(clip==='launch'?.6:1),H2*.03,0,0,Math.PI*2);g.fill();g.restore();}
+ g.save();g.translate(x,y);g.drawImage(im,f[0],f[1],f[2],f[3],-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s);g.restore();
+ if(!bookKnown(pg)){g.save();g.globalCompositeOperation='source-atop';g.fillStyle=o.portrait?'#3b2a1c':'rgba(46,30,18,.94)';g.fillRect(0,0,W2,H2);g.restore();}}
+function bookTick(now){if($('knjiga').hidden){bookRaf=0;stopReading();return;}bookRaf=requestAnimationFrame(bookTick);const dt=Math.min(.05,Math.max(0,(now-bookLast)/1000));bookLast=now;readerTick();
+ const cur=bookSpreads[bookAt],pg=cur?.foe!=null&&BOOK_PAGES[cur.foe];if(pg&&bookAuto&&bookKnown(pg)){bookPoseT+=dt;if(bookPoseT>BOOK_POSE_TIME){bookPoseT=0;bookPose=(bookPose+1)%pg.poses.length;bookSetPose();}}
+ document.querySelectorAll('#knjiga canvas.foe-canvas').forEach(c=>{const p2=BOOK_PAGES[Number(c.dataset.page)];if(!p2)return;c._t=(c._t||0)+dt;const pose=p2.poses[Number(c.dataset.pose)||0]||p2.poses[0];drawFoe(c,p2,bookKnown(p2)?pose[1]:'idle',bookKnown(p2)?c._t:0);});}
+if(hasDom){$('book-prev').onclick=()=>bookGo(bookAt-1,-1);$('book-next').onclick=()=>bookGo(bookAt+1,1);$('book-close').onclick=closeBook;
+ $('knjiga').addEventListener('click',e=>{if(e.target===$('knjiga'))closeBook();});
+ $('menu-legende')&&($('menu-legende').onclick=()=>openBook(undefined,'legende'));$('pause-legende')&&($('pause-legende').onclick=()=>openBook(undefined,'legende'));}
+
+// ---------- the song read aloud (local Serbian voice model; English with the same voice) ----------
+// assets/voice/pesma-<sr|en>.mp3 plus .json with the start of every verse; the verse being read lights up on both
+// facing pages, and the book turns its own pages to follow.
+let reader=null;
+async function readSong(lang,from=0){stopReading();let t=null;try{t=await fetch(`assets/voice/pesma-${lang}.json`).then(r=>r.ok?r.json():null);}catch{}
+ if(!t){toast('Čitanje pesme još nije spremno.',2.5);return;}const a=new Audio(`assets/voice/pesma-${lang}.mp3`);a.preload='auto';a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;
+ reader={lang,a,t,line:-1};readButtons();a.addEventListener('loadedmetadata',()=>{if(reader?.a!==a)return;a.currentTime=Math.max(0,(t.starts[from]??0)-.05);a.play().catch(()=>stopReading());},{once:true});a.onended=()=>{if(reader?.a===a)stopReading();};a.load();}
+function stopReading(){if(!reader)return;reader.a.pause();reader=null;readMark(-1);readButtons();}
+function readerTick(){if(!reader||reader.a.paused)return;const {a,t}=reader,now=a.currentTime;let i=-1;for(let k=0;k<t.starts.length;k++){if(t.starts[k]<=now+.05)i=k;else break;}
+ if(audio&&SND)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+.4);if(i===reader.line)return;reader.line=i;readMark(i);
+ const cur=bookSpreads[bookAt];if(i>=0&&cur?.group==='pesma'&&cur.range&&(i>=cur.range[1]||i<cur.range[0])&&!bookBusy){const k=bookSpreads.findIndex(s=>s.range&&i>=s.range[0]&&i<s.range[1]);if(k>=0)bookGo(k,k>bookAt?1:-1);}}
+function readMark(i){document.querySelectorAll('#knjiga .verses li.now').forEach(li=>li.classList.remove('now'));if(i>=0)document.querySelectorAll(`#knjiga .verses li[data-n="${i}"]`).forEach(li=>li.classList.add('now'));}
+function readButtons(){document.querySelectorAll('#knjiga [data-read]').forEach(b=>b.classList.toggle('on',reader?.lang===b.dataset.read));}
+function readWire(){document.querySelectorAll('#knjiga [data-read]').forEach(b=>b.onclick=()=>{if(reader?.lang===b.dataset.read){stopReading();return;}const r=bookSpreads[bookAt]?.range;readSong(b.dataset.read,r?r[0]:0);});readButtons();}
+
+// ================= Marko on the menu: his own clips, large, turned toward the panel =================
+// He breathes in place; every few seconds (or when clicked) he swings the mace, spins it or raises it, then settles.
+const MM_IDLE=rig?.['marko-idle-2']?'marko-idle-2':'marko-idle';
+const MM_MOVES=[['marko-charged',8,1],['marko-super',10,1],['marko-combo-1',11,1],['marko-combo-3',10,1],['marko-vihor',14,2],['marko-throw',11,1],['marko-counter',11,1],['marko-uppercut',11,1]].filter(([n])=>rig?.[n]);
+let mmCanvas=null,mmClip=MM_IDLE,mmT=0,mmNext=4,mmLoops=1,mmLast=0,mmRaf=0;mmReady=true;
+function menuMarkoStart(){if(!mmReady||!hasDom||!rig?.[MM_IDLE]||!rigImages[rig[MM_IDLE].image])return;
+ if(!mmCanvas){const img=document.querySelector('#menu img.menu-marko');if(!img)return;mmCanvas=document.createElement('canvas');mmCanvas.className='menu-marko live';mmCanvas.width=900;mmCanvas.height=900;mmCanvas.setAttribute('role','img');mmCanvas.setAttribute('aria-label','Kraljević Marko sa bodljikavim topuzom');mmCanvas.title='';img.replaceWith(mmCanvas);mmCanvas.addEventListener('click',()=>{if(mmClip===MM_IDLE)menuMarkoMove(true);});}
+ if(!mmRaf){mmLast=performance.now();mmRaf=requestAnimationFrame(menuMarkoTick);}}
+function menuMarkoMove(loud){if(!MM_MOVES.length)return;let m;do m=MM_MOVES[Math.floor(Math.random()*MM_MOVES.length)];while(MM_MOVES.length>1&&m[0]===menuMarkoMove.last);menuMarkoMove.last=m[0];
+ mmClip=m[0];mmT=0;mmLoops=m[2];mmNext=6+Math.random()*5;sfx('whoosh_heavy',{gain:loud?.4:.18});}
+function menuMarkoTick(t){if($('menu').hidden||!mmCanvas){mmRaf=0;return;}mmRaf=requestAnimationFrame(menuMarkoTick);const dt=Math.min(.05,Math.max(0,(t-mmLast)/1000));mmLast=t;mmT+=dt;
+ const mv=MM_MOVES.find(m=>m[0]===mmClip),fps=mv?mv[1]:6,n=rig[mmClip].frames.length;let fi=Math.floor(mmT*fps);
+ if(mv&&fi>=n*mmLoops){mmClip=MM_IDLE;mmT=0;fi=0;}
+ if(!mv){mmNext-=dt;if(mmNext<=0&&!settings.reduced)menuMarkoMove(false);}
+ drawMenuMarko(mmClip,fi%rig[mmClip].frames.length,mmT);}
+function drawMenuMarko(name,fi,t){const c=mmCanvas,g=c.getContext('2d'),r=rig[name],im=rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,c.width,c.height);if(!im)return;
+ const ri=rig[MM_IDLE],f0=ri.frames[0],body=(f0[4]-f0[5])*ri.scale,unit=c.height*.78/body,s=r.scale*unit,f=r.frames[fi],x=c.width*.6,y=c.height*.96,breath=name===MM_IDLE?1+Math.sin(t*1.7)*.006:1;
+ g.save();g.globalAlpha=.4;const sh=g.createRadialGradient(x,y,0,x,y,c.width*.24);sh.addColorStop(0,'#000c');sh.addColorStop(1,'#0000');g.fillStyle=sh;g.scale(1,.12);g.fillRect(0,(y-c.width*.24)/.12,c.width,c.width*.48/.12);g.restore();
+ g.save();g.translate(x,y);g.scale(-1,breath);g.drawImage(im,f[0],f[1],f[2],f[3],-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s);g.restore();}
+menuLedger();

@@ -157,3 +157,206 @@
 @media(max-width:600px){#abilities{bottom:120px;transform:translateX(-50%) scale(.82)}}
 #abilities{left:22px;bottom:74px;transform:none;display:grid;grid-template-columns:repeat(4,46px);gap:20px 10px}
 @media(max-width:600px){#abilities{bottom:150px;transform:scale(.8);transform-origin:left bottom}}
+
+/* ---------- language: SR | EN ---------- */
+.lang-pick{position:absolute;top:24px;right:30px;z-index:6;display:flex;background:#081516b0;box-shadow:inset 0 0 0 1px #d9b56a88;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)}
+.lang-pick button{background:none;border:0;padding:8px 15px;font:700 14px var(--display);letter-spacing:2.5px;color:#cdbf9c;transition:color .2s,background .2s}
+.lang-pick button:hover{color:var(--gold2)}
+.lang-pick button.on{background:linear-gradient(180deg,#a3323c,#6a1c23);color:var(--gold2);text-shadow:0 1px 0 #3a0c10}
+
+/* ---------- main menu: continue first, the treasury and the book side by side ---------- */
+.menu-actions{display:flex;flex-direction:column}
+.menu-actions>button:first-child:not([hidden])+button{margin-top:10px}
+#continue small{display:block;font:600 14px var(--display);letter-spacing:.6px;color:#f1d9a8;margin-top:3px;text-shadow:none;opacity:.92}
+.menu-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+#menu .menu-pair .secondary{margin-top:0;text-align:center;padding:11px 8px;font-size:15px}
+#menu-ledger button{flex:1;text-align:center;padding:8px 4px;background:#08151688;box-shadow:inset 0 0 0 1px #d9b56a33;border:0;color:inherit;transition:background .2s,box-shadow .2s,transform .2s}
+#menu-ledger button:hover,#menu-ledger button:focus-visible,#menu-ledger button.pad-focus{background:#12302ecc;box-shadow:inset 0 0 0 1px #d9b56aaa;transform:translateY(-2px)}
+#menu-ledger button b{display:block;font:700 22px var(--display);color:var(--gold2)}
+#menu-ledger button small{font:10px Arial;letter-spacing:2px;color:#b9c4b4}
+#menu .primary::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#fff4 50%,transparent 65%);transform:translateX(-120%);animation:sheen 6s 2.2s ease-in-out infinite}
+@keyframes sheen{0%,72%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+/* the menu comes in: the panel slides, its lines rise one after another, the title is written in gold */
+#menu:not([hidden]) .menu-copy{animation:panelIn .8s cubic-bezier(.2,.8,.2,1) both}
+#menu:not([hidden]) .menu-copy>*{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+#menu .menu-copy>:nth-child(1){animation-delay:.12s}#menu .menu-copy>:nth-child(3){animation-delay:.5s}#menu .menu-copy>:nth-child(4){animation-delay:.6s}
+#menu .menu-copy>:nth-child(5){animation-delay:.72s}#menu .menu-copy>:nth-child(6){animation-delay:.84s}#menu .menu-copy>:nth-child(7){animation-delay:.95s}#menu .menu-copy>:nth-child(8){animation-delay:1s}
+#menu:not([hidden]) .menu-copy h1{animation:titleIn 1.2s .2s cubic-bezier(.3,.7,.2,1) both,shine 7s 1.6s ease-in-out infinite}
+@keyframes panelIn{from{opacity:0;translate:-40px 0}}
+@keyframes rise{from{opacity:0;translate:0 14px}}
+@keyframes titleIn{from{clip-path:inset(-30% 105% -50% -10%);letter-spacing:22px}to{clip-path:inset(-30% -10% -50% -10%)}}
+#menu:not([hidden]) .menu-marko{animation:markoIn 1.3s .15s cubic-bezier(.2,.8,.2,1) both,breathe 6s 1.5s ease-in-out infinite}
+@keyframes markoIn{from{opacity:0;translate:70px 0}}
+#menu:not([hidden]) .menu-fairy{animation:fairyIn 1.6s .7s cubic-bezier(.2,.8,.2,1) both,float 5s 2.3s ease-in-out infinite}
+@keyframes fairyIn{from{opacity:0;translate:60px -40px;scale:.5}}
+#menu:not([hidden]) .lang-pick,#menu:not([hidden]) .quote{animation:rise .9s 1.1s both}
+.fairy-dust{position:absolute;right:7%;top:17%;width:200px;height:260px;pointer-events:none;z-index:1}
+.fairy-dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:#effff8;box-shadow:0 0 7px 2px #9fffe0b0;opacity:0;animation:dustFall linear infinite}
+@keyframes dustFall{0%{opacity:0;transform:translate(0,0) scale(1)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),170px) scale(.4)}}
+@media (prefers-reduced-motion:reduce){#menu *{animation:none!important}}
+
+/* ---------- the treasury points to the book ---------- */
+.dusmani-row p{margin:4px 0 10px!important}
+.dusmani-row .secondary{width:100%}
+
+/* ---------- the book of foes ---------- */
+#knjiga{background:radial-gradient(ellipse at 50% 45%,#1d1410d9,#050a0bf2 75%)}
+.book-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;width:min(1060px,100%)}
+.book{--ink:#2b1c10;--rubric:#7a1f1f;position:relative;display:grid;grid-template-columns:1fr 1fr;width:100%;height:min(580px,calc(100vh - 150px));padding:14px;perspective:2600px;
+ background:linear-gradient(135deg,#5e1b1d,#3a0e12 60%,#2a090c);border-radius:12px;box-shadow:0 40px 90px #000d,inset 0 0 0 2px #d9b56a55,inset 0 0 0 7px #3a0e12,inset 0 0 0 8px #d9b56a33}
+.book .page,.leaf-face.page{position:relative;display:flex;flex-direction:column;min-height:0;overflow:hidden;padding:22px 30px 20px;color:var(--ink);font:16px/1.5 var(--display)}
+.book .page.left,.leaf-face.page.left{background:linear-gradient(90deg,#0000 80%,#5a3a1a33 96%,#2a180a55),radial-gradient(ellipse at 45% 40%,#f6ead0 0%,#ead8b0 55%,#d4b986 100%);border-radius:6px 0 0 6px}
+.book .page.right,.leaf-face.page.right{background:linear-gradient(270deg,#0000 80%,#5a3a1a33 96%,#2a180a55),radial-gradient(ellipse at 55% 40%,#f6ead0 0%,#ead8b0 55%,#d4b986 100%);border-radius:0 6px 6px 0}
+.book .spine{position:absolute;left:50%;top:10px;bottom:10px;width:3px;margin-left:-1.5px;background:linear-gradient(#2a180a00,#2a180a88 20%,#2a180a88 80%,#2a180a00);pointer-events:none;z-index:4}
+.book-eyebrow{font:700 11px Arial!important;letter-spacing:3px;color:#8a5a2a!important;margin:0 0 6px!important;text-transform:uppercase}
+.foe-stage{position:relative;flex:1;min-height:120px;border-radius:4px;background:radial-gradient(ellipse at 50% 88%,#c9a46a55 0%,#0000 55%),radial-gradient(ellipse at 50% 40%,#fff6e000,#8a6a3a22 100%);box-shadow:inset 0 0 0 1px #8a6a3a44}
+.foe-stage::after{content:"";position:absolute;left:8%;right:8%;bottom:13%;height:1px;background:linear-gradient(90deg,#0000,#5a3a1a77,#0000)}
+.foe-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.foe-stage.unknown{background:radial-gradient(ellipse at 50% 60%,#8a6a3a2a,#0000 70%)}
+.pose-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0 2px}
+.pose{font:700 13px var(--display);padding:3px 11px;border:1px solid #7a5a3a77;background:#f3e4c0;color:#4a3220;border-radius:14px;transition:background .2s,color .2s}
+.pose:hover:not(:disabled){background:#e9d4a4}
+.pose.on{background:var(--rubric);color:#f6dfaa;border-color:#5a1414}
+.pose:disabled{opacity:.35;cursor:default}
+.foe-name{font:700 36px/1.05 var(--display)!important;color:var(--rubric)!important;margin:6px 0 0!important;text-align:center;letter-spacing:1px}
+.foe-role{font:italic 600 16px var(--display)!important;color:#6a4a2a!important;margin:0!important;text-align:center}
+.book .page.right h4,.leaf-face.page.right h4{font:700 13px Arial;letter-spacing:2.5px;text-transform:uppercase;color:var(--rubric);margin:12px 0 2px;display:flex;align-items:center;gap:10px}
+.book .page.right h4::after,.leaf-face.page.right h4::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#7a1f1f66,#0000)}
+.book .page.right p,.leaf-face.page.right p{margin:0;color:var(--ink);font:500 17px/1.45 var(--display)}
+.book .page p.weak,.leaf-face.page p.weak{font-weight:700}
+.drop::first-letter{float:left;font:700 50px/.82 var(--display);color:var(--rubric);margin:5px 7px 0 0}
+.tally{margin-top:auto;padding-top:8px;display:grid;grid-template-columns:1fr auto;align-items:end;column-gap:14px}
+.tally h4{grid-column:1/-1}
+.marks{display:flex;flex-wrap:wrap;gap:4px 8px;min-height:30px;align-items:center}
+.marks .none{font:italic 16px var(--display);color:#7a5a3a}
+.marks .more{font:700 18px var(--display);color:var(--ink)}
+.mark{width:32px;height:28px;overflow:visible}
+.mark line{stroke:#3a2414;stroke-width:2.6;stroke-linecap:round;stroke-dasharray:34;stroke-dashoffset:34;animation:ink .28s ease-out forwards}
+@keyframes ink{to{stroke-dashoffset:0}}
+.tally .count{font:700 46px/1 var(--display);color:var(--ink);opacity:.85}
+.seal{position:absolute;right:26px;top:18px;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#c84a3a,#8a1f1f 55%,#5a0f0f);box-shadow:0 2px 0 #3a0a0a,0 6px 12px #0005,inset 0 0 0 4px #a8302a,inset 0 0 0 6px #6a1414;color:#f6d9a0;font-size:28px;transform:rotate(-12deg);animation:sealIn .55s 1.1s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes sealIn{from{opacity:0;transform:scale(1.9) rotate(-35deg)}}
+.blank{flex:1;display:grid;place-items:center;text-align:center;position:relative}
+.blank p{font:italic 500 19px/1.5 var(--display)!important;color:#6a4a2a!important;max-width:320px}
+.blot{position:absolute;width:120px;height:90px;left:50%;top:62%;transform:translateX(-50%) rotate(-8deg);background:radial-gradient(ellipse at 40% 45%,#2b1c10aa,#2b1c1055 45%,#0000 70%);filter:blur(1px);opacity:.5}
+/* turning a page: a leaf swings over the spine; its back is the new page */
+.leaf{position:absolute;top:14px;bottom:14px;width:calc(50% - 14px);transform-style:preserve-3d;z-index:5;pointer-events:none}
+.leaf.fwd,.leaf.cover{left:50%;transform-origin:left center;animation:flipFwd .8s cubic-bezier(.45,.05,.3,1) both}
+.leaf.back{left:14px;transform-origin:right center;animation:flipBack .8s cubic-bezier(.45,.05,.3,1) both}
+@keyframes flipFwd{from{transform:rotateY(0)}to{transform:rotateY(-180deg)}}
+@keyframes flipBack{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}
+.leaf-face{position:absolute!important;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.leaf-face.back{transform:rotateY(180deg)}
+.leaf .leaf-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0000,#2a180a66);opacity:0;animation:leafShade .8s both}
+.leaf.back .leaf-face::after{background:linear-gradient(270deg,#0000,#2a180a66)}
+@keyframes leafShade{50%{opacity:1}}
+/* opening the book: the leather cover swings open over the spine */
+.leaf.cover{animation-duration:1.05s;animation-delay:.2s}
+.leaf.cover .front{border-radius:0 8px 8px 0;display:grid;place-items:center;background:linear-gradient(135deg,#6e2224,#40101380 70%),linear-gradient(135deg,#5e1b1d,#2a090c);box-shadow:inset 0 0 0 3px #d9b56a99,inset 0 0 0 10px #3a0e12,inset 0 0 0 11px #d9b56a66}
+.leaf.cover .front span{font:700 34px/1.25 var(--display);letter-spacing:6px;text-align:center;color:#f3dca0;text-shadow:0 2px 0 #3a0c10,0 0 18px #d9b56a66}
+.leaf.cover .back{border-radius:8px 0 0 8px;background:linear-gradient(90deg,#c9ad7a,#e2cc9c)}
+.book.opening .page.left{animation:pageShow 1.25s both}
+@keyframes pageShow{0%,55%{opacity:0}100%{opacity:1}}
+.book.opening{animation:bookIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bookIn{from{opacity:0;transform:translateY(24px) scale(.94)}}
+.book.fade .page{animation:pageFade .35s both}
+@keyframes pageFade{from{opacity:0;transform:translateX(10px)}}
+.book-nav{display:flex;align-items:center;gap:12px;max-width:100%}
+.book-arrow{flex:none;width:46px;height:46px;border-radius:50%;font:700 30px/1 var(--display);color:var(--gold2);background:linear-gradient(180deg,#a3323c,#5c151c);border:0;box-shadow:inset 0 0 0 1px #f3dca099,0 4px 12px #0008;transition:transform .2s,filter .2s}
+.book-arrow:hover,.book-arrow:focus-visible,.book-arrow.pad-focus{transform:scale(1.08);filter:brightness(1.15)}
+.book-tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 4px;scrollbar-width:none}
+.book-tabs .tab{flex:none;width:54px;height:54px;padding:0;border-radius:50%;overflow:hidden;border:2px solid #8a6a2c;background:radial-gradient(circle at 50% 40%,#f6ead0,#d4b986);transition:transform .2s,box-shadow .2s}
+.book-tabs .tab canvas{width:100%;height:100%;display:block}
+.book-tabs .tab:hover,.book-tabs .tab:focus-visible,.book-tabs .tab.pad-focus{transform:translateY(-3px)}
+.book-tabs .tab.on{border-color:var(--gold2);box-shadow:0 0 0 3px #a3323c,0 0 16px #d9b56a99;transform:translateY(-3px)}
+#book-close{color:#e9d7ad}
+@media(max-width:760px){.book{grid-template-columns:1fr;height:auto;max-height:calc(100vh - 170px);overflow:auto}
+ .book .page.left,.book .page.right{border-radius:6px}.book .spine{display:none}.foe-stage{min-height:220px}.foe-name{font-size:30px!important}}
+/* the menu panel holds two more buttons: tighter type so it clears the top line on a 720p screen */
+#menu .menu-copy{top:calc(50% + 16px);padding:26px 38px 20px}
+#menu .menu-copy h1{font-size:88px;margin:4px 0 2px}
+#menu .intro{font-size:18px;line-height:1.42;margin:10px 0 14px}
+#menu-ledger{margin:12px 0 0}
+#menu .menu-links{margin:16px 0 4px}
+@media(max-height:690px){#menu .intro{display:none}#menu .menu-copy h1{font-size:76px}}
+.foe-stage canvas,.book-tabs canvas,.leaf-face canvas{background:none!important}
+.book .seal,.leaf-face .seal{top:auto;bottom:104px;right:34px}
+.book .page.right p,.leaf-face.page.right p{font-size:19px;line-height:1.42}
+.book .page.right h4,.leaf-face.page.right h4{margin:16px 0 4px}
+.leaf .front .mark line{animation:none;stroke-dashoffset:0}
+.leaf .front .seal{animation:none}
+.leaf.cover .leaf-face::after{animation-duration:1.05s;animation-delay:.2s}
+
+/* ================= the manuscript look, after the Miroslav Gospel: parchment, cinnabar rubrics, interlace headpieces,
+   illuminated initials (Codex: rukopis-zastavica, rukopis-okvir-inicijala, rukopis-inicijal-m) ================= */
+:root{--parch:url(assets/ui/vlakna.svg),radial-gradient(ellipse at 50% 42%,#f7ecd2 0%,#eddcb4 52%,#dbc08c 100%);--cinnabar:#a8321f;--verdigris:#2f6b4f;--lapis:#2c4a8a;--leaf:#c8a24a;--ms-ink:#2b1c10}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* pages */
+.book .page.left,.leaf-face.page.left{background:linear-gradient(90deg,#0000 82%,#5a3a1a2e 95%,#2a180a5c),var(--parch)}
+.book .page.right,.leaf-face.page.right{background:linear-gradient(270deg,#0000 82%,#5a3a1a2e 95%,#2a180a5c),var(--parch)}
+.book .page::before,.leaf-face.page::before{content:"";position:absolute;inset:12px;border:1px solid #a8321f2a;box-shadow:inset 0 0 0 3px #f7ecd200,inset 0 0 0 4px #a8321f14;pointer-events:none}
+.zastavica{flex:none;height:52px;margin:-8px -6px 4px;background:url(assets/ui/rukopis-zastavica.webp) center/contain no-repeat;filter:drop-shadow(0 1px 0 #fff6)}
+.book-eyebrow{color:var(--cinnabar)!important;text-align:center}
+.book .page.right h4,.leaf-face.page.right h4{color:var(--cinnabar)}
+.book .page.right h4::before,.leaf-face.page.right h4::before{content:"✠";font-size:12px;color:var(--verdigris)}
+.foe-name{color:var(--cinnabar)!important;text-shadow:0 1px 0 #fff8}
+.pose.on{background:var(--cinnabar)}
+/* illuminated initials: the letter sits in Codex's interlace frame with birds */
+.drop::first-letter{float:left;font:700 44px/1 var(--display);color:var(--cinnabar);padding:.24em .3em .14em;margin:3px 10px 0 0;background:url(assets/ui/rukopis-okvir-inicijala.webp) center/100% 100% no-repeat;text-shadow:0 1px 0 #f3dca0,0 0 1px #2b1c10}
+/* the Book of Legends */
+.miniature{flex:none;width:min(58%,240px);aspect-ratio:1;margin:2px auto 6px;padding:13%;background:url(assets/ui/rukopis-okvir-inicijala.webp) center/100% 100% no-repeat;display:grid;place-items:center;filter:drop-shadow(0 3px 4px #5a3a1a55)}
+.miniature img{width:100%;height:100%;object-fit:contain;filter:sepia(.18) saturate(1.05) contrast(1.02)}
+.ms-head{text-align:center;margin-top:auto}
+.ms-cy{font:400 21px/1.2 "Ruslan Display",var(--display);letter-spacing:1.5px;color:var(--cinnabar);margin:0!important}
+.ms-body{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+.ms-text{font:500 19px/1.48 var(--display)!important;color:var(--ms-ink)!important;margin:2px 0 0!important}
+.ms-note{font:italic 500 16px/1.4 var(--display)!important;color:#6a4a2a!important;margin:12px 0 0!important}
+.verses{list-style:none;margin:2px 0 0;padding:0 0 0 30px;font:500 17px/1.34 var(--display);color:var(--ms-ink)}
+.verses li{position:relative;padding:0 4px;border-radius:3px;transition:background .25s,color .25s}
+.verses li i{position:absolute;left:-30px;width:24px;text-align:right;font:italic 600 12px/1.9 var(--display);color:var(--cinnabar)}
+.verses li.now{background:linear-gradient(90deg,#c8a24a66,#c8a24a10);color:#000}
+.ms-end{text-align:center;color:var(--cinnabar);font-size:22px;margin:8px 0 0!important}
+.read-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0 0}
+.read-bar button{font:700 14px var(--display);padding:5px 14px;border-radius:16px;border:1px solid #7a2a1a99;background:#f3e4c0;color:#5a1a10;transition:background .2s}
+.read-bar button:hover,.read-bar button.pad-focus,.read-bar button:focus-visible{background:#ead39f}
+.read-bar button.on{background:var(--cinnabar);color:#f6dfaa}
+.read-bar button b{font-size:11px;margin-right:6px}
+.book-tabs .tab.pic{background:radial-gradient(circle at 50% 40%,#f6ead0,#d4b986)}
+.book-tabs .tab.pic img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.book-tabs .tab.pic.song{box-shadow:0 0 0 2px #a8321f66}
+.leaf.cover .front span{font-family:"Ruslan Display",var(--display);font-weight:400}
+
+/* the menu becomes a leaf of the same manuscript */
+#menu .menu-copy{color:var(--ms-ink);background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),url(assets/ui/vlakna.svg),radial-gradient(ellipse at 50% 38%,#f7ecd2 0%,#ecdab0 55%,#d6b981 100%);
+ background-size:54px,54px,54px,54px,auto,auto;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat;
+ box-shadow:0 30px 80px #000c,inset 0 0 0 1px #6a3a1a66,inset 0 0 0 5px #f1e2bd,inset 0 0 0 6px #a8321f55,inset 0 0 60px #8a5a2a55;padding-top:62px!important}
+#menu .menu-copy::before{content:"";position:absolute;left:46px;right:46px;top:12px;height:46px;background:url(assets/ui/rukopis-zastavica.webp) center/contain no-repeat}
+#menu .eyebrow{color:var(--cinnabar)!important;font-weight:700}
+#menu .menu-copy h1{--hs:88px;background:linear-gradient(100deg,#7a1f14 0%,#a8321f 35%,#c8452c 45%,#a8321f 55%,#7a1f14 85%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 2px 0 #e7c46a) drop-shadow(0 6px 14px #5a3a1a55);display:flex;align-items:flex-end;gap:2px}
+#menu .menu-copy h1 .ini{display:inline-block;font-size:0;width:calc(var(--hs)*1.02);height:calc(var(--hs)*1.25);margin:0 4px -10px -8px;background:url(assets/ui/rukopis-inicijal-m.webp) center/contain no-repeat;filter:drop-shadow(0 2px 2px #3a1a0a66)}
+#menu .subtitle{color:var(--cinnabar)}
+#menu .subtitle span{filter:sepia(1) saturate(3) hue-rotate(-20deg) brightness(.55)}
+#menu .intro{color:#3a2414;font-style:italic}
+#menu .secondary{background:linear-gradient(180deg,#f1e2bd,#e2cb98);color:#3a2414;box-shadow:inset 0 0 0 1px #8a5a2aaa,inset 0 0 0 4px #f1e2bd,inset 0 0 0 5px #a8321f40;text-shadow:none}
+#menu .secondary:hover,#menu .secondary.pad-focus,#menu .secondary:focus-visible{background:linear-gradient(180deg,#f6e9c8,#e8d3a2);box-shadow:inset 0 0 0 1px var(--cinnabar),inset 0 0 0 4px #f1e2bd,inset 0 0 0 5px #a8321f88,0 0 16px #c8a24a55}
+#menu-ledger button{background:#e4cd9c99;box-shadow:inset 0 0 0 1px #8a5a2a55}
+#menu-ledger button:hover,#menu-ledger button:focus-visible,#menu-ledger button.pad-focus{background:#ecd9aecc;box-shadow:inset 0 0 0 1px var(--cinnabar)}
+#menu-ledger button b{color:var(--cinnabar)}
+#menu-ledger button small{color:#5a4030}
+#menu .menu-links{flex-wrap:wrap;row-gap:6px}
+#menu .menu-links button{color:#3a2414}
+#menu .menu-links button:hover{color:var(--cinnabar);text-shadow:none}
+#menu .menu-links i{color:var(--cinnabar)}
+#menu .menu-copy :focus-visible{outline:2px solid var(--cinnabar);outline-offset:2px}
+.menu-marko.live{background:none!important;cursor:pointer;object-fit:contain}
+@media(max-height:690px){#menu .menu-copy h1{--hs:76px}}
+#menu .menu-marko.live{right:13%}
+#menu .quote{right:2.5%;bottom:44px;max-width:320px;font-size:16px}
+@media(max-width:900px){#menu .menu-marko.live{right:-6%}}
+.book-tabs .tab.pic img{object-fit:contain;padding:5px}
+.book-tabs .tab.pic.cast img{object-fit:cover;padding:0}
+.ms-text{font-size:20px!important}
+.ms-body .ms-end{letter-spacing:10px;font-size:16px;opacity:.8}
+.ms-epi{margin:22px 10px 0;padding:14px 18px;border-left:3px solid var(--cinnabar);background:linear-gradient(90deg,#c8a24a22,#0000);font:italic 500 18px/1.45 var(--display);color:#3a2414}
+.ms-epi span{display:block}
+.ms-epi cite{display:block;margin-top:6px;font:700 11px Arial;letter-spacing:2px;text-transform:uppercase;color:var(--cinnabar);font-style:normal}

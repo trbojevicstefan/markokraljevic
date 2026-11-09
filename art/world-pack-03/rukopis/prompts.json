@@ -1,0 +1,104 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "rukopis-zastavica",
+      "size": [
+        1600,
+        240
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Very long thin horizontal page headpiece, aspect ratio 20:3. Red green blue interlace ribbons outlined with subtle gold, exactly two small facing birds at center, vine spiral terminals on both ends. Balanced intricate but legible narrow strip, all parts inside frame, no page behind. True transparent background and open spaces. No letters."
+    },
+    {
+      "id": "rukopis-okvir-inicijala",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Square illuminated INITIAL FRAME, gold ochre painted square panel with narrow woven interlace border and small birds/leaves at corners. Center large EMPTY plain pale ochre rectangle, no letter or symbol, game overlays letter. True transparent outside frame only, center is opaque pale ochre. Flat straight-on, no perspective."
+    },
+    {
+      "id": "rukopis-inicijal-m",
+      "size": [
+        512,
+        640
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Single unmistakable capital Cyrillic letter М, tall illuminated zoomorphic initial formed by two elongated birds/dragons, their intertwining necks make the inward diagonals meeting low in center, with two strong upright stems. Preserve readable M silhouette, not H or heart. Red green blue gold interlace and vine embellishments. Only this letter, no other letters. True transparent surroundings and counters."
+    },
+    {
+      "id": "rukopis-pergament",
+      "size": [
+        1024,
+        1024
+      ],
+      "alpha": false,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Seamlessly repeatable square parchment texture tile, warm ivory, subtle fine fibers and faint age stains, slightly darker edges with matching opposite boundaries. Low contrast to support game text. Entire canvas opaque paper, no border frame, tears, letters, lines, drawings, symbols, folds or objects. Even flat scan lighting, no vignette spotlight. Tileable in both axes."
+    },
+    {
+      "id": "rukopis-korice",
+      "size": [
+        1100,
+        1400
+      ],
+      "alpha": false,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Straight-on entire front cover of an ancient Serbian gospel book, flat rectangular portrait filling canvas. Dark cinnabar red leather/velvet, silver gilt filigree corner guards, central medallion with two-headed eagle and small cross, restrained handful of lapis/green/red gems. Handpainted manuscript aesthetic, not photorealism. No writing. Opaque full cover canvas; no desk, background objects, perspective, spine or other books."
+    },
+    {
+      "id": "rukopis-ptica-1",
+      "size": [
+        384,
+        384
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. ONE decorative margin peacock looking LEFT, small elegant hooked neck, folded ornamental tail with lapis verdigris eye motifs, red body accents and restrained gold. Compact whole bird, isolated transparent background, no branch/scenery/letter, no other bird."
+    },
+    {
+      "id": "rukopis-ptica-2",
+      "size": [
+        384,
+        384
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. ONE decorative margin dove looking RIGHT, ivory/ochre body, cinnabar and lapis feather details, verdigris wing accents, slender legs, curled decorative tail. Compact whole bird, isolated transparent background, no branch/scenery/letter, no other bird."
+    },
+    {
+      "id": "rukopis-loza",
+      "size": [
+        220,
+        1400
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Very tall narrow vertical manuscript margin border, ratio 11:70. One continuous stem with interwoven red green blue ribbons and curling vine leaves, restrained gold contours, many rhythmic small alternating curls. Uniform narrow width, decorative pointed terminals top and bottom. Entire border within image, true transparent surroundings and gaps. No page, text, frame or letters."
+    },
+    {
+      "id": "rukopis-inicijal-k",
+      "size": [
+        512,
+        640
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Single clear capital Cyrillic К. Upright stem made of elongated serpent/fish, two strong diagonal arms branch to upper-right and lower-right from middle, upper diagonal formed by long bird. Legible K silhouette, NOT R, no extra stems. Red green blue gold interlace vines. Transparent surroundings/counters; only requested letter."
+    },
+    {
+      "id": "rukopis-inicijal-p",
+      "size": [
+        512,
+        640
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. Single clear capital Cyrillic П (Pi shaped: TWO UPRIGHT PARALLEL POSTS joined by ONE HORIZONTAL TOP BAR, OPEN BOTTOM). Uprights are woven interlace columns, top bar is an ornamented arch with small bird perched above. NOT Latin P, not n, not H, no middle crossbar. Red green blue ochre gold. Transparent background and open central space. Only requested letter."
+    },
+    {
+      "id": "rukopis-gusle",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": true,
+      "prompt": "Use case: stylized-concept. Flat hand-painted medieval Serbian illuminated manuscript ornament inspired by the 12th-century Miroslav Gospel. Fine dark ink outlines, opaque mineral pigment fills, modest aged gold accents, interlaced vines and zoomorphic ornament, parchment ivory, cinnabar red, verdigris green, lapis blue, ochre. Authentic manuscript miniature feel, slightly irregular handwork, no modern 3D rendering, no glossy game loot aesthetic. No text or inscriptions except the single requested initial if specified. ONE miniature Serbian gusle musical instrument with its separate curved bow beside it. Gusle has single string, long narrow wooden neck with carved animal head, small pear-shaped skin-covered resonator. Bow visibly curved. Flat medieval manuscript painting ochre wood, red green lapis decorative touches, thin gold detail. Full instrument and bow, isolated true transparent background. No person, writing, modern guitar or violin."
+    }
+  ]
+}

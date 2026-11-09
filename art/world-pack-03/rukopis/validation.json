@@ -1,0 +1,47 @@
+{
+  "rukopis-zastavica": {
+    "id": "rukopis-zastavica",
+    "size": [
+      1600,
+      240
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 120177,
+    "bounds": [
+      102,
+      4,
+      1497,
+      236
+    ]
+  },
+  "rukopis-okvir-inicijala": {
+    "id": "rukopis-okvir-inicijala",
+    "size": [
+      512,
+      512
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 42471,
+    "bounds": [
+      4,
+      4,
+      507,
+      508
+    ]
+  },
+  "rukopis-inicijal-m": {
+    "id": "rukopis-inicijal-m",
+    "size": [
+      512,
+      640
+    ],
+    "transparent": true,
+    "alphaZeroPixels": 226142,
+    "bounds": [
+      4,
+      106,
+      508,
+      534
+    ]
+  }
+}
