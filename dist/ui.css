@@ -635,3 +635,21 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 @media(max-width:900px){.pauza-scena{display:none}.pauza-ram{max-width:94vw}}
 @media(max-height:640px){.pauza-scena{width:auto;height:60vh}}
 @media(prefers-reduced-motion:reduce){.pauza-scena,.pauza-ram,.pauza-dugmad button{animation:none}}
+
+/* ---------- the hero card, clearer: a thick health bar with its number, flasks for wine, icons by the meters ---------- */
+#hud .hero-card{padding:12px 20px 13px 12px;border-radius:8px;box-shadow:inset 0 0 0 1px #8a744899,0 8px 20px #0008;min-width:360px}
+#hud .hero-label{font:700 12px Georgia,serif;letter-spacing:3px;margin-bottom:7px;color:#f1e3bd}
+#hud .meter{position:relative;width:230px;height:16px;padding:2px;border-radius:4px;background:#070f0e;border:1px solid #a88c55}
+#hud .meter i{border-radius:2px;background:linear-gradient(180deg,#e2614c,#a02a26 60%,#7a1c1e)}
+#hud #hp-text{position:absolute;inset:0;display:grid;place-items:center;font:700 11px Georgia,serif;color:#fff1d6;text-shadow:0 1px 2px #000,0 0 3px #000}
+#hud .resources{gap:12px;margin-top:9px;font-size:12px}
+#hud #wine{display:flex;gap:3px}
+#hud #wine .cutura{width:22px;height:22px}
+#hud #wine .cutura.prazna{filter:grayscale(1) brightness(.45);opacity:.6}
+#hud #coins{font:700 13px Georgia,serif}
+#hud .hud-ico{width:18px;height:18px;vertical-align:middle;margin-right:5px}
+#hud .fairy-label{display:flex;align-items:center;font-size:10px;letter-spacing:1px}
+#hud .fairy-meter{width:64px;height:6px;border-radius:3px;background:#173d38;overflow:hidden}
+#hud .combat-meters{gap:16px;margin-top:9px;font-size:10px;align-items:center}
+#hud .combat-meters>div{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+#hud .mini-meter{width:86px;height:5px;border-radius:3px;overflow:hidden}
