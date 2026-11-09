@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marko · Test novina</title>
+<style>
+:root{--bg:#0b1414;--card:#122020;--line:#8a744866;--gold:#e8cf95;--text:#f1e3bd;--dim:#b9ab8a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 Georgia,serif;padding:28px 16px 60px}
+main{max-width:980px;margin:0 auto}
+h1{margin:0 0 4px;color:var(--gold);font-size:30px}
+p.lead{margin:0 0 22px;color:var(--dim)}
+h2{margin:28px 0 10px;color:var(--gold);font-size:19px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+a.t{display:block;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:7px;padding:12px 14px}
+a.t:hover,a.t:focus{border-color:#d9b56a;outline:none;background:#182a29}
+a.t b{display:block;color:var(--gold);font-size:17px}
+a.t span{display:block;color:var(--dim);font-size:14px;margin-top:3px}
+a.t kbd{font:700 12px Arial;background:#1a1712;border:1px solid #8a7448;border-radius:4px;padding:0 5px;color:var(--text)}
+</style>
+</head>
+<body>
+<main>
+<h1>Test novina</h1>
+<p class="lead">Svaki link otvara igru pravo na mesto gde je novina. Pre testiranja osveži stranicu (Ctrl+F5), da učitaš najnoviju verziju.</p>
+
+<h2>Borba</h2>
+<div class="grid">
+<a class="t" href="index.html?go=top"><b>Marko puca iz topa</b><span>Priđi topu i pritisni <kbd>E</kbd>. <kbd>W</kbd>/<kbd>S</kbd> menjaju ugao, <kbd>A</kbd>/<kbd>D</kbd> barut, <kbd>J</kbd> puca. Horda dolazi u tri talasa.</span></a>
+<a class="t" href="index.html?go=turski-top"><b>Turski top i đule</b><span>Niska đulad preskoči, pred visokim se sagni (<kbd>S</kbd>). Top razbiješ topuzom.</span></a>
+<a class="t" href="index.html?go=palikuca"><b>Palikuća gori</b><span>Vrati baklju odbijanjem (<kbd>L</kbd>) ili udarcem topuza. Pogođeni se zapali i zdravlje mu curi.</span></a>
+<a class="t" href="index.html?go=dokrajci"><b>Dokrajčivanja (trening)</b><span>Priđi neprijatelju: <kbd>J</kbd> glava, <kbd>K</kbd> smrskavanje iz skoka, <kbd>Shift</kbd> noge, <kbd>Space</kbd> gaženje. <kbd>1</kbd>–<kbd>9</kbd> biraju neprijatelja, <kbd>T</kbd> top i horda.</span></a>
+<a class="t" href="index.html?go=bos"><b>Pad bosa i slavlje</b><span>Bos u Tvrđavi sa malo zdravlja. Dokrajči ga, pa gledaj kako Marko slavi.</span></a>
+<a class="t" href="index.html?go=musa"><b>Megdan sa Musom</b><span>Ceo megdan od početka.</span></a>
+</div>
+
+<h2>Kretanje i svet</h2>
+<div class="grid">
+<a class="t" href="index.html?go=ivica"><b>Visenje na ivici</b><span>Skoči ka kamenu: Marko visi. <kbd>W</kbd> ili <kbd>Space</kbd> popni se, <kbd>S</kbd> pusti se.</span></a>
+<a class="t" href="index.html?go=most"><b>Ravijojla i most</b><span>Pritisni <kbd>E</kbd> kod kamena: Marko je doziva, ona doleti ka ekranu, baci čini i napravi most. Na most se ulazi hodom.</span></a>
+<a class="t" href="index.html?go=reka"><b>Voda i skela</b><span>Nova reka i Codexova skela. Upadni u vodu da vidiš pljusak.</span></a>
+</div>
+
+<h2>Priča i ekrani</h2>
+<div class="grid">
+<a class="t" href="index.html?go=prica"><b>Kadar priče</b><span>Ulazak u drugo poglavlje: minijatura i par rečenica. <kbd>Enter</kbd> dalje, <kbd>Esc</kbd> preskoči.</span></a>
+<a class="t" href="index.html?go=kraj"><b>Kraj posle Muse</b><span>Musa pada, Marko slavi, pa odhramlje ranjen, pa poslednji kadar priče.</span></a>
+<a class="t" href="index.html?go=kontrole"><b>Kontrole</b><span>Nacrtan džojstik; dugmad svetle dok ih pritiskaš.</span></a>
+<a class="t" href="index.html?go=riznica"><b>Riznica</b><span>Kartice: veštine sa tasterima i opisom, kombinacije, čuda, kovač.</span></a>
+<a class="t" href="index.html?trening"><b>Trening soba</b><span>Neprijatelji stalno izlaze, svaki se može dokrajčiti.</span></a>
+<a class="t" href="index.html"><b>Igra od početka</b><span>Glavni meni.</span></a>
+</div>
+</main>
+</body>
+</html>

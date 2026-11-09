@@ -2523,3 +2523,24 @@ if(hasDom&&$('zoom')){const z=$('zoom'),view=z.querySelector('.zoom-view');
  view.addEventListener('click',e=>{if(zoom.moved>6)return;if(e.target===view&&zoom.s<=1.01)closeZoom();});
  z.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{const k=b.dataset.z;if(k==='in')zoomBy(1.3);else if(k==='out')zoomBy(1/1.3);else if(k==='fit')zoomReset();else closeZoom();});}
 if(TRENING)setTimeout(()=>{try{startTraining();}catch(e){console.error(e);}},400);
+// ================= quick test links (test.html): ?go=<scene> drops Marko straight into a new feature =================
+const GO=hasDom&&new URLSearchParams(location.search).get('go');
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{storySeen=new Set(['0','1','2','3','4','5']);$('dialogue').hidden=true;},
+ at=(x,y=590)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,energy:100,hp:p.maxHp,rage:100});camera=Math.max(0,x-VIEW_W*.4);};
+ if(g==='top'){startTraining();await wait(300);world.guns=[{x:p.x+60,y:590,id:9,face:1}];toast('Priđi topu i pritisni E',4);return;}
+ if(g==='palikuca'){startTraining();await wait(300);training.type=6;training.fight=true;for(const e of world.enemies)e.alive=false;training.t=.2;toast('Vrati baklju: L u pravom trenutku ili udarac topuzom',5);return;}
+ if(g==='dokrajci'){startTraining();return;}
+ if(g==='turski-top'){startChapter(1);hush();at(4560);toast('Top puca: preskoči niske đulad, sagni se pred visokim',5);return;}
+ if(g==='reka'){await startLevel(lv('reka'));await wait(200);const t=world.traps.find(t=>t.kind==='water');if(t)at(t.x-90,t.y);toast('Skela i voda: stani na skelu',4);return;}
+ if(g==='most'){startChapter(2);hush();at(7470);toast('Pritisni E kod kamena: Ravijojla doleti i napravi most',5);return;}
+ if(g==='ivica'){startChapter(0);hush();at(556);p.face=1;toast('Skoči ka kamenu ispred sebe: Marko visi. W ili Space popni se, S pusti se',6);return;}
+ if(g==='bos'){await startLevel(lv('tvrdjava'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c){at(c.arena.x0+120,c.y);c.hp=Math.min(c.hp,40);}toast('Dokrajči bosa i gledaj kako Marko slavi',5);return;}
+ if(g==='musa'){startChapter(5);hush();toast('Megdan sa Musom',3);return;}
+ if(g==='kraj'){startChapter(5);hush();await wait(1500);if(boss){boss.x=p.x+170;
+  // a real win clears the save and grants Musa's sabre; a test puts everything back as it was
+  let kept=[];try{kept=Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]);}catch{}win();setTimeout(()=>{try{localStorage.clear();for(const [k,v] of kept)localStorage.setItem(k,v);}catch{}},2500);}return;}
+ if(g==='prica'){startChapter(1);return;}
+ if(g==='kontrole'){openKontrole();return;}
+ if(g==='riznica'){openRiznica();return;}}
+if(GO)setTimeout(()=>{devGo(GO).catch(e=>console.error(e));},700);
