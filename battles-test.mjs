@@ -176,4 +176,12 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  for(let i=0;i<16&&!c.broken;i++){Object.assign(p,{x:c.x-90,face:1,grounded:true});safe();tap('KeyK');step(70);}
  ok(c.broken,'cannon: the mace breaks the cannon');const shots=c.shots;at();step(120*5);ok(c.shots===shots,'cannon: a broken cannon stays silent');}
 {const L=api.LEVELS.findIndex(l=>l.id==='tvrdjava');await api.startLevel(L);ok(S().world.cannons?.length===1&&S().world.enemies.some(e=>e.gunner),'cannon: the fortress has a cannon and its gunner');}
+// ---- Marko at the gun: T in the training room puts one down, E takes it, W/S/A/D aim, J fires into the horde ----
+{api.startTraining();step(30);const p=S().p;api.pressed.add('KeyT');step(2);const G=S().world.guns?.[0];ok(!!G,'gun: T puts a cannon in the training room');
+ p.x=G.x-74;safe();step(10);api.pressed.add('KeyE');step(2);ok(G.state==='battle','gun: E at the gun takes it and the horde sets out');
+ const a0=G.angle;api.keys.add('KeyW');step(30);api.keys.delete('KeyW');ok(G.angle>a0,'gun: W lifts the barrel');
+ until(()=>{safe();return S().world.enemies.some(e=>e.horde&&e.alive);},120*6);let kills=0;
+ for(let i=0;i<40&&!kills;i++){safe();api.pressed.add('KeyJ');step(150);kills=G.kills||0;}ok(kills>0,'gun: a ball bursts among the horde and kills');
+ safe();api.pressed.add('KeyE');step(2);api.keys.add('KeyD');step(20);api.keys.clear();ok(Math.abs(p.x-(G.x-74))>4,'gun: E leaves it and Marko walks again');}
+{const L=api.LEVELS.findIndex(l=>l.id==='tvrdjava');await api.startLevel(L);ok(S().world.guns?.length===1,'gun: the fortress has a gun for Marko');}
 console.log(`${checks} battle checks passed.`);
