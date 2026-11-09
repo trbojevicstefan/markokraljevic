@@ -408,7 +408,7 @@ const vistaId=(L,v)=>v==='day'?L.id+'-vista':`${L.id}-vista-${v}`;
 const doneKey=(L,v)=>v==='day'?L.id:`${L.id}@${v}`;
 function levelsDone(){try{return JSON.parse(localStorage.getItem('marko-levels')||'[]');}catch{return[];}}
 function loadImage(src){return new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src;});}
-let worldFiles=null,worldCatalog=null;const PACK04_ART=['razbi-sanduk','razbi-cup','razbi-bure','razbi-korpa','razbi-kovceg','razbi-kovceg-otvoren','prop-sanduci','prop-bure','prop-krcag','lestve','lestve-vrh','kula-strazara','predmet-topuz','predmet-dukat','plug-slomljen','cilj-tovar-blaga','volovi-plug-static','prop-balvan','prop-lanac','prop-stena-mala','cilj-poluga','cilj-poluga-povucena','cilj-kapija-zatvorena','cilj-kapija-otvorena','zid-stena','zid-drvo','ploca-pritisak','ploca-pritisak-stisnuta','teret-sanduk','splav','vrata-zakljucana','vrata-otkljucana','prolaz-kamen-zatvoren','prolaz-kamen-otvoren','prolaz-drvo-zatvoren','prolaz-drvo-otvoren','prolaz-rudnik-zatvoren','prolaz-rudnik-otvoren','lift-platforma','kotur','kolje','siljci','zid-kamen','predmet-slovo-m','predmet-slovo-a','predmet-slovo-r','predmet-slovo-k','predmet-slovo-o','predmet-moc-oganj','predmet-moc-grom','predmet-moc-vila','predmet-trava','predmet-cutura','razbi-kosnica','razbi-plast','razbi-tikve','razbi-stena-napukla','razbi-panj','razbi-crkveni-sanduk','razbi-bure-baruta','razbi-tobolac','razbi-santa','razbi-vagon','predmet-srce-deo','predmet-zapis','predmet-kljuc','pod-napukao','zid-napukao','ulaz-riznica','prop-turski-sator'];async function loadLevelArt(L,v='day'){worldFiles??=new Set(await fetch('assets/world/files.json').then(r=>r.json()).catch(()=>[]));const has=f=>!worldFiles.size||worldFiles.has(f);worldCatalog??=await fetch('assets/world/catalog-03.json').then(r=>r.json()).then(c=>Array.isArray(c)?c:c.items||c.assets||Object.values(c)).catch(()=>[]);const ids=[...new Set([...levelLayers(L,v).map(l=>l.id),...(L.fallbackLayers||[]).map(l=>l.id),vistaId(L,v),...L.props.map(p=>p.id),...goalArt(L),'tlo-'+L.id,'tlo-'+L.id+'-kraj',...(L.ground?['tlo-'+L.ground,'tlo-'+L.ground+'-kraj']:[]),...PACK04_ART,...decorIds(L),'zid-'+(WALL_OF[L.id]||'kamen'),...CUDA.filter(c=>c.land===L.id).map(c=>'cudo-'+c.id)])];await Promise.all(ids.filter(id=>!(id in levelArt)).map(async id=>{levelArt[id]=(has(id+'.webp')?await loadImage(`assets/world/${id}.webp`):null)||(has(id+'-variant.webp')?await loadImage(`assets/world/${id}-variant.webp`):null);}));}
+let worldFiles=null,worldCatalog=null;const PACK04_ART=['razbi-sanduk','razbi-cup','razbi-bure','razbi-korpa','razbi-kovceg','razbi-kovceg-otvoren','prop-sanduci','prop-bure','prop-krcag','lestve','lestve-vrh','kula-strazara','predmet-topuz','predmet-dukat','plug-slomljen','cilj-tovar-blaga','volovi-plug-static','prop-balvan','prop-lanac','prop-stena-mala','cilj-poluga','cilj-poluga-povucena','cilj-kapija-zatvorena','cilj-kapija-otvorena','zid-stena','zid-drvo','ploca-pritisak','ploca-pritisak-stisnuta','teret-sanduk','splav','vrata-zakljucana','vrata-otkljucana','prolaz-kamen-zatvoren','prolaz-kamen-otvoren','prolaz-drvo-zatvoren','prolaz-drvo-otvoren','prolaz-rudnik-zatvoren','prolaz-rudnik-otvoren','lift-platforma','kotur','kolje','siljci','zid-kamen','predmet-slovo-m','predmet-slovo-a','predmet-slovo-r','predmet-slovo-k','predmet-slovo-o','predmet-moc-oganj','predmet-moc-grom','predmet-moc-vila','predmet-trava','predmet-cutura','razbi-kosnica','razbi-plast','razbi-tikve','razbi-stena-napukla','razbi-panj','razbi-crkveni-sanduk','razbi-bure-baruta','razbi-tobolac','razbi-santa','razbi-vagon','resetka','predmet-srce-deo','predmet-zapis','predmet-kljuc','pod-napukao','zid-napukao','ulaz-riznica','prop-turski-sator'];async function loadLevelArt(L,v='day'){worldFiles??=new Set(await fetch('assets/world/files.json').then(r=>r.json()).catch(()=>[]));const has=f=>!worldFiles.size||worldFiles.has(f);worldCatalog??=await fetch('assets/world/catalog-03.json').then(r=>r.json()).then(c=>Array.isArray(c)?c:c.items||c.assets||Object.values(c)).catch(()=>[]);const ids=[...new Set([...levelLayers(L,v).map(l=>l.id),...(L.fallbackLayers||[]).map(l=>l.id),vistaId(L,v),...L.props.map(p=>p.id),...goalArt(L),'tlo-'+L.id,'tlo-'+L.id+'-kraj',...(L.ground?['tlo-'+L.ground,'tlo-'+L.ground+'-kraj']:[]),...PACK04_ART,...decorIds(L),'zid-'+(WALL_OF[L.id]||'kamen'),...CUDA.filter(c=>c.land===L.id).map(c=>'cudo-'+c.id)])];await Promise.all(ids.filter(id=>!(id in levelArt)).map(async id=>{levelArt[id]=(has(id+'.webp')?await loadImage(`assets/world/${id}.webp`):null)||(has(id+'-variant.webp')?await loadImage(`assets/world/${id}-variant.webp`):null);}));}
 // Transparent margins around props: find the drawn area once so props stand on the ground.
 // ---------- campaign goals: gates, levers, fairy stones, lanterns, the relic ----------
 let goalHintT=0;const GOAL_VERB={poluga:'POVUCI',kamen:'PROBUDI',sprava:'SLOMI',kristal:'PROBUDI',svetiljka:'UPALI'};
@@ -421,7 +421,7 @@ function openGates(){for(const g of world.goals){if(g.kind!=='gate'||g.done)cont
 function updateGoals(dt){if(!world.goals)return;goalHintT-=dt;for(const g of world.goals){g.t+=dt;if(g.done)continue;
  if(g.kind==='plow'){g.x=g.plow.x;if(g.plow.treasureTaken)finishGoal(g);continue;}
  if(g.kind==='take'&&Math.abs(p.x-g.x)<60&&Math.abs(p.y-g.y)<130)finishGoal(g);
- if(g.kind==='gate'){openGates();if(!g.done&&p.x>g.x-34&&p.x<g.x+40){p.x=g.x-34;const before=world.goals.find(o=>o.id<g.id&&!o.done);goalHint(before?`Zatvoreno. ${before.label}.`:g.guarded?`Kapija je zatvorena. Preostalo čuvara: ${guardsAt(g)}.`:'Zatvoreno.');}}}}
+ if(g.kind==='gate'){openGates();if(!g.done&&p.x>g.x-GATE_STOP&&p.x<g.x+40){p.x=g.x-GATE_STOP;const before=world.goals.find(o=>o.id<g.id&&!o.done);goalHint(before?`Zatvoreno. ${before.label}.`:g.guarded?`Kapija je zatvorena. Preostalo čuvara: ${guardsAt(g)}.`:'Zatvoreno.');}}}}
 function useGoal(){const g=world.goals?.find(g=>!g.done&&g.kind==='use'&&Math.abs(p.x-g.x)<120&&Math.abs(p.y-g.y)<160);if(!g)return false;p.castLock=.5;finishGoal(g);return true;}
 function drawGoals(){if(!world.goals)return;for(const g of world.goals){if(g.kind==='plow'||(g.kind==='take'&&g.done)||g.x<camera-500||g.x>camera+VIEW_W+500)continue;
  if(g.kind==='gate'){drawSideGate('goal'+g.id,g.x,g.y,g.done,g.off.includes('rudarski')?'rudnik':gateStyle());continue;}
@@ -798,7 +798,7 @@ function updateTraps(dt){for(const t of world.traps||[]){t.t+=dt;
    for(const e of world.enemies)if(e.alive&&!e.champion&&Math.abs(e.x-b.x)<30&&Math.abs(e.y-b.y)<20){e.hp-=45;e.stun=.8;e.mode='stun';b.life=0;smashBarrel(b);if(e.hp<=0)slay(e);}}
   t.list=t.list.filter(b=>b.life>0);}
  else if(t.kind==='timed'){if(t.open>0){t.open-=dt;if(Math.floor(t.open*2)!==Math.floor((t.open+dt)*2))sfx('ring',{gain:.25,rate:t.open<2?1.6:1.2});if(t.open<=0)sfx('gate',{gain:.7,x:t.gate.x});}
-  if(!(t.open>0)){if(p.x>t.gate.x-34&&p.x<t.gate.x+30&&Math.abs(p.y-t.gate.y)<200){p.x=t.gate.x-34;goalHint('Kapija je zatvorena. Povuci polugu (E), pa trči!');}for(const e of world.enemies)if(e.alive&&e.x>t.gate.x-50&&e.x<t.gate.x+30)e.x=e.x<t.gate.x?t.gate.x-50:t.gate.x+30;}}
+  if(!(t.open>0)){if(p.x>t.gate.x-GATE_STOP&&p.x<t.gate.x+30&&Math.abs(p.y-t.gate.y)<200){p.x=t.gate.x-GATE_STOP;goalHint('Kapija je zatvorena. Povuci polugu (E), pa trči!');}for(const e of world.enemies)if(e.alive&&e.x>t.gate.x-50&&e.x<t.gate.x+30)e.x=e.x<t.gate.x?t.gate.x-50:t.gate.x+30;}}
  else if(t.kind==='boulder'){if(t.state==='wait'&&p.x>t.trigger&&Math.abs(p.y-t.y)<200){t.state='roll';t.bx=t.x0-460;t.v=190;t.rot=0;speak(t.snow?'Lavina! Trči, Marko, ne zastaj!':'Odron! Trči, Marko, ne zastaj!',3);sfx('boom',{gain:.9,rate:.6});sfx('rock',{gain:1});shake=settings.reduced?0:8;}
   if(t.state==='roll'){t.v=Math.min(292,t.v+dt*26);t.bx+=t.v*dt;t.rot+=t.v*dt/95;if(Math.random()<dt*10)dust(t.bx-60,t.y,4,2);shake=Math.max(shake,settings.reduced?0:2.5);if(Math.random()<dt*3)sfx('rock',{gain:.5,rate:.6+Math.random()*.3,x:t.bx});
    if(Math.abs(p.x-t.bx)<100&&p.y>t.y-200){if(hurtBy(30,1,-420))p.vx=560;}
@@ -840,7 +840,7 @@ function drawBoulder(t){if(t.state!=='roll'&&t.state!=='fall')return;const r=96,
  ctx.restore();const g=ctx.createRadialGradient(x-30,y-30,10,x,y,r);g.addColorStop(0,'rgba(255,240,210,.18)');g.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(20,16,12,.8)';ctx.lineWidth=3;ctx.stroke();
  if(t.state==='roll'&&t.bx<p.x-200)textLabel('▶ TRČI!',p.x,p.y-160,{font:'bold 16px Georgia',color:'#fff0c8',glow:'#ff7a3a',alpha:.6+.4*Math.sin(time*10)});}
 function drawTraps(){let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
-function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);}
+function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);drawGateFronts();}
 // ---------- champions: an arena that locks until the aga falls ----------
 let arena=null;
 function updateArena(){const c=world.enemies.find(e=>e.champion);if(!c)return;
@@ -1198,8 +1198,8 @@ const GATE_STYLE={rudnik:'rudnik',selo:'drvo',suma:'drvo',mocvara:'drvo',reka:'d
 const gateStyle=()=>GATE_STYLE[level?.id]||'kamen';
 const gateOpenK=new Map();
 function drawSideGate(key,x,y,open,style=gateStyle()){const k0=gateOpenK.get(key)??(open?1:0),k=k0+((open?1:0)-k0)*.12;gateOpenK.set(key,k);if(x<camera-260||x>camera+VIEW_W+260)return;
- const art=levelArt[`prolaz-${style}-${k>.5?'otvoren':'zatvoren'}`],cat=(worldCatalog||[]).find(e=>e.id===`prolaz-${style}-zatvoren`);
- if(art){const b=propBounds(art),H=340,s=H/b.h,cx=cat?.passX0!=null?((cat.passX0+cat.passX1)/2-b.x)*s:b.w*s/2;ctx.drawImage(art,b.x,b.y,b.w,b.h,x-cx,y-H+4,b.w*s,H);return;}
+ const art=levelArt[`prolaz-${style}-otvoren`]||levelArt['prolaz-kamen-otvoren'];
+ if(art){gateBack(x,y);gateFronts.push({art,x,y,k});return;}
  const W2=150,top=y-330,pass=y-176,x0=x-W2/2,wood=style==='drvo',mine=style==='rudnik';
  // the passage: the far wall of the tunnel, dark
  fillWall(x0,pass,W2,176,true);const d=ctx.createLinearGradient(0,pass,0,y);d.addColorStop(0,'rgba(0,0,0,.65)');d.addColorStop(1,'rgba(0,0,0,.3)');ctx.fillStyle=d;ctx.fillRect(x0,pass,W2,176);
@@ -1371,3 +1371,16 @@ function drawLintel(q){if(q.x>camera+VIEW_W+60||q.x+q.w<camera-60)return;const b
  if(Math.abs(p.x-(q.x+q.w/2))<480)textLabel('S · PROVUCI SE ISPOD',q.x+q.w/2,b-26,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ffd27a'});}
 function spikeFoes(t){for(const e of world.enemies){if(!e.alive||e.champion||e.spikeT>0||!(e.tossedT>0||e.stun>0))continue;if(!e.grounded||Math.abs(e.y-t.y)>6||e.x<t.x||e.x>t.x+t.w)continue;
  e.spikeT=.9;const d=60;e.hp-=d;e.stun=Math.max(e.stun,1);e.mode='stun';e.vy=-380;e.grounded=false;e.air=true;e.juggle=.3;e.flash=.15;label('NA KOLJE! '+d,e.x,e.y-130,'#ff9a7a');blood(e.x,e.y-30,1,14);sfx('hit',{gain:.7,x:e.x});if(e.hp<=0)slay(e,.5);}}
+
+// ---------- gates Marko walks THROUGH: the gatehouse is drawn in front of him, the tunnel behind ----------
+// Codex's side-view gatehouse: the passage between the pillars spans x 380–640 of the 1024 drawing, its arch at y 600.
+const GATE_ART={x0:380,x1:640,arch:600,img:1024},GATE_PASS=210,GATE_STOP=80,gateFronts=[];
+const gateScale=()=>GATE_PASS/(GATE_ART.img-GATE_ART.arch);
+function gateBack(x,y){const s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s,top=y-GATE_PASS;const g=ctx.createLinearGradient(0,top,0,y);g.addColorStop(0,'rgba(8,6,4,.72)');g.addColorStop(1,'rgba(8,6,4,.35)');ctx.fillStyle=g;ctx.fillRect(x-w/2,top,w,GATE_PASS);
+ const side=ctx.createLinearGradient(x-w/2,0,x+w/2,0);side.addColorStop(0,'rgba(0,0,0,.35)');side.addColorStop(.5,'rgba(0,0,0,0)');side.addColorStop(1,'rgba(0,0,0,.35)');ctx.fillStyle=side;ctx.fillRect(x-w/2,top,w,GATE_PASS);}
+function drawGateFronts(){for(const G of gateFronts){const {art,x,y,k}=G,b=propBounds(art),s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s,left=x-((GATE_ART.x0+GATE_ART.x1)/2-b.x)*s,top=y-(GATE_ART.img-b.y)*s+4;
+  const grate=levelArt['resetka'];if(k<.98){ctx.save();ctx.beginPath();ctx.rect(x-w/2,y-GATE_PASS-4,w,GATE_PASS+8);ctx.clip();const lift=k*GATE_PASS*.98;
+   if(grate){const gb=propBounds(grate),gh=GATE_PASS+24;ctx.drawImage(grate,gb.x,gb.y,gb.w,gb.h,x-w/2-4,y-gh+4-lift,w+8,gh);}
+   else for(let bx=x-w/2+8;bx<x+w/2;bx+=14)line(bx,y-GATE_PASS-lift,bx,y-lift,'#2a2c30',5);ctx.restore();}
+  ctx.drawImage(art,b.x,b.y,b.w,b.h,left,top,b.w*s,b.h*s);}
+ gateFronts.length=0;}

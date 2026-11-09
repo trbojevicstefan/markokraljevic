@@ -253,6 +253,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
  chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
  const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x));
+ // nothing breakable stands inside a gate's passage
+ for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
  return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};

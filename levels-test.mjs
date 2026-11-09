@@ -25,6 +25,7 @@ for(let i=0;i<api.LEVELS.length;i++){
  for(const g of world.goals){
   if(g.done)continue;
   if(g.kind==='gate'){
+   assert(!world.breakables.some(b=>Math.abs(b.x-g.x)<140),`${L.id}: the gate's passage is clear of crates and jars`);
    stand(g.x-10,g.y);step();assert(api.state().p.x<=g.x-33,`${L.id}: closed gate blocks the road`);
    for(const e of world.enemies)if(e.alive&&e.x>g.x-1100&&e.x<g.x+220)e.alive=false;
    step();assert(g.done,`${L.id}: gate opens once everything before it is done`);
