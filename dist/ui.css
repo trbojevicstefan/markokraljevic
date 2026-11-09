@@ -363,3 +363,15 @@
 /* a painted miniature fills the frame's opening edge to edge */
 .miniature.painted{padding:11.5%}
 .miniature.painted img{object-fit:cover;filter:none;border-radius:1px;box-shadow:0 0 0 1px #5a3a1a88}
+
+/* ---------- Codex's parchment, binding and ornaments (DOPUNA-6) ---------- */
+:root{--parch:radial-gradient(ellipse at 50% 42%,#0000 50%,#7a4a1a30 100%),url(assets/ui/rukopis-pergament.webp) center/cover}
+#menu .menu-copy{background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),radial-gradient(ellipse at 50% 40%,#0000 45%,#7a4a1a3a 100%),url(assets/ui/rukopis-pergament.webp);
+ background-size:54px,54px,54px,54px,auto,cover;background-repeat:no-repeat}
+.book{background:url(assets/ui/rukopis-korice.webp) center/cover,#4a1214}
+.leaf.cover .front{background:url(assets/ui/rukopis-korice.webp) center/cover!important;box-shadow:inset 0 0 0 1px #00000055,inset -14px 0 24px #0005!important}
+.leaf.cover .front span{display:none}
+.ms-birds{display:flex;justify-content:center;align-items:flex-end;gap:6px;margin:14px 0 0}
+.ms-birds img{width:74px;height:74px;object-fit:contain;filter:drop-shadow(0 1px 1px #5a3a1a55)}
+#menu-legende::before,#menu-knjiga::before{content:"";display:inline-block;width:20px;height:25px;margin:-8px 8px -6px 0;vertical-align:middle;background:url(assets/ui/rukopis-inicijal-k.webp) center/contain no-repeat}
+.book-tabs .tab.pic.song img{object-fit:contain;padding:6px}

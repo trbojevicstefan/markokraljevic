@@ -1456,7 +1456,7 @@ const VERSES=16;
 function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en=uiLang()==='en',out=[];
  for(const c of D.CHAPTERS){const t=c[en?'en':'sr'],pic=c.mini||c.img;out.push({group:c.id,tab:{img:c.tab||pic,label:t.title},
   left:`${ZASTAVICA}<p class="book-eyebrow">KNJIGA LEGENDI</p><figure class="miniature${c.mini?' painted':''}"><img src="${pic}" alt=""></figure><div data-notr class="ms-head"><p class="ms-cy">${c.cy}</p><h3 class="foe-name">${t.title}</h3><p class="foe-role">${t.sub}</p></div>`,
-  right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="drop ms-text">${t.text}</p><p class="ms-end" aria-hidden="true">✠ ✠ ✠</p></div>`});}
+  right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">Stranica ${i+1} od ${N}</p><div data-notr class="ms-body"><p class="drop ms-text">${t.text}</p><div class="ms-birds" aria-hidden="true"><img src="assets/ui/rukopis-ptica-2.webp" alt=""><img src="assets/ui/rukopis-ptica-1.webp" alt=""></div></div>`});}
  const S=D.SONG,T=S[en?'en':'sr'],sr=S.lines.sr,tr2=S.lines.en,n=sr.length;
  const verses=(arr,a,b)=>`<ol class="verses" data-notr>${arr.slice(a,b).map((l,k)=>`<li data-n="${a+k}"${reader?.line===a+k?' class="now"':''}><i>${(a+k+1)%5===0?a+k+1:''}</i>${l}</li>`).join('')}</ol>`;
  const readBar='<div class="read-bar"><button data-read="sr"><b>▶</b>Čitaj na srpskom</button><button data-read="en"><b>▶</b>Čitaj na engleskom</button></div>';
@@ -1466,7 +1466,7 @@ function legendSpreads(){const D=globalThis.markoLegende;if(!D)return[];const en
  const per=en?VERSES:VERSES*2;
  for(let a=0;a<n;a+=per){const b=Math.min(n,a+per),mid=Math.min(n,a+VERSES);
   out.push({group:'pesma',range:[a,b],left:`${ZASTAVICA}<p class="book-eyebrow">${en?'SRPSKI':'PESMA'}</p>${verses(sr,a,mid)}`,
-   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">${en?'ENGLISH':`Stranica ${i+1} od ${N}`}</p>${en?verses(tr2,a,b):verses(sr,mid,b)}${b>=n?'<p class="ms-end" aria-hidden="true">✠</p>':''}${a===0?readBar:''}`});}
+   right:(i,N)=>`${ZASTAVICA}<p class="book-eyebrow">${en?'ENGLISH':`Stranica ${i+1} od ${N}`}</p>${en?verses(tr2,a,b):verses(sr,mid,b)}${b>=n?'<div class="ms-birds" aria-hidden="true"><img src="assets/ui/rukopis-ptica-2.webp" alt=""><img src="assets/ui/rukopis-ptica-1.webp" alt=""></div>':''}${a===0?readBar:''}`});}
  return out;}
 function bookList(){return bookKind==='legende'?legendSpreads():BOOK_PAGES.map((pg,i)=>({group:'f'+i,foe:i,tab:{foe:i}}));}
 function spreadHTML(i){const s=bookSpreads[i];if(!s)return{left:'',right:''};if(s.foe!=null)return foeSpread(s.foe);return{left:s.left,right:typeof s.right==='function'?s.right(i,bookSpreads.length):s.right};}

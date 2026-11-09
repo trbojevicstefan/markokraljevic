@@ -1,0 +1,117 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "minijatura-marko",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Young King Marko stands before the fortress of Prilep wearing a crown, spiked mace in hand, his white-and-chestnut piebald horse Sarac behind him. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-pesme",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: An elderly guslar plays a Serbian single-string gusle upright on his knee with a curved bow, singing to villagers around a small fire. Above them as a vision, Marko rides his white-and-chestnut piebald Sarac. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-sarac",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko and his white-and-chestnut piebald Sarac drink wine from the SAME wooden bucket: Marko bends to its rim while the horse lowers his muzzle into the other side. Affectionate companionship. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-vila",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Winged fairy Ravijojla in a white dress shoots an arrow from a cloud. Below, Marko rides his piebald Sarac pursuing her across Miroc mountain, spiked mace raised. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-musa",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko and Musa Kesedzija wrestle on green grass in the Kacanik gorge. Marko has red cloak and chainmail, Musa dark beard, ivory turban and green coat. Winged white-dressed fairy in cloud above. Piebald Sarac and Musa's solid black horse stand at either side. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-uros",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko judges a dispute on Kosovo: youthful Emperor Uros at one side, older crowned King Vukasin at the other drawing a golden knife. Marko central with a decisive judging gesture, spiked mace at side. Serbian medieval church behind. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-oranje",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko plows the imperial road with a wooden plow drawn by EXACTLY TWO yoked oxen. Ottoman janissaries with treasure-laden pack animals approach along the road. Mace at Marko's belt. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-ramazan",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko sits before the Ottoman sultan, spiked mace across his knees and a goblet of wine in one hand. Marko wears a GREEN dolama coat over mail and retains his red cloak. Sultan seated opposite in Ottoman court. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-svadbarina",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko duels an Arab warrior before a tower beside the sea. Marko swings his spiked mace, the opposing warrior parries with a curved saber. A wedding party with a bride watches. Individual dignified human figures, no caricatures. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-sablja",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: In an Ottoman tent encampment, Marko recognizes his father's saber at the belt of a young Ottoman man and points to it. The distinctive saber has three golden hilt ornaments, clearly visible. Marko carries his spiked mace at his side. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-soko",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Wounded weary Marko lies beside a road, red cloak spread underneath, mace alongside. A gray falcon above his face brings a droplet of water in its beak and shades him with outstretched wings. Tender scene without gore. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-smrt",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: On Urvina mountain, Marko leans over a stone well and sees his own reflected face in the water. Piebald Sarac beside him sheds a tear. White winged fairy in a cloud, broken spear on the ground, mace nearby. Solemn intimate scene. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-spava",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Marko sleeps within a rocky cave, red cloak and chainmail visible, spiked mace beside him. Piebald Sarac beside him eats green moss. A saber is embedded in the rock. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    },
+    {
+      "id": "minijatura-pesma",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: illustration-story. Create ONE square full-bleed medieval Serbian manuscript miniature for a Book of Legends. Inspired by Miroslav Gospel illumination and Sopocani/Decani fresco painting: FLAT perspective, dark fine contours, mineral cinnabar red, verdigris green, lapis blue, ochre, aged GOLD background, subtly worn parchment edges. Handmade tempera, restrained shading, no modern 3D. NO text, NO letters, NO frame or border. Scene fills entire square. Marko ALWAYS same man: long dark hair, thick BLACK moustache, strong straight nose, red cloak over chainmail, spiked mace. Sarac ALWAYS white-and-chestnut piebald/spotted horse. Scene: Musa Kesedzija sits with legs crossed on a solid black horse, tossing his spiked mace high into clouds and holding his hands up ready to catch it. Marko riding white-and-chestnut piebald Sarac approaches through Kacanik gorge. Musa has dark beard, ivory turban and green coat. One airborne mace, Marko's own mace at his belt. Reference image if supplied establishes Marko/Sarac identity and painting style only; create this new scene."
+    }
+  ]
+}

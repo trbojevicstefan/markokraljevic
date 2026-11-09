@@ -219,3 +219,26 @@ PNG 512x640, providna pozadina. Sacuvan u rukopis/rukopis-inicijal-p.png; izvor 
 
 ## DOPUNA-6 - rukopis-gusle GOTOVO
 PNG 256x256, providna pozadina. Sacuvan u rukopis/rukopis-gusle.png; izvor u rukopis/sources/. Ugradjeni image_gen; prompt sacuvan u rukopis/prompts.json. Proverene dimenzije i alfa kanal.
+
+## DOPUNA-7 - minijatura-marko GOTOVO
+Sacuvano u rukopis/minijature/minijatura-marko.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+DOPUNA-6: svih 11 elemenata sada gotovo; zajednicki pregled rukopis/preview.png. Vizuelno pregledani na svetloj podlozi; dimenzije i alfa u rukopis/validation.json.
+
+## DOPUNA-7 - minijatura-pesme GOTOVO
+Sacuvano u rukopis/minijature/minijatura-pesme.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-sarac GOTOVO
+Sacuvano u rukopis/minijature/minijatura-sarac.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-vila GOTOVO
+Sacuvano u rukopis/minijature/minijatura-vila.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-musa GOTOVO
+Sacuvano u rukopis/minijature/minijatura-musa.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-uros GOTOVO
+Sacuvano u rukopis/minijature/minijatura-uros.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
+
+## DOPUNA-7 - minijatura-oranje GOTOVO
+Sacuvano u rukopis/minijature/minijatura-oranje.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
