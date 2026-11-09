@@ -1,3 +1,5 @@
 {
-  "prolaz-kamen-otvoren": {"passX0": 380, "passX1": 640, "archY": 600}
+  "prolaz-kamen-otvoren": {"passX0": 380, "passX1": 640, "archY": 600},
+  "prolaz-kamen-zatvoren": {"passX0": 380, "passX1": 640, "archY": 600},
+  "prolaz-drvo-otvoren": {"passX0": 380, "passX1": 640, "archY": 600, "xScale": 1.04}
 }

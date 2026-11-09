@@ -177,3 +177,6 @@ Cetiri faze doskoka: kontakt, sabijanje, podizanje i stajanje; 16 FPS jednom. At
 
 ## DOPUNA-3 - kameni otvoreni prolaz GOTOVO
 Objavljena ranije nacrtana profilna v3 proba kao prolaz-kamen-otvoren.png. Izmeren slobodan prolaz passX0=380, passX1=640, archY=600: sirina 260 i visina 424 px. Provera providnosti prolaza prosla. Postojece probe sacuvane. Sada zatvorena varijanta.
+
+## DOPUNA-3 - prolaz-drvo-otvoren GOTOVO
+PNG 1024x1024; portal-anchors.json: passX0=380, passX1=640, archY=600, xScale=1.04. Numericka provera prolaza 260x424: 110194/110240 piksela imaju alfa=0, 110237/110240 alfa<64 (99.9973%); 3 rubna piksela imaju alfa>=64, maksimum 134. Nema neprozirne prepreke u prolazu; minimalan rub od resamplovanja. Postojeca slika nije menjana. Sledeci prolaz-rudnik-otvoren, zatim ulaz-riznica-otvoren.

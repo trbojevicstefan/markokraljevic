@@ -9855,6 +9855,28 @@
       "passX1": 640,
       "archY": 600,
       "normalizationXScale": 1
+    },
+    {
+      "id": "prolaz-drvo-otvoren",
+      "file": "prolaz-drvo-otvoren.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        245,
+        24,
+        779,
+        1024
+      ],
+      "kind": "portal-open",
+      "group": 8,
+      "orientation": "profile",
+      "baseline": 1023,
+      "passX0": 380,
+      "passX1": 640,
+      "archY": 600,
+      "normalizationXScale": 1.04
     }
   ]
 }
