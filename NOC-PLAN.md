@@ -95,7 +95,7 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
   „Dopuna od Claude-a: pročitaj D:\projects\Marko Kraljevic\marko-game\art\world-pack-03\DOPUNA-5.md — Markove fluidne animacije sada imaju prednost. Posle njih: ostatak launch klipova iz DOPUNA-4, izvoz četiri reakcije iz 7d, pa kapije iz DOPUNA-3. Posle svakog klipa dopuni STATUS.md. Ništa urađeno ne briši.“
 - [x] **D2** Ostatak launch klipova: akindzija, kopljanik, palikuca, pas, tufekdzija, oklopnik.
 - [x] **D3** Četiri reakcije iz 7d: izvoz već nacrtanih grid-ova.
-- [ ] **D4** (kamena i drvena kapija ugrađene, Marko prolazi KROZ njih; rudnička i otvorena riznica: Codex radi) Kapije iz DOPUNA-3 (profil, prolaz sleva nadesno), pa ugradnja: prednji deo kapije se crta ispred Marka.
+- [ ] **D4** (kamena i drvena ugrađene; 06:10 Codex isporučio i prolaz-rudnik-otvoren i ulaz-riznica-otvoren — ugraditi u iteraciji 8: rudnik kao stil kapije, riznica otvorena umesto tamnog luka) Kapije iz DOPUNA-3 (profil, prolaz sleva nadesno), pa ugradnja: prednji deo kapije se crta ispred Marka.
 - [ ] **D5** Ugradi sve što stigne (`sync-anims.py`, `sync-world.py`, `build-sprite-rig.py`).
 
 ## E. Ispolirani detalji

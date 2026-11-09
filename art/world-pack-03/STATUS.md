@@ -180,3 +180,9 @@ Objavljena ranije nacrtana profilna v3 proba kao prolaz-kamen-otvoren.png. Izmer
 
 ## DOPUNA-3 - prolaz-drvo-otvoren GOTOVO
 PNG 1024x1024; portal-anchors.json: passX0=380, passX1=640, archY=600, xScale=1.04. Numericka provera prolaza 260x424: 110194/110240 piksela imaju alfa=0, 110237/110240 alfa<64 (99.9973%); 3 rubna piksela imaju alfa>=64, maksimum 134. Nema neprozirne prepreke u prolazu; minimalan rub od resamplovanja. Postojeca slika nije menjana. Sledeci prolaz-rudnik-otvoren, zatim ulaz-riznica-otvoren.
+
+## DOPUNA-3 - prolaz-rudnik-otvoren GOTOVO
+Novi PNG 1024x1024 sa drvenom podgradom, stenom i bocnim mehanizmom podizanja; otvoren prolaz. Portal-anchors.json: passX0=380, passX1=640, archY=600. Python alfa provera: svih 110240 piksela u pravougaoniku x380:640, y600:1024 ima alfa=0; potpuno providno. Katalog azuriran, prethodne slike sacuvane. Sledeci ulaz-riznica-otvoren.
+
+## DOPUNA-3 - ulaz-riznica-otvoren GOTOVO
+Novi PNG 1024x1024: vrata otvorena ka unutra, baklje i blago u osvetljenoj odaji; spoljasnja pozadina providna. Portal-anchors.json: passX0=380, passX1=640, archY=612, orientation=front, transparentPassage=false. Koordinate oznacavaju ulaz ka unutrasnjosti ekrana, a ne bocni providan tunel. Vizuelno proveren kompozit na tamnoj pozadini. Katalog azuriran. Trazene otvorene varijante drvo/rudnik/riznica isporucene; postojece slike i kod igre nisu menjani.

@@ -1,0 +1,51 @@
+{
+  "prolaz-drvo-otvoren": {
+    "size": [
+      1024,
+      1024
+    ],
+    "anchors": {
+      "passX0": 380,
+      "passX1": 640,
+      "archY": 600,
+      "xScale": 1.04
+    },
+    "passagePixels": 110240,
+    "zeroAlphaPixels": 110194,
+    "clearBelow64": 0.9999727866473149,
+    "maxAlpha": 134
+  },
+  "prolaz-rudnik-otvoren": {
+    "size": [
+      1024,
+      1024
+    ],
+    "anchors": {
+      "passX0": 380,
+      "passX1": 640,
+      "archY": 600
+    },
+    "passagePixels": 110240,
+    "zeroAlphaPixels": 110240,
+    "clearBelow64": 1.0,
+    "maxAlpha": 0
+  },
+  "ulaz-riznica-otvoren": {
+    "size": [
+      1024,
+      1024
+    ],
+    "anchors": {
+      "passX0": 380,
+      "passX1": 640,
+      "archY": 612,
+      "orientation": "front",
+      "transparentPassage": false,
+      "note": "Front entrance into screen; painted torch-lit interior, transparent exterior background. Coordinates mark doorway interaction bounds."
+    },
+    "passagePixels": 107120,
+    "zeroAlphaPixels": 410,
+    "clearBelow64": 0.01178117998506348,
+    "maxAlpha": 255
+  }
+}

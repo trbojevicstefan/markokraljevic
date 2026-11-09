@@ -1,0 +1,13 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "prolaz-rudnik-otvoren",
+      "prompt": "Create a new OPEN MINE PASSAGE sprite matching reference game art and exact composition. 1024x1024 transparent canvas. SIDE ELEVATION longitudinal cutaway for a 2D platformer, travel left to right under overhead structure. Replace stone gatehouse upper architecture with dark rough rock mass supported by heavy timber mine shoring, exposed side pulley and hoist, raised IRON portcullis hidden above passage, rusty iron straps. No church, dome, cross, flags, no door facing into screen. Keep two tall vertical timber posts at sides, upper structure asymmetric similar silhouette to reference. CRITICAL GEOMETRY: open clear rectangle x380 to640, y600 to1024 is COMPLETELY EMPTY TRANSPARENT. Ceiling underside y600; whole 260px width clear to bottom. Put supports outside rectangle, no diagonal braces intruding, no floor or threshold, no back wall. Top of rock structure y24; overall silhouette approximately x270..750. Posts terminate at image bottom. All details fit in canvas. Hand painted cel-shaded medieval Serbian epic style, warm ochre rock highlights, teal shadows, richly textured oak and iron. No people, text, grid, arrows, scenery or ground shadows. Opening must remain truly transparent, not black paint."
+    },
+    {
+      "id": "ulaz-riznica-otvoren",
+      "prompt": "Edit the supplied FRONT-FACING medieval Serbian treasury entrance to its OPEN state. Preserve exactly facade silhouette, canvas framing, pale limestone and red brick, tiled roof, golden cross, carved double eagle and Serbian ornaments, red banners and their white eagles, warm handpainted cel-shaded rendering. Keep the doorway small, about lower40% of facade, same location around x380..640, y610..1024. Only change heavy oak ironbound double doors: release bolt and swing leaves inward, revealing a small dark treasury room lit by warm amber wall torches, hints of gold chests inside. Door opening and interior are intentionally painted, NOT a transparent hole; all outside surroundings remain truly transparent. Do not enlarge or move the doorway or building. No portcullis, characters, text, floor slab, new facade decorations. 1024x1024 transparent canvas, bottom at groundline. This is front entrance into screen, unlike side-profile gates."
+    }
+  ]
+}

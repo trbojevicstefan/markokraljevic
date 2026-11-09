@@ -9877,6 +9877,46 @@
       "passX1": 640,
       "archY": 600,
       "normalizationXScale": 1.04
+    },
+    {
+      "id": "prolaz-rudnik-otvoren",
+      "file": "prolaz-rudnik-otvoren.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        222,
+        24,
+        801,
+        1024
+      ],
+      "kind": "portal-open",
+      "group": 8,
+      "orientation": "profile",
+      "baseline": 1023,
+      "passX0": 380,
+      "passX1": 640,
+      "archY": 600,
+      "normalizationXScale": 1
+    },
+    {
+      "id": "ulaz-riznica-otvoren",
+      "file": "ulaz-riznica-otvoren.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        19,
+        24,
+        1004,
+        1024
+      ],
+      "kind": "treasury",
+      "group": 8,
+      "orientation": "front",
+      "baseline": 1023
     }
   ]
 }

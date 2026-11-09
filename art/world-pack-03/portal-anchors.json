@@ -1,5 +1,7 @@
 {
   "prolaz-kamen-otvoren": {"passX0": 380, "passX1": 640, "archY": 600},
   "prolaz-kamen-zatvoren": {"passX0": 380, "passX1": 640, "archY": 600},
-  "prolaz-drvo-otvoren": {"passX0": 380, "passX1": 640, "archY": 600, "xScale": 1.04}
+  "prolaz-drvo-otvoren": {"passX0": 380, "passX1": 640, "archY": 600, "xScale": 1.04},
+  "prolaz-rudnik-otvoren": {"passX0": 380, "passX1": 640, "archY": 600},
+  "ulaz-riznica-otvoren": {"passX0": 380, "passX1": 640, "archY": 612, "orientation": "front", "transparentPassage": false, "note": "Front entrance into screen; painted torch-lit interior, transparent exterior background. Coordinates mark doorway interaction bounds."}
 }
