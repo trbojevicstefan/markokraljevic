@@ -222,13 +222,25 @@ for name in ['musa-sword', 'musa-grab', 'megdan-kostac', 'megdan-noz']:
     if _have(name) and 'musa-idle' in SCALES:
         SCALES[name] = (SCALES['musa-idle'][0], 'feet' if name.startswith('musa') else 'center')
 # the travellers and the Arab: their idle body height in world px; every clip of theirs shares that scale
-for who, height in {'putnik-starac': 108, 'putnik-trgovac': 118, 'putnica': 114, 'putnik-kaluder': 118, 'arapin': 150}.items():
+for who, height in {'putnik-starac': 108, 'putnik-trgovac': 118, 'putnica': 114, 'putnik-kaluder': 118, 'arapin': 150,
+                    'azdaja': 300, 'dzelat': 140, 'djemo': 142}.items():
     if not _have(who + '-idle'):
         continue
     scale = height / max(body_height(c) for c in _cells(who + '-idle'))
-    for k in ['idle', 'walk', 'run', 'attack', 'throw', 'hurt', 'death']:
+    for k in ['idle', 'walk', 'run', 'attack', 'throw', 'hurt', 'death', 'fire', 'bite']:
         if _have(f'{who}-{k}'):
             SCALES[f'{who}-{k}'] = (scale, 'center' if k == 'death' else 'feet')
+
+# DOPUNA-11: Marko's finish, the skeletons, a new move for every foe, more of Musa (all drawn at their idle zoom)
+if _have('marko-finisher'):
+    SCALES['marko-finisher'] = (SCALES['marko-idle'][0], 'feet')
+if _have('kosturi') and 'sword-death' in SCALES:
+    SCALES['kosturi'] = (SCALES['sword-death'][0], 'center')
+for name in ['sword-lunge', 'shield-bash', 'archer-kick', 'akindzija-spin', 'oklopnik-grab', 'tufekdzija-butt', 'kopljanik-sweep', 'palikuca-bomb',
+             'musa-throw-up', 'musa-stomp', 'musa-roar', 'musa-block']:
+    who = name.split('-')[0]
+    if _have(name) and who + '-idle' in SCALES:
+        SCALES[name] = (SCALES[who + '-idle'][0], 'feet')
 
 rig = {}
 for name, (scale, mode) in SCALES.items():

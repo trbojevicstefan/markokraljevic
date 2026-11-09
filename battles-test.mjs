@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -37,6 +37,24 @@ const safe=()=>{const {p}=S();p.invuln=99;p.hp=p.maxHp;};
  S().world.enemies.filter(e=>e.zone===1).forEach(e=>e.alive=false);S().p.x=end-600;safe();step(10);
  ok(T2.every(t=>t.state==='flee'),'travellers: the defense begins and they run for the gate');
  until(()=>T2.every(t=>t.state==='safe'),120*90);ok(T2.every(t=>t.state==='safe'),'travellers: all of them get through');}
+
+// ---- Ravijojla lays a bridge of light over a gap in the road, and the travellers cross ----
+{api.startChapter(0);const T=S().world.travelers;S().world.enemies.forEach(e=>e.alive=false);Object.assign(S().p,{x:1800,y:590});safe();
+ until(()=>(T.bridges||[]).length>0,120*30);ok((T.bridges||[]).length>0,'bridge: at the first gap Ravijojla lays a bridge');
+ until(()=>T.every(t=>t.x>1060),120*30);ok(T.every(t=>t.x>1060),'bridge: the travellers cross it');}
+
+// ---- the finish: a stunned Turk, U, and his head flies ----
+{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,y:590,face:1,grounded:true});safe();
+ Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(3);ok(e.finT>0,'finish: a stunned foe offers the finish');
+ tap('KeyU');ok(S().finisher,'finish: U begins it');step(140);ok(!e.alive&&S().heads.length===1,'finish: the head flies off');
+ ok(S().corpses.some(c=>c.headless),'finish: the body falls without it');step(120*4);ok(S().heads[0].rest,'finish: the head comes to rest on the ground');}
+
+// ---- blood lands on a plank, not in the air; corpses stay and turn to bones ----
+{api.startChapter(0);const w=S().world,q=w.platforms.find(q=>q.y<500);S().particles.length=0;S().decals.length=0;
+ S().particles.push({kind:'blood',x:q.x+q.w/2,y:q.y-60,vx:0,vy:0,life:3,max:3,r:3,color:'#900'});step(120);ok(S().decals.some(d=>Math.abs(d.y-q.y)<1),'blood: a drop over a plank lands on the plank');
+ S().decals.length=0;S().particles.push({kind:'blood',x:q.x+3,y:q.y-40,vx:0,vy:0,life:3,max:3,r:3,color:'#900'});step(240);ok(S().decals.some(d=>d.streak)&&S().decals.some(d=>d.y===590),'blood: at the edge it runs over and drips to the ground');
+ const e=w.enemies.find(e=>e.alive);Object.assign(S().p,{x:e.x-300});safe();e.hp=0;api.slay(e);step(120*5);ok(S().corpses.length===1,'bones: the corpse is still there after five seconds');
+ step(120*7);ok(S().corpses.length===0&&(!globalThis.__rig.kosturi||S().bones.length===1),'bones: then it rots to a skeleton that stays');}
 
 // ---- chapter IV: Šarac tramples the road guards; a shield stops the horse ----
 {api.startChapter(3);const {world}=S();const road=world.enemies.filter(e=>e.road&&e.alive);ok(road.length>=6,'gallop: Musa\'s men stand on the gallop road');
@@ -87,4 +105,37 @@ async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear(
 {const c=await arena('mocvara');ok(c.kit==='basa'&&c.perch,'basa: the musketeer captain on his watchtower');
  Object.assign(S().p,{x:c.x-100,y:c.arena.deck,vx:0,vy:0,grounded:true});safe();until(()=>c.ks==='leap',120*3);ok(c.ks==='leap','basa: Marko climbs up and he jumps down');}
 {const c=await arena('suma');ok(c.kit==='lovac','lovac: the hunter in the forest');until(()=>S().world.enemies.filter(e=>e.pack).length>=2,120*4);ok(S().world.enemies.filter(e=>e.pack&&e.alive).length>=2,'lovac: his horn calls the hounds');}
+
+// ---- puzzles made by hand ----
+async function land(id){await api.startLevel(levelOf(id),'day');api.keys.clear();api.pressed.clear();const w=S().world;for(const e of w.enemies)e.alive=false;return w;}
+const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounded:true,face,attack:0,cooldown:0,climb:null});safe();tap('KeyJ');step(40);};
+{const w=await land('manastir'),t=w.traps.find(t=>t.kind==='bells');ok(t&&t.bells.length===3,'bells: three bells in the monastery');
+ const wrong=t.bells.findIndex((b,i)=>i!==t.order[0]);strikeAt(t.bells[wrong].x,t.bells[wrong].y,1);ok(!t.done&&(t.prog||0)===0&&w.enemies.some(e=>e.alive),'bells: the wrong bell calls a guard');
+ for(const e of w.enemies)e.alive=false;for(const i of t.order)strikeAt(t.bells[i].x,t.bells[i].y,1);ok(t.done,'bells: rung in the fresco\'s order, the gate opens');}
+{const w=await land('pecina'),t=w.traps.find(t=>t.kind==='mirrors');step(2);ok(t&&!t.done&&!t.beam.hit,'mirrors: the beam misses the crystal at first');
+ const want=[1,1,0];for(const [i,m] of t.m.entries())if(m.s!==want[i])strikeAt(m.x+(i===0?-10:40),i===0?m.y+60:m.y+55,i===0?1:-1);
+ step(2);ok(t.done&&t.beam.hit,'mirrors: turned right, the beam lights the crystal and the gate opens');}
+{const w=await land('rudnik'),t=w.traps.find(t=>t.kind==='scale'),[L,R]=t.pans,crate=w.platforms.find(q=>q.kind==='teret'&&q.x<L.x&&q.x>L.x-200);ok(t&&crate,'scale: two pans and an iron crate in the mine');
+ Object.assign(S().p,{x:R.x+60,y:R.y,vx:0,vy:0,grounded:true});safe();step(120*2);ok(R.y>R.base+20,'scale: Marko alone sinks his pan');
+ Object.assign(S().p,{x:R.x-300,y:590});crate.x=L.x+20;crate.y=L.y-crate.h;step(120*2);Object.assign(S().p,{x:R.x+60,y:R.y,vx:0,vy:0,grounded:true});safe();step(120*2);
+ ok(R.y<R.base-60,'scale: the crate on the other pan lifts Marko up');}
+{const w=await land('suma'),t=w.traps.find(t=>t.kind==='kolo');ok(t&&t.bridge.off,'kolo: the fairy ring and a chasm with no bridge');
+ Object.assign(S().p,{x:t.stones[0].x-200,y:t.stones[0].y,grounded:true});safe();step(3);until(()=>!(t.show>0),120*8);
+ for(const i of t.order){Object.assign(S().p,{x:t.stones[i].x,y:t.stones[i].y,vx:0,vy:0,grounded:true});step(6);Object.assign(S().p,{x:t.stones[i].x+70});step(3);}
+ ok(t.done&&!t.bridge.off,'kolo: stepped in the fireflies\' order, the bridge of light appears');}
+{const w=await land('tvrdjava'),t=w.traps.find(t=>t.kind==='powder'),keg=w.platforms.find(q=>q.keg);ok(t&&keg,'powder: an iron door and a powder keg in the fortress');
+ keg.x=t.brazier.x+60;Object.assign(S().p,{x:t.brazier.x-40,y:t.brazier.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyJ');step(40);ok(t.brazier.down,'powder: the brazier falls');
+ Object.assign(S().p,{x:t.brazier.x-300,y:590});until(()=>t.done,120*5);ok(t.done&&keg.off,'powder: the coals light the keg and the door is blown');}
+// ---- the new champions ----
+{const c=await arena('pecina');ok(c.kit==='azdaja','azdaja: the dragon in the cave');c.kc=0;c.mode='idle';Object.assign(S().p,{x:c.x-500});until(()=>S().arrows.some(a=>a.flame),120*3);ok(S().arrows.some(a=>a.flame),'azdaja: she breathes fire along the ground');}
+{const c=await arena('manastir');ok(c.kit==='dzelat','dzelat: the executioner in the monastery');const pl=S().world.platforms.filter(q=>q.arena&&!q.off).length;Object.assign(S().p,{x:c.x-150,y:c.y});safe();c.kc=0;c.mode='idle';
+ until(()=>c.stun>0,120*4);ok(c.kitOpen>0,'dzelat: his axe sticks in the ground');}
+{const c=await arena('selo');ok(c.kit==='djemo','djemo: Đemo the highlander in the village');Object.assign(S().p,{x:c.x-400,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>c.mace,120*3);ok(c.mace,'djemo: he throws his mace');until(()=>!c.mace,120*6);ok(!c.mace,'djemo: and it comes back to his hand');}
+{const w0=await api.startLevel(levelOf('oranje'),'day');const w=S().world;ok(w.enemies.filter(e=>e.trioMate).length===2&&w.enemies.some(e=>e.champion&&e.kit==='trio'),'trio: three janissaries guard the gold');}
+{const c=await arena('klisura');ok(c.kit==='kopljanik','kopljanik: the spear captain of the gorge');Object.assign(S().p,{x:c.x-450,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*3);ok(S().arrows.some(a=>a.spear),'kopljanik: he throws a spear');}
+// ---- second moves and Musa's new ones ----
+{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-200,y:590,face:1});safe();e.timer=0;e.mode='idle';e.moveCool=0;
+ until(()=>e.move||e.recMove,120*2);ok(e.move||e.recMove,'moves: a janissary lunges from a distance');}
+{api.startChapter(5);const {boss}=S();boss.stage='duel';boss.phase=2;boss.mode='throwUp';boss.timer=.05;Object.assign(S().p,{x:boss.x-300});safe();step(10);ok(boss.mode==='unarmed'&&boss.drop,'musa: he throws his mace into the clouds and stands unarmed');
+ until(()=>!boss.drop,120*3);ok(!boss.drop,'musa: the mace comes down where its shadow was');}
 console.log(`${checks} battle checks passed.`);

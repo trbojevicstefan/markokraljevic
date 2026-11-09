@@ -118,3 +118,39 @@ DOPUNA-10: megdan-noz — ispravljen izvoz. Drugi pokusaj zbog odsecene glave u 
 
 ## DOPUNA-10 — ZAVRSENO
 24 klipa, 160 kadrova. Svaki ima atlas.png, manifest.json sa frame_layout, frames/motion/, preview.gif, qa.json i reference.png. Provereni broj PNG/GIF kadrova, 512x512 celije, alfa kanal, oslonac y=487, slaganje svakog kadra sa atlasom i loop podaci. Ugradjeni image_gen: 25 generisanja za 24 klipa (megdan-noz ponovljen zbog odsecene glave); izvoz beg-unhorsed ispravljen da sacuva oba odvojena subjekta. Izvori i prethodni izvozi sacuvani. Pregled: animation-pack-04/preview-dopuna10.png; katalog: catalog-dopuna10.json; provera: validation-dopuna10.json; promptovi: plan-dopuna10.json i dopuna10-generation-notes.json. Nema preostalih stavki sa liste.
+
+DOPUNA-11: marko-finisher — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-finisher/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: kosturi — GOTOVO; 4 staticke varijante; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kosturi/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: sword-lunge — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/sword-lunge/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: shield-bash — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/shield-bash/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: archer-kick — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/archer-kick/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: akindzija-spin — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/akindzija-spin/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: oklopnik-grab — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/oklopnik-grab/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: tufekdzija-butt — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/tufekdzija-butt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: kopljanik-sweep — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/kopljanik-sweep/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: palikuca-bomb — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/palikuca-bomb/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: musa-throw-up — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/musa-throw-up/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: musa-stomp — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/musa-stomp/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: musa-roar — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/musa-roar/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: musa-block — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/musa-block/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json.
+
+DOPUNA-11: azdaja-idle — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-idle/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
+
+DOPUNA-11: azdaja-fire — GOTOVO; 8 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-fire/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
+
+DOPUNA-11: azdaja-bite — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-bite/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).
+
+DOPUNA-11: azdaja-hurt — GOTOVO; 4 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/azdaja-hurt/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna11.json. Za velicinu azdaje koristiti renderScale i renderAnchor iz manifesta (svetska visina 906px).

@@ -331,6 +331,92 @@ def megdan_theme():
     return m.render(loop_len=bars * bar)
 
 
+# ---------------- the champions' themes: one per boss, each in its own mode, tempo, lead and drum style ----------------
+MODES = {'phrygdom': [0, 1, 4, 5, 7, 8, 10], 'harmminor': [0, 2, 3, 5, 7, 8, 11], 'hijaz': [0, 1, 4, 5, 7, 8, 11], 'phryg': [0, 1, 3, 5, 7, 8, 10],
+         'minor': [0, 2, 3, 5, 7, 8, 10], 'dorian': [0, 2, 3, 5, 7, 9, 10], 'major': [0, 2, 4, 5, 7, 9, 11], 'locrian': [0, 1, 3, 5, 6, 8, 10]}
+BOSS_THEMES = {
+    'boss-hasan':     dict(bpm=96,  root=38, mode='harmminor', lead='horn',  drums='heavy',  seed=11),   # the ironclad: slow, crushing
+    'boss-beg':       dict(bpm=140, root=40, mode='phrygdom',  lead='gusle', drums='gallop', seed=12),   # the raider bey: hooves
+    'boss-ognjeni':   dict(bpm=118, root=45, mode='hijaz',     lead='voice', drums='heavy',  seed=13),   # fire: a wailing choir
+    'boss-bajraktar': dict(bpm=108, root=43, mode='minor',     lead='horn',  drums='march',  seed=14),   # the banner: a march
+    'boss-janicar':   dict(bpm=132, root=47, mode='phryg',     lead='gusle', drums='duel',   seed=15),   # the duelist: quick
+    'boss-arapin':    dict(bpm=104, root=36, mode='hijaz',     lead='voice', drums='heavy',  seed=16),   # the tower by the sea
+    'boss-basa':      dict(bpm=112, root=42, mode='minor',     lead='horn',  drums='sparse', seed=17),   # the musket: tension
+    'boss-lovac':     dict(bpm=126, root=38, mode='dorian',    lead='horn',  drums='gallop', seed=18),   # the hunt: horn calls
+    'boss-azdaja':    dict(bpm=84,  root=36, mode='locrian',   lead='voice', drums='heavy',  seed=19),   # the dragon: vast and low
+    'boss-dzelat':    dict(bpm=100, root=39, mode='harmminor', lead='voice', drums='sparse', seed=20),   # the executioner
+    'boss-djemo':     dict(bpm=120, root=45, mode='minor',     lead='gusle', drums='duel',   seed=21),   # the highlander
+    'boss-trio':      dict(bpm=128, root=43, mode='major',     lead='gusle', drums='march',  seed=22),   # three janissaries and their gold
+    'boss-kopljanik': dict(bpm=116, root=40, mode='minor',     lead='gusle', drums='duel',   seed=23),   # the spearman of the gorge
+    'koplja':         dict(bpm=150, root=38, mode='phrygdom',  lead='horn',  drums='gallop', seed=24),   # Musa: lances on horseback
+}
+
+
+def boss_theme(bpm, root, mode, lead, drums, seed, bars=24):
+    r = np.random.default_rng(seed)
+    beat = 60 / bpm; bar = 4 * beat
+    m = Mix(bars * bar + 5)
+    sc = MODES[mode]
+    def deg(d): return root + 12 * (d // 7) + sc[d % 7]
+    motif = []
+    for b in range(4):
+        t, ph = 0., []
+        while t < 4:
+            d = min(float(r.choice([.5, .5, 1, 1, 1, 1.5, 2])), 4 - t)
+            ph.append((int(r.integers(14, 22)), d)); t += d
+        motif.append(ph)
+    riff = [int(x) for x in r.choice([0, 0, 0, 1, 2, 3, 4, 6], 8)]
+    chords = [[0, 2, 4], [3, 5, 7], [4, 6, 8], [0, 2, 4]]
+    for b in range(bars):
+        t0 = b * bar
+        sec = 'intro' if b < 4 else 'A' if b < 12 else 'break' if b < 16 else 'climax'
+        if sec in ('intro', 'break'):
+            m.add(t0, drone(root, bar + .3), 0, .45, .25)
+        if sec != 'break':
+            for k, dg in enumerate(riff):
+                m.add(t0 + k * beat / 2, strings(deg(dg) + 12, beat / 2 * .85), -.2 if k % 2 else .2, .24, .15)
+                m.add(t0 + k * beat / 2, strings(deg(dg), beat / 2 * .85), 0, .2, .1)
+        # drums, in the champion's own gait
+        if drums == 'heavy':
+            for k in (0, 2): m.add(t0 + k * beat, taiko(), 0, .7, .4)
+            for k in (1, 3): m.add(t0 + k * beat, tapan(1.1), 0, .55, .3)
+            for k in (1.5, 3.5): m.add(t0 + k * beat, slap(), .2, .45, .25)
+        elif drums == 'gallop':
+            for q in range(4):
+                for k, g in ((0, .6), (1 / 3, .35), (2 / 3, .45)): m.add(t0 + (q + k) * beat, tapan(.85), -.1, g, .25)
+            for k in np.arange(0, 4, .5): m.add(t0 + k * beat, tek(), .3, .14, .15)
+            if b % 4 == 0 and sec != 'intro': m.add(t0, taiko(), 0, .6, .4)
+        elif drums == 'march':
+            for k in (0, 2): m.add(t0 + k * beat, tapan(1.05), 0, .6, .3)
+            for k in np.arange(0, 4, .25): m.add(t0 + k * beat, tek(), .35 if int(k * 4) % 2 else -.35, .12 + .14 * (k in (1, 3)), .15)
+            for k in (1, 3): m.add(t0 + k * beat, slap(), .2, .5, .25)
+        elif drums == 'duel':
+            for k in (0, .75, 1.5, 2, 2.75, 3.5): m.add(t0 + k * beat, tapan(1.0), -.05, .55, .28)
+            for k in (1, 3): m.add(t0 + k * beat, slap(), .2, .5, .25)
+            for k in np.arange(0, 4, .25): m.add(t0 + k * beat, tek(), .35 if int(k * 4) % 2 else -.35, .15, .18)
+        else:  # sparse: a heartbeat and a ticking
+            m.add(t0, taiko(), 0, .6, .4); m.add(t0 + .5 * beat, tapan(.7), 0, .35, .3)
+            for k in np.arange(0, 4, .5): m.add(t0 + k * beat, tek(), .3 if int(k * 2) % 2 else -.3, .13, .2)
+        if b % 4 == 3 and sec != 'intro': m.add(t0 + 2 * beat, swell(2 * beat), 0, .5, .5)
+        # choir chords and brass hits
+        if sec in ('A', 'climax', 'break') and b % 2 == 0:
+            for k, dg in enumerate(chords[(b // 2) % 4]):
+                m.add(t0, voice(deg(dg) + 12, 2 * bar + .3, 'o' if sec == 'break' else 'a'), (k - 1) * .3, .26, .45)
+        if sec == 'climax' and b % 2 == 0:
+            for dg in (0, 4): m.add(t0, horn(deg(dg) + 12, bar * .9), .15, .3, .35)
+        # the lead melody
+        if sec in ('A', 'climax'):
+            t, prev = t0, None
+            for dg, d in motif[b % 4]:
+                midi = deg(dg) + (12 if sec == 'climax' and lead != 'horn' else 0)
+                if lead == 'horn': m.add(t, horn(midi - 12, d * beat * 1.05), -.15, .4, .35)
+                elif lead == 'voice': m.add(t, voice(midi - 12, d * beat * 1.05, 'a'), -.1, .42, .45)
+                else: m.add(t, gusle(midi, d * beat * 1.02, slide_from=prev if prev and abs(prev - midi) > 2 else None, ornament=d >= 1), .2, .46, .3)
+                if sec == 'climax' and lead != 'gusle': m.add(t, gusle(midi, d * beat, ornament=d >= 1), .25, .3, .3)
+                prev = midi; t += d * beat
+    return m.render(loop_len=bars * bar)
+
+
 # ---------------- sound effects ----------------
 
 def fx_whoosh(dur=.32, lo=300, hi=2400, heavy=False):
@@ -430,6 +516,17 @@ KENNEY = {
     'leather': ['handleSmallLeather', 'handleSmallLeather2', 'dropLeather'],
     'gate': ['doorOpen_1', 'creak1'],
 }
+
+if __name__ == '__main__' and '--bosses' in sys.argv:   # python make-audio.py --bosses : only the champions' themes
+    os.makedirs(MUSIC, exist_ok=True)
+    only = [a for a in sys.argv[1:] if not a.startswith('--')]
+    for name, kw in BOSS_THEMES.items():
+        if only and name not in only:
+            continue
+        audio = boss_theme(**kw)
+        write(name, audio, MUSIC, stereo=True)
+        print(f'music {name}: {len(audio) / SR:.1f}s, {os.path.getsize(os.path.join(MUSIC, name + ".ogg")) // 1024} KB', flush=True)
+    sys.exit(0)
 
 if __name__ == '__main__':
     os.makedirs(MUSIC, exist_ok=True); os.makedirs(SFX, exist_ok=True)

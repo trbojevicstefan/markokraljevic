@@ -83,6 +83,50 @@ Crteži su iz Codexove liste `art/world-pack-03/DOPUNA-10.md` (24 klipa).
 
 `node battles-test.mjs` stvarnim ulazima proverava talase, putnike, galop, sve Musine etape i svakog bosa (45 provera).
 
+## Dopuna 11: dokrajčivanje, kosturi, zagonetke, novi bosovi, muzika bosova
+
+Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
+
+**Borba**
+- **Dokrajčivanje (U, na džojstiku Y).** Kad je Turčin ošamućen, slomljenog garda ili skoro mrtav, iznad njega se na trenutak pojavi „U · DOKRAJČI“. Ako stigneš da pritisneš, Marko zamahne topuzom u visini vrata: glava odleti i odskače po tlu, iz vrata šiklja krv, a telo padne bez glave.
+- **Krv** pada tamo gde stvarno padne: na gredu, na izbočinu ili na drum, nikad ne ostaje u vazduhu. Na ivici se sliva niz kamen i kaplje na tlo ispod.
+- **Leševi ostaju.** Posle 10 sekundi istrunu u kostur koji ostaje na tlu: janičar sa turbanom, oklopnik sa šlemom, strelac sa tobolcem, ili kostur bez lobanje za one kojima je odletela glava.
+- **Drugi potez svakog neprijatelja:**
+  - janičar ubada iz dugog iskoraka;
+  - štitonoša juriša štitom;
+  - kopljanik seče po nogama, pa ga moraš preskočiti;
+  - strelac šutne izbliza i odskoči;
+  - tufekdžija udara kundakom;
+  - akindžija se vrti sa dve sablje;
+  - oklopnik zgrabi Marka i baci ga preko ramena;
+  - palikuća baci lonac sa vatrom koji zapali širok krug.
+- **Musa ima još poteza:**
+  - kao u pesmi baca topuz u oblake: senka prati Marka, topuz padne, a Musa je za to vreme bez oružja i otvoren;
+  - tresak nogom šalje talase po tlu;
+  - riče kad mu pukne srce;
+  - blokira drškom topuza i svaki treći put odgurne Marka.
+- **Ravijojla pravi mostove od svetla** preko provalija u I poglavlju, da putnici mogu da pređu.
+
+**Pohodi: duži, sa ručno napravljenim zagonetkama i manje neprijatelja na putu**
+- **Zvona** (Manastirski vis): udari tri zvona redom koji pokazuje freska. Pogrešno zvono doziva stražara.
+- **Ogledala** (Pećina): udarcem okreni tri bronzana ogledala da sunčev zrak stigne do kristala.
+- **Teg** (Rudnik): gvozdeni sanduk na levoj vagi podiže desnu, a sa njom i Marka do izbočine.
+- **Vilinsko kolo** (Ravijojlina šuma): ponovi redosled kojim svici pale kamenove, pa preko provalije nastaje most od svetla.
+- **Barut** (Opsednuta tvrđava): doguraj bure baruta do gvozdenih vrata, popni se i sruši mangal na njega, pa se skloni.
+
+**Novi bosovi, svaki sa svojom arenom**
+- **Aždaja** (pećina): bljuje vatru, pa se skloni iza kamena ili čučni. Kad posle ujeda zarije glavu u zemlju, udri.
+- **Dželat** (manastir): sekirom cepa grede pod Markom; kad mu se sekira zabije u zemlju, udri.
+- **Đemo Brđanin** (selo): baca buzdovan koji se vraća, a bez njega je ranjiv.
+- **Tri janičara** (oranje): kad jedan padne, ostala dvojica se razjare.
+- **Kopljanik-baša** (klisura): gađa kopljem izdaleka i preskače Marka kad mu priđe.
+
+**Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
+
+**Provere**
+- `node battles-test.mjs`: 82 provere.
+- `node draw-test.mjs` iscrtava igru bez ekrana, kroz Kačanik, Musine etape, dokrajčivanje i svih 13 pohoda, i hvata greške u crtanju.
+
 ## Kontrole
 
 | Taster | Radnja |

@@ -28,13 +28,14 @@ for(const [name,scale] of Object.entries({'cast/marko':0.36676,'marko-run':0.553
   assert(Math.abs(rig[name].scale-scale)<0.00002,`${name}: preserve user scale`);
 }
 const deathFn=source.match(/function deathPose\(c\)\{[^\n]+\}/)[0];
-const death=new Function('clamp',deathFn+';return deathPose;')((x,a,b)=>Math.max(a,Math.min(b,x)));
+const ROT_AT=Number(source.match(/const ROT_AT=([\d.]+)/)[1]);
+const death=new Function('clamp','ROT_AT',deathFn+';return deathPose;')((x,a,b)=>Math.max(a,Math.min(b,x)),ROT_AT);
 for(const type of ['marko','sword','shield','archer','musa']){
   const r=rig[type+'-death'];assert.equal(r.frames.length,6);await fs.access('dist/assets/'+r.image);
   const seen=new Set();for(let t=0;t<1.3;t+=.02)seen.add(death({type,t}).frame);
   assert.equal(seen.size,6);assert.equal(death({type,t:20,persist:true}).frame,5,'death must not loop');
   assert.equal(death({type,t:20,persist:true}).alpha,1,'hero/boss final pose persists');
-  assert.equal(death({type,t:3.2}).alpha,0,'ordinary corpse fades after settling');
+  assert.equal(death({type,t:3.2}).alpha,1,'ordinary corpse stays on the ground');assert.equal(death({type,t:30}).alpha,0,'then it gives way to bones');
   assert((r.frames[5][4]-r.frames[5][5])<(r.frames[0][4]-r.frames[0][5])*.6,'final pose lies down');
 }
 for(const name of ['marko-crouch','marko-block','marko-super']){

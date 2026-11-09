@@ -1,0 +1,575 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-finisher",
+      "group": 13,
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 383,
+      "targetHeight": 383,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/marko-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 8 distinct poses in 4 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). Marko's decisive TWO-HANDED spiked mace finisher at enemy NECK HEIGHT, no enemy drawn: 1 neutral, 2 shift weight wide and draw mace far back, 3 coil whole torso, 4 explosive horizontal swing at neck level, 5 follow-through across body, 6 full body pivot/spin with cape wrapping, 7 brake spin, 8 wide planted stance. Full turn allowed at phases5-6, otherwise right profile; final faces right. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "kosturi",
+      "group": 13,
+      "frames": 4,
+      "loop": false,
+      "fps": 1,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 121,
+      "targetHeight": 121,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/sword-death.png",
+      "staticVariants": true,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 4 distinct poses in 4 columns x 1 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). STATIC VARIANT SHEET, NOT motion: four different dry old skeletons lying HORIZONTALLY on ground, same length as reference fallen soldier. 1 Ottoman janissary skeleton with rotten ivory turban and faded burgundy cloth. 2 armored skeleton rusty helmet and broken breastplate. 3 archer skeleton with empty quiver and decayed cloth. 4 HEADLESS skeleton with no skull anywhere. Aged dry bones, no flesh, no blood, no gore. Entire remains lie left-to-right, no upright poses. Distinct variants, all parts fit. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "sword-lunge",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/sword-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT janissary from reference. Saber thrust from long lunge: ready, pull saber back point forward, deep forward step, full straight thrust, withdraw blade, return guard. Same character and clothes. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "shield-bash",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 454,
+      "targetHeight": 454,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/shield-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT shield warrior. Ready behind shield, crouched windup, charge step, ram shield straight forward, brace impact, recover shield guard. Shield remains held correctly, no target drawn. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "archer-kick",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 456,
+      "targetHeight": 456,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/archer-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT archer carrying bow in left hand. Guard, raise right knee, close-range front kick, retract leg, short backward hop with both legs bent, land ready. Bow secure throughout, no arrow fired. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "akindzija-spin",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 370,
+      "targetHeight": 370,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/akindzija-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT akindzija draws TWO curved sabers. Ready, coil torso, sweep first saber, full spinning cut with both blades outward, complete turn follow-through, brake back to ready right-facing. Back/side views allowed ONLY during spin. No extra arms or blades. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "oklopnik-grab",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/oklopnik-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT heavy armored warrior, weapon and shield slung on back leaving BOTH hands free. Reach both open hands forward, grip unseen foe, squat for leverage, lift unseen foe above chest, throw over his shoulder to rear, recover. No opponent drawn. Heavy armor inertia. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "tufekdzija-butt",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 417,
+      "targetHeight": 417,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/tufekdzija-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT musketeer. Holds old matchlock musket, draws stock back, steps in, strikes forward with wooden BUTT end not muzzle, follows through, recovers gun-ready stance. Both hands grip gun properly. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "kopljanik-sweep",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 410,
+      "targetHeight": 410,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/kopljanik-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT spearman. Ready, draw spear sideways low, dip torso, sweeping horizontal spear attack at shin level, low follow-through, recover. Entire spear fits each cell, compact weapon length matching reference. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "palikuca-bomb",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 464,
+      "targetHeight": 464,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/palikuca-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT fire thrower. Holds small CLAY FIRE POT with visible small burning wick, draws pot back, raises it overhead, lobs in high arc with release, follows through EMPTY hand, returns ready. Pot shown only before release; tiny fire wick part of sprite. No floating extra projectiles. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "musa-throw-up",
+      "group": 13,
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/musa-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 8 distinct poses in 4 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT giant Musa, saber sheathed, holding large spiked MACE. 1 mace at waist, 2 dip, 3 thrust arms straight UP and release, 4 empty hands eyes look UP mace outside view, 5 waits looking up, 6 raised open hands ready to catch descending mace, 7 catches ONE mace, 8 settles mace into hands. No clouds/background. Keep body same size; no duplicates of mace. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "musa-stomp",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/musa-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT giant Musa with large mace held safely at side, saber sheathed. Ready, lean back raise right knee, high raised foot, powerful downward STOMP, knees compress on impact, recover. No ground/effects drawn, full weapon stays within slot. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "musa-roar",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/musa-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT giant Musa, saber sheathed and hands EMPTY. Ready, fists rise to chest, strike chest with right fist, strike chest with left fist, head tilts to sky mouth open in roar arms wide, recover. Huge threatening chest rhythm, no text or sound marks. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "musa-block",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/musa-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT giant Musa, saber sheathed. Holding SPIKED MACE in BOTH hands. Ready, raise horizontal mace handle before chest, receive invisible blow on wooden HANDLE bracing arms, recoil a little, forceful push forward with handle, return guard. Same single mace every frame. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "azdaja-idle",
+      "group": 13,
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 400,
+      "targetHeight": 400,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/musa-idle.png",
+      "staticVariants": false,
+      "worldHeight": 906,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). NEW Serbian folklore cave AZDAJA DRAGON, reference human is painting STYLE ONLY, do NOT draw human. Enormous stone-gray rocky scales, long serpentine neck, horned reptilian head, four powerful clawed legs, long tapering tail curled behind, small ragged bat wings folded. Right-facing. Six breathing phases with slight neck sway and tail lag. Ancient formidable design, not cute. Entire creature fits compactly with long tail curling back inside slot. Seamless loop, final phase flows into first. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "azdaja-fire",
+      "group": 13,
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 400,
+      "targetHeight": 400,
+      "reference": "art/animation-pack-04/assets/azdaja-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": 906,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 8 distinct poses in 4 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT stone-scaled dragon. 1 neutral, 2 inhale neck draws back, 3 open jaws glow orange, 4 short flame jet forward horizontally, 5 long HORIZONTAL FIRE STREAM, 6 stream tapers, 7 embers die mouth closes, 8 neutral. Flame is painted into sprite, clear orange/yellow flame with red edges. Leave large space in FRONT in every slot so complete flame and whole dragon fit. No cropped flame, no floor/shadow. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "azdaja-bite",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 400,
+      "targetHeight": 400,
+      "reference": "art/animation-pack-04/assets/azdaja-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": 906,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT dragon. Ready, neck coils, neck lunges forward jaws open, jaws SNAP shut at full extension, neck retracts, neutral. Entire long neck and tail fit each slot, no target. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "azdaja-hurt",
+      "group": 13,
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 400,
+      "targetHeight": 400,
+      "reference": "art/animation-pack-04/assets/azdaja-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": 906,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 4 distinct poses in 4 columns x 1 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT dragon. Neutral, chest and head recoil from invisible hit, neck twists and claws brace, recovers. No blood, no flashes. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "azdaja-death",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 400,
+      "targetHeight": 400,
+      "reference": "art/animation-pack-04/assets/azdaja-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": 906,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT dragon. Ready wounded, front knees buckle, neck drops, body falls sideways, tail and wings settle, lies motionless entire creature visible. Fixed anatomy scale, do not enlarge low prone poses. No gore. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "dzelat-idle",
+      "group": 13,
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/oklopnik-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). NEW burly Ottoman EXECUTIONER as tall as armored reference, human style only not its identity. Dark crimson sleeveless heavy tunic over mail, black leather apron and bracers, wide belt, black cloth hood exposing stern eyes and short beard, heavy boots. Holds enormous TWO-HANDED steel AXE with wooden shaft, crescent blade, no shield. Six idle breathing and slight weight shifts. Recognizable unique exact design across frames. Seamless loop, final phase flows into first. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "dzelat-run",
+      "group": 13,
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/dzelat-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 8 distinct poses in 4 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT executioner. Eight rightward run phases alternating right contact, compression, passing, flight, left contact, compression, passing, flight. Axe held safely diagonally two hands; heavy apron inertia. Actual run, not hopping. Seamless loop, final phase flows into first. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "dzelat-attack",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/dzelat-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT executioner, two-handed overhead axe chop. Ready, raise axe, high windup, explosive down-forward CHOP, low follow-through, recover. Entire axe in every cell. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "dzelat-hurt",
+      "group": 13,
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/dzelat-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 4 distinct poses in 4 columns x 1 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT executioner. Ready, recoil from hit, stagger bracing axe, regain guard. No blood/attacker. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "dzelat-death",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/dzelat-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT executioner. Wounded standing, knees buckle, kneels axe low, falls forward-sideways, settles, lies motionless with axe next to him. Full figure/axe inside slot, no gore. Fixed body proportions, prone pose not enlarged. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-idle",
+      "group": 13,
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/sources/dopuna11-reference/oklopnik-idle.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). NEW Djemo Brdjanin Serbian epic mountain BANDIT. Huge rugged broad-shouldered man as tall as armored reference; style only. Shaggy brown hair, thick dark beard, dark sheepskin fur cap, rough brown wool coat with fur shoulders over ochre linen tunic, leather belt, dark trousers, sturdy opanci boots. Carries HUGE heavy iron-studded wooden BUZDOVAN CLUB, distinctly thick rounded barrel head, not Marko's ball mace, no shield/plate armor. Six idle breathing phases. Seamless loop, final phase flows into first. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-run",
+      "group": 13,
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 8 distinct poses in 4 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT Djemo bandit. Eight running phases alternating right contact, compression, passing, flight, left contact, compression, passing, flight. Heavy studded club carried diagonally across body, coat and beard trail. True alternating run legs. Seamless loop, final phase flows into first. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-attack",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT Djemo. Heavy club swing: ready, draw club back with both hands, torque torso, powerful diagonal forward blow, low follow-through, recover. One club, full body fixed scale. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-throw",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT Djemo. Throws huge studded club FORWARD. Ready, draw club behind shoulder, coil torso, forceful release forward, empty throwing hand follow-through, ends empty-handed ready. Club shown only pre-release, completely gone after release. No duplicated weapon/projectile. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-hurt",
+      "group": 13,
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 4 distinct poses in 4 columns x 1 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT Djemo. Ready, torso/head recoil, short stagger with knees bent club low, guard recovered. No blood/attacker. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    },
+    {
+      "id": "djemo-death",
+      "group": 13,
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "referenceHeight": 428,
+      "targetHeight": 428,
+      "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+      "staticVariants": false,
+      "worldHeight": null,
+      "prompt": "Use case: stylized-concept. ONE professional hand-painted cel-shaded side-scroller sprite sheet matching supplied game art. EXACTLY 6 distinct poses in 3 columns x 2 rows, row-major order. Side view RIGHT-facing (except explicitly requested spins). EXACT Djemo. Standing hurt, knees buckle, drops to knees club low, falls on side, settles, lies motionless beside club. No gore. Same body proportions, no scaling up prone poses. One-shot unless static variants stated. SAME anatomical size, head/limb size, clothing and weapon geometry across cells; smooth articulated joints and cloth inertia. Full figure AND all weapons inside EACH separate slot with LARGE pure green gutters at all sides, never crossing cell boundaries. Pure solid #00FF00 background, no green clothing, no ground, shadows, scenery, text, numbers, grid lines or effects unless fire explicitly requested. Output target cells 512x512, baseline y487; low poses naturally lower, not inflated."
+    }
+  ]
+}
