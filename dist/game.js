@@ -286,9 +286,9 @@ function draw(dt=1/60){
  if(screenCtx){screenCtx.setTransform(1,0,0,1,0,0);if(assets.gorge){const drawW=W+260,drawH=drawW*1024/1536;screenCtx.drawImage(assets.gorge,-130-Math.min(1,camera/29900)*180,-80,drawW,drawH);}else{screenCtx.fillStyle='#496f6b';screenCtx.fillRect(0,0,W,H);}screenCtx.drawImage(layer,0,0,W,H);screenCtx.globalCompositeOperation='lighter';screenCtx.drawImage(glowLayer,0,0,W,H);screenCtx.globalCompositeOperation='source-over';}
 }
 function pause(){if(mode==='play'){showControls();mode='pause';$('pause-menu').hidden=false;keys.clear();}else if(mode==='pause'){hideModals();mode='play';}}
-document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
+document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(e.code==='Escape'){if(!$('intro').hidden){introEnd(true);return;}if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if(!keys.has(e.code))pressed.add(e.code);keys.add(e.code);});document.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
 document.querySelectorAll('[data-key]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);keys.add(b.dataset.key);pressed.add(b.dataset.key);});for(const ev of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>keys.delete(b.dataset.key));});
-$('start').onclick=()=>{saveState=null;try{localStorage.removeItem('marko-save');}catch{}start();save();};$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level)return startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
+$('start').onclick=()=>playIntro(()=>{saveState=null;try{localStorage.removeItem('marko-save');}catch{}start();save();});$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level)return startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
 function mainMenu(){menuLedger();level=null;levelIndex=-1;stage?.setLevel?.(null);endSequence=null;corpses=[];mode='menu';hideModals();$('menu').hidden=false;$('hud').hidden=true;$('controls').hidden=true;$('touch').hidden=true;$('dialogue').hidden=true;$('boss-hud').hidden=true;zone=0;camera=0;keys.clear();}
 $('quit').onclick=mainMenu;$('victory-menu').onclick=mainMenu;$('sound').onclick=()=>{initAudio();audioEnabled=!audioEnabled;$('sound').textContent=audioEnabled?'♫':'♪̸';$('sound').setAttribute('aria-label',audioEnabled?'Isključi zvuk':'Uključi zvuk');};
 let settingsFrom='menu';function openSettings(from){settingsFrom=from;$('settings').hidden=false;}function closeSettings(){settings.difficulty=$('difficulty').value;readAudioSettings();settings.quality=$('quality').value;settings.reduced=$('reduced').checked;settings.gore=$('gore').checked;try{localStorage.setItem('marko-settings',JSON.stringify(settings));}catch{}$('settings').hidden=true;}
@@ -1407,13 +1407,17 @@ function menuButtons(){const c=$('continue'),s=$('start');if(!c||!s||!hasDom)ret
  c.hidden=!(story||i>=0);
  if(story){c.innerHTML='Nastavi legendu <span>→</span>';c.onclick=()=>start(true);}
  else if(i>=0){c.innerHTML=`Nastavi pohod <span>→</span><small>Pohod ${i+1} · ${LEVELS[i].name}</small>`;c.onclick=()=>startLevel(i);}
- c.className=c.hidden?'secondary':'primary';s.className=c.hidden?'primary':'secondary';
- s.innerHTML=c.hidden?(won?'Ponovo ispevaj legendu <span>→</span>':'Započni legendu <span>→</span>'):(story?'Nova legenda':'Ponovo ispevaj legendu');}
+ c.className=c.hidden?'secondary':'primary';s.className=c.hidden?'primary':'ms-item';
+ s.innerHTML=c.hidden?(won?'Ponovo ispevaj legendu <span>→</span>':'Započni legendu <span>→</span>'):`<span class="lbl">${story?'Nova legenda':'Ponovo ispevaj legendu'}</span><small>priča od početka</small>`;
+ if(!c.hidden)$('menu-pohodi')?.before?.(s);else c.after?.(s);setTimeout(menuInitials,0);}
+// each line of the menu opens with an illuminated initial: the first letter of its label, in either language
+function menuInitials(){document.querySelectorAll?.('#menu .ms-item').forEach(b=>{b.dataset.ini=(b.querySelector('.lbl')?.textContent||'').trim().charAt(0);});}
 function fairyDust(){const box=document.querySelector?.('#menu .fairy-dust');if(!box||box.childElementCount)return;let html='';for(let i=0;i<18;i++){const d=3+Math.random()*4;html+=`<i style="left:${Math.random()*100}%;top:${Math.random()*40}%;animation-duration:${d}s;animation-delay:${-Math.random()*d}s;--dx:${-20-Math.random()*60}px"></i>`;}box.innerHTML=html;}
 if(hasDom){
  $('menu-riznica')&&($('menu-riznica').onclick=openRiznica);$('menu-knjiga')&&($('menu-knjiga').onclick=()=>openBook());$('pause-knjiga')&&($('pause-knjiga').onclick=()=>openBook());
  // arrows (or W/S) move between buttons in any menu, Enter presses; in the book, left and right turn the page
  document.addEventListener('keydown',e=>{if(mode==='play')return;const tag=document.activeElement?.tagName;if(tag==='INPUT'||tag==='SELECT')return;
+  if(!$('intro').hidden){if(['Enter','Space','ArrowRight','KeyD'].includes(e.code)){e.preventDefault();introNext();}return;}
   if(!$('knjiga').hidden&&['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)){e.preventDefault();bookGo(bookAt+(e.code==='ArrowLeft'||e.code==='KeyA'?-1:1));return;}
   if(['ArrowUp','ArrowDown','KeyW','KeyS'].includes(e.code)){e.preventDefault();padMenu(0,e.code==='ArrowUp'||e.code==='KeyW'?-1:1,false,false);return;}
   if(e.code==='Enter'&&document.activeElement?.tagName!=='BUTTON'){e.preventDefault();padMenu(0,0,true,false);}});
@@ -1574,3 +1578,38 @@ function flowPose(){const once=(name,t,T)=>{const n=rig[name].frames.length;retu
  if(p.recoverT>0&&Math.abs(p.vx)<80&&rig?.['marko-combo-recover'])return once('marko-combo-recover',p.recoverT,RECOVER_TIME);
  if(p.stopT>0&&Math.abs(p.vx)<150&&!p.blocking&&!p.crouching&&rig?.['marko-run-stop'])return once('marko-run-stop',p.stopT,STOP_TIME);
  return null;}
+
+// ================= the intro: Codex's miniatures tell how the song of Kačanik begins =================
+// Seven pictures, each with a line in the manner of the songs; Enter (or a click) turns to the next, Esc skips.
+// If the local voice model has read them (assets/voice/uvod-<sr|en>-N.mp3), each picture waits for its line.
+const INTRO=[
+ {img:'spava',eyebrow:'Kaže pesma…',text:'Kažu da Kraljević Marko nije umro. Spava u pećini, Šarac kraj njega jede mahovinu, a sablja mu se malo-pomalo izvlači iz stene.',kb:'50% 70%'},
+ {img:'pesma',eyebrow:'Klisura Kačanika',text:'U to vreme Musa Kesedžija zatvori drumove i primorje. Topuz baca u oblake i dočekuje ga u bele ruke, a klisurom niko ne sme da prođe.',kb:'30% 40%'},
+ {img:'svadbarina',eyebrow:'Kula kraj mora',text:'Na obali podiže kulu sa gvozdenim čengelama. Otima carevo blago, a putnike drži u ropstvu.',kb:'70% 40%'},
+ {img:'ramazan',eyebrow:'Pred sultanom',text:'Kad caru dodijaše tužbe, iz tamnice izvede jedinog junaka koga se Musa ne bi uplašio — Kraljevića Marka.',kb:'40% 50%'},
+ {img:'soko',eyebrow:'Tri godine tamnice',text:'Tri godine tamnice slomile su mu snagu. Vraćala mu se polako, kao ranjeniku pod sokolovim krilom.',kb:'60% 30%'},
+ {img:'sablja',eyebrow:'Bez vojske',text:'Car mu nudi vojsku i blago. Marko uzima samo Šarca, topuz i očevu sablju.',kb:'50% 40%'},
+ {img:'smrt',eyebrow:'Vila Ravijojla',text:'Na izvoru pod planinom javi mu se posestrima, vila Ravijojla: „Idi, brate. Ja ću biti uz tebe.” Tako počinje pesma o tri srca Kačanika.',kb:'50% 20%'},
+];
+let introAt=-1,introDone=null,introTimer=0,introVoice=null;
+function playIntro(done){if(!hasDom||settings.introOff){done?.();return;}introDone=done||null;introAt=-1;const el=$('intro');el.hidden=false;el.classList.remove('out');
+ $('intro').querySelector('.intro-dots').innerHTML=INTRO.map(()=>'<i></i>').join('');sfx('horn_call',{gain:.5});introNext();$('intro-next')?.focus?.();}
+function introNext(){clearTimeout(introTimer);introVoice?.pause();introAt++;if(introAt>=INTRO.length){introEnd(false);return;}
+ const s=INTRO[introAt],el=$('intro'),img=el.querySelector('.intro-pic img'),src=`assets/ui/minijature/minijatura-${s.img}.webp`;
+ el.querySelector('.intro-bg').style.backgroundImage=`url(${src})`;img.style.transformOrigin=s.kb;img.src=src;
+ el.querySelector('.intro-eyebrow').textContent=s.eyebrow;el.querySelector('.intro-text').textContent=s.text;
+ el.querySelectorAll('.intro-dots i').forEach((d,k)=>d.classList.toggle('on',k===introAt));
+ const stage=el.querySelector('.intro-stage');stage.classList.remove('show');void stage.offsetWidth;stage.classList.add('show');
+ if(introAt)sfx('cloth',{gain:.4,rate:1.4});
+ // with a recorded line the picture waits for it; otherwise it waits as long as reading takes
+ const lang=uiLang(),wait=Math.max(6,s.text.split(/\s+/).length*.42);introVoice=null;
+ const a=new Audio(`assets/voice/uvod-${lang}-${introAt+1}.mp3`);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;
+ a.addEventListener('canplaythrough',()=>{if(introVoice!==a)return;clearTimeout(introTimer);a.play().catch(()=>{});a.onended=()=>{if(introVoice===a)introTimer=setTimeout(introNext,1300);};},{once:true});
+ a.addEventListener('error',()=>{},{once:true});introVoice=a;a.load();
+ introTimer=setTimeout(()=>{if(introVoice===a&&!a.paused)return;introNext();},wait*1000+(a.readyState?0:600));}
+function introEnd(skipped){clearTimeout(introTimer);introVoice?.pause();introVoice=null;const el=$('intro');el.classList.add('out');setTimeout(()=>{el.hidden=true;el.classList.remove('out');},450);
+ const d=introDone;introDone=null;introAt=-1;if(d)d();else $('start')?.focus?.();}
+if(hasDom){$('intro-next')&&($('intro-next').onclick=introNext);$('intro-skip')&&($('intro-skip').onclick=()=>introEnd(true));
+ $('intro').addEventListener('click',e=>{if(e.target.closest('button'))return;introNext();});
+ $('intro-open')&&($('intro-open').onclick=()=>playIntro(null));
+ globalThis.markoI18n?.onLang?.(()=>setTimeout(menuInitials,0));}
