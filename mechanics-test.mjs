@@ -211,4 +211,13 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  step(120);p.y=q.y-520;p.grounded=false;p.vy=0;let hard=0;for(let i=0;i<120;i++){step();hard=Math.max(hard,api.shakeNow());}ok(soft===0&&hard>0,'landing: a hop lands softly, a long drop shakes the ground');}
 {const a=api.placeLabel(500,300,120,12),b=api.placeLabel(510,300,100,12),c=api.placeLabel(900,300,100,12);ok(a===300&&b<=300-17&&c===300,'labels: two labels in one spot stack instead of overlapping');}
 {await flat();let calm=true,bad='';for(const type of Object.keys(api.FOE_IDLE)){let last=-1,run=0,first=true;for(let i=0;i<120*4;i++){step();const f=api.idleFrame(type,0);if(f===last){run++;continue;}if(last>=0&&!first&&run<22){calm=false;bad=type;}if(last>=0)first=false;last=f;run=1;}}ok(calm,'foe idles: every foe breathes slowly, no frame flicks by in under 0.18s'+(bad?' ('+bad+')':''));}
+// ---- DOPUNA-8: walk, braking, rise and fall, the longer rest, a blow on the block, the roll after a high fall ----
+{const seen=n=>{let x=false;return{see(){if(api.playerPose().name===n)x=true;},get v(){return x;}};};
+ {await flat();step(200);const p=S().p;p.vx=120;p.grounded=true;ok(api.playerPose().name==='marko-walk','walk: below running speed Marko walks');p.vx=0;}
+ {await flat();press('KeyD');step(60);api.keys.clear();const s=seen('marko-run-stop');for(let i=0;i<30;i++){step();s.see();}ok(s.v,'run-stop: letting go at full run, he brakes');}
+ {const q=await flat();step(60);press('Space');const r=seen('marko-jump-rise'),f=seen('marko-fall');for(let i=0;i<160;i++){step();r.see();f.see();}api.keys.clear();ok(r.v,'jump-rise: the takeoff has its own clip');ok(f.v,'fall: coming down he falls with the fall clip');}
+ {await flat();const s=seen('marko-idle-3');for(let i=0;i<120*12;i++){step();s.see();}ok(s.v,'idle-3: after a long rest the mace goes on his shoulder');}
+ {const q=await flat();const p=S().p;p.y=q.y-700;p.grounded=false;p.vy=0;const s=seen('marko-roll-land');for(let i=0;i<240;i++){step();s.see();}ok(s.v,'roll-land: a high fall ends in a roll');}
+ {await flat();const p=S().p;p.blocking=true;p.blockTime=1;p.hurt=.15;const n=api.playerPose().name;p.blocking=false;p.hurt=0;ok(n==='marko-block-hit','block-hit: a blow on the block has its own clip');}
+}
 console.log(`${checks} pohod mechanics checks passed.`);

@@ -1,0 +1,50 @@
+[
+  {
+    "clip": "marko-idle-3",
+    "frames": 12,
+    "firstHeight": 383,
+    "verified": true
+  },
+  {
+    "clip": "marko-run-attack",
+    "frames": 6,
+    "firstHeight": 363,
+    "verified": true
+  },
+  {
+    "clip": "marko-block-hit",
+    "frames": 4,
+    "firstHeight": 383,
+    "verified": true
+  },
+  {
+    "clip": "marko-hurt-air",
+    "frames": 4,
+    "firstHeight": 382,
+    "verified": true
+  },
+  {
+    "clip": "marko-combo-recover",
+    "frames": 4,
+    "firstHeight": 292,
+    "verified": true
+  },
+  {
+    "clip": "marko-roll-land",
+    "frames": 6,
+    "firstHeight": 309,
+    "verified": true
+  },
+  {
+    "clip": "marko-victory",
+    "frames": 8,
+    "firstHeight": 383,
+    "verified": true
+  },
+  {
+    "clip": "marko-open",
+    "frames": 6,
+    "firstHeight": 383,
+    "verified": true
+  }
+]

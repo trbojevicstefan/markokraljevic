@@ -1,0 +1,221 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-walk",
+      "group": 11,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 10,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 8 poses in 4 columns and 2 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Relaxed slow walking loop. Mace low in right hand. Eight phases: right heel contact, right foot loading, left passing, left raised passing, left heel contact, left loading, right passing, right raised passing into phase1. Short steps half running stride. Alternate legs clearly, boots actually advance; gentle shoulders and delayed cape sway. Smooth adjacent poses with real limb articulation, no duplicate frames. Last phase flows into first. Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-run-stop",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Braking from run to idle. 1 running forward stride, 2 lean torso backward heels digging, 3 weight settles with cape continuing forward, 4 exact idle reference pose. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-fall",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Airborne falling loop after jump apex. Arms out for balance holding mace, knees prepared to land, cape lifted above shoulders by upward airflow. Four smoothly varying wind/cape phases, same body proportions and pose, no landing. Smooth adjacent poses with real limb articulation, no duplicate frames. Last phase flows into first. Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-jump-rise",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Takeoff and ascent: 1 idle reference beginning crouched push, 2 toes drive upward legs extend, 3 knees rise mace rises cape trails down, 4 airborne apex with bent knees. Keep full body inside each slot. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-idle-3",
+      "group": 11,
+      "who": "marko",
+      "frames": 12,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 3,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 12 poses in 4 columns and 3 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Long idle flourish, always right-facing profile. 1 neutral idle, 2 lift mace, 3 lift toward shoulder, 4 rest mace on shoulder, 5 slight head glance backward without turning face to camera, 6 return gaze right, 7 left hand rises, 8 twirl moustache with left hand, 9 lower hand, 10 remove mace from shoulder, 11 lower mace, 12 neutral idle. Cape inertia. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-run-attack",
+      "group": 11,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 6 poses in 3 columns and 2 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Attack while running WITHOUT stopping: 1 running stride, 2 windup mace back, 3 diagonal forward-down swing, 4 impact with mace extended down-forward, 5 recover mace while opposite leg steps, 6 running stride ready. Distinct alternating leg steps throughout. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-block-hit",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Recoil on blocking. 1 defensive block mace and forearm raised in front, 2 unseen hit pushes arms/mace back torso braced, 3 boots slide a little while cape catches up, 4 return to raised defensive block. No attacker. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-hurt-air",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Hit in midair. 1 airborne neutral, 2 chest recoils and back arches, 3 held mace swings sideways while cape twists behind, 4 controlled airborne recovery toward landing. Face always right; keep hand gripping weapon, no gore. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-combo-recover",
+      "group": 11,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 4 poses in 4 columns and 1 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Recover after third downward combo strike. 1 crouched forward mace low in front after impact, 2 draw mace back, 3 straighten torso, 4 exact neutral idle reference stance. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-roll-land",
+      "group": 11,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 6 poses in 3 columns and 2 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. High fall landing into forward roll then stand. 1 airborne knees bent, 2 deep landing crouch, 3 tuck head and shoulder forward into compact roll holding mace tight safely, 4 inverted compact roll with boots overhead and cape wrapping body, 5 kneeling rise, 6 neutral standing idle reference. Anatomy stays same scale, rolled silhouette naturally smaller. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-victory",
+      "group": 11,
+      "who": "marko",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 8 poses in 4 columns and 2 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Victory flourish. 1 neutral idle, 2 lift mace forward, 3 lift past head, 4 hold mace high overhead, 5 proud high hold cape flutter, 6 lower toward shoulder, 7 rests on shoulder, 8 proud pose mace on shoulder. Full weapon within every cell. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    },
+    {
+      "id": "marko-open",
+      "group": 11,
+      "who": "marko",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+      "prompt": "Create one professional 2D animation sprite sheet: EXACTLY 6 poses in 3 columns and 2 rows, equal square slots read left-to-right row-major. Reference is identity, costume, art style, anatomical scale and idle pose. Marko black moustache, long dark hair, red embroidered cape, mail/leather armor, ivory embroidered sleeves, boots, spiked metal mace. Strict right-facing side profile, never facing camera. Fixed anatomical scale across ALL slots, head and torso same size even crouching. Each pose complete including weapon, ample empty gutters, no clipping. Interact with unseen low chest/object, no actual object. 1 neutral idle, 2 bend knees and torso, 3 reach free hand down-forward while right hand holds mace safely back, 4 touch low object, 5 retract hand and straighten, 6 exact neutral idle. Smooth adjacent poses with real limb articulation, no duplicate frames.  Flat pure #00ff00 green background; NO shadows, ground, text, numbers, grid lines, motion trails or scenery. Reference idle character is 383px tall on 512px cells, feet y487; maintain that body scale allowing pose changes. Output grid with square cells."
+    }
+  ]
+}

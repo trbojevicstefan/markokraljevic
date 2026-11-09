@@ -126,6 +126,7 @@ PACK4_REF.update({'marko-kick': 'marko-idle', 'marko-slide': 'marko-idle', 'mark
 PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['combo-4', 'air-1', 'air-2', 'uppercut', 'dash-strike', 'charge-hold', 'push', 'lever']})
 PACK4_REF.update({f'{c}-launch': f'{c}-idle' for c in ['sword', 'shield', 'archer', 'akindzija', 'palikuca', 'oklopnik']})
 PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['idle-2', 'crouch-walk', 'block-walk', 'charge-walk', 'dizzy', 'turn', 'run-start', 'land']})  # DOPUNA-5
+PACK4_REF.update({f'marko-{k}': 'marko-idle' for k in ['walk', 'run-stop', 'fall', 'jump-rise', 'idle-3', 'run-attack', 'block-hit', 'hurt-air', 'combo-recover', 'roll-land', 'victory', 'open']})  # DOPUNA-8
 PACK4_REF.update({'shield-guardbreak': 'shield-idle', 'oklopnik-armorbreak': 'oklopnik-idle', 'akindzija-backstep': 'akindzija-idle', 'palikuca-burn': 'palikuca-idle'})
 for name, ref in PACK4_REF.items():
     if not os.path.exists(os.path.join(ROOT, name + '.json')):
