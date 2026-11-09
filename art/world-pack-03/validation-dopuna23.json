@@ -1,0 +1,168 @@
+{
+  "staticImages": 13,
+  "clips": 1,
+  "frames": 8,
+  "imagegenCalls": 14,
+  "results": [
+    {
+      "id": "ikona-bacanje",
+      "file": "ikona-bacanje.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-uvis",
+      "file": "ikona-uvis.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-juris",
+      "file": "ikona-juris.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-nadole",
+      "file": "ikona-nadole.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-kolut",
+      "file": "ikona-kolut.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-vihor",
+      "file": "ikona-vihor.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-junacki",
+      "file": "ikona-junacki.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-vila",
+      "file": "ikona-vila.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-vino",
+      "file": "ikona-vino.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "ikona-top",
+      "file": "ikona-top.png",
+      "size": [
+        256,
+        256
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "pauza-ram",
+      "file": "pauza-ram.png",
+      "size": [
+        900,
+        1180
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "dugme-ploca",
+      "file": "dugme-ploca.png",
+      "size": [
+        640,
+        112
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "dugme-ploca-aktivno",
+      "file": "dugme-ploca-aktivno.png",
+      "size": [
+        640,
+        112
+      ],
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "pauza-logor",
+      "atlas": "../animation-pack-04/assets/pauza-logor/atlas.png",
+      "cell": [
+        768,
+        512
+      ],
+      "frames": 8,
+      "loop": true,
+      "opaque": true,
+      "gifSize": [
+        768,
+        512
+      ],
+      "attempts": 1,
+      "verified": true
+    }
+  ]
+}

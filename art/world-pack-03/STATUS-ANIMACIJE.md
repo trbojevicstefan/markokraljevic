@@ -315,3 +315,33 @@ DOPUNA-21: vila-spreda — GOTOVO; 8 kadrova, petlja, PNG RGBA512x512, atlas/man
 DOPUNA-21 B — ZAVRSENO: marko-wounded-walk i vila-spreda, po8 kadrova u petlji (16ukupno), po jedno generisanje. Provereni atlas4096x512, pojedinacniRGBA512x512, frame_layout, brojGIFkadova, loop, alfa; Marko neutralna kalibracija383px i y487, Ravijojla spreda sa istim kostimom kao fairy-cast/vila-let bez oslonca na stopala. Pregled art/animation-pack-04/preview-dopuna21.png, katalog i validacija catalog-dopuna21.json/validation-dopuna21.json. DOPUNA-21 ukupno6 slika+2klipa zavrseno; nema neuspelih stavki. Kod igre i dist nisu menjani.
 
 DOPUNA-22: skela.png ? GOTOVO u art/world-pack-03/skela.png. Jedan PNG RGBA1024x512, providnost proverena. Ravna hodna paluba y360, balvani i konopci, niski konopci na kolcima, fenjer i crvena zastavica sa belim dvoglavim orlom desno, kormilarsko veslo levo. Bez nadstresnice, visokih prepreka u sredini, vode i senke na tlu. Ugradjeni image_gen, jedan pokusaj. Prompt prema DOPUNA-22.md uz referencu splav.png: bocna cvrsta recna skela od balvana i dasaka, mat slikani stil; poravnanje palube pomeranjem celog izvoza40px nadole, bez promene crteza.
+
+DOPUNA-23: ikona-bacanje.png — GOTOVO; art/world-pack-03/ikona-bacanje.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-uvis.png — GOTOVO; art/world-pack-03/ikona-uvis.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-juris.png — GOTOVO; art/world-pack-03/ikona-juris.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-nadole.png — GOTOVO; art/world-pack-03/ikona-nadole.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-kolut.png — GOTOVO; art/world-pack-03/ikona-kolut.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-vihor.png — GOTOVO; art/world-pack-03/ikona-vihor.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-junacki.png — GOTOVO; art/world-pack-03/ikona-junacki.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-vila.png — GOTOVO; art/world-pack-03/ikona-vila.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-vino.png — GOTOVO; art/world-pack-03/ikona-vino.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: ikona-top.png — GOTOVO; art/world-pack-03/ikona-top.png, PNG RGBA256x256, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: pauza-ram.png — GOTOVO; art/world-pack-03/pauza-ram.png, PNG RGBA900x1180, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: dugme-ploca.png — GOTOVO; art/world-pack-03/dugme-ploca.png, PNG RGBA640x112, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: dugme-ploca-aktivno.png — GOTOVO; art/world-pack-03/dugme-ploca-aktivno.png, PNG RGBA640x112, providnost proverena. Ugradjeni image_gen, jedan pokusaj. Prompt: prompts-dopuna23.json; izvor sources/dopuna23/.
+
+DOPUNA-23: pauza-logor — GOTOVO; art/animation-pack-04/assets/pauza-logor/. 8 kadrova u petlji, celije768x512, atlas6144x512, manifest sa frame_layout, frames, preview.gif, preview.png i qa.json. Neprovidna nocna scena sa pozadinom; Marko kraj vatre, Sarac pase, mala Ravijojla lebdi. Dim, plamen i rep u razlicitim fazama. Provereni dimenzije, neprovidnost, atlas/kadrovi i GIF8. Ugradjeni image_gen, jedan pokusaj; prompt plan-dopuna23.json.
+
+DOPUNA-23 — ZAVRSENO: 10 ikona256x256 (medaljoni236px), pauza-ram900x1180, dva dugmeta640x112 i pauza-logor8kadova768x512 (atlas6144x512). Sve14stavke redom, po jedan pokusaj ugradjenim image_gen generatorom. Proverene dimenzije, providnost statickih slika, neprovidnost logora, atlas/kadrovi, frame_layout, brojGIFkadova i loop. Pregledi: preview-dopuna23-ikone.png (ukljucuje48px prikaz), preview-dopuna23-pauza.png i ../animation-pack-04/assets/pauza-logor/preview.png. Katalog/validacija: catalog-dopuna23.json i validation-dopuna23.json. Promptovi: prompts-dopuna23.json i ../animation-pack-04/plan-dopuna23.json. Nema neuspelih stavki; kod igre i dist nisu menjani.

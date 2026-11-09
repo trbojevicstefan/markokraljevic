@@ -1,0 +1,23 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "pauza-logor",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        768,
+        512
+      ],
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "dist/assets/cast/sarac.png",
+        "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production ANIMATED PAUSE SCENE sprite sheet, EXACTLY EIGHT SCENE FRAMES in FOUR COLUMNS by TWO ROWS, row-major. EACH scene cell is LANDSCAPE3:2 ratio, final768x512, whole sheet landscape3:1 ratio3072x1024. This is NOT a character-cutout sheet: every cell is fully painted OPAQUE background scene filling edge to edge. SAME LOCKED CAMERA, SAME CAMP COMPOSITION, unchanged rock/tent/characterpositions, same scale and lighting across all8, NO camera shake/zoom/panning. Reference1 EXACT Marko gameidentity andpainting: BLACKmoustache,longdarkhair,redgoldembroideredcape,ivoryembroideredsleeves,brownmail/leatherarmor. Reference2 EXACT SARAC white/chestnutPIEBALD horse, ornate redsaddle. Reference3 EXACT fairy RAVIJOJLA: blondebraid,whiteflowercrown,white/reddress,leafveinedbutterflywings. NIGHT IN ROCKY SERBIAN GORGE, muted navy/teal cliffs and darktrees, littlegrass and stonesforeground, small roughcanvas tent atLEFTbackground. Marko SITS onlowlogatleft ofcentral CAMPFIRE, warming bothhands towardfire, spikedMACE RESTS ON GROUND NEXT TO HIS BOOTS, notinhand. Sarac standsbehind atRIGHT, headLOW grazinggrass, visiblewholepiebaldhorse. TINY FAIRY hoversABOVE FIRE nearuppermiddle, recognizablewhite/redcostumeandwings, modestsoftmintglow ONLY, notbigwhiteorb. Warm orange/amber firelight picks outfaces/hands/cloth, softlypaintedgameillustration, warm MATTEtextures, not manuscript/goldsky. NO brightwhitefirecore, nooverexposure, no neonbloom, no glossyshine, no text/UI/border/gridlines/numbers. EightcontinuousphasesoneLOOP: flame shapes flicker0,45,90,135,180,225,270,315degrees; thinsmoke curls rise anddissipate; Sarac TAIL SWISHES leftthenright withfollowthrough, head subtlegrasstug; tinyfairywingflaps gently; Marko hands moveveryslightlyinwarmth andchestbreathes. ALL8frames must have clearlydifferent fire/smoke/tailposes, butbackgroundandcharacters remaininplace, lastflowsseamlesslyintofirst. Whole scene repeatedeighttimes WITHOUT gaps or palettechanges. Fullbackgroundmustreachallcellboundaries; nottransparent."
+    }
+  ]
+}

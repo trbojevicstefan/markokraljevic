@@ -1,0 +1,156 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "ikona-bacanje",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Central pictogram: A SPIKED MACE flies diagonally in a shallow ARC toward upperRIGHT, THREE short speed dashes behind toLEFT. One mace only, round spiked head and plain handle, NOT hammer/axe. Clear flight silhouette.",
+      "references": []
+    },
+    {
+      "id": "ikona-uvis",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: A SPIKED MACE sweeping from lowerLEFT UPWARD to upperRIGHT, one thick CURVED UP ARROW next to mace indicates uppercut. One mace and one curved arrow only.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-juris",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: A SPIKED MACE extended HORIZONTALLY FORWARD RIGHT, head at right, short HORIZONTAL rush lines trail behind at left. One mace only, horizontal dash attack.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-nadole",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: A SPIKED MACE striking DOWNWARD into a thin ground line, SMALL CRACKS radiate from impact beneath its head. One clear descending mace with ground cracks, no arrow required.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-kolut",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: One thick ROUND CURVED ARROW forming almost full CIRCLE, clear arrowhead, symbol for dodge roll. No mace or person. Large simple circular arrow.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-vihor",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: One SPIKED MACE inside ONE sweeping WIND SPIRAL encircling it, readable round vortex, no added lightning or stars.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-junacki",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: One UPRIGHT SPIKED MACE center, handle below, mace head above, with short even SUNRAYS radiating BEHIND its head. Strong simple heroic power emblem.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-vila",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: A graceful FAIRY PROFILE facing RIGHT with butterfly WINGS behind, inspired by Ravijojla: braided blondehair and smallflowercrown suggested by simple engraving. Simplified ONE FAIRY bust silhouette and wingveins, no fullscene or tiny decorativeparts. Input1 defines EXACT medallion/frame. Input2 defines fairy profile/costume ONLY: render as SIMPLE OLD-GOLD ENGRAVED SILHOUETTE, NOT fullcolor fairy or real flying figure outside medallion. All motif inside circular frame.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png",
+        "art/animation-pack-04/sources/dopuna20-reference/ravijojla-reference.png"
+      ]
+    },
+    {
+      "id": "ikona-vino",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: One WOODEN CANTEEN FLASK upright, round coopered body and small stopper, engraved WHITE/PALE-GOLD DOUBLE-HEADED EAGLE on front. Bold flask silhouette; eagle as simple inset emblem. No goblet or otherobjects.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "ikona-top",
+      "type": "icon",
+      "size": [
+        256,
+        256
+      ],
+      "prompt": "Use case: stylized-concept. ONE game UI SKILL ICON, a circular DARK BRONZE MEDALLION, straight-on face view, diameter236px centered on256x256 final canvas, genuine RGBA transparent outside circle, no background/checkerboard/drop shadow. Hand-painted warm MATTE worn bronze, consistent thick RELIEF AGED-GOLD rim with restrained Byzantine rope engraving, NOT shiny, NO glare, NO brightwhite or glossy metal. Center is quiet darkbronze. Engraved symbol in LIGHT OLD GOLD, bold simplified silhouette and chunky lineweight about10-14px at256resolution, readable at48px. No words/letters/numbers, no extra symbols, no scene. Use provided reference for EXACT SAME round frame, material, lighting, border thickness and symbol stroke weight. Replace ONLY its central pictogram, do notretain flyingmace or its dashes unless explicitlyrequested. Central pictogram: One small MEDIEVAL CANNON on TWO WHEELS in SIDEPROFILE pointing RIGHT, stubby barrel and sturdy wheeledcarriage. Clear cannon silhouette, no smoke/ball or scene.",
+      "references": [
+        "art/world-pack-03/ikona-bacanje.png"
+      ]
+    },
+    {
+      "id": "pauza-ram",
+      "type": "panel",
+      "size": [
+        900,
+        1180
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE production GAME PAUSE MENU PANEL,900x1180portrait final PNG RGBA, genuine TRANSPARENT outside cutout shape, straight-on orthographic NO perspective. Tall rectangular panel made of DARK WALNUT wood with wide beautifully CARVED frame, restrained aged GOLD BYZANTINE interlace ornamental inlays. SMALL DOUBLE-HEADED EAGLE centered at top frame. Center is DARK FOREST GREEN LEATHER, very QUIET uniform matte deep greenblack with subtle leather texture only; EMPTY TEXT AREA covers most of center, no patterns, symbols, decoration or lettering there. Wide sturdy border about90px, squared softly carved corners, symmetrically detailed side rails and bottom. Warm hand-painted medieval Serbian gameprop style, MATTE wood/gold, lowcontrast softlight, NO specular shine, NO white highlights, NO glow, no bloom, no lightspots. No text/buttons/words, no scene or floor/drop shadow. Entire panel fits transparent canvas with tiny outside margin, richly carved outerborder, calm flat dark interior."
+    },
+    {
+      "id": "dugme-ploca",
+      "type": "button",
+      "size": [
+        640,
+        112
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE wide horizontal GAME MENU BUTTON PLAQUE, final640x112 (ratio5.714:1), dark WALNUT wood, thin AGED GOLD rim, small symmetric restrained Byzantine carvedgold ornaments at LEFT and RIGHT ENDS. Center quiet DARK WALNUT, clear EMPTY text area, no letters/symbols/text/icon. Straight-on orthographic flat rectangle, slight shaped ends/corners, hand-painted warm MATTE medieval Serbian gameprop style. No gloss, no glare, no whitehighlights, no glow/drop shadow. Only plaque, fullshapevisible. If canvas is squarer, put THIN WIDE plaque centered with generous TRANSPARENT padding above/below, keep plaque itself exact5.714:1 silhouette; no enlarging its height. Genuine RGBA transparent background, no black/white/checkerboard pixels painted asbackground. Subdued soft evenlight, alloutlineunclipped."
+    },
+    {
+      "id": "dugme-ploca-aktivno",
+      "type": "button",
+      "size": [
+        640,
+        112
+      ],
+      "references": [
+        "art/world-pack-03/dugme-ploca.png"
+      ],
+      "prompt": "Use case: identity-preserve. Create ACTIVE/SELECTED variant of this EXACT provided GAME BUTTON PLAQUE reference. Preserve SAME silhouette,width-to-height ratio5.714:1, corners, carved endornaments, wooden outerframe, goldrim thickness and perspective. ONLY change quiet CENTER surface to warm deep CRIMSON RED LACQUER, matte/subtle finish, and brighten agedgold trim slightly. No shine or brightwhite, NO glow, no bloom. Same hand-painted medieval Serbian gameart. Empty text area, no writing/icon/letters. Full plaquevisible against TRUE TRANSPARENT RGBA background, softantialiasededges, no shadows/backgroundscene. Final640x112; if larger/squarer canvas keep actualbar longandthin withtransparentpadding, do notmake tallpanel."
+    }
+  ]
+}
