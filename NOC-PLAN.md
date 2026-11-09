@@ -76,11 +76,11 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 - [x] **B3 Pozadine.**
   - Snimci svakog pohoda (dan, noć, oluja) na nekoliko tačaka.
   - Traži šavove neba (nebo naglo druge boje), presečene slojeve i loše spojeve sky/far/mid/near; ispraviti.
-- [ ] **B4 Prepreke u ritmu.**
+- [x] **B4 Prepreke u ritmu.**
   - Zamka, odmor, borba, nagrada — bez dugih praznih delova i bez zamki jedne na drugoj.
 
 ## C. Zagonetke i tok
-- [ ] **C1 Zanimljivije zagonetke.** Kombinacije:
+- [x] **C1 Zanimljivije zagonetke.** Kombinacije:
   - teret na ploči otvara put do ključa;
   - poluga sa vremenom, pa klizanje (S u trku) ispod spuštene rešetke;
   - napukao pod i ključ u podrumu;
@@ -109,3 +109,4 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 | 1/8 | 00:04–01:00 | Codex ponovo radi preko terminala (fork niti, popravljen sandbox), isporučio marko-idle-2 i radi crouch-walk. Visine izjednačene: Marko 128 px u svim stojećim klipovima, neprijatelji idle = trk (heights-test.mjs, 20 provera). Mirni idle bez kadra koji gleda u kameru, sada Codex-ov idle-2. Hod u čučnju, hod sa blokom i hod dok se puni K (privremene poze dok Codex ne isporuči klipove). Posle vihora: vrtoglavica 0,9 s sa zvezdicama, pad i ustajanje 1,25 s. Manje stenjanja (razmak 1,6–2,4 s, retko). 117 mehaničkih provera. | vidi git log |
 | 2/8 | 01:04–01:45 | Ugrađeno 17 Codex klipova: hod u čučnju, hod sa blokom, hod dok se puni K, vrtoglavica (sada pravi klipovi), okret, prvi korak trka, doskok; launch klipovi za svih 9 neprijatelja; reakcije: štit odbijen, oklop puca, akindžijin odskok, palikuća gori. Šatori (oranje, tvrđava, prevoj, reka): do 3 talasa Osmanlija dok ih Marko ne sruši. Codex i dalje bez kredita (kapije čekaju). 126 mehaničkih provera. | vidi git log |
 | 3/8 | 02:04–02:20 | Pozadine: svaki sloj se na spoju tila meko pretapa (12%), nema više naglih promena boje neba; seam-audit.py proverava svih 195 slojeva. Raspored: propovi stoje celi na svom tlu, ništa ih ne preseca (daske, kule, lestve), drže se dalje od zamki; mali propovi smeju i u sobe pa je gustina 19–36 po pohodu (bila 6–14); layoutAudit() u ?dev režimu čist za svih 13 pohoda. Poruka „Kapija se otvorila“ samo kad je Marko blizu. Codex i dalje bez kredita. | vidi git log |
+| 4/8 | 03:04–03:35 | Zagonetke: nizak zid s procepom pri dnu (pećina, rudnik, podrum, ruševine, manastir, klisura) — prolazi se samo čučeći ili klizanjem, ispod zida Marko ostaje čučeći; kolje sada ranjava neprijatelja koji padne na njega bačen, šutnut ili ošamućen (šut na kolje). Ritam: provera recepata (nikad 3 zamke zaredom, odmor ili nagrada bar svakih 6 soba), ispravljeni klisura, prevoj, pećina, ruševine; ciljevi traže slobodno mesto do 2600 px (opet 19 ciljeva). Codex bez kredita. 132 mehaničke provere. | vidi git log |

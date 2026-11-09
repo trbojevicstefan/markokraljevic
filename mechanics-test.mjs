@@ -196,4 +196,14 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  ok(came>=3&&t.wave===3,`tent: Ottomans come out of it in waves (${came} in ${t.wave} waves)`);const before=w.enemies.length;
  const w2=await start('oranje');quiet(w2);const t2=w2.traps.find(t=>t.kind==='tent');for(let i=0;i<8&&!t2.down;i++){stand(t2.x-90,t2.y);S().p.face=1;S().p.invuln=999;tap('KeyK');step(90);for(const e of w2.enemies)if(e.fromTent)e.alive=false;}ok(t2.down,'tent: heavy blows tear it down');
  const n=w2.enemies.length;stand(t2.x-380,t2.y);step(120*5);ok(w2.enemies.length===n,'tent: a fallen tent sends out no one');}
+// ---- puzzles: the low wall, kicking foes onto the stakes; pacing of the rooms ----
+{const w=await start('pecina');quiet(w);const q=w.platforms.find(q=>q.lintel);ok(q,'low wall: the cave has a wall with a crawl gap');const gy=q.y+q.h+72;
+ stand(q.x-120,gy);api.keys.add('KeyD');step(120*2);api.keys.clear();ok(S().p.x<q.x,'low wall: standing up, Marko cannot pass');
+ stand(q.x-120,gy);api.keys.add('KeyS');step(20);api.keys.add('KeyD');step(120*4);api.keys.clear();step(30);ok(S().p.x>q.x+q.w,'low wall: crouched, he crawls through');
+ stand(q.x-260,gy);api.keys.add('KeyD');step(40);tap('KeyS');step(120*4);api.keys.clear();step(30);ok(S().p.x>q.x+q.w&&!(S().p.y<gy-2),'low wall: a slide carries him under it');}
+{const w=await start('selo');const t=w.traps.find(t=>t.kind==='spikes'&&!t.bed);const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);Object.assign(e,{type:'sword',x:t.x-45,y:t.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false,grounded:true});
+ stand(t.x-125,t.y);S().p.face=1;api.keys.add('KeyS');tap('KeyJ');api.keys.clear();let hit=false;for(let i=0;i<120;i++){step();if(e.hp<=600-60)hit=true;}ok(hit,'stakes: a kicked janissary lands on the stakes and bleeds');}
+{const R=physics.RECIPES,haz=new Set(['spikes','crumble','logs','rocks','barrels','lever','chase','spikebed','greda','zid','sator']),rest=new Set(['flat','crates','cellar','kljuc','plate','arena','watch','ledges']);let worst='';
+ for(const [land,rec] of Object.entries(R)){const rooms=rec.split(' ').map(r=>r.split(':')[0]);let run=0,since=0;for(const r of rooms){run=haz.has(r)?run+1:0;since=rest.has(r)?0:since+1;if(run>2)worst+=`${land}: three hazards in a row; `;if(since>5)worst+=`${land}: six rooms without rest; `;}}
+ ok(!worst,'pacing: never three hazards in a row, a rest or reward at least every six rooms'+(worst?' — '+worst:''));}
 console.log(`${checks} pohod mechanics checks passed.`);

@@ -75,7 +75,7 @@ const GOAL_PLAN={
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
 function makeGoals(L,floorAt){
- const near=x=>{for(let d=0;d<1400;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
+ const near=x=>{for(let d=0;d<2600;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
  return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
   return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
 }
@@ -107,16 +107,16 @@ export const CUDA=[
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
  selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars kljuc crates terrace+ flat terrace- watch flat',
- klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift crumble zid stairs+ watch rocks crates flat',
+ klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift greda crates crumble zid stairs+ watch rocks crates flat',
  suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes kljuc watch stairs+ flat stairs- chimney flat',
- manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar chimney zid stairs- ledges lift stairs+ tower flat',
+ manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zid stairs- ledges lift stairs+ tower flat',
  tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase sator watch lift stairs+ chimney rocks zid terrace+ crates flat boss:akindzija',
- pecina:'flat terrace- crates crumble spikebed chimney ledges terrace+ cellar flat pillars zid gap tower crumble crates flat',
- podrum:'flat crates stairs- barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
+ prevoj:'flat stairs+ terrace+ ladder+ chase sator watch lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
+ pecina:'flat terrace- crates crumble greda crates spikebed chimney ledges terrace+ cellar flat pillars zid gap tower crumble crates flat',
+ podrum:'flat crates stairs- greda barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
  mocvara:'flat bridge watch crumble ferry bridge crates logs kljuc spikebed watch ledges flat bridge pillars watch flat',
- rudnik:'flat ladder+ crates rocks zid lift ledges tower lever flat chimney cellar crumble ladder+ barrels crates flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower spikebed zid ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch stairs+ flat',
+ rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar crumble ladder+ barrels crates flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crates crumble greda stairs+ tower flat spikebed zid ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch stairs+ flat',
  reka:'flat crates bridge flat watch ferry sator stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates flat',
 };
@@ -182,6 +182,8 @@ export function buildLayout(L,variant='day'){
   kljuc(){const x0=x,len=ri(760,840);ground(len);const dx=x0+Math.round(len*.64),kx=x0+Math.round(len*.3);traps.push({kind:'keydoor',x:dx,y:gy,gate:{x:dx,y:gy},vault:vaults.length,keeper:{x:kx,y:gy}});vaults.push({door:{x:dx,y:gy},key:true});spots.push({x:kx,y:gy});busy.push([x0,x0+len]);},
   // a Turkish tent: Ottomans come out of it while Marko is near, until he tears it down
   sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
+  // a wall with a low gap at its foot: too low to walk through — crouch (S) or slide (S while running) under it
+  greda(){const x0=x,len=ri(620,700);ground(len);const wx=x0+Math.round(len*.45),ww=170;platforms.push({x:wx,y:gy-1300,w:ww,h:1300-72,kind:'lintel',solid:true,lintel:true});crate(wx+ww+150,'kovceg',{loot:{coins:ri(14,20)}});busy.push([x0,x0+len]);spots.push({x:x0+90,y:gy});},
   // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
   cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});
