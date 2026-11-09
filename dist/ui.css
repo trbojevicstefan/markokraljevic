@@ -497,3 +497,35 @@
 html[lang="sr-Cyrl"] :is(.ms-text,.verses,.intro-text,.ms-epi,.ms-note,.book .page.right p,.leaf-face.page.right p,#dialogue-text,#menu .intro,#menu .ms-item small,.foe-role,.blank p,.zoom-cap){font-style:italic!important}
 html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-text){font-style:italic!important;font-weight:700}
 .lang-pick button{padding:8px 12px;letter-spacing:1.5px}
+
+/* ================= menu, third pass ================= */
+/* a waving banner's canvas never takes room in a table-of-contents line */
+.flag3d{position:absolute}
+#menu .ms-item .flag3d{display:none!important}
+/* the panel always starts below the top line, centred when the screen is tall enough */
+#menu .menu-copy{top:max(78px,calc(50% - 300px))!important;transform:none!important;max-height:calc(100vh - 96px);overflow-y:auto;scrollbar-width:thin}
+#menu .menu-links{flex-wrap:nowrap;gap:12px}
+#menu .menu-links button{font-size:15px;white-space:nowrap}
+.fs-btn{position:absolute;top:24px;right:212px;z-index:6;width:36px;height:36px;border:0;border-radius:4px;background:#081516b0;box-shadow:inset 0 0 0 1px #d9b56a88;color:#e8d7ad;font-size:18px;line-height:1}
+.fs-btn:hover,.fs-btn:focus-visible{color:var(--gold2);box-shadow:inset 0 0 0 1px var(--gold2)}
+/* the backdrop: the Kačanik gorge, slowly drifting; Marko stands on a ledge in his own scale */
+#menu{--ground-h:34vh;--ground-top:calc(var(--ground-h) * .82 - 2vh);--marko:min(84vh,780px)}
+#menu .menu-backdrop{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#0b1a1a}
+#menu .bd-far{position:absolute;inset:-5%;background:url(assets/gorge.png) 62% 38%/cover no-repeat;animation:bdDrift 70s ease-in-out infinite alternate}
+@keyframes bdDrift{from{transform:scale(1.03) translate(0,0)}to{transform:scale(1.1) translate(-2.2%,1.2%)}}
+#menu .menu-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#040d0ecc 0%,#071718a0 32%,#0a1a1a30 58%,#0000 75%),linear-gradient(0deg,#050a0a99 0%,#0000 30%),radial-gradient(ellipse at 75% 30%,#ffd9a018,#0000 60%)}
+#menu .bd-ground{position:absolute;right:-5vw;bottom:-2vh;width:max(62vw,880px);height:var(--ground-h);background:url(assets/ui/meni-tlo.webp) left top/100% 100% no-repeat;z-index:1;filter:drop-shadow(0 -6px 24px #0006)}
+#menu .menu-marko.live{right:max(6vw,calc(36vw - var(--marko) * .62))!important;bottom:calc(var(--ground-top) - var(--marko) * .04)!important;width:var(--marko)!important;height:var(--marko)!important;opacity:1!important;z-index:2}
+#menu .quote{z-index:3}
+#menu .menu-copy{z-index:4}
+@media(max-width:900px){#menu .menu-marko.live{right:-14vw!important;opacity:.55!important}}
+#menu .menu-copy{scrollbar-width:none}
+#menu .menu-copy::-webkit-scrollbar{display:none}
+@media(max-height:820px){#menu .intro{display:none}#menu .menu-copy h1{--hs:74px;font-size:74px}#menu .subtitle{margin-bottom:8px}}
+@media(max-height:640px){#menu .ms-item small{display:none}#menu .menu-copy h1{--hs:62px;font-size:62px}}
+#menu .menu-fairy{right:2.5%!important;top:5%!important;width:120px!important;height:120px!important;z-index:3}
+#menu .fairy-dust{right:2%;top:12%}
+/* Codex's ledge keeps its proportions; Marko's feet sit on its flat top (28% down the picture) */
+#menu{--gw:max(62vw,110vh);--gh:calc(var(--gw) / 3.214);--ground-top:calc(var(--gh) * .72 - 2vh)}
+#menu .bd-ground{width:var(--gw);height:var(--gh);background-size:100% 100%}
+#menu .quote{padding:10px 14px 8px 40px;background:linear-gradient(90deg,#0000,#050c0cb8 28%);text-shadow:0 1px 3px #000,0 0 12px #000}

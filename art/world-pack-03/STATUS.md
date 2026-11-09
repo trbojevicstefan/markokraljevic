@@ -265,3 +265,6 @@ Sacuvano u rukopis/minijature/minijatura-spava.png; 768x768 PNG, neprovidna zlat
 Sacuvano u rukopis/minijature/minijatura-pesma.png; 768x768 PNG, neprovidna zlatna podloga. Ugradjeni image_gen, prompt u minijature/prompts.json, izvor u minijature/sources/.
 
 DOPUNA-7 ZAVRSENA: svih 14 minijatura sacuvano. Provereno 14/14 PNG, 768x768, potpuno neprovidno; zajednicki pregled rukopis/minijature/preview.png. Preostalih sedam uradjeno po jednim pokusajem, ugradjenim image_gen generatorom. Prompts: rukopis/minijature/prompts.json. Nema neuspelih stavki u DOPUNA-7.
+
+## DOPUNA-9 - meni-tlo GOTOVO
+Sacuvano meni/meni-tlo.png, 1800x560 RGBA sa providnom pozadinom; stenovita izbočina, trava i jesenje zbunje, topla magla. Jedan pokusaj ugradjenim image_gen, referenca dist/assets/gorge.png. Kompozitni pregled meni/preview.png, prompt u meni/prompt.json. Proverene dimenzije i alfa kanal.
