@@ -78,7 +78,7 @@ const COMBO_TIME=[.36,.36,.5],COMBO_CD=[.3,.3,.56];function updateCooldowns(dt){
 function attackDuration(){return p.attackKind==='tresak'?.34:p.attackKind==='light'&&p.airAtk?.3:p.attackKind==='lomilac'?.56:p.attackKind==='uvis'?.42:p.attackKind==='juris'?.42:p.attackKind==='super'?.95:p.attackKind==='counter'?.55:p.attackKind==='heavy'?.52:COMBO_TIME[p.combo||0];}
 function superStrike(){if(!has('junacki')){locked('junacki');return;}if(p.rage<100){toast('Junački bes puni se pogocima i odbijanjem.',2);return;}if(p.cooldown>0||p.dash>0||p.drink>0||horseMounted||!p.grounded||p.guardBreak>0)return;p.rage=0;p.attack=.95;p.attackKind='super';p.cooldown=1.4;p.superImpact=false;p.blocking=false;p.crouching=false;p.crouch=0;p.invuln=Math.max(p.invuln,.7);sound('swing');toast('JUNAČKI UDAR',1.2);say('super',{priority:4,gap:0});say('tr_fear',{chance:.5,delay:1.2,x:p.x+p.face*200});say('vila_super',{chance:.3,delay:2.6});}
 function isDown(...codes){if(p&&(p.down>0||p.ledgeT>0||p.plunge===2||p.dizzy>0))return false;return codes.some(c=>keys.has(c));}function tap(...codes){if(p&&(p.down>0||p.ledgeT>0||p.plunge===2||p.dizzy>0))return false;return codes.some(c=>pressed.has(c));}
-function callFairy(kind,x,y){say('vila_'+(kind==='stun'||kind==='bridge'||kind==='lift'?kind:'heal'),{priority:2,x:fairy.x,delay:.2});say('fairy',{chance:.3});fairy.age=0;fairy.duration=3.2;fairy.kind=kind;fairy.targetX=x;fairy.targetY=y;p.castLock=.8;burst(fairy.x,fairy.y-25,'#caffdf',24,95);sound('magic');}
+function callFairy(kind,x,y){if(p&&p.grounded&&!horseMounted&&p.attack<=0&&rig?.['marko-call'])p.callT=CALL_TIME;say('vila_'+(kind==='stun'||kind==='bridge'||kind==='lift'?kind:'heal'),{priority:2,x:fairy.x,delay:.2});say('fairy',{chance:.3});fairy.age=0;fairy.duration=3.2;fairy.kind=kind;fairy.targetX=x;fairy.targetY=y;p.castLock=.8;burst(fairy.x,fairy.y-25,'#caffdf',24,95);sound('magic');}
 function useFairy(){
  if(p.castLock>0)return;
  if(level&&(useGoal()||pullLever()||pullLift()))return;
@@ -104,7 +104,7 @@ function updatePlayer(dt){
  if(p.attackKind==='super'&&p.attack>0&&p.attack<.45&&!p.superImpact){p.superImpact=true;sfx('boom',{gain:1});sfx('rock',{gain:.8});fx('hit',p.x+p.face*70,p.y-12,true);burst(p.x+p.face*70,p.y-12,'#ffcc72',24,240);dust(p.x,p.y,20,2.5);shake=settings.reduced?0:9;sound('hit');}
  const axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);if(axis)p.face=axis;
  const speed=horseMounted?480:265*(perks.has('sarceva-potkova')?1.07:1)*(stickMag<.7?.42:1);const target=p.wallJumpT>.12?p.vx:axis*speed*(p.spin>0?.5:p.attackKind==='super'&&p.attack>0?.12:p.blocking?.22:p.crouching?.3:p.attack>0?(p.runAtk&&p.attackKind==='light'?.85:.5):p.drink>0?.45:1);p.vx+= (target-p.vx)*Math.min(1,dt*(p.grounded?20:9));
- if(p.jumpBuffer>0&&p.wall&&!p.grounded){p.vy=-650;p.vx=-p.wall*440;p.wallSide=p.wall;p.face=-p.wall;p.wall=0;p.wallJumpT=.32;p.jumpBuffer=0;sound('jump');sayGrunt(false);dust(p.x+p.wallSide*16,p.y-40,6,1);}if(p.jumpBuffer>0&&p.coyote>0&&!p.climb){p.vy=horseMounted?-780:p.launchT>0?-820:-665;if(p.launchT>0&&!horseMounted){p.launchT=0;label('ZA NJIM!',p.x,p.y-150,'#ffe39a');}p.grounded=false;p.coyote=0;p.jumpBuffer=0;p.crouching=false;p.crouch=0;p.h=112;p.blocking=false;sound('jump');dust(p.x,p.y,horseMounted?10:6);}
+ if(p.jumpBuffer>0&&p.wall&&!p.grounded){p.vy=-650;p.vx=-p.wall*440;p.wallSide=p.wall;p.face=-p.wall;p.wall=0;p.wallJumpT=.32;p.jumpBuffer=0;p.runJump=false;sound('jump');sayGrunt(false);dust(p.x+p.wallSide*16,p.y-40,6,1);}if(p.jumpBuffer>0&&p.coyote>0&&!p.climb){p.vy=horseMounted?-780:p.launchT>0?-820:-665;if(p.launchT>0&&!horseMounted){p.launchT=0;label('ZA NJIM!',p.x,p.y-150,'#ffe39a');}p.grounded=false;p.coyote=0;p.jumpBuffer=0;p.crouching=false;p.crouch=0;p.h=112;p.blocking=false;p.runJump=!horseMounted&&Math.abs(p.vx)>240;sound('jump');dust(p.x,p.y,horseMounted?10:6);}
  if(tap('ShiftLeft','ShiftRight')&&p.dashCooldown<=0&&!horseMounted&&(has('kolut')||(locked('kolut'),false))){p.dash=ROLL_TIME;p.dashCooldown=.85;sfx('whoosh',{gain:.6,rate:.8});dust(p.x,p.y,8,1.5);}
  if(p.dash>0){p.vx=p.face*470;if(!p.grounded)p.vy=Math.min(p.vy,0);}moveExtras(dt);
  if(!p.grounded&&!horseMounted&&!p.plunge&&p.attack<=0&&isDown('KeyS','ArrowDown')&&tap('KeyJ')&&(has('nadole')||(locked('nadole'),false))&&(cdReady('plunge')||(cdDenied('plunge'),false)))startPlunge();else if(specialStrike()){}else if(isDown('KeyJ'))strike(false);if(isDown('KeyK'))strike(true);
@@ -456,7 +456,7 @@ function updateBall(b,dt){b.life-=dt;b.rot+=b.vx*dt/BALL_R;b.x+=b.vx*dt;
  if(b.y>(world.pitY||900)+200)b.life=0;
  // Marko: the ball must not touch his box
  const top=p.y-p.h,hit=b.x+BALL_R*.8>p.x-16&&b.x-BALL_R*.8<p.x+16&&b.y+BALL_R*.8>top&&b.y-BALL_R*.8<p.y;
- if(hit&&!b.hitP){b.hitP=true;if(hurtBy(28,-1,-460)){p.vx=-520;shake=Math.max(shake,settings.reduced?0:12);sfx('hit_heavy',{gain:1,rate:.7,x:p.x});label('ĐULE!',p.x,p.y-150,'#ffb09a');}}
+ if(hit&&!b.hitP){b.hitP=true;if(hurtBy(28,-1,-460)){p.vx=-520;p.blastT=BLAST_TIME;p.runJump=false;shake=Math.max(shake,settings.reduced?0:12);sfx('hit_heavy',{gain:1,rate:.7,x:p.x});label('ĐULE!',p.x,p.y-150,'#ffb09a');}}
  // Turks in its way are thrown aside, crates burst, a wall stops it
  for(const e of world.enemies)if(e.alive&&!e.champion&&!e.gunner&&!b.ids.has(e.id)&&Math.abs(e.x-b.x)<BALL_R+16&&b.y+BALL_R>e.y-110&&b.y-BALL_R<e.y){b.ids.add(e.id);e.hp=0;blood(e.x,e.y-60,-1,30);slay(e,1.1);sfx('hit_heavy',{gain:.9,x:e.x});}
  for(const k of world.breakables||[])if(!k.broken&&!k.opened&&Math.abs(k.x-b.x)<BALL_R+30&&Math.abs(k.y-b.y)<60)hitCrate(k,9);
@@ -603,6 +603,7 @@ function drawGate(){if(zone>=5)return;const end=chapters[zone].end-60;const lock
 function playerPose(){
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,frame:Math.min(n-1,Math.floor(k*n)),dy:leap};}
+ if(p.blastT>0&&!horseMounted&&rig?.['marko-blasted']){const n=rig['marko-blasted'].frames.length;return{name:'marko-blasted',frame:Math.min(n-1,Math.floor((1-p.blastT/BLAST_TIME)*n)),faceAs:-Math.sign(p.vx)||p.face};}
  if(mode==='levelDone'&&p.victoryAt&&rig?.['marko-victory'])return{name:'marko-victory',frame:Math.min(rig['marko-victory'].frames.length-1,Math.floor((performance.now()/1000-p.victoryAt)*7))};
  if(horseMounted&&p.attack>0&&rig?.['marko-mounted-attack']){const n=rig['marko-mounted-attack'].frames.length;return{name:'marko-mounted-attack',frame:Math.min(n-1,Math.floor((1-p.attack/attackDuration())*n))};}
  if(horseMounted){if(!p.grounded||p.landing>0)return{name:'mounted-jump',frame:p.grounded?3:p.vy< -350?1:p.vy<250?2:3};if(Math.abs(p.vx)>35)return{name:'mounted-run',frame:Math.floor(p.gait)%6};return{name:'mounted-jump',frame:0,sy:1+Math.sin(time*2.2)*.008};}
@@ -610,6 +611,7 @@ function playerPose(){
  {const x=pack3Pose();if(x)return x;}
  if(p.spin>0){if(rig?.['marko-vihor'])return{name:'marko-vihor',frame:Math.floor(p.spin*20)%8};const k=Math.floor(p.spin/.09);return{name:'marko-attack',frame:[2,3,4,3][k%4],faceFlip:Math.floor(p.spin/.18)%2===1,sy:1-.03*Math.abs(Math.sin(p.spin*18))};}
  if(p.attack>0){const duration=attackDuration(),phase=1-p.attack/duration;return attackFrame(phase,{name:p.attackKind==='tresak'?(rig?.['marko-air-2']?'marko-air-2':'marko-charged'):p.attackKind==='lomilac'?(rig?.['marko-combo-4']?'marko-combo-4':'marko-charged'):p.attackKind==='uvis'?(rig?.['marko-uppercut']?'marko-uppercut':'marko-combo-3'):p.attackKind==='juris'?(rig?.['marko-dash-strike']?'marko-dash-strike':'marko-combo-2'):p.attackKind==='light'&&p.airAtk&&rig?.['marko-air-1']?(p.combo===2&&rig?.['marko-air-2']?'marko-air-2':'marko-air-1'):p.attackKind==='super'?'marko-super':p.attackKind==='counter'&&rig?.['marko-counter']?'marko-counter':p.attackKind==='heavy'&&rig?.['marko-charged']?'marko-charged':p.attackKind==='light'&&p.runAtk&&rig?.['marko-run-attack']?'marko-run-attack':p.attackKind==='light'&&rig?.['marko-combo-1']?'marko-combo-'+((p.combo||0)+1):'marko-attack'});}
+ if(!p.grounded&&p.runJump&&p.airT<1.1&&!(p.hurt>.02)&&rig?.['marko-run-jump']){const n=rig['marko-run-jump'].frames.length;return{name:'marko-run-jump',frame:Math.min(n-1,Math.floor(p.airT/.7*n))};}
  if(!p.grounded){if(p.vy< -150&&p.airT<.32&&rig?.['marko-jump-rise'])return{name:'marko-jump-rise',frame:Math.min(3,Math.floor(p.airT/.32*4))};if(p.vy>160&&rig?.['marko-fall'])return{name:'marko-fall',frame:Math.floor(p.airT*9)%4};return{name:'marko-jump',frame:p.vy< -520?2:p.vy<220?3:4};}
  if(p.drink>0){const W=rig?.['marko-drink-walk'];if(W&&p.grounded&&Math.abs(p.vx)>25)return{name:'marko-drink-walk',frame:Math.floor(p.gait*2)%W.frames.length};return{name:'marko-drink',frame:Math.min(5,Math.floor((1-p.drink/.85)*6))};}
  if(p.crouching&&p.crouch>.5&&Math.abs(p.vx)>15){if(rig?.['marko-crouch-walk'])return{name:'marko-crouch-walk',frame:Math.floor(p.gait*.75)%rig['marko-crouch-walk'].frames.length};const s=Math.sin(p.gait*Math.PI*.75);return{name:'marko-crouch',frame:2+Math.floor(p.gait*.75)%2,dy:-Math.abs(s)*3,rot:s*.025};}
@@ -620,7 +622,8 @@ function playerPose(){
  if(p.hurt>.02&&!p.blocking&&rig?.['marko-hurt'])return{name:'marko-hurt',frame:Math.min(3,Math.floor((1-p.hurt/.22)*4))};
  if(p.landing>0){if(rig?.['marko-land']&&Math.abs(p.vx)<60){const n=rig['marko-land'].frames.length;return{name:'marko-land',frame:Math.min(n-1,Math.floor((1-p.landing/.2)*n))};}const s=Math.sin(p.landing/.2*Math.PI)*.08;return{name:'marko-jump',frame:5,sx:1+s,sy:1-s};}
  if(Math.abs(p.vx)>35){if(Math.abs(p.vx)<170&&rig?.['marko-walk'])return{name:'marko-walk',frame:Math.floor(p.gait*2)%8};return{name:'marko-run',frame:Math.floor(p.gait)%6};}
- if(p.idleT>IDLE3_AT&&rig?.['marko-idle-3']){const k=Math.floor((p.idleT-IDLE3_AT)*6);if(k<12)return{name:'marko-idle-3',frame:k};p.idleT=0;}
+ if(rig?.['marko-teeter']&&p.grounded&&!horseMounted&&Math.abs(p.vx)<12&&!supportAt(p.x+p.face*24,p.y,60)&&supportAt(p.x-p.face*4,p.y,6))return{name:'marko-teeter',frame:Math.floor(time*8)%rig['marko-teeter'].frames.length};
+ if(p.idleT>IDLE3_AT&&rig?.['marko-idle-3']){const nm=(p.idleN||0)%2&&rig?.['marko-idle-4']?'marko-idle-4':'marko-idle-3',n=rig[nm].frames.length,k=Math.floor((p.idleT-IDLE3_AT)*6);if(k<n)return{name:nm,frame:k};p.idleT=0;p.idleN=(p.idleN||0)+1;}
  if(rig?.['marko-idle-2'])return{name:'marko-idle-2',frame:Math.floor(time*6)%rig['marko-idle-2'].frames.length,sy:1+Math.sin(time*2.2)*.004};if(rig?.['marko-idle'])return{name:'marko-idle',frame:IDLE_SEQ[Math.floor(time*IDLE_FPS)%IDLE_SEQ.length],sy:1+Math.sin(time*2.2)*.006,sx:1-Math.sin(time*2.2)*.003};return{name:'cast/marko',frame:0,sy:1+Math.sin(time*2.4)*.012,sx:1-Math.sin(time*2.4)*.005,rot:p.hurt>0?-.1:0};
 }
 function maceSmear(){const d=attackDuration(),phase=1-p.attack/d;if(p.attack<=0||phase<.4||phase>.97)return;const heavy=p.attackKind==='heavy',t=clamp((phase-.42)/.33,0,1),ease=1-Math.pow(1-t,3),head=-1.75+ease*2.6,tail=Math.max(-1.75,head-(heavy?1.05:.85)),fade=1-clamp((phase-.78)/.19,0,1),R=heavy?100:84,inner=R*(heavy?.8:.84);for(const g of[gctx,ctx]){g.save();g.translate(p.x+p.face*6,p.y-66);g.scale(p.face,1);g.beginPath();g.arc(0,0,R,tail,head);g.arc(Math.cos(head)*6,Math.sin(head)*6,inner,head,tail,true);g.closePath();const gr=g.createLinearGradient(Math.cos(tail)*R,Math.sin(tail)*R,Math.cos(head)*R,Math.sin(head)*R);const c=heavy?'255,190,100':'255,236,200';gr.addColorStop(0,`rgba(${c},0)`);gr.addColorStop(1,`rgba(${c},${(g===gctx?(heavy?.42:.34):.2)*fade})`);g.fillStyle=gr;g.fill();g.restore();}}
@@ -2262,8 +2265,8 @@ function drawMenuMarko(name,fi,t){const c=mmCanvas,g=c.getContext('2d'),r=rig[na
 menuLedger();
 
 // ---------- Marko's in-between clips (Codex, DOPUNA-8): walk, braking, rise and fall, a longer rest, recovery, rolls ----------
-const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42;
-function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT'])if(p[k]>0)p[k]-=dt;
+const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42,PICK_TIME=.6,CALL_TIME=.75,BLAST_TIME=.85;
+function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT','pickT','callT','blastT'])if(p[k]>0)p[k]-=dt;if(p.grounded)p.runJump=false;
  p.airT=p.grounded?0:(p.airT||0)+dt;
  // letting go of the arrows at full run: he digs his heels in
  const held=keys.has('KeyA')||keys.has('KeyD')||keys.has('ArrowLeft')||keys.has('ArrowRight');
@@ -2272,12 +2275,14 @@ function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT'])if
  const busy=!p.grounded||Math.abs(p.vx)>5||p.attack>0||p.blocking||p.crouching||p.drink>0||p.hurt>0||p.down>0||horseMounted||p.dizzy>0||keys.size>0;p.idleT=busy?0:(p.idleT||0)+dt;
  // the third blow of the hero's combo: he draws the mace back and settles
  if(p.prevAtk>0&&p.attack<=0&&p.prevKind==='light'&&p.prevCombo===2&&p.grounded&&rig?.['marko-combo-recover'])p.recoverT=RECOVER_TIME;p.prevAtk=p.attack;p.prevKind=p.attackKind;p.prevCombo=p.combo;}
-function reachDown(){if(p&&p.grounded&&Math.abs(p.vx)<90&&p.attack<=0&&rig?.['marko-open'])p.openT=OPEN_TIME;}
+function reachDown(){if(p&&p.grounded&&Math.abs(p.vx)<90&&p.attack<=0){if(rig?.['marko-pickup'])p.pickT=PICK_TIME;else if(rig?.['marko-open'])p.openT=OPEN_TIME;}}
 function flowPose(){const once=(name,t,T)=>{const n=rig[name].frames.length;return{name,frame:Math.min(n-1,Math.floor((1-t/T)*n))};};
  if(!p.grounded&&p.hurt>.02&&rig?.['marko-hurt-air'])return{name:'marko-hurt-air',frame:Math.min(3,Math.floor((1-p.hurt/.22)*4))};
  if(!p.grounded||p.attack>0)return null;
  if(p.rollLandT>0&&rig?.['marko-roll-land'])return once('marko-roll-land',p.rollLandT,ROLL_LAND_TIME);
- if(p.openT>0&&rig?.['marko-open'])return once('marko-open',p.openT,OPEN_TIME);
+ if(p.pickT>0&&p.attack<=0&&rig?.['marko-pickup'])return once('marko-pickup',p.pickT,PICK_TIME);
+  if(p.callT>0&&p.attack<=0&&p.grounded&&rig?.['marko-call'])return once('marko-call',p.callT,CALL_TIME);
+  if(p.openT>0&&rig?.['marko-open'])return once('marko-open',p.openT,OPEN_TIME);
  if(p.recoverT>0&&Math.abs(p.vx)<80&&rig?.['marko-combo-recover'])return once('marko-combo-recover',p.recoverT,RECOVER_TIME);
  if(p.stopT>0&&Math.abs(p.vx)<150&&!p.blocking&&!p.crouching&&rig?.['marko-run-stop'])return once('marko-run-stop',p.stopT,STOP_TIME);
  return null;}

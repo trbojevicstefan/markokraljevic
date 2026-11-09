@@ -140,6 +140,12 @@ for name, ref in PACK4_REF.items():
         im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
         tall = max(analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['sole'] - analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['top'] for c in cells)
         SCALES[name] = (165 / tall, mode)
+# a few pack-4 clips came out at a closer zoom than the idle, so Marko grew while pushing a crate:
+# head, boots and torso compared side by side with the idle
+ZOOM_FIX = {'marko-push': .82, 'marko-throw': .88}
+for name, k in ZOOM_FIX.items():
+    if name in SCALES:
+        SCALES[name] = (SCALES[name][0] * k, SCALES[name][1])
 # new characters (spearman, hound, musketeer): their own clips, matched to their idle body height
 NEW_FOES = {'kopljanik': 118, 'tufekdzija': 116, 'pas': 58}
 for who, height in NEW_FOES.items():
