@@ -467,7 +467,7 @@ function hitCannon(c,power){c.hp-=power;c.hitFlash=.12;sfx('clang',{gain:.9,rate
  burst(c.x,c.y-50,'#ff8a2a',36,340);c.flash=.3;sfx('boom',{gain:1,rate:.6,x:c.x});shake=settings.reduced?0:15;rumble(1,400);label('TOP JE UTIHNUO!',c.x,c.y-TOP_H-40,'#ffd2a0');addCoins(8,c.x,c.y-60);
  const g=world.enemies.find(e=>e.gunner&&e.alive&&Math.abs(e.x-c.x)<200);if(g){g.hp=0;slay(g,.9);}}
 function drawCannons(){const im=worldImg('zag-top');for(const c of world.cannons||[]){if(c.x<camera-300||c.x>camera+VIEW_W+300)continue;const rec=(c.recoil||0)**2*14,f=c.face||-1;
-  ctx.save();ctx.translate(c.x-f*rec,c.y+2);if(c.broken)ctx.rotate(f*.16);else ctx.rotate(-f*.1*(c.lift||0));ctx.scale(-f,1);shadow(0,0,TOP_W*.42,.4);
+  ctx.save();ctx.translate(c.x-f*rec,c.y+2);if(c.broken)ctx.rotate(f*.16);else ctx.rotate(-f*.1*(c.lift||0));ctx.scale(f,1);shadow(0,0,TOP_W*.42,.4);
   if(im){if(c.broken)ctx.filter='brightness(.55) saturate(.6)';ctx.drawImage(im,0,175,1012,678,-TOP_W/2,-TOP_H,TOP_W,TOP_H);ctx.filter='none';}
   else{ctx.fillStyle='#6a5a3a';ctx.fillRect(-TOP_W/2,-TOP_H*.85,TOP_W,TOP_H*.32);ellipse(-TOP_W*.25,-18,18,18,'#4a3424');ellipse(TOP_W*.2,-22,22,22,'#4a3424');}
   ctx.restore();
@@ -549,7 +549,7 @@ function clothTex(id){if(CLOTH[id])return CLOTH[id];const im=worldImg(id);if(!im
  return CLOTH[id]={base,dark,lite,w,h};}
 function windAt(x){return clamp(.74+.18*Math.sin(time*.55+x*.004)+.1*Math.sin(time*1.7+x*.011),.3,1);}
 // x,y: where the cloth's top meets the pole; dir: which way the wind blows it
-function drawCloth(c,x,y,W,H,dir,wind,seed){const N=Math.max(16,Math.round(W/2.3)),k=Math.PI*2*1.25,om=4.6+3.2*wind,sw=c.w/N;let X=0;const a0=ctx.globalAlpha;
+function paintCloth(ctx,c,x,y,W,H,dir,wind,time){const seed=0,N=Math.max(16,Math.round(W/2.3)),k=Math.PI*2*1.25,om=4.6+3.2*wind,sw=c.w/N;let X=0;const a0=ctx.globalAlpha;
  for(let i=0;i<N;i++){const u=(i+.5)/N,ph=u*k-time*om+seed,az=H*(.035+.19*u)*wind,s=az*k*Math.cos(ph)/W,ss=s*dir,cw=W/N/Math.sqrt(1+s*s),
   dy=H*(.03+.1*u)*wind*Math.sin(ph-.9)+H*.2*u*u*(1-wind*.85),sy=1-.07*u*(.5+.5*Math.sin(ph))*wind,y0=y+dy+H*(1-sy)*.3,
   lam=(.55*ss+.83)/Math.sqrt(1+ss*ss)-.83,dark=clamp(-lam*2.6+(1-Math.sin(ph))*.1*u*wind,0,.62),lite=clamp(lam*.7,0,.12),X0=dir>0?x+X:x-X-cw;
@@ -558,8 +558,16 @@ function drawCloth(c,x,y,W,H,dir,wind,seed){const N=Math.max(16,Math.round(W/2.3
   if(lite>.01){ctx.globalAlpha=a0*lite;ctx.drawImage(c.lite,i*sw,0,sw+.5,c.h,X0,y0,cw+.8,H*sy);ctx.globalAlpha=a0;}
   X+=cw;}
  for(const f of [.06,.5,.92]){ctx.fillStyle='#2e2116';ctx.fillRect(x-4.2,y+H*f-1,8.4,2.6);}}
+// Painting the strips every frame is slow, so one wave cycle is baked once per cloth and size (20 frames, twice the
+// resolution) and each banner then costs a single drawImage.
+const CLOTH_FRAMES=20,CLOTH_WIND=.8,CLOTH_PERIOD=Math.PI*2/(4.6+3.2*CLOTH_WIND);
+function clothSheet(c,W,H){c.sheets??={};const key=W+'x'+H;if(key in c.sheets)return c.sheets[key];const S=2,pad=6,fw=Math.ceil((W+pad*2)*S),fh=Math.ceil(H*1.5*S),top=H*.18,cv=makeCanvas(fw*CLOTH_FRAMES,fh),g=cv.getContext('2d');
+ if(!g)return c.sheets[key]=null;g.scale(S,S);for(let i=0;i<CLOTH_FRAMES;i++)paintCloth(g,c,pad+i*fw/S,top,W,H,1,CLOTH_WIND,i*CLOTH_PERIOD/CLOTH_FRAMES);
+ return c.sheets[key]={cv,fw,fh,top,pad,S};}
+function drawCloth(c,x,y,W,H,dir,wind,seed){const s=clothSheet(c,Math.round(W),Math.round(H));if(!s)return;const n=CLOTH_FRAMES,i=((Math.floor(time/CLOTH_PERIOD*n+seed*n/(Math.PI*2))%n)+n)%n;
+ if(dir>0)ctx.drawImage(s.cv,i*s.fw,0,s.fw,s.fh,x-s.pad,y-s.top,s.fw/s.S,s.fh/s.S);else{ctx.save();ctx.translate(x,y);ctx.scale(-1,1);ctx.drawImage(s.cv,i*s.fw,0,s.fw,s.fh,-s.pad,-s.top,s.fw/s.S,s.fh/s.S);ctx.restore();}}
 // a wooden shaft; on top a small cross, an Ottoman alem, or a plain spear point
-function drawPole(x,y,top,finial){const gr=ctx.createLinearGradient(x-3.5,0,x+3.5,0);gr.addColorStop(0,'#2b1d12');gr.addColorStop(.42,'#6e4c2e');gr.addColorStop(1,'#22170d');ctx.fillStyle=gr;ctx.fillRect(x-3,top,6,y-top+2);
+function drawPole(x,y,top,finial){ctx.fillStyle='#2e1f13';ctx.fillRect(x-3,top,6,y-top+2);ctx.fillStyle='#6a4a2c';ctx.fillRect(x-1.6,top,1.8,y-top+2);
  if(finial==='krst'){ctx.fillStyle='#8f7038';ctx.fillRect(x-1.4,top-20,2.8,21);ctx.fillRect(x-6.5,top-14,13,2.6);ctx.fillRect(x-4.2,top-19,8.4,2.2);ellipse(x,top-1,4,3,'#7a5d2c');}
  else if(finial==='alem'){ellipse(x,top-4,4,4,'#8f7038');ctx.beginPath();ctx.arc(x,top-15,7,0,Math.PI,false);ctx.arc(x,top-16.6,5.2,Math.PI,0,true);ctx.closePath();ctx.fillStyle='#9a7a3c';ctx.fill();}
  else poly([[x-3.5,top],[x,top-16],[x+3.5,top]],'#878a8f');}
