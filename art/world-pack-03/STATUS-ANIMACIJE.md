@@ -224,3 +224,5 @@ DOPUNA-12: prepreka-kamenje.png — GOTOVO; PNG 768x512 sa izvornom providnoscu 
 DOPUNA-12: prepreka-bure.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
 
 DOPUNA-12: marko-crouch-throw — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/marko-crouch-throw/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
+
+DOPUNA-12: vilinski-kamen-budan — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/vilinski-kamen-budan/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.

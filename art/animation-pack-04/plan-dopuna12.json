@@ -39,12 +39,12 @@
     },
     {
       "id": "vilinski-kamen-budan",
-      "reference": "art/animation-pack-04/assets/vilinski-kamen-spava/frames/motion/frame-0.png",
+      "reference": "art/animation-pack-04/assets/vilinski-kamen-budi/frames/motion/frame-5.png",
       "frames": 6,
       "loop": true,
       "targetHeight": 460,
       "referenceHeight": 460,
-      "nativeAlpha": true,
+      "nativeAlpha": false,
       "action": "EXACT SAME rigid IMMOBILE stone from reference. Every contour, engraving, moss patch, size and position unchanged in all cells; ONLY LIGHT CHANGES. Awake loop: bright green-TURQUOISE runes slowly pulse through six phases dim-bright-peak-bright-dim-approaching-start. Small floating fairy sparks above tip and alongside. Never below base. Stone does not sway, breathe, stretch or morph.",
       "cols": 3,
       "rows": 2,
@@ -53,7 +53,9 @@
         512,
         512
       ],
-      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded 2D game sprite sheet EXACTLY SIX full poses in THREE columns x TWO rows, equal slots row-major. EXACT SAME rigid IMMOBILE stone from reference. Every contour, engraving, moss patch, size and position unchanged in all cells; ONLY LIGHT CHANGES. Awake loop: bright green-TURQUOISE runes slowly pulse through six phases dim-bright-peak-bright-dim-approaching-start. Small floating fairy sparks above tip and alongside. Never below base. Stone does not sway, breathe, stretch or morph. Full subject and light effects inside each slot with ample empty gutter. Fixed orthographic side view, consistent scale. TRUE TRANSPARENT background, preserve partial alpha of light and sparks, no colored backdrop, no shadow or ground. No text, numbers, borders, grid lines or scenery. Final cells512x512 with ground baseline y487."
+      "prompt": "Use case: stylized-concept. Create EXACTLY SIX game sprite poses in a 3-column by 2-row grid. Copy the SAME illuminated fairy MENHIR from reference: fixed stone contour, angular spiral and diamond engravings, identical rock texture and moss at base, SAME scale and position in ALL cells. Stone rigid and completely motionless. ALL engraved runes are BRIGHT GREEN-TURQUOISE AND FULLY LIT IN EVERY FRAME, just like the reference. Pulse gently between 90%,95%,100%,95%,90%,95% brightness, NEVER dark or unlit runes. Sparse small sparks above tip and along sides; none below base. No broad colored aura background, no cast shadow or light puddle under stone. Full stone and sparks fit with safe margins. FLAT PURE MAGENTA #FF00FF background all empty pixels and gaps, no white/gray backdrop, no transparency checkerboard, no text/grid/ground. Preserve painterly game style.",
+      "chromaKey": "magenta",
+      "sourceFile": "grid-v2.png"
     },
     {
       "id": "marko-crouch-throw",
