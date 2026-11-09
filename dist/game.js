@@ -1412,6 +1412,8 @@ function menuButtons(){const c=$('continue'),s=$('start');if(!c||!s||!hasDom)ret
  if(!c.hidden)$('menu-pohodi')?.before?.(s);else c.after?.(s);setTimeout(menuInitials,0);}
 // each line of the menu opens with an illuminated initial: the first letter of its label, in either language
 function menuInitials(){document.querySelectorAll?.('#menu .ms-item').forEach(b=>{b.dataset.ini=(b.querySelector('.lbl')?.textContent||'').trim().charAt(0);});}
+// the main action's banner is a waving cloth (barjak3d.js); without WebGL the SVG banner stays
+if(hasDom&&!matchMedia('(max-width:600px)').matches)import('./barjak3d.js').then(m=>{for(const id of['start','continue']){const el=$(id);if(el)m.mountBanner(el).catch(()=>{});}}).catch(()=>{});
 function fairyDust(){const box=document.querySelector?.('#menu .fairy-dust');if(!box||box.childElementCount)return;let html='';for(let i=0;i<18;i++){const d=3+Math.random()*4;html+=`<i style="left:${Math.random()*100}%;top:${Math.random()*40}%;animation-duration:${d}s;animation-delay:${-Math.random()*d}s;--dx:${-20-Math.random()*60}px"></i>`;}box.innerHTML=html;}
 if(hasDom){
  $('menu-riznica')&&($('menu-riznica').onclick=openRiznica);$('menu-knjiga')&&($('menu-knjiga').onclick=()=>openBook());$('pause-knjiga')&&($('pause-knjiga').onclick=()=>openBook());

@@ -448,3 +448,11 @@
 #intro .intro-pic{width:min(70vh,620px,52vw);padding:0}
 #intro .intro-pic img{padding:0;margin:16.5%;width:67%;height:67%;box-shadow:0 0 0 1px #3a1a0a88}
 #intro .intro-foot>*{flex:none;width:auto!important;margin:0!important}
+/* the waving barjak (barjak3d.js) replaces the flat banner when WebGL is there */
+#menu .menu-actions .primary.has-flag{overflow:visible}
+#menu .menu-actions .primary .flag3d{position:absolute;left:-30px;top:-22px;width:calc(100% + 44px);height:calc(100% + 38px);pointer-events:none;background:none!important;z-index:0}
+#menu .menu-actions .primary.flag-on{background:none!important;color:transparent!important;text-shadow:none!important;filter:none!important;transform:none!important}
+#menu .menu-actions .primary.flag-on::before,#menu .menu-actions .primary.flag-on::after,#menu .menu-actions .primary.flag-on>span,#menu .menu-actions .primary.flag-on>small{visibility:hidden}
+#menu .menu-actions .primary.flag-on:hover .flag3d,#menu .menu-actions .primary.flag-on:focus-visible .flag3d,#menu .menu-actions .primary.flag-on.pad-focus .flag3d{filter:drop-shadow(0 0 10px #f3d58a88) drop-shadow(0 6px 8px #3a0a0566)}
+#menu .menu-actions .primary.flag-on .flag3d{filter:drop-shadow(0 6px 8px #3a0a0555);transition:filter .3s}
+#menu .menu-actions .primary.flag-on{margin-top:14px;margin-bottom:8px}
