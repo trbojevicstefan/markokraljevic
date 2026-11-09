@@ -95,13 +95,13 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
   „Dopuna od Claude-a: pročitaj D:\projects\Marko Kraljevic\marko-game\art\world-pack-03\DOPUNA-5.md — Markove fluidne animacije sada imaju prednost. Posle njih: ostatak launch klipova iz DOPUNA-4, izvoz četiri reakcije iz 7d, pa kapije iz DOPUNA-3. Posle svakog klipa dopuni STATUS.md. Ništa urađeno ne briši.“
 - [x] **D2** Ostatak launch klipova: akindzija, kopljanik, palikuca, pas, tufekdzija, oklopnik.
 - [x] **D3** Četiri reakcije iz 7d: izvoz već nacrtanih grid-ova.
-- [ ] **D4** (kamena i drvena ugrađene; 06:10 Codex isporučio i prolaz-rudnik-otvoren i ulaz-riznica-otvoren — ugraditi u iteraciji 8: rudnik kao stil kapije, riznica otvorena umesto tamnog luka) Kapije iz DOPUNA-3 (profil, prolaz sleva nadesno), pa ugradnja: prednji deo kapije se crta ispred Marka.
-- [ ] **D5** Ugradi sve što stigne (`sync-anims.py`, `sync-world.py`, `build-sprite-rig.py`).
+- [x] **D4** (sve kapije ugrađene) Kapije iz DOPUNA-3 (profil, prolaz sleva nadesno), pa ugradnja: prednji deo kapije se crta ispred Marka.
+- [x] **D5** Ugradi sve što stigne (`sync-anims.py`, `sync-world.py`, `build-sprite-rig.py`).
 
 ## E. Ispolirani detalji
 - [x] **E1** Prašina i zvuk pri doskoku, senke, trzaj kamere — ništa preterano.
 - [x] **E2** Natpisi se ne preklapaju.
-- [ ] **E3** Jutarnji izveštaj (poslednja iteracija): šta je urađeno, šta čeka, i snimci.
+- [x] **E3** Jutarnji izveštaj (poslednja iteracija): šta je urađeno, šta čeka, i snimci.
 
 ## Dnevnik
 | Iteracija | Vreme | Urađeno | Commit |
@@ -113,3 +113,4 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 | 5/8 | 04:04–04:40 | Kapije: Codex-ova bočna kamena kapija ugrađena tako da se crta ISPRED Marka — Marko ulazi između stubova, iza njega je taman tunel, rešetka (resetka) se diže u kulu kad se kapija otvori; staje 80 px ispred prolaza. Sve kapije (i na polugu) to koriste dok Codex ne nacrta drvenu i rudničku. U prolazu kapije nema više sanduka i ćupova (provera u levels-test). Codex bez kredita. | vidi git log |
 | 6/8 | 05:04–05:35 | Tok: road-test.mjs — bot prolazi svih 13 pohoda do cilja (17 s, deo npm test); staje samo na namernim zagonetkama (lift, okno za skok od zida, rala), nijedno zaglavljivanje. Doskok: prašina, zvuk i blago drmanje kamere rastu sa visinom pada. Natpisi u istom kadru se više ne preklapaju (slažu se naviše). 134 mehaničke provere. Codex bez kredita. | 7e933e9 |
 | 7/8 | 06:04–06:45 | Neprijatelji dišu mirno: idle petlje idu napred-nazad kroz kadrove koji se glatko nastavljaju, 5 fps (najveći skok kadra npr. janičar 16.8 → 7.0); pas i ostali blago dišu. Propovi se ne stavljaju u sobe sa zamkama ni na zamke (ni ručno postavljeni); layoutAudit čist za svih 39 varijanti (dan/noć/oluja). Codex opet ima kredita: nacrtao drvenu kapiju (ugrađena — sela, šuma, močvara, reka, oranje) i radi rudničku i otvorenu riznicu. 135 mehaničkih provera. | vidi git log |
+| 8/8 | 07:04–07:30 | Ugrađene rudnička kapija (Rudnik) i otvorena riznica (vrata stvarno otvorena, baklje i sanduci). Jutarnji izveštaj: JUTARNJI-IZVESTAJ.md sa 4 snimka u izvestaj/. Svi testovi zeleni. | vidi git log |
