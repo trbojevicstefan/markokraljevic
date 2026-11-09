@@ -1,0 +1,10 @@
+{
+  "generator": "built-in image_gen",
+  "attempts": 25,
+  "clips": 24,
+  "megdan_kostac_addendum": "Second reference establishes Marko identity; first reference is Musa. Grappling poses override upright-facing rule; both bodies side-on readable.",
+  "megdan_noz_first_addendum": "First reference is Musa identity, second is Marko identity, third establishes starting grapple pose. Grappling overrides upright-facing rule. Final fallen characters retain SAME anatomical scale as initial pose, no enlargement.",
+  "megdan_noz_final_addendum": "CRITICAL LAYOUT FIX: All pairs must occupy only the CENTRAL 65 percent of each cell width, leaving 17 percent pure green margin at BOTH sides. Final Marko and Musa are side by side within that central area, with Musa's ENTIRE head and face visible inside the slot. Keep same body scale across all 8 frames; start with smaller figures to leave room for both fallen bodies. Do not crop ANY body part. First reference Musa, second Marko, third initial grapple. NO BLOOD.",
+  "beg_mounted_additional_reference": "sources/dopuna10-reference/mounted-run.png",
+  "finalMegdanNozSource": "sources/megdan-noz/grid-v2.png"
+}

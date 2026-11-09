@@ -1,0 +1,146 @@
+[
+  {
+    "clip": "marko-mounted-attack",
+    "frames": 6,
+    "firstHeight": 350,
+    "verified": true
+  },
+  {
+    "clip": "putnik-trgovac-idle",
+    "frames": 6,
+    "firstHeight": 417,
+    "verified": true
+  },
+  {
+    "clip": "putnik-trgovac-walk",
+    "frames": 8,
+    "firstHeight": 420,
+    "verified": true
+  },
+  {
+    "clip": "putnica-idle",
+    "frames": 6,
+    "firstHeight": 407,
+    "verified": true
+  },
+  {
+    "clip": "putnica-walk",
+    "frames": 8,
+    "firstHeight": 425,
+    "verified": true
+  },
+  {
+    "clip": "putnik-starac-idle",
+    "frames": 6,
+    "firstHeight": 397,
+    "verified": true
+  },
+  {
+    "clip": "putnik-starac-walk",
+    "frames": 8,
+    "firstHeight": 426,
+    "verified": true
+  },
+  {
+    "clip": "putnik-kaluder-idle",
+    "frames": 6,
+    "firstHeight": 401,
+    "verified": true
+  },
+  {
+    "clip": "putnik-kaluder-walk",
+    "frames": 8,
+    "firstHeight": 425,
+    "verified": true
+  },
+  {
+    "clip": "musa-mounted",
+    "frames": 8,
+    "firstHeight": 388,
+    "verified": true
+  },
+  {
+    "clip": "musa-mounted-strike",
+    "frames": 6,
+    "firstHeight": 378,
+    "verified": true
+  },
+  {
+    "clip": "musa-sword",
+    "frames": 6,
+    "firstHeight": 438,
+    "verified": true
+  },
+  {
+    "clip": "musa-grab",
+    "frames": 6,
+    "firstHeight": 420,
+    "verified": true
+  },
+  {
+    "clip": "megdan-kostac",
+    "frames": 8,
+    "firstHeight": 316,
+    "verified": true
+  },
+  {
+    "clip": "megdan-noz",
+    "frames": 8,
+    "firstHeight": 295,
+    "verified": true
+  },
+  {
+    "clip": "beg-mounted",
+    "frames": 8,
+    "firstHeight": 342,
+    "verified": true
+  },
+  {
+    "clip": "beg-mounted-strike",
+    "frames": 6,
+    "firstHeight": 348,
+    "verified": true
+  },
+  {
+    "clip": "beg-unhorsed",
+    "frames": 6,
+    "firstHeight": 348,
+    "verified": true
+  },
+  {
+    "clip": "arapin-idle",
+    "frames": 6,
+    "firstHeight": 426,
+    "verified": true
+  },
+  {
+    "clip": "arapin-run",
+    "frames": 8,
+    "firstHeight": 436,
+    "verified": true
+  },
+  {
+    "clip": "arapin-attack",
+    "frames": 6,
+    "firstHeight": 411,
+    "verified": true
+  },
+  {
+    "clip": "arapin-throw",
+    "frames": 6,
+    "firstHeight": 440,
+    "verified": true
+  },
+  {
+    "clip": "arapin-hurt",
+    "frames": 4,
+    "firstHeight": 440,
+    "verified": true
+  },
+  {
+    "clip": "arapin-death",
+    "frames": 6,
+    "firstHeight": 440,
+    "verified": true
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "id": "marko-mounted-attack",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/marko-mounted-attack/atlas.png",
+    "manifest": "assets/marko-mounted-attack/manifest.json",
+    "preview": "assets/marko-mounted-attack/preview.gif"
+  },
+  {
+    "id": "putnik-trgovac-idle",
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-trgovac-idle/atlas.png",
+    "manifest": "assets/putnik-trgovac-idle/manifest.json",
+    "preview": "assets/putnik-trgovac-idle/preview.gif"
+  },
+  {
+    "id": "putnik-trgovac-walk",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-trgovac-walk/atlas.png",
+    "manifest": "assets/putnik-trgovac-walk/manifest.json",
+    "preview": "assets/putnik-trgovac-walk/preview.gif"
+  },
+  {
+    "id": "putnica-idle",
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnica-idle/atlas.png",
+    "manifest": "assets/putnica-idle/manifest.json",
+    "preview": "assets/putnica-idle/preview.gif"
+  },
+  {
+    "id": "putnica-walk",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnica-walk/atlas.png",
+    "manifest": "assets/putnica-walk/manifest.json",
+    "preview": "assets/putnica-walk/preview.gif"
+  },
+  {
+    "id": "putnik-starac-idle",
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-starac-idle/atlas.png",
+    "manifest": "assets/putnik-starac-idle/manifest.json",
+    "preview": "assets/putnik-starac-idle/preview.gif"
+  },
+  {
+    "id": "putnik-starac-walk",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-starac-walk/atlas.png",
+    "manifest": "assets/putnik-starac-walk/manifest.json",
+    "preview": "assets/putnik-starac-walk/preview.gif"
+  },
+  {
+    "id": "putnik-kaluder-idle",
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-kaluder-idle/atlas.png",
+    "manifest": "assets/putnik-kaluder-idle/manifest.json",
+    "preview": "assets/putnik-kaluder-idle/preview.gif"
+  },
+  {
+    "id": "putnik-kaluder-walk",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/putnik-kaluder-walk/atlas.png",
+    "manifest": "assets/putnik-kaluder-walk/manifest.json",
+    "preview": "assets/putnik-kaluder-walk/preview.gif"
+  },
+  {
+    "id": "musa-mounted",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/musa-mounted/atlas.png",
+    "manifest": "assets/musa-mounted/manifest.json",
+    "preview": "assets/musa-mounted/preview.gif"
+  },
+  {
+    "id": "musa-mounted-strike",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/musa-mounted-strike/atlas.png",
+    "manifest": "assets/musa-mounted-strike/manifest.json",
+    "preview": "assets/musa-mounted-strike/preview.gif"
+  },
+  {
+    "id": "musa-sword",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/musa-sword/atlas.png",
+    "manifest": "assets/musa-sword/manifest.json",
+    "preview": "assets/musa-sword/preview.gif"
+  },
+  {
+    "id": "musa-grab",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/musa-grab/atlas.png",
+    "manifest": "assets/musa-grab/manifest.json",
+    "preview": "assets/musa-grab/preview.gif"
+  },
+  {
+    "id": "megdan-kostac",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/megdan-kostac/atlas.png",
+    "manifest": "assets/megdan-kostac/manifest.json",
+    "preview": "assets/megdan-kostac/preview.gif"
+  },
+  {
+    "id": "megdan-noz",
+    "frames": 8,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/megdan-noz/atlas.png",
+    "manifest": "assets/megdan-noz/manifest.json",
+    "preview": "assets/megdan-noz/preview.gif"
+  },
+  {
+    "id": "beg-mounted",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/beg-mounted/atlas.png",
+    "manifest": "assets/beg-mounted/manifest.json",
+    "preview": "assets/beg-mounted/preview.gif"
+  },
+  {
+    "id": "beg-mounted-strike",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/beg-mounted-strike/atlas.png",
+    "manifest": "assets/beg-mounted-strike/manifest.json",
+    "preview": "assets/beg-mounted-strike/preview.gif"
+  },
+  {
+    "id": "beg-unhorsed",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/beg-unhorsed/atlas.png",
+    "manifest": "assets/beg-unhorsed/manifest.json",
+    "preview": "assets/beg-unhorsed/preview.gif"
+  },
+  {
+    "id": "arapin-idle",
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/arapin-idle/atlas.png",
+    "manifest": "assets/arapin-idle/manifest.json",
+    "preview": "assets/arapin-idle/preview.gif"
+  },
+  {
+    "id": "arapin-run",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "atlas": "assets/arapin-run/atlas.png",
+    "manifest": "assets/arapin-run/manifest.json",
+    "preview": "assets/arapin-run/preview.gif"
+  },
+  {
+    "id": "arapin-attack",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/arapin-attack/atlas.png",
+    "manifest": "assets/arapin-attack/manifest.json",
+    "preview": "assets/arapin-attack/preview.gif"
+  },
+  {
+    "id": "arapin-throw",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/arapin-throw/atlas.png",
+    "manifest": "assets/arapin-throw/manifest.json",
+    "preview": "assets/arapin-throw/preview.gif"
+  },
+  {
+    "id": "arapin-hurt",
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/arapin-hurt/atlas.png",
+    "manifest": "assets/arapin-hurt/manifest.json",
+    "preview": "assets/arapin-hurt/preview.gif"
+  },
+  {
+    "id": "arapin-death",
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "atlas": "assets/arapin-death/atlas.png",
+    "manifest": "assets/arapin-death/manifest.json",
+    "preview": "assets/arapin-death/preview.gif"
+  }
+]

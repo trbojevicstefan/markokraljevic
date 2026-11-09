@@ -1,0 +1,69 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        70,
+        140,
+        441,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        80,
+        135,
+        431,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        56,
+        165,
+        455,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        29,
+        224,
+        482,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        29,
+        279,
+        483,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        86,
+        410,
+        426,
+        488
+      ],
+      "footY": 487
+    }
+  ],
+  "referenceHeight": 353,
+  "targetMaxHeight": 353,
+  "scale": 0.9121447028423773,
+  "loop": false,
+  "extraction": "Whole-slot chroma key preserves disconnected actors/horse; uniform scale for all poses."
+}

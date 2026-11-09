@@ -1,0 +1,485 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-mounted-attack",
+      "group": 12,
+      "who": "mounted",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 353,
+      "targetHeight": 353,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/mounted-run.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. Marko on EXACT reference piebald chestnut-and-white Sarac gallops continuously. 1 gallop ready, 2 wind mace behind shoulder, 3 diagonal forward-down swing from saddle, 4 extended impact beside horse's right shoulder, 5 pull mace back, 6 gallop ready. Horse legs continue alternating collected and extended gallop phases. Same rider, saddle, horse markings and zoom. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-trgovac-idle",
+      "group": 12,
+      "who": "traveler",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/sword-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW civilian Serbian 14th century merchant, NOT reference soldier: brown sheepskin SUBARA cap, long ochre-brown wool coat, belt, dark trousers and leather boots, tied bundle of cloth merchandise on his back, short dark beard. No armor, weapons or turban. Six fearful idle phases, breathing, small right-facing wary head motions and shoulders; feet planted. Style and human scale only from reference. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-trgovac-walk",
+      "group": 12,
+      "who": "traveler",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/putnik-trgovac-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT merchant from reference, bundle securely on back. Eight distinct phases of slow weary rightward walking: right contact, load, pass, lift; left contact, load, pass, lift. Arms swing gently, bundle lags. Actual alternating legs, not bouncing. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnica-idle",
+      "group": 12,
+      "who": "traveler",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/sword-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW Serbian medieval civilian MOTHER AND CHILD together in EVERY cell. Mother traditional long ivory linen dress, red woven apron, dark wool vest, cream headscarf, opanci. Small child about half her height in ochre tunic and trousers, holding her forward hand. No armor or weapons. Six fearful breathing poses, mother glances cautiously right in profile, child huddles, both feet planted. Reference soldier is STYLE/SCALE ONLY, not identity. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnica-walk",
+      "group": 12,
+      "who": "traveler",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/putnica-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT mother and small child from reference, holding hands all eight frames. Both walk slowly tired to RIGHT in eight alternating contact/load/passing steps. Child takes short steps, mother slight stoop attentive to child. Both full bodies stay within each slot; no detached hands. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-starac-idle",
+      "group": 12,
+      "who": "traveler",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/sword-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW civilian elderly Serbian man, long WHITE beard, weathered face, simple gray-brown long tunic and wool vest, opanci with upturned toes, wooden walking staff in forward hand, no weapons or armor. Six fearful gentle idle breathing shifts, stooped but same human anatomical scale as reference. Right-facing profile. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-starac-walk",
+      "group": 12,
+      "who": "traveler",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/putnik-starac-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT white-bearded old man and staff. Eight phases weary limping rightward walk: plant staff, short right step, weight onto staff, left passing, staff lift, left step, settle, staff advances to first. Feet actually alternate, staff grips remain consistent. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-kaluder-idle",
+      "group": 12,
+      "who": "traveler",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/sword-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW Serbian Orthodox monk, black ankle-length cassock and cylindrical black kamilavka hat, gray beard, closed old book tucked under left arm. No weapons or armor. Six frightened idle breathing phases with subtle right-profile wary head motion, robe inertia, planted feet. Reference soldier style/human scale only. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "putnik-kaluder-walk",
+      "group": 12,
+      "who": "traveler",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 426,
+      "targetHeight": 426,
+      "reference": "art/animation-pack-04/assets/putnik-kaluder-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT monk with black cassock and kamilavka, book securely under left arm. Eight slow tired rightward walking phases alternating feet visible below robe, robe swings with delayed folds, free arm restrained swing. Last leads naturally into first. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "musa-mounted",
+      "group": 12,
+      "who": "musa",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/musa-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT giant Musa from reference, white turban, dark embroidered long coat, red sash, saber sheathed. He rides a LARGE solid BLACK warhorse, bigger than Sarac, holding long spear level forward. Eight real gallop phases contact, compression, push, suspension, leading contact, compression, push, suspension. Entire horse AND spear fit every slot, no overlap. Keep mounted ensemble fixed size. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "musa-mounted-strike",
+      "group": 12,
+      "who": "musa",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/musa-mounted/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Musa and black horse from reference, galloping throughout. 1 spear ready horizontal, 2 draw spear arm backward, 3 forceful forward thrust, 4 maximum spear extension, 5 withdraw spear, 6 ready gallop. Horse legs keep cycling. Entire spear and horse in each slot. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "musa-sword",
+      "group": 12,
+      "who": "musa",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/musa-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT giant Musa. Huge curved saber broad HORIZONTAL cut: 1 reference idle, 2 draw blade back, 3 rotate torso profile winding up, 4 long horizontal slash forward at chest height, 5 follow through low, 6 recover to reference idle. No extra weapon or duplicate blade, no effects. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "musa-grab",
+      "group": 12,
+      "who": "musa",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 453,
+      "targetHeight": 453,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/musa-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT giant Musa, saber SHEATHED no drawn weapon. 1 threatening ready, 2 lower center, 3 lunge forward both hands open, 4 arms extended to seize unseen opponent, 5 pull arms inward, 6 upright recovery. No actual opponent, no stretching arms beyond normal anatomy. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "megdan-kostac",
+      "group": 12,
+      "who": "duel",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 330,
+      "targetHeight": 330,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/musa-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. TWO reference characters together in each cell: Marko black moustache red cape chainmail lies on his BACK head left feet right. Giant Musa white turban dark embroidered coat red sash kneels astride Marko's chest with hands gripping his collar/neck. Eight non-graphic grappling struggle phases: Marko pushes Musa's wrists, twists shoulders, bends knees, tries freeing himself; Musa shifts weight to restrain. Fixed scale/location, gentle loop, neither stands. No blood. Marko head stays recognizably Marko. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "megdan-noz",
+      "group": 12,
+      "who": "duel",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 330,
+      "targetHeight": 330,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/musa-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. TWO characters same grappling tableau: Marko lying back head left, Musa kneeling on his chest. 1 restraint, 2 Marko reaches to belt, 3 draws small concealed knife, 4 short upward stab into Musa's clothed torso without visible wound/blood, 5 Musa recoils, 6 falls backward toward RIGHT freeing Marko, 7 Musa lands on back to right while Marko props on elbow, 8 Musa remains lying right, Marko left recovering. Non-graphic legendary combat. Two complete bodies inside every cell, maintain proportions and identity. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "beg-mounted",
+      "group": 12,
+      "who": "beg",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 353,
+      "targetHeight": 353,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/akindzija-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW Ottoman cavalry BEG commander, distinctive dark teal embroidered coat over mail, red sash, fur KALPAK with tall white feather plume, dark moustache, curved saber in hand. Rides GRAY horse with crimson saddle cloth. Horse size/ensemble same as mounted Sarac reference. Eight continuous real gallop phases, alternating leg articulation, cape/plume inertia. Reference soldier style/costume family only. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "beg-mounted-strike",
+      "group": 12,
+      "who": "beg",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 353,
+      "targetHeight": 353,
+      "reference": "art/animation-pack-04/assets/beg-mounted/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT beg on exact gray horse. Galloping saber attack in passing: 1 riding ready, 2 raise saber behind, 3 swing diagonally forward down from saddle, 4 saber follows through beside horse, 5 recovery, 6 riding ready. Gray horse keeps cycling legs. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "beg-unhorsed",
+      "group": 12,
+      "who": "beg",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 353,
+      "targetHeight": 353,
+      "reference": "art/animation-pack-04/assets/beg-mounted/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT beg and gray horse. 1 riding, 2 horse rears forelegs high, 3 beg loses seat and tumbles BACKWARD toward left, 4 beg lands on ground while horse moves right, 5 horse farther right exiting, 6 ONLY beg lying on ground, gray horse fully gone. Keep anatomical scale fixed; last silhouette much smaller naturally. No gore. Empty green after departing horse, no silhouettes cropped by cell edges. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-idle",
+      "group": 12,
+      "who": "arapin",
+      "frames": 6,
+      "loop": true,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/sources/dopuna10-reference/oklopnik-idle.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. NEW dignified formidable Arab warrior lord of a seaside tower, tall between armored guard and giant Musa. Dark brown skin, strong human face, black beard, ivory turban with lapis band, polished steel mail and breastplate over deep lapis silk robe with gold trim, crimson sash, large curved saber held low in right hand. No caricature. Six smooth idle breathing/weight phases. Soldier reference painterly style and armor craftsmanship only, NEW identity. Keep exact design in all frames. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-run",
+      "group": 12,
+      "who": "arapin",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 8 separate full-body poses, 4 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Arab warrior lord from reference. Eight fast rightward RUN phases right contact, recoil, passing, flight, left contact, recoil, passing, flight. Saber carried low safely, robe and turban tail trail, legs articulate genuinely, no hopping in one pose. Seamless loop: final pose approaches first without duplication. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-attack",
+      "group": 12,
+      "who": "arapin",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Arab warrior lord. Overhead saber strike: 1 neutral, 2 raise sword, 3 high windup, 4 forceful downward-forward cut, 5 low followthrough, 6 neutral recover. Clear anticipation impact recovery, full blade inside every cell. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-throw",
+      "group": 12,
+      "who": "arapin",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Arab warrior lord, saber SHEATHED; carries SPEAR. 1 holds spear, 2 draws throwing arm back, 3 cocks spear overhead, 4 forceful forward release, 5 empty hand extended spear no longer shown after launch, 6 neutral no spear. Show spear in early frames entirely within cell. No floating spare spear. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-hurt",
+      "group": 12,
+      "who": "arapin",
+      "frames": 4,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 1,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 4 separate full-body poses, 4 columns x 1 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Arab warrior lord. 1 ready idle, 2 torso recoils from unseen hit shoulder back head tilts, 3 stagger one short backward step with held saber lowered, 4 regains idle guard. No attacker, no blood, real recoil. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    },
+    {
+      "id": "arapin-death",
+      "group": 12,
+      "who": "arapin",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "cols": 3,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "referenceHeight": 440,
+      "targetHeight": 440,
+      "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+      "prompt": "Use case: stylized-concept. Professional hand-painted cel-shaded 2D side-scroller sprite animation, matching supplied game art reference. ONE sprite sheet EXACTLY 6 separate full-body poses, 3 columns x 2 rows, left to right then next row. Fixed side view facing RIGHT throughout, never toward camera. Identical anatomical proportions and costume across slots, clear joint articulation, smooth adjacent phases, fabric/weapon inertia. EXACT Arab warrior lord. Non-graphic defeat: 1 standing hurt, 2 knees buckle, 3 drops to knees saber lowered, 4 collapses sideways forward, 5 settles on ground, 6 lies motionless on side right-facing. Maintain exact limb/head size even when prone, never scale prone body up to standing height. No gore, no ghosts or effects. One-shot sequence. All figures, weapons and cloth fully INSIDE their own slot with ample green gutters. No text/numbers/grid/borders, no shadows, no floor, no scenery, no effects. SOLID PURE #00FF00 chroma-green background only, no green clothing. Maintain uniform anatomical scale including crouching/prone phases; do not enlarge low poses. 512x512 final cells, foot/hoof baseline y487. Reference is style/identity as stated, never draw reference as extra character."
+    }
+  ]
+}
