@@ -417,7 +417,7 @@ function goalText(){const g=pendingGoal();if(!g)return chapters[zone].goal;const
 function goalHint(text){if(goalHintT>0)return;toast(text,2.6);goalHintT=3;}
 function finishGoal(g){g.done=true;g.t=0;burst(g.x,g.y-g.h*.55,g.glow||'#ffe6a8',g.smash?30:44,g.smash?240:160);if(g.smash){dust(g.x,g.y-20,16,1.4);sfx('whoosh',{gain:.8,x:g.x});shake=Math.max(shake,settings.reduced?0:6);}else fx('pillar',g.x,g.y-10);sound('magic');if(g.doneText)toast(g.doneText,2.6);openGates();updateHud();}
 function guardsAt(g){return world.enemies.filter(e=>e.alive&&e.x>g.x-1100&&e.x<g.x+220).length;}
-function openGates(){for(const g of world.goals){if(g.kind!=='gate'||g.done)continue;if(world.goals.some(o=>o.id<g.id&&!o.done)||(g.guarded&&guardsAt(g)))return;g.done=true;g.t=0;burst(g.x,g.y-150,'#ffe6a8',36,180);dust(g.x,g.y-10,12,1.2);sound('magic');toast(g.off.includes('rudarski')?'Rudarski izlaz je otvoren.':'Kapija se otvorila.',2.6);updateHud();}}
+function openGates(){for(const g of world.goals){if(g.kind!=='gate'||g.done)continue;if(world.goals.some(o=>o.id<g.id&&!o.done)||(g.guarded&&guardsAt(g)))return;g.done=true;g.t=0;if(Math.abs(p.x-g.x)>900)continue;burst(g.x,g.y-150,'#ffe6a8',36,180);dust(g.x,g.y-10,12,1.2);sound('magic');toast(g.off.includes('rudarski')?'Rudarski izlaz je otvoren.':'Kapija se otvorila.',2.6);updateHud();}}
 function updateGoals(dt){if(!world.goals)return;goalHintT-=dt;for(const g of world.goals){g.t+=dt;if(g.done)continue;
  if(g.kind==='plow'){g.x=g.plow.x;if(g.plow.treasureTaken)finishGoal(g);continue;}
  if(g.kind==='take'&&Math.abs(p.x-g.x)<60&&Math.abs(p.y-g.y)<130)finishGoal(g);
@@ -731,7 +731,7 @@ function drawTerrain(){const plats=world.platforms;
  for(const q of plats)if(q.kind==='plank')drawPlank(q);}
 
 // props are painted scenery: one that would cover a tower, a ladder, stairs or a shaft is left out
-function clearProps(){if(!level?.props||!world.busy)return;level.props=level.props.filter(pr=>{if(pr.id.startsWith('prop-barjak'))return true;const im=levelArt[pr.id];if(!im||!hasDom)return true;const b=propBounds(im),w=b.w*pr.height/b.h;return!world.busy.some(([a,c])=>pr.x+w/2>a&&pr.x-w/2<c);});}
+function clearProps(){if(!level?.props||!world.busy)return;level.props=level.props.filter(pr=>{if(pr.id.startsWith('prop-barjak'))return true;const im=levelArt[pr.id];if(!im||!hasDom)return true;const b=propBounds(im),w=b.w*pr.height/b.h;if(world.busy.some(([a,c])=>pr.x+w/2>a&&pr.x-w/2<c))return false;const q=world.platforms.find(o=>o.ground&&Math.abs(o.y-pr.y)<2&&pr.x>=o.x&&pr.x<=o.x+o.w);return!!q&&pr.x-w/2>=q.x-10&&pr.x+w/2<=q.x+q.w+10&&clearAbove(pr.x-w/2,pr.x+w/2,pr.height,q);});}
 
 // ================= pack 05: a journey that grows — skills, letters, enchanted maces, traps, chases, champions =================
 // ---------- skills: each finished pohod teaches Marko something new (the Kačanik story has them all) ----------
@@ -1165,12 +1165,12 @@ const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','pro
 const DECOR_H={'prop-kuca':240,'prop-ambar':170,'prop-bunar':170,'prop-kola':120,'prop-taraba-ravna':110,'prop-taraba-slomljena':100,'prop-ograda-pleter':90,'prop-seno':120,'prop-snopovi':90,'prop-krcag':55,'prop-bure':70,'prop-sanduci':80,'prop-dzakovi':60,'prop-drvo-hrast':330,'prop-drvo-bukva':340,'prop-drvo-jela':330,'prop-drvo-sneg':300,'prop-panj':60,'prop-svetiliste':170,'prop-run-kamen':120,'prop-cvece':50,'prop-paprat':60,'prop-pecurke':40,'prop-korenje':130,'prop-zbun':70,'prop-stena-visoka':260,'prop-stena-luk':200,'prop-stena-mala':70,'prop-trska':110,'prop-trava':40,'prop-kamen-putokaz':110,'prop-stub-kameni':220,'prop-luk-kameni':240,'prop-svetiljka':150,'prop-klupa':50,'prop-stol':60,'prop-palisada':150,'prop-sator':190,'prop-strassarnica':260,'prop-kapija-tvrdjava':300,'prop-katapult':150,'prop-nakovanj':50,'prop-baklja-drzac':110,'prop-ognjiste':60,'prop-led':90,'prop-kristal':90,'prop-potpora-rudnik':220,'prop-vagon':90,'prop-sine':40,'prop-mlin':260,'prop-tocak-vodeni':220,'prop-susara':140,'prop-ograda-manastir':110,'prop-barjak-manastir':175,'prop-ograda-kamen-rusevina':110,'prop-vrata-slomljena':150,'prop-balvan':60,'prop-plast-sena':150,'prop-kola-seno':170};
 const decorIds=L=>DECOR[L.id]||[];
 function decorate(){if(!level||!hasDom)return;const pal=decorIds(level).filter(id=>levelArt[id]);if(!pal.length)return;
- const blocked=[...(world.busy||[]).map(([a,b])=>[a-40,b+40]),...(world.breakables||[]).map(b=>[b.x-b.w,b.x+b.w]),...(world.ladders||[]).map(l=>[l.x-50,l.x+50]),...(world.goals||[]).map(g=>[g.x-130,g.x+130]),[level.goal.x-120,level.goal.x+120],[level.spawn.x-40,level.spawn.x+140]];
- const free=(a,b)=>!blocked.some(([c,d])=>b>c&&a<d)&&!placed.some(([c,d])=>b>c-18&&a<d+18);
+ const rooms=(world.busy||[]).map(([a,b])=>[a-40,b+40]),blocked=[...(world.breakables||[]).map(b=>[b.x-b.w,b.x+b.w]),...(world.ladders||[]).map(l=>[l.x-50,l.x+50]),...(world.goals||[]).map(g=>[g.x-130,g.x+130]),...(world.traps||[]).map(t=>{const tx=t.x??t.gate?.x??t.lever?.x??0;return[tx-90,tx+(t.w||0)+90];}),...(world.towers||[]).map(t=>[t.x-130,t.x+130]),[level.goal.x-120,level.goal.x+120],[level.spawn.x-40,level.spawn.x+140]];
+ const free=(a,b,h=999)=>!blocked.some(([c,d])=>b>c&&a<d)&&(h<=120||!rooms.some(([c,d])=>b>c&&a<d))&&!placed.some(([c,d])=>b>c-18&&a<d+18);
  const placed=level.props.filter(pr=>levelArt[pr.id]).map(pr=>{const bb=propBounds(levelArt[pr.id]),w=bb.w*pr.height/bb.h;return[pr.x-w/2,pr.x+w/2];});
  let k=0,seed=[...level.id].reduce((a,c)=>a+c.charCodeAt(0),0);const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
- for(const q of world.platforms.filter(q=>q.ground&&!q.tower).sort((a,b)=>a.x-b.x)){let x=q.x+60;while(x<q.x+q.w-60){const id=pal[k%pal.length],h=(DECOR_H[id]||120)*(.88+rnd()*.24),bb=propBounds(levelArt[id]),w=bb.w*h/bb.h;
-   if(x+w>q.x+q.w-30)break;if(free(x,x+w)){level.props.push({id,x:x+w/2,y:q.y,height:h});placed.push([x,x+w]);k++;x+=w+90+rnd()*170;}else x+=60;}}
+ for(const q of world.platforms.filter(q=>q.ground&&!q.tower).sort((a,b)=>a.x-b.x)){let x=q.x+60;while(x<q.x+q.w-60){let put=false;const r=.88+rnd()*.24;for(let j=0;j<pal.length&&!put;j++){const id=pal[(k+j)%pal.length],h=(DECOR_H[id]||120)*r,bb=propBounds(levelArt[id]),w=bb.w*h/bb.h;
+   if(x+w>q.x+q.w-30||!free(x,x+w,h)||!clearAbove(x,x+w,h,q))continue;level.props.push({id,x:x+w/2,y:q.y,height:h});placed.push([x,x+w]);k+=j+1;x+=w+70+rnd()*150;put=true;}if(!put)x+=60;}}
  level.props.sort((a,b)=>(DECOR_H[b.id]||120)-(DECOR_H[a.id]||120));}
 
 // ---------- vaults: a plate opens a gate, the gate leads into a vaulted room of treasure ----------
@@ -1324,7 +1324,7 @@ function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0
 
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;o.frame=Math.min(n-1,Math.floor(phase*n));return o;}
 // dev only: open the game with ?dev to reach the pohodi from the console
-if(typeof location!=='undefined'&&/[?&]dev\b/.test(location.search))window.markoDev={startLevel,LEVELS,get p(){return p;},get world(){return world;}};
+if(typeof location!=='undefined'&&/[?&]dev\b/.test(location.search))window.markoDev={startLevel,LEVELS,layoutAudit,get p(){return p;},get world(){return world;}};
 
 // ---------- idle, dizziness, voice ----------
 const IDLE_SEQ=[0,6,5,7,5,6,0,1],IDLE_FPS=4,DIZZY_TIME=.9;
@@ -1353,3 +1353,12 @@ function drawTent(t){if(t.x<camera-320||t.x>camera+VIEW_W+320)return;const im=le
  if(t.down){if(Math.random()<.25)dust(t.x+(Math.random()-.5)*140,t.y-8,1,.6);return;}
  if(t.flap>0)halo(t.x,t.y-60,80,'rgba(255,160,80,.5)',t.flap);
  if(Math.abs(p.x-t.x)<560)textLabel(t.wave>=TENT_WAVES&&!t.out.some(e=>e.alive)?'ŠATOR · PRAZAN':'ŠATOR · SRUŠI GA',t.x,t.y-H-16,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ff7a3a'});}
+
+// ---------- props stand whole: on their own ground, nothing drawn across them ----------
+function clearAbove(a,b,h,q){for(const o of world.platforms){if(o===q||o.off)continue;if(o.x<b&&o.x+o.w>a&&o.y<q.y-4&&o.y+(o.h||20)>q.y-h)return false;}
+ for(const l of world.ladders||[])if(l.x>a-30&&l.x<b+30)return false;for(const t of world.towers||[])if(t.x>a-130&&t.x<b+130)return false;return true;}
+// dev: every placed prop checked against the level (?dev, then markoDev.layoutAudit())
+function layoutAudit(){const out=[];for(const pr of level?.props||[]){const im=levelArt[pr.id];if(!im||pr.id.startsWith('prop-barjak'))continue;const b=propBounds(im),w=b.w*pr.height/b.h,a=pr.x-w/2,c=pr.x+w/2;
+ const q=world.platforms.find(o=>o.ground&&Math.abs(o.y-pr.y)<2&&pr.x>=o.x&&pr.x<=o.x+o.w);if(!q){out.push(`${pr.id}@${Math.round(pr.x)} floats`);continue;}
+ if(a<q.x-10||c>q.x+q.w+10)out.push(`${pr.id}@${Math.round(pr.x)} hangs over the edge`);if(!clearAbove(a,c,pr.height,q))out.push(`${pr.id}@${Math.round(pr.x)} is cut by a platform, ladder or tower`);
+ for(const t of world.traps||[]){const tx=t.x??t.gate?.x??0;if(tx+(t.w||0)>a-20&&tx<c+20&&Math.abs((t.y??q.y)-q.y)<10)out.push(`${pr.id}@${Math.round(pr.x)} stands on a ${t.kind}`);}}return out;}

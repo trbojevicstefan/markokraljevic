@@ -69,11 +69,11 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
   - `prop-turski-sator` je izvor Osmanlija: soba `sator` u oranju, tvrđavi, prevoju i reci.
   - Iz šatora izlaze talasi (do 3) dok ga Marko ne sruši teškim udarcima.
   - Test.
-- [ ] **B2 Raspored.**
+- [x] **B2 Raspored.**
   - Dekor se ne sme preklapati sa zamkama, lestvama, kulama, vratima i ciljevima.
   - Nema presečenih propova (drvo presečeno ivicom platforme ili zida) ni predmeta koji lebde.
   - Test u `levels-test`: nijedan prop ne visi preko ivice tla.
-- [ ] **B3 Pozadine.**
+- [x] **B3 Pozadine.**
   - Snimci svakog pohoda (dan, noć, oluja) na nekoliko tačaka.
   - Traži šavove neba (nebo naglo druge boje), presečene slojeve i loše spojeve sky/far/mid/near; ispraviti.
 - [ ] **B4 Prepreke u ritmu.**
@@ -108,3 +108,4 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 |---|---|---|---|
 | 1/8 | 00:04–01:00 | Codex ponovo radi preko terminala (fork niti, popravljen sandbox), isporučio marko-idle-2 i radi crouch-walk. Visine izjednačene: Marko 128 px u svim stojećim klipovima, neprijatelji idle = trk (heights-test.mjs, 20 provera). Mirni idle bez kadra koji gleda u kameru, sada Codex-ov idle-2. Hod u čučnju, hod sa blokom i hod dok se puni K (privremene poze dok Codex ne isporuči klipove). Posle vihora: vrtoglavica 0,9 s sa zvezdicama, pad i ustajanje 1,25 s. Manje stenjanja (razmak 1,6–2,4 s, retko). 117 mehaničkih provera. | vidi git log |
 | 2/8 | 01:04–01:45 | Ugrađeno 17 Codex klipova: hod u čučnju, hod sa blokom, hod dok se puni K, vrtoglavica (sada pravi klipovi), okret, prvi korak trka, doskok; launch klipovi za svih 9 neprijatelja; reakcije: štit odbijen, oklop puca, akindžijin odskok, palikuća gori. Šatori (oranje, tvrđava, prevoj, reka): do 3 talasa Osmanlija dok ih Marko ne sruši. Codex i dalje bez kredita (kapije čekaju). 126 mehaničkih provera. | vidi git log |
+| 3/8 | 02:04–02:20 | Pozadine: svaki sloj se na spoju tila meko pretapa (12%), nema više naglih promena boje neba; seam-audit.py proverava svih 195 slojeva. Raspored: propovi stoje celi na svom tlu, ništa ih ne preseca (daske, kule, lestve), drže se dalje od zamki; mali propovi smeju i u sobe pa je gustina 19–36 po pohodu (bila 6–14); layoutAudit() u ?dev režimu čist za svih 13 pohoda. Poruka „Kapija se otvorila“ samo kad je Marko blizu. Codex i dalje bez kredita. | vidi git log |

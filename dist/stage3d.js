@@ -628,6 +628,8 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
 
   const snow = sparks(340, -520, 260, 1700, 1000, 8, [1.5, 1.6, 1.8], -55, 45, 14);
   // Level backgrounds: the artist's layers, each scaled to screen height and tiled horizontally.
+  // The layers are not drawn to tile: the last SEAM of each tile crossfades into its start, so no hard seam (sky changing colour) shows.
+  const SEAM = .12;
   let levelLayers = [];
   function setLevel(layers) {
     for (const l of levelLayers) { scene.remove(l.mesh); l.mat.dispose(); l.tex.dispose(); }
@@ -642,7 +644,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
         vertexShader: SCREEN_VERT,
         fragmentShader: `uniform sampler2D uTex;uniform float uOff,uOffY,uK,uFog,uDusk,uLightning;uniform vec2 uSize;uniform vec3 uHaze;varying vec2 vUv;
           void main(){vec2 s=vec2(vUv.x,1.-vUv.y)*vec2(${W.toFixed(1)},${H.toFixed(1)});float th=uSize.y*uK;float ty=(s.y-(${H.toFixed(1)}-th)+uOffY)/th;
-            if(ty<0.||ty>1.){gl_FragColor=vec4(0.);return;}vec4 c=texture2D(uTex,vec2((s.x/uK+uOff)/uSize.x,1.-ty));
+            if(ty<0.||ty>1.){gl_FragColor=vec4(0.);return;}float raw=(s.x/uK+uOff)/uSize.x,P=${(1-SEAM).toFixed(3)},u=fract(raw/P)*P;vec4 c=texture2D(uTex,vec2(u,1.-ty));if(u<${SEAM.toFixed(3)}){vec4 c2=texture2D(uTex,vec2(u+P,1.-ty));c=mix(c2,c,smoothstep(0.,${SEAM.toFixed(3)},u));}
             vec3 col=mix(c.rgb,uHaze,uFog);col=mix(col,col*vec3(1.05,.62,.58),uDusk*.55);col+=vec3(.6,.7,1.)*uLightning*.6;
             gl_FragColor=vec4(col*${ART.toFixed(2)},c.a);}`,
         transparent: i > 0, depthTest: false, depthWrite: false,
