@@ -202,3 +202,17 @@ DOPUNA-11: sword-lunge — popravljen izvoz cele sablje koja je prelazila granic
 29 animacionih klipova (178 kadrova), kosturi kao 4 staticke varijante, i 8 providnih PNG predmeta. Ukupno 182 celija u 30 atlasnih paketa. Po jedno generisanje za svaki trazeni paket/sliku; sword-lunge tehnicki izvoz ispravljen bez novog crtanja. Provereni PNG/GIF brojevi, celije 512x512, alfa, y487, frame_layout i slaganje atlasa sa kadrovima. Sve stare slike i izvori sacuvani.
 Pregled klipova: animation-pack-04/preview-dopuna11.png; katalog: catalog-dopuna11.json; provera: validation-dopuna11.json. Predmeti: world-pack-03/preview-dopuna11-props.png; dimenzije i alfa: validation-dopuna11-props.json. Led je 1536x512, ostali predmeti 1024x1024.
 VAZNO ZA UBACIVANJE: kosturi nisu animacija — birati pojedinacne varijante prema variantNames u manifestu. Za azdaju koristiti renderScale i renderAnchor iz manifesta da telo bude oko 906 svetskih piksela (2x Musa); same atlasne celije ostaju 512x512. Nema preostalih stavki.
+
+DOPUNA-12: vilinski-kamen-spava — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/vilinski-kamen-spava/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
+
+DOPUNA-12: vilinski-kamen-budi — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/vilinski-kamen-budi/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
+
+DOPUNA-12: vilinski-kamen-budan — GOTOVO; 6 kadrova; atlas, manifest sa frame_layout, frames, preview.gif i qa.json u animation-pack-04/assets/vilinski-kamen-budan/. 512x512, alfa, oslonac y487 provereni. Prompt: plan-dopuna12.json.
+
+DOPUNA-12: most-vila-segment.png — GOTOVO; PNG 1536x384 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
+
+DOPUNA-12: most-vila-kraj.png — GOTOVO; PNG 1024x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
+
+DOPUNA-12: prepreka-kola.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.
+
+DOPUNA-12: prepreka-balvani.png — GOTOVO; PNG 768x512 sa izvornom providnoscu u art/world-pack-03/. Proveren alfa kanal. Prompt: dopuna12-props-prompts.json; izvor: sources/dopuna12-props/.

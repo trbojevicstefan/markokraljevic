@@ -1,0 +1,74 @@
+{
+  "most-vila-segment": {
+    "file": "most-vila-segment.png",
+    "size": [
+      1536,
+      384
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 62799,
+    "bounds": [
+      0,
+      0,
+      1536,
+      384
+    ]
+  },
+  "most-vila-kraj": {
+    "file": "most-vila-kraj.png",
+    "size": [
+      1024,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 300740,
+    "bounds": [
+      26,
+      88,
+      1022,
+      422
+    ]
+  },
+  "prepreka-kola": {
+    "file": "prepreka-kola.png",
+    "size": [
+      768,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 259273,
+    "bounds": [
+      8,
+      215,
+      760,
+      512
+    ]
+  },
+  "prepreka-balvani": {
+    "file": "prepreka-balvani.png",
+    "size": [
+      768,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 279334,
+    "bounds": [
+      8,
+      290,
+      760,
+      512
+    ]
+  }
+}

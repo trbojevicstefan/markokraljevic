@@ -1,0 +1,77 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "vilinski-kamen-spava",
+      "reference": "art/world-pack-02/cilj-vilinski-kamen.png",
+      "frames": 6,
+      "loop": true,
+      "targetHeight": 460,
+      "referenceHeight": 460,
+      "nativeAlpha": true,
+      "action": "NEW drawing matching reference: one upright tall gray stone MENHIR with identical angular spiral/diamond fairy engravings, moss around base. Six phases of sleeping stone: very faint teal light in lower engraved grooves slowly ebbs and rises, one or two tiny sparks. The STONE IS RIGID AND COMPLETELY IMMOBILE. Copy EXACT same stone contour, engravings, moss, size and position in all six cells; ONLY illumination changes. No morphing, swaying or breathing stone. Sparse tiny sparks only alongside/above, never below base.",
+      "cols": 3,
+      "rows": 2,
+      "fps": 12,
+      "cell": [
+        512,
+        512
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded 2D game sprite sheet EXACTLY SIX full poses in THREE columns x TWO rows, equal slots row-major. NEW drawing matching reference: one upright tall gray stone MENHIR with identical angular spiral/diamond fairy engravings, moss around base. Six phases of sleeping stone: very faint teal light in lower engraved grooves slowly ebbs and rises, one or two tiny sparks. The STONE IS RIGID AND COMPLETELY IMMOBILE. Copy EXACT same stone contour, engravings, moss, size and position in all six cells; ONLY illumination changes. No morphing, swaying or breathing stone. Sparse tiny sparks only alongside/above, never below base. Full subject and light effects inside each slot with ample empty gutter. Fixed orthographic side view, consistent scale. TRUE TRANSPARENT background, preserve partial alpha of light and sparks, no colored backdrop, no shadow or ground. No text, numbers, borders, grid lines or scenery. Final cells512x512 with ground baseline y487."
+    },
+    {
+      "id": "vilinski-kamen-budi",
+      "reference": "art/animation-pack-04/assets/vilinski-kamen-spava/frames/motion/frame-0.png",
+      "frames": 6,
+      "loop": false,
+      "targetHeight": 460,
+      "referenceHeight": 460,
+      "nativeAlpha": true,
+      "action": "EXACT SAME rigid IMMOBILE stone from reference in all six cells: same contour, rock texture, moss, engraving positions, anatomical size and base position. ONLY LIGHT CHANGES. Awakening phases: 1 faint lower groove glow, 2 bottom spirals light bright green-turquoise, 3 glow travels halfway upward, 4 upper diamonds ignite, 5 entire engraving glows and small vortex of sparks circles beside stone, 6 fully awake bright teal-green runes. Light travels bottom to top, no stone motion or morphing. Leave headroom for sparks; no sparks below base.",
+      "cols": 3,
+      "rows": 2,
+      "fps": 12,
+      "cell": [
+        512,
+        512
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded 2D game sprite sheet EXACTLY SIX full poses in THREE columns x TWO rows, equal slots row-major. EXACT SAME rigid IMMOBILE stone from reference in all six cells: same contour, rock texture, moss, engraving positions, anatomical size and base position. ONLY LIGHT CHANGES. Awakening phases: 1 faint lower groove glow, 2 bottom spirals light bright green-turquoise, 3 glow travels halfway upward, 4 upper diamonds ignite, 5 entire engraving glows and small vortex of sparks circles beside stone, 6 fully awake bright teal-green runes. Light travels bottom to top, no stone motion or morphing. Leave headroom for sparks; no sparks below base. Full subject and light effects inside each slot with ample empty gutter. Fixed orthographic side view, consistent scale. TRUE TRANSPARENT background, preserve partial alpha of light and sparks, no colored backdrop, no shadow or ground. No text, numbers, borders, grid lines or scenery. Final cells512x512 with ground baseline y487."
+    },
+    {
+      "id": "vilinski-kamen-budan",
+      "reference": "art/animation-pack-04/assets/vilinski-kamen-spava/frames/motion/frame-0.png",
+      "frames": 6,
+      "loop": true,
+      "targetHeight": 460,
+      "referenceHeight": 460,
+      "nativeAlpha": true,
+      "action": "EXACT SAME rigid IMMOBILE stone from reference. Every contour, engraving, moss patch, size and position unchanged in all cells; ONLY LIGHT CHANGES. Awake loop: bright green-TURQUOISE runes slowly pulse through six phases dim-bright-peak-bright-dim-approaching-start. Small floating fairy sparks above tip and alongside. Never below base. Stone does not sway, breathe, stretch or morph.",
+      "cols": 3,
+      "rows": 2,
+      "fps": 12,
+      "cell": [
+        512,
+        512
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded 2D game sprite sheet EXACTLY SIX full poses in THREE columns x TWO rows, equal slots row-major. EXACT SAME rigid IMMOBILE stone from reference. Every contour, engraving, moss patch, size and position unchanged in all cells; ONLY LIGHT CHANGES. Awake loop: bright green-TURQUOISE runes slowly pulse through six phases dim-bright-peak-bright-dim-approaching-start. Small floating fairy sparks above tip and alongside. Never below base. Stone does not sway, breathe, stretch or morph. Full subject and light effects inside each slot with ample empty gutter. Fixed orthographic side view, consistent scale. TRUE TRANSPARENT background, preserve partial alpha of light and sparks, no colored backdrop, no shadow or ground. No text, numbers, borders, grid lines or scenery. Final cells512x512 with ground baseline y487."
+    },
+    {
+      "id": "marko-crouch-throw",
+      "reference": "art/animation-pack-04/sources/dopuna12-reference/marko-crouch-low.png",
+      "frames": 6,
+      "loop": false,
+      "targetHeight": 288,
+      "referenceHeight": 288,
+      "nativeAlpha": false,
+      "action": "EXACT right-facing Marko identity and anatomical zoom of crouching reference: black moustache long dark hair, red gold cape, mail/leather armor, embroidered ivory sleeves, brown boots, metal SPIKED MACE. 1 crouch ready, 2 crouch LOWER and draw mace back near hip, 3 low twist windup, 4 throw mace HORIZONTALLY toward RIGHT only a handspan above ground, release from low hand, 5 empty throwing hand follows through low, 6 REMAINS LOW CROUCHED, empty-handed. Mace exists only before release; no floating extra mace after release. Never stand upright; keep head and torso size same, knees deeply bent, cape trails behind.",
+      "cols": 3,
+      "rows": 2,
+      "fps": 12,
+      "cell": [
+        512,
+        512
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted cel-shaded 2D game sprite sheet EXACTLY SIX full poses in THREE columns x TWO rows, equal slots row-major. EXACT right-facing Marko identity and anatomical zoom of crouching reference: black moustache long dark hair, red gold cape, mail/leather armor, embroidered ivory sleeves, brown boots, metal SPIKED MACE. 1 crouch ready, 2 crouch LOWER and draw mace back near hip, 3 low twist windup, 4 throw mace HORIZONTALLY toward RIGHT only a handspan above ground, release from low hand, 5 empty throwing hand follows through low, 6 REMAINS LOW CROUCHED, empty-handed. Mace exists only before release; no floating extra mace after release. Never stand upright; keep head and torso size same, knees deeply bent, cape trails behind. Full subject and light effects inside each slot with ample empty gutter. Fixed orthographic side view, consistent scale. SOLID PURE #00FF00 chroma green background, no ground or shadows. No text, numbers, borders, grid lines or scenery. Final cells512x512 with ground baseline y487."
+    }
+  ]
+}

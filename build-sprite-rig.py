@@ -242,6 +242,15 @@ for name in ['sword-lunge', 'shield-bash', 'archer-kick', 'akindzija-spin', 'okl
     if _have(name) and who + '-idle' in SCALES:
         SCALES[name] = (SCALES[who + '-idle'][0], 'feet')
 
+# DOPUNA-12: the fairy stone (asleep, waking, awake) stands about 150 world px, one scale for its three clips
+if _have('vilinski-kamen-spava'):
+    k = 150 / max(body_height(c) for c in _cells('vilinski-kamen-spava'))
+    for name in ['vilinski-kamen-spava', 'vilinski-kamen-budi', 'vilinski-kamen-budan']:
+        if _have(name):
+            SCALES[name] = (k, 'feet')
+if _have('marko-crouch-throw') and 'marko-crouch' in SCALES:
+    SCALES['marko-crouch-throw'] = (SCALES['marko-crouch'][0], 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

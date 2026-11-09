@@ -1,0 +1,68 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "most-vila-segment",
+      "size": [
+        1536,
+        384
+      ],
+      "kind": "bridge",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. A HORIZONTALLY TILEABLE floating fairy stone bridge segment consisting of EXACTLY TWO flat stone slabs joined by thin glowing GREEN-TURQUOISE fairy light. Shallow horizontal platform, width 4 times height. Perfectly STRAIGHT HORIZONTAL TOP WALKING EDGE at one fixed height. Gray stone slabs have engraved spiral/diamond patterns matching reference menhir. Slabs fill canvas LEFT TO RIGHT to edges with matching thickness, contour and lighting on opposite edges for seamless repetition. No left/right caps, pillars, arches, supports or terrain. Underside gently jagged, subtle magic joins, no light above walking top. Transparent above/below bridge."
+    },
+    {
+      "id": "most-vila-kraj",
+      "size": [
+        1024,
+        512
+      ],
+      "kind": "bridge-end",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. One END CAP for the SAME floating fairy stone bridge as second reference. Gray flat slab with same turquoise-green engraved fairy spirals and diamond marks. RIGHT side is flat straight bridge connector matching segment's top edge and thickness, LEFT side is broader rough resting shoulder to sit on a cliff edge; do not draw actual cliff. Flat level walkable top; subtly glowing underside/joint. Whole endcap isolated, no arch or support. Designed to mirror horizontally for opposite end."
+    },
+    {
+      "id": "prepreka-kola",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "obstacle",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. OVERTURNED rustic wooden cart across a road, smashed axle, one large wooden spoked wheel sticking upward in air, compact low barricade silhouette. Broad low obstacle, width 1.5 to 2 times its visible height, viewed mostly from SIDE with slight top plane. Entire heap rests at BOTTOM EDGE of canvas, bottom pixels are the ground contact line, no drawn road. Height in game around half Sarac horse; no huge tall background elements. Transparent above and to sides."
+    },
+    {
+      "id": "prepreka-balvani",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "obstacle",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. LOW PILE of three or four rough felled TREE LOGS lying crosswise blocking road, bark, broken branches and visible sawn ends, grounded broad heap. Broad low obstacle, width 1.5 to 2 times its visible height, viewed mostly from SIDE with slight top plane. Entire heap rests at BOTTOM EDGE of canvas, bottom pixels are the ground contact line, no drawn road. Height in game around half Sarac horse; no huge tall background elements. Transparent above and to sides."
+    },
+    {
+      "id": "prepreka-kolje",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "obstacle",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. LOW wooden barricade of crossed sharpened STAKES with rope lashings, diagonal X-shaped timber supports and sharp upward points. No person, no flags. Broad low obstacle, width 1.5 to 2 times its visible height, viewed mostly from SIDE with slight top plane. Entire heap rests at BOTTOM EDGE of canvas, bottom pixels are the ground contact line, no drawn road. Height in game around half Sarac horse; no huge tall background elements. Transparent above and to sides."
+    },
+    {
+      "id": "prepreka-kamenje",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "obstacle",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. LOW ROCKFALL heap of angular gray cliff stones, ONE large boulder among several smaller rocks, compact road obstruction. Broad low obstacle, width 1.5 to 2 times its visible height, viewed mostly from SIDE with slight top plane. Entire heap rests at BOTTOM EDGE of canvas, bottom pixels are the ground contact line, no drawn road. Height in game around half Sarac horse; no huge tall background elements. Transparent above and to sides."
+    },
+    {
+      "id": "prepreka-bure",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "obstacle",
+      "prompt": "Use case: stylized-concept. One isolated 2D medieval Serbian fantasy platformer WORLD PROP, hand-painted cel-shaded style matching reference. Crisp painted stone/wood textures, warm earthy tones, dark outlines. Full object inside canvas, TRUE TRANSPARENT background and gaps, no scenery, no ground plane, no shadows, no text/UI. LOW heap of two or three wooden BARRELS and tied burlap SACKS left by Ottoman guards to block road, iron hoops and rope, no guard drawn. Broad low obstacle, width 1.5 to 2 times its visible height, viewed mostly from SIDE with slight top plane. Entire heap rests at BOTTOM EDGE of canvas, bottom pixels are the ground contact line, no drawn road. Height in game around half Sarac horse; no huge tall background elements. Transparent above and to sides."
+    }
+  ]
+}
