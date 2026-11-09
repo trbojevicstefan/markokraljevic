@@ -176,6 +176,27 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - **Odbačaj od đuleta** (`marko-blasted`).
 - **Guranje sanduka i bacanje topuza** su bili nacrtani krupnije od ostalih Markovih animacija. Sada su smanjeni, pa je Marko iste veličine kao inače.
 
+**Dopuna 20–22**
+- **Visenje na ivici:** Marko visi dok ne pritisneš W ili Space. Taster ka zidu, ako je bio pritisnut još od skoka, mora da se pusti i pritisne ponovo. S ga pušta sa ivice.
+- **Marko puca iz topa** (pohod Tvrđava; u trening sobi T):
+  - E uzima top; W/S menjaju ugao cevi, A/D dodaju ili oduzimaju barut, J ili Space puca.
+  - Tačkasta putanja pokazuje let đuleta, a krug mesto gde pada.
+  - Horda dolazi u tri talasa, a đule rasprsne sve oko sebe.
+- **Palikuća gori od svoje vatre:** baklju vratiš odbijanjem ili udarcem topuza. Pogođeni se zapali i zdravlje mu curi.
+- **Ravijojla:**
+  - Codexov let, bacanje čini i isceljenje (`vila-let`, `vila-carolija`, `vila-isceljenje`);
+  - traka svetla do cilja i prsten od runa na cilju (`magija-zrak`, `magija-bljesak`);
+  - prilet ka ekranu (`vila-spreda`);
+  - Marko je doziva u hodu (`marko-call-walk`).
+- **Slavlje:** kad padne bos, Marko digne topuz i slavi. Posle Muse slavi, pa odhramlje ranjen (`marko-wounded-walk`).
+- **Voda i skela:** reka ide do obala, sa talasima i penom. Codexova skela pluta u njoj.
+- **Kontrole:** ekran sa nacrtanim džojstikom; dugmad svetle dok ih pritiskaš.
+- **Riznica:** podeljena na kartice. Veštine su kartice sa tasterima i opisom.
+- **Kadrovi priče:**
+  - na početku svakog poglavlja glavnog pohoda i posle megdana dolazi minijatura sa par rečenica;
+  - minijature: `minijatura-drum`, `kapija`, `trag`, `zalet`, `opsada`, `ranjen`;
+  - Enter ili A ide dalje, Esc ili B preskače.
+
 **Muzika bosova:** 14 tema iz `make-audio.py --bosses`, po jedna za svakog bosa i jedna za Musin megdan kopljima. Svaka ima svoj lestvični modus, tempo, glavni instrument (gusle, rog ili hor) i ritam bubnjeva (težak, galop, marš, dvoboj, napet). Tema se učitava tek kad se otvori arena njenog bosa.
 
 **Provere**
