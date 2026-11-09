@@ -1,0 +1,23 @@
+{
+  "jobs": [
+    {
+      "id": "marko-dizzy",
+      "group": 10,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "targetHeight": 383,
+      "slotInset": 4,
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Eight frame DIZZY animation of supplied Marko, 4x2 grid, equal square cells 2048x1024. STRICT 90-DEGREE RIGHT SIDE PROFILE: show only ONE eye, nose silhouette points directly RIGHT, shoulder and chest viewed side-on. Never show front of face, never look at viewer. Match exact reference mustache hair brown armor ivory shirt red gold cape boots and spiked mace. Quiet exhausted swaying in place: forward tilt builds in frames1,2,3 then eases4; backward tilt5,6 then eases7,8 to1. Chin down, eyes tired, both arms slack, mace right hand hangs diagonally downward with spiked head on floor to right. Feet planted and stable, full body same anatomical scale, head size constant, small smooth head height changes only. Cape modest sway. All eight character poses face RIGHT, head stays side profile no head rotation other than gentle chin nod. Painterly cel shaded game art. Flat pure green #00FF00 background, no floor or shadows or text. Full figure within each isolated cell, empty margins, nothing crosses cells. Seamless loop, eight distinct phases."
+    }
+  ]
+}

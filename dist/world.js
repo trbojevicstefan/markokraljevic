@@ -110,15 +110,15 @@ export const RECIPES={
  klisura:'flat terrace+ ladder+ flat tower chase flat chimney lift crumble zid stairs+ watch rocks crates flat',
  suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes kljuc watch stairs+ flat stairs- chimney flat',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar chimney zid stairs- ledges lift stairs+ tower flat',
- tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates pillars ladder+ tower flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase flat watch lift stairs+ chimney rocks zid terrace+ crates flat boss:akindzija',
+ tvrdjava:'flat crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase sator watch lift stairs+ chimney rocks zid terrace+ crates flat boss:akindzija',
  pecina:'flat terrace- crates crumble spikebed chimney ledges terrace+ cellar flat pillars zid gap tower crumble crates flat',
  podrum:'flat crates stairs- barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
  mocvara:'flat bridge watch crumble ferry bridge crates logs kljuc spikebed watch ledges flat bridge pillars watch flat',
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever flat chimney cellar crumble ladder+ barrels crates flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crumble stairs+ tower spikebed zid ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch stairs+ flat',
- reka:'flat crates bridge flat watch ferry stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
- oranje:'flat plow crates flat plow watch plate stairs+ flat stairs- plow crates flat',
+ reka:'flat crates bridge flat watch ferry sator stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
+ oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates flat',
 };
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:760},akindzija:{name:'Akindžijski beg',hp:560},palikuca:{name:'Ognjeni aga',hp:520},shield:{name:'Bajraktar sa štitom',hp:620},sword:{name:'Janičarski aga',hp:540}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
@@ -180,6 +180,8 @@ export function buildLayout(L,variant='day'){
   zid(){const x0=x,len=ri(560,640);ground(len);const wx=x0+Math.round(len*.5);crate(wx,'zid',{loot:{coins:ri(6,10)}});crate(wx+170,'kovceg',{loot:{coins:ri(18,26)}});busy.push([x0,x0+len]);spots.push({x:x0+140,y:gy});},
   // a treasury tower beside the road: its iron-bound door opens only with the key the keeper carries
   kljuc(){const x0=x,len=ri(760,840);ground(len);const dx=x0+Math.round(len*.64),kx=x0+Math.round(len*.3);traps.push({kind:'keydoor',x:dx,y:gy,gate:{x:dx,y:gy},vault:vaults.length,keeper:{x:kx,y:gy}});vaults.push({door:{x:dx,y:gy},key:true});spots.push({x:kx,y:gy});busy.push([x0,x0+len]);},
+  // a Turkish tent: Ottomans come out of it while Marko is near, until he tears it down
+  sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
   // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
   cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});

@@ -1,0 +1,21 @@
+{
+  "jobs": [
+    {
+      "id": "marko-run-start",
+      "group": 10,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 16,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Four full body game sprites 2 columns 2 rows, equal square cells, pure #00FF00 green background. Match reference Marko appearance exactly, painterly cel shading. RUN START transition, all facing RIGHT, side profile nose right no face toward viewer.1 standing waist held mace, relaxed knees;2 weight shifts forward, hips and chest lean slightly ahead, rear heel rises;3 rear leg pushes from toe, front knee lifts and first stride begins, mace held compact in right hand next to waist;4 first forward running heel contact with forward leg extended and rear leg trailing, body leaning forward, cape streams gently left. Connected gradual poses, same head size and anatomy, fixed root, same boot ground baseline. Do NOT shrink character as he leans. Full mace and cape inside own cell with gutters. No gridlines labels effects floor shadows. Four distinct animation frames from standing into running, no jump or hopping."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "marko-land",
+      "group": 10,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 16,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "preserveRawScale": true,
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Four fullbody game animation poses in 2 columns 2 rows equal square slots, pure solid #00FF00 green background, no text/grid/shadows/floor. Exact same Marko identity outfit and mace as reference, painterly cel shaded style. LANDING recovery facing RIGHT in every pose, head never to camera. 1 just touched ground knees partly bent chest leaning forward cape still raised behind;2 deep compression squat absorbing impact hips low knees deeply bent, cape falls;3 knees begin to extend midway back up, cape settles;4 upright standing guard holding mace at waist matching reference. Anatomical dimensions and head size CONSTANT: squatting pose must be visibly shorter by bending joints NOT shrinking entire character; standing pose4 highest. Shared boot groundline, no airborne pose. Fixed root x, smooth related transition poses. Four distinct phases, full weapon/cape inside own cell, ample margins. NO dust sparks effects."
+    }
+  ]
+}

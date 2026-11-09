@@ -60,12 +60,12 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 - [x] **A7 Manje stenjanja.**
   - Glas pri udarcu ima razmak od bar 1,6 s; laki udarci 30% šanse; skok bez glasa osim ponekad.
   - Test: 10 udaraca za 3 s daje najviše 3 glasa.
-- [ ] **A8 Prelazi.**
+- [x] **A8 Prelazi.**
   - Doskok, okret i početak/kraj trčanja bez skokova u pozi.
   - Okret bar 1–2 kadra; trčanje se ubrzava kroz prvi korak.
 
 ## B. Neprijatelji, prepreke, pozadine
-- [ ] **B1 Šatori.**
+- [x] **B1 Šatori.**
   - `prop-turski-sator` je izvor Osmanlija: soba `sator` u oranju, tvrđavi, prevoju i reci.
   - Iz šatora izlaze talasi (do 3) dok ga Marko ne sruši teškim udarcima.
   - Test.
@@ -90,11 +90,11 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
   - Svaka zagonetka ima jasan natpis ili savet.
 
 ## D. Codex (kad ima kredita)
-- [ ] **D1** (u toku; marko-idle-2 gotov i ugrađen) DOPUNA-5: Markove fluidne animacije (idle, crouch-walk, block-walk, charge-walk, vihor-vrtoglavica, okret).
+- [x] **D1** (svih 8 klipova ugrađeno) DOPUNA-5: Markove fluidne animacije (idle, crouch-walk, block-walk, charge-walk, vihor-vrtoglavica, okret).
   Prva poruka Codex-u (jedan red):
   „Dopuna od Claude-a: pročitaj D:\projects\Marko Kraljevic\marko-game\art\world-pack-03\DOPUNA-5.md — Markove fluidne animacije sada imaju prednost. Posle njih: ostatak launch klipova iz DOPUNA-4, izvoz četiri reakcije iz 7d, pa kapije iz DOPUNA-3. Posle svakog klipa dopuni STATUS.md. Ništa urađeno ne briši.“
-- [ ] **D2** Ostatak launch klipova: akindzija, kopljanik, palikuca, pas, tufekdzija, oklopnik.
-- [ ] **D3** Četiri reakcije iz 7d: izvoz već nacrtanih grid-ova.
+- [x] **D2** Ostatak launch klipova: akindzija, kopljanik, palikuca, pas, tufekdzija, oklopnik.
+- [x] **D3** Četiri reakcije iz 7d: izvoz već nacrtanih grid-ova.
 - [ ] **D4** Kapije iz DOPUNA-3 (profil, prolaz sleva nadesno), pa ugradnja: prednji deo kapije se crta ispred Marka.
 - [ ] **D5** Ugradi sve što stigne (`sync-anims.py`, `sync-world.py`, `build-sprite-rig.py`).
 
@@ -107,3 +107,4 @@ Osam iteracija, svaka u puni sat, oko 100k tokena. Svaka iteracija uzima sledeć
 | Iteracija | Vreme | Urađeno | Commit |
 |---|---|---|---|
 | 1/8 | 00:04–01:00 | Codex ponovo radi preko terminala (fork niti, popravljen sandbox), isporučio marko-idle-2 i radi crouch-walk. Visine izjednačene: Marko 128 px u svim stojećim klipovima, neprijatelji idle = trk (heights-test.mjs, 20 provera). Mirni idle bez kadra koji gleda u kameru, sada Codex-ov idle-2. Hod u čučnju, hod sa blokom i hod dok se puni K (privremene poze dok Codex ne isporuči klipove). Posle vihora: vrtoglavica 0,9 s sa zvezdicama, pad i ustajanje 1,25 s. Manje stenjanja (razmak 1,6–2,4 s, retko). 117 mehaničkih provera. | vidi git log |
+| 2/8 | 01:04–01:45 | Ugrađeno 17 Codex klipova: hod u čučnju, hod sa blokom, hod dok se puni K, vrtoglavica (sada pravi klipovi), okret, prvi korak trka, doskok; launch klipovi za svih 9 neprijatelja; reakcije: štit odbijen, oklop puca, akindžijin odskok, palikuća gori. Šatori (oranje, tvrđava, prevoj, reka): do 3 talasa Osmanlija dok ih Marko ne sruši. Codex i dalje bez kredita (kapije čekaju). 126 mehaničkih provera. | vidi git log |

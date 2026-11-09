@@ -1,0 +1,48 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        98,
+        60,
+        414,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        101,
+        71,
+        411,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        100,
+        64,
+        412,
+        488
+      ],
+      "footY": 487
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        87,
+        96,
+        424,
+        488
+      ],
+      "footY": 487
+    }
+  ],
+  "referenceHeight": 428,
+  "targetMaxHeight": 428,
+  "scale": 0.9224137931034483,
+  "loop": false
+}

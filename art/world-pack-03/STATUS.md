@@ -126,3 +126,54 @@ Osam nacrtanih kadrova disanja, petlja 12 FPS, 512x512; atlas, manifest, frames,
 
 ## DOPUNA-5 - 2/8: marko-crouch-walk GOTOVO
 Osam kadrova hoda u cucnju, petlja 12 FPS, atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-crouch-walk/. Niska poza 230 px prema stajacih 383 px, oslonac y=487; provereni svi kadrovi i GIF. Sledeci: marko-block-walk.
+
+## DOPUNA-5 - 3/8: marko-block-walk IZVEZEN
+Osam kadrova hoda sa podignutim topuzom, petlja 12 FPS; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-block-walk/. Proverene celije 512x512, oslonac y=487, 8 GIF kadrova. Vizuelno: druga polovina koraka je slicna prvoj; za potpuno prirodan naizmenicni hod potrebna je dodatna provera/poliranje daleke noge. Sledeci: marko-charge-walk.
+
+## DOPUNA-5 - 4/8: marko-charge-walk IZVEZEN
+Osam kadrova sa topuzom iza ramena, petlja 12 FPS, atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-charge-walk/. Proveren oslonac y=487, alfa, 8 kadrova GIF-a. Izvoz je spreman za pregled, ali faze daleke noge u drugoj polovini ciklusa treba dodatno doraditi kao kod block-walk. Sledeci: marko-dizzy.
+
+## DOPUNA-5 - 5/8: marko-dizzy GOTOVO
+Osam faza teturanja, topuz na tlu, glava udesno; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-dizzy/. Prva proba ostaje grid-draft.png; nova verzija ispravlja smer lica. Linije izmedju celija uklonjene izdvajanjem unutrasnjosti slotova, izvor sacuvan. Provereni alfa, celije 512x512, y=487 i GIF. Sledeci: marko-turn.
+
+## DOPUNA-5 - 6/8: marko-turn GOTOVO
+Cetiri faze: stajanje, kocenje, ukrstanje nogu i spreman stav. Atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-turn/. Jednokratno, 16 FPS; glava udesno, igra ogleda po zavrsetku. Proverene 512x512 celije, y=487, GIF. Sledeci: marko-run-start.
+
+## DOPUNA-5 - 7/8: marko-run-start GOTOVO
+Cetiri faze pokretanja trka, 16 FPS jednom. Atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-run-start/. Provereni broj kadrova, alfa, celije 512x512, oslonac y=487 i GIF. Sledeci: marko-land.
+
+## DOPUNA-5 - 8/8: marko-land GOTOVO
+Cetiri faze doskoka: kontakt, sabijanje, podizanje i stajanje; 16 FPS jednom. Atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/marko-land/. Izvoz cuva relativne visine originalnih poza, da cucanj ne postane rastegnuta figura. Provereni 512x512, y=487, GIF. Svih 8 trazenih klipova je izvezeno (52 kadra); block-walk i charge-walk imaju zabelezenu potrebu za dodatnim poliranjem koraka. Nastavak launch klipova, zatim reakcije 7d, kapije.
+
+## akindzija-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/akindzija-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 4/9. Proveren prevrat, glava dole u cetvrtom kadru i odskok na ledjima. Sledeci kopljanik-launch.
+
+## kopljanik-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/kopljanik-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 5/9. Proveren potpuni prevrat i koplje unutar kadra. Sledeci palikuca-launch.
+
+## palikuca-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/palikuca-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 6/9. Provereni prevrat i baklja. Sledeci pas-launch.
+
+## pas-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/pas-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 7/9. Ispravljen zavrsni pad na ledja, uklonjeni dodatni simboli; originalna proba sacuvana. Sledeci tufekdzija-launch.
+
+## tufekdzija-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/tufekdzija-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 8/9. Proveren prevrat i puska u svim kadrovima. Sledeci oklopnik-launch.
+
+## oklopnik-launch - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/oklopnik-launch/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Launch 9/9. Svi trazeni launch klipovi izvezeni. Proveren prevrat i odskok sa sacuvanim oklopom. Sledeci izvoz reakcija 7d.
+
+## shield-guardbreak - GOTOVO
+4 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/shield-guardbreak/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Reakcije 7d 1/4: gard se otvara nakon udarca, stit ostaje u ruci.
+
+## oklopnik-armorbreak - GOTOVO
+4 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/oklopnik-armorbreak/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Reakcije 7d 2/4: udar, pucanje oklopa i zateturavanje; odvojeni delovi oklopa sacuvani.
+
+## akindzija-backstep - GOTOVO
+4 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/akindzija-backstep/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Reakcije 7d 3/4: odskok unazad uz desnu orijentaciju.
+
+## palikuca-burn - GOTOVO
+6 kadrova; atlas/manifest/frames/preview.gif/qa.json u animation-pack-04/assets/palikuca-burn/. Proverene celije 512x512, oslonac y=487 i broj GIF kadrova. Reakcije 7d 4/4. Svih cetiri reakcije izvezene iz ranije sacuvanih izvora. Nastavak kapije DOPUNA-3.
+
+## DOPUNA-3 - kameni otvoreni prolaz GOTOVO
+Objavljena ranije nacrtana profilna v3 proba kao prolaz-kamen-otvoren.png. Izmeren slobodan prolaz passX0=380, passX1=640, archY=600: sirina 260 i visina 424 px. Provera providnosti prolaza prosla. Postojece probe sacuvane. Sada zatvorena varijanta.

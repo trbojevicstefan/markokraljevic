@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "marko-charge-walk",
+      "group": 10,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "targetHeight": 392,
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY eight sprite poses in 4 columns 2 rows equal square slots 2048x1024, solid #00FF00 background without text/grid/shadow. Reference1 character identity, Reference2 upper-body CHARGE HOLD posture: maintain mace behind shoulder with gold glow attached to spiked head while taking cautious slow steps right. Painterly cel-shaded Marko identical armor embroidered shirt red/gold cape boots mustache. Always head looking RIGHT, fixed scale, same foot baseline, full body/weapon safely within each cell. Smooth seamless 8-pose charge-walk. Important actual alternating legs: first row NEAR brighter leg reaches forward then stays planted while far leg swings from back to front; second row FAR darker leg reaches forward then stays planted while near leg swings from back to front. At frame5 forward leg must be the darker FAR leg, with near leg extended BEHIND. Frame6 far foot supports body and near heel lifts behind. Frame7 NEAR knee passes FORWARD across supporting far knee. Frame8 near foot reaches ahead preparing frame1. Chest/head height vary minimally, no hops, arms tense keeping same raised mace. Gold glow subtle consistent; cape smooth delayed sway. Eight distinct poses, no mirrored head, no identical repeated four-frame cycle."
+    }
+  ]
+}

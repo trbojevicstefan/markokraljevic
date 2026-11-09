@@ -7,6 +7,8 @@ jobs=[]
 for p in sorted(ROOT.glob('plan-g*.json')):jobs.extend(json.loads(p.read_text(encoding='utf8'))['jobs'])
 published=[]
 for j in jobs:
+    selected=[arg.split('=',1)[1] for arg in sys.argv[1:] if arg.startswith('--clip=')]
+    if selected and j['id'] not in selected:continue
     if sys.argv[1:] and str(j['group']) not in sys.argv[1:]:continue
     run=ROOT/'sources'/j['id'];grid=run/'grid.png'
     if not grid.exists():continue
@@ -30,6 +32,8 @@ for j in jobs:
         strip=Image.new('RGB',(cw*j['frames'],raw_height),(0,255,0))
         for i in range(j['frames']):
             row=i//j['cols'];cell=im.crop(((i%j['cols'])*cw,row_edges[row],(i%j['cols']+1)*cw,row_edges[row+1]))
+            if j.get('slotInset'):
+                inset=j['slotInset'];inner=cell.crop((inset,inset,cell.width-inset,cell.height-inset));clean=Image.new('RGB',cell.size,(0,255,0));clean.paste(inner,(inset,inset));cell=clean
             strip.paste(cell,(i*cw,raw_height-cell.height))
         (run/'raw').mkdir(exist_ok=True);strip.save(run/'raw/motion.png')
         w,h=j['cell'];ref=GAME/j['reference']
@@ -40,6 +44,12 @@ for j in jobs:
         subprocess.run(extract_args,check=True,stdout=subprocess.DEVNULL)
         frames=[Image.open(run/f'frames/motion/frame-{i}.png').convert('RGBA') for i in range(j['frames'])]
         frames=[im.crop(im.getchannel('A').getbbox()) for im in frames]
+        if j.get('preserveRawScale'):
+            for i,frame in enumerate(frames):
+                pix=np.array(strip.crop((i*cw,0,(i+1)*cw,raw_height))).astype(float)
+                mask=~((pix[:,:,1]>100)&(pix[:,:,1]>pix[:,:,0]*1.2)&(pix[:,:,1]>pix[:,:,2]*1.2))
+                yy,xx=np.where(mask)
+                frames[i]=frame.resize((int(xx.max()-xx.min()+1),int(yy.max()-yy.min()+1)),Image.Resampling.LANCZOS)
         old=GAME/f"art/animation-pack-03/assets/{j['who']}-idle/frames/motion"
         oldframes=list(old.glob('*.png'))
         if oldframes:

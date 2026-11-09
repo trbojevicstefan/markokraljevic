@@ -1,0 +1,21 @@
+{
+  "jobs": [
+    {
+      "id": "marko-turn",
+      "group": 10,
+      "who": "marko",
+      "frames": 4,
+      "loop": false,
+      "fps": 16,
+      "cols": 2,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "EXACTLY FOUR full body animation poses in TWO columns TWO rows equal square slots, pure flat #00FF00 background. Marko from reference identical hair face mustache outfit red cape gold embroidery brown armor boots spiked mace painterly cel shade. TURN transition for side scroller, 4 unique poses read top-left top-right bottom-left bottom-right:1 upright facing right holding mace waist;2 brakes with forward foot planted, bends knees and lowers hips slightly, cape trails right;3 crosses rear boot behind planted boot, weight shifts to heel, torso coils for change of direction with shoulders away from viewer;4 uncrosses into compact ready stance with weight on opposite foot, READY for game to flip sprite horizontally. All heads still point RIGHT throughout because the game mirrors pose4 to left after clip. NO front facing face. No actual full 180 rotation in drawing. Clear crossed legs in frame3. Same anatomical proportions and scale; final head/torso near initial height; foot baseline identical; full mace/cape inside own cell with large gutters, no lines/text/shadows/effects. Four smooth connected transition keyframes, cape follows turn."
+    }
+  ]
+}

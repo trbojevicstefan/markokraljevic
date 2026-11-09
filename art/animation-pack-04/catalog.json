@@ -18,6 +18,60 @@
     "manifest": "assets/marko-crouch-walk/manifest.json"
   },
   {
+    "id": "marko-block-walk",
+    "group": 10,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-block-walk/atlas.png",
+    "manifest": "assets/marko-block-walk/manifest.json"
+  },
+  {
+    "id": "marko-charge-walk",
+    "group": 10,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-charge-walk/atlas.png",
+    "manifest": "assets/marko-charge-walk/manifest.json"
+  },
+  {
+    "id": "marko-dizzy",
+    "group": 10,
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/marko-dizzy/atlas.png",
+    "manifest": "assets/marko-dizzy/manifest.json"
+  },
+  {
+    "id": "marko-turn",
+    "group": 10,
+    "frames": 4,
+    "fps": 16,
+    "loop": false,
+    "file": "assets/marko-turn/atlas.png",
+    "manifest": "assets/marko-turn/manifest.json"
+  },
+  {
+    "id": "marko-run-start",
+    "group": 10,
+    "frames": 4,
+    "fps": 16,
+    "loop": false,
+    "file": "assets/marko-run-start/atlas.png",
+    "manifest": "assets/marko-run-start/manifest.json"
+  },
+  {
+    "id": "marko-land",
+    "group": 10,
+    "frames": 4,
+    "fps": 16,
+    "loop": false,
+    "file": "assets/marko-land/atlas.png",
+    "manifest": "assets/marko-land/manifest.json"
+  },
+  {
     "id": "marko-climb",
     "group": 2,
     "frames": 8,
@@ -378,6 +432,42 @@
     "manifest": "assets/marko-lever/manifest.json"
   },
   {
+    "id": "shield-guardbreak",
+    "group": 7,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/shield-guardbreak/atlas.png",
+    "manifest": "assets/shield-guardbreak/manifest.json"
+  },
+  {
+    "id": "oklopnik-armorbreak",
+    "group": 7,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/oklopnik-armorbreak/atlas.png",
+    "manifest": "assets/oklopnik-armorbreak/manifest.json"
+  },
+  {
+    "id": "akindzija-backstep",
+    "group": 7,
+    "frames": 4,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/akindzija-backstep/atlas.png",
+    "manifest": "assets/akindzija-backstep/manifest.json"
+  },
+  {
+    "id": "palikuca-burn",
+    "group": 7,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "file": "assets/palikuca-burn/atlas.png",
+    "manifest": "assets/palikuca-burn/manifest.json"
+  },
+  {
     "id": "sword-launch",
     "group": 9,
     "frames": 6,
@@ -403,5 +493,59 @@
     "loop": false,
     "file": "assets/archer-launch/atlas.png",
     "manifest": "assets/archer-launch/manifest.json"
+  },
+  {
+    "id": "akindzija-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/akindzija-launch/atlas.png",
+    "manifest": "assets/akindzija-launch/manifest.json"
+  },
+  {
+    "id": "kopljanik-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/kopljanik-launch/atlas.png",
+    "manifest": "assets/kopljanik-launch/manifest.json"
+  },
+  {
+    "id": "palikuca-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/palikuca-launch/atlas.png",
+    "manifest": "assets/palikuca-launch/manifest.json"
+  },
+  {
+    "id": "pas-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/pas-launch/atlas.png",
+    "manifest": "assets/pas-launch/manifest.json"
+  },
+  {
+    "id": "tufekdzija-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/tufekdzija-launch/atlas.png",
+    "manifest": "assets/tufekdzija-launch/manifest.json"
+  },
+  {
+    "id": "oklopnik-launch",
+    "group": 9,
+    "frames": 6,
+    "fps": 12,
+    "loop": false,
+    "file": "assets/oklopnik-launch/atlas.png",
+    "manifest": "assets/oklopnik-launch/manifest.json"
   }
 ]

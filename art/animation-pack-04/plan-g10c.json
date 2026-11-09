@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "marko-block-walk",
+      "group": 10,
+      "who": "marko",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "cell": [
+        512,
+        512
+      ],
+      "targetHeight": 383,
+      "decontam": "palette",
+      "reference": "art/animation-pack-03/sources/marko-idle/base-source.png",
+      "prompt": "Exactly 8 game animation poses, 4 columns 2 rows equal square slots, 2048x1024, pure #00FF00 backdrop no lines/text/shadows. Match reference Marko identity, brown armor, embroidered ivory sleeves, red/gold cape, boots and spiked mace, painterly cel shading. BLOCK WALK smooth loop: right-facing side view always. He cautiously advances with weight forward behind a raised defensive block: near forearm in front of face and mace diagonal upright in front of body, mace head at forehead height, no shield. Arms keep this guard while legs perform distinct alternating steps. 1 near leg forward contact far leg back; 2 weight down; 3 FAR leg lifted passing near leg; 4 far heel reaching ahead; 5 FAR leg forward contact near leg back; 6 weight down; 7 NEAR leg lifted passing far leg; 8 near heel reaching ahead to join1. Show far leg DARKER and distinguish which leg is front in second half. Fixed root anatomical scale, boots ground same baseline, head movement only slight, knees flexed a little, cape lags smoothly. Each whole figure and mace isolated inside cell, no clipping, green margins. Eight unique sequential poses with smooth 8-to-1 loop."
+    }
+  ]
+}
