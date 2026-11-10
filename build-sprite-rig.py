@@ -226,6 +226,15 @@ for name, k in [('magija-bljesak', .4), ('magija-zrak', .5)]:
 for name, k in [('plamen', .45), ('plamen-mali', .45), ('eksplozija', .55)]:
     if _have(name):
         SCALES[name] = (k, 'feet')
+# DOPUNA-25: the wedding guests (sized by their tallest figure) and the young Turk (as tall as a janissary)
+for name, height in [('svatovi-zarobljeni', 112), ('svatovi-kolo', 110)]:
+    if _have(name):
+        SCALES[name] = (height / max(body_height(c) for c in _cells(name)), 'feet')
+if _have('mladi-turcin-idle'):
+    s_ = 120 / max(body_height(c) for c in _cells('mladi-turcin-idle'))
+    for k in ['idle', 'run', 'attack', 'hurt', 'death']:
+        if _have(f'mladi-turcin-{k}'):
+            SCALES[f'mladi-turcin-{k}'] = (s_, 'center' if k == 'death' else 'feet')
 # horse and rider: the horse as long as Šarac in mounted-run (Musa's black horse a fifth longer: he is the giant of the song)
 if _have('mounted-run'):
     RIDE_W = float(np.median([_width(c) for c in _cells('mounted-run')])) * SCALES['mounted-run'][0]

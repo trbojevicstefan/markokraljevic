@@ -367,3 +367,23 @@ DOPUNA-24: krv-ekran-4 — GOTOVO; PNG RGBA512x512, tamnocrvena mrlja sa kapima/
 DOPUNA-24: eksplozija — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/eksplozija/. Jednom. Ugradjeni image_gen, 2 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
 
 DOPUNA-24 — ZAVRSENO: 3klipa/24kadra + kosti-delovi1536x256 + krv-ekran-1..4 po512x512. Sve8stavke proverene (dimenzije, alfa, dnoVFXy487, atlas/kadrovi, frame_layout, GIF8 i loop; kosti6 centriranih polja256, krv alfa do65%). Izvozi: art/animation-pack-04/assets/plamen/, plamen-mali/, eksplozija/ i slike na vrhu world-pack-03/. Pregledi: art/animation-pack-04/preview-dopuna24.png i art/world-pack-03/preview-dopuna24-slike.png. Katalog/provere: catalog-dopuna24.json i validation-dopuna24.json; promptovi prompts-dopuna24.json. Ugradjeni image_gen9generisanja: samo eksplozija ponovljena zbog svetle pravougaone magle; odabrani magentaizvor izdvojen sprite-gen alatom i ociscen preostali spill. Prvi izvor/izvoz sacuvani u sources/eksplozija/grid.png i export-before-matte-fix/. Nema neuspelih stavki; kod igre i dist nisu menjani.
+
+DOPUNA-25: svatovi-zarobljeni — GOTOVO; 6kadova512x512, petlja, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/svatovi-zarobljeni/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika417px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: svatovi-kolo — GOTOVO; 8kadova512x512, petlja, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/svatovi-kolo/. renderScale=1.2017 uz renderAnchor(256,488), svetska visina lika417px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: kavez-svatovi — GOTOVO; PNG RGBA768x768 na vrhu art/world-pack-03/, dno y743, providno, prazna unutrasnjost. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: kavez-razbijen — GOTOVO; PNG RGBA768x768 na vrhu art/world-pack-03/, dno y743, providno, prazna unutrasnjost. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: mladi-turcin-idle — GOTOVO; 6kadova512x512, petlja, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-idle/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: mladi-turcin-run — GOTOVO; 8kadova512x512, petlja, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-run/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: mladi-turcin-attack — GOTOVO; 6kadova512x512, jednom, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-attack/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: mladi-turcin-hurt — GOTOVO; 4kadova512x512, jednom, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-hurt/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25: mladi-turcin-death — GOTOVO; 6kadova512x512, jednom, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-death/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
+
+DOPUNA-25 — ZAVRSENO: svih9stavki redom, 7klipova/44kadra i2kaveza768x768. Po jedno generisanje ugradjenim image_gen. Provereni alfa,512x512kadri, oslonac y487, atlas/kadrovi, frame_layout, GIFbrojevi i loop; napad pogodak4. Kavezi imaju praznu providnu unutrasnjost. Pregledi: art/animation-pack-04/preview-dopuna25.png i art/world-pack-03/preview-dopuna25-kavezi.png; katalog/validacija: catalog-dopuna25.json/validation-dopuna25.json. Promptovi prompts-dopuna25.json. Pri ubacivanju koristiti renderScale iz svakog manifesta oko renderAnchor(256,488) za isti svetski zum (svatovi417px,mladiTurcin426px); bitno za siru grupu kola i dugacak polozaj pada. Pomocne neutralne kalibracione poze nisu u izvoznim klipovima. Nema neuspelih stavki, kod igre i dist nisu menjani.

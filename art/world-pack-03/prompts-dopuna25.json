@@ -1,0 +1,141 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "svatovi-zarobljeni",
+      "type": "clip",
+      "kind": "group",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 417,
+      "references": [
+        "art/animation-pack-04/assets/putnik-trgovac-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval Serbian2D game CHARACTER GROUP animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackground throughout, no magenta costume. Matchreferencepainted MATTE style, warmsoftlight, no glare. Serbian14thcenturyfolk ceremonialdress withembroideredwool/linen, dolama, leatherboots/opanci, notmodernweddingtuxedos. Reference is PAINTING SCALE/COSTUMEMATERIAL only, doNOTcopy merchantbackpack or merchantfaceontoallcharacters. Wholegroup fullbodies andprops insideOWNslot with generousblankgutters, separatefigures readable, NO scenery/floor/shadows/effects,text,numbers,gridlines,borders. Allmembers sameanatomicalsize fromframetoframe, samecostumes andfaces. Overallrightfacing3/4profile, barefootnotneeded. Final512squarecells, sharedfootcontactbottomy487. EXACTLY6actionframes,3COLUMNS x2ROWS, rowmajor. Exactly THREE captiveweddingguests Huddled CLOSE together frightened: GROOMhandsomeyoungman inrichdarkburgundy goldembroideredceremonialdolama; BRIDE inivoryreddress with RED VEIL and WHITE FLOWERS, no modernwhiteballgown; OLD GODFATHER withgraybeard,darkbrownembroideredrobeandwoodenSTAFF. Maintainidentitiesfornextdance.1 bridecowers handsnearmouth,groomtense,kumlooksright.2 bridehandsrise toveil,kumstartsturnheadleft.3 brideCOVERSFACE,groomprotectivearmnearher,kumlooksleft.4 bridepeeks,groomlooksright,kumturnsback.5 lowerhandsabit,kumgripsstaff.6 approachpose1 smoothly. Smallbreathing/cower/headturnloop, NO walking. NO cage/bars/chains,captorsorbackground; groupALONE. THREEPEOPLE exacteveryframe.",
+      "fps": 12
+    },
+    {
+      "id": "svatovi-kolo",
+      "type": "clip",
+      "kind": "group",
+      "frames": 8,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 417,
+      "references": [
+        "art/animation-pack-04/assets/svatovi-zarobljeni/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval Serbian2D game CHARACTER GROUP animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackground throughout, no magenta costume. Matchreferencepainted MATTE style, warmsoftlight, no glare. Serbian14thcenturyfolk ceremonialdress withembroideredwool/linen, dolama, leatherboots/opanci, notmodernweddingtuxedos. Reference is PAINTING SCALE/COSTUMEMATERIAL only, doNOTcopy merchantbackpack or merchantfaceontoallcharacters. Wholegroup fullbodies andprops insideOWNslot with generousblankgutters, separatefigures readable, NO scenery/floor/shadows/effects,text,numbers,gridlines,borders. Allmembers sameanatomicalsize fromframetoframe, samecostumes andfaces. Overallrightfacing3/4profile, barefootnotneeded. Final512squarecells, sharedfootcontactbottomy487. EXACTLY8actionframes,4COLUMNS x2ROWS,rowmajor. EXACTLY FIVE weddingpeople dance KOLO inONE ROW holdinghands, FULLBODYFIVE ineveryframe: LEFTtoRIGHT BRIDE redveilwhiteflowers/ivoryreddress, GROOM richburgundygolddolama, OLD GODFATHER graybeardbrownrobe, YOUNG GIRL red/ivoryfolkdressbraid, FLUTE PLAYER atRIGHTEND creamshirtblackembroideredvestdarktrousers. Match bride/groom/godfather EXACT providedreferenceidentities/costumes but nowHAPPY, freed. Fluteplayerholdsfrula to mouthwithonehand andextendsotherhandtolastgirl, connectsrow. GodfatherSTAFF setaside/notdrawn sohandsholdneighbors. Continuous8phaseSERBIAN KOLO:1 lateralstepRIGHT,2 closetrʏailingfoot,3 smallkneelift,4 crossingstep,5 counterstepLEFT,6 closetrailingfoot,7 otherkneelift,8 settleintopose1. ActualLEG/FOOTPHASES changeeveryframe, smallbodybounce, armslinked sameheight. Seriousjoyfulfolkcelebration, notcartoonjumping. Exactly5figures, noextraobserver,instrumentsonlyfrula. Keepentirewidegroupinsideeachsquarecell; notsplitonepersonpercell.",
+      "fps": 12
+    },
+    {
+      "id": "kavez-svatovi",
+      "type": "cage",
+      "size": [
+        768,
+        768
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE hand-painted medieval Serbian2D platformer prop PNG768x768 with TRUEtransparentbackground. LARGE EMPTY WOODEN PRISON CAGE made ofTHICKroughdarktimber beams tiedwithcoarse ROPE andblackIRONbrackets, heavyCHAIN across frontDOOR withPADLOCK visible. Cage standsfirmlyonGROUND, broadrectangularbox withbarredFRONT andslightlyvisibleSIDEs/topframe, veryshallow3/4frontalview notextremeperspective. Fullcagefitscanvasmargin20px, bottomat~y744. OPEN interior is COMPLETELY EMPTY/TRANSPARENT between woodenbars; occupantsdrawnseparatelybygame. Widelyspaced bars allowseeingthreeguestsinside, no furniture/cargo. No people, bones, blood, floorplane, groundshadow, background, canopy orroofcloth. Thickcornerposts,stronghorizontalrails, rusticweatheredwoodandmetal. Warm MATTEpaintedgameart, no shiningiron, no glow/aura, no opaque backdropbehindbars. No text/grids.",
+      "fps": 12
+    },
+    {
+      "id": "kavez-razbijen",
+      "type": "cage",
+      "size": [
+        768,
+        768
+      ],
+      "references": [
+        "art/world-pack-03/kavez-svatovi.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Referenceis EXACT CAGE IDENTITY, timbermaterials,rope/ironstyleandcamera. Create same woodenprisoncage AFTER beingSMASHED byspikedmace. ThickFRONT BEAMS BROKEN withsplinteredends, someframepostslean/crack, BROKEN TIMBERS LIE inheapneargroundacrossforeground. Chainbroken/slack; PADLOCKhasFALLENandliesclearlyonfloorlineinfront. Huge OPEN EXIT infront, EMPTYTRANSPARENTinside, no captives/characters. Preserveperspective/basewidthandagedbrownwood/blackiron/rope, samegroundlinebottom~y744. Onlydamagedcageanddebris, nothingelse, no actualmace, no actiontrails/particles, no floor/groundshadow, no backgroundorwhiteglow. TrueRGBAtransparentPNG768x768, wholedebris/cageunclipped, hand-paintedwarmMATTEgameprop.",
+      "fps": 12
+    },
+    {
+      "id": "mladi-turcin-idle",
+      "type": "clip",
+      "kind": "enemy",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D medievalgame CHARACTER animation sprite sheet. Fullbody YOUNG HANDSOME OTTOMAN HERO, youthfulclean-shavenface orVERYfaintdarkstubble,20syearsold, expensive DEEP GREEN DOLAMA richlyGOLDembroidered, white TURBAN with LONG WHITE FEATHER, redsilksash,goldbelt,brownboots. NO steeljanissaryhelmet, NO beard/moustachelikeoldjanissary, no redjanissaryarmor. Royal CURVED SABRE with distinctive THREE GOLD HILTS: three separateORNATE GOLD GRIPS clusteredclearlyatbelt, ornamentalroyalscabbard; mainbladecanbedrawnwithonegoldhiltwhiletwomatchinggripsstayatbelt. These THREEgoldhiltforms are plotcritical, mustbevisible/readable. Right-facing, SAME identity,costume,headsize/bodyproportions ALLframes, neutralstandingheight426px in final512cell comparabletosword-idle. DoNOTenlarge crouching/fallenposes. Pureflat#FF00FF MAGENTA backgroundallblankspace, nogreenchroma. Completebody/feather/bladefitscentral80%OWNcell, no clipping/crossedboundaries, no groundline,scenery,shadows,othercharacters,text,numbers,gridlines. MATTEpaintedwarmstyle, no glare/whitebloom. EXACT6frames in3COLUMNS x2ROWS, rowmajor. Stand PROUD rightfacing, onehand restingmainROYALgoldhilt atbelt, sabreSHEATHEDcurvebyhip. Threegoldhiltsclearlydisplayedwaist, centralmainhilt andtwomatchinggoldhilts.6subtleidlebreathingphases: chestexpands,turbanfeathersways,clothmoves,rightfingerssettleontohilt,returnneutral. No attack/run. Fixedfeetthroughloop; youngconfidentnobleface notoldwarrior. ReferenceonlysetsPAINTINGSTYLEandphysicalscale; replaceallidentity/costumeasdescribed.",
+      "fps": 12
+    },
+    {
+      "id": "mladi-turcin-run",
+      "type": "clip",
+      "kind": "enemy",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/mladi-turcin-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D medievalgame CHARACTER animation sprite sheet. Fullbody YOUNG HANDSOME OTTOMAN HERO, youthfulclean-shavenface orVERYfaintdarkstubble,20syearsold, expensive DEEP GREEN DOLAMA richlyGOLDembroidered, white TURBAN with LONG WHITE FEATHER, redsilksash,goldbelt,brownboots. NO steeljanissaryhelmet, NO beard/moustachelikeoldjanissary, no redjanissaryarmor. Royal CURVED SABRE with distinctive THREE GOLD HILTS: three separateORNATE GOLD GRIPS clusteredclearlyatbelt, ornamentalroyalscabbard; mainbladecanbedrawnwithonegoldhiltwhiletwomatchinggripsstayatbelt. These THREEgoldhiltforms are plotcritical, mustbevisible/readable. Right-facing, SAME identity,costume,headsize/bodyproportions ALLframes, neutralstandingheight426px in final512cell comparabletosword-idle. DoNOTenlarge crouching/fallenposes. Pureflat#FF00FF MAGENTA backgroundallblankspace, nogreenchroma. Completebody/feather/bladefitscentral80%OWNcell, no clipping/crossedboundaries, no groundline,scenery,shadows,othercharacters,text,numbers,gridlines. MATTEpaintedwarmstyle, no glare/whitebloom. EXACT3COLUMNS x3ROWS: first8cells eightRUNNINGphases toRIGHT, ninthneutralSTANDINGcalibrationcopiedfromreference.8phaseanatomicallyclearruncycle:1 rightfootcontacts,2 compression,3 legsPASSleftkneedrives,4 flightleftleading,5 leftfootcontacts,6 compression,7 legsPASSrightkneedrives,8 flightrightleadingintoframe1. SabreDRAWN inRIGHTHAND low-forward, ornateGOLDhilt andcurvedblade, twoothergoldhiltformsremainatbelt. Dynamicarmswingwithoutweaponclipping, greencoat/flutefringeandsashfeatherlag, no bouncinginplace/slidingpose. Body/HEADSCALEconstantincludingcalibration, no background.",
+      "fps": 12
+    },
+    {
+      "id": "mladi-turcin-attack",
+      "type": "clip",
+      "kind": "enemy",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/mladi-turcin-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D medievalgame CHARACTER animation sprite sheet. Fullbody YOUNG HANDSOME OTTOMAN HERO, youthfulclean-shavenface orVERYfaintdarkstubble,20syearsold, expensive DEEP GREEN DOLAMA richlyGOLDembroidered, white TURBAN with LONG WHITE FEATHER, redsilksash,goldbelt,brownboots. NO steeljanissaryhelmet, NO beard/moustachelikeoldjanissary, no redjanissaryarmor. Royal CURVED SABRE with distinctive THREE GOLD HILTS: three separateORNATE GOLD GRIPS clusteredclearlyatbelt, ornamentalroyalscabbard; mainbladecanbedrawnwithonegoldhiltwhiletwomatchinggripsstayatbelt. These THREEgoldhiltforms are plotcritical, mustbevisible/readable. Right-facing, SAME identity,costume,headsize/bodyproportions ALLframes, neutralstandingheight426px in final512cell comparabletosword-idle. DoNOTenlarge crouching/fallenposes. Pureflat#FF00FF MAGENTA backgroundallblankspace, nogreenchroma. Completebody/feather/bladefitscentral80%OWNcell, no clipping/crossedboundaries, no groundline,scenery,shadows,othercharacters,text,numbers,gridlines. MATTEpaintedwarmstyle, no glare/whitebloom. Grid4COLUMNS x2ROWS: FIRST6cells oneSHOT WIDE SABRE SLASH, cell7NEUTRALstandingcalibrationmatchingreference, cell8emptyMAGENTA.1 readyDRAWNsabre,2 drawarmbackwindup,3 startwidehorizontalforwardarc,4 EXACTHIT broadSLASH sabreextendedFARRIGHT atchestheight,5 followthroughtorso rotates,6 recoverguard. RoyalbladeRIGHTHAND, leftcounterbalancehand, green/goldclothesandfeatherconsistent. THREEgoldhiltmotif visible(mainhiltinhandand2atbelt), fullbladefitsowncell, no drawnslashVFXoropponent. No upscalingcrouched/hitposes.",
+      "fps": 12
+    },
+    {
+      "id": "mladi-turcin-hurt",
+      "type": "clip",
+      "kind": "enemy",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/mladi-turcin-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D medievalgame CHARACTER animation sprite sheet. Fullbody YOUNG HANDSOME OTTOMAN HERO, youthfulclean-shavenface orVERYfaintdarkstubble,20syearsold, expensive DEEP GREEN DOLAMA richlyGOLDembroidered, white TURBAN with LONG WHITE FEATHER, redsilksash,goldbelt,brownboots. NO steeljanissaryhelmet, NO beard/moustachelikeoldjanissary, no redjanissaryarmor. Royal CURVED SABRE with distinctive THREE GOLD HILTS: three separateORNATE GOLD GRIPS clusteredclearlyatbelt, ornamentalroyalscabbard; mainbladecanbedrawnwithonegoldhiltwhiletwomatchinggripsstayatbelt. These THREEgoldhiltforms are plotcritical, mustbevisible/readable. Right-facing, SAME identity,costume,headsize/bodyproportions ALLframes, neutralstandingheight426px in final512cell comparabletosword-idle. DoNOTenlarge crouching/fallenposes. Pureflat#FF00FF MAGENTA backgroundallblankspace, nogreenchroma. Completebody/feather/bladefitscentral80%OWNcell, no clipping/crossedboundaries, no groundline,scenery,shadows,othercharacters,text,numbers,gridlines. MATTEpaintedwarmstyle, no glare/whitebloom. Grid3COLUMNS x2ROWS: FIRST4cells oneSHOT HITREACTION, cell5NEUTRALstandingcalibrationmatchingreference, cell6emptyMAGENTA.1 surprisedchestjolt,2 bendsDOUBLE forwardhurt,3 recoilslowlysteadieshandtotorso,4 partiallyrecoversstillpained. RIGHTHANDkeepsDRAWNROYALSABRElow, twogoldhiltsatbelt, no opponent,bloodorsparks. Clear changingpose, no turningawayleft, consistentyoungfaceandclothes, doNOTenlargecrouch.",
+      "fps": 12
+    },
+    {
+      "id": "mladi-turcin-death",
+      "type": "clip",
+      "kind": "enemy",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/mladi-turcin-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded2D medievalgame CHARACTER animation sprite sheet. Fullbody YOUNG HANDSOME OTTOMAN HERO, youthfulclean-shavenface orVERYfaintdarkstubble,20syearsold, expensive DEEP GREEN DOLAMA richlyGOLDembroidered, white TURBAN with LONG WHITE FEATHER, redsilksash,goldbelt,brownboots. NO steeljanissaryhelmet, NO beard/moustachelikeoldjanissary, no redjanissaryarmor. Royal CURVED SABRE with distinctive THREE GOLD HILTS: three separateORNATE GOLD GRIPS clusteredclearlyatbelt, ornamentalroyalscabbard; mainbladecanbedrawnwithonegoldhiltwhiletwomatchinggripsstayatbelt. These THREEgoldhiltforms are plotcritical, mustbevisible/readable. Right-facing, SAME identity,costume,headsize/bodyproportions ALLframes, neutralstandingheight426px in final512cell comparabletosword-idle. DoNOTenlarge crouching/fallenposes. Pureflat#FF00FF MAGENTA backgroundallblankspace, nogreenchroma. Completebody/feather/bladefitscentral80%OWNcell, no clipping/crossedboundaries, no groundline,scenery,shadows,othercharacters,text,numbers,gridlines. MATTEpaintedwarmstyle, no glare/whitebloom. Grid4COLUMNS x2ROWS: FIRST6cells oneSHOT DEATH, cell7neutralstandingcalibrationmatchingreference, cell8emptyMAGENTA.1 fataljolt chestrecoils,RIGHTHANDsabreloosens;2 fallsBACKWARDSLEFTkneesgiveway;3 fallingbackbodydiagonal,releasessabrebesidehim;4 BACKcontactsground,sabrefallsatRIGHTside;5 settlesflatONBACK,sabreliesseparatelynexttorighthand;6 fullySTILL onBACK,royalSABREhasfallenandREMAINSbesidehim. No gore,blood,ghost ormonster; eyesclosed. AllFULLBODYanddetachedsabreunclippedineverycell, includingFINALHORIZONTALpose, SAMEanatomicalscale asstandingcalibration, usewideemptyspaceearlytofitlatercorpse. No rotatingstaticstandingpose: drawactualbentlimbsandfallstages. For final fallen frames place detachedsabre PARALLEL BELOW body, entirelywithin corpse'shorizontalspan, NOT extendingbeyondfeet/head; knees canbendnaturally so wholebodyfits. Keep all parts wellinsidecellmargin. FinalposeonBACK notseated.",
+      "fps": 12
+    }
+  ]
+}

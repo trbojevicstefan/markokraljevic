@@ -1,0 +1,135 @@
+{
+  "clips": 7,
+  "frames": 44,
+  "staticImages": 2,
+  "imagegenCalls": 9,
+  "results": [
+    {
+      "id": "svatovi-zarobljeni",
+      "frames": 6,
+      "loop": true,
+      "atlas": "../animation-pack-04/assets/svatovi-zarobljeni/atlas.png",
+      "manifest": "../animation-pack-04/assets/svatovi-zarobljeni/manifest.json",
+      "worldBodyHeight": 417,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "svatovi-kolo",
+      "frames": 8,
+      "loop": true,
+      "atlas": "../animation-pack-04/assets/svatovi-kolo/atlas.png",
+      "manifest": "../animation-pack-04/assets/svatovi-kolo/manifest.json",
+      "worldBodyHeight": 417,
+      "renderScale": 1.201729106628242,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "mladi-turcin-idle",
+      "frames": 6,
+      "loop": true,
+      "atlas": "../animation-pack-04/assets/mladi-turcin-idle/atlas.png",
+      "manifest": "../animation-pack-04/assets/mladi-turcin-idle/manifest.json",
+      "worldBodyHeight": 426,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "mladi-turcin-run",
+      "frames": 8,
+      "loop": true,
+      "atlas": "../animation-pack-04/assets/mladi-turcin-run/atlas.png",
+      "manifest": "../animation-pack-04/assets/mladi-turcin-run/manifest.json",
+      "worldBodyHeight": 426,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "mladi-turcin-attack",
+      "frames": 6,
+      "loop": false,
+      "atlas": "../animation-pack-04/assets/mladi-turcin-attack/atlas.png",
+      "manifest": "../animation-pack-04/assets/mladi-turcin-attack/manifest.json",
+      "worldBodyHeight": 426,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "mladi-turcin-hurt",
+      "frames": 4,
+      "loop": false,
+      "atlas": "../animation-pack-04/assets/mladi-turcin-hurt/atlas.png",
+      "manifest": "../animation-pack-04/assets/mladi-turcin-hurt/manifest.json",
+      "worldBodyHeight": 426,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "mladi-turcin-death",
+      "frames": 6,
+      "loop": false,
+      "atlas": "../animation-pack-04/assets/mladi-turcin-death/atlas.png",
+      "manifest": "../animation-pack-04/assets/mladi-turcin-death/manifest.json",
+      "worldBodyHeight": 426,
+      "renderScale": 1.0,
+      "renderAnchor": {
+        "x": 256,
+        "y": 488
+      },
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "kavez-svatovi",
+      "file": "kavez-svatovi.png",
+      "size": [
+        768,
+        768
+      ],
+      "transparentInteriorPct": 34.14,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "kavez-razbijen",
+      "file": "kavez-razbijen.png",
+      "size": [
+        768,
+        768
+      ],
+      "transparentInteriorPct": 70.99,
+      "attempts": 1,
+      "verified": true
+    }
+  ]
+}
