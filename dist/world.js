@@ -110,19 +110,19 @@ export const CUDA=[
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:kopljanik',
- klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:djemo',
- suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney flat boss:lovac',
- manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
- tvrdjava:'flat topnica crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase sator watch top lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
- pecina:'flat terrace- crates crumble greda crates spikebed chimney ledges terrace+ cellar flat ogledala pillars zid gap tower crumble crates flat boss:azdaja',
- podrum:'flat crates stairs- vino greda barrels plate ladder+ kljuc crates spikebed vino zid chimney crates stairs+ barrels tower crates vino:kraj flat boss:palikuca',
- mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc spikebed watch ledges flat trska bridge pillars ferry watch crates trska flat boss:tufekdzija',
- rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ flat boss:arapin',
- reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
- oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges flat boss:trio',
+ selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates trgovac flat boss:kopljanik',
+ klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
+ suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney trgovac flat boss:lovac',
+ manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower trgovac flat boss:dzelat',
+ tvrdjava:'flat topnica crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut trgovac flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase sator watch top lift stairs+ chimney flat rocks zid terrace+ crates trgovac flat boss:akindzija',
+ pecina:'flat terrace- crates crumble greda crates spikebed chimney ledges terrace+ cellar flat ogledala pillars zid gap tower crumble crates trgovac flat boss:azdaja',
+ podrum:'flat crates stairs- vino greda barrels plate ladder+ kljuc crates spikebed vino zid chimney crates stairs+ barrels tower crates vino:kraj trgovac flat boss:palikuca',
+ mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc spikebed watch ledges flat trska bridge pillars ferry watch crates trska trgovac flat boss:tufekdzija',
+ rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates trgovac flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ trgovac flat boss:arapin',
+ reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch trgovac flat boss:sword',
+ oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges trgovac flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
@@ -196,6 +196,7 @@ export function buildLayout(L,variant='day'){
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the poor by the road: an old woman and an orphan; a quiet room, no Turks in it
+  trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},
   vino(arg){const x0=x,len=ri(820,900);ground(len);traps.push({kind:'bacva',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len,kraj:arg==='kraj'});busy.push([x0,x0+len]);},

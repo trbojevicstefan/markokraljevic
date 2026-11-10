@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -296,4 +296,12 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  c.hp=c.maxHp*.2;step(3);ok(c.p3,'banners: Hasan-aga is in his last act');Object.assign(p,{x:c.arena.x0-300,y:groundY(w,c.arena.x0-300,c.y)});
  api.setCkpt(c.arena.x0-300,groundY(w,c.arena.x0-300,c.y));p.invuln=0;p.hp=1;api.die();ok(S().mode==='dead','banners: Marko falls in the arena');api.retry();
  ok(S().mode==='play'&&c.hp===c.maxHp&&!c.p3&&!c.p2,'banners: back at the banner, and the champion has his strength again');}
+// ---- the merchant by the road: wine, salve, a whetted mace and the amulet, paid in ducats ----
+{const w=await land('selo');const t=w.traps.find(t=>t.kind==='trgovac'),c=w.enemies.find(e=>e.champion),p=S().p;ok(t&&t.x<c.arena.x0&&t.x>c.arena.x0-1400,'merchant: a merchant waits by the road before the champion');
+ for(const e of w.enemies)e.alive=false;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);api.pressed.add('KeyE');step(1);ok(S().mode==='shop','merchant: E opens his stall and the road waits');
+ api.setBank(100);p.wine=1;p.wineMax=3;ok(api.buyDucan('vino')&&p.wine===2&&api.bank()===88,'merchant: twelve ducats buy a flask of wine');
+ p.hp=10;ok(api.buyDucan('melem')&&p.hp===p.maxHp,'merchant: the salve heals every wound');ok(!api.buyDucan('melem'),'merchant: he sells no salve to a whole man');
+ const pw=p.power||1;ok(api.buyDucan('brus')&&p.power>pw&&!api.buyDucan('brus'),'merchant: the mace is whetted once for the quest');
+ ok(api.buyDucan('amajlija')&&p.amajlija,'merchant: the amulet of Saint George');api.setBank(3);ok(!api.buyDucan('vino'),'merchant: no ducats, no wine');
+ api.closeDucan();ok(S().mode==='play','merchant: back to the road');p.invuln=0;p.hp=1;api.die();ok(S().mode==='play'&&p.hp>1&&!p.amajlija,'merchant: the amulet lifts a fallen Marko once');api.die();ok(S().mode==='dead','merchant: and only once');}
 console.log(`${checks} battle checks passed.`);
