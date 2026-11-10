@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "clipFrames": 16,
+  "cellSize": [
+    768,
+    512
+  ],
+  "atlasSize": [
+    12288,
+    512
+  ],
+  "staticPng": 5,
+  "items": 6,
+  "checks": [
+    "exact dimensions",
+    "RGBA",
+    "native alpha outside UI",
+    "opaque felt centers",
+    "opaque scene",
+    "atlas exact frame match",
+    "manifest frame_layout count",
+    "16 GIF frames",
+    "loop flag"
+  ]
+}

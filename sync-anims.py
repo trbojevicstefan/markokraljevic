@@ -12,7 +12,9 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
             continue
         if 'frame_layout' not in json.load(open(manifest, encoding='utf8')):
             print('preskačem (nema frame_layout):', name); continue
-        if name.startswith(('barjak-', 'pauza-')):  # banner loops and the pause scene are world art: a light WebP strip, not part of the sprite rig
+        if name == 'pauza-logor-16':  # the same 16-frame camp ships from art/world-pack-03/pauza-logor.png (sync-world.py)
+            continue
+        if name.startswith(('barjak-', 'pauza-', 'prelaz-')):  # banner loops, the pause scene and the scenes between pohodi are world art: a light WebP strip, not part of the sprite rig
             from PIL import Image
             dst = os.path.join(OUT, 'world', name + '.webp')
             if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(atlas):

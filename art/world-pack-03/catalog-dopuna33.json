@@ -1,0 +1,90 @@
+[
+  {
+    "id": "marko-sablja-izvlaci",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-izvlaci",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-idle",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-trci",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-trci",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-udarac-1",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-udarac-1",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-udarac-2",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-udarac-2",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-udarac-3",
+    "frames": 7,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-udarac-3",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-skok",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-skok",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "marko-sablja-vraca",
+    "frames": 5,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\marko-sablja-vraca",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

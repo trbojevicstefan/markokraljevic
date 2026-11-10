@@ -367,6 +367,15 @@ if _have('sirotinja-blagoslov'):
             SCALES[f'sirotinja-{k}'] = (s_, 'feet')
     print('sirotinja', round(s_, 4))
 
+# DOPUNA-33: Marko with his father's sabre. Codex drew all eight clips at the zoom of marko-idle-2, so they share one scale:
+# the one that makes the standing sabre clip as tall as Marko (MARKO_H), sole to crown.
+if _have('marko-sablja-idle'):
+    s_ = MARKO_H / visible_px('marko-sablja-idle', 'median')
+    for k in ['izvlaci', 'idle', 'trci', 'udarac-1', 'udarac-2', 'udarac-3', 'skok', 'vraca']:
+        if _have(f'marko-sablja-{k}'):
+            SCALES[f'marko-sablja-{k}'] = (s_, 'feet')
+    print('sablja', round(s_, 4), 'idle-2', round(SCALES.get('marko-idle-2', (0,))[0], 4))
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

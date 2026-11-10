@@ -1,0 +1,141 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-sablja-izvlaci",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 stands holding SPIKED MACE in right hand, sabre SHEATHED left;2 bringsmace tolefthip belt hook;3 mace attachedbelt, right hand reaches across to GOLD SABREHILT;4 draws blade halfway from BLACK SCABBARD heldleft hand;5 fully unsheathes sword forward;6 raises sword ready infront body. OnlyONE mace andONE sabre eachframe; mace alwaysbelt after3. Cape/face unchanged, real hand transitions.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. Six subtle living READY breathing poses, right hand holds curved sabre infront lowered diagonallyDOWN, left hand relaxed guard, MACE hooked leftbelt and emptyblackscabbardvisible.1 relaxed,2 inhalerises,3 fullbreath,4 exhale,5 settles,6 approaches1. Small cape/cloth followthrough, no attack.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-trci",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png",
+        "art/animation-pack-04/sources/dopuna33-reference/marko-run-single.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. SIX RUN phases matching original marko-run reference gait and cadence12fps:1 leftforward footcontact/rightback,2 compression/pass,3 oppositeflightstride,4 rightforwardcontact/leftback,5 compression/passopposite,6 flight returning1. True articulated alternate knees/ankles and forwardlean, not static hopping. Right hand carries sabre nearhip forward, left arm pumps, cloak flowsbehind, mace hanging leftbelt/scabbard do not disappear.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-udarac-1",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 lowguard,2 SABRE winds high behindRIGHTshoulder,3 hiptorque raisedblade anticipation,4 IMPACT FAST DIAGONAL CUT FROM ABOVE DOWN acrossfront,5 low followthrough bodybent,6 recover lowguard. SabreRIGHT hand, leftguard, MACE staysleftbelt. No target, no blood/effects. Impactframe4.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-udarac-2",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 sabre low at endpreviouscut,2 lowerspoint andloads hips,3 rightarm begins reversed swing,4 IMPACT RETURN RISING DIAGONAL CUT fromBELOW UP infront,5 blade high followthrough shoulderturn,6 recoversready. Clearly upward reverse cut different fromdownwardattack1. Mace staysbelt, sameface/armor. Impactframe4.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-udarac-3",
+      "kind": "human",
+      "frames": 7,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 7,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST7cells animation. Cell8 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 guard,2 broadrearswing windup withhipturn,3 deepanticipation shiftsweightBACK,4 IMPACT MASSIVE HORIZONTAL WAIST/CHEST HEIGHT SABRE SWEEP with LONG STEP FORWARD,5 overextendedfollowthrough,6 slowdrawbackrecover,7 settlesguard. Seven distinctposes, strongest blow and longerrecovery, right hand sabre leftcounterbalance, sameanatomicalsize. Macehookedleftbelt. No weapontrail. Impactframe4.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-skok",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT4COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST6cells animation. Cell7 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 takeoff crouchedknees handsbeginreachhilt,2 riseskneestucked BOTH HANDS grip ONE sabre,3 airborneapex SABRE HIGH ABOVE HEAD bothhandgrip,4 powerful BOTH-HANDED DOWNWARD CUT descending,5 falling kneesprepareland bladefrontlow,6 LANDS onbothboots kneescompressed swordlow. Engine suppliesairborneheight; posesgroundregistered, do not normalizecrouchsize. Mace remainsleftbelt. Landingframe6.",
+      "fps": 12
+    },
+    {
+      "id": "marko-sablja-vraca",
+      "kind": "human",
+      "frames": 5,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 5,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/marko-combo-1/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-izvlaci/frames/motion/frame-5.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte 2D game sprite animation sheet. Identity preservation and exact same style as supplied Marko references are the highest priority. Pure flat #FF00FF MAGENTA background everywhere outside subject, no magenta costume, no gradients, no shadows/scenery, no gridlines, labels/text or borders. Every full figure, cape and weapons safely INSIDE OWN SQUARE CELL with20px emptygutters. Consistent anatomical body/head size in every pose; never enlarge crouches or normalize poses independently. Final512x512 cells with groundy487; idle anatomical standingheight383px, zoom EXACTLY marko-idle-2. Additional neutral standing calibration MUST be same Marko scale across sheet. EXACT SAME MARKO KRALJEVIC as references1and2, NOT a new design: same strong adult Balkan face, heavy BLACK MOUSTACHE and short black beard, same swept-back shoulder-length BLACK HAIR, same broad torso/anatomy. Same RED CLOAK with GOLD EMBROIDERED HEM and round gold shoulder clasp, brown LAMELLAR ARMOR, IVORY SHIRT with RED embroidered cuffs/hem, dark trousers, same tall BROWN LEATHER BOOTS and wide belt. No helmet/crown, no new armor/color/face. Right-facing. ONE long CURVED SERBIAN SABRE, matte steel blade, ornate TRIPLE GOLD HILT/GUARD with THREE DISTINCT small JEWELS (one set in each gold guard ornament), black leather grip. Only ONE blade and ONE handle, not three swords. BLACK LEATHER SCABBARD with GOLD fittings suspended at LEFT HIP, and his familiar SPIKED MACE hangs from same LEFT BELT side whenever sword is held. Keep identical sabre/three gemstones/scabbard/mace across all cells. No weapon glints, painted trails or magic effects. EXACT3COLUMNS x2ROWS equalSQUARECELLS rowmajor. FIRST5cells animation. Cell6 EXTRA SCALECALIBRATION: neutral UPRIGHT fullstanding Marko same proportions as referenceidle, sabrelow atside (or sheathed), armslow, no raisedweapon, head-to-boots383px target. Remainingcells EMPTY MAGENTA. 1 gently wipes matteSTEELblade against outer RED CLOAK heldLEFT hand,2 aligns swordtip with BLACK SCABBARD mouth atLEFT HIP,3 slides blade into blackscabbard up tohilt,4 releasesgoldhilt andunhooks SPIKED MACE fromleftbelt intoRIGHT hand,5 holds SPIKED MACE inRIGHT HAND ready like originalreference, SABRE FULLY SHEATHED. No bloodonblade, no duplicatedmace/sword, natural wristanatomy. Finalpose transitions original topuzidle.",
+      "fps": 12
+    }
+  ]
+}

@@ -560,3 +560,30 @@ DOPUNA-32: prop-kolac-nabijen — NIJE USPELO; image_gen HTTP400 moderation_bloc
 DOPUNA-32: prop-kolci-red — GOTOVO; PNG RGBA1536x512, tamna udaljena silueta bez krvavih detalja, oslonac dole u sredini y487, art/world-pack-03/prop-kolci-red.png. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/prop-kolci-red/.
 
 DOPUNA-32 REZULTAT: 6/6 slojeva Podruma gotovo, originali u world-pack-01/staro/ potvrdaSHA256, providni otvori sacuvani. Pregled11pohoda/66slojeva samo spisak, njihove slike potvrdeno nepromenjene. Kolci2/3: prop-kolci-glave i prop-kolci-red gotovo; prop-kolac-nabijen odbio image_gen safety filter violence/self-harm. Katalog catalog-dopuna32.json; provere validation-dopuna32.json; pregledi preview-dopuna32-podrum.jpg i preview-dopuna32-kolci.jpg.
+
+DOPUNA-33: marko-sablja-izvlaci — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-izvlaci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-trci — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-trci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-udarac-1 — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-udarac-1/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-udarac-2 — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-udarac-2/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-udarac-3 — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-udarac-3/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-skok — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-skok/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33: marko-sablja-vraca — GOTOVO; 5kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-vraca/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna33.json, izvor sacuvan.
+
+DOPUNA-33 ZAVRSENO: 8/8 klipova, 48 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna33.json, promptovi prompts-dopuna33.json, pregled art/animation-pack-04/preview-dopuna33.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; Marko383px prema marko-idle-2; izgled prema idle-2/combo-1; oslonac (256,488).
+
+DOPUNA-34: kolci-vitezovi-glave.png — GOTOVO; art/world-pack-03/kolci-vitezovi-glave.png, PNG RGBA1024x1024, srpski vitezovi u boji, mat, bez krupnih krvavih detalja. Donjih22% redovi798..1023 alfa255 preko CELE sirine; iznad providan vazduh. Tela gde postoje VEZANA uz kolac. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna34.json; izvor/qa sources/dopuna34/kolci-vitezovi-glave/.
+
+DOPUNA-34: kolci-vitezovi-glave.png — GOTOVO; art/world-pack-03/kolci-vitezovi-glave.png, PNG RGBA1024x1024, srpski vitezovi u boji, mat, bez krupnih krvavih detalja. Donjih22% redovi798..1023 alfa255 preko CELE sirine; iznad providan vazduh. Tela gde postoje VEZANA uz kolac. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna34.json; izvor/qa sources/dopuna34/kolci-vitezovi-glave/.
+DOPUNA-34 ISPRAVKA: kolci-vitezovi-glave zavrsen u drugom pokusaju, uklonjeni nenaruceni zivi vitezovi i udaljeno naselje. Prvi izvoz sacuvan; tacan broj pokusaja2, refinement-dopuna34.json.
+
+DOPUNA-34: kolci-vitezovi-red.png — GOTOVO; art/world-pack-03/kolci-vitezovi-red.png, PNG RGBA1536x768, srpski vitezovi u boji, mat, bez krupnih krvavih detalja. Donjih22% redovi599..767 alfa255 preko CELE sirine; iznad providan vazduh. Tela gde postoje VEZANA uz kolac. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna34.json; izvor/qa sources/dopuna34/kolci-vitezovi-red/.
+
+DOPUNA-34: kolac-vitez.png — GOTOVO; art/world-pack-03/kolac-vitez.png, PNG RGBA768x1024, srpski vitezovi u boji, mat, bez krupnih krvavih detalja. Donjih22% redovi798..1023 alfa255 preko CELE sirine; iznad providan vazduh. Tela gde postoje VEZANA uz kolac. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna34.json; izvor/qa sources/dopuna34/kolac-vitez/.
