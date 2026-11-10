@@ -239,7 +239,7 @@ function drawBones(){if(!rig?.kosturi)return;for(const b of bones){if(b.x<camera
 const FIN_WINDOW=1.15;let finGlobal=0;
 // the four face buttons: X (J) takes the head, Y (K) smashes him into the ground, B (Shift) lifts and hurls him, A (Space) leaps on him
 const FIN_KEYS={KeyJ:'odsecanje',KeyU:'odsecanje',KeyK:'smrskaj',ShiftLeft:'noge',ShiftRight:'noge',Space:'gazi'};
-const FIN_INFO={odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
+const FIN_INFO={oderi:{dur:2.6,hit:.9,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
  bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},noge:{dur:1.05,hit:.48,clip:'marko-finisher-legs',fb:'marko-finisher'},gazi:{dur:1.15,hit:.66,clip:'marko-finisher-stomp',fb:'marko-plunge'}};
 // ================= stealth: sleepers, sentries and camps, killed silently from behind =================
 // In each pohod some foes doze where they stand, some walk a short beat, and two camps of sleepers lie by a fire.
@@ -282,12 +282,30 @@ function drawStealth(){if(!level||!world.enemies)return;
   for(let i=0;i<3;i++){const k=(time*.45+i/3+e.id*.17)%1;ctx.save();ctx.globalAlpha=Math.sin(k*Math.PI)*.85;ctx.font=`bold ${12+i*3}px Georgia`;ctx.fillStyle='#e8f0ff';ctx.strokeStyle='rgba(10,16,30,.8)';ctx.lineWidth=3;const zx=e.x+e.face*14+k*18,zy=e.y-70-k*46;ctx.strokeText('z',zx,zy);ctx.fillText('z',zx,zy);ctx.restore();}}
  const t=tihoTarget();if(t)textLabel(padIndex!=null?'X · TIHO':'J · TIHO',t.x,t.y-(t.spava?110:150),{font:'bold 12px Georgia',color:'#e8f0ff',glow:'#9fc4ff'});}
 
+// ================= brutality: Marko beats a foe down to the bone (↑+K on a foe ready to be finished, blood on) =================
+// Eight blows of the mace: each throws blood and flesh, the foe soaks darker red, and at the last one only his bones are left
+// standing in their rags, then they fall. Codex will draw Marko's beating and a standing skeleton; until then the combo
+// blows and the rotted skeleton the corpses already turn into stand in.
+function beginOderi(e){const I=FIN_INFO.oderi;finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind:'oderi',hit:false,n:0};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*70;p.attack=0;p.blocking=false;p.spin=0;
+ Object.assign(e,{stun:5,mode:'stun',vx:0,finT:0,lunge:null,pendingHit:null,brutal:0});sfx('whoosh_heavy',{gain:1});sayGrunt(true);label('ODERI GA!',e.x,e.y-175,'#ff8a7a');}
+function oderiHit(e,n){e.brutal=Math.min(1,n/8);e.flash=.12;hitstop=.045;shake=settings.reduced?0:3+n*.4;rumble(.35+n*.05,90);
+ sfx('hit_heavy',{gain:.85,rate:.85+Math.random()*.3,x:e.x});if(n%2)sfx('hit_body',{gain:.7,x:e.x});fx('hit',e.x-p.face*10,e.y-60-((n%3)-1)*22,true);
+ blood(e.x-p.face*4,e.y-75+((n%3)-1)*22,p.face,20);
+ // bits of flesh and cloth
+ for(let i=0;i<10;i++){const a=-Math.PI*(.15+Math.random()*.7),sp=180+Math.random()*420;particles.push({kind:'blood',x:e.x+(Math.random()-.5)*26,y:e.y-50-Math.random()*70,vx:Math.cos(a)*sp*(Math.random()<.75?p.face:-p.face),vy:Math.sin(a)*sp,life:2.4,max:2.4,r:3+Math.random()*4.5,color:['#5e0508','#7a1a12','#8a2a1c','#3a0204'][i%4]});}
+ if(n===1||n===5)foeSay(e,'hurt',{chance:1});}
+function oderiEnd(e){if(!e.alive)return;const x=e.x,y=e.y,face=e.face,scale=e.scale||1,type=e.type;e.hp=0;slay(e,0);const c=corpses[corpses.length-1];if(c&&Math.abs(c.x-x)<2)corpses.pop();
+ bones.push({x,y,face,v:BONE_V[type]??0,t:1.4,scale});
+ for(let i=0;i<60;i++){const a=-Math.PI*Math.random(),sp=200+Math.random()*560;particles.push({kind:'blood',x:x+(Math.random()-.5)*30,y:y-70+(Math.random()-.5)*60,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:3,max:3,r:2+Math.random()*4.5,color:['#7a070b','#9b0d12','#5e0508','#8a2a1c'][i%4]});}
+ sfx('bones',{gain:.9,x});sfx('boom',{gain:.5});shake=settings.reduced?0:9;rumble(.8,260);hitstop=.09;screenBlood(3);comboName('DO KOSTIJU!');}
+
 function finishable(e){return e.alive&&!e.champion&&!e.kit&&e.type!=='pas'&&e.zone===zone&&!e.enter&&!e.climb&&!e.held&&e.grounded!==false&&e.hp>0&&(training||e.hp<=e.maxHp*.25)&&Math.abs(e.x-p.x)<125&&Math.abs(e.y-p.y)<40;}
 function finishTarget(){let best=null;for(const e of world.enemies)if(e.finT>0&&finishable(e)&&(!best||Math.abs(e.x-p.x)<Math.abs(best.x-p.x)))best=e;return best;}
 function updateFinisher(dt){
  finGlobal=Math.max(0,finGlobal-dt);
  if(finisher){const F=finisher,e=F.e;F.t+=dt;p.vx=0;p.attack=0;p.invuln=Math.max(p.invuln,.25);
   if(F.kind==='bacanje'&&!F.hit&&e.alive&&F.t>F.dur*.18){e.held=true;const k=clamp((F.t-F.dur*.18)/(F.dur*.2),0,1);e.liftK=k;e.x=p.x+p.face*(58-93*k);e.y=p.y-148*k;}
+  if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/.27);if(n>0&&n!==F.n){F.n=n;oderiHit(e,n);}}
   if(F.kind==='gazi'&&!F.hit&&e.alive){e.prone=clamp(F.t/.38,0,1);F.x0??=p.x;p.x=F.x0+(e.x-p.face*38-F.x0)*clamp(F.t/(F.dur*F.hitAt),0,1);}
   if(!F.hit&&F.t>=F.dur*F.hitAt){F.hit=true;finishBlow(F);}if(F.t>=F.dur){finisher=null;p.cooldown=.2;}return true;}
  for(const e of world.enemies){if(!e.alive)continue;e.finCool=Math.max(0,(e.finCool||0)-dt);
@@ -295,12 +313,13 @@ function updateFinisher(dt){
   else if(e.finCool<=0&&finishable(e)&&mode==='play'&&p.grounded&&!horseMounted&&!p.pinned){if(training||(finGlobal<=0&&Math.random()<.45)){e.finT=FIN_WINDOW;sfx('ring',{gain:.35,rate:1.6,x:e.x});}else e.finCool=4;}}
  {const t=tihoTarget();if(t&&tap('KeyJ','KeyU')){beginTiho(t);return true;}}
  const e=finishTarget();if(!e||p.down>0||p.climb||horseMounted||p.pinned||!p.grounded)return false;
+ if(settings.gore!==false&&isDown('KeyW','ArrowUp')&&tap('KeyK')){beginOderi(e);return true;}
  const key=Object.keys(FIN_KEYS).find(k=>tap(k));if(key){const kind=FIN_KEYS[key],I=FIN_INFO[kind];finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind,hit:false};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*(kind==='bacanje'?60:kind==='gazi'?90:kind==='noge'?80:kind==='smrskaj'?67:74);p.attack=0;p.blocking=false;p.spin=0;
   Object.assign(e,{stun:5,mode:'stun',vx:0,finT:0,lunge:null,pendingHit:null});sfx('whoosh_heavy',{gain:1});sayGrunt(true);return true;}
  return false;}
 // the drawing the finishers cut: a champion with his own look is cut from his own drawing, at its own size
 function cutArt(e){if(e.look&&rig?.[e.look+'-hurt'])return{name:e.look+'-hurt',sc:1};return{name:rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,sc:e.scale||(e.elite?1.08:1)};}
-function finishBlow(F){const e=F.e;if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const {name,sc}=cutArt(e);
+function finishBlow(F){const e=F.e;if(F.kind==='oderi')return oderiEnd(e);if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const {name,sc}=cutArt(e);
  if(F.kind==='bacanje'){e.held=false;e.x=p.x+p.face*30;e.y=p.y-110;const before=corpses.length;slay(e,1.7);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.vx=p.face*Math.max(780,Math.abs(c.vx||0));c.vy=Math.min(c.vy||0,-360);c.face=-p.face;}
   for(const o of world.enemies)if(o.alive&&o!==e&&(o.x-p.x)*p.face>0&&Math.abs(o.x-p.x)<360&&Math.abs(o.y-p.y)<60){o.hp-=30;o.stun=Math.max(o.stun,1.6);o.mode='stun';o.knock=p.face*20;label('OBOREN',o.x,o.y-140,'#ffcf9a');if(o.hp<=0)slay(o,.8);}
   sfx('whoosh_heavy',{gain:1});sfx('fall',{gain:1,delay:.5});label('BAČEN!',e.x,e.y-170,'#ff9a8a');shake=settings.reduced?0:8;rumble(.8,200);}
@@ -376,7 +395,7 @@ function drawHeads(){for(const h of heads){const a=1-clamp((h.t-ROT_AT)/2,0,1);i
 function drawFinishPrompt(){const e=finishTarget();if(!e||finisher)return;const k=clamp(e.finT/FIN_WINDOW,0,1),x=e.x,y=e.y-195,pad=padIndex!=null;
  halo(x,y,62,'rgba(255,60,30,.45)');ctx.beginPath();ctx.arc(x,y,44,-Math.PI/2,-Math.PI/2+Math.PI*2*k);ctx.strokeStyle='#ff4a2a';ctx.lineWidth=4;ctx.stroke();
  for(const [dx,dy,kb,pb,col] of[[0,-24,'K','Y','#e8c040'],[-24,0,'J','X','#4a8ae8'],[24,0,'⇧','B','#e04a3a'],[0,24,'␣','A','#4ac060']]){ellipse(x+dx,y+dy,12,12,'rgba(16,6,6,.92)');ctx.beginPath();ctx.arc(x+dx,y+dy,12,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();textLabel(pad?pb:kb,x+dx,y+dy+5,{font:'bold 13px Georgia',color:'#fff3e0'});}
- textLabel('DOKRAJČI',x,y+58,{font:'bold 13px Georgia',color:'#ffd0c0',glow:'#c0301a'});}
+ textLabel('DOKRAJČI',x,y+58,{font:'bold 13px Georgia',color:'#ffd0c0',glow:'#c0301a'});if(settings.gore!==false)textLabel(pad?'↑+Y · ODERI':'↑+K · ODERI',x,y+76,{font:'bold 11px Georgia',color:'#ff9a8a',glow:'#7a0a06'});}
 // ================= puzzles made by hand: bells, mirrors, the scale, the fairy ring, the powder keg =================
 // a struck object: Marko's blow reaches it once per swing
 function hitObj(o,x,y,r=80){if(!attackActive()||o.hitId===p.attackId)return false;if(Math.abs(p.x+p.face*35-x)>r||Math.abs(p.y-75-y)>85)return false;o.hitId=p.attackId;return true;}
@@ -800,6 +819,7 @@ function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.
  const held=[...keys];keys.clear();pressed.clear();p.vx=0;updatePlayer(dt);for(const k of held)keys.add(k);p.vx=0;p.attack=0;p.idleT=0;return true;}
 function playerPose(){return sabljaPose(basePose());}
 function basePose(){
+ if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/.27,nm='marko-combo-'+(1+Math.floor(k)%2),n=rig?.[nm]?.frames.length||6;return{name:nm,frame:Math.min(n-1,Math.floor((k%1)*n))};}
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,frame:Math.min(n-1,Math.floor(k*n)),dy:leap};}
  if(gunner&&rig?.['marko-push'])return{name:'marko-push',frame:gunner.recoil>.3?3:0};
@@ -883,7 +903,7 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,name:e.look+'-poziv',frame:Math.min(P.frames.length-1,Math.floor((1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
  if(e.skriven)pose.alpha=.4;
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
- if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.flash>0?e.flash/.15*.5:0,flashColor:'#ffd6bf'});
+ if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.brutal>0?Math.max(e.brutal*.72,e.flash>0?e.flash/.15*.5:0):e.flash>0?e.flash/.15*.5:0,flashColor:e.brutal>0?'#5a0306':'#ffd6bf'});
  if(e.mode==='windup'){ellipse(x,e.y-152,11,11,'#b8382a');ellipse(x,e.y-152,8,8,'#d9503a');textLabel('!',x,e.y-146,{font:'bold 16px Georgia',color:'#fff3bd'});halo(x,e.y-152,26,'rgba(255,90,50,.8)');}
  if(e.hp<e.maxHp&&!e.champion){const bw=54,bx=x-bw/2,by=e.y-136;ctx.fillStyle='rgba(10,20,20,.8)';ctx.fillRect(bx-1,by-1,bw+2,6);const g=ctx.createLinearGradient(bx,0,bx+bw,0);g.addColorStop(0,'#a8352f');g.addColorStop(1,'#e8a061');ctx.fillStyle=g;ctx.fillRect(bx,by,bw*Math.max(0,e.hp/e.maxHp),4);}}
 function makeCorpse(type,x,y,face,persist=false,vy=0){return{type,x,y,face,persist,t:0,vx:0,vy:Math.max(0,vy),w:34,h:40,grounded:false};}
@@ -2112,7 +2132,7 @@ const PAD_PARTS=[[6,'LT',118,40,'trig','l','Vino'],[4,'LB',132,70,'shoulder','l'
  [3,'Y',392,118,'face','r','Teški udarac'],[2,'X',360,150,'face','l2','Topuz'],[1,'B',424,150,'face','r','Kolut'],[0,'A',392,182,'face','r','Skok'],
  [10,'L3',150,150,'stick','l','Kretanje · klik: vihor'],[11,'R3',326,222,'stick','b','Junački udar'],[9,'≡',300,128,'mini','t','Pauza'],[8,'⧉',220,128,'mini','t','Očeva sablja'],
  [12,'↑',200,198,'dpad','l','Lestve · popni se'],[13,'↓',200,246,'dpad','l','Čučanj · siđi'],[14,'←',176,222,'dpad','n',''],[15,'→',224,222,'dpad','n','']];
-const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga']]],
+const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga'],['↑+Y','Oderi do kostiju']]],
  ['Top','priđi topu i pritisni RT',[['↑ ↓','Ugao cevi'],['← →','Više ili manje baruta'],['X','Pucaj'],['RT','Ostavi top']]],
  ['Na ivici','kad visiš',[['↑ / A','Popni se'],['↓','Pusti se']]],
  ['Kombinacije','',[['X X X','Niz udaraca'],['↑ + X','Uvis'],['↓','Klizanje u trku'],['↓ + A','Siđi s daske'],['LB','Odbij u pravom trenu i vrati udarac']]]];
@@ -3075,6 +3095,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='sultan'){await startLevel(lv('podrum'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='bacva'&&t.kraj);if(t)at(t.x-300,t.y);toast('Bačva rujnog vina. Ovde ti niko ne brani: pij (E).',5);return;}
  if(g==='sirotinja'){await startLevel(lv('selo'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='sirotinja');if(t){at(t.x-260,t.y);p.coins=Math.max(p.coins||0,14);}toast('Sirotinja kraj puta. Priđi i daj im dukate (E).',5);return;}
  if(g==='svatovi'){await startLevel(lv('rusevine'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='kavez');if(t)at(t.x-260,t.y);toast('Razbij kavez topuzom i oslobodi svatove',5);return;}
+ if(g==='oderi'){await startLevel(lv('klisura'));await wait(300);const e=world.enemies.find(e=>!e.champion&&!e.perch&&TIHO_TYPES.includes(e.type)&&e.x>level.spawn.x+400);if(e){e.spava=false;e.patrola=null;e.hp=e.maxHp*.2;at(e.x-110,e.y);}toast('Ošamuti ga, pa kad zasija krug: ↑ i K. Oderi ga do kostiju.',6);return;}
  if(g==='tiho'){await startLevel(lv('klisura'));await wait(300);const L=world.logori?.[0];if(L)at(L.x-300,L.y);toast('Logor spava. Prikradi se čučeći (S), pa J s leđa.',6);return;}
  if(g==='platforme'){await startLevel(lv('pecina'));await wait(300);const q=world.platforms.filter(q=>q.kind==='plank'&&!q.bridge&&!q.crumble).sort((a,b)=>a.x-b.x)[1];if(q)at(q.x+q.w/2,q.y);return;}
  if(g==='kolci'){await startLevel(lv('tvrdjava'));await wait(300);const k=world.kolci?.[1]||world.kolci?.[0];if(k)at(k.x-160,k.y);return;}
