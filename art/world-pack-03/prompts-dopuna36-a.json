@@ -1,0 +1,113 @@
+{
+  "mode": "built-in image_gen",
+  "jobs": [
+    {
+      "name": "prelaz-selo-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. Marko, when present, must match character reference: strong adult Serbian hero, dark hair, prominent BLACK moustache and short black beard, RED gold-embroidered cloak, cream sleeves with red Serbian embroidery, chainmail/armour, dark trousers and leather boots, spiked iron mace at his belt. Bareheaded or dark fur kalpak, NEVER a turban. Sarac is ALWAYS a white horse with large chestnut/russet patches, chestnut mane, ornate red saddle, exactly four legs. SCENE: Village blacksmith crouches beside Sarac, carefully fitting a horseshoe to ONE raised front hoof. Marko stands by the horse's head holding the bridle/reins. A single spare iron horseshoe rests clearly on a nearby anvil. Rustic medieval Serbian forge, village houses and small tool details. Image2 is Marko identity; Image3 horse colour reference only. Keep horse anatomy clear, blacksmith's hands visibly work on raised hoof."
+    },
+    {
+      "name": "prelaz-selo-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. Marko, when present, must match character reference: strong adult Serbian hero, dark hair, prominent BLACK moustache and short black beard, RED gold-embroidered cloak, cream sleeves with red Serbian embroidery, chainmail/armour, dark trousers and leather boots, spiked iron mace at his belt. Bareheaded or dark fur kalpak, NEVER a turban. Sarac is ALWAYS a white horse with large chestnut/russet patches, chestnut mane, ornate red saddle, exactly four legs. SCENE: An Ottoman detachment in turbans surrounds a Kosovo village outside its wooden palisade. Inside, village women shelter and lead children toward safety. Marko on patched white/chestnut Sarac rides outward THROUGH the open village gateway to defend them. Clear spatial storytelling: civilians sheltered behind, Marko in central gateway, armed Ottoman soldiers outside. Crimson Serbian eagle banner at village gate. No gore or injuries. Image2 identity and Image3 horse colour only."
+    },
+    {
+      "name": "prelaz-selo-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Generate a production animation sprite-sheet of TWELVE frames of the SAME complete opaque landscape scene, fixed camera. EXACT grid:4columns x3rows, row-major frame1..12 left-to-right then next row. Entire sheet3072x1536, each cell768x512 (3:2). Every cell is full bleed, same camera/crop/scale, no grid lines, margins, labels, numbers or gutters. The sheet is twelve nearly identical views with ONLY described small elements moving, NOT twelve different compositions or camera angles. Hand-painted matte richly detailed medieval2Dgame look matching Image1 pauza-logor, NOT manuscript/gold-leaf/pixel art. Static architecture, terrain, faces and bodies register at identical coordinates in all12cells. Opaque backgrounds throughout, no transparency. Smooth cyclical phases0,30,60,90,120,150,180,210,240,270,300,330degrees, so frame12 naturally leads back to frame1; no cuts. No text/watermark.  Marko, when present, must match character reference: strong adult Serbian hero, dark hair, prominent BLACK moustache and short black beard, RED gold-embroidered cloak, cream sleeves with red Serbian embroidery, chainmail/armour, dark trousers and leather boots, spiked iron mace at his belt. Bareheaded or dark fur kalpak, NEVER a turban. Sarac is ALWAYS a white horse with large chestnut/russet patches, chestnut mane, ornate red saddle, exactly four legs. SCENE: Dawn on a Kosovo village road. Marko sits mounted on patched Sarac, in a quiet held riding pose facing toward a small village beyond, centre-left. Serbian crimson banner with white double-headed eagle at right beside road. Warm pink-gold sunrise and painted hills. ONLY cloak hem, horse mane/tail and banner cloth sway through a gentle complete12-phase wind cycle. Horse legs, Marko face/body, camera, road, village and flagpole remain still; no gallop or translation. All12frames maintain EXACT same character identity and horse patches. Image1 style/identity, Image2 Marko identity. LAST reference image is ONLY the 4x3 layout template, not art: replace every cell with the full scene and remove all guide lines. Exactly FOUR columns and THREE rows, twelve equal3:2landscape cells."
+    },
+    {
+      "name": "prelaz-klisura-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. SCENE: On the rocky bank of the river Ibar under an old oak, two elderly Serbian guslars sit playing traditional ONE-STRING gusle with short bows; villagers gather seated and standing attentively listening to a song about Marko. Each gusle has a carved upright neck and small skin-covered bowl body, NOT a guitar/violin. Wise wrinkled faces, grey moustaches, Serbian wool caps, embroidered vests. River winds between hills under golden sky. No turbans, no unrelated soldiers."
+    },
+    {
+      "name": "prelaz-klisura-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. SCENE: Ottoman soldiers wearing turbans seize and break a traditional Serbian one-string gusle beside the river Ibar. An elderly grey-haired Serbian guslar crouches protectively over his gusle, shielding it with his body and arms as a soldier grabs its carved neck; a second broken gusle and bow lie on the stones. Villagers recoil in background. Clear non-graphic narrative of destruction of an instrument, no blood, no bodily injury. Old man has Serbian wool cap or bare head, NO turban. Gold background and expressive faces."
+    },
+    {
+      "name": "prelaz-klisura-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Generate a production animation sprite-sheet of TWELVE frames of the SAME complete opaque landscape scene, fixed camera. EXACT grid:4columns x3rows, row-major frame1..12 left-to-right then next row. Entire sheet3072x1536, each cell768x512 (3:2). Every cell is full bleed, same camera/crop/scale, no grid lines, margins, labels, numbers or gutters. The sheet is twelve nearly identical views with ONLY described small elements moving, NOT twelve different compositions or camera angles. Hand-painted matte richly detailed medieval2Dgame look matching Image1 pauza-logor, NOT manuscript/gold-leaf/pixel art. Static architecture, terrain, faces and bodies register at identical coordinates in all12cells. Opaque backgrounds throughout, no transparency. Smooth cyclical phases0,30,60,90,120,150,180,210,240,270,300,330degrees, so frame12 naturally leads back to frame1; no cuts. No text/watermark.  SCENE: An elderly grey-moustached Serbian guslar in wool cap and embroidered vest sits under an oak by a small campfire on the bank of the river Ibar. Traditional ONE-STRING gusle held upright, short bow in hand; tranquil dusk, rocky gorge and flowing blue-green river behind. No Marko, horse or fairy. ONLY campfire flames/small embers flicker and river surface ripples progress in a seamless12-phase cycle; tiny bow movement can follow one gentle back-and-forth stroke while body/face/instrument position remain fixed. Same warm fire versus cool twilight lighting in all frames. LAST reference image is ONLY the 4x3 layout template, not art: replace every cell with the full scene and remove all guide lines. Exactly FOUR columns and THREE rows, twelve equal3:2landscape cells."
+    },
+    {
+      "name": "prelaz-suma-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "dist/assets/fairy-cast.png"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. Marko, when present, must match character reference: strong adult Serbian hero, dark hair, prominent BLACK moustache and short black beard, RED gold-embroidered cloak, cream sleeves with red Serbian embroidery, chainmail/armour, dark trousers and leather boots, spiked iron mace at his belt. Bareheaded or dark fur kalpak, NEVER a turban. Sarac is ALWAYS a white horse with large chestnut/russet patches, chestnut mane, ornate red saddle, exactly four legs. SCENE: Vila Ravijojla appears to Marko between ancient beech trees, radiant with golden-white magical light. Ravijojla matches Image3: blonde braid and flowing hair, white flower wreath, cream Serbian embroidered dress with red sash, translucent gold-veined butterfly wings, graceful small airborne figure. Marko looks upward in wonder, mace belted and red cloak clear. Rich beech foliage and golden fresco backdrop. Image2 Marko identity, Image3 fairy identity only."
+    },
+    {
+      "name": "prelaz-suma-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. SCENE: Two Ottoman arsonists in turbans put torches to the BASE of a great beech tree. High in its branches is a clearly visible eagle nest with two live eaglets; their large mother eagle circles protectively overhead. Smoke curls around trunk, initial flames low near roots, nest/eaglets still intact and unburned. Dramatic distant danger with no graphic injury or suffering. Medieval Serbian forest, warm gold manuscript backdrop, expressive readable faces, no text."
+    },
+    {
+      "name": "prelaz-suma-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Generate a production animation sprite-sheet of TWELVE frames of the SAME complete opaque landscape scene, fixed camera. EXACT grid:4columns x3rows, row-major frame1..12 left-to-right then next row. Entire sheet3072x1536, each cell768x512 (3:2). Every cell is full bleed, same camera/crop/scale, no grid lines, margins, labels, numbers or gutters. The sheet is twelve nearly identical views with ONLY described small elements moving, NOT twelve different compositions or camera angles. Hand-painted matte richly detailed medieval2Dgame look matching Image1 pauza-logor, NOT manuscript/gold-leaf/pixel art. Static architecture, terrain, faces and bodies register at identical coordinates in all12cells. Opaque backgrounds throughout, no transparency. Smooth cyclical phases0,30,60,90,120,150,180,210,240,270,300,330degrees, so frame12 naturally leads back to frame1; no cuts. No text/watermark.  SCENE: Wide elevated view over an ancient autumn beech forest, distant Kosovo hills and a small plume of smoke rising far behind tree line. ONE large brown eagle circles/glides above canopy in foreground sky. No people, horse, fairy or campfire. ONLY eagle wings perform a gentle12-phase flap/glide cycle along a SMALL closed oval, always fully within scene, and distant smoke curls upward softly in a loop. Forest, mountains, lighting, camera stay rigidly fixed. Eagle has two natural wings, birdlike anatomy; never duplicate it. LAST reference image is ONLY the 4x3 layout template, not art: replace every cell with the full scene and remove all guide lines. Exactly FOUR columns and THREE rows, twelve equal3:2landscape cells."
+    },
+    {
+      "name": "prelaz-manastir-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. SCENE: FOUR distinct medieval Serbian royal claimants argue outside an Orthodox monastery, illustrating the epic Uros and the Mrnjavcevici. Young Tsar Uros and three older Mrnjavcevic rulers (Vukasin, Ugljesa, Gojko), exactly FOUR royals in foreground, jeweled medieval crowns/caps, different coloured embroidered robes, expressive disagreeing gestures over who inherits the realm. None wears a turban. Monastery facade and crimson white double-headed eagle banner behind; gold background, no speech bubbles or text, no generic extra foreground king."
+    },
+    {
+      "name": "prelaz-manastir-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. A single square1024x1024 Serbian medieval manuscript miniature for the game's story interlude. Match Image1 ONLY for style: Serbian fresco and Miroslav Gospel illumination, luminous aged gold-leaf background, warm ochre/vermilion/olive palette, delicate mineral-pigment faces and fine brush detail, slight parchment patina. Clear expressive human faces, complete composed scene filling square, no panels, no text/captions/watermark. Serbian people wear medieval Serbian dress and NO turbans; ONLY Ottoman soldiers wear turbans. Non-graphic, no close blood. Marko, when present, must match character reference: strong adult Serbian hero, dark hair, prominent BLACK moustache and short black beard, RED gold-embroidered cloak, cream sleeves with red Serbian embroidery, chainmail/armour, dark trousers and leather boots, spiked iron mace at his belt. Bareheaded or dark fur kalpak, NEVER a turban. Sarac is ALWAYS a white horse with large chestnut/russet patches, chestnut mane, ornate red saddle, exactly four legs. SCENE: Marko judges justly before an OPEN imperial book on a carved lectern in a Serbian Orthodox monastery courtyard. His hand rests beside the book as he gives a firm fair ruling. Black-robed Orthodox monks with beards watch attentively; young Serbian Tsar Uros and the older noble claimants stand to sides listening. Marko's BLACK moustache, RED cloak, chainmail, embroidered cream sleeves and belted spiked mace clear. Page markings are tiny decorative strokes, NO readable invented text. No turbans. Image2 is identity reference."
+    },
+    {
+      "name": "prelaz-manastir-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Generate a production animation sprite-sheet of TWELVE frames of the SAME complete opaque landscape scene, fixed camera. EXACT grid:4columns x3rows, row-major frame1..12 left-to-right then next row. Entire sheet3072x1536, each cell768x512 (3:2). Every cell is full bleed, same camera/crop/scale, no grid lines, margins, labels, numbers or gutters. The sheet is twelve nearly identical views with ONLY described small elements moving, NOT twelve different compositions or camera angles. Hand-painted matte richly detailed medieval2Dgame look matching Image1 pauza-logor, NOT manuscript/gold-leaf/pixel art. Static architecture, terrain, faces and bodies register at identical coordinates in all12cells. Opaque backgrounds throughout, no transparency. Smooth cyclical phases0,30,60,90,120,150,180,210,240,270,300,330degrees, so frame12 naturally leads back to frame1; no cuts. No text/watermark.  SCENE: Close landscape view of a medieval Serbian Orthodox monastery BELL TOWER, red-tiled roof, carved stone arcades and two clearly visible bronze bells hanging from rigid beams in open arches. Courtyard, cypresses and hillside in background, warm late afternoon. Three white doves fly beside tower, all fully inside frame. No people, horse, fairy or campfire. ONLY bells gently sway through a complete12-phase oscillation, clappers counter-swing slightly; dove wings flap and birds follow SMALL closed flight paths without entering/leaving frame. Tower/cross/roof/background remain pixel-aligned and still. No camera motion. LAST reference image is ONLY the 4x3 layout template, not art: replace every cell with the full scene and remove all guide lines. Exactly FOUR columns and THREE rows, twelve equal3:2landscape cells."
+    }
+  ]
+}

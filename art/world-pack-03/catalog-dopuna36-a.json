@@ -1,0 +1,191 @@
+{
+  "scope": "DOPUNA36 A only",
+  "tool": "built-in image_gen",
+  "items": [
+    {
+      "file": "art\\world-pack-03\\prelaz-selo-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-selo-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-selo-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        14.292737325032553,
+        14.642158508300781,
+        15.297929551866318,
+        15.467155456542969,
+        14.367762247721354,
+        15.751324123806425,
+        14.536330329047308,
+        15.408509148491754,
+        13.909208509657118,
+        14.586077372233072,
+        14.184638129340277,
+        16.891311645507812
+      ],
+      "seam_difference": 16.891311645507812,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-selo-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-klisura-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-klisura-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-klisura-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        11.048528883192274,
+        11.857072618272568,
+        11.434481302897135,
+        13.149770948621963,
+        11.332745022243921,
+        12.214088439941406,
+        11.833614773220484,
+        12.145634969075521,
+        10.37298329671224,
+        10.881456163194445,
+        10.423902723524305,
+        11.939296298556856
+      ],
+      "seam_difference": 11.939296298556856,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-klisura-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-suma-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-suma-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-suma-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        11.708108690049913,
+        11.308626810709635,
+        11.637759738498263,
+        12.58565690782335,
+        12.379570855034721,
+        11.572397020128037,
+        11.453425937228731,
+        12.242401123046875,
+        11.509087456597221,
+        12.001016404893662,
+        11.734813266330294,
+        11.909361945258247
+      ],
+      "seam_difference": 11.909361945258247,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-suma-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-manastir-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-manastir-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-manastir-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        12.163725111219618,
+        11.917256673177084,
+        12.009466383192276,
+        14.702294243706598,
+        12.564210679796007,
+        11.985169304741753,
+        11.954646640353735,
+        14.341567993164062,
+        12.205364651150171,
+        12.292381286621094,
+        11.306280348036026,
+        14.624117533365885
+      ],
+      "seam_difference": 14.624117533365885,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-manastir-anim\\manifest.json"
+    }
+  ],
+  "prompts": "prompts-dopuna36-a.json"
+}

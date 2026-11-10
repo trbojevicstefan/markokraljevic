@@ -431,6 +431,12 @@
 #intro .intro-text{margin:0;font:500 clamp(18px,2.1vw,23px)/1.5 var(--display);color:var(--ms-ink)}
 #intro .intro-text::first-letter{float:left;font:700 50px/1 var(--display);color:var(--cinnabar);padding:.22em .3em .12em;margin:4px 10px 0 0;background:url(assets/ui/rukopis-okvir-inicijala.webp) center/100% 100% no-repeat}
 #intro .intro-stage.show .intro-pic img{animation:kenBurns 11s ease-out both}
+/* a living scene before a pohod (DOPUNA-36): Codex's 12-frame painted strip, framed like the pause camp */
+#intro .intro-anim{display:none}
+#intro .intro-pic.anim{aspect-ratio:3/2;width:min(70vh,720px,56vw);padding:0;background:none;border-radius:6px;overflow:hidden;box-shadow:0 0 0 2px #7a5c34,0 0 0 7px #1e150d,0 0 0 9px #6a5230,0 22px 46px #000d}
+#intro .intro-pic.anim img{display:none}
+#intro .intro-pic.anim .intro-anim{display:block;width:100%;height:100%;background:0 0/1200% 100% no-repeat;animation:prelazAnim 1.5s steps(12) infinite}
+@keyframes prelazAnim{to{background-position:109.0909% 0}}
 #intro .intro-stage.show .intro-pic{animation:picIn .9s cubic-bezier(.2,.8,.2,1) both}
 #intro .intro-stage.show .intro-card{animation:cardIn 1s .25s cubic-bezier(.2,.8,.2,1) both}
 @keyframes kenBurns{from{transform:scale(1)}to{transform:scale(1.14)}}
