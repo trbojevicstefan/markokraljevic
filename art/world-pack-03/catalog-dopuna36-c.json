@@ -1,0 +1,191 @@
+{
+  "scope": "DOPUNA36 C only",
+  "tool": "built-in image_gen",
+  "items": [
+    {
+      "file": "art\\world-pack-03\\prelaz-rudnik-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-rudnik-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-rudnik-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        7.26072269015842,
+        8.162801106770834,
+        8.516749911838108,
+        9.463188171386719,
+        8.92319064670139,
+        9.273754543728298,
+        8.579120212131077,
+        10.034155103895399,
+        8.958677503797743,
+        7.748320685492622,
+        7.675688001844619,
+        8.061646355523003
+      ],
+      "seam_difference": 8.061646355523003,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-rudnik-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-rusevine-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-rusevine-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-rusevine-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        16.29254659016927,
+        16.60127427842882,
+        16.71467505560981,
+        18.332938300238716,
+        17.192448086208767,
+        16.665616353352863,
+        16.57043202718099,
+        17.769493950737846,
+        15.777485317654078,
+        15.915077209472656,
+        14.865250481499567,
+        16.598482767740887
+      ],
+      "seam_difference": 16.598482767740887,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-rusevine-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-reka-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-reka-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-reka-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        16.382181803385418,
+        17.13862779405382,
+        16.885087754991318,
+        18.328685336642796,
+        17.359613206651478,
+        17.446558634440105,
+        18.869322882758244,
+        20.75479465060764,
+        18.631596035427517,
+        18.100086636013454,
+        17.592322455512154,
+        18.75428517659505
+      ],
+      "seam_difference": 18.75428517659505,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-reka-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-oranje-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-oranje-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-oranje-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        13.296095954047308,
+        13.172876993815104,
+        12.776483323838976,
+        14.619457668728296,
+        12.964077419704862,
+        13.051262749565973,
+        12.854271782769098,
+        14.689910888671875,
+        13.002600775824652,
+        13.250006781684029,
+        13.752019246419271,
+        14.187388102213541
+      ],
+      "seam_difference": 14.187388102213541,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-oranje-anim\\manifest.json"
+    }
+  ],
+  "prompts": "prompts-dopuna36-c-final.json"
+}

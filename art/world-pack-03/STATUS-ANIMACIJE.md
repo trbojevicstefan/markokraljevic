@@ -748,3 +748,13 @@ DOPUNA-36 C: prelaz-rusevine-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8
 DOPUNA-36 C: prelaz-reka-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
 
 DOPUNA-36 C: prelaz-reka-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
+
+DOPUNA-36 C: prelaz-reka-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-reka-anim/. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
+
+DOPUNA-36 C: prelaz-oranje-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
+
+DOPUNA-36 C: prelaz-oranje-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
+
+DOPUNA-36 C: prelaz-oranje-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-oranje-anim/. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
+
+DOPUNA-36 C: ZAVRSENO — rudnik, rusevine, reka i oranje: 8 minijatura 1024x1024 + 4 ozivljene scene po 12 kadrova 768x512 (48 kadrova). Provereni atlas=rootPNG=frames, frame_layout, GIF12, petlja, izvorna srazmera2:1. Pregled preview-dopuna36-c.html; validation/catalog-dopuna36-c.json. Tacan skup promptova prompts-dopuna36-c-final.json; ugradjeni image_gen. Kod igre, dist i ostali delovi nisu menjani.
