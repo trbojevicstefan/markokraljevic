@@ -52,7 +52,9 @@ const safe=()=>{const {p}=S();p.invuln=99;p.hp=p.maxHp;};
 
 // ---- the finish: only for a foe under a quarter of his strength, not every time, four buttons, four ends ----
 async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});e.x=2450;e.home=2450;Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
- Object.assign(e,{stun:30,mode:'stun',hp:e.maxHp*.2});until(()=>e.finT>0,120*30);const opened=e.finT>0;api.pressed.add(key);step(2);const started=!!S().finisher;step(150);return{e,opened,started};}
+ Object.assign(e,{stun:30,mode:'stun',hp:e.maxHp*.2});
+ // the window opens by chance (45% a try); the dice are loaded here so the test never waits it out
+ const R=Math.random;Math.random=()=>.2;until(()=>e.finT>0,120*30);Math.random=R;const opened=e.finT>0;api.pressed.add(key);step(2);const started=!!S().finisher;step(150);return{e,opened,started};}
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true});safe();
  Object.assign(e,{stun:3,mode:'stun',hp:e.maxHp});step(120*6);ok(!(e.finT>0),'finish: never while the foe is still strong');}
 {const r=await finishWith("KeyJ");ok(r.opened&&r.started&&!r.e.alive&&S().heads.length===1&&S().corpses.some(c=>c.headless),'finish: X / J takes the head');}
