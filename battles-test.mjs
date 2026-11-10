@@ -206,4 +206,16 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  const p=S().p,e={id:777,x:p.x+260,y:p.y,vx:0,vy:0,w:36,h:75,hp:200,maxHp:200,type:'sword',zone:S().zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+260,attackId:0,grounded:true};w.enemies.push(e);w.orao.cd=0;
  until(()=>{safe();e.timer=9;return e.hp<200;},120*6);ok(e.hp<=200-45,'eagle: she swoops on a Turk and wounds him');
  w.orao.state='prati';w.orao.hladCd=0;p.invuln=0;p.hp=20;step(2);ok(w.orao.state==='hlad','eagle: Marko badly hurt, she spreads her wings over him');const h0=p.hp;step(120*3);ok(p.hp>h0+20,'eagle: her shade and water heal him');}
+// ---- the wounded falcon: bound, he follows Marko, spoils an archer's shot and brings water; archers lie hidden in the reeds ----
+{const w=await land('mocvara');const t=w.traps.find(t=>t.kind==='soko');ok(!!t&&w.traps.filter(t=>t.kind==='trska').length>=2,'falcon: the marsh has the wounded falcon and reeds');
+ ok(w.enemies.filter(e=>e.skriven).length>=4,'falcon: archers lie hidden in the reeds');
+ const p=S().p,foe=(type,x,o={})=>{const e={id:770+w.enemies.length,x,y:t.y,vx:0,vy:0,w:36,h:75,hp:200,maxHp:200,type,zone:S().zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o};w.enemies.push(e);return e;};
+ Object.assign(p,{x:t.x-60,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);const h=foe('sword',t.x+150);api.pressed.add('KeyE');step(2);ok(t.state==='ranjen','falcon: with a Turk beside him, Marko must first drive him off');
+ h.alive=false;api.pressed.add('KeyE');step(2);ok(t.state==='previja','falcon: E beside him and Marko binds his wing');until(()=>{safe();return t.state==='spasen';},120*3);
+ ok(t.state==='spasen'&&!!w.soko,'falcon: the wing bound, the falcon flies with Marko');ok(w.items.some(i=>i.cudo==='sokolovo-pero'&&Math.abs(i.x-t.x)<200),'falcon: he leaves the Falcon feather');
+ until(()=>{safe();return w.soko.state==='prati';},120*10);ok(w.soko.state==='prati','falcon: he follows Marko');
+ const a=foe('archer',p.x+300,{mode:'windup',timer:5,windupDuration:5,hp:65,maxHp:65});w.soko.cd=0;until(()=>{safe();if(a.mode==='windup')a.timer=5;return a.mode!=='windup';},120*3);ok(a.mode==='stun'&&a.hp<65,'falcon: he flies at an archer and spoils his shot');
+ a.alive=false;w.soko.state='prati';w.soko.vodaCd=0;p.invuln=0;p.hp=p.maxHp*.3;step(2);ok(w.soko.state==='voda','falcon: Marko wounded, the falcon brings water');const h0=p.hp;step(120*3);ok(p.hp>h0+20,'falcon: the water heals him');}
+{const w=await land('mocvara');const e=w.enemies.find(e=>e.skriven);e.alive=true;const p=S().p;Object.assign(p,{x:e.x-650,y:groundY(w,e.x-650,e.y),vx:0,vy:0,grounded:true});safe();step(120);ok(e.skriven&&e.mode==='idle','reeds: an archer far off stays hidden and still');
+ Object.assign(p,{x:e.x-300,y:groundY(w,e.x-300,e.y)});safe();step(3);ok(!e.skriven,'reeds: close by, the ambush rises');}
 console.log(`${checks} battle checks passed.`);

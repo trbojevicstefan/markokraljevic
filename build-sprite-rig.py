@@ -309,6 +309,21 @@ for name in ['guslar-svira', 'guslar-ceka']:
     if _have(name) and 'putnik-starac-idle' in SCALES:
         SCALES[name] = (SCALES['putnik-starac-idle'][0], 'feet')
 
+# DOPUNA-27: the falcon, smaller than the eagle (about 105 world px in flight); the wounded one sits on the ground
+if _have('soko-let'):
+    k_ = 105 / float(np.median([_width(c) for c in _cells('soko-let')]))
+    for name in ['soko-let', 'soko-napad', 'soko-voda']:
+        if _have(name):
+            SCALES[name] = (k_, 'center')
+    if _have('soko-ranjen'):
+        SCALES['soko-ranjen'] = (k_, 'feet')
+# DOPUNA-27: the Sultan's herald, his tall hat a little over a janissary (idle 158 world px)
+if _have('caus-idle'):
+    s_ = 158 / max(body_height(c) for c in _cells('caus-idle'))
+    for k in ['idle', 'walk', 'ferman', 'hurt', 'death']:
+        if _have(f'caus-{k}'):
+            SCALES[f'caus-{k}'] = (s_, 'center' if k == 'death' else 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

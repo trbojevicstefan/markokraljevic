@@ -118,7 +118,7 @@ export const RECIPES={
  prevoj:'flat stairs+ terrace+ ladder+ chase sator watch top lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney ledges terrace+ cellar flat ogledala pillars zid gap tower crumble crates flat boss:azdaja',
  podrum:'flat crates stairs- greda barrels plate ladder+ kljuc crates spikebed zid chimney crates stairs+ barrels tower crates boss:palikuca',
- mocvara:'flat bridge watch crumble ferry bridge crates logs kljuc spikebed watch ledges flat bridge pillars watch flat boss:tufekdzija',
+ mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc spikebed watch ledges flat trska bridge pillars ferry watch crates trska flat boss:tufekdzija',
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ flat boss:arapin',
  reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch flat boss:sword',
@@ -193,6 +193,10 @@ export function buildLayout(L,variant='day'){
   top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
   guslar(arg){const x0=x,len=ri(1100,1180);ground(len);traps.push({kind:'guslar',x:x0+Math.round(len*.4),y:gy,x0,x1:x0+len,mir:arg==='mir'});busy.push([x0,x0+len]);},
   gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
+  // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
+  soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
+  trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},
+  vino(arg){const x0=x,len=ri(820,900);ground(len);traps.push({kind:'bacva',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len,kraj:arg==='kraj'});busy.push([x0,x0+len]);},
   svatovi(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'kavez',x:x0+Math.round(len*.55),y:gy,hp:4});busy.push([x0+len*.3,x0+len*.8]);},
   sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
   // a wall with a low gap at its foot: too low to walk through — crouch (S) or slide (S while running) under it
@@ -289,10 +293,13 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the Arab's men guard each cage of wedding guests
  // the fire-raisers setting the eagle's beech alight
  for(const t of B.traps)if(t.kind==='gnezdo'){foe('palikuca',t.x-130,t.y,{gnezdo:true});foe('palikuca',t.x+140,t.y,{gnezdo:true});foe('sword',t.x+320,t.y,{gnezdo:true});}
+ // the Turks who broke the falcon's wing hunt him in the reeds; archers lie hidden in the reeds until Marko is close
+ for(const t of B.traps)if(t.kind==='soko'){foe('pas',t.x+250,t.y);foe('archer',t.x+430,t.y);foe('sword',t.x-260,t.y);}
+ for(const t of B.traps)if(t.kind==='trska'){foe('archer',t.x+t.w*.45,t.y,{skriven:true});foe('archer',t.x+t.w*.8,t.y,{skriven:true});}
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
- // the eagle's feather is hers to give: it waits in its hiding place only if her nest burns
- for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
+ // the eagle's and the falcon's feathers are theirs to give: each waits in its hiding place only if the bird is not saved
+ for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}const soko=r.cudo==='sokolovo-pero'&&B.traps.find(t=>t.kind==='soko');if(soko){soko.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
  // "Marko Kraljević poznaje očinu sablju": in the Turkish camp a young Turk wears Marko's father's sabre
  if(L.id==='tvrdjava'){const t=B.traps.find(t=>t.kind==='tent')||{x:B.width*.55,y:590};const q=floorAt(t.x+150);if(q)foe('sword',t.x+150,q.y,{look:'mladi-turcin',hp:560,maxHp:560,sablja:true,scale:1.06});}
  for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
