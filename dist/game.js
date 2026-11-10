@@ -1230,7 +1230,18 @@ function mostStrip(q){let s=mostStrips.get(q);if(s)return s;const seg=worldImg('
  g.save();g.translate(R-x0+post*k,0);g.scale(-1,1);g.drawImage(cap,0,top,capW,bot-top,0,0,cw,ch);g.restore();
  const f=g.createLinearGradient(0,(MOST.fade-top)*k,0,ch);f.addColorStop(0,'#000');f.addColorStop(1,'rgba(0,0,0,0)');g.globalCompositeOperation='destination-in';g.fillStyle=f;g.fillRect(0,0,x1-x0,ch);
  s={c,x:x0,y:q.y-1-(MOST.deck-top)*k,w:x1-x0,h:H};mostStrips.set(q,s);return s;}
-function drawPlank(q){if(q.x+q.w<camera-60||q.x>camera+VIEW_W+60)return;if(q.bridge){const s=mostStrip(q);if(s){ctx.drawImage(s.c,s.x,s.y,s.w,s.h);return;}}const g=ctx.createLinearGradient(0,q.y,0,q.y+16);g.addColorStop(0,'#9a7246');g.addColorStop(1,'#5a3e22');ctx.fillStyle=g;ctx.fillRect(q.x,q.y,q.w,14);for(let x=q.x+20;x<q.x+q.w;x+=34)line(x,q.y+1,x,q.y+13,'rgba(40,26,12,.6)',2);line(q.x,q.y+1,q.x+q.w,q.y+1,'rgba(255,226,170,.45)',1.5);
+// ---------- platforms painted by Codex (DOPUNA-37): stone, earth, masonry, snow... one material per land ----------
+// Three pieces (left end, a middle that repeats without a seam, right end), 192 tall with the walking surface at y=40, drawn at half size.
+// Until the pieces exist the old plank stays.
+const PLAT_MAT={selo:'zemlja',oranje:'zemlja',reka:'zemlja',suma:'mahovina',mocvara:'mahovina',klisura:'kamen',manastir:'zid',tvrdjava:'zid',rusevine:'zid',prevoj:'sneg',pecina:'kristal',podrum:'cigla',rudnik:'greda'},PLAT={k:.5,top:40,end:128,mid:256,h:192};
+const platStrips=new WeakMap();
+function platPiece(m,part){const id=`plat-${m}-${part}`;return worldFiles?.has(id+'.webp')?worldImg(id):null;}
+function platStrip(q){const m=PLAT_MAT[level?.id];if(!m)return null;let s=platStrips.get(q);if(s&&s.m===m)return s;const l=platPiece(m,'levo'),mid=platPiece(m,'sredina'),r=platPiece(m,'desno');if(!l||!mid||!r)return null;
+ const {k}=PLAT,H=PLAT.h*k,ew=Math.min(PLAT.end*k,q.w/2),es=ew/k,c=makeCanvas(Math.ceil(q.w*ZOOM),Math.ceil(H*ZOOM)),g=c.getContext('2d',{willReadFrequently:true});if(!g)return null;g.imageSmoothingQuality='high';g.scale(ZOOM,ZOOM);
+ for(let x=ew;x<q.w-ew-.5;){const n=Math.min(PLAT.mid*k,q.w-ew-x);g.drawImage(mid,0,0,n/k,PLAT.h,x,0,n,H);x+=n;}
+ g.drawImage(l,0,0,es,PLAT.h,0,0,ew,H);g.drawImage(r,PLAT.end-es,0,es,PLAT.h,q.w-ew,0,ew,H);
+ s={c,m,h:H};platStrips.set(q,s);return s;}
+function drawPlank(q){if(q.x+q.w<camera-60||q.x>camera+VIEW_W+60)return;if(q.bridge){const s=mostStrip(q);if(s){ctx.drawImage(s.c,s.x,s.y,s.w,s.h);return;}}else{const s=platStrip(q);if(s){ctx.drawImage(s.c,q.x,q.y-PLAT.top*PLAT.k,q.w,s.h);return;}}const g=ctx.createLinearGradient(0,q.y,0,q.y+16);g.addColorStop(0,'#9a7246');g.addColorStop(1,'#5a3e22');ctx.fillStyle=g;ctx.fillRect(q.x,q.y,q.w,14);for(let x=q.x+20;x<q.x+q.w;x+=34)line(x,q.y+1,x,q.y+13,'rgba(40,26,12,.6)',2);line(q.x,q.y+1,q.x+q.w,q.y+1,'rgba(255,226,170,.45)',1.5);
  if(q.bridge){for(const x of[q.x+6,q.x+q.w-6]){line(x,q.y+10,x,q.y-46,'#4a3220',6);}ctx.strokeStyle='#c8a66a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(q.x+6,q.y-42);ctx.quadraticCurveTo(q.x+q.w/2,q.y-10,q.x+q.w-6,q.y-42);ctx.stroke();}
  else{for(const x of[q.x+14,q.x+q.w-14]){line(x,q.y+14,x-10,q.y+40,'#4a3220',4);}}}
 let towerArt=null;function towerInfoUnused(){if(towerArt!==null)return towerArt;const im=levelArt['kula-strazara'];if(!im)return null;const c=(worldCatalog||[]).find(e=>e.id==='kula-strazara');towerArt=c&&c.deckY?{im,deckY:c.deckY,x0:c.deckX0,x1:c.deckX1}:{im,deckY:im.height*.3,x0:im.width*.25,x1:im.width*.75};return towerArt;}
