@@ -242,9 +242,10 @@ const FIN_WINDOW=1.15;let finGlobal=0;
 // the four face buttons: X (J) takes the head, Y (K) smashes him into the ground, B (Shift) lifts and hurls him, A (Space) leaps on him
 const SABLJA_FIN={odsecanje:'glava',smrskaj:'proburazi',noge:'preseci'};
 const FIN_KEYS={KeyJ:'odsecanje',KeyU:'odsecanje',KeyK:'smrskaj',ShiftLeft:'noge',ShiftRight:'noge',Space:'gazi'};
-// the beating: three blows strip him (every ODERI_STEP seconds), the fourth and heaviest leaves the skeleton
-const ODERI_STEP=.24,ODERI_CLIPS=['marko-combo-1','marko-combo-2','marko-combo-3','marko-combo-4'];
-const FIN_INFO={oderi:{dur:1.3,hit:.74,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
+// the beating: three blows strip him (one every ODERI_STEP seconds, landing 60% into it), the fourth and heaviest leaves the skeleton.
+// marko-brutal holds him by the collar and has two blows in its 8 frames: raise 0, swing 1, impact 2, recoil 3; raise 4 (and 7), impact 5, recoil 6.
+const ODERI_STEP=.24,ODERI_CLIPS=['marko-combo-1','marko-combo-2','marko-combo-3','marko-combo-4'],ODERI_FRAMES=[[0,1,2,2],[7,4,5,5]];
+const FIN_INFO={oderi:{dur:1.15,hit:.75,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
  bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},noge:{dur:1.05,hit:.48,clip:'marko-finisher-legs',fb:'marko-finisher'},gazi:{dur:1.15,hit:.66,clip:'marko-finisher-stomp',fb:'marko-plunge'},
  // with the father's sabre out: J cuts the head off, K runs him through, lifts him on the blade and throws him off, Shift cuts him in half
  glava:{dur:1.15,hit:.34,clip:'marko-sablja-glava',fb:'marko-finisher',gap:50},proburazi:{dur:1.6,hit:.8,clip:'marko-sablja-proburazi',fb:'marko-sablja-ubod',gap:58},
@@ -318,7 +319,7 @@ function updateFinisher(dt){
   if(F.kind==='bacanje'&&!F.hit&&e.alive&&F.t>F.dur*.18){e.held=true;const k=clamp((F.t-F.dur*.18)/(F.dur*.2),0,1);e.liftK=k;e.x=p.x+p.face*(58-93*k);e.y=p.y-148*k;}
   if(F.kind==='proburazi'&&!F.hit&&e.alive){if(!F.stab&&F.t>F.dur*.28){F.stab=true;blood(e.x,e.y-70,p.face,30);burst(e.x,e.y-70,'#b5161a',14,200);sfx('hit_body',{gain:1,x:e.x});sfx('hit_heavy',{gain:.7,rate:1.3,x:e.x});hitstop=Math.max(hitstop,.08);foeSay(e,'hurt',{chance:1});}
    if(F.stab){e.held=true;const k=clamp((F.t-F.dur*.36)/(F.dur*.3),0,1);e.liftK=k*.35;e.x=p.x+p.face*FIN_INFO.proburazi.gap;e.y=p.y-45*k;}}
-  if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/ODERI_STEP);if(n>0&&n!==F.n){F.n=n;oderiHit(e,n);}}
+  if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/ODERI_STEP+.4);if(n>0&&n<4&&n!==F.n){F.n=n;oderiHit(e,n);}}
   if(F.kind==='gazi'&&!F.hit&&e.alive){e.prone=clamp(F.t/.38,0,1);F.x0??=p.x;p.x=F.x0+(e.x-p.face*38-F.x0)*clamp(F.t/(F.dur*F.hitAt),0,1);}
   if(!F.hit&&F.t>=F.dur*F.hitAt){F.hit=true;finishBlow(F);}if(F.t>=F.dur){finisher=null;p.cooldown=.2;}return true;}
  for(const e of world.enemies){if(!e.alive)continue;e.finCool=Math.max(0,(e.finCool||0)-dt);
@@ -839,6 +840,7 @@ function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.
  const held=[...keys];keys.clear();pressed.clear();p.vx=0;updatePlayer(dt);for(const k of held)keys.add(k);p.vx=0;p.attack=0;p.idleT=0;return true;}
 function playerPose(){return sabljaPose(basePose());}
 function basePose(){
+ if(finisher?.kind==='oderi'&&rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.floor(k);return{name:'marko-brutal',frame:i>=4?6:ODERI_FRAMES[i%2][Math.min(3,Math.floor((k-i)*4))]};}
  if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.min(3,Math.floor(k)),nm=ODERI_CLIPS[i],n=rig?.[nm]?.frames.length||6;return{name:nm,frame:Math.min(n-1,Math.floor(Math.min(1,k-i)*n))};}
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,frame:Math.min(n-1,Math.floor(k*n)),dy:leap};}

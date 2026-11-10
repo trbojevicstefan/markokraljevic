@@ -1,0 +1,412 @@
+{
+  "tool": "built-in image_gen",
+  "clips": [
+    {
+      "id": "marko-sablja-tezak",
+      "frames": 7,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          124,
+          101,
+          387,
+          488
+        ],
+        [
+          112,
+          102,
+          400,
+          488
+        ],
+        [
+          123,
+          74,
+          389,
+          488
+        ],
+        [
+          118,
+          86,
+          393,
+          488
+        ],
+        [
+          86,
+          150,
+          426,
+          488
+        ],
+        [
+          88,
+          152,
+          424,
+          488
+        ],
+        [
+          92,
+          120,
+          419,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 7,
+      "gifFrames": 7,
+      "imagegenAttempts": 2
+    },
+    {
+      "id": "marko-sablja-ubod",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          132,
+          107,
+          380,
+          488
+        ],
+        [
+          112,
+          118,
+          399,
+          488
+        ],
+        [
+          67,
+          128,
+          445,
+          488
+        ],
+        [
+          55,
+          168,
+          456,
+          488
+        ],
+        [
+          78,
+          124,
+          434,
+          488
+        ],
+        [
+          125,
+          106,
+          387,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 6,
+      "gifFrames": 6,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "marko-sablja-uvis",
+      "frames": 6,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          122,
+          104,
+          389,
+          488
+        ],
+        [
+          106,
+          199,
+          406,
+          488
+        ],
+        [
+          86,
+          148,
+          426,
+          488
+        ],
+        [
+          97,
+          67,
+          415,
+          488
+        ],
+        [
+          119,
+          69,
+          392,
+          488
+        ],
+        [
+          104,
+          111,
+          408,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 6,
+      "gifFrames": 6,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "marko-sablja-vihor",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "bounds": [
+        [
+          74,
+          110,
+          438,
+          488
+        ],
+        [
+          76,
+          111,
+          435,
+          488
+        ],
+        [
+          105,
+          111,
+          407,
+          488
+        ],
+        [
+          51,
+          109,
+          461,
+          488
+        ],
+        [
+          107,
+          106,
+          404,
+          488
+        ],
+        [
+          145,
+          106,
+          366,
+          488
+        ],
+        [
+          133,
+          104,
+          378,
+          488
+        ],
+        [
+          75,
+          104,
+          436,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 2
+    },
+    {
+      "id": "marko-sablja-glava",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          121,
+          109,
+          390,
+          488
+        ],
+        [
+          96,
+          128,
+          415,
+          488
+        ],
+        [
+          51,
+          137,
+          461,
+          488
+        ],
+        [
+          57,
+          134,
+          455,
+          488
+        ],
+        [
+          98,
+          130,
+          413,
+          488
+        ],
+        [
+          83,
+          127,
+          429,
+          488
+        ],
+        [
+          114,
+          107,
+          398,
+          488
+        ],
+        [
+          122,
+          107,
+          390,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "marko-sablja-proburazi",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          129,
+          114,
+          382,
+          488
+        ],
+        [
+          65,
+          123,
+          446,
+          488
+        ],
+        [
+          47,
+          137,
+          464,
+          488
+        ],
+        [
+          64,
+          122,
+          448,
+          488
+        ],
+        [
+          86,
+          88,
+          426,
+          488
+        ],
+        [
+          70,
+          87,
+          442,
+          488
+        ],
+        [
+          52,
+          124,
+          459,
+          488
+        ],
+        [
+          129,
+          109,
+          383,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "marko-sablja-preseci",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          98,
+          133,
+          413,
+          488
+        ],
+        [
+          78,
+          159,
+          433,
+          488
+        ],
+        [
+          71,
+          150,
+          440,
+          488
+        ],
+        [
+          82,
+          154,
+          429,
+          488
+        ],
+        [
+          69,
+          138,
+          443,
+          488
+        ],
+        [
+          115,
+          135,
+          397,
+          488
+        ],
+        [
+          99,
+          121,
+          412,
+          488
+        ],
+        [
+          109,
+          119,
+          402,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 2
+    }
+  ],
+  "prompts": "prompts-dopuna39.json",
+  "renderNote": "Use renderScale about renderAnchor to preserve source-idle world zoom; all cell-ground anchors y487.",
+  "corrections": "Additional built-in corrections: tezak boundary spacing, vihor blade rotation, preseci cross-cell overlap; original attempts retained."
+}

@@ -686,3 +686,7 @@ DOPUNA-39: marko-sablja-proburazi — GOTOVO; 8kadova512x512, jednom, atlas/mani
 
 
 DOPUNA-39: marko-sablja-preseci — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-preseci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
+
+DOPUNA-40: marko-brutal — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-brutal/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
+
+DOPUNA-40: kostur-stoji — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostur-stoji/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
