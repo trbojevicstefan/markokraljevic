@@ -242,7 +242,9 @@ function updateFinisher(dt){
  const key=Object.keys(FIN_KEYS).find(k=>tap(k));if(key){const kind=FIN_KEYS[key],I=FIN_INFO[kind];finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind,hit:false};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*(kind==='bacanje'?60:kind==='gazi'?90:kind==='noge'?80:kind==='smrskaj'?67:74);p.attack=0;p.blocking=false;p.spin=0;
   Object.assign(e,{stun:5,mode:'stun',vx:0,finT:0,lunge:null,pendingHit:null});sfx('whoosh_heavy',{gain:1});sayGrunt(true);return true;}
  return false;}
-function finishBlow(F){const e=F.e;if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const name=rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,sc=e.scale||(e.elite?1.08:1);
+// the drawing the finishers cut: a champion with his own look is cut from his own drawing, at its own size
+function cutArt(e){if(e.look&&rig?.[e.look+'-hurt'])return{name:e.look+'-hurt',sc:1};return{name:rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,sc:e.scale||(e.elite?1.08:1)};}
+function finishBlow(F){const e=F.e;if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const {name,sc}=cutArt(e);
  if(F.kind==='bacanje'){e.held=false;e.x=p.x+p.face*30;e.y=p.y-110;const before=corpses.length;slay(e,1.7);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.vx=p.face*Math.max(780,Math.abs(c.vx||0));c.vy=Math.min(c.vy||0,-360);c.face=-p.face;}
   for(const o of world.enemies)if(o.alive&&o!==e&&(o.x-p.x)*p.face>0&&Math.abs(o.x-p.x)<360&&Math.abs(o.y-p.y)<60){o.hp-=30;o.stun=Math.max(o.stun,1.6);o.mode='stun';o.knock=p.face*20;label('OBOREN',o.x,o.y-140,'#ffcf9a');if(o.hp<=0)slay(o,.8);}
   sfx('whoosh_heavy',{gain:1});sfx('fall',{gain:1,delay:.5});label('BAČEN!',e.x,e.y-170,'#ff9a8a');shake=settings.reduced?0:8;rumble(.8,200);}
@@ -258,8 +260,8 @@ function finishBlow(F){const e=F.e;if(F.kind==='odsecanje')return behead(e);if(F
   if(F.kind==='gazi')for(const o of world.enemies)if(o.alive&&o!==e&&Math.abs(o.x-e.x)<180&&Math.abs(o.y-gy)<60){o.stun=Math.max(o.stun,1.6);o.mode='stun';o.knock=Math.sign(o.x-e.x)*18;label('OŠAMUĆEN',o.x,o.y-140,'#ffcf9a');}
   label('ZGAŽEN!',e.x,e.y-150,'#ff9a8a');}
  fx('flash','#ff2a18',.08);slowMo=.35;p.rage=Math.min(100,p.rage+15);say('kill',{priority:3,delay:.4});}
-function behead(e){if(!e.alive)return;const name=rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,r=rig?.[name];
- const sc=e.scale||(e.elite?1.08:1),f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,neck=H*.78;
+function behead(e){if(!e.alive)return;const {name,sc}=cutArt(e),r=rig?.[name];
+ const f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,neck=H*.78;
  heads.push({name,face:e.face,ex:e.x,ey:e.y,scale:sc,cx:e.x,cy:e.y-H*.89,top:e.y-H-6,neck:e.y-neck,x:e.x,y:e.y-H*.89,vx:p.face*(360+Math.random()*160),vy:-(540+Math.random()*160),rot:0,vr:p.face*(9+Math.random()*7),t:0,bounces:0});
  if(heads.length>30)heads.shift();
  const before=corpses.length;slay(e,0);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.headless={name,neck,H,scale:sc};fountains.push({c,t:1.9});}
@@ -303,7 +305,7 @@ function drawLimbs(){for(const l of limbs){const a=1-clamp((l.t-ROT_AT)/2,0,1);i
 // The mace head is 49 px above his soles at the blow, so the leap at that moment puts it at the man's head.
 function skullLeap(k,F){const e=F.e,r=rig?.[e.type+'-idle'],f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*(e.scale||1):110,at=clamp(H*.88-49,30,120),P=Math.max(150,at+50),h=F.hitAt;
  if(k<.12)return 0;if(k<.3)return P*Math.sin(Math.PI/2*(k-.12)/.18);if(k<h){const s=(k-.3)/(h-.3);return P+(at-P)*s*s;}if(k<h+.1){const s=(k-h)/.1;return at*(1-s*s);}return 0;}
-function legsOff(e){if(!e.alive)return;const name=rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,r=rig?.[name],sc=e.scale||(e.elite?1.08:1),f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,cut=H*.42;
+function legsOff(e){if(!e.alive)return;const {name,sc}=cutArt(e),r=rig?.[name],f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,cut=H*.42;
  const lie=lieOf(e.type);limbs.push({name,lie,dir:p.face,face:e.face,ex:e.x,ey:e.y,scale:sc,cut,x:e.x,y:e.y-cut/2,vx:p.face*(230+Math.random()*120),vy:-(240+Math.random()*140),rot:0,vr:p.face*(5+Math.random()*4),t:0,bounces:0});if(limbs.length>20)limbs.shift();
  const before=corpses.length;slay(e,0);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.legless={name,cut,H,scale:sc,lie};fountains.push({c,t:2.2});}
  blood(e.x,e.y-cut,p.face,44);blood(e.x,e.y-cut,-p.face,26);burst(e.x,e.y-cut,'#b5161a',24,260);hitstop=Math.max(hitstop,.11);slowMo=.35;fx('flash','#ff2a18',.08);shake=settings.reduced?0:13;rumble(1,280);
@@ -760,8 +762,9 @@ function drawPlayer(){if(!p||mode==='dead'||p.pinned)return;const alpha=p.invuln
 // Distance-driven stride: no root bobbing or rotation, soles stay on the rig baseline.
 function locomotionPose(e){const stride=e.type==='musa'?120:e.type==='shield'?76:90;return{name:e.type+'-run',frame:Math.floor((e.walk||0)/stride*6)%6};}
 function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)return;const x=e.x+(e.knock||0);shadow(x,e.y,e.type==='shield'?36:32,.5);const atk=e.type==='archer'?(e.perch&&p.y>e.y+60&&rig?.['archer-shoot-down']?'archer-shoot-down':'archer-shoot'):e.type+'-attack';let pose={name:'cast/'+e.type,frame:0};const F=FOES[e.type];if((level||e.air)&&(e.climb||(!e.grounded&&e.air)||e.landT>0||(e.tossedT>0&&rig?.[e.type+'-launch']))&&e.mode!=='windup'&&e.mode!=='recover')pose=airPose(e);else if(e.type==='palikuca'&&e.burn>0&&rig?.['palikuca-burn'])pose={name:'palikuca-burn',frame:Math.floor(time*10)%rig['palikuca-burn'].frames.length};else if(e.reactT>0&&rig?.[e.react]){const n=rig[e.react].frames.length;pose={name:e.react,frame:Math.min(n-1,Math.floor((1-e.reactT/e.reactDur)*n))};}else if(F){pose=foePose(e,F);}else if(movePose(e)){pose=movePose(e);}else if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);pose={name:atk,frame:e.type==='archer'?Math.min(3,Math.floor(progress*4)):Math.min(2,Math.floor(progress*3))};}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;pose={name:atk,frame:e.type==='archer'?4+Math.min(1,Math.floor((1-e.timer/duration)*2)):3+Math.min(2,Math.floor((1-e.timer/duration)*3))};}else if(e.moveT>0&&e.stun<=0&&rig?.[e.type+'-run']){pose=locomotionPose(e);}else if(e.hurtT>0&&rig?.[e.type+'-hurt']){pose={name:e.type+'-hurt',frame:Math.min(3,Math.floor((1-e.hurtT/.34)*4))};}else if(rig?.[e.type+'-idle']){pose={name:e.type+'-idle',frame:idleFrame(e.type,e.id),sy:1+Math.sin(time*2.4+e.id)*.008};}else{pose.sy=1+Math.sin(time*2.6+e.id)*.012;}
- if(e.stun>0){pose.rot=(pose.rot||0)-e.face*.07;rimGlow(pose,x,e.y,e.face,'#8fffd8',.22+.12*Math.sin(time*10),1.4);for(let s=0;s<3;s++){const a=time*4+s*2.1;textLabel('✦',x+Math.cos(a)*16,e.y-138+Math.sin(a)*5,{font:'15px Georgia',color:'#c8fff0',glow:'#7fffd0'});}}
- if(e.mode==='windup'){const urgency=1-e.timer/(e.windupDuration||.7);rimGlow(pose,x,e.y,e.face,'#ff4a20',.18+.42*urgency*(.65+.35*Math.sin(time*30)),1.2+urgency*1.4);}
+ // the stun and windup glows are drawn once the pose is final (a champion's own drawing, his size), or a plain soldier's outline shows inside him
+ const glows=[];if(e.stun>0){pose.rot=(pose.rot||0)-e.face*.07;glows.push(['#8fffd8',.22+.12*Math.sin(time*10),1.4]);for(let s=0;s<3;s++){const a=time*4+s*2.1;textLabel('✦',x+Math.cos(a)*16,e.y-138+Math.sin(a)*5,{font:'15px Georgia',color:'#c8fff0',glow:'#7fffd0'});}}
+ if(e.mode==='windup'){const urgency=1-e.timer/(e.windupDuration||.7);glows.push(['#ff4a20',.18+.42*urgency*(.65+.35*Math.sin(time*30)),1.2+urgency*1.4]);}
  if(e.kit&&e.engaged){const kp=KITS[e.kit]?.pose?.(e);if(kp)pose=kp;}if(e.held){const L=rig?.[e.type+'-launch'],k=e.liftK||0;pose=L?{name:e.type+'-launch',frame:1,rot:p.face*1.45*k}:{name:rig?.[e.type+'-hurt']?e.type+'-hurt':pose.name,frame:1,rot:-p.face*1.35};}
  if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',frame:Math.min(4,Math.floor(e.prone*5))};}if(e.hornT>0&&e.look&&rig?.[e.look+'-rog']){const R=rig[e.look+'-rog'];pose={...pose,name:e.look+'-rog',frame:Math.min(R.frames.length-1,Math.floor((1-e.hornT/HORN_T)*R.frames.length)),fixedScale:1};}
  else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',run:'walk',shoot:'attack',kick:'attack',bomb:'attack',burn:'hurt',bash:'attack',guardbreak:'hurt',armorbreak:'hurt',grab:'attack'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
@@ -777,7 +780,7 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,name:e.look+'-poziv',frame:Math.min(P.frames.length-1,Math.floor((1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
  if(e.skriven)pose.alpha=.4;
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
- if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.flash>0?e.flash/.15*.5:0,flashColor:'#ffd6bf'});
+ if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.flash>0?e.flash/.15*.5:0,flashColor:'#ffd6bf'});
  if(e.mode==='windup'){ellipse(x,e.y-152,11,11,'#b8382a');ellipse(x,e.y-152,8,8,'#d9503a');textLabel('!',x,e.y-146,{font:'bold 16px Georgia',color:'#fff3bd'});halo(x,e.y-152,26,'rgba(255,90,50,.8)');}
  if(e.hp<e.maxHp&&!e.champion){const bw=54,bx=x-bw/2,by=e.y-136;ctx.fillStyle='rgba(10,20,20,.8)';ctx.fillRect(bx-1,by-1,bw+2,6);const g=ctx.createLinearGradient(bx,0,bx+bw,0);g.addColorStop(0,'#a8352f');g.addColorStop(1,'#e8a061');ctx.fillStyle=g;ctx.fillRect(bx,by,bw*Math.max(0,e.hp/e.maxHp),4);}}
 function makeCorpse(type,x,y,face,persist=false,vy=0){return{type,x,y,face,persist,t:0,vx:0,vy:Math.max(0,vy),w:34,h:40,grounded:false};}
@@ -1488,11 +1491,11 @@ function hitKavez(t,power){t.hp-=power;t.shake=.2;sfx('hit_heavy',{gain:.7,rate:
  toast(n===cages.length?'Svi svatovi su slobodni! Svadbarine više nema.':`Svatovi su slobodni · ${n}/${cages.length}`,3);say('pt_free_2',{priority:2,x:t.x});}
 function drawKavez(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const sh=t.shake>0?Math.sin(time*80)*3:0,cage=worldImg(t.open?'kavez-razbijen':'kavez-svatovi');
  // the guests: huddled in the cage, then the kolo once they are out (a few seconds), then off home
- const dancing=t.open&&t.t<7,gone=t.open&&t.t>=7;
- if(!gone){const nm=dancing&&rig?.['svatovi-kolo']?'svatovi-kolo':rig?.['svatovi-zarobljeni']?'svatovi-zarobljeni':null,a=t.open?clamp((7-t.t)/1,0,1):1;
-  if(nm)rigDraw(nm,Math.floor(time*(dancing?9:5))%rig[nm].frames.length,t.x+(dancing?-30:0),t.y,1,{alpha:a});
+ const dancing=t.open&&t.t<11,gone=t.open&&t.t>=11,off=t.open?Math.max(0,t.t-5)**1.4*70:0;
+ if(!gone){const nm=dancing&&rig?.['svatovi-kolo']?'svatovi-kolo':rig?.['svatovi-zarobljeni']?'svatovi-zarobljeni':null,a=t.open?clamp((11-t.t)/1.2,0,1):1;
+  if(nm)rigDraw(nm,Math.floor(time*(dancing?9:5))%rig[nm].frames.length,t.x+(dancing?-30+off:0),t.y,1,{alpha:a});
   else for(const [k,who] of [['putnik-putnica-idle',-28],['putnik-trgovac-idle',8],['putnik-starac-idle',40]])rigDraw(k,Math.floor(time*5)%(rig?.[k]?.frames.length||1),t.x+who+(dancing?Math.sin(time*6+who)*14:0),t.y,dancing?(Math.sin(time*3+who)>0?1:-1):-1,{alpha:a});}
- if(cage){const b=propBounds(cage),h=t.open?150:200,w=b.w*h/b.h;ctx.drawImage(cage,b.x,b.y,b.w,b.h,t.x-w/2+sh,t.y-h+6,w,h);}
+ if(cage){const b=propBounds(cage),whole=worldImg('kavez-svatovi'),k=200/(whole?propBounds(whole).h:b.h),h=b.h*k,w=b.w*k;ctx.drawImage(cage,b.x,b.y,b.w,b.h,t.x-w/2+sh,t.y-h+6,w,h);}
  else if(!t.open){for(let bx=-80;bx<=80;bx+=20)line(t.x+bx+sh,t.y,t.x+bx+sh,t.y-170,'#4a3424',7);line(t.x-90+sh,t.y-170,t.x+90+sh,t.y-170,'#3a2a1c',10);line(t.x-90+sh,t.y-4,t.x+90+sh,t.y-4,'#3a2a1c',10);}
  if(!t.open&&Math.abs(p.x-t.x)<320)textLabel('RAZBIJ KAVEZ',t.x,t.y-210,{font:'bold 13px Georgia',color:'#ffe2a8'});}
 // ================= the guslars of the Ibar gorge ("Guslar peva o Marku") =================
@@ -1575,8 +1578,9 @@ function oraoPose(O){const st=O.state,R=n=>rig?.[n]?n:null;
  if(st==='napad'||O.hitT>0){const n=R('orao-obrusavanje');if(n){const L=rig[n].frames.length;return{n,f:O.hitT>0?L-1:Math.min(L-2,Math.floor(Math.min(1,O.t/.6)*(L-1)))};}}
  if(st==='hlad'){const n=R('orao-hlad');if(n)return{n,f:Math.floor(time*9)%rig[n].frames.length};}
  const n=R('orao-let')||R('orao-flight');return n?{n,f:Math.floor(time*11)%rig[n].frames.length}:null;}
+const ORAO_SC=.6; // Codex's eagle cell is drawn larger than the falcon's; this brings her to the falcon's size
 function drawOrao(){const O=world.orao;if(!O||O.x<camera-300||O.x>camera+VIEW_W+300)return;const q=oraoPose(O);if(!q)return;
- if(q.n==='orao-flight')rigDraw(q.n,q.f,O.x,O.y+30,O.face,{scale:1.15});else oraoDraw(q.n,q.f,O.x,O.y,O.face);}
+ if(q.n==='orao-flight')rigDraw(q.n,q.f,O.x,O.y+30,O.face,{scale:1.15*ORAO_SC});else oraoDraw(q.n,q.f,O.x,O.y,O.face,ORAO_SC);}
 // Codex's eagle is drawn with her body (cell row 300) at the point, whatever her wings do
 const ORAO_BODY=300;
 function oraoDraw(n,fr,x,y,face,sc=1){const r=rig?.[n];if(!r)return;const f=r.frames[clamp(Math.floor(fr),0,r.frames.length-1)];rigDraw(n,fr,x,y,face,{scale:sc,dy:(f[4]-ORAO_BODY)*r.scale*sc});}
@@ -1588,7 +1592,7 @@ function drawGnezdo(t){if(t.x<camera-500||t.x>camera+VIEW_W+500||!t.state)return
  if(t.state==='gori'){const n=1+Math.floor(t.burn*5),R=rig?.['plamen'];for(let i=0;i<n;i++){const fy=t.y-10-i*(H*.6/5),fx=t.x+Math.sin(i*2.3)*14;if(R)rigDraw('plamen',Math.floor(time*12+i*3)%R.frames.length,fx,fy,i%2?1:-1,{scale:.62+.12*Math.sin(i)});else drawFlame(fx,fy,26,46,i*5.1,1);}
   emitters.push({id:'gnezdo'+t.x,kind:'fire',x:t.x,y:t.y-t.burn*H*.3,w:40,rate:14});
   // the mother circles over the burning tree, crying
-  const ox=t.x+Math.cos(time*1.3)*170,oy=t.y-H*.8+Math.sin(time*2.6)*22;if(rig?.['orao-let'])oraoDraw('orao-let',Math.floor(time*11)%rig['orao-let'].frames.length,ox,oy,-Math.sign(Math.sin(time*1.3))||1,.8);else if(rig?.['orao-flight'])rigDraw('orao-flight',Math.floor(time*10)%6,ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:.9});
+  const ox=t.x+Math.cos(time*1.3)*170,oy=t.y-H*.8+Math.sin(time*2.6)*22;if(rig?.['orao-let'])oraoDraw('orao-let',Math.floor(time*11)%rig['orao-let'].frames.length,ox,oy,-Math.sign(Math.sin(time*1.3))||1,ORAO_SC);else if(rig?.['orao-flight'])rigDraw('orao-flight',Math.floor(time*10)%6,ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:1.15*ORAO_SC});
   const w=110,k=1-t.burn;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(nx-w/2-2,ny-114,w+4,10);ctx.fillStyle=k>.4?'#c9a35a':'#c0503a';ctx.fillRect(nx-w/2,ny-112,w*k,6);textLabel('GNEZDO',nx,ny-124,{font:'bold 12px Georgia',color:'#ead9b0'});}}
 // ================= the falcon ("Kraljević Marko i soko") =================
 // In the reeds the Turks hunt a falcon whose wing they broke. Drive them off and bind his wing (E beside him):
