@@ -218,4 +218,12 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  a.alive=false;w.soko.state='prati';w.soko.vodaCd=0;p.invuln=0;p.hp=p.maxHp*.3;step(2);ok(w.soko.state==='voda','falcon: Marko wounded, the falcon brings water');const h0=p.hp;step(120*3);ok(p.hp>h0+20,'falcon: the water heals him');}
 {const w=await land('mocvara');const e=w.enemies.find(e=>e.skriven);e.alive=true;const p=S().p;Object.assign(p,{x:e.x-650,y:groundY(w,e.x-650,e.y),vx:0,vy:0,grounded:true});safe();step(120);ok(e.skriven&&e.mode==='idle','reeds: an archer far off stays hidden and still');
  Object.assign(p,{x:e.x-300,y:groundY(w,e.x-300,e.y)});safe();step(3);ok(!e.skriven,'reeds: close by, the ambush rises');}
+// ---- Ramadan wine: the heralds spill an undefended barrel; cut down, Marko drinks; at the last barrel the Sultan sends ducats ----
+{const w=await land('podrum');const B=w.traps.filter(t=>t.kind==='bacva');ok(B.length===3&&B[2].kraj,'wine: the cellar has three barrels, the last one before the champion');
+ const t=B[0],p=S().p;Object.assign(p,{x:t.x0+90,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='napad'&&w.enemies.filter(e=>e.alive&&e.caus).length===2,'wine: Marko comes and two heralds march on the barrel');
+ Object.assign(p,{x:t.x0-900,y:groundY(w,t.x0-900,t.y)});until(()=>{safe();return t.state!=='napad';},120*30);ok(t.state==='prolivena','wine: left alone, a herald spills it');}
+{const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'),p=S().p;Object.assign(p,{x:t.x0+90,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);for(const e of w.enemies)if(e.alive)e.alive=false;step(2);ok(t.state==='puna','wine: the heralds cut down, the wine is saved');
+ Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0});safe();Object.assign(p,{wine:0,rage:0,hp:40});api.pressed.add('KeyE');step(2);ok(t.state==='popijeno'&&p.rage>=100&&p.wine===p.wineMax&&p.hp>=80,'wine: Marko drinks: fury full, flask filled, health back');}
+{const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
+ api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='cita';},120*15);ok(t.glasnik?.state==='cita','wine: a herald brings the Sultan\'s hundred ducats');}
 console.log(`${checks} battle checks passed.`);
