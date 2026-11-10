@@ -1,0 +1,334 @@
+{
+  "tool": "built-in image_gen",
+  "clips": [
+    {
+      "id": "sword-spava",
+      "frames": 4,
+      "loop": true,
+      "fps": 4,
+      "bounds": [
+        [
+          116,
+          194,
+          396,
+          488
+        ],
+        [
+          115,
+          184,
+          396,
+          488
+        ],
+        [
+          115,
+          171,
+          396,
+          488
+        ],
+        [
+          115,
+          200,
+          396,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 4,
+      "gifFrames": 4,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "sword-budi",
+      "frames": 5,
+      "loop": false,
+      "fps": 10,
+      "bounds": [
+        [
+          86,
+          141,
+          426,
+          488
+        ],
+        [
+          89,
+          127,
+          422,
+          488
+        ],
+        [
+          107,
+          127,
+          404,
+          488
+        ],
+        [
+          77,
+          92,
+          434,
+          488
+        ],
+        [
+          90,
+          62,
+          422,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 5,
+      "gifFrames": 5,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "shield-spava",
+      "frames": 4,
+      "loop": true,
+      "fps": 4,
+      "bounds": [
+        [
+          44,
+          119,
+          467,
+          488
+        ],
+        [
+          44,
+          121,
+          467,
+          488
+        ],
+        [
+          45,
+          111,
+          467,
+          488
+        ],
+        [
+          44,
+          133,
+          468,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 454,
+      "allGroundY487": true,
+      "uniqueFrames": 4,
+      "gifFrames": 4,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "shield-budi",
+      "frames": 5,
+      "loop": false,
+      "fps": 10,
+      "bounds": [
+        [
+          43,
+          136,
+          468,
+          488
+        ],
+        [
+          46,
+          132,
+          466,
+          488
+        ],
+        [
+          47,
+          136,
+          465,
+          488
+        ],
+        [
+          60,
+          84,
+          452,
+          488
+        ],
+        [
+          59,
+          34,
+          452,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 454,
+      "allGroundY487": true,
+      "uniqueFrames": 5,
+      "gifFrames": 5,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "marko-tiho",
+      "frames": 7,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          99,
+          137,
+          413,
+          488
+        ],
+        [
+          81,
+          118,
+          431,
+          488
+        ],
+        [
+          84,
+          119,
+          427,
+          488
+        ],
+        [
+          58,
+          119,
+          453,
+          488
+        ],
+        [
+          98,
+          155,
+          414,
+          488
+        ],
+        [
+          98,
+          208,
+          413,
+          488
+        ],
+        [
+          108,
+          228,
+          404,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 7,
+      "gifFrames": 7,
+      "imagegenAttempts": 2
+    },
+    {
+      "id": "marko-sablja-tiho",
+      "frames": 7,
+      "loop": false,
+      "fps": 12,
+      "bounds": [
+        [
+          104,
+          129,
+          408,
+          488
+        ],
+        [
+          54,
+          125,
+          457,
+          488
+        ],
+        [
+          61,
+          126,
+          450,
+          488
+        ],
+        [
+          62,
+          126,
+          450,
+          488
+        ],
+        [
+          75,
+          123,
+          436,
+          488
+        ],
+        [
+          68,
+          165,
+          443,
+          488
+        ],
+        [
+          75,
+          213,
+          436,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 7,
+      "gifFrames": 7,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "sword-tiho-pada",
+      "frames": 6,
+      "loop": false,
+      "fps": 10,
+      "bounds": [
+        [
+          125,
+          62,
+          387,
+          488
+        ],
+        [
+          140,
+          63,
+          372,
+          488
+        ],
+        [
+          154,
+          85,
+          357,
+          488
+        ],
+        [
+          123,
+          204,
+          389,
+          488
+        ],
+        [
+          107,
+          284,
+          405,
+          488
+        ],
+        [
+          90,
+          372,
+          421,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 6,
+      "gifFrames": 6,
+      "imagegenAttempts": 1
+    }
+  ],
+  "prompts": "prompts-dopuna38.json",
+  "renderNote": "Use renderScale about renderAnchor to preserve source-idle world zoom; all cell-ground anchors y487.",
+  "corrections": "marko-tiho cell3 forward hand corrected in second built-in edit; detached horizontal ground props registered during export."
+}

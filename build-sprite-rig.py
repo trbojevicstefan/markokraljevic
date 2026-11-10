@@ -371,10 +371,19 @@ if _have('sirotinja-blagoslov'):
 # the one that makes the standing sabre clip as tall as Marko (MARKO_H), sole to crown.
 if _have('marko-sablja-idle'):
     s_ = MARKO_H / visible_px('marko-sablja-idle', 'median')
-    for k in ['izvlaci', 'idle', 'trci', 'udarac-1', 'udarac-2', 'udarac-3', 'skok', 'vraca']:
+    for k in ['izvlaci', 'idle', 'trci', 'udarac-1', 'udarac-2', 'udarac-3', 'skok', 'vraca',
+              'tezak', 'ubod', 'uvis', 'vihor', 'glava', 'proburazi', 'preseci', 'tiho']:  # DOPUNA-38 and 39
         if _have(f'marko-sablja-{k}'):
             SCALES[f'marko-sablja-{k}'] = (s_, 'feet')
     print('sablja', round(s_, 4), 'idle-2', round(SCALES.get('marko-idle-2', (0,))[0], 4))
+
+# DOPUNA-38 and 40: Marko's silent kill and his beating share the zoom of marko-idle-2; the sleepers, the silent fall and
+# the skeleton are drawn at the zoom of the sword-bearer's idle (the skeleton stands as tall as he does).
+for name, ref in [('marko-tiho', 'marko-idle-2'), ('marko-brutal', 'marko-idle-2'), ('sword-spava', 'sword-idle'), ('sword-budi', 'sword-idle'),
+                  ('shield-spava', 'shield-idle'), ('shield-budi', 'shield-idle'), ('sword-tiho-pada', 'sword-idle'),
+                  ('kostur-stoji', 'sword-idle'), ('kostur-pada', 'sword-idle'), ('oklopnik-kostur-pada', 'sword-idle')]:
+    if _have(name) and ref in SCALES:
+        SCALES[name] = (SCALES[ref][0], 'feet')
 
 rig = {}
 for name, (scale, mode) in SCALES.items():

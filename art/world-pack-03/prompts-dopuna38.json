@@ -1,0 +1,115 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "sword-spava",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 4,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly the sword-idle soldier: black moustache, steel pointed helmet wrapped in ivory turban with long ivory ends, burgundy red gold-trimmed coat, dark segmented lamellar armour, dark trousers, brown boots, one silver curved sabre with gold hilt. EXACT3columns x2rows. FIRST4cells are a sleeping breathing loop: soldier sits ON GROUND leaning back on a SMALL ROCK, both knees bent, boots resting on ground, sabre safely horizontal across knees, head slumped forward to chest, eyes closed. Cell1 relaxed exhale;2 subtle chest inhale;3 chest fullest, tiny shoulder lift;4 gently exhales back toward1. No changes in rock/weapon shape or camera. Cell5 EXTRA standing calibration: full upright same soldier at same zoom, feet down and sabre held low. Cell6 EMPTY MAGENTA. Sleep height naturally about60% standing height.",
+      "kind": "human"
+    },
+    {
+      "id": "sword-budi",
+      "frames": 5,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/sword-spava/frames/motion/frame-0.png"
+      ],
+      "fps": 10,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly the sword-idle soldier: black moustache, steel pointed helmet wrapped in ivory turban with long ivory ends, burgundy red gold-trimmed coat, dark segmented lamellar armour, dark trousers, brown boots, one silver curved sabre with gold hilt. EXACT3columns x2rows, FIRST5cells sequence once, cell6EMPTYMAGENTA. Start exactly like sleeping pose in Image2, rock remains low behind him through all5cells.1 head slumped, sabre across knees;2 startled eyes open/head jerks up and right hand grips sabre;3 leans forward, one boot planted, rises into low crouch;4 springs up almost standing, raises curved sabre forward;5 fully upright right-facing guard, sabre raised like Image1 but stays inside cell. Cell5 also STANDING scale calibration at same body zoom. No leap across cell or large displacement.",
+      "kind": "human"
+    },
+    {
+      "id": "shield-spava",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 454,
+      "references": [
+        "art/animation-pack-03/assets/shield-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 4,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly shield-idle shieldbearer: black beard/moustache, pointed steel helmet with IVORY turban, dark GREEN embroidered gold-trimmed coat, dark armour/trousers, brown boots, ornate round BRONZE shield. A simple spear is present as required, no new costume. EXACT3columns x2rows. FIRST4cells sleeping loop. Soldier SITS ON GROUND, leaning back/side on his propped round bronze shield; spear lies horizontally on ground beside boots, fully fits in cell. Chin droops onto chest, eyes closed, hands relaxed.1 exhale;2 small chest inhale;3 fullest shallow breath;4 relaxes to near1. Shield and spear remain static. Cell5 EXTRA same-scale upright standing shieldbearer matching Image1, with shield and spear lowered safely. Cell6EMPTYMAGENTA. Sitting body is physically shorter (roughly60% height), never enlarged.",
+      "kind": "human"
+    },
+    {
+      "id": "shield-budi",
+      "frames": 5,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 454,
+      "references": [
+        "art/animation-pack-03/assets/shield-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/shield-spava/frames/motion/frame-0.png"
+      ],
+      "fps": 10,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly shield-idle shieldbearer: black beard/moustache, pointed steel helmet with IVORY turban, dark GREEN embroidered gold-trimmed coat, dark armour/trousers, brown boots, ornate round BRONZE shield. A simple spear is present as required, no new costume. EXACT3columns x2rows FIRST5cells wake sequence ONCE; cell6EMPTYMAGENTA. Image2 is exact sleeping start.1 seated drooping on shield;2 startled opens eyes lifts head, reaches for shield rim;3 grips shield and shifts one knee/boot under body;4 rises from crouch, brings shield in front;5 fully UPRIGHT standing alert behind same bronze shield, spear still lies beside feet. Cell5 also standing scale calibration. Keep same body zoom and right-facing orientation, no added sword swing.",
+      "kind": "human"
+    },
+    {
+      "id": "marko-tiho",
+      "frames": 7,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 7,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "impactFrame": 3,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly Marko reference: swept-back shoulder-length BLACK hair, heavy black moustache/short beard, strong broad face, RED gold-embroidered cape with gold shoulder clasp, dark brown lamellar armour, cream shirt with red embroidered cuffs/hem, dark trousers and tall brown boots. NO helmet, turban or crown. EXACT4columns x2rows FIRST7cells action ONCE, cell8EXTRA neutral upright calibration same Marko as Image1 with mace low. ENEMY IS NOT DRAWN AT ALL: only Marko, empty magenta in target space to his RIGHT.1 quiet low stalking step right with spiked mace low in right hand;2 left arm reaches around imaginary enemy ahead at chest/head height;3 left hand cups over imaginary enemy mouth while right arm makes compact mace backswing near shoulder;4 SHORT controlled mace strike into empty target just to right at imaginary back-of-head height, no big overhead smash;5 left arm supports invisible slumped body, torso bends;6 slowly crouches, both arms guide invisible body toward floor, mace lowered;7 releases/supporting left hand near ground, stays low and quiet. Keep face/boots/cape exactly same; no victim silhouette or extra arms.",
+      "kind": "human"
+    },
+    {
+      "id": "marko-sablja-tiho",
+      "frames": 7,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 7,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "impactFrame": 3,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly Marko reference: swept-back shoulder-length BLACK hair, heavy black moustache/short beard, strong broad face, RED gold-embroidered cape with gold shoulder clasp, dark brown lamellar armour, cream shirt with red embroidered cuffs/hem, dark trousers and tall brown boots. NO helmet, turban or crown. His father's ONE curved steel sabre with ornate triple GOLD hilt/guard and three tiny JEWELS, BLACK leather scabbard with gold fittings at LEFT HIP; familiar spiked iron mace hangs at belt. Match sabre reference, ONE blade and handle, no duplicated weapons. EXACT4columns x2rows FIRST7cells ONCE; cell8EXTRA full upright neutral Marko matching reference, sabre low. ENEMY NOT DRAWN: only Marko and his weapons; target area RIGHT is empty magenta.1 stealth low step right, sabre low in RIGHT hand, mace belted;2 LEFT arm reaches around invisible enemy ahead;3 left palm covers imaginary mouth, right wrist prepares one short blade movement;4 one compact controlled finishing CUT into EMPTY target space, no blood or victim;5 supports invisible slumped body with left forearm, sabre lowers;6 crouches slowly guiding invisible body down, sword kept away from own limbs;7 left hand releases close to floor, low balanced posture, sabre low. Clear seven distinct poses, same anatomy, cloak and exact sabre across frames. CRITICAL: Marko's LEFT hand must reach far FORWARD into EMPTY SPACE to his RIGHT, NEVER touch or cover his OWN mouth/face. His own face stays fully visible in every cell.",
+      "kind": "human"
+    },
+    {
+      "id": "sword-tiho-pada",
+      "frames": 6,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 10,
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game animation sprite sheet, character identity EXACTLY matching reference1. Pure FLAT #FF00FF MAGENTA background, no scene/floor/shadow/gradient, no text, labels, borders or grid lines. Equal SQUARE cells in specified grid, row-major order. Full figure, weapon, cape and props safely INSIDE EACH OWN CELL with20px empty margins. Character faces RIGHT, three-quarter side view. Anatomical HEAD/TORSO/limb scale stays IDENTICAL across poses, crouching/sitting/falling must be physically shorter, NOT zoomed bigger. Final cells512x512 groundy487. Extra standing calibration at SAME anatomical scale as action cells. No blood, wounds, severed parts, impact effects or victim unless explicitly requested.  Exactly the sword-idle soldier: black moustache, steel pointed helmet wrapped in ivory turban with long ivory ends, burgundy red gold-trimmed coat, dark segmented lamellar armour, dark trousers, brown boots, one silver curved sabre with gold hilt. EXACT3columns x2rows SIXcells action ONCE. ONLY soldier, no attacker/arms, no blood or damage.1 upright standing right-facing soldier suddenly restrained from behind (head pulled slightly back, hands rise toward own neck), sword low, body same height as Image1;2 shoulders slack, chin drops forward, knees soften;3 knees buckle, torso folds forward;4 kneels on both knees, head and chest sag, sabre falls near boots but stays in cell;5 hands give way, body falls forward close to ground;6 completely still FACE-DOWN body stretched horizontally along ground, head RIGHT, helmet/turban intact, weapon resting beside him. Foot/ground line remains same, never scale prone pose up; body length corresponds to standing height. Frame1 is standing calibration.",
+      "kind": "human"
+    }
+  ]
+}

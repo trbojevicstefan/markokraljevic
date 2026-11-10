@@ -651,3 +651,27 @@ DOPUNA-36 A: prelaz-manastir-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srps
 DOPUNA-36 A: prelaz-manastir-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
 
 DOPUNA-36 A: prelaz-manastir-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-manastir-anim/. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-38: sword-spava — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-spava/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna38.json, izvor sacuvan.
+
+DOPUNA-38: sword-budi — GOTOVO; 5kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-budi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna38.json, izvor sacuvan.
+
+
+
+
+DOPUNA-38: marko-tiho — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-tiho/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, dva pokusaja (ispravka ruke); prompt prompts-dopuna38.json, izvor sacuvan.
+
+DOPUNA-38: marko-sablja-tiho — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-tiho/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna38.json, izvor sacuvan.
+
+
+DOPUNA-38: shield-spava — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/shield-spava/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna38.json, izvor sacuvan.
+
+DOPUNA-38: shield-budi — GOTOVO; 5kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/shield-budi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna38.json, izvor sacuvan.
+
+DOPUNA-38: sword-tiho-pada — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-tiho-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna38.json, izvor sacuvan.
+
+DOPUNA-39: marko-sablja-tezak — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-tezak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
+
+DOPUNA-39: marko-sablja-tezak — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-tezak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
+
+DOPUNA-39: marko-sablja-ubod — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-ubod/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
