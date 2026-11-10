@@ -23,6 +23,24 @@ Otvori http://127.0.0.1:4173. `dist/` je kompletna statička igra i može se ser
 - `dist/stage3d.js`: oslikana pozadina sa sunčevim zracima, maglom u klisuri i bojom po poglavlju (sumrak i munje na megdanu), 3D lišće ispred i iza likova, prašina u svetlu, vilinske iskre, žar, dubina ponora, bloom samo na magiji i varnicama, talasi udara, hromatska aberacija na odbijanju, vinjeta i zrno.
 - „Smanjeno podrhtavanje i efekti“ u podešavanjima gasi talase udara, aberaciju i deo čestica.
 
+## Brzina prikaza
+
+Sve ovo menja samo crtanje. Logika igre i dalje ide u koracima od 1/120 s, kao i pre.
+
+- **Kvalitet „Automatski“** ima tri nivoa:
+  - 0: pun prikaz;
+  - 1: manja slika, isti efekti;
+  - 2: isto što i „Brže“.
+- Telefon, slab procesor i softverski prikaz kreću od nivoa 2, a integrisana grafika (Intel, Radeon Graphics) od nivoa 1.
+- Ako tokom igre većina frame-ova tri sekunde ide sporije od ~48 FPS, igra sama pređe na sledeći niži nivo. Spuštanje se pamti za tu grafičku karticu (`localStorage` ključ `marko-perf-v1`). „Visok kvalitet“ u podešavanjima uvek ima prednost.
+- **Glatko kretanje.** Na 60 i 120 Hz ekranima sitne razlike u vremenu frame-ova se poravnaju, pa nema naizmeničnih 1 i 3 koraka. Na 75, 144 i 165 Hz kamera i likovi se crtaju između poslednja dva koraka, a prave vrednosti se vraćaju odmah posle crtanja. `?smooth=0` isključuje oba.
+- **Manje kopije sprite-ova.** Kad se lik crta na pola veličine ili manje, uzima se kopija sprite sheet-a na pola rezolucije, napravljena van glavne niti. Tako browser u memoriji drži četiri puta manje piksela.
+- **Merač za testere: F9 ili `?fps` u adresi.** Pokazuje:
+  - FPS i najsporiji frame;
+  - koliko traje rad jednog frame-a;
+  - trzaje u poslednjih 10 s;
+  - grafičku karticu, nivo kvaliteta i rezoluciju.
+
 ## Zvuk
 
 - **Glasovi** (`dist/assets/voice/`, pravi ih `python make-voice-lines.py`, treba `ELEVENLABS_API_KEY`): ElevenLabs `eleven_v4`. Marko je glas „Tuco" (vulgaran, psuje, na R viče „Marš u pičku materinu, Turci!"), Musa je „Slobodan", Ravijojla „Ida" (ženski, srpski), Turci viču na turskom. Zamah topuza prati stenjanje („Hah!", „Aaaaahh!") umesto „swoosh" zvuka, a Marko dobacuje Turcima kad su blizu. Igra bira nasumičnu repliku iz grupe (`kill_*`, `hurt_*`…), jedan lik govori jednu repliku u isto vreme, a muzika se utiša dok neko priča.

@@ -566,23 +566,55 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
 
   // ---------- sizing ----------
   let width = 0, height = 0;
-  // 'auto' picks the fast path on phones/tablets and weak CPUs.
-  const lowQuality = () => settings.quality === 'low' || (settings.quality !== 'high' && (matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4));
-  let lastLow = null;
+  // Three quality tiers. They change only how big the picture is drawn and how much glow it gets, never the game itself.
+  //   0: full, 1: lighter (smaller buffers, same effects), 2: fast ('Brže': no bloom, simpler sky).
+  const TIERS = [
+    {dpr: 2, maxW: 2560, layerW: 1920},
+    {dpr: 1.5, maxW: 1600, layerW: 1280},
+    {dpr: 1.25, maxW: 1280, layerW: 1152},
+  ];
+  // 'auto' starts from the device: phones, weak CPUs and software rendering get the fast tier, integrated graphics the lighter one.
+  const gpuName = (() => {
+    try {
+      const gl = renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
+      return String(gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER) || '');
+    } catch { return ''; }
+  })();
+  const softwareGpu = /swiftshader|llvmpipe|softpipe|basic render|software/i.test(gpuName);
+  const integratedGpu = /intel|radeon\(tm\) graphics|radeon graphics|vega \d+ graphics|mali|adreno|powervr|videocore/i.test(gpuName) && !/arc\(tm\) [ab]\d/i.test(gpuName);
+  const deviceTier = softwareGpu || matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4 ? 2 : integratedGpu ? 1 : 0;
+  // A step down measured on this GPU in an earlier session is kept, so the game does not stutter again before it adapts.
+  const PERF_KEY = 'marko-perf-v1';
+  let autoTier = deviceTier;
+  try {
+    const saved = JSON.parse(localStorage.getItem(PERF_KEY) || 'null');
+    if (saved && saved.gpu === gpuName) autoTier = Math.max(autoTier, Math.min(2, saved.tier | 0));
+  } catch {}
+  const currentTier = () => settings.quality === 'low' ? 2 : settings.quality === 'high' ? 0 : autoTier;
+  let lastTier = null, lastLow = null;
   function applyQuality() {
-    const low = lowQuality();
-    if (low === lastLow) return;
-    lastLow = low;
-    for (const m of [bgMat, valleyMat, hazeMat]) { m.defines = {...(m.defines || {}), OCTAVES: low ? 3 : 5}; m.needsUpdate = true; }
-    bloom.enabled = !low;
+    const tier = currentTier();
+    if (tier === lastTier) return;
+    lastTier = tier;
+    const low = tier === 2;
+    if (low !== lastLow) {
+      lastLow = low;
+      for (const m of [bgMat, valleyMat, hazeMat]) { m.defines = {...(m.defines || {}), OCTAVES: low ? 3 : 5}; m.needsUpdate = true; }
+      bloom.enabled = !low;
+    }
     width = 0;
   }
+  // The canvas box is measured only when it really changes. Reading it every frame forced the browser
+  // to lay out the page each frame, because the HUD is rewritten between frames.
+  let box = null;
+  function measure() { box = canvas.getBoundingClientRect(); }
   function resize() {
     applyQuality();
-    const box = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, lastLow ? 1.25 : 2);
+    if (!box) measure();
+    const T = TIERS[lastTier];
+    const dpr = Math.min(window.devicePixelRatio || 1, T.dpr);
     const cssW = Math.min(box.width || W, (box.height || H) * W / H);
-    const w = Math.round(Math.max(640, Math.min(lastLow ? 1280 : 2560, cssW * dpr)));
+    const w = Math.round(Math.max(640, Math.min(T.maxW, cssW * dpr)));
     const h = Math.round(w * H / W);
     if (w === width && h === height) return;
     width = w; height = h;
@@ -590,7 +622,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     composer.setSize(w, h);
     grade.uniforms.uRes.value.set(w, h);
     pointScale.value = h / (2 * tanHalf); // screen px per world unit at distance 1
-    const lw = Math.min(w, lastLow ? 1152 : 1920), lh = Math.round(lw * H / W);
+    const lw = Math.min(w, T.layerW), lh = Math.round(lw * H / W);
     layer.width = lw; layer.height = lh;
     glow.width = Math.round(lw / 2); glow.height = Math.round(lh / 2);
     layerTex.dispose(); glowTex.dispose();
@@ -598,7 +630,27 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     layerMat.uniforms.uTex.value = layerTex; glowMat.uniforms.uTex.value = glowTex;
   }
   resize();
-  window.addEventListener('resize', resize);
+  const remeasure = () => { measure(); resize(); };
+  window.addEventListener('resize', remeasure);
+  if (typeof ResizeObserver === 'function') new ResizeObserver(remeasure).observe(canvas);
+
+  // Frame pacing watch for 'auto': when most frames over a few seconds of play come slower than ~48 fps,
+  // drop one tier. It never steps back up by itself; choosing 'Visok kvalitet' in the settings always wins.
+  const pace = {last: 0, gaps: [], span: 0, hold: 0};
+  function watchPace(mode) {
+    const now = performance.now(), gap = now - pace.last;
+    pace.last = now;
+    if (mode !== 'play' || settings.quality !== 'auto' || autoTier >= 2 || document.hidden || !(gap > 0 && gap < 250)) return;
+    if (pace.hold > 0) { pace.hold -= gap; return; }
+    pace.gaps.push(gap); pace.span += gap;
+    if (pace.span < 3000) return;
+    const gaps = pace.gaps.sort((a, b) => a - b), median = gaps[gaps.length >> 1];
+    pace.gaps = []; pace.span = 0;
+    if (median <= 20.5) return;
+    autoTier++;
+    pace.hold = 2000; // the resize itself costs a frame or two; do not count it
+    try { localStorage.setItem(PERF_KEY, JSON.stringify({gpu: gpuName, tier: autoTier})); } catch {}
+  }
 
   // ---------- effects state ----------
   const waves = [];
@@ -694,10 +746,15 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     flash(hex, amount) { flashColor.set(hex); flash = Math.max(flash, amount); },
     shake(amount) { shakeAmt = Math.max(shakeAmt, amount); },
 
+    perf() {
+      return {gpu: gpuName, tier: lastTier, auto: settings.quality === 'auto', size: [width, height], layer: [layer.width, layer.height]};
+    },
+
     render(state) {
       const dt = Math.min(.05, state.dt);
       clock.time += dt;
       clockUniform.value = clock.time;
+      watchPace(state.mode);
       resize();
       camState = {x: state.camX, y: state.camY};
 

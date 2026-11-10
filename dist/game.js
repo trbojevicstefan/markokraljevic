@@ -619,8 +619,21 @@ function line(x,y,x2,y2,color,width=2,g=ctx){g.beginPath();g.moveTo(x,y);g.lineT
 function halo(x,y,r,color,alpha=1){if(r<=0||alpha<=0)return;const g=gctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'rgba(0,0,0,0)');gctx.globalAlpha=alpha*.5;gctx.fillStyle=g;gctx.fillRect(x-r,y-r,r*2,r*2);gctx.globalAlpha=1;}
 function textLabel(text,x,y,{font='bold 15px Georgia',color='#fff0c8',glow=null,alpha=1}={}){text=tr(text);ctx.save();ctx.globalAlpha=alpha;ctx.font=font;if(ctx.measureText)y=placeLabel(x,y,ctx.measureText(text).width,+(font.match(/(\d+)px/)?.[1]||15));ctx.textAlign='center';ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(12,10,8,.82)';ctx.strokeText(text,x,y);ctx.fillStyle=color==='#fff0c8'?'#eadbb4':color;ctx.fillText(text,x,y);ctx.restore();}
 // Draws one rig frame with its sole on (x,y). Silhouettes (flash, coloured glow rims) are built on a scratch canvas.
-function silhouette(im,f,w,h,color,outline){const pad=outline?Math.ceil(outline)+2:0,w2=w+pad*2,h2=h+pad*2;if(scratch.width<w2||scratch.height<h2){scratch.width=Math.max(scratch.width,w2);scratch.height=Math.max(scratch.height,h2);}sctx.setTransform(1,0,0,1,0,0);sctx.globalAlpha=1;sctx.globalCompositeOperation='source-over';sctx.clearRect(0,0,w2,h2);if(outline){for(let i=0;i<8;i++){const a=i*Math.PI/4;sctx.drawImage(im,f[0],f[1],f[2],f[3],pad+Math.cos(a)*outline,pad+Math.sin(a)*outline,w,h);}}else sctx.drawImage(im,f[0],f[1],f[2],f[3],0,0,w,h);sctx.globalCompositeOperation='source-in';sctx.fillStyle=color;sctx.fillRect(0,0,w2,h2);if(outline){sctx.globalCompositeOperation='destination-out';sctx.drawImage(im,f[0],f[1],f[2],f[3],pad,pad,w,h);}sctx.globalCompositeOperation='source-over';return{pad,w2,h2};}
-function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name],im=r&&rigImages[r.image];if(!im)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)],k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;const dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k;if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{g.drawImage(im,f[0],f[1],f[2],f[3],dx,dy,dw,dh);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
+// Half-size copies of the sprite sheets (drawing only). A frame that lands on screen at half its size or smaller is taken
+// from a copy made at half size, decoded off the main thread: same size and place on screen, but the browser keeps a
+// quarter of the pixels, so a machine with less memory stops unpacking the full 4096-8192 px sheet again mid-fight.
+// Until a copy is ready (and anywhere a frame is drawn larger) the original sheet is used, as before.
+const rigHalf=new WeakMap();
+function rigPick(im,s){
+ if(!(s>0&&s<=.5)||!hasDom||typeof createImageBitmap!=='function'||!im?.naturalWidth)return null;
+ const h=rigHalf.get(im);if(h!==undefined)return h;
+ rigHalf.set(im,null);const w=Math.max(1,Math.round(im.naturalWidth/2)),hh=Math.max(1,Math.round(im.naturalHeight/2));
+ fetch(im.currentSrc||im.src).then(r=>r.ok?r.blob():Promise.reject(r.status)).then(b=>createImageBitmap(b,{resizeWidth:w,resizeHeight:hh,resizeQuality:'high'})).then(bm=>rigHalf.set(im,{bm,kx:w/im.naturalWidth,ky:hh/im.naturalHeight})).catch(()=>{});
+ return null;
+}
+function blitFrame(g,im,f,x,y,w,h,s){const c=rigPick(im,s);if(c)g.drawImage(c.bm,f[0]*c.kx,f[1]*c.ky,f[2]*c.kx,f[3]*c.ky,x,y,w,h);else g.drawImage(im,f[0],f[1],f[2],f[3],x,y,w,h);}
+function silhouette(im,f,w,h,color,outline){const pad=outline?Math.ceil(outline)+2:0,w2=w+pad*2,h2=h+pad*2,sc=Math.max(w/f[2],h/f[3]);if(scratch.width<w2||scratch.height<h2){scratch.width=Math.max(scratch.width,w2);scratch.height=Math.max(scratch.height,h2);}sctx.setTransform(1,0,0,1,0,0);sctx.globalAlpha=1;sctx.globalCompositeOperation='source-over';sctx.clearRect(0,0,w2,h2);if(outline){for(let i=0;i<8;i++){const a=i*Math.PI/4;blitFrame(sctx,im,f,pad+Math.cos(a)*outline,pad+Math.sin(a)*outline,w,h,sc);}}else blitFrame(sctx,im,f,0,0,w,h,sc);sctx.globalCompositeOperation='source-in';sctx.fillStyle=color;sctx.fillRect(0,0,w2,h2);if(outline){sctx.globalCompositeOperation='destination-out';blitFrame(sctx,im,f,pad,pad,w,h,sc);}sctx.globalCompositeOperation='source-over';return{pad,w2,h2};}
+function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name],im=r&&rigImages[r.image];if(!im)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)],k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;const dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=k*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
 function rimGlow(pose,x,y,face,color,alpha,width=1.6){rigDraw(pose.name,pose.frame,x,y,face,{...pose,glow:true,color,outline:width,alpha});}
 function sprite(name,x,y,height=130,face=1,angle=0,alpha=1){const im=assets[name];if(!im)return;ctx.save();ctx.translate(x,y);ctx.scale(face,1);ctx.rotate(angle);ctx.globalAlpha=alpha;ctx.drawImage(im,-height/2,-height*369/384,height,height);ctx.restore();}
 function groundAt(x,y){let best=null;for(const q of world.platforms){if(x<q.x||x>q.x+q.w||q.y<y-2)continue;if(q.kind==='magic'&&!world.runes[q.rune]?.active)continue;if(best===null||q.y<best)best=q.y;}return best;}
@@ -858,14 +871,60 @@ $('quit').onclick=mainMenu;$('victory-menu').onclick=mainMenu;$('sound').onclick
 let settingsFrom='menu';function openSettings(from){settingsFrom=from;$('settings').hidden=false;}function closeSettings(){settings.difficulty=$('difficulty').value;readAudioSettings();settings.quality=$('quality').value;settings.reduced=$('reduced').checked;settings.gore=$('gore').checked;try{localStorage.setItem('marko-settings',JSON.stringify(settings));}catch{}$('settings').hidden=true;}
 $('settings-open').onclick=()=>openSettings('menu');$('pause-settings').onclick=()=>openSettings('pause');$('settings-close').onclick=closeSettings;$('lore-open').onclick=()=>$('lore').hidden=false;$('lore-close').onclick=()=>$('lore').hidden=true;
 p=newPlayer();boss=newBoss();
-let last=performance.now(),acc=0;function frame(now){drawSerial++;songWatch();let dt=Math.min((now-last)/1000,.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){update(1/120);acc-=1/120;}draw(dt);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+// ---------- smooth frame pacing (drawing only) ----------
+// The game still advances in fixed 1/120 s steps, exactly as before; nothing here touches update().
+// 1. On 60/120 Hz screens the browser's frame times wobble by a fraction of a millisecond, which sometimes gave one frame
+//    1 step and the next 3 (a visible hitch). Frames within 1 ms of the screen's beat now count as exactly one beat; the
+//    difference is kept and handed back, so game time still follows the real clock.
+// 2. On 75/144/165 Hz screens steps cannot line up with frames, so some frames repeated a step. There the camera and the
+//    moving actors are drawn where they are between the last two steps, and every value is put back right after drawing.
+// ?smooth=0 turns both off.
+const SMOOTH=!/[?&]smooth=0\b/.test(globalThis.location?.search||'');
+const beat={gaps:[],k:0,debt:0};
+function frameDt(raw){
+ if(!SMOOTH||!(raw>0))return raw;
+ if(raw<.1){beat.gaps.push(raw);if(beat.gaps.length>=60){const s=beat.gaps.sort((a,b)=>a-b),m=s[30]*120,k=Math.round(m);beat.k=k>=1&&k<=4&&Math.abs(m-k)<.015*k?k:0;beat.gaps=[];}}
+ if(!beat.k||Math.abs(raw-beat.k/120)>.001){const dt=raw+beat.debt;beat.debt=0;return dt;}
+ const dt=beat.k/120;beat.debt+=raw-dt;
+ if(Math.abs(beat.debt)>1/240){const back=beat.debt;beat.debt=0;return dt+back;}
+ return dt;
+}
+const lerpPrev=new WeakMap();let lerpCam=null,lerpSerial=0;
+function eachMover(fn){for(const o of [p,boss,fairy,thrown,world.orao,world.soko])if(o&&typeof o.x==='number')fn(o);for(const list of [world.enemies,world.travelers,arrows,coins])if(Array.isArray(list))for(const o of list)if(o&&typeof o.x==='number')fn(o);}
+function lerpSnap(){if(!SMOOTH)return;lerpSerial++;lerpCam=[camera,camY];eachMover(o=>{let v=lerpPrev.get(o);if(!v)lerpPrev.set(o,v=[0,0,0]);v[0]=o.x;v[1]=o.y;v[2]=lerpSerial;});}
+function drawFrame(dt){
+ if(!SMOOTH||beat.k||!lerpCam){draw(dt);return;}
+ const a=Math.min(1,Math.max(0,acc*120)),b=1-a,cam=camera,cy=camY,moved=[],seen=new Set();
+ if(Math.abs(camera-lerpCam[0])<300&&Math.abs(camY-lerpCam[1])<300){camera=lerpCam[0]*b+camera*a;camY=lerpCam[1]*b+camY*a;}
+ eachMover(o=>{if(seen.has(o))return;seen.add(o);const v=lerpPrev.get(o);if(!v||v[2]!==lerpSerial||typeof o.y!=='number')return;const x=o.x,y=o.y;if(Math.abs(x-v[0])>80||Math.abs(y-v[1])>80)return;moved.push(o,x,y);o.x=v[0]*b+x*a;o.y=v[1]*b+y*a;});
+ try{draw(dt);}finally{camera=cam;camY=cy;for(let i=moved.length-3;i>=0;i-=3){moved[i].x=moved[i+1];moved[i].y=moved[i+2];}}
+}
+// Performance readout for testers: F9 or ?fps. It only reads numbers; the game never looks at it.
+const perfHud={on:hasDom&&/[?&]fps\b/.test(globalThis.location?.search||''),el:null,n:0,sum:0,worst:0,work:0,since:0,slow:[]};
+function perfTick(now,gap,work){
+ if(!perfHud.on)return;
+ if(gap>50)perfHud.slow.push(now);while(perfHud.slow.length&&now-perfHud.slow[0]>10000)perfHud.slow.shift();
+ perfHud.n++;perfHud.sum+=gap;perfHud.worst=Math.max(perfHud.worst,gap);perfHud.work+=work;
+ if(now-perfHud.since<500)return;
+ if(!perfHud.el){perfHud.el=document.createElement('div');perfHud.el.id='perf-hud';perfHud.el.setAttribute('data-notr','');perfHud.el.setAttribute('translate','no');perfHud.el.style.cssText='position:fixed;left:8px;bottom:8px;z-index:2147483647;pointer-events:none;white-space:pre;font:12px/1.35 ui-monospace,Consolas,monospace;color:#d9f2e6;background:rgba(6,14,14,.82);padding:6px 9px;border-radius:6px;max-width:calc(100vw - 32px);overflow:hidden';document.body.appendChild(perfHud.el);}
+ const n=Math.max(1,perfHud.n),avg=perfHud.sum/n,info=stage?.perf?.(),hz=beat.k?`${Math.round(120/beat.k)} Hz snap`:SMOOTH?'interpolation':'smoothing off';
+ // a tester's readout in plain technical English, so it needs no translation
+ perfHud.el.textContent=`${Math.round(1000/avg)} FPS · frame ${avg.toFixed(1)} ms (max ${perfHud.worst.toFixed(0)}) · work ${(perfHud.work/n).toFixed(1)} ms · hitches/10s ${perfHud.slow.length}\n`+
+  (info?`GPU: ${info.gpu||'unknown'}\nquality: ${settings.quality}${info.auto?'/tier'+info.tier:''} · render ${info.size.join('×')} · layer ${info.layer.join('×')} · ${hz}`:`2D canvas (no WebGL) · ${hz}`);
+ perfHud.n=0;perfHud.sum=0;perfHud.worst=0;perfHud.work=0;perfHud.since=now;
+}
+if(hasDom)document.addEventListener('keydown',e=>{if(e.code!=='F9')return;e.preventDefault();perfHud.on=!perfHud.on;if(!perfHud.on&&perfHud.el){perfHud.el.remove();perfHud.el=null;}});
+let last=performance.now(),acc=0;function frame(now){const t0=performance.now(),gap=now-last;drawSerial++;songWatch();let dt=Math.min(frameDt((now-last)/1000),.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){lerpSnap();update(1/120);acc-=1/120;}drawFrame(dt);perfTick(now,gap,performance.now()-t0);requestAnimationFrame(frame);}requestAnimationFrame(frame);
 // Read-only QA snapshot; no cheats are exposed to players.
 window.markoState=()=>({mode,zone,charge:p?.charge||0,x:p?.x,y:p?.y,hp:p?.hp,energy:p?.energy,wine:p?.wine,buff:p?.buff,horseMounted,kills,elapsed,fairyVisible:fairy.age<fairy.duration,fairyAge:fairy.age,castPending:!!pendingMagic,defense:defenses[zone],bossHp:boss?.hp,runes:world.runes.map(r=>r.active),goals:world.goals?.map(g=>({kind:g.kind,x:Math.round(g.x),y:g.y,done:g.done,label:g.label})),enemies:world.enemies.filter(e=>e.alive&&e.zone===zone).map(e=>({x:e.x,hp:e.hp,mode:e.mode,type:e.type,moving:e.moveT>0&&e.stun<=0,walk:e.walk||0,frame:locomotionPose(e).frame})),bossMode:boss?.mode,bossX:boss?.x,grounded:p?.grounded,remaining:world.enemies.filter(e=>e.alive&&e.zone===zone).length,renderer:stage?'three':'2d',rage:p.rage,guard:p.guard,blocking:p.blocking,crouching:p.crouching,playerHeight:p.h,attackKind:p.attackKind,attack:p.attack,deathSequence:endSequence,corpses:corpses.map(c=>({type:c.type,frame:deathPose(c).frame,t:c.t,grounded:c.grounded,x:Math.round(c.x),y:Math.round(c.y),launched:!!c.launched}))});
 
 document.addEventListener('pointerdown',()=>initAudio(),{once:true});document.addEventListener('keydown',()=>initAudio(),{once:true});
 
 // ---------- audio levels, fullscreen ----------
-function applyAudioLevels(){if(!audio||!SND.master)return;const t=audio.currentTime;SND.master.gain.setTargetAtTime(audioEnabled?settings.volume*1.6:0,t,.05);const talk=t<SND.duckUntil;SND.bus.music.gain.setTargetAtTime(settings.music*.5*(talk?.28:1),t,.1);SND.bus.sfx.gain.setTargetAtTime(settings.sfx*.7*(talk?.55:1),t,.06);SND.bus.voice.gain.setTargetAtTime(settings.voice*2,t,.05);SND.bus.enemy.gain.setTargetAtTime(settings.voice*.55*(talk?.4:1),t,.06);}
+// Called every game step. Re-aiming a gain at the value it is already heading for draws the same curve, so it is only
+// sent when the target changes (it used to queue 600 audio events a second).
+const gainAim=new WeakMap();function aimGain(param,v,t,tau){if(gainAim.get(param)===v)return;gainAim.set(param,v);param.setTargetAtTime(v,t,tau);}
+function applyAudioLevels(){if(!audio||!SND.master)return;const t=audio.currentTime;aimGain(SND.master.gain,audioEnabled?settings.volume*1.6:0,t,.05);const talk=t<SND.duckUntil;aimGain(SND.bus.music.gain,settings.music*.5*(talk?.28:1),t,.1);aimGain(SND.bus.sfx.gain,settings.sfx*.7*(talk?.55:1),t,.06);aimGain(SND.bus.voice.gain,settings.voice*2,t,.05);aimGain(SND.bus.enemy.gain,settings.voice*.55*(talk?.4:1),t,.06);}
 function readAudioSettings(){settings.volume=Number($('volume').value)/100;settings.music=Number($('vol-music').value)/100;settings.sfx=Number($('vol-sfx').value)/100;settings.voice=Number($('vol-voice').value)/100;applyAudioLevels();}
 for(const id of ['volume','vol-music','vol-sfx','vol-voice'])$(id).addEventListener?.('input',()=>{initAudio();readAudioSettings();if(id==='vol-sfx')sfx('hit_body');if(id==='vol-voice')say('kill',{priority:5});});
 $('quality').addEventListener?.('change',()=>{settings.quality=$('quality').value;});
