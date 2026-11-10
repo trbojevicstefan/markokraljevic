@@ -110,7 +110,7 @@ export const CUDA=[
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:djemo',
+ selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:djemo',
  klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:kopljanik',
  suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney flat boss:lovac',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
@@ -195,6 +195,8 @@ export function buildLayout(L,variant='day'){
   gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
+  // the poor by the road: an old woman and an orphan; a quiet room, no Turks in it
+  sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},
   vino(arg){const x0=x,len=ri(820,900);ground(len);traps.push({kind:'bacva',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len,kraj:arg==='kraj'});busy.push([x0,x0+len]);},
   svatovi(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'kavez',x:x0+Math.round(len*.55),y:gy,hp:4});busy.push([x0+len*.3,x0+len*.8]);},
@@ -285,6 +287,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  const pool=[...base,...(opts.extraFoes||[]).filter(t=>!base.includes(t)&&t!=='tufekdzija')];
  const floorAt=x=>{let best=null;for(const q of platforms)if(q.ground&&x>q.x+40&&x<q.x+q.w-40&&(!best||q.y<best.y))best=q;return best;};
  const foe=(type,x,y,o={})=>{const hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+enemies.length,x:Math.round(x),y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
+ const quiet=B.traps.filter(t=>t.kind==='sirotinja');if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
  let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(Math.abs(s.x-B.spawn.x)<480)continue;
   if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
   if(s.x-lastX<330)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);

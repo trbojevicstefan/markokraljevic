@@ -1,0 +1,68 @@
+[
+  {
+    "id": "mlada-trci",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\mlada-trci",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "mlada-skok",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\mlada-skok",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "mladozenja-trci",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\mladozenja-trci",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "mladozenja-skok",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\mladozenja-skok",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "sirotinja-ceka",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\sirotinja-ceka",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "sirotinja-blagoslov",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\sirotinja-blagoslov",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

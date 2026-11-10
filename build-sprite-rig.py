@@ -341,6 +341,32 @@ for who, clips in [('hasan-aga', ['idle', 'run', 'attack', 'zalet', 'zaglavljen'
             if _have(f'{who}-{k}'):
                 SCALES[f'{who}-{k}'] = (s_, 'center' if k == 'death' else 'feet')
 
+# DOPUNA-30: the bride and groom run off happy after the kolo; the poor by the road (an old woman and a boy).
+# One scale per character, set by the clip where they stand tallest without the raised arm: the bride's jump
+# lands back on both feet (frame 0), the groom crouches before his jump, so his run is used with the cap-hand removed.
+def _fig_h(name, frames=None):
+    cs = _cells(name)
+    cs = [cs[i] for i in frames] if frames else cs
+    return float(np.median([body_height(c) for c in cs]))
+if _have('mlada-trci'):
+    s_ = 101 / _fig_h('mlada-skok', [0]) if _have('mlada-skok') else 101 / _fig_h('mlada-trci')
+    for k in ['trci', 'skok']:
+        if _have(f'mlada-{k}'):
+            SCALES[f'mlada-{k}'] = (s_, 'feet')
+    print('mlada', round(s_, 4), [round(body_height(c) * s_) for c in _cells('mlada-trci')])
+if _have('mladozenja-trci'):
+    s_ = (SCALES['mlada-trci'][0] * 1.06) if 'mlada-trci' in SCALES else 140 / _fig_h('mladozenja-trci')
+    for k in ['trci', 'skok']:
+        if _have(f'mladozenja-{k}'):
+            SCALES[f'mladozenja-{k}'] = (s_, 'feet')
+    print('mladozenja', round(s_, 4), [round(body_height(c) * s_) for c in _cells('mladozenja-trci')])
+if _have('sirotinja-blagoslov'):
+    s_ = 104 / max(body_height(c) for c in _cells('sirotinja-blagoslov'))
+    for k in ['ceka', 'blagoslov']:
+        if _have(f'sirotinja-{k}'):
+            SCALES[f'sirotinja-{k}'] = (s_, 'feet')
+    print('sirotinja', round(s_, 4))
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

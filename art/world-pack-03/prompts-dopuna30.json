@@ -1,0 +1,98 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "mlada-trci",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/sources/dopuna30-reference/svatovi.png",
+        "art/animation-pack-04/sources/dopuna30-reference/putnica.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. Happy young SERBIAN BRIDE, dark brown hair, floor-length IVORY WHITE embroidered linen gown with red Serbian geometric embroidery, RED APRON, GOLD DUCAT COIN necklace, FLOWER WREATH and long translucent ivory VEIL attached to wreath. Brown opanci visible when running. Same recognizable bride as left bride in wedding-party reference; NO other wedding guests, no modern puffball gown. EXACT 3 COLUMNS x 3 ROWS equal SQUARE cells, row-major. FIRST 8 cells continuous LOOP animation. Cell 9 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. EIGHT joyful real RUN phases: left contact,compression,passing,flight,right contact,compression,passing,flight. ONE hand holds skirt hem up slightly so knees/opanci show; OTHER hand WAVES happily. Veil streams behind with alternating folds. Feet articulate distinct running strides, happy smiling face. Calibration bride upright arms low veil resting.",
+      "fps": 12
+    },
+    {
+      "id": "mlada-skok",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/assets/mlada-trci/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. Happy young SERBIAN BRIDE, dark brown hair, floor-length IVORY WHITE embroidered linen gown with red Serbian geometric embroidery, RED APRON, GOLD DUCAT COIN necklace, FLOWER WREATH and long translucent ivory VEIL attached to wreath. Brown opanci visible when running. Same recognizable bride as left bride in wedding-party reference; NO other wedding guests, no modern puffball gown. EXACT 4 COLUMNS x 2 ROWS equal SQUARE cells, row-major. FIRST 6 cells continuous LOOP animation. Cell 7 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. Six joyful JUMP AND SPIN loop poses:1 knees bend smiling armsstartup,2 takeoff BOTH HANDS UP,3 happy apex armsfullyup and veil spreads,4 turns through 3/4 BACK view skirt/veil fan wide,5 returns right-profile landing kneescompressed armslower,6 rises toward1. ONE bride per cell, keep same anatomy through turn, veil attached to wreath not detached. Calibration standing frontal-right neutral.",
+      "fps": 12
+    },
+    {
+      "id": "mladozenja-trci",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/sources/dopuna30-reference/svatovi.png",
+        "art/animation-pack-04/sources/dopuna30-reference/putnica.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. Happy young SERBIAN GROOM, dark brown short hair and small moustache, WHITE LINEN SHIRT, RED JELEK waistcoat with braided trim, woven sash, dark brown loose trousers, OPANCI with leather straps. Brown fur SUBARA HAT with green ROSEMARY SPRIG. No sword/staff, no modern suit. Same face and costume each pose. EXACT 3 COLUMNS x 3 ROWS equal SQUARE cells, row-major. FIRST 8 cells continuous LOOP animation. Cell 9 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. EIGHT joyful RUN phases alternating feet with contact/compression/passing/flight. RIGHT HAND holds REMOVED FUR SUBARA HAT with rosemary and WAVES it ABOVE HEAD; left arm pumps. Bare-haired head visible because only ONE hat is in right hand. Smiling joyous expression, real bent-knee running, not hopping static legs. Calibration upright with hat WORN on head armslow.",
+      "fps": 12
+    },
+    {
+      "id": "mladozenja-skok",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/assets/mladozenja-trci/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. Happy young SERBIAN GROOM, dark brown short hair and small moustache, WHITE LINEN SHIRT, RED JELEK waistcoat with braided trim, woven sash, dark brown loose trousers, OPANCI with leather straps. Brown fur SUBARA HAT with green ROSEMARY SPRIG. No sword/staff, no modern suit. Same face and costume each pose. EXACT 4 COLUMNS x 2 ROWS equal SQUARE cells, row-major. FIRST 6 cells continuous LOOP animation. Cell 7 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. Six joyfully TOSS HAT JUMP CATCH loop poses:1 crouches hat in hands at chest,2 TOSSES onlyhat UP and beginsjump,3 airborne handsspread hatfloating directlyABOVEhead rosemaryvisible,4 reachesUP and CATCHEShat firmly withright hand,5 lands kneesbent hat heldnear chest,6 returnsready1. Head bare except calibration which wears hat. ExactlyONEhat total percell, not hat onhead AND airborne. Calibration neutral upright hatworn.",
+      "fps": 12
+    },
+    {
+      "id": "sirotinja-ceka",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/sources/dopuna30-reference/putnica.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. TWO PEOPLE TOGETHER in EVERY actual animation cell: frail elderly Serbian woman with grey hair in TORN BLACK HEADSCARF, patched dark brown dress, worn opanci; and a small young BOY with brown hair, patched ochre tunic, BARE FEET. Modest poor rural 14th-century clothing. Woman adult anatomical height same as traveler female reference, boy roughly half her height. Gentle dignified expressions, no wounds or visible suffering. NOT a mother carrying a baby. EXACT 3 COLUMNS x 2 ROWS equal SQUARE cells, row-major. FIRST 4 cells continuous LOOP animation. Cell 5 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. FOUR quiet waiting poses: woman SITS ON LOW GREY ROCK, boy STANDS next to her at front/right and holds ONE empty hand OUT gently asking.1 quiet sad dignified,2 boyhand slightly rises womanbreathes,3 womanlooksup and boyglancesright,4 return. Woman seated, boy barefoot; same rock and grounding everyframe, do not make them equalheight. Calibration cell5 BOTH stand upright sidebyside, no rock, womansheight matches female traveler reference. NO coins yet.",
+      "fps": 12
+    },
+    {
+      "id": "sirotinja-blagoslov",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 405,
+      "references": [
+        "art/animation-pack-04/assets/sirotinja-ceka/frames/motion/frame-0.png",
+        "art/animation-pack-04/sources/dopuna30-reference/putnica.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production 2D game animation sprite sheet, hand-painted matte warm cel-shaded Serbian medieval art matching references, 14th century Serbia, no gloss, no modern wedding suit. Pure FLAT #FF00FF MAGENTA background, no magenta garments, no scenery/shadows, text, numbering, gridlines or borders. Every complete figure and all props fully within its OWN square cell with generous clean gutters. Consistent anatomical size and costume across ALL frames including crouched poses, do not zoom different poses. Faces mostly RIGHT-facing. Output512x512 cells, feet baseliney487; engine adds airborne trajectory. TWO PEOPLE TOGETHER in EVERY actual animation cell: frail elderly Serbian woman with grey hair in TORN BLACK HEADSCARF, patched dark brown dress, worn opanci; and a small young BOY with brown hair, patched ochre tunic, BARE FEET. Modest poor rural 14th-century clothing. Woman adult anatomical height same as traveler female reference, boy roughly half her height. Gentle dignified expressions, no wounds or visible suffering. NOT a mother carrying a baby. EXACT 4 COLUMNS x 2 ROWS equal SQUARE cells, row-major. FIRST 6 cells continuous LOOP animation. Cell 7 extra scale CALIBRATION: neutral UPRIGHT standing same person(s), all clothes/props same size, no waving arms. Remaining cells empty MAGENTA. SIX gratitude/blessing loop poses, both STANDING entire clip:1 oldwoman right hand atforehead begins EasternOrthodox signofcross,2 hand downchest,3 hand rightthenleftshoulder finishingcross boykneesbend,4 woman lifts BOTH HANDS towardheaven boyJUMPSjoyfully wavingarms,5 handsstillup boylands,6 womanshandslower return1 boywaves. Respectful oldwoman, happyboy. No floating religioussymbols, no actual Marko, no rock, no extra figures. Calibration cell7 BOTH standneutral same anatomicalsizes as otherframes.",
+      "fps": 12
+    }
+  ]
+}

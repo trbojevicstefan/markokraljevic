@@ -495,3 +495,20 @@ DOPUNA-28: janicarski-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manife
 DOPUNA-28 ZAVRSENO: 19/19 klipova, 112 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna28.json, promptovi prompts-dopuna28.json, pregled art/animation-pack-04/preview-dopuna28.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; sva tri bosa koriste oslonac (256,488) i ciljnu visinu 490px.
 
 DOPUNA-29 GOTOVO 2/2: most-daske-segment.png 1536x512 RGBA i most-daske-kraj.png 512x768 RGBA, art/world-pack-03/. Slikano i mat, ne pixel-art; oslonac dasaka y300. Segment horizontalno ponovljiv, RGBA prve/poslednje kolone identican (razlika 0), tehnicki spoj u 32px rubu; tri stubica. Pregled most-daske-segment-tiling-preview.png. Ugradjeni image_gen; segment 1 pokusaj, kraj 2 (prvi zadrzan: alfa-provera dokazala da je prividna izmaglica bila skriveni RGB pregleda, oba izvora sacuvana). Promptovi prompts-dopuna29.json; provera validation-dopuna29.json.
+
+DOPUNA-30: mlada-trci — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mlada-trci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30: mlada-skok — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mlada-skok/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30: mladozenja-trci — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladozenja-trci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30: mladozenja-skok — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladozenja-skok/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30: sirotinja-ceka — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sirotinja-ceka/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30: sirotinja-blagoslov — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sirotinja-blagoslov/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna30.json, izvor sacuvan.
+
+DOPUNA-30 ZAVRSENO: 6/6 klipova, 38 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna30.json, promptovi prompts-dopuna30.json, pregled art/animation-pack-04/preview-dopuna30.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; zum prema putnica-idle, ciljna visina odraslog 405px, oslonac (256,488); dva lika zajedno u oba klipa sirotinje.
+
+DOPUNA-30 ZAVRSENO: 6/6 klipova, 38 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna30.json, promptovi prompts-dopuna30.json, pregled art/animation-pack-04/preview-dopuna30.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; zum prema putnica-idle, ciljna visina odraslog 405px, oslonac (256,488); dva lika zajedno u oba klipa sirotinje.
+DOPUNA-30: tehnicki uklonjen magenta preliv na velu u oba klipa mlade, bez ponovnog generisanja; originalni izvozi sacuvani u sources/<klip>/before-veil-despill/. Atlas i GIF ponovo izvezeni, provera ponovljena uspesno.
