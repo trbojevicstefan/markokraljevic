@@ -1,0 +1,51 @@
+{
+  "mode": "built-in image_gen",
+  "prompts": [
+    {
+      "theme": "manastir",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct ONLY building scale in this existing Serbian medieval painted matte 2D game near parallax layer. Wide3:1 transparent PNG, final2172x724. Human height145px. Human door openings must be180px tall (NOT tiny windows), gate openings200px tall. Two-storey houses350px tall, church/towers480px tall. Prefer few large structures over miniature towns. Preserve original natural tree and rocks silhouettes, road in bottom15%, autumn golden daylight, warm cream stone, crimson Serbian double-headed-eagle banners, painterly detail. KEEP sky genuinely transparent with no opaque glow or backdrop. Outer12% left/right (260px) should be natural rocks/foliage without cropped buildings. Buildings must be complete inside the frame, no clipped roofs. No people or text. MONASTERY: left autumn tree and cliffside path unchanged. Remove miniature monastery from extreme right. Rebuild ONE complete large Serbian Orthodox church at x1430..1860 with cross topy80 and basey570, height490px; a LOW surrounding stone enclosure with ONE massive entrance arch x1250..1430, OPENING y385..585 (200px tall). Church own doorway height180px. A single bell tower nearx1100..1270, y160..580, height420px. No other miniature buildings. The church, tower and entrance must be fully visible within x1000..1900, natural rocks and foliage in rightmost260px. Retain same crimson eagle banners around entrance. Stone road stays at bottom, structures connect to it."
+    },
+    {
+      "theme": "manastir",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT new monastery near layer into night. Preserve all geometry, big gateway opening, bell tower, church including full unclipped crosses, red eagle banners, trees, foreground cliff path and rocks, pixel-aligned composition. Deep cool blue moonlit stone and autumn leaves, warm amber glowing church windows and small lamps within existing gateway. Transparent sky stays genuinely empty alpha, no moon/stars/backdrop or glow outside silhouettes. Wide3:1 RGBA2172x724, same matte painterly detail. Do not add buildings, shrink entrances or move objects."
+    },
+    {
+      "theme": "manastir",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT new monastery near layer into a wet OVERCAST STORM. Preserve every building and silhouette in place, including large gateway opening and entire crosses with clear upper margin, bell tower, church, eagle banners, autumn tree, rocky bottom road. Slate grey cool diffuse light, muted russet/gold leaves, rain-darkened masonry and wet path with subdued reflective highlights, faint amber windows. No clouds/sky/moon/lightning background, genuinely transparent sky and opening. Wide3:1 RGBA2172x724, same painted matte details, no new or moved architecture."
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct ONLY building scale in this existing Serbian medieval painted matte 2D game near parallax layer. Wide3:1 transparent PNG, final2172x724. Human height145px. Human door openings must be180px tall (NOT tiny windows), gate openings200px tall. Two-storey houses350px tall, church/towers480px tall. Prefer few large structures over miniature towns. Preserve original natural tree and rocks silhouettes, road in bottom15%, autumn golden daylight, warm cream stone, crimson Serbian double-headed-eagle banners, painterly detail. KEEP sky genuinely transparent with no opaque glow or backdrop. Outer12% left/right (260px) should be natural rocks/foliage without cropped buildings. Buildings must be complete inside the frame, no clipped roofs. No people or text. FORTRESS: keep the original massive left autumn oak and rocky foreground road. Replace tiny/cropped fortress architecture with ONE compact complete fortress gatehouse complex, inside x1080..1880, basey600, topmost roofy100 (500px tall). Two tall square medieval Serbian stone towers with timber lookout roofs and a connecting crenellated wall. Huge central arched wooden double gate with clear doorway220px high (basey600, arch topy380), nearly HALF a tower high, not a tiny opening. Preserve crimson white double-headed-eagle banners on walls. ONE full domed church behind the wall, totalheight450px with crossy100 or lower and no cropped top. No miniature church, tiny towers or repeated distant town. No architecture at outer260px edges; right edge natural rocks and bushes. Existing palisade stakes can be fewer human-scale stakes140px tall, no giant foreground fences. Same golden day palette."
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT new Serbian fortress near parallax into NIGHT, keeping geometry and all silhouettes pixel-aligned. Two complete roofed towers, large central double gate, church behind wall, crimson eagle banners, sparse stakes, tree, rocks and bottom path remain identical in size and position. Cool dark moonlit blue stone, timber and autumn leaves; warm amber tower windows and small wall torches beside gate. No added buildings, no moved objects, no extra sky elements, no opaque halo. Preserve transparent sky and full uncropped roofs/cross. Wide3:1 RGBA2172x724, painted matte style."
+    },
+    {
+      "theme": "tvrdjava",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT new fortress into a wet OVERCAST STORM, no geometry changes. Preserve twin complete roofed towers, giant central arch gate, church behind wall, crimson eagle banners, tree, rocks and road. Dark wet grey masonry and timber, muted russet autumn leaves, cool diffuse slate light, wet foreground rocky path with subtle glints, faint warm window light. Sky remains genuinely transparent, no cloud/moon/lightning backdrop, no opaque glow outside contours. Same2172x724 wide3:1 painted matte game layer. All roofs and cross fit fully; no new objects or moved architecture."
+    },
+    {
+      "theme": "rusevine",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct ONLY building scale in this existing Serbian medieval painted matte 2D game near parallax layer. Wide3:1 transparent PNG, final2172x724. Human height145px. Human door openings must be180px tall (NOT tiny windows), gate openings200px tall. Two-storey houses350px tall, church/towers480px tall. Prefer few large structures over miniature towns. Preserve original natural tree and rocks silhouettes, road in bottom15%, autumn golden daylight, warm cream stone, crimson Serbian double-headed-eagle banners, painterly detail. KEEP sky genuinely transparent with no opaque glow or backdrop. Outer12% left/right (260px) should be natural rocks/foliage without cropped buildings. Buildings must be complete inside the frame, no clipped roofs. No people or text. RUINS: relocate cropped edge architecture inward. ONE complete ruined Serbian Orthodox church at x300..760, basey600, cross topy100, totalheight500px, enormous broken entrance arch180px tall y420..600. Gold cross fits fully with100px transparent margin above. Fewer large ruined walls: ONE broken arcade at x850..1150 with two full HUMAN-SIZED openings180px tall, basey630, arches topy450; ONE complete ruined square tower at x1530..1800, topy140, basey600, with broken attached gateway opening200px tall. Remove all miniature arches and edge-cropped architecture including the wood mine portal on far right; natural rocks and autumn bushes remain at edges, no building in outer260px. Keep existing tree roots, ivy, rocky hills and foreground rubble/road, golden autumn lighting and warm stone. Centre remains mostly open transparent sky, ruin skyline irregular. Human scale, not toy village."
+    },
+    {
+      "theme": "rusevine",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT ruined medieval Serbian monastery layer into NIGHT. Preserve composition and all object geometry: complete church and cross left, TWO large central arcade openings, one complete ruined square tower and its large gateway right; ivy, roots, natural rocks and bottom road. Cool deep blue moonlight on stone, muted autumn foliage, subtle warm light from existing church windows and a few small lamps inside existing arches only. Every archway hole and upper sky remain genuinely transparent alpha, no filled holes, no yellow/white/black backdrop, no opaque glows. No added architecture/characters. Full cross and tower fit frame with same margins, wide3:1 RGBA2172x724, matte painterly style."
+    },
+    {
+      "theme": "rusevine",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT ruin near parallax into a wet overcast STORM. Lock entire composition: large complete left church/cross, two human-sized arcade openings centre, large ruined right tower and gate, ivy roots rocks and low foreground path. Cool grey diffuse light, wet dark masonry, subdued ochre/russet leaves, moist path and faint warm church window light. Every archway hole and all empty upper sky remain genuinely transparent alpha, no black/yellow/white background and no cloudy opaque halo. Preserve same roof/cross margins and building sizes, no added/moved buildings. Wide3:1 RGBA2172x724, painterly matte medieval game style."
+    }
+  ],
+  "correction": "Use case: precise-object-edit. Fix this same transparent3:1 parallax image. ONLY reduce the main church on the right by20% vertically, anchored at its existing staircase base. The top of its gold cross MUST be fully visible with at least80px empty transparent margin above it in a2172x724 canvas. Its total cross-to-base height should be490px, not full canvas height. Keep the entrance doorway at least160px tall. Preserve the bell tower, large courtyard gate, banners, tree, rocks, road, lighting, style, and every other object in place unchanged. No clipped cross. Transparent sky, no background fill."
+}

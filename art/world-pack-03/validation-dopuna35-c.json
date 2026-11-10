@@ -1,0 +1,278 @@
+[
+  {
+    "file": "art\\world-pack-01\\assets\\prevoj-near.png",
+    "original": "art\\world-pack-01\\staro\\prevoj-near.png",
+    "original_sha256": "46e64ef6ede0f6f7d705c3e3949694849002638a3642b996fef8657c0cd8c521",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 669355,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\prevoj-near-night.png",
+    "original": "art\\world-pack-01\\staro\\prevoj-near-night.png",
+    "original_sha256": "705345f8551ac2b322c6dfca874bfe78003d109191dc774ea7418b0e7e7f65ca",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 680872,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\prevoj-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\prevoj-near-storm.png",
+    "original_sha256": "09307c07a87d78ceb9e6230b31d8303974f46562e442d4fd32d4452ae0e38c28",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 695022,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\pecina-near.png",
+    "original": "art\\world-pack-01\\staro\\pecina-near.png",
+    "original_sha256": "7c0950f167fb6e78b40eac220edfbf2988d6fcb14be9100993d300a85bb2bb63",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 676550,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\pecina-near-night.png",
+    "original": "art\\world-pack-01\\staro\\pecina-near-night.png",
+    "original_sha256": "257617a43736806a41303cc3f0958e3d96549f27f328fed7db9ca4a90e1c2ef5",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 715972,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\pecina-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\pecina-near-storm.png",
+    "original_sha256": "d302554043e0ede1bd490d7e702bec2fbbf25582a69d67e3374e0f24c8688984",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 700733,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\klisura-near.png",
+    "original": "art\\world-pack-01\\staro\\klisura-near.png",
+    "original_sha256": "8e3c16d0f0ad5e59df1d3844b40dbc6d8d06b9ff3794cbaf618d7d82a75a8922",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 714737,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 1
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\klisura-near-night.png",
+    "original": "art\\world-pack-01\\staro\\klisura-near-night.png",
+    "original_sha256": "cbd8958d7bca54cb5dadb5e1e16bb4198b6c2d6ba437a44f01705d8202570db6",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 698182,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\klisura-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\klisura-near-storm.png",
+    "original_sha256": "b08f616d6981f32a68f6705018362e42ac11668cb6f41bc295f9b8b352c38a69",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 690162,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\suma-near.png",
+    "original": "art\\world-pack-01\\staro\\suma-near.png",
+    "original_sha256": "7c04cbe9730f742e63a8d48bd1825ca81e8c3545425410bf07efafe8d3f45fc0",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 669636,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\suma-near-night.png",
+    "original": "art\\world-pack-01\\staro\\suma-near-night.png",
+    "original_sha256": "5a7768b4657ec5e68fb71360bc3394e458d747835cc2f12597f29436aaadd040",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 676161,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\suma-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\suma-near-storm.png",
+    "original_sha256": "f31bae34afdcd154c0de3e5d22a54ba028008409088ac7c766605bbd9a250f93",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "mode": "RGBA",
+    "transparent_pixels": 672449,
+    "sky_alpha_samples": [
+      0,
+      0,
+      0
+    ],
+    "correction_count": 0
+  }
+]

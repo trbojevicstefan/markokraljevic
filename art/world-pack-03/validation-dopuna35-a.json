@@ -1,0 +1,156 @@
+[
+  {
+    "file": "art\\world-pack-01\\assets\\selo-near.png",
+    "original": "art\\world-pack-01\\staro\\selo-near.png",
+    "original_sha256": "a53ee4addfdbebe0eba26df5518970ee3fa3e2c19973bfc5e9483b10a442c6cd",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 518865,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\selo-near-night.png",
+    "original": "art\\world-pack-01\\staro\\selo-near-night.png",
+    "original_sha256": "1090eddd18284a0a5a433781c1fa46022415204a70e3cc737ed045ef24e907e7",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 705611,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\selo-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\selo-near-storm.png",
+    "original_sha256": "aa708b6dfdbc6c79051eb0ad590c6d0300b09c42643a7c33d16d62ce61994397",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 705222,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-03\\oranje-near.png",
+    "original": "art\\world-pack-03\\staro\\oranje-near.png",
+    "original_sha256": "1b31278baa0c66beba82eea931e057fa789d99d8d34e77f5069b229b441fb2d8",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 548516,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-03\\oranje-near-night.png",
+    "original": "art\\world-pack-03\\staro\\oranje-near-night.png",
+    "original_sha256": "48817053ec418117803cf6a9c13f07db3944f1d71786d06fc42cb66015798449",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 407541,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-03\\oranje-near-storm.png",
+    "original": "art\\world-pack-03\\staro\\oranje-near-storm.png",
+    "original_sha256": "f3f53d5f006854dfd5f5ed1aea1df6e1417f73b4778a99aa7d062236982bc3b7",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 584399,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\reka-near.png",
+    "original": "art\\world-pack-01\\staro\\reka-near.png",
+    "original_sha256": "f20efffbdf6ff51c8fe72c6b056efba1223e4ad90ce35fb6e3d5a2489d8b83b8",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 706433,
+    "original_hash_verified": true,
+    "retry_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\reka-near-night.png",
+    "original": "art\\world-pack-01\\staro\\reka-near-night.png",
+    "original_sha256": "3f2de26d13dfa857abde503a65fc6ac0c00b40b4974d060fbd059504266ce5ec",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual, not pixel-identical; old architecture excluded",
+    "transparent_pixels": 706433,
+    "original_hash_verified": true,
+    "retry_count": 1,
+    "alpha_fix": "registered day silhouette alpha; removes generated white sky halo"
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\reka-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\reka-near-storm.png",
+    "original_sha256": "2bd4228e6c5959df1f99a9b78f3efb138cc105490c853732551253c9704cec27",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "transparent_pixels": 748009,
+    "original_hash_verified": true,
+    "retry_count": 0
+  }
+]

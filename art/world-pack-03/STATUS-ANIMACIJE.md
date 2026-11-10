@@ -610,3 +610,44 @@ DOPUNA-37: cigla — GOTOVO3/3: plat-cigla-levo.png128x192, plat-cigla-sredina.p
 DOPUNA-37: greda — GOTOVO3/3: plat-greda-levo.png128x192, plat-greda-sredina.png256x192, plat-greda-desno.png128x192 u art/world-pack-03/. Povrsina y40, ukrasi y24..39, donja ivica do y181/providno od185. Levi/desni RGBA rub sredine i spojevi sa krajevima identicni piksel po piksel (razlika0), provera prosla. Ugradjeni image_gen, jedan spojen naslikan izvor podeljen na tri registrovana dela; prompts-dopuna37.json, sources/dopuna37/greda/qa.json.
 
 DOPUNA-37 ZAVRSENO8/8 MATERIJALA,24PNG: zemlja,mahovina,kamen,zid,sneg,kristal,cigla,greda. Povrsina tacnoY40, ukrasi ne iznadY24, donji deo providan od185. Sredina256x192 ponovljiva pikselpo-piksel RGBA razlika0; krajevi128x192 takodje spojeni razlika0. preview-dopuna37.jpg: levo+3xsredina+desno na1/2velicine, Markova silueta125px stoji na hodnoj liniji. Katalog catalog-dopuna37.json i provera validation-dopuna37.json. Ugradjeni image_gen,8naslikanih celina/8poziva, po3tehnicki izvezena dela.
+
+
+
+
+
+
+
+DOPUNA-35 A: selo GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-selo.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-a/. mid/kod/dist nisu menjani.
+DOPUNA-35 A: oranje GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-oranje.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-a/. mid/kod/dist nisu menjani.
+DOPUNA-35 A: reka GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-reka.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-a/. mid/kod/dist nisu menjani.
+DOPUNA-35 B: manastir GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-manastir.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-b/. mid/kod/dist nisu menjani.
+DOPUNA-35 B: tvrdjava GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-tvrdjava.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-b/. mid/kod/dist nisu menjani.
+DOPUNA-35 B: rusevine GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-rusevine.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-b/. mid/kod/dist nisu menjani.
+DOPUNA-35 C: prevoj GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-prevoj.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-c/. mid/kod/dist nisu menjani.
+DOPUNA-35 C: pecina GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-pecina.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-c/. mid/kod/dist nisu menjani.
+DOPUNA-35 C: klisura GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-klisura.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-c/. mid/kod/dist nisu menjani.
+DOPUNA-35 C: suma GOTOVO3/3 near (dan,noc,oluja),2172x724. Uvecane kuce/prolazi prema Marku145px; isti dnevni raspored je referenca za vremenske varijante; providno nebo, drum/voda zadrzani vizuelno prema referenci (nisu piksel-identicni). Originali u odgovarajucem staro/. Pregled preview-dopuna35-suma.jpg: staro/novo sa siluetom145px. Ugradjeni image_gen, izvori i QA u sources/dopuna35-c/. mid/kod/dist nisu menjani.
+
+DOPUNA-36 A: prelaz-selo-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-selo-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-selo-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-selo-anim/. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-klisura-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-klisura-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-klisura-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-klisura-anim/. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-suma-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-suma-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-suma-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-suma-anim/. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-manastir-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-manastir-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.
+
+DOPUNA-36 A: prelaz-manastir-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-manastir-anim/. Ugradjeni image_gen; sources/dopuna36-a/; prompts-dopuna36-a.json.

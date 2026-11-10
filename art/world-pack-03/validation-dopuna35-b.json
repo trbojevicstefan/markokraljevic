@@ -1,0 +1,182 @@
+[
+  {
+    "file": "art\\world-pack-01\\assets\\manastir-near.png",
+    "original": "art\\world-pack-01\\staro\\manastir-near.png",
+    "original_sha256": "2908ce087cd006d0522e895e4f9f49251cc76987481e581e36c60f2f68488fe1",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 633482,
+    "mode": "RGBA",
+    "correction_count": 1
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\manastir-near-night.png",
+    "original": "art\\world-pack-01\\staro\\manastir-near-night.png",
+    "original_sha256": "dabeb7f26b2d9caaa4cad408fcec2470299cf47fcae792ad44bde5f465cfe4c7",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 615518,
+    "mode": "RGBA",
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\manastir-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\manastir-near-storm.png",
+    "original_sha256": "4182177251902e605b09b57547a39df0e6f4fb477bbf170d99083b09d602155b",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 615272,
+    "mode": "RGBA",
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\tvrdjava-near.png",
+    "original": "art\\world-pack-01\\staro\\tvrdjava-near.png",
+    "original_sha256": "c89e4177376bf2cf426ef8f212bf6eebcb053e63dbb2d09ab5c596f28134e017",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 505848,
+    "mode": "RGBA",
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\tvrdjava-near-night.png",
+    "original": "art\\world-pack-01\\staro\\tvrdjava-near-night.png",
+    "original_sha256": "71af21f42c66acddab04c403fbfc62477e6757d9690b2091ee0193437c0a01c6",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 536231,
+    "mode": "RGBA",
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\tvrdjava-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\tvrdjava-near-storm.png",
+    "original_sha256": "933fb5d0f1357bc7960f42dbc5cfd544a801cdf48c0cd2a9c4a36278fa7df51a",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 490313,
+    "mode": "RGBA",
+    "correction_count": 0
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\rusevine-near.png",
+    "original": "art\\world-pack-01\\staro\\rusevine-near.png",
+    "original_sha256": "9b08dc7061de421c3b6b48d1e56608015a7bf4f128681cec98f4a48c6a150d3d",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 782287,
+    "mode": "RGBA",
+    "correction_count": 0,
+    "arch_alpha_samples": [
+      2,
+      1,
+      1,
+      0
+    ]
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\rusevine-near-night.png",
+    "original": "art\\world-pack-01\\staro\\rusevine-near-night.png",
+    "original_sha256": "bc83a82dad2b9d9cb68093427b20f669ef883219c59ccda4e998b879f7dfa2a5",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 839038,
+    "mode": "RGBA",
+    "correction_count": 0,
+    "arch_alpha_samples": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "file": "art\\world-pack-01\\assets\\rusevine-near-storm.png",
+    "original": "art\\world-pack-01\\staro\\rusevine-near-storm.png",
+    "original_sha256": "78ec22dd1152c31c1dfca1bcc01791e060d4fd8d3e6fd835c02a19acca9b995a",
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "road_preservation": "visual from edit reference; not pixel exact, to avoid old architecture ghosts",
+    "original_hash_verified": true,
+    "transparent_pixels": 848716,
+    "mode": "RGBA",
+    "correction_count": 0,
+    "arch_alpha_samples": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+]

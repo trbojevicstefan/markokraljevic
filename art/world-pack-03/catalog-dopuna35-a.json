@@ -1,0 +1,22 @@
+{
+  "scope": "DOPUNA35 partA only, near only",
+  "mode": "built-in image_gen",
+  "assets": [
+    "art\\world-pack-01\\assets\\selo-near.png",
+    "art\\world-pack-01\\assets\\selo-near-night.png",
+    "art\\world-pack-01\\assets\\selo-near-storm.png",
+    "art\\world-pack-03\\oranje-near.png",
+    "art\\world-pack-03\\oranje-near-night.png",
+    "art\\world-pack-03\\oranje-near-storm.png",
+    "art\\world-pack-01\\assets\\reka-near.png",
+    "art\\world-pack-01\\assets\\reka-near-night.png",
+    "art\\world-pack-01\\assets\\reka-near-storm.png"
+  ],
+  "previews": [
+    "preview-dopuna35-selo.jpg",
+    "preview-dopuna35-oranje.jpg",
+    "preview-dopuna35-reka.jpg"
+  ],
+  "prompts": "prompts-dopuna35-a.json",
+  "note": "Road/river visually preserved rather than copied pixel-for-pixel, avoiding ghosts of old buildings. Weather geometry follows new day reference but generated texture details vary."
+}

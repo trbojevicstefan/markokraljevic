@@ -1,0 +1,22 @@
+{
+  "scope": "Part B near only",
+  "mode": "built-in image_gen",
+  "assets": [
+    "art\\world-pack-01\\assets\\manastir-near.png",
+    "art\\world-pack-01\\assets\\manastir-near-night.png",
+    "art\\world-pack-01\\assets\\manastir-near-storm.png",
+    "art\\world-pack-01\\assets\\tvrdjava-near.png",
+    "art\\world-pack-01\\assets\\tvrdjava-near-night.png",
+    "art\\world-pack-01\\assets\\tvrdjava-near-storm.png",
+    "art\\world-pack-01\\assets\\rusevine-near.png",
+    "art\\world-pack-01\\assets\\rusevine-near-night.png",
+    "art\\world-pack-01\\assets\\rusevine-near-storm.png"
+  ],
+  "previews": [
+    "preview-dopuna35-manastir.jpg",
+    "preview-dopuna35-tvrdjava.jpg",
+    "preview-dopuna35-rusevine.jpg"
+  ],
+  "prompts": "prompts-dopuna35-b.json",
+  "limitation": "Weather variants follow day composition; painted texture details vary. Foreground visually preserved rather than pixel-identical."
+}

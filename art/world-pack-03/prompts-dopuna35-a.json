@@ -1,0 +1,56 @@
+[
+  {
+    "theme": "selo",
+    "variant": "day",
+    "prompt": "Use case: precise-object-edit. Edit this existing 2D game near parallax layer, painted matte detailed Serbian medieval countryside, NOT pixel art. Output wide 3:1 RGBA transparent sky, intended final dimensions 2172x724. Preserve the original trees, rocks, mountains, palette, daytime lighting and bottom 15% road. Correct BUILDING SCALE only: human in game is145 pixels tall. Full two-storey house350px tall, doorway160px tall, church480px tall. Buildings based at y610. Fences65px, barrels maximum80px. Fewer but larger buildings; NO tiny near buildings. No humans, no labels. Keep outer260px on both sides free of architecture, no clipped buildings at edges, only existing natural terrain. Transparent empty sky, not black fill. SELО: retain left autumn oak and central mountain valley. Remove the cropped house at the far-right edge and tiny village buildings. Replace village with ONE complete 350px tall white plaster timber house at x1150..1530,y260..610, door x1290..1360,y450..610, and ONE complete small Serbian Orthodox stone church x1600..1870,y130..610, its door y450..610. The house and church roofs must fully fit in frame, calm natural right edge. Match existing warm golden autumn afternoon.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "selo",
+    "variant": "-night",
+    "prompt": "Use case: lighting-weather. Image1 is the EXACT new near layer to relight; image2 is OLD version LIGHTING/PALETTE ONLY, do NOT copy its architecture. Preserve Image1 layout, architecture sizes and locations, doors, trees, mountains, terrain and transparent sky pixel-aligned. Do not add/delete/move any object. Output wide3:1 RGBA transparent empty sky; intended2172x724. Same painted matte style. No labels or people. NIGHT: cool dark blue moonlit stone and foliage, warm amber lit windows, keep doors readable. No stars/moon/clouds, only transparency above silhouettes.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "selo",
+    "variant": "-storm",
+    "prompt": "Use case: lighting-weather. Image1 is the EXACT new near layer to relight; image2 is OLD version LIGHTING/PALETTE ONLY, do NOT copy its architecture. Preserve Image1 layout, architecture sizes and locations, doors, trees, mountains, terrain and transparent sky pixel-aligned. Do not add/delete/move any object. Output wide3:1 RGBA transparent empty sky; intended2172x724. Same painted matte style. No labels or people. STORM: overcast dark slate blue-grey lighting, muted wet autumn foliage and rain-darkened stone/timber, subtle wet highlights, dim amber windows, no visible sky/cloud backdrop or rain filling transparent sky.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "oranje",
+    "variant": "day",
+    "prompt": "Use case: precise-object-edit. Edit this existing 2D game near parallax layer, painted matte detailed Serbian medieval countryside, NOT pixel art. Output wide 3:1 RGBA transparent sky, intended final dimensions 2172x724. Preserve the original trees, rocks, mountains, palette, daytime lighting and bottom 15% road. Correct BUILDING SCALE only: human in game is145 pixels tall. Full two-storey house350px tall, doorway160px tall, church480px tall. Buildings based at y610. Fences65px, barrels maximum80px. Fewer but larger buildings; NO tiny near buildings. No humans, no labels. Keep outer260px on both sides free of architecture, no clipped buildings at edges, only existing natural terrain. Transparent empty sky, not black fill. ORANJE: keep both pear trees at existing positions and scale, keep distant hilltop fortress at its original distant scale/location and existing rocks, wheat fields and ploughed furrows. Replace tiny farm settlement left of centre with ONE large complete Serbian timber/plaster farmhouse at x430..900,y240..590 (350px high), huge human-scale door at x660..745,y430..590 (160px high). Beside it ONE stone courtyard gateway x920..1140,y350..590, opening at least170px tall. Remove other tiny farmhouses. Farm feet connect to existing road at y590. Calm architectural-free outer260px. Golden warm afternoon.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "oranje",
+    "variant": "-night",
+    "prompt": "Use case: lighting-weather. Image1 is the EXACT new near layer to relight; image2 is OLD version LIGHTING/PALETTE ONLY, do NOT copy its architecture. Preserve Image1 layout, architecture sizes and locations, doors, trees, mountains, terrain and transparent sky pixel-aligned. Do not add/delete/move any object. Output wide3:1 RGBA transparent empty sky; intended2172x724. Same painted matte style. No labels or people. NIGHT: deep cool moonlit blue trees, wheat fields and mountains; warm amber farmhouse windows and distant fortress torch points. Preserve the large farmhouse and courtyard gate EXACTLY as image1, including door size and gateway shape. No moon/stars/clouds; transparent sky.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "oranje",
+    "variant": "-storm",
+    "prompt": "Use case: lighting-weather. Image1 is the EXACT new near layer to relight; image2 is OLD version LIGHTING/PALETTE ONLY, do NOT copy its architecture. Preserve Image1 layout, architecture sizes and locations, doors, trees, mountains, terrain and transparent sky pixel-aligned. Do not add/delete/move any object. Output wide3:1 RGBA transparent empty sky; intended2172x724. Same painted matte style. No labels or people. STORM: slate overcast lighting, subdued yellow wheat, rain-darkened masonry and timber, green-grey pear foliage, wet furrows and wet road. Keep farmhouse and gate and mountains EXACTLY as image1. No cloud or sky backdrop, only transparency above terrain.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "reka",
+    "variant": "day",
+    "prompt": "Use case: precise-object-edit. Edit this existing 2D game near parallax layer, painted matte detailed Serbian medieval countryside, NOT pixel art. Output wide 3:1 RGBA transparent sky, intended final dimensions 2172x724. Preserve the original trees, rocks, mountains, palette, daytime lighting and bottom 15% road. Correct BUILDING SCALE only: human in game is145 pixels tall. Full two-storey house350px tall, doorway160px tall, church480px tall. Buildings based at y610. Fences65px, barrels maximum80px. Fewer but larger buildings; NO tiny near buildings. No humans, no labels. Keep outer260px on both sides free of architecture, no clipped buildings at edges, only existing natural terrain. Transparent empty sky, not black fill. REKA: preserve river, water level, distant mountains, left autumn tree and right rocks. Replace miniature buildings with ONE complete large two-storey watermill x300..850, roofy230 and basey610: overall380px high, enormous clear entry doorway200px tall y400..600 (not small window size), large attached timber waterwheel210px diameter on its right side. ONE complete Serbian Orthodox church on rightbank x1510..1840, topy120, basey600, clear doorway180px tall y420..600. Remove the tiny village houses and edge-cropped house on left; remove wood portal from outermost rightedge, leaving original rocky natural bank. Keep view of river in wide centre, watermill wheel joins water. No architecture in leftmost/rightmost260px. Warm autumn daylight, same turquoise water.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "reka",
+    "variant": "-night",
+    "prompt": "Use case: lighting-weather. Relight ONLY this exact 3:1 transparent medieval painted game river layer into blue moonlit NIGHT. Lock every object and silhouette in place. EXACTLY ONE waterwheel at x640..820 beside the mill, NO additional waterwheel. Large entry arch under mill at x430..570 must stay intact down to its base. Church on right, river, mountains and trees, calm rocky outer edges remain unchanged. Warm glowing windows and existing small entrance lanterns. Never add buildings, doors, wheels, portals, sky, stars or moon. Preserve exact composition and transparent sky, RGBA. Intended2172x724.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "theme": "reka",
+    "variant": "-storm",
+    "prompt": "Use case: lighting-weather. Relight this exact medieval painted game river layer into an OVERCAST STORM. Lock all geometry and object positions: ONE large left-bank watermill with ONE waterwheel on its right side, big intact entrance arch on its left, one large church on right bank, centre river and mountains. Dark grey wet stone, damp timber, subdued green-gold autumn leaves, darker choppy blue-grey water and subtle wet highlights. Retain original road and natural banks. No added objects, no portals, no additional wheel, no cloud/sky backdrop. Genuine RGBA transparent sky, no white or black fill, no glow outside silhouettes. Wide3:1 intended2172x724. Same matte painted style.",
+    "tool": "built-in image_gen"
+  }
+]

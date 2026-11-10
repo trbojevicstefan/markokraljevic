@@ -1,0 +1,65 @@
+{
+  "mode": "built-in image_gen",
+  "jobs": [
+    {
+      "theme": "prevoj",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct architecture scale ONLY in this existing near parallax layer for a Serbian medieval2D platformer, painted detailed matte illustration, not pixel art. Wide3:1 RGBA intended2172x724. Marko is145px tall: door openings must be200px tall so a full standing man fits comfortably. Houses350-380px tall, towers/churches450-500px tall. Fewer larger buildings, no miniature town. Preserve existing trees, rocks, cliffs, river/road in lower15%, palette, daylight and natural silhouettes. Keep sky/empty cave air genuinely transparent alpha, no fill or opaque glow. Outer260px at left and right must contain natural scenery only, no half-cropped buildings. Complete architecture and roof/cross tips inside frame with at least70px top margin. Fences65px high, barrels80px maximum. No people/text. SNOWY MOUNTAIN PASS: retain snow-dusted autumn oak on left, snowy pine trees and cliff rocks on right, snowy rocky bottom path. Replace all tiny edge-cropped watchtowers with ONE complete large stone watchtower with timber lookout roof at x1450..1760, basey600, rooftop y100, totalheight500px, large entry doorway200px high y400..600. Add short connecting medieval stone wall with ONE gate at x1190..1420, opening200px tall y400..600. Tower stands in front of existing right cliff, not perched high outside frame. Remove little distant towers from near. Preserve snow cover and warm winter day palette, calm natural outermost edges."
+    },
+    {
+      "theme": "prevoj",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW prevoj near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. NIGHT: deep cool moonlit blue stone and subdued foliage/snow, warm amber lit windows and existing lanterns, faint cyan crystal glints if present. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "prevoj",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW prevoj near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. OVERCAST STORM: cool diffuse slate grey lighting, rain-darkened stone/timber, subdued autumn foliage, wet paths and water highlights; preserve existing snow if present, with cold blue-grey storm light. Faint amber windows. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "pecina",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct architecture scale ONLY in this existing near parallax layer for a Serbian medieval2D platformer, painted detailed matte illustration, not pixel art. Wide3:1 RGBA intended2172x724. Marko is145px tall: door openings must be200px tall so a full standing man fits comfortably. Houses350-380px tall, towers/churches450-500px tall. Fewer larger buildings, no miniature town. Preserve existing trees, rocks, cliffs, river/road in lower15%, palette, daylight and natural silhouettes. Keep sky/empty cave air genuinely transparent alpha, no fill or opaque glow. Outer260px at left and right must contain natural scenery only, no half-cropped buildings. Complete architecture and roof/cross tips inside frame with at least70px top margin. Fences65px high, barrels80px maximum. No people/text. CAVE SETTLEMENT: retain original stalactite ceiling corners, cyan crystals, rocky banks and turquoise water/low waterfalls. Remove cropped left building and tiny right chapel. ONE complete large stone/timber two-storey cave house at x330..850, basey620, roofy240, height380px. Its main entrance arch200px tall, y420..620, not tiny. ONE complete simple Serbian domed stone chapel on right inner bank x1370..1740, basey600,crossy120,totalheight480px, doorway200px tall y400..600. Relocate existing mine portal inward beside chapel at x1760..1910, its opening180px high, no architecture at extreme right edge. Preserve existing cave rock shapes/crystal locations, amber lanterns and daylight aqua water, empty middle air transparent."
+    },
+    {
+      "theme": "pecina",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW pecina near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. NIGHT: deep cool moonlit blue stone and subdued foliage/snow, warm amber lit windows and existing lanterns, faint cyan crystal glints if present. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "pecina",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW pecina near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. OVERCAST STORM: cool diffuse slate grey lighting, rain-darkened stone/timber, subdued autumn foliage, wet paths and water highlights; preserve existing snow if present, with cold blue-grey storm light. Faint amber windows. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "klisura",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct architecture scale ONLY in this existing near parallax layer for a Serbian medieval2D platformer, painted detailed matte illustration, not pixel art. Wide3:1 RGBA intended2172x724. Marko is145px tall: door openings must be200px tall so a full standing man fits comfortably. Houses350-380px tall, towers/churches450-500px tall. Fewer larger buildings, no miniature town. Preserve existing trees, rocks, cliffs, river/road in lower15%, palette, daylight and natural silhouettes. Keep sky/empty cave air genuinely transparent alpha, no fill or opaque glow. Outer260px at left and right must contain natural scenery only, no half-cropped buildings. Complete architecture and roof/cross tips inside frame with at least70px top margin. Fences65px high, barrels80px maximum. No people/text. GORGE WITH ROPE BRIDGES: preserve both existing rope suspension bridge spans, walkway positions, river, rock cliffs and left/right autumn trees. Replace tiny/cropped left house with ONE complete two-storey stone/plaster timber house x300..720, roofy170, basey550,height380px; its clear entry doorway200px tall y350..550. Replace tiny right church/gateway complex with ONE complete stone Serbian Orthodox chapel x1480..1830,crossy80,basey560,height480px; its large entry arch200px tall y360..560. Keep roofs fully visible within natural tree framing, no structure on outer260px edges. Do not raise/lower bridges or change gorge rocks/water. Same warm golden autumn afternoon."
+    },
+    {
+      "theme": "klisura",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW klisura near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, rope bridge spans and their height, bottom path/water and entire composition. NIGHT: deep cool moonlit blue stone and subdued foliage/snow, warm amber lit windows and existing lanterns, faint cyan crystal glints if present. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "klisura",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW klisura near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, rope bridge spans and their height, bottom path/water and entire composition. OVERCAST STORM: cool diffuse slate grey lighting, rain-darkened stone/timber, subdued autumn foliage, wet paths and water highlights; preserve existing snow if present, with cold blue-grey storm light. Faint amber windows. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "suma",
+      "variant": "day",
+      "prompt": "Use case: precise-object-edit. Correct architecture scale ONLY in this existing near parallax layer for a Serbian medieval2D platformer, painted detailed matte illustration, not pixel art. Wide3:1 RGBA intended2172x724. Marko is145px tall: door openings must be200px tall so a full standing man fits comfortably. Houses350-380px tall, towers/churches450-500px tall. Fewer larger buildings, no miniature town. Preserve existing trees, rocks, cliffs, river/road in lower15%, palette, daylight and natural silhouettes. Keep sky/empty cave air genuinely transparent alpha, no fill or opaque glow. Outer260px at left and right must contain natural scenery only, no half-cropped buildings. Complete architecture and roof/cross tips inside frame with at least70px top margin. Fences65px high, barrels80px maximum. No people/text. ENCHANTED FOREST: preserve two huge ancient autumn trees on both edges, their exact scale/roots, turquoise crystals at roots, central little stream and right waterfall. Remove cropped edge house. ONE complete Serbian timber/plaster two-storey woodland house at x1430..1800, basey590, roofy210,height380px, doorway200px tall y390..590. ONE freestanding ivy-covered old stone gate at x1120..1380, basey610, topy310, its clear opening200px tall y410..610. Leave house entirely LEFT of large right trunk, not behind/cropped by image edge. Keep left half mostly natural open forest, no extra buildings or church. Same warm autumn daylight and painted matte detail."
+    },
+    {
+      "theme": "suma",
+      "variant": "night",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW suma near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. NIGHT: deep cool moonlit blue stone and subdued foliage/snow, warm amber lit windows and existing lanterns, faint cyan crystal glints if present. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    },
+    {
+      "theme": "suma",
+      "variant": "storm",
+      "prompt": "Use case: lighting-weather. Relight this EXACT NEW suma near layer. Lock all architecture sizes and positions, human-sized doorways, natural trees/cliffs/rocks, bottom path/water and entire composition. OVERCAST STORM: cool diffuse slate grey lighting, rain-darkened stone/timber, subdued autumn foliage, wet paths and water highlights; preserve existing snow if present, with cold blue-grey storm light. Faint amber windows. Empty upper sky/cave air stays genuinely transparent alpha, with no cloud, moon, lightning, stars, white/black fill or opaque glow. Keep full roofs and cross tips with existing margins, no new/moved objects. Wide3:1 RGBA2172x724, same matte painted Serbian medieval game style."
+    }
+  ]
+}

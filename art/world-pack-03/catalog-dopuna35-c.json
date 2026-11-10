@@ -1,0 +1,27 @@
+{
+  "scope": "DOPUNA35 part C near only",
+  "mode": "built-in image_gen",
+  "assets": [
+    "art\\world-pack-01\\assets\\prevoj-near.png",
+    "art\\world-pack-01\\assets\\prevoj-near-night.png",
+    "art\\world-pack-01\\assets\\prevoj-near-storm.png",
+    "art\\world-pack-01\\assets\\pecina-near.png",
+    "art\\world-pack-01\\assets\\pecina-near-night.png",
+    "art\\world-pack-01\\assets\\pecina-near-storm.png",
+    "art\\world-pack-01\\assets\\klisura-near.png",
+    "art\\world-pack-01\\assets\\klisura-near-night.png",
+    "art\\world-pack-01\\assets\\klisura-near-storm.png",
+    "art\\world-pack-01\\assets\\suma-near.png",
+    "art\\world-pack-01\\assets\\suma-near-night.png",
+    "art\\world-pack-01\\assets\\suma-near-storm.png"
+  ],
+  "previews": [
+    "preview-dopuna35-prevoj.jpg",
+    "preview-dopuna35-pecina.jpg",
+    "preview-dopuna35-klisura.jpg",
+    "preview-dopuna35-suma.jpg"
+  ],
+  "prompts": "prompts-dopuna35-c.json",
+  "limitation": "Weather composition follows new day reference; painted detail can vary. Foreground visually preserved, not pixel-identical.",
+  "corrections": "klisura day: one additional built-in transparency edit; initial source retained."
+}
