@@ -458,7 +458,7 @@ function updateCannons(dt){for(const c of world.cannons||[]){c.balls??=[];c.stat
 function fireCannon(c){c.state='idle';c.clock=2.1+Math.random()*.9;c.shots++;c.recoil=1;c.flash=.12;const high=c.next==='high',mx=c.x-TOP_W*.43,my=c.y-TOP_H*.83-(high?6:0);
  c.balls.push({x:mx,y:high?c.y-TOP_H*.83-8:my,vx:high?-760:-560,vy:high?0:70,high,rot:0,life:4,gy:c.y,bounces:0,ids:new Set()});
  for(let i=0;i<26;i++)particles.push({kind:'dust',x:mx-6,y:my,vx:-60-Math.random()*240,vy:(Math.random()-.6)*120,life:1.4+Math.random(),max:2.2,r:5+Math.random()*9,color:['#8c877f','#a29c92','#6e6a64'][i%3]});
- burst(mx-10,my,'#ff9a3a',18,260);sfx('boom',{gain:1,rate:.8,x:c.x});sfx('hit_heavy',{gain:.6,rate:.5,x:c.x});shake=Math.max(shake,settings.reduced?0:9);rumble(.8,220);}
+ burst(mx-10,my,'#ff9a3a',18,260);(sfx('cannon',{gain:1,x:c.x})||sfx('boom',{gain:1,rate:.8,x:c.x}));sfx('hit_heavy',{gain:.6,rate:.5,x:c.x});shake=Math.max(shake,settings.reduced?0:9);rumble(.8,220);}
 function updateBall(b,dt){b.life-=dt;b.rot+=b.vx*dt/BALL_R;b.x+=b.vx*dt;
  if(!b.high||b.drop){b.vy+=1500*dt;b.y+=b.vy*dt;const q=surfaceBelow({x:b.x,y:b.y},b.y-b.vy*dt-BALL_R-4);
   if(q&&b.y+BALL_R>=q.y&&b.vy>0){b.y=q.y-BALL_R;if(b.vy>260&&b.bounces<2){b.bounces++;b.vy*=-.38;dust(b.x,q.y,8,1.4);sfx('rock',{gain:.7,rate:.6,x:b.x});shake=Math.max(shake,settings.reduced?0:3);}else{b.vy=0;b.vx=Math.min(-430,b.vx*.995);if(Math.random()<dt*14)dust(b.x+BALL_R*.6,q.y,1,.6);}}}
@@ -512,7 +512,7 @@ function gunWaves(G,dt){G.clock-=dt;const alive=world.enemies.filter(e=>e.alive&
 const FOE_HP_G={sword:90,shield:125,akindzija:80,oklopnik:240};
 function fireGun(G){const g=gunGeo(G),v=gunVel(G);G.balls.push({x:g.mx,y:g.my,vx:v.vx,vy:v.vy,life:5,rot:0});G.reload=1.05;G.recoil=1;G.flash=.12;G.shots=(G.shots||0)+1;
  for(let i=0;i<22;i++)particles.push({kind:'dust',x:g.mx+6,y:g.my,vx:60+Math.random()*220,vy:(Math.random()-.6)*120,life:1.3+Math.random(),max:2.2,r:5+Math.random()*9,color:['#8c877f','#a29c92','#6e6a64'][i%3]});
- burst(g.mx+8,g.my,'#ff9a3a',16,240);sfx('boom',{gain:1,rate:.85,x:G.x});shake=Math.max(shake,settings.reduced?0:7);rumble(.7,200);}
+ burst(g.mx+8,g.my,'#ff9a3a',16,240);(sfx('cannon',{gain:1,rate:1.05,x:G.x})||sfx('boom',{gain:1,rate:.85,x:G.x}));shake=Math.max(shake,settings.reduced?0:7);rumble(.7,200);}
 function gunBall(G,b,dt){b.life-=dt;const py=b.y;b.vy+=GUN_G*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.rot+=b.vx*dt/BALL_R;if(Math.random()<dt*20)particles.push({kind:'dust',x:b.x,y:b.y,vx:-20,vy:-10,life:.5,max:.5,r:3+Math.random()*3,color:'#9a958c'});
  const hitFoe=world.enemies.find(e=>e.alive&&!e.champion&&Math.abs(e.x-b.x)<BALL_R+14&&b.y>e.y-110&&b.y<e.y);
  const q=b.vy>0?surfaceBelow({x:b.x,y:b.y},py-BALL_R):null;
@@ -566,7 +566,7 @@ function drawBurning(){for(const e of world.enemies)if(e.alive&&e.burn>0){halo(e
 let gibs=[],booms=[];
 function gib(e,dir){if(!e.alive)return;e.hp=0;const y0=e.y;slay(e,0);const c=corpses[corpses.length-1];if(c&&c.x===e.x)corpses.pop();
  for(let k=0;k<6;k++)gibs.push({x:e.x+(Math.random()-.5)*24,y:y0-34-k*13,vx:dir*(140+Math.random()*380)+(Math.random()-.5)*220,vy:-(420+Math.random()*560),rot:Math.random()*6,vr:(Math.random()-.5)*20,kind:k,t:0,bounces:0});
- if(gibs.length>90)gibs.splice(0,gibs.length-90);
+ if(gibs.length>90)gibs.splice(0,gibs.length-90);sfx('bones',{gain:.75,delay:.35,x:e.x});
  for(let i=0;i<46;i++){const a=-Math.PI*Math.random(),sp=200+Math.random()*620;particles.push({kind:'blood',x:e.x+(Math.random()-.5)*30,y:y0-60+(Math.random()-.5)*50,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:3,max:3,r:1.8+Math.random()*3.8,color:['#7a070b','#9b0d12','#b5161a','#5e0508'][i%4]});}
  burst(e.x,y0-60,'#9b0d12',26,340);if(e.x>camera-40&&e.x<camera+VIEW_W+40&&time-lastLensT>.25){lastLensT=time;screenBlood(Math.abs(e.x-p.x)<320?3:2);}}
 let lastLensT=-9;
@@ -888,7 +888,7 @@ function foeAttack(e,F){const d=Math.abs(p.x-e.x);
 function foeMotion(e,dt){if(e.lunge&&e.lunge.t>0){e.lunge.t-=dt;const nx=e.x+e.lunge.v*dt;if(world.platforms.some(q=>q.kind!=='magic'&&nx>q.x+20&&nx<q.x+q.w-20&&Math.abs(q.y-e.y)<2)&&Math.abs(p.x-nx)>40)e.x=nx;e.hop=e.lunge.hop*Math.sin(Math.PI*clamp(1-e.lunge.t/e.lunge.total,0,1));if(e.lunge.t<=0){e.hop=0;if(e.lunge.hop)dust(e.x,e.y,8,1.2);}}
  if(e.pendingHit){e.pendingHit.t-=dt;if(e.pendingHit.t<=0){const h=e.pendingHit;e.pendingHit=null;if(h.slam){dust(e.x+e.face*60,e.y,18,2.2);sfx('rock',{gain:.8,x:e.x});sfx('boom',{gain:.5,x:e.x});shake=settings.reduced?0:6;}foeStrike(e,h);if(h.after)e.lunge={...h.after};}}}
 function foeStrike(e,h){if(Math.abs(p.x-e.x)>h.range||Math.abs(p.y-e.y)>85||mode!=='play')return;if(h.low&&!p.grounded){label('PRESKOČIO',p.x,p.y-150,'#e9ffe0');return;}if(p.parry>0&&(e.x-p.x)*p.face>=-15&&!h.fire){e.stun=2;e.mode='stun';e.lunge=null;p.energy=Math.min(100,p.energy+15);fx('parry',p.x+p.face*40,p.y-70);p.rage=Math.min(100,p.rage+25);sound('parry');say('block',{chance:.5,delay:.15});label('SAVRŠENO',p.x,p.y-140,'#bfffe5');startCounter(e.x);return;}const before=p.hp;damage(h.dmg,e.face);if(e.type==='pas'&&p.hp<before&&p.grounded&&Math.random()<.35&&startGrapple(e,'pas'))return;if(p.hp<before&&h.push)p.vx+=e.face*h.push;if(p.hp<before&&h.grab&&p.grounded&&Math.random()<.45&&startGrapple(e,'oklopnik')){}else if(p.hp<before&&h.grab){p.vx=-e.face*430;p.vy=-640;p.grounded=false;label('BAČEN PREKO RAMENA!',p.x,p.y-160,'#ffb09a');shake=settings.reduced?0:8;}if(p.hp<before&&h.low)label('PODSEČEN!',p.x,p.y-150,'#ffb09a');}
-function addFire(x,y,life,w=70,gen=0){if(fires.length>22)fires.shift();fires.push({x,y,life,max:life,w,seed:Math.random()*99,gen,spread:.6+Math.random()*.5});}
+let fireSndT=-9;function addFire(x,y,life,w=70,gen=0){if(gen===0&&time-fireSndT>1.2){fireSndT=time;sfx('fire',{gain:.5,x});}if(fires.length>22)fires.shift();fires.push({x,y,life,max:life,w,seed:Math.random()*99,gen,spread:.6+Math.random()*.5});}
 function updateFires(dt){const add=[];for(const f of fires){f.life-=dt;if(f.life>.3&&mode==='play'&&p.grounded&&Math.abs(p.x-f.x)<f.w*.5&&Math.abs(p.y-f.y)<10&&p.invuln<=0){damage(7,0);label('GORI',p.x,p.y-140,'#ffb070');}
   // fire walks along the ground: after a moment it catches the next stretch on either side (two steps at most, never in the storm)
   if(f.gen<2&&f.spread>0&&!(level&&levelVariant==='storm')){f.spread-=dt;if(f.spread<=0){f.spread=-1;for(const s of[-1,1]){const nx=f.x+s*f.w*.85,gy=groundAt(nx,f.y-30);if(gy!==null&&Math.abs(gy-f.y)<6&&!fires.some(o=>Math.abs(o.x-nx)<o.w*.45)&&Math.random()<.7)add.push([nx,gy,f.max*.7,Math.max(36,f.w*.78),f.gen+1]);}}}
@@ -1389,7 +1389,7 @@ function drawPowers(){for(const b of bolts){for(const [g,w,c] of[[gctx,5,'#bfe6f
 // ---------- traps ----------
 function setupTraps(){for(const t of world.traps||[]){t.t=0;if(t.kind==='tent')Object.assign(t,{hp:7,hp0:7,wave:0,cool:1.2,out:[],down:false,flap:0,shake:0});if(t.kind==='timed'){t.open=0;}if(t.kind==='boulder'){t.state='wait';}if(t.kind==='rocks'){t.falling=[];t.clock=0;}if(t.kind==='barrels'){t.list=[];t.clock=1;}}}
 function hurtBy(amount,dir,vy=-380){if(p.invuln>0||p.dash>0)return false;const before=p.hp;damage(amount,dir);if(p.hp<before){p.vy=Math.min(p.vy,vy);p.grounded=false;return true;}return false;}
-function splashIn(t,o,key){const s=t.y+12,inside=o.x>t.x-10&&o.x<t.x+t.w+10&&o.y>s;if(inside&&!o[key]){o[key]=true;const v=Math.min(1,Math.abs(o.vy||300)/700);for(let i=0;i<18;i++)particles.push({kind:'dust',x:o.x+(Math.random()-.5)*30,y:s,vx:(Math.random()-.5)*220,vy:-(120+Math.random()*320)*v,life:.8,max:.8,r:2+Math.random()*3,color:i%3?'#cfe8e4':'#8fbcbc'});sfx('fall',{gain:.6,rate:.6,x:o.x});}if(!inside)o[key]=false;if(inside&&o.vy>140)o.vy*=Math.pow(.02,1/120);}
+function splashIn(t,o,key){const s=t.y+12,inside=o.x>t.x-10&&o.x<t.x+t.w+10&&o.y>s;if(inside&&!o[key]){o[key]=true;const v=Math.min(1,Math.abs(o.vy||300)/700);for(let i=0;i<18;i++)particles.push({kind:'dust',x:o.x+(Math.random()-.5)*30,y:s,vx:(Math.random()-.5)*220,vy:-(120+Math.random()*320)*v,life:.8,max:.8,r:2+Math.random()*3,color:i%3?'#cfe8e4':'#8fbcbc'});(sfx('splash',{gain:.75,x:o.x})||sfx('fall',{gain:.6,rate:.6,x:o.x}));}if(!inside)o[key]=false;if(inside&&o.vy>140)o.vy*=Math.pow(.02,1/120);}
 function updateTraps(dt){for(const t of world.traps||[]){t.t+=dt;if(t.kind==='water'){splashIn(t,p,'wet'+t.x);for(const e of world.enemies)if(e.alive)splashIn(t,e,'wet');continue;}
  if(t.kind==='spikes'){spikeFoes(t);if(p.y>=t.y-6&&p.y<=t.y+4&&p.x+12>t.x&&p.x-12<t.x+t.w&&!p.climb&&!(p.pogoT>0)&&p.plunge!==1)hurtBy(18,p.x<t.x+t.w/2?-1:1,-520);
   for(const e of world.enemies)if(e.alive&&!e.champion&&Math.abs(e.y-t.y)<4&&e.x>t.x&&e.x<t.x+t.w&&e.grounded){e.hp-=90*dt*4;e.flash=.1;if(e.hp<=0){slay(e);blood(e.x,e.y-20,1,20);}}}
@@ -1500,8 +1500,8 @@ function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar'
    if(g.state==='napad'&&!g.wave&&foes.length<=1&&g.t>4){g.wave=1;guslarFoe(g,'akindzija',-1);guslarFoe(g,'akindzija',-1,1);toast('Iza tebe! Akindžije jure na guslara.',2.5);sfx('horn_call',{gain:.6,rate:1.1});}
    else if(g.state==='napad'&&g.wave&&!foes.length)guslarPeva(g);}
   if(g.state==='peva'){if(Math.abs(p.x-g.x)<620&&near){p.rage=Math.min(100,(p.rage||0)+34*dt);const h=Math.min(12*dt,40-(g.healed||0),p.maxHp-p.hp);if(h>0){p.hp+=h;g.healed=(g.healed||0)+h;}}
-   if(g.t>g.stih.length*STIH_T+2.5)g.state='gotov';}});}
-function guslarPeva(g){g.state='peva';g.t=0;g.healed=0;if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);sfx('ring',{gain:.5,rate:.8,x:g.x});}
+   if(!g.second&&g.t>5.4){g.second=true;sfx('gusle',{gain:.8,x:g.x});}if(g.t>g.stih.length*STIH_T+2.5)g.state='gotov';}});}
+function guslarPeva(g){g.state='peva';g.t=0;g.healed=0;if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
 function drawGuslar(g){if(g.x<camera-400||g.x>camera+VIEW_W+400||!g.state)return;const sh=g.shake>0?Math.sin(time*70)*3:0,face=p.x<g.x?-1:1;
  if(g.state==='bezi'){const a=clamp(1-(g.t-.4)/2.6,0,1),k=rig?.['putnik-starac-walk']?'putnik-starac-walk':'putnik-starac-idle';if(a>0)rigDraw(k,Math.floor(time*9)%(rig?.[k]?.frames.length||1),g.x+Math.max(0,g.t-.4)*150,g.y,1,{alpha:a});
   for(const [dx,r] of [[-22,.6],[14,-.4]]){ctx.save();ctx.translate(g.x+dx,g.y-4);ctx.rotate(r);ellipse(0,0,13,8,'#6b4222');line(0,0,26,0,'#4a2c14',3);ctx.restore();}return;}
@@ -1525,11 +1525,11 @@ function drawStih(g){const n=Math.min(g.stih.length,Math.floor(g.t/STIH_T)+1),ou
 const NEST_BURN=32,NEST_H=560,ORAO_CD=5.5,ORAO_HIT=45,HLAD_CD=40;
 function updateGnezda(dt){for(const t of world.traps||[]){if(t.kind!=='gnezdo')continue;t.t=(t.t||0)+dt;if(!t.state){t.state='ceka';t.burn=0;}
  if(t.state==='ceka'&&Math.abs(p.x-t.x)<820&&Math.abs(p.y-t.y)<420){t.state='gori';t.t=0;toast('Palikuće pale orlovo gnezdo! Pobij ih pre nego što plamen stigne do orlića.',3.5);sfx('boom',{gain:.45,rate:1.4,x:t.x});}
- if(t.state==='gori'){t.burn=Math.min(1,t.burn+dt/NEST_BURN);t.fireT=(t.fireT||0)-dt;if(t.fireT<=0){t.fireT=1.3;addFire(t.x+(Math.random()-.5)*70,t.y,2.4,58,2);}
+ if(t.state==='gori'){t.burn=Math.min(1,t.burn+dt/NEST_BURN);t.cryT=(t.cryT??1)-dt;if(t.cryT<=0){t.cryT=4+Math.random()*3;sfx('orao',{gain:.4,rate:.95,x:t.x});}t.fireT=(t.fireT||0)-dt;if(t.fireT<=0){t.fireT=1.3;addFire(t.x+(Math.random()-.5)*70,t.y,2.4,58,2);}
   if(Math.random()<dt*10)particles.push({kind:'dust',x:t.x+(Math.random()-.5)*40,y:t.y-60-t.burn*NEST_H*.55,vx:(Math.random()-.5)*30,vy:-50-Math.random()*60,life:2.2,max:2.2,r:8+Math.random()*10,color:'#4a4640'});
   if(!world.enemies.some(e=>e.alive&&e.gnezdo)){t.state='spaseno';t.t=0;toast('Vatra se gasi. Orlići su spaseni!',3);addCoins(10,t.x,t.y-100);orlovDolazak(t);}
   else if(t.burn>=1){t.state='izgorelo';t.t=0;toast('Gnezdo je izgorelo. Orlušina odleće.',3);}}}}
-function orlovDolazak(t){world.orao={x:t.x+80,y:t.y-NEST_H-80,state:'dolazi',t:0,cd:2,hladCd:0,face:-1};sfx('whoosh_heavy',{gain:.5,x:t.x});}
+function orlovDolazak(t){world.orao={x:t.x+80,y:t.y-NEST_H-80,state:'dolazi',t:0,cd:2,hladCd:0,face:-1};sfx('orao',{gain:.8,x:t.x})||sfx('whoosh_heavy',{gain:.5,x:t.x});}
 function oraoPlen(){let best=null,bd=1e9;for(const e of world.enemies){if(!e.alive||e.champion||e.zone!==zone||e.held||e.enter||e.prone>0)continue;if(e.x<camera+40||e.x>camera+VIEW_W-40||Math.abs(e.x-p.x)>700)continue;
   const d=Math.abs(e.x-p.x)-(e.perch?300:0)-(e.type==='pas'?200:0);if(d<bd){bd=d;best=e;}}return best;}
 function oraoUdar(e){const dir=e.x>p.x?1:-1;e.hp-=ORAO_HIT;e.flash=.2;e.stun=Math.max(e.stun||0,1);e.hurtT=.3;blood(e.x,e.y-70,dir,10);sfx('hit_body',{gain:.7,x:e.x});label('ORAO!',e.x,e.y-150,'#ffe0a0');
@@ -1538,8 +1538,8 @@ function updateOrao(dt){const O=world.orao;if(!O)return;O.t+=dt;O.cd-=dt;O.hladC
  if(O.state==='dolazi'||O.state==='prati'||O.state==='vraca'){const hx=p.x-p.face*110,hy=p.y-290+Math.sin(time*1.6)*14,dx=hx-O.x,dy=hy-O.y,dist=Math.hypot(dx,dy),sp=O.state==='prati'?Math.min(560,dist*3):640;
   if(dist>3){const k=Math.min(dist,sp*dt)/dist;O.x+=dx*k;O.y+=dy*k;}if(Math.abs(dx)>8)O.face=dx>0?1:-1;
   if(O.state!=='prati'&&dist<40){if(O.state==='dolazi')toast('Orao prati Marka i obrušava se na Turke.',3);O.state='prati';}
-  if(O.state==='prati'){if(p.hp<p.maxHp*.35&&O.hladCd<=0&&p.hp>0){O.state='hlad';O.t=0;O.hladCd=HLAD_CD;toast('Orao širi krila nad Markom i donosi mu vode.',3);}
-   else if(O.cd<=0){const e=oraoPlen();if(e){O.state='napad';O.t=0;O.e=e;O.sx=O.x;O.sy=O.y;sfx('whoosh_heavy',{gain:.55,x:O.x});}else O.cd=.5;}}}
+  if(O.state==='prati'){if(p.hp<p.maxHp*.35&&O.hladCd<=0&&p.hp>0){O.state='hlad';O.t=0;O.hladCd=HLAD_CD;sfx('orao',{gain:.6,x:p.x});toast('Orao širi krila nad Markom i donosi mu vode.',3);}
+   else if(O.cd<=0){const e=oraoPlen();if(e){O.state='napad';O.t=0;O.e=e;O.sx=O.x;O.sy=O.y;sfx('wings',{gain:.7,x:O.x})||sfx('whoosh_heavy',{gain:.55,x:O.x});if(Math.random()<.5)sfx('orao',{gain:.45,x:O.x});}else O.cd=.5;}}}
  else if(O.state==='napad'){const e=O.e,k=Math.min(1,O.t/.6);if(!e.alive){O.state='vraca';O.cd=1.5;}else{O.face=e.x>O.sx?1:-1;O.x=O.sx+(e.x-O.face*30-O.sx)*k;O.y=O.sy+(e.y-70-O.sy)*k*k;if(k>=1){oraoUdar(e);O.state='vraca';O.cd=ORAO_CD;}}}
  else if(O.state==='hlad'){O.x+=(p.x-O.x)*Math.min(1,dt*5);O.y+=(p.y-215-O.y)*Math.min(1,dt*5);O.face=p.face;if(O.t>.5&&O.t<4.5&&p.hp>0)p.hp=Math.min(p.maxHp,p.hp+10*dt);if(O.t>4.8)O.state='vraca';}}
 function oraoPose(O){const st=O.state,R=n=>rig?.[n]?n:null;

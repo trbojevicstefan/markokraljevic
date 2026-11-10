@@ -113,5 +113,31 @@
  ],
  "horn_call": [
   "horn_call_0"
+ ],
+ "gusle": [
+  "gusle_0",
+  "gusle_1"
+ ],
+ "orao": [
+  "orao_0",
+  "orao_1"
+ ],
+ "wings": [
+  "wings_0"
+ ],
+ "fire": [
+  "fire_0",
+  "fire_1"
+ ],
+ "bones": [
+  "bones_0",
+  "bones_1"
+ ],
+ "cannon": [
+  "cannon_0",
+  "cannon_1"
+ ],
+ "splash": [
+  "splash_0"
  ]
 }
