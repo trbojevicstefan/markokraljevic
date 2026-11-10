@@ -2800,6 +2800,9 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='most'){startChapter(2);hush();at(7470);toast('Pritisni E kod kamena: Ravijojla doleti i napravi most',5);return;}
  if(g==='ivica'){startChapter(0);hush();at(556);p.face=1;toast('Skoči ka kamenu ispred sebe: Marko visi. W ili Space popni se, S pusti se',6);return;}
  if(g==='ognjeni'){await startLevel(lv('podrum'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Ognjeni aga pali ulje po podu. Kad vikne „ulje“, skači na grede, pa ga udri dok je zadihan.',5);return;}
+ if(g==='hasan'){await startLevel(lv('tvrdjava'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Hasan-aga: nijedan topuz ne probija njegov oklop. Navuci ga da se zaleti u stub, pa udri dok je ošamućen.',5);return;}
+ if(g==='bajraktar'){await startLevel(lv('rudnik'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Dok barjak stoji na steni, bajraktar ne prima udarce i zove pojačanje. Popni se i obori barjak.',5);return;}
+ if(g==='janicar'){await startLevel(lv('reka'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Janičarski aga skače sa grede na gredu i napada sabljom odozgo. Dočekaj ga u vazduhu.',5);return;}
  if(g==='lovac'){await startLevel(lv('suma'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Lovac-aga duva u rog i pušta pse',5);return;}
  if(g==='bos'){await startLevel(lv('tvrdjava'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c){at(c.arena.x0+120,c.y);c.hp=Math.min(c.hp,40);}toast('Dokrajči bosa i gledaj kako Marko slavi',5);return;}
  if(g==='musa'){startChapter(5);hush();toast('Megdan sa Musom',3);return;}

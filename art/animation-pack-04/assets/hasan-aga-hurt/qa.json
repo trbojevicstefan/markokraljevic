@@ -1,0 +1,60 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        72,
+        16,
+        439,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        86,
+        34,
+        425,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        75,
+        84,
+        436,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        85,
+        26,
+        426,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    }
+  ],
+  "loop": false,
+  "atlasMatchesFrames": true,
+  "gifFrames": 4,
+  "renderScale": 1.0061601642710472
+}
