@@ -111,6 +111,7 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
  until(()=>S().mode==='victory',120*4);ok(S().mode==='victory','musa: and the song ends as it should');}
 
 // ---- the champions: each fights his own way, on his own ground ----
+const groundY=(w,x,y)=>{let best=null;for(const q of w.platforms){if(x<q.x||x>q.x+q.w||q.y<y-400)continue;if(best===null||q.y<best)best=q.y;}return best??y;};
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
 async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear();api.pressed.clear();const w=S().world,c=w.enemies.find(e=>e.champion);for(const e of w.enemies)if(e!==c)e.alive=false;
  const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(S().p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true,climb:null});safe();step(3);return c;}
@@ -188,4 +189,12 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {api.startTraining();step(20);const w=S().world;w.enemies.forEach(e=>e.alive=false);api.pressed.add('Digit6');step(200);const e=w.enemies.find(e=>e.alive&&e.type==='palikuca');
  safe();e.enter=null;const hp0=e.hp;S().arrows.push({x:e.x-160,y:e.y-60,vx:420,vy:0,torch:true,enemy:false,life:3});until(()=>e.burn>0,120);ok(e.burn>0,'burn: his own torch sets the palikuća on fire');
  step(60);ok(e.hp<hp0,'burn: his health runs down while he burns');until(()=>!e.alive,120*6);ok(!e.alive,'burn: the fire finishes him');}
+// ---- the guslars of the gorge: undefended, his gusle are broken; defended, he sings and Marko's rage fills ----
+{const w=await land('klisura');const G=w.traps.filter(t=>t.kind==='guslar');ok(G.length===3&&G[2].mir,'guslar: the gorge has three guslars, the last one sings in peace');
+ const g=G[0];Object.assign(S().p,{x:g.x0+90,y:g.y,vx:0,vy:0,grounded:true});safe();step(2);ok(g.state==='napad','guslar: Marko comes and the Turks run at the guslar');
+ Object.assign(S().p,{x:g.x0-900,y:groundY(w,g.x0-900,g.y)});until(()=>{safe();return g.state==='bezi';},120*60);ok(g.state==='bezi','guslar: left alone, his gusle are broken');}
+{const w=await land('klisura');const g=w.traps.find(t=>t.kind==='guslar');Object.assign(S().p,{x:g.x0+90,y:g.y,vx:0,vy:0,grounded:true,rage:0});safe();step(2);
+ const kill=()=>{for(const e of w.enemies)if(e.alive&&e.prey===g)e.alive=false;};kill();until(()=>{safe();return w.enemies.some(e=>e.alive&&e.prey===g);},120*8);
+ ok(w.enemies.filter(e=>e.alive&&e.prey===g).length===2,'guslar: a second band comes from behind');kill();step(3);ok(g.state==='peva','guslar: defended, he sings');
+ Object.assign(S().p,{x:g.x-120,y:g.y,vx:0,vy:0});step(120*3);ok(S().p.rage>=80,'guslar: while he sings, Marko\'s rage fills');}
 console.log(`${checks} battle checks passed.`);
