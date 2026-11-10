@@ -331,6 +331,16 @@ if _have('ognjeni-aga-idle'):
         if _have(f'ognjeni-aga-{k}'):
             SCALES[f'ognjeni-aga-{k}'] = (s_, 'center' if k == 'death' else 'feet')
 
+# DOPUNA-28: three more champions in their own drawings (idle 160 world px each), one scale per champion
+for who, clips in [('hasan-aga', ['idle', 'run', 'attack', 'zalet', 'zaglavljen', 'hurt', 'death']),
+                   ('bajraktar', ['idle', 'run', 'attack', 'poziv', 'hurt', 'death']),
+                   ('janicarski-aga', ['idle', 'run', 'attack', 'skok', 'hurt', 'death'])]:
+    if _have(f'{who}-idle'):
+        s_ = 160 / max(body_height(c) for c in _cells(f'{who}-idle'))
+        for k in clips:
+            if _have(f'{who}-{k}'):
+                SCALES[f'{who}-{k}'] = (s_, 'center' if k == 'death' else 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):
