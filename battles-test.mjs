@@ -197,4 +197,13 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  const kill=()=>{for(const e of w.enemies)if(e.alive&&e.prey===g)e.alive=false;};kill();until(()=>{safe();return w.enemies.some(e=>e.alive&&e.prey===g);},120*8);
  ok(w.enemies.filter(e=>e.alive&&e.prey===g).length===2,'guslar: a second band comes from behind');kill();step(3);ok(g.state==='peva','guslar: defended, he sings');
  Object.assign(S().p,{x:g.x-120,y:g.y,vx:0,vy:0});step(120*3);ok(S().p.rage>=80,'guslar: while he sings, Marko\'s rage fills');}
+// ---- the eagle's nest: left burning, it is lost; saved, the eagle follows Marko, swoops on the Turks and shades him when he is hurt ----
+{const w=await land('suma');const t=w.traps.find(t=>t.kind==='gnezdo');for(const e of w.enemies)if(e.gnezdo){e.alive=true;e.x=t.x+2000;}ok(!!t,'eagle: the forest has the eagle\'s beech');Object.assign(S().p,{x:t.x-600,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='gori','eagle: the fire-raisers set the beech alight when Marko comes');
+ Object.assign(S().p,{x:t.x0-1500,y:groundY(w,t.x0-1500,t.y)});for(const e of w.enemies)if(e.gnezdo){e.alive=true;e.x=t.x+200;}until(()=>{safe();return t.state!=='gori';},120*40);ok(t.state==='izgorelo'&&!w.orao,'eagle: left alone, the nest burns and she flies away');}
+{const w=await land('suma');const t=w.traps.find(t=>t.kind==='gnezdo');for(const e of w.enemies)if(e.gnezdo){e.alive=true;e.x=t.x+2000;}Object.assign(S().p,{x:t.x-600,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);
+ for(const e of w.enemies)if(e.gnezdo)e.alive=false;step(2);ok(t.state==='spaseno'&&w.orao,'eagle: the fire-raisers dead, the young are saved and the eagle comes');
+ until(()=>{safe();return w.orao.state==='prati';},120*10);ok(w.orao.state==='prati','eagle: she flies to Marko and follows him');
+ const p=S().p,e={id:777,x:p.x+260,y:p.y,vx:0,vy:0,w:36,h:75,hp:200,maxHp:200,type:'sword',zone:S().zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+260,attackId:0,grounded:true};w.enemies.push(e);w.orao.cd=0;
+ until(()=>{safe();e.timer=9;return e.hp<200;},120*6);ok(e.hp<=200-45,'eagle: she swoops on a Turk and wounds him');
+ w.orao.state='prati';w.orao.hladCd=0;p.invuln=0;p.hp=20;step(2);ok(w.orao.state==='hlad','eagle: Marko badly hurt, she spreads her wings over him');const h0=p.hp;step(120*3);ok(p.hp>h0+20,'eagle: her shade and water heal him');}
 console.log(`${checks} battle checks passed.`);

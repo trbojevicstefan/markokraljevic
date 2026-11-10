@@ -112,7 +112,7 @@ export const CUDA=[
 export const RECIPES={
  selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:djemo',
  klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:kopljanik',
- suma:'flat watch crates logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat stairs- chimney flat boss:lovac',
+ suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney flat boss:lovac',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
  tvrdjava:'flat topnica crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut flat boss:oklopnik',
  prevoj:'flat stairs+ terrace+ ladder+ chase sator watch top lift stairs+ chimney flat rocks zid terrace+ crates flat boss:akindzija',
@@ -192,6 +192,7 @@ export function buildLayout(L,variant='day'){
   topnica(){const x0=x,len=1560;ground(len);traps.push({kind:'topnica',x:x0+190,y:gy,id:traps.length+1,face:1});busy.push([x0,x0+len]);},
   top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
   guslar(arg){const x0=x,len=ri(1100,1180);ground(len);traps.push({kind:'guslar',x:x0+Math.round(len*.4),y:gy,x0,x1:x0+len,mir:arg==='mir'});busy.push([x0,x0+len]);},
+  gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   svatovi(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'kavez',x:x0+Math.round(len*.55),y:gy,hp:4});busy.push([x0+len*.3,x0+len*.8]);},
   sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
   // a wall with a low gap at its foot: too low to walk through — crouch (S) or slide (S while running) under it
@@ -286,6 +287,8 @@ export function makeLevel(L,index,variant='day',opts={}){
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
  for(const t of B.traps)if(t.kind==='top')foe('palikuca',t.x+80,t.y,{gunner:true});
  // the Arab's men guard each cage of wedding guests
+ // the fire-raisers setting the eagle's beech alight
+ for(const t of B.traps)if(t.kind==='gnezdo'){foe('palikuca',t.x-130,t.y,{gnezdo:true});foe('palikuca',t.x+140,t.y,{gnezdo:true});foe('sword',t.x+320,t.y,{gnezdo:true});}
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
  for(const r of B.rewards)if(r.cudo&&r.cudo!=='oceva-sablja')items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
