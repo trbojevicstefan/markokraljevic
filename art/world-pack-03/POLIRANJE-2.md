@@ -31,12 +31,29 @@ Ovo je drugi pregled. Ono što je ostalo iz kruga 1 a nije urađeno ([POLIRANJE-
 - Klisura i Šuma su bile kraće od drugih pohoda (oko 20 soba): sada dobijaju po dve-tri sobe više i sobe vezane za pesmu.
 - Bos Šume (Lovac-aga) je bio običan janičar uvećan: dobija svoj crtež i rog za pse.
 
-## Krug 2 radi
+## Krug 2 urađeno
 
-1. Codex (DOPUNA-26):
-   - guslar (2 klipa);
-   - orao pomagač (3 klipa);
-   - orlovo gnezdo;
-   - Lovac-aga (6 klipova).
-2. Klisura po pesmi o guslaru: odbrana guslara, stihovi i bes.
-3. Šuma po pesmi o orlu: gnezdo u plamenu i orao pomagač.
+1. Codex (DOPUNA-26), sve ubačeno:
+   - guslar (sedi na kamenu, svira i čeka);
+   - orao (let, obrušavanje sa kandžama, let sa čuturom vode);
+   - orlovo gnezdo sa orlićima;
+   - Lovac-aga u šest klipova, sa rogom.
+2. Klisura po pesmi o guslaru:
+   - tri guslara;
+   - Turci jurišaju da polome gusle, a druga četa dolazi s leđa;
+   - odbranjen guslar peva stih o Marku, puni bes i leči;
+   - poslednji guslar peva u miru pred Kopljanik-bašom.
+3. Šuma po pesmi o orlu:
+   - palikuće pale bukvu sa gnezdom;
+   - ako ih Marko pobije na vreme, orao ga prati, obrušava se na Turke i leči ga kad je teško ranjen;
+   - orao mu ostavlja čudo „Orlovo pero”.
+4. Lovac-aga sa svojim crtežom: duva u rog kad pušta pse.
+5. Zvuci, napravljeni sintezom (`make-sfx-synth.py`): gusle, krik orla, krila, vatra, kosti, top i pljusak.
+   - ElevenLabs nalog nema kredita: `make-sfx-eleven.py` je spreman za kad se dopuni.
+
+## Ostaje za krug 3
+
+- Močvara po pesmi o sokolu.
+- Podrum po pesmi o ramazanu.
+- Sopstveni crteži za Janičarskog agu, Bajraktara, Ognjenog agu i Hasan-agu.
+- Efekti kao crteži: varnice, prašina, pljusak.
