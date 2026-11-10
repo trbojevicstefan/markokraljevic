@@ -30,5 +30,10 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
             a = np.array(Image.open(dst).convert('RGBA')); al = a[:, :, 3].astype(float)
             al = np.where(al < 14, 0, np.where(al < 40, (al - 14) / 26 * 40, al)); a[:, :, 3] = al.astype(np.uint8)
             Image.fromarray(a).save(dst)
+        if name.startswith(('kostur-', 'oklopnik-kostur')):  # the magenta key shows between the ribs: those pixels are cleared
+            from PIL import Image
+            import numpy as np
+            a = np.array(Image.open(dst).convert('RGBA')); r, g, b = (a[:, :, i].astype(int) for i in range(3))
+            a[(r > 90) & (b > 70) & (g < r - 30) & (g < b - 20), 3] = 0; Image.fromarray(a).save(dst)
         print('klip', name)
 print(f'{n} novih klipova -> {OUT}')

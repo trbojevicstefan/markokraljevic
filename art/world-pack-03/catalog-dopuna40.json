@@ -1,0 +1,244 @@
+{
+  "tool": "built-in image_gen",
+  "clips": [
+    {
+      "id": "marko-brutal",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "bounds": [
+        [
+          88,
+          108,
+          423,
+          488
+        ],
+        [
+          86,
+          114,
+          426,
+          488
+        ],
+        [
+          66,
+          122,
+          446,
+          488
+        ],
+        [
+          85,
+          117,
+          426,
+          488
+        ],
+        [
+          88,
+          107,
+          424,
+          488
+        ],
+        [
+          66,
+          120,
+          446,
+          488
+        ],
+        [
+          87,
+          116,
+          424,
+          488
+        ],
+        [
+          87,
+          108,
+          425,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 383,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "kostur-stoji",
+      "frames": 6,
+      "loop": true,
+      "fps": 8,
+      "bounds": [
+        [
+          179,
+          62,
+          332,
+          488
+        ],
+        [
+          185,
+          67,
+          327,
+          488
+        ],
+        [
+          170,
+          84,
+          341,
+          488
+        ],
+        [
+          184,
+          67,
+          327,
+          488
+        ],
+        [
+          168,
+          57,
+          343,
+          488
+        ],
+        [
+          179,
+          60,
+          333,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 6,
+      "gifFrames": 6,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "kostur-pada",
+      "frames": 8,
+      "loop": false,
+      "fps": 10,
+      "bounds": [
+        [
+          174,
+          62,
+          338,
+          488
+        ],
+        [
+          173,
+          66,
+          339,
+          488
+        ],
+        [
+          170,
+          95,
+          342,
+          488
+        ],
+        [
+          144,
+          166,
+          367,
+          488
+        ],
+        [
+          106,
+          204,
+          406,
+          488
+        ],
+        [
+          82,
+          326,
+          429,
+          488
+        ],
+        [
+          82,
+          381,
+          429,
+          488
+        ],
+        [
+          83,
+          382,
+          429,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 1
+    },
+    {
+      "id": "oklopnik-kostur-pada",
+      "frames": 8,
+      "loop": false,
+      "fps": 10,
+      "bounds": [
+        [
+          183,
+          62,
+          329,
+          488
+        ],
+        [
+          179,
+          85,
+          332,
+          488
+        ],
+        [
+          172,
+          126,
+          340,
+          488
+        ],
+        [
+          147,
+          192,
+          364,
+          488
+        ],
+        [
+          118,
+          255,
+          393,
+          488
+        ],
+        [
+          82,
+          332,
+          429,
+          488
+        ],
+        [
+          86,
+          364,
+          426,
+          488
+        ],
+        [
+          87,
+          367,
+          425,
+          488
+        ]
+      ],
+      "renderScale": 1.0,
+      "standingWorldHeight": 426,
+      "allGroundY487": true,
+      "uniqueFrames": 8,
+      "gifFrames": 8,
+      "imagegenAttempts": 1
+    }
+  ],
+  "prompts": "prompts-dopuna40.json",
+  "renderNote": "Use renderScale about renderAnchor to preserve source-idle world zoom; all cell-ground anchors y487.",
+  "corrections": "No regeneration; all4clips generated once. Skeleton heights calibrated to sword-idle426px and Marko383px."
+}

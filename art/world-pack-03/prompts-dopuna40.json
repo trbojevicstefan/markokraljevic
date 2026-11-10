@@ -1,0 +1,74 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-brutal",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "impactFrames": [
+        2,
+        5
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2Dgame animation sprite sheet matching supplied identity/style references. Pure FLAT#FF00FFMAGENTA background, no scenery/floor/shadow, text, gridlines, borders or effects. Every complete figure, weapon, cape or bone pile contained safely inside own SQUAREcell with24px magenta margins. Same anatomical body/bone scale all frames, NEVER enlarge crouches or fallen piles. Final512x512cells groundy487. All faceRIGHT except natural body motion. No blood, exposed flesh, wounds or organs. Dry ivory fantasy skeletal bones only where requested, no wet remains. EXACT3columns x3rows. FIRST8cells repeated two-beat mace-strike LOOP, cell9extra full upright neutral standing calibration at SAME383px bodyzoom. EXACT same Marko as reference: black hair/moustache/short beard, RED gold-embroidered cloak, ivory red-embroidered shirt, brown lamellar armour, dark trousers/boots. ONLY MARKO, NO ENEMY. LEFT fist grips imaginary collar in EMPTY SPACE to RIGHT at chest height throughout8frames, arm extended, NEVER his own collar/face. RIGHT hand holds familiar spiked mace and delivers repeated SHORT angry blows into EMPTY target space.1 compact backswing near shoulder;2 begins forward blow;3 IMPACT short strong strike;4 recoil;5 second backswing;6 IMPACT second strike;7 recoil;8 returns near1. Angry focused face, cape shakes, feet stable. Exactly TWO arms, no blood, victim or impactsparks.",
+      "kind": "human"
+    },
+    {
+      "id": "kostur-stoji",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png",
+        "dist/assets/kosturi.png"
+      ],
+      "fps": 8,
+      "prompt": "Use case: stylized-concept. ONE painted matte2Dgame animation sprite sheet matching supplied identity/style references. Pure FLAT#FF00FFMAGENTA background, no scenery/floor/shadow, text, gridlines, borders or effects. Every complete figure, weapon, cape or bone pile contained safely inside own SQUAREcell with24px magenta margins. Same anatomical body/bone scale all frames, NEVER enlarge crouches or fallen piles. Final512x512cells groundy487. All faceRIGHT except natural body motion. No blood, exposed flesh, wounds or organs. Dry ivory fantasy skeletal bones only where requested, no wet remains. EXACT3columns x2rows SIXframes seamless idle LOOP. A complete DRY IVORY HUMAN SKELETON, same adult height/proportions as sword-idle in Image1,426px tall target. It wears only torn burgundy janissary coat scraps at shoulders/hips, torn ivory turban around skull, belt fragments and old brown boots, no sword. Image2 is bone/material reference only, do NOT draw lying corpse or several characters. Right-facing three-quarter full upright skeleton stands dazed, jaw slack:1 neutral swaycentre;2 leans slightly forward;3 deepest gentle forward slump;4 returnscenter;5 slight backward sway;6 returns toward1. Skull, ribcage, fingers and legs anatomically consistent and intact; no flesh, no detachable parts in this clip. Cell1standing calibration.",
+      "kind": "human"
+    },
+    {
+      "id": "kostur-pada",
+      "frames": 8,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/kostur-stoji/frames/motion/frame-0.png",
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna39/layout-4x2.png"
+      ],
+      "fps": 10,
+      "prompt": "Use case: stylized-concept. ONE painted matte2Dgame animation sprite sheet matching supplied identity/style references. Pure FLAT#FF00FFMAGENTA background, no scenery/floor/shadow, text, gridlines, borders or effects. Every complete figure, weapon, cape or bone pile contained safely inside own SQUAREcell with24px magenta margins. Same anatomical body/bone scale all frames, NEVER enlarge crouches or fallen piles. Final512x512cells groundy487. All faceRIGHT except natural body motion. No blood, exposed flesh, wounds or organs. Dry ivory fantasy skeletal bones only where requested, no wet remains. EXACT4columns x2rows, WIDE2048x1024sheet as last layoutreference, guidesremoved. FIRST8cells action ONCE, no extra cell. EXACT SAME skeleton/clothing as Image1, standing height as Image2.1 stands right-facing dazed;2 knees soften, jaw hangs;3 skull and shoulders tilt forward, ribs slack;4 drops onto knees;5 skeleton loses assembly as dry bones fall, skull descends beside ribs;6 ribs and limb bones tumble into a LOW heap with cloth;7 small final settling of skull/arm bones;8 motionless LOW pile of clean ivory bones, torn burgundy cloth, ivory turban scraps, belt and boots ON GROUND. Pile naturally much SHORTER than standingbody and stays inside own cell; no zoomup, no red tissue or blood. Cell1standing calibration, same bone lengths across8frames.",
+      "kind": "human"
+    },
+    {
+      "id": "oklopnik-kostur-pada",
+      "frames": 8,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/oklopnik-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/kostur-stoji/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna39/layout-4x2.png"
+      ],
+      "fps": 10,
+      "prompt": "Use case: stylized-concept. ONE painted matte2Dgame animation sprite sheet matching supplied identity/style references. Pure FLAT#FF00FFMAGENTA background, no scenery/floor/shadow, text, gridlines, borders or effects. Every complete figure, weapon, cape or bone pile contained safely inside own SQUAREcell with24px magenta margins. Same anatomical body/bone scale all frames, NEVER enlarge crouches or fallen piles. Final512x512cells groundy487. All faceRIGHT except natural body motion. No blood, exposed flesh, wounds or organs. Dry ivory fantasy skeletal bones only where requested, no wet remains. EXACT4columns x2rows WIDE2048x1024layout from lastreference, guidesremoved. Eight cells action ONCE. SAME adult skeleton anatomy/height as Image2, but remnants of armoured guard costume from Image1: pointed dark helmet, CHAINMAIL COIF and CHAINMAIL SHIRT, burgundy cloth scraps, gold belt fittings and brown boots. Bone skull/hands visible, no flesh, no weapons/shield.1 full upright skeletal armouredguard facesright (standing calibration);2 knees buckle;3 skull/shoulders droop;4 kneels, heavy mail sags;5 bones begin falling into low pile under collapsing mail;6 skull/ribs/legs scatter a little while CHAINMAIL SHIRT remains draped on heap;7 bone/clothing heap settles;8 completely still low pile of ivory bones, helmet, mail shirt and boots on ground. Same bone lengths and zoom acrossposes; do not enlarge heap. No blood, organs or wet gore.",
+      "kind": "human"
+    }
+  ]
+}

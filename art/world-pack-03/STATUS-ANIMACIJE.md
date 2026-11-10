@@ -690,3 +690,7 @@ DOPUNA-39: marko-sablja-preseci — GOTOVO; 8kadova512x512, jednom, atlas/manife
 DOPUNA-40: marko-brutal — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-brutal/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
 
 DOPUNA-40: kostur-stoji — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostur-stoji/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
+
+DOPUNA-40: kostur-pada — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostur-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
+
+DOPUNA-40: oklopnik-kostur-pada — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/oklopnik-kostur-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.

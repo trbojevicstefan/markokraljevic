@@ -378,10 +378,10 @@ if _have('marko-sablja-idle'):
     print('sablja', round(s_, 4), 'idle-2', round(SCALES.get('marko-idle-2', (0,))[0], 4))
 
 # DOPUNA-38 and 40: Marko's silent kill and his beating share the zoom of marko-idle-2; the sleepers, the silent fall and
-# the skeleton are drawn at the zoom of the sword-bearer's idle (the skeleton stands as tall as he does).
+# the skeleton are drawn at the zoom of the sword-bearer's idle (the skeleton stands as tall as he does); the armoured skeleton at his.
 for name, ref in [('marko-tiho', 'marko-idle-2'), ('marko-brutal', 'marko-idle-2'), ('sword-spava', 'sword-idle'), ('sword-budi', 'sword-idle'),
                   ('shield-spava', 'shield-idle'), ('shield-budi', 'shield-idle'), ('sword-tiho-pada', 'sword-idle'),
-                  ('kostur-stoji', 'sword-idle'), ('kostur-pada', 'sword-idle'), ('oklopnik-kostur-pada', 'sword-idle')]:
+                  ('kostur-stoji', 'sword-idle'), ('kostur-pada', 'sword-idle'), ('oklopnik-kostur-pada', 'oklopnik-idle')]:
     if _have(name) and ref in SCALES:
         SCALES[name] = (SCALES[ref][0], 'feet')
 
