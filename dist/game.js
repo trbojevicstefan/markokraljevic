@@ -1529,8 +1529,11 @@ function updateGnezda(dt){for(const t of world.traps||[]){if(t.kind!=='gnezdo')c
  if(t.state==='ceka'&&Math.abs(p.x-t.x)<820&&Math.abs(p.y-t.y)<420){t.state='gori';t.t=0;toast('Palikuće pale orlovo gnezdo! Pobij ih pre nego što plamen stigne do orlića.',3.5);sfx('boom',{gain:.45,rate:1.4,x:t.x});}
  if(t.state==='gori'){t.burn=Math.min(1,t.burn+dt/NEST_BURN);t.cryT=(t.cryT??1)-dt;if(t.cryT<=0){t.cryT=4+Math.random()*3;sfx('orao',{gain:.4,rate:.95,x:t.x});}t.fireT=(t.fireT||0)-dt;if(t.fireT<=0){t.fireT=1.3;addFire(t.x+(Math.random()-.5)*70,t.y,2.4,58,2);}
   if(Math.random()<dt*10)particles.push({kind:'dust',x:t.x+(Math.random()-.5)*40,y:t.y-60-t.burn*NEST_H*.55,vx:(Math.random()-.5)*30,vy:-50-Math.random()*60,life:2.2,max:2.2,r:8+Math.random()*10,color:'#4a4640'});
-  if(!world.enemies.some(e=>e.alive&&e.gnezdo)){t.state='spaseno';t.t=0;toast('Vatra se gasi. Orlići su spaseni!',3);addCoins(10,t.x,t.y-100);orlovDolazak(t);}
-  else if(t.burn>=1){t.state='izgorelo';t.t=0;toast('Gnezdo je izgorelo. Orlušina odleće.',3);}}}}
+  if(!world.enemies.some(e=>e.alive&&e.gnezdo)){t.state='spaseno';t.t=0;toast('Vatra se gasi. Orlići su spaseni!',3);addCoins(10,t.x,t.y-100);orlovDolazak(t);peroOrla(t,true);}
+  else if(t.burn>=1){t.state='izgorelo';t.t=0;toast('Gnezdo je izgorelo. Orlušina odleće.',3);peroOrla(t,false);}}}}
+// "Orlovo pero": the grateful eagle drops a feather from her wing by the tree; if the nest burned, it stays in its hiding place
+function peroOrla(t,saved){if(ownedCuda().has('orlovo-pero')||world.items.some(i=>i.cudo==='orlovo-pero')){if(saved)addCoins(20,t.x,t.y-80);return;}
+ const at=saved?{x:t.x+90,y:t.y-50}:t.pero;if(!at)return;world.items.push({id:7048,x:at.x,y:at.y,type:'cudo',cudo:'orlovo-pero',taken:false});if(saved)setTimeout(()=>toast('Orao ti ostavlja pero iz svog krila.',3),2600);}
 function orlovDolazak(t){world.orao={x:t.x+80,y:t.y-NEST_H-80,state:'dolazi',t:0,cd:2,hladCd:0,face:-1};sfx('orao',{gain:.8,x:t.x})||sfx('whoosh_heavy',{gain:.5,x:t.x});}
 function oraoPlen(){let best=null,bd=1e9;for(const e of world.enemies){if(!e.alive||e.champion||e.zone!==zone||e.held||e.enter||e.prone>0)continue;if(e.x<camera+40||e.x>camera+VIEW_W-40||Math.abs(e.x-p.x)>700)continue;
   const d=Math.abs(e.x-p.x)-(e.perch?300:0)-(e.type==='pas'?200:0);if(d<bd){bd=d;best=e;}}return best;}

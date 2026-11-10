@@ -291,7 +291,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps)if(t.kind==='gnezdo'){foe('palikuca',t.x-130,t.y,{gnezdo:true});foe('palikuca',t.x+140,t.y,{gnezdo:true});foe('sword',t.x+320,t.y,{gnezdo:true});}
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
- for(const r of B.rewards)if(r.cudo&&r.cudo!=='oceva-sablja')items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});
+ // the eagle's feather is hers to give: it waits in its hiding place only if her nest burns
+ for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
  // "Marko Kraljević poznaje očinu sablju": in the Turkish camp a young Turk wears Marko's father's sabre
  if(L.id==='tvrdjava'){const t=B.traps.find(t=>t.kind==='tent')||{x:B.width*.55,y:590};const q=floorAt(t.x+150);if(q)foe('sword',t.x+150,q.y,{look:'mladi-turcin',hp:560,maxHp:560,sablja:true,scale:1.06});}
  for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
