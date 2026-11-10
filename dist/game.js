@@ -2577,6 +2577,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
   // a real win clears the save and grants Musa's sabre; a test puts everything back as it was
   let kept=[];try{kept=Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]);}catch{}win();setTimeout(()=>{try{localStorage.clear();for(const [k,v] of kept)localStorage.setItem(k,v);}catch{}},2500);}return;}
  if(g==='prica'){startChapter(1);return;}
+ if(g==='pauza'){startChapter(1);hush();await wait(900);if(mode==='play')pause();return;}
  if(g==='kontrole'){openKontrole();return;}
  if(g==='riznica'){openRiznica();return;}}
 if(GO)setTimeout(()=>{devGo(GO).catch(e=>console.error(e));},700);
