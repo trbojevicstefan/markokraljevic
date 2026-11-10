@@ -24,7 +24,7 @@ let stage=null;
 if(hasDom&&assets.gorge){try{const m=await import('./stage3d.js');stage=await m.createStage({canvas,layer,glow:glowLayer,gorge:assets.gorge,W,H,zoom:ZOOM,settings:{get reduced(){return settings.reduced;},get quality(){return settings.quality;},onThunder:()=>sfx('thunder',{gain:.8,delay:.25,vary:.3})}});document.body.classList.add('webgl');}catch(err){console.warn('Three.js scena nije dostupna, koristi se 2D prikaz.',err);stage=null;}}
 const screenCtx=stage?null:canvas.getContext?.('2d');
 const fx=(name,...args)=>stage?.[name]?.(...args);
-// ?dev and the test hub's ?go= scenarios: the test build (markoDev handle, and Marko has his father's sabre from the start: G draws it)
+// ?dev and the test hub's ?go= scenarios: the test build (markoDev handle; Marko knows every move and has his father's sabre: G draws it)
 const DEV=typeof location!=='undefined'&&/[?&](dev\b|go=)/.test(location.search);
 $('continue').hidden=!saveState;$('difficulty').value=settings.difficulty;$('volume').value=settings.volume*100;$('vol-music').value=settings.music*100;$('vol-sfx').value=settings.sfx*100;$('vol-voice').value=settings.voice*100;$('quality').value=settings.quality;$('reduced').checked=settings.reduced;$('gore').checked=settings.gore!==false;
 $('loading').hidden=true;
@@ -860,7 +860,8 @@ function basePose(){
 }
 // ================= the father's sabre (DOPUNA-33): with the čudo 'oceva-sablja', G draws King Vukašin's sabre and puts it back =================
 // While it is out, standing, running, jumping and the light blows use Codex's sabre clips, and a light blow cuts harder.
-// Moves the sabre has no drawings for (block, heavy blow, throw, climbing, finishers) are done with the mace for that moment.
+// So do the heavy blow (K, J J K, the held charge), the cut upward (↑+J), the lunge and the whirl (DOPUNA-39).
+// Moves the sabre has no drawings for (block, throw, climbing) are done with the mace for that moment.
 const SABLJA_IN=.6,SABLJA_OUT=.5,SABLJA_HIT=1.3;
 function toggleSablja(){if(!rig?.['marko-sablja-idle'])return;if(!perks.has('oceva-sablja')){toast('Očevu sablju još nemaš. Mladi Turčin je nosi u Opsednutoj tvrđavi.',2.5);return;}
  if(p.sabljaT>0||horseMounted||p.climb||p.attack>0||p.drink>0||p.dash>0||p.throwT>0||!p.grounded)return;
@@ -870,13 +871,15 @@ function toggleSablja(){if(!rig?.['marko-sablja-idle'])return;if(!perks.has('oce
 function sabljaTick(dt){if(!(p.sabljaT>0))return;p.sabljaT=Math.max(0,p.sabljaT-dt);if(p.sabljaT===0&&!p.sabljaOut)p.sablja=false;}
 const SABLJA_MAP={'marko-idle':'idle','marko-idle-2':'idle','marko-idle-3':'idle','marko-idle-4':'idle','marko-turn':'idle','marko-land':'idle','marko-run-stop':'idle',
  'marko-run':'trci','marko-walk':'trci','marko-run-start':'trci','marko-combo-1':'udarac-1','marko-combo-2':'udarac-2','marko-combo-3':'udarac-3','marko-run-attack':'udarac-1','marko-attack':'udarac-1',
- 'marko-air-1':'skok','marko-air-2':'skok','marko-jump':'skok','marko-jump-rise':'skok','marko-fall':'skok','marko-run-jump':'skok'};
+ 'marko-air-1':'skok','marko-air-2':'skok','marko-jump':'skok','marko-jump-rise':'skok','marko-fall':'skok','marko-run-jump':'skok',
+ 'marko-charged':'tezak','marko-combo-4':'tezak','marko-charge-hold':'tezak','marko-charge-walk':'tezak','marko-uppercut':'uvis','marko-dash-strike':'ubod','marko-vihor':'vihor'};
 function sabljaPose(P){if(!p?.sablja||!P)return P;
  // drawing it from the scabbard, or wiping it on the cloak and putting it back
  if(p.sabljaT>0&&p.grounded&&!(p.attack>0)){const nm=p.sabljaOut?'marko-sablja-izvlaci':'marko-sablja-vraca',n=rig?.[nm]?.frames.length;if(n){const k=1-p.sabljaT/(p.sabljaOut?SABLJA_IN:SABLJA_OUT);return{name:nm,frame:Math.min(n-1,Math.floor(k*n))};}}
  const to=SABLJA_MAP[P.name],nm='marko-sablja-'+to,n=to&&rig?.[nm]?.frames.length;if(!n)return P;let frame;
  // the jump clip: 1 rising, 2 over the head, 3 the cut, 4 after it, 5 the landing
  if(to==='skok')frame=p.grounded?n-1:p.attack>0&&p.airAtk?Math.min(4,2+Math.floor((1-p.attack/attackDuration())*3)):p.vy< -150?1:4;
+ else if(P.name==='marko-charge-hold'||P.name==='marko-charge-walk')frame=Math.min(3,n-1);
  else if(to==='idle')frame=Math.floor(time*6)%n;
  else if(to==='trci')frame=Math.floor(p.gait)%n;
  else{const src=rig?.[P.name]?.frames.length||n;frame=Math.min(n-1,Math.floor((P.frame+.5)*n/src));}
@@ -1583,7 +1586,7 @@ const SKILLS=[
 ];
 let skillCache=null;
 function ownedSkills(){if(skillCache)return skillCache;try{skillCache=new Set(JSON.parse(localStorage.getItem('marko-skills')||'[]'));}catch{skillCache=new Set();}return skillCache;}
-function has(id){return !level||ownedSkills().has(id);}
+function has(id){return !level||DEV||ownedSkills().has(id);} // the test build knows every move
 function grantSkill(id){const s=ownedSkills();if(s.has(id))return null;s.add(id);try{localStorage.setItem('marko-skills',JSON.stringify([...s]));}catch{}return SKILLS.find(k=>k.id===id);}
 let lockedT=0;function locked(id){if(lockedT>0)return;lockedT=2.5;const k=SKILLS.find(k=>k.id===id);const L=k&&LEVELS.find(L=>L.id===k.land);toast(`${k?.name||'Veština'} se otključava posle pohoda „${L?.name||'—'}”.`,2.4);}
 // ---------- the letters М-А-Р-К-О (like HERCULES): find all five in a pohod ----------
