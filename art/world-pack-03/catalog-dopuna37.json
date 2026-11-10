@@ -1,0 +1,250 @@
+[
+  {
+    "material": "zemlja",
+    "files": [
+      "plat-zemlja-levo.png",
+      "plat-zemlja-sredina.png",
+      "plat-zemlja-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "mahovina",
+    "files": [
+      "plat-mahovina-levo.png",
+      "plat-mahovina-sredina.png",
+      "plat-mahovina-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "kamen",
+    "files": [
+      "plat-kamen-levo.png",
+      "plat-kamen-sredina.png",
+      "plat-kamen-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "zid",
+    "files": [
+      "plat-zid-levo.png",
+      "plat-zid-sredina.png",
+      "plat-zid-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "sneg",
+    "files": [
+      "plat-sneg-levo.png",
+      "plat-sneg-sredina.png",
+      "plat-sneg-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "kristal",
+    "files": [
+      "plat-kristal-levo.png",
+      "plat-kristal-sredina.png",
+      "plat-kristal-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "cigla",
+    "files": [
+      "plat-cigla-levo.png",
+      "plat-cigla-sredina.png",
+      "plat-cigla-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  },
+  {
+    "material": "greda",
+    "files": [
+      "plat-greda-levo.png",
+      "plat-greda-sredina.png",
+      "plat-greda-desno.png"
+    ],
+    "sizes": [
+      [
+        128,
+        192
+      ],
+      [
+        256,
+        192
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "walkSurfaceY": 40,
+    "decorationMinY": 24,
+    "bottomClearFromY": 185,
+    "middleSeamMaxRgbaDifference": 0,
+    "capSeamMaxRgbaDifference": 0,
+    "drawScale": 0.5,
+    "walkSurfaceAtHalfScale": 20,
+    "halfScalePreviewWidth": 512,
+    "halfScalePreviewMarkoHeight": 125
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "materials": 8,
+  "pngFiles": 24,
+  "walkSurfaceY": 40,
+  "seamRgbaDifferenceAllMaterials": 0,
+  "previewScale": 0.5,
+  "previewMarkoHeight": 125,
+  "previewAssembly": "left + middle + middle + middle + right",
+  "generator": "built-in image_gen",
+  "sourceGenerations": 8
+}

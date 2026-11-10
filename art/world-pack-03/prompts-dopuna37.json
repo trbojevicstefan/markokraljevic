@@ -1,0 +1,94 @@
+{
+  "generator": "built-in image_gen",
+  "workflow": "one continuous painted platform per material, three registered tile exports",
+  "jobs": [
+    {
+      "id": "zemlja",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-selo.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: Warm brown EARTH TURF with low golden-green GRASS and a few TINY white/red WILDFLOWERS above top, no taller than16px. Hanging thin ROOTS, crumbly soil and little stones underneath, irregular solid jagged underside. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "mahovina",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-suma.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: DARK EARTH covered in thick GREEN MOSS with a few LOW fern leaflets, hanging THICK TWISTED ROOTS under the block. Damp olive and coolbrown, no tall foliage. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "kamen",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-klisura.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: GREY CRACKED LIMESTONE slab, subtle warm sunlit upper-left planes and coolgreys underneath, small low GRASS TUFTS in cracks. Natural fractured angled underside. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "zid",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-manastir.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: Medieval DRESSED STONE BLOCKS in horizontal rows, warm grey limestone, CARVED SERBIAN INTERLACE border immediatelybelowtop, small occasional trailing IVY below. Ends broken/chipped but horizontal top. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "sneg",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-prevoj.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: Thick white SNOW covering a dark grey ROCK ledge; FLAT COMPRESSED SNOW walking surface at y40, only small low snow mounds above towardy24. Hanging pointed ICICLES underneath, no separateground underneath, frosty bluegrey matte shadows. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "kristal",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-pecina.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: DARK CAVE ROCK ledge with BLUE CRYSTALS growing DOWNWARD/OUT from UNDERSIDE, jagged facets dim turquoise without glow/bloom. No crystals above walkingtop. Small cracks, a little moss, coolbluegreystone. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "cigla",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-podrum.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: Old RED BRICK and GREY STONE masonry CORBEL/platform, straight copingstone top edge, visible mortar and weathered brick rows, ONE SMALL WOODEN DIAGONAL BRACKET/support BEHIND underside. No legs continuingoutbottom, selfcontained floating masonrychunk. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    },
+    {
+      "id": "greda",
+      "size": [
+        512,
+        192
+      ],
+      "references": [
+        "art/world-pack-02/tlo-rudnik.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE isolated hand-painted MATTE medieval2D platformer PLATFORM STRIP, fullcolor detailed brushwork, absolutely NOT pixel art, no gloss/glow. Reference used for MATERIAL PALETTE and PAINTING STYLE ONLY: do NOT copy its huge groundcliff, blackgradient or fullscene. True TRANSPARENT background around and BELOW floating platform. Orthographic FRONT/SIDE view, NO receding perspective. Soft light from TOP LEFT. Entire continuous ledge visible with LEFT end rounded/chipped and RIGHT end rounded/chipped. No pillars/legs toground, no background, horizon, shadow, numbers, lines, labels. Canvas ideally1536x576 (8:3wide). Final export512x192 with3adjoiningpieces128+256+128. A THICK selfcontained chunk, long horizontal perfectly FLAT WALKING TOP exactly at equivalent y40/192 (20.83% fromtop). Low grass/snow/moss may protrude up to y24 (12.5% fromtop), NOTHING higher. Solid block from y40 to irregular jagged underside ending aroundy150-180; below y185 entirelytransparent. NO floating debris. Central HALF x128..383 is designed to REPEAT HORIZONTALLY: equal material/colors/alpha profile and top/underside at both ends of centralhalf. Match cutboundary textures at25%and75%width, no big isolated unique objects crossing those boundaries. Top surface must remain straight/flat, not bowed hill. Only endquarters terminate; middlecontinuous. MATERIAL: VERY THICK OLD OAK TIMBERS strapped with DARK IRON BANDS and rivets, rough sawgrain and chamfered chipped ends. FLAT timber walking top, diagonal WOODEN SUPPORT BRACE below beam, entirelycontained compactfloating mine scaffold segment. NO stone earthfloor, no posts/legs continuing outside. Same thickness across entire middle, exactlyoneconnectedplatform, no 3 separateobjects and no gaps. All silhouette edges clean truealpha."
+    }
+  ]
+}
