@@ -292,6 +292,11 @@ for who in ['janicar', 'oklopnik', 'pas']:
         if _have(name):
             SCALES[name] = (0.37, 'center')
 
+# DOPUNA-26: the guslar sits on his stone at the zoom of the old traveller (the stone is in the drawing)
+for name in ['guslar-svira', 'guslar-ceka']:
+    if _have(name) and 'putnik-starac-idle' in SCALES:
+        SCALES[name] = (SCALES['putnik-starac-idle'][0], 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):
