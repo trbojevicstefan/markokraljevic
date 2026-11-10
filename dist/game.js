@@ -239,7 +239,9 @@ function drawBones(){if(!rig?.kosturi)return;for(const b of bones){if(b.x<camera
 const FIN_WINDOW=1.15;let finGlobal=0;
 // the four face buttons: X (J) takes the head, Y (K) smashes him into the ground, B (Shift) lifts and hurls him, A (Space) leaps on him
 const FIN_KEYS={KeyJ:'odsecanje',KeyU:'odsecanje',KeyK:'smrskaj',ShiftLeft:'noge',ShiftRight:'noge',Space:'gazi'};
-const FIN_INFO={oderi:{dur:2.6,hit:.9,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
+// the beating: three blows strip him (every ODERI_STEP seconds), the fourth and heaviest leaves the skeleton
+const ODERI_STEP=.24,ODERI_CLIPS=['marko-combo-1','marko-combo-2','marko-combo-3','marko-combo-4'];
+const FIN_INFO={oderi:{dur:1.3,hit:.74,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
  bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},noge:{dur:1.05,hit:.48,clip:'marko-finisher-legs',fb:'marko-finisher'},gazi:{dur:1.15,hit:.66,clip:'marko-finisher-stomp',fb:'marko-plunge'}};
 // ================= stealth: sleepers, sentries and camps, killed silently from behind =================
 // In each pohod some foes doze where they stand, some walk a short beat, and two camps of sleepers lie by a fire.
@@ -288,12 +290,12 @@ function drawStealth(){if(!level||!world.enemies)return;
 // blows and the rotted skeleton the corpses already turn into stand in.
 function beginOderi(e){const I=FIN_INFO.oderi;finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind:'oderi',hit:false,n:0};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*70;p.attack=0;p.blocking=false;p.spin=0;
  Object.assign(e,{stun:5,mode:'stun',vx:0,finT:0,lunge:null,pendingHit:null,brutal:0});sfx('whoosh_heavy',{gain:1});sayGrunt(true);label('ODERI GA!',e.x,e.y-175,'#ff8a7a');}
-function oderiHit(e,n){e.brutal=Math.min(1,n/8);e.flash=.12;hitstop=.045;shake=settings.reduced?0:3+n*.4;rumble(.35+n*.05,90);
+function oderiHit(e,n){e.brutal=Math.min(1,n/3.5);e.flash=.12;hitstop=.05+n*.01;shake=settings.reduced?0:4+n*1.2;rumble(.4+n*.1,100);
  sfx('hit_heavy',{gain:.85,rate:.85+Math.random()*.3,x:e.x});if(n%2)sfx('hit_body',{gain:.7,x:e.x});fx('hit',e.x-p.face*10,e.y-60-((n%3)-1)*22,true);
  blood(e.x-p.face*4,e.y-75+((n%3)-1)*22,p.face,20);
  // bits of flesh and cloth
- for(let i=0;i<10;i++){const a=-Math.PI*(.15+Math.random()*.7),sp=180+Math.random()*420;particles.push({kind:'blood',x:e.x+(Math.random()-.5)*26,y:e.y-50-Math.random()*70,vx:Math.cos(a)*sp*(Math.random()<.75?p.face:-p.face),vy:Math.sin(a)*sp,life:2.4,max:2.4,r:3+Math.random()*4.5,color:['#5e0508','#7a1a12','#8a2a1c','#3a0204'][i%4]});}
- if(n===1||n===5)foeSay(e,'hurt',{chance:1});}
+ for(let i=0;i<16;i++){const a=-Math.PI*(.15+Math.random()*.7),sp=180+Math.random()*420;particles.push({kind:'blood',x:e.x+(Math.random()-.5)*26,y:e.y-50-Math.random()*70,vx:Math.cos(a)*sp*(Math.random()<.75?p.face:-p.face),vy:Math.sin(a)*sp,life:2.4,max:2.4,r:3+Math.random()*4.5,color:['#5e0508','#7a1a12','#8a2a1c','#3a0204'][i%4]});}
+ if(n===1)foeSay(e,'hurt',{chance:1});}
 function oderiEnd(e){if(!e.alive)return;const x=e.x,y=e.y,face=e.face,scale=e.scale||1,type=e.type;e.hp=0;slay(e,0);const c=corpses[corpses.length-1];if(c&&Math.abs(c.x-x)<2)corpses.pop();
  bones.push({x,y,face,v:BONE_V[type]??0,t:1.4,scale});
  for(let i=0;i<60;i++){const a=-Math.PI*Math.random(),sp=200+Math.random()*560;particles.push({kind:'blood',x:x+(Math.random()-.5)*30,y:y-70+(Math.random()-.5)*60,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:3,max:3,r:2+Math.random()*4.5,color:['#7a070b','#9b0d12','#5e0508','#8a2a1c'][i%4]});}
@@ -305,7 +307,7 @@ function updateFinisher(dt){
  finGlobal=Math.max(0,finGlobal-dt);
  if(finisher){const F=finisher,e=F.e;F.t+=dt;p.vx=0;p.attack=0;p.invuln=Math.max(p.invuln,.25);
   if(F.kind==='bacanje'&&!F.hit&&e.alive&&F.t>F.dur*.18){e.held=true;const k=clamp((F.t-F.dur*.18)/(F.dur*.2),0,1);e.liftK=k;e.x=p.x+p.face*(58-93*k);e.y=p.y-148*k;}
-  if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/.27);if(n>0&&n!==F.n){F.n=n;oderiHit(e,n);}}
+  if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/ODERI_STEP);if(n>0&&n!==F.n){F.n=n;oderiHit(e,n);}}
   if(F.kind==='gazi'&&!F.hit&&e.alive){e.prone=clamp(F.t/.38,0,1);F.x0??=p.x;p.x=F.x0+(e.x-p.face*38-F.x0)*clamp(F.t/(F.dur*F.hitAt),0,1);}
   if(!F.hit&&F.t>=F.dur*F.hitAt){F.hit=true;finishBlow(F);}if(F.t>=F.dur){finisher=null;p.cooldown=.2;}return true;}
  for(const e of world.enemies){if(!e.alive)continue;e.finCool=Math.max(0,(e.finCool||0)-dt);
@@ -819,7 +821,7 @@ function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.
  const held=[...keys];keys.clear();pressed.clear();p.vx=0;updatePlayer(dt);for(const k of held)keys.add(k);p.vx=0;p.attack=0;p.idleT=0;return true;}
 function playerPose(){return sabljaPose(basePose());}
 function basePose(){
- if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/.27,nm='marko-combo-'+(1+Math.floor(k)%2),n=rig?.[nm]?.frames.length||6;return{name:nm,frame:Math.min(n-1,Math.floor((k%1)*n))};}
+ if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.min(3,Math.floor(k)),nm=ODERI_CLIPS[i],n=rig?.[nm]?.frames.length||6;return{name:nm,frame:Math.min(n-1,Math.floor(Math.min(1,k-i)*n))};}
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,frame:Math.min(n-1,Math.floor(k*n)),dy:leap};}
  if(gunner&&rig?.['marko-push'])return{name:'marko-push',frame:gunner.recoil>.3?3:0};
