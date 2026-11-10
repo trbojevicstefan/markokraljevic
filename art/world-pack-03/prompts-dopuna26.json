@@ -1,0 +1,270 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "guslar-svira",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 397,
+      "references": [
+        "art/animation-pack-04/assets/putnik-starac-idle/frames/motion/frame-0.png",
+        "art/world-pack-03/cudo-gusle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. Old SERBIAN GUSLE PLAYER, longGRAYBEARD, grayhair, darkbrownfurSUBARAhat, roughbrownSHEEPSKIN GUNJ andivorylinenshirt, embroideredbelt, loosebrowntrousersandOPANCIleatherfootwear. Face/costumematerialsreferenceputnik-starac, NOstafforbackpack. SITS onLOWGRAYROCK. AuthenticONE-STRING GUSLE heldUPRIGHT BETWEENKNEES: pear-shapedwoodenresonatorcoveredivoryskin, longcarvedneckwithsmallhorsehead, ONESTRING; LEFT handonupperneck, RIGHT HANDWOODENBOW drawsacrossstringatre\u200bsonator. InstrumentreferenceconstructionONLY, makeMATTEBROWNWOODnotglowingmagicalgold. Rightfacing3/4profile, seatedsameanatomicalscaleas397pxstandingoldtraveler. 3COLUMNS x3ROWS: FIRST8cellscontinuousPLAYING/SINGINGLOOP,9thneutralSTANDINGguslarwithinstrumentheldforscaleCALIBRATION(no rockincalibration).1 bowtoLEFT,mouthOPENsinging,headslightlyback;2 bowdrawsRIGHT;3 rightbowfarthest;4 beginsreturn;5 bowLEFT;6 secondshortdraw;7 bowright/headnod;8 returntoward1. Realalternatingbow/forearmmotion, leftfingerschangeonstring, subtlechest/headmotion, beard/coatfollowthrough, lipsvarysinging. SeatedonSAMEsmallrockall8, instrumentstablebetweenknees. Foot/rockbottomy487. No otherinstrument, no violin/guitar, no notesdrawn.",
+      "fps": 12
+    },
+    {
+      "id": "guslar-ceka",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 397,
+      "references": [
+        "art/animation-pack-04/assets/guslar-svira/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. Old SERBIAN GUSLE PLAYER, longGRAYBEARD, grayhair, darkbrownfurSUBARAhat, roughbrownSHEEPSKIN GUNJ andivorylinenshirt, embroideredbelt, loosebrowntrousersandOPANCIleatherfootwear. Face/costumematerialsreferenceputnik-starac, NOstafforbackpack. SITS onLOWGRAYROCK. AuthenticONE-STRING GUSLE heldUPRIGHT BETWEENKNEES: pear-shapedwoodenresonatorcoveredivoryskin, longcarvedneckwithsmallhorsehead, ONESTRING; LEFT handonupperneck, RIGHT HANDWOODENBOW drawsacrossstringatre\u200bsonator. InstrumentreferenceconstructionONLY, makeMATTEBROWNWOODnotglowingmagicalgold. Rightfacing3/4profile, seatedsameanatomicalscaleas397pxstandingoldtraveler. 3COLUMNS x2ROWS: FIRST4cellswaitingLOOP,5thneutralSTANDINGguslarcalibrationwithinstrument,no rock,6themptyMAGENTA.1 sitquietmouthclosed,guslerestsonknee,bowacrosslap;2 lookoverLEFTshoulder, RIGHT handraisesbeard, leftsupportsneck;3 strokeGRAYBEARDwithrighthandwhileglancesaround;4 handlowersreturntorightfacingquiet1. Sameperson/rock/instrumentfromreference. BownowRESTSacrosslapsohandcanstrokebeard, noadditionalbowcopies. Smallcontinuousloop, no standinginactual4frames. Foot/rockbottomy487.",
+      "fps": 12
+    },
+    {
+      "id": "orao-let",
+      "kind": "bird",
+      "frames": 8,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "targetSpan": 575,
+      "references": [
+        "art/animation-pack-04/sources/dopuna26-reference/orao-reference.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. SAME GREAT GOLDEN EAGLE asreference: darkBROWN wings, golden-tawnyNECK/NAPE, amber eye, hookedochreyellowbeak, powerfulgoldentalons, detailedlayeredfeathers, no baldwhitehead. RIGHTfacingSIDEVIEW. Strongrealisticbirdanatomy, consistentbody/headsizeacrossallframes, truearticulatedlargeWINGSTROKES includingup/wide/edge-on/down, no staticwingtranslation. BirdTORSOCENTERremainsatSAME x256,y300coordinateinEACH512cell, NOTfootbaseline, flightposeonlyengineaddsheight. Completewings/tail/talonsfit80-85%slotwithgutters, wingsfullwhenneeded, don'tcroptips. EXACT8framesin4COLUMNS x2ROWS, rowmajor. OnecontinuousPOWERFULFLIGHTCYCLE:1 wingstretchedHIGHupsweep,2 widehigh-to-levelsweep,3 wingsNEARHORIZONTALatshoulderline,4 powerfuldownstroke,5 wingsfullyDOWNneartalons,6 wingsfoldedbackonupsweep,7 openupward,8 approachhigh1. Bodyheadremainlevelsamecenterandscale, wingsMOVErelativebody, tailfeathersadjustslightly, legs/talonstucked. No bottle/flask/prey, no airspeedlines. Fullwingspanworldabout1.5Markoheight; packcompletebirdeachcell, renderingwillscaleuniformly. Entirewingsfitcell, no partonedge.",
+      "fps": 12,
+      "bodyAnchors": [
+        [
+          0.52,
+          0.7
+        ],
+        [
+          0.52,
+          0.69
+        ],
+        [
+          0.52,
+          0.68
+        ],
+        [
+          0.52,
+          0.59
+        ],
+        [
+          0.52,
+          0.57
+        ],
+        [
+          0.52,
+          0.58
+        ],
+        [
+          0.52,
+          0.67
+        ],
+        [
+          0.52,
+          0.69
+        ]
+      ],
+      "bodyLengthSource": 0.42
+    },
+    {
+      "id": "orao-obrusavanje",
+      "kind": "bird",
+      "frames": 6,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "targetSpan": 575,
+      "references": [
+        "art/animation-pack-04/assets/orao-let/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. SAME GREAT GOLDEN EAGLE asreference: darkBROWN wings, golden-tawnyNECK/NAPE, amber eye, hookedochreyellowbeak, powerfulgoldentalons, detailedlayeredfeathers, no baldwhitehead. RIGHTfacingSIDEVIEW. Strongrealisticbirdanatomy, consistentbody/headsizeacrossallframes, truearticulatedlargeWINGSTROKES includingup/wide/edge-on/down, no staticwingtranslation. BirdTORSOCENTERremainsatSAME x256,y300coordinateinEACH512cell, NOTfootbaseline, flightposeonlyengineaddsheight. Completewings/tail/talonsfit80-85%slotwithgutters, wingsfullwhenneeded, don'tcroptips. EXACT6framesin3COLUMNS x2ROWS, rowmajor. OneSHOT divingattack:1 levelreadywingwide;2 wingsDRAWINTIGHTclosealongbody, pitchbeakDOWN/FORWARDRIGHT;3 streamlineSTEEPDIVEright/down, wingstucked;4 extendLEGS/TALONSforwarddown,talonsOPEN;5 EXACTGRABFRAME talonsCLOSEforcefullyontoinvisibletarget;6 spreadwingsbrake/exitwithtalonsstillclosed. NO drawnprey/target/human. ChangesposeorientationbutcenterTOR\u200bSOalwayssamepointx256y300eachcell, engineaddsposition, no downwardtranslationofentirebird. No speedtrails.",
+      "fps": 12,
+      "bodyAnchors": [
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.5,
+          0.67
+        ],
+        [
+          0.55,
+          0.67
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.67
+        ]
+      ],
+      "bodyLengthSource": 0.36
+    },
+    {
+      "id": "orao-hlad",
+      "kind": "bird",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "targetSpan": 575,
+      "references": [
+        "art/animation-pack-04/assets/orao-let/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. SAME GREAT GOLDEN EAGLE asreference: darkBROWN wings, golden-tawnyNECK/NAPE, amber eye, hookedochreyellowbeak, powerfulgoldentalons, detailedlayeredfeathers, no baldwhitehead. RIGHTfacingSIDEVIEW. Strongrealisticbirdanatomy, consistentbody/headsizeacrossallframes, truearticulatedlargeWINGSTROKES includingup/wide/edge-on/down, no staticwingtranslation. BirdTORSOCENTERremainsatSAME x256,y300coordinateinEACH512cell, NOTfootbaseline, flightposeonlyengineaddsheight. Completewings/tail/talonsfit80-85%slotwithgutters, wingsfullwhenneeded, don'tcroptips. EXACT6framesin3COLUMNS x2ROWS, rowmajor. EagleHOVERSINPLACEprovidingSHADE, BOTHWINGSfullyOUTSTRETCHEDlikeprotectiveSHIELD, broadhorizontalcanopyoverinvisiblepersonbelow. BEAKholdsTINYwoodenWATERFLASKbythinloop, flaskhangsbelowbeak, beakclosedontoloop. SmallSLOWwingflex/up-downcorrectionswhilemaintainingwideprotectiveSPREADthroughall6, gentlefeatherfollowthrough, lastflowsinto1. Tailspread, talonstucked. No human, no waterpouringeffect, justflask. Torsoanchorfixedx256y300, no footalignment.",
+      "fps": 12,
+      "bodyAnchors": [
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ],
+        [
+          0.51,
+          0.62
+        ]
+      ],
+      "bodyLengthSource": 0.37
+    },
+    {
+      "id": "orlovo-gnezdo",
+      "kind": "nest",
+      "size": [
+        768,
+        768
+      ],
+      "references": [
+        "art/animation-pack-04/sources/dopuna26-reference/orao-reference.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted2D medievalgame environmentalPROP,PNG768x768 genuineTRANSPARENTbackground. LargeGOLDENEAGLENEST ofroughinterwovenTWIGS/branches/perchedsecurelyonTHICK BEECHBOUGH. Graybeechbark, sturdyhorizontalbran\u200bchwithfewsmallerforks, bowl-shapedrusticnestwithsoftgrasslining. EXACTLY TWO EAGLECHICKS inNEST: fluffyGRAY/CREAMDOWN, smallgoldenhookedBEAKS OPENaskingfood, twodifferentheadtilts. NOadulteagle, no otherbirds/eggs, noforestbackground/trunk/ground. ReferenceONLYforpaintedgameart/goldeneaglespecies, chicksarenotminiatureadults. Fullnest/chicks/boughinsidecanvaswithsmallmargin, branchendsvisiblybroken/notcroppedcanvas. WarmMATTEwood/downtextures, no gloss,aura,gloworshadowonbackground. Transparentnegativegapsbetweensticks/branch, nogrey/white/blackmatte orcheckerboard.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 0,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. EXACT6framesin3COLUMNS x2ROWS,rowmajor. PROUDMENACINGIDLE,feetWIDELYSPREAD, shor\u200btSABREheldLOW inRIGHT hand, heavyLEFTGLOVEDhandrelaxedforward. Oxhornhangsdiagonallyatshoulder/chest, clearlyreadable.6breathingphases chestexpands, shoulderssettle, beard/kaftanmove, hornstrapcreaks, return1. Nolocomotion/attack. ReferenceONLYstyle/scale, notredarmor/turbanidentity. Footbaseliney487.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-run",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. 3COLUMNS x3ROWS: first8actualRUNframesrightward,9thneutralSTANDINGcalibrationmatchingreference.1 rightfootcontact,2 compress,3 legsPASSleftkneeup,4 flightleftleading,5 leftfootcontact,6 compress,7 legsPASSrightkneeup,8 flightrightleadinginto1. Clearalternatingstrides/armmovement, burlyweightandmomentum, not hoppingstaticpose. RIGHTshortsabreLOWFORWARD,leftGLOVEDarmswings, oxhornandbeardsashbouncewithlag, no losinghorn. Samebody/headscaleincludingneutralcalibration. Footbaseliney487.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-attack",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. 4COLUMNS x2ROWS:first6oneSHOTSABRESLASH,7thneutralSTANDINGcalibrationmatchingreference,8themptymagenta.1ready;2 bigwindupdrawarmback;3 startswideforwardarc;4 EXACTHIT shortcurvedSABREextendedFARRIGHTatchestheightwithtorsoandhiprotation;5 followthroughturn;6 recoverguard. LEFT heavyglovedhandcounterbalances, oxhornstillstrappedonshoulder. Maintainhead/costume/anatomicalsizeallframes, nobladeVFX/noenemy. Fullbladeinslot. Footbaseliney487.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-rog",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. 4COLUMNS x2ROWS:first6oneSHOT HUNTINGHORN CALL,7thneutralSTANDINGcalibration,8themptymagenta.1 lowers/sHEATHSsabreandgrabsOXHORN;2 raisesoxhornMOUTHPIECEtolipswithRIGHT hand,leftGLOVEDhandsupportslargecurvedhornbell;3 BLOWSHORNwithCHEEKSvisiblyINFLATED;4 continuesblowingpuffedcheeks;5 sustaincallpuffedcheeks;6 lowerhornlettingcheeksrelax. HornMUSTtouchLIPSframes3-5, curvedbellpointsRIGHTforward, authenticOXHORNnotbrassmoderntrumpet. RIGHTHANDfreebecauseSABREsheatedatbelt, no holdingweaponandhorninsamehand. No dogs,notes,soundwaves/FXdrawn; enginewillreleasehounds. Footbaseliney487.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. 3COLUMNS x2ROWS:first4oneSHOT HITREACTION,5thneutralSTANDINGcalibration,6themptymagenta.1 sharpchestjolt;2 doublesforwardinpain;3 braceslef\u200btGLOVEDhandatabdomen, saberlowRIGHT;4 partiallyrecoversstillhunched. Hornremainsonshoulder,butjoltswit\u200bhbody. BARELYslightnon\u200bgraphicinjury/no blood, no attackers. No enlargementofhunchedposes. Footbaseliney487.",
+      "fps": 12
+    },
+    {
+      "id": "lovac-aga-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted cel-shaded medieval2D game animation sprite sheet. Pureflat #FF00FF MAGENTA blankbackgroundeverywhere, no magentacostume, no shadedbackground. Mattewarmpaintedstylematchingreference, no whiteglare/glow, NO scenery/groundline/shadows,otherfigures,text,numbering,gridlines/borders. FullsubjectandallpropsinsideOWNsquarecell withbroadcleanmagentaGUTTERS, noneclipped/crossingboundaries. Samehead/bodyanatomicalsize andcostume acrossALLposes, NEVERenlargecrouches/fallenbodies. Final512squarecells. BUR\u200bLY STOUT TURKISH HUNTER AGA boss, broadshoulders/barrelchest, middleagedheavyDARKBEARD, RUSTORANGE LEATHER KAFTAN withdarkfurtrim, DARKMARTEN FUR KALPAK HAT (NOTwhite turbanorsteelhelmet), thickBELT,brownboots. OX-HORN HUNTINGHORN onstrapoverSHOULDER, thickleatherHUNTINGGLOVEonLEFTHAND, SHORTCURVEDSABREright\u200bhand. NOjanissaryarmor, no fancyfeathers, no fantasyantlerhelmet. Samecharacter allframes, rightfacing. Worldbodyheight490px =1.15ordinarysword-idle426; sturdybossbuild, nohugeshrinkingwhenrunning. 4COLUMNS x2ROWS:first6oneSHOT DEATH,7thneutralSTANDINGcalibration,8themptymagenta.1 recoilback;2 kneesgivewayfallsBACKLEFT,hornstrapcomesloose;3 fallingbackdiagonal,hornFALLSFREE;4 BACKhitsgroundkneesbent, OXHORNBOUNCESnearboots;5 bodysettlesonBACK,hornROLLStowardsrightwithneworientation;6 stillflatONBACKeyesclosed, hornRESTSSEPARATELYonitsSIDEnearfeet. Sabrecanrestbesidehandwithinbodyhorizontalspan; gloveleftneverchanges. NO gore/blood, no ghosts. NeedDRAWNfallposesnotjustrotationofstandingimage. SAMEanatomicalscaleincludingcalibration, bentkneesnaturaltofitfullbodyandrollinghorninslot. Allbody/hat/hornunclipped, no detachedbodyparts. Groundcontactbottomy487.",
+      "fps": 12
+    }
+  ]
+}

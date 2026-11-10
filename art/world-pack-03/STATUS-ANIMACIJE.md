@@ -387,3 +387,29 @@ DOPUNA-25: mladi-turcin-hurt — GOTOVO; 4kadova512x512, jednom, oslonac y487, a
 DOPUNA-25: mladi-turcin-death — GOTOVO; 6kadova512x512, jednom, oslonac y487, atlas/manifest sa frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/mladi-turcin-death/. renderScale=1.0000 uz renderAnchor(256,488), svetska visina lika426px. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna25.json, izvor sacuvan.
 
 DOPUNA-25 — ZAVRSENO: svih9stavki redom, 7klipova/44kadra i2kaveza768x768. Po jedno generisanje ugradjenim image_gen. Provereni alfa,512x512kadri, oslonac y487, atlas/kadrovi, frame_layout, GIFbrojevi i loop; napad pogodak4. Kavezi imaju praznu providnu unutrasnjost. Pregledi: art/animation-pack-04/preview-dopuna25.png i art/world-pack-03/preview-dopuna25-kavezi.png; katalog/validacija: catalog-dopuna25.json/validation-dopuna25.json. Promptovi prompts-dopuna25.json. Pri ubacivanju koristiti renderScale iz svakog manifesta oko renderAnchor(256,488) za isti svetski zum (svatovi417px,mladiTurcin426px); bitno za siru grupu kola i dugacak polozaj pada. Pomocne neutralne kalibracione poze nisu u izvoznim klipovima. Nema neuspelih stavki, kod igre i dist nisu menjani.
+
+DOPUNA-26: guslar-svira — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/guslar-svira/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: guslar-ceka — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/guslar-ceka/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: orao-let — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/orao-let/. renderScale=1.2950, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: orao-obrusavanje — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/orao-obrusavanje/. renderScale=1.5632, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: orao-hlad — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/orao-hlad/. renderScale=1.4164, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: orlovo-gnezdo — GOTOVO; PNG RGBA768x768 na vrhu art/world-pack-03/, dva orlica u gnezdu na bukovoj grani, providnost proverena. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-idle/. renderScale=1.0515, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-run/. renderScale=1.0187, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-attack/. renderScale=1.0426, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-rog — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-rog/. renderScale=1.0381, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-hurt/. renderScale=1.0062, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26: lovac-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-death/. renderScale=1.0722, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
+
+DOPUNA-26 ZAVRSENO: 12/12 stavki, 11 klipova / 68 kadrova i orlovo-gnezdo.png 768x768. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna26.json, promptovi prompts-dopuna26.json, pregled art/animation-pack-04/preview-dopuna26.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; orao koristi centar tela (256,300), ljudi oslonac (256,488).

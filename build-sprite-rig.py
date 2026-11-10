@@ -298,6 +298,12 @@ if _have('orao-let'):
     for name in ['orao-let', 'orao-obrusavanje', 'orao-hlad']:
         if _have(name):
             SCALES[name] = (k_, 'center')
+# DOPUNA-26: Lovac-aga, a champion as tall as the Arab's men (his idle 150 world px), one scale for all his clips
+if _have('lovac-aga-idle'):
+    s_ = 150 / max(body_height(c) for c in _cells('lovac-aga-idle'))
+    for k in ['idle', 'run', 'attack', 'rog', 'hurt', 'death']:
+        if _have(f'lovac-aga-{k}'):
+            SCALES[f'lovac-aga-{k}'] = (s_, 'center' if k == 'death' else 'feet')
 # DOPUNA-26: the guslar sits on his stone at the zoom of the old traveller (the stone is in the drawing)
 for name in ['guslar-svira', 'guslar-ceka']:
     if _have(name) and 'putnik-starac-idle' in SCALES:

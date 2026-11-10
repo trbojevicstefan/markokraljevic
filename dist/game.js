@@ -2700,6 +2700,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='reka'){await startLevel(lv('reka'));await wait(200);const t=world.traps.find(t=>t.kind==='water');if(t)at(t.x-90,t.y);toast('Skela i voda: stani na skelu',4);return;}
  if(g==='most'){startChapter(2);hush();at(7470);toast('Pritisni E kod kamena: Ravijojla doleti i napravi most',5);return;}
  if(g==='ivica'){startChapter(0);hush();at(556);p.face=1;toast('Skoči ka kamenu ispred sebe: Marko visi. W ili Space popni se, S pusti se',6);return;}
+ if(g==='lovac'){await startLevel(lv('suma'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Lovac-aga duva u rog i pušta pse',5);return;}
  if(g==='bos'){await startLevel(lv('tvrdjava'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c){at(c.arena.x0+120,c.y);c.hp=Math.min(c.hp,40);}toast('Dokrajči bosa i gledaj kako Marko slavi',5);return;}
  if(g==='musa'){startChapter(5);hush();toast('Megdan sa Musom',3);return;}
  if(g==='kraj'){startChapter(5);hush();await wait(1500);if(boss){boss.x=p.x+170;

@@ -1,0 +1,69 @@
+from pathlib import Path
+from PIL import Image,ImageDraw
+import json,sys,shutil,subprocess
+world=Path(__file__).resolve().parent;root=world.parent/'animation-pack-04';game=world.parents[1]
+name,source=sys.argv[1:3]
+j=next(j for j in json.loads((world/'prompts-dopuna26.json').read_text(encoding='utf-8-sig'))['jobs'] if j['id']==name)
+run=root/'sources'/name if j['kind']!='nest' else world/'sources/dopuna26'/name
+run.mkdir(parents=True,exist_ok=True);raw=run/'grid.png';assert not raw.exists();shutil.copy2(source,raw)
+if j['kind']=='nest':
+ out=world/(name+'.png');assert not out.exists();im=Image.open(raw).convert('RGBA');assert im.getchannel('A').getextrema()[0]==0
+ b=im.getchannel('A').point(lambda v:255 if v>16 else 0).getbbox();assert b;im=im.crop(b);im.thumbnail((748,724),Image.Resampling.LANCZOS)
+ final=Image.new('RGBA',(768,768));final.paste(im,((768-im.width)//2,(768-im.height)//2));final.save(out)
+ message='PNG RGBA768x768 na vrhu art/world-pack-03/, dva orlica u gnezdu na bukovoj grani, providnost proverena.'
+else:
+ out=root/'assets'/name;assert not (out/'atlas.png').exists();(out/'frames/motion').mkdir(parents=True,exist_ok=True)
+ sg=game.parent/'tools/sprite-gen/.venv/Scripts/sprite-gen.exe';cut=run/'grid-alpha.png'
+ subprocess.run([str(sg),'cutout',str(raw),'--out',str(cut),'--key','magenta','--decontam','palette'],check=True,stdout=subprocess.DEVNULL)
+ grid=Image.open(cut).convert('RGBA')
+ def slot(i):
+  x,y=i%j['cols'],i//j['cols'];return grid.crop((x*grid.width//j['cols']+3,y*grid.height//j['rows']+3,(x+1)*grid.width//j['cols']-3,(y+1)*grid.height//j['rows']-3))
+ def trim(p):
+  b=p.getchannel('A').point(lambda v:255 if v>16 else 0).getbbox();assert b;return p.crop(b)
+ if j['kind']=='bird':
+  sources=[slot(i).resize((512,512),Image.Resampling.LANCZOS) for i in range(j['frames'])]
+  anchors=[(a[0]*512,a[1]*512) for a in j['bodyAnchors']]
+  extents=[]
+  for p,(bx,by) in zip(sources,anchors):
+   b=p.getchannel('A').point(lambda v:255 if v>16 else 0).getbbox();assert b
+   extents.append((bx-b[0],b[2]-bx,by-b[1],b[3]-by))
+  scale=min(236/max(e[0] for e in extents),236/max(e[1] for e in extents),284/max(e[2] for e in extents),192/max(e[3] for e in extents))
+  cells=[p.transform((512,512),Image.Transform.AFFINE,(1/scale,0,bx-256/scale,0,1/scale,by-300/scale),Image.Resampling.BICUBIC) for p,(bx,by) in zip(sources,anchors)]
+  span=max(p.getchannel('A').getbbox()[2]-p.getchannel('A').getbbox()[0] for p in cells)
+  bodyLength=j['bodyLengthSource']*512*scale
+  if name=='orao-let':renderScale=575/span;worldBodyLength=bodyLength*renderScale
+  else:
+   fm=json.loads((root/'assets/orao-let/manifest.json').read_text());worldBodyLength=fm['worldBodyLength'];renderScale=worldBodyLength/bodyLength
+  scaleInfo={'bodyAnchorsSource':j['bodyAnchors'],'sourceBodyLength':j['bodyLengthSource'],'cellBodyLength':bodyLength,'uniformScale':scale}
+  anchor={'x':256,'y':300}
+ else:
+  pieces=[trim(slot(i)) for i in range(j['frames'])];cal=trim(slot(j['calibrationFrame']))
+  scale=min(j['targetHeight']/cal.height,488/max(p.width for p in pieces),472/max(p.height for p in pieces));cellHeight=round(cal.height*scale);renderScale=j['targetHeight']/cellHeight
+  cells=[]
+  for p in pieces:
+   p=p.resize((max(1,round(p.width*scale)),max(1,round(p.height*scale))),Image.Resampling.LANCZOS);cell=Image.new('RGBA',(512,512));cell.paste(p,((512-p.width)//2,488-p.height));cells.append(cell)
+  scaleInfo={'referenceHeight':j['targetHeight'],'cellCalibrationHeight':cellHeight,'uniformScale':scale,'footY':487};anchor={'x':256,'y':488}
+ atlas=Image.new('RGBA',(512*j['frames'],512));board=Image.new('RGBA',(2048,((j['frames']+4)//4)*512),(29,38,46,255));d=ImageDraw.Draw(board);qa=[]
+ ref=Image.open(game/j['references'][0]).convert('RGBA');ref.save(out/'reference.png');board.alpha_composite(ref.resize((512,512)),(0,0));d.text((8,8),'reference',fill='white')
+ for i,cell in enumerate(cells):
+  cell.save(out/f'frames/motion/frame-{i}.png');atlas.paste(cell,(i*512,0));assert cell.getchannel('A').getextrema()[0]==0
+  if j['kind']=='human':assert cell.getchannel('A').getbbox()[3]==488
+  qa.append({'frame':i,'bounds':cell.getchannel('A').getbbox(),'anchor':anchor});x,y=(i+1)%4*512,(i+1)//4*512;board.alpha_composite(cell,(x,y));d.text((x+8,y+8),str(i+1),fill='white')
+ atlas.save(out/'atlas.png');board.convert('RGB').save(out/'preview-comparison.png')
+ m=json.loads((root/'assets/marko-walk/manifest.json').read_text());m['characterId']=name;m['animation']['columns']=j['frames'];m['animation']['rows']['motion'].update(frames=j['frames'],fps=12,loop=j['loop'],durations_ms=[83]*j['frames'])
+ m['frame_layout'].update(sheetWidth=j['frames']*512,sheetHeight=512,rows={'motion':[dict(x=i*512,y=0,w=512,h=512) for i in range(j['frames'])]})
+ m['chroma_key']={'name':'magenta','hex':'#FF00FF','rgb':[255,0,255]};m['sprite_sheet_alpha_report']=None;m['scaleReference']=scaleInfo;m['renderScale']=renderScale;m['renderAnchor']=anchor
+ if j['kind']=='bird':m.update(assetType='flying-eagle',noFootAlignment=True,worldWingspan=575,worldBodyLength=worldBodyLength)
+ else:m['worldBodyHeight']=j['targetHeight']
+ m['renderNote']='Apply renderScale about renderAnchor; birds use torso center y300, humans use ground y488.'
+ if name=='lovac-aga-attack':m['impactFrame']=3;m['impactFrameOneBased']=4
+ if name=='orao-obrusavanje':m['grabFrame']=4;m['grabFrameOneBased']=5
+ (out/'manifest.json').write_text(json.dumps(m,indent=2));(out/'frames/frames-manifest.json').write_text(json.dumps({'cellWidth':512,'cellHeight':512,'states':{'motion':{'frames':j['frames'],'fps':12,'loop':j['loop'],'files':[f'motion/frame-{i}.png' for i in range(j['frames'])]}}},indent=2))
+ subprocess.run([str(sg),'compose-gif',*[str(out/f'frames/motion/frame-{i}.png') for i in range(j['frames'])],'--output',str(out/'preview.gif'),'--delay-ticks','8','--loop-count','0'],check=True,stdout=subprocess.DEVNULL)
+ assert Image.open(out/'preview.gif').n_frames==j['frames']
+ for i in range(j['frames']):assert atlas.crop((i*512,0,(i+1)*512,512)).tobytes()==cells[i].tobytes()
+ (out/'qa.json').write_text(json.dumps({'frames':qa,'loop':j['loop'],'atlasMatchesFrames':True,'gifFrames':j['frames'],'renderScale':renderScale},indent=2))
+ message=f'{j["frames"]}kadova512x512, '+('petlja' if j['loop'] else 'jednom')+f', atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/{name}/. renderScale={renderScale:.4f}, renderAnchor={anchor}.'
+with (world/'STATUS-ANIMACIJE.md').open('a',encoding='utf8') as f:
+ f.write(f'\nDOPUNA-26: {name} — GOTOVO; {message} Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.\n')
+print('Saved and logged:',name)

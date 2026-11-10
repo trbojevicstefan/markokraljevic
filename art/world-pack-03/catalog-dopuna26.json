@@ -1,0 +1,131 @@
+[
+  {
+    "id": "guslar-svira",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\guslar-svira",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "guslar-ceka",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\guslar-ceka",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "orao-let",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\orao-let",
+    "renderScale": 1.295045045045045,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "orao-obrusavanje",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\orao-obrusavanje",
+    "renderScale": 1.5632480306393348,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "orao-hlad",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\orao-hlad",
+    "renderScale": 1.4163503761484202,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "orlovo-gnezdo",
+    "file": "art\\world-pack-03\\orlovo-gnezdo.png",
+    "size": [
+      768,
+      768
+    ]
+  },
+  {
+    "id": "lovac-aga-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-idle",
+    "renderScale": 1.0515021459227467,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "lovac-aga-run",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-run",
+    "renderScale": 1.0187110187110187,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "lovac-aga-attack",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-attack",
+    "renderScale": 1.0425531914893618,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "lovac-aga-rog",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-rog",
+    "renderScale": 1.0381355932203389,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "lovac-aga-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-hurt",
+    "renderScale": 1.0061601642710472,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "lovac-aga-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\lovac-aga-death",
+    "renderScale": 1.0722100656455142,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]
