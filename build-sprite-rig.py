@@ -324,6 +324,13 @@ if _have('caus-idle'):
         if _have(f'caus-{k}'):
             SCALES[f'caus-{k}'] = (s_, 'center' if k == 'death' else 'feet')
 
+# DOPUNA-27: Ognjeni aga, the cellar's champion, a big man (idle 160 world px), one scale for all his clips
+if _have('ognjeni-aga-idle'):
+    s_ = 160 / max(body_height(c) for c in _cells('ognjeni-aga-idle'))
+    for k in ['idle', 'run', 'attack', 'ulje', 'zadihan', 'hurt', 'death']:
+        if _have(f'ognjeni-aga-{k}'):
+            SCALES[f'ognjeni-aga-{k}'] = (s_, 'center' if k == 'death' else 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

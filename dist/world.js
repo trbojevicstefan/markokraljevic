@@ -125,7 +125,7 @@ export const RECIPES={
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
-export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar'},
+export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar'},
  arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
  trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},kopljanik:{name:'Kopljanik-baša',hp:1560,kit:'kopljanik',scale:1.3}};

@@ -764,10 +764,12 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.mode==='windup'){const urgency=1-e.timer/(e.windupDuration||.7);rimGlow(pose,x,e.y,e.face,'#ff4a20',.18+.42*urgency*(.65+.35*Math.sin(time*30)),1.2+urgency*1.4);}
  if(e.kit&&e.engaged){const kp=KITS[e.kit]?.pose?.(e);if(kp)pose=kp;}if(e.held){const L=rig?.[e.type+'-launch'],k=e.liftK||0;pose=L?{name:e.type+'-launch',frame:1,rot:p.face*1.45*k}:{name:rig?.[e.type+'-hurt']?e.type+'-hurt':pose.name,frame:1,rot:-p.face*1.35};}
  if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',frame:Math.min(4,Math.floor(e.prone*5))};}if(e.hornT>0&&e.look&&rig?.[e.look+'-rog']){const R=rig[e.look+'-rog'];pose={...pose,name:e.look+'-rog',frame:Math.min(R.frames.length-1,Math.floor((1-e.hornT/HORN_T)*R.frames.length)),fixedScale:1};}
- else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',run:'walk',shoot:'attack',kick:'attack'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
+ else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',run:'walk',shoot:'attack',kick:'attack',bomb:'attack',burn:'hurt'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
   // the moves are the sword-bearer's; a move the look lacks borrows its nearest drawing, so he is never drawn as someone else
   pose={...pose,name:alt,frame:alt===e.look+'-'+k?Math.min(pose.frame,rig[alt].frames.length-1):Math.floor(time*8)%rig[alt].frames.length,...(e.champion?{fixedScale:1}:{})};}
  if(e.fermanT>0&&e.look&&rig?.[e.look+'-ferman']){const R=rig[e.look+'-ferman'];pose={...pose,name:e.look+'-ferman',frame:Math.min(R.frames.length-1,Math.floor((1-e.fermanT/1.8)*R.frames.length*1.4))};}
+ // Ognjeni aga pours his oil from the jug, and stands bent and panting while he is open
+ if(e.look&&e.kit==='ognjeni'){const U=rig?.[e.look+'-ulje'],Z=rig?.[e.look+'-zadihan'];if(U&&(e.ks==='oil'||e.ks==='burn'))pose={...pose,name:e.look+'-ulje',frame:e.ks==='burn'?U.frames.length-1:Math.min(U.frames.length-1,Math.floor((1-e.kt/1.8)*U.frames.length)),fixedScale:1};else if(Z&&e.kitOpen>0)pose={...pose,name:e.look+'-zadihan',frame:Math.floor(time*6)%Z.frames.length,fixedScale:1};}
  if(e.skriven)pose.alpha=.4;
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
  if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.flash>0?e.flash/.15*.5:0,flashColor:'#ffd6bf'});
@@ -2792,6 +2794,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='reka'){await startLevel(lv('reka'));await wait(200);const t=world.traps.find(t=>t.kind==='water');if(t)at(t.x-90,t.y);toast('Skela i voda: stani na skelu',4);return;}
  if(g==='most'){startChapter(2);hush();at(7470);toast('Pritisni E kod kamena: Ravijojla doleti i napravi most',5);return;}
  if(g==='ivica'){startChapter(0);hush();at(556);p.face=1;toast('Skoči ka kamenu ispred sebe: Marko visi. W ili Space popni se, S pusti se',6);return;}
+ if(g==='ognjeni'){await startLevel(lv('podrum'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Ognjeni aga pali ulje po podu. Kad vikne „ulje“, skači na grede, pa ga udri dok je zadihan.',5);return;}
  if(g==='lovac'){await startLevel(lv('suma'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c)at(c.arena.x0+120,c.y);toast('Lovac-aga duva u rog i pušta pse',5);return;}
  if(g==='bos'){await startLevel(lv('tvrdjava'));await wait(200);const c=world.enemies.find(e=>e.champion);if(c){at(c.arena.x0+120,c.y);c.hp=Math.min(c.hp,40);}toast('Dokrajči bosa i gledaj kako Marko slavi',5);return;}
  if(g==='musa'){startChapter(5);hush();toast('Megdan sa Musom',3);return;}
