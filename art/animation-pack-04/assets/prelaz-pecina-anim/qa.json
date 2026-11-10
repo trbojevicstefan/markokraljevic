@@ -12,5 +12,6 @@
   "background": "opaque",
   "source_layout": "4 columns x3 rows",
   "fps": 8,
-  "gif_frames": 12
+  "gif_frames": 12,
+  "source_cell_inset": 2
 }

@@ -1,0 +1,237 @@
+{
+  "scope": "DOPUNA36 B only",
+  "tool": "built-in image_gen",
+  "items": [
+    {
+      "file": "art\\world-pack-03\\prelaz-tvrdjava-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-tvrdjava-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-tvrdjava-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        6.771355523003472,
+        7.636196560329861,
+        7.350070529513889,
+        7.585980733235677,
+        7.419222513834636,
+        7.604766845703125,
+        6.788237677680122,
+        7.553822835286458,
+        7.280698140462239,
+        7.409603542751736,
+        7.507131788465711,
+        7.404140048556858
+      ],
+      "seam_difference": 7.404140048556858,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-tvrdjava-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-prevoj-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-prevoj-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-prevoj-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        12.170084635416666,
+        13.209003024631075,
+        12.688143412272135,
+        14.538438585069443,
+        11.93556128607856,
+        12.73678165011936,
+        12.382814195421007,
+        14.733879089355469,
+        11.93172624376085,
+        12.510213216145834,
+        11.369773864746094,
+        14.412450154622396
+      ],
+      "seam_difference": 14.412450154622396,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-prevoj-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-pecina-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-pecina-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-pecina-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        10.694347805447046,
+        11.379709031846787,
+        10.753547668457031,
+        12.645746019151476,
+        12.164656745062935,
+        11.720559014214409,
+        11.076464335123697,
+        12.446005927191841,
+        10.94941880967882,
+        11.346054077148438,
+        10.75042978922526,
+        12.183629353841146
+      ],
+      "seam_difference": 12.183629353841146,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-pecina-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-podrum-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-podrum-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-podrum-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        6.904501173231336,
+        7.4817598130967875,
+        6.8145251803927955,
+        8.988204108344185,
+        7.2085113525390625,
+        7.743531968858506,
+        6.762622409396702,
+        8.740426805284288,
+        7.033632066514756,
+        7.743580288357205,
+        6.9735200670030375,
+        8.794936286078558
+      ],
+      "seam_difference": 8.794936286078558,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-podrum-anim\\manifest.json"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-mocvara-1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-mocvara-2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "kind": "miniature"
+    },
+    {
+      "file": "art\\world-pack-03\\prelaz-mocvara-anim.png",
+      "size": [
+        9216,
+        512
+      ],
+      "kind": "animated-scene",
+      "frames": 12,
+      "cell": [
+        768,
+        512
+      ],
+      "fps": 8,
+      "adjacent_frame_mean_rgb_difference": [
+        9.819035000271267,
+        9.140629238552519,
+        9.018886990017362,
+        9.171042548285591,
+        10.78226555718316,
+        9.270020378960504,
+        9.31486341688368,
+        9.703819274902344,
+        9.165165371365019,
+        10.559590657552084,
+        10.151422288682726,
+        10.5307125515408
+      ],
+      "seam_difference": 10.5307125515408,
+      "manifest": "art\\animation-pack-04\\assets\\prelaz-mocvara-anim\\manifest.json"
+    }
+  ],
+  "prompts": "prompts-dopuna36-b.json"
+}

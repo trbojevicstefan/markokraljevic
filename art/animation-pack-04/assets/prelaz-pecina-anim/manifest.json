@@ -126,8 +126,9 @@
     "columns": 4,
     "rows": 3,
     "order": "row-major",
-    "raw_width": 2172,
-    "raw_height": 724
+    "raw_width": 1774,
+    "raw_height": 887,
+    "cellInsetSourcePixels": 2
   },
   "generation": "built-in image_gen; twelve painted frames, fixed-camera prompt"
 }

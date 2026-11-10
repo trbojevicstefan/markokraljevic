@@ -720,3 +720,15 @@ DOPUNA-41: provera prosla — 8 RGBA kadrova, atlas 4096x512 jednak kadrovima, G
 DOPUNA-36 B: prelaz-pecina-anim ISPRAVLJENO — nova unutrasnjost Vilinske pecine: plavi kristali, kapi/jezerce, svetleca Ravijojla pokazuje prolaz, Marko ulazi sa Sarcem. 12 kadrova 768x512, atlas 9216x512, manifest i preview.gif; stari logor sacuvan u sources/dopuna36-b/pecina-replaced-20261110-234747. Ugradjeni image_gen; prompt sources/dopuna36-b/pecina-ispravka-prompt.txt.
 
 DOPUNA-36 B: prelaz-podrum-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-podrum-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-podrum-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-podrum-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-mocvara-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-mocvara-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-mocvara-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-mocvara-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: ZAVRSENO — podrum i mocvara po 2 minijature 1024x1024 i 1 scena od 12 kadrova; pecina-anim ponovo nacrtana prema novoj specifikaciji. Provereni 36 novih/ispravljenih kadrova 768x512, atlas=frames, root PNG=atlas, frame_layout, 12-kadarski GIF i izvorni odnos 2:1. Pregled preview-dopuna36-b.html; katalog/validation azurirani. Kod igre i dist nisu menjani.
