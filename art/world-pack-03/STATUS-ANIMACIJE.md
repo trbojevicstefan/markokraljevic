@@ -712,3 +712,11 @@ DOPUNA-36 B: prelaz-pecina-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska
 DOPUNA-36 B: prelaz-pecina-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
 
 DOPUNA-36 B: prelaz-pecina-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-pecina-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-41: marko-sablja-vihor — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-vihor/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna41.json, izvor sacuvan.
+
+DOPUNA-41: provera prosla — 8 RGBA kadrova, atlas 4096x512 jednak kadrovima, GIF 8 kadrova, oslonac y=487, renderScale=1; nova ispruzena desna ruka i sablja. Prethodni izvoz sacuvan u art/animation-pack-04/sources/marko-sablja-vihor/dopuna41-before/. Tacan prompt: prompt-dopuna41.txt (ugradjeni image_gen).
+
+DOPUNA-36 B: prelaz-pecina-anim ISPRAVLJENO — nova unutrasnjost Vilinske pecine: plavi kristali, kapi/jezerce, svetleca Ravijojla pokazuje prolaz, Marko ulazi sa Sarcem. 12 kadrova 768x512, atlas 9216x512, manifest i preview.gif; stari logor sacuvan u sources/dopuna36-b/pecina-replaced-20261110-234747. Ugradjeni image_gen; prompt sources/dopuna36-b/pecina-ispravka-prompt.txt.
+
+DOPUNA-36 B: prelaz-podrum-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.

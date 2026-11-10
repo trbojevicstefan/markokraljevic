@@ -878,6 +878,8 @@ function basePose(){
 // So do the heavy blow (K, J J K, the held charge), the cut upward (↑+J), the lunge and the whirl (DOPUNA-39).
 // Moves the sabre has no drawings for (block, throw, climbing) are done with the mace for that moment.
 const SABLJA_IN=.6,SABLJA_OUT=.5,SABLJA_HIT=1.3;
+// each frame of the sabre whirl is centred with its blade, so the body drifts while he turns: these shifts keep his boots where they stand at rest
+const VIHOR_DX=[14,7,-4,-20,-21,-32,-28,-6];
 function toggleSablja(){if(!rig?.['marko-sablja-idle'])return;if(!perks.has('oceva-sablja')){toast('Očevu sablju još nemaš. Mladi Turčin je nosi u Opsednutoj tvrđavi.',2.5);return;}
  if(p.sabljaT>0||horseMounted||p.climb||p.attack>0||p.drink>0||p.dash>0||p.throwT>0||!p.grounded)return;
  p.sabljaOut=!p.sablja;p.sabljaT=p.sabljaOut?SABLJA_IN:SABLJA_OUT;p.sablja=true;p.cooldown=Math.max(p.cooldown||0,p.sabljaT*.8);
@@ -896,6 +898,7 @@ function sabljaPose(P){if(!p?.sablja||!P)return P;
  if(to==='skok')frame=p.grounded?n-1:p.attack>0&&p.airAtk?Math.min(4,2+Math.floor((1-p.attack/attackDuration())*3)):p.vy< -150?1:4;
  else if(P.name==='marko-charge-hold'||P.name==='marko-charge-walk')frame=Math.min(3,n-1);
  else if(to==='idle')frame=Math.floor(time*6)%n;
+ else if(to==='vihor'){frame=P.frame%n;return{...P,name:nm,frame,dx:(P.dx||0)+p.face*(VIHOR_DX[frame]||0)};}
  else if(to==='trci')frame=Math.floor(p.gait)%n;
  else{const src=rig?.[P.name]?.frames.length||n;frame=Math.min(n-1,Math.floor((P.frame+.5)*n/src));}
  return{...P,name:nm,frame};}
