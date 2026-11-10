@@ -1,0 +1,159 @@
+{
+  "mode": "built-in image_gen",
+  "jobs": [
+    {
+      "name": "prelaz-tvrdjava-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. A Serbian medieval fortress is burning under an Ottoman siege. Turbaned Ottoman soldiers operate wooden catapults outside walls; one flaming projectile arcs toward battlements, flames and smoke above towers, crimson white double-headed-eagle banners on fortress. Wide layered composition, no injured bodies.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-tvrdjava-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. A YOUNG ADULT Ottoman warrior in ivory turban proudly wears King Vukasin's stolen sabre at his belt. Show ONE curved steel blade partly in BLACK gold-fitted scabbard, distinctive TRIPLE GOLD hilt/guard with THREE small jewels like sword reference. Clear waist/hilt focal detail and full readable face, Kosovo fortress behind. No Marko figure.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-tvrdjava-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Production animation sprite-sheet: EXACT4columns x3rows, TWELVE equal3:2landscape cells,3072x1536overall,768x512each. Frame order row-major left-to-right. Last image is LAYOUT ONLY; remove guide lines, margins and gutters. Same complete opaque scene in all12cells, FIXED camera/crop/scale, no new composition per cell. Match Image1 pauza-logor painted matte medieval2D game style, NOT gold-leaf miniature/pixel art. ONLY described small elements move through12smooth cyclical phases0,30,...330degrees, so12leads back to1. Background/architecture/terrain and faces remain registered and still. No text/watermark/transparency, no people or campfire unless requested. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Marko on patched Sarac stands on a hill in foreground, looking toward a distant burning medieval fortress. Horse/body/face and hill fixed. ONLY red cloak hem, horse mane, distant flames and smoke animate in gentle closed12-phase loop. No gait/camera movement; warm fire beyond cool dusk foreground.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-prevoj-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-03/assets/musa-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. Musa Kesedzija demonstrates strength on a snowy mountain pass: throws ONE spiked iron mace high toward stylized clouds, arms open ready to CATCH it on descent. Single mace visible airborne, no duplicated stages or panels. Musa identity matches reference: ivory headwrap, black beard, dark plum embroidered coat, red sash, boots; no Marko.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-prevoj-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-03/assets/musa-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. A frozen mountain pass. Musa Kesedzija and his turbaned armed detachment gather beside a stone watchtower on snowy crest, dangerous steep approach below, icy rocks and pines. Musa matches reference, purple/dark coat and red sash. No Marko, no blood.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-prevoj-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Production animation sprite-sheet: EXACT4columns x3rows, TWELVE equal3:2landscape cells,3072x1536overall,768x512each. Frame order row-major left-to-right. Last image is LAYOUT ONLY; remove guide lines, margins and gutters. Same complete opaque scene in all12cells, FIXED camera/crop/scale, no new composition per cell. Match Image1 pauza-logor painted matte medieval2D game style, NOT gold-leaf miniature/pixel art. ONLY described small elements move through12smooth cyclical phases0,30,...330degrees, so12leads back to1. Background/architecture/terrain and faces remain registered and still. No text/watermark/transparency, no people or campfire unless requested. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Marko leads patched Sarac by a slack rein through a snowy mountain pass in a blizzard, held mid-stride pose. ONLY drifting snow, cloak hem and horse mane/tail move in12-phase loop. Horse legs/Marko face/body and rocks/pines remain fixed. Snow stays consistent density and never covers faces completely, blue-grey winter light.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-pecina-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "dist/assets/fairy-cast.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. Ravijojla gently leads Marko into an ancient cavern, blue crystals glow on rocks beside entrance and underground water. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Ravijojla exactly fairy reference: blonde braids/long hair, white flower wreath, cream short Serbian embroidered dress, red sash, translucent gold-veined butterfly wings, golden-white magical radiance. ONE fairy only.  Fairy identity from lastref and Marko from hero reference; gold-leaf miniature background still visible, light rendered as painted blue/gold highlights.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-pecina-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. A turbaned Ottoman patrol cautiously squeezes into an old crystal cave carrying blazing torches; rough rock arch, cyan crystals and dark tunnel, warm torchlight on expressive cautious faces. No Marko/fairy, no modern mining equipment, no injuries.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-pecina-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Production animation sprite-sheet: EXACT4columns x3rows, TWELVE equal3:2landscape cells,3072x1536overall,768x512each. Frame order row-major left-to-right. Last image is LAYOUT ONLY; remove guide lines, margins and gutters. Same complete opaque scene in all12cells, FIXED camera/crop/scale, no new composition per cell. Match Image1 pauza-logor painted matte medieval2D game style, NOT gold-leaf miniature/pixel art. ONLY described small elements move through12smooth cyclical phases0,30,...330degrees, so12leads back to1. Background/architecture/terrain and faces remain registered and still. No text/watermark/transparency, no people or campfire unless requested. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Interior crystal cavern with small still pool, stalactites, blue/cyan glowing crystal clusters on rocky banks. No people/horse/fairy/campfire. ONLY crystal light gently pulses and water droplets fall from one stalactite to pool, making small expanding ripples through12phases; droplet cycle returns seamlessly. All rock/crystal geometry and camera fixed.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-podrum-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. Marko publicly drinks RED WINE from a goblet during Ramadan in front of the Ottoman emperor's surprised/angry chaush messengers in turbans, medieval street/tavern courtyard. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs.  Wine clearly a beverage in cup and jug, not blood. Dramatic expressions and respectful clear miniature storytelling, no injuries.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-podrum-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. The Ottoman emperor has summoned Marko. Marko stands firmly before the seated turbaned emperor, spiked mace held low or belted, red cloak clear. Two court messengers and guards to sides, ornate medieval palace arches and carpet. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs.  No kneeling Marko, no violence.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-podrum-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Production animation sprite-sheet: EXACT4columns x3rows, TWELVE equal3:2landscape cells,3072x1536overall,768x512each. Frame order row-major left-to-right. Last image is LAYOUT ONLY; remove guide lines, margins and gutters. Same complete opaque scene in all12cells, FIXED camera/crop/scale, no new composition per cell. Match Image1 pauza-logor painted matte medieval2D game style, NOT gold-leaf miniature/pixel art. ONLY described small elements move through12smooth cyclical phases0,30,...330degrees, so12leads back to1. Background/architecture/terrain and faces remain registered and still. No text/watermark/transparency, no people or campfire unless requested. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Marko fills a cup from the wooden spigot of a waist-high WINE BARREL in an old stone cellar. Red cloak, black moustache and belted mace exact. Pose/body/barrel/camera fixed. ONLY a small dark-red wine stream/wine surface, wall torch flames and soft wisps animate through12phases. Wine is drink, no blood. Warm amber cellar, stone arches, no fairy/horse.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-mocvara-1",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. Turbaned Ottoman archers shoot arrows toward ONE living peregrine falcon flying above marsh reeds. Arrows still in air, falcon intact and unhurt in this scene, no impact/blood. Falcon matches reference dark slate back, pale speckled chest and yellow eye/cere. Golden manuscript marsh and hills.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-mocvara-2",
+      "kind": "mini",
+      "refs": [
+        "dist/assets/ui/minijature/hd/minijatura-drum.webp",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: illustration-story. SINGLE square1024x1024 Serbian medieval manuscript miniature. Image1 is STYLE ONLY: Serbian fresco/Miroslav Gospel illumination, aged GOLD LEAF background, warm ochre/vermilion/olive, delicate mineral-pigment faces, fine painted detail and parchment patina. Expressive readable faces, full scene, no panels, lettering, captions or watermark. Serbian figures NEVER turbans; Ottoman soldiers wear turbans. No close blood, injuries or graphic violence. Marko kneels among reeds and gently wraps a clean WHITE CLOTH bandage around the injured wing of a living falcon resting in his hands. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs.  Falcon matches lastref, alert and calm; closed injury under feathers/cloth, no blood/exposed bone. Compassionate face, warm gold miniature background.",
+      "part": "B"
+    },
+    {
+      "name": "prelaz-mocvara-anim",
+      "kind": "anim",
+      "refs": [
+        "art/animation-pack-04/assets/pauza-logor-16/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna36-a/layout-4x3.png"
+      ],
+      "prompt": "Use case: illustration-story. Production animation sprite-sheet: EXACT4columns x3rows, TWELVE equal3:2landscape cells,3072x1536overall,768x512each. Frame order row-major left-to-right. Last image is LAYOUT ONLY; remove guide lines, margins and gutters. Same complete opaque scene in all12cells, FIXED camera/crop/scale, no new composition per cell. Match Image1 pauza-logor painted matte medieval2D game style, NOT gold-leaf miniature/pixel art. ONLY described small elements move through12smooth cyclical phases0,30,...330degrees, so12leads back to1. Background/architecture/terrain and faces remain registered and still. No text/watermark/transparency, no people or campfire unless requested. Marko whenever present matches hero reference: strong adult Balkan hero, swept-back BLACK shoulder-length hair, BLACK moustache/short beard, RED gold-embroidered cloak/gold clasp, ivory red-embroidered sleeves, dark lamellar armour, dark trousers/brown boots, spiked iron mace BELTED unless action says otherwise; bareheaded or fur kalpak, NO turban. Sarac is white with large RUSSET/CHESTNUT patches, chestnut mane, red ornate saddle, exactly four legs. Moonlit marsh with blue water, silver moon, tall reeds and ONE peregrine falcon fully within frame above reeds. No people/horse/fairy/fire. ONLY falcon wings flap in12phases along SMALL closed flight arc and reed tips sway, water shimmers subtly. Horizon/camera/moon position fixed, loop returns naturally.",
+      "part": "B"
+    }
+  ]
+}

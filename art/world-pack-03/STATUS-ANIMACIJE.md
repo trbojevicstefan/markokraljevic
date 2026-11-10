@@ -694,3 +694,21 @@ DOPUNA-40: kostur-stoji — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame
 DOPUNA-40: kostur-pada — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostur-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
 
 DOPUNA-40: oklopnik-kostur-pada — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/oklopnik-kostur-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna40.json, izvor sacuvan.
+
+DOPUNA-36 B: prelaz-tvrdjava-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-tvrdjava-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-tvrdjava-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-tvrdjava-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-prevoj-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-prevoj-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-prevoj-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-prevoj-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-pecina-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-pecina-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
+
+DOPUNA-36 B: prelaz-pecina-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-pecina-anim/. Ugradjeni image_gen; sources/dopuna36-b/; prompts-dopuna36-b.json.
