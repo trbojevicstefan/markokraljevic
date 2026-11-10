@@ -858,7 +858,7 @@ $('quit').onclick=mainMenu;$('victory-menu').onclick=mainMenu;$('sound').onclick
 let settingsFrom='menu';function openSettings(from){settingsFrom=from;$('settings').hidden=false;}function closeSettings(){settings.difficulty=$('difficulty').value;readAudioSettings();settings.quality=$('quality').value;settings.reduced=$('reduced').checked;settings.gore=$('gore').checked;try{localStorage.setItem('marko-settings',JSON.stringify(settings));}catch{}$('settings').hidden=true;}
 $('settings-open').onclick=()=>openSettings('menu');$('pause-settings').onclick=()=>openSettings('pause');$('settings-close').onclick=closeSettings;$('lore-open').onclick=()=>$('lore').hidden=false;$('lore-close').onclick=()=>$('lore').hidden=true;
 p=newPlayer();boss=newBoss();
-let last=performance.now(),acc=0;function frame(now){drawSerial++;let dt=Math.min((now-last)/1000,.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){update(1/120);acc-=1/120;}draw(dt);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+let last=performance.now(),acc=0;function frame(now){drawSerial++;songWatch();let dt=Math.min((now-last)/1000,.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){update(1/120);acc-=1/120;}draw(dt);requestAnimationFrame(frame);}requestAnimationFrame(frame);
 // Read-only QA snapshot; no cheats are exposed to players.
 window.markoState=()=>({mode,zone,charge:p?.charge||0,x:p?.x,y:p?.y,hp:p?.hp,energy:p?.energy,wine:p?.wine,buff:p?.buff,horseMounted,kills,elapsed,fairyVisible:fairy.age<fairy.duration,fairyAge:fairy.age,castPending:!!pendingMagic,defense:defenses[zone],bossHp:boss?.hp,runes:world.runes.map(r=>r.active),goals:world.goals?.map(g=>({kind:g.kind,x:Math.round(g.x),y:g.y,done:g.done,label:g.label})),enemies:world.enemies.filter(e=>e.alive&&e.zone===zone).map(e=>({x:e.x,hp:e.hp,mode:e.mode,type:e.type,moving:e.moveT>0&&e.stun<=0,walk:e.walk||0,frame:locomotionPose(e).frame})),bossMode:boss?.mode,bossX:boss?.x,grounded:p?.grounded,remaining:world.enemies.filter(e=>e.alive&&e.zone===zone).length,renderer:stage?'three':'2d',rage:p.rage,guard:p.guard,blocking:p.blocking,crouching:p.crouching,playerHeight:p.h,attackKind:p.attackKind,attack:p.attack,deathSequence:endSequence,corpses:corpses.map(c=>({type:c.type,frame:deathPose(c).frame,t:c.t,grounded:c.grounded,x:Math.round(c.x),y:Math.round(c.y),launched:!!c.launched}))});
 
@@ -1523,7 +1523,7 @@ function preyFoe(e,F,d,dt){const g=e.prey;if(g.state!=='napad'){e.prey=null;e.pr
 function guslarFoe(g,type,side,k=0){const hp=FOE_HP_G[type]||90,x=(side>0?g.x1+60:g.x0-60)+side*k*75,y=groundAt(x,g.y-60)??g.y;
  world.enemies.push({id:40000+(++guslarN),x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-side,mode:'idle',timer:.6,stun:0,flash:0,alive:true,home:g.x,attackId:0,grounded:true,prey:g,enter:{tx:g.x+side*70,t:-4,v:125+Math.random()*45}});}
 function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar');if(!G.length)return;
- G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.shake=Math.max(0,(g.shake||0)-dt);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=STIHOVI[Math.min(i,STIHOVI.length-1)];}
+ G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.shake=Math.max(0,(g.shake||0)-dt);guslarSongTick(g);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=STIHOVI[Math.min(i,STIHOVI.length-1)];}
   const near=Math.abs(p.y-g.y)<320;
   if(g.state==='ceka'){
    if(g.mir){if(near&&Math.abs(p.x-g.x)<330)guslarPeva(g);}
@@ -1538,8 +1538,16 @@ function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar'
    if(g.state==='napad'&&!g.wave&&foes.length<=1&&g.t>4){g.wave=1;guslarFoe(g,'akindzija',-1);guslarFoe(g,'akindzija',-1,1);toast('Iza tebe! Akindžije jure na guslara.',2.5);sfx('horn_call',{gain:.6,rate:1.1});}
    else if(g.state==='napad'&&g.wave&&!foes.length)guslarPeva(g);}
   if(g.state==='peva'){if(Math.abs(p.x-g.x)<620&&near){p.rage=Math.min(100,(p.rage||0)+34*dt);const h=Math.min(12*dt,40-(g.healed||0),p.maxHp-p.hp);if(h>0){p.hp+=h;g.healed=(g.healed||0)+h;}}
-   if(!g.second&&g.t>5.4){g.second=true;sfx('gusle',{gain:.8,x:g.x});}if(g.t>g.stih.length*STIH_T+2.5)g.state='gotov';}});}
-function guslarPeva(g){g.state='peva';g.t=0;g.healed=0;if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
+   if(!g.second&&!g.song&&g.t>5.4){g.second=true;sfx('gusle',{gain:.8,x:g.x});}if(g.t>g.stih.length*STIH_T+2.5)g.state='gotov';}});}
+function guslarPeva(g){g.state='peva';g.t=0;g.healed=0;if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;guslarSong(g)||sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
+// a real guslar sings: 28 s of "Marko Kraljević i Musa Kesedžija" (Wikimedia Commons, VVVladimir, CC BY-SA 3.0).
+// The music steps back while he sings, and his voice fades as Marko walks away from him.
+function guslarSong(g){const b=SND.buf['sfx/guslar_pesma_0'];if(!audio||!b||!SND.bus.sfx)return false;for(const o of world.traps||[])if(o.song){try{o.song.s.stop();}catch{}o.song=null;}
+ const s=audio.createBufferSource();s.buffer=b;const gn=audio.createGain();gn.gain.value=0;gn.gain.setTargetAtTime(1,audio.currentTime,.25);s.connect(gn);gn.connect(SND.bus.sfx);s.start();g.song={s,gn};songWatch.on.add(g);s.onended=()=>{if(g.song?.s===s)g.song=null;};return true;}
+// the song ends with its guslar's world: a new pohod, the main menu or Marko's death
+function songWatch(){for(const o of songWatch.on){if((mode==='play'||mode==='pause')&&o.song&&(world.traps||[]).includes(o))continue;if(o.song){try{o.song.gn.gain.setTargetAtTime(0,audio.currentTime,.15);o.song.s.stop(audio.currentTime+.6);}catch{}o.song=null;}songWatch.on.delete(o);}}songWatch.on=new Set();
+function guslarSongTick(g){if(!g.song||!audio)return;const d=Math.abs(p.x-g.x)+Math.max(0,Math.abs(p.y-g.y)-150),v=clamp(1-(d-450)/900,0,1);
+ g.song.gn.gain.setTargetAtTime(v,audio.currentTime,.2);if(v>.15)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+.3);if(d>1700||g.state==='bezi'){try{g.song.s.stop(audio.currentTime+.4);}catch{}g.song=null;}}
 function drawGuslar(g){if(g.x<camera-400||g.x>camera+VIEW_W+400||!g.state)return;const sh=g.shake>0?Math.sin(time*70)*3:0,face=p.x<g.x?-1:1;
  if(g.state==='bezi'){const a=clamp(1-(g.t-.4)/2.6,0,1),k=rig?.['putnik-starac-walk']?'putnik-starac-walk':'putnik-starac-idle';if(a>0)rigDraw(k,Math.floor(time*9)%(rig?.[k]?.frames.length||1),g.x+Math.max(0,g.t-.4)*150,g.y,1,{alpha:a});
   for(const [dx,r] of [[-22,.6],[14,-.4]]){ctx.save();ctx.translate(g.x+dx,g.y-4);ctx.rotate(r);ellipse(0,0,13,8,'#6b4222');line(0,0,26,0,'#4a2c14',3);ctx.restore();}return;}
@@ -1549,7 +1557,13 @@ function drawGuslar(g){if(g.x<camera-400||g.x>camera+VIEW_W+400||!g.state)return
  if(g.state==='napad'){const w=90,k=Math.max(0,g.hp)/GUSLE_HP;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(g.x-w/2-2,g.y-178,w+4,10);ctx.fillStyle=k>.4?'#c9a35a':'#c0503a';ctx.fillRect(g.x-w/2,g.y-176,w*k,6);
   textLabel('GUSLE',g.x,g.y-188,{font:'bold 12px Georgia',color:'#ead9b0'});}
  if(g.state==='ceka'&&Math.abs(p.x-g.x)<520)textLabel('GUSLAR',g.x,g.y-170,{font:'bold 13px Georgia',color:'#ead9b0'});
- if(g.state==='peva')drawStih(g);}
+ if(g.state==='peva'){drawNote(g,face,1);drawStih(g);}else if(g.state==='gotov')drawNote(g,face,.45);}
+// while the guslar sings, notes rise from the gusle and drift away, swaying like the bow
+const NOTE_GLYPHS=['♪','♫','♩','♬'];
+function drawNote(g,face,amt){const n=Math.round(7*amt);ctx.save();ctx.textAlign='center';
+ for(let i=0;i<n;i++){const ph=(time*.42+i/n+(i*.37)%.11)%1,x=g.x+face*(18+ph*46)+Math.sin(ph*7+i*1.9)*16,y=g.y-92-ph*150,a=Math.min(1,Math.sin(ph*Math.PI)*1.6)*amt,sz=24+(i%3)*5;
+  ctx.globalAlpha=a;ctx.font=`bold ${sz}px 'Segoe UI Symbol','Noto Music',Georgia,serif`;ctx.lineWidth=5;ctx.strokeStyle='rgba(30,16,4,.85)';ctx.strokeText(NOTE_GLYPHS[i%4],x,y);ctx.fillStyle=i%2?'#ffe9a8':'#ffc94a';ctx.fillText(NOTE_GLYPHS[i%4],x,y);}
+ ctx.restore();}
 // the verse hangs above the guslar like a line of a songbook, one line at a time
 function drawStih(g){const n=Math.min(g.stih.length,Math.floor(g.t/STIH_T)+1),out=clamp((g.stih.length*STIH_T+2.5-g.t)/.8,0,1);if(out<=0)return;
  ctx.save();ctx.font='italic 19px Georgia';const lines=g.stih.map(s=>tr(s)),w=Math.max(...lines.map(s=>ctx.measureText?ctx.measureText(s).width:s.length*9))+44,h=lines.length*27+20,x=g.x-w/2,y=g.y-300-h/2;
