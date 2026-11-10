@@ -292,6 +292,12 @@ for who in ['janicar', 'oklopnik', 'pas']:
         if _have(name):
             SCALES[name] = (0.37, 'center')
 
+# DOPUNA-26: the eagle, about 170 world px from tail to beak in flight (the game anchors her by her body, cell row 300)
+if _have('orao-let'):
+    k_ = 170 / float(np.median([_width(c) for c in _cells('orao-let')]))
+    for name in ['orao-let', 'orao-obrusavanje', 'orao-hlad']:
+        if _have(name):
+            SCALES[name] = (k_, 'center')
 # DOPUNA-26: the guslar sits on his stone at the zoom of the old traveller (the stone is in the drawing)
 for name in ['guslar-svira', 'guslar-ceka']:
     if _have(name) and 'putnik-starac-idle' in SCALES:

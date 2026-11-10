@@ -762,9 +762,11 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.stun>0){pose.rot=(pose.rot||0)-e.face*.07;rimGlow(pose,x,e.y,e.face,'#8fffd8',.22+.12*Math.sin(time*10),1.4);for(let s=0;s<3;s++){const a=time*4+s*2.1;textLabel('✦',x+Math.cos(a)*16,e.y-138+Math.sin(a)*5,{font:'15px Georgia',color:'#c8fff0',glow:'#7fffd0'});}}
  if(e.mode==='windup'){const urgency=1-e.timer/(e.windupDuration||.7);rimGlow(pose,x,e.y,e.face,'#ff4a20',.18+.42*urgency*(.65+.35*Math.sin(time*30)),1.2+urgency*1.4);}
  if(e.kit&&e.engaged){const kp=KITS[e.kit]?.pose?.(e);if(kp)pose=kp;}if(e.held){const L=rig?.[e.type+'-launch'],k=e.liftK||0;pose=L?{name:e.type+'-launch',frame:1,rot:p.face*1.45*k}:{name:rig?.[e.type+'-hurt']?e.type+'-hurt':pose.name,frame:1,rot:-p.face*1.35};}
- if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',frame:Math.min(4,Math.floor(e.prone*5))};}if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',shoot:'attack',kick:'attack'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
+ if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',frame:Math.min(4,Math.floor(e.prone*5))};}if(e.hornT>0&&e.look&&rig?.[e.look+'-rog']){const R=rig[e.look+'-rog'];pose={...pose,name:e.look+'-rog',frame:Math.min(R.frames.length-1,Math.floor((1-e.hornT/HORN_T)*R.frames.length)),fixedScale:1};}
+ else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',shoot:'attack',kick:'attack'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
   // the moves are the sword-bearer's; a move the look lacks borrows its nearest drawing, so he is never drawn as someone else
-  pose={...pose,name:alt,frame:alt===e.look+'-'+k?Math.min(pose.frame,rig[alt].frames.length-1):Math.floor(time*8)%rig[alt].frames.length};}if(e.scale&&!pose.scale)pose.scale=e.scale;
+  pose={...pose,name:alt,frame:alt===e.look+'-'+k?Math.min(pose.frame,rig[alt].frames.length-1):Math.floor(time*8)%rig[alt].frames.length,...(e.champion?{fixedScale:1}:{})};}
+ if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
  if(e.elite){pose.scale=1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.flash>0?e.flash/.15*.5:0,flashColor:'#ffd6bf'});
  if(e.mode==='windup'){ellipse(x,e.y-152,11,11,'#b8382a');ellipse(x,e.y-152,8,8,'#d9503a');textLabel('!',x,e.y-146,{font:'bold 16px Georgia',color:'#fff3bd'});halo(x,e.y-152,26,'rgba(255,90,50,.8)');}
  if(e.hp<e.maxHp&&!e.champion){const bw=54,bx=x-bw/2,by=e.y-136;ctx.fillStyle='rgba(10,20,20,.8)';ctx.fillRect(bx-1,by-1,bw+2,6);const g=ctx.createLinearGradient(bx,0,bx+bw,0);g.addColorStop(0,'#a8352f');g.addColorStop(1,'#e8a061');ctx.fillStyle=g;ctx.fillRect(bx,by,bw*Math.max(0,e.hp/e.maxHp),4);}}
@@ -1534,21 +1536,24 @@ function oraoPlen(){let best=null,bd=1e9;for(const e of world.enemies){if(!e.ali
   const d=Math.abs(e.x-p.x)-(e.perch?300:0)-(e.type==='pas'?200:0);if(d<bd){bd=d;best=e;}}return best;}
 function oraoUdar(e){const dir=e.x>p.x?1:-1;e.hp-=ORAO_HIT;e.flash=.2;e.stun=Math.max(e.stun||0,1);e.hurtT=.3;blood(e.x,e.y-70,dir,10);sfx('hit_body',{gain:.7,x:e.x});label('ORAO!',e.x,e.y-150,'#ffe0a0');
  for(let i=0;i<6;i++)particles.push({kind:'dust',x:e.x,y:e.y-90,vx:(Math.random()-.5)*200,vy:-60-Math.random()*120,life:1.2,max:1.2,r:2+Math.random()*2,color:'#6a4a2a'});if(e.hp<=0)slay(e);}
-function updateOrao(dt){const O=world.orao;if(!O)return;O.t+=dt;O.cd-=dt;O.hladCd-=dt;
+function updateOrao(dt){const O=world.orao;if(!O)return;O.t+=dt;O.cd-=dt;O.hladCd-=dt;O.hitT=Math.max(0,(O.hitT||0)-dt);
  if(O.state==='dolazi'||O.state==='prati'||O.state==='vraca'){const hx=p.x-p.face*110,hy=p.y-290+Math.sin(time*1.6)*14,dx=hx-O.x,dy=hy-O.y,dist=Math.hypot(dx,dy),sp=O.state==='prati'?Math.min(560,dist*3):640;
   if(dist>3){const k=Math.min(dist,sp*dt)/dist;O.x+=dx*k;O.y+=dy*k;}if(Math.abs(dx)>8)O.face=dx>0?1:-1;
   if(O.state!=='prati'&&dist<40){if(O.state==='dolazi')toast('Orao prati Marka i obrušava se na Turke.',3);O.state='prati';}
   if(O.state==='prati'){if(p.hp<p.maxHp*.35&&O.hladCd<=0&&p.hp>0){O.state='hlad';O.t=0;O.hladCd=HLAD_CD;sfx('orao',{gain:.6,x:p.x});toast('Orao širi krila nad Markom i donosi mu vode.',3);}
    else if(O.cd<=0){const e=oraoPlen();if(e){O.state='napad';O.t=0;O.e=e;O.sx=O.x;O.sy=O.y;sfx('wings',{gain:.7,x:O.x})||sfx('whoosh_heavy',{gain:.55,x:O.x});if(Math.random()<.5)sfx('orao',{gain:.45,x:O.x});}else O.cd=.5;}}}
- else if(O.state==='napad'){const e=O.e,k=Math.min(1,O.t/.6);if(!e.alive){O.state='vraca';O.cd=1.5;}else{O.face=e.x>O.sx?1:-1;O.x=O.sx+(e.x-O.face*30-O.sx)*k;O.y=O.sy+(e.y-70-O.sy)*k*k;if(k>=1){oraoUdar(e);O.state='vraca';O.cd=ORAO_CD;}}}
- else if(O.state==='hlad'){O.x+=(p.x-O.x)*Math.min(1,dt*5);O.y+=(p.y-215-O.y)*Math.min(1,dt*5);O.face=p.face;if(O.t>.5&&O.t<4.5&&p.hp>0)p.hp=Math.min(p.maxHp,p.hp+10*dt);if(O.t>4.8)O.state='vraca';}}
+ else if(O.state==='napad'){const e=O.e,k=Math.min(1,O.t/.6);if(!e.alive){O.state='vraca';O.cd=1.5;}else{O.face=e.x>O.sx?1:-1;O.x=O.sx+(e.x-O.face*30-O.sx)*k;O.y=O.sy+(e.y-70-O.sy)*k*k;if(k>=1){oraoUdar(e);O.state='vraca';O.cd=ORAO_CD;O.hitT=.3;}}}
+ else if(O.state==='hlad'){O.x+=(p.x-O.x)*Math.min(1,dt*5);O.y+=(p.y-235-O.y)*Math.min(1,dt*5);O.face=p.face;if(O.t>.5&&O.t<4.5&&p.hp>0)p.hp=Math.min(p.maxHp,p.hp+10*dt);if(O.t>4.8)O.state='vraca';}}
 function oraoPose(O){const st=O.state,R=n=>rig?.[n]?n:null;
- if(st==='napad'){const n=R('orao-obrusavanje');if(n)return{n,f:Math.min(rig[n].frames.length-1,Math.floor(Math.min(1,O.t/.6)*rig[n].frames.length))};}
+ // the dive: wings folded, then talons out (the 5th drawing grips); after the blow she climbs away (the 6th)
+ if(st==='napad'||O.hitT>0){const n=R('orao-obrusavanje');if(n){const L=rig[n].frames.length;return{n,f:O.hitT>0?L-1:Math.min(L-2,Math.floor(Math.min(1,O.t/.6)*(L-1)))};}}
  if(st==='hlad'){const n=R('orao-hlad');if(n)return{n,f:Math.floor(time*9)%rig[n].frames.length};}
  const n=R('orao-let')||R('orao-flight');return n?{n,f:Math.floor(time*11)%rig[n].frames.length}:null;}
 function drawOrao(){const O=world.orao;if(!O||O.x<camera-300||O.x>camera+VIEW_W+300)return;const q=oraoPose(O);if(!q)return;
- const own=q.n!=='orao-flight';rigDraw(q.n,q.f,O.x,O.y+(own?ORAO_DY:30),O.face,own?{}:{scale:1.15});}
-const ORAO_DY=190;
+ if(q.n==='orao-flight')rigDraw(q.n,q.f,O.x,O.y+30,O.face,{scale:1.15});else oraoDraw(q.n,q.f,O.x,O.y,O.face);}
+// Codex's eagle is drawn with her body (cell row 300) at the point, whatever her wings do
+const ORAO_BODY=300;
+function oraoDraw(n,fr,x,y,face,sc=1){const r=rig?.[n];if(!r)return;const f=r.frames[clamp(Math.floor(fr),0,r.frames.length-1)];rigDraw(n,fr,x,y,face,{scale:sc,dy:(f[4]-ORAO_BODY)*r.scale*sc});}
 function drawGnezdo(t){if(t.x<camera-500||t.x>camera+VIEW_W+500||!t.state)return;const im=worldImg('prop-drvo-bukva'),H=NEST_H,burnt=t.state==='izgorelo'?1:t.burn||0;
  if(im){const b=propBounds(im),w=b.w*H/b.h;ctx.save();if(burnt>.02)ctx.filter=`brightness(${(1-.55*burnt).toFixed(2)}) saturate(${(1-.6*burnt).toFixed(2)})`;ctx.drawImage(im,b.x,b.y,b.w,b.h,t.x-w/2,t.y-H+8,w,H);ctx.restore();}
  const nx=t.x+34,ny=t.y-H*.6,nest=worldImg('orlovo-gnezdo');
@@ -1557,7 +1562,7 @@ function drawGnezdo(t){if(t.x<camera-500||t.x>camera+VIEW_W+500||!t.state)return
  if(t.state==='gori'){const n=1+Math.floor(t.burn*5),R=rig?.['plamen'];for(let i=0;i<n;i++){const fy=t.y-10-i*(H*.6/5),fx=t.x+Math.sin(i*2.3)*14;if(R)rigDraw('plamen',Math.floor(time*12+i*3)%R.frames.length,fx,fy,i%2?1:-1,{scale:.62+.12*Math.sin(i)});else drawFlame(fx,fy,26,46,i*5.1,1);}
   emitters.push({id:'gnezdo'+t.x,kind:'fire',x:t.x,y:t.y-t.burn*H*.3,w:40,rate:14});
   // the mother circles over the burning tree, crying
-  const ox=t.x+Math.cos(time*1.3)*150,oy=t.y-H-30+Math.sin(time*2.6)*22;if(rig?.['orao-let'])rigDraw('orao-let',Math.floor(time*11)%rig['orao-let'].frames.length,ox,oy+ORAO_DY*.8,-Math.sign(Math.sin(time*1.3))||1,{scale:.8});else if(rig?.['orao-flight'])rigDraw('orao-flight',Math.floor(time*10)%6,ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:.9});
+  const ox=t.x+Math.cos(time*1.3)*170,oy=t.y-H*.8+Math.sin(time*2.6)*22;if(rig?.['orao-let'])oraoDraw('orao-let',Math.floor(time*11)%rig['orao-let'].frames.length,ox,oy,-Math.sign(Math.sin(time*1.3))||1,.8);else if(rig?.['orao-flight'])rigDraw('orao-flight',Math.floor(time*10)%6,ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:.9});
   const w=110,k=1-t.burn;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(nx-w/2-2,ny-72,w+4,10);ctx.fillStyle=k>.4?'#c9a35a':'#c0503a';ctx.fillRect(nx-w/2,ny-70,w*k,6);textLabel('GNEZDO',nx,ny-82,{font:'bold 12px Georgia',color:'#ead9b0'});}}
 function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
@@ -1611,6 +1616,7 @@ function drawOttomanFlag(F){const tilt=(F.fall||0)*1.45,sh=F.shake>0?Math.sin(ti
  ctx.beginPath();ctx.arc(52,-168+wv(2.4),17,0,Math.PI*2);ctx.fillStyle='#f3ead8';ctx.fill();ctx.beginPath();ctx.arc(58,-168+wv(2.4),14,0,Math.PI*2);ctx.fillStyle='#b8231c';ctx.fill();ellipse(76,-168+wv(3),4,4,'#f3ead8');}ctx.restore();
  if(F.up&&Math.abs(p.x-F.x)<520)textLabel(`OBORI BARJAK · ${F.hp}`,F.x,F.y-240,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ff7a3a'});}
 function throwSpear(e,clip='arapin-throw'){const sx=e.x+e.face*30,sy=e.y-125,ang=Math.atan2(p.y-70-sy,p.x-sx),v=720;react(e,clip,.5);arrows.push({x:sx,y:sy,vx:Math.cos(ang)*v,vy:Math.sin(ang)*v,spear:true,enemy:true,life:3});sfx('whoosh_heavy',{gain:.8,x:e.x});}
+const HORN_T=1.1;
 const KITS={
  // Hasan-aga: armour no light blow goes through; lure him into a pillar and strike while he reels
  hasan:{p2:'OKLOP PUKAO!',phase2(e){e.armor=0;},
@@ -1740,8 +1746,9 @@ const KITS={
     if(d<130){leapTo(e,clamp(p.x+Math.sign(p.x-e.x)*170,e.arena.x0+60,e.arena.x1-60),e.arena.y,.8);e.ks='vault';e.kt=.8;e.kc=2.2;label('PRESKOČIO TE',e.x,e.y-180,'#e9ffe0');return true;}}
    return false;}},
  lovac:{p2:'ČOPOR!',
+  step(e,dt){if(!(e.hornT>0))return false;e.hornT-=dt;e.vx=0;e.face=p.x>e.x?1:-1;return true;},
   tick(e,dt){e.packT=(e.packT??1.5)-dt;const dogs=world.enemies.filter(o=>o.alive&&o.type==='pas'&&o.pack).length;
-   if(e.packT<=0&&dogs<2){e.packT=e.p3?7:e.p2?9:12;sfx('horn_call',{gain:.8,rate:1.6,x:e.x});label('LOVAC ZOVE PSE',e.x,e.y-200,'#ffcf7a');const n=e.p3?4:e.p2?3:2;
+   if(e.packT<=0&&dogs<2){e.packT=e.p3?7:e.p2?9:12;e.hornT=HORN_T;sfx('horn_call',{gain:.8,rate:1.6,x:e.x});label('LOVAC ZOVE PSE',e.x,e.y-200,'#ffcf7a');const n=e.p3?4:e.p2?3:2;
     for(let k=0;k<n;k++){const s=k%2?1:-1,hp=60,a={id:9600+(e.packN=(e.packN||0)+1),x:p.x+s*300,y:e.arena.y,vx:0,vy:0,w:36,h:50,hp,maxHp:hp,type:rig?.['pas-run']?'pas':'akindzija',zone,face:-s,mode:'idle',timer:.6,stun:0,flash:0,alive:true,home:p.x,attackId:0,grounded:true,pack:true};world.enemies.push(a);arrive(a,'run',s,k>>1);}
     incoming([['run',-1],['run',1]],'PSI','PSI');}}},
 };

@@ -126,7 +126,7 @@ export const RECIPES={
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar'},
- arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword'},
+ arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
  trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},kopljanik:{name:'Kopljanik-baša',hp:1560,kit:'kopljanik',scale:1.3}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
@@ -302,7 +302,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
   if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
  if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90});}
- if(B.boss){const S=BOSSES[B.boss.type],A=B.boss;foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp:S.hp,maxHp:S.hp,name:S.name,kit:S.kit,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
+ if(B.boss){const S=BOSSES[B.boss.type],A=B.boss;foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp:S.hp,maxHp:S.hp,name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
  const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
