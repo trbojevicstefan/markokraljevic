@@ -114,7 +114,7 @@ await climbShaft('rusevine',true);
 // ---- a champion locks the arena until he falls ----
 {const w=await start('tvrdjava');const c=w.enemies.find(e=>e.champion);quiet(w,[c]);ok(c&&c.name==='Hasan-aga Oklopnik','champions: the fortress ends with Hasan-aga');
  stand(c.arena.x0+150,c.y);S().p.invuln=99;step(4);S().p.x=c.arena.x0-200;step(2);ok(S().p.x>=c.arena.x0+30,'champions: the arena holds Marko in');
- c.hp=1;c.stun=5;stand(c.x-80,c.y);S().p.face=1;tap('KeyK');step(80);ok(!c.alive,'champions: the aga falls');step(5);S().p.x=c.arena.x1+40;step(2);ok(S().p.x>c.arena.x1,'champions: the arena opens again');
+ c.p2=c.p3=true;c.hp=1;c.stun=5;stand(c.x-80,c.y);S().p.face=1;tap('KeyK');step(80);ok(!c.alive,'champions: the aga falls');step(5);S().p.x=c.arena.x1+40;step(2);ok(S().p.x>c.arena.x1,'champions: the arena opens again');
  ok(w.items.some(i=>i.type==='moc'&&i.id===8990),'champions: he leaves an enchanted mace behind');}
 // ---- abilities on cooldown and the charge meter ----
 {const w=await start('selo');quiet(w);const gy=floorAt(w,2000).y;stand(2000,gy);S().p.energy=100;tap('KeyI');step(220);ok(!S().thrown&&S().p.cd.throw>0,'cooldown: the mace is back but cannot fly again yet');tap('KeyI');step(2);ok(!S().thrown&&!(S().p.throwT>0),'cooldown: a second throw is refused');step(120*2);tap('KeyI');step(40);ok(!!S().thrown,'cooldown: after 2.5 s it flies again');step(300);

@@ -63,6 +63,7 @@
 #boss-hud h2{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold2)}
 #boss-hud small{font-family:var(--display);font-weight:700;letter-spacing:6px}
 .boss-meter{border-color:#d9b56aaa!important;box-shadow:0 0 18px #a3323c55}
+.boss-guard{height:5px;margin:4px auto 0;width:62%;background:#0b1413cc;border:1px solid #9fb4c466;border-radius:3px;overflow:hidden}.boss-guard i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#8fa6b8,#e6eef5);transition:width .12s linear}.boss-guard.broken i{background:#ffcf6a}
 
 /* ---------- the opening title of a pohod ---------- */
 #title-card{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:5}

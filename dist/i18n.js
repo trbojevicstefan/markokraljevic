@@ -5,6 +5,28 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+// ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["GARD SLOMLJEN!", "GUARD BROKEN!"],
+["GARD POPUŠTA", "GUARD GIVING WAY"],
+["NE DA SE", "HE WON'T YIELD"],
+["Njegov gard ne puca od lakih udaraca, Marko. Drži K za teški udarac, odbij (L) njegov napad, ili ga udri dok se oporavlja od svog zamaha.", "Light blows won't break his guard, Marko. Hold K for a heavy blow, parry (L) his attack, or strike while he recovers from his own swing."],
+["GNJEČI TE OKLOPOM", "HE CRUSHES YOU IN HIS ARMOUR"],
+["ĐEMO TE STEŽE", "ĐEMO HAS YOU IN HIS GRIP"],
+["DŽELAT TE DAVI", "THE EXECUTIONER CHOKES YOU"],
+["OGNJENI AGA TE DAVI", "THE FIRE AGA CHOKES YOU"],
+["BAJRAKTAR TE DAVI", "THE STANDARD-BEARER CHOKES YOU"],
+["ARAPIN TE DAVI", "THE ARAB CHOKES YOU"],
+["KUNDAK NA GRLU", "A MUSKET BUTT AT YOUR THROAT"],
+["LOVAC TE DAVI REMENOM", "THE HUNTER CHOKES YOU WITH A STRAP"],
+["KOPLJE PREKO GRLA", "A SPEAR ACROSS YOUR THROAT"],
+["BEG TE DAVI", "THE BEG CHOKES YOU"],
+["!! HVATA TE", "!! HE GRABS FOR YOU"],
+["KOLUT", "ROLL"],
+["U koštac! Otimaj se: J J J", "Hand to hand! Break free: J J J"],
+["ZBACIO SI GA!", "YOU THREW HIM OFF!"],
+["TRESNUO TE O ZEMLJU", "HE SLAMMED YOU DOWN"],
+["drugi čin", "second act"],
+["poslednji čin", "last act"],
 // ---- page, menu ----
 ["Marko · Tri srca Kačanika","Marko · The Three Hearts of Kačanik"],
 ["Igra Marko — koristi tastaturu ili dodirne kontrole","Marko game — use the keyboard or touch controls"],

@@ -228,4 +228,33 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0});safe();Object.assign(p,{wine:0,rage:0,hp:40});api.pressed.add('KeyE');step(2);ok(t.state==='popijeno'&&p.rage>=100&&p.wine===p.wineMax&&p.hp>=80,'wine: Marko drinks: fury full, flask filled, health back');}
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
  api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='cita';},120*15);ok(t.glasnik?.state==='cita','wine: a herald brings the Sultan\'s hundred ducats');}
+// ---- pack 08, the rules of the megdan: bodies, the guard, the acts and the grapple ----
+{const c=await arena('selo');const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the village');
+ // a body: Marko cannot walk into him
+ c.kc=99;c.timer=99;c.mode='idle';c.grabCD=null;Object.assign(p,{x:c.x-200,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();api.keys.add('KeyD');for(let i=0;i<240;i++){c.kc=99;c.timer=99;c.mode='idle';step();}api.keys.clear();
+ ok(p.x<=c.x-40,'megdan: Marko cannot walk into a standing champion (stopped '+Math.round(c.x-p.x)+' short)');
+ // the guard: light blows glance off, the third in a row earns a shove
+ const light=()=>{c.kc=99;c.timer=99;c.mode='idle';Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,combo:0});p.invuln=0;p.hp=p.maxHp;tap('KeyJ');step(40);};
+ const hp0=c.hp;light();const chip=hp0-c.hp;ok(chip>0&&chip<8,'megdan: a light blow on his guard only chips him ('+chip.toFixed(1)+')');
+ ok(c.guard<100,'megdan: and wears the guard a little');
+ light();const hpB=p.hp;light();ok(p.hp<hpB&&p.x<c.x-120,'megdan: the third light blow in a row and he shoves Marko away');
+ // a blow while he recovers from his own swing lands whole
+ for(let i=0;i<150;i++){c.kc=99;c.timer=99;c.mode='idle';safe();step();}c.guard=100;c.gHits=0;c.mode='recover';c.timer=99;c.kc=99;Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,combo:0,hurt:0,shoveT:0,down:0});safe();const hp1=c.hp;tap('KeyJ');for(let i=0;i<40;i++){c.mode='recover';c.timer=99;step();}
+ ok(hp1-c.hp>20,'megdan: while he recovers from his swing the blow lands whole ('+Math.round(hp1-c.hp)+')');
+ // heavy blows break the guard
+ c.guard=20;c.gHits=0;c.stun=0;c.mode='idle';c.timer=99;c.kc=99;Object.assign(p,{x:c.x-80,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyK');for(let i=0;i<90&&!(c.guardBroken>0);i++){c.kc=99;step();}
+ ok(c.guardBroken>0&&c.stun>0,'megdan: a heavy blow on a worn guard breaks it and he reels');}
+{const c=await arena('selo');const p=S().p;c.kc=99;c.timer=99;
+ // the acts: crossing half his strength he throws Marko back and no blow reaches him for a moment
+ Object.assign(p,{x:c.x-90,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();c.hp=c.maxHp*.49;step(2);
+ ok(c.p2&&c.act===2&&c.invT>0,'megdan: at half strength the second act begins');step(30);ok(p.x<c.x-150,'megdan: entering it he throws Marko back');
+ ok(c.grabCD!=null,'megdan: from the second act on he comes to grapple');
+ // the grab: out of reach, he stumbles past and stands open
+ c.invT=0;c.grabCD=0;c.mode='idle';c.ks=null;c.mace=null;Object.assign(p,{x:c.x-300,y:c.y,vx:0,vy:0,grounded:true});safe();p.invuln=0;until(()=>c.gs==='prep',120*2);ok(c.gs==='prep','megdan: he warns before he grabs');
+ until(()=>c.gs==='lunge',120*2);p.x=c.x-900>c.arena.x0+40?c.x-900:c.arena.x0+40;p.dash=.5;until(()=>!c.gs,120*2);ok(c.stun>0&&c.kitOpen>0,'megdan: a missed grab leaves him stumbling and open');
+ // caught: hand to hand; mashing throws him off and hurts him
+ c.stun=0;c.kitOpen=0;c.grabCD=0;c.mode='idle';c.ks=null;c.mace=null;Object.assign(p,{x:c.x-150,y:c.y,vx:0,vy:0,grounded:true,dash:0});p.invuln=0;p.hp=p.maxHp;
+ until(()=>{c.kc=99;c.mace=null;p.hp=Math.max(p.hp,60);return !!S().p.pinned;},120*5);ok(S().p.pinned,'megdan: caught, Marko is in the grapple');
+ const hp2=c.hp;for(let i=0;i<120*6&&S().p.pinned;i++){p.hp=p.maxHp;if(i%6===0)tap('KeyJ');else step();}
+ ok(!S().p.pinned&&c.hp<hp2&&c.guardBroken>0,'megdan: he breaks free, throws the champion off and leaves him open');}
 console.log(`${checks} battle checks passed.`);
