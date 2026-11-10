@@ -1,0 +1,127 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "marko-sablja-tezak",
+      "frames": 7,
+      "cols": 4,
+      "rows": 2,
+      "loop": false,
+      "impactFrame": 4,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 7,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna39/layout-4x2.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT4columns x2rows, row-major equal squarecells. FIRST7cells action, cell8standing calibration.1 right-facing low sword ready;2 both hands take hilt and lift blade;3 sword raised over head, knees bend;4 anticipatory deep weight shift then forward step;5 IMPACT powerful overhead downward slash into empty space ahead;6 low follow-through with sword tip down and forward, cloak trailing;7 returns balanced low guard. Blade never exits cell. Last image is ONLY layout template: WIDE2048x1024 canvas,4columns x2rows of true SQUAREcells, not narrow portrait cells on square sheet. Remove guide lines. Keep ALL blades, boots and cape20px INSIDE cell edges."
+    },
+    {
+      "id": "marko-sablja-ubod",
+      "frames": 6,
+      "cols": 4,
+      "rows": 2,
+      "loop": false,
+      "impactFrame": 3,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna39/layout-4x2.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT4columns x2rows, row-major equal squarecells. FIRST6cells action, cell7standing calibration, cell8EMPTYMAGENTA.1 right-facing sword guard;2 coil torso and draw sword hand back beside ribs;3 lead foot steps forward, blade aligns chest height;4 IMPACT long forward lunge with one-handed sabre THRUST horizontally into empty space to RIGHT at chest height;5 withdraw blade from empty space, rear foot follows;6 returns guard. Clear thrust not slash. Keep sword inside own cell, foreshorten as needed. Last image is ONLY layout template: WIDE2048x1024 canvas,4columns x2rows of true SQUAREcells, not narrow portrait cells on square sheet. Remove guide lines. Keep ALL blades, boots and cape20px INSIDE cell edges."
+    },
+    {
+      "id": "marko-sablja-uvis",
+      "frames": 6,
+      "cols": 4,
+      "rows": 2,
+      "loop": false,
+      "impactFrame": 2,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/world-pack-03/sources/dopuna39/layout-4x2.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT4columns x2rows, row-major equal squarecells. FIRST6cells action, cell7standing calibration, cell8EMPTYMAGENTA.1 sword low right guard;2 deep knees/hip coil, tip lowered by rear side;3 IMPACT powerful RISING cut from low to high into empty space right;4 blade follows steep upward arc, body extends;5 sabre finishes high above head with full blade safely in cell;6 returns guard. No jumping victim, no effects. Last image is ONLY layout template: WIDE2048x1024 canvas,4columns x2rows of true SQUAREcells, not narrow portrait cells on square sheet. Remove guide lines. Keep ALL blades, boots and cape20px INSIDE cell edges."
+    },
+    {
+      "id": "marko-sablja-vihor",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": true,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT3columns x3rows, row-major equal squarecells. FIRST8cells one smooth SPIN LOOP, cell9standing calibration. Marko rotates360degrees in place with sword extended roughly waist/chest height, red cloak fans in circular motion.1 faceRIGHT;2 three-quarter turning away;3 back view;4 back/left;5 faceLEFT;6 front/left;7 front view;8 front/right nearly returns1. Sword and mace remain on correct hands/belt and full blade always fits. Stable planted ground centre, same head/body size, no translation, no cloned limbs or painted trails."
+    },
+    {
+      "id": "marko-sablja-glava",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": false,
+      "impactFrame": 3,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT3columns x3rows, row-major equal squarecells. FIRST8cells one action, cell9standing calibration.1 balanced right guard;2 draw sabre far back and coil torso;3 plant lead foot, blade at imaginary opponent NECK height (empty space ahead);4 IMPACT one broad decisive HORIZONTAL slash through EMPTY target space;5 full follow-through across torso;6 decelerate blade;7 brings sword back before chest;8 returns right guard. No opponent, head, blood or detached parts."
+    },
+    {
+      "id": "marko-sablja-proburazi",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": false,
+      "impactFrame": 2,
+      "releaseFrame": 6,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT3columns x3rows, row-major equal squarecells. FIRST8cells one stylized finishing action, cell9standing calibration. Invisible opponent NEVER drawn.1 guard;2 step close, align blade chest height;3 IMPACT drive sword forward into EMPTY space ahead;4 both hands grip hilt, brace legs;5 arms lift blade/hilt upward as though raising invisible weight, torso strains;6 hold blade forward/up high safely in cell, left hand supports hilt only;7 RELEASE forceful forward/outward flick lowering blade as if casting invisible weight away;8 recover right guard. No person on blade, body parts, blood or gore, ONLY Marko and sabre."
+    },
+    {
+      "id": "marko-sablja-preseci",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": false,
+      "impactFrame": 3,
+      "kind": "human",
+      "fps": 12,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-sablja-idle/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE painted matte2D game sprite animation sheet, identical Marko and father's sabre as reference1, reference2 supports same face/clothes. Flat solid #FF00FF MAGENTA background, no scene/floor/shadow/gradients, labels, borders/gridlines or effects. Same anatomical head/torso/body zoom in every cell. All full poses, cape and ONE sword safely inside each square cell with20px margins. Final512x512 cells, groundy487, standingbodyheight383px. Marko: black swept-back shoulder-length hair, heavy black moustache/short beard, strong broad face, red gold-embroidered cloak and round gold clasp, brown lamellar armour, ivory shirt with red embroidered cuffs/hem, dark trousers/brown boots. ONE curved steel father's sabre with triple GOLD hilt/guard and THREE small jewels, black scabbard with gold fittings LEFT HIP, familiar SPIKED MACE hangs at belt. No duplicated weapon, helmet, turban or costume changes. No blood or victim: ONLY Marko, his weapons and empty magenta target space to his RIGHT. Movements face RIGHT except actual spins. Extra final calibration cell is full UPRIGHT neutral Marko with sword low, same anatomy scale as animation. EXACT3columns x3rows, row-major equal squarecells. FIRST8cells action, cell9standing calibration.1 start leaning into rightward rush;2 quick low running stride with sabre drawn back;3 deep planted step, wind torso for waist-high strike;4 IMPACT strongest horizontal slash through EMPTY target space at imaginary WAIST height;5 follows through while stepping past target to right;6 second recovery step;7 decelerates and turns torso right guard;8 balanced ready. Character movement stays within own cell, no victim/body halves, no blood/effects."
+    }
+  ]
+}

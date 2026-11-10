@@ -670,7 +670,6 @@ DOPUNA-38: shield-budi — GOTOVO; 5kadova512x512, jednom, atlas/manifest/frame_
 
 DOPUNA-38: sword-tiho-pada — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-tiho-pada/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna38.json, izvor sacuvan.
 
-DOPUNA-39: marko-sablja-tezak — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-tezak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
 
 DOPUNA-39: marko-sablja-tezak — GOTOVO; 7kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-tezak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
 
@@ -678,8 +677,12 @@ DOPUNA-39: marko-sablja-ubod — GOTOVO; 6kadova512x512, jednom, atlas/manifest/
 
 DOPUNA-39: marko-sablja-uvis — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-uvis/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
 
-DOPUNA-39: marko-sablja-vihor — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-vihor/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
 
 DOPUNA-39: marko-sablja-vihor — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-vihor/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
 
 DOPUNA-39: marko-sablja-glava — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-glava/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
+
+DOPUNA-39: marko-sablja-proburazi — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-proburazi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.
+
+
+DOPUNA-39: marko-sablja-preseci — GOTOVO; 8kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-sablja-preseci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna39.json, izvor sacuvan.

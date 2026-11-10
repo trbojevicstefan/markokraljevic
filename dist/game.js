@@ -240,11 +240,15 @@ function drawBones(){if(!rig?.kosturi)return;for(const b of bones){if(b.x<camera
 // ================= the finish: a stunned, broken or dying Turk, a prompt over his head, one blow — and the head flies =================
 const FIN_WINDOW=1.15;let finGlobal=0;
 // the four face buttons: X (J) takes the head, Y (K) smashes him into the ground, B (Shift) lifts and hurls him, A (Space) leaps on him
+const SABLJA_FIN={odsecanje:'glava',smrskaj:'proburazi',noge:'preseci'};
 const FIN_KEYS={KeyJ:'odsecanje',KeyU:'odsecanje',KeyK:'smrskaj',ShiftLeft:'noge',ShiftRight:'noge',Space:'gazi'};
 // the beating: three blows strip him (every ODERI_STEP seconds), the fourth and heaviest leaves the skeleton
 const ODERI_STEP=.24,ODERI_CLIPS=['marko-combo-1','marko-combo-2','marko-combo-3','marko-combo-4'];
 const FIN_INFO={oderi:{dur:1.3,hit:.74,clip:'marko-brutal',fb:'marko-combo-1'},odsecanje:{dur:1.05,hit:.47,clip:'marko-finisher',fb:'marko-finisher'},smrskaj:{dur:1.2,hit:.53,clip:'marko-finisher-skull',fb:'marko-finisher-smash'},
  bacanje:{dur:1.15,hit:.55,clip:'marko-finisher-throw',fb:'marko-throw'},noge:{dur:1.05,hit:.48,clip:'marko-finisher-legs',fb:'marko-finisher'},gazi:{dur:1.15,hit:.66,clip:'marko-finisher-stomp',fb:'marko-plunge'},
+ // with the father's sabre out: J cuts the head off, K runs him through, lifts him on the blade and throws him off, Shift cuts him in half
+ glava:{dur:1.15,hit:.34,clip:'marko-sablja-glava',fb:'marko-finisher',gap:50},proburazi:{dur:1.6,hit:.8,clip:'marko-sablja-proburazi',fb:'marko-sablja-ubod',gap:58},
+ preseci:{dur:1.15,hit:.42,clip:'marko-sablja-preseci',fb:'marko-sablja-udarac-2',gap:40},
  tiho:{dur:1.3,hit:.45,clip:'marko-tiho',fb:'marko-finisher-skull'},tihoS:{dur:1.25,hit:.45,clip:'marko-sablja-tiho',fb:'marko-sablja-udarac-3'}};
 // ================= stealth: sleepers, sentries and camps, killed silently from behind =================
 // In each pohod some foes doze where they stand, some walk a short beat, and two camps of sleepers lie by a fire.
@@ -312,6 +316,8 @@ function updateFinisher(dt){
  finGlobal=Math.max(0,finGlobal-dt);
  if(finisher){const F=finisher,e=F.e;F.t+=dt;p.vx=0;p.attack=0;p.invuln=Math.max(p.invuln,.25);
   if(F.kind==='bacanje'&&!F.hit&&e.alive&&F.t>F.dur*.18){e.held=true;const k=clamp((F.t-F.dur*.18)/(F.dur*.2),0,1);e.liftK=k;e.x=p.x+p.face*(58-93*k);e.y=p.y-148*k;}
+  if(F.kind==='proburazi'&&!F.hit&&e.alive){if(!F.stab&&F.t>F.dur*.28){F.stab=true;blood(e.x,e.y-70,p.face,30);burst(e.x,e.y-70,'#b5161a',14,200);sfx('hit_body',{gain:1,x:e.x});sfx('hit_heavy',{gain:.7,rate:1.3,x:e.x});hitstop=Math.max(hitstop,.08);foeSay(e,'hurt',{chance:1});}
+   if(F.stab){e.held=true;const k=clamp((F.t-F.dur*.36)/(F.dur*.3),0,1);e.liftK=k*.35;e.x=p.x+p.face*FIN_INFO.proburazi.gap;e.y=p.y-45*k;}}
   if(F.kind==='oderi'&&!F.hit&&e.alive){const n=Math.floor(F.t/ODERI_STEP);if(n>0&&n!==F.n){F.n=n;oderiHit(e,n);}}
   if(F.kind==='gazi'&&!F.hit&&e.alive){e.prone=clamp(F.t/.38,0,1);F.x0??=p.x;p.x=F.x0+(e.x-p.face*38-F.x0)*clamp(F.t/(F.dur*F.hitAt),0,1);}
   if(!F.hit&&F.t>=F.dur*F.hitAt){F.hit=true;finishBlow(F);}if(F.t>=F.dur){finisher=null;p.cooldown=.2;}return true;}
@@ -321,14 +327,17 @@ function updateFinisher(dt){
  {const t=tihoTarget();if(t&&tap('KeyJ','KeyU')){beginTiho(t);return true;}}
  const e=finishTarget();if(!e||p.down>0||p.climb||horseMounted||p.pinned||!p.grounded)return false;
  if(settings.gore!==false&&isDown('KeyW','ArrowUp')&&tap('KeyK')){beginOderi(e);return true;}
- const key=Object.keys(FIN_KEYS).find(k=>tap(k));if(key){const kind=FIN_KEYS[key],I=FIN_INFO[kind];finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind,hit:false};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*(kind==='bacanje'?60:kind==='gazi'?90:kind==='noge'?80:kind==='smrskaj'?67:74);p.attack=0;p.blocking=false;p.spin=0;
+ const key=Object.keys(FIN_KEYS).find(k=>tap(k));if(key){let kind=FIN_KEYS[key];const sk=p.sablja&&SABLJA_FIN[kind];if(sk&&rig?.[FIN_INFO[sk].clip])kind=sk;const I=FIN_INFO[kind];finisher={e,t:0,dur:I.dur,hitAt:I.hit,kind,hit:false};finGlobal=training?0:7;p.face=e.x>p.x?1:-1;p.x=e.x-p.face*(I.gap??(kind==='bacanje'?60:kind==='gazi'?90:kind==='noge'?80:kind==='smrskaj'?67:74));p.attack=0;p.blocking=false;p.spin=0;
   Object.assign(e,{stun:5,mode:'stun',vx:0,finT:0,lunge:null,pendingHit:null});sfx('whoosh_heavy',{gain:1});sayGrunt(true);return true;}
  return false;}
 // the silent kill: no cry and no fountain; the sentry sags to his knees and falls on his face (his own drawing, when he has one)
 function tihoKill(e){if(!e.alive)return;const before=corpses.length;slay(e,0);const c=corpses[corpses.length-1];if(corpses.length>before&&c&&rig?.[e.type+'-tiho-pada']){c.clip=e.type+'-tiho-pada';c.clipFrom=2;c.clipDur=.9;}sfx('hit_body',{gain:.35,rate:.8,x:e.x});hitstop=Math.max(hitstop,.06);}
+// thrown off the sabre: he flies forward off the blade and falls
+function throwOffBlade(e){e.held=false;if(!e.alive)return;e.x=p.x+p.face*70;e.y=p.y-60;const before=corpses.length;slay(e,1.4);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.vx=p.face*620;c.vy=-280;c.face=-p.face;}
+ blood(e.x,e.y-40,p.face,40);sfx('whoosh_heavy',{gain:1});sfx('fall',{gain:1,delay:.5});label('NA SABLJI!',e.x,e.y-150,'#ff9a8a');shake=settings.reduced?0:9;rumble(.8,220);hitstop=Math.max(hitstop,.08);}
 // the drawing the finishers cut: a champion with his own look is cut from his own drawing, at its own size
 function cutArt(e){if(e.look&&rig?.[e.look+'-hurt'])return{name:e.look+'-hurt',sc:1};return{name:rig?.[e.type+'-hurt']?e.type+'-hurt':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type,sc:e.scale||(e.elite?1.08:1)};}
-function finishBlow(F){const e=F.e;if(F.kind==='tiho'||F.kind==='tihoS')return tihoKill(e);if(F.kind==='oderi')return oderiEnd(e);if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const {name,sc}=cutArt(e);
+function finishBlow(F){const e=F.e;if(F.kind==='tiho'||F.kind==='tihoS')return tihoKill(e);if(F.kind==='glava')return behead(e);if(F.kind==='preseci')return legsOff(e,.5,'NAPOLA!');if(F.kind==='proburazi')return throwOffBlade(e);if(F.kind==='oderi')return oderiEnd(e);if(F.kind==='odsecanje')return behead(e);if(F.kind==='noge')return legsOff(e);if(!e.alive){e.held=false;return;}const {name,sc}=cutArt(e);
  if(F.kind==='bacanje'){e.held=false;e.x=p.x+p.face*30;e.y=p.y-110;const before=corpses.length;slay(e,1.7);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.vx=p.face*Math.max(780,Math.abs(c.vx||0));c.vy=Math.min(c.vy||0,-360);c.face=-p.face;}
   for(const o of world.enemies)if(o.alive&&o!==e&&(o.x-p.x)*p.face>0&&Math.abs(o.x-p.x)<360&&Math.abs(o.y-p.y)<60){o.hp-=30;o.stun=Math.max(o.stun,1.6);o.mode='stun';o.knock=p.face*20;label('OBOREN',o.x,o.y-140,'#ffcf9a');if(o.hp<=0)slay(o,.8);}
   sfx('whoosh_heavy',{gain:1});sfx('fall',{gain:1,delay:.5});label('BAČEN!',e.x,e.y-170,'#ff9a8a');shake=settings.reduced?0:8;rumble(.8,200);}
@@ -389,11 +398,11 @@ function drawLimbs(){for(const l of limbs){const a=1-clamp((l.t-ROT_AT)/2,0,1);i
 // The mace head is 49 px above his soles at the blow, so the leap at that moment puts it at the man's head.
 function skullLeap(k,F){const e=F.e,r=rig?.[e.type+'-idle'],f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*(e.scale||1):110,at=clamp(H*.88-49,30,120),P=Math.max(150,at+50),h=F.hitAt;
  if(k<.12)return 0;if(k<.3)return P*Math.sin(Math.PI/2*(k-.12)/.18);if(k<h){const s=(k-.3)/(h-.3);return P+(at-P)*s*s;}if(k<h+.1){const s=(k-h)/.1;return at*(1-s*s);}return 0;}
-function legsOff(e){if(!e.alive)return;const {name,sc}=cutArt(e),r=rig?.[name],f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,cut=H*.42;
+function legsOff(e,at=.42,text='BEZ NOGU!'){if(!e.alive)return;const {name,sc}=cutArt(e),r=rig?.[name],f=r?.frames[0],H=f?(f[4]-f[5])*r.scale*sc:110,cut=H*at;
  const lie=lieOf(e.type);limbs.push({name,lie,dir:p.face,face:e.face,ex:e.x,ey:e.y,scale:sc,cut,x:e.x,y:e.y-cut/2,vx:p.face*(230+Math.random()*120),vy:-(240+Math.random()*140),rot:0,vr:p.face*(5+Math.random()*4),t:0,bounces:0});if(limbs.length>20)limbs.shift();
  const before=corpses.length;slay(e,0);const c=corpses[corpses.length-1];if(corpses.length>before&&c){c.legless={name,cut,H,scale:sc,lie};fountains.push({c,t:2.2});}
  blood(e.x,e.y-cut,p.face,44);blood(e.x,e.y-cut,-p.face,26);burst(e.x,e.y-cut,'#b5161a',24,260);hitstop=Math.max(hitstop,.11);slowMo=.35;fx('flash','#ff2a18',.08);shake=settings.reduced?0:13;rumble(1,280);
- sfx('hit_heavy',{gain:1,x:e.x});sfx('hit_body',{gain:1,rate:.7,x:e.x});sfx('fall',{gain:.9,delay:.3,x:e.x});label('BEZ NOGU!',e.x,e.y-H-30,'#ff9a8a');p.rage=Math.min(100,p.rage+15);say('kill',{priority:3,delay:.4});}
+ sfx('hit_heavy',{gain:1,x:e.x});sfx('hit_body',{gain:1,rate:.7,x:e.x});sfx('fall',{gain:.9,delay:.3,x:e.x});label(text,e.x,e.y-H-30,'#ff9a8a');p.rage=Math.min(100,p.rage+15);say('kill',{priority:3,delay:.4});}
 function headlessRot(c){const f=c.headless?.fast,k=clamp((c.t-(f?.1:.55))/(f?.32:.45),0,1);return -c.face*1.45*k*k;}
 function drawHeadless(c){const H=c.headless,a=c.persist?1:1-clamp((c.t-ROT_AT)/1.4,0,1),rot=headlessRot(c);if(a<=0)return;shadow(c.x,c.y,45,.35*a);
  ctx.save();ctx.translate(c.x,c.y);ctx.rotate(rot);ctx.translate(-c.x,-c.y);ctx.beginPath();ctx.rect(c.x-90,c.y-H.neck,180,H.neck+12);ctx.clip();rigDraw(H.name,0,c.x,c.y,c.face,{scale:H.scale,alpha:a});ctx.restore();
@@ -2147,7 +2156,7 @@ const PAD_PARTS=[[6,'LT',118,40,'trig','l','Vino'],[4,'LB',132,70,'shoulder','l'
  [3,'Y',392,118,'face','r','Teški udarac'],[2,'X',360,150,'face','l2','Topuz'],[1,'B',424,150,'face','r','Kolut'],[0,'A',392,182,'face','r','Skok'],
  [10,'L3',150,150,'stick','l','Kretanje · klik: vihor'],[11,'R3',326,222,'stick','b','Junački udar'],[9,'≡',300,128,'mini','t','Pauza'],[8,'⧉',220,128,'mini','t','Očeva sablja'],
  [12,'↑',200,198,'dpad','l','Lestve · popni se'],[13,'↓',200,246,'dpad','l','Čučanj · siđi'],[14,'←',176,222,'dpad','n',''],[15,'→',224,222,'dpad','n','']];
-const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga'],['↑+Y','Oderi do kostiju']]],
+const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga'],['↑+Y','Oderi do kostiju'],['sa sabljom','X glava · Y proburazi · B napola']]],
  ['Top','priđi topu i pritisni RT',[['↑ ↓','Ugao cevi'],['← →','Više ili manje baruta'],['X','Pucaj'],['RT','Ostavi top']]],
  ['Na ivici','kad visiš',[['↑ / A','Popni se'],['↓','Pusti se']]],
  ['Kombinacije','',[['X X X','Niz udaraca'],['↑ + X','Uvis'],['↓','Klizanje u trku'],['↓ + A','Siđi s daske'],['LB','Odbij u pravom trenu i vrati udarac']]]];
@@ -3119,6 +3128,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='sirotinja'){await startLevel(lv('selo'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='sirotinja');if(t){at(t.x-260,t.y);p.coins=Math.max(p.coins||0,14);}toast('Sirotinja kraj puta. Priđi i daj im dukate (E).',5);return;}
  if(g==='svatovi'){await startLevel(lv('rusevine'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='kavez');if(t)at(t.x-260,t.y);toast('Razbij kavez topuzom i oslobodi svatove',5);return;}
  if(String(g).startsWith('prelaz')){const id=String(g).split('-')[1]||'selo';storySeen.delete('pohod-'+id);await startLevel(lv(id));return;}
+ if(g==='sablja-kraj'){await startLevel(lv('klisura'));await wait(300);const e=world.enemies.find(e=>!e.champion&&!e.perch&&TIHO_TYPES.includes(e.type)&&e.x>level.spawn.x+400);if(e){e.spava=false;e.patrola=null;e.hp=e.maxHp*.2;at(e.x-110,e.y);}await wait(200);toggleSablja();toast('Sablja je isukana. Ošamuti ga, pa kad zasija krug: J odseca glavu, K ga proburazi i zbaci, Shift ga preseca napola.',7);return;}
  if(g==='oderi'){await startLevel(lv('klisura'));await wait(300);const e=world.enemies.find(e=>!e.champion&&!e.perch&&TIHO_TYPES.includes(e.type)&&e.x>level.spawn.x+400);if(e){e.spava=false;e.patrola=null;e.hp=e.maxHp*.2;at(e.x-110,e.y);}toast('Ošamuti ga, pa kad zasija krug: ↑ i K. Oderi ga do kostiju.',6);return;}
  if(g==='tiho'){await startLevel(lv('klisura'));await wait(300);const L=world.logori?.[0];if(L)at(L.x-300,L.y);toast('Logor spava. Prikradi se čučeći (S), pa J s leđa.',6);return;}
  if(g==='platforme'){await startLevel(lv('pecina'));await wait(300);const q=world.platforms.filter(q=>q.kind==='plank'&&!q.bridge&&!q.crumble).sort((a,b)=>a.x-b.x)[1];if(q)at(q.x+q.w/2,q.y);return;}
