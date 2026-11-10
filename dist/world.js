@@ -1,6 +1,6 @@
 export const W=1280,H=720,GRAVITY=1750;
 export const chapters=[
- {name:'I · DRUM JUNAKA',start:0,end:3200,goal:'Oslobodi drum od osmanske straže',message:'Marko, odred je zatvorio drum. Prati naše crvene barjake. Space za skok; J za topuz.'},
+ {name:'I · DRUM JUNAKA',start:0,end:3200,goal:'Oslobodi drum od osmanske straže',message:'Marko, Musini ljudi su zatvorili drum, a putnici čekaju da ih provedeš. Prati naše crvene barjake.'},
  {name:'II · ZATOČENA KAPIJA',start:3200,end:7000,goal:'Porazi čuvare i oslobodi putnike',message:'Štit ne popušta pred lakim udarcem. K razbija gard. L odbija napad u pravom trenutku.'},
  {name:'III · VILINSKI TRAG',start:7000,end:10800,goal:'Probudi tri vilinska kamena · E',message:'Priđi svetlećim kamenovima i pritisni E. Otvoriću ti put. U vazduhu te mogu podići još jednom.'},
  {name:'IV · ŠARČEV ZALET',start:10800,end:24500,goal:'Uzjaši Šarca · E · preskoči srušeni drum',message:'Šarac te čeka! Priđi mu i pritisni E. Drži D za galop, Space za skok. Musini ljudi stoje na drumu: Šarac ih gazi, a štitonošu obori topuzom sa sedla (J).'},
@@ -110,8 +110,8 @@ export const CUDA=[
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:djemo',
- klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:kopljanik',
+ selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:kopljanik',
+ klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:djemo',
  suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney flat boss:lovac',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
  tvrdjava:'flat topnica crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut flat boss:oklopnik',

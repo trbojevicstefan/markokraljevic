@@ -25,10 +25,11 @@ const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sor
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 
 // ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
-{ok(!api.levelOpen(0),'journey: the pohodi wait until Musa falls in the story');storage.set('marko-kacanik','won');ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: then only the first pohod is open');
+{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka','journey: the pohodi follow the life of Marko');
+ {const done=api.LEVELS.slice(0,9).map(L=>L.id);storage.set('marko-levels',JSON.stringify(done));ok(api.levelOpen(8)&&!api.levelOpen(9),'journey: after the ninth pohod the road is shut until Musa falls');storage.set('marko-kacanik','won');ok(api.levelOpen(9)&&!api.levelOpen(10),'journey: Musa fallen, the gorge opens');storage.delete('marko-levels');storage.delete('marko-kacanik');}
  const w=await start('manastir');quiet(w);ok(!api.has('zid'),'journey: the wall jump is still locked');
  const a=w.platforms.find(q=>q.hang),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
- await start('selo');api.completeLevel();ok(api.has('niz')&&api.levelOpen(1),'journey: finishing the village teaches the combo and opens the gorge');}
+ await start('selo');api.completeLevel();ok(api.has('niz')&&api.levelOpen(1),'journey: finishing the village teaches the combo and opens the monastery');}
 // ---- story chapters start where the map says: the horse in IV, Musa in VI ----
 {api.startChapter(3);ok(S().mode==='play'&&api.state().zone===3,'story: chapter IV starts at Šarac');step(10);
  api.startChapter(5);ok(api.state().zone===5&&api.state().boss.alive,'story: chapter VI starts at the duel with Musa');

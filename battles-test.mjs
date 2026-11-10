@@ -160,9 +160,9 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const c=await arena('pecina');ok(c.kit==='azdaja','azdaja: the dragon in the cave');c.kc=0;c.mode='idle';Object.assign(S().p,{x:c.x-500});until(()=>S().arrows.some(a=>a.flame),120*3);ok(S().arrows.some(a=>a.flame),'azdaja: she breathes fire along the ground');}
 {const c=await arena('manastir');ok(c.kit==='dzelat','dzelat: the executioner in the monastery');const pl=S().world.platforms.filter(q=>q.arena&&!q.off).length;Object.assign(S().p,{x:c.x-150,y:c.y});safe();c.kc=0;c.mode='idle';
  until(()=>c.stun>0,120*4);ok(c.kitOpen>0,'dzelat: his axe sticks in the ground');}
-{const c=await arena('selo');ok(c.kit==='djemo','djemo: Đemo the highlander in the village');Object.assign(S().p,{x:c.x-400,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>c.mace,120*3);ok(c.mace,'djemo: he throws his mace');until(()=>!c.mace,120*6);ok(!c.mace,'djemo: and it comes back to his hand');}
+{const c=await arena('klisura');ok(c.kit==='djemo','djemo: Đemo the highlander, come to the gorge for his brother');Object.assign(S().p,{x:c.x-400,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>c.mace,120*3);ok(c.mace,'djemo: he throws his mace');until(()=>!c.mace,120*6);ok(!c.mace,'djemo: and it comes back to his hand');}
 {const w0=await api.startLevel(levelOf('oranje'),'day');const w=S().world;ok(w.enemies.filter(e=>e.trioMate).length===2&&w.enemies.some(e=>e.champion&&e.kit==='trio'),'trio: three janissaries guard the gold');}
-{const c=await arena('klisura');ok(c.kit==='kopljanik','kopljanik: the spear captain of the gorge');Object.assign(S().p,{x:c.x-450,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*3);ok(S().arrows.some(a=>a.spear),'kopljanik: he throws a spear');}
+{const c=await arena('selo');ok(c.kit==='kopljanik','kopljanik: the spear captain besieging the village');Object.assign(S().p,{x:c.x-450,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*3);ok(S().arrows.some(a=>a.spear),'kopljanik: he throws a spear');}
 // ---- second moves and Musa's new ones ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-200,y:590,face:1});safe();e.timer=0;e.mode='idle';e.moveCool=0;
  until(()=>e.move||e.recMove,120*2);ok(e.move||e.recMove,'moves: a janissary lunges from a distance');}
@@ -229,7 +229,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
  api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='cita';},120*15);ok(t.glasnik?.state==='cita','wine: a herald brings the Sultan\'s hundred ducats');}
 // ---- pack 08, the rules of the megdan: bodies, the guard, the acts and the grapple ----
-{const c=await arena('selo');const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the village');
+{const c=await arena('klisura');const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the gorge');
  // a body: Marko cannot walk into him
  c.kc=99;c.timer=99;c.mode='idle';c.grabCD=null;Object.assign(p,{x:c.x-200,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();api.keys.add('KeyD');for(let i=0;i<240;i++){c.kc=99;c.timer=99;c.mode='idle';step();}api.keys.clear();
  ok(p.x<=c.x-40,'megdan: Marko cannot walk into a standing champion (stopped '+Math.round(c.x-p.x)+' short)');
@@ -244,7 +244,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  // heavy blows break the guard
  c.guard=20;c.gHits=0;c.stun=0;c.mode='idle';c.timer=99;c.kc=99;Object.assign(p,{x:c.x-80,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyK');for(let i=0;i<90&&!(c.guardBroken>0);i++){c.kc=99;step();}
  ok(c.guardBroken>0&&c.stun>0,'megdan: a heavy blow on a worn guard breaks it and he reels');}
-{const c=await arena('selo');const p=S().p;c.kc=99;c.timer=99;
+{const c=await arena('klisura');const p=S().p;c.kc=99;c.timer=99;
  // the acts: crossing half his strength he throws Marko back and no blow reaches him for a moment
  Object.assign(p,{x:c.x-90,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();c.hp=c.maxHp*.49;step(2);
  ok(c.p2&&c.act===2&&c.invT>0,'megdan: at half strength the second act begins');step(30);ok(p.x<c.x-150,'megdan: entering it he throws Marko back');
@@ -257,4 +257,19 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  until(()=>{c.kc=99;c.mace=null;p.hp=Math.max(p.hp,60);return !!S().p.pinned;},120*5);ok(S().p.pinned,'megdan: caught, Marko is in the grapple');
  const hp2=c.hp;for(let i=0;i<120*6&&S().p.pinned;i++){p.hp=p.maxHp;if(i%6===0)tap('KeyJ');else step();}
  ok(!S().p.pinned&&c.hp<hp2&&c.guardBroken>0,'megdan: he breaks free, throws the champion off and leaves him open');}
+const clamp=physics.clamp;
+// ---- the acts: every champion brings something new in his last act, and none of it breaks the fight ----
+for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['rusevine','arapin','rain'],['mocvara','basa','pots'],['pecina','azdaja','rain'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
+ const c=await arena(id);const p=S().p,w=S().world;ok(c.kit===kit,'acts: '+kit+' stands in '+id);
+ c.hp=c.maxHp*.28;c.armor=0;step(3);ok(c.p3&&c.act===3,'acts: '+kit+' enters his last act below a third of his strength');
+ // bring him down to the ground, idle and free, and let the act move come
+ c.invT=0;c.grabCD=99;c.perch=false;c.y=c.arena.y;c.grounded=true;c.ks=null;c.mace=null;c.mode='idle';c.timer=99;c.kc=99;c.actCD=0;if(c.flag)c.flag.up=false;
+ Object.assign(p,{x:clamp(c.x-260,c.arena.x0+60,c.arena.x1-60),y:c.arena.y,vx:0,vy:0,grounded:true});safe();
+ const seen=until(()=>{safe();c.grabCD=99;c.kc=99;if(c.mode==='idle')c.timer=99;return kind==='rain'||kind==='pots'?(w.drops?.length>0):c.as===kind;},120*6);
+ ok(seen,'acts: '+kit+' uses his last-act move ('+kind+')');
+ // and the fight goes on: nothing throws, Marko can still be hurt and the champion still stands
+ for(let i=0;i<120*6;i++){safe();c.grabCD=99;step();}ok(c.alive&&S().mode==='play'&&!c.as,'acts: '+kit+' finishes the move and fights on');}
+{const c=await arena('pecina');const p=S().p,w=S().world;c.hp=c.maxHp*.28;step(3);c.invT=0;c.actCD=0;c.ks=null;c.mode='idle';c.kc=99;until(()=>w.drops?.length>0,120*4);
+ const d=w.drops[0];Object.assign(p,{x:d.x,y:d.y,vx:0,vy:0,grounded:true});p.invuln=0;p.dash=0;p.hp=p.maxHp;const hp=p.hp;for(let i=0;i<120*3&&p.hp===hp;i++){c.kc=99;c.mode='idle';c.timer=99;p.x=d.x;step();}
+ ok(p.hp<hp,'acts: what falls from the vault hurts Marko if he stands in its shadow');}
 console.log(`${checks} battle checks passed.`);
