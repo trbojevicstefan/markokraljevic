@@ -1,0 +1,21 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "most-daske-segment",
+      "size": [
+        1536,
+        512
+      ],
+      "prompt": "Use case: stylized-concept. Production game environment asset, ONE horizontally SEAMLESS REPEATING SIDE-VIEW wooden suspension BRIDGE SECTION. Final canvas EXACT 1536x512, wide 3:1 banner, genuinely TRANSPARENT background, full width used from left edge to right edge. Hand-painted detailed matte illustration, soft natural brushwork, natural oak grain and thick hemp rope, absolutely NOT pixel art, no pixelation, no glossy highlights, no directional sunlight, neutral muted brown/grey-green material colors suitable for night swamp or daytime river. Orthographic side view, bridge straight horizontal left-to-right, no receding perspective or foreshortening. Walking surface is a PERFECTLY FLAT continuous horizontal top edge at Y=300. Many old transverse OAK PLANKS seen as short plank ends plus thin top faces, two long horizontal timber SUPPORT BEAMS below deck at y320-365. Rope-lashed joinery. Exactly THREE SLENDER VERTICAL RAILING POSTS at x256,768,1280, all same height; thick hemp ROPE RAILING at approximately Y=120 with mild even sag between supports, continuous from x0 to x1535. Two parallel railing ropes wrapping each post, small rope knots. A little frayed rope and muted moss hangs below beams ending around y420, no scenery. CRITICAL: LEFT AND RIGHT EDGES are matching cuts through an endless bridge: same horizontal deck elevation, beam thickness, rope elevation, rope thickness, grain colors, alpha coverage. NO END POSTS at canvas edges, NO fade-out, NO rounded end caps, NO diagonal ramps. Start/end are the same phase of repeating plank spacing and railing sag, so placing copies adjacent makes one uninterrupted bridge. All posts fully inside canvas with headroom, no shadows/background, no text/watermark."
+    },
+    {
+      "id": "most-daske-kraj",
+      "size": [
+        512,
+        768
+      ],
+      "prompt": "Use case: stylized-concept. ONE end-anchor piece for the SAME hand-painted matte old OAK suspension bridge as reference. Genuinely TRANSPARENT background. Final canvas512x768 portrait. Orthographic SIDE VIEW from left, neutral lighting no directional sun, no glossy shine, NOT pixel art. A SINGLE THICK WEATHERED WOODEN ANCHOR POST at x170 extending from y90 to y650, driven into a small compact mound of earth and irregular grey stones at its foot. Two thick hemp railing ropes are wound multiple times around upper post with a clearly readable large load-bearing knot; both ropes exit TO THE RIGHT toward bridge, at approximately y120 and y145. Bridge DECK begins immediately RIGHT of the post: old transverse oak planks, perfectly FLAT walking top at y300 exactly, two horizontal long support beams underneath y320-365, several visible small rope lashings and a little moss hanging to y420. Deck extends horizontally OFF RIGHT EDGE, same proportions/colors/rope heights as reference segment. LEFT of post no bridge deck. Rope attachments and deck all turn right, no diagonal bridge or receding path, no extra posts, no landscape or sky. Full post and rocky mound fit inside image with clean transparent margin except deck and ropes intentionally continue through right edge. Right end of bridge will use mirror of this asset. Match reference oak grain, hemp thickness, plank height, painting finish."
+    }
+  ]
+}

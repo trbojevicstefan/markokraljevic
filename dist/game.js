@@ -1145,7 +1145,20 @@ function updateClimb(dt){const l=p.climb;if(!l)return false;const dir=(isDown('K
 // ---------- terrain drawing: towers, hanging walls, steps, planks and watchtowers ----------
 const WALL_OF={selo:'kamen',tvrdjava:'kamen',manastir:'kamen',rusevine:'kamen',klisura:'stena',prevoj:'stena',pecina:'stena',rudnik:'stena',suma:'drvo',mocvara:'drvo',reka:'drvo',oranje:'drvo',podrum:'cigla'};
 const wallPats={};
-function drawPlank(q){if(q.x+q.w<camera-60||q.x>camera+VIEW_W+60)return;const g=ctx.createLinearGradient(0,q.y,0,q.y+16);g.addColorStop(0,'#9a7246');g.addColorStop(1,'#5a3e22');ctx.fillStyle=g;ctx.fillRect(q.x,q.y,q.w,14);for(let x=q.x+20;x<q.x+q.w;x+=34)line(x,q.y+1,x,q.y+13,'rgba(40,26,12,.6)',2);line(q.x,q.y+1,q.x+q.w,q.y+1,'rgba(255,226,170,.45)',1.5);
+// Codex's plank bridge (DOPUNA-29): a seamless segment with a rope rail between two end posts. Each bridge is painted
+// once into its own small canvas: the middle rail post lands at the bridge's centre, and the posts fade out below
+// the deck instead of hanging down the cliff face.
+const MOST={k:.38,deck:300,top:50,fade:440,bot:520,post:136,capW:250},mostStrips=new WeakMap();
+function mostStrip(q){let s=mostStrips.get(q);if(s)return s;const seg=worldImg('most-daske-segment'),cap=worldImg('most-daske-kraj');if(!seg||!cap)return null;
+ const {k,top,bot,post,capW}=MOST,L=q.x+4,R=q.x+q.w-4,D=R-L,x0=L-post*k-2,x1=R+post*k+2,Z=ZOOM,H=(bot-top)*k;
+ const c=makeCanvas(Math.ceil((x1-x0)*Z),Math.ceil(H*Z)),g=c.getContext('2d',{willReadFrequently:true});if(!g)return null;g.imageSmoothingQuality='high';g.scale(Z,Z);
+ const sh=Math.min(seg.height,bot)-top;let d=0,src=((768-D/2/k)%1536+1536)%1536;
+ while(d<D-.5){const n=Math.min(1536-src,(D-d)/k);g.drawImage(seg,src,top,n,sh,L-x0+d,0,n*k,sh*k);d+=n*k;src=(src+n)%1536;}
+ const cw=capW*k,ch=(bot-top)*k;g.drawImage(cap,0,top,capW,bot-top,L-x0-post*k,0,cw,ch);
+ g.save();g.translate(R-x0+post*k,0);g.scale(-1,1);g.drawImage(cap,0,top,capW,bot-top,0,0,cw,ch);g.restore();
+ const f=g.createLinearGradient(0,(MOST.fade-top)*k,0,ch);f.addColorStop(0,'#000');f.addColorStop(1,'rgba(0,0,0,0)');g.globalCompositeOperation='destination-in';g.fillStyle=f;g.fillRect(0,0,x1-x0,ch);
+ s={c,x:x0,y:q.y-1-(MOST.deck-top)*k,w:x1-x0,h:H};mostStrips.set(q,s);return s;}
+function drawPlank(q){if(q.x+q.w<camera-60||q.x>camera+VIEW_W+60)return;if(q.bridge){const s=mostStrip(q);if(s){ctx.drawImage(s.c,s.x,s.y,s.w,s.h);return;}}const g=ctx.createLinearGradient(0,q.y,0,q.y+16);g.addColorStop(0,'#9a7246');g.addColorStop(1,'#5a3e22');ctx.fillStyle=g;ctx.fillRect(q.x,q.y,q.w,14);for(let x=q.x+20;x<q.x+q.w;x+=34)line(x,q.y+1,x,q.y+13,'rgba(40,26,12,.6)',2);line(q.x,q.y+1,q.x+q.w,q.y+1,'rgba(255,226,170,.45)',1.5);
  if(q.bridge){for(const x of[q.x+6,q.x+q.w-6]){line(x,q.y+10,x,q.y-46,'#4a3220',6);}ctx.strokeStyle='#c8a66a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(q.x+6,q.y-42);ctx.quadraticCurveTo(q.x+q.w/2,q.y-10,q.x+q.w-6,q.y-42);ctx.stroke();}
  else{for(const x of[q.x+14,q.x+q.w-14]){line(x,q.y+14,x-10,q.y+40,'#4a3220',4);}}}
 let towerArt=null;function towerInfoUnused(){if(towerArt!==null)return towerArt;const im=levelArt['kula-strazara'];if(!im)return null;const c=(worldCatalog||[]).find(e=>e.id==='kula-strazara');towerArt=c&&c.deckY?{im,deckY:c.deckY,x0:c.deckX0,x1:c.deckX1}:{im,deckY:im.height*.3,x0:im.width*.25,x1:im.width*.75};return towerArt;}
@@ -1624,8 +1637,19 @@ function drawSokoTrap(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state||t.s
  const near=Math.abs(p.x-t.x)<520;if(t.state==='ranjen'&&near)textLabel(Math.abs(p.x-t.x)<110?'E · PREVIJ KRILO':'RANJEN SOKO',t.x,t.y-120,{font:'bold 13px Georgia',color:'#ead9b0'});
  if(t.state==='previja'){const w=90;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(t.x-w/2-2,t.y-122,w+4,10);ctx.fillStyle='#c9a35a';ctx.fillRect(t.x-w/2,t.y-120,w*t.k,6);textLabel('PREVIJA KRILO',t.x,t.y-132,{font:'bold 12px Georgia',color:'#ead9b0'});}}
 // the reeds: tall stems behind the archers and a row in front of them, so a hidden archer is only a shadow
-function drawTrska(t,front){if(t.x+t.w<camera-200||t.x>camera+VIEW_W+200)return;const art=worldImg('prop-trska');if(!art)return;const b=propBounds(art);
- ctx.save();if(!front)ctx.filter='brightness(.72)';for(let i=0,xx=t.x+30;xx<t.x+t.w-20;i++,xx+=front?92:64){const h=front?104+((i*37)%5)*7:150+((i*53)%7)*9,w=b.w*h/b.h;ctx.drawImage(art,b.x,b.y,b.w,b.h,xx-w/2+(front?30:0),t.y-h+6,w,h);}ctx.restore();}
+// Each reed bed is painted once into two strips: the dark row behind the fighters and the light row in front.
+// The world layer is drawn by the CPU, so the old way (17 overlapping stems a frame, the back ones through
+// ctx.filter) painted every pixel about five times and dropped the game from 60 to about 36 frames a second.
+const trskaStrips=new WeakMap();
+function trskaStrip(t,front){let S=trskaStrips.get(t);if(!S)trskaStrips.set(t,S={});const k=front?'f':'b';if(S[k])return S[k];
+ const art=worldImg('prop-trska');if(!art)return null;const b=propBounds(art),stems=[];
+ for(let i=0,xx=t.x+30;xx<t.x+t.w-20;i++,xx+=front?92:64){const h=front?104+((i*37)%5)*7:150+((i*53)%7)*9,w=b.w*h/b.h;stems.push([xx-w/2+(front?30:0),h,w]);}
+ if(!stems.length)return null;const x0=Math.floor(Math.min(...stems.map(s=>s[0]))),x1=Math.ceil(Math.max(...stems.map(s=>s[0]+s[2]))),H=Math.ceil(Math.max(...stems.map(s=>s[1]))),Z=ZOOM;
+ const c=makeCanvas(Math.ceil((x1-x0)*Z),Math.ceil(H*Z)),g=c.getContext('2d',{willReadFrequently:true});if(!g)return null;g.imageSmoothingQuality='high';
+ for(const [x,h,w] of stems)g.drawImage(art,b.x,b.y,b.w,b.h,(x-x0)*Z,(H-h)*Z,w*Z,h*Z);
+ if(!front){g.globalCompositeOperation='source-atop';g.fillStyle='rgba(0,0,0,.28)';g.fillRect(0,0,c.width,c.height);}
+ return S[k]={c,x:x0,y:t.y+6-H,w:x1-x0,h:H};}
+function drawTrska(t,front){if(t.x+t.w<camera-200||t.x>camera+VIEW_W+200)return;const s=trskaStrip(t,front);if(s)ctx.drawImage(s.c,s.x,s.y,s.w,s.h);}
 // archers hidden in the reeds rise only when Marko is close, when they are hurt, or when the falcon finds them
 function zaseda(e,d){if(d<380||e.hp<e.maxHp){e.skriven=false;e.alert=true;label('ZASEDA!',e.x,e.y-150,'#ffcf7a');sfx('draw',{gain:.5,x:e.x});return false;}e.vx=0;return true;}
 
@@ -2814,6 +2838,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='orao'){await startLevel(lv('suma'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='gnezdo');if(t)at(t.x0-60,t.y);toast('Spasi orliće od vatre',5);return;}
  if(g==='guslar'){await startLevel(lv('klisura'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='guslar');if(t)at(t.x0-40,t.y);toast('Turci jure na guslara: odbrani ga',5);return;}
  if(g==='soko'){await startLevel(lv('mocvara'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='soko');if(t)at(t.x-420,t.y);toast('Turci jure ranjenog sokola! Oteraj ih, pa mu previj krilo (E).',5);return;}
+ if(g==='daske'){await startLevel(lv('mocvara'));await wait(200);const q=world.platforms.filter(q=>q.bridge).sort((a,b)=>a.x-b.x)[0];if(q)at(q.x-120,q.y);toast('Novi drveni most preko provalije.',4);return;}
  if(g==='trska'){await startLevel(lv('mocvara'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='trska');if(t)at(t.x-140,t.y);toast('Strelci vrebaju iz trske.',5);return;}
  if(g==='vino'){await startLevel(lv('podrum'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='bacva');if(t)at(t.x0-40,t.y);toast('Carevi čauši idu da ti proliju vino! Stigni ih pre bačve.',5);return;}
  if(g==='sultan'){await startLevel(lv('podrum'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='bacva'&&t.kraj);if(t)at(t.x-300,t.y);toast('Bačva rujnog vina. Ovde ti niko ne brani: pij (E).',5);return;}

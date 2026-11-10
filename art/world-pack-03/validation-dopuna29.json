@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "files": [
+    "most-daske-segment.png",
+    "most-daske-kraj.png"
+  ],
+  "sizes": [
+    [
+      1536,
+      512
+    ],
+    [
+      512,
+      768
+    ]
+  ],
+  "alpha": true,
+  "seamMaxRgbaDifference": 0,
+  "walkY": 300,
+  "generator": "built-in image_gen",
+  "generationAttempts": {
+    "most-daske-segment": 1,
+    "most-daske-kraj": 2
+  },
+  "endChosenAttempt": 1,
+  "note": "Second end generation caused by misleading hidden-RGB display; first verified clean by alpha compositing."
+}
