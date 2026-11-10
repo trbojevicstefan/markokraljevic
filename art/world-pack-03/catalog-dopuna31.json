@@ -1,0 +1,63 @@
+[
+  {
+    "id": "pauza-logor",
+    "file": "pauza-logor.png",
+    "size": [
+      12288,
+      512
+    ],
+    "frames": 16,
+    "cell": [
+      768,
+      512
+    ],
+    "loop": true,
+    "fps": 12,
+    "animationFolder": "art/animation-pack-04/assets/pauza-logor-16/"
+  },
+  {
+    "id": "ram-kontrole",
+    "file": "ram-kontrole.png",
+    "size": [
+      1500,
+      1000
+    ],
+    "transparent": true
+  },
+  {
+    "id": "ram-podesavanja",
+    "file": "ram-podesavanja.png",
+    "size": [
+      900,
+      1180
+    ],
+    "transparent": true
+  },
+  {
+    "id": "polje-izbor",
+    "file": "polje-izbor.png",
+    "size": [
+      640,
+      72
+    ],
+    "transparent": true
+  },
+  {
+    "id": "klizac-staza",
+    "file": "klizac-staza.png",
+    "size": [
+      640,
+      28
+    ],
+    "transparent": true
+  },
+  {
+    "id": "klizac-dugme",
+    "file": "klizac-dugme.png",
+    "size": [
+      48,
+      48
+    ],
+    "transparent": true
+  }
+]

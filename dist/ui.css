@@ -606,8 +606,8 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #pause-menu.pauza{background:radial-gradient(ellipse at 50% 60%,#0a0f0ec4,#030505f0);backdrop-filter:blur(4px)}
 .pauza-wrap{display:flex;align-items:center;justify-content:center;gap:36px;max-width:96vw}
 .pauza-scena{margin:0;position:relative;width:min(580px,46vw);aspect-ratio:3/2;border-radius:6px;overflow:hidden;box-shadow:0 0 0 2px #7a5c34,0 0 0 7px #1e150d,0 0 0 9px #6a5230,0 22px 46px #000d;animation:pauzaScena .6s cubic-bezier(.2,.8,.2,1) both}
-.pauza-logor{position:absolute;inset:0;background:url(assets/world/pauza-logor.webp) 0 0/800% 100% no-repeat;animation:pauzaVatra .95s steps(8) infinite}
-@keyframes pauzaVatra{to{background-position:114.2857% 0}}
+.pauza-logor{position:absolute;inset:0;background:url(assets/world/pauza-logor.webp) 0 0/1600% 100% no-repeat;animation:pauzaVatra 1.6s steps(16) infinite}
+@keyframes pauzaVatra{to{background-position:106.6667% 0}}
 .pauza-iskre i{position:absolute;bottom:20%;left:47%;width:3px;height:3px;border-radius:50%;background:#ffb860;box-shadow:0 0 4px #ff8a30;opacity:0;animation:pauzaIskra 2.6s linear infinite}
 .pauza-iskre i:nth-child(2){left:49%;animation-delay:.35s;animation-duration:2.2s}.pauza-iskre i:nth-child(3){left:51%;animation-delay:.8s}
 .pauza-iskre i:nth-child(4){left:46%;animation-delay:1.2s;animation-duration:3s}.pauza-iskre i:nth-child(5){left:50%;animation-delay:1.6s}
@@ -638,6 +638,51 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 @media(max-width:900px){.pauza-scena{display:none}.pauza-ram{max-width:94vw}}
 @media(max-height:640px){.pauza-scena{width:auto;height:60vh}}
 @media(prefers-reduced-motion:reduce){.pauza-scena,.pauza-ram,.pauza-dugmad button{animation:none}}
+
+/* ---------- Controls and Settings in Codex's carved frames (DOPUNA-31) ----------
+   Both frames keep their own proportions: one scale factor --s (screen px per source px) sizes the frame and its borders,
+   so nothing stretches. The text scrolls inside the green felt, never over the wood. */
+#kontrole.modal,#settings.modal{background:radial-gradient(ellipse at 50% 60%,#0a0f0ec4,#030505f0);backdrop-filter:blur(4px)}
+.ram-kontrole{--s:min(92vh / 1000,96vw / 1500,1.1px);position:relative;width:calc(var(--s) * 1500);height:calc(var(--s) * 1000);
+ background:url(assets/world/ram-kontrole.webp) center/100% 100% no-repeat;filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .5s cubic-bezier(.2,.8,.2,1) both}
+.ram-tablica{position:absolute;left:37.1%;width:25.7%;top:2.6%;height:9.3%;display:flex;align-items:center;justify-content:center;margin:0;
+ font:700 calc(var(--s) * 46) Georgia,serif;color:#f3dfae;text-shadow:0 2px 0 #1a120a;white-space:nowrap;letter-spacing:1px}
+#kontrole .kontrole-card{position:absolute;left:calc(var(--s) * 112);right:calc(var(--s) * 111);top:calc(var(--s) * 153);bottom:calc(var(--s) * 122);
+ width:auto;max-height:none;padding:10px 22px 14px;background:none;border:0;outline:0;box-shadow:none;animation:none}
+#kontrole .kontrole-card::before,#kontrole .kontrole-card::after{display:none}
+#kontrole .kontrole-card>.eyebrow{text-align:center;margin:2px 0 0}
+#kontrole .kontrole-note{text-align:center}
+#kontrole .kontrole-box{background:#0b120bb3;border-color:#a8864f55}
+#settings .modal-card{--s:min(92vh / 1180,94vw / 900,.85px);width:calc(var(--s) * 900);height:calc(var(--s) * 1180);max-height:none;padding:6px 26px 18px;
+ background:none;box-shadow:none;outline:0;border-style:solid;border-width:calc(var(--s) * 183) calc(var(--s) * 105) calc(var(--s) * 116) calc(var(--s) * 106);
+ border-image:url(assets/world/ram-podesavanja.webp) 183 105 116 106 fill/calc(var(--s) * 183) calc(var(--s) * 105) calc(var(--s) * 116) calc(var(--s) * 106) stretch;
+ filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .5s cubic-bezier(.2,.8,.2,1) both}
+#settings .modal-card h2{text-align:center;margin:0 0 4px;font-size:32px}
+#settings .modal-card h2::after{margin:6px auto 2px}
+#settings .modal-card .eyebrow{text-align:center;margin:0}
+#settings .modal-card label{margin:12px 0;font:600 15px Georgia,serif;color:#e8dcb8}
+#settings .modal-card label.check{margin:8px 0}
+#settings .modal-card .small{font-size:12px;line-height:1.55;color:#bcb593}
+/* the carved slat for a choice: the native arrow gives way to the painted gold one */
+#settings select{appearance:none;-webkit-appearance:none;height:auto;aspect-ratio:640/72;padding:0 9% 0 10%;margin-top:6px;border:0;border-radius:0;
+ background:url(assets/world/polje-izbor.webp) center/100% 100% no-repeat;color:#f1e3bd;font:600 15px Georgia,serif;text-shadow:0 1px 2px #000;cursor:pointer}
+#settings select option{background:#21160d;color:#f1e3bd}
+#settings select:focus-visible,#settings select.pad-focus{outline:none;filter:drop-shadow(0 0 6px #e8b45a80)}
+/* the slider: a groove in the wood and a gold rosette */
+#settings input[type=range]{-webkit-appearance:none;appearance:none;height:26px;margin-top:4px;background:none;cursor:pointer}
+#settings input[type=range]::-webkit-slider-runnable-track{height:16px;background:url(assets/world/klizac-staza.webp) center/100% 100% no-repeat;border:0}
+#settings input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-5px;border:0;background:url(assets/world/klizac-dugme.webp) center/contain no-repeat;filter:drop-shadow(0 2px 2px #000a)}
+#settings input[type=range]::-moz-range-track{height:16px;background:url(assets/world/klizac-staza.webp) center/100% 100% no-repeat;border:0}
+#settings input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:0;background:url(assets/world/klizac-dugme.webp) center/contain no-repeat}
+#settings input[type=range]:focus-visible,#settings input[type=range].pad-focus{outline:none;filter:drop-shadow(0 0 6px #e8b45a80)}
+#settings input[type=checkbox]{accent-color:#c99a48}
+/* the close button is the same carved plate as the pause buttons */
+#kontrole #kontrole-close,#settings #settings-close{all:unset;box-sizing:border-box;cursor:pointer;display:flex;width:100%;height:40px;margin-top:10px;align-items:center;justify-content:center;
+ font:600 16px Georgia,serif;color:#f1e3bd;text-shadow:0 1px 2px #000;border-style:solid;border-width:0 30px;border-image:url(assets/world/dugme-ploca.webp) 0 110 fill/0 40px stretch;transition:transform .12s}
+#kontrole #kontrole-close:hover,#kontrole #kontrole-close:focus-visible,#kontrole #kontrole-close.pad-focus,#settings #settings-close:hover,#settings #settings-close:focus-visible,#settings #settings-close.pad-focus{border-image-source:url(assets/world/dugme-ploca-aktivno.webp);color:#fff4d6;transform:scale(1.03);filter:drop-shadow(0 0 7px #e8b45a59)}
+#kontrole #kontrole-close{width:280px;margin:10px auto 2px}
+#kontrole .kontrole-card,#settings .modal-card{scrollbar-width:thin;scrollbar-color:#a8864f #0000}
+@media(prefers-reduced-motion:reduce){.ram-kontrole,#settings .modal-card{animation:none}}
 
 /* ---------- the hero card, clearer: a thick health bar with its number, flasks for wine, icons by the meters ---------- */
 #hud .hero-card{padding:12px 20px 13px 12px;border-radius:8px;box-shadow:inset 0 0 0 1px #8a744899,0 8px 20px #0008;min-width:360px}

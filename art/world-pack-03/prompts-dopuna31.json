@@ -1,0 +1,72 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "pauza-logor",
+      "kind": "clip",
+      "size": [
+        12288,
+        512
+      ],
+      "references": [
+        "art/animation-pack-04/assets/pauza-logor/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create ONE coherent SIXTEEN FRAME animation contact sheet from the reference medieval Serbian night-camp painting. EXACT4COLUMNS by4ROWS, row-major16frames, each cell LANDSCAPE3:2, complete sheet3:2 ratio (ideally3072x2048). No gutters, gridlines, numbers, text or borders: all16 equal cells exact edge-to-edge full opaque paintings. MATCH REFERENCE COMPOSITION AND COLORS EXACTLY in EVERY cell: bearded black-moustached Marko sits left on rock warming BOTH hands at campfire center-bottom; red cloak, ivory embroidered shirt, boots, spiked mace resting near left boot. Dappled brown-and-white horse SARAC right, saddle red embroidered rug; small winged fairy Ravijojla hovers uppercenter-left above fire. Same tent farleft, treebranches top-left, blue-grey rocky gorge and starry midnight sky behind. Lock camera, background, character identity/anatomical sizes, tent/tree/rock positions, framing and color grading. NO composition changes or new objects. Make a gentle seamless LOOP with 16 DISTINCT small sequential drawings: flames smoothly lean left frames1-4, rise/twist center5-8, lean right9-12, return to initial flame shape13-16; ember sparks rise continuously and fade. Marko slowly inhales frames1-8/exhales9-16 chest/shoulders only, hands staynearfire. Sarac mostly grazing, tail sweeps outwardframes4-7 returns8-10, lifts head slightly8-11 lowers12-16 to firstpose. Fairy wings actually FLUTTER small alternating open/closed phases throughout, body subtly bobs returning exactlystart. Existing warm orange firelight against cool blue night. Smooth small motion, NOT16independent scenes. No motion blur, no image dissolves. Frames1and16 should be adjacent continuous motion, not abrupt cuts."
+    },
+    {
+      "id": "ram-kontrole",
+      "size": [
+        1500,
+        1000
+      ],
+      "references": [
+        "art/world-pack-03/pauza-ram.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production hand-painted medieval Serbian GAME UI asset matching provided references: DARK WALNUT WOOD, carved Serbian interlace PLETER and muted GOLD THREAD inlays, empty DARK FOREST GREEN FELT inside panels. Matte, restrained neutral lighting, no gloss/glow. NO text, letters, watermark, modern icons or scene. Genuinely TRANSPARENT background outside object silhouette, NO shadows/blur/halo. Front view, straight symmetrical graphic, all edges fully inside canvas with tiny transparent outer margin. ONE LANDSCAPE controls-menu FRAME, final1500x1000, same carving/material and green felt as reference but WIDE horizontal design. Approximately70px wide walnut rim on all four sides, uninterrupted broad EMPTY FLAT darkgreen felt center for control instructions. Corners rich carved interlace, thin understated gold inlay. TOP CENTER SMALL CARVED WOODEN TITLE PLAQUE blank, integrated into rim, no lettering and no large eagle crest. Felt is flat even darkgreen color with subtle textile grain only, NO drawings, logos or ornaments inside. Strong clean readable interior."
+    },
+    {
+      "id": "ram-podesavanja",
+      "size": [
+        900,
+        1180
+      ],
+      "references": [
+        "art/world-pack-03/pauza-ram.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production hand-painted medieval Serbian GAME UI asset matching provided references: DARK WALNUT WOOD, carved Serbian interlace PLETER and muted GOLD THREAD inlays, empty DARK FOREST GREEN FELT inside panels. Matte, restrained neutral lighting, no gloss/glow. NO text, letters, watermark, modern icons or scene. Genuinely TRANSPARENT background outside object silhouette, NO shadows/blur/halo. Front view, straight symmetrical graphic, all edges fully inside canvas with tiny transparent outer margin. ONE PORTRAIT SETTINGS MENU FRAME900x1180, exact same proportions/material/green felt and narrow rim as reference. CHANGE corner ornaments: authentic Serbian ONE-STRING GUSLE instrument and slender curved BOW carved in walnut/gold at each corner, instead of corner interlace. Gusle pearshaped soundbox long neck carved animal head, not violin/guitar. Four balanced small carved gusle-and-bow corner motifs, keep center completely BLANK greenfelt, no controls/text. Thin gold inlay along wood rim, restrained Serbian carving, modest blank top plaque."
+    },
+    {
+      "id": "polje-izbor",
+      "size": [
+        640,
+        72
+      ],
+      "references": [
+        "art/world-pack-03/dugme-ploca.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production hand-painted medieval Serbian GAME UI asset matching provided references: DARK WALNUT WOOD, carved Serbian interlace PLETER and muted GOLD THREAD inlays, empty DARK FOREST GREEN FELT inside panels. Matte, restrained neutral lighting, no gloss/glow. NO text, letters, watermark, modern icons or scene. Genuinely TRANSPARENT background outside object silhouette, NO shadows/blur/halo. Front view, straight symmetrical graphic, all edges fully inside canvas with tiny transparent outer margin. ONE very LONG THIN HORIZONTAL DROPDOWN FIELD640x72 (approximately9:1). Match reference walnut plank finish and golden border but thinner. Large completely EMPTY flat dark walnut text area on left and center, small solid muted GOLD DOWNWARD-POINTING TRIANGULAR CHEVRON at far RIGHT indicating dropdown. Simple shallow relief pleter at left tip and thin gold threaded edges, no writing. Straight horizontal geometry, no extra arrow copies, no pressed/hover variants. Only one slim field."
+    },
+    {
+      "id": "klizac-staza",
+      "size": [
+        640,
+        28
+      ],
+      "references": [
+        "art/world-pack-03/dugme-ploca.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production hand-painted medieval Serbian GAME UI asset matching provided references: DARK WALNUT WOOD, carved Serbian interlace PLETER and muted GOLD THREAD inlays, empty DARK FOREST GREEN FELT inside panels. Matte, restrained neutral lighting, no gloss/glow. NO text, letters, watermark, modern icons or scene. Genuinely TRANSPARENT background outside object silhouette, NO shadows/blur/halo. Front view, straight symmetrical graphic, all edges fully inside canvas with tiny transparent outer margin. ONE SOUND VOLUME SLIDER TRACK ONLY: extremely long THIN HORIZONTAL walnut rail640x28,23:1ratio. A continuous inset dark recessed GROOVE along center from near leftend to near rightend, shallow carved wood lip and thin muted gold thread along upper/loweredge. NO thumb, knob, dial, text, ticks, bars or separateobjects. Woodgrain fine matte, dark empty groove ready for separate golden thumb. Full longstraight rail fits uncropped, tiny transparent margin."
+    },
+    {
+      "id": "klizac-dugme",
+      "size": [
+        48,
+        48
+      ],
+      "references": [
+        "art/world-pack-03/dugme-ploca.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production hand-painted medieval Serbian GAME UI asset matching provided references: DARK WALNUT WOOD, carved Serbian interlace PLETER and muted GOLD THREAD inlays, empty DARK FOREST GREEN FELT inside panels. Matte, restrained neutral lighting, no gloss/glow. NO text, letters, watermark, modern icons or scene. Genuinely TRANSPARENT background outside object silhouette, NO shadows/blur/halo. Front view, straight symmetrical graphic, all edges fully inside canvas with tiny transparent outer margin. ONE small circular SLIDER THUMB, square48x48 final, centered carved GOLDEN ROSETTE medallion with six/eight balanced petal lobes and tiny central embossed boss. Readable at48pixels, subdued antique gold matching reference golden inlay, dark fine relief grooves, matte NO jewel/glare/glow. No wooden board behind, no track, no text, no secondobject. Round rosette fills most square leaving clean transparent corners."
+    }
+  ]
+}

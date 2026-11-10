@@ -2041,7 +2041,8 @@ function padSvg(){const T=s=>tr(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');le
   else if(side==='t')s+=`<text class="pad-act" x="${x}" y="${y-22}" text-anchor="middle">${T(act)}</text>`;}
  return s+'</svg>';}
 function openKontrole(){const T=s=>tr(s);const card=$('kontrole-card');if(!card)return;
- card.innerHTML=`<p class="eyebrow">${T('DŽOJSTIK I TASTATURA')}</p><h2>${T('Kontrole')}</h2><p class="kontrole-note">${T(padIndex!==null?'Pritisni dugme na džojstiku i ono će zasvetleti.':'Poveži džojstik: dugmad će svetleti dok ih pritiskaš.')}</p>${padSvg()}
+ const nas=$('kontrole-naslov');if(nas)nas.textContent=T('Kontrole');
+ card.innerHTML=`<p class="eyebrow">${T('DŽOJSTIK I TASTATURA')}</p><p class="kontrole-note">${T(padIndex!==null?'Pritisni dugme na džojstiku i ono će zasvetleti.':'Poveži džojstik: dugmad će svetleti dok ih pritiskaš.')}</p>${padSvg()}
   <div class="kontrole-cards">${KONTROLE_CARDS.map(([h,sub,rows])=>`<div class="kontrole-box"><h3>${T(h)}</h3>${sub?`<small>${T(sub)}</small>`:''}${rows.map(([k,a])=>`<p><kbd>${k}</kbd><span>${T(a)}</span></p>`).join('')}</div>`).join('')}</div>
   <details class="kontrole-keys"><summary>${T('Tastatura')}</summary><div>${KONTROLE_KEYS.map(([k,a])=>`<p><kbd>${k}</kbd><span>${T(a)}</span></p>`).join('')}</div></details>
   <button id="kontrole-close" class="text-button">${T('Zatvori')}</button>`;
