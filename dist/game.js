@@ -589,7 +589,7 @@ function updateVisuals(dt){for(const f of floating){f.y-=30*dt;f.life-=dt;}float
   if(a>=(won&&rig?.['marko-wounded-walk']?9:1.55)&&body?.grounded){if(won&&!endSequence.story){endSequence.story=true;playStory('end',()=>{$('victory').hidden=false;});}else if(!won||endSequence.storyDone)$(endSequence.kind).hidden=false;}}for(const g of ghosts)g.life-=dt;ghosts=ghosts.filter(g=>g.life>0);}
 function updateCamera(dt){const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);pressed.clear();return;}elapsed+=dt;music(dt);updateDefense(dt);if(hitstop>0){hitstop-=dt;return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
+ if(training)updateTraining(dt);if(!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level)updateKavezi(dt);if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -978,7 +978,7 @@ function wallCheck(){if(level)return wallCheckLevel();p.wall=0;if(horseMounted||
 
 // ================= campaigns ("pohodi"): levels designed by the artist =================
 let level=null,levelIndex=-1;const levelArt={},LEVEL_LOOK={selo:0,klisura:3,suma:2,manastir:4,tvrdjava:5,prevoj:6,pecina:7,podrum:8,mocvara:9,rudnik:10,rusevine:11,reka:12};
-const LEVEL_INTRO={selo:'Selo je pod opsadom. Oteraj odred i stigni do barjaka na kraju puta.',klisura:'Ibar huči ispod nas. Pazi na provalije i palikuće sa bakljama.',suma:'Ovo je moja šuma, Marko. Strelci se kriju među bukvama.',manastir:'Manastir traži zaštitu. Oklopnici čuvaju prilaz.',tvrdjava:'Tvrđava gori. Probij se kroz opsadu do barjaka.',prevoj:'Prevoj je zaleđen. Poslednji odred čeka na vrhu.',pecina:'Ovo je moja pećina, Marko. Kristali pokazuju prolaz, a Turci su se zavukli i ovde.',podrum:'Podrum tvrđave. Vino je blizu, ali i palikuće sa bakljama.',mocvara:'Prati svetiljke i ne gazi u crnu vodu. Strelci vrebaju iz trske.',rudnik:'Stari rudnik. Oklopnici čuvaju izlaz, pazi na grede.',rusevine:'Ruševine na brdu. Gore čeka poslednji sačuvani barjak.',reka:'Zora je blizu. Stigni do vodenice pre nego što odred pređe reku.'};
+const LEVEL_INTRO={selo:'Selo je pod opsadom. Oteraj odred i stigni do barjaka na kraju puta.',klisura:'Ibar huči ispod nas. Pazi na provalije i palikuće sa bakljama.',suma:'Ovo je moja šuma, Marko. Strelci se kriju među bukvama.',manastir:'Manastir traži zaštitu. Oklopnici čuvaju prilaz.',tvrdjava:'Tvrđava gori. Probij se kroz opsadu do barjaka.',prevoj:'Prevoj je zaleđen. Poslednji odred čeka na vrhu.',pecina:'Ovo je moja pećina, Marko. Kristali pokazuju prolaz, a Turci su se zavukli i ovde.',podrum:'Podrum tvrđave. Vino je blizu, ali i palikuće sa bakljama.',mocvara:'Prati svetiljke i ne gazi u crnu vodu. Strelci vrebaju iz trske.',rudnik:'Stari rudnik. Oklopnici čuvaju izlaz, pazi na grede.',rusevine:'Arapin je kraj mora podigao kulu i uzima svadbarinu: ni jedni svatovi ne prođu dok ne plate. Zarobljene svatove drži u kavezima. Razbij kaveze, Marko, pa ukini svadbarinu.',reka:'Zora je blizu. Stigni do vodenice pre nego što odred pređe reku.'};
 // Each level comes in three lights painted by the artist: day, night and storm.
 const VARIANTS={day:{label:'Dan',icon:'☀',intro:''},night:{label:'Noć',icon:'☾',intro:'Noć je pala. '},storm:{label:'Oluja',icon:'⚡',intro:'Oluja bije, više ih je. '}};
 let levelVariant='day';try{levelVariant=VARIANTS[localStorage.getItem('marko-variant')]?localStorage.getItem('marko-variant'):'day';}catch{}
@@ -1442,7 +1442,30 @@ function drawBoulder(t){if(t.state!=='roll'&&t.state!=='fall')return;const r=96,
  else{const P=levelArt['zid-stena']?ctx.createPattern(levelArt['zid-stena'],'repeat'):null;if(P){P.setTransform(new DOMMatrix([.5,0,0,.5,0,0]));ctx.fillStyle=P;}else ctx.fillStyle='#8a8270';ctx.fillRect(-r,-r,r*2,r*2);for(let k=0;k<5;k++)line(-r,-r+k*44,r,-r+k*44+30,'rgba(30,24,18,.35)',4);}
  ctx.restore();const g=ctx.createRadialGradient(x-30,y-30,10,x,y,r);g.addColorStop(0,'rgba(255,240,210,.18)');g.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(20,16,12,.8)';ctx.lineWidth=3;ctx.stroke();
  if(t.state==='roll'&&t.bx<p.x-200)textLabel('▶ TRČI!',p.x,p.y-160,{font:'bold 16px Georgia',color:'#fff0c8',glow:'#ff7a3a',alpha:.6+.4*Math.sin(time*10)});}
-function drawTraps(){let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
+// ================= the wedding guests in the Arab's cages (Ruševine, "Marko Kraljević ukida svadbarinu") =================
+function updateKavezi(dt){const cages=(world.traps||[]).filter(t=>t.kind==='kavez');if(!cages.length)return;
+ for(const t of cages){t.shake=Math.max(0,(t.shake||0)-dt);if(t.open){t.t=(t.t||0)+dt;continue;}
+  const near=Math.abs(p.x-t.x)<120&&Math.abs(p.y-t.y)<80;
+  if(attackActive()&&near&&t.hitId!==p.attackId&&(t.x-p.x)*p.face>-50){t.hitId=p.attackId;hitKavez(t,p.attackKind==='light'?1:2);}
+  if(thrown&&t.thrownHit!==thrown&&Math.abs(thrown.x-t.x)<70&&Math.abs(thrown.y-(t.y-60))<80){t.thrownHit=thrown;hitKavez(t,2);}}
+ const freed=cages.filter(t=>t.open).length;world.svatoviFreed=freed;world.svatoviAll=cages.length;}
+function hitKavez(t,power){t.hp-=power;t.shake=.2;sfx('hit_heavy',{gain:.7,rate:1.2,x:t.x});sfx('leather',{gain:.5,x:t.x});burst(t.x,t.y-70,'#b08050',10,180);dust(t.x,t.y,6,1.2);
+ if(t.hp>0){label(`KAVEZ · ${t.hp}`,t.x,t.y-170,'#ffd2a0');return;}
+ t.open=true;t.t=0;sfx('gate',{gain:.8,x:t.x});dust(t.x,t.y,18,2.4);for(let i=0;i<14;i++)particles.push({kind:'dust',x:t.x+(Math.random()-.5)*90,y:t.y-60,vx:(Math.random()-.5)*300,vy:-100-Math.random()*260,life:1.2,max:1.2,r:3+Math.random()*4,color:'#8a6a44'});
+ const cages=(world.traps||[]).filter(c=>c.kind==='kavez'),n=cages.filter(c=>c.open).length;addCoins(10,t.x,t.y-80);
+ toast(n===cages.length?'Svi svatovi su slobodni! Svadbarine više nema.':`Svatovi su slobodni · ${n}/${cages.length}`,3);say('pt_free_2',{priority:2,x:t.x});}
+function drawKavez(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const sh=t.shake>0?Math.sin(time*80)*3:0,cage=worldImg(t.open?'kavez-razbijen':'kavez-svatovi');
+ // the guests: huddled in the cage, then the kolo once they are out (a few seconds), then off home
+ const dancing=t.open&&t.t<7,gone=t.open&&t.t>=7;
+ if(!gone){const nm=dancing&&rig?.['svatovi-kolo']?'svatovi-kolo':rig?.['svatovi-zarobljeni']?'svatovi-zarobljeni':null,a=t.open?clamp((7-t.t)/1,0,1):1;
+  if(nm)rigDraw(nm,Math.floor(time*(dancing?9:5))%rig[nm].frames.length,t.x+(dancing?-30:0),t.y,1,{alpha:a});
+  else for(const [k,who] of [['putnik-putnica-idle',-28],['putnik-trgovac-idle',8],['putnik-starac-idle',40]])rigDraw(k,Math.floor(time*5)%(rig?.[k]?.frames.length||1),t.x+who+(dancing?Math.sin(time*6+who)*14:0),t.y,dancing?(Math.sin(time*3+who)>0?1:-1):-1,{alpha:a});}
+ if(cage){const b=propBounds(cage),h=t.open?120:190,w=b.w*h/b.h;ctx.drawImage(cage,b.x,b.y,b.w,b.h,t.x-w/2+sh,t.y-h+6,w,h);}
+ else if(!t.open){for(let bx=-80;bx<=80;bx+=20)line(t.x+bx+sh,t.y,t.x+bx+sh,t.y-170,'#4a3424',7);line(t.x-90+sh,t.y-170,t.x+90+sh,t.y-170,'#3a2a1c',10);line(t.x-90+sh,t.y-4,t.x+90+sh,t.y-4,'#3a2a1c',10);}
+ if(!t.open&&Math.abs(p.x-t.x)<320)textLabel('RAZBIJ KAVEZ',t.x,t.y-210,{font:'bold 13px Georgia',color:'#ffe2a8'});}
+function drawTraps(){for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);
+ // every cage broken: the whole wedding dances the kolo by the banner at the end
+ if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',Math.floor(time*9)%rig['svatovi-kolo'].frames.length,level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
 function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);drawGateFronts();}
 // ---------- champions: an arena that locks until the aga falls ----------
 let arena=null;
@@ -2578,6 +2601,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
   let kept=[];try{kept=Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]);}catch{}win();setTimeout(()=>{try{localStorage.clear();for(const [k,v] of kept)localStorage.setItem(k,v);}catch{}},2500);}return;}
  if(g==='prica'){startChapter(1);return;}
  if(g==='pauza'){startChapter(1);hush();await wait(900);if(mode==='play')pause();return;}
+ if(g==='svatovi'){await startLevel(lv('rusevine'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='kavez');if(t)at(t.x-260,t.y);toast('Razbij kavez topuzom i oslobodi svatove',5);return;}
  if(g==='kontrole'){openKontrole();return;}
  if(g==='riznica'){openRiznica();return;}}
 if(GO)setTimeout(()=>{devGo(GO).catch(e=>console.error(e));},700);
