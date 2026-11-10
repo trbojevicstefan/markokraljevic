@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "clips": 16,
+  "frames": 92,
+  "staticPng": 2,
+  "items": 18,
+  "checks": [
+    "RGBA and transparency",
+    "512x512 frames",
+    "exact atlas/frame match",
+    "frame_layout counts",
+    "GIF counts",
+    "loop flags",
+    "human ground baseline",
+    "eagle torso anchor",
+    "impact frames"
+  ]
+}

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "soko-let",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\soko-let",
+    "renderScale": 0.8156028368794326,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "soko-napad",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\soko-napad",
+    "renderScale": 0.8931846892048142,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "soko-voda",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\soko-voda",
+    "renderScale": 0.8210701290586577,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "id": "soko-ranjen",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\soko-ranjen",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "caus-idle",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\caus-idle",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "caus-walk",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\caus-walk",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "caus-ferman",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\caus-ferman",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "caus-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\caus-hurt",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "caus-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\caus-death",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bacva-puna",
+    "file": "art\\world-pack-03\\bacva-puna.png",
+    "size": [
+      768,
+      768
+    ]
+  },
+  {
+    "id": "bacva-prolivena",
+    "file": "art\\world-pack-03\\bacva-prolivena.png",
+    "size": [
+      768,
+      768
+    ]
+  },
+  {
+    "id": "ognjeni-aga-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-idle",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-run",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-run",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-attack",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-attack",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-ulje",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-ulje",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-zadihan",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-zadihan",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-hurt",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "ognjeni-aga-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\ognjeni-aga-death",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

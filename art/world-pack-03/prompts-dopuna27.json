@@ -1,0 +1,355 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "soko-let",
+      "kind": "bird",
+      "frames": 8,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/orao-let/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. A peregrine GREY FALCON: blue-grey back and pointed wings, pale cream breast with black spots/barring, dark moustache stripe, yellow feet and cere, dark eye. NOT brown golden eagle. Same distinctive falcon across clips. True articulated bird wings, no duplicate heads or limbs. Flying torso center fixed x256,y300, not feet; complete wing tips visible. World wingspan 345px (0.9 Marko height). EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 8 cells animation. Eight continuous FAST SHARP FLAPS: 1 high wings,2 sweeping wide,3 level,4 downstroke,5 fully down,6 folded upstroke,7 rising open,8 almost high again. Torso stays level. No flask/water.",
+      "targetSpan": 345,
+      "bodyAnchors": [
+        [
+          0.51,
+          0.68
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.61
+        ],
+        [
+          0.51,
+          0.6
+        ],
+        [
+          0.51,
+          0.65
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.68
+        ]
+      ],
+      "bodyLengthSource": 0.42
+    },
+    {
+      "id": "soko-napad",
+      "kind": "bird",
+      "frames": 6,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. A peregrine GREY FALCON: blue-grey back and pointed wings, pale cream breast with black spots/barring, dark moustache stripe, yellow feet and cere, dark eye. NOT brown golden eagle. Same distinctive falcon across clips. True articulated bird wings, no duplicate heads or limbs. Flying torso center fixed x256,y300, not feet; complete wing tips visible. World wingspan 345px (0.9 Marko height). EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. 1 flight alert,2 folds pointed wings dives down-forward,3 talons extend FORWARD toward unseen face,4 IMPACT both talons thrust forward,5 strong backwards wing brake,6 recovery wings lifted. No victim, no blood.",
+      "targetSpan": 345,
+      "bodyAnchors": [
+        [
+          0.51,
+          0.71
+        ],
+        [
+          0.51,
+          0.69
+        ],
+        [
+          0.53,
+          0.7
+        ],
+        [
+          0.52,
+          0.7
+        ],
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.51,
+          0.71
+        ]
+      ],
+      "bodyLengthSource": 0.4
+    },
+    {
+      "id": "soko-voda",
+      "kind": "bird",
+      "frames": 6,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. A peregrine GREY FALCON: blue-grey back and pointed wings, pale cream breast with black spots/barring, dark moustache stripe, yellow feet and cere, dark eye. NOT brown golden eagle. Same distinctive falcon across clips. True articulated bird wings, no duplicate heads or limbs. Flying torso center fixed x256,y300, not feet; complete wing tips visible. World wingspan 345px (0.9 Marko height). EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Hover in place with wings spread as shield. Six small articulated hover beats, 1 raised,2 near level,3 lowered,4 recover,5 lift,6 approach1. Clear blue WATER DROPS dripping from beak in all frames, no bottle. Torso stable.",
+      "targetSpan": 345,
+      "bodyAnchors": [
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.51,
+          0.66
+        ],
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.51,
+          0.7
+        ],
+        [
+          0.51,
+          0.7
+        ]
+      ],
+      "bodyLengthSource": 0.42
+    },
+    {
+      "id": "soko-ranjen",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. A peregrine GREY FALCON: blue-grey back and pointed wings, pale cream breast with black spots/barring, dark moustache stripe, yellow feet and cere, dark eye. NOT brown golden eagle. Same distinctive falcon across clips. True articulated bird wings, no duplicate heads or limbs.  World wingspan 345px (0.9 Marko height). EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 4 cells animation. Cell 5 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. FOUR ground poses: sits low in small sparse reeds. ONE broken wing hangs limply down side; other wing weakly raises, flutters, lowers, rests. Beak breathes weakly. Feet/reed base y487. No flight. Calibration cell5 is SAME falcon upright on feet with folded wings, NO reeds, cell6 blank.",
+      "targetHeight": 160,
+      "calibrationFrame": 4
+    },
+    {
+      "id": "caus-idle",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. SULTAN HERALD CAUS, slim proud middle-aged Ottoman man with black moustache: very TALL WHITE KAVUK with feather, red 14th-century kaftan with golden buttons, yellow leather boots, silver apple finial on wooden staff. Rolled imperial parchment ferman tucked into sash. Same person in all cells, no sword, no modern clothing. EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 4 cells animation. Cell 5 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 upright haughty lean on staff,2 chest inhalation/head raised,3 slow exhale,4 return. Staff tip on ground y487, feet same baseline. Subtle living loop.",
+      "targetHeight": 426,
+      "calibrationFrame": 4
+    },
+    {
+      "id": "caus-walk",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "references": [
+        "art/animation-pack-04/assets/caus-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. SULTAN HERALD CAUS, slim proud middle-aged Ottoman man with black moustache: very TALL WHITE KAVUK with feather, red 14th-century kaftan with golden buttons, yellow leather boots, silver apple finial on wooden staff. Rolled imperial parchment ferman tucked into sash. Same person in all cells, no sword, no modern clothing. EXACT 3 COLUMNS x 3 ROWS, row-major equal SQUARE cells. First 8 cells animation. Cell 9 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. Eight genuine alternating dignified WALK poses: left heel contact,weight down,left support,right passing,right heel contact,weight down,right support,left passing. Large proud steps with bent knees and opposite arm motion. Carries staff moving with hand, no hopping, both feet clearly alternate.",
+      "targetHeight": 426,
+      "calibrationFrame": 8
+    },
+    {
+      "id": "caus-ferman",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/caus-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. SULTAN HERALD CAUS, slim proud middle-aged Ottoman man with black moustache: very TALL WHITE KAVUK with feather, red 14th-century kaftan with golden buttons, yellow leather boots, silver apple finial on wooden staff. Rolled imperial parchment ferman tucked into sash. Same person in all cells, no sword, no modern clothing. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 reaches sash,2 unrolls parchment,3 holds OPEN ferman with BOTH hands begins reading,4 reads mouth wide,5 emphatic reading head raised mouth open,6 lowers open scroll. Staff held UNDER ARMPIT during reading. Parchment illegible tiny flourishes only, no modern letters.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    },
+    {
+      "id": "caus-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/caus-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. SULTAN HERALD CAUS, slim proud middle-aged Ottoman man with black moustache: very TALL WHITE KAVUK with feather, red 14th-century kaftan with golden buttons, yellow leather boots, silver apple finial on wooden staff. Rolled imperial parchment ferman tucked into sash. Same person in all cells, no sword, no modern clothing. EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 4 cells animation. Cell 5 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 sudden chest recoil,2 bends away with pain,3 staggers forward kavuk TILTED askew,4 recovers unsteady. Same full body, staff grips retained.",
+      "targetHeight": 426,
+      "calibrationFrame": 4
+    },
+    {
+      "id": "caus-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/caus-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. SULTAN HERALD CAUS, slim proud middle-aged Ottoman man with black moustache: very TALL WHITE KAVUK with feather, red 14th-century kaftan with golden buttons, yellow leather boots, silver apple finial on wooden staff. Rolled imperial parchment ferman tucked into sash. Same person in all cells, no sword, no modern clothing. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 struck leaning backward,2 knees buckle kavuk lifts off,3 falls BACKWARD staff slips,4 back contacts floor kavuk and ferman airborne,5 lies on back kavuk/scroll fall,6 completely prone on BACK hat and ferman separately on ground. Keep body size constant, no corpse enlargement.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    },
+    {
+      "id": "bacva-puna",
+      "kind": "nest",
+      "size": [
+        768,
+        768
+      ],
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte medieval 2D game prop PNG, genuinely TRANSPARENT background, no scene, no lettering/watermark. Large oak wine barrel HORIZONTAL on low wooden trestle, iron hoops, brass tap on front circular end, copper drinking cup resting securely on barrel. Complete isolated game prop, subtle 3/4 side view, full object fits with margin. Warm textured painterly style matching game reference (reference character is STYLE ONLY, DO NOT draw person)."
+    },
+    {
+      "id": "bacva-prolivena",
+      "kind": "nest",
+      "size": [
+        768,
+        768
+      ],
+      "references": [
+        "art/world-pack-03/bacva-puna.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE hand-painted matte medieval 2D game prop PNG, genuinely TRANSPARENT background, no scene, no lettering/watermark. SAME barrel, trestle, hoops, copper cup, angle and proportions as reference. Brass TAP BROKEN OFF lying by stand, wine spilled through hole. A broad irregular puddle of DARK RED BLACK WINE lies on a small irregular stone-floor patch below barrel. MATTE, no glossy glare, no background rectangle. Warm textured painterly style matching game reference (reference character is STYLE ONLY, DO NOT draw person)."
+    },
+    {
+      "id": "ognjeni-aga-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. Six breathing poses upright with broad stance, torch held right, flame flickers in different tongues, jug stays on back. Subtle shoulders/chest/cloth motion. Complete fire fits cells.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    },
+    {
+      "id": "ognjeni-aga-run",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 3 COLUMNS x 3 ROWS, row-major equal SQUARE cells. First 8 cells animation. Cell 9 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. Eight true alternating RUN phases: contact,compression,passing,flight,opposite contact,compression,passing,flight. Bent knees and opposite arm motion, right hand firmly carries burning torch, jug bobs on straps. No repeated static leg poses.",
+      "targetHeight": 426,
+      "calibrationFrame": 8
+    },
+    {
+      "id": "ognjeni-aga-attack",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 ready torchlow,2 broad rear windup,3 shoulder torque torch raised,4 WIDE FORWARD TORCH STRIKE impact fully extended,5 followthrough low,6 recovers. Only fire on torch, no painted arc or background blast. Full arm and torch fit every cell.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    },
+    {
+      "id": "ognjeni-aga-ulje",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 reaches for back jug,2 lifts copper jug off straps,3 brings jug forward and torch safely held out away,4 tips jug down FORWARD,5 pours visible dark amber OIL stream onto SMALL MATTE PUDDLE by feet ahead,6 stops pouring raises jug. Right torch, left jug, exactly two hands, jug no longer on back after lifted. No duplicate jug.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    },
+    {
+      "id": "ognjeni-aga-zadihan",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 4 cells animation. Cell 5 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. FOUR exhausted poses deeply bent forward BOTH HANDS ON KNEES, shoulders heave as pants, mouth open. Torch rests on floor beside RIGHT boot, flame still burning, jug remains strapped. 1 inhale low,2 chest rises,3 heavy exhale shoulders sag,4 returns. Calibration cell5 is upright standing character.",
+      "targetHeight": 426,
+      "calibrationFrame": 4
+    },
+    {
+      "id": "ognjeni-aga-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 3 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 4 cells animation. Cell 5 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 struck sudden recoil,2 folds torso from pain,3 staggers one step,4 bent recovering. Torch still held firmly, flame displaced with it, jug straps intact.",
+      "targetHeight": 426,
+      "calibrationFrame": 4
+    },
+    {
+      "id": "ognjeni-aga-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png"
+      ],
+      "fps": 12,
+      "prompt": "Use case: stylized-concept. Production hand-painted matte 14th century 2D game sprites matching reference art, warm textured cel shading. Pure flat #FF00FF MAGENTA background in ALL cells, no magenta on subject. No scenery, ground shadows, lettering, numbers, borders or gridlines. Each full figure and all props entirely within its OWN square cell with clean gutters. Right-facing. Consistent anatomy, head size and costume across every pose; never enlarge bent or fallen poses. Final cells 512x512. OGNJENI AGA, very bulky soot-blackened Ottoman fire boss, thick beard, burn scar across cheek. Black-and-dark-red kaftan with scorched hems, large ivory TURBAN burned black on one side. Flaming wooden TORCH in RIGHT hand, copper OIL JUG strapped to BACK. Thick boots. Visible matte orange-yellow fire with crisp tongues, NO glow halo/smoke/fog/particles outside flame. Same face and costume every frame. EXACT 4 COLUMNS x 2 ROWS, row-major equal SQUARE cells. First 6 cells animation. Cell 7 is a neutral upright standing CALIBRATION pose, same anatomical scale as animation. All remaining cells EMPTY MAGENTA. 1 reels backward,2 knees buckle torch slipping,3 falls BACKWARD torch falls FREE,4 back contacts ground,5 lies on back separate torch tumbles nearby,6 fully prone on BACK torch on ground to side burning weakly. Jug shifts off shoulder to side, no giant fire explosion. Same anatomy/scale even prone.",
+      "targetHeight": 426,
+      "calibrationFrame": 6
+    }
+  ]
+}
