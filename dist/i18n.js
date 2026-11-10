@@ -6,6 +6,14 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Barjak je podignut. Ako padneš, odavde nastavljaš.", "The banner is raised. If you fall, you go on from here."],
+["Stari guslar peva pesmu o Musi, a Turci idu da ga ućutkaju. Ne daj im do njega, Marko: dok pesma traje, bes ti ne opada.", "The old guslar sings the song of Musa, and the Turks are coming to silence him. Keep them from him, Marko: while the song lasts, your rage does not fall."],
+["ODBRANA GUSLARA", "THE DEFENCE OF THE GUSLAR"],
+["pet četa", "five bands"],
+["Guslar je pao. Pesma je ućutala.", "The guslar has fallen. The song is silent."],
+["sa obe strane", "from both sides"],
+["iza tebe", "behind you"],
+["Guslar je odbranjen. Pesma o Musi ide dalje niz Ibar.", "The guslar is safe. The song of Musa goes on down the Ibar."],
 ["šest poglavlja jedno za drugim", "six chapters, one after another"],
 ["— konj je u IV, talasi u II i V, Musa u VI. Kad Musa padne, otvaraju se poslednja četiri pohoda.", "— the horse is in IV, the waves in II and V, Musa in VI. When Musa falls, the last four quests open."],
 ["pohodi idu kako teče Markov život", "the quests follow Marko's life"],

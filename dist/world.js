@@ -111,7 +111,7 @@ export const CUDA=[
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
  selo:'flat crates stairs+ watch plate spikes stairs- ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch ledges crates flat boss:kopljanik',
- klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:djemo',
+ klisura:'flat terrace+ ladder+ guslar tower chase flat chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates ledges terrace+ logs flat guslar:mir boss:djemo',
  suma:'flat watch crates gnezdo logs plate watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates stairs- chimney flat boss:lovac',
  manastir:'flat stairs+ flat stairs+ crates tower lever kljuc cellar greda chimney zvona zid stairs- ledges lift stairs+ tower flat boss:dzelat',
  tvrdjava:'flat topnica crates tower barrels plate zid chimney^ flat tower lever kljuc crates sator pillars ladder+ tower flat top barut flat boss:oklopnik',
@@ -191,7 +191,7 @@ export function buildLayout(L,variant='day'){
   // a Turkish tent: Ottomans come out of it while Marko is near, until he tears it down
   topnica(){const x0=x,len=1560;ground(len);traps.push({kind:'topnica',x:x0+190,y:gy,id:traps.length+1,face:1});busy.push([x0,x0+len]);},
   top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
-  guslar(arg){const x0=x,len=ri(1100,1180);ground(len);traps.push({kind:'guslar',x:x0+Math.round(len*.4),y:gy,x0,x1:x0+len,mir:arg==='mir'});busy.push([x0,x0+len]);},
+  guslar(arg){const big=arg==='odbrana',x0=x,len=big?ri(1500,1560):ri(1100,1180);ground(len);traps.push({kind:'guslar',x:x0+Math.round(len*(big?.5:.4)),y:gy,x0,x1:x0+len,mir:arg==='mir',odbrana:big});busy.push([x0,x0+len]);},
   gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},

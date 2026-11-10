@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -272,4 +272,28 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
 {const c=await arena('pecina');const p=S().p,w=S().world;c.hp=c.maxHp*.28;step(3);c.invT=0;c.actCD=0;c.ks=null;c.mode='idle';c.kc=99;until(()=>w.drops?.length>0,120*4);
  const d=w.drops[0];Object.assign(p,{x:d.x,y:d.y,vx:0,vy:0,grounded:true});p.invuln=0;p.dash=0;p.hp=p.maxHp;const hp=p.hp;for(let i=0;i<120*3&&p.hp===hp;i++){c.kc=99;c.mode='idle';c.timer=99;p.x=d.x;step();}
  ok(p.hp<hp,'acts: what falls from the vault hurts Marko if he stands in its shadow');}
+// ---- pack 09: the defence of the guslar, and the banners a fallen Marko comes back to ----
+{const w=await land('klisura');const G=w.traps.filter(t=>t.kind==='guslar'),g=G.find(t=>t.odbrana),p=S().p;ok(g&&G.indexOf(g)===1,'odbrana: the second guslar of the gorge is the one to defend');
+ for(const e of w.enemies)e.alive=false;
+ Object.assign(p,{x:g.x0+120,y:g.y,vx:0,vy:0,grounded:true,rage:0});safe();step(3);ok(g.state==='odbrana','odbrana: Marko comes and the guslar begins the song of Musa');
+ until(()=>{safe();return w.enemies.some(e=>e.alive&&e.prey===g);},120*8);ok(w.enemies.filter(e=>e.alive&&e.prey===g).length===3,'odbrana: the first band runs at him');
+ const kill=()=>{for(const e of w.enemies)if(e.alive&&e.prey===g)api.slay(e,0);};
+ for(let k=2;k<=5;k++){kill();until(()=>{safe();p.x=g.x-60;return g.wave>=k;},120*40);ok(g.wave===k,'odbrana: band '+k+' follows');}
+ ok(p.rage>40,'odbrana: while the song lasts Marko\'s rage keeps filling ('+Math.round(p.rage)+')');
+ kill();until(()=>{safe();return g.state==='peva';},120*10);ok(g.state==='peva','odbrana: the five bands beaten, the guslar is safe and sings on');}
+{const w=await land('klisura');const g=w.traps.find(t=>t.odbrana),p=S().p;for(const e of w.enemies)e.alive=false;
+ // a banner goes up on a quiet stretch before the guslar
+ const q=w.platforms.filter(q=>q.ground&&q.x<g.x0-200&&q.x+q.w>g.x0-700).sort((a,b)=>b.w-a.w)[0];Object.assign(p,{x:Math.max(q.x+60,g.x0-400),y:q.y,vx:0,vy:0,grounded:true});safe();step(6);
+ const C=api.ckptState();ok(C.ckpt&&Math.abs(C.ckpt.x-p.x)<5,'banners: on a quiet stretch of the road a banner is raised');const bx=C.ckpt.x;
+ // left alone, the guslar falls: Marko falls with the song and wakes at the banner, the defence begins again
+ Object.assign(p,{x:g.x0+120,y:g.y,vx:0,vy:0,grounded:true});safe();step(3);ok(g.state==='odbrana','banners: the defence begins');
+ Object.assign(p,{x:g.x0-800,y:groundY(w,g.x0-800,g.y)});until(()=>{p.invuln=99;p.hp=p.maxHp;return S().mode!=='play';},120*120);ok(g.fallen&&S().mode==='dead','odbrana: left alone, the guslar is cut down and the song falls silent');
+ api.retry();ok(S().mode==='play'&&Math.abs(S().p.x-bx)<5&&S().p.hp===S().p.maxHp,'banners: Marko comes back at the banner, whole');
+ ok(!w.enemies.some(e=>e.alive&&e.prey===g)&&!g.fallen,'banners: the bands are gone and the guslar waits again');
+ Object.assign(S().p,{x:g.x0+120,y:g.y,vx:0,vy:0,grounded:true});safe();step(3);ok(g.state==='odbrana'&&g.hp===100,'banners: the defence starts over');}
+{const c=await arena('tvrdjava');const p=S().p,w=S().world;step(3);const C0=api.ckptState();
+ // a champion Marko fell to stands whole again when he comes back
+ c.hp=c.maxHp*.2;step(3);ok(c.p3,'banners: Hasan-aga is in his last act');Object.assign(p,{x:c.arena.x0-300,y:groundY(w,c.arena.x0-300,c.y)});
+ api.setCkpt(c.arena.x0-300,groundY(w,c.arena.x0-300,c.y));p.invuln=0;p.hp=1;api.die();ok(S().mode==='dead','banners: Marko falls in the arena');api.retry();
+ ok(S().mode==='play'&&c.hp===c.maxHp&&!c.p3&&!c.p2,'banners: back at the banner, and the champion has his strength again');}
 console.log(`${checks} battle checks passed.`);

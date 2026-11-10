@@ -1,4 +1,5 @@
 guslar_pesma_0.ogg
+guslar_pesma_duga.ogg
 
 Izvor: "Marko Kraljević i Musa Kesedžija (dio).ogg", Wikimedia Commons
 https://commons.wikimedia.org/wiki/File:Marko_Kraljevi%C4%87_i_Musa_Kesed%C5%BEija_(dio).ogg
@@ -6,5 +7,10 @@ Autor: VVVladimir (2010)
 Licenca: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 https://creativecommons.org/licenses/by-sa/3.0/
 
-Izmene: uzeto prvih 28 sekundi, prebačeno u mono 22 kHz, dodato utišavanje na početku i kraju,
-ujednačena jačina i ponovo kodirano u Ogg Vorbis. Ovaj isečak se deli pod istom licencom (CC BY-SA 3.0).
+Izmene (guslar_pesma_0.ogg): uzeto prvih 28 sekundi, prebačeno u mono 22 kHz, dodato utišavanje na početku i kraju,
+ujednačena jačina i ponovo kodirano u Ogg Vorbis.
+
+Izmene (guslar_pesma_duga.ogg): ceo snimak (5 min 12 s), prebačen u mono 22 kHz, ujednačena jačina (loudnorm),
+utišavanje na početku i kraju, ponovo kodirano u Ogg Vorbis. Igra ga pušta dok guslar peva i nastavlja ga od guslara do guslara.
+
+Oba isečka se dele pod istom licencom (CC BY-SA 3.0).
