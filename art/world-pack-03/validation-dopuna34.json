@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "files": 3,
+  "bottomHillFullWidthAlpha": 255,
+  "bottomHillMinPercent": 22,
+  "transparentAirAbove": true,
+  "dimensionsExact": true,
+  "generationAttempts": [
+    2,
+    1,
+    2
+  ],
+  "blockedRequests": 0
+}

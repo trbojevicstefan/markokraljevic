@@ -2469,7 +2469,7 @@ const decorIds=L=>DECOR[L.id]||[];
 // ---------- stakes on the hill behind the road (DOPUNA-34): Serbian knights the Ottoman army left as a warning ----------
 // They are drawn behind the road and drift slower than it, so they stand on a hill further back. The bottom of their own hill
 // (the lowest fifth of Codex's picture) hides behind the road, so they never float. Only while blood is on in the settings.
-const KOLCI_LANDS=['selo','klisura','tvrdjava','rusevine','reka','oranje','mocvara'],KOLCI=[['kolci-vitezovi-glave',210],['kolac-vitez',235],['kolci-vitezovi-red',150]],KOLCI_PAR=.8,KOLCI_EDGE=450;
+const KOLCI_LANDS=['selo','klisura','tvrdjava','rusevine','reka','oranje','mocvara'],KOLCI=[['kolci-vitezovi-glave',245],['kolac-vitez',230],['kolci-vitezovi-red',200]],KOLCI_PAR=.8,KOLCI_EDGE=500;
 const kolciIds=L=>KOLCI_LANDS.includes(L.id)&&settings.gore!==false?KOLCI.map(k=>k[0]):[];
 function setupKolci(){world.kolci=[];if(!level||!hasDom||!KOLCI_LANDS.includes(level.id))return;const art=KOLCI.filter(([id])=>levelArt[id]);if(!art.length)return;
  const grounds=world.platforms.filter(q=>q.ground&&!q.tower&&q.w>KOLCI_EDGE*2+200),span=level.goal.x-level.spawn.x;let n=0;
@@ -3013,6 +3013,7 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='sultan'){await startLevel(lv('podrum'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='bacva'&&t.kraj);if(t)at(t.x-300,t.y);toast('Bačva rujnog vina. Ovde ti niko ne brani: pij (E).',5);return;}
  if(g==='sirotinja'){await startLevel(lv('selo'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='sirotinja');if(t){at(t.x-260,t.y);p.coins=Math.max(p.coins||0,14);}toast('Sirotinja kraj puta. Priđi i daj im dukate (E).',5);return;}
  if(g==='svatovi'){await startLevel(lv('rusevine'));await wait(200);const t=(world.traps||[]).find(t=>t.kind==='kavez');if(t)at(t.x-260,t.y);toast('Razbij kavez topuzom i oslobodi svatove',5);return;}
+ if(g==='kolci'){await startLevel(lv('tvrdjava'));await wait(300);const k=world.kolci?.[1]||world.kolci?.[0];if(k)at(k.x-160,k.y);return;}
  if(g==='isukaj'){await startLevel(lv('tvrdjava'));await wait(200);perks.add('oceva-sablja');const e=world.enemies.find(e=>!e.champion&&e.x>level.spawn.x+500);if(e)at(e.x-420,e.y);await wait(400);toggleSablja();toast('G isuče očevu sablju i vraća je u korice. Dok je isukana, J seče sabljom.',6);return;}
  if(g==='sablja'){await startLevel(lv('tvrdjava'));await wait(200);const e=world.enemies.find(e=>e.sablja);if(e)at(e.x-380,e.y);toast('Mladi Turčin nosi očevu sablju. Savladaj ga.',5);return;}
  if(g==='kontrole'){openKontrole();return;}

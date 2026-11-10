@@ -1,0 +1,39 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "kolci-vitezovi-glave",
+      "size": [
+        1024,
+        1024
+      ],
+      "references": [
+        "art/world-pack-01/assets/selo-near.png",
+        "art/world-pack-01/assets/tvrdjava-near.png"
+      ],
+      "prompt": "Use case: historical-scene. Production hand-painted MATTE 14th-century Serbian medieval game BACKGROUND PROP in COLOR, matching reference images ONLY for painting style and warm autumn palette (ochre earth, grey stone, dry golden/olive grass, muted red fabrics). Do NOT copy their buildings/trees/landscape. Somber distant aftermath of war, not triumphant. Muted atmospheric distance with slightly softened detail, but NOT a black silhouette, NOT pixel art, no glossy shine. ONLY ADULT SERBIAN KNIGHTS: long hair and beards, iron pointed HELMETS with NASAL GUARDS, silver-grey CHAINMAIL, torn RED CLOAKS, occasional small red-and-white pennant. NO turbans, fez hats, Ottoman clothing or Ottoman symbols. NO blood, wounds, exposed anatomy or severing detail, no close-up faces. Genuinely transparent alpha above ground around objects; NO actual painted sky/fog field/rectangular backdrop/text. CRITICAL GROUND: continuous BROAD SOLID EARTH/GRASS/STONE HILL spans entire canvas WIDTH, ridge around74-78% imageheight. Bottom22% MUST BE COMPLETELY OPAQUE soil/grass/rocks at EVERY pixel all the way to BOTH SIDE EDGES and BOTTOM EDGE, NO transparent margin, NO oval floating island. Above hill, empty space is TRANSPARENT except stakes/knights/birds/props. Square1024x1024 canvas. FIVE OR SIX tall rough sharpened stakes leaning at irregular angles, planted on the broad hill. Small severed heads of fallen adult Serbian knights mounted on top as grim historical warning, seen from DISTANCE: some in iron pointed nasal helmets, others bareheaded with long hair/beards, closed eyes, no neck wounds/blood/anatomical detail. Keep heads small, around40-60px high on1024canvas, show muted natural skin/iron/hair colors, not portraits. TWO OR THREE small ravens above. Stakes occupy upper70% of image with modest headroom; grounded hill fills all rows y798 through1023 fully opaque. Restrained far-background illustration, no graphic detail."
+    },
+    {
+      "id": "kolci-vitezovi-red",
+      "size": [
+        1536,
+        768
+      ],
+      "references": [
+        "art/world-pack-03/kolci-vitezovi-glave.png"
+      ],
+      "prompt": "Use case: historical-scene. Production hand-painted MATTE 14th-century Serbian medieval game BACKGROUND PROP in COLOR, matching reference images ONLY for painting style and warm autumn palette (ochre earth, grey stone, dry golden/olive grass, muted red fabrics). Do NOT copy their buildings/trees/landscape. Somber distant aftermath of war, not triumphant. Muted atmospheric distance with slightly softened detail, but NOT a black silhouette, NOT pixel art, no glossy shine. ONLY ADULT SERBIAN KNIGHTS: long hair and beards, iron pointed HELMETS with NASAL GUARDS, silver-grey CHAINMAIL, torn RED CLOAKS, occasional small red-and-white pennant. NO turbans, fez hats, Ottoman clothing or Ottoman symbols. NO blood, wounds, exposed anatomy or severing detail, no close-up faces. Genuinely transparent alpha above ground around objects; NO actual painted sky/fog field/rectangular backdrop/text. CRITICAL GROUND: continuous BROAD SOLID EARTH/GRASS/STONE HILL spans entire canvas WIDTH, ridge around74-78% imageheight. Bottom22% MUST BE COMPLETELY OPAQUE soil/grass/rocks at EVERY pixel all the way to BOTH SIDE EDGES and BOTTOM EDGE, NO transparent margin, NO oval floating island. Above hill, empty space is TRANSPARENT except stakes/knights/birds/props. Wide1536x768 canvas,2:1ratio. A row of EIGHT OR NINE uneven tall stakes along a low broad hill. Some bear small fallen Serbian knights' heads (helmeted/longhair, no neck wounds). At THREE OR FOUR stakes hangs an ADULT SERBIAN KNIGHT in silver-grey CHAINMAIL and torn RED CLOAK, body TIED TO POST with ROPE around chest/waist, head bowed onto chest, limp arms. Bound bodies, NOT visible impalement or injury. Small distant complete figures, no closeup anatomy. Behind stakes a tattered RED BANNER with small red/white detail, and a fallen ROUND GREY SHIELD resting on grass. Overall warm subdued color visible; no Turkish garments. Ground extends edge-to-edge, bottomrows y599through767 fully opaque earth/grass/rocks, no margin."
+    },
+    {
+      "id": "kolac-vitez",
+      "size": [
+        768,
+        1024
+      ],
+      "references": [
+        "art/world-pack-03/kolci-vitezovi-glave.png"
+      ],
+      "prompt": "Use case: historical-scene. Production hand-painted MATTE 14th-century Serbian medieval game BACKGROUND PROP in COLOR, matching reference images ONLY for painting style and warm autumn palette (ochre earth, grey stone, dry golden/olive grass, muted red fabrics). Do NOT copy their buildings/trees/landscape. Somber distant aftermath of war, not triumphant. Muted atmospheric distance with slightly softened detail, but NOT a black silhouette, NOT pixel art, no glossy shine. ONLY ADULT SERBIAN KNIGHTS: long hair and beards, iron pointed HELMETS with NASAL GUARDS, silver-grey CHAINMAIL, torn RED CLOAKS, occasional small red-and-white pennant. NO turbans, fez hats, Ottoman clothing or Ottoman symbols. NO blood, wounds, exposed anatomy or severing detail, no close-up faces. Genuinely transparent alpha above ground around objects; NO actual painted sky/fog field/rectangular backdrop/text. CRITICAL GROUND: continuous BROAD SOLID EARTH/GRASS/STONE HILL spans entire canvas WIDTH, ridge around74-78% imageheight. Bottom22% MUST BE COMPLETELY OPAQUE soil/grass/rocks at EVERY pixel all the way to BOTH SIDE EDGES and BOTTOM EDGE, NO transparent margin, NO oval floating island. Above hill, empty space is TRANSPARENT except stakes/knights/birds/props. Portrait768x1024 canvas. ONE tall rough WOODEN POST with one deceased ADULT SERBIAN KNIGHT TIED to it using thick rope around chest/waist (NOT visible impalement). Body slumps, bowed head on chest, long hair and beard, silver-grey CHAINMAIL over muted tunic, torn RED CLOAK draped down back/sides, simple medieval boots. Keep restrained middle-distance whole-body view, NO blood or visible wounds. His pointed iron NASAL HELMET has fallen into grass below, and his plain steel SWORD is planted tip-down in earth BESIDE the post. Not a Turkish soldier: no turban/fez/kaftan. Warm muted ochre/green hill with grey rocks, edge-to-edge OPAQUE terrain on entire bottom22% y798..1023. Transparent empty air above and beside figures, no scene/background."
+    }
+  ]
+}

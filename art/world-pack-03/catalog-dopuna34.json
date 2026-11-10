@@ -1,0 +1,41 @@
+[
+  {
+    "id": "kolci-vitezovi-glave",
+    "file": "kolci-vitezovi-glave.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "opaqueHillStartsY": 798,
+    "opaqueBottomPercentMinimum": 22,
+    "opaqueHillFullWidth": true,
+    "attempts": 2,
+    "boundBodies": false
+  },
+  {
+    "id": "kolci-vitezovi-red",
+    "file": "kolci-vitezovi-red.png",
+    "size": [
+      1536,
+      768
+    ],
+    "opaqueHillStartsY": 599,
+    "opaqueBottomPercentMinimum": 22,
+    "opaqueHillFullWidth": true,
+    "attempts": 1,
+    "boundBodies": true
+  },
+  {
+    "id": "kolac-vitez",
+    "file": "kolac-vitez.png",
+    "size": [
+      768,
+      1024
+    ],
+    "opaqueHillStartsY": 798,
+    "opaqueBottomPercentMinimum": 22,
+    "opaqueHillFullWidth": true,
+    "attempts": 2,
+    "boundBodies": true
+  }
+]
