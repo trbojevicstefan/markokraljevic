@@ -1,0 +1,112 @@
+{
+  "characterId": "plamen-mali",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": false,
+  "frame_variant": "pixel",
+  "sprite_sheet_alpha": "atlas.png",
+  "sprite_sheet_alpha_report": null,
+  "base_image": null,
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": null,
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 8,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 8,
+        "fps": 12,
+        "durations_ms": [
+          83,
+          83,
+          83,
+          83,
+          83,
+          83,
+          83,
+          83
+        ],
+        "loop": true,
+        "frame_variant": "pixel"
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 4096,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3584,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "assetType": "ground-vfx",
+  "renderAnchor": {
+    "x": 256,
+    "y": 488
+  },
+  "vfxBoundsMax": [
+    90,
+    140
+  ]
+}

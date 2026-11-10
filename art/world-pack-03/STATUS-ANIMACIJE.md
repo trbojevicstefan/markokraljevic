@@ -345,3 +345,25 @@ DOPUNA-23: dugme-ploca-aktivno.png — GOTOVO; art/world-pack-03/dugme-ploca-akt
 DOPUNA-23: pauza-logor — GOTOVO; art/animation-pack-04/assets/pauza-logor/. 8 kadrova u petlji, celije768x512, atlas6144x512, manifest sa frame_layout, frames, preview.gif, preview.png i qa.json. Neprovidna nocna scena sa pozadinom; Marko kraj vatre, Sarac pase, mala Ravijojla lebdi. Dim, plamen i rep u razlicitim fazama. Provereni dimenzije, neprovidnost, atlas/kadrovi i GIF8. Ugradjeni image_gen, jedan pokusaj; prompt plan-dopuna23.json.
 
 DOPUNA-23 — ZAVRSENO: 10 ikona256x256 (medaljoni236px), pauza-ram900x1180, dva dugmeta640x112 i pauza-logor8kadova768x512 (atlas6144x512). Sve14stavke redom, po jedan pokusaj ugradjenim image_gen generatorom. Proverene dimenzije, providnost statickih slika, neprovidnost logora, atlas/kadrovi, frame_layout, brojGIFkadova i loop. Pregledi: preview-dopuna23-ikone.png (ukljucuje48px prikaz), preview-dopuna23-pauza.png i ../animation-pack-04/assets/pauza-logor/preview.png. Katalog/validacija: catalog-dopuna23.json i validation-dopuna23.json. Promptovi: prompts-dopuna23.json i ../animation-pack-04/plan-dopuna23.json. Nema neuspelih stavki; kod igre i dist nisu menjani.
+
+DOPUNA-24: plamen — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/plamen/. Petlja. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: plamen-mali — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/plamen-mali/. Petlja. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: eksplozija — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/eksplozija/. Jednom. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: eksplozija — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/eksplozija/. Jednom. Ugradjeni image_gen, 2 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: kosti-delovi — GOTOVO; PNG RGBA1536x256, sest centriranih polja256x256 redom lobanja, vilica, rebra, femur, humerus, karlica; providnost proverena. Ugradjeni image_gen, 1 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: krv-ekran-1 — GOTOVO; PNG RGBA512x512, tamnocrvena mrlja sa kapima/prskotinama i curkom, poluprovidna alfa do65%, provereno. Ugradjeni image_gen, 1 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: krv-ekran-2 — GOTOVO; PNG RGBA512x512, tamnocrvena mrlja sa kapima/prskotinama i curkom, poluprovidna alfa do65%, provereno. Ugradjeni image_gen, 1 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: krv-ekran-3 — GOTOVO; PNG RGBA512x512, tamnocrvena mrlja sa kapima/prskotinama i curkom, poluprovidna alfa do65%, provereno. Ugradjeni image_gen, 1 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: krv-ekran-4 — GOTOVO; PNG RGBA512x512, tamnocrvena mrlja sa kapima/prskotinama i curkom, poluprovidna alfa do65%, provereno. Ugradjeni image_gen, 1 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24: eksplozija — GOTOVO; 8kadova512x512, dno y487, atlas4096x512, manifest/frame_layout, frames, preview.gif, preview.png, qa.json u art/animation-pack-04/assets/eksplozija/. Jednom. Ugradjeni image_gen, 2 pokusaj(a); prompt prompts-dopuna24.json, izvor sacuvan.
+
+DOPUNA-24 — ZAVRSENO: 3klipa/24kadra + kosti-delovi1536x256 + krv-ekran-1..4 po512x512. Sve8stavke proverene (dimenzije, alfa, dnoVFXy487, atlas/kadrovi, frame_layout, GIF8 i loop; kosti6 centriranih polja256, krv alfa do65%). Izvozi: art/animation-pack-04/assets/plamen/, plamen-mali/, eksplozija/ i slike na vrhu world-pack-03/. Pregledi: art/animation-pack-04/preview-dopuna24.png i art/world-pack-03/preview-dopuna24-slike.png. Katalog/provere: catalog-dopuna24.json i validation-dopuna24.json; promptovi prompts-dopuna24.json. Ugradjeni image_gen9generisanja: samo eksplozija ponovljena zbog svetle pravougaone magle; odabrani magentaizvor izdvojen sprite-gen alatom i ociscen preostali spill. Prvi izvor/izvoz sacuvani u sources/eksplozija/grid.png i export-before-matte-fix/. Nema neuspelih stavki; kod igre i dist nisu menjani.

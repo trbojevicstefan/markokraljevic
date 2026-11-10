@@ -1,0 +1,110 @@
+﻿{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "plamen",
+      "type": "clip",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "maxSize": [
+        260,
+        300
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted2D game VFX sprite sheet, EXACTLY8frames arranged4COLUMNS x2ROWS, rowmajor, equal square slots, landscape2048x1024, finalcells512square. Genuine TRANSPARENT RGBA emptyspace, no paintedcheckerboard or mattebackground. Fixedorigin/bottomcenter ALLframes, emptygutters, fullshapesfitOWNslots, NO grid,letters,numbers,ground,floor,props,people. Warm MATTE painted flame shapes, darkred edges, orangebody, mutedYELLOWcore, NO white core/whitepixels, NOglare, NOstrongbloom/halo, NO photorealistic lensflare. Painterly readable tonguesandsoft semitransparent smoke/particles, darkgamepalette. Ground fire CLUSTER, total widtharound260px heightupto300px finalcell, bottomatx256y487, no logs/grassbase.8successive equallytimedphases seamlessLOOP: flame tongues leanleft,stretchup,split,breakaway,leanright,collapse/regrow,repeat. Tipsbecome THIN darkSMOKE with sparse orange sparks, subtle wisps nothugecloud. Clearvariation in everyframebutbasesameplace, lastflowsinto1. Use CENTRAL HALF WIDTH and lower300px ofeachcell, no giantfirefillingwholecell."
+    },
+    {
+      "id": "plamen-mali",
+      "type": "clip",
+      "frames": 8,
+      "loop": true,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "maxSize": [
+        90,
+        140
+      ],
+      "references": [
+        "art/animation-pack-04/assets/plamen/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted2D game VFX sprite sheet, EXACTLY8frames arranged4COLUMNS x2ROWS, rowmajor, equal square slots, landscape2048x1024, finalcells512square. Genuine TRANSPARENT RGBA emptyspace, no paintedcheckerboard or mattebackground. Fixedorigin/bottomcenter ALLframes, emptygutters, fullshapesfitOWNslots, NO grid,letters,numbers,ground,floor,props,people. Warm MATTE painted flame shapes, darkred edges, orangebody, mutedYELLOWcore, NO white core/whitepixels, NOglare, NOstrongbloom/halo, NO photorealistic lensflare. Painterly readable tonguesandsoft semitransparent smoke/particles, darkgamepalette. Same EXACT paintedpalette/flametonguestyle asprovidedreference, but SMALL nascent fire catchinginvisiblegrass: width90px height140px final512cell.1-3delicate flame tongues, no drawn grass/logs/props.8distinctphasesofflickeringloop: leanleft,stretch,splitshorttip,leanright,shrink,regrow,return. Bottomcenterfixed x256y487, subtlethin smokeandsparseembersatverytop. LargeemptyspacearoundTINY flame, doNOT enlarge it tofillcell. Lastphaseflowsinto1. No grey/whitegroundor glowaura."
+    },
+    {
+      "id": "eksplozija",
+      "type": "clip",
+      "frames": 8,
+      "loop": false,
+      "fps": 12,
+      "cols": 4,
+      "rows": 2,
+      "maxSize": [
+        460,
+        430
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE game VFX animation sheet EXACTLY8effectposes in4COLUMNS x2ROWS, rowmajor,equal squares, landscape2048x1024. DRAW ON PURE FLAT CHROMA MAGENTA #FF00FF BACKGROUND EVERYWHERE EMPTY; this willbe cutout, nottransparent now. NO pink/magenta insideeffect. No glow, NOwhitehalo, NO white/gray backdrop, no ambientfog/floor/shadow aroundeffect. Only clearlyisolated paintedexplosion andSMOKECLUMPS, fullshape insideOWNslot with BIG MAGENTA GUTTERS and allpiecesunclipped.8ONE-SHOTframes:1 smallLOW redorangeimpactburst;2 fireandearthjetsup/aside;3 largeORANGE mutedYELLOWfireballwithbrownclodsandsmallstones;4 denseDARKBROWNGRAYsmoke replacingfire;5 brownsmokeexpandssidewayswithtinyembers;6 darkergraybrownsmokebreaksintosmallseparatebillows;7 sparseseparateddustwispsnearbottom;8 tinyfewembersanddustgroundlevel. NOcannonball/ground/props/people. Sharedbottomorigincentereachcell, changingexpansionsize, don'tscaleupearlylateframes. Stayinsidecentral80%slot, roomaroundalledge. Warm MATTE painterly medievalgame VFX, NOwhite/yellowoverexposure, nohotwhitecores,no neon,no lensflare, no shadedmagenta,no text/grid/numbers. Magentawell-definedsilhouettes, no background smokeorblur cloud; ALLsmokebelongsONLYtobrownexplosionbody.",
+      "firstPrompt": "Use case: stylized-concept. ONE production hand-painted2D game VFX sprite sheet, EXACTLY8frames arranged4COLUMNS x2ROWS, rowmajor, equal square slots, landscape2048x1024, finalcells512square. Genuine TRANSPARENT RGBA emptyspace, no paintedcheckerboard or mattebackground. Fixedorigin/bottomcenter ALLframes, emptygutters, fullshapesfitOWNslots, NO grid,letters,numbers,ground,floor,props,people. Warm MATTE painted flame shapes, darkred edges, orangebody, mutedYELLOWcore, NO white core/whitepixels, NOglare, NOstrongbloom/halo, NO photorealistic lensflare. Painterly readable tonguesandsoft semitransparent smoke/particles, darkgamepalette. CANNONBALL strikesground and EXPLODES, but draw ONLY effect NO projectile.8ONE-SHOTframes:1 LOW small flattened amber/orange impactburst atground.2 fireandearth eruptUP/OUT.3 maximumroundfireball with earthclods andSMALLSTONESflyingupandaside, no giant rocks.4 fire turnsdenseGRAY-BROWN smoke.5 smokeexpandswithfewredembers.6 smoke mostlybrown-gray billows, fireextinguishes.7 smokedispersesleavingdustnearground.8 sparsefaintdustandembers, almostgone. Expansion mustchangeSIZE naturally, doNOT make allframes samefilledbox. Allframesgroundorigin x256y487 shared, roomupto430high460wideforlargestburst, allpiecesinsideOWNcell, thickgutters. Colorsmutedwarmorange/red,yellowandearthbrown; NO white/yellowoverexposedcore, no hugewhitedisk. Transparentsoftsmokealpha, no groundplane.",
+      "attempts": 2,
+      "sourceFile": "grid-v2.png",
+      "matteKey": "magenta"
+    },
+    {
+      "id": "kosti-delovi",
+      "type": "bones",
+      "size": [
+        1536,
+        256
+      ],
+      "cols": 3,
+      "rows": 2,
+      "references": [
+        "art/animation-pack-04/assets/kosturi/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted2D game BODY-REMAINS PROP SHEET with EXACTLY SIX SEPARATE OLD HUMAN BONES in equal square slots, THREE COLUMNS by TWO ROWS readingrowmajor. This temporary arrangement willbeexported asonehorizontalstripof6cells256x256, so eachpiecefullyisolatedandcenteredinOWNslot, widecleantransparentgutters, no touching/overlap. Reference ONLYdefinesoldbonecolorandpaintedgameart, doNOTdrawfullskeleton,clothes,armor,ground,grassorweapons. EXACTORDER:1humanSKULLwithoutlowerjaw.2separateLOWERJAWmandible.3RIBCAGEthoraxwithsternumandspine, NOskullorarms.4singleFEMURthighbone.5singleARMBONEhumerus.6PELVIS. Old IVORY bone, matte roughsurface, warmsoftlight, fewsmall MUTEDdarkredbloodstains, no wetshine, flesh, organs or gore. Eachpiece~210pxmaxsize in256cell. Samepaintingandscaleacrosssheet, notphotorealistic, no whiteglare. TRUEtransparentRGBAbackgroundallblankspace, nobakedcheckerboard, NOlabels,text,gridlines,numbers,frame. Canvaslandscape3:2."
+    },
+    {
+      "id": "krv-ekran-1",
+      "type": "blood",
+      "size": [
+        512,
+        512
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE hand-painted game SCREEN DAMAGE BLOOD OVERLAY,512x512, trueRGBAtransparentbackground. BloodhasjustSPLASHEDONTOCAMERALENS, abstractnonfigurativefluidstain ONLY, no people,bodies,wounds,anatomy,organsorviolencevisible. MATTE DARK CRIMSON/BURGUNDY, semitransparent thinpigment, NOgloss/specularhighlights,nowhiteshimmer,nolightinggradient,noglow,notrealisticwetphotography. Oneirregularmainblot withdroplets,finespatters,andONEclearDOWNWARDDRIP. Fullshapeinsidecanvaswithtransparentemptygaps, softantialiasednaturalpigmentededges, no white/black/checkerboardbackgroundpixels. Keepdarkred,higheropacityinthickerparts,loweropacitythinwash. Composition variation1: mainblotUPPERLEFT likeobliqueswipe,mediumdropletsscattertowardLOWERRIGHT,oneslenderlongdripnearleftthird. Differentfromothervariants; no text orborder."
+    },
+    {
+      "id": "krv-ekran-2",
+      "type": "blood",
+      "size": [
+        512,
+        512
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE hand-painted game SCREEN DAMAGE BLOOD OVERLAY,512x512, trueRGBAtransparentbackground. BloodhasjustSPLASHEDONTOCAMERALENS, abstractnonfigurativefluidstain ONLY, no people,bodies,wounds,anatomy,organsorviolencevisible. MATTE DARK CRIMSON/BURGUNDY, semitransparent thinpigment, NOgloss/specularhighlights,nowhiteshimmer,nolightinggradient,noglow,notrealisticwetphotography. Oneirregularmainblot withdroplets,finespatters,andONEclearDOWNWARDDRIP. Fullshapeinsidecanvaswithtransparentemptygaps, softantialiasednaturalpigmentededges, no white/black/checkerboardbackgroundpixels. Keepdarkred,higheropacityinthickerparts,loweropacitythinwash. Composition variation2: widecrescentshapedblotRIGHTEDGEcurlinginward,smallrounddropsacrossuppermiddle,onedripdescendsnearx390. Differentfromothervariants; no text orborder."
+    },
+    {
+      "id": "krv-ekran-3",
+      "type": "blood",
+      "size": [
+        512,
+        512
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE hand-painted game SCREEN DAMAGE BLOOD OVERLAY,512x512, trueRGBAtransparentbackground. BloodhasjustSPLASHEDONTOCAMERALENS, abstractnonfigurativefluidstain ONLY, no people,bodies,wounds,anatomy,organsorviolencevisible. MATTE DARK CRIMSON/BURGUNDY, semitransparent thinpigment, NOgloss/specularhighlights,nowhiteshimmer,nolightinggradient,noglow,notrealisticwetphotography. Oneirregularmainblot withdroplets,finespatters,andONEclearDOWNWARDDRIP. Fullshapeinsidecanvaswithtransparentemptygaps, softantialiasednaturalpigmentededges, no white/black/checkerboardbackgroundpixels. Keepdarkred,higheropacityinthickerparts,loweropacitythinwash. Composition variation3: compactradialSTARLIKEsplashLOWERLEFTwithlongthinspokesandroundsatellitedrops,onedripfromlowercentraledge. Differentfromothervariants; no text orborder."
+    },
+    {
+      "id": "krv-ekran-4",
+      "type": "blood",
+      "size": [
+        512,
+        512
+      ],
+      "references": [],
+      "prompt": "Use case: stylized-concept. ONE hand-painted game SCREEN DAMAGE BLOOD OVERLAY,512x512, trueRGBAtransparentbackground. BloodhasjustSPLASHEDONTOCAMERALENS, abstractnonfigurativefluidstain ONLY, no people,bodies,wounds,anatomy,organsorviolencevisible. MATTE DARK CRIMSON/BURGUNDY, semitransparent thinpigment, NOgloss/specularhighlights,nowhiteshimmer,nolightinggradient,noglow,notrealisticwetphotography. Oneirregularmainblot withdroplets,finespatters,andONEclearDOWNWARDDRIP. Fullshapeinsidecanvaswithtransparentemptygaps, softantialiasednaturalpigmentededges, no white/black/checkerboardbackgroundpixels. Keepdarkred,higheropacityinthickerparts,loweropacitythinwash. Composition variation4: diagonalBROKENsplatteracrossUPPERRIGHTtocenter,one largercomma-shapedblobatsideandmanytinyisolateddrops,onedripnearx300. Differentfromothervariants; no text orborder."
+    }
+  ]
+}

@@ -222,6 +222,10 @@ for name in ['vila-let', 'vila-carolija', 'vila-isceljenje', 'vila-spreda']:
 for name, k in [('magija-bljesak', .4), ('magija-zrak', .5)]:
     if _have(name):
         SCALES[name] = (k, 'center')
+# DOPUNA-24: fire and the cannonball's burst, standing on the ground (a flame cluster 78 world px wide at scale 1 in the game)
+for name, k in [('plamen', .45), ('plamen-mali', .45), ('eksplozija', .55)]:
+    if _have(name):
+        SCALES[name] = (k, 'feet')
 # horse and rider: the horse as long as Šarac in mounted-run (Musa's black horse a fifth longer: he is the giant of the song)
 if _have('mounted-run'):
     RIDE_W = float(np.median([_width(c) for c in _cells('mounted-run')])) * SCALES['mounted-run'][0]

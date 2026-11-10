@@ -1,0 +1,120 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        221,
+        372,
+        290,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        228,
+        348,
+        284,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        226,
+        348,
+        285,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        220,
+        363,
+        291,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        229,
+        386,
+        282,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        226,
+        362,
+        286,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        223,
+        348,
+        288,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        223,
+        371,
+        289,
+        488
+      ],
+      "bottomY": 487,
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  ],
+  "loop": true,
+  "uniformScale": 0.7368421052631579,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

@@ -1,0 +1,111 @@
+{
+  "clips": 3,
+  "frames": 24,
+  "staticImages": 5,
+  "imagegenCalls": 9,
+  "results": [
+    {
+      "id": "plamen",
+      "frames": 8,
+      "cell": [
+        512,
+        512
+      ],
+      "loop": true,
+      "boundsMax": [
+        211,
+        300
+      ],
+      "atlas": "../animation-pack-04/assets/plamen/atlas.png",
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "plamen-mali",
+      "frames": 8,
+      "cell": [
+        512,
+        512
+      ],
+      "loop": true,
+      "boundsMax": [
+        71,
+        140
+      ],
+      "atlas": "../animation-pack-04/assets/plamen-mali/atlas.png",
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "eksplozija",
+      "frames": 8,
+      "cell": [
+        512,
+        512
+      ],
+      "loop": false,
+      "boundsMax": [
+        460,
+        385
+      ],
+      "atlas": "../animation-pack-04/assets/eksplozija/atlas.png",
+      "attempts": 2,
+      "verified": true
+    },
+    {
+      "id": "kosti-delovi",
+      "size": [
+        1536,
+        256
+      ],
+      "cells": 6,
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "krv-ekran-1",
+      "size": [
+        512,
+        512
+      ],
+      "alphaMax": 166,
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "krv-ekran-2",
+      "size": [
+        512,
+        512
+      ],
+      "alphaMax": 166,
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "krv-ekran-3",
+      "size": [
+        512,
+        512
+      ],
+      "alphaMax": 166,
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    },
+    {
+      "id": "krv-ekran-4",
+      "size": [
+        512,
+        512
+      ],
+      "alphaMax": 166,
+      "transparent": true,
+      "attempts": 1,
+      "verified": true
+    }
+  ]
+}

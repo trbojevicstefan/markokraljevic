@@ -2230,7 +2230,7 @@ function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0
 
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;o.frame=Math.min(n-1,Math.floor(phase*n));return o;}
 // dev only: open the game with ?dev to reach the pohodi from the console
-if(typeof location!=='undefined'&&/[?&]dev\b/.test(location.search))window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};
+if(typeof location!=='undefined'&&/[?&]dev\b/.test(location.search))window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},get fires(){return fires;},addFire,step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};
 
 // ---------- idle, dizziness, voice ----------
 const IDLE_SEQ=[0,6,5,7,5,6,0,1],IDLE_FPS=4,DIZZY_TIME=.9;
