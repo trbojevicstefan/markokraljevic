@@ -512,3 +512,51 @@ DOPUNA-30 ZAVRSENO: 6/6 klipova, 38 kadrova. Provera izvoza prosla. Ugradjeni im
 
 DOPUNA-30 ZAVRSENO: 6/6 klipova, 38 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna30.json, promptovi prompts-dopuna30.json, pregled art/animation-pack-04/preview-dopuna30.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; zum prema putnica-idle, ciljna visina odraslog 405px, oslonac (256,488); dva lika zajedno u oba klipa sirotinje.
 DOPUNA-30: tehnicki uklonjen magenta preliv na velu u oba klipa mlade, bez ponovnog generisanja; originalni izvozi sacuvani u sources/<klip>/before-veil-despill/. Atlas i GIF ponovo izvezeni, provera ponovljena uspesno.
+
+DOPUNA-31: pauza-logor.png — GOTOVO; art/world-pack-03/pauza-logor.png. 16 kadrova768x512, traka12288x512 na vrhu paketa; atlas/manifest/frame_layout/frames/preview.gif u art/animation-pack-04/assets/pauza-logor-16/. Prethodni klip8kad. sacuvan. Petlja12fps. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/pauza-logor/.
+
+DOPUNA-31: ram-kontrole.png — GOTOVO; art/world-pack-03/ram-kontrole.png. PNG RGBA1500x1000, providnost van siluete, prazan prostor za tekst; stil tamni orah/zlatni detalji, slikano mat. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/ram-kontrole/.
+
+DOPUNA-31: ram-podesavanja.png — GOTOVO; art/world-pack-03/ram-podesavanja.png. PNG RGBA900x1180, providnost van siluete, prazan prostor za tekst; stil tamni orah/zlatni detalji, slikano mat. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/ram-podesavanja/.
+
+DOPUNA-31: polje-izbor.png — GOTOVO; art/world-pack-03/polje-izbor.png. PNG RGBA640x72, providnost van siluete, prazan prostor za tekst; stil tamni orah/zlatni detalji, slikano mat. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/polje-izbor/.
+
+DOPUNA-31: klizac-staza.png — GOTOVO; art/world-pack-03/klizac-staza.png. PNG RGBA640x28, providnost van siluete, prazan prostor za tekst; stil tamni orah/zlatni detalji, slikano mat. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/klizac-staza/.
+
+DOPUNA-31: klizac-dugme.png — GOTOVO; art/world-pack-03/klizac-dugme.png. PNG RGBA48x48, providnost van siluete, prazan prostor za tekst; stil tamni orah/zlatni detalji, slikano mat. Ugradjeni image_gen, jedan pokusaj; prompts-dopuna31.json, izvor sources/dopuna31/klizac-dugme/.
+
+DOPUNA-31 ZAVRSENO: 6/6 fajlova, logor16kad768x512 (traka12288x512) +5 UI PNG. Dimenzije/providnost/manifest/atlas/GIF provereni. Jedan image_gen pokusaj po fajlu. Katalog catalog-dopuna31.json, preview-dopuna31-ui.jpg; animacija art/animation-pack-04/assets/pauza-logor-16/preview.gif. Stariji8kad. klip netaknut.
+
+DOPUNA-32: podrum-near — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-near.png; original premesten u art/world-pack-01/staro/podrum-near.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 80px near. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-near/.
+
+DOPUNA-32: podrum-near-night — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-near-night.png; original premesten u art/world-pack-01/staro/podrum-near-night.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 80px near. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-near-night/.
+
+DOPUNA-32: podrum-near-storm — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-near-storm.png; original premesten u art/world-pack-01/staro/podrum-near-storm.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 80px near. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-near-storm/.
+
+DOPUNA-32: podrum-mid — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-mid.png; original premesten u art/world-pack-01/staro/podrum-mid.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 48px mid. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-mid/.
+
+DOPUNA-32: podrum-mid-night — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-mid-night.png; original premesten u art/world-pack-01/staro/podrum-mid-night.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 48px mid. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-mid-night/.
+
+DOPUNA-32: podrum-mid-storm — GOTOVO; nov sloj2172x724 u art/world-pack-01/assets/podrum-mid-storm.png; original premesten u art/world-pack-01/staro/podrum-mid-storm.png (SHA256 potvrda); originalni providni otvori sacuvani. Bure cilj do 48px mid. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/podrum-mid-storm/.
+
+DOPUNA-32: podrum-mid-night dodatno korigovan centralni veliki sud na malo bure; prvi izvoz sacuvan u sources/dopuna32/podrum-mid-night/initial-export.png; izvorni original ostaje u world-pack-01/staro/.
+
+DOPUNA-32: PREGLED OSTALIH POHODA ? GOTOVO, 66 slojeva, samo spisak; bez izmena slika. Vizuelna procena, otvori/ograde u panorami uslovni nalazi; precizna potvrda zahteva njihovu razmeru pri prikazu u igri.
+DOPUNA-32 pregled: **klisura** — near (dan/noć/oluja): vrata građevina na oba boka i ograda visećeg mosta deluju sitno prema reperu Marko145px; mid: otvori naselja levo/desno još sitniji od repera87px. Nije uočeno preveliko bure ili polica.
+DOPUNA-32 pregled: **manastir** — near: portali manastira desno, naročito dan/noć, deluju premali za Marka145px ako su pristupačan prostor; mid: vrata unutar manastirskog kompleksa su minijaturna prema87px. Velika stabla i kule nisu sama po sebi greška razmere.
+DOPUNA-32 pregled: **mocvara** — near: otvori kuća/leva arkada i ograda drvenih prelaza zahtevaju proveru jer su niski prema145px; mid: mala vrata ruševina i kućica prema87px. Nema jasno prevelikog skladišnog predmeta.
+DOPUNA-32 pregled: **pecina** — near: burad ispred desnog rudničkog ulaza (dan, takođe noć/oluja) jesu kandidati za proveru granice80px; mid: burad u levim udubljenjima/objektima prema48px. Vrata kućica sitnija od velikih pećinskih otvora; ne smanjivati same pećinske svodove.
+DOPUNA-32 pregled: **prevoj** — near: otvori desne kule i mala vrata uz stazu deluju premali za145px; mid: vrata kuća i prolazi zidina prema87px. Kamenje, sneg i visina kula nemaju pouzdan problem razmere.
+DOPUNA-32 pregled: **reka** — near: vrata i prozori mlinova na levom/desnom boku, kao i niska ograda prelaza, deluju minijaturno prema145px; mid: vrata mlina levo i otvori mosta prema87px. Vodeni točak može biti velik i nije automatski nesrazmeran.
+DOPUNA-32 pregled: **rudnik** — near: rudarska kolica i burad uz šine, levo i desno, proveriti prema80px; mid: kolica ispred levog ulaza i burad uz desnu građevinu prema48px. Predmeti su ovde najjasniji kandidati za merenje; sami rudnički portali treba da ostanu viši od lika.
+DOPUNA-32 pregled: **rusevine** — near: mali niski lukovi u nizu uz drum levo/sredina deluju niži od145px; mid: niski arkadni prolazi i ulazi manjih zdanja prema87px. Veliki obrušeni svodovi i tornjevi mogu ostati veliki.
+DOPUNA-32 pregled: **selo** — near: vrata kuća na krajevima i seoske ograde duž puta deluju premali u odnosu na145px; mid: vrata i ograde sela ispod crkve prema87px. Nije uočen predmet koji bi trebalo smanjivati kao podrumsku burad.
+DOPUNA-32 pregled: **suma** — near: mala samostalna kamena vrata desno i vrata kuće deluju premali prema145px; mid: ulazi kuća levo/desno i niski luk mosta prema87px. Deblo i korenje smeju biti masivni; njih ne tretirati kao burad.
+DOPUNA-32 pregled: **tvrdjava** — near: bočni mali prolazi i palisadna ograda/šiljci pri dnu deluju sitno prema145px; mid: ulazi tvrđave i drvena ograda opsadnih položaja prema87px. Tornjevi, bedemi i veliki opsadni uređaji nisu automatski preveliki.
+
+DOPUNA-32: prop-kolci-glave — GOTOVO; PNG RGBA768x768, tamna udaljena silueta bez krvavih detalja, oslonac dole u sredini y743, art/world-pack-03/prop-kolci-glave.png. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/prop-kolci-glave/.
+DOPUNA-32: prop-kolac-nabijen — NIJE USPELO; image_gen HTTP400 moderation_blocked, safety_violations violence/self-harm (output moderation), request d18943ec-0212-4baf-b1db-b38178e17c00. PNG nije napravljen; prompt sacuvan u prompts-dopuna32.json. Nije limit kredita.
+
+DOPUNA-32: prop-kolci-red — GOTOVO; PNG RGBA1536x512, tamna udaljena silueta bez krvavih detalja, oslonac dole u sredini y487, art/world-pack-03/prop-kolci-red.png. Ugradjeni image_gen; prompts-dopuna32.json; izvor sources/dopuna32/prop-kolci-red/.
+
+DOPUNA-32 REZULTAT: 6/6 slojeva Podruma gotovo, originali u world-pack-01/staro/ potvrdaSHA256, providni otvori sacuvani. Pregled11pohoda/66slojeva samo spisak, njihove slike potvrdeno nepromenjene. Kolci2/3: prop-kolci-glave i prop-kolci-red gotovo; prop-kolac-nabijen odbio image_gen safety filter violence/self-harm. Katalog catalog-dopuna32.json; provere validation-dopuna32.json; pregledi preview-dopuna32-podrum.jpg i preview-dopuna32-kolci.jpg.

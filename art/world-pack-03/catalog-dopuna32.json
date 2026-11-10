@@ -1,0 +1,93 @@
+[
+  {
+    "id": "podrum-near",
+    "file": "art\\world-pack-01\\assets\\podrum-near.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-near.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "podrum-near-night",
+    "file": "art\\world-pack-01\\assets\\podrum-near-night.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-near-night.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "podrum-near-storm",
+    "file": "art\\world-pack-01\\assets\\podrum-near-storm.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-near-storm.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "podrum-mid",
+    "file": "art\\world-pack-01\\assets\\podrum-mid.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-mid.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "podrum-mid-night",
+    "file": "art\\world-pack-01\\assets\\podrum-mid-night.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-mid-night.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "podrum-mid-storm",
+    "file": "art\\world-pack-01\\assets\\podrum-mid-storm.png",
+    "size": [
+      2172,
+      724
+    ],
+    "original": "art\\world-pack-01\\staro\\podrum-mid-storm.png",
+    "originalTransparentPixelsPreserved": true,
+    "originalHashVerified": true
+  },
+  {
+    "id": "prop-kolci-glave",
+    "file": "prop-kolci-glave.png",
+    "size": [
+      768,
+      768
+    ],
+    "groundY": 743,
+    "transparent": true
+  },
+  {
+    "id": "prop-kolac-nabijen",
+    "status": "blocked",
+    "reason": "image_gen output moderation: violence/self-harm"
+  },
+  {
+    "id": "prop-kolci-red",
+    "file": "prop-kolci-red.png",
+    "size": [
+      1536,
+      512
+    ],
+    "groundY": 487,
+    "transparent": true
+  }
+]

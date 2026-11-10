@@ -1,0 +1,104 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "podrum-near",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-near.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING warm daylight/torch color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this near layer must be AT MOST 80 pixels high, only 11% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "podrum-near-night",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-near-night.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING cool blue NIGHT color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this near layer must be AT MOST 80 pixels high, only 11% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "podrum-near-storm",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-near-storm.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING wet blue-grey STORM color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this near layer must be AT MOST 80 pixels high, only 11% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "podrum-mid",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-mid.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING warm daylight/torch color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this mid layer must be AT MOST 48 pixels high, only 6.6% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "podrum-mid-night",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-mid-night.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING cool blue NIGHT color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this mid layer must be AT MOST 48 pixels high, only 6.6% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "podrum-mid-storm",
+      "kind": "layer",
+      "size": [
+        2172,
+        724
+      ],
+      "references": [
+        "art/world-pack-01/assets/podrum-mid-storm.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the supplied existing medieval Serbian WINE CELLAR game parallax layer. Preserve its EXACT composition, camera, framing, all stone/brick arches and columns, church/cupola features, wooden entrance framing, stairways, watercourse/reflections, roots, moss, torch placement and the EXISTING wet blue-grey STORM color palette and lighting. Preserve ALL existing transparent sky/central cutout areas, truly TRANSPARENT background; do NOT fill holes with black, sky or new scenery. Full canvas2172x724 (3:1ratio), same landscape as reference. Change ONLY oversized BARRELS and their WOODEN STORAGE SHELVES/RACKS. Critical true scale: Marko would be145px tall on this2172x724canvas (DO NOT DRAW HIM). Every single barrel in this mid layer must be AT MOST 48 pixels high, only 6.6% of canvas HEIGHT. That includes largest barrel at lower-left, barrels on floor at right and ALL barrels in wall alcoves. Shrink barrel bodies and staves/hoops anatomically uniformly, keep barrel clusters in their existing positions on same floor/alcove shelves, fill vacated area with matching existing stone wall/floor. Resize shelf/rack heights to realistic few small-barrel tiers, no towering storageprops. Near barrelcap80px; midcap48px, mid shelves/props0.6 near scale. Keep architectural doorways/arches TALLER than a145px near character, existing architecture otherwise UNCHANGED. No new objects/people/signage. Hand-painted detailed MATTE art, same linework as reference, no pixel art, no glossy new lighting. The result should look almost identical to reference except the barrels and their racks are visibly MUCH SMALLER. Do not rescale whole scene or architecture."
+    },
+    {
+      "id": "prop-kolci-glave",
+      "kind": "prop",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: historical-scene. ONE distant background game PROP for a medieval Serbian war scene, hand-painted MATTE dark subdued silhouettes, transparent background. Five or six tall rough sharpened wooden stakes planted at uneven angles in a SMALL LOW mound of earth, arranged as an ominous roadside warning. On each top a small severed ADULT head, readable only as a near-black silhouette with a few ragged hair shapes, no detailed face, no visible blood or wounds, NOT close-up. Two tiny black ravens perch/fly above. Somber historical atmosphere, not celebratory. Entire cluster isolated in768x768 with clean alpha around all objects, bottom-center ground anchor near(384,744). Muted charcoal/dark umber/brown-black as seen far away at dusk; NO actual painted sky/background/landscape/sun, no gore, no readable facial detail, no text. Full stakes fit canvas with modest margin."
+    },
+    {
+      "id": "prop-kolac-nabijen",
+      "kind": "prop",
+      "size": [
+        768,
+        768
+      ],
+      "prompt": "Use case: historical-scene. ONE DISTANT dark SILHOUETTE game background prop, somber medieval war aftermath. A single tall rough wooden impalement stake with the body of an ADULT MAN seen only far away as a near-black silhouette, head bowed onto chest, shoulders slumped, arms limp, simple ragged medieval tunic/trousers. Stake rises vertically, body suspended; small earthen ground mound centered at bottom. NO visible penetration/wound detail, NO blood, no close-up anatomy, no suffering facial detail. Readable restrained outline, matte hand-painted dark charcoal/umber muted dusk tones, not pixel art. Transparent768x768 background, bottom-center groundanchor(384,744), all top edges fit canvas. No sky/scene/fog/glow/shadows or text, no extra victims."
+    },
+    {
+      "id": "prop-kolci-red",
+      "kind": "prop",
+      "size": [
+        1536,
+        512
+      ],
+      "prompt": "Use case: historical-scene. ONE WIDE distant skyline SILHOUETTE background game prop,1536x512 true TRANSPARENT background. Low small hill crest runs horizontally near bottom, a distant row of around TEN rough tall wooden stakes of irregular heights and lean angles along it; some carry small hanging/impaled ADULT bodies and others small adult heads. All appear FAR AWAY as almost black simple silhouettes with NO anatomy details, blood, wounds or faces. Somber medieval war atrocity aftermath, restrained historical background, never celebratory. A few sparse grass tufts on hill, not a landscape. Matte painted charcoal/dark umber silhouettes matching evening environment, NO sky painted, NO glow/fog, NO text, not pixelated. Full row fits3:1 canvas, ground base anchored bottom-center around(768,492), stakes entirely within topmargin."
+    }
+  ]
+}
