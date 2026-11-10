@@ -516,15 +516,25 @@ function fireGun(G){const g=gunGeo(G),v=gunVel(G);G.balls.push({x:g.mx,y:g.my,vx
  for(let i=0;i<22;i++)particles.push({kind:'dust',x:g.mx+6,y:g.my,vx:60+Math.random()*220,vy:(Math.random()-.6)*120,life:1.3+Math.random(),max:2.2,r:5+Math.random()*9,color:['#8c877f','#a29c92','#6e6a64'][i%3]});
  burst(g.mx+8,g.my,'#ff9a3a',16,240);(sfx('cannon',{gain:1,rate:1.05,x:G.x})||sfx('boom',{gain:1,rate:.85,x:G.x}));shake=Math.max(shake,settings.reduced?0:7);rumble(.7,200);}
 function gunBall(G,b,dt){b.life-=dt;const py=b.y;b.vy+=GUN_G*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.rot+=b.vx*dt/BALL_R;if(Math.random()<dt*20)particles.push({kind:'dust',x:b.x,y:b.y,vx:-20,vy:-10,life:.5,max:.5,r:3+Math.random()*3,color:'#9a958c'});
- const hitFoe=world.enemies.find(e=>e.alive&&!e.champion&&Math.abs(e.x-b.x)<BALL_R+14&&b.y>e.y-110&&b.y<e.y);
+ // the ball goes on through whoever it meets and tears him apart; it bursts only where it strikes the ground
+ for(const e of world.enemies){if(!e.alive||Math.abs(e.x-b.x)>=BALL_R+14||b.y<=e.y-118||b.y>=e.y)continue;b.ids??=new Set();if(b.ids.has(e.id))continue;b.ids.add(e.id);sfx('hit_heavy',{gain:.8,x:e.x});
+  if(e.champion){e.hp-=140;e.flash=.2;e.stun=Math.max(e.stun||0,1);e.mode='stun';e.knock=(Math.sign(b.vx)||1)*24;label('ĐULE!',e.x,e.y-170,'#ffd2a0');if(e.hp<=0)slay(e,1);}
+  else{gib(e,Math.sign(b.vx)||1);b.kills=(b.kills||0)+1;b.vx*=.92;}}
+ for(const k of world.breakables||[])if(!k.broken&&!k.opened&&Math.abs(k.x-b.x)<BALL_R+30&&Math.abs(k.y-30-b.y)<50)hitCrate(k,9);
  const q=b.vy>0?surfaceBelow({x:b.x,y:b.y},py-BALL_R):null;
- if(hitFoe||(q&&b.y+BALL_R>=q.y)){gunBurst(G,b.x,hitFoe?b.y:q.y);b.life=0;}else if(b.y>(world.pitY||900)+200)b.life=0;}
-function gunBurst(G,x,y){let n=0;booms.push({x,y,t:0});for(const e of world.enemies){if(!e.alive||e.champion)continue;const dx=e.x-x,dy=(e.y-40)-y;if(Math.abs(dx)>140||Math.abs(dy)>150)continue;
-  if(Math.abs(dx)<70){gib(e,Math.sign(dx)||1);n++;continue;}e.hp=0;blood(e.x,e.y-60,Math.sign(dx)||1,34);slay(e,1.2);const c=corpses[corpses.length-1];if(c){c.vx=(Math.sign(dx)||1)*(260+Math.random()*380)*(1-Math.abs(dx)/200);c.vy=-(520+Math.random()*420);}n++;}
+ if(q&&b.y+BALL_R>=q.y){gunBurst(G,b.x,q.y,b.kills||0);b.life=0;}else if(b.y>(world.pitY||900)+200){G.kills=(G.kills||0)+(b.kills||0);b.life=0;}}
+// the blast throws everything away from where the ball struck: left, right and up, harder the nearer it was
+const BLAST_R=200;
+function blastAway(o,x,y,k,vxKey='vx',vyKey='vy'){const dx=o.x-x,s=Math.sign(dx)||(Math.random()<.5?-1:1);o[vxKey]=s*(220+560*k)*(.35+.65*Math.min(1,Math.abs(dx)/60))+(o[vxKey]||0)*.2;o[vyKey]=-(320+640*k);}
+function gunBurst(G,x,y,pre=0){let n=pre;booms.push({x,y,t:0});for(const e of world.enemies){if(!e.alive)continue;const dx=e.x-x,dy=(e.y-50)-y,d=Math.hypot(dx,dy*.8);if(d>BLAST_R)continue;const k=1-d/BLAST_R;
+  if(e.champion){e.hp-=Math.round(170*k);e.flash=.2;e.stun=Math.max(e.stun||0,.6+k);e.mode='stun';e.knock=(Math.sign(dx)||1)*50*k;if(e.hp<=0)slay(e,1);continue;}
+  if(d<60){gib(e,Math.sign(dx)||1);n++;continue;}e.hp=0;slay(e,1.2);const c=corpses[corpses.length-1];if(c){blastAway(c,x,y,k);c.spinV=(Math.sign(dx)||1)*(8+10*k);}n++;}
+ for(const c of corpses){if(c.headless||c.legless||c.crushed||c.type==='marko'||c.type==='musa'||Math.hypot(c.x-x,(c.y-30-y)*.8)>BLAST_R||c.t<.05)continue;const k=1-Math.hypot(c.x-x,(c.y-30-y)*.8)/BLAST_R;blastAway(c,x,y,k);c.y-=6;c.grounded=false;c.launched=true;c.landed=false;c.spinV=(Math.sign(c.x-x)||1)*(6+8*k);c.spinAngle=c.spinAngle||0;c.trail=0;}
+ for(const h of [...heads,...gibs]){const d=Math.hypot(h.x-x,(h.y-y)*.8);if(d>BLAST_R)continue;const k=1-d/BLAST_R;blastAway(h,x,y,k);h.rest=false;h.y-=4;h.vr=(Math.sign(h.x-x)||1)*(10+14*k);}
  for(const k of world.breakables||[])if(!k.broken&&!k.opened&&Math.abs(k.x-x)<120&&Math.abs(k.y-y)<120)hitCrate(k,9);
  for(let i=0;i<30;i++)particles.push({kind:'dust',x:x+(Math.random()-.5)*60,y:y-10,vx:(Math.random()-.5)*360,vy:-90-Math.random()*300,life:1.2+Math.random(),max:2.2,r:5+Math.random()*10,color:['#8c877f','#5e5a54','#7a6a50'][i%3]});
  burst(x,y-20,'#ff8a2a',30,380);dust(x,y,20,3);decals.push({x,y,r:26,t:0});sfx('boom',{gain:1,rate:.7,x});sfx('rock',{gain:.8,x});shake=Math.max(shake,settings.reduced?0:12);hitstop=Math.max(hitstop,n?.06:0);
- if(Math.abs(p.x-x)<110&&Math.abs(p.y-y)<120)hurtBy(20,Math.sign(p.x-x)||-1,-420);
+ if(Math.abs(p.x-x)<130&&Math.abs(p.y-y)<130){const k=1-Math.abs(p.x-x)/130;if(hurtBy(Math.round(12+12*k),Math.sign(p.x-x)||-1,-(320+300*k)))p.vx=(Math.sign(p.x-x)||-1)*(260+340*k);}
  if(n>=2)label(`${n} ODJEDNOM!`,x,y-140,'#ffd2a0');G.kills=(G.kills||0)+n;}
 // E at the gun takes it; true while Marko serves it (the gun has the keys then)
 function updateGunner(dt){
