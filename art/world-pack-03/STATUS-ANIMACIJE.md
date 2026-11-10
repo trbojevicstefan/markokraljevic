@@ -413,3 +413,83 @@ DOPUNA-26: lovac-aga-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/fra
 DOPUNA-26: lovac-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-death/. renderScale=1.0722, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna26.json, izvor sacuvan.
 
 DOPUNA-26 ZAVRSENO: 12/12 stavki, 11 klipova / 68 kadrova i orlovo-gnezdo.png 768x768. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna26.json, promptovi prompts-dopuna26.json, pregled art/animation-pack-04/preview-dopuna26.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; orao koristi centar tela (256,300), ljudi oslonac (256,488).
+
+DOPUNA-27: soko-let — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/soko-let/. renderScale=0.8156, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: soko-napad — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/soko-napad/. renderScale=0.8932, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: soko-voda — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/soko-voda/. renderScale=0.8211, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: soko-ranjen — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/soko-ranjen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-idle — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-idle — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-walk — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-walk/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-ferman — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-ferman/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-hurt/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: caus-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/caus-death/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: bacva-puna — GOTOVO; PNG RGBA768x768 na vrhu art/world-pack-03/, bacva vina na nogaru, providnost proverena. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: bacva-prolivena — GOTOVO; PNG RGBA768x768 na vrhu art/world-pack-03/, bacva vina na nogaru, providnost proverena. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-run/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-attack/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-ulje — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-ulje/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-zadihan — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-zadihan/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-hurt/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27: ognjeni-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-death/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna27.json, izvor sacuvan.
+
+DOPUNA-27 ZAVRSENO: 18/18 stavki, 16 klipova / 92 kadra i bacva-puna.png / bacva-prolivena.png 768x768. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna27.json, promptovi prompts-dopuna27.json, pregled art/animation-pack-04/preview-dopuna27.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; soko u letu koristi centar tela (256,300), ljudi oslonac (256,488).
+
+DOPUNA-28: hasan-aga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-idle/. renderScale=1.0359, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-run/. renderScale=1.0020, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-attack/. renderScale=1.0381, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-zalet — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-zalet/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-zaglavljen — GOTOVO; 4kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-zaglavljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-hurt/. renderScale=1.0062, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: hasan-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-death/. renderScale=1.0515, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-idle/. renderScale=1.0403, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-run/. renderScale=1.0208, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-attack/. renderScale=1.0208, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-poziv — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-poziv/. renderScale=1.0889, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-hurt/. renderScale=1.0041, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: bajraktar-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-death/. renderScale=1.0722, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-idle/. renderScale=1.0381, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-run/. renderScale=1.0145, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-attack/. renderScale=1.0103, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-skok — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-skok/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-hurt/. renderScale=1.0145, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28: janicarski-aga-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-death/. renderScale=1.0208, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, jedan pokusaj; prompt prompts-dopuna28.json, izvor sacuvan.
+
+DOPUNA-28 ZAVRSENO: 19/19 klipova, 112 kadrova. Provera izvoza prosla. Ugradjeni image_gen, jedan pokusaj po stavci. Katalog catalog-dopuna28.json, promptovi prompts-dopuna28.json, pregled art/animation-pack-04/preview-dopuna28.png. Pri integraciji primeniti manifest.renderScale oko renderAnchor; sva tri bosa koriste oslonac (256,488) i ciljnu visinu 490px.

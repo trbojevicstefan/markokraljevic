@@ -1,0 +1,211 @@
+[
+  {
+    "id": "hasan-aga-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-idle",
+    "renderScale": 1.0359408033826638,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-run",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-run",
+    "renderScale": 1.0020449897750512,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-attack",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-attack",
+    "renderScale": 1.0381355932203389,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-zalet",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-zalet",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-zaglavljen",
+    "frames": 4,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-zaglavljen",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-hurt",
+    "renderScale": 1.0061601642710472,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "hasan-aga-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\hasan-aga-death",
+    "renderScale": 1.0515021459227467,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-idle",
+    "renderScale": 1.040339702760085,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-run",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-run",
+    "renderScale": 1.0208333333333333,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-attack",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-attack",
+    "renderScale": 1.0208333333333333,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-poziv",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-poziv",
+    "renderScale": 1.0888888888888888,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-hurt",
+    "renderScale": 1.0040983606557377,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "bajraktar-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\bajraktar-death",
+    "renderScale": 1.0722100656455142,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-idle",
+    "frames": 6,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-idle",
+    "renderScale": 1.0381355932203389,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-run",
+    "frames": 8,
+    "loop": true,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-run",
+    "renderScale": 1.0144927536231885,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-attack",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-attack",
+    "renderScale": 1.0103092783505154,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-skok",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-skok",
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-hurt",
+    "frames": 4,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-hurt",
+    "renderScale": 1.0144927536231885,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "id": "janicarski-aga-death",
+    "frames": 6,
+    "loop": false,
+    "path": "art\\animation-pack-04\\assets\\janicarski-aga-death",
+    "renderScale": 1.0208333333333333,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

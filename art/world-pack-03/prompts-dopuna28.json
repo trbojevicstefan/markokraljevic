@@ -1,0 +1,290 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "hasan-aga-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Six breathing phases: heavy wide stance, round shield FORWARD covering chest, mace low by right hip; inhale chest rises/exhale lowers, armor straps settle, slow head motion. Loop closes naturally.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-run",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 3 COLUMNS x 3 ROWS of equal SQUARE cells, row-major. FIRST 8 cells actual animation. Cell 9 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Eight distinct heavy RUN phases: left contact,compression,passing,flight,right contact,compression,passing,flight. Armor plates shift, knees bend, alternating feet real running, shield forward, mace by hip. No hopping static pose.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-attack",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 ready,2 draws MACE behind/up,3 raises mace ABOVE HELMET winding shoulder,4 IMPACT powerful OVERHEAD DOWNWARD MACE blow in front,5 low followthrough bent knees,6 recovery. Shield braces left. Entire raised mace fits cell, no painted impact effects.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-zalet",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Six continuous RAM CHARGE strides: head lowered FAR forward behind shield, back nearly horizontal, round shield held vertical directly AHEAD, mace trailing behind. Alternate forceful bent-knee running feet/contact-push-flight oppositefeet. No actual wall or targets.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-zaglavljen",
+      "kind": "human",
+      "frames": 4,
+      "loop": true,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 3 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 4 cells actual animation. Cell 5 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Four DAZED STUCK poses: deeply bent forward, round shield pressed rigidly FORWARD against an INVISIBLE wall, head lowered. Shake helmet/head left then right, stunned expression, shoulders wobble. NO wall painted, NO floating stars or scenery. Mace droops in right hand. Loop.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 3 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 4 cells actual animation. Cell 5 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 torso recoils struck,2 folds forward in pain,3 staggers knees buckle shieldlow,4 unsteady recovery. Same shield/mace/helmet remain, no blood.",
+      "fps": 12
+    },
+    {
+      "id": "hasan-aga-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. HASAN AGA heavy Ottoman armored boss: broad stocky older man with GREY BEARD, thick LAMELLAR steel plate armor over dark rust kaftan, pointed STEEL HELMET with CHAINMAIL neck aventail, ROUND STEEL SHIELD in LEFT hand, short iron MACE in RIGHT hand. Very heavy armored silhouette. No sword, no fabric white hat. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 forward stagger,2 knees buckle helmet starts slipping,3 falls FACE FORWARD toward RIGHT,4 chest/face hits floor helmet flies forward,5 prone FACE DOWN round shield aside,6 motionless FACE DOWN helmet separately rolled to right, mace on floor. NOT backward fall, keep same body size.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Six subtle breathing phases upright proud stance BEHIND enormous rectangular shield, head above top edge, sabre low peeking on right. Shield stays steady as chest breathes and cloth settles. No extra figures.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-run",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 3 COLUMNS x 3 ROWS of equal SQUARE cells, row-major. FIRST 8 cells actual animation. Cell 9 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Eight real running phases with alternating contact/compression/passing/flight then opposite foot. Carries rectangular shield left forward and sabre right low. Green coat tails follow motion, knees bend, NOT bouncing static feet.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-attack",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 ready behind shield,2 SHIELD BASH thrusts large rectangular shield forward,3 shield retracts and right sabre winds back,4 IMPACT sabre slashes fully forward,5 followthrough low,6 guard recovery. Clearly shield-then-sabre combo, no extra sword/shield, no target.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-poziv",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 ready,2 lifts right SABRE,3 sabre HIGH above head,4 opens mouth WIDE shouting rally,5 emphatic shout chest thrust and raisedblade,6 lowers towardguard. Rectangular shield retained left. No actual allies, no lettering, fullraisedweapon within cell.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 3 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 4 cells actual animation. Cell 5 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 hit recoil chest backward,2 bends painful with shield dropped low,3 staggers,4 unsteadyguard. Retains sabre/shield, hat askew, no blood.",
+      "fps": 12
+    },
+    {
+      "id": "bajraktar-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. BAJRAKTAR proud loud Ottoman boss: burly black-moustached man, GREEN DOLAMA coat, broad RED SASH, TALL WHITE CAP, enormous RECTANGULAR WOODEN SHIELD with IRON edging/bands in LEFT hand, short curved SABRE in RIGHT hand. Clearly rectangular shield, NOT round. No flag needed. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 reels back,2 knees buckle shield slips,3 falls backwards rectangular shield detaches,4 lands on back shield airborne beside,5 body settles shield topples,6 fully prone ON BACK shield flat separately on floor and sabre loose. Maintain actual anatomy scale.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-idle",
+      "kind": "human",
+      "frames": 6,
+      "loop": true,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/sources/dopuna25-reference/sword-idle.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Six poised breathing frames standing alert, TWO SABRES CROSSED LOW in front of thighs. Chest breathing, subtle wrist and cloth motion, same crossed low weapons, LOOP.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-run",
+      "kind": "human",
+      "frames": 8,
+      "loop": true,
+      "cols": 3,
+      "rows": 3,
+      "calibrationFrame": 8,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 3 COLUMNS x 3 ROWS of equal SQUARE cells, row-major. FIRST 8 cells actual animation. Cell 9 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. Eight quick RUN phases alternating left/right contact,compression,passing,flight. TWO curved sabres held close along body without crossing legs. Real leg articulation, agile forward lean, hat flap follows through.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-attack",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 low crossed sabres,2 arms separate windup,3 first diagonal slash begins,4 IMPACT DOUBLE SABRE CUT both blades extended in opposing crossing diagonals,5 broad followthrough arms apart,6 low crossed recovery. Exactly TWO arms and TWO sabres, no extra weapons or trails.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-skok",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 deep crouch PRELOAD,2 explosive takeoff bent knees and blades rising,3 APEX legs tucked BOTH sabres HIGH overhead,4 descending BOTH sabres cutting DOWN,5 LANDING on both feet deep knee compression blades low in front,6 rises guard. Poses alone, engine supplies airborne trajectory; no ground scene. Landing EVENT frame5.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-hurt",
+      "kind": "human",
+      "frames": 4,
+      "loop": false,
+      "cols": 3,
+      "rows": 2,
+      "calibrationFrame": 4,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 3 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 4 cells actual animation. Cell 5 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 struck sharp chest recoil,2 bends forward,3 staggers onefoot back both sabres droop,4 unsteady recovery. Both blades retained, exactly two hands.",
+      "fps": 12
+    },
+    {
+      "id": "janicarski-aga-death",
+      "kind": "human",
+      "frames": 6,
+      "loop": false,
+      "cols": 4,
+      "rows": 2,
+      "calibrationFrame": 6,
+      "targetHeight": 490,
+      "references": [
+        "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production hand-painted MATTE medieval 2D game animation sheet matching reference painting, textured warm cel shading, NO gloss/glow. Pure flat #FF00FF MAGENTA background, no magenta clothing. NO white gridlines/borders, numbers, text, scenery or floor shadows. Right-facing full figure with ALL weapons and detached props entirely inside its OWN square cell, generous 25px empty gutters, nothing crossing cells. Exactly same anatomical body/head size across poses, NEVER enlarge bent or fallen figures. Cells will export512x512, feet baseliney487. JANISSARY AGA agile athletic Ottoman boss: tall WHITE BORK JANISSARY HAT with white rear flap and prominent golden SPOON ornament FRONT, deep BLUE DOLAMAN with GOLD BRAID fastenings, broad RED SASH, leather boots, TWO curved SABRES exactly ONE in EACH HAND. Stern black moustache, short dark beard. Not a turban or pointed helmet, NOT one sword. EXACT 4 COLUMNS x 2 ROWS of equal SQUARE cells, row-major. FIRST 6 cells actual animation. Cell 7 neutral UPRIGHT STANDING scale-calibration with same costume/weapons, NOT used in clip. All remaining cells EMPTY MAGENTA. 1 backward recoil,2 knees buckle sabres loosen,3 falls BACKWARDS both sabres slip free,4 back contacts ground two separate blades tumble,5 settles,6 fully prone ON BACK, TWO sabres separately on ground one eachside. No blood, same anatomical scale.",
+      "fps": 12
+    }
+  ]
+}
