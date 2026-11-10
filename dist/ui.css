@@ -625,6 +625,9 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
  white-space:nowrap;border-style:solid;border-width:0 30px;border-image:url(assets/world/dugme-ploca.webp) 0 110 fill/0 38px stretch;transition:transform .12s,color .12s;animation:pauzaDugme .45s cubic-bezier(.2,.8,.2,1) both}
 .pauza-dugmad button.pad-focus,.pauza-dugmad button:focus-visible{outline:none!important;box-shadow:none!important;background:none!important;filter:none!important}
 .pauza-dugmad button:hover,.pauza-dugmad button:focus-visible,.pauza-dugmad button.pad-focus{border-image-source:url(assets/world/dugme-ploca-aktivno.webp);color:#fff4d6;transform:scale(1.035)}
+/* the buttons also carry .primary/.secondary, whose hover paints a teal box and an inset frame around the carved plate;
+   here only the plate changes, with a warm glow that follows its own outline */
+.pauza-dugmad button:not(.text-button):hover,.pauza-dugmad button:not(.text-button):focus-visible,.pauza-dugmad button:not(.text-button).pad-focus{background:none!important;box-shadow:none!important;outline:none!important;filter:drop-shadow(0 0 7px #e8b45a59)!important}
 .pauza-dugmad button.text-button{border:0;border-image:none;height:26px;font-size:15px;color:#d8c79d;opacity:.9}
 .pauza-dugmad button.text-button:hover,.pauza-dugmad button.text-button:focus-visible{color:#fff4d6;transform:none;text-decoration:underline}
 .pauza-dugmad button:nth-child(1){animation-delay:.18s}.pauza-dugmad button:nth-child(2){animation-delay:.23s}.pauza-dugmad button:nth-child(3){animation-delay:.28s}
