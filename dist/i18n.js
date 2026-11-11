@@ -727,7 +727,7 @@ const EN_PAIRS=[
 ["Juriš","Charge"],["SHIFT pa J","SHIFT then J"],["Iz koluta jurni napred kroz red neprijatelja.","Burst out of a roll and charge through a line of foes."],
 // ---- greybox (?greybox): sive sobe za proveru pokreta ----
 ["Vilin trag još nije tvoj.","The Fairy's Mark is not yours yet."],["Greybox: sive sobe, samo pokreti. Marko još nema krilo, juriš ni Vilin trag; svaka moć čeka u svojoj sobi. Mapa je gore desno.","Greybox: grey rooms, movement only. Marko has no Falcon's Wing, Air Dash or Fairy's Mark yet; each power waits in its own room. The map is at the top right."],
-["GREYBOX · SIVE SOBE","GREYBOX · GREY ROOMS"],["Pronađi tri moći i pobedi čuvara","Find the three powers and defeat the guardian"],["ČEKPOINT","CHECKPOINT"],["TAJNA","SECRET"],["Tajna soba!","A secret room!"],
+["GREYBOX · SIVE SOBE","GREYBOX · GREY ROOMS"],["Pronađi tri moći i pobedi čuvara","Find the three powers and defeat the guardian"],["ČEKPOINT","CHECKPOINT"],["TAJNA","SECRET"],["Tajna soba!","A secret room!"],["PODGRAĐE POD MARKOVIM KULAMA","BELOW MARKO'S TOWERS"],
 // ---- lost-crown-pokreti: Sokolovo krilo, juriš u vazduhu, Vilin trag, sigurno tlo ----
 ["Sokolovo krilo","Falcon's Wing"],["u skoku SPACE","mid-jump SPACE"],["Još jedan skok u vazduhu, jednom po letu. Tlo, zid i ivica ga vraćaju.","One more jump in mid-air, once per flight. The ground, a wall or a ledge gives it back."],
 ["Juriš u vazduhu","Air Dash"],["u skoku SHIFT","mid-jump SHIFT"],["Kratak nalet pravo napred: ne padaš i ništa te ne dotiče. Jednom po letu.","A short burst straight ahead: you do not fall and nothing can touch you. Once per flight."],
