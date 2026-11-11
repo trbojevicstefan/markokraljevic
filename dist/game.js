@@ -503,7 +503,7 @@ const HVAT=['KeyJ','KeyK','Space','ShiftLeft'],HVAT_NAME={KeyJ:['J','X'],KeyK:['
 const GRAPPLE={champ:{rate:6,clip:'kostac-stoji',text:'U KOŠTAC'},ledja:{rate:6,clip:'kostac-janicar',text:'SKOČIO TI JE NA LEĐA'},janicar:{rate:6,clip:'kostac-janicar',text:'NOŽ IZNAD GRLA'},oklopnik:{rate:7,clip:'kostac-oklopnik',text:'DAVI TE'},pas:{rate:5,clip:'kostac-pas',text:'PAS TE UJEDA'}};
 function startGrapple(e,kind){if(grapple||grappleCool>0||level===undefined||horseMounted||p.pinned||!e.alive||e.champion||(!level&&zone===5))return false;
  grapple={e,kind,t:0,m:.22,end:0,s:Math.sign(e.x-p.x)||1};e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});
- e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(GRAPPLE[kind].text,p.x,p.y-170,'#ff9a8a');say('hurt',{priority:3});return true;}
+ e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(GRAPPLE[kind].text,p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});return true;}
 function updateGrapple(dt){grappleCool=Math.max(0,grappleCool-dt);
  // knocked down near a janissary: he may jump on Marko with his knife
  if(!grapple&&p.down>0&&!p.downRolled){p.downRolled=true;const e=world.enemies.filter(e=>e.alive&&e.zone===zone&&!e.champion&&(e.type==='sword'||e.type==='kopljanik')&&Math.abs(e.x-p.x)<150&&Math.abs(e.y-p.y)<40).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];if(e&&Math.random()<.65)startGrapple(e,'janicar');}
@@ -514,9 +514,9 @@ function updateGrapple(dt){grappleCool=Math.max(0,grappleCool-dt);
  if(G.end>0){G.end-=dt;if(G.end<=0){p.pinned=false;p.down=.3;p.invuln=Math.max(p.invuln,.8);e.grappling=false;e.x=p.x+G.s*110;e.stun=2.4;e.mode='stun';e.knock=G.s*20;if(G.champ)champAfterGrapple(G,true);else{e.hp-=25;label('KONTRA',e.x,e.y-150,'#ffe39a');}if(e.hp<=0)slay(e,.8);grapple=null;grappleCool=13;}return true;}
  if(!G.key){const ks=HVAT.filter(k=>k!==G.last);G.key=G.last=ks[Math.floor(Math.random()*ks.length)];G.kt=0;}G.kt+=dt;G.lock=Math.max(0,(G.lock||0)-dt);G.miss=Math.max(0,(G.miss||0)-dt);
  const hk=HVAT.find(k=>pressed.has(k));
- if(hk&&G.lock<=0){if(hk===G.key){G.m+=G.champ?.27:.34;G.shake=.22;G.key=null;sfx('hit_heavy',{gain:.7,rate:1.1});sfx('cloth',{gain:.6,rate:1.2});shake=settings.reduced?0:5;rumble(.5,120);if(G.m<1)label('HVAT!',p.x,p.y-300,'#ffe39a');}
-  else{G.m=Math.max(0,G.m-.12);G.lock=.35;G.miss=.35;sfx('clang',{gain:.5});label('PROMAŠEN HVAT',p.x,p.y-300,'#ff9a8a');}}
- else if(G.kt>hvatTime()){G.key=null;G.m=Math.max(0,G.m-.1);G.miss=.35;p.hp-=4*(D().dmg||1);shake=settings.reduced?0:4;sfx('cloth',{gain:.8,rate:.8});label('STEŽE TE',p.x,p.y-300,'#ff9a8a');}
+ if(hk&&G.lock<=0){if(hk===G.key){G.m+=G.champ?.27:.34;G.shake=.22;G.key=null;sfx('hit_heavy',{gain:.7,rate:1.1});sfx('cloth',{gain:.6,rate:1.2});shake=settings.reduced?0:5;rumble(.5,120);if(G.m<1)label('HVAT!',p.x,p.y-245,'#ffe39a');}
+  else{G.m=Math.max(0,G.m-.12);G.lock=.35;G.miss=.35;sfx('clang',{gain:.5});label('PROMAŠEN HVAT',p.x,p.y-245,'#ff9a8a');}}
+ else if(G.kt>hvatTime()){G.key=null;G.m=Math.max(0,G.m-.1);G.miss=.35;p.hp-=4*(D().dmg||1);shake=settings.reduced?0:4;sfx('cloth',{gain:.8,rate:.8});label('STEŽE TE',p.x,p.y-245,'#ff9a8a');}
  p.hvat=G.key;
  G.m=clamp(G.m-dt*.04,0,1);G.shake=Math.max(0,(G.shake||0)-dt);p.hp-=GRAPPLE[G.kind].rate*.55*dt*(D().dmg||1);if(p.hp<=0){p.pinned=false;e.grappling=false;e.x=p.x+G.s*70;grapple=null;die();return true;}
  if(G.m>=1){G.end=.6;say('atk',{priority:3});sfx('hit_heavy',{gain:.9});shake=settings.reduced?0:7;label('OSLOBODIO SE!',p.x,p.y-170,'#bfffe5');return true;}
@@ -527,9 +527,9 @@ function drawGrapple(){const G=grapple;if(!G)return;const e=G.e,I=GRAPPLE[G.kind
  if(G.end>0&&rig?.[endClip]){const n=rig[endClip].frames.length;rigDraw(endClip,Math.min(n-1,Math.floor((1-G.end/.6)*n)),x,y,G.s,{});}
  else if(rig?.[I.clip]){const n=rig[I.clip].frames.length;rigDraw(I.clip,Math.floor(time*(G.shake>0?14:8))%n,x,y,G.s,{});}
  else{const lie=rig?.['marko-knockdown'];if(lie)rigDraw('marko-knockdown',lie.frames.length-1,x-G.s*10,y,-G.s,{});const atk=rig?.[e.type+'-attack']?e.type+'-attack':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type;rigDraw(atk,1,x+G.s*14,y,-G.s,{dy:10,rot:-G.s*.25,scale:e.scale||1});}
- if(G.end<=0){const bx=x-50,by=y-175;ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(bx-2,by-2,104,12);ctx.fillStyle=G.m>.6?'#8dffa8':'#ffcf6a';ctx.fillRect(bx,by,100*Math.min(1,G.m),8);drawHvat(G,x,by);}}
-function drawHvat(G,x,by){textLabel('OTMI SE',x,by-14,{font:'bold 13px Georgia',color:'#fff3e0',glow:'#c0301a'});if(!G.key)return;
- const nm=HVAT_NAME[G.key][padIndex!=null?1:0],left=clamp(1-G.kt/hvatTime(),0,1),cy=by-64,r=nm.length>1?31:25,bad=G.miss>0||G.lock>0;
+ if(G.end<=0){const bx=x-50,by=y-138;ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(bx-2,by-2,104,12);ctx.fillStyle=G.m>.6?'#8dffa8':'#ffcf6a';ctx.fillRect(bx,by,100*Math.min(1,G.m),8);drawHvat(G,x,by);}}
+function drawHvat(G,x,by){if(!G.key){textLabel('OTMI SE',x,by-14,{font:'bold 13px Georgia',color:'#fff3e0',glow:'#c0301a'});return;}
+ const nm=HVAT_NAME[G.key][padIndex!=null?1:0],left=clamp(1-G.kt/hvatTime(),0,1),cy=by-46,r=nm.length>1?31:25,bad=G.miss>0||G.lock>0;
  ctx.save();ctx.beginPath();ctx.arc(x,cy,r,0,Math.PI*2);ctx.fillStyle=bad?'rgba(120,20,14,.92)':'rgba(24,18,12,.92)';ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#5a4a34';ctx.stroke();
  ctx.beginPath();ctx.arc(x,cy,r+6,-Math.PI/2,-Math.PI/2+Math.PI*2*left);ctx.lineWidth=5;ctx.strokeStyle=left<.3?'#ff6a4a':'#ffe39a';ctx.stroke();
  ctx.fillStyle='#fff3e0';ctx.font=`bold ${nm.length>1?15:27}px Georgia`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(nm,x,cy+1);ctx.restore();}
@@ -2238,8 +2238,8 @@ function updateLov(dt){const L=lov;if(!L)return false;L.t+=dt;p.invuln=Math.max(
   speak('„Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.',8);}
  return true;}
 function drawLov(){const L=lov;if(!L)return;
- for(const u of L.utve){const f=Math.sin(u.t*16),s=u.vx>=0?1:-1;ctx.save();ctx.translate(u.x,u.y);ctx.scale(s,1);poly([[-16,2],[-4,-5],[14,-3],[22,-8],[16,3],[-2,8]],'#c9922e','#5a3c12');poly([[-2,-3],[6,-3],[-6,-3-18*Math.max(.15,f)],[-14,-3-12*Math.max(.15,f)]],'#f2c14e','#7a5418');ellipse(19,-8,5,4,'#2f5a3a');poly([[23,-8],[30,-6],[23,-5]],'#e8a020');ctx.restore();halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);}
- const R=L.rival;if(R){const n=R.state==='nalet'&&rig?.['orao-obrusavanje']?'orao-obrusavanje':'orao-let';if(rig?.[n])oraoDraw(n,R.state==='nalet'?2:Math.floor(time*12)%rig[n].frames.length,R.x,R.y,R.face,.62);
+ for(const u of L.utve){const f=Math.sin(u.t*16),s=u.vx>=0?1:-1,U=rig?.['utva-let'];if(U){oraoDraw('utva-let',Math.floor(u.t*12)%U.frames.length,u.x,u.y,s,1);halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);continue;}ctx.save();ctx.translate(u.x,u.y);ctx.scale(s,1);poly([[-16,2],[-4,-5],[14,-3],[22,-8],[16,3],[-2,8]],'#c9922e','#5a3c12');poly([[-2,-3],[6,-3],[-6,-3-18*Math.max(.15,f)],[-14,-3-12*Math.max(.15,f)]],'#f2c14e','#7a5418');ellipse(19,-8,5,4,'#2f5a3a');poly([[23,-8],[30,-6],[23,-5]],'#e8a020');ctx.restore();halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);}
+ const R=L.rival;if(R){const V=rig?.['soko-vezirov-let'],n=V?'soko-vezirov-let':R.state==='nalet'&&rig?.['orao-obrusavanje']?'orao-obrusavanje':'orao-let';if(rig?.[n])oraoDraw(n,!V&&R.state==='nalet'?2:Math.floor(time*(R.state==='nalet'?18:12))%rig[n].frames.length,R.x,R.y,R.face,V?1:.62);
   if(R.state==='dolazi'&&R.t<1)textLabel('!! VEZIREV SOKO',R.x,R.y-60,{font:'bold 14px Georgia',color:'#ffb09a',glow:'#a03020'});if(R.state==='umoran')halo(R.x,R.y,40,'rgba(190,255,220,.4)',.6+.3*Math.sin(time*9));}
  const n=L.phase==='pad'||L.phase==='kraj'?(rig?.['soko-ranjen']?'soko-ranjen':'soko-let'):L.dive>0&&rig?.['soko-napad']?'soko-napad':'soko-let';
  if(rig?.[n]){const fr=n==='soko-napad'?Math.min(2,Math.floor((1-L.dive/.38)*3)):Math.floor(time*(n==='soko-ranjen'?6:14))%rig[n].frames.length;if(n==='soko-ranjen')rigDraw(n,fr,L.x,L.y+30,L.face,{rot:L.phase==='pad'?L.face*Math.min(1,L.t)*.9:0});else oraoDraw(n,fr,L.x,L.y,L.face,1);}
@@ -2554,7 +2554,7 @@ function champGrabStep(e,dt){if(!GRAB[e.kit]||e.grabCD==null||(e.kit==='beg'&&e.
  return false;}
 function champPin(e){if(horseMounted||p.pinned)return false;const s=Math.sign(e.x-p.x)||1;
  grapple={e,kind:'champ',champ:true,t:0,m:.2,end:0,s};e.gs=null;e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});
- e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,24,2.4);shake=settings.reduced?0:10;rumble(.9,300);slowMo=Math.max(slowMo,.35);label(GRAB[e.kit]||'U KOŠTAC',p.x,p.y-180,'#ff9a8a');say('hurt',{priority:3});toast('U koštac! Otimaj se: J J J',2.4);return true;}
+ e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,24,2.4);shake=settings.reduced?0:10;rumble(.9,300);slowMo=Math.max(slowMo,.35);label(GRAB[e.kit]||'U KOŠTAC',p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});toast('U koštac! Uzmi hvat koji se pokaže.',2.4);return true;}
 function champAfterGrapple(G,won){const e=G.e;e.gs=null;e.grabCD=e.p3?11:15;
  if(won){e.hp=Math.max(1,e.hp-e.maxHp*.07);e.guardBroken=2.6;e.kitOpen=Math.max(e.kitOpen||0,2.6);e.stun=2.6;e.mode='stun';label('ZBACIO SI GA!',e.x,e.y-190,'#ffe39a');p.rage=Math.min(100,p.rage+30);}
  else{p.vx=-G.s*520;p.vy=-520;p.grounded=false;label('TRESNUO TE O ZEMLJU',p.x,p.y-170,'#ffb09a');shake=settings.reduced?0:10;}}
@@ -3639,7 +3639,7 @@ async function novoGo(n){const lv=id=>LEVELS.findIndex(L=>L.id===id),trap=k=>(wo
  at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,hp:p.maxHp});camera=Math.max(0,x-VIEW_W*.4);camFocus=y;},
  go=async id=>{for(const L of LEVELS)storySeen.add('pohod-'+L.id);if(n!=='let')storySeen.add('lov');await startLevel(lv(id));await wait(250);$('dialogue').hidden=true;};
  if(n==='megdan'){await go('selo');const c=champ();at(c.arena.x0+120,c.y);speak('Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.',10);return;}
- if(n==='kostac'){await go('selo');const c=champ();at(c.arena.x0+120,c.y);c.hp=c.maxHp*.52;speak('Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili se otimaj: J J J.',9);return;}
+ if(n==='kostac'){await go('selo');const c=champ();at(c.arena.x0+120,c.y);c.hp=c.maxHp*.52;speak('Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili u koštacu uzimaj hvat koji se pokaže, pre nego što mu prsten istekne.',9);return;}
  if(n==='trgovac'){await go('selo');const t=trap('trgovac');at(t.x-220,t.y);setBank(bank()+100);speak('Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.',9);return;}
  if(n==='presuda'){await go('manastir');const g=world.goals.find(g=>g.kind==='take');at(g.x-260,g.y);speak('Uzmi carsku knjigu ispred sebe. Onda presudi, kao u pesmi: na kome je carstvo?',7);return;}
  if(n==='strela'){await go('oranje');const t=trap('strela');at(t.x-200,t.y);speak('Alil-aga stoji na drumu. Priđi, pritisni E i nadstreli ga: J kad je tetiva najzategnutija.',7);return;}

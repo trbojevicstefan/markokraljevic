@@ -6,6 +6,8 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["U koštac! Uzmi hvat koji se pokaže.", "Hand to hand! Take the hold that is shown."],
+["Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili u koštacu uzimaj hvat koji se pokaže, pre nego što mu prsten istekne.", "A few more blows and the second act begins: the champion will throw you back, then rush in to grab you. Slip away, or in the grapple take the hold that is shown before its ring runs out."],
 ["Poranio Marko u nedelju, pre jarkog sunca, pokraj mora, Urvinom planinom. Šarac mu poče posrtati i suze roniti. „Davor, Šaro, sto i šezdeset ljeta još mi nigda posrnuo nisi. Neka Bog zna, dobro biti neće.”", "Marko rose early on a Sunday, before the bright sun, by the sea, along Mount Urvina. Šarac began to stumble and to shed tears. \"Come, Šarac, in a hundred and sixty years you have never once stumbled under me. God knows, no good will come of it.\""],
 ["Kliče vila sa Urvine: „Kad budeš navrh planine, opazićeš dve tanke jele, a među njima bunar. Nad vodom ćeš lice ogledati, pak ćeš videti kad ćeš umreti.”", "The vila calls from Urvina: \"When you reach the top of the mountain, you will see two slender firs and a well between them. Over the water you will see your face, and you will see when you are to die.\""],
 ["Posluša Marko vilu, pa okrenu Šarca uz Urvinu. Pokraj mora, pre jarkog sunca, jaše navrh planine, do dve tanke jele.", "Marko heeded the vila and turned Šarac up Urvina. By the sea, before the bright sun, he rides to the top of the mountain, to the two slender firs."],
