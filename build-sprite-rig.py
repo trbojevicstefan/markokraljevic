@@ -385,6 +385,22 @@ for name, ref in [('marko-tiho', 'marko-idle-2'), ('marko-brutal', 'marko-idle-2
     if _have(name) and ref in SCALES:
         SCALES[name] = (SCALES[ref][0], 'feet')
 
+# DOPUNA-42 and 43: Marko at rest, in chains and in the standing grapple at his own zoom; the merchant at his stall at his
+# travelling zoom; the golden duck and the vizier's falcon like soko-let; Janja and Novak by their idle body height.
+for name, ref in [('marko-pocinak', 'marko-idle-2'), ('marko-okovan', 'marko-walk'), ('kostac-stoji', 'marko-idle-2'),
+                  ('kostac-stoji-kraj', 'marko-idle-2'), ('trgovac-tezga-idle', 'putnik-trgovac-idle')]:
+    if _have(name) and ref in SCALES:
+        SCALES[name] = (SCALES[ref][0], 'feet')
+for name in ['utva-let', 'soko-vezirov-let']:
+    if _have(name) and 'soko-let' in SCALES:
+        SCALES[name] = (SCALES['soko-let'][0], 'center')
+for who, height in {'janja': 112, 'novak': 128}.items():
+    if _have(who + '-idle'):
+        s_ = height / max(body_height(c) for c in _cells(who + '-idle'))
+        for k in ['idle', 'toci', 'kuje']:
+            if _have(f'{who}-{k}'):
+                SCALES[f'{who}-{k}'] = (s_, 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

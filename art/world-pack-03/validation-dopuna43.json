@@ -1,0 +1,62 @@
+[
+  {
+    "name": "utva-let",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "renderScale": 0.8712121212121212,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "name": "soko-vezirov-let",
+    "frames": 8,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "renderScale": 0.8098591549295775,
+    "renderAnchor": {
+      "x": 256,
+      "y": 300
+    }
+  },
+  {
+    "name": "kostac-stoji",
+    "frames": 8,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "kostac-stoji-kraj",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": false,
+    "atlasMatchesFrames": true,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "utva-let",
+      "kind": "bird",
+      "frames": 6,
+      "cols": 3,
+      "rows": 2,
+      "loop": true,
+      "fps": 10,
+      "references": [
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "bodyAnchors": [
+        [
+          0.53,
+          0.7
+        ],
+        [
+          0.53,
+          0.7
+        ],
+        [
+          0.53,
+          0.7
+        ],
+        [
+          0.53,
+          0.6
+        ],
+        [
+          0.53,
+          0.61
+        ],
+        [
+          0.53,
+          0.61
+        ]
+      ],
+      "bodyLengthSource": 0.42,
+      "prompt": "Use case: stylized-concept. ONE production hand-painted matte2D game animation sprite-sheet, EXACT3columns x2rows SIX equal SQUAREcells, overall3:2canvas1536x1024. Pure flat#FF00FFMAGENTA background, no scenery/floor/shadow/guides/text/borders. Utva zlatokrila: a wild DUCK with GOLDEN WINGS in right-facing SIDE VIEW flight, not a raptor/swan. Natural mallard-like rounded body, long flattened ochre bill, softly iridescent dark green head, warm russet breast, pale cream-grey belly, small orange WEBBED feet tucked under tail, long feathered wings in rich ochre-gold/copper with detailed feather layering. Gold is matte feather pigment, NOT metal plates/fire/glitter. Match reference bird painted linework/material detail and relative flight scale only; this is a distinct DUCK species. SIX smooth phases of ONE wingbeat LOOP:1bothwingsup;2downstroke halfway;3down near horizontal;4wingsfullydown;5upstroke half;6wingsnearup closing backto1. Exactly TWO wings and two tucked feet, head/beak/body/tail same anatomy and scale all6, no camera turn. Body center at x50percent,y60percent of EACHsquare, do not move bodycenter with wings; tail-to-bill bodylength about42percent cellwidth, totalwingspan safe withincell with20px margins. All feathers insideowncell; no overlappingadjacentcells. Cell512x512final, same world zoom as soko-let; use full canvas equal square slots."
+    },
+    {
+      "id": "soko-vezirov-let",
+      "kind": "bird",
+      "frames": 8,
+      "cols": 4,
+      "rows": 2,
+      "loop": true,
+      "fps": 12,
+      "references": [
+        "art/animation-pack-04/assets/soko-let/frames/motion/frame-0.png"
+      ],
+      "bodyAnchors": [
+        [
+          0.51,
+          0.68
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.61
+        ],
+        [
+          0.51,
+          0.6
+        ],
+        [
+          0.51,
+          0.65
+        ],
+        [
+          0.51,
+          0.67
+        ],
+        [
+          0.51,
+          0.68
+        ]
+      ],
+      "bodyLengthSource": 0.42,
+      "prompt": "Use case: precise-object-edit. Edit the supplied EIGHT-FRAME FALCON SPRITE SHEET. Preserve EXACT4columns x2rows square-cell arrangement, same poses, wingbeat phase order, anatomical shapes, scale, body registration and magenta background. Change ONLY coloration and ONE small accessory: slate-grey back/wings become visibly DARKER CHARCOAL GREY (keep painted feather detail and soft highlights); pale chest remains recognizably pale with darker speckles, golden yellow eye/cere unchanged. Add a clearly visible small RED CLOTH CAP/SLEEVE tied to ONE tucked LEG near the ankle (a falconer's red leg token, rounded tiny red cap on leg), in all eight poses consistently attached to same near leg. Do NOT put red cap on head, don't cover face, no extra wings/legs, don't change species or flight. Exact same peregrine falcon as soko-let, richer darker grey plumage. Keep matte handpainted game style, full original silhouettes inside their cells, no new effects, shadows, text, guides or borders, flat#FF00FF everywhere outside birds."
+    },
+    {
+      "id": "kostac-stoji",
+      "kind": "human",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": true,
+      "fps": 10,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: identity-preserve. ONE matte hand-painted2D game animation sprite sheet, EXACT3columns x3rows of equal SQUAREcells, square1536x1536canvas. FIRST EIGHT cells = standing wrestling push LOOP, ninthcell SOLO neutral full upright Marko calibration ONLY. Pure FLAT#FF00FF background, no scenery/floor/shadows/text/grid/borders. Two full adult figures TOGETHER in each of eight cells with30pxsafe margins, all limbs contained inside own cell. Marko on LEFT facesRIGHT, exact identity/reference: long black sweptback hair, black moustache/shortbeard, RED goldembroidered cloak/goldclasp, ivory redembroidered sleeves, brown lamellararmour, brown boots, spiked mace BELTED unused. Opponent on RIGHT facesLEFT: generic Ottoman adult, dark short beard, plain ivory TURBAN, ordinary unmarked muted GREY-BROWN kaftan, plain dark trousers, brownboots, plain dull red sash, NO armour/emblems/gold trim/crown/plumes/weapons; slightly taller than Marko (about8percent) like sword-idle. BOTH STAND throughout with feet firmly on SAME horizontal groundline; each grips the other's SHOULDERS/upper arms with TWO HANDS. Eight subtle consecutive wrestling pushes:1evenlybalanced forwardstance;2Markoleanforwardpush;3opponentyieldsonehalfstep/kneebend;4bothbrace;5opponentpushback;6Markobendskneesslightlyandbraces;7Markorecoverscenter;8nearframe1balance. Bodies rock only slightly, legsmake real tiny weighttransfers without jumping, hands maintain shouldergrips, two arms/twolegs perperson, no intertwined impossiblehands. Smoothclosedloop, natural faces look at each other. Same anatomicalscale allposes, Marko standingheight roughly70percentcell, opponent76percent, NEVER enlarge poses/cropfeet. Ninthcell isolated neutral standing Marko at SAME SCALE (calibration), facingright, macebelted; opponent absent. Full redcloak andturban stayinsidecell. No violence/blood, no groundwrestling, no throw yet."
+    },
+    {
+      "id": "kostac-stoji-kraj",
+      "kind": "human",
+      "frames": 6,
+      "cols": 4,
+      "rows": 2,
+      "loop": false,
+      "fps": 10,
+      "calibrationFrame": 6,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+        "art/animation-pack-04/assets/kostac-stoji/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: identity-preserve. ONE painted matte2D game animation sprite-sheet, EXACT4columns x2rows of equal SQUARE cells, WIDE2:1canvas2048x1024. Reference1 exact TWO WRESTLERS identities/clothes and initial shouldergrip; reference2 Marko upright scale. FIRST SIX cells hip-throw action ONCE, seventhcell SOLO neutral full upright MARKO at SAME anatomicalscale calibration, eighthcell EMPTY MAGENTA. Pure flat#FF00FFbackground, NOscenery/floor/shadow/text/borders/guides. Both full figures together in each actioncell with24pxmargin, no part crosses cell. Marko initially LEFT facingRIGHT: exact black long hair/moustache, red goldembroidered cloak, ivory redembroidered shirt, brown lamellar armour, boots. Opponent initiallyRIGHTfacingLEFT: SAME plain ivory turban, shortdarkbeard, GREY-BROWN unmarked kaftan, plain red sash, darktrousers/brownboots, noarmour/emblems/weapons. Keep EXACT same anatomicalscale all6poses; Marko standingheight about65percentcell, slightlytalleropponent70percent, no enlarging groundbody. Six unmistakable successive hipthrow phases:1both standing shouldergrip like reference;2MarkostepsinsideandturnsRIGHTHIP across opponent's path, bendsknees, onehandgripsarm/otherwrapswaist;3Markodriveshipsandstraightenslegs, opponent clearly LIFTEDOFFGROUND across Marko's hip, opponenttorsohorizontal and kneesbent, TWOseparate recognizablebodies;4opponent rotates over hip toward RIGHT, legsUP/head/shouldersdescending, Marko keeps hisownfeetgrounded;5opponent BACK lands on ground atRIGHT, kneesbend and armsrelease, Marko beginsstanduprightLEFT;6FINALMarko standing firmly atLEFT lookingRIGHT, handsreleased, opponent LYINGONBACK atRIGHTwithkneesnaturallybent/foreshorteneddiagonal tofitinsidecell. Lastframe NOT sitting/kneelingopponent, Marko NOT lyingdown. No acrobatics/jump byMarko, no strike/blood/impacteffects. Redcloak follows realturn. Singlecontinuous6phaseaction, not6copiesstanding. Allgroundcontact shares commonbottomline within cell, fullycontainhead/boots/turban in airborneframe. Seventhcell isolated neutral uprightMarkofacingRIGHTsamebodysize, eighthblank."
+    }
+  ]
+}

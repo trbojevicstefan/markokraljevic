@@ -1,0 +1,65 @@
+[
+  {
+    "file": "prelaz-urvina-1.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "type": "miniature"
+  },
+  {
+    "file": "prelaz-urvina-2.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "type": "miniature"
+  },
+  {
+    "name": "prelaz-urvina-anim",
+    "frames": 12,
+    "cell": [
+      768,
+      512
+    ],
+    "loop": true,
+    "adjacent_frame_mean_rgb_difference": [
+      9.679172939724394,
+      9.824539184570312,
+      9.605877346462675,
+      11.801477220323351,
+      10.162628173828125,
+      10.278617858886719,
+      10.14422861735026,
+      11.501229180230034,
+      10.393747965494791,
+      10.893008761935766,
+      9.506468031141493,
+      10.431538899739584
+    ]
+  },
+  {
+    "name": "marko-pocinak",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": false,
+    "gifPlaysOnce": true,
+    "holdLastFrame": true,
+    "durations_ms": [
+      350,
+      500,
+      400,
+      400,
+      450,
+      1200
+    ],
+    "renderScale": 1.0,
+    "anchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]
