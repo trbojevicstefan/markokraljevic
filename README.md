@@ -293,6 +293,18 @@ Generisano ugrađenim Imagegen alatom, bez zasebnih API ključeva. Kreativni bri
 
 Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-floor 64 --grid 3x2 --cell-width 384 --cell-height 384 --baseline-y 370 --target-height 350 --fit contain`. Trčanje: `prepare` → ugrađeni Imagegen za jedan red → `extract` → `compose-atlas` → `inspect`. Generisanje reda je urađeno direktnim ugrađenim alatom umesto CLI `gen-set`; ekstrakcija i atlas koriste originalne sprite-gen faze. Runtime čita `frame_layout` iz manifesta.
 
+## Borba 11. novembar: koštac, znak napada, plen
+
+- **Koštac je hvatanje, ne lupanje.** Nad borcima se pokaže hvat (J, K, Space ili Shift; na džojstiku X, Y, A, B) sa prstenom koji ističe. Pravi hvat puni traku, pogrešan je prazni, a zakasneli boli.
+- **Megdandžija u koštacu ostaje svoj lik.** Dok ne stignu naručeni crteži (`kostac-<ime>`), slaže se od njegovog sopstvenog crteža i Markovog guranja. Čim crtež postoji u rigu, igra ga uzima sama (tablica `KOSTAC_KIT` u `game.js`).
+- **Veličina u koštacu.** Crteži koštaca na zemlji (janičar, oklopnik, pas, Musa) nacrtani su krupnije od likova na putu; pri crtanju se svode na meru tablicom `KOSTAC_FIT`. Novi crteži se naručuju u pravoj meri i idu bez ispravke.
+- **Znak napada, kao u *The Lost Crown*.** Zlatan znak „!" nad glavom: napad se odbija (L), pa sledi kontra. Crven krst „✕": ne odbija se (plamen palikuće, hvat megdandžije), izmakni se kolutom.
+- **Protivnik se odupire.** Posle tri laka udarca zaredom stane čvrsto i odmah uzvraća; teški udarac, odbijanje ili udarac uvis ga lome.
+- **Plen, kao u *Metal Slug*-u.** Svaki šesti pali neprijatelj (u priči četvrti, u epskoj težini osmi) ostavlja čuturu, ali samo dok Markova nije puna.
+- **Dukati u nizu** zvone sve višim tonom, kao lumovi u *Rayman*-u.
+- **Primljen udarac** zaustavi igru na tren, kao u *Hollow Knight*-u, pa se oseti i ostavi trenutak za odgovor.
+- **Megdan na ekranu.** Dok traje megdan, red zadatka se sklanja, a ime i snaga megdandžije stoje na vrhu ekrana.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

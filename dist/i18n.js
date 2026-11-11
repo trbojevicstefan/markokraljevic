@@ -6,6 +6,8 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Zlatan znak nad glavom znači: odbij ga (L) i uzvrati. Crven krst se ne odbija: izmakni se kolutom (Shift).", "A gold sign over his head means: parry it (L) and answer. A red cross cannot be parried: roll away (Shift)."],
+["ČUTURA IZ PLENA", "A FLASK FROM THE SPOILS"],
 ["OBORIO TE S LEĐA", "HE FELLED YOU FROM BEHIND"],
 ["PUNA ČUTURA", "FLASK FILLED"],
 ["Posestrima Janja toči rujno vino pred megdan sa Đemom. Čutura je puna.", "Janja, your sworn sister, pours red wine before the duel with Đemo. The flask is full."],
