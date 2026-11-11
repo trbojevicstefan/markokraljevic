@@ -2276,15 +2276,26 @@ const DUCAN=[{id:'vino',name:'Čutura rujnog vina',text:'još jedno vino u čutu
  {id:'melem',name:'Melem od trava',text:'vida sve rane',cost:15,ok:()=>p.hp<p.maxHp,buy(){p.hp=p.maxHp;}},
  {id:'brus',name:'Naoštren topuz',text:'jači udarci do kraja pohoda',cost:25,ok:()=>!p.brus,buy(){p.brus=true;p.power=(p.power||1)*1.15;}},
  {id:'amajlija',name:'Amajlija svetog Đorđa',text:'jednom te digne kad padneš',cost:40,ok:()=>!p.amajlija,buy(){p.amajlija=true;}}];
-function useTrgovac(){const t=(world.traps||[]).find(t=>t.kind==='trgovac'&&Math.abs(p.x-t.x)<150&&Math.abs(p.y-t.y)<90);if(!t||!p.grounded||mode!=='play')return false;p.vx=0;p.face=t.x>p.x?1:-1;openDucan();return true;}
+// by the merchant: Novak the smith at his anvil where the songs put him (the village, the fortress), and in the Ibar gorge
+// the tavern-keeper Janja, Marko's sworn sister, who pours him wine before he meets Đemo
+const NOVAK_AT=new Set(['selo','tvrdjava']),janjaAt=t=>level?.id==='klisura'&&rig?.['janja-idle']?t.x-170:null;
+function useJanja(){const t=(world.traps||[]).find(t=>t.kind==='trgovac'&&Math.abs(p.y-t.y)<90),jx=t&&janjaAt(t);if(jx==null||t.toceno||Math.abs(p.x-jx)>80||!p.grounded||mode!=='play')return false;
+ t.toceno=true;t.toci=2.4;p.vx=0;p.face=jx>p.x?1:-1;p.wine=p.wineMax||3;sfx('drink',{gain:.7})||sfx('coins',{gain:.4,rate:.7});label('PUNA ČUTURA',p.x,p.y-170,'#ffd36a');toast('Posestrima Janja toči rujno vino pred megdan sa Đemom. Čutura je puna.',3.4);updateHud();return true;}
+function useTrgovac(){if(useJanja())return true;const t=(world.traps||[]).find(t=>t.kind==='trgovac'&&Math.abs(p.x-t.x)<150&&Math.abs(p.y-t.y)<90);if(!t||!p.grounded||mode!=='play')return false;p.vx=0;p.face=t.x>p.x?1:-1;openDucan();return true;}
 function buyDucan(id){const it=DUCAN.find(d=>d.id===id);if(!it||!it.ok()||bank()<it.cost)return false;setBank(bank()-it.cost);it.buy();sfx('coins',{gain:.6})||sfx('ring',{gain:.5,rate:1.3});label(`-${it.cost} DUKATA`,p.x,p.y-170,'#ffd36a');updateHud();return true;}
 function renderDucan(){if(!hasDom)return;$('ducan-purse').textContent=`Dukati: ${bank()}`;
  $('ducan-list').innerHTML=DUCAN.map((d,i)=>`<button data-buy="${d.id}" ${!d.ok()||bank()<d.cost?'disabled':''}><span>${i+1} · ${d.name}<small>${d.text}</small></span><b>${d.cost} ⛁</b></button>`).join('');
  $('ducan-list').querySelectorAll?.('[data-buy]').forEach(b=>b.onclick=()=>{if(buyDucan(b.dataset.buy))renderDucan();});}
 function openDucan(){if(mode!=='play')return;mode='shop';keys.clear();pressed.clear();if(hasDom){renderDucan();$('ducan').hidden=false;$('ducan-close').onclick=closeDucan;}}
 function closeDucan(){if(mode!=='shop')return;mode='play';keys.clear();pressed.clear();if(hasDom)$('ducan').hidden=true;}
-function drawTrgovac(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const face=p.x<t.x?-1:1,kola=levelArt['prop-kola'];if(kola)drawImgOn(kola,t.x+70,t.y+4,118,false);
- const nm=rig?.['putnik-trgovac-idle']?'putnik-trgovac-idle':null;if(nm)rigDraw(nm,Math.floor(time*4)%rig[nm].frames.length,t.x-10,t.y,face);
+function drawTrgovac(t){if(t.x<camera-400||t.x>camera+VIEW_W+400)return;const face=p.x<t.x?-1:1,kola=levelArt['prop-kola'],T=rig?.['trgovac-tezga-idle'],kovac=NOVAK_AT.has(level?.id)&&rig?.['novak-idle'],jx=janjaAt(t);
+ if(kola&&!kovac)drawImgOn(kola,t.x+(T?125:70),t.y+4,118,false);
+ if(T)rigDraw('trgovac-tezga-idle',Math.floor(time*4)%T.frames.length,t.x,t.y,-1);   // behind his stall, which faces the road Marko comes by
+ else{const nm=rig?.['putnik-trgovac-idle']?'putnik-trgovac-idle':null;if(nm)rigDraw(nm,Math.floor(time*4)%rig[nm].frames.length,t.x-10,t.y,face);}
+ if(kovac){const near=Math.abs(p.x-t.x)<360,n=near&&rig?.['novak-kuje']?'novak-kuje':'novak-idle',R=rig[n],f=Math.floor(time*(n==='novak-kuje'?9:4))%R.frames.length,nx=t.x+175;rigDraw(n,f,nx,t.y,-1);
+  if(n==='novak-kuje'&&(f===2||f===6)&&t.kf!==f)sfx('clang',{gain:.3,rate:1.35,x:nx});t.kf=f;if(Math.abs(p.x-nx)<420)textLabel('NOVAK KOVAČ',nx,t.y-168,{font:'bold 12px Georgia',color:'#ffe2a8'});}
+ if(jx!=null){t.toci=Math.max(0,(t.toci||0)-1/60);const n=t.toci>0&&rig?.['janja-toci']?'janja-toci':'janja-idle',R=rig[n];rigDraw(n,Math.floor(time*(n==='janja-toci'?7:4))%R.frames.length,jx,t.y,p.x<jx?-1:1);
+  if(Math.abs(p.x-jx)<420)textLabel(t.toceno?'KRČMARICA JANJA':Math.abs(p.x-jx)<80?'E · JANJA TOČI VINO':'KRČMARICA JANJA',jx,t.y-150,{font:'bold 13px Georgia',color:'#ffe2a8'});}
  if(Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<150?'E · TRGOVAC':'TRGOVAC KRAJ PUTA',t.x,t.y-150,{font:'bold 13px Georgia',color:'#ffe2a8'});}
 // ================= Ramadan wine ("Marko pije uz ramazan vino") =================
 // The sultan forbade wine in Ramadan; Marko drinks it anyway. In the cellar the sultan's heralds march on his barrels

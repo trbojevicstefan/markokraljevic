@@ -6,6 +6,12 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["PUNA ČUTURA", "FLASK FILLED"],
+["Posestrima Janja toči rujno vino pred megdan sa Đemom. Čutura je puna.", "Janja, your sworn sister, pours red wine before the duel with Đemo. The flask is full."],
+["NOVAK KOVAČ", "NOVAK THE SMITH"],
+["KRČMARICA JANJA", "JANJA THE TAVERN-KEEPER"],
+["E · JANJA TOČI VINO", "E · JANJA POURS WINE"],
+["JANJA TOČI VINO", "JANJA POURS WINE"],
 ["ODUPRO SE", "HE STANDS FIRM"],
 ["U koštac! Uzmi hvat koji se pokaže.", "Hand to hand! Take the hold that is shown."],
 ["Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili u koštacu uzimaj hvat koji se pokaže, pre nego što mu prsten istekne.", "A few more blows and the second act begins: the champion will throw you back, then rush in to grab you. Slip away, or in the grapple take the hold that is shown before its ring runs out."],
