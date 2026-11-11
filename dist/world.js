@@ -361,3 +361,5 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
  return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }
+// the greybox (?greybox) builds its own rooms; game.js reaches them through this one name
+export * as greybox from './greybox.js';

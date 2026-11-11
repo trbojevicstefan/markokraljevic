@@ -264,6 +264,14 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 - **Sigurno tlo:** pad u ponor je već radio po tom pravilu (−20 zdravlja, povratak na poslednje čvrsto tlo). Sada se daska koja popušta i tlo uz kolje ne računaju kao čvrsto tlo, pa Marko više ne pada ponovo u istu rupu. Kolje i dalje rani i odbaci Marka uvis, kao i pre.
 - **Skok:** Space pritisnut visoko u vazduhu više se ne pamti do doskoka (Marko ranije sam skoči kad dotakne tlo).
 
+**Greybox** (`index.html?greybox`, kod u `dist/greybox.js`) je osam sivih soba, bez pozadina, za probu ovih pokreta. Gore desno je mapa soba.
+- Marko počinje bez krila, juriša i traga. Svaku moć nađe u svojoj sobi, a ona otvara svoju vrstu prolaza: krilo visok zid, juriš širok ponor, trag vrata koja daleki prekidač otvori na tren.
+- Iza prvog zida je tajna soba: tu se vraća kad dobije krilo.
+- Ima dva čekpointa, tri susreta i čuvara arene (Janičarski aga).
+- Zid-skok i Vilinski uzlet su u greybox-u isključeni. Ništa se ne upisuje u sačuvanu igru.
+- `node greybox-test.mjs` proverava stvarnim ulazima da je svaka soba dostižna i da nijedna kapija ne pušta bez svoje moći.
+- Šta još treba nacrtati za ovaj stil igre piše u `LOST-CROWN-POTREBE.md`.
+
 ## Sadržaj
 
 Šest povezanih deonica: Drum junaka, Zatočena kapija, Vilinski trag, Šarčev zalet, Poslednji barjak i Tri srca Kačanika. Ukupno 55 čuvara kroz osnovne susrete i devet talasa pojačanja; tri vilinska mosta; upravljiv Šarac; tri opciona zapisa koji povećavaju maksimalno zdravlje; završni megdan sa tri faze, dva zamaha i talasom po tlu.
