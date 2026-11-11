@@ -758,3 +758,15 @@ DOPUNA-36 C: prelaz-oranje-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska
 DOPUNA-36 C: prelaz-oranje-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-oranje-anim/. Ugradjeni image_gen; sources/dopuna36-c/; prompts-dopuna36-c.json.
 
 DOPUNA-36 C: ZAVRSENO — rudnik, rusevine, reka i oranje: 8 minijatura 1024x1024 + 4 ozivljene scene po 12 kadrova 768x512 (48 kadrova). Provereni atlas=rootPNG=frames, frame_layout, GIF12, petlja, izvorna srazmera2:1. Pregled preview-dopuna36-c.html; validation/catalog-dopuna36-c.json. Tacan skup promptova prompts-dopuna36-c-final.json; ugradjeni image_gen. Kod igre, dist i ostali delovi nisu menjani.
+
+DOPUNA-42 deo1: urvina-sky GOTOVO — PNG2172x724, neprozirno, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
+
+DOPUNA-42 deo1: urvina-far GOTOVO — PNG2172x724, RGBA/providno iznad obrisa, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
+
+DOPUNA-42 deo1: urvina-mid GOTOVO — PNG2172x724, RGBA/providno iznad obrisa, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
+
+DOPUNA-42 deo1: urvina-near GOTOVO — PNG2172x724, RGBA/providno iznad obrisa, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
+
+DOPUNA-42 deo1: urvina-vista GOTOVO — PNG2172x724, neprozirno, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
+
+DOPUNA-42 deo1: ZAVRSENO5/5 — urvina-sky/far/mid/near/vista.png; sve2172x724. Provera seam-audit.py PASS195 postojecih; isti audit nad novimPNG: PASS5 (crossfade12%). Direktno jednaki levi/desni RGBA rubovi; alfa i dimenzije prosle. Pregled preview-dopuna42-1.html, ponavljanje preview-urvina-tiles.jpg; izvori/promptovi/QA sources/dopuna42-1/. Bez gradjevina (na visti samo trazeni bunar), zora bez vidljivog sunca. Kod i dist nisu menjani.
