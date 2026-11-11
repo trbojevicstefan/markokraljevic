@@ -59,10 +59,13 @@ function traced(D,stand){const q=D.q;place(stand.x,stand.y,1);tap('KeyV');const 
 
 // one passage, walked with the powers in `moci`; true when Marko ends up in its far node
 function walkLink(L,[a,b,need,one,how],moci,back=false){api.startGreybox(L.n);quiet();setMoci(moci);const from=back?b:a,to=back?a:b;
+ if(how.open){const D=G().named[how.open];D.solved=true;D.q.off=true;}
  if(how.door){const [ra,rb,row,dop={}]=how.door,sa=dop.sa||200,sb=dop.sb||200,A=GB.gbRoom(L,ra),Bb=GB.gbRoom(L,rb),y=(row+1)*GB.GB_CH-GB.GB_FL,ltr=(L.delovi?.[from]?.room||GB.gbNodeRoom(from))===ra;
   if(need?.startsWith('posle:')&&!back&&moci.has('posle')){place(Bb.x0+400,y,-1);walk(A.x1-400);}
   if(ltr){place(A.x1-sa,y,1);walk(Bb.x0+sb,900);}else{place(Bb.x0+sb,y,-1);walk(A.x1-sa,900);}}
  else if(how.drop){const [r,dx0,dx1]=how.drop,R=GB.gbRoom(L,r);place(R.x0+dx0-140,R.floor,1);walk(R.x0+dx0+40,600);settle(400);}
+ else if(how.hop){const [x0,edge,x1]=back?how.back:how.hop,dir=x1>x0?1:-1;place(x0,floorY(x0,590),dir);api.keys.add(dir>0?'KeyD':'KeyA');let jf=-1;
+  for(let f=0;f<600&&dir*(P().x-x1)<0;f++){const p=P();if(jf<0&&dir*(p.x-(edge-dir*15))>=0){jf=f;api.pressed.add('Space');}if(jf>=0&&f-jf===30)api.pressed.add('Space');step();if(P().y>700)break;}api.keys.clear();settle(60);}
  else if(how.walk){const [x,y,x1]=back&&how.back?how.back:how.walk;place(x,y,x1>x?1:-1);walk(x1,1200);settle(how.wait||60);}
  else if(how.up){let prev=null;for(const st of how.up){if(st[0]==='floor'){const [,y,dir,t]=st,q=platformAt(...t);if(!q||!fromFloor(q,y,dir))return false;prev=q;}else{const [s,t,dir]=st,src=platformAt(...s),q=platformAt(...t);if(!src||!q||!fromBlock(q,src,dir))return false;prev=q;}}}
  else if(how.chimney){const [name,exitX]=how.chimney,C=G().named[name];if(!chimney(C,floorY((C.x0+C.x1)/2,C.bottom+150)))return false;{const dir=exitX>P().x?1:-1;api.keys.add(dir>0?'KeyD':'KeyA');step(2);tap('Space');api.keys.add(dir>0?'KeyD':'KeyA');step(60);api.keys.clear();}walk(exitX,900);}

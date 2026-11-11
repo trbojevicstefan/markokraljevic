@@ -92,8 +92,10 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
    if(lip==='end'){const s=Math.max(a,b-60);block(s,Rm.floor,b-s,FL,{kind:'step',ground:true,gbLip:true});b=s;}
    if(lip==='start'){const s=Math.min(b,a+60);block(a,Rm.floor,s-a,FL,{kind:'step',ground:true,gbLip:true});a=s;}
    if(b-a<1)continue;
-   if(bumps.some(([u,v])=>u<b&&v>a)){const Sx=[],w=Math.round((b-a)/8)*8;for(let k=0;k<=w;k+=8)Sx.push(Math.round(ground(a+k)*10)/10);const top=Math.min(...Sx);platforms.push({x:a,y:top,w,h:Rm.y1-top,kind:'stone',ground:true,surf:Sx,sx:8,noCling:true});block(a,Rm.y1-30,w,30);}
-   else block(a,Rm.floor,b-a,FL,{ground:true});}
+   // a slope only where a hill or a hollow is; the rest of the floor is flat, so its edges by a hole can be caught
+   let x0=a;for(const [u,v] of bumps.filter(([u,v])=>u<b&&v>a).sort((p,q)=>p[0]-q[0])){const s0=Math.max(a,u),s1=Math.min(b,v);if(s0>x0)block(x0,Rm.floor,s0-x0,FL,{ground:true});
+    const Sx=[],w=s1-s0,n=Math.ceil(w/8);for(let k=0;k<=n;k++)Sx.push(Math.round(ground(s0+Math.min(k*8,w))*10)/10);const top=Math.min(...Sx);platforms.push({x:s0,y:top,w,h:Rm.y1-top,kind:'stone',ground:true,surf:Sx,sx:8,noCling:true});block(s0,Rm.y1-30,w,30);x0=Math.max(x0,s1);}
+   if(b>x0)block(x0,Rm.floor,b-x0,FL,{ground:true});}
   // a roof wherever no room stands above
   const above=L.rooms.filter(o=>o.y1===Rm.y0&&o.x1>Rm.x0&&o.x0<Rm.x1).sort((u,v)=>u.x0-v.x0);let rx=Rm.x0;
   for(const o of above){if(o.x0>rx)block(rx,Rm.y0-160,o.x0-rx,160,{gbRoof:true});rx=Math.max(rx,o.x1);}if(rx<Rm.x1)block(rx,Rm.y0-160,Rm.x1-rx,160,{gbRoof:true});}

@@ -5,7 +5,7 @@ Ovde su samo ideje mehanika i strukture iz te igre. Iz nje ne uzimamo grafiku, k
 - **dorada**: postoji osnova, ali fali deo, najčešće sopstveni crtež ili kod;
 - **treba nacrtati**: nema ničeg; treba crtež, a obično i kod.
 
-Probni prostor je greybox: `index.html?greybox` (`dist/greybox.js`). To je dugački nivo „Markove kule“ od 17 sivih soba na tri sprata. Ima tri moći koje se skupljaju, kapije koje te moći otvaraju i pet skrivenih soba. Opis je na kraju i u `NIVO-MARKOVE-KULE.md`.
+Probni prostor su Lost Crown pohodi: tri duga nivoa (`index.html?greybox=1|2|3`, motor `dist/greybox.js`), svaki sa svojom moći, kapijama koje ona otvara i četiri skrivene sobe. Opis je na kraju i u `NIVOI-LOST-CROWN.md`.
 
 ## 1. Pokreti
 
@@ -128,27 +128,25 @@ Pravila su ista kao u DOPUNA briefovima: ćelija 512×512, oslonac na y=487, a k
 
 **Ukupno:** 10 Markovih klipova (50 kadrova), 18 klipova protivnika i bosova (110 kadrova) i 12 pojedinačnih slika.
 
-## Greybox: kako je napravljen
+## Lost Crown pohodi: kako su napravljeni
 
-`index.html?greybox` (lokalno `npm start`, pa http://127.0.0.1:4173/index.html?greybox).
+U meniju je dugme **Lost Crown pohodi**; nivoi se otvaraju i adresom `index.html?greybox=1|2|3` (lokalno `npm start`).
 
-Greybox je dugački nivo „Markove kule“. Mapa, tok igre sobu po sobu i mere za nove sobe su u `NIVO-MARKOVE-KULE.md`. Ukratko:
-- 17 soba na tri sprata, oko 18.000 px;
-- kula je okno kroz sva tri sprata;
-- kapije za krilo (ispusti od 345–365 px), juriš (ponori od 500 px) i trag (vrata i poklopac koji prekidač otvara na 1 s);
-- prečica do početka, koja se otvara samo sa druge strane;
-- pet skrivenih soba: iza lomljivog zida, iza lažnog zida, visoko (krilo), preko ponora (juriš) i ispod poklopca (trag). Svaka ima deo srca i zapis;
-- četiri čekpointa, 15 protivnika i čuvar arene.
+Tri duga nivoa, po 21–22 sobe na pet spratova. Mape, tok igre i mere za nove sobe su u `NIVOI-LOST-CROWN.md`. Ukratko:
+- **nivo 1, Podgrađe pod Markovim kulama:** krilo (ispusti od 345–365 px);
+- **nivo 2, Urvina planina:** juriš (ponori od 500 px);
+- **nivo 3, Kačanička klisura i Musina kula:** Vilin trag (vrata i poklopci koje prekidač otvara na 1 s); Musa na krovu kule;
+- u svakom nivou: četiri skrivene sobe, dva čuda, tri čekpointa, 20–23 protivnika i bos;
+- prečice koje se otvaraju sa druge strane, dimnjaci za zid-skok, šiljci, daske koje popuštaju, strelnice i grede.
 
-U greybox-u nema zid-skoka ni Vilinskog uzleta (E u skoku), jer bi preskočili kapije. Ništa se ne upisuje u sačuvanu igru: ni pohod, ni megdan, ni veština. Jedino dukati sa palih Turaka i dalje idu u kesu.
+Zid-skok radi samo uz zidove dimnjaka, a Vilinski uzlet (E u skoku) je isključen, jer bi preskakao kapije. Ništa se ne upisuje u sačuvanu igru: ni pohod, ni megdan, ni veština. Jedino dukati sa palih Turaka i dalje idu u kesu.
 
 Tlo nije kockasto: brda i uvale su prave kosine. Marko i Turci po njima hodaju, trče, kotrljaju se i doskaču (`topAt()`, platforma sa `surf` u `integrate()`); ravne platforme rade kao i pre.
 
-`node greybox-test.mjs` (71 provera, deo je `npm test`) radi stvarnim ulazima:
-- graf soba: svaka soba je dostižna kad se skupe moći, a bez svake moći ostaje zatvoren njen deo;
-- svaka kapija drži bez svoje moći: 60 pokušaja kod svakog ispusta i 234 pokušaja kod svakog ponora;
-- kroz vrata i poklopac se bez traga ne stiže;
-- lomljivi zid pada samo od teškog udarca, kroz lažni zid se prolazi, a prečica se otvara samo sa svoje strane;
-- ponor košta zdravlje i vraća na čvrsto tlo;
-- Marko i Turci idu po kosinama;
-- ceo nivo se prelazi od početka do čuvara, kroz svih 17 soba i svih 5 tajni.
+Oblačenje (`dist/greybox-svet.js`) čita `dist/assets/realisticno/manifest.json`. Dok njega nema, koristi naslikane slojeve, trake tla, zidove, platforme i šiljke iz `dist/assets/world/`.
+
+`node greybox-test.mjs` (deo je `npm test`) za svaki nivo radi stvarnim ulazima:
+- proverava graf soba: koliko soba, tajni i čekpointa ima, šta je dostižno sa moćima i šta ostaje zatvoreno bez nove moći;
+- prelazi svaku vezu između soba u oba smera: vrata, rupe, ispuste, dimnjake, procepe za juriš, vrata na trag, lomljive i lažne zidove, prečice;
+- svaku vezu koja traži moć proba i bez nje (60 pokušaja kod ispusta, 234 kod ponora, trka do vrata);
+- obara bosa i proverava da nivo završi.

@@ -282,18 +282,16 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 - **Sigurno tlo:** pad u ponor je već radio po tom pravilu (−20 zdravlja, povratak na poslednje čvrsto tlo). Sada se daska koja popušta i tlo uz kolje ne računaju kao čvrsto tlo, pa Marko više ne pada ponovo u istu rupu. Kolje i dalje rani i odbaci Marka uvis, kao i pre.
 - **Skok:** Space pritisnut visoko u vazduhu više se ne pamti do doskoka (Marko ranije sam skoči kad dotakne tlo).
 
-**Greybox** (`index.html?greybox`, kod u `dist/greybox.js`) je dugački nivo „Markove kule“ od sivih soba, bez pozadina. Opis je u `NIVO-MARKOVE-KULE.md`.
-- 17 soba na tri sprata, oko 18.000 px. Kula je okno kroz sva tri sprata. Gore desno je mapa koja se crta dok istražuješ.
-- Marko počinje bez krila, juriša i traga. Svaka moć otvara svoju vrstu prolaza:
-  - krilo: visoke ispuste;
-  - juriš: ponore;
-  - trag: vrata i poklopac koje daleki prekidač otvori na tren.
-- Kapija koja se otvara samo sa druge strane je prečica do početka.
-- Pet skrivenih soba (lomljivi zid, lažni zid, visoko, preko ponora, ispod poklopca) prekrivene su kao stena dok ne uđeš. U svakoj je deo srca.
+**Lost Crown pohodi** (dugme u meniju, ili `index.html?greybox=1|2|3`) su tri duga nivoa. Motor je u `dist/greybox.js`, nivoi u `dist/greybox-nivoi.js`, a oblačenje u `dist/greybox-svet.js`. Mape i opis su u `NIVOI-LOST-CROWN.md`.
+- **Nivo 1, Podgrađe pod Markovim kulama:** 21 soba, tu se dobija krilo.
+- **Nivo 2, Urvina planina:** 22 sobe, tu se dobija juriš.
+- **Nivo 3, Kačanička klisura i Musina kula:** 21 soba, tu se dobija Vilin trag; Musa je na krovu kule.
+- Svaki nivo ima pet spratova, četiri skrivene sobe, dva čuda i tri čekpointa. Prečice, dimnjaci za zid-skok, šiljci, daske koje popuštaju, strelnice i grede su iz `zamke.js`.
+- Gore desno je mapa koja se crta dok istražuješ. Skrivene sobe su prekrivene kao stena dok ne uđeš.
+- Oblačenje čita `dist/assets/realisticno/manifest.json`. Dok njega nema, koristi naslikane materijale iz `dist/assets/world/`, a dok se ni oni ne učitaju, ostaje sivo.
 - Tlo nije kockasto: ima brda i uvale, a Marko i Turci hodaju, trče, kotrljaju se i doskaču po nagibu. Kosina je platforma sa `surf` (visina na svakih 8 px) i radi u `integrate()` za svako telo. Ravne platforme rade kao i pre.
-- Ima četiri čekpointa, 15 protivnika i čuvara arene (Janičarski aga).
-- Zid-skok i Vilinski uzlet su u greybox-u isključeni. Ništa se ne upisuje u sačuvanu igru.
-- `node greybox-test.mjs` stvarnim ulazima prelazi ceo nivo i proverava da nijedna kapija ne pušta bez svoje moći.
+- Zid-skok radi samo uz zidove dimnjaka, a Vilinski uzlet je isključen. Ništa se ne upisuje u sačuvanu igru.
+- `node greybox-test.mjs` za svaki nivo prelazi svaku vezu između soba stvarnim ulazima i proverava da nijedna kapija ne pušta bez svoje moći.
 - Šta još treba nacrtati za ovaj stil igre piše u `LOST-CROWN-POTREBE.md`.
 
 ## Sadržaj

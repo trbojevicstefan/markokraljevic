@@ -189,5 +189,100 @@ export const GB_NIVOI={
   ['ponor','ponor>','nalet',false,{leap:['pit-ponor',1,1310,7000,6100]}],
   ['jele','skriveni',null,false,{walk:[10600,-130,11200],back:[11200,-130,10600]}],
   ['koren','jazbina',null,false,{walk:[5800,2030,6400],back:[6400,2030,5800]}],
-  ['pecina','kristali',null,false,{break:['zid-kristali',2550,1310,1900]}]]}
+  ['pecina','kristali',null,false,{break:['zid-kristali',2550,1310,1900]}]]},
+// ---------------------------------------------------------------------------------------------------------------------
+// 3 · Kačanička klisura i Musina kula: the river in the gorge, a broken stone bridge, a mill on the rapids, the hermit's
+// cell up on the canyon wall where Ravijojla leaves the fairy's trace (Vilin trag), and Musa's tower, climbed from its
+// gate to its top through doors and trapdoors that only the trace gets Marko through. Musa Kesedžija waits on the roof.
+3:{id:'klisura',ime:'Kačanička klisura i Musina kula',biom:'klisura',daje:'trag',pocetne:['krilo','nalet'],cilj:'Nađi Vilin trag, uđi u Musinu kulu i popni se do Muse',
+ start:'ulaz',spawnDx:300,
+ uvod:'Kačanička klisura. Marko ima krilo i juriš. Musina kula je zaključana vratima koja daleki prekidač otvara na tren; Vilin trag ostavlja Ravijojla u isposnici gore na zidu kanjona.',
+ sobe:[
+  ['ulaz','Ulaz u klisuru',-1,0,1,1],
+  ['obala','Obala Lepenca',0,0,2,1,{set:'reka'}],
+  ['most','Srušeni kameni most',2,0,2,1,{set:'reka'}],
+  ['vodenica','Vodenica',4,0,1,1,{interior:true}],
+  ['skela','Skela',5,0,2,1,{set:'reka'}],
+  ['podnozje','Podnožje Musine kule',7,0,1,1],
+  ['kula','Musina kula',8,-3,2,4,{interior:true}],
+  ['vrh','Krov Musine kule',10,-3,1,1],
+  ['oruzana','Oružana',10,-1,1,1,{interior:true}],
+  ['strazara','Stražara',7,-2,1,1,{interior:true}],
+  ['riznica','Musina riznica',10,-2,1,1,{secret:true,interior:true,lore:'Musina riznica. Plen sa drumova koje je Musa zatvorio: dukati putnika, krstovi iz crkava, i jedna sablja koju niko nije umeo da podigne.'}],
+  ['staza','Staza kroz kanjon',2,-1,3,1],
+  ['isposnica','Isposnica',5,-1,1,1,{interior:true}],
+  ['kapela','Kapela u steni',6,-1,1,1,{secret:true,interior:true,lore:'Kapela u steni. Isposnik je ovde pisao letopis klisure; poslednja strana kaže da će doći junak na Šarcu.'}],
+  ['pecina','Pećina pod obalom',0,1,2,1,{interior:true}],
+  ['skrivena','Skrivena pećina',-1,1,1,1,{secret:true,interior:true,lore:'Skrivena pećina. Ovde su se putnici krili od Musinih ljudi; na zidu su urezali imena onih koji su prešli klisuru.'}],
+  ['ispodmosta','Ispod mosta',2,1,1,1,{secret:true,interior:true,lore:'Ispod mosta. Stari guslar je ovde sakrio gusle kad su Musini ljudi zatvorili drum; kažu da same zasviraju kad Marko prođe.'}],
+  ['izvor','Podzemni izvor',3,1,1,1,{interior:true}],
+  ['mlin','Mlinski točak',4,1,1,1,{interior:true}],
+  ['brzaci','Brzaci',5,1,2,1,{set:'reka'}],
+  ['tamnica','Musina tamnica',8,1,2,1,{interior:true}]],
+ delovi:{'most|':{room:'most',x0:2900,x1:4050},'most>':{room:'most',x0:4350},'skela>':{room:'skela',x0:7200}},
+ vrata:[['ulaz','obala',0],['obala','most',0,{sb:100}],['most','vodenica',0,{na:'most>'}],['vodenica','skela',0],['skela','podnozje',0,{na:'skela>'}],
+  ['kula','oruzana',-1],['strazara','kula',-2],['kula','vrh',-3,{oneway:true}],['staza','isposnica',-1],
+  ['izvor','mlin',1],['mlin','brzaci',1]],
+ rupe:[['obala',1500,1800,{to:'pecina'}],['most',200,500],['most',1650,1950],['most',700,1000],['kula',1500,1800],['skela',700,1200,{to:'brzaci',lip:'R'}],
+  ['staza',2700,2930],['vodenica',800,1030],['brzaci',1300,1700]],
+ brda:{ulaz:[[500,900,40]],obala:[[300,800,50],[1950,2300,-40]]},
+ build(B){const{X}=B;
+  // Ulaz and Obala Lepenca: the start, a janičar and a dog on the bank, the hole down into the cave
+  B.ckpt(X('ulaz',300),F0);B.prop('krst',X('ulaz',900),F0,170);B.foe('sword',X('obala',1000),F0);B.foe('pas',X('obala',2150),F0);B.ledge(1690,F1-365,100);
+  // Srušeni kameni most: two breaks in the bridge (the wing jumps them), a trapdoor whose switch stands on the bridge
+  B.pit('pit-most1',2600,2900,F0+150);B.pit('pit-most2',4050,4350,F0+150);B.foe('shield',X('most',2200),F0);
+  B.trapdoor('trap-most',3100,F0,300,{x:3980,y:F0});B.ledge(3290,F1-365,100);
+  // Vodenica and Mlinski točak: a fire-raiser, a chimney up to the canyon path, a chimney down to the mill wheel
+  B.foe('palikuca',X('vodenica',900),F0);B.chimney('ch-vodenica',5100,FM1,F0-150);B.chimney('ch-mlin',5600,F0,F1-150);B.foe('sword',X('mlin',300),F1);
+  // Staza kroz kanjon: archers on the rocks, a janičar, stakes, an arrow slit by the hermit's door
+  B.block(2900,FM1-120,100,120);B.block(3800,FM1-120,100,120);B.foe('archer',2950,FM1-120);B.foe('archer',3850,FM1-120);B.foe('sword',4400,FM1);B.spikes(4000,FM1,150);
+  B.strelnica({x:5960,y:FM1-40,gy:FM1,dir:-1,every:2.6});
+  // Isposnica: the fairy's trace, a checkpoint; the door to the chapel opens from a far switch
+  B.ckpt(X('isposnica',600),FM1);B.shrine('trag',X('isposnica',900),FM1);B.open(7200,FM1-260,FM1);B.door('door-kapela',7140,FM1-260,FM1,{x:6100,y:FM1});
+  B.heart(X('kapela',600),FM1);
+  // Skela and Brzaci: a rider by the ferry, the river (a miss drops Marko into the rapids), stakes and crumbling planks below
+  B.gap('gap-skela',6700,7200,F0);B.foe('akindzija',X('skela',300),F0);B.foe('sword',X('brzaci',600),F1);B.spikes(7900,F1,200);
+  B.crumble(7300,F1,200);B.crumble(7500,F1,200);B.pit('pit-brzaci',7300,7700,F1+150);
+  // Podnožje Musine kule: the second checkpoint, an armoured man, the tower's door on a far switch
+  B.ckpt(X('podnozje',250),F0);B.foe('oklopnik',X('podnozje',700),F0);B.open(9600,F0-260,F0);B.door('door-kula',9540,F0-260,F0,{x:8500,y:F0});
+  // Musina kula: a chimney to the mezzanine, the wing's ledge to the gallery, a chimney to the top walk; a trapdoor to the dungeon
+  B.chimney('ch-kula1',10000,FM1,F0-150);B.block(10230,FM1,1260,40);B.ledge(11640,FM1-365,100);
+  B.block(9600,FM2,1850,40);B.block(11750,FM2,250,40);B.chimney('ch-kula2',10000,-1570,FM2-150);B.block(10230,-1570,1520,40);
+  B.trapdoor('trap-kula',11100,F0,300,{x:9800,y:F0});B.ledge(11290,F1-365,100);
+  B.foe('sword',10700,FM1);B.foe('archer',9900,FM2);B.strelnica({x:11980,y:FM2-40,gy:FM2,dir:-1,every:2.8});
+  B.open(12000,FM2-200,FM2);B.fake('fake-riznica',11980,FM2-200,60,200);B.cudo(X('riznica',600),FM2,'Musina sablja');
+  // Oružana and Stražara: armoured men and archers
+  B.foe('oklopnik',X('oruzana',500),FM1);B.foe('shield',X('oruzana',900),FM1);B.heart(X('oruzana',1050),FM1);
+  B.foe('archer',X('strazara',400),FM2);B.foe('archer',X('strazara',800),FM2);
+  // Krov Musine kule: Musa Kesedžija, leaping from beam to beam
+  {const a0=X('vrh',40),a1=X('vrh',1160);B.boss('sword',Math.round(a0+(a1-a0)*.68),-1570,{hp:900,maxHp:900,name:'Musa Kesedžija',kit:'janicar',look:'musa'},{x0:a0,x1:a1,y:-1570},AGA_PLANKS(a1-a0));}
+  // Pećina pod obalom, Skrivena pećina, Ispod mosta, Podzemni izvor, Musina tamnica
+  B.foe('pas',X('pecina',900),F1);B.foe('sword',X('pecina',1500),F1);B.open(0,F1-205,F1);B.breakable('zid-skrivena',0,F1);B.heart(X('skrivena',600),F1);
+  B.cudo(X('ispodmosta',300),F1,'Guslareve gusle');B.heart(X('izvor',600),F1);
+  B.foe('sword',X('tamnica',500),F1);B.foe('sword',X('tamnica',1900),F1);B.spikes(X('tamnica',900),F1,150);B.heart(X('tamnica',2200),F1);},
+ veze:[
+  ['pecina','obala',null,true,{up:[['floor',1310,1,[1740,945]],[[1740,945],[1300,590],-1]]}],
+  ['most','most|',null,false,{hop:[2450,2600,3000],back:[3000,2900,2450]}],
+  ['most|','most>',null,false,{hop:[3850,4050,4550],back:[4550,4350,3850]}],
+  ['most|','ispodmosta','trag',true,{trace:['trap-most',[3250,590]]}],
+  ['ispodmosta','most|',null,true,{open:'trap-most',up:[['floor',1310,1,[3340,945]],[[3340,945],[3000,590],-1]]}],
+  ['vodenica','staza',null,true,{chimney:['ch-vodenica',5600]}],
+  ['staza','vodenica',null,true,{walk:[5000,-130,5215],wait:250}],
+  ['mlin','vodenica',null,true,{chimney:['ch-mlin',5300]}],
+  ['vodenica','mlin',null,true,{walk:[5450,590,5715],wait:250}],
+  ['isposnica','kapela','trag',true,{trace:['door-kapela',[7070,-130]]}],
+  ['kapela','isposnica',null,true,{open:'door-kapela',walk:[7500,-130,6800]}],
+  ['skela','skela>',null,false,{leap:['gap-skela',1,590,7400,6500]}],
+  ['podnozje','kula@0','trag',true,{trace:['door-kula',[9470,590]]}],
+  ['kula@0','podnozje',null,true,{open:'door-kula',walk:[9800,590,9000]}],
+  ['kula@0','tamnica','trag',true,{trace:['trap-kula',[11250,590]]}],
+  ['tamnica','kula@0',null,true,{open:'trap-kula',up:[['floor',1310,1,[11340,945]],[[11340,945],[10900,590],-1]]}],
+  ['kula@0','kula@-1',null,true,{chimney:['ch-kula1',10500]}],
+  ['kula@-1','kula@0',null,true,{walk:[10400,-130,10115],wait:150}],
+  ['kula@-1','kula@-2',null,true,{up:[[[11300,-130],[11690,-495],1],[[11690,-495],[11000,-850],-1]]}],
+  ['kula@-2','kula@-1',null,true,{walk:[11300,-850,11470],wait:150}],
+  ['kula@-2','kula@-3',null,true,{chimney:['ch-kula2',10700]}],
+  ['kula@-3','kula@-2',null,true,{walk:[10400,-1570,10115],wait:250}],
+  ['kula@-2','riznica',null,false,{walk:[11850,-850,12500],back:[12500,-850,11850]}],
+  ['pecina','skrivena',null,false,{break:['zid-skrivena',150,1310,-500]}]]}
 };
