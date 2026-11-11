@@ -1,0 +1,66 @@
+{
+  "items": [
+    {
+      "name": "urvina-sky",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha": [
+        255,
+        255
+      ],
+      "matchingEdgeRGBA": true
+    },
+    {
+      "name": "urvina-far",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "matchingEdgeRGBA": true
+    },
+    {
+      "name": "urvina-mid",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "matchingEdgeRGBA": true
+    },
+    {
+      "name": "urvina-near",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "matchingEdgeRGBA": true
+    },
+    {
+      "name": "urvina-vista",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha": [
+        255,
+        255
+      ],
+      "matchingEdgeRGBA": true
+    }
+  ],
+  "audit": "seam-audit.py passed existing195; same audit math with PNG paths passed5Ur vin a layers",
+  "builtInGenerator": true
+}
