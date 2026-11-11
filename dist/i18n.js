@@ -6,6 +6,9 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["A i D te vode drumom, a Space je skok. Topuz je na J, teški udarac na K, a štit dižeš na L.", "A and D take you along the road, and Space is the jump. The mace is on J, the heavy blow on K, and you raise your shield with L."],
+["Udri ga topuzom (J). Kad on zamahne, podigni štit (L) ili odskoči, pa uzvrati.", "Strike him with the mace (J). When he swings, raise your shield (L) or spring back, then answer."],
+["Kad zatreba, pozovi me: E. Vino iz čuture (Q) vida rane i daje snagu.", "When you need me, call: E. Wine from the flask (Q) heals wounds and gives strength."],
 ["IZMAKNI SE", "GET CLEAR"],
 ["TOPUZ TI JE IZBIJEN", "YOUR MACE IS STRUCK FROM YOUR HAND"],
 ["TOPUZ JE OPET TVOJ", "THE MACE IS YOURS AGAIN"],
