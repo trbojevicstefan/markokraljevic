@@ -1,0 +1,86 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        80,
+        62,
+        431,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        80,
+        58,
+        432,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        57,
+        430,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        80,
+        58,
+        431,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        80,
+        61,
+        431,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        80,
+        62,
+        431,
+        488
+      ],
+      "anchor": {
+        "x": 256,
+        "y": 488
+      }
+    }
+  ],
+  "loop": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "renderScale": 1.0
+}
