@@ -8,6 +8,7 @@
 // The secret room behind the first wall waits for the wing; the champion in the last room ends the greybox.
 // game.js owns Marko, the foes and the drawing helpers and hands them in as `G` (GBX in game.js); this file never writes the save.
 
+import{GB_ART}from'./greybox-svet.js';
 export const GB_ZONE=60;
 export const GB_WALL=345;      // one jump and a ledge grab reach 266 px, the wing and a ledge grab 383 (greybox-test measures both)
 export const GB_GAP=500;       // without the dash the farthest leap is 469 px (a roll, a jump at the edge, the wing on the right frame);
@@ -22,7 +23,7 @@ export const GB_MOCI={
 // x ranges of the rooms, left to right; the map draws them as one row
 export const GB_ROOMS=[
  {id:'riznica',name:'Skrivena riznica',x0:0,x1:1400,secret:true},
- {id:'predvorje',name:'Predvorje',x0:1400,x1:3000},
+ {id:'predvorje',name:'Podgrađe',x0:1400,x1:3000},
  {id:'strazarnica',name:'Stražarnica',x0:3000,x1:4800},
  {id:'sokolova',name:'Sokolova odaja',x0:4800,x1:6400},
  {id:'ponor',name:'Ponor',x0:6400,x1:8900},
@@ -82,7 +83,7 @@ export function makeGreybox(){
 
 // ---------- once a step (game.js calls it from update while the greybox is the level) ----------
 export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play')return;S.t+=dt;
- const r=gbRoomAt(p.x);if(r!==S.room){S.room=r;const R=GB_ROOMS[r];if(!S.seen.has(r)&&S.t>.5)G.toast(R.name.toUpperCase(),1.6);S.seen.add(r);if(R.secret&&!S.secret)G.toast('Tajna soba!',2);}
+ const r=gbRoomAt(p.x);if(r!==S.room){S.room=r;const R=GB_ROOMS[r];G.look=GB_ART[R.id]?.look??10;if(!S.seen.has(r)&&S.t>.5)G.toast((GB_ART[R.id]?.name||R.name).toUpperCase(),1.6);S.seen.add(r);if(R.secret&&!S.secret)G.toast('Tajna soba!',2);}
  const near=(o,dx=46,dy=70)=>Math.abs(p.x-o.x)<dx&&Math.abs(p.y-o.y)<dy;
  for(const s of S.shrines)if(!s.taken&&near(s)){s.taken=true;S.moci[s.moc]=true;const M=GB_MOCI[s.moc];G.burst(s.x,s.y-70,M.color,40,240);G.sfx('magic_big',{gain:.9});G.label(M.name.toUpperCase(),s.x,s.y-160,M.color);G.speak(`${M.name} (${M.key}). ${M.text}`,9);}
  // a checkpoint fills the health each time Marko steps on it again, and Ravijojla brings him back to the last one
@@ -108,10 +109,12 @@ export function gbCamera(G,dt){const p=G.p,R=GB_ROOMS[gbRoomAt(p.x)];
 const C={back:'#25272c',back2:'#2a2c32',secret:'#2c2836',grid:'rgba(255,255,255,.035)',block:'#7c8088',edge:'#a7abb3',dark:'#4b4e55',plank:'#8e929a'};
 export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H,t=G.time;if(!g||!S)return;
  g.save();g.fillStyle=C.back;g.fillRect(cam-60,cy-60,VW+120,VH+120);
- GB_ROOMS.forEach((R,i)=>{if(R.x1<cam-20||R.x0>cam+VW+20)return;g.fillStyle=R.secret?C.secret:i%2?C.back2:C.back;g.fillRect(R.x0,ROOF,R.x1-R.x0,F-ROOF);});
- g.strokeStyle=C.grid;g.lineWidth=1;g.beginPath();for(let x=Math.floor(cam/100)*100;x<cam+VW+100;x+=100){g.moveTo(x,ROOF);g.lineTo(x,F);}for(let y=F-100;y>ROOF;y-=100){g.moveTo(cam-60,y);g.lineTo(cam+VW+60,y);}g.stroke();
+ const shown=GB_ROOMS.filter(R=>R.x1>cam-20&&R.x0<cam+VW+20),painted=shown.filter(R=>GB_ART[R.id]),inRoom=(R,fn)=>{g.save();g.beginPath();g.rect(R.x0,cy-120,R.x1-R.x0,VH+260);g.clip();fn();g.restore();};
+ GB_ROOMS.forEach((R,i)=>{if(R.x1<cam-20||R.x0>cam+VW+20||GB_ART[R.id])return;g.fillStyle=R.secret?C.secret:i%2?C.back2:C.back;g.fillRect(R.x0,ROOF,R.x1-R.x0,F-ROOF);
+  g.strokeStyle=C.grid;g.lineWidth=1;g.beginPath();for(let x=Math.max(R.x0,Math.floor(cam/100)*100);x<Math.min(R.x1,cam+VW+100);x+=100){g.moveTo(x,ROOF);g.lineTo(x,F);}for(let y=F-100;y>ROOF;y-=100){g.moveTo(Math.max(R.x0,cam-60),y);g.lineTo(Math.min(R.x1,cam+VW+60),y);}g.stroke();});
+ for(const R of painted)inRoom(R,()=>GB_ART[R.id].back(G,R));
  // the doorway between two rooms: a frame in the back wall
- for(const R of GB_ROOMS){if(R.x0<cam-80||R.x0>cam+VW+80||!R.x0)continue;g.fillStyle=C.dark;g.fillRect(R.x0-10,ROOF,20,F-300-ROOF);g.fillRect(R.x0-60,F-300,120,14);}
+ for(const R of GB_ROOMS){if(R.x0<cam-80||R.x0>cam+VW+80||!R.x0||GB_ART[R.id]||GB_ART[GB_ROOMS[gbRoomAt(R.x0-1)].id])continue;g.fillStyle=C.dark;g.fillRect(R.x0-10,ROOF,20,F-300-ROOF);g.fillRect(R.x0-60,F-300,120,14);}
  for(const q of W.platforms){if(q.x+q.w<cam-60||q.x>cam+VW+60||(q.off&&q.arena))continue;
   if(q.gbDoor){if(q.off){g.strokeStyle='rgba(143,255,224,.5)';g.setLineDash([8,8]);g.strokeRect(q.x,q.y,q.w,q.h);g.setLineDash([]);}else{g.fillStyle='#3f8f7e';g.fillRect(q.x,q.y,q.w,q.h);g.fillStyle='#8fffe0';for(let y=q.y+30;y<q.y+q.h;y+=70)g.fillRect(q.x+q.w/2-3,y,6,30);}continue;}
   if(q.surf){const a=Math.max(q.x,Math.floor((cam-40)/8)*8),b=Math.min(q.x+q.w,cam+VW+48);g.beginPath();g.moveTo(a,BOT);for(let x=a;x<b;x+=8)g.lineTo(x,gbGround(x));g.lineTo(b,gbGround(b));g.lineTo(b,BOT);g.closePath();g.fillStyle=C.block;g.fill();
@@ -119,16 +122,17 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,cam=G.camera,cy=G.camY,
   g.fillStyle=q.kind==='plank'?C.plank:C.block;g.fillRect(q.x,q.y,q.w,q.h);g.fillStyle=C.edge;g.fillRect(q.x,q.y,q.w,3);g.strokeStyle=C.dark;g.lineWidth=2;g.strokeRect(q.x+1,q.y+1,q.w-2,q.h-2);
   if(q.gbGate){const M=GB_MOCI[q.gbGate];g.fillStyle=M.color;g.globalAlpha=.85;g.fillRect(q.x,q.y,q.w,8);g.globalAlpha=1;}
   if(q.gbLip){g.fillStyle=GB_MOCI.nalet.color;g.fillRect(q.x,q.y,q.w,6);}}
+ for(const R of painted)inRoom(R,()=>GB_ART[R.id].front(G,R,{S,ground:gbGround,platforms:W.platforms}));
  // the abyss: its near edge and the depth below
  {g.fillStyle=GB_MOCI.nalet.color;g.fillRect(X.pit-40,F,40,6);g.fillStyle='#141518';g.fillRect(X.pit,F+4,GB_GAP,BOT);}
  for(const s of S.shrines){if(Math.abs(s.x-cam-VW/2)>VW)continue;const M=GB_MOCI[s.moc];g.fillStyle=C.dark;g.fillRect(s.x-34,s.y-36,68,36);g.fillStyle=C.edge;g.fillRect(s.x-34,s.y-36,68,3);
   if(!s.taken){const y=s.y-74+Math.sin(t*2.5)*6;G.halo(s.x,y,52,M.color,.8);g.fillStyle=M.color;g.beginPath();g.arc(s.x,y,16,0,Math.PI*2);g.fill();G.textLabel(M.name.toUpperCase(),s.x,s.y-112,{font:'bold 13px Georgia',color:M.color});}}
- for(const c of S.ckpts){if(Math.abs(c.x-cam-VW/2)>VW)continue;const on=S.ckpt===c.id;g.fillStyle=on?'#9fe6cf':'#8d9198';g.fillRect(c.x-10,c.y-120,20,120);g.fillRect(c.x-22,c.y-12,44,12);if(on)G.halo(c.x,c.y-126,40,'#a6ffe1',.7+.2*Math.sin(t*3));G.textLabel('ČEKPOINT',c.x,c.y-136,{font:'bold 12px Georgia',color:on?'#a6ffe1':'#c9ccd2'});}
+ for(const c of S.ckpts){if(Math.abs(c.x-cam-VW/2)>VW||GB_ART[GB_ROOMS[gbRoomAt(c.x)].id])continue;const on=S.ckpt===c.id;g.fillStyle=on?'#9fe6cf':'#8d9198';g.fillRect(c.x-10,c.y-120,20,120);g.fillRect(c.x-22,c.y-12,44,12);if(on)G.halo(c.x,c.y-126,40,'#a6ffe1',.7+.2*Math.sin(t*3));G.textLabel('ČEKPOINT',c.x,c.y-136,{font:'bold 12px Georgia',color:on?'#a6ffe1':'#c9ccd2'});}
  {const sw=S.sw,D=S.door;g.fillStyle=sw.down||D.open>0?'#8fffe0':'#3f8f7e';g.fillRect(sw.x-sw.w/2,sw.y-(sw.down?3:9),sw.w,sw.down?3:9);if(Math.abs(sw.x-cam-VW/2)<VW)G.textLabel(D.solved?'PREKIDAČ':'PREKIDAČ · VRATA SE OTVORE NA TREN',sw.x,sw.y-40,{font:'bold 12px Georgia',color:'#8fffe0'});
   if(D.open>0&&!D.solved){const k=D.open/GB_DOOR;g.strokeStyle='#8fffe0';g.lineWidth=4;g.beginPath();g.arc(D.q.x+D.q.w/2,F-300,16,-Math.PI/2,-Math.PI/2+Math.PI*2*k);g.stroke();}}
  {const ch=S.chest;if(Math.abs(ch.x-cam-VW/2)<VW){g.fillStyle=ch.taken?'#5d564a':'#9a8a62';g.fillRect(ch.x-34,ch.y-44,68,44);g.fillStyle='#d9c28a';g.fillRect(ch.x-34,ch.y-(ch.taken?52:44),68,6);if(!ch.taken){G.halo(ch.x,ch.y-30,60,'#ffe39a',.6);G.textLabel('TAJNA',ch.x,ch.y-70,{font:'bold 13px Georgia',color:'#ffe39a'});}}}
  // the names of the rooms, high on their back walls
- for(const R of GB_ROOMS){const mx=clampN(cam+VW/2,R.x0+200,R.x1-200);if(R.x1<cam||R.x0>cam+VW)continue;G.textLabel(R.name.toUpperCase(),mx,ROOF+40,{font:'bold 16px Georgia',color:'#8b8f98'});}
+ for(const R of GB_ROOMS){const mx=clampN(cam+VW/2,R.x0+200,R.x1-200);if(R.x1<cam||R.x0>cam+VW||GB_ART[R.id])continue;G.textLabel(R.name.toUpperCase(),mx,ROOF+40,{font:'bold 16px Georgia',color:'#8b8f98'});}
  g.restore();}
 
 // ---------- the map: a row of rooms, what is in them and where Marko is (a small canvas over the game) ----------
