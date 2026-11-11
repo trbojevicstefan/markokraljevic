@@ -107,8 +107,9 @@ function useFairy(){
 function updatePlayer(dt){
  if(p.pinned){p.vx=0;p.vy=0;p.attack=0;p.blocking=false;p.spin=0;p.dash=0;p.parry=0;return;}
  for(const key of ['invuln','attack','cooldown','parry','parryCooldown','dash','dashCooldown','buff','landing','mountTime','hurt','drink','vida','castLock','guardBreak','down','comboWindow','wallJumpT','plungeT','hurtLock','drop'])p[key]=Math.max(0,p[key]-dt);if(p.attackKind==='heavy'&&p.attack>0&&p.chargeable){const ph=1-p.attack/attackDuration();if(ph>=.36&&isDown('KeyK')&&!p.chargeReleased){p.attack+=dt;p.cooldown+=dt;p.charge=Math.min(1.1,p.charge+dt);if(p.charge>=1.1&&!p.chargeFull){p.chargeFull=true;fx('flash','#ffd27a',.06);sfx('ring',{gain:.6});label('PUN ZAMAH',p.x,p.y-150,'#ffd890');}}else if(ph>=.36&&p.charge>.15&&!p.chargeReleased){p.chargeReleased=true;sayGrunt(true);}}p.energy=Math.min(100,p.energy+dt*(perks.has('vilino-pero')?7.5:5.5));if(p.drink>0&&p.drink<.38&&!p.drinkApplied){p.drinkApplied=true;p.buff=12;p.hp=Math.min(p.maxHp,p.hp+Math.round(18*D().heal));sound("wine");say('wine',{priority:2,delay:.5});say('vila_wine',{chance:.5,delay:3.4});toast("Junačko vino · +30% snage · 12 sekundi",3);burst(p.x,p.y-65,"#e0a95a",20);fx('flash','#ffb040',.08);}p.anim+=dt;p.gait+=Math.abs(p.vx)*dt/(horseMounted?42:25);fairy.age+=dt;if(pendingMagic){pendingMagic.delay-=dt;if(pendingMagic.delay<=0){const effect=pendingMagic;pendingMagic=null;effect.apply();}}
- if(p.grounded){p.coyote=.12;p.airLift=false;}else p.coyote-=dt;
- if(climbInput())p.jumpBuffer=0;else if(tap('Space')&&!p.climb)p.jumpBuffer=.14; // Space alone jumps: up (W, ↑) is for the blows upward, ladders and doorselse p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
+ if(p.grounded){p.coyote=.12;p.airLift=false;}else p.coyote-=dt;airMovesReset();
+ // Space alone jumps: up (W, ↑) is for the blows upward, ladders and doors
+ if(climbInput())p.jumpBuffer=0;else if(tap('Space')&&!p.climb)p.jumpBuffer=.14;else p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
  p.crouching=p.grounded&&!horseMounted&&p.attack<=0&&p.drink<=0&&(isDown('KeyS','ArrowDown')||lowCeiling());p.crouch=clamp(p.crouch+(p.crouching?1:-1)*dt*7,0,1);p.h=112-48*p.crouch;
  p.blocking=isDown('KeyL')&&p.grounded&&!horseMounted&&!p.crouching&&p.attack<=0&&p.drink<=0&&p.dash<=0&&p.guardBreak<=0&&p.guard>0;
  p.blockTime=clamp(p.blockTime+(p.blocking?1:-1)*dt*8,0,1);p.guard=clamp(p.guard+dt*(p.blocking?-12:p.guardBreak>0?0:26),0,100);if(p.guard<=0&&p.blocking){p.guardBreak=.85;p.blocking=false;toast('Gard je slomljen',1);sfx('clang',{rate:.7});say('hurt',{priority:2});}
@@ -116,16 +117,17 @@ function updatePlayer(dt){
  if(p.attackKind==='super'&&p.attack>0&&p.attack<.45&&!p.superImpact){p.superImpact=true;sfx('boom',{gain:1});sfx('rock',{gain:.8});fx('hit',p.x+p.face*70,p.y-12,true);burst(p.x+p.face*70,p.y-12,'#ffcc72',24,240);dust(p.x,p.y,20,2.5);shake=settings.reduced?0:9;sound('hit');}
  const axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);if(axis)p.face=axis;
  const speed=horseMounted?480:265*(perks.has('sarceva-potkova')?1.07:1)*(stickMag<.7?.42:1);const target=p.wallJumpT>.12?p.vx:axis*speed*(p.spin>0?.5:p.attackKind==='super'&&p.attack>0?.12:p.blocking?.22:p.crouching?.3:p.attack>0?(p.runAtk&&p.attackKind==='light'?.85:.5):p.drink>0?.45:1);p.vx+= (target-p.vx)*Math.min(1,dt*(p.grounded?20:9));
- if(p.jumpBuffer>0&&p.wall&&!p.grounded){p.vy=-650;p.vx=-p.wall*440;p.wallSide=p.wall;p.face=-p.wall;p.wall=0;p.wallJumpT=.32;p.jumpBuffer=0;p.runJump=false;sound('jump');sayGrunt(false);dust(p.x+p.wallSide*16,p.y-40,6,1);}if(p.jumpBuffer>0&&p.coyote>0&&!p.climb){p.vy=horseMounted?-780:p.launchT>0?-820:-665;if(p.launchT>0&&!horseMounted){p.launchT=0;label('ZA NJIM!',p.x,p.y-150,'#ffe39a');}p.grounded=false;p.coyote=0;p.jumpBuffer=0;p.crouching=false;p.crouch=0;p.h=112;p.blocking=false;p.runJump=!horseMounted&&Math.abs(p.vx)>240;sound('jump');dust(p.x,p.y,horseMounted?10:6);}
- if(tap('ShiftLeft','ShiftRight')&&p.dashCooldown<=0&&!horseMounted&&(has('kolut')||(locked('kolut'),false))){p.dash=ROLL_TIME;p.dashCooldown=.85;sfx('whoosh',{gain:.6,rate:.8});dust(p.x,p.y,8,1.5);}
- if(p.dash>0){p.vx=p.face*470;if(!p.grounded)p.vy=Math.min(p.vy,0);}moveExtras(dt);
+ if(p.jumpBuffer>0&&p.wall&&!p.grounded){p.vy=-650;p.vx=-p.wall*440;p.wallSide=p.wall;p.face=-p.wall;p.wall=0;p.wallJumpT=.32;p.jumpBuffer=0;p.runJump=false;sound('jump');sayGrunt(false);dust(p.x+p.wallSide*16,p.y-40,6,1);}if(p.jumpBuffer>0&&p.coyote>0&&!p.climb){p.vy=horseMounted?-780:p.launchT>0?-820:-665;if(p.launchT>0&&!horseMounted){p.launchT=0;label('ZA NJIM!',p.x,p.y-150,'#ffe39a');}p.grounded=false;p.coyote=0;p.jumpBuffer=0;p.crouching=false;p.crouch=0;p.h=112;p.blocking=false;p.runJump=!horseMounted&&Math.abs(p.vx)>240;sound('jump');dust(p.x,p.y,horseMounted?10:6);}if(p.jumpBuffer>0&&canKrilo())sokolovoKrilo();
+ if(!p.grounded&&!p.climb&&!horseMounted&&tap('ShiftLeft','ShiftRight')){if(canNalet())startNalet();}else if(tap('ShiftLeft','ShiftRight')&&p.dashCooldown<=0&&!horseMounted&&(has('kolut')||(locked('kolut'),false))){p.dash=ROLL_TIME;p.dashCooldown=.85;sfx('whoosh',{gain:.6,rate:.8});dust(p.x,p.y,8,1.5);}
+ if(p.dash>0){if(p.airDash)naletTick(dt);else{p.vx=p.face*470;if(!p.grounded)p.vy=Math.min(p.vy,0);}}else p.airDash=false;moveExtras(dt);
  {const mid=p.cooldown>0||p.attack>0;p.jBuf=mid&&pressed.has('KeyJ')?.2:Math.max(0,(p.jBuf||0)-dt);p.kBuf=mid&&pressed.has('KeyK')?.2:Math.max(0,(p.kBuf||0)-dt);if(p.plunge)p.jBuf=p.kBuf=0;}
  if(!p.grounded&&!horseMounted&&!p.plunge&&p.attack<=0&&isDown('KeyS','ArrowDown')&&tap('KeyJ')&&(has('nadole')||(locked('nadole'),false))&&(cdReady('plunge')||(cdDenied('plunge'),false)))startPlunge();else if(specialStrike()){p.jBuf=p.kBuf=0;}else if(isDown('KeyJ')||p.jBuf>0){const a=attackSerial;strike(false);if(attackSerial!==a)p.jBuf=0;}if(isDown('KeyK')||p.kBuf>0){const a=attackSerial;strike(true);if(attackSerial!==a)p.kBuf=0;}
  if(tap('KeyL')&&p.parryCooldown<=0&&p.guardBreak<=0&&!p.attack&&!p.drink&&!horseMounted&&has('kontra')){p.parry=D().parry;p.parryCooldown=.65;sound('swing');}
  if(tap('KeyQ')){if(p.wine>0&&p.buff<=0&&p.drink<=0){p.wine--;p.drink=.85;p.drinkApplied=false;p.attack=0;}else toast(p.buff>0?'Vino već daje snagu.':'Čutura je prazna. Potraži vino uz drum.',2);}
  if(tap('KeyE'))useFairy();if(tap('KeyI')&&!(level&&useVrh('I'))&&!p.noMace)throwMace();if(tap('KeyG'))toggleSablja();
+ pokretiTick(dt);if(tap('KeyV'))vilinTrag();
  if(p.mountTime>0)p.vx=0;const wasGrounded=p.grounded,fallSpeed=p.vy;if(!p.grounded&&p.vy>150&&perks.has('orlovo-pero')&&isDown('Space')&&!horseMounted&&!p.climb){p.vy=150;if(Math.random()<.3)burst(p.x,p.y-60,'#e8e0c8',1,40);}if(!ledgeUpdate(dt)&&!(level&&updateClimb(dt))){const bp=bodyBlock(dt);p.vx+=bp;integrate(p,dt,world.platforms,world.runes);p.vx-=bp;}if(!p.grounded&&!p.climb){ledgeCheck();wallCheck();}else{p.wall=0;}if(p.plunge===1&&p.grounded)plungeImpact();if(!wasGrounded&&p.grounded&&fallSpeed>220){const lk=clamp((fallSpeed-220)/700,0,1);p.landing=.2;if(fallSpeed>930&&!horseMounted&&p.attack<=0&&rig?.['marko-roll-land'])p.rollLandT=ROLL_LAND_TIME;sfx(horseMounted?'hoof':'land',{gain:horseMounted?.9:.3+.45*lk});dust(p.x,p.y,horseMounted?16:Math.round(5+12*lk),horseMounted?2:1+1.3*lk);if(lk>.75&&!horseMounted){shake=Math.max(shake,settings.reduced?0:2+3*lk);rumble(.25+.3*lk,90);}tone(horseMounted?72:100,.1,"triangle",.12,45);if(horseMounted)shake=Math.max(shake,settings.reduced?0:3);}advanceFairy(dt);p.x=Math.max(chapters[zone].start+35,p.x);
- if(p.grounded&&p.on?.kind!=='crate'){lastSafe=p.x;lastSafeY=p.y;}if(p.y>(world.pitY||850)){damage(20);if(mode==='play'){p.x=Math.max(chapters[zone].start+80,lastSafe-(level?0:80));p.y=level?lastSafeY-160:420;p.climb=null;p.vy=0;p.vx=0;p.invuln=1.2;say('pit',{priority:3});toast('Ravijojla te izvukla iz ponora · −20 zdravlja',2);}}
+ if(p.grounded&&p.on?.kind!=='crate'&&safeFooting()){lastSafe=p.x;lastSafeY=p.y;}if(p.y>(world.pitY||850)){damage(20);if(mode==='play'){p.x=Math.max(chapters[zone].start+80,lastSafe-(level?0:80));p.y=level?lastSafeY-160:420;p.climb=null;p.vy=0;p.vx=0;p.invuln=1.2;say('pit',{priority:3});toast('Ravijojla te izvukla iz ponora · −20 zdravlja',2);}}
  if(horseMounted){for(const b of world.barriers){if(Math.abs(p.x-b.x)<38&&p.y>b.y-b.h+10){damage(12,-1);dust(b.x,b.y,14,2);b.x=-1000;}}}
  for(const i of world.items){if(!i.taken&&Math.abs(p.x-i.x)<40&&Math.abs(p.y-38-i.y)<75){i.taken=true;if(i.type==='cudo'){collectCudo(i);continue;}if(i.type==='slovo'){collectLetter(i);continue;}if(i.type==='moc'){takePower(i);continue;}if(i.type==='srce'){takeHeart(i);continue;}if(i.type==='zapis'){takeZapis(i);continue;}if(i.type==='kljuc'){takeKey(i);continue;}if(i.type==='tovar'){i.plow.treasureTaken=true;sfx('coins',{gain:1});addCoins(20,i.x,i.y);label('TOVAR BLAGA',i.x,i.y-30,'#ffe6a0');continue;}if(i.type==='wine'){p.wine=Math.min(5,p.wine+1);label('+ VINO',i.x,i.y);}else if(i.type==='herb'){{const h=Math.round(25*D().heal);p.hp=Math.min(p.maxHp,p.hp+h);label('+'+h,i.x,i.y,'#c0edb0');}}else{relics++;p.maxHp+=10;p.hp=Math.min(p.maxHp,p.hp+25);label('ZAPIS LEGENDE',i.x,i.y);say('relic',{priority:2});sfx('coins');toast('Pronađen zapis · maksimalno zdravlje +10');}sound('wine');burst(i.x,i.y,'#e7c982',12);}}
  if(level){strikeCrates();updatePlows(dt);updateTraps(dt);updateArena();updatePuzzles(dt);pogo();}updateSpecial(dt);updateHints(dt);updateStreak(dt);updateCooldowns(dt);sabljaTick(dt);champTick(dt);updateFoeStates(dt);abilityBar(dt);updatePowers(dt);updateThrow(dt);updateCoins(dt);updateChunks(dt);
@@ -958,7 +960,7 @@ function sabljaPose(P){if(!p?.sablja||!P)return P;
 function maceSmear(){const d=attackDuration(),phase=1-p.attack/d;if(p.attack<=0||phase<.4||phase>.97)return;const heavy=p.attackKind==='heavy',t=clamp((phase-.42)/.33,0,1),ease=1-Math.pow(1-t,3),head=-1.75+ease*2.6,tail=Math.max(-1.75,head-(heavy?1.05:.85)),fade=1-clamp((phase-.78)/.19,0,1),R=heavy?100:84,inner=R*(heavy?.8:.84);for(const g of[gctx,ctx]){g.save();g.translate(p.x+p.face*6,p.y-66);g.scale(p.face,1);g.beginPath();g.arc(0,0,R,tail,head);g.arc(Math.cos(head)*6,Math.sin(head)*6,inner,head,tail,true);g.closePath();const gr=g.createLinearGradient(Math.cos(tail)*R,Math.sin(tail)*R,Math.cos(head)*R,Math.sin(head)*R);const c=heavy?'255,190,100':'255,236,200';gr.addColorStop(0,`rgba(${c},0)`);gr.addColorStop(1,`rgba(${c},${(g===gctx?(heavy?.42:.34):.2)*fade})`);g.fillStyle=gr;g.fill();g.restore();}}
 function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying)return;const alpha=p.invuln>0&&!finisher&&!p.stare&&!(training&&p.invuln<.6)&&Math.floor(time*14)%2?.55:1;
  for(const g of ghosts)rigDraw(g.name,g.frame,g.x,g.y,g.faceAs??g.face,{...g,glow:true,color:'#7fffe0',alpha:g.life*1.1,outline:1.5});
- shadow(p.x,p.y,horseMounted?84:38,.55);
+ drawTrag();drawKrilo();shadow(p.x,p.y,horseMounted?84:38,.55);
  if(p.buff>0){halo(p.x,p.y-64,90,'rgba(255,170,60,.22)',.7+.3*Math.sin(time*6));emitters.push({id:'buff',kind:'buff',x:p.x,y:p.y,rate:38});}
  if(horseMounted&&p.mountTime>0){const a=1-p.mountTime/.55;rigDraw('cast/sarac',0,p.x,p.y,p.face,{alpha:1-a});rigDraw('cast/marko',0,p.x-p.face*(65*(1-a)),p.y-55*Math.sin(a*Math.PI),p.face,{alpha:1-a,rot:-.15*Math.sin(a*Math.PI)*p.face});rigDraw('mounted-jump',0,p.x,p.y,p.face,{alpha:a});}
  else{const pose=playerPose();if(p.buff>0)rimGlow(pose,p.x,p.y,p.face,'#ffb44a',.3+.15*Math.sin(time*8),1.6);if(p.parry>0)rimGlow(pose,p.x,p.y,p.face,'#8fffe0',.3,1.6);rigDraw(pose.name,pose.frame,p.x,p.y,pose.faceAs??(pose.faceFlip?-p.face:p.face),{...pose,alpha,flash:p.hurt>.1?(p.hurt-.1)/.12*.6:0,flashColor:'#ffb8a8'});if(p.dizzy>0)drawDizzy();}
@@ -1213,8 +1215,9 @@ const TOUCH_ICONS={
  KeyE:'<path d="M12 3c.8 4 2.2 5.4 6 6.2-3.8.8-5.2 2.2-6 6.2-.8-4-2.2-5.4-6-6.2 3.8-.8 5.2-2.2 6-6.2z"/><path d="M19 15v4M17 17h4"/>',
  KeyI:'<path d="M3 15c4-6 10-8 17-6" stroke-dasharray="2 3"/><circle cx="18" cy="9" r="3.4" fill="currentColor"/><path d="M18 3.6v1.6M18 12.8v1.6M12.6 9h1.6M21.8 9h1.6"/>',
  KeyW:'<path d="M6 15l6-6 6 6"/><path d="M8 21V3M16 21V3M8 8h8M8 13h8M8 18h8" opacity=".45"/>',
+ KeyV:'<circle cx="12" cy="12" r="8.5" stroke-dasharray="2.6 2.4"/><path d="M12 6.5c.6 2.7 1.5 3.6 4.2 4.2-2.7.6-3.6 1.5-4.2 4.2-.6-2.7-1.5-3.6-4.2-4.2 2.7-.6 3.6-1.5 4.2-4.2z" fill="currentColor" fill-opacity=".35"/>',
 };
-function layoutTouch(){if(!hasDom)return;const small=innerHeight<=430,main=small?58:66;for(const b of document.querySelectorAll('#touch [data-key]')){if(TOUCH_ICONS[b.dataset.key]&&!b.firstElementChild)b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${TOUCH_ICONS[b.dataset.key]}</svg>`;const ring=Number(b.dataset.ring||0);if(!ring)continue;const size=ring===1?(small?44:50):(small?38:42),r=ring===1?(small?66:74):(small?114:128),a=Number(b.dataset.angle)*Math.PI/180;b.style.right=(main/2+r*Math.cos(a)-size/2)+'px';b.style.bottom=(main/2+r*Math.sin(a)-size/2)+'px';}}
+function layoutTouch(){if(!hasDom)return;const small=innerHeight<=430,main=small?58:66;for(const b of document.querySelectorAll('#touch [data-key]')){if(TOUCH_ICONS[b.dataset.key]&&!b.firstElementChild)b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${TOUCH_ICONS[b.dataset.key]}</svg>`;const ring=Number(b.dataset.ring||0);if(!ring)continue;const size=ring===1?(small?44:50):(small?38:42),r=ring===1?(small?66:74):ring===3?(small?160:182):(small?114:128),a=Number(b.dataset.angle)*Math.PI/180;b.style.right=(main/2+r*Math.cos(a)-size/2)+'px';b.style.bottom=(main/2+r*Math.sin(a)-size/2)+'px';}}
 layoutTouch();window.addEventListener('resize',layoutTouch);
 
 // ---------- launch on the killing blow ----------
@@ -1244,6 +1247,7 @@ function pack3Pose(){
  if(p.wallJumpT>0&&rig?.['marko-walljump'])return{name:'marko-walljump',frame:3+Math.min(2,Math.floor((1-p.wallJumpT/.32)*3)),faceAs:p.wallSide};
  if(p.plunge===1&&rig?.['marko-plunge'])return{name:'marko-plunge',frame:Math.min(2,Math.floor((time-p.plungeStart)/.09))};
  if(p.plunge===2&&rig?.['marko-plunge'])return{name:'marko-plunge',frame:3+Math.min(2,Math.floor((1-p.plungeT/.4)*3))};
+ if(p.dash>0&&p.airDash&&rig?.['marko-run-jump'])return{name:'marko-run-jump',frame:3};
  if(p.dash>0&&p.grounded&&rig?.['marko-roll'])return{name:'marko-roll',frame:Math.min(5,Math.floor((1-p.dash/ROLL_TIME)*6))};
  return null;}
 function startCounter(x){if(!p.grounded||horseMounted||Math.abs(x-p.x)>170||p.down>0)return;p.face=x>p.x?1:-1;p.attack=.55;p.attackKind='counter';p.attackId=++attackSerial;p.counterHit2=false;p.cooldown=.62;p.charge=0;hitstop=Math.max(hitstop,.08);fx('flash','#d8fff0',.08);sayGrunt(true);}
@@ -1252,6 +1256,55 @@ function startPlunge(){cdStart('plunge');p.plunge=1;p.plungeStart=time;p.vy=Math
 function plungeImpact(){if(level&&p.on?.kind==='cracked'&&breakCracked()){p.plunge=0;return;}if(level&&(world.traps||[]).some(t=>t.kind==='spikes'&&p.x+10>t.x&&p.x-10<t.x+t.w&&Math.abs(p.y-t.y)<8)){bounce(p.x,p.y-20,'#ffe6b0');return;}p.plunge=2;p.plungeT=.4;dust(p.x,p.y,24,2.6);sfx('boom',{gain:.8});sfx('rock',{gain:.9});shake=settings.reduced?0:8;fx('hit',p.x+p.face*30,p.y-10,true);const power=p.buff>0?1.3:1;
  for(const e of world.enemies){if(!e.alive||e.zone!==zone)continue;const dx=e.x-p.x;if(Math.abs(dx)>135||Math.abs(e.y-p.y)>90)continue;const amount=55*power;e.hp-=amount;e.flash=.15;e.stun=Math.max(e.stun,e.type==='akindzija'?2:.9);e.mode='stun';e.knock=Math.sign(dx||1)*20;if(e.type==='oklopnik'&&(e.armor??3)>0){e.armor=0;label('OKLOP PUKAO!',e.x,e.y-150,'#ffe39a');}e.hurtT=.34;label(Math.round(amount),e.x,e.y-110);blood(e.x,e.y-60,Math.sign(dx||1),16);if(e.hp<=0){slay(e,.8);dust(e.x,e.y,10,1.4);}}
  if(zone===5&&boss.alive&&Math.abs(boss.x-p.x)<150&&MUSA_OPEN.includes(boss.mode)){boss.hp=Math.max(0,boss.hp-70*power);boss.flash=.16;boss.hurtT=.34;blood(boss.x,boss.y-90,p.face,16);bossAfterDamage();}}
+// ================= moves after The Lost Crown (only the ideas): the falcon's wing, the dash in the air, the fairy's trace =================
+// Sokolovo krilo: a second jump in the air, once a flight and on foot only; the ground, a wall, a ledge or a ladder give it back.
+// Juriš u vazduhu: Shift in the air throws Marko straight ahead for a moment, without falling and untouchable; once a flight.
+// Vilin trag: V leaves Ravijojla's mark where Marko stands; V again within eight seconds brings him back to it (the place, not the health).
+// None of them waits for a pohod: Marko knows them from the start.
+const KRILO_TIME=.42,KRILO_VY=-640,NALET_TIME=.22,NALET_SPEED=800,TRAG_LIFE=8,TRAG_CD=3.5;
+const POKRETI=[{name:'Sokolovo krilo',key:'u skoku SPACE',text:'Još jedan skok u vazduhu, jednom po letu. Tlo, zid i ivica ga vraćaju.'},
+ {name:'Juriš u vazduhu',key:'u skoku SHIFT',text:'Kratak nalet pravo napred: ne padaš i ništa te ne dotiče. Jednom po letu.'},
+ {name:'Vilin trag',key:'V',text:'Ostavi Ravijojlin trag, pa se u roku od osam sekundi vrati na njega, i usred boja.'}];
+let perje=[];
+function airMovesReset(){if(p.grounded||p.wall||p.ledgeT>0||p.climb){p.kriloUsed=false;p.naletUsed=false;}}
+function canKrilo(){return!p.grounded&&p.coyote<=0&&!p.kriloUsed&&!p.wall&&!p.climb&&!horseMounted&&!(p.ledgeT>0)&&!p.plunge&&!(p.down>0)&&!(p.mountTime>0)&&!p.lying;}
+function sokolovoKrilo(){p.kriloUsed=true;p.jumpBuffer=0;p.vy=KRILO_VY;p.airT=0;p.runJump=false;p.kriloT=KRILO_TIME;if(p.airDash){p.dash=0;p.airDash=false;}
+ sfx('wings',{gain:.7,rate:1.2})||sfx('whoosh',{gain:.55,rate:1.3});sayGrunt(false);burst(p.x,p.y-30,'#f4ead2',10,140);
+ for(let i=0;i<9;i++){const side=Math.random()<.5?-1:1,s=60+Math.random()*120,a=Math.PI*(.1+.5*Math.random());perje.push({x:p.x+side*(16+Math.random()*34),y:p.y-96+Math.random()*40,vx:side*Math.cos(a)*s,vy:-Math.sin(a)*s*.5,rot:Math.random()*6.28,vr:(Math.random()-.5)*8,life:.9+Math.random()*.7,max:1.6,c:Math.random()<.35?'#c9a46a':'#f4ead2'});}}
+function canNalet(){return!p.naletUsed&&!(p.dash>0)&&!(p.attack>0)&&!(p.spin>0)&&!p.plunge&&!(p.ledgeT>0)&&!(p.down>0)&&!(p.mountTime>0)&&!p.lying&&!(p.throwT>0);}
+function startNalet(){if(p.wall){p.face=-p.wall;p.wall=0;}p.naletUsed=true;p.airDash=true;p.naletDir=p.face;p.dash=NALET_TIME;p.dashCooldown=Math.max(p.dashCooldown,.3);p.vy=0;p.jumpBuffer=0;p.runJump=false;
+ sfx('whoosh_heavy',{gain:.55,rate:1.3});burst(p.x-p.face*24,p.y-60,'#fff1cf',12,170);}
+// gravity is held off for the dash: the integrator adds 1750·dt, so the dash starts each step a little below zero
+function naletTick(dt){if(p.grounded||p.wallHit){p.dash=0;p.airDash=false;return;}p.face=p.naletDir||p.face;p.vx=p.face*NALET_SPEED;p.vy=-1750*dt;
+ const g=Math.floor(p.dash/.035);if(g!==p.naletGhost){p.naletGhost=g;ghosts.push({...playerPose(),x:p.x,y:p.y,face:p.face,life:.2});}}
+function pokretiTick(dt){if(p.kriloT>0)p.kriloT=Math.max(0,p.kriloT-dt);
+ for(const f of perje){f.vy=Math.min(f.vy+240*dt,70);f.vx*=1-dt*2.4;f.x+=(f.vx+Math.sin(f.life*7+f.rot)*28)*dt;f.y+=f.vy*dt;f.rot+=f.vr*dt;f.life-=dt;}perje=perje.filter(f=>f.life>0);
+ const t=p.trag;if(!t)return;if(t.world!==world){p.trag=null;return;}t.left-=dt;
+ if(t.left<=0){p.trag=null;p.cd??={};p.cd.trag=Math.max(p.cd.trag||0,1);sfx('magic',{gain:.3,rate:.7});burst(t.x,t.y-60,'#a6ffe1',16,110);}}
+function tragBlocked(){return horseMounted||p.pinned||p.lying||!!finisher||!!grapple||!!gunner||p.down>0||p.mountTime>0||p.castLock>0;}
+// the trace cannot pull Marko out of a duel's ring or back over the start of a chapter
+function tragReach(t){const lo=Math.max(chapters[zone].start+35,arena?arena.x0+30:-1e9,zone===5&&!level?28060:-1e9),hi=Math.min(arena?arena.x1-30:1e9,zone===5&&!level?29830:1e9,level?level.width-30:1e9);return t.x>=lo&&t.x<=hi;}
+function vilinTrag(){if(tragBlocked()){cdDenied('trag');return;}const t=p.trag;
+ if(!t){if(!cdReady('trag')){cdDenied('trag');return;}p.trag={x:p.x,y:p.y,left:TRAG_LIFE,world,face:p.face,pose:playerPose()};sfx('magic',{gain:.7,rate:1.25});burst(p.x,p.y-60,'#a6ffe1',24,170);toast('Vilin trag · pritisni opet i vrati se ovamo',2);return;}
+ if(!tragReach(t)){cdDenied('trag');toast('Vilin trag je ostao izvan megdana.',1.6);return;}
+ ghosts.push({...playerPose(),x:p.x,y:p.y,face:p.face,life:.35});burst(p.x,p.y-60,'#a6ffe1',20,200);
+ Object.assign(p,{x:t.x,y:t.y-2,vx:0,vy:0,grounded:false,coyote:0,climb:null,hang:false,ledgeT:0,ledge:null,wall:0,attack:0,spin:0,dash:0,airDash:false,plunge:0,drop:0,blocking:false,jumpBuffer:0,slide:0,kick:0});
+ p.invuln=Math.max(p.invuln,.4);p.trag=null;p.cd??={};p.cd.trag=TRAG_CD;sfx('magic_big',{gain:.75,rate:1.15});burst(t.x,t.y-60,'#d8fff0',34,240);fx('spell',t.x,t.y-20);}
+// Firm ground for the abyss (−20 and back on the last firm ground, as in The Lost Crown): a plank that gives way or the ground by the stakes is not firm
+function safeFooting(){return!p.on?.crumble&&!(world.traps||[]).some(t=>t.kind==='spikes'&&Math.abs(p.y-t.y)<8&&p.x>t.x-40&&p.x<t.x+t.w+40);}
+function drawTrag(){const t=p.trag;if(!t||t.world!==world)return;const k=clamp(t.left/TRAG_LIFE,0,1),pulse=.5+.5*Math.sin(time*6),blink=t.left<2&&Math.floor(time*8)%2?.45:1;
+ halo(t.x,t.y-62,74,'rgba(150,255,222,.32)',(.65+.35*pulse)*blink);
+ const P=t.pose;if(P){rigDraw(P.name,P.frame,t.x,t.y,P.faceAs??t.face,{...P,color:'#7fe8cc',alpha:(.2+.08*pulse)*blink});rigDraw(P.name,P.frame,t.x,t.y,P.faceAs??t.face,{...P,glow:true,color:'#8fffe0',alpha:(.38+.14*pulse)*blink,outline:1.5});}
+ ctx.save();ctx.globalAlpha=.75*blink;ctx.strokeStyle='#a6ffe1';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(t.x,t.y,30+5*pulse,8,0,0,Math.PI*2);ctx.stroke();
+ ctx.lineWidth=3;ctx.beginPath();ctx.arc(t.x,t.y-150,11,-Math.PI/2,-Math.PI/2+Math.PI*2*k);ctx.stroke();ctx.restore();
+ for(let s=0;s<3;s++){const a=time*2.4+s*2.09;textLabel('✦',t.x+Math.cos(a)*26,t.y-74+Math.sin(a)*34,{font:'14px Georgia',color:'#d8fff0',glow:'#8fffe0',alpha:.85*blink});}
+ emitters.push({id:'trag',kind:'rune',x:t.x,y:t.y,rate:12});}
+// the falcon's wings open behind Marko and beat down once; a few feathers drift away
+function drawKrilo(){for(const f of perje){ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rot);ctx.globalAlpha=clamp(f.life/f.max*1.6,0,1);ctx.fillStyle=f.c;ctx.beginPath();ctx.ellipse(0,0,7,2.2,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(90,60,30,.6)';ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(-7,0);ctx.lineTo(7,0);ctx.stroke();ctx.restore();}
+ if(!(p.kriloT>0)||horseMounted)return;const k=1-p.kriloT/KRILO_TIME,beat=Math.sin(Math.min(1,k/.5)*Math.PI/2);
+ for(const g of[ctx,gctx])for(const side of[-1,1]){g.save();g.translate(p.x-p.face*4,p.y-86);g.scale(side,1);g.rotate(-1.2+1.5*beat);g.globalAlpha=(g===ctx?.95:.16)*(1-k*k);
+  for(let f=0;f<7;f++){const L=70-f*5;g.save();g.rotate(f*.17);g.beginPath();g.ellipse(L/2,0,L/2,5.4,0,0,Math.PI*2);g.fillStyle=g===ctx?(f%2?'#eadcbd':f>3?'#8a5e34':'#b98b55'):'#e8fff6';g.fill();if(g===ctx){g.strokeStyle='#6b4a26';g.lineWidth=1.1;g.stroke();g.beginPath();g.moveTo(4,0);g.lineTo(L-6,0);g.strokeStyle='rgba(107,74,38,.55)';g.lineWidth=.9;g.stroke();}g.restore();}
+  g.restore();}}
 // Raised stone blocks: hands near the top while airborne and facing the edge -> grab and climb.
 function ledgeCheck(){if(level)return ledgeCheckLevel();if(p.ledgeT>0||horseMounted||p.plunge||p.vy< -150||p.attack>0||p.down>0)return;for(const q of world.platforms){if(q.kind!=='stone'||isFloor(q))continue;const hands=p.y-112;if(Math.abs(hands-q.y)>28||p.y<q.y+24)continue;const left=p.face>0&&p.x+17>q.x-12&&p.x+17<q.x+20,right=p.face<0&&p.x-17<q.x+q.w+12&&p.x-17>q.x+q.w-20;if(!left&&!right)continue;
   const edge=left?q.x:q.x+q.w;p.ledge={x0:edge-p.face*18,y0:q.y+112,x1:edge+p.face*24,y1:q.y};p.ledgeT=LEDGE_TIME;p.vx=0;p.vy=0;p.wall=0;sfx('cloth',{gain:.6});p.hang=true;p.hangT=0;p.hangHeld=true;hangTip();sayGrunt(false);return;}}
@@ -1516,7 +1569,7 @@ function drawTreasure(i){const im=levelArt['cilj-tovar-blaga'];const yy=i.y+30;i
 function openRiznica(){const have=ownedCuda(),s=smithLevels();
  $('cuda-grid').innerHTML=CUDA.map(c=>`<div class="cudo ${have.has(c.id)?'have':''}"><img src="assets/world/cudo-${c.id}.webp" alt="" onerror="this.style.visibility='hidden'"><b>${have.has(c.id)?c.name:'???'}</b><small>${have.has(c.id)?`„${c.song}” · ${c.perk}`:`Skriveno: ${c.land==='kacanik'?'pobedi Musu Kesedžiju':'pohod '+(LEVELS.find(L=>L.id===c.land)?.name||c.land)}`}</small></div>`).join('');
  {const hs=storedSet('marko-srca'),zs=storedSet('marko-zapisi'),nm=id=>LEVELS.find(L=>L.id===id)?.name||id;$('srca').textContent=`Delovi srca: ${hs.size}/${Object.keys(ZAPISI).length} · cela srca: ${Math.floor(hs.size/4)} (+${Math.floor(hs.size/4)*20} zdravlja u pohodima)`;$('zapisi').innerHTML=Object.entries(ZAPISI).map(([id,t])=>`<div class="${zs.has(id)?'have':''}"><b>${zs.has(id)?'Zapis · '+nm(id):'🔒 Zapis'}</b><small>${zs.has(id)?t:'Skriven u pohodu „'+nm(id)+'”'}</small></div>`).join('');}
- skillCache=null;const sk=ownedSkills(),lvName=id=>LEVELS.find(L=>L.id===id)?.name||id;$('vestine').innerHTML=SKILLS.map((k,i)=>`<div class="riz-skill ${sk.has(k.id)?'have':'locked'}"><span class="riz-num">${i+1}</span><div><b>${k.name}</b><p class="riz-keys">${keyChips(k.key)}</p><small>${k.text}</small><em>${sk.has(k.id)?'✓ Naučeno':'🔒 Dobija se posle pohoda „'+lvName(k.land)+'”'}</em></div></div>`).join('');
+ skillCache=null;const sk=ownedSkills(),lvName=id=>LEVELS.find(L=>L.id===id)?.name||id;$('vestine').innerHTML=SKILLS.map((k,i)=>`<div class="riz-skill ${sk.has(k.id)?'have':'locked'}"><span class="riz-num">${i+1}</span><div><b>${k.name}</b><p class="riz-keys">${keyChips(k.key)}</p><small>${k.text}</small><em>${sk.has(k.id)?'✓ Naučeno':'🔒 Dobija se posle pohoda „'+lvName(k.land)+'”'}</em></div></div>`).join('')+POKRETI.map(k=>`<div class="riz-skill have"><span class="riz-num">✦</span><div><b>${k.name}</b><p class="riz-keys">${keyChips(k.key)}</p><small>${k.text}</small><em>✓ Od početka</em></div></div>`).join('');
  $('riz-n-vestine').textContent=`${SKILLS.filter(k=>sk.has(k.id)).length}/${SKILLS.length}`;$('riz-bar-vestine').style.width=`${SKILLS.filter(k=>sk.has(k.id)).length/SKILLS.length*100}%`;$('riz-n-cuda').textContent=`${CUDA.filter(c=>have.has(c.id)).length}/${CUDA.length}`;
  {const b=book(),n=Object.keys(FOE_BOOK).filter(t=>b[t]).length;$('dusmani').innerHTML=`<p>Dušmani koje je Marko sreo na drumu: snaga, slabost i broj savladanih.</p><button class="secondary" id="riznica-knjiga">Otvori knjigu dušmana · ${n}/${Object.keys(FOE_BOOK).length}</button>`;$('riznica-knjiga').onclick=()=>openBook();}
  $('kombinacije').innerHTML=[['J J J','Junački niz','treći udarac obara'],['J J K','Lomilac','razbija štit i oklop, odbacuje'],['S+K, Space','Aperkat i skok za njim','jak udarac odozdo diže Turčina u vazduh, Marko skače za njim'],['S+J','Šut nogom','obija štit u stranu, odguruje (i sa ivice)'],['S u trku','Klizanje','podseca neprijatelje'],['u skoku J J J','Žongliranje','drži ga gore; treći ga zakuca o zemlju'],['u skoku K','Tresak','iz vazduha u zemlju, udarni talas'],['skok, J J J','Vazdušni niz','držiš se u vazduhu dok udaraš'],['SHIFT → J','Juriš','kroz red neprijatelja'],['S+J u skoku','Udar nadole','odskok od kolja i neprijatelja'],['drži K','Pun zamah','tri stepena, ★ kad je pun']].map(([k,n,t])=>`<div class="riz-combo"><p class="riz-keys">${keyChips(k)}</p><b>${n}</b><small>${t}</small></div>`).join('');
@@ -2661,7 +2714,7 @@ function levelOpen(i){if(LEVELS[i].secret)return tajnaOpen();if(i===0||DEV||leve
 // L3 vihor · R3 junački udar · Start pauza · stick ili krstić: kretanje, gore = lestve/uvis, dole = čučanj
 const PAD_MAP={0:'Space',1:'ShiftLeft',2:'KeyJ',3:'KeyK',4:'KeyL',5:'KeyI',6:'KeyQ',7:'KeyE',8:'KeyG',10:'KeyF',11:'KeyR'};
 const padHeld=new Set(),padRest=new Set();let padPrev={},padIndex=null,stickMag=1,padNav={},controlsKeyboard=null;
-const PAD_LEGEND='<span><kbd>A</kbd> Skok</span><span><kbd>X</kbd> Topuz</span><span><kbd>Y</kbd> Teški</span><span><kbd>B</kbd> Kolut</span><span><kbd>LB</kbd> Blok</span><span><kbd>RB</kbd> Baci topuz</span><span><kbd>RT</kbd> Vila / poluga</span><span><kbd>LT</kbd> Vino</span><span><kbd>L3</kbd> Vihor</span><span><kbd>R3</kbd> Super</span><span><kbd>↑</kbd> Lestve · <kbd>↑</kbd>+<kbd>X</kbd> Uvis</span><span><kbd>↓</kbd>+<kbd>A</kbd> Siđi</span>';
+const PAD_LEGEND='<span><kbd>A</kbd> Skok</span><span><kbd>X</kbd> Topuz</span><span><kbd>Y</kbd> Teški</span><span><kbd>B</kbd> Kolut</span><span><kbd>LB</kbd> Blok</span><span><kbd>RB</kbd> Baci topuz</span><span><kbd>RT</kbd> Vila / poluga</span><span><kbd>LT</kbd> Vino</span><span><kbd>L3</kbd> Vihor</span><span><kbd>R3</kbd> Super</span><span><kbd>↑</kbd> Lestve · <kbd>↑</kbd>+<kbd>X</kbd> Uvis</span><span><kbd>↓</kbd>+<kbd>A</kbd> Siđi</span><span><kbd>A</kbd> u skoku: Sokolovo krilo</span><span><kbd>B</kbd> u skoku: Juriš u vazduhu</span><span><kbd>↓</kbd>+<kbd>RT</kbd> Vilin trag</span>';
 function padSet(code,on){if(on){if(!padHeld.has(code)){padHeld.add(code);if(!keys.has(code))pressed.add(code);keys.add(code);}}else if(padHeld.has(code)){padHeld.delete(code);keys.delete(code);}}
 function rumble(strength=.5,ms=160){try{const g=padIndex!==null&&navigator.getGamepads?.()[padIndex];g?.vibrationActuator?.playEffect?.('dual-rumble',{duration:ms,strongMagnitude:strength,weakMagnitude:Math.min(1,strength*1.2)});}catch{}}
 function padConnected(g){padIndex=g.index;padRest.clear();g.buttons.forEach((b,i)=>{if(b.pressed||b.value>.5)padRest.add(i);});if(/dual action/i.test(g.id)){setTimeout(()=>toast('Logitech F310 je u D režimu: prebaci prekidač na poleđini na X za pune kontrole.',5),3200);}const c=$('controls');if(c&&controlsKeyboard===null){controlsKeyboard=c.innerHTML;c.innerHTML=PAD_LEGEND;}toast('Džojstik je povezan · A skok, X topuz, Y teški udarac',3);}
@@ -2676,14 +2729,15 @@ function padMenu(dirX,dirY,a,b){const open=[...document.querySelectorAll('.modal
 // ================= the controls screen: a drawn gamepad whose buttons light up as they are pressed =================
 // [button index, glyph, x, y, shape, label side, action]
 const PAD_PARTS=[[6,'LT',118,40,'trig','l','Vino'],[4,'LB',132,70,'shoulder','l','Blok / odbij'],[7,'RT',402,40,'trig','r','Vila · Šarac · poluga · top'],[5,'RB',388,70,'shoulder','r','Baci topuz'],
- [3,'Y',392,118,'face','r','Teški udarac'],[2,'X',360,150,'face','l2','Topuz'],[1,'B',424,150,'face','r','Kolut'],[0,'A',392,182,'face','r','Skok'],
+ [3,'Y',392,118,'face','r','Teški udarac'],[2,'X',360,150,'face','l2','Topuz'],[1,'B',424,150,'face','r','Kolut · juriš u vazduhu'],[0,'A',392,182,'face','r','Skok · Sokolovo krilo'],
  [10,'L3',150,150,'stick','l','Kretanje · klik: vihor'],[11,'R3',326,222,'stick','b','Junački udar'],[9,'≡',300,128,'mini','t','Pauza'],[8,'⧉',220,128,'mini','t','Očeva sablja'],
  [12,'↑',200,198,'dpad','l','Lestve · popni se'],[13,'↓',200,246,'dpad','l','Čučanj · siđi'],[14,'←',176,222,'dpad','n',''],[15,'→',224,222,'dpad','n','']];
 const KONTROLE_CARDS=[['Dokrajčivanje','kad zasija krug nad neprijateljem',[['X','Odseci glavu'],['Y','Smrskaj glavu iz skoka'],['B','Odseci noge'],['A','Zgazi ga'],['↑+Y','Oderi do kostiju'],['sa sabljom','X glava · Y proburazi · B napola']]],
  ['Top','priđi topu i pritisni RT',[['↑ ↓','Ugao cevi'],['← →','Više ili manje baruta'],['X','Pucaj'],['RT','Ostavi top']]],
  ['Na ivici','kad visiš',[['↑ / A','Popni se'],['↓','Pusti se']]],
+ ['U vazduhu','jednom po letu; tlo, zid i ivica ih vraćaju',[['A','Sokolovo krilo: još jedan skok'],['B','Juriš u vazduhu: nalet napred'],['↓ + RT','Vilin trag: ostavi ga, pa se vrati na njega']]],
  ['Kombinacije','',[['X X X','Niz udaraca'],['↑ + X','Uvis'],['↓','Klizanje u trku'],['↓ + A','Siđi s daske'],['LB','Odbij u pravom trenu i vrati udarac']]]];
-const KONTROLE_KEYS=[['A D','Kretanje'],['G','Očeva sablja'],['Space','Skok'],['J','Topuz'],['K','Teški udarac'],['L','Blok / odbij'],['Shift','Izmakni'],['S','Čučanj'],['S + K','Aperkat'],['S + J','Šut nogom'],['I','Baci topuz'],['E','Vila · Šarac · top'],['Q','Vino'],['F','Vihor'],['R','Junački udar'],['W','Lestve · popni se'],['Esc','Pauza']];
+const KONTROLE_KEYS=[['A D','Kretanje'],['G','Očeva sablja'],['Space','Skok'],['J','Topuz'],['K','Teški udarac'],['L','Blok / odbij'],['Shift','Izmakni'],['Space u skoku','Sokolovo krilo'],['Shift u skoku','Juriš u vazduhu'],['V','Vilin trag'],['S','Čučanj'],['S + K','Aperkat'],['S + J','Šut nogom'],['I','Baci topuz'],['E','Vila · Šarac · top'],['Q','Vino'],['F','Vihor'],['R','Junački udar'],['W','Lestve · popni se'],['Esc','Pauza']];
 function padSvg(){const T=s=>tr(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');let s=`<svg class="pad-svg" viewBox="-180 12 900 290" role="img" aria-label="${T('Raspored dugmadi na džojstiku')}">`;
  s+='<path class="pad-body" d="M120 82 Q260 62 400 82 Q470 92 492 170 Q512 258 452 276 Q414 286 384 246 Q350 214 260 214 Q170 214 136 246 Q106 286 68 276 Q8 258 28 170 Q50 92 120 82Z"/>';
  for(const [b,g,x,y,shape,side,act] of PAD_PARTS){
@@ -2720,7 +2774,7 @@ function pollPads(){if(!hasDom||!navigator.getGamepads)return;const pads=navigat
  const edge=(k,v)=>{const was=padPrev[k];padPrev[k]=v;return v&&!was;};
  const start=edge('start',btn(9));
  if($('intro')&&!$('intro').hidden){if(edge('ia',btn(0)))introNext();if(edge('ib',btn(1)))introEnd(true);return;}
- if(mode==='play'){padSet('KeyA',left);padSet('KeyD',right);padSet('KeyW',up);padSet('KeyS',down);for(const [i,code] of Object.entries(PAD_MAP))padSet(code,btn(+i));if(start)pause();return;}
+ if(mode==='play'){padSet('KeyA',left);padSet('KeyD',right);padSet('KeyW',up);padSet('KeyS',down);for(const [i,code] of Object.entries(PAD_MAP))padSet(code,btn(+i)&&!(i==='7'&&down));padSet('KeyV',down&&btn(7));if(start)pause();return;}
  for(const c of[...padHeld])padSet(c,false);
  const t=performance.now(),rep=k=>{const v=k==='u'?up:k==='d'?down:k==='l'?left:right;if(!v){padNav[k]=0;return false;}if(!padNav[k]||t>padNav[k]){padNav[k]=t+(padNav[k]?140:380);return true;}return false;};
  const dy=rep('d')?1:rep('u')?-1:0,dx=rep('r')?1:rep('l')?-1:0,a=edge('a',btn(0)),b=edge('b',btn(1));
@@ -2984,7 +3038,8 @@ const ABILITIES=[
  {id:'kolut',key:'⇧',pad:'B',name:'Kolut',cdv:()=>p.dashCooldown/.85,cds:()=>p.dashCooldown,icon:'ShiftLeft'},
  {id:'vihor',key:'F',pad:'L3',name:'Vihor',res:()=>p.rage/SPIN_MIN,icon:'KeyF',grp:2},
  {id:'junacki',key:'R',pad:'R3',name:'Junački udar',res:()=>p.rage/100,icon:'KeyR'},
- {id:'vila',key:'E',pad:'RT',name:'Ravijojla',res:()=>p.energy/35,icon:'KeyE',grp:3}];
+ {id:'vila',key:'E',pad:'RT',name:'Ravijojla',res:()=>p.energy/35,icon:'KeyE',grp:3},
+ {id:'trag',key:'V',pad:'↓+RT',name:'Vilin trag',cdv:()=>(p.cd?.trag||0)/TRAG_CD,cds:()=>p.cd?.trag||0,icon:'KeyV',free:true}];
 const AB_ICON={up:'<path d="M12 20V6M6 11l6-6 6 6"/><circle cx="12" cy="20" r="2.4" fill="currentColor"/>',dash:'<path d="M3 12h13M12 7l5 5-5 5"/><path d="M4 7h5M4 17h5" opacity=".5"/>',down:'<path d="M12 3v13M6 11l6 6 6-6"/><path d="M5 21h14"/>'};
 function cdReady(k){return!(p.cd?.[k]>0);}
 function cdStart(k){p.cd??={};p.cd[k]=CD[k]*(k==='juris'&&perks.has('prelomljeno-koplje')?.6:1);}
@@ -2993,12 +3048,13 @@ let abBuilt=false,abTick=0;
 function abilityBar(dt){const el=$('abilities');if(!el||!p)return;if(mode!=='play'){el.hidden=true;return;}el.hidden=false;
  if(!abBuilt&&hasDom){abBuilt=true;el.innerHTML=ABILITIES.map(a=>`${a.grp>1?'<i class="ab-sep"></i>':''}<div class="ab" data-ab="${a.id}" title="${tr(a.name)}"><svg viewBox="0 0 24 24">${AB_ICON[a.icon]||TOUCH_ICONS[a.icon]||''}</svg><img src="assets/world/ikona-${a.id}.webp" alt="" onerror="this.remove()"><i class="cd"></i><i class="ring"></i><span class="left"></span><b class="key"></b></div>`).join('');}
  if((abTick-=dt)>0)return;abTick=.08;const pad=padIndex!==null;
- for(const a of ABILITIES){const d=el.querySelector?.(`[data-ab="${a.id}"]`);if(!d)continue;const owned=a.id==='uvis'||has(a.id);d.hidden=!owned;if(!owned)continue;
+ for(const a of ABILITIES){const d=el.querySelector?.(`[data-ab="${a.id}"]`);if(!d)continue;const owned=a.id==='uvis'||a.free||has(a.id);d.hidden=!owned;if(!owned)continue;
   // cooldowns: a dark sweep that empties and the seconds left; rage and the fairy's strength: a ring that fills, with its percent
   let left=0,full=true,secs=0,res=null;if(a.cd){secs=p.cd?.[a.cd]||0;left=secs/CD[a.cd];}else if(a.cdv){left=clamp(a.cdv(),0,1);secs=a.cds?.()||0;}else if(a.res){res=clamp(a.res(),0,1);full=res>=1;}
   d.style.setProperty('--p',clamp(left,0,1).toFixed(3));d.style.setProperty('--r',res===null?'1':res.toFixed(3));d.classList.toggle('res',res!==null);d.classList.toggle('ready',left<=.001&&full);d.classList.toggle('cooling',left>.001);
   d.classList.toggle('denied',p.cdFlash===(a.cd||a.id)&&p.cdFlashT>0);d.querySelector('.left').textContent=left>.001?(secs<3?secs.toFixed(1):Math.ceil(secs)):res!==null&&!full?Math.floor(res*100)+'%':'';
-  const k=d.querySelector('.key'),label=pad?a.pad:a.key;if(k.textContent!==label){k.textContent=label;k.dataset.pad=pad?label.replace(/[^ABXY]/g,'').slice(-1):'';}}}
+  const k=d.querySelector('.key'),label=pad?a.pad:a.key;if(k.textContent!==label){k.textContent=label;k.dataset.pad=pad?label.replace(/[^ABXY]/g,'').slice(-1):'';}
+  if(a.id==='trag'){const t=p.trag;d.style.boxShadow=t?'inset 0 0 0 2px #8fffe0,0 0 16px #8fffe0':'';if(t)d.querySelector('.left').textContent=Math.ceil(t.left);}}}
 // ---------- the charge meter: three notches over Marko's head while K is held ----------
 function drawChargeMeter(){if(!(p.attackKind==='heavy'&&p.attack>0&&p.chargeable&&!p.chargeReleased))return;const k=clamp((p.charge||0)/1.1,0,1),x=p.x,y=p.y-158,full=p.chargeFull;
  ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fillStyle='rgba(8,10,10,.7)';ctx.fill();

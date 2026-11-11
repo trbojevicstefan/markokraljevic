@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -223,4 +223,59 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  {const q=await flat();const p=S().p;p.y=q.y-700;p.grounded=false;p.vy=0;const s=seen('marko-roll-land');for(let i=0;i<240;i++){step();s.see();}ok(s.v,'roll-land: a high fall ends in a roll');}
  {await flat();const p=S().p;p.blocking=true;p.blockTime=1;p.hurt=.15;const n=api.playerPose().name;p.blocking=false;p.hurt=0;ok(n==='marko-block-hit','block-hit: a blow on the block has its own clip');}
 }
+// ---- moves after The Lost Crown: the falcon's wing, the dash in the air, the fairy's trace, firm ground after the abyss ----
+{const rise=async twice=>{const q=await flat();const p=S().p;tap('Space');let top=p.y,used=false;
+  for(let i=0;i<300;i++){if(twice&&!used&&p.vy>0){tap('Space');used=true;continue;}step();top=Math.min(top,p.y);if(p.grounded)break;}return q.y-top;};
+ const one=await rise(false),two=await rise(true);
+ ok(two>one*1.8,`sokolovo krilo: Space in the air jumps once more, almost as high again (${Math.round(one)}px → ${Math.round(two)}px)`);}
+{await flat();const p=S().p;tap('Space');step(30);tap('Space');ok(p.kriloUsed&&p.vy<-400,'sokolovo krilo: the second Space lifts Marko again');
+ for(let i=0;i<120&&p.vy<=0;i++)step();tap('Space');ok(p.vy>0,'sokolovo krilo: only once a flight, a third Space does nothing');
+ let n=0;for(;n<300&&!p.grounded;n++)step();step(40);
+ ok(n>20&&p.grounded&&p.vy===0,`jump buffer: a Space pressed ${n} steps before landing is forgotten, Marko does not jump again on landing`);
+ ok(!p.kriloUsed,'sokolovo krilo: the ground gives the wing back');
+ tap('Space');step(30);tap('Space');ok(p.kriloUsed&&p.vy<-400,'sokolovo krilo: and the next flight has it again');api.keys.clear();step(200);}
+{const w=await start('manastir');quiet(w);const a=w.platforms.find(q=>q.hang),b=w.platforms.filter(q=>q.solid&&q.x>a.x+a.w&&q.x-(a.x+a.w)<200).sort((u,v)=>u.x-v.x)[0];
+ const gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+(b.x-a.x-a.w)/2,gy);const p=S().p;p.face=1;tap('Space');step(24);tap('Space');step(4);tap('ShiftLeft');const used=p.kriloUsed&&p.naletUsed;
+ api.keys.add('KeyD');let clung=false;for(let i=0;i<180&&!clung;i++){step();clung=!!p.wall;}step();
+ ok(used&&clung&&!p.kriloUsed&&!p.naletUsed,'sokolovo krilo, juriš: catching a wall gives back the wing and the dash');api.keys.clear();step(120);}
+{await flat();const p=S().p;tap('Space');step(26);const x0=p.x,y0=p.y;tap('ShiftLeft');ok(p.airDash&&p.dash>0,'juriš u vazduhu: Shift in the air dashes');
+ p.invuln=0;const hp=p.hp;api.damage(30,-1);const hurt=p.hp<hp;let drop=0;for(let i=0;i<60&&p.dash>0;i++){step();drop=Math.max(drop,Math.abs(p.y-y0));}
+ ok(p.x-x0>150&&drop<3,`juriš u vazduhu: ${Math.round(p.x-x0)}px straight ahead without falling (${drop.toFixed(1)}px)`);
+ ok(!hurt,'juriš u vazduhu: nothing hurts Marko while he dashes');
+ ok(api.playerPose().name!=='marko-roll','juriš u vazduhu: it is no roll in the air');
+ tap('ShiftLeft');ok(!(p.dash>0),'juriš u vazduhu: only once a flight');
+ for(let i=0;i<300&&!p.grounded;i++)step();step(10);ok(!p.naletUsed,'juriš u vazduhu: the ground gives it back');
+ step(120);tap('ShiftLeft');ok(p.dash>0&&!p.airDash&&p.grounded,'kolut: on the ground Shift still rolls as before');step(120);
+ tap('Space');step(26);tap('ShiftLeft');step(4);tap('KeyJ');ok(p.attackKind==='juris'&&p.attack>0,'juriš u vazduhu: Shift then J charges out of the dash');step(200);}
+{await flat();const p=S().p,x0=p.x,y0=p.y;tap('KeyV');ok(p.trag&&Math.abs(p.trag.x-x0)<1&&Math.abs(p.trag.y-y0)<1,'vilin trag: V leaves the mark where Marko stands');
+ press('KeyD');step(150);release('KeyD');p.invuln=0;api.damage(12,-1);step(60);const hp=p.hp,away=p.x-x0;
+ tap('KeyJ');step(4);const swinging=p.attack>0;tap('KeyV');step(3);
+ ok(away>200&&swinging&&Math.abs(p.x-x0)<2&&Math.abs(p.y-y0)<3,`vilin trag: V again, even mid-blow ${Math.round(away)}px away, brings Marko back to the mark`);
+ ok(p.hp===hp&&hp<p.maxHp,'vilin trag: only the place comes back, not the health');
+ ok(!p.trag&&p.cd.trag>0,'vilin trag: then it rests');tap('KeyV');ok(!p.trag,'vilin trag: while it rests, V leaves no new mark');
+ step(Math.ceil(120*api.TRAG_CD)+2);tap('KeyV');ok(p.trag,'vilin trag: rested, it can be left again');
+ step(Math.ceil(120*api.TRAG_LIFE)+2);ok(!p.trag,'vilin trag: a mark left unused fades after eight seconds');}
+{const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);stand(q.x+160,q.y);const p=S().p;p.face=1;p.invuln=0;
+ Object.assign(e,{type:'sword',x:q.x+420,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:0,face:-1,keyHolder:false,grounded:true});tap('KeyV');
+ press('KeyD');let close=false;for(let i=0;i<240&&!close;i++){step();close=Math.abs(e.x-p.x)<120;}release('KeyD');tap('KeyV');step(2);
+ ok(close&&Math.abs(p.x-(q.x+160))<2,'vilin trag: in the thick of a fight it pulls Marko out of the foe\'s reach');}
+{const q=await flat();const p=S().p;step(10);const hp=p.hp,x=p.x;p.invuln=0;p.y=(S().world.pitY||850)+5;p.grounded=false;step();
+ ok(p.hp<hp&&Math.abs(p.x-x)<1,'sigurno tlo: the abyss costs health and Marko comes back where he last stood (as before)');step(120);}
+{const id=api.LEVELS.map(L=>L.id).find(id=>(physics.RECIPES[id]||'').split(' ').includes('crumble'));const w=await start(id);quiet(w);
+ const c=w.platforms.filter(q=>q.crumble).sort((a,b)=>a.x-b.x)[0],g=floorAt(w,c.x-60);stand(c.x-60,g.y);const p=S().p;step(10);const safe=S().lastSafe;
+ stand(c.x+c.w/2,c.y);p.invuln=0;let fell=false;for(let i=0;i<120*4&&!fell;i++){step();fell=p.y<c.y-100;}step(240);
+ ok(Math.abs(safe-(c.x-60))<2&&fell&&p.grounded&&!p.on?.crumble&&p.x<c.x,`sigurno tlo (${id}): a plank that gave way is not firm ground; Ravijojla sets Marko down before it`);}
+// none of the three waits for a pohod: in the first pohod, with no skill learned, they work while the ground roll still waits
+{storage.set('marko-skills','[]');await flat();const p=S().p;const locked=!api.has('kolut');tap('ShiftLeft');const rolled=p.dash>0;step(120);
+ tap('Space');step(26);tap('Space');const winged=p.kriloUsed;step(6);tap('ShiftLeft');const dashed=p.airDash;step(200);tap('KeyV');const traced=!!p.trag;step(200);
+ ok(locked&&!rolled&&winged&&dashed&&traced,'first pohod: the wing, the dash in the air and the fairy\'s trace are known from the start; the roll still waits for its pohod');
+ storage.set('marko-skills',JSON.stringify(api.SKILLS.map(k=>k.id)));}
+// the gamepad, read by the game's own pollPads with a pad held in the hand: ↓ + RT leaves the fairy's trace, RT alone is still the fairy
+{const grab=name=>{const i=source.indexOf(name);let d=0,j=source.indexOf('{',i);for(;j<source.length;j++){if(source[j]==='{')d++;else if(source[j]==='}'&&--d===0)break;}return source.slice(i,j+1);};
+ const buttons=Array.from({length:17},()=>({pressed:false,value:0})),pad={index:0,id:'test pad',buttons,axes:[0,0,0,0]},keys=new Set(),pressed=new Set();
+ const poll=new Function('navigator','$','keys','pressed',`let hasDom=true,mode='play',padIndex=0,stickMag=1,padPrev={},padNav={};const padRest=new Set(),padHeld=new Set(),markPad=()=>{},padConnected=()=>{},pause=()=>{},padMenu=()=>{};${source.match(/const PAD_MAP=\{[^}]*\};/)[0]}${grab('function padSet(')}${grab('function pollPads(')}return pollPads;`)({getGamepads:()=>[pad]},()=>null,keys,pressed);
+ const hold=(i,on)=>{buttons[i].pressed=on;buttons[i].value=on?1:0;poll();},fresh=()=>pressed.clear();
+ hold(13,true);hold(7,true);ok(pressed.has('KeyV')&&!pressed.has('KeyE'),'gamepad: ↓ + RT leaves the fairy\'s trace and does not call the fairy');
+ hold(7,false);hold(13,false);fresh();hold(7,true);ok(pressed.has('KeyE')&&!keys.has('KeyV'),'gamepad: RT alone still calls the fairy');
+ hold(7,false);fresh();hold(0,true);ok(pressed.has('Space'),'gamepad: A jumps, in the air the falcon\'s wing');hold(0,false);fresh();hold(1,true);ok(pressed.has('ShiftLeft'),'gamepad: B rolls, in the air the dash');hold(1,false);}
 console.log(`${checks} pohod mechanics checks passed.`);

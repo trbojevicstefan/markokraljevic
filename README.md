@@ -239,19 +239,30 @@ Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i be
 | Taster | Radnja |
 |---|---|
 | A / D ili strelice | Kretanje |
-| Space / W / gore | Skok |
+| Space | Skok; u vazduhu još jednom: Sokolovo krilo |
 | J | Brzi udarac topuzom |
 | K | Teški udarac, razbijanje garda |
 | L | Drži za blok; pritisni u pravom trenutku za odbijanje |
 | S / strelica dole | Čučanj, sporije kretanje i izbegavanje strela |
 | R | Super udarac pri 100 junačkog besa |
-| Shift | Izmicanje |
+| Shift | Izmicanje (kolut); u vazduhu: juriš napred |
 | E | Ravijojla / aktiviranje kamena / uzjahivanje Šarca |
 | F (drži) | Vihor: Marko se vrti sa topuzom i udara sve oko sebe; traži 25 besa i troši ga dok se vrti |
 | Q | Vino: 12 s, +30% štete, 20% manje primljene štete, +18 zdravlja |
+| V | Vilin trag: ostavi ga, pa se u roku od 8 s vrati na njega |
 | Esc | Pauza |
 
 Dodirne kontrole se pojavljuju na uređajima sa primarnim touch pokazivačem. Podešavanja nude lakši režim, jačinu zvuka i manje podrhtavanja. Igra se automatski pauzira pri gubitku fokusa. Kontrolne tačke i podešavanja čuvaju se u localStorage, bez naloga ili server baze.
+
+## Pokreti po uzoru na *The Lost Crown*
+
+Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Marko ih zna od prvog pohoda, ne čekaju veštinu.
+
+- **Sokolovo krilo (dupli skok):** Space u vazduhu (džojstik A, dodir: dugme za skok), jednom po letu i samo peške. Tlo, zid, ivica i lestve ga vraćaju. Krila i perje crta igra sama, bez novog crteža; zvuk je `wings`.
+- **Juriš u vazduhu:** Shift u vazduhu (džojstik B, dodir: dugme za izmicanje) baca Marka 0,22 s pravo napred, bez pada; za to vreme ništa ga ne dotiče. Jednom po letu, vraćaju ga tlo i zid. Shift pa J iz naleta daje Juriš. Na zemlji je Shift i dalje kolut.
+- **Vilin trag:** V (džojstik ↓ + RT, dodir: dugme sa zvezdom iznad vile) ostavlja svetli Ravijojlin trag. Ponovo V u roku od 8 s vraća Marka na trag: vraća se samo mesto, zdravlje ne. Radi i usred udarca, kao izmicanje; posle povratka odmara 3,5 s. Ne izvlači Marka iz megdana.
+- **Sigurno tlo:** pad u ponor je već radio po tom pravilu (−20 zdravlja, povratak na poslednje čvrsto tlo). Sada se daska koja popušta i tlo uz kolje ne računaju kao čvrsto tlo, pa Marko više ne pada ponovo u istu rupu. Kolje i dalje rani i odbaci Marka uvis, kao i pre.
+- **Skok:** Space pritisnut visoko u vazduhu više se ne pamti do doskoka (Marko ranije sam skoči kad dotakne tlo).
 
 ## Sadržaj
 
