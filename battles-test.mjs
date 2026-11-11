@@ -115,6 +115,7 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
 // ---- the champions: each fights his own way, on his own ground ----
 const groundY=(w,x,y)=>{let best=null;for(const q of w.platforms){if(x<q.x||x>q.x+q.w||q.y<y-400)continue;if(best===null||q.y<best)best=q.y;}return best??y;};
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
+const armed=c=>{step(3);S().p.noMace=false;c.topuz=null;return c;};
 async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear();api.pressed.clear();const w=S().world,c=w.enemies.find(e=>e.champion);for(const e of w.enemies)if(e!==c)e.alive=false;
  const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(S().p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true,climb:null});safe();step(3);return c;}
 {const c=await arena('tvrdjava');ok(c.kit==='hasan'&&c.engaged,'hasan: Hasan-aga waits in the fortress');ok(S().world.platforms.filter(q=>q.pillar&&q.x>c.arena.x0&&q.x<c.arena.x1).length===2,'hasan: two pillars stand in his arena');
@@ -160,7 +161,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const c=await arena('pecina');ok(c.kit==='azdaja','azdaja: the dragon in the cave');c.kc=0;c.mode='idle';Object.assign(S().p,{x:c.x-500});until(()=>S().arrows.some(a=>a.flame),120*3);ok(S().arrows.some(a=>a.flame),'azdaja: she breathes fire along the ground');}
 {const c=await arena('manastir');ok(c.kit==='dzelat','dzelat: the executioner in the monastery');const pl=S().world.platforms.filter(q=>q.arena&&!q.off).length;Object.assign(S().p,{x:c.x-150,y:c.y});safe();c.kc=0;c.mode='idle';
  until(()=>c.stun>0,120*4);ok(c.kitOpen>0,'dzelat: his axe sticks in the ground');}
-{const c=await arena('klisura');ok(c.kit==='djemo','djemo: Đemo the highlander, come to the gorge for his brother');Object.assign(S().p,{x:c.x-400,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>c.mace,120*3);ok(c.mace,'djemo: he throws his mace');until(()=>!c.mace,120*6);ok(!c.mace,'djemo: and it comes back to his hand');}
+{const c=armed(await arena('klisura'));ok(c.kit==='djemo','djemo: Đemo the highlander, come to the gorge for his brother');Object.assign(S().p,{x:c.x-400,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>c.mace,120*3);ok(c.mace,'djemo: he throws his mace');until(()=>!c.mace,120*6);ok(!c.mace,'djemo: and it comes back to his hand');}
 {const w0=await api.startLevel(levelOf('oranje'),'day');const w=S().world;ok(w.enemies.filter(e=>e.trioMate).length===2&&w.enemies.some(e=>e.champion&&e.kit==='trio'),'trio: three janissaries guard the gold');}
 {const c=await arena('selo');ok(c.kit==='kopljanik','kopljanik: the spear captain besieging the village');Object.assign(S().p,{x:c.x-450,y:c.y});safe();c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*3);ok(S().arrows.some(a=>a.spear),'kopljanik: he throws a spear');}
 // ---- second moves and Musa's new ones ----
@@ -229,7 +230,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
  api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='cita';},120*15);ok(t.glasnik?.state==='cita','wine: a herald brings the Sultan\'s hundred ducats');}
 // ---- pack 08, the rules of the megdan: bodies, the guard, the acts and the grapple ----
-{const c=await arena('klisura');const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the gorge');
+{const c=armed(await arena('klisura'));const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the gorge');
  // a body: Marko cannot walk into him
  c.kc=99;c.timer=99;c.mode='idle';c.grabCD=null;Object.assign(p,{x:c.x-200,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();api.keys.add('KeyD');for(let i=0;i<240;i++){c.kc=99;c.timer=99;c.mode='idle';step();}api.keys.clear();
  ok(p.x<=c.x-40,'megdan: Marko cannot walk into a standing champion (stopped '+Math.round(c.x-p.x)+' short)');
@@ -244,7 +245,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  // heavy blows break the guard
  c.guard=20;c.gHits=0;c.stun=0;c.mode='idle';c.timer=99;c.kc=99;Object.assign(p,{x:c.x-80,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyK');for(let i=0;i<90&&!(c.guardBroken>0);i++){c.kc=99;step();}
  ok(c.guardBroken>0&&c.stun>0,'megdan: a heavy blow on a worn guard breaks it and he reels');}
-{const c=await arena('klisura');const p=S().p;c.kc=99;c.timer=99;
+{const c=armed(await arena('klisura'));const p=S().p;c.kc=99;c.timer=99;
  // the acts: crossing half his strength he throws Marko back and no blow reaches him for a moment
  Object.assign(p,{x:c.x-90,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();c.hp=c.maxHp*.49;step(2);
  ok(c.p2&&c.act===2&&c.invT>0,'megdan: at half strength the second act begins');step(30);ok(p.x<c.x-150,'megdan: entering it he throws Marko back');
@@ -260,7 +261,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 const clamp=physics.clamp;
 // ---- the acts: every champion brings something new in his last act, and none of it breaks the fight ----
 for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['rusevine','arapin','rain'],['mocvara','basa','pots'],['pecina','azdaja','rain'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
- const c=await arena(id);const p=S().p,w=S().world;ok(c.kit===kit,'acts: '+kit+' stands in '+id);
+ const c=armed(await arena(id));const p=S().p,w=S().world;ok(c.kit===kit,'acts: '+kit+' stands in '+id);
  c.hp=c.maxHp*.28;c.armor=0;step(3);ok(c.p3&&c.act===3,'acts: '+kit+' enters his last act below a third of his strength');
  // bring him down to the ground, idle and free, and let the act move come
  c.invT=0;c.grabCD=99;c.perch=false;c.y=c.arena.y;c.grounded=true;c.ks=null;c.mace=null;c.mode='idle';c.timer=99;c.kc=99;c.actCD=0;if(c.flag)c.flag.up=false;
@@ -350,4 +351,9 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  for(let r=0;r<3;r++){until(()=>G.listen,120*12);ok(G.listen,'dream: the gusle play '+[3,5,7][r]+' notes and wait');const n=[3,5,7][r];for(let k=0;k<n;k++)hit(G.objs[G.seq[k]]);}
  ok(G.done,'dream: the melody repeated three times, the sabre falls from the scabbard');
  Object.assign(p,{x:S().level.goal.x-40,y:S().level.goal.y,vx:0,vy:0,grounded:true});step(3);ok(S().mode==='levelDone'&&storage.get('marko-probudjen')==='1','dream: and Marko wakes');}
+// ---- Đemo, as in the song, catches Marko without his mace ----
+{const c=await arena('klisura');const p=S().p;step(3);ok(p.noMace&&c.topuz,'djemo: his first blow strikes the mace from Marko\'s hand, across the field');
+ ok(Math.abs(c.topuz.x-p.x)>Math.abs(c.x-p.x),'djemo: the mace lies beyond Đemo');
+ const hp=c.hp;Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyJ');step(40);ok(c.hp===hp&&!(p.attack>0),'djemo: unarmed, Marko cannot strike');
+ Object.assign(p,{x:c.topuz.x,y:c.arena.y,vx:0,vy:0,grounded:true});safe();step(3);ok(!p.noMace&&!c.topuz,'djemo: he reaches his mace and has it again');}
 console.log(`${checks} battle checks passed.`);

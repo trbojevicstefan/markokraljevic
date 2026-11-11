@@ -1828,6 +1828,12 @@ const GUSLE_HP=100,GUSLE_HIT=20,STIH_T=2.6;
 const STIHOVI=[['Mili Bože, čuda velikoga!','Kad se kreće Kraljeviću Marko','niz klisuru, niz Ibar vodicu.'],
  ['Pod njim Šarac kao gorska vila,','o ramenu topuz šestoperac,','pred njim beže Turci janjičari.'],
  ['Na kraj klisure Đemo Brđanine,','došao je brata da osveti:','udri, Marko, ne daj se Brđaninu!']];
+const LAND_STIH={selo:['Jao Šaro, moje desno krilo,','čistim ću te srebrom potkovati,','čistim srebrom i žeženim zlatom.'],manastir:['Nemoj, sine, govoriti krivo,','ni po babu, ni po stričevima,','već po pravdi Boga istinoga.'],
+ oranje:['„More Marko, ne ori drumova!”','„More Turci, ne gaz’te oranja!”','„To sam tebe danas izorao.”'],tvrdjava:['Na sablji su tri slova rišćanska:','jedno slovo Novaka kovača,','drugo slovo Vukašina kralja.'],
+ podrum:['Marko nosi zelenu dolamu,','Marko pije uz ramazan vino,','još nagoni odže i adžije.'],mocvara:['Teško mene i tebe, sokole,','lov loveći s Turci bez Srbalja,','lov loveći, krivo dijeleći!'],
+ suma:['Ne streljajte po gori junaka','dok je glasa Kraljevića Marka','i njegova vidovita Šarca!'],pecina:['A pred Markom vila Ravijojla,','u ruke joj gusli javorove:','same gude, same udaraju.'],
+ prevoj:['Na vrančiću noge prekrstio,','topuzinu baca u oblake,','dočekuje u bijele ruke.'],rusevine:['Odsad više nema svadbarine,','Marko za sve svadbarinu plati:','Bog da živi Kraljevića Marka!'],
+ rudnik:['U tamnici voda do koljena,','od junaka kosti do pojasa:','tamnica je kuća neobična.'],reka:['Poranio Kraljeviću Marko','u neđelju prije jarkog sunca,','pokraj mora Urvinom planinom.']};
 let guslarN=0;
 function preyFoe(e,F,d,dt){const g=e.prey;if(g.state!=='napad'&&g.state!=='odbrana'){e.prey=null;e.preyHit=false;return false;}if(d<240||e.perch||e.climb)return false;
  e.alert=true;const gd=g.x-e.x,ad=Math.abs(gd);e.face=gd>0?1:-1;
@@ -1836,7 +1842,7 @@ function preyFoe(e,F,d,dt){const g=e.prey;if(g.state!=='napad'&&g.state!=='odbra
 function guslarFoe(g,type,side,k=0){const hp=FOE_HP_G[type]||90,x=(side>0?g.x1+60:g.x0-60)+side*k*75,y=groundAt(x,g.y-60)??g.y;
  world.enemies.push({id:40000+(++guslarN),x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-side,mode:'idle',timer:.6,stun:0,flash:0,alive:true,home:g.x,attackId:0,grounded:true,prey:g,enter:{tx:g.x+side*70,t:-4,v:125+Math.random()*45}});}
 function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar');if(!G.length)return;
- G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.shake=Math.max(0,(g.shake||0)-dt);guslarSongTick(g);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=STIHOVI[Math.min(i,STIHOVI.length-1)];}
+ G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.shake=Math.max(0,(g.shake||0)-dt);guslarSongTick(g);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=LAND_STIH[level?.id]||STIHOVI[Math.min(i,STIHOVI.length-1)];}
   const near=Math.abs(p.y-g.y)<320;
   if(g.odbrana&&(g.state==='ceka'||g.state==='odbrana')){guslarOdbrana(g,dt,near);return;}
   if(g.state==='ceka'){
@@ -1856,7 +1862,7 @@ function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar'
 function guslarPeva(g,quiet){g.state='peva';g.t=0;g.healed=0;if(quiet){g.second=true;if(PESMA.g!==g)guslarSong(g);return;}if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;guslarSong(g)||sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
 // a real guslar sings: 28 s of "Marko Kraljević i Musa Kesedžija" (Wikimedia Commons, VVVladimir, CC BY-SA 3.0).
 // The music steps back while he sings, and his voice fades as Marko walks away from him.
-function guslarSong(g){if(pesmaStart(g))return true;const b=SND.buf['sfx/guslar_pesma_0'];if(!audio||!b||!SND.bus.sfx)return false;for(const o of world.traps||[])if(o.song){try{o.song.s.stop();}catch{}o.song=null;}
+function guslarSong(g){if(level?.id!=='klisura')return false;if(pesmaStart(g))return true;const b=SND.buf['sfx/guslar_pesma_0'];if(!audio||!b||!SND.bus.sfx)return false;for(const o of world.traps||[])if(o.song){try{o.song.s.stop();}catch{}o.song=null;}
  const s=audio.createBufferSource();s.buffer=b;const gn=audio.createGain();gn.gain.value=0;gn.gain.setTargetAtTime(1,audio.currentTime,.25);s.connect(gn);gn.connect(SND.bus.sfx);s.start();g.song={s,gn};songWatch.on.add(g);s.onended=()=>{if(g.song?.s===s)g.song=null;};return true;}
 // the song ends with its guslar's world: a new pohod, the main menu or Marko's death
 function songWatch(){for(const o of songWatch.on){if((mode==='play'||mode==='pause')&&o.song&&(world.traps||[]).includes(o))continue;if(o.song){try{o.song.gn.gain.setTargetAtTime(0,audio.currentTime,.15);o.song.s.stop(audio.currentTime+.6);}catch{}o.song=null;}songWatch.on.delete(o);}}songWatch.on=new Set();
@@ -1898,7 +1904,7 @@ function ckptTick(){if(!level||mode!=='play')return;
  ckpt={x:p.x,y:p.y};ckptFlags.push({x:p.x-34,y:p.y,t:time});if(p.zaduzbina&&p.hp<p.maxHp){p.hp=Math.min(p.maxHp,p.hp+15*p.zaduzbina);label('BLAGOSLOV',p.x,p.y-170,'#ffe9a8');}toast('Barjak je podignut. Ako padneš, odavde nastavljaš.',2.4);sfx('cloth',{gain:.7});sfx('ring',{gain:.4,rate:.9});}
 function champReset(e){if(!e.pristine)return;const keep=e.pristine,P=JSON.parse(keep);for(const k of Object.keys(e))if(!(k in P))delete e[k];Object.assign(e,P);e.pristine=keep;}
 function ckptRespawn(){mode='play';endSequence=null;corpses=corpses.filter(c=>c.type!=='marko');arrows=[];fires=[];world.drops=[];grapple=null;finisher=null;arena=null;slowMo=0;hitstop=0;
- Object.assign(p,{x:ckpt.x,y:ckpt.y,vx:0,vy:0,hp:p.maxHp,grounded:true,invuln:2.5,attack:0,dash:0,down:0,hurt:0,drink:0,spin:0,plunge:0,slide:0,kick:0,dizzy:0,charge:0,combo:0,shoveT:0,pinned:false,blocking:false,crouching:false,climb:null,wall:0,rage:Math.min(p.rage||0,50),wine:Math.max(p.wine||0,2)});
+ Object.assign(p,{x:ckpt.x,y:ckpt.y,vx:0,vy:0,hp:p.maxHp,grounded:true,noMace:false,invuln:2.5,attack:0,dash:0,down:0,hurt:0,drink:0,spin:0,plunge:0,slide:0,kick:0,dizzy:0,charge:0,combo:0,shoveT:0,pinned:false,blocking:false,crouching:false,climb:null,wall:0,rage:Math.min(p.rage||0,50),wine:Math.max(p.wine||0,2)});
  for(const e of world.enemies){e.grappling=false;e.held=false;if(e.champion&&e.alive)champReset(e);else if(e.alive&&e.id>=9000&&!e.trioMate)e.alive=false;}
  for(const q of world.platforms)if(q.cut){q.off=false;q.cut=false;}
  for(const t of world.traps||[])if(t.kind==='guslar'&&(t.fallen||t.state==='napad'||t.state==='odbrana')){t.state=null;t.fallen=false;t.wave=0;t.t=0;}
@@ -2329,13 +2335,16 @@ const KITS={
  // Đemo the highlander: the mace flies across the field and comes back; without it he is open
  djemo:{p2:'RAZJAREN!',
   def(e){if(e.mace){weakHit('BEZ BUZDOVANA!');return 1.6;}return null;},
-  tick(e,dt){const M=e.mace;if(!M)return;M.t+=dt;M.rot+=dt*14;if(!M.back&&M.t>=M.T){M.back=true;M.hit=false;}
+  tick(e,dt){if(!e.izbijen){e.izbijen=true;p.noMace=true;const s=Math.sign(e.x-p.x)||1;e.topuz={x:clamp(e.x+s*330,e.arena.x0+90,e.arena.x1-90),y:e.arena.y,t:0};fx('flash','#ffe9c0',.1);sfx('clang',{gain:1,x:p.x});shake=settings.reduced?0:8;label('TOPUZ TI JE IZBIJEN',p.x,p.y-180,'#ff9a8a');speak('Đemo te je, kao u pesmi, zatekao bez oružja: buzdovanom ti je izbio topuz iz ruke. Izmiči se, kotrljaj i odbijaj (L), Marko, dok ga ne dohvatiš na drugom kraju megdana.',8);}
+   if(e.topuz){e.topuz.t+=dt;if(Math.abs(p.x-e.topuz.x)<52&&Math.abs(p.y-e.topuz.y)<90){e.topuz=null;p.noMace=false;sfx('pickup',{gain:.9})||sfx('ring',{gain:.6});label('TOPUZ JE OPET TVOJ',p.x,p.y-180,'#ffe39a');p.rage=Math.min(100,(p.rage||0)+40);fx('flash','#fff2c8',.1);}}
+   const M=e.mace;if(!M)return;M.t+=dt;M.rot+=dt*14;if(!M.back&&M.t>=M.T){M.back=true;M.hit=false;}
    if(M.back){const dx=e.x-M.x;M.vx=Math.sign(dx)*Math.min(720,Math.abs(dx)*4+260);if(Math.abs(dx)<30){e.mace=null;sfx('clang',{gain:.8,x:e.x});return;}}
    M.x+=M.vx*dt;if(!M.hit&&Math.abs(p.x-M.x)<52&&M.y>p.y-p.h-10&&M.y<p.y+10&&p.invuln<=0&&p.dash<=0){M.hit=true;damage(22,Math.sign(M.vx)||1);}},
   step(e,dt,dx,d){if(e.mace){e.vx=0;e.face=Math.sign(e.mace.x-e.x)||e.face;return true;}
    if(e.mode==='idle'&&e.kc<=0&&d>190&&d<760&&e.grounded){const dir=dx>0?1:-1;react(e,'djemo-throw',.6);e.kc=e.p2?2.8:4.2;e.mace={x:e.x+dir*40,y:e.y-62,vx:dir*620,t:0,T:e.p2?1.15:.95,rot:0};label('!! BUZDOVAN · SKOČI',e.x,e.y-210,'#ffb09a');sfx('whoosh_heavy',{gain:.9,x:e.x});return true;}
    return false;},
-  draw(e){const M=e.mace;if(!M||!e.alive)return;ctx.save();ctx.translate(M.x,M.y);ctx.rotate(M.rot);line(-34,0,8,0,'#4a3420',6);ellipse(18,0,15,15,'#5a5a60');for(let i=0;i<8;i++){const a=i*Math.PI/4;line(18+Math.cos(a)*13,Math.sin(a)*13,18+Math.cos(a)*23,Math.sin(a)*23,'#b0b4ba',3);}ctx.restore();}},
+  draw(e){if(e.topuz&&e.alive){const T=e.topuz,im=levelArt['predmet-topuz'],b=Math.sin(T.t*3)*4;if(im)drawImgOn(im,T.x,T.y-8+b,60);else{line(T.x-20,T.y-20,T.x+10,T.y-20,'#4a3420',6);ellipse(T.x+18,T.y-20,13,13,'#5a5a60');}halo(T.x,T.y-30,56,'rgba(255,225,150,.5)',.6+.3*Math.sin(T.t*5));textLabel('TVOJ TOPUZ',T.x,T.y-84,{font:'bold 12px Georgia',color:'#ffe9a8'});}
+   const M=e.mace;if(!M||!e.alive)return;ctx.save();ctx.translate(M.x,M.y);ctx.rotate(M.rot);line(-34,0,8,0,'#4a3420',6);ellipse(18,0,15,15,'#5a5a60');for(let i=0;i<8;i++){const a=i*Math.PI/4;line(18+Math.cos(a)*13,Math.sin(a)*13,18+Math.cos(a)*23,Math.sin(a)*23,'#b0b4ba',3);}ctx.restore();}},
  // three janissaries with the Sultan's gold: when one falls the others grow fiercer
  trio:{tick(e){const mates=world.enemies.filter(o=>o.trioMate);const fallen=mates.filter(o=>!o.alive).length+(e.alive?0:1);if(fallen!==e.trioFallen){e.trioFallen=fallen;if(fallen>0){for(const o of[e,...mates])if(o.alive){o.elite=true;o.timerScale=.7;}label('RAZJARILI SU SE!',e.x,e.y-200,'#ffb09a');}}}},
  // the spear captain of the gorge: spears from afar, a vault over Marko when he comes close
