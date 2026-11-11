@@ -356,4 +356,13 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  ok(Math.abs(c.topuz.x-p.x)>Math.abs(c.x-p.x),'djemo: the mace lies beyond Đemo');
  const hp=c.hp;Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});safe();tap('KeyJ');step(40);ok(c.hp===hp&&!(p.attack>0),'djemo: unarmed, Marko cannot strike');
  Object.assign(p,{x:c.topuz.x,y:c.arena.y,vx:0,vy:0,grounded:true});safe();step(3);ok(!p.noMace&&!c.topuz,'djemo: he reaches his mace and has it again');}
+// ---- the chase after the vila: Šarac, the trunks, her arrows, the thrown mace ----
+{const w=await land('suma');const t=w.traps.find(t=>t.kind==='potera'),p=S().p;ok(t&&t.x0<1200,'chase: Ravijojla\'s forest opens with the chase, as the song does');
+ Object.assign(p,{x:t.sx,y:t.y,vx:0,vy:0,grounded:true});safe();step(3);api.pressed.add('KeyE');step(2);ok(t.state==='trka'&&S().horseMounted,'chase: E beside Šarac and Marko is in the saddle');
+ ok(w.barriers.length>=4,'chase: fallen trunks lie across the road');const v0=t.vila.x;
+ let shots=0;for(let i=0;i<120*40&&!t.reach;i++){safe();api.keys.clear();api.keys.add('KeyD');const b=w.barriers.find(b=>b.x-p.x>40&&b.x-p.x<150);if(b&&p.grounded)api.pressed.add('Space');shots=Math.max(shots,S().arrows.filter(a=>a.enemy).length);step();}
+ ok(t.vila.x>v0+1500,'chase: the vila flies ahead across the mountain');ok(shots>0,'chase: and looses her arrows back at Marko');ok(t.reach,'chase: where the road ends Šarac brings Marko within a throw');
+ api.keys.clear();api.pressed.add('KeyI');step(2);ok(t.state==='hitac','chase: I throws the mace');until(()=>{safe();return t.state==='kraj';},120*10);
+ ok(t.done&&!S().horseMounted&&S().mode==='play','chase: the mace takes her between the shoulders, she heals Miloš, and Marko is on foot again');
+ Object.assign(p,{x:t.gate.x+80,y:t.y,vx:0,vy:0,grounded:true});step(3);ok(p.x>t.gate.x,'chase: the way on through the forest is open');}
 console.log(`${checks} battle checks passed.`);

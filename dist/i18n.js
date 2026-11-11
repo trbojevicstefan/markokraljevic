@@ -6,6 +6,18 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Drži D za galop, Space preskače balvane. Kad je stigneš, baci topuz: I.", "“Alas Šarac, my right wing, catch me the vila Ravijojla!” Hold D to gallop, Space leaps the trunks. When you reach her, throw the mace: I."],
+["POTERA ZA VILOM", "THE CHASE AFTER THE VILA"],
+["Miloš je kroz Miroč zapevao lepše od vile, pa ga je Ravijojla ustrelila u grlo i u srce. Eno ti Šarca, Marko: uzjaši i stigni je!", "Miloš sang through Miroč more sweetly than the vila, and Ravijojla shot him in the throat and in the heart. There is Šarac, Marko: mount and ride her down!"],
+["STRELA!", "AN ARROW!"],
+["MEĐU PLEĆI!", "BETWEEN THE SHOULDERS!"],
+["„Bogom brate, Kraljeviću Marko! Pusti me u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.” Marko je pusti, i od tada mu je vila posestrima.", "“Brother in God, Prince Marko! Let me go alive into the mountain, to gather herbs on Miroč and quench the hero's wounds.” Marko let her go, and from then on the vila is his sworn sister."],
+["Vila je bilјem zalečila Miloša. „Ne streljajte po gori junaka dok je glasa Kraljevića Marka!”", "The vila healed Miloš with her herbs. “Shoot no heroes in the forest while the name of Prince Marko is heard!”"],
+["Stigni vilu i baci topuz (I).", "Reach the vila and throw the mace (I)."],
+["Uzjaši Šarca (E) i stigni vilu.", "Mount Šarac (E) and ride the vila down."],
+["E · UZJAŠI ŠARCA", "E · MOUNT ŠARAC"],
+["ŠARAC ČEKA", "ŠARAC IS WAITING"],
+["I · BACI TOPUZ", "I · THROW THE MACE"],
 ["A i D te vode drumom, a Space je skok. Topuz je na J, teški udarac na K, a štit dižeš na L.", "A and D take you along the road, and Space is the jump. The mace is on J, the heavy blow on K, and you raise your shield with L."],
 ["Udri ga topuzom (J). Kad on zamahne, podigni štit (L) ili odskoči, pa uzvrati.", "Strike him with the mace (J). When he swings, raise your shield (L) or spring back, then answer."],
 ["Kad zatreba, pozovi me: E. Vino iz čuture (Q) vida rane i daje snagu.", "When you need me, call: E. Wine from the flask (Q) heals wounds and gives strength."],

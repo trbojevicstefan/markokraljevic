@@ -93,7 +93,7 @@ function fairyFlyby(){if(!hasDom||settings.reduced||time-flybyAt<30)return;flyby
 function callFairy(kind,x,y){if(!flybyZones.has(zone)||(kind==='heal'&&p&&p.hp<p.maxHp*.25)){flybyZones.add(zone);fairyFlyby();}if(p&&p.grounded&&!horseMounted&&p.attack<=0&&rig?.['marko-call'])p.callT=CALL_TIME;say('vila_'+(kind==='stun'||kind==='bridge'||kind==='lift'?kind:'heal'),{priority:2,x:fairy.x,delay:.2});say('fairy',{chance:.3});fairy.age=0;fairy.duration=3.2;fairy.kind=kind;fairy.targetX=x;fairy.targetY=y;p.castLock=.8;burst(fairy.x,fairy.y-25,'#caffdf',24,95);sound('magic');}
 function useFairy(){
  if(p.castLock>0)return;
- if(level&&(useGoal()||pullLever()||pullLift()||useBacva()||useSoko()||useSirotinja()||useTrgovac()||useVrh('E')||useSan()))return;
+ if(level&&(usePotera()||useGoal()||pullLever()||pullLift()||useBacva()||useSoko()||useSirotinja()||useTrgovac()||useVrh('E')||useSan()))return;
  if(zone===3&&!horseCompleted&&!horseMounted&&Math.abs(p.x-horseX)<180){horseMounted=true;p.mountTime=.55;p.x=horseX;say('horse',{priority:2});sfx('hoof',{gain:.8});sfx('hoof',{gain:.6,delay:.12});toast('Šarac · D za galop, Space za skok',4);sound('magic');fx('spell',horseX,520);return;}
  const rune=world.runes.find(r=>!r.active&&Math.abs(p.x-r.x)<120);
  if(rune){if(p.energy<30){toast('Sačekaj da se obnovi vilinska energija.');return;}p.energy-=30;callFairy('bridge',rune.x+200,530);pendingMagic={delay:.55,apply:()=>{rune.active=true;rune.awakeT=time;burst(rune.x+200,560,'#a7ffe0',50);fx('pillar',rune.x,565);toast('Ravijojla je probudila vilinski most');}};return;}
@@ -710,7 +710,7 @@ function updateVisuals(dt){for(const f of floating){f.y-=30*dt;f.life-=dt;}float
   if(a>=(won&&rig?.['marko-wounded-walk']?9:1.55)&&body?.grounded){if(won&&!endSequence.story){endSequence.story=true;playStory('end',()=>{$('victory').hidden=false;});}else if(!won||endSequence.storyDone)$(endSequence.kind).hidden=false;}}for(const g of ghosts)g.life-=dt;ghosts=ghosts.filter(g=>g.life>0);}
 function updateCamera(dt){if(lov){camera=lov.cam;camY+=(lov.camY-camY)*Math.min(1,dt*3);return;}const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);pressed.clear();return;}elapsed+=dt;music(dt);updateDefense(dt);if(hitstop>0){hitstop-=dt;return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!storySeen.has('lov'))lovStart();if(!updateLov(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
+ if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!storySeen.has('lov'))lovStart();if(!updateLov(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updatePotera(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -1825,6 +1825,34 @@ function drawSan(t){const kam=levelArt['zag-kamen-kola'],sv=levelArt['zag-kamen-
   ctx.save();ctx.translate(G.x,G.y-70);ctx.rotate(-.5);ellipse(0,26,22,30,'#8a5a2a');line(0,0,0,-74,'#6a4420',8);line(-4,-70,10,-82,'#6a4420',6);line(2,-64,2,40,'#e8dcc0',1.5);ctx.restore();
   if(t.play)halo(G.x,G.y-70,80,'rgba(255,225,150,.5)',.6+.3*Math.sin(time*10));
   textLabel(t.done?'GUSLE ĆUTE':t.play?'SLUŠAJ…':t.listen?`PONOVI · ${t.prog||0}/${n}`:'E · NEK GUSLE ZAGUDE',G.x,G.y-170,{font:'bold 13px Georgia',color:'#ffe9a8'});}}
+// ================= the chase ("Marko Kraljević i vila") =================
+// Ravijojla's forest opens as the song does: Miloš sang better than the vila and she shot him in the throat and the
+// heart. Šarac waits; Marko mounts and rides her down across Miroč, leaping fallen trunks while she looses her white
+// arrows back at him. Where the road ends she climbs for the clouds, and the mace, thrown, takes her between the
+// shoulders. She begs for her life, heals Miloš and is Marko's sworn sister from then on.
+function poteraTrap(){return(world.traps||[]).find(t=>t.kind==='potera')||null;}
+function usePotera(){const t=poteraTrap();if(!t||t.state||!p.grounded||Math.abs(p.x-t.sx)>150||Math.abs(p.y-t.y)>90)return false;
+ t.state='trka';t.t=0;horseMounted=true;p.mountTime=.55;p.x=t.sx;p.face=1;p.vx=0;t.vila={x:t.sx+640,y:t.y-250,t:0,shot:3};sfx('hoof',{gain:.9});
+ speak('„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Drži D za galop, Space preskače balvane. Kad je stigneš, baci topuz: I.',8);toast('POTERA ZA VILOM',3);return true;}
+function updatePotera(dt){const t=poteraTrap();if(!t)return;
+ if(!t.init){t.init=true;for(const bx of t.bars)world.barriers.push({x:bx,y:t.y,w:45,h:65,horse:true});}
+ if(!t.state){if(!t.told&&Math.abs(p.x-t.sx)<560&&Math.abs(p.y-t.y)<200){t.told=true;speak('Miloš je kroz Miroč zapevao lepše od vile, pa ga je Ravijojla ustrelila u grlo i u srce. Eno ti Šarca, Marko: uzjaši i stigni je!',8);sfx('magic',{gain:.6});}}
+ else if(t.state==='trka'){t.t+=dt;const V=t.vila,end=t.x1-560;V.t+=dt;p.x=Math.max(p.x,t.x0+40);const lead=V.x-p.x;
+  // she keeps ahead while there is road; at its end she climbs for the clouds and can be reached
+  V.x=Math.min(end,V.x+(lead<430?520:lead>950?320:455)*dt);if(V.x>=end)V.up=Math.min(1,(V.up||0)+dt*.8);V.y=t.y-250+Math.sin(V.t*2.4)*26-(V.up||0)*90;
+  V.shot-=dt;if(V.shot<=0&&lead<950&&lead>200&&V.x<end){V.shot=2.4;const sx=V.x-20,sy=V.y+10,ang=Math.atan2(p.y-70-sy,p.x+p.vx*.45-sx);arrows.push({x:sx,y:sy,vx:Math.cos(ang)*560,vy:Math.sin(ang)*560,enemy:true,life:3});sfx('bow',{gain:.6,x:V.x});label('STRELA!',V.x,V.y-56,'#ffd8d8');}
+  t.reach=lead<340&&lead>-80;if(t.reach&&tap('KeyI')){t.mace={x:p.x+40,y:p.y-150,k:0};t.state='hitac';sfx('whoosh_heavy',{gain:.9});}}
+ else if(t.state==='hitac'){const M=t.mace,V=t.vila;M.k=Math.min(1,M.k+dt*3.4);if(M.k>=1){t.state='pala';t.t=0;t.mace=null;burst(V.x,V.y,'#caffdf',40,220);sfx('hit_body',{gain:.8,x:V.x});sfx('magic',{gain:.8});shake=settings.reduced?0:7;hitstop=.08;label('MEĐU PLEĆI!',V.x,V.y-60,'#ffe39a');}}
+ else if(t.state==='pala'){t.t+=dt;const V=t.vila;V.y=Math.min(t.y-30,V.y+440*dt);
+  if(t.t>.9&&!t.said){t.said=true;speak('„Bogom brate, Kraljeviću Marko! Pusti me u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.” Marko je pusti, i od tada mu je vila posestrima.',9);}
+  if(t.t>3.4){t.state='kraj';t.done=true;horseMounted=false;p.vy=-300;p.grounded=false;world.barriers=world.barriers.filter(b=>b.x<t.x0||b.x>t.x1);addCoins(25,p.x,p.y-80);p.hp=p.maxHp;sfx('magic_big',{gain:.9});
+   toast('Vila je bilјem zalečila Miloša. „Ne streljajte po gori junaka dok je glasa Kraljevića Marka!”',5);}}
+ puzzleGate(t,t.done,t.state?'Stigni vilu i baci topuz (I).':'Uzjaši Šarca (E) i stigni vilu.');}
+function drawPotera(t){if(t.x1<camera-400||t.x0>camera+VIEW_W+400)return;
+ if(!t.state){rigDraw('cast/sarac',0,t.sx,t.y,1,{});if(Math.abs(p.x-t.sx)<460)textLabel(Math.abs(p.x-t.sx)<150?'E · UZJAŠI ŠARCA':'ŠARAC ČEKA',t.sx,t.y-200,{font:'bold 13px Georgia',color:'#ffe9a8'});return;}
+ const V=t.vila;if(V&&t.state!=='kraj'){const n=rig?.['vila-let']?.frames.length||0;if(n)rigDraw('vila-let',Math.floor(time*12)%n,V.x,V.y+70,t.state==='pala'?-1:1,{rot:t.state==='pala'?.9:0});halo(V.x,V.y,70,'rgba(170,255,225,.45)',.6+.2*Math.sin(time*5));
+  if(t.state==='trka'&&t.reach)textLabel('I · BACI TOPUZ',p.x,p.y-250,{font:'bold 18px Georgia',color:'#fff3c0',glow:'#ff6a3a'});}
+ if(t.mace&&V){const M=t.mace,x=M.x+(V.x-M.x)*M.k,y=M.y+(V.y-M.y)*M.k-Math.sin(M.k*Math.PI)*70,im=levelArt['predmet-topuz'];ctx.save();ctx.translate(x,y);ctx.rotate(M.k*14);if(im)ctx.drawImage(im,-30,-30,60,60);else{line(-26,0,6,0,'#4a3420',6);ellipse(14,0,13,13,'#5a5a60');}ctx.restore();}}
 // ================= the guslars of the Ibar gorge ("Guslar peva o Marku") =================
 // A guslar sits by the road. When Marko comes, Turks run in to break his gusle (a second band from behind).
 // Defend him and he sings a part of Marko's song: rage fills and wounds close. The last one sings in peace before the champion.
@@ -1907,7 +1935,7 @@ function ckptTick(){if(!level||mode!=='play')return;
  if((world.traps||[]).some(t=>t.kind==='guslar'&&(t.state==='napad'||t.state==='odbrana')))return;
  ckpt={x:p.x,y:p.y};ckptFlags.push({x:p.x-34,y:p.y,t:time});if(p.zaduzbina&&p.hp<p.maxHp){p.hp=Math.min(p.maxHp,p.hp+15*p.zaduzbina);label('BLAGOSLOV',p.x,p.y-170,'#ffe9a8');}toast('Barjak je podignut. Ako padneš, odavde nastavljaš.',2.4);sfx('cloth',{gain:.7});sfx('ring',{gain:.4,rate:.9});}
 function champReset(e){if(!e.pristine)return;const keep=e.pristine,P=JSON.parse(keep);for(const k of Object.keys(e))if(!(k in P))delete e[k];Object.assign(e,P);e.pristine=keep;}
-function ckptRespawn(){mode='play';endSequence=null;corpses=corpses.filter(c=>c.type!=='marko');arrows=[];fires=[];world.drops=[];grapple=null;finisher=null;arena=null;slowMo=0;hitstop=0;
+function ckptRespawn(){mode='play';horseMounted=false;{const t=poteraTrap();if(t&&!t.done){t.state=null;t.vila=null;t.mace=null;}}endSequence=null;corpses=corpses.filter(c=>c.type!=='marko');arrows=[];fires=[];world.drops=[];grapple=null;finisher=null;arena=null;slowMo=0;hitstop=0;
  Object.assign(p,{x:ckpt.x,y:ckpt.y,vx:0,vy:0,hp:p.maxHp,grounded:true,noMace:false,invuln:2.5,attack:0,dash:0,down:0,hurt:0,drink:0,spin:0,plunge:0,slide:0,kick:0,dizzy:0,charge:0,combo:0,shoveT:0,pinned:false,blocking:false,crouching:false,climb:null,wall:0,rage:Math.min(p.rage||0,50),wine:Math.max(p.wine||0,2)});
  {const c=world.enemies.find(e=>e.champion),A=c?.arena;for(const e of world.enemies){e.grappling=false;e.held=false;if(e.champion&&e.alive)champReset(e);else if(e.alive&&!e.trioMate&&(e.id>=40000||(e.id>=9100&&A&&e.x>A.x0-300&&e.x<A.x1+300)))e.alive=false;}}
  for(const q of world.platforms)if(q.cut){q.off=false;q.cut=false;}
@@ -2173,7 +2201,7 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
  const G=t.glasnik;if(G){const k=G.state==='cita'?'caus-ferman':'caus-walk',alt=G.state==='cita'?'putnik-trgovac-idle':'putnik-trgovac-walk',n=rig?.[k]?k:alt,R=rig?.[n];
   if(R){const f=G.state==='cita'?Math.min(R.frames.length-1,Math.floor(G.t*5)):Math.floor(time*9)%R.frames.length;rigDraw(n,f,G.x,t.y,G.state==='odlazi'?1:-1);}
   if(G.state==='cita')textLabel('STO DUKATA OD CARA',G.x,t.y-176,{font:'bold 13px Georgia',color:'#ffe39a'});}}
-function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
+function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
  if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',Math.floor(time*9)%rig['svatovi-kolo'].frames.length,level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
 function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}

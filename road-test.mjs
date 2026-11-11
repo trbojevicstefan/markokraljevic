@@ -44,7 +44,7 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   if(p.wall&&jumpCd<=0){press('Space');jumpCd=.25;}
   step();if(p.x>best+15){best=p.x;bestT=t;}
   if(t-bestT>5){const near=[...(w.traps||[]).filter(tr=>Math.abs((tr.x??tr.gate?.x??tr.gap?.x0??tr.pulley?.x??0)-p.x)<500).map(tr=>tr.kind),...(w.ladders||[]).filter(l=>Math.abs(l.x-p.x)<250).map(()=>'ladder')];
-   const known=['lift','bells','mirrors','scale','kolo','powder','red','dren','melodija'].some(k=>near.includes(k))||(w.goals||[]).some(g=>g.kind==='gate'&&!g.done&&Math.abs(g.x-p.x)<300)||(w.plows||[]).some(pl=>Math.abs(pl.x-p.x)<700)||w.platforms.some(q=>!q.ground&&q.solid&&q.x<p.x+300&&q.x+q.w>p.x-250&&q.y+q.h<p.y-60);
+   const known=['lift','bells','mirrors','scale','kolo','powder','red','dren','melodija','potera'].some(k=>near.includes(k))||(w.goals||[]).some(g=>g.kind==='gate'&&!g.done&&Math.abs(g.x-p.x)<300)||(w.plows||[]).some(pl=>Math.abs(pl.x-p.x)<700)||w.platforms.some(q=>!q.ground&&q.solid&&q.x<p.x+300&&q.x+q.w>p.x-250&&q.y+q.h<p.y-60);
    stuck.push({at:`${Math.round(p.x)},${Math.round(p.y)} [${[...new Set(near)].join(' ')}]`,known});
    const nxt=w.platforms.filter(q=>q.ground&&q.x>p.x+120).sort((a,b)=>a.x-b.x)[0],here=w.platforms.find(q=>q.ground&&Math.abs(q.y-p.y)<4&&p.x+400<q.x+q.w);
    if(here&&(!nxt||nxt.x>p.x+900))p.x+=400;else if(nxt){p.x=nxt.x+40;p.y=nxt.y;}else break;p.vx=0;p.vy=0;p.climb=null;p.wall=0;best=p.x;bestT=t;}}
