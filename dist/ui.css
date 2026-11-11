@@ -708,3 +708,5 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #hud .combat-meters{gap:16px;margin-top:9px;font-size:10px;align-items:center}
 #hud .combat-meters>div{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 #hud .mini-meter{width:86px;height:5px;border-radius:3px;overflow:hidden}
+/* quieter HUD: the key legend steps back while someone speaks, and after the first half minute of a pohod */
+#game-shell:has(#dialogue:not([hidden])) #controls{opacity:0}#controls.tiho{opacity:0}
