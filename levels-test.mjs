@@ -41,6 +41,8 @@ for(let i=0;i<api.LEVELS.length;i++){
  }
  for(const e of world.enemies)e.alive=false;
  stand(L.goal.x-40,L.goal.y);step();
+ // Urvina ends at the well on the top, not at a banner (battles-test walks the song step by step)
+ if(world.traps.some(t=>t.kind==='vrh')){assert.equal(api.state().mode,'play',`${L.id}: the road does not end before the well`);console.log(`PASS ${L.id}: ends at the well`);continue;}
  if(api.state().mode!=='levelDone')console.log('DEBUG',L.id,'p',Math.round(api.state().p.x),api.state().p.y,'goal',L.goal,'pending',JSON.stringify(api.state().world.goals.filter(g=>!g.done).map(g=>[g.kind,g.label,Math.round(g.x)])));
  assert.equal(api.state().mode,'levelDone',`${L.id}: banner completes the level`);
  console.log(`PASS ${L.id}: ${tasks.length} goals`);

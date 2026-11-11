@@ -74,7 +74,8 @@ const GOAL_PLAN={
  mocvara:{goals:[.2,.4,.6,.8].map(at=>({kind:'use',at,art:['cilj-svetiljka','cilj-svetiljka-upaljena'],h:190,label:'Upali svetiljke preko močvare',glow:'#ffcf7a',gx:.3,gy:.66,done:'Svetiljka gori.'})),finish:'Prati svetiljke do kraja močvare'},
  rudnik:{goals:[{kind:'use',at:.45,art:LEVER,h:120,label:'Pronađi polugu starog okna',done:'Negde napred zaškripala je rešetka.'},{kind:'gate',at:'end',art:['cilj-rudarski-izlaz-zatvoren','cilj-rudarski-izlaz-otvoren'],h:260,label:'Otvori rudarski izlaz'}],finish:'Izađi iz rudnika'},
  rusevine:{goals:[],finish:'Popni se do poslednjeg barjaka'},
- reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'}
+ reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'},
+ urvina:{goals:[],finish:'Popni se do dve jele i bunara'}
 };
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
@@ -89,7 +90,7 @@ function makeGoals(L,floorAt){
 const RISE=24,RUN=46,LOW=660;
 export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true},zid:{w:74,h:205,hp:4,solid:true}};
 // each land breaks its own things
-export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['santa','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast']};
+export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['santa','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast'],urvina:['stena','panj']};
 // Marvels from the songs about Marko, one hidden in each land; each one strengthens him for good.
 export const CUDA=[
  {id:'sarceva-potkova',name:'Šarčeva potkova',song:'Šarac, Markov verni konj',perk:'Brži trk',land:'selo'},
@@ -122,6 +123,7 @@ export const RECIPES={
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates trgovac flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ trgovac flat boss:arapin',
  reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch trgovac flat boss:sword',
+ urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges trgovac flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
@@ -196,6 +198,8 @@ export function buildLayout(L,variant='day'){
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the poor by the road: an old woman and an orphan; a quiet room, no Turks in it
+  // the top of Urvina: two firs and the well, Šarac, the stone where the sabre breaks, and the cliff over the sea
+  vrh(){const x0=x,len=1900;ground(len);traps.push({kind:'vrh',x0,x1:x0+len+520,y:gy,bunar:x0+520,sarac:x0+1020,sablja:x0+1480,more:x0+len+240});busy.push([x0,x0+len+520]);},
   trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},
@@ -253,7 +257,7 @@ export function buildLayout(L,variant='day'){
  };
  ground(ri(600,680));const spawn={x:80,y:590};
  for(const name of(RECIPES[L.id]||'flat crates stairs+ watch flat stairs- ledges flat tower flat').split(' ')){const [r,arg]=name.split(':');room[r]?.(arg);}
- if(!boss)room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
+ if(!boss&&!L.peace)room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
  // the best reward hides the land's marvel, the others become chests
  rewards.sort((a,b)=>b.prio-a.prio);const cudo=CUDA.find(c=>c.land===L.id);
  rewards.forEach((r,i)=>{if(i===0&&cudo)r.cudo=cudo.id;else crate(r.x,'kovceg',{y:r.y,loot:{coins:ri(14,22)}});});
@@ -277,7 +281,10 @@ export function buildLayout(L,variant='day'){
  const zapis=rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
  return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
-export const EXTRA_LEVELS=[{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
+export const EXTRA_LEVELS=[{id:'urvina',name:'Urvina planina',width:9000,spawn:{x:80,y:590},goal:{x:8800,y:590},palette:'nedelja pre sunca, kraj mora',peace:true,
+ layers:[{id:'urvina-sky',speed:.04},{id:'urvina-far',speed:.16},{id:'urvina-mid',speed:.38},{id:'urvina-near',speed:.72}],
+ fallbackLayers:[{id:'rusevine-sky',speed:.04},{id:'rusevine-far',speed:.16},{id:'rusevine-mid',speed:.38},{id:'rusevine-near',speed:.72}],ground:'rusevine',props:[],
+ design:{goal:'Popni se na vrh Urvine'}},{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
  layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
  fallbackLayers:[{id:'selo-sky',speed:.04},{id:'selo-far',speed:.16},{id:'selo-mid',speed:.38},{id:'selo-near',speed:.72}],ground:'selo',
  props:[{id:'prop-plast-sena',x:700,y:590,height:150},{id:'prop-kruska',x:1500,y:590,height:300},{id:'prop-medjas',x:2100,y:590,height:70},{id:'prop-kola-seno',x:2700,y:590,height:170},{id:'prop-krst-raskrsce',x:3400,y:590,height:190},{id:'prop-turski-sator',x:4100,y:590,height:200},{id:'prop-plast-sena',x:4800,y:590,height:150},{id:'prop-kruska',x:5500,y:590,height:300},{id:'prop-taraba-ravna',x:6000,y:590,height:140}],
@@ -289,7 +296,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  const floorAt=x=>{let best=null;for(const q of platforms)if(q.ground&&x>q.x+40&&x<q.x+q.w-40&&(!best||q.y<best.y))best=q;return best;};
  const foe=(type,x,y,o={})=>{const hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+enemies.length,x:Math.round(x),y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
  const quiet=B.traps.filter(t=>t.kind==='sirotinja');if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
- let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(Math.abs(s.x-B.spawn.x)<480)continue;
+ let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(L.peace)break;if(Math.abs(s.x-B.spawn.x)<480)continue;
   if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
   if(s.x-lastX<330)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
