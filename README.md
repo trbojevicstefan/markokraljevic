@@ -221,6 +221,17 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 - `node battles-test.mjs`: 106 provera.
 - `node draw-test.mjs` iscrtava igru bez ekrana, kroz Kačanik, Musine etape, dokrajčivanje i svih 13 pohoda, i hvata greške u crtanju.
 
+## Noć 10/11. novembar: megdan, priča po pesmama, novi nivoi (grana `noc-poliranje`)
+
+Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i beleške po pesmama su u `pesme/`.
+
+- **Megdan:** telo neprijatelja se ne prolazi; bosovi imaju gard (lome ga teški udarci), kontru na tri laka udarca, tri čina sa novim potezima i koštac.
+- **Redosled:** pohodi idu po Markovom životu, megdan sa Musom je posle devetog pohoda, Đemo Brđanin dolazi posle Muse.
+- **Novi nivoi:** Urvina planina (uspon i kraj pesme), let sokola na početku Noćne močvare, tajni „San Kraljevića Marka" (na mapi ukucaj `MARKO`).
+- **Guslar:** ceo snimak od 5 min 12 s; odbrana guslara u Klisuri; guslar sa stihovima svog kraja u svakom pohodu.
+- **Dukati:** trgovac pred svakim megdanom; zadužbina i sofra kod kovača. **Barjaci** unutar pohoda vraćaju palog Marka bez ponavljanja nivoa.
+- **Međukadrovi:** `python smooth-anims.py` računa lokalno jedan kadar između svaka dva nacrtana (trk i hod); izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza tih listova pusti ga ponovo.
+
 ## Kontrole
 
 | Taster | Radnja |
