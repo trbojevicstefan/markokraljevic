@@ -305,7 +305,7 @@ export function buildLayout(L,variant='day'){
 export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina',width:7000,spawn:{x:80,y:590},goal:{x:6800,y:590},palette:'san u vilinskoj pećini',peace:true,secret:true,
  layers:[{id:'san-sky',speed:.04},{id:'san-far',speed:.16},{id:'san-mid',speed:.38},{id:'san-near',speed:.72}],
  fallbackLayers:[{id:'pecina-sky',speed:.04},{id:'pecina-far',speed:.16},{id:'pecina-mid',speed:.38},{id:'pecina-near',speed:.72}],ground:'pecina',props:[],
- design:{goal:'Prođi četiri odaje i probudi se'}},{id:'urvina',name:'Urvina planina',vista:'rusevine',width:9000,spawn:{x:80,y:590},goal:{x:8800,y:590},palette:'nedelja pre sunca, kraj mora',peace:true,
+ design:{goal:'Prođi četiri odaje i probudi se'}},{id:'urvina',name:'Urvina planina',width:9000,spawn:{x:80,y:590},goal:{x:8800,y:590},palette:'nedelja pre sunca, kraj mora',peace:true,
  layers:[{id:'urvina-sky',speed:.04},{id:'urvina-far',speed:.16},{id:'urvina-mid',speed:.38},{id:'urvina-near',speed:.72}],
  fallbackLayers:[{id:'rusevine-sky',speed:.04},{id:'rusevine-far',speed:.16},{id:'rusevine-mid',speed:.38},{id:'rusevine-near',speed:.72}],ground:'rusevine',props:[],
  design:{goal:'Popni se na vrh Urvine'}},{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
