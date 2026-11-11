@@ -710,3 +710,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #hud .mini-meter{width:86px;height:5px;border-radius:3px;overflow:hidden}
 /* quieter HUD: the key legend steps back while someone speaks, and after the first half minute of a pohod */
 #game-shell:has(#dialogue:not([hidden])) #controls{opacity:0}#controls.tiho{opacity:0}
+/* megdan: the duel takes the top of the screen; the quest line steps aside, so the words over the fighters stay clear */
+#game-shell:has(#boss-hud:not([hidden])) .quest{display:none}
+@media(min-width:901px){#game-shell:has(#boss-hud:not([hidden])) #boss-hud{top:22px;left:max(50%,720px)}#game-shell:has(#boss-hud:not([hidden])) #toast{top:150px}}
+@media(max-width:600px){#game-shell:has(#boss-hud:not([hidden])) #boss-hud{top:84px}#game-shell:has(#boss-hud:not([hidden])) #toast{top:190px}}

@@ -6,6 +6,7 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["OBORIO TE S LEĐA", "HE FELLED YOU FROM BEHIND"],
 ["PUNA ČUTURA", "FLASK FILLED"],
 ["Posestrima Janja toči rujno vino pred megdan sa Đemom. Čutura je puna.", "Janja, your sworn sister, pours red wine before the duel with Đemo. The flask is full."],
 ["NOVAK KOVAČ", "NOVAK THE SMITH"],
