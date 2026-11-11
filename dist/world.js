@@ -310,6 +310,7 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
  fallbackLayers:[{id:'rusevine-sky',speed:.04},{id:'rusevine-far',speed:.16},{id:'rusevine-mid',speed:.38},{id:'rusevine-near',speed:.72}],ground:'rusevine',props:[],
  design:{goal:'Popni se na vrh Urvine'}},{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',
  layers:[{id:'oranje-sky',speed:.04},{id:'oranje-far',speed:.16},{id:'oranje-mid',speed:.38},{id:'oranje-near',speed:.72}],
+ nightLayers:[{id:'oranje-sky-night',speed:.04},{id:'oranje-far-night',speed:.16},{id:'oranje-mid-night',speed:.38},{id:'oranje-near-night',speed:.72}],stormLayers:[{id:'oranje-sky-storm',speed:.04},{id:'oranje-far-storm',speed:.16},{id:'oranje-mid-storm',speed:.38},{id:'oranje-near-storm',speed:.72}],
  fallbackLayers:[{id:'selo-sky',speed:.04},{id:'selo-far',speed:.16},{id:'selo-mid',speed:.38},{id:'selo-near',speed:.72}],ground:'selo',
  props:[{id:'prop-plast-sena',x:700,y:590,height:150},{id:'prop-kruska',x:1500,y:590,height:300},{id:'prop-medjas',x:2100,y:590,height:70},{id:'prop-kola-seno',x:2700,y:590,height:170},{id:'prop-krst-raskrsce',x:3400,y:590,height:190},{id:'prop-turski-sator',x:4100,y:590,height:200},{id:'prop-plast-sena',x:4800,y:590,height:150},{id:'prop-kruska',x:5500,y:590,height:300},{id:'prop-taraba-ravna',x:6000,y:590,height:140}],
  design:{goal:'Zaustavi turska rala i uzmi tri tovara blaga'}}];
