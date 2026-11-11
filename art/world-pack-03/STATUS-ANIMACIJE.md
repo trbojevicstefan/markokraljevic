@@ -770,3 +770,13 @@ DOPUNA-42 deo1: urvina-near GOTOVO — PNG2172x724, RGBA/providno iznad obrisa, 
 DOPUNA-42 deo1: urvina-vista GOTOVO — PNG2172x724, neprozirno, zora pre sunca, bez gradjevina; vodoravni spoj registrovan, rubni RGBA pikseli jednaki. Izvor i QA sources/dopuna42-1/; ugradjeni image_gen.
 
 DOPUNA-42 deo1: ZAVRSENO5/5 — urvina-sky/far/mid/near/vista.png; sve2172x724. Provera seam-audit.py PASS195 postojecih; isti audit nad novimPNG: PASS5 (crossfade12%). Direktno jednaki levi/desni RGBA rubovi; alfa i dimenzije prosle. Pregled preview-dopuna42-1.html, ponavljanje preview-urvina-tiles.jpg; izvori/promptovi/QA sources/dopuna42-1/. Bez gradjevina (na visti samo trazeni bunar), zora bez vidljivog sunca. Kod i dist nisu menjani.
+
+DOPUNA-42 deo2: prelaz-urvina-1 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna42-23/; prompts-dopuna42-23.json.
+
+DOPUNA-42 deo2: prelaz-urvina-2 GOTOVO. Minijatura1024x1024, zlatna pozadina/srpska freska. Ugradjeni image_gen; sources/dopuna42-23/; prompts-dopuna42-23.json.
+
+DOPUNA-42 deo2: prelaz-urvina-anim GOTOVO. Scena12kadrova768x512, traka9216x512,8FPS/petlja. Atlas+manifest+preview.gif u art/animation-pack-04/assets/prelaz-urvina-anim/. Ugradjeni image_gen; sources/dopuna42-23/; prompts-dopuna42-23.json.
+
+DOPUNA-42 deo3: marko-pocinak — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-pocinak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna42-23.json, izvor sacuvan.
+
+DOPUNA-42 delovi2/3 ZAVRSENO — prelaz-urvina-1/2 PNG1024x1024; prelaz-urvina-anim12x768x512/petlja; marko-pocinak6x512x512/jednom, trajanja350/500/400/400/450/1200ms, holdLastFrame=true, GIFtakodje jednom. Provereni alpha, y487 oslonac, atlas=frames, frame_layout, GIF12/6; preview-dopuna42-23.html i validation-dopuna42-23.json. Ugradjeni image_gen; prompts-dopuna42-23.json, izvori sacuvani. Kod i dist nisu menjani.
