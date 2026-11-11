@@ -68,6 +68,7 @@ Probni prostor je greybox: `index.html?greybox` (`dist/greybox.js`). Ima osam si
 
 | Stavka (ideja) | Marko | Status | Gde |
 |---|---|---|---|
+| Teren sa nagibom (brda, uvale) | pohodi imaju ravne terase i stepenice; greybox ima prave kosine | **dorada**: fizika kosina postoji (`topAt()`, `surf`), ali je pohodi još ne koriste; za crtež treba traka tla koja prati nagib | `gbGround()` |
 | Povezana mapa (sobe, prelazi, povratak) | pohodi su linearni putevi; greybox ima prvi povezani svet | **dorada** | `GB_ROOMS`, `gbRoomAt()`, `gbCamera()` |
 | Zaključani prolazi koji traže moć | veštine u pohodima (`SKILLS`, `has()`); u greybox-u kapije za krilo, juriš i trag | **postoji** u greybox-u; **dorada** za pohode | `GB_LINKS`, `gbGate`, `moc()` |
 | Čekpointi koji leče | barjaci u pohodima (`ckptTick()`); u greybox-u kamen koji leči | **postoji**; **dorada**: sopstveni crtež (može vilinski kamen) | `vilinski-kamen-spava` 6, `-budi` 6, `-budan` 6 |
@@ -133,18 +134,21 @@ Pravila su ista kao u DOPUNA briefovima: ćelija 512×512, oslonac na y=487, a k
 
 | Soba | Šta je unutra |
 |---|---|
-| Skrivena riznica | tajna iza prvog zida (+20 zdravlja); do nje se stiže tek sa krilom |
-| Predvorje | početak, čekpoint, visok zid prema tajni, nizak blok za vežbu hvata ivice |
-| Stražarnica | susret 1: janičar, strelac na bloku, štitonoša |
-| Sokolova odaja | Sokolovo krilo, pa zid od 345 px (bez krila se dohvata 266, sa krilom 383) |
-| Ponor | susret 2: akindžija i štitonoša; Juriš u vazduhu; ponor od 500 px (bez juriša najviše 469, sa jurišem i običnim zaletom 553) |
-| Vilina odaja | prekidač kraj ulaza, Vilin trag, vrata 1300 px dalje koja ostaju otvorena 1 s |
-| Predsoblje | čekpoint 2, susret 3: oklopnik i palikuća |
+| Skrivena riznica | tajna na humci iza prvog zida (+20 zdravlja); do nje se stiže tek sa krilom |
+| Predvorje | početak, čekpoint, visok zid prema tajni, uvala, nizak blok za vežbu hvata ivice, strmo brdo od 130 px |
+| Stražarnica | susret 1: janičar u uvali, strelac na bloku, štitonoša |
+| Sokolova odaja | Sokolovo krilo na vrhu brda, pa zid od 345 px (bez krila se dohvata 266, sa krilom 383) |
+| Ponor | susret 2: akindžija u uvali i štitonoša; Juriš u vazduhu; ponor od 500 px (bez juriša najviše 469, sa jurišem i običnim zaletom 553) |
+| Vilina odaja | prekidač kraj ulaza, Vilin trag, brdo, vrata 1300 px dalje koja ostaju otvorena 1 s |
+| Predsoblje | čekpoint 2, susret 3: oklopnik i palikuća na dva brda |
 | Arena čuvara | mini-bos Janičarski aga, sa gredama po kojima skače |
 
 U greybox-u nema zid-skoka ni Vilinskog uzleta (E u skoku), jer bi preskočili kapije. Ništa se ne upisuje u sačuvanu igru: ni pohod, ni megdan, ni veština. Jedino dukati sa palih Turaka i dalje idu u kesu.
 
-`node greybox-test.mjs` (46 provera, deo je `npm test`) radi stvarnim ulazima:
+Tlo nije kockasto: brda i uvale su prave kosine. Marko i Turci po njima hodaju, trče, kotrljaju se i doskaču (`topAt()`, platforma sa `surf` u `integrate()`); ravne platforme rade kao i pre.
+
+`node greybox-test.mjs` (52 provere, deo je `npm test`) radi stvarnim ulazima:
+- Marko hoda, kotrlja se i doskače po brdu i uvali bez odvajanja od tla, a Turčin izlazi iz uvale do njega;
 - svaka soba je dostižna kad se skupe moći;
 - svaka kapija ostaje zatvorena bez svoje moći: 40 pokušaja kod svakog zida i 234 pokušaja kod ponora;
 - kroz vrata se bez traga ne stiže;

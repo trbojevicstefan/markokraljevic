@@ -267,6 +267,7 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 **Greybox** (`index.html?greybox`, kod u `dist/greybox.js`) je osam sivih soba, bez pozadina, za probu ovih pokreta. Gore desno je mapa soba.
 - Marko počinje bez krila, juriša i traga. Svaku moć nađe u svojoj sobi, a ona otvara svoju vrstu prolaza: krilo visok zid, juriš širok ponor, trag vrata koja daleki prekidač otvori na tren.
 - Iza prvog zida je tajna soba: tu se vraća kad dobije krilo.
+- Tlo nije kockasto: ima brda i uvale, a Marko i Turci hodaju, trče, kotrljaju se i doskaču po nagibu. Kosina je platforma sa `surf` (visina na svakih 8 px) i radi u `integrate()` za svako telo. Ravne platforme rade kao i pre.
 - Ima dva čekpointa, tri susreta i čuvara arene (Janičarski aga).
 - Zid-skok i Vilinski uzlet su u greybox-u isključeni. Ništa se ne upisuje u sačuvanu igru.
 - `node greybox-test.mjs` proverava stvarnim ulazima da je svaka soba dostižna i da nijedna kapija ne pušta bez svoje moći.

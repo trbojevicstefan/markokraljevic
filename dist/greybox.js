@@ -13,7 +13,7 @@ export const GB_WALL=345;      // one jump and a ledge grab reach 266 px, the wi
 export const GB_GAP=500;       // without the dash the farthest leap is 469 px (a roll, a jump at the edge, the wing on the right frame);
                                // a plain run-up, the dash and the wing reach 553 (greybox-test searches both)
 export const GB_DOOR=1;        // seconds the door stays open after the switch; the switch is 1300 px away
-const F=590,BOT=840,ROOF=-60,ROOF_TOP=-420,CAM_TOP=-130,CAM_BOT=760;
+const F=590,BOT=840,ROOF=-60,ROOF_TOP=-420,CAM_TOP=-130,CAM_BOT=830;
 export const GB_MOCI={
  krilo:{name:'Sokolovo krilo',key:'u skoku SPACE',color:'#f4ead2',text:'Još jedan skok u vazduhu. Visok zid na kraju sobe sada možeš da preskočiš.'},
  nalet:{name:'Juriš u vazduhu',key:'u skoku SHIFT',color:'#ffcf6a',text:'Kratak nalet napred, bez pada. Skoči, jurni, pa krilo: tako se prelazi ponor.'},
@@ -35,18 +35,23 @@ export const GB_WIDTH=13600;
 export const GB_LINKS=[['riznica','predvorje','krilo'],['predvorje','strazarnica',null],['strazarnica','sokolova',null],['sokolova','ponor','krilo'],['ponor','vilina','nalet'],['vilina','predsoblje','trag'],['predsoblje','arena',null]];
 export const GB_SHRINES={krilo:'sokolova',nalet:'ponor',trag:'vilina'};
 // where things stand (x); the rooms above are built around them
-const X={spawn:1800,ck1:1980,wall1:1400,ledge:2450,foe1:3750,perch:4200,foe1b:4350,krilo:5250,wall2:6050,foe2:6850,foe2b:7150,nalet:7600,pit:8000,
+const X={spawn:1800,ck1:1980,wall1:1400,ledge:2450,foe1:3500,perch:4200,foe1b:4350,krilo:5250,wall2:6050,foe2:6750,foe2b:7150,nalet:7600,pit:8000,
  sw:9050,trag:9500,door:10350,ck2:10900,foe3:11450,foe3b:11850,arena0:12440,arena1:13560,secret:560};
+// the lie of the land: hills (+) and hollows (−), each a smooth bump on the floor line; the gates, the abyss's run-up,
+// the switch, the door, the checkpoints and the arena stay on flat ground
+const BUMPS=[[250,1100,70],[2120,2400,-45],[2700,3250,130],[3300,3700,-80],[4850,5650,90],[6450,7050,-100],[9600,10200,120],[11050,11550,60],[11600,12300,100]];
+export function gbGround(x){let y=F;for(const [a,b,h] of BUMPS)if(x>a&&x<b)y-=h*(1-Math.cos(2*Math.PI*(x-a)/(b-a)))/2;return y;}
 export function gbRoomAt(x){let i=GB_ROOMS.findIndex(R=>x<R.x1);return i<0?GB_ROOMS.length-1:i;}
 const clampN=(n,a,b)=>Math.max(a,Math.min(b,n));
 const block=(x,top,w,o={})=>({x,y:top,w,h:Math.max(240,BOT-top),kind:'stone',solid:true,...o});
 
 export function makeGreybox(){
  const platforms=[],enemies=[];
- const floor=(x0,x1,o={})=>platforms.push(block(x0,F,x1-x0,{ground:true,...o}));
- const foe=(type,x,y=F,o={})=>{const hp={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70}[type]??90;enemies.push({id:3000+enemies.length,x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone:GB_ZONE,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
- // the floor runs the whole map but for the abyss; its far lip is a 'step', so Marko cannot catch it with his hands from below
- floor(0,X.pit);platforms.push(block(X.pit+GB_GAP,F,60,{kind:'step',gbLip:true}));floor(X.pit+GB_GAP+60,GB_WIDTH);
+ const foe=(type,x,y=gbGround(x),o={})=>{const hp={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70}[type]??90;enemies.push({id:3000+enemies.length,x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone:GB_ZONE,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
+ // the land runs the whole map but for the abyss: a slope (`surf`, its top every 8 px) that bodies walk along, up and down.
+ // The abyss's far lip is a 'step', so Marko cannot catch it with his hands from below; a strip on the near side is its wall.
+ const land=(x0,x1)=>{const S=[];for(let x=x0;x<=x1;x+=8)S.push(Math.round(gbGround(x)*10)/10);const top=Math.min(...S);platforms.push({x:x0,y:top,w:x1-x0,h:BOT-top,kind:'stone',ground:true,surf:S,sx:8});};
+ land(0,X.pit);platforms.push(block(X.pit-24,F+2,24,{kind:'step'}),block(X.pit+GB_GAP,F,60,{kind:'step',gbLip:true}));land(X.pit+GB_GAP+60,GB_WIDTH);
  // the ends of the world, and a roof over all the rooms (it only shows; no jump reaches it)
  platforms.push(block(-160,ROOF_TOP,160,{h:BOT-ROOF_TOP}),block(GB_WIDTH,ROOF_TOP,160,{h:BOT-ROOF_TOP}),{x:-160,y:ROOF_TOP,w:GB_WIDTH+320,h:ROOF-ROOF_TOP,kind:'stone',solid:true,gbRoof:true});
  // Predvorje: the first high wall (the secret room behind it) and a low block to learn the ledge grab on
@@ -67,10 +72,10 @@ export function makeGreybox(){
  foe('sword',Math.round(a0+len*.68),F,{id:3100,champion:true,scale:1.35,hp:700,maxHp:700,name:'Čuvar arene (Janičarski aga)',kit:'janicar',look:'janicarski-aga',w:50,h:100,arena:{x0:a0,x1:X.arena1,y:F}});
  const level={id:'greybox',greybox:true,name:'Greybox',width:GB_WIDTH,spawn:{x:X.spawn,y:F},goal:{x:GB_WIDTH+5000,y:F},props:[],peace:false,design:{goal:'Pronađi tri moći i pobedi čuvara'}};
  const gb={t:0,room:-1,seen:new Set(),moci:{krilo:false,nalet:false,trag:false},
-  shrines:Object.keys(GB_SHRINES).map(moc=>({moc,x:X[moc],y:F,taken:false})),
+  shrines:Object.keys(GB_SHRINES).map(moc=>({moc,x:X[moc],y:gbGround(X[moc]),taken:false})),
   ckpts:[{id:1,x:X.ck1,y:F},{id:2,x:X.ck2,y:F}],ckpt:1,
   sw:{x:X.sw,y:F,w:90,down:false},door:{q:door,open:0,solved:false,told:false},
-  chest:{x:X.secret,y:F,taken:false},secret:false,done:false,told:{}};
+  chest:{x:X.secret,y:gbGround(X.secret),taken:false},secret:false,done:false,told:{}};
  return{platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables:[],towers:[],plows:[],plowTeams:[],traps:[],cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:F-GB_WALL,pitY:F+300,gb,
   chapter:{name:'GREYBOX · SIVE SOBE',start:0,end:GB_WIDTH,goal:level.design.goal,message:''}};
 }
@@ -109,6 +114,8 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,cam=G.camera,cy=G.camY,
  for(const R of GB_ROOMS){if(R.x0<cam-80||R.x0>cam+VW+80||!R.x0)continue;g.fillStyle=C.dark;g.fillRect(R.x0-10,ROOF,20,F-300-ROOF);g.fillRect(R.x0-60,F-300,120,14);}
  for(const q of W.platforms){if(q.x+q.w<cam-60||q.x>cam+VW+60||(q.off&&q.arena))continue;
   if(q.gbDoor){if(q.off){g.strokeStyle='rgba(143,255,224,.5)';g.setLineDash([8,8]);g.strokeRect(q.x,q.y,q.w,q.h);g.setLineDash([]);}else{g.fillStyle='#3f8f7e';g.fillRect(q.x,q.y,q.w,q.h);g.fillStyle='#8fffe0';for(let y=q.y+30;y<q.y+q.h;y+=70)g.fillRect(q.x+q.w/2-3,y,6,30);}continue;}
+  if(q.surf){const a=Math.max(q.x,Math.floor((cam-40)/8)*8),b=Math.min(q.x+q.w,cam+VW+48);g.beginPath();g.moveTo(a,BOT);for(let x=a;x<b;x+=8)g.lineTo(x,gbGround(x));g.lineTo(b,gbGround(b));g.lineTo(b,BOT);g.closePath();g.fillStyle=C.block;g.fill();
+   g.beginPath();for(let x=a;x<b;x+=8)x===a?g.moveTo(x,gbGround(x)):g.lineTo(x,gbGround(x));g.lineTo(b,gbGround(b));g.strokeStyle=C.edge;g.lineWidth=3;g.stroke();continue;}
   g.fillStyle=q.kind==='plank'?C.plank:C.block;g.fillRect(q.x,q.y,q.w,q.h);g.fillStyle=C.edge;g.fillRect(q.x,q.y,q.w,3);g.strokeStyle=C.dark;g.lineWidth=2;g.strokeRect(q.x+1,q.y+1,q.w-2,q.h-2);
   if(q.gbGate){const M=GB_MOCI[q.gbGate];g.fillStyle=M.color;g.globalAlpha=.85;g.fillRect(q.x,q.y,q.w,8);g.globalAlpha=1;}
   if(q.gbLip){g.fillStyle=GB_MOCI.nalet.color;g.fillRect(q.x,q.y,q.w,6);}}

@@ -11,7 +11,7 @@ const storage=new Map();const localStorage={getItem:k=>storage.get(k)??null,setI
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,greybox}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,greybox,topAt}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startGreybox,startChapter,update,keys,pressed,has,retry,damage,VIEW_W,state:()=>({p,world,mode,level,zone,arena,ckpt,camera})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const GB=physics.greybox,F=590;
@@ -83,6 +83,20 @@ function leap({roll,jumpAt,k,n}){place(PIT-560,1);api.keys.add('KeyD');let jumpe
  tap('KeyV');ok(Math.abs(S().p.x-(q.x-70))<3,'door: V brings Marko back beside the open door');
  api.keys.add('KeyD');for(let f=0;f<120;f++)step();api.keys.clear();ok(S().p.x>q.x+q.w&&D.solved,'door: through, and now it stays open behind him');
  api.keys.add('KeyA');for(let f=0;f<120;f++)step();api.keys.clear();ok(S().p.x<q.x,'door: and Marko can go back the way he came');}
+
+// ---- hills and hollows: Marko walks along the slope, whatever its angle, and so do the foes ----
+{const w=S().world,land=w.platforms.find(q=>q.surf&&q.x===0);setMoci({});
+ ok(land&&Math.abs(physics.topAt(land,2975)-(F-130))<1&&Math.abs(physics.topAt(land,3500)-(F+80))<1,'slopes: the land is a slope: a hill 130px high in the Predvorje, a hollow 80px deep past it');
+ const walk=(from,to,key,run)=>{place(from,key==='KeyD'?1:-1);api.keys.add(key);let off=0,air=0,lo=F,hi=F;for(let f=0;f<900&&(key==='KeyD'?S().p.x<to:S().p.x>to);f++){if(run&&f%110===5)api.pressed.add('ShiftLeft');step();const p=S().p;if(!p.grounded)air++;else off=Math.max(off,Math.abs(p.y-GB.gbGround(p.x)));lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();step(2);return{off,air,lo,hi};};
+ let r=walk(2560,3760,'KeyD');ok(r.air===0&&r.off<1.5&&r.lo<F-128&&r.hi>F+78,`slopes: walking right Marko goes up the hill and down into the hollow without leaving the ground (feet within ${r.off.toFixed(2)}px of the slope)`);
+ r=walk(3760,2560,'KeyA');ok(r.air===0&&r.off<1.5&&r.lo<F-128,'slopes: and back the other way');
+ r=walk(2560,3760,'KeyD',true);ok(r.air===0&&r.off<1.5,'slopes: rolling down and up the slopes keeps him on them too');
+ place(2860,1);api.keys.add('KeyD');tap('Space');let landed=null;for(let f=0;f<240&&!landed;f++){step();const p=S().p;if(p.grounded&&f>5)landed={x:p.x,y:p.y};}api.keys.clear();step(2);
+ ok(landed&&Math.abs(landed.y-GB.gbGround(landed.x))<1.5&&landed.y<F-10,`slopes: a jump onto the hillside lands on the slope (x ${Math.round(landed?.x)}, ${Math.round(F-landed?.y)}px above the floor)`);
+ // a janičar in the hollow climbs the hill to Marko, standing on the slope the whole way
+ const e={...w.enemies.find(e=>e.type==='sword'&&!e.champion),id:3999,x:3480,y:GB.gbGround(3480),alive:true,hp:90,maxHp:90,mode:'idle',timer:.2,stun:0,vx:0,vy:0,grounded:true,air:false};w.enemies.push(e);
+ place(2960,-1);const p=S().p;p.y=GB.gbGround(2960);p.invuln=1e9;let off=0;for(let f=0;f<900&&Math.abs(e.x-p.x)>130;f++){step();p.invuln=1e9;if(e.grounded)off=Math.max(off,Math.abs(e.y-GB.gbGround(e.x)));}
+ ok(Math.abs(e.x-p.x)<=130&&off<3,`slopes: a janičar walks up out of the hollow to Marko on the hillside (${Math.round(Math.abs(e.x-p.x))}px away, on the slope within ${off.toFixed(2)}px)`);e.alive=false;w.enemies.pop();}
 
 // ---- a whole run, from the first room to the champion, with the secret room on the way ----
 api.startGreybox();

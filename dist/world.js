@@ -37,8 +37,11 @@ export function makeWorld(){
 // Bodies stand on platform tops. Thin platforms are one-way; `solid` blocks (pohod terrain, towers, crates) also stop
 // sideways movement and bump heads. A grounded body climbs low steps (stairs) and stays glued to them going down.
 export const STEP_UP=30;
+// A slope (the greybox's hills and hollows) is a platform with `surf`: its top every `sx` px from q.x. Bodies walk along that
+// top and are glued to it going down; it never stops them sideways. Every other platform is flat at q.y, exactly as before.
+export function topAt(q,x){const S=q.surf;if(!S)return q.y;const k=clamp((x-q.x)/q.sx,0,S.length-1),i=Math.floor(k);return i>=S.length-1?S[S.length-1]:S[i]+(S[i+1]-S[i])*(k-i);}
 export function integrate(body,dt,platforms,runes=[]){
- const hw=(body.w||34)/2,h=body.h||100,ground=body.grounded;let feet=body.y;
+ const hw=(body.w||34)/2,h=body.h||100,ground=body.grounded,x0=body.x;let feet=body.y;
  body.vy+=GRAVITY*dt;body.wallHit=0;body.wallQ=null;
  let nx=body.x+body.vx*dt;
  if(nx!==body.x){const dir=Math.sign(nx-body.x);
@@ -49,10 +52,10 @@ export function integrate(body,dt,platforms,runes=[]){
     nx=face-dir*hw;body.wallHit=dir;body.wallQ=q;}}}
  body.x=nx;body.y=feet;const old=body.y;body.y+=body.vy*dt;body.grounded=false;
  if(body.vy<0){for(const q of platforms){if(!q.solid||q.off)continue;const bottom=q.y+q.h;if(body.x+hw>q.x+2&&body.x-hw<q.x+q.w-2&&old-h>=bottom-1&&body.y-h<bottom){body.y=bottom+h;body.vy=0;}}}
- if(body.vy>=0){let best=null;
-  for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid))||(body.floorOnly&&q.y<585&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&old<=q.y+2&&body.y>=q.y&&(!best||q.y<best.y))best=q;}
-  if(!best&&ground&&body.vy<320){for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid))||(body.floorOnly&&q.y<585&&!q.solid))continue;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&q.y>body.y&&q.y-body.y<=STEP_UP-2&&(!best||q.y<best.y))best=q;}}
-  if(best){body.y=best.y;body.vy=0;body.grounded=true;body.on=best;}else body.on=null;}
+ if(body.vy>=0){let best=null,top=0;
+  for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid&&!q.surf))||(body.floorOnly&&q.y<585&&!q.solid))continue;const t=q.surf?topAt(q,body.x):q.y;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&old<=(q.surf?topAt(q,x0):q.y)+2&&body.y>=t&&(!best||t<top)){best=q;top=t;}}
+  if(!best&&ground&&body.vy<320){for(const q of platforms){if(q.off||(q.kind==='magic'&&!runes[q.rune]?.active)||(body.drop>0&&(body.dropFrom?q===body.dropFrom:!q.solid&&!q.surf))||(body.floorOnly&&q.y<585&&!q.solid))continue;const t=q.surf?topAt(q,body.x):q.y;if(body.x+hw>q.x&&body.x-hw<q.x+q.w&&t>body.y&&t-body.y<=STEP_UP-2&&(!best||t<top)){best=q;top=t;}}}
+  if(best){body.y=top;body.vy=0;body.grounded=true;body.on=best;}else body.on=null;}
  else body.on=null;
 }
 
