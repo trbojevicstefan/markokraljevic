@@ -497,7 +497,7 @@ function drawMindPuzzles(){const art=id=>levelArt[id];
    const keg=world.platforms.find(q=>q.keg&&!q.off);if(keg){const im=art('razbi-bure-baruta');if(im){const Bb=propBounds(im);ctx.drawImage(im,Bb.x,Bb.y,Bb.w,Bb.h,keg.x-4,keg.y-6,keg.w+8,keg.h+8);}else{ctx.fillStyle='#6a4a2a';ctx.fillRect(keg.x,keg.y,keg.w,keg.h);}
     if(Math.abs(p.x-keg.x)<500&&!t.done)textLabel('BURE BARUTA · GURAJ',keg.x+keg.w/2,keg.y-24,{font:'bold 11px Georgia',color:'#fff0c8',glow:'#ff7a3a'});}}}}
 // ================= on the ground: a foe on top of Marko, as Musa was; mash a button to throw him off =================
-const GRAPPLE={champ:{rate:6,clip:'kostac-megdan',text:'U KOŠTAC'},ledja:{rate:6,clip:'kostac-janicar',text:'SKOČIO TI JE NA LEĐA'},janicar:{rate:6,clip:'kostac-janicar',text:'NOŽ IZNAD GRLA'},oklopnik:{rate:7,clip:'kostac-oklopnik',text:'DAVI TE'},pas:{rate:5,clip:'kostac-pas',text:'PAS TE UJEDA'}};
+const GRAPPLE={champ:{rate:6,clip:'kostac-stoji',text:'U KOŠTAC'},ledja:{rate:6,clip:'kostac-janicar',text:'SKOČIO TI JE NA LEĐA'},janicar:{rate:6,clip:'kostac-janicar',text:'NOŽ IZNAD GRLA'},oklopnik:{rate:7,clip:'kostac-oklopnik',text:'DAVI TE'},pas:{rate:5,clip:'kostac-pas',text:'PAS TE UJEDA'}};
 function startGrapple(e,kind){if(grapple||grappleCool>0||level===undefined||horseMounted||p.pinned||!e.alive||e.champion||(!level&&zone===5))return false;
  grapple={e,kind,t:0,m:.22,end:0,s:Math.sign(e.x-p.x)||1};e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});
  e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(GRAPPLE[kind].text,p.x,p.y-170,'#ff9a8a');say('hurt',{priority:3});return true;}
