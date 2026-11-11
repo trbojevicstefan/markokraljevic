@@ -100,9 +100,9 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(ONLY&&+n!==ONLY)continue;co
  ok(storage.get('marko-megdani')===undefined&&storage.get('marko-levels')===undefined,`${tag} nothing was written into the save`);}
 
 // ---- hills and hollows: Marko walks along the slope ----
-if(!ONLY||ONLY===1){const L=GB.gbLevel(1);api.startGreybox(1);quiet();const R=GB.gbRoom(L,'varos'),q=W().platforms.find(q=>q.surf&&q.x===R.x0);
- place(R.x0+450,R.floor,1);api.keys.add('KeyD');let off=0,air=0,lo=1e9,hi=-1e9;for(let f=0;f<900&&P().x<R.x0+1000;f++){step();const p=P();if(!p.grounded)air++;else off=Math.max(off,Math.abs(p.y-physics.topAt(q,p.x)));lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();
- ok(air===0&&off<1.5&&hi>R.floor+45,`slopes: Marko walks down into the Varoš hollow and out again without leaving the ground (within ${off.toFixed(2)}px)`);}
+if(!ONLY||ONLY===1){const L=GB.gbLevel(1);api.startGreybox(1);quiet();const R=GB.gbRoom(L,'varos'),qs=W().platforms.filter(q=>q.surf&&q.x<R.x1&&q.x+q.w>R.x0),under=x=>qs.find(q=>x>=q.x&&x<=q.x+q.w);
+ place(R.x0+450,R.floor,1);api.keys.add('KeyD');let off=0,air=0,lo=1e9,hi=-1e9;for(let f=0;f<900&&P().x<R.x0+1000;f++){step();const p=P();if(!p.grounded)air++;else{const q=under(p.x);off=Math.max(off,Math.abs(p.y-(q?physics.topAt(q,p.x):R.floor)));}lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();
+ ok(qs.length===2&&air===0&&off<1.5&&hi>R.floor+45,`slopes: Marko walks down into the Varoš hollow and out again without leaving the ground (within ${off.toFixed(2)}px)`);}
 // ---- outside the greybox nothing changed: the moves are there from the start ----
 {api.startChapter(0);const p=P();p.invuln=99;tap('Space');step(30);tap('Space');ok(p.kriloUsed&&p.vy<-400,'story: on the Kačanik road the wing is there from the start, as before');}
 console.log(`\n${checks} greybox checks passed`);
