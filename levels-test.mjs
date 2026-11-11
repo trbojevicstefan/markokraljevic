@@ -11,7 +11,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,breakPlow,state:()=>({p,world,mode,level})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {presuda,startLevel,update,keys,pressed,LEVELS,breakPlow,state:()=>({p,world,mode,level})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 assert(api.LEVELS.length>=12,'all campaigns load');
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const stand=(x,y)=>{const {p}=api.state();p.x=x;p.y=y;p.vy=0;p.vx=0;p.hp=p.maxHp;};
@@ -40,6 +40,7 @@ for(let i=0;i<api.LEVELS.length;i++){
   }
  }
  for(const e of world.enemies)e.alive=false;
+ if(api.state().mode==='shop')api.presuda(3); // the monastery asks whose the empire is: Uroš's
  stand(L.goal.x-40,L.goal.y);step();
  // Urvina ends at the well on the top, not at a banner (battles-test walks the song step by step)
  if(world.traps.some(t=>t.kind==='vrh')){assert.equal(api.state().mode,'play',`${L.id}: the road does not end before the well`);console.log(`PASS ${L.id}: ends at the well`);continue;}

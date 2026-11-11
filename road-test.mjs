@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {presuda,start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -42,7 +42,7 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[])if(tr.kind==='guslar'&&tr.state==='odbrana'){tr.state='peva';for(const e of w.enemies)if(e.prey===tr)e.alive=false;stuck.push({at:'odbrana guslara',known:true});}
   jumpCd-=1/120;if(p.grounded&&!lintel&&jumpCd<=0&&!p.climb&&(p.wallHit===1||(Math.abs(p.vx)<20&&t-bestT>.6)||!ahead(p.x+46))){press('Space');jumpCd=.35;}
   if(p.wall&&jumpCd<=0){press('Space');jumpCd=.25;}
-  step();if(p.x>best+15){best=p.x;bestT=t;}
+  step();if(S().mode==='shop')api.presuda(3);if(p.x>best+15){best=p.x;bestT=t;}
   if(t-bestT>5){const near=[...(w.traps||[]).filter(tr=>Math.abs((tr.x??tr.gate?.x??tr.gap?.x0??tr.pulley?.x??0)-p.x)<500).map(tr=>tr.kind),...(w.ladders||[]).filter(l=>Math.abs(l.x-p.x)<250).map(()=>'ladder')];
    const known=['lift','bells','mirrors','scale','kolo','powder','red','dren','melodija','potera'].some(k=>near.includes(k))||(w.goals||[]).some(g=>g.kind==='gate'&&!g.done&&Math.abs(g.x-p.x)<300)||(w.plows||[]).some(pl=>Math.abs(pl.x-p.x)<700)||w.platforms.some(q=>!q.ground&&q.solid&&q.x<p.x+300&&q.x+q.w>p.x-250&&q.y+q.h<p.y-60);
    stuck.push({at:`${Math.round(p.x)},${Math.round(p.y)} [${[...new Set(near)].join(' ')}]`,known});

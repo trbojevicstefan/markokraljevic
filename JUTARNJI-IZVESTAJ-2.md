@@ -37,6 +37,9 @@ Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliran
 - Đemo Brđanin je sada bos Klisure, posle Muse, jer u pesmi dolazi da osveti brata. Megdan počinje kao u pesmi:
   Marko je bez topuza i mora da ga dohvati na drugom kraju megdana.
 - Nova igra počinje uvodom guslara (tri minijature), a stari uvod o Musi ide pred Kačanik.
+- U Manastiru, kad Marko uzme carsku knjigu, igra postavlja pitanje iz pesme: na kome je carstvo? Otac i stričevi su
+  pogrešan odgovor (majčine reči, pa pitanje ponovo); Uroš donosi kraljevu kletvu i carev blagoslov do kraja pohoda.
+- Prvi pohod sada ima kratku obuku (kretanje, topuz, štit, vila), jer nova igra više ne počinje Kačanikom.
 
 **Novi nivoi**
 - **Urvina planina** (poslednji pohod, „Smrt Marka Kraljevića"): uspon od oko 2.900 visine bez ijednog neprijatelja;
@@ -83,8 +86,8 @@ Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliran
 i na `main`; javio sam drugoj sesiji.
 
 ## Provere
-- `npm test` prolazi ceo: 1.389 provera prevoda, 15 pohoda, 146 mehaničkih provera, bot prolazi sve nivoe, 285 provera
-  bitaka (od toga 135 novih za ovo iznad), crtanje bez greške.
+- `npm test` prolazi ceo: 1.402 provere prevoda, 15 pohoda, 146 mehaničkih provera, bot prolazi sve nivoe, 290 provera
+  bitaka (od toga 140 novih za ovo iznad), crtanje bez greške.
 - `node simulation-test.mjs`: pobeda u Kačaniku. `node animation-tests.mjs`: prolazi.
 
 ## Šta nije urađeno ili nije provereno

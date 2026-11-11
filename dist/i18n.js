@@ -6,6 +6,21 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Na kralja Vukašina, mog oca", "On King Vukašin, my father"],
+["„Nemoj, sine, govoriti krivo, ni po babu, ni po stričevima, već po pravdi Boga istinoga.”", "“Do not, my son, speak falsely, neither for your father nor your uncles, but by the justice of the true God.”"],
+["Na despota Uglješu, mog strica", "On Despot Uglješa, my uncle"],
+["„Malo l’ ti je despotstva tvojega? Već s’ o tuđe otimate carstvo.”", "“Is your own despotate too small for you? Yet you grasp at an empire that is another's.”"],
+["Na vojvodu Gojka, mog strica", "On Voivode Gojko, my uncle"],
+["„Boље ti je izgubiti glavu nego svoju ogrešiti dušu.”", "“Better for you to lose your head than to stain your soul.”"],
+["Na nejakog Uroša, carevog sina", "On the child Uroš, the tsar's son"],
+["CAREV BLAGOSLOV", "THE TSAR'S BLESSING"],
+["„Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”", "“The book says: the empire is Uroš's!” The king curses him: “May you have neither grave nor offspring, and may your soul not leave you until you have served the Turkish tsar!” And the tsar blesses him: “May your face shine in council, may your sabre cut in battle!”"],
+["Carev blagoslov: udarci su ti jači do kraja pohoda.", "The tsar's blessing: your blows are stronger until the quest ends."],
+["Pronađi carsku knjigu i presudi", "Find the imperial book and give judgment"],
+["Knjige starostavne su u tvojim rukama.", "The ancient books are in your hands."],
+["UROŠ I MRNJAVČEVIĆI", "UROŠ AND THE MRNJAVČEVIĆ BROTHERS"],
+["Na kome je carstvo?", "Whose is the empire?"],
+["Četiri tabora čekaju pred belom crkvom Samodrežom, a knjige starostavne su u tvojim rukama. Kaži, Marko: na kome je carstvo?", "Four camps wait before the white church of Samodreža, and the ancient books are in your hands. Say, Marko: whose is the empire?"],
 ["„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Drži D za galop, Space preskače balvane. Kad je stigneš, baci topuz: I.", "“Alas Šarac, my right wing, catch me the vila Ravijojla!” Hold D to gallop, Space leaps the trunks. When you reach her, throw the mace: I."],
 ["POTERA ZA VILOM", "THE CHASE AFTER THE VILA"],
 ["Miloš je kroz Miroč zapevao lepše od vile, pa ga je Ravijojla ustrelila u grlo i u srce. Eno ti Šarca, Marko: uzjaši i stigni je!", "Miloš sang through Miroč more sweetly than the vila, and Ravijojla shot him in the throat and in the heart. There is Šarac, Marko: mount and ride her down!"],

@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,levelOpen,forgetSkills:()=>{skillCache=null;},lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,presuda,levelOpen,forgetSkills:()=>{skillCache=null;},lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -365,4 +365,9 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  api.keys.clear();api.pressed.add('KeyI');step(2);ok(t.state==='hitac','chase: I throws the mace');until(()=>{safe();return t.state==='kraj';},120*10);
  ok(t.done&&!S().horseMounted&&S().mode==='play','chase: the mace takes her between the shoulders, she heals Miloš, and Marko is on foot again');
  Object.assign(p,{x:t.gate.x+80,y:t.y,vx:0,vy:0,grounded:true});step(3);ok(p.x>t.gate.x,'chase: the way on through the forest is open');}
+// ---- the judgment in the monastery: whose is the empire ----
+{const w=await land('manastir');const g=w.goals.find(g=>g.kind==='take'),p=S().p;ok(g,'judgment: the imperial book lies in the monastery');
+ Object.assign(p,{x:g.x,y:g.y,vx:0,vy:0,grounded:true,rage:0});safe();step(3);ok(g.done&&S().mode==='shop','judgment: taking the book puts the question: whose is the empire');
+ const pw=p.power||1;ok(!api.presuda(0)&&S().mode==='shop','judgment: for his father is false, and the question stands');ok(!api.presuda(1)&&!api.presuda(2),'judgment: for his uncles is false too');
+ ok(api.presuda(3)&&S().mode==='play'&&p.power>pw&&p.rage===100,'judgment: the empire is Uroš\'s: the tsar\'s blessing stays on Marko');}
 console.log(`${checks} battle checks passed.`);

@@ -66,7 +66,7 @@ const GOAL_PLAN={
  selo:{goals:[{kind:'gate',at:.5,art:GATE,h:290,label:'Oslobodi seosku kapiju',guarded:true},{kind:'finish',art:['cilj-bunar-svetli'],h:170,dx:-210}],finish:'Pronađi put do bunara'},
  klisura:{goals:[{kind:'use',at:.4,art:LEVER,h:120,label:'Povuci polugu uz reku',done:'Lanac je popustio. Prolaz uz reku je otvoren.'},{kind:'gate',at:.62,art:GATE,h:290,label:'Otvori prolaz uz reku'}],finish:'Pređi do kraja klisure'},
  suma:{goals:[.25,.5,.75].map(at=>({kind:'use',at,art:['cilj-vilinski-kamen','cilj-vilinski-kamen-budan'],h:150,label:'Probudi vilinske kamenove',glow:'#9fffe0',gy:.5,done:'Kamen se probudio.'})),finish:'Otkrij skriveno svetilište'},
- manastir:{goals:[{kind:'take',at:.58,art:['cilj-relikvija'],h:110,label:'Pronađi relikviju',glow:'#ffe39a',gy:.8,done:'Relikvija je spasena.'}],finish:'Podigni manastirski barjak'},
+ manastir:{goals:[{kind:'take',at:.58,art:['cilj-relikvija'],h:110,label:'Pronađi carsku knjigu i presudi',glow:'#ffe39a',gy:.8,done:'Knjige starostavne su u tvojim rukama.'}],finish:'Podigni manastirski barjak'},
  tvrdjava:{goals:[{kind:'use',at:.4,art:['cilj-opsadna-sprava','cilj-opsadna-sprava-srusena'],h:160,label:'Onesposobi opsadnu spravu',done:'Sprava je slomljena.',smash:true},{kind:'gate',at:.66,art:GATE,h:290,label:'Otvori tvrđavsku kapiju'}],finish:'Prođi kroz tvrđavu'},
  prevoj:{goals:[],finish:'Prati barjake do kule na prevoju'},
  pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje Ravijojla',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao prolaz.'}],finish:'Prođi kristalnim prolazom'},
