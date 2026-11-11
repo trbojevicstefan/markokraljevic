@@ -55,7 +55,12 @@ i stavka u `SPEC`); igra sama uzima `-rucno` sliku kad je ima na spisku `files.j
 
 - Table iz igre (`?scout`) za svih 14 nivoa danju i noću; oluja za Šumu, Klisuru, Selo, Tvrđavu, Ruševine i Reku.
 - Sve `-rucno` slike prolaze proveru spoja (ista računica kao `seam-audit.py`, koja inače preskače `-rucno`).
-- `npm test`, `node simulation-test.mjs` („victory"), `node animation-tests.mjs` — vidi dole.
+- Posle spajanja sa `origin/main`: `npm test` prolazi (uz `seam-audit.py` i 4431 nacrtan kadar u `draw-test`),
+  `node simulation-test.mjs` završava sa „victory", `node animation-tests.mjs` prolazi.
+- Objavljeno na `main` (`git push origin pozadine:main`, commit `89d1638`); `files.json` je posle spajanja
+  ponovo napravljen kao spisak svih `.webp` iz foldera (669 stavki, ništa sa `main` nije ispalo).
+
+Ponovno pravljenje svih slojeva: `python make-rucni-slojevi.py` (≈10 min; za brzu probu `WEBP_METHOD=2`).
 
 ## Šta nije rešeno bez novih crteža
 
