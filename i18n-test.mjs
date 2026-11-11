@@ -30,7 +30,7 @@ function translates(seg){const t=seg.trim();if(!t||!/[a-zčćžšđ]{2}|[A-ZČĆ
 const glued=s=>[s,s+'7',s.trimEnd()+' 7',s.replace(/^\s*· /,''),s+'Kosovsko selo”'].some(x=>i18n.lookUp(x.trim())!=null);
 // the palette names describe the art for the painter; the player never sees them
 const IGNORE=new Set(['Three.js scena nije dostupna, koristi se 2D prikaz.','letnje podne nad Prilepom']);
-for(const f of ['dist/game.js','dist/world.js']){const src=await fs.readFile(f,'utf8');
+for(const f of ['dist/game.js','dist/world.js','dist/zamke.js']){const src=await fs.readFile(f,'utf8');
  for(const s of literals(src)){if(!prose(s)||IGNORE.has(s))continue;
   const segs=s.split(/<[^>]+>/);for(const seg of segs){if(!prose(seg))continue;ok(translates(seg)||glued(seg),`${f}: no English for «${seg.trim().slice(0,90)}»`);}}}
 // the page itself
