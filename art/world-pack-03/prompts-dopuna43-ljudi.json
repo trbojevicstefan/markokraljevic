@@ -1,0 +1,99 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "janja-idle",
+      "kind": "human",
+      "frames": 6,
+      "cols": 3,
+      "rows": 2,
+      "loop": true,
+      "fps": 6,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE matte hand-painted medieval2D game sprite sheet, EXACT3columns x2rows SIX equal SQUARE cells, landscape1536x1024. Pure FLAT#FF00FF MAGENTA background, no scenery/floor/shadows/text/guides/borders. NEW character JANJA, young ADULT Serbian innkeeper woman, not a soldier. Kind expressive face, dark brown eyes, dark hair covered by simple ivory linen HEADSCARF tied behind head (not a turban), white red-embroidered long-sleeved linen blouse, fitted dark burgundy wool vest, long muted deep-blue skirt, cream linen APRON, plain leather belt, brown leather shoes. She stands facingRIGHT in three-quarter sideview and holds ONE rounded ochre earthenware WINE JUG by handle in right hand beside hip, left hand lightly supports belly of jug. Jug recognizable spout and handle; no goblet yet. SIX subtly different breathing idle phases in seamless LOOP: shoulders rise/breathe then fall, soft blink, slight apron/scarf-tip sway, weight remains on plantedfeet, hands keep jug securely. Same face/clothes/jug/anatomicalscale across allsix, no walking/spinning/extraarms. Fullbody and jug contained in eachcell with24pxmargin. Bodyheightabout80percentcell, target426px in512cell like sword-idle. Firstcell neutral fullyupright calibration and partofanimation, allfeet meetcommonbottom groundline. Rich warm matte painted2Dgame detail, natural proportions, Serbian medieval clothing, NO turban/armour/weapons/modern clothes, no otherpeople/props, no blood, no pixelart."
+    },
+    {
+      "id": "janja-toci",
+      "kind": "human",
+      "frames": 6,
+      "cols": 3,
+      "rows": 2,
+      "loop": true,
+      "fps": 8,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/janja-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: identity-preserve. ONE matte painted2Dgame sprite-sheet, EXACT3columns x2rows SIXequalSQUAREcells, overall1536x1024. Pure flat#FF00FFMAGENTA background, no scenery/floor/shadow/text/guides/borders. SAME JANJA as reference EXACT face/hairstyle/headscarf/clothes/ochregrape-decoratedjug and scale426pxstanding in512cell. Youngadult Serbian innkeeper, ivoryheadscarf, ivoryredembroideredblouse, burgundyvest, longdeepblueskirt, creamapron, browns hoes. FacingRIGHT fullbody andbothshoes visible, legs/torso/headsameposition all6frames. Holds earthenware WINEJUG by handle in RIGHT hand, lifts and tilts its SPOUT DOWN toward ONE small clear GOBLET held below in LEFT hand atwaistheight. Clearly visible thin DARK RED WINE stream fromspout DIRECTLY INTOcup, no spilledwine onbody. SIXloop phases of sustainedpour:1jugtilted30degrees streamstarts;2tilt32 strongerstream;3tilt34 steadywine;4tilt33 steady;5tilt31 thinnerstream;6tilt30 nearframe1. Small elbow/wrist motion, wine surface ripples and scarf/apron sway, oneblink; no cupteleport, no jugemptying/reset, no handduplication. Onejug/onecup, twoarms/hands. No table/otherpeople/weapons/turban. Sameanatomicalzoomallframes, characteraround80percentcellheight,24pxsafemargins, vesselstuckedwithinfullbodyslot. Finewarmmatte2Dpaintedgameartmatchesreference, notpixel/photo."
+    },
+    {
+      "id": "marko-okovan",
+      "kind": "human",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": true,
+      "fps": 8,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": [
+        "art/animation-pack-04/assets/marko-walk/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: identity-preserve. ONE matte painted2Dgame sprite-sheet EXACT3columns x3rows equal SQUAREcells, square1536x1536. FIRST8cells slow shackled WALK LOOP, ninthcell neutral fullupright standing Marko in SAMEchains at SAMEbodyscale, calibrationonly. Reference exact Marko identity/costume/zoom383px in512cell; REMOVE MACE AND ALL WEAPONS from EVERYcell, no sword or mace atbelt/inhand. Marko right-facing, sweptbackblackhair, BLACKmoustache/shortbeard, REDgoldembroideredcloak/goldclasp, ivoryredembroideredsleeves, brownlamellararmour, darktrousers/brownboots. BOTH HANDS bound BEHIND HIS LOWER BACK, wrists heldtogether inironmanacles, armsbendback naturally, no handsinfront. Heavy linked IRONCHAIN around hisNECK drapes in a slack loop over chest (no strangulation), ankleIRONSHACKLES joinedbySHORTchain (bukagije) limitstridelength. Needtwo ankleshackles, linkedchainsdistinctandsolid; samechaincount/costumeeveryframe. EIGHT consecutive slow restrained walkingphases:1shortRIGHTfootforward/leftback;2weightontoRIGHT;3LEFTfootpassesankles;4LEFTfootforwardshortstep;5weightontoLEFT;6RIGHTheelraises;7RIGHTfootpassesankles;8RIGHTfootalmostforward nearframe1. At leastonefootgroundedalways, NO hopping/sliding/run/kneesabovehips. Subtle cloakhem/hair/chains swayswithgravity, torsoheightstable, actual changinglegposes, samefaceclothesandsize. PureFLAT#FF00FFMAGENTAbackground, no floor/shadows/scenery/text/guides/borders/otherpeople. Entirebody/chains/capeinsideeachcell with24pxmargin, consistentgroundline, no limb crosses cell. Ninthstandingcalibration matches SAMEanatomicalscale, weaponsabsent. Realisticweight and solemnproudface, no blood/injury, no fantasy glow."
+    },
+    {
+      "id": "novak-idle",
+      "kind": "human",
+      "frames": 6,
+      "cols": 3,
+      "rows": 2,
+      "loop": true,
+      "fps": 6,
+      "calibrationFrame": 0,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-03/assets/sword-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: stylized-concept. ONE production matte painted2D medievalgame sprite-sheet EXACT3columns x2rows SIX equalSQUAREcells, overall1536x1024. Pure flat#FF00FFMAGENTA everywhere outside subject, no scenery/floor/shadows/text/borders/guides. NEW SERBIAN BLACKSMITH NOVAK: stocky broadshouldered muscular middleagedman, squarejaw, thick short DARKBEARD with a littlegrey, short darkgreyinghair, bareheaded (NOturban/helmet/hat). Rugged brown LEATHER APRON covers chest tobelowknees, creamlinen shirt with sleevesrolledtoelbows revealingstrongforearms, charcoal trousers, heavybrownleatherboots, plainleatherbelt. Holds ONE ironforgingHAMMER inRIGHThand low besidehip. StandsfacingRIGHT inthreequarters besideONE solid darkironANVIL onshortheavywoodSTUMP atRIGHT, anvilatroughlywaistheight. Anvilandstump INSIDE everycell, grounded SAMEbottomlineasbootss o notfloating. Lefthandrestslightlyon anvil'sflatface. Compact arrangement manleftanvilright fitswellinsidecellwith24pxmargins. SIXsubtlydifferent idlebreathingphases:shoulders/chest gentlyrise/fall, oneblink, tiny apronsway andrelaxedhammerhandshift, no strikesyet. Samebodyfaceclothing/anvilgeometry/positionandscalesixframes, no walking. Firstcellneutraluprightcalibration, newhuman426pxtalllike sword-idle within512final; fullbody/apron/boots/hammeranvilcontained. Rich warm mattepainted2Dgame style,naturalbodyproportions, grainyleatherandiron, no sparkle/glare/pixelart, no otherpeople, no swordyet."
+    },
+    {
+      "id": "novak-kuje",
+      "kind": "human",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": true,
+      "fps": 10,
+      "calibrationFrame": 8,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/novak-idle/frames/motion/frame-0.png"
+      ],
+      "impactFrames": [
+        2,
+        6
+      ],
+      "prompt": "Use case: identity-preserve. ONE matte hand-painted2Dgame sprite-sheet EXACT3columns x3rows SQUAREcells, square1536x1536. FIRST8cells repeated forging action LOOP, ninthcell SAMEneutralstandingNOVAKwithhammerlowfor426pxscale calibrationonly. PureFLAT#FF00FFMAGENTAbackground, no scenery/floor/shadows/text/guides/borders. EXACTNovakface/hair/beard/body/clothes/anvilfromreference: broadmuscular middleagedSerbianblacksmith, shortdarkgreyinghair/beard, bareheadedNOturban, rolledcreamlinen sleeves, weatheredBROWNLEATHERAPRON, charcoaltrousers/brownboots. SAMEdarkironANVILonheavywoodstumpatRIGHTinsideeverycell, bothboot/stumpbasesonSAMEgroundline, geometryregisteredandstill. NovakLEFTfacesRIGHT. A CURVEDSABRE BLADE lies acrossanvilface, smith'sLEFThand holds it safely usingLONGIRON TONGS grippingcoolend; RIGHThand ONEheavyIRONHAMMER strikesbladeon anvil. Centersegment dullorangehot, no completeddecorativehiltneeded. 8consecutiveposesofTWOhammerblows:1hammerbackswingnearhead;2hammerdescending;3FIRSTIMPACThammerfacemeetsBLADEonanvil, fewsmallgold/orangeSPARKSburstupandright;4hammerreboundsup;5secondbackswing;6descends;7SECONDIMPACT/sparks;8reboundsnearframe1. Clearchangesinrightelbow/hammerorientation, notstaticcopies; lefthandtongs/blade staycontrolled, no handsunderthehammer. Sparkses only3and7, fullyinsidecell, no motionghosthammers. Feetplanted, naturalbending/breathing, sameanatomicalscaleandpropsallframes, no cameraorzoom. Entirebody/hammer/sparks/anvilcontainedowncellwith24pxmargin; backswingcompactnotfarabovehead. Ninthneutralcalibration holdsRIGHT hammerlow, lefttongsbladeon sameanvil, SAMEbodysize, no sparks. Warmfinelypaintedmattegameart, no photorealglare,pixelart,modernmachinery,otherpeople,blood."
+    },
+    {
+      "id": "trgovac-tezga-idle",
+      "kind": "human",
+      "frames": 6,
+      "cols": 4,
+      "rows": 2,
+      "loop": true,
+      "fps": 6,
+      "calibrationFrame": 6,
+      "targetHeight": 426,
+      "references": [
+        "art/animation-pack-04/assets/putnik-trgovac-idle/frames/motion/frame-0.png"
+      ],
+      "prompt": "Use case: identity-preserve. ONE matte painted2Dgame sprite-sheet EXACT4columns x2rows equalSQUAREcells, WIDE2:1overall2048x1024. FIRST SIXcells subtle standing MERCHANT-AT-STALL idleLOOP, seventhcell SAMEmerchantwithouttable neutralfullbody426pxscale calibrationonly, eighthcellEMPTYMAGENTA. PureFLAT#FF00FFMAGENTAbackground, no scenery/floor/shadows/text/guides/borders. EXACTSAME man as putnik-trgovac-idle reference: adultSerbian itinerantmerchant, shortdarkhair/moustache/shortbeard, BROWN texturedFURCAP notturban, ochre/mustardgoldembroideredknee-lengthcoat, brownleatherbelt, brownt rousers/boots, rolledclothbackpack partlyvisiblebehindshoulder. Sameface/clothes/cap/backpack proportions and anatomicalzoomallframes. Stands facingRIGHT inthreequarterview BEHIND a SMALL SIMPLE WOODEN MARKET TABLE/TEZGA, tablewaisthigh, includedINeachcell. Bothboots visible BELOWtable, feetandfourtablelegs onSAMEgroundline; notsitting/kneeling. On table EXACTLY THREEleathercoveredCANTEENS/flaskswithstraps and TWOsmallceramicOINTMENTJARS withwoodencorklids, readableunlabelledshapes, no text. Table/merchandise solidstillregistered sameall6frames. Lefthandrelaxedonedge, righthandmakes tinywelcomingpalmgesture, gentlebreathing andoneblink, cap/scarfsimple,no biggestures/no walking. Sixconsecutive subtleclosedloopphases, lastreturnsnaturallynearfirst. Entiretablelegs/props/head/boots/backpackinsideowncellwith24pxmargin. Seventhcalibration: merchantfullbodyneutralstandingalone (no table/merchandise), samebodyheightasreference426pxin512cell. Richmatte warmhandpainted2Dgame, naturalhumanproportions, no extrapeople/weapons/turban/magic/pixelart."
+    }
+  ]
+}

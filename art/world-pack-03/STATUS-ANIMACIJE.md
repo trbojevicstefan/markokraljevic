@@ -790,3 +790,17 @@ DOPUNA-43: kostac-stoji — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame
 DOPUNA-43: kostac-stoji-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-stoji-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43.json, izvor sacuvan.
 
 DOPUNA-43 ptice/kostac ZAVRSENO4/4: utva-let6petlja, soko-vezirov-let8petlja, kostac-stoji8petlja, kostac-stoji-kraj6jednom. Provereno28RGBAkadrov a512x512, atlas=frames/frame_layout/GIF. Ptice: worldWingspan345 kao soko-let, telo-anchor256/300, bez poravnanja stopala; primeniti renderScale iz manifesta. Kostac:y487; kraj holdLastFrame=true i GIFjednom. Pregled preview-dopuna43.html, promptovi prompts-dopuna43.json, izvori animation-pack-04/sources/<klip>/. Ugradjeni image_gen; kod/dist nisu menjani.
+
+DOPUNA-43 ljudi: janja-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janja-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi: janja-toci — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janja-toci/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi: marko-okovan — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-okovan/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi: novak-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/novak-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi: novak-kuje — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/novak-kuje/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi: trgovac-tezga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/trgovac-tezga-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
+
+DOPUNA-43 ljudi ZAVRSENO6/6: janja-idle6, janja-toci6, marko-okovan8, novak-idle6, novak-kuje8, trgovac-tezga-idle6 — ukupno40RGBAkadova512x512, svepetlje. Provereni alpha/y487/atlas=frames/frame_layout/GIF. Marko383px; novi ljudi i trgovac426px; primeniti renderScale/renderAnchor iz manifesta. Kovanje: impactFrames[2,6] (kadrovi3i7). Pregled preview-dopuna43-ljudi.html; validation-dopuna43-ljudi.json; tacni promptovi prompts-dopuna43-ljudi.json. Ugradjeni image_gen, izvori animation-pack-04/sources/<klip>/. Kod i dist nisu menjani.

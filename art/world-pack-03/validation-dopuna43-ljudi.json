@@ -1,0 +1,104 @@
+[
+  {
+    "name": "janja-idle",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 426,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "janja-toci",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 426,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "marko-okovan",
+    "frames": 8,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 383,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "novak-idle",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 426,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "novak-kuje",
+    "frames": 8,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 426,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  },
+  {
+    "name": "trgovac-tezga-idle",
+    "frames": 6,
+    "cell": [
+      512,
+      512
+    ],
+    "loop": true,
+    "atlasMatchesFrames": true,
+    "groundY": 487,
+    "worldBodyHeight": 426,
+    "renderScale": 1.0,
+    "renderAnchor": {
+      "x": 256,
+      "y": 488
+    }
+  }
+]

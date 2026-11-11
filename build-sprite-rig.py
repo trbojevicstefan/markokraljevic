@@ -394,7 +394,7 @@ for name, ref in [('marko-pocinak', 'marko-idle-2'), ('marko-okovan', 'marko-wal
 for name in ['utva-let', 'soko-vezirov-let']:
     if _have(name) and 'soko-let' in SCALES:
         SCALES[name] = (SCALES['soko-let'][0], 'center')
-for who, height in {'janja': 112, 'novak': 128}.items():
+for who, height in {'janja': 112, 'novak': 112}.items():  # Novak is broad, not taller than Marko (about 130 world px)
     if _have(who + '-idle'):
         s_ = height / max(body_height(c) for c in _cells(who + '-idle'))
         for k in ['idle', 'toci', 'kuje']:
