@@ -78,6 +78,14 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
  blow('KeyJ');ok(!(e.stun>0)&&(e.mode==='windup'||e.mode==='recover'),'answer: at the third he stands firm and strikes back at once');
  const hp=e.hp;blow('KeyJ');ok(e.hp<hp&&!(e.stun>0),'answer: while he stands firm light blows hurt but do not stop him');
  blow('KeyK');step(20);ok(e.stun>0,'answer: a heavy blow breaks him all the same');}
+// ---- nerve and spoils: a comrade smashed by the heavy hand makes the man beside him start back; every few dead leave a flask while Marko's is not full ----
+{api.startChapter(0);const w=S().world,[e,o]=w.enemies.filter(e=>e.type==='sword'),p=S().p;w.enemies.forEach(q=>{if(q!==e&&q!==o)q.alive=false;});
+ Object.assign(o,{x:e.x+110,y:e.y,zone:e.zone,mode:'idle',timer:0,stun:0,grounded:true,elite:false});p.attackKind='heavy';p.wine=p.wineMax||3;const rnd=Math.random;Math.random=()=>0;api.slay(e);Math.random=rnd;
+ ok(o.lunge?.t>0&&o.lunge.v>0&&o.timer>=.9,'nerve: a heavy kill makes the man beside him start back and hold off');
+ p.attackKind='light';p.combo=0;const q=w.enemies.find(q=>q!==e&&q!==o&&!q.champion&&!q.elite&&q.type!=='pas'),kill=(n=1)=>{for(let i=0;i<n;i++){q.alive=true;q.zone=99;api.slay(q);}},flasks=()=>w.items.filter(i=>i.plen&&i.type==='wine');
+ p.wine=p.wineMax||3;kill(8);ok(flasks().length===0,'spoils: nothing falls while his own flask is full');
+ p.wine=0;kill(1);ok(flasks().length===1,'spoils: with the flask empty the next of the dead leaves one');
+ flasks()[0].taken=true;kill(5);ok(flasks().length===1,'spoils: then five dead leave nothing');kill(1);ok(flasks().length===2,'spoils: and the sixth leaves a flask again');}
 // ---- on the ground: a foe on top of Marko; mash to throw him off ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true,hp:S().p.maxHp,invuln:0});
  for(let n=0;n<20&&!e.grappling;n++){S().p.down=1;S().p.downRolled=false;step(2);S().p.down=0;step(1);}ok(e.grappling&&S().p.pinned,'grapple: knocked down by a janissary, he jumps on Marko with his knife');

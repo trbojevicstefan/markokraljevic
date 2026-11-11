@@ -6,6 +6,7 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["USTUKNUO", "HE FALTERS"],
 ["Zlatan znak nad glavom znači: odbij ga (L) i uzvrati. Crven krst se ne odbija: izmakni se kolutom (Shift).", "A gold sign over his head means: parry it (L) and answer. A red cross cannot be parried: roll away (Shift)."],
 ["ČUTURA IZ PLENA", "A FLASK FROM THE SPOILS"],
 ["OBORIO TE S LEĐA", "HE FELLED YOU FROM BEHIND"],
