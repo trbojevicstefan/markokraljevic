@@ -123,6 +123,20 @@ def shift(c, dy):
     return cv2.warpAffine(c, M, (c.shape[1], c.shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
 
 
+def shift2(c, d):
+    """The cell moved by d = (dx, dy) pixels, the edge filled with nothing."""
+    M = np.float32([[1, 0, d[0]], [0, 1, d[1]]])
+    return cv2.warpAffine(c, M, (c.shape[1], c.shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+
+
+def centre(c):
+    """The centre of the figure (alpha-weighted), (x, y)."""
+    al = c[..., 3]; s = al.sum()
+    if s <= 0: return np.zeros(2, np.float32)
+    ys, xs = np.mgrid[0:al.shape[0], 0:al.shape[1]]
+    return np.array([(xs * al).sum() / s, (ys * al).sum() / s], np.float32)
+
+
 def gray(c):
     # the figure over mid grey, so the outline against emptiness is a feature the flow can follow
     a = c[..., 3:4]
@@ -264,7 +278,19 @@ def work(job):
         res = betweens(a, b)
         err = max(e for _, e, _ in res); ghost = max(g for _, _, g in res)
         why = 'flow' if err > MAX_ERR else 'ghost' if ghost > MAX_GHOST else ''
-        log.append((i, j, err, ghost, why))
+        note = why
+        if why:
+            # A second try for a figure that moves across its cell (a leap, a lunge, a fall): b is first laid onto a by the
+            # centres of their figures, the flow follows only the change of pose, and each in-between is moved back by its
+            # share of the way.
+            s = centre(b) - centre(a)
+            if np.hypot(*s) > 3:
+                res2 = betweens(a, shift2(b, -s))
+                err2 = max(e for _, e, _ in res2); ghost2 = max(g for _, _, g in res2)
+                if err2 <= MAX_ERR and ghost2 <= MAX_GHOST:
+                    res = [(shift2(m, s * t), e, g) for (m, e, g), t in zip(res2, TS)]
+                    err, ghost, why, note = err2, ghost2, '', 'centred'
+        log.append((i, j, err, ghost, note))
         if why: continue
         cuts = [crop(m, k) for m, _, _ in res]
         if any(c is None for c in cuts): continue

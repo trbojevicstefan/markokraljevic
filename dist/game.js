@@ -829,17 +829,26 @@ function animTrack(who,pose,face,sharp){let m=animMem.get(who);const now=time;
  m.pose={...pose};
  const F=m.fade;if(!F)return null;const k=(now-F.at)/FADE_T;if(k<0||k>=1){m.fade=null;return null;}return{pose:F.pose,face:F.face,alpha:.5*(1-k)};}
 function drawFade(fd,x,y,alpha=1,scale){if(fd)rigDraw(fd.pose.name,fd.pose.frame,x,y,fd.face,{...fd.pose,...(scale!=null?{scale}:{}),alpha:fd.alpha*alpha*(fd.pose.alpha??1),flash:0});}
-// Marko's body: a stretch on the way up (jump or the falcon's wing), a squash on landing (more after a long fall), and a lean into
-// the run. Off with 'Smanjeno podrhtavanje i efekti', on horseback, on a ladder and in a finishing blow.
-function bodyPose(pose){const m=animMem.get(p);if(!m)return;const dt=clamp(time-(m.pt??time),0,.05);m.pt=time;
- if(!p.grounded){m.fall=Math.max(m.fall||0,p.vy);if(p.vy<-250&&(m.air===false||p.vy<(m.vy??0)-280))m.upAt=time;}
+// Marko's body: a stretch on the way up (more for the falcon's wing), a squash on landing (more after a long fall), a lean into
+// the run, the dash in the air drawn out along its way, and after the fairy's trace he takes shape where he lands. Off with
+// 'Smanjeno podrhtavanje i efekti', on horseback, on a ladder and in a finishing blow. Returns true when he has just jumped
+// place (the trace), so the old pose is not dissolved over the new place.
+function bodyPose(pose){const m=animMem.get(p);if(!m)return false;const dt=clamp(time-(m.pt??time),0,.05);m.pt=time;
+ let moved=false;if(m.px!=null&&Math.hypot(p.x-m.px,p.y-m.py)>140){m.arriveAt=time;m.fade=null;moved=true;}m.px=p.x;m.py=p.y;
+ if(!p.grounded){m.fall=Math.max(m.fall||0,p.vy);if(p.vy<-250&&(m.air===false||p.vy<(m.vy??0)-280)){m.upAt=time;m.upK=p.kriloT>0?1.5:1;}}
  else if(m.air){m.landAt=time;m.landK=clamp(((m.fall||0)-220)/700,0,1);m.fall=0;}
  m.air=!p.grounded;m.vy=p.vy;
  const run=p.grounded&&!(p.attack>0)&&!p.blocking&&!p.crouching&&Math.abs(p.vx)>35,want=run?clamp(p.vx/320,-1,1)*.045:0;m.lean=(m.lean||0)+(want-(m.lean||0))*Math.min(1,dt*10);
- if(!ANIM||settings.reduced||horseMounted||finisher||p.climb||p.hang)return;
- let sx=1,sy=1;const u=(time-(m.upAt??-9))/.18;if(u>=0&&u<1&&!p.grounded){const s=1-u;sy+=.07*s;sx-=.045*s;}
+ if(!ANIM||settings.reduced||horseMounted||finisher||p.climb||p.hang)return moved;
+ let sx=1,sy=1,rot=m.lean;const u=(time-(m.upAt??-9))/.18;if(u>=0&&u<1&&!p.grounded){const s=(1-u)*(m.upK||1);sy+=.07*s;sx-=.045*s;}
  const l=(time-(m.landAt??-9))/.16;if(l>=0&&l<1&&p.grounded){const s=Math.sin(l*Math.PI)*(.35+.65*(m.landK||0));sy-=.09*s;sx+=.06*s;}
- if(sx!==1||sy!==1){pose.sx=(pose.sx||1)*sx;pose.sy=(pose.sy||1)*sy;}if(Math.abs(m.lean)>.002)pose.rot=(pose.rot||0)+m.lean;}
+ if(p.dash>0&&p.airDash){const d=clamp(1-p.dash/NALET_TIME,0,1),e=Math.sin(Math.min(1,d*1.6)*Math.PI/2)*(1-.6*d*d);sx+=.12*e;sy-=.07*e;rot+=(p.naletDir||p.face)*.1*e;}
+ const a=(time-(m.arriveAt??-9))/.22;if(a>=0&&a<1){const s=(1-a)*(1-a);sy+=.14*s;sx-=.1*s;}
+ if(sx!==1||sy!==1){pose.sx=(pose.sx||1)*sx;pose.sy=(pose.sy||1)*sy;}if(Math.abs(rot)>.002)pose.rot=(pose.rot||0)+rot;return moved;}
+// the dash in the air leaves a few streaks of air behind him (not with 'Smanjeno podrhtavanje i efekti')
+function drawNaletStreak(){if(!(p.dash>0&&p.airDash)||!ANIM||settings.reduced)return;const d=clamp(1-p.dash/NALET_TIME,0,1),f=p.naletDir||p.face,len=60+140*Math.min(1,d*2),fade=1-d*d;
+ for(const g of[ctx,gctx]){g.save();g.lineCap='round';for(let i=0;i<4;i++){const y=p.y-34-i*24-(i%2)*6,x0=p.x-f*(18+i*7),x1=x0-f*len*(1-i*.15),gr=g.createLinearGradient(x0,y,x1,y);
+  gr.addColorStop(0,`rgba(255,244,214,${(g===gctx?.4:.32)*fade})`);gr.addColorStop(1,'rgba(255,244,214,0)');g.strokeStyle=gr;g.lineWidth=g===gctx?4:2;g.beginPath();g.moveTo(x0,y);g.lineTo(x1,y);g.stroke();}g.restore();}}
 function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name];let im=r&&rigImages[r.image];if(!im)return false;const raw=Math.floor(frame),fi=clamp(raw,0,r.frames.length-1),tw=raw!==fi?0:o.tw??frame-raw;let f=r.frames[fi];const k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;let dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k,ks=k;const M=tw>0?tweenMid(name,fi,o,tw):null;if(M){im=M.im;f=M.f;ks=k/M.k;dx=f[4]*k;dy=f[5]*k;dw=f[2]*ks;dh=f[3]*ks;}if(!o.glow&&!o.color){tweenStat.drawn++;if(M)tweenStat.mids++;}g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=ks*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
 function rimGlow(pose,x,y,face,color,alpha,width=1.6){rigDraw(pose.name,pose.frame,x,y,face,{...pose,glow:true,color,outline:width,alpha});}
 function sprite(name,x,y,height=130,face=1,angle=0,alpha=1){const im=assets[name];if(!im)return;ctx.save();ctx.translate(x,y);ctx.scale(face,1);ctx.rotate(angle);ctx.globalAlpha=alpha;ctx.drawImage(im,-height/2,-height*369/384,height,height);ctx.restore();}
@@ -1025,10 +1034,10 @@ function maceSmear(P){if(p.attack<=0)return;const d=attackDuration(),src=P?.swin
   const gr=g.createLinearGradient(Math.cos(tail)*R,Math.sin(tail)*R,Math.cos(head)*R,Math.sin(head)*R);gr.addColorStop(0,`rgba(${c1},0)`);gr.addColorStop(1,`rgba(${c1},${(g===gctx?(heavy?.42:.34):settings.reduced?.14:.2)*fade})`);g.fillStyle=gr;g.fill();g.restore();}}
 function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying)return;let pose=null;const alpha=p.invuln>0&&!finisher&&!p.stare&&!(training&&p.invuln<.6)&&Math.floor(time*14)%2?.55:1;
  for(const g of ghosts)rigDraw(g.name,g.frame,g.x,g.y,g.faceAs??g.face,{...g,glow:true,color:'#7fffe0',alpha:g.life*1.1,outline:1.5});
- drawTrag();drawKrilo();shadow(p.x,p.y,horseMounted?84:38,.55);
+ drawTrag();drawKrilo();drawNaletStreak();shadow(p.x,p.y,horseMounted?84:38,.55);
  if(p.buff>0){halo(p.x,p.y-64,90,'rgba(255,170,60,.22)',.7+.3*Math.sin(time*6));emitters.push({id:'buff',kind:'buff',x:p.x,y:p.y,rate:38});}
  if(horseMounted&&p.mountTime>0){const a=1-p.mountTime/.55;rigDraw('cast/sarac',0,p.x,p.y,p.face,{alpha:1-a});rigDraw('cast/marko',0,p.x-p.face*(65*(1-a)),p.y-55*Math.sin(a*Math.PI),p.face,{alpha:1-a,rot:-.15*Math.sin(a*Math.PI)*p.face});rigDraw('mounted-jump',0,p.x,p.y,p.face,{alpha:a});}
- else{pose=playerPose();const face=pose.faceAs??(pose.faceFlip?-p.face:p.face),fd=animTrack(p,pose,face,p.hurt>.02||p.down>0);bodyPose(pose);drawFade(fd,p.x,p.y,alpha);if(p.buff>0)rimGlow(pose,p.x,p.y,p.face,'#ffb44a',.3+.15*Math.sin(time*8),1.6);if(p.parry>0)rimGlow(pose,p.x,p.y,p.face,'#8fffe0',.3,1.6);rigDraw(pose.name,pose.frame,p.x,p.y,face,{...pose,alpha,flash:p.hurt>.1?(p.hurt-.1)/.12*.6:0,flashColor:'#ffb8a8'});if(p.dizzy>0)drawDizzy();}
+ else{pose=playerPose();const face=pose.faceAs??(pose.faceFlip?-p.face:p.face),fd0=animTrack(p,pose,face,p.hurt>.02||p.down>0),fd=bodyPose(pose)?null:fd0;drawFade(fd,p.x,p.y,alpha);if(p.buff>0)rimGlow(pose,p.x,p.y,p.face,'#ffb44a',.3+.15*Math.sin(time*8),1.6);if(p.parry>0)rimGlow(pose,p.x,p.y,p.face,'#8fffe0',.3,1.6);rigDraw(pose.name,pose.frame,p.x,p.y,face,{...pose,alpha,flash:p.hurt>.1?(p.hurt-.1)/.12*.6:0,flashColor:'#ffb8a8'});if(p.dizzy>0)drawDizzy();}
  maceSmear(pose);drawSpinFx();drawChargeMeter();
  if(p.parry>0){const a=(p.face<0?Math.PI:0);for(const [g,al] of [[gctx,.45],[ctx,.3]]){g.beginPath();g.arc(p.x,p.y-64,62,a-1.25,a+1.25);g.strokeStyle=`rgba(200,255,232,${al})`;g.lineWidth=4;g.stroke();}}
  drawFairy();}
