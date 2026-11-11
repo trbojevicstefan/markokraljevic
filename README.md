@@ -39,7 +39,25 @@ Sve ovo menja samo crtanje. Logika igre i dalje ide u koracima od 1/120 s, kao i
   - FPS i najsporiji frame;
   - koliko traje rad jednog frame-a;
   - trzaje u poslednjih 10 s;
-  - grafičku karticu, nivo kvaliteta i rezoluciju.
+  - grafičku karticu, nivo kvaliteta i rezoluciju;
+  - međukadrove: koliko sprite-ova je trenutno međukadar, koliko je listova učitano i koliko MB zauzimaju.
+- **Međukadrovi i nivo kvaliteta.** Listovi međukadrova se ne čekaju pri pokretanju. Učitavaju se tek kad ih neki pokret prvi put zatraži; dotle se crta nacrtani kadar. Na nivou 2 igra koristi samo međukadar na pola puta, pa učitava trećinu slika.
+
+## Glatke animacije
+
+Nacrtanih kadrova je malo (većinom 6 po klipu), pa se između njih crtaju izračunati međukadrovi i jeftin proceduralni sloj. Sve je samo crtanje: tajming udaraca i logika se ne menjaju. `?anim=0` u adresi isključuje sve ovo radi poređenja (samo nacrtani kadrovi).
+
+- **Tri međukadra po koraku.** `python smooth-anims.py` optičkim tokom (OpenCV DIS) računa kadrove na 1/4, 1/2 i 3/4 puta između svaka dva kadra koje igra pokazuje jedan za drugim. To obuhvata i sekvence mirovanja koje skaču preko kadrova (`FOE_IDLE`, `IDLE_SEQ`). Važi za sve Markove klipove (trk, hod, udarci, kombo, skok, kolut, blok, vino, pogodak, smrt, Šarac, sablja) i za glavne neprijatelje i Musu: obrađeno je 179 klipova, a 157 ih koristi međukadrove.
+  - Par koji tok ne prati (ud prelazi preko tela, preveliki zamah) ili koji bi ispao providan (dupla slika) ne dobija međukadrove. Tu igra drži nacrtani kadar.
+  - Svesno bez međukadrova: Markov vihor sa sabljom (svaki kadar se pomera ustranu), spavanje i buđenje, imenovani šampioni, putnici, ptice i vatra.
+  - Posle novog izvoza listova pusti skriptu ponovo; `python smooth-anims.py --report` daje tabelu, a `--sheet <klip> <izlaz.jpg>` sliku za oko.
+- **Tempo.** Poza zna koliko je daleko do sledećeg kadra, pa se međukadar bira tačno, bez kašnjenja. Kod udarca priprema i kontakt drže celo svoje vreme, bez međukadra; međukadrovi su samo u zamahu ka pripremi i u oporavku. Kadrovi koje bira stanje (skok po brzini i sl.) prolaze kroz svoje međukadrove za najviše 70 ms.
+- **Proceduralni sloj:**
+  - blago istezanje pri odskoku (i Sokolovom krilu) i sabijanje pri doskoku, jače posle dugog pada;
+  - nagib tela u trku, po brzini;
+  - pretapanje od 70 ms pri prelazu iz klipa u klip (stara poza bledi ispod nove). Ne radi se u udarac, pri pogotku ni pri okretu;
+  - trag topuza po luku nacrtanog zamaha svakog udarca (kombo, teški, uvis, juriš, u skoku), od kraja pripreme do malo posle kontakta. Uz sablju je trag čelično plav.
+- **„Smanjeno podrhtavanje i efekti“** gasi istezanje, sabijanje, nagib i pretapanje, a trag topuza ostaje samo kao bleda traka, bez sjaja.
 
 ## Zvuk
 
@@ -232,7 +250,7 @@ Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i be
 - **Dukati:** trgovac pred svakim megdanom; zadužbina i sofra kod kovača. **Barjaci** unutar pohoda vraćaju palog Marka bez ponavljanja nivoa.
 - **Potera za vilom** na Šarcu otvara Ravijojlinu šumu; u Manastiru Marko presuđuje na kome je carstvo. U Oranju je nadstreljivanje sa Alil-agom: ko ga nadstreli, dobija pobratima čije strele pomažu u megdanu.
 - **Razgledanje:** `index.html?scout` otvara sve pohode bez neprijatelja, sa slobodnim kretanjem i ispisom položaja. `node megdan-bot.mjs` meri trajanje megdana.
-- **Međukadrovi:** `python smooth-anims.py` računa lokalno jedan kadar između svaka dva nacrtana (trk i hod); izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza tih listova pusti ga ponovo.
+- **Međukadrovi:** `python smooth-anims.py` računa ih lokalno; izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza listova pusti ga ponovo. Sada su to tri međukadra po koraku za sve glavne likove (vidi „Glatke animacije“).
 
 ## Kontrole
 
@@ -331,6 +349,20 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Neprijatelji imaju živce, kao u *Metal Slug*-u.** Kad im drug padne od teškog udarca, trećeg u nizu ili dokrajčivanja, oni kraj njega ustuknu korak i zastanu, a jedan vikne (glasovi `tr_fear`, do sada neiskorišćeni).
 - **Musin koštac je pravo rvanje.** Dok Musa drži Marka, pokazuje se hvat kao u svakom drugom koštacu. Marko ne može da zbaci tri srca, ali tri dobra hvata dovode vilu ranije; bez njih dolazi kad i pre. Dugme J više ne treba lupati.
 - **Megdan na ekranu.** Dok traje megdan, red zadatka se sklanja, a ime i snaga megdandžije stoje na vrhu ekrana.
+
+## Azačka kula: pohod uspona (izazov)
+
+Po pesmi „Marko Kraljević u Azačkoj tamnici": Marko izlazi iz tamnice uz kulu, a na vrhu sivi soko nosi njegovu knjigu Dojčilu u Solun. Kretanje je izazov koliko i borba, u duhu *The Lost Crown* (samo ideje, bez njenih crteža i imena). Grafika je postojeća: pozadine tvrđave i rekviziti.
+
+- **Gde je:** pohod 16 na mapi (dole desno). Stoji van Markovog puta: otvoren je od početka i Marko u njemu zna sve pokrete, kao u „Snu". U `world.js` to je `izazov:true`.
+- **Tok:** guslar peva stihove o sokolu → bunar od dva zida, 500 px odskokom od zida do zida → kameni stubovi nad ponorom, svaki viši od skoka, hvata se ivica → predah → hodnik sa kocima i dve strelnice u zidu → jama sa kocima: dve daske koje se krune, kameni stub, greda koja klizi i greda koja se diže → barjak → straža (tri čuvara) → tajna soba ispod napukle ploče → Arapin na vrhu kule → barjak, a sivi soko odleće sa knjigom (crtež `soko-let`).
+- **Strelnice** (`dist/zamke.js`): prorez zasija i škljocne pre hica. Visoka strela ide u grudi (S ili Shift), niska u gležanj (skok ili Shift). L je odbija nazad u zid. Na vrhu zida ćute.
+- **Jama:** koci bodu kao svuda u igri, jednom pri padu. Posle trenutka Ravijojla vraća Marka na ivicu ili na stub. Kraj zida su i lestve.
+- **Tajna soba:** ploča puca samo od udara odozgo (u skoku S + J). Dole su zapis legende o sokolu i Dojčilu, kovčeg dukata i deo srca.
+- **Barjaci** se dižu sami (sistem iz `game.js`). Jedan se diže odmah posle jame sa gredama.
+- **DUPLI SKOK, opciona gornja putanja:** iznad poslednjeg stuba nad ponorom stoje dve daske. Prva je 300 px iznad stuba, a na drugoj je kovčeg dukata. Skok sa ivicom doseže samo 266 px, pa glavni put ne zavisi od njih. Danas se do njih stiže Vilinskim uzletom (E u skoku), a kasnije duplim skokom: stani na desni kraj stuba, skoči, skoči ponovo u vazduhu, i ruke hvataju ivicu. U kodu je to komentar `DUPLI SKOK` u sobi `ivice` (`buildLayout`), a daske nose oznaku `tajna`, pa na njih nikad ne pada slovo МАРКО.
+- **Kod:** sobe `uspon`, `ivice`, `strelnice`, `krunjenje`, `predah`, `straza` i `tajna` u `buildLayout`. Zamke `strelnica`, `greda`, `jama` i `sokoGlasnik` su u `dist/zamke.js`: svaka nosi svoje `tick` i `draw`, a `game.js` ih samo poziva (`updateTraps`, `drawTrapsFront`).
+- **Provera:** `node levels-test.mjs` prolazi kulu stvarnim tasterima. Proverava bunar, ivice, strele (čučanj, skok, kolut), prelaz preko greda iz svakog trenutka njihovog hoda, pad u jamu, tajnu sobu i gornju putanju, i ceo nivo od početka do barjaka (31 provera).
 
 ## Izvori
 

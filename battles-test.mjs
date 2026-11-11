@@ -324,7 +324,7 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  ok(api.buyDucan('amajlija')&&p.amajlija,'merchant: the amulet of Saint George');api.setBank(3);ok(!api.buyDucan('vino'),'merchant: no ducats, no wine');
  api.closeDucan();ok(S().mode==='play','merchant: back to the road');p.invuln=0;p.hp=1;api.die();ok(S().mode==='play'&&p.hp>1&&!p.amajlija,'merchant: the amulet lifts a fallen Marko once');api.die();ok(S().mode==='dead','merchant: and only once');}
 // ---- Urvina, the last pohod: no foes, a long climb, and on the top the song step by step ----
-{const w=await land('urvina');const p=S().p,t=w.traps.find(t=>t.kind==='vrh');ok(levelOf('urvina')===api.LEVELS.filter(L=>!L.secret).length-1,'urvina: Urvina is the last pohod on the road');
+{const w=await land('urvina');const p=S().p,t=w.traps.find(t=>t.kind==='vrh');ok(levelOf('urvina')===api.LEVELS.filter(L=>!L.secret&&!L.izazov).length-1,'urvina: Urvina is the last pohod on the road (a challenge pohod stands apart from it)');
  ok(w.enemies.length===0,'urvina: no one stands against Marko on Urvina');ok(t&&t.y<200,'urvina: the road climbs a mountain (the top is '+Math.round(590-t.y)+' above the start)');
  const at=x=>{Object.assign(p,{x,y:t.y,vx:0,vy:0,grounded:true});step(2);},E=()=>{api.pressed.add('KeyE');step(2);};
  at(S().level.goal.x-60);step(3);ok(S().mode==='play','urvina: the road does not end before the well');
