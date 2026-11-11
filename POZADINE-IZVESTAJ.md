@@ -51,6 +51,19 @@ i stavka u `SPEC`); igra sama uzima `-rucno` sliku kad je ima na spisku `files.j
 | **Reka** | Nebo: manastir na brdu i druga vodenica pretopljeni u brda. `far`: vodenica obrisana (ima je bliži plan). `near`: vodenica ostaje, crkva zamenjena vrbom i trskom. |
 | **Urvina** | `near`: jela na spoju je bila providna; sada stoji cela preko spoja. |
 
+## Dopuna: Pećina (posle prve objave)
+
+- **Nebo Pećine** (`pecina_sky`): gde su bili gradovi (levo i desno u gornjoj polovini) zamućenje je ostavljalo
+  bezoblične mrlje nalik magli. Sada su ta mesta pokrivena zidovima same pećine: čiste litice iz donjeg dela istog
+  neba, podignute i potamnjene u tirkiznu senku, sa mekim prelazom (60 px) ka stalaktitima i tunelu. Svetlo ostaje
+  u dubokom tunelu u sredini; zaostali trag krsta pokriven je malom zakrpom stene. Celo nebo se više ne muti
+  (samo blago, 0,8 px). Noćna i olujna verzija se boje iz nove dnevne, pa je prate.
+- **Gornja ivica bližeg sloja** u Pećini i Rudniku: sloj staje malo ispod vrha ekrana, pa su stalaktiti/stene
+  koje dodiruju prvi red piksela pravili ravnu vodoravnu crtu. Vrh ta dva sloja se sada pretapa (70 px,
+  `fade_top()`). Od slojeva koje igra sada koristi, takvu ivicu ima još samo bliži sloj Podruma (korenje na vrhu)
+  — nije rađeno.
+- Provereno u igri: Pećina danju, noću i u oluji na šest mesta (x 500–9900).
+
 ## Provereno
 
 - Table iz igre (`?scout`) za svih 14 nivoa danju i noću; oluja za Šumu, Klisuru, Selo, Tvrđavu, Ruševine i Reku.

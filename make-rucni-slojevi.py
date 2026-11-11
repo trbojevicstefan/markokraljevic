@@ -98,10 +98,13 @@ def cut(im, bx, soft=(0, 0, 0, 0)):
     return Image.fromarray(a.astype(np.uint8), 'RGBA')
 
 
-def patch(im, frm, to, soft=40, flip=False):
-    """Cover a part of an opaque layer (to = box 0..1) with another part of it (frm = box), faded at the edges."""
+def patch(im, frm, to, soft=40, flip=False, **t):
+    """Cover a part of an opaque layer (to = box 0..1) with another part of it (frm = box), faded at the edges;
+    t = tone() settings for the piece (to set it back in the shadow, for example)."""
     x0, y0, x1, y1 = to
     c = cut(im, frm).resize((round((x1 - x0) * W), round((y1 - y0) * H)), Image.LANCZOS)
+    if t:
+        c = tone(c, **t)
     if flip:
         c = c.transpose(Image.FLIP_LEFT_RIGHT)
     a = np.asarray(c).astype(np.float32)
@@ -122,6 +125,13 @@ def put(im, piece, x0, y0):
         if x + dx < W and x + dx + piece.width > 0:
             layer.paste(piece, (x + dx, round(y0 * H)))
     return Image.alpha_composite(im, layer)
+
+
+def fade_top(im, px):
+    """A near layer stops below the top of the screen; whatever touches its top row shows a ruler-straight edge."""
+    a = np.asarray(im).copy()
+    a[:px, :, 3] = (a[:px, :, 3].astype(np.float32) * np.linspace(0, 1, px)[:, None] ** 1.5).astype(np.uint8)
+    return Image.fromarray(a, 'RGBA')
 
 
 def edges(im, y, left=.125, right=.875):
@@ -240,7 +250,7 @@ def pecina_near(im):
     # no house and no church inside the mountain: stalagmites, crystals and a stone arch.
     # The cave walls framed both edges and crossfaded into a ghost: the right wall with the mine adit is kept whole
     # and carried across the seam, the left one goes.
-    wall = cut(im, (.85, 0, 1.0, .86), soft=(10, 0, 60, 0))
+    wall = cut(im, (.85, 0, 1.0, .86), soft=(10, 50, 60, 0))   # (the top fades: the layer stops below the screen top)
     im = erase(im, [box(-.02, -.02, .13, .86), box(.85, -.02, 1.02, .86)], 8)
     im = put(im, wall, .85, 0)
     im = erase(im, [[(.10, .22), (.385, .22), (.385, .78), (.35, .845), (.12, .845), (.10, .62)],
@@ -250,7 +260,7 @@ def pecina_near(im):
     for a in [('prop-stena-visoka', .19, G + 10, 430, False), ('prop-stena-luk', .745, G + 12, 290, False), ('prop-kristal', .255, G + 14, 150, False),
               ('prop-kristal', .70, G + 16, 130, True), ('prop-stena-mala', .145, G + 16, 120, True), ('prop-stena-mala', .825, G + 14, 150, False)]:
         im = plant(im, *a, **CAVE)
-    return im
+    return fade_top(im, 70)
 
 
 def pecina_mid(im):
@@ -260,9 +270,14 @@ def pecina_mid(im):
 
 
 def pecina_sky(im):
-    # the painted town in the depth of the cave melts into glowing rock: a fairy cave is stone, water and light
-    im = soften(im, [[(-.02, .13), (.47, .13), (.47, .60), (.30, .66), (-.02, .66)], [(.775, .14), (1.02, .14), (1.02, .62), (.775, .60)]], 26, 34, (40, 120, 130), .38)
-    return im.filter(ImageFilter.GaussianBlur(1.2))
+    # the painted towns on both sides of the cave are covered by the cave's own walls: the clean cliff faces under
+    # them, raised and set back in the teal shadow, so the light stays in the deep tunnel in the middle
+    # (an earlier blur left shapeless smudges there)
+    shade = dict(bright=.78, haze=(30, 95, 105), amt=.3, sat=.85)
+    im = patch(im, (.0, .58, .34, .93), (-.01, .12, .47, .67), soft=60, **shade)
+    im = patch(im, (.83, .52, 1.0, .92), (.765, .12, 1.01, .63), soft=60, flip=True, **shade)
+    im = patch(im, (.235, .08, .29, .22), (.155, .07, .215, .23), soft=14)   # the church cross still showed through
+    return im.filter(ImageFilter.GaussianBlur(.8))
 
 
 def pecina_far(im):
@@ -463,7 +478,7 @@ def rudnik_near(im):
     # into one ghost: the mine house stays whole across the seam, the well-house goes (the mid layer has its own)
     kuca = cut(im, (0, 0, .31, .87), soft=(60, 0, 0, 0))
     im = erase(im, [box(-.02, -.02, .31, .87), box(.73, -.02, 1.02, .87)], 8)
-    return put(im, kuca, 0, 0)
+    return fade_top(put(im, kuca, 0, 0), 70)
 
 
 # ================= Reka =================
