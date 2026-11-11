@@ -780,3 +780,13 @@ DOPUNA-42 deo2: prelaz-urvina-anim GOTOVO. Scena12kadrova768x512, traka9216x512,
 DOPUNA-42 deo3: marko-pocinak — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-pocinak/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna42-23.json, izvor sacuvan.
 
 DOPUNA-42 delovi2/3 ZAVRSENO — prelaz-urvina-1/2 PNG1024x1024; prelaz-urvina-anim12x768x512/petlja; marko-pocinak6x512x512/jednom, trajanja350/500/400/400/450/1200ms, holdLastFrame=true, GIFtakodje jednom. Provereni alpha, y487 oslonac, atlas=frames, frame_layout, GIF12/6; preview-dopuna42-23.html i validation-dopuna42-23.json. Ugradjeni image_gen; prompts-dopuna42-23.json, izvori sacuvani. Kod i dist nisu menjani.
+
+DOPUNA-43: utva-let — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/utva-let/. renderScale=0.8712, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43.json, izvor sacuvan.
+
+DOPUNA-43: soko-vezirov-let — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/soko-vezirov-let/. renderScale=0.8099, renderAnchor={'x': 256, 'y': 300}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43.json, izvor sacuvan.
+
+DOPUNA-43: kostac-stoji — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-stoji/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43.json, izvor sacuvan.
+
+DOPUNA-43: kostac-stoji-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-stoji-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43.json, izvor sacuvan.
+
+DOPUNA-43 ptice/kostac ZAVRSENO4/4: utva-let6petlja, soko-vezirov-let8petlja, kostac-stoji8petlja, kostac-stoji-kraj6jednom. Provereno28RGBAkadrov a512x512, atlas=frames/frame_layout/GIF. Ptice: worldWingspan345 kao soko-let, telo-anchor256/300, bez poravnanja stopala; primeniti renderScale iz manifesta. Kostac:y487; kraj holdLastFrame=true i GIFjednom. Pregled preview-dopuna43.html, promptovi prompts-dopuna43.json, izvori animation-pack-04/sources/<klip>/. Ugradjeni image_gen; kod/dist nisu menjani.
