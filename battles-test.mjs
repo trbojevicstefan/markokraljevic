@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,levelOpen,forgetSkills:()=>{skillCache=null;},lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -305,7 +305,7 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  ok(api.buyDucan('amajlija')&&p.amajlija,'merchant: the amulet of Saint George');api.setBank(3);ok(!api.buyDucan('vino'),'merchant: no ducats, no wine');
  api.closeDucan();ok(S().mode==='play','merchant: back to the road');p.invuln=0;p.hp=1;api.die();ok(S().mode==='play'&&p.hp>1&&!p.amajlija,'merchant: the amulet lifts a fallen Marko once');api.die();ok(S().mode==='dead','merchant: and only once');}
 // ---- Urvina, the last pohod: no foes, a long climb, and on the top the song step by step ----
-{const w=await land('urvina');const p=S().p,t=w.traps.find(t=>t.kind==='vrh');ok(levelOf('urvina')===api.LEVELS.length-1,'urvina: Urvina is the last pohod');
+{const w=await land('urvina');const p=S().p,t=w.traps.find(t=>t.kind==='vrh');ok(levelOf('urvina')===api.LEVELS.filter(L=>!L.secret).length-1,'urvina: Urvina is the last pohod on the road');
  ok(w.enemies.length===0,'urvina: no one stands against Marko on Urvina');ok(t&&t.y<200,'urvina: the road climbs a mountain (the top is '+Math.round(590-t.y)+' above the start)');
  const at=x=>{Object.assign(p,{x,y:t.y,vx:0,vy:0,grounded:true});step(2);},E=()=>{api.pressed.add('KeyE');step(2);};
  at(S().level.goal.x-60);step(3);ok(S().mode==='play','urvina: the road does not end before the well');
@@ -329,4 +329,25 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  api.keys.clear();for(let i=0;i<120*8&&api.lov();i++)step();
  ok(!api.lov()&&w.lovDone&&S().mode==='play','flight: the vizier breaks his wing; the flight ends and Marko stands at the start of the marsh');
  ok(T.state!=='spasen'&&Math.abs(S().p.x-S().level.spawn.x)<200,'flight: the falcon lies in the reeds where Marko must find him');}
+// ---- the secret pohod: Marko's dream, four chambers and four riddles out of the songs ----
+{const si=levelOf('san');ok(api.LEVELS[si].secret&&!api.levelOpen(si),'dream: the cave is not on the road until its secret is found');storage.set('marko-tajna','1');ok(api.levelOpen(si),'dream: the secret found, the cave opens');storage.delete('marko-tajna');
+ storage.set('marko-skills',JSON.stringify(['niz','zid','bacanje','kontra','zamah','nadole','kolut','vihor','uzlet','tresak','juris','junacki']));api.forgetSkills();
+ const w=await land('san');const p=S().p,T=w.traps,hit=(o,key='KeyJ')=>{Object.assign(p,{x:o.x-35,y:o.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,combo:0,hurt:0});p.invuln=0;tap(key);step(45);};
+ ok(w.enemies.length===0&&T.filter(t=>t.gate&&t.clue).length===4,'dream: no foes, four chambers, each with its inscription and its gate');
+ // 1. the three letters on the sabre: smith, king, son
+ const A=T.find(t=>t.title==='OČINA SABLJA'),hp0=p.hp;hit(A.objs[0]);ok(!A.done&&!A.prog&&p.hp<hp0,'dream: the wrong letter first, and the stone stings');
+ for(const i of A.order)hit(A.objs[i]);ok(A.done&&A.objs[A.order[0]].glyph==='Н'&&A.objs[A.order[2]].glyph==='М','dream: Novak, Vukašin, Marko: the first gate opens');
+ // 2. the girl who outwitted Marko: neither apple nor ring
+ const B=T.find(t=>t.title==='MUDRA DEVOJKA');hit(B.objs[0]);ok(!B.done,'dream: an apple is a child\'s toy');hit(B.objs[1]);ok(!B.done,'dream: and a ring is not hers to take');
+ hit(B.objs[8]);ok(B.done&&B.objs[8].glyph==='ПАВЛЕ','dream: she follows Ustupčić Pavle: the second gate opens');
+ // 3. the dry cornel wood: no water until the strength is back
+ const C=T.find(t=>t.kind==='dren'),heavy=()=>{Object.assign(p,{x:C.dren.x-45,y:C.dren.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,hurt:0});api.keys.add('KeyK');api.pressed.add('KeyK');step(200);api.keys.delete('KeyK');step(70);};
+ heavy();ok(!C.done,'dream: squeezed too soon, the wood splits but gives no water');
+ for(const c of C.cups){Object.assign(p,{x:c.x,y:c.y,vx:0,vy:0,grounded:true});step(3);}ok(C.snaga===3,'dream: three cups of wine, as three months in the tavern');
+ heavy();ok(C.done,'dream: now two drops of water spring from it: the third gate opens');
+ // 4. the maple gusle: the melody three times, each time longer
+ const G=T.find(t=>t.kind==='melodija');Object.assign(p,{x:G.gusle.x,y:G.gusle.y,vx:0,vy:0,grounded:true});step(3);
+ for(let r=0;r<3;r++){until(()=>G.listen,120*12);ok(G.listen,'dream: the gusle play '+[3,5,7][r]+' notes and wait');const n=[3,5,7][r];for(let k=0;k<n;k++)hit(G.objs[G.seq[k]]);}
+ ok(G.done,'dream: the melody repeated three times, the sabre falls from the scabbard');
+ Object.assign(p,{x:S().level.goal.x-40,y:S().level.goal.y,vx:0,vy:0,grounded:true});step(3);ok(S().mode==='levelDone'&&storage.get('marko-probudjen')==='1','dream: and Marko wakes');}
 console.log(`${checks} battle checks passed.`);

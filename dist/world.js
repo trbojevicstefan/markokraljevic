@@ -75,7 +75,8 @@ const GOAL_PLAN={
  rudnik:{goals:[{kind:'use',at:.45,art:LEVER,h:120,label:'Pronađi polugu starog okna',done:'Negde napred zaškripala je rešetka.'},{kind:'gate',at:'end',art:['cilj-rudarski-izlaz-zatvoren','cilj-rudarski-izlaz-otvoren'],h:260,label:'Otvori rudarski izlaz'}],finish:'Izađi iz rudnika'},
  rusevine:{goals:[],finish:'Popni se do poslednjeg barjaka'},
  reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'},
- urvina:{goals:[],finish:'Popni se do dve jele i bunara'}
+ urvina:{goals:[],finish:'Popni se do dve jele i bunara'},
+ san:{goals:[],finish:'Prođi četiri odaje i probudi se'}
 };
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
@@ -123,6 +124,7 @@ export const RECIPES={
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates trgovac flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ trgovac flat boss:arapin',
  reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch trgovac flat boss:sword',
+ san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges trgovac flat boss:trio',
 };
@@ -198,6 +200,19 @@ export function buildLayout(L,variant='day'){
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the poor by the road: an old woman and an orphan; a quiet room, no Turks in it
+  // the dream cave: four chambers, each a memory of a song, each shut by a gate until its riddle is answered
+  slova(){const x0=x,len=1050;ground(len);const g=['М','Н','В'],xs=[x0+380,x0+560,x0+740];traps.push({kind:'red',title:'OČINA SABLJA',objs:xs.map((ox,i)=>({x:ox,y:gy,glyph:g[i]})),order:[1,2,0],tablet:{x:x0+160,y:gy},gate:{x:x0+len-50,y:gy},
+    clue:'„Na sablji su tri slova rišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.” Kucni topuzom u kamenove onim redom kojim je sablja išla iz ruke u ruku.',hint:'Tri slova: kovač, kralj, pa sin.',wrong:'SABLJA NIJE TAKO IŠLA',win:'Novak je skova, Vukašin je nosi, Marko je poznade. Odaja se otvara.'});busy.push([x0,x0+len]);},
+  jabuke(){const x0=x,len=1500;ground(len);const objs=[];for(let i=0;i<3;i++){objs.push({x:x0+340+i*190,y:gy,sym:'jabuka',h:70});objs.push({x:x0+435+i*190,y:gy,sym:'prsten',h:70});}
+   ['МАРКО','ЈАНКО','ПАВЛЕ'].forEach((n,i)=>objs.push({x:x0+990+i*150,y:gy,glyph:n,small:true,h:150}));
+   traps.push({kind:'red',title:'MUDRA DEVOJKA',objs,order:[8],tablet:{x:x0+160,y:gy},gate:{x:x0+len-50,y:gy},
+    clue:'„Isprosi je Kraljeviću Marko, a preprosi vojevoda Janko, prsten dao Ustupčiću Pavle.” Tri prosca položiše tri zlatne jabuke i tri zlatna prstena, a sirota devojka reče: „Jabuka je dečina zabava, a prsten je junačka belega.” Kucni u ono za čim bi mudra devojka pošla.',hint:'Ni jabuka ni prsten. Za kim je pošla?',wrong:'OBE BIH TI ODSEKAO RUKE',win:'„Ja ću poći za Ustupčić-Pavla.” Nije se mašila ni jabuke ni prstena. Odaja se otvara.'});busy.push([x0,x0+len]);},
+  drenovina(){const x0=x,len=1250;ground(len);platforms.push({x:x0+330,y:gy-130,w:130,h:18,kind:'plank'},{x:x0+520,y:gy-250,w:130,h:18,kind:'plank'},{x:x0+710,y:gy-370,w:130,h:18,kind:'plank'},{x:x0+900,y:gy-250,w:130,h:18,kind:'plank'});
+   traps.push({kind:'dren',title:'SUVA DRENOVINA',cups:[{x:x0+395,y:gy-130},{x:x0+775,y:gy-370},{x:x0+965,y:gy-250}],dren:{x:x0+len-260,y:gy},tablet:{x:x0+160,y:gy},gate:{x:x0+len-50,y:gy},
+    clue:'„Donesi mi suve drenovine sa tavana od devet godina, da ogledam može li što biti.” Tri godine tamnice slomile su mu snagu. „Sjede Marko tri mjeseca dana, dok je život malo povratio”, uz vino i ovnujsko meso. Tek tada iz stegnutog drveta dve kaplje vode iskočiše.',hint:'Stegni suvu drenovinu (drži K). Ako voda ne udari, snaga se još nije vratila.'});busy.push([x0,x0+len]);},
+  gusle(){const x0=x,len=1300;ground(len);const seq=[];for(let i=0;i<7;i++){let n=Math.floor(R()*4);if(i&&n===seq[i-1])n=(n+1)%4;seq.push(n);}
+   traps.push({kind:'melodija',title:'GUSLE JAVOROVE',objs:[0,1,2,3].map(i=>({x:x0+470+i*170,y:gy})),seq,gusle:{x:x0+290,y:gy},tablet:{x:x0+130,y:gy},gate:{x:x0+len-50,y:gy},
+    clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // the top of Urvina: two firs and the well, Šarac, the stone where the sabre breaks, and the cliff over the sea
   vrh(){const x0=x,len=1900;ground(len);traps.push({kind:'vrh',x0,x1:x0+len+520,y:gy,bunar:x0+520,sarac:x0+1020,sablja:x0+1480,more:x0+len+240});busy.push([x0,x0+len+520]);},
   trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
@@ -281,7 +296,10 @@ export function buildLayout(L,variant='day'){
  const zapis=rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
  return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
-export const EXTRA_LEVELS=[{id:'urvina',name:'Urvina planina',width:9000,spawn:{x:80,y:590},goal:{x:8800,y:590},palette:'nedelja pre sunca, kraj mora',peace:true,
+export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',width:7000,spawn:{x:80,y:590},goal:{x:6800,y:590},palette:'san u vilinskoj pećini',peace:true,secret:true,
+ layers:[{id:'san-sky',speed:.04},{id:'san-far',speed:.16},{id:'san-mid',speed:.38},{id:'san-near',speed:.72}],
+ fallbackLayers:[{id:'pecina-sky',speed:.04},{id:'pecina-far',speed:.16},{id:'pecina-mid',speed:.38},{id:'pecina-near',speed:.72}],ground:'pecina',props:[],
+ design:{goal:'Prođi četiri odaje i probudi se'}},{id:'urvina',name:'Urvina planina',width:9000,spawn:{x:80,y:590},goal:{x:8800,y:590},palette:'nedelja pre sunca, kraj mora',peace:true,
  layers:[{id:'urvina-sky',speed:.04},{id:'urvina-far',speed:.16},{id:'urvina-mid',speed:.38},{id:'urvina-near',speed:.72}],
  fallbackLayers:[{id:'rusevine-sky',speed:.04},{id:'rusevine-far',speed:.16},{id:'rusevine-mid',speed:.38},{id:'rusevine-near',speed:.72}],ground:'rusevine',props:[],
  design:{goal:'Popni se na vrh Urvine'}},{id:'oranje',name:'Oranje drumova',width:7000,spawn:{x:80,y:590},goal:{x:6860,y:590},palette:'letnje podne nad Prilepom',

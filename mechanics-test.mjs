@@ -25,7 +25,7 @@ const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sor
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 
 // ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
-{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka urvina','journey: the pohodi follow the life of Marko');
+{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka urvina san','journey: the pohodi follow the life of Marko');
  {const done=api.LEVELS.slice(0,9).map(L=>L.id);storage.set('marko-levels',JSON.stringify(done));ok(api.levelOpen(8)&&!api.levelOpen(9),'journey: after the ninth pohod the road is shut until Musa falls');storage.set('marko-kacanik','won');ok(api.levelOpen(9)&&!api.levelOpen(10),'journey: Musa fallen, the gorge opens');storage.delete('marko-levels');storage.delete('marko-kacanik');}
  const w=await start('manastir');quiet(w);ok(!api.has('zid'),'journey: the wall jump is still locked');
  const a=w.platforms.find(q=>q.hang),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
