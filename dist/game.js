@@ -1607,18 +1607,20 @@ function clearProps(){if(!level?.props||!world.busy)return;level.props=level.pro
 
 // ================= pack 05: a journey that grows — skills, letters, enchanted maces, traps, chases, champions =================
 // ---------- skills: each finished pohod teaches Marko something new (the Kačanik story has them all) ----------
+// Each pohod teaches one skill, in the order the pohodi are walked (see JOURNEY): the wall jump comes in the second
+// pohod because the fourth (the fortress) cannot be climbed without it. Oranje teaches none.
 const SKILLS=[
  {id:'niz',land:'selo',name:'Junački niz',key:'J J J',text:'Tri udarca zaredom; treći obara protivnika.'},
- {id:'zid',land:'klisura',name:'Odskok od zida',key:'skok + zid + SPACE',text:'Uhvati se za zid u skoku i odbij se ka drugom. Vrati se po čuda iz dimnjaka!'},
- {id:'bacanje',land:'suma',name:'Bačeni topuz',key:'I',text:'Topuz leti napred, obara i vraća se u ruku.'},
- {id:'kontra',land:'manastir',name:'Savršeno odbijanje',key:'L u pravom trenutku',text:'Odbij udarac tačno kad stigne i uzvrati kontrom.'},
- {id:'zamah',land:'tvrdjava',name:'Pun zamah',key:'drži K',text:'Teški udarac se puni dok držiš K i razbija oklop.'},
- {id:'nadole',land:'prevoj',name:'Udar nadole',key:'u skoku S + J',text:'Topuz pada u zemlju i razbacuje sve oko Marka.'},
+ {id:'zid',land:'manastir',name:'Odskok od zida',key:'skok + zid + SPACE',text:'Uhvati se za zid u skoku i odbij se ka drugom. Vrati se po čuda iz dimnjaka!'},
+ {id:'bacanje',land:'tvrdjava',name:'Bačeni topuz',key:'I',text:'Topuz leti napred, obara i vraća se u ruku.'},
+ {id:'kontra',land:'podrum',name:'Savršeno odbijanje',key:'L u pravom trenutku',text:'Odbij udarac tačno kad stigne i uzvrati kontrom.'},
+ {id:'zamah',land:'mocvara',name:'Pun zamah',key:'drži K',text:'Teški udarac se puni dok držiš K i razbija oklop.'},
+ {id:'nadole',land:'suma',name:'Udar nadole',key:'u skoku S + J',text:'Topuz pada u zemlju i razbacuje sve oko Marka.'},
  {id:'kolut',land:'pecina',name:'Kolut',key:'SHIFT',text:'Prokotrljaj se kroz napad, strelu i oganj.'},
- {id:'vihor',land:'podrum',name:'Vihor',key:'drži F',text:'Topuz se vrti oko Marka dok traje bes.'},
- {id:'uzlet',land:'mocvara',name:'Vilinski uzlet',key:'u skoku E',text:'Ravijojla te u vazduhu podigne još jednom.'},
- {id:'tresak',land:'rudnik',name:'Tresak',key:'u skoku K',text:'Zakucaj Turčina iz vazduha o zemlju — udarni talas obara one oko njega.'},
- {id:'juris',land:'rusevine',name:'Juriš',key:'SHIFT pa J',text:'Iz koluta jurni napred kroz red neprijatelja.'},
+ {id:'vihor',land:'prevoj',name:'Vihor',key:'drži F',text:'Topuz se vrti oko Marka dok traje bes.'},
+ {id:'uzlet',land:'klisura',name:'Vilinski uzlet',key:'u skoku E',text:'Ravijojla te u vazduhu podigne još jednom.'},
+ {id:'tresak',land:'rusevine',name:'Tresak',key:'u skoku K',text:'Zakucaj Turčina iz vazduha o zemlju — udarni talas obara one oko njega.'},
+ {id:'juris',land:'rudnik',name:'Juriš',key:'SHIFT pa J',text:'Iz koluta jurni napred kroz red neprijatelja.'},
  {id:'junacki',land:'reka',name:'Junački udar',key:'R kad je bes pun',text:'Udar od kog se tlo trese.'},
 ];
 let skillCache=null;
@@ -2406,7 +2408,7 @@ function champGrabStep(e,dt){if(!GRAB[e.kit]||e.grabCD==null||(e.kit==='beg'&&e.
   if(e.gt<=0||e.wallHit){e.gs=null;e.vx=0;e.stun=1.6;e.mode='stun';e.kitOpen=Math.max(e.kitOpen||0,1.6);e.grabCD=e.p3?11:15;label('PROMAŠIO · UDRI!',e.x,e.y-210,'#d9f6c0');dust(e.x,e.y,12,1.8);}
   return true;}
  e.grabCD-=dt;
- if(e.grabCD<=0&&e.mode==='idle'&&e.grounded&&!e.ks&&!e.perch&&!(e.invT>0)&&Math.abs(p.x-e.x)<430&&Math.abs(p.y-e.y)<60&&p.grounded){e.gs='prep';e.gt=settings.difficulty==='story'?1.1:.8;e.grabCD=e.p3?11:15;label('!! HVATA TE · KOLUT',e.x,e.y-215,'#ff9a7a');sfx('horn_call',{gain:.5,rate:1.5,x:e.x});return true;}
+ if(e.grabCD<=0&&e.mode==='idle'&&e.grounded&&!e.ks&&!e.perch&&!(e.invT>0)&&Math.abs(p.x-e.x)<430&&Math.abs(p.y-e.y)<60&&p.grounded){e.gs='prep';e.gt=settings.difficulty==='story'?1.1:.8;e.grabCD=e.p3?11:15;label('!! HVATA TE · IZMAKNI SE',e.x,e.y-215,'#ff9a7a');sfx('horn_call',{gain:.5,rate:1.5,x:e.x});return true;}
  return false;}
 function champPin(e){if(horseMounted||p.pinned)return false;const s=Math.sign(e.x-p.x)||1;
  grapple={e,kind:'champ',champ:true,t:0,m:.2,end:0,s};e.gs=null;e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});

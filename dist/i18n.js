@@ -6,6 +6,7 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["IZMAKNI SE", "GET CLEAR"],
 ["TOPUZ TI JE IZBIJEN", "YOUR MACE IS STRUCK FROM YOUR HAND"],
 ["TOPUZ JE OPET TVOJ", "THE MACE IS YOURS AGAIN"],
 ["TVOJ TOPUZ", "YOUR MACE"],

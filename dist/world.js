@@ -339,7 +339,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
   if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
  if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90});}
- if(B.boss){const S=BOSSES[B.boss.type],A=B.boss;foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp:S.hp,maxHp:S.hp,name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
+ if(B.boss){const S=BOSSES[B.boss.type],A=B.boss;foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp:Math.round(S.hp*(.62+.38*Math.min(1,index/9))),maxHp:Math.round(S.hp*(.62+.38*Math.min(1,index/9))),name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
  const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
