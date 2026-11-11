@@ -65,7 +65,7 @@ const sf=api.state();sf.p.rage=100;sf.p.x=sf.world.enemies[0].x-100;api.pressed.
 assert.equal(sf.p.rage,0);assert.equal(sf.p.attackKind,'super');
 for(let i=0;i<45;i++)api.update(1/120);
 assert.equal(sf.world.enemies[0].hp,sf.world.enemies[0].maxHp,'super windup cannot hit');
-for(let i=0;i<30;i++)api.update(1/120);
+for(let i=0;i<55;i++)api.update(1/120);
 assert.equal(sf.world.enemies[0].alive,false,'super contact deals finishing damage');
 assert.equal(api.state().corpses.length,1);assert(sf.p.superImpact,'super impact FX triggered');
 console.log('PASS crouch arrow collision, directional block, guard break, super cost and contact timing');

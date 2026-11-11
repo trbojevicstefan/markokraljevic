@@ -74,7 +74,9 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
 // ---- on the ground: a foe on top of Marko; mash to throw him off ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true,hp:S().p.maxHp,invuln:0});
  for(let n=0;n<20&&!e.grappling;n++){S().p.down=1;S().p.downRolled=false;step(2);S().p.down=0;step(1);}ok(e.grappling&&S().p.pinned,'grapple: knocked down by a janissary, he jumps on Marko with his knife');
- const hp0=S().p.hp;step(120);ok(S().p.hp<hp0,'grapple: held down, Marko bleeds');for(let i=0;i<40;i++){tap('KeyJ');step(4);}step(120);ok(!S().p.pinned&&!e.grappling&&(e.hp<e.maxHp||!e.alive),'grapple: mashing J throws him off and strikes back');}
+ const hp0=S().p.hp;step(120);ok(S().p.hp<hp0,'grapple: held down, Marko bleeds');step(2);const key0=S().p.hvat;ok(['KeyJ','KeyK','Space','ShiftLeft'].includes(key0),'grapple: a hold is shown to take');
+ {const wrong=['KeyJ','KeyK','Space','ShiftLeft'].find(k=>k!==key0);tap(wrong);step(3);ok(S().p.pinned&&S().p.hvat===key0,'grapple: the wrong hold frees no one');step(60);}
+ let holds=0;for(let i=0;i<400&&S().p.pinned&&S().p.hvat;i++){S().p.hp=S().p.maxHp;tap(S().p.hvat);holds++;step(8);}step(120);ok(holds>=3&&holds<=6&&!S().p.pinned&&!e.grappling&&(e.hp<e.maxHp||!e.alive),'grapple: three right holds throw him off and strike back');}
 
 // ---- blood lands on a plank, not in the air; corpses stay and turn to bones ----
 {api.startChapter(0);const w=S().world,q=w.platforms.find(q=>q.y<500);S().particles.length=0;S().decals.length=0;
@@ -235,7 +237,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  c.kc=99;c.timer=99;c.mode='idle';c.grabCD=null;Object.assign(p,{x:c.x-200,y:c.y,vx:0,vy:0,grounded:true,face:1});safe();api.keys.add('KeyD');for(let i=0;i<240;i++){c.kc=99;c.timer=99;c.mode='idle';step();}api.keys.clear();
  ok(p.x<=c.x-40,'megdan: Marko cannot walk into a standing champion (stopped '+Math.round(c.x-p.x)+' short)');
  // the guard: light blows glance off, the third in a row earns a shove
- const light=()=>{c.kc=99;c.timer=99;c.mode='idle';Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,combo:0});p.invuln=0;p.hp=p.maxHp;tap('KeyJ');step(40);};
+ const light=()=>{c.kc=99;c.timer=99;c.mode='idle';Object.assign(p,{x:c.x-70,y:c.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,combo:0});p.invuln=0;p.hp=p.maxHp;tap('KeyJ');step(30);};
  const hp0=c.hp;light();const chip=hp0-c.hp;ok(chip>0&&chip<8,'megdan: a light blow on his guard only chips him ('+chip.toFixed(1)+')');
  ok(c.guard<100,'megdan: and wears the guard a little');
  light();const hpB=p.hp;light();ok(p.hp<hpB&&p.x<c.x-120,'megdan: the third light blow in a row and he shoves Marko away');
@@ -256,7 +258,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  // caught: hand to hand; mashing throws him off and hurts him
  c.stun=0;c.kitOpen=0;c.grabCD=0;c.mode='idle';c.ks=null;c.mace=null;Object.assign(p,{x:c.x-150,y:c.y,vx:0,vy:0,grounded:true,dash:0});p.invuln=0;p.hp=p.maxHp;
  until(()=>{c.kc=99;c.mace=null;p.hp=Math.max(p.hp,60);return !!S().p.pinned;},120*5);ok(S().p.pinned,'megdan: caught, Marko is in the grapple');
- const hp2=c.hp;for(let i=0;i<120*6&&S().p.pinned;i++){p.hp=p.maxHp;if(i%6===0)tap('KeyJ');else step();}
+ const hp2=c.hp;for(let i=0;i<120*6&&S().p.pinned;i++){p.hp=p.maxHp;if(i%10===0&&S().p.hvat)tap(S().p.hvat);else step();}
  ok(!S().p.pinned&&c.hp<hp2&&c.guardBroken>0,'megdan: he breaks free, throws the champion off and leaves him open');}
 const clamp=physics.clamp;
 // ---- the acts: every champion brings something new in his last act, and none of it breaks the fight ----

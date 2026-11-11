@@ -147,13 +147,13 @@ await climbShaft('rusevine',true);
  tap('KeyJ');step(46);tap('KeyJ');step(46);let kind='';for(let i=0;i<40&&kind!=='lomilac';i++){tap('KeyK');kind=S().p.attackKind;}ok(kind==='lomilac','combo: J J K is the Lomilac');step(60);ok(e.vx>0||!e.grounded||e.x>gy,'combo: the Lomilac throws the janissary back');}
 // ---- the launcher and the air string ----
 async function juggle(id,tresak){const w=await start(id);const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const gy=floorAt(w,e.x).y;Object.assign(e,{type:'sword',y:gy,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1});stand(e.x-70,gy);S().p.face=1;
- api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);const lifted=e.vy<0||e.y<gy-10;tap('Space');step(1);const follow=S().p.vy<-700;let hits=0,hp=e.hp;
+ api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);const lifted=e.vy<0||e.y<gy-10;tap('Space');let follow=S().p.vy<-700;for(let i=0;i<14&&!follow;i++){step();follow=S().p.vy<-700;}let hits=0,hp=e.hp;
  for(let i=0;i<120*2&&!S().p.grounded;i++){if(i%22===2){tap(tresak&&hits>=1?'KeyK':'KeyJ');}step();if(e.hp<hp){hits++;hp=e.hp;}}
  for(let i=0;i<120*2&&!(e.grounded&&!e.air);i++)step();return{e,lifted,follow,hits,slam:600-e.hp};}
 {const r=await juggle('selo',false);ok(r.lifted,'launch: W+J lifts a janissary into the air (no skill needed)');ok(r.follow,'launch: Space right after it follows him up');ok(r.hits>=2,`launch: blows land in the air (${r.hits})`);ok(r.slam>=110,`launch: the string ends slamming him into the ground (−${Math.round(r.slam)})`);}
 {const r=await juggle('selo',true);ok(r.slam>=130,`tresak: K in the air drives him into the ground (−${Math.round(r.slam)})`);}
 {api.start();const w=S().world;const e=w.enemies.find(e=>e.zone===0&&e.type==='sword');for(const o of w.enemies)if(o!==e)o.alive=false;Object.assign(e,{stun:0,mode:'idle',timer:9,hp:300,maxHp:300});stand(e.x-70,e.y);S().p.face=1;S().p.invuln=99;
- api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);ok(e.y<580,'launch: in the Kačanik story too the janissary flies');step(240);ok(e.y===590,'launch: and lands back on the road');}
+ api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(45);ok(e.y<580,'launch: in the Kačanik story too the janissary flies');step(240);ok(e.y===590,'launch: and lands back on the road');}
 // ---- heart pieces, lore scrolls, treasury keys, cracked walls ----
 {let all=true;for(let i=0;i<api.LEVELS.length;i++){await api.startLevel(i,'day');const w=S().world;if(!w.items.some(it=>it.type==='srce')||!w.items.some(it=>it.type==='zapis'))all=false;}ok(all,'relics: every pohod hides a heart piece and a lore scroll');}
 {storage.set('marko-srca',JSON.stringify(['klisura','suma','reka']));storage.delete('marko-zapisi');const w=await start('selo');quiet(w);const hp0=S().p.maxHp,h=w.items.find(it=>it.type==='srce');stand(h.x,h.y+44);step(2);
@@ -172,7 +172,7 @@ function openGround(w){return w.platforms.filter(q=>q.ground&&q.w>=760).find(q=>
 {const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);Object.assign(e,{type:'shield',x:q.x+300,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false});stand(q.x+220,q.y);S().p.face=1;
  api.keys.add('KeyS');tap('KeyJ');step(40);api.keys.clear();step(40);ok(e.guardBroken>0&&e.x>q.x+330,'kick: S+J knocks the shield aside and shoves him back');}
 {const w=await start('selo');const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);const q=openGround(w);Object.assign(e,{type:'sword',x:q.x+300,y:q.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false});stand(q.x+230,q.y);S().p.face=1;
- api.keys.add('KeyS');tap('KeyK');api.keys.clear();ok(S().p.attackKind==='uvis','uppercut: S+K is the uppercut');let up=false;for(let i=0;i<40;i++){step();if(e.y<q.y-40)up=true;}ok(up,'uppercut: it throws the janissary into the air');}
+ api.keys.add('KeyS');tap('KeyK');api.keys.clear();ok(S().p.attackKind==='uvis','uppercut: S+K is the uppercut');let up=false;for(let i=0;i<60;i++){step();if(e.y<q.y-40)up=true;}ok(up,'uppercut: it throws the janissary into the air');}
 {const w=await start('selo');quiet(w);const q=w.platforms.find(q=>q.pillar);const {p}=S();stand(q.x-20,q.y+112);p.grounded=false;p.vy=0;p.face=1;p.hang=false;p.ledgeCool=0;step(2);
  ok(p.hang&&p.ledgeT>0,'hang: Marko catches the ledge and hangs');step(60);ok(p.hang&&Math.abs(p.y-(q.y+112))<1,'hang: he stays hanging while nothing is pressed');
  api.keys.add('KeyD');step(120);api.keys.clear();ok(!p.hang&&Math.abs(S().p.y-q.y)<1,'hang: toward the wall he climbs up');

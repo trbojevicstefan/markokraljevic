@@ -6,6 +6,9 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["HVAT!", "A HOLD!"],
+["PROMAŠEN HVAT", "WRONG HOLD"],
+["STEŽE TE", "HE TIGHTENS"],
 ["Navuci samur-kalpak na obrve i pogledaj ga popreko. Ne posež i za čim, Marko: ko prvi trepne, izgubio je.", "Pull your sable cap down to your brows and look at him askance. Reach for nothing, Marko: whoever blinks first has lost."],
 ["Vinograd je Ljutice Bogdana. Pred njim si jednom već bežao uz krševito primorje, i sapom od topuza te je dohvatio. Eno ga, preči ti put.", "This is the vineyard of Ljutica Bogdan. You fled from him once already along the rocky coast, and he caught you with the shaft of his mace. There he is, barring your road."],
 ["TREPNUO SI", "YOU BLINKED"],
