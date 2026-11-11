@@ -471,7 +471,7 @@ function drawMindPuzzles(){const art=id=>levelArt[id];
  for(const t of world.traps||[]){const tx=t.gate?.x??t.pulley?.x??0;if(tx<camera-1300||tx>camera+VIEW_W+1300)continue;
   if(t.gate)drawSideGate('mind'+Math.round(t.gate.x),t.gate.x,t.gate.y,!!t.done);
   if(t.kind==='red'||t.kind==='dren'||t.kind==='melodija')drawSan(t);
-  if(t.kind==='bells'){const T=t.tablet;poly([[T.x-50,T.y],[T.x+50,T.y],[T.x+46,T.y-120],[T.x-46,T.y-120]],'#5a5048','#a89a80');textLabel('FRESKA',T.x,T.y-96,{font:'bold 11px Georgia',color:'#e8dcc0'});textLabel(t.order.map(i=>['I','II','III'][i]).join(' · '),T.x,T.y-60,{font:'bold 18px Georgia',color:'#ffe39a',glow:'#a07020'});
+  if(t.kind==='bells'){const T=t.tablet;drawFreska(T,t.order.map(i=>['I','II','III'][i]).join(' · '));
    for(const [i,b] of t.bells.entries()){const sw=Math.sin(time*14)*.35*(b.swing||0),im=art('zag-zvono');if(im){const B=propBounds(im),h=165,w=B.w*h/B.h;ctx.save();ctx.translate(b.x,b.y-h);ctx.rotate(sw*.12);ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,0,w,h);ctx.restore();textLabel(['I','II','III'][i],b.x,b.y-h-12,{font:'bold 14px Georgia',color:t.done?'#bfffe5':'#f5e6c0'});continue;}line(b.x-34,b.y,b.x-34,b.y-150,'#4a3420',5);line(b.x+34,b.y,b.x+34,b.y-150,'#4a3420',5);line(b.x-40,b.y-150,b.x+40,b.y-150,'#4a3420',6);
     ctx.save();ctx.translate(b.x,b.y-148);ctx.rotate(sw);if(im){const B=propBounds(im),h=96,w=B.w*h/B.h;ctx.drawImage(im,B.x,B.y,B.w,B.h,-w/2,0,w,h);}else{poly([[-10,4],[10,4],[22,62],[-22,62]],'#b8863a','#6a4a1a');ellipse(0,64,24,6,'#8a6020');ellipse(0,70,5,5,'#5a3a10');}ctx.restore();
     textLabel(['I','II','III'][i],b.x,b.y-160,{font:'bold 14px Georgia',color:t.done?'#bfffe5':'#f5e6c0'});}}
@@ -1913,6 +1913,18 @@ function drawStrela(t){if(t.x<camera-700||t.x>camera+VIEW_W+900)return;const act
  if(t.state==='marko'){const bx=p.x+34,by=p.y-88,k=t.pow||0;ctx.save();ctx.strokeStyle='#6a4420';ctx.lineWidth=5;ctx.beginPath();ctx.arc(bx,by,38,-1.2,1.2);ctx.stroke();ctx.restore();const sx=bx+38*Math.cos(1.2),pull=bx-6-k*30;line(sx,by-35,pull,by,'#e8dcc0',1.5);line(sx,by+35,pull,by,'#e8dcc0',1.5);line(pull,by,pull+62,by,t.r===2?'#f4efe0':'#4a3420',3);
   const w=150,x0=p.x-w/2,y0=p.y-190,need=Math.pow(STRELA_AGA[t.r]/STRELA_MAX[t.r],1/1.25);ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(x0-2,y0-2,w+4,14);ctx.fillStyle='#3f7a4a';ctx.fillRect(x0+w*need,y0,w*(1-need),10);ctx.fillStyle='#ffe39a';ctx.fillRect(x0+w*k-2,y0-3,4,16);
   textLabel(t.r===2?'J · PUSTI TATARANKU':'J · PUSTI STRELU',p.x,y0-14,{font:'bold 14px Georgia',color:'#fff3e0',glow:'#7a4a1a'});}}
+// the bell-order fresco: a small roadside shrine with a painted niche, not a bare slab
+function drawFreska(T,txt){const x=T.x,y=T.y,w=56,h=132,g=ctx.createLinearGradient(x-w,0,x+w,0);g.addColorStop(0,'#8f7c5e');g.addColorStop(.45,'#cbb891');g.addColorStop(1,'#7d6a4e');
+ ctx.save();ctx.lineJoin='round';
+ ctx.fillStyle='rgba(0,0,0,.28)';ctx.beginPath();ctx.ellipse(x,y+2,w+14,7,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#6f5d44';ctx.strokeStyle='#3a2e1f';ctx.lineWidth=2;ctx.beginPath();ctx.rect(x-w-8,y-12,w*2+16,12);ctx.fill();ctx.stroke();
+ ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(x-w,y-12);ctx.lineTo(x-w,y-h+w);ctx.arc(x,y-h+w,w,Math.PI,0);ctx.lineTo(x+w,y-12);ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.strokeStyle='rgba(60,45,28,.35)';ctx.lineWidth=1;for(let i=1;i<4;i++){const yy=y-12-i*24;ctx.beginPath();ctx.moveTo(x-w+2,yy);ctx.lineTo(x+w-2,yy);ctx.stroke();}
+ const iw=w-11,p=ctx.createLinearGradient(0,y-h,0,y-20);p.addColorStop(0,'#2c3f6a');p.addColorStop(1,'#1c2647');
+ ctx.fillStyle=p;ctx.strokeStyle='#e2bd5a';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x-iw,y-24);ctx.lineTo(x-iw,y-h+w);ctx.arc(x,y-h+w,iw,Math.PI,0);ctx.lineTo(x+iw,y-24);ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.fillStyle='rgba(240,205,110,.9)';for(const[sx,sy]of[[-26,-88],[24,-96],[-12,-112],[30,-70],[-30,-62]]){ctx.beginPath();ctx.arc(x+sx,y+sy,1.6,0,Math.PI*2);ctx.fill();}
+ ctx.fillStyle='#e2bd5a';ctx.fillRect(x-2,y-h-16,4,18);ctx.fillRect(x-8,y-h-11,16,4);ctx.restore();
+ textLabel('FRESKA',x,y-98,{font:'bold 10px Georgia',color:'#f0dfb4'});textLabel(txt,x,y-58,{font:'bold 19px Georgia',color:'#ffe39a',glow:'#a07020'});}
 // ================= the duel of looks ("Marko Kraljević i Ljutica Bogdan") =================
 // Bogdan, whom even Marko once fled, bars the road by his vineyard. In the song neither dares strike: Marko pulls his
 // sable cap down to his brows and looks at him askance, and Bogdan's legs go numb under him. So here: hold the look.
