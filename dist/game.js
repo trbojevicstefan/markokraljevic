@@ -539,7 +539,7 @@ function startGrapple(e,kind){if(grapple||grappleCool>0||level===undefined||hors
  e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(grappleText(kind),p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});return true;}
 function updateGrapple(dt){grappleCool=Math.max(0,grappleCool-dt);
  // knocked down near a janissary: he may jump on Marko with his knife
- if(!grapple&&p.down>0&&!p.downRolled){p.downRolled=true;const e=world.enemies.filter(e=>e.alive&&e.zone===zone&&!e.champion&&(e.type==='sword'||rig?.['kostac-'+e.type])&&Math.abs(e.x-p.x)<150&&Math.abs(e.y-p.y)<40).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];if(e&&Math.random()<.65)startGrapple(e,'janicar');}
+ if(!grapple&&p.down>0&&!p.downRolled){p.downRolled=true;const e=world.enemies.filter(e=>e.alive&&e.zone===zone&&!e.champion&&(e.type==='sword'||((e.type==='akindzija'||e.type==='kopljanik')&&rig?.['kostac-'+e.type]))&&Math.abs(e.x-p.x)<150&&Math.abs(e.y-p.y)<40).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];if(e&&Math.random()<.65)startGrapple(e,'janicar');}
  if(!grapple&&grappleCool<=0&&level&&p.attack>0&&p.grounded&&p.attackId!==p.backRoll){p.backRoll=p.attackId;const e=world.enemies.find(e=>e.alive&&e.zone===zone&&!e.champion&&!e.spava&&!e.patrola&&!(e.stun>0)&&e.grounded&&e.type==='sword'&&(e.x-p.x)*p.face<-20&&Math.abs(e.x-p.x)<95&&Math.abs(e.y-p.y)<30);if(e&&world.enemies.some(o=>o!==e&&o.alive&&(o.x-p.x)*p.face>0&&Math.abs(o.x-p.x)<160)&&Math.random()<.2)startGrapple(e,'ledja');}
  if(p.down<=0)p.downRolled=false;
  const G=grapple;if(!G){if(p)p.hvat=null;return false;}const e=G.e;G.t+=dt;p.vx=0;
@@ -988,10 +988,10 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.look&&e.kit==='janicar'&&e.ks==='leap'){const J=rig?.[e.look+'-skok'];if(J){const L=J.frames.length;pose={...pose,name:e.look+'-skok',frame:e.grounded?Math.min(L-2,4):e.vy<-200?1:e.vy<0?2:Math.min(L-3,3),fixedScale:1};}}
  if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,name:e.look+'-poziv',frame:Math.min(P.frames.length-1,Math.floor((1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
  if(e.gs){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,C=rig?.[H+'-hvata'],T=settings.difficulty==='story'?1.1:.8,k=e.gs==='prep'?clamp(1-e.gt/T,0,1):clamp(1-e.gt/.5,0,1);
-  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,name:H+'-hvata',frame:e.gs==='prep'?Math.min(h-1,Math.floor(k*h)):h+Math.floor(time*12)%(n-h),rot:0,...(e.look?{fixedScale:1}:{})};}
-  else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',frame:Math.floor(time*6)%I.frames.length}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
+  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,name:H+'-hvata',frame:e.gs==='prep'?Math.min(h-1,Math.floor(k*h)):h+Math.floor(time*12)%(n-h),rot:0,...(H===e.look?{fixedScale:1}:{})};}
+  else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',frame:Math.floor(time*6)%I.frames.length}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(H===e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
  if(e.uKostacu!=null){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,I=rig?.[H+'-idle'],U=rig?.[H+'-hurt'],k=e.uKostacu;
-  if(k>=0&&U)pose={name:H+'-hurt',frame:Math.min(U.frames.length-1,Math.floor(k*U.frames.length)),...(e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',frame:Math.floor(time*6)%I.frames.length,rot:e.face*.11,...(e.look?{fixedScale:1}:{})};}
+  if(k>=0&&U)pose={name:H+'-hurt',frame:Math.min(U.frames.length-1,Math.floor(k*U.frames.length)),...(H===e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',frame:Math.floor(time*6)%I.frames.length,rot:e.face*.11,...(H===e.look?{fixedScale:1}:{})};}
  if(e.skriven)pose.alpha=.4;
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
  if(e.elite){pose.scale=(pose.scale||1)*1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.brutal>0?Math.max(e.brutal*.72,e.flash>0?e.flash/.15*.5:0):e.flash>0?e.flash/.15*.5:0,flashColor:e.brutal>0?'#5a0306':'#ffd6bf'});
