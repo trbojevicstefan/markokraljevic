@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -316,4 +316,17 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  at(t.more);api.pressed.add('KeyI');step(2);ok(t.step===4&&p.noMace&&t.mace,'urvina: from the cliff he throws the mace into the sea');
  const a0=p.attackId;api.pressed.add('KeyJ');step(4);ok(p.attackId===a0&&!(p.attack>0),'urvina: without the mace he strikes no more');
  at(t.bunar);E();ok(t.step===5&&p.lying,'urvina: he lies down under the fir');step(120*6);ok(S().mode==='levelDone','urvina: and the song is ended');}
+// ---- the falcon's flight over the marsh: three ducks, the vizier's falcon, the broken wing ----
+{const w=await land('mocvara');const T=w.traps.find(t=>t.kind==='soko');ok(api.lovStart()&&api.lov(),'flight: the marsh opens with the hunt, seen from the falcon');
+ const L=api.lov(),hold=(...ks)=>{api.keys.clear();for(const k of ks)api.keys.add(k);};
+ // a simple pilot: fly at the nearest duck and dive when close
+ const steer=(tx,ty)=>{const ks=[];if(tx>L.x+12)ks.push('KeyD');else if(tx<L.x-12)ks.push('KeyA');if(ty>L.y+12)ks.push('KeyS');else if(ty<L.y-12)ks.push('KeyW');hold(...ks);};
+ for(let i=0;i<120*90&&L.phase==='lov';i++){const u=L.utve.slice().sort((a,b)=>Math.hypot(a.x-L.x,a.y-L.y)-Math.hypot(b.x-L.x,b.y-L.y))[0];if(u){steer(u.x+u.vx*.2,u.y+u.vy*.2);if(Math.hypot(u.x-L.x,u.y-L.y)<170&&L.diveCd<=0)api.pressed.add('Space');}else hold();step();}
+ ok(L.caught===3&&L.phase==='otimac','flight: the falcon catches three golden-winged ducks ('+L.caught+')');
+ ok(L.rival,'flight: then the vizier\'s falcon comes to rob him');
+ for(let i=0;i<120*90&&L.phase==='otimac';i++){const R=L.rival;if(R&&R.state==='umoran'){steer(R.x,R.y);if(Math.hypot(R.x-L.x,R.y-L.y)<150&&L.diveCd<=0)api.pressed.add('Space');}else if(R&&R.state==='nalet'){hold(R.vy>0?'KeyW':'KeyS',R.vx>0?'KeyA':'KeyD');}else hold();step();}
+ ok(L.phase==='pad'&&L.hits>=2,'flight: struck twice while it is spent, the vizier\'s falcon scatters its feathers');
+ api.keys.clear();for(let i=0;i<120*8&&api.lov();i++)step();
+ ok(!api.lov()&&w.lovDone&&S().mode==='play','flight: the vizier breaks his wing; the flight ends and Marko stands at the start of the marsh');
+ ok(T.state!=='spasen'&&Math.abs(S().p.x-S().level.spawn.x)<200,'flight: the falcon lies in the reeds where Marko must find him');}
 console.log(`${checks} battle checks passed.`);

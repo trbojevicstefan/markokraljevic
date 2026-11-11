@@ -704,9 +704,9 @@ function updateHud(){if(!p)return;$('rage-fill').style.width=p.rage+'%';$('guard
 function updateVisuals(dt){for(const f of floating){f.y-=30*dt;f.life-=dt;}floating=floating.filter(f=>f.life>0);for(const a of particles){if(a.delay>0){a.delay-=dt;continue;}const py=a.y;a.x+=a.vx*dt;a.y+=a.vy*dt;a.vy+=(a.kind==='dust'?-10:a.kind==='blood'?1400:120)*dt;if(a.kind==='blood'&&a.vy>0){const q=surfaceBelow(a,py);if(q&&a.y>=q.y){a.life=0;bloodLand(a,q);}else if(a.y>(world.pitY||900)+300)a.life=0;}a.vx*=1-dt*2;a.life-=dt;}particles=particles.filter(a=>a.life>0);for(const c of corpses){const before=c.t;if(!c.grounded)integrate(c,dt,world.platforms,world.runes);if(c.launched)flyCorpse(c,dt);if(c.y>850){if(c.launched&&!c.persist)c.t=99;else{c.x=c.launched?clamp(c.x,28060,29840):lastSafe;c.y=590;c.grounded=true;}}c.t+=dt;if(before<.7&&c.t>=.7)dust(c.x-c.face*20,c.y,10,1.6);if(!c.persist&&before<ROT_AT&&c.t>=ROT_AT&&c.grounded)addBone(c);}corpses=corpses.filter(c=>c.persist||c.t<ROT_AT+1.5);for(const b of bones)b.t+=dt;updateGore(dt);if(endSequence){endSequence.age+=dt;const body=corpses.find(c=>c.type===(endSequence.kind==='death'?'marko':'musa')),a=endSequence.age,won=endSequence.kind==='victory';
   if(won&&a>=3.4&&a<9){p.x=Math.min(29850,p.x+42*dt);p.face=1;}
   if(a>=(won&&rig?.['marko-wounded-walk']?9:1.55)&&body?.grounded){if(won&&!endSequence.story){endSequence.story=true;playStory('end',()=>{$('victory').hidden=false;});}else if(!won||endSequence.storyDone)$(endSequence.kind).hidden=false;}}for(const g of ghosts)g.life-=dt;ghosts=ghosts.filter(g=>g.life>0);}
-function updateCamera(dt){const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
+function updateCamera(dt){if(lov){camera=lov.cam;camY+=(lov.camY-camY)*Math.min(1,dt*3);return;}const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);pressed.clear();return;}elapsed+=dt;music(dt);updateDefense(dt);if(hitstop>0){hitstop-=dt;return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
+ if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!storySeen.has('lov'))lovStart();if(!updateLov(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -1257,7 +1257,7 @@ function drawLevelDecor(solid){
  drawGoals();
  const banner=x=>level.props.some(pr=>pr.id.startsWith('prop-barjak')&&Math.abs(pr.x-x)<140);if(!banner(level.spawn.x+80))flag(level.spawn.x+80,level.spawn.y);if(!banner(level.goal.x))flag(level.goal.x,level.goal.y);}
 async function startLevel(i,v=levelVariant){const L=LEVELS[i];if(!L)return;if(!VARIANTS[v])v='day';levelVariant=v;initAudio();$('loading').hidden=false;await loadLevelArt(L,v);$('loading').hidden=true;
- world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;ckpt=null;ckptFlags=[];if(i===0)say('weak',{priority:3,delay:1.5});for(const e of world.enemies){const need=e.kit==='azdaja'?['-idle','-death']:['-idle','-attack','-death'];if(e.champion&&!rig?.['cast/'+e.type]&&need.some(s=>!rig?.[e.type+s])){e.type='sword';e.scale=1.6;}}defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();applyHearts();setupBreakables();setupTowers();setupPlows();sizeProps();clearProps();decorate();setupKolci();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;addPartners();hardenFoes(world.enemies);makeElites();stealthSetup();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
+ world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;ckpt=null;ckptFlags=[];lov=null;if(i===0)say('weak',{priority:3,delay:1.5});for(const e of world.enemies){const need=e.kit==='azdaja'?['-idle','-death']:['-idle','-attack','-death'];if(e.champion&&!rig?.['cast/'+e.type]&&need.some(s=>!rig?.[e.type+s])){e.type='sword';e.scale=1.6;}}defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();applyHearts();setupBreakables();setupTowers();setupPlows();sizeProps();clearProps();decorate();setupKolci();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;addPartners();hardenFoes(world.enemies);makeElites();stealthSetup();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
  particles=[];arrows=[];floating=[];corpses=[];bones=[];heads=[];limbs=[];gibs=[];booms=[];fountains=[];finisher=null;grapple=null;finGlobal=0;grappleCool=0;training=null;ghosts=[];fires=[];decals=[];endSequence=null;camera=0;camY=CAM_Y0;lastSafe=p.x;elapsed=0;kills=0;relics=0;
  hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;keys.clear();pressed.clear();pendingMagic=null;
  fairy={x:p.x-55,y:p.y-125,age:99,duration:3.2,targetX:p.x,targetY:p.y-80,kind:'hover'};
@@ -1989,6 +1989,60 @@ function drawTrska(t,front){if(t.x+t.w<camera-200||t.x>camera+VIEW_W+200)return;
 // archers hidden in the reeds rise only when Marko is close, when they are hurt, or when the falcon finds them
 function zaseda(e,d){if(d<380||e.hp<e.maxHp){e.skriven=false;e.alert=true;label('ZASEDA!',e.x,e.y-150,'#ffcf7a');sfx('draw',{gain:.5,x:e.x});return false;}e.vx=0;return true;}
 
+// ================= the falcon's flight ("Lov Markov s Turcima") =================
+// The Night Marsh begins a day earlier, in the air. Marko hunts with vizier Murat by the green lake; the player is his
+// falcon. Catch three golden-winged ducks (they rise for the clouds when he comes near), then the vizier's falcon comes
+// to rob him: slip its swoops and strike it while it is spent. The vizier breaks the falcon's wing against a fir, and the
+// bird falls into the reeds exactly where Marko will find him. The flight passes over the land he is about to walk.
+let lov=null;
+const LOV_N=3,LOV_SP=330;
+function lovStart(){const T=(world.traps||[]).find(t=>t.kind==='soko');if(!T||lov)return false;storySeen.add('lov');
+ lov={t:0,phase:'lov',cam:0,camY:CAM_Y0-150,end:Math.max(200,T.x-VIEW_W*.5),x:260,y:330,vx:0,vy:0,face:1,dive:0,diveCd:0,stun:0,caught:0,utve:[],spawn:1.2,rival:null,swoops:0,hits:0,T};
+ speak('Lov lovi vezir Murat sa dvanaest delija, a s njima trinaesti, Kraljević Marko. Po zelenom jezeru plove utve zlatokrile. Ti si Markov soko: leti na A D W S, a obruši se na Space.',9);toast('LOV NA UTVE ZLATOKRILE · 0/3',3);sfx('orao',{gain:.6,rate:1.6});return true;}
+function lovFeathers(x,y,n,color='#8a96a0'){for(let i=0;i<n;i++)particles.push({kind:'dust',x,y,vx:(Math.random()-.5)*240,vy:-60-Math.random()*140,life:1.1,max:1.1,r:2+Math.random()*2.5,color});}
+function updateLov(dt){const L=lov;if(!L)return false;L.t+=dt;p.invuln=Math.max(p.invuln,1);p.vx=0;
+ const sp=L.phase==='pad'||L.phase==='kraj'?0:Math.max(34,L.end/46);L.cam=L.phase==='pad'?L.cam+(L.end-L.cam)*Math.min(1,dt*2.2):Math.min(L.end,L.cam+sp*dt);
+ const gy=560,x0=L.cam+60,x1=L.cam+VIEW_W-60,y0=L.camY+70,y1=gy-90;
+ if(L.phase==='lov'||L.phase==='otimac'){
+  // the falcon: free flight, a dive on Space
+  L.dive=Math.max(0,L.dive-dt);L.diveCd=Math.max(0,L.diveCd-dt);L.stun=Math.max(0,L.stun-dt);
+  const ix=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0),iy=(isDown('KeyS','ArrowDown')?1:0)-(isDown('KeyW','ArrowUp')?1:0);if(ix)L.face=ix;
+  if((tap('Space')||tap('KeyJ'))&&L.diveCd<=0&&L.stun<=0){L.dive=.38;L.diveCd=.7;L.vx=L.face*620+ix*120;L.vy=iy<0?-260:300;sfx('wings',{gain:.6,rate:1.4})||sfx('whoosh',{gain:.5});}
+  const k=L.stun>0?.35:1,ax=L.dive>0?2:9;L.vx+=(ix*LOV_SP*k+sp-L.vx)*Math.min(1,dt*ax);L.vy+=(iy*LOV_SP*k-L.vy)*Math.min(1,dt*ax);
+  L.x=clamp(L.x+L.vx*dt,x0,x1);L.y=clamp(L.y+L.vy*dt,y0,y1);
+  // the ducks: they swim up from the water and climb away from the falcon
+  L.spawn-=dt;if(L.phase==='lov'&&L.spawn<=0&&L.utve.length<2){L.spawn=2.4;L.utve.push({x:L.cam+VIEW_W*(.55+Math.random()*.38),y:gy-30,vx:sp+50,vy:-70,t:0,ph:Math.random()*6});}
+  for(const u of L.utve){u.t+=dt;const dx=u.x-L.x,dy=u.y-L.y,d=Math.hypot(dx,dy);
+   if(d<260){u.vx+=(Math.sign(dx||1)*210+sp-u.vx)*Math.min(1,dt*3);u.vy+=(-170-u.vy)*Math.min(1,dt*3);}else{u.vx+=(sp+40-u.vx)*Math.min(1,dt*2);u.vy+=(Math.sin(u.t*2+u.ph)*50-u.vy)*Math.min(1,dt*2);}
+   u.x+=u.vx*dt;u.y=Math.min(gy-26,u.y+u.vy*dt);
+   if(d<52){u.gone=true;L.caught++;addCoins(6,u.x,u.y);lovFeathers(u.x,u.y,10,'#f2c14e');label('UTVA ZLATOKRILA',u.x,u.y-40,'#ffe39a');sfx('orao',{gain:.6,rate:1.7});sfx('ring',{gain:.5,rate:1.2});hitstop=.05;toast(`LOV NA UTVE ZLATOKRILE · ${L.caught}/${LOV_N}`,2);}
+   else if(u.y<L.camY-40||u.x<L.cam-80||u.x>L.cam+VIEW_W+160||u.t>12)u.gone=true;}
+  L.utve=L.utve.filter(u=>!u.gone);
+  if(L.phase==='lov'&&L.caught>=LOV_N){L.phase='otimac';L.utve=[];L.rival={state:'dolazi',t:1.4,x:L.cam+VIEW_W+80,y:L.camY+90,vx:0,vy:0,face:-1};
+   speak('Vezirev soko ima lošu navadu: da otima lov od drugoga. Izmakni mu se kad nasrne, pa se obruši na njega dok je umoran. Markov soko je joguna, kao i gospodar.',8);sfx('orao',{gain:.8,rate:1.1});}
+  const R=L.rival;if(L.phase==='otimac'&&R){R.t-=dt;
+   if(R.state==='dolazi'){R.x+=(L.cam+VIEW_W-120-R.x)*Math.min(1,dt*3)+sp*dt;R.y+=(L.camY+110-R.y)*Math.min(1,dt*3);R.face=L.x<R.x?-1:1;
+    if(R.t<=0){R.state='nalet';R.t=.95;const dx=L.x-R.x,dy=L.y-R.y,d=Math.hypot(dx,dy)||1;R.vx=dx/d*720;R.vy=dy/d*720;R.face=dx<0?-1:1;R.hit=false;L.swoops++;sfx('whoosh_heavy',{gain:.7});}}
+   else if(R.state==='nalet'){R.x+=R.vx*dt;R.y=Math.min(y1,R.y+R.vy*dt);
+    if(!R.hit&&Math.hypot(R.x-L.x,R.y-L.y)<50&&L.dive<=0){R.hit=true;L.stun=.9;lovFeathers(L.x,L.y,12);label('IZGUBIO PERJE',L.x,L.y-50,'#ffb09a');sfx('hit_body',{gain:.5,rate:1.5});shake=settings.reduced?0:5;}
+    if(R.t<=0){R.state='umoran';R.t=1.9;}}
+   else if(R.state==='umoran'){R.vx+=(sp-R.vx)*Math.min(1,dt*3);R.vy+=(-30-R.vy)*Math.min(1,dt*3);R.x=clamp(R.x+R.vx*dt,x0,x1);R.y=clamp(R.y+R.vy*dt,y0,y1);
+    if(L.dive>0&&Math.hypot(R.x-L.x,R.y-L.y)<64){L.hits++;lovFeathers(R.x,R.y,18,'#6f6a62');label(L.hits>=2?'PROSU MU SIVO PERJE!':'UDARIO GA!',R.x,R.y-50,'#ffe39a');sfx('hit_body',{gain:.7,rate:1.3});hitstop=.07;shake=settings.reduced?0:4;R.state='dolazi';R.t=1.5;R.x=L.cam+VIEW_W+80;R.y=L.camY+80;}
+    else if(R.t<=0){R.state='dolazi';R.t=1.2;}}
+   if(L.hits>=2||L.swoops>=7){L.phase='pad';L.t=0;L.rival=null;L.sx=L.x;L.sy=L.y;toast('Vezir Murat uhvati Markovog sokola, udari ga o jelu zelenu i prebi mu desno krilo.',4.5);sfx('hit_heavy',{gain:.8});shake=settings.reduced?0:8;}}}
+ else if(L.phase==='pad'){const k=clamp((L.t-.9)/1.7,0,1),e=k*k;L.x=L.sx+(L.T.x-L.sx)*k;L.y=L.sy+(L.T.y-30-L.sy)*e;L.face=L.T.x>L.sx?1:-1;if(k>0&&Math.random()<dt*20)lovFeathers(L.x,L.y,1);
+  if(L.t>3.4){L.phase='kraj';L.t=0;lovFeathers(L.T.x,L.T.y-30,16);dust(L.T.x,L.T.y,12,1.6);sfx('fall',{gain:.5,x:L.T.x});}}
+ else if(L.phase==='kraj'&&L.t>1.3){lov=null;world.lovDone=true;camera=Math.max(0,p.x-VIEW_W*.4);camY=CAM_Y0;fx('flash','#0b1514',.5);
+  speak('„Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.',8);}
+ return true;}
+function drawLov(){const L=lov;if(!L)return;
+ for(const u of L.utve){const f=Math.sin(u.t*16),s=u.vx>=0?1:-1;ctx.save();ctx.translate(u.x,u.y);ctx.scale(s,1);poly([[-16,2],[-4,-5],[14,-3],[22,-8],[16,3],[-2,8]],'#c9922e','#5a3c12');poly([[-2,-3],[6,-3],[-6,-3-18*Math.max(.15,f)],[-14,-3-12*Math.max(.15,f)]],'#f2c14e','#7a5418');ellipse(19,-8,5,4,'#2f5a3a');poly([[23,-8],[30,-6],[23,-5]],'#e8a020');ctx.restore();halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);}
+ const R=L.rival;if(R){const n=R.state==='nalet'&&rig?.['orao-obrusavanje']?'orao-obrusavanje':'orao-let';if(rig?.[n])oraoDraw(n,R.state==='nalet'?2:Math.floor(time*12)%rig[n].frames.length,R.x,R.y,R.face,.62);
+  if(R.state==='dolazi'&&R.t<1)textLabel('!! VEZIREV SOKO',R.x,R.y-60,{font:'bold 14px Georgia',color:'#ffb09a',glow:'#a03020'});if(R.state==='umoran')halo(R.x,R.y,40,'rgba(190,255,220,.4)',.6+.3*Math.sin(time*9));}
+ const n=L.phase==='pad'||L.phase==='kraj'?(rig?.['soko-ranjen']?'soko-ranjen':'soko-let'):L.dive>0&&rig?.['soko-napad']?'soko-napad':'soko-let';
+ if(rig?.[n]){const fr=n==='soko-napad'?Math.min(2,Math.floor((1-L.dive/.38)*3)):Math.floor(time*(n==='soko-ranjen'?6:14))%rig[n].frames.length;if(n==='soko-ranjen')rigDraw(n,fr,L.x,L.y+30,L.face,{rot:L.phase==='pad'?L.face*Math.min(1,L.t)*.9:0});else oraoDraw(n,fr,L.x,L.y,L.face,1);}
+ if(L.stun>0&&Math.floor(time*14)%2)halo(L.x,L.y,34,'rgba(255,140,110,.35)');
+ if(L.phase==='lov'||L.phase==='otimac')textLabel(L.phase==='lov'?`UTVE ZLATOKRILE · ${L.caught}/${LOV_N}`:`VEZIREV SOKO · ${L.hits}/2`,L.cam+VIEW_W/2,L.camY+64,{font:'bold 15px Georgia',color:'#fff0c8'});}
 // ================= the poor by the road ("Marko Kraljević i beg Kostadin") =================
 // Marko honours the poor, as he shamed beg Kostadin for driving them from his table. An old woman and an orphan sit
 // by the road; give them ducats (E) and they bless him: his wounds close and his strength rises for a while.
@@ -2104,7 +2158,7 @@ function kitRun(e,dt){const K=KITS[e.kit];if(!K)return false;
 // a leap that lands on (x,y) after t seconds
 function leapTo(e,x,y,t){e.vx=(x-e.x)/t;e.vy=((y-e.y)-.5*1750*t*t)/t;e.grounded=false;e.air=true;e.y-=2;sfx('whoosh_heavy',{gain:.7,x:e.x});dust(e.x,e.y,10,1.5);}
 function onPlank(){return p.grounded&&p.on&&!p.on.ground&&p.on.kind!=='stone'?p.on:null;}
-function drawKits(){drawCkpt();drawChampGuard();drawDrops();for(const e of world.enemies)if(e.kit&&e.engaged&&(e.alive||e.flag))KITS[e.kit]?.draw?.(e);}
+function drawKits(){drawCkpt();drawChampGuard();drawDrops();drawLov();for(const e of world.enemies)if(e.kit&&e.engaged&&(e.alive||e.flag))KITS[e.kit]?.draw?.(e);}
 // a red banner with the crescent, on the bajraktar's rock
 function drawOttomanFlag(F){const tilt=(F.fall||0)*1.45,sh=F.shake>0?Math.sin(time*60)*3:0;ctx.save();ctx.translate(F.x+sh,F.y);ctx.rotate(-tilt);const C=clothTex('tkanina-barjak-turski');if(C){drawPole(0,0,-212,'alem');drawCloth(C,2,-206,106,66,1,.12+.82*(1-(F.fall||0)),F.x*.01);}else{line(0,0,0,-210,'#5a3c22',6);ellipse(0,-214,6,6,'#e8c86a');
  const wv=t=>Math.sin(time*3+t)*6*(1-(F.fall||0));ctx.beginPath();ctx.moveTo(3,-206);for(let i=0;i<=8;i++)ctx.lineTo(3+i*14,-206+wv(i*.6));for(let i=8;i>=0;i--)ctx.lineTo(3+i*14,-130+wv(i*.6)+i*1.5);ctx.closePath();ctx.fillStyle='#b8231c';ctx.fill();

@@ -6,6 +6,18 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Lov lovi vezir Murat sa dvanaest delija, a s njima trinaesti, Kraljević Marko. Po zelenom jezeru plove utve zlatokrile. Ti si Markov soko: leti na A D W S, a obruši se na Space.", "Vizier Murat is hunting with his twelve men, and with them the thirteenth, Prince Marko. Golden-winged ducks swim on the green lake. You are Marko's falcon: fly with A D W S, and dive with Space."],
+["LOV NA UTVE ZLATOKRILE", "THE HUNT FOR THE GOLDEN-WINGED DUCKS"],
+["UTVA ZLATOKRILA", "A GOLDEN-WINGED DUCK"],
+["UTVE ZLATOKRILE", "GOLDEN-WINGED DUCKS"],
+["VEZIREV SOKO", "THE VIZIER'S FALCON"],
+["!! VEZIREV SOKO", "!! THE VIZIER'S FALCON"],
+["Vezirev soko ima lošu navadu: da otima lov od drugoga. Izmakni mu se kad nasrne, pa se obruši na njega dok je umoran. Markov soko je joguna, kao i gospodar.", "The vizier's falcon has a bad habit: it robs another's catch. Slip aside when it swoops, then dive on it while it is spent. Marko's falcon is stubborn, like his master."],
+["IZGUBIO PERJE", "FEATHERS LOST"],
+["PROSU MU SIVO PERJE!", "HE SCATTERED ITS GREY FEATHERS!"],
+["UDARIO GA!", "A HIT!"],
+["Vezir Murat uhvati Markovog sokola, udari ga o jelu zelenu i prebi mu desno krilo.", "Vizier Murat seized Marko's falcon, struck him against a green fir and broke his right wing."],
+["„Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.", "“Woe to me and to you, falcon, hunting with Turks and no Serbs beside us!” The falcon has fallen into the reeds. Find him, Marko, drive off the Turks and bind his wing."],
 ["nedelja pre sunca, kraj mora", "Sunday before sunrise, by the sea"],
 ["Urvina planina", "Mount Urvina"],
 ["Popni se do dve jele i bunara", "Climb to the two firs and the well"],
