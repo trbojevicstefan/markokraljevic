@@ -6,6 +6,14 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.", "A duel by the new rules. Light blows (J) glance off the guard, and the third in a row earns a shove. Hold K to break the guard, or strike when he misses. The diamonds under his name are the acts."],
+["Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili se otimaj: J J J.", "A blow or two more and the second act begins: the champion will throw you back, then rush to grab you. Get clear, or break free: J J J."],
+["Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.", "The merchant stands before the duel: walk up and press E. You have a hundred ducats to try him with. Behind you a banner will be raised: if you fall, you go on from there."],
+["Uzmi carsku knjigu ispred sebe. Onda presudi, kao u pesmi: na kome je carstvo?", "Take the imperial book ahead of you. Then judge, as in the song: whose is the empire?"],
+["Alil-aga stoji na drumu. Priđi, pritisni E i nadstreli ga: J kad je tetiva najzategnutija.", "Alil-aga stands in the road. Walk up, press E and outshoot him: J when the string is drawn tightest."],
+["Šarac čeka ispred tebe. E da uzjašeš, D galop, Space preskače balvane, I baca topuz kad stigneš vilu.", "Šarac waits ahead of you. E to mount, D to gallop, Space leaps the trunks, I throws the mace when you reach the vila."],
+["Vrh Urvine. Redom: bunar među jelama (E), Šarac, kamen za sablju, pa topuz u more sa litice (I), i natrag pod jelu.", "The top of Urvina. In order: the well between the firs (E), Šarac, the stone for the sabre, then the mace into the sea from the cliff (I), and back under the fir."],
+["Guslar svakog kraja peva stihove svoje pesme. Stani kraj njega: bes ti raste dok peva.", "Each land's guslar sings the verses of its own song. Stand by him: your rage grows while he sings."],
 ["„Hajd’ na megdan, da se nadstreljujemo!” Tri strele svakome. Luk se zateže sam: pusti strelu (J) kad je tetiva najzategnutija.", "“Come to the field, let us shoot for distance!” Three arrows each. The bow draws by itself: loose the arrow (J) when the string is drawn tightest."],
 ["Carev Alil-aga sa trideset janičara stoji nasred druma i hvata te za skut dolame. Neće te pustiti bez megdana.", "The sultan's Alil-aga, with thirty janissaries, stands in the middle of the road and catches you by the skirt of your cloak. He will not let you pass without a match."],
 ["AGA", "THE AGA"],

@@ -28,7 +28,7 @@ if(hasDom&&assets.gorge){try{const m=await import('./stage3d.js');stage=await m.
 const screenCtx=stage?null:canvas.getContext?.('2d');
 const fx=(name,...args)=>stage?.[name]?.(...args);
 // ?dev and the test hub's ?go= scenarios: the test build (markoDev handle; Marko knows every move and has his father's sabre: G draws it)
-const DEV=typeof location!=='undefined'&&/[?&](dev\b|scout\b|go=)/.test(location.search);
+const DEV=typeof location!=='undefined'&&/[?&](dev\b|scout\b|go=|novo=)/.test(location.search);
 $('continue').hidden=!saveState;$('difficulty').value=settings.difficulty;$('volume').value=settings.volume*100;$('vol-music').value=settings.music*100;$('vol-sfx').value=settings.sfx*100;$('vol-voice').value=settings.voice*100;$('quality').value=settings.quality;$('reduced').checked=settings.reduced;$('gore').checked=settings.gore!==false;
 $('loading').hidden=true;
 // ---------- audio: samples (Kenney CC0 + synthesised), ElevenLabs voices, composed music ----------
@@ -3576,3 +3576,24 @@ async function devGo(g){const lv=id=>LEVELS.findIndex(L=>L.id===id),hush=()=>{st
  if(g==='kontrole'){openKontrole();return;}
  if(g==='riznica'){openRiznica();return;}}
 if(GO)setTimeout(()=>{devGo(GO).catch(e=>console.error(e));},700);
+// ================= shortcuts to what is new (novo.html → index.html?novo=<name>) =================
+// Each link starts the right pohod with every skill, skips the opening scenes and sets Marko down beside the new thing,
+// with a line that says what to try. For trying things out; it changes nothing in a saved game.
+const NOVO=hasDom&&new URLSearchParams(location.search).get('novo');
+async function novoGo(n){const lv=id=>LEVELS.findIndex(L=>L.id===id),trap=k=>(world.traps||[]).find(t=>t.kind===k),champ=()=>world.enemies.find(e=>e.champion),
+ at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,hp:p.maxHp});camera=Math.max(0,x-VIEW_W*.4);camFocus=y;},
+ go=async id=>{for(const L of LEVELS)storySeen.add('pohod-'+L.id);if(n!=='let')storySeen.add('lov');await startLevel(lv(id));await wait(250);$('dialogue').hidden=true;};
+ if(n==='megdan'){await go('selo');const c=champ();at(c.arena.x0+120,c.y);speak('Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.',10);return;}
+ if(n==='kostac'){await go('selo');const c=champ();at(c.arena.x0+120,c.y);c.hp=c.maxHp*.52;speak('Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili se otimaj: J J J.',9);return;}
+ if(n==='trgovac'){await go('selo');const t=trap('trgovac');at(t.x-220,t.y);setBank(bank()+100);speak('Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.',9);return;}
+ if(n==='presuda'){await go('manastir');const g=world.goals.find(g=>g.kind==='take');at(g.x-260,g.y);speak('Uzmi carsku knjigu ispred sebe. Onda presudi, kao u pesmi: na kome je carstvo?',7);return;}
+ if(n==='strela'){await go('oranje');const t=trap('strela');at(t.x-200,t.y);speak('Alil-aga stoji na drumu. Priđi, pritisni E i nadstreli ga: J kad je tetiva najzategnutija.',7);return;}
+ if(n==='let'){await go('mocvara');return;}
+ if(n==='potera'){await go('suma');const t=trap('potera');at(t.sx-160,t.y);speak('Šarac čeka ispred tebe. E da uzjašeš, D galop, Space preskače balvane, I baca topuz kad stigneš vilu.',8);return;}
+ if(n==='odbrana'){await go('klisura');const g=(world.traps||[]).find(t=>t.odbrana);at(g.x0+20,g.y);return;}
+ if(n==='djemo'){await go('klisura');const c=champ();at(c.arena.x0+120,c.y);return;}
+ if(n==='urvina'){await go('urvina');return;}
+ if(n==='vrh'){await go('urvina');const t=trap('vrh');at(t.bunar-360,t.y);speak('Vrh Urvine. Redom: bunar među jelama (E), Šarac, kamen za sablju, pa topuz u more sa litice (I), i natrag pod jelu.',9);return;}
+ if(n==='san'){await go('san');return;}
+ if(n==='guslar'){await go('selo');const g=trap('guslar');at(g.x-300,g.y);speak('Guslar svakog kraja peva stihove svoje pesme. Stani kraj njega: bes ti raste dok peva.',7);return;}}
+if(NOVO)setTimeout(()=>{novoGo(NOVO).catch(e=>console.error(e));},700);
