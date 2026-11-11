@@ -988,7 +988,7 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  if(e.look&&e.kit==='janicar'&&e.ks==='leap'){const J=rig?.[e.look+'-skok'];if(J){const L=J.frames.length;pose={...pose,name:e.look+'-skok',frame:e.grounded?Math.min(L-2,4):e.vy<-200?1:e.vy<0?2:Math.min(L-3,3),fixedScale:1};}}
  if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,name:e.look+'-poziv',frame:Math.min(P.frames.length-1,Math.floor((1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
  if(e.gs){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,C=rig?.[H+'-hvata'],T=settings.difficulty==='story'?1.1:.8,k=e.gs==='prep'?clamp(1-e.gt/T,0,1):clamp(1-e.gt/.5,0,1);
-  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,name:H+'-hvata',frame:e.gs==='prep'?Math.min(h-1,Math.floor(k*h)):h+Math.min(n-h-1,Math.floor(k*(n-h))),rot:0,...(e.look?{fixedScale:1}:{})};}
+  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,name:H+'-hvata',frame:e.gs==='prep'?Math.min(h-1,Math.floor(k*h)):h+Math.floor(time*12)%(n-h),rot:0,...(e.look?{fixedScale:1}:{})};}
   else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',frame:Math.floor(time*6)%I.frames.length}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
  if(e.uKostacu!=null){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,I=rig?.[H+'-idle'],U=rig?.[H+'-hurt'],k=e.uKostacu;
   if(k>=0&&U)pose={name:H+'-hurt',frame:Math.min(U.frames.length-1,Math.floor(k*U.frames.length)),...(e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',frame:Math.floor(time*6)%I.frames.length,rot:e.face*.11,...(e.look?{fixedScale:1}:{})};}
