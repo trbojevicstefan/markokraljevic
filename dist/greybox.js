@@ -24,16 +24,17 @@ export const GB_LEVELS=GB_NIVOI;
 const clampN=(n,a,b)=>Math.max(a,Math.min(b,n));
 
 // ---------- a level as rooms, nodes and links (shared by the game and the reachability test) ----------
-export function gbLevel(n){const L=GB_NIVOI[n]||GB_NIVOI[1];if(L.ready)return L;
+export function gbLevel(n){const k=GB_NIVOI[n]?+n:1,L=GB_NIVOI[k];if(L.ready)return L;L.n=k;
  L.rooms=L.sobe.map(([id,name,gx,gy,w,h,o={}])=>({id,name,gx,gy,w,h,x0:gx*CW,y0:gy*CH,x1:(gx+w)*CW,y1:(gy+h)*CH,floor:(gy+h)*CH-FL,...o}));
  const xs=L.rooms.flatMap(R=>[R.x0,R.x1]),ys=L.rooms.flatMap(R=>[R.y0,R.y1]);L.X0=Math.min(...xs);L.X1=Math.max(...xs);L.Y0=Math.min(...ys);L.Y1=Math.max(...ys);
- L.links=[];for(const [a,b,row,o={}] of L.vrata||[])L.links.push([gbNode(L,a,row),gbNode(L,b,row),o.need||null,!!o.oneway,{door:[a,b,row]}]);
- for(const [r,dx0,dx1,o={}] of L.rupe||[])if(o.to){const R=gbRoom(L,r);L.links.push([gbNode(L,r,R.gy+R.h-1),o.to,o.need||null,true,{drop:[r,dx0,dx1]}]);}
+ L.links=[];for(const [a,b,row,o={}] of L.vrata||[])L.links.push([o.na||gbNode(L,a,row),o.nb||gbNode(L,b,row),o.need||null,!!o.oneway,{door:[a,b,row,o]}]);
+ for(const [r,dx0,dx1,o={}] of L.rupe||[])if(o.to){const R=gbRoom(L,r);L.links.push([o.from||gbNode(L,r,R.gy+R.h-1),o.to,o.need||null,true,{drop:[r,dx0,dx1]}]);}
  L.links.push(...(L.veze||[]));L.ready=true;return L;}
 export const gbRoom=(L,id)=>L.rooms.find(R=>R.id===id);
 // a tall room has one node per floor (`kula@-1`); a one-floor room is its own node
 export function gbNode(L,id,row){const R=gbRoom(L,id);return R.h>1?`${id}@${row}`:id;}
 export const gbNodeRoom=node=>node.split('@')[0];
+export function gbNodeAt(L,x,y){const i=gbRoomAt(L,x,y);if(i<0)return null;const R=L.rooms[i];for(const [name,d] of Object.entries(L.delovi||{}))if(d.room===R.id&&x>=(d.x0??-1e9)&&x<(d.x1??1e9))return name;return R.h>1?`${R.id}@${Math.floor((y-40)/CH)}`:R.id;}
 export function gbRoomAt(L,x,y){return L.rooms.findIndex(R=>x>=R.x0&&x<R.x1&&y-40>=R.y0&&y-40<R.y1);}
 // which nodes can be reached holding these powers; 'posle:<node>' is a gate that opens once that node has been reached
 export function gbReach(L,moci,start=L.start){const seen=new Set([start]);let grown=true;
@@ -60,6 +61,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
   greda:(q,o)=>{traps.push(Object.assign(greda(q,o),{t:0}));},
   foe,open:(x,y0,y1)=>opens.push([x,y0,y1]),hole:(rid,dx0,dx1,lip)=>holes.push([rid,dx0,dx1,lip]),
   pit:(name,x0,x1,y)=>{const z={name,x0,x1,y};pits.push(z);named[name]=z;return z;},
+  gap:(name,x0,x1,y)=>{named[name]={name,x0,x1,y};},
   shrine:(moc,x,y)=>S.shrines.push({moc,x,y,taken:false}),
   ckpt:(x,y)=>S.ckpts.push({id:S.ckpts.length+1,x,y}),
   heart:(x,y)=>S.hearts.push({x,y,taken:false}),
@@ -113,8 +115,8 @@ export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play'
  for(const c of S.cuda)if(!c.taken&&near(c,50)){c.taken=true;G.sfx('magic_big',{gain:.8});G.burst(c.x,c.y-50,'#ffe39a',40,220);G.label(`ČUDO · ${c.name.toUpperCase()}`,c.x,c.y-160,'#ffe39a');G.toast(`Čudo: ${c.name}`,2.6);}
  // a checkpoint fills the health each time Marko steps on it again, and Ravijojla brings him back to the last one
  for(const c of S.ckpts){if(!near(c,40,8)||!p.grounded){if(c.on&&Math.abs(p.x-c.x)>140)c.on=false;continue;}if(c.on)continue;c.on=true;S.ckpt=c.id;G.ckpt={x:c.x,y:c.y};p.hp=p.maxHp;G.sfx('ring',{gain:.5});G.label('ČEKPOINT',c.x,c.y-170,'#a6ffe1');}
- // a fall into an abyss: the game's own pit rule takes it from here (−20 health, back on firm ground)
- for(const z of S.pits)if(p.x>z.x0&&p.x<z.x1&&p.y>z.y){p.y=W.pitY+10;break;}
+ // a fall into an abyss (the band just under its hole, which no jump from below reaches): the game's own pit rule takes it from here
+ for(const z of S.pits)if(p.x>z.x0&&p.x<z.x1&&p.y>z.y&&p.y<z.y+90){p.y=W.pitY+10;break;}
  // switches: each opens its door or trapdoor for GB_DOOR seconds; once Marko is through, it stays open
  for(const D of S.doors){const q=D.q,sw=D.sw,on=p.grounded&&Math.abs(p.x-sw.x)<sw.w/2&&Math.abs(p.y-sw.y)<4;
   if(on&&!D.down&&!D.solved){D.open=GB_DOOR;G.sfx('clang',{gain:.6,rate:1.4});G.label(D.floor?'POKLOPAC!':'VRATA!',q.x+q.w/2,q.y-(D.floor?40:-60),'#8fffe0');}D.down=on;

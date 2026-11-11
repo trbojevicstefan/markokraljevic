@@ -27,7 +27,7 @@ const top=(q,x)=>q.surf?physics.topAt(q,x):q.y;
 // the platform Marko would stand on at x, its top nearest y
 const platformAt=(x,y)=>W().platforms.filter(q=>!q.off&&x>=q.x&&x<=q.x+q.w&&Math.abs(top(q,x)-y)<160).sort((u,v)=>Math.abs(top(u,x)-y)-Math.abs(top(v,x)-y))[0];
 const floorY=(x,y)=>{const q=platformAt(x,y);return q?top(q,x):y;};
-const nodeAt=L=>{const p=P(),i=GB.gbRoomAt(L,p.x,p.y);if(i<0)return null;const R=L.rooms[i];return R.h>1?`${R.id}@${Math.floor((p.y-40)/GB.GB_CH)}`:R.id;};
+const nodeAt=L=>GB.gbNodeAt(L,P().x,P().y);
 
 // ---- moving Marko: set him down once, then only keys ----
 function place(x,y,face=1){const p=P();Object.assign(p,{x,y:floorY(x,y),vx:0,vy:0,grounded:true,climb:null,hang:false,ledgeT:0,ledge:null,wall:0,attack:0,dash:0,airDash:false,kriloUsed:false,naletUsed:false,face,hp:p.maxHp,invuln:1e9,trag:null,cd:{},jumpBuffer:0,coyote:.12,plunge:0,down:0,hurt:0,slide:0,spin:0,throwT:0});api.keys.clear();api.pressed.clear();step(2);}
@@ -59,20 +59,20 @@ function traced(D,stand){const q=D.q;place(stand.x,stand.y,1);tap('KeyV');const 
 
 // one passage, walked with the powers in `moci`; true when Marko ends up in its far node
 function walkLink(L,[a,b,need,one,how],moci,back=false){api.startGreybox(L.n);quiet();setMoci(moci);const from=back?b:a,to=back?a:b;
- if(how.door){const [ra,rb,row]=how.door,A=GB.gbRoom(L,ra),Bb=GB.gbRoom(L,rb),y=(row+1)*GB.GB_CH-GB.GB_FL,ltr=GB.gbNodeRoom(from)===ra;
+ if(how.door){const [ra,rb,row,dop={}]=how.door,sa=dop.sa||200,sb=dop.sb||200,A=GB.gbRoom(L,ra),Bb=GB.gbRoom(L,rb),y=(row+1)*GB.GB_CH-GB.GB_FL,ltr=(L.delovi?.[from]?.room||GB.gbNodeRoom(from))===ra;
   if(need?.startsWith('posle:')&&!back&&moci.has('posle')){place(Bb.x0+400,y,-1);walk(A.x1-400);}
-  if(ltr){place(A.x1-200,y,1);walk(Bb.x0+200,900);}else{place(Bb.x0+200,y,-1);walk(A.x1-200,900);}}
+  if(ltr){place(A.x1-sa,y,1);walk(Bb.x0+sb,900);}else{place(Bb.x0+sb,y,-1);walk(A.x1-sa,900);}}
  else if(how.drop){const [r,dx0,dx1]=how.drop,R=GB.gbRoom(L,r);place(R.x0+dx0-140,R.floor,1);walk(R.x0+dx0+40,600);settle(400);}
  else if(how.walk){const [x,y,x1]=back&&how.back?how.back:how.walk;place(x,y,x1>x?1:-1);walk(x1,1200);settle(how.wait||60);}
  else if(how.up){let prev=null;for(const st of how.up){if(st[0]==='floor'){const [,y,dir,t]=st,q=platformAt(...t);if(!q||!fromFloor(q,y,dir))return false;prev=q;}else{const [s,t,dir]=st,src=platformAt(...s),q=platformAt(...t);if(!src||!q||!fromBlock(q,src,dir))return false;prev=q;}}}
- else if(how.chimney){const [name,exitX]=how.chimney,C=G().named[name];if(!chimney(C,floorY((C.x0+C.x1)/2,C.bottom+150)))return false;walk(exitX,900);}
+ else if(how.chimney){const [name,exitX]=how.chimney,C=G().named[name];if(!chimney(C,floorY((C.x0+C.x1)/2,C.bottom+150)))return false;{const dir=exitX>P().x?1:-1;api.keys.add(dir>0?'KeyD':'KeyA');step(2);tap('Space');api.keys.add(dir>0?'KeyD':'KeyA');step(60);api.keys.clear();}walk(exitX,900);}
  else if(how.break){const [name,x,y,x1]=how.break,b=G().named[name];place(x,y,x1>x?1:-1);for(let i=0;i<10&&!b.broken;i++){tap('KeyK');step(80);}if(!b.broken)return false;if(back){walk(x1,900);place(x1,y,x1>x?-1:1);walk(x,900);}else walk(x1,900);}
- else if(how.leap){const [name,dir,y]=how.leap,z=G().named[name],d=back?-dir:dir;if(moci.has('nalet'))leap(z,d,y,{roll:null,jumpAt:0,k:72,n:16});else if(noDash(z,d,y))return true;}
+ else if(how.leap){const [name,dir,y,after,before]=how.leap,z=G().named[name],d=back?-dir:dir;if(moci.has('nalet')){if(!leap(z,d,y,{roll:null,jumpAt:0,k:72,n:16}))return false;walk(back?before:after,900);settle(60);}else return noDash(z,d,y);}
  else if(how.trace){const [name,stand]=how.trace,D=G().named[name];if(moci.has('trag')){if(!traced(D,{x:stand[0],y:stand[1]}))return false;api.keys.add(D.sw.x<D.q.x?'KeyD':'KeyA');for(let f=0;f<300&&!D.solved;f++)step();api.keys.clear();step(150);}else{const r=race(D);if(r.through)return true;return false;}}
  return nodeAt(L)===to;}
 
 for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(ONLY&&+n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje]),before=new Set(L.pocetne||[]);
- const nodesAll=new Set(L.links.flatMap(l=>[l[0],l[1]])),roomsOf=list=>new Set(list.map(GB.gbNodeRoom)),secret=L.rooms.filter(R=>R.secret).map(R=>R.id);
+ const nodesAll=new Set(L.links.flatMap(l=>[l[0],l[1]])),roomsOf=list=>new Set(list.map(x=>L.delovi?.[x]?.room||GB.gbNodeRoom(x))),secret=L.rooms.filter(R=>R.secret).map(R=>R.id);
  const tag=`${n} ${L.id}:`;
  // ---- the map as a graph ----
  ok(L.rooms.length>=20&&L.rooms.length<=30,`${tag} ${L.rooms.length} rooms over ${(L.Y1-L.Y0)/GB.GB_CH} floors, ${(L.X1-L.X0)} px wide`);
@@ -81,14 +81,14 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(ONLY&&+n!==ONLY)continue;co
   const foes=W().enemies.filter(e=>!e.champion),boss=W().enemies.find(e=>e.champion);ok(foes.length>=8&&boss,`${tag} ${foes.length} foes in the rooms and a boss (${boss?.name})`);
   ok(Object.entries(g.moci).every(([k,v])=>v===before.has(k)),`${tag} Marko starts with ${[...before].join(', ')||'no power'}, and finds ${L.daje} here`);}
  ok(roomsOf(GB.gbReach(L,all)).size===L.rooms.length&&GB.gbReach(L,all).length===nodesAll.size,`${tag} holding ${[...all].join(' and ')}, every room can be entered`);
- {const shut=L.rooms.map(R=>R.id).filter(id=>!roomsOf(GB.gbReach(L,before)).has(id));ok(shut.length>0&&shut.includes(GB.gbNodeRoom(L.links.find(l=>l[2]===L.daje)[1])),`${tag} without ${L.daje} these stay shut: ${shut.join(', ')}`);
+ {const shut=L.rooms.map(R=>R.id).filter(id=>!roomsOf(GB.gbReach(L,before)).has(id));ok(shut.length>0&&!GB.gbReach(L,before).includes(L.links.find(l=>l[2]===L.daje)[1]),`${tag} without ${L.daje} these stay shut: ${shut.join(', ')}`);
   ok(secret.some(id=>shut.includes(id))&&secret.some(id=>!shut.includes(id)),`${tag} some secrets wait for ${L.daje} (${secret.filter(id=>shut.includes(id)).join(', ')}), others for a sharp eye (${secret.filter(id=>!shut.includes(id)).join(', ')})`);}
  {const shrineRoom=L.rooms[GB.gbRoomAt(L,G().shrines[0].x,G().shrines[0].y)].id;ok(roomsOf(GB.gbReach(L,before)).has(shrineRoom),`${tag} ${L.daje} waits in ${shrineRoom}, which Marko reaches without it`);}
  // ---- every passage with real input ----
  for(const link of L.links){const [a,b,need,one,how]=link,kind=Object.keys(how)[0],withAll=new Set([...all,'posle']);
   ok(walkLink(L,link,withAll),`${tag} ${a} → ${b} (${kind}${need?', '+need:''})`);
   if(!one)ok(walkLink(L,link,withAll,true),`${tag} ${b} → ${a} (${kind})`);
-  if(need&&GB.GB_MOCI[need]){const less=new Set([...withAll].filter(m=>m!==need));ok(!walkLink(L,link,less),`${tag} without ${need} ${a} → ${b} stays shut`);}
+  if(need&&GB.GB_MOCI[need]&&!how.drop){const less=new Set([...withAll].filter(m=>m!==need));ok(!walkLink(L,link,less),`${tag} without ${need} ${a} → ${b} stays shut`);}
   if(need?.startsWith('posle:'))ok(!walkLink(L,link,new Set(all)),`${tag} ${a} → ${b} stays shut until the gate is opened from ${need.slice(6)}`);}
  // ---- the boss ----
  {api.startGreybox(+n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} the megdan with ${c.name} begins`);

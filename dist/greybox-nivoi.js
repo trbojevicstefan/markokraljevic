@@ -104,5 +104,90 @@ export const GB_NIVOI={
   ['bedem','zvonik','krilo',true,{up:[['floor',-130,-1,[7940,-495]],[[7940,-495],[7450,-850],-1]]}],
   ['zvonik','zvonara',null,false,{break:['zid-zvonara',8250,-850,8700]}],
   ['tamnica','riznica',null,false,{break:['zid-riznica',8250,2030,8900]}],
-  ['podrum','vinski',null,false,{walk:[2550,1310,1900],back:[1900,1310,2550]}]]}
+  ['podrum','vinski',null,false,{walk:[2550,1310,1900],back:[1900,1310,2550]}]]},
+// ---------------------------------------------------------------------------------------------------------------------
+// 2 · Urvina planina: cliffs over a waterfall, the eagle's nest high on the rock, Ravijojla's forest with its spring, and
+// caves deep inside the mountain. Marko comes with the falcon's wing and finds the air dash (Juriš u vazduhu) in the eagle's
+// nest; the gorge to the forest, the cave's abyss and the eagle's rock cannot be crossed without it.
+2:{id:'urvina',ime:'Urvina planina',biom:'urvina',daje:'nalet',pocetne:['krilo'],cilj:'Nađi juriš u vazduhu i pređi klanac do Vilinog izvora',
+ start:'zaseok',spawnDx:300,
+ uvod:'Urvina planina. Marko ima Sokolovo krilo. Juriš u vazduhu čeka u Orlovom gnezdu, visoko na litici iznad vodopada; bez njega se klanac ka Ravijojlinoj šumi ne prelazi.',
+ sobe:[
+  ['zaseok','Pastirski zaseok',-1,0,1,1],
+  ['podnozje','Podnožje Urvine',0,0,2,1],
+  ['osmatracnica','Osmatračnica',0,-1,2,1],
+  ['staza','Planinska staza',2,0,2,1],
+  ['kamenolom','Stari kamenolom',2,-1,2,1],
+  ['vodopad','Vodopad',4,-1,1,2,{set:'reka'}],
+  ['klanac','Klanac',5,0,2,1],
+  ['litica','Litica',5,-1,2,1],
+  ['stene','Stenovita greda',5,-2,2,1],
+  ['gnezdo','Orlovo gnezdo',7,-2,1,1],
+  ['orlova','Orlova stena',8,-2,1,1,{secret:true,lore:'Orlova stena. Orao je ovde savio gnezdo kad mu je Marko spasao orliće iz požara; pero je ostavio kao zalog.'}],
+  ['jele','Jelova padina',7,-1,2,1,{set:'suma'}],
+  ['suma','Ravijojlina šuma',7,0,2,1,{set:'suma'}],
+  ['izvor','Vilin izvor',9,0,1,1,{set:'suma'}],
+  ['skriveni','Skriveni izvor',9,-1,1,1,{secret:true,set:'suma',lore:'Skriveni izvor. Ravijojla se ovde kupa kad niko ne gleda; ko popije te vode, rane mu brže zaceljuju.'}],
+  ['pecina','Pećina',2,1,2,1,{interior:true}],
+  ['kristali','Kristalna dvorana',1,1,1,1,{secret:true,interior:true,lore:'Kristalna dvorana. Čobani kažu da je kristale posadila vila, da joj noću osvetle put kroz planinu.'}],
+  ['ponor','Podzemni ponor',4,1,2,1,{interior:true}],
+  ['jezero','Podzemno jezero',6,1,1,1,{interior:true}],
+  ['dubina','Duboka pećina',2,2,2,1,{interior:true}],
+  ['koren','Korenje',4,2,1,1,{interior:true}],
+  ['jazbina','Vučja jazbina',5,2,1,1,{secret:true,interior:true,lore:'Vučja jazbina. Vukovi su je ostavili kad je Marko prošao planinom; na kamenu je ostalo samo vilino pero.'}]],
+ delovi:{'klanac>':{room:'klanac',x0:7300},'gnezdo>':{room:'gnezdo',x0:9500},'ponor>':{room:'ponor',x0:6800},'litica>':{room:'litica',x0:8100}},
+ vrata:[['zaseok','podnozje',0],['podnozje','staza',0],['staza','vodopad',0],['vodopad','klanac',0],['klanac','suma',0,{na:'klanac>',sa:100}],['suma','izvor',0,{oneway:true}],
+  ['kamenolom','vodopad',-1],['vodopad','litica',-1],['litica','jele',-1,{na:'litica>'}],['stene','gnezdo',-2],['gnezdo','orlova',-2,{na:'gnezdo>',sa:60}],
+  ['pecina','ponor',1],['ponor','jezero',1,{na:'ponor>'}],['dubina','koren',2]],
+ rupe:[['osmatracnica',1600,1900,{to:'podnozje'}],['staza',800,1000,{to:'pecina'}],['stene',300,600,{to:'litica'}],['gnezdo',600,1100,{to:'jele',lip:'R',need:'nalet'}],['litica',1600,2100,{lip:'R'}],['jele',800,1100,{to:'suma'}],
+  ['klanac',800,1300,{lip:'R'}],['klanac',1950,2250,{to:'jezero',from:'klanac>'}],['kamenolom',800,1200],['stene',1300,1700],['pecina',1600,1830],['ponor',1500,2000,{lip:'R'}]],
+ brda:{podnozje:[[300,800,60]],staza:[[200,600,-40],[1400,2000,90]],suma:[[150,600,50],[1400,2000,-60]],zaseok:[[500,900,40]]},
+ build(B){const{X}=B;
+  // Pastirski zaseok and Podnožje: the start, a janičar and a dog; the ledge up to the Osmatračnica
+  B.ckpt(X('zaseok',300),F0);B.foe('sword',X('podnozje',1000),F0);B.foe('pas',X('podnozje',2150),F0);B.ledge(1790,F0-365,100);B.prop('drvo',X('zaseok',950),F0,320);
+  // Osmatračnica: two archers on the lookout, a piece of heart
+  B.foe('archer',800,FM1);B.foe('archer',1300,FM1);B.heart(400,FM1);
+  // Planinska staza: a janičar in the hollow, an archer on a rock; a hole down into the cave
+  B.foe('sword',X('staza',450),F0-20);B.block(X('staza',1100),F0-120,200,120);B.foe('archer',X('staza',1200),F0-120);B.prop('stena',X('staza',1300),F0,220);
+  // Stari kamenolom: planks that give way over a pit, a janičar, an archer on a block
+  B.crumble(X('kamenolom',800),FM1,200);B.crumble(X('kamenolom',1000),FM1,200);B.pit('pit-kamenolom',X('kamenolom',800),X('kamenolom',1200),FM1+150);
+  B.foe('sword',X('kamenolom',300),FM1);B.block(X('kamenolom',1900),FM1-120,200,120);B.foe('archer',X('kamenolom',2000),FM1-120);
+  // Vodopad: a chimney beside the falling water, from the path to the cliffs
+  B.chimney('ch-vodopad',5300,FM1,F0-150);B.block(5050,FM1,250,40);B.block(5530,FM1,220,40);B.prop('vodopad',5900,F0,520);
+  // Klanac: the abyss only the dash crosses, the hole down to the underground lake on its far side
+  B.pit('pit-klanac',6800,7300,F0+150);B.foe('akindzija',X('klanac',300),F0);B.ledge(8140,F1-365,100);
+  // Litica and Stenovita greda: archers on the rocks, the ledge up through the Stene's floor; stakes and crumbling rock above
+  B.block(6250,FM1-120,100,120);B.block(6750,FM1-120,100,120);B.foe('archer',6300,FM1-120);B.foe('archer',6800,FM1-120);B.foe('sword',7200,FM1);B.ledge(6490,FM1-365,100);B.pit('pit-litica',7600,8100,FM1+150);
+  B.spikes(6900,FM2,200);B.crumble(7300,FM2,200);B.crumble(7500,FM2,200);B.pit('pit-stene',7300,7700,FM2+150);B.foe('oklopnik',7950,FM2);
+  // Orlovo gnezdo: the checkpoint, the air dash, the eagle's rock across the gap (a miss drops Marko onto the Jelova padina)
+  B.ckpt(8500,FM2);B.shrine('nalet',8700,FM2);B.gap('gap-gnezdo',9000,9500,FM2);B.cudo(10200,FM2,'Orlovo pero');
+  // Jelova padina and Ravijojlina šuma: the ledge up from the forest, a fake wall to the hidden spring
+  B.ledge(9390,F0-365,100);B.foe('sword',X('jele',600),FM1);B.foe('archer',X('jele',1700),FM1);B.open(10800,FM1-200,FM1);B.fake('fake-skriveni',10780,FM1-200,60,200);B.heart(11400,FM1);
+  B.ckpt(X('suma',1200),F0);B.foe('sword',X('suma',400),F0-80);B.foe('palikuca',X('suma',1700),F0-20);B.prop('bukva',X('suma',700),F0,340);B.prop('paprat',X('suma',1100),F0,90);
+  // Vilin izvor: Lovac-aga, who calls his dogs
+  {const a0=X('izvor',40),a1=X('izvor',1160);B.boss('sword',Math.round(a0+(a1-a0)*.68),F0,{hp:700,maxHp:700,name:'Lovac-aga',kit:'lovac',look:'lovac-aga'},{x0:a0,x1:a1,y:F0},[[(a1-a0)*.35,150,150],[(a1-a0)*.65,150,150]]);}
+  // Pećina, Kristalna dvorana: dogs and stakes, the chimney down to the deep cave, a cracked wall to the crystals
+  B.foe('pas',X('pecina',500),F1);B.foe('pas',X('pecina',900),F1);B.spikes(X('pecina',1100),F1,150);B.chimney('ch-dubina',4000,F1,F2-150);
+  B.open(2400,F1-205,F1);B.breakable('zid-kristali',2400,F1);B.heart(X('kristali',600),F1);B.prop('kristal',X('kristali',300),F1,120);B.prop('kristal',X('kristali',900),F1,150);
+  // Podzemni ponor and jezero: a shieldman, the cave's abyss (the dash), the lake and the ledge up into the Klanac
+  B.foe('shield',X('ponor',400),F1);B.pit('pit-ponor',6300,6800,F1+150);B.heart(7500,F1);
+  // Duboka pećina, Korenje, Vučja jazbina: a janičar and a shieldman, stakes, a fake wall among the roots
+  B.foe('sword',X('dubina',600),F2);B.foe('shield',X('dubina',1300),F2);B.spikes(X('dubina',300),F2,150);B.foe('sword',X('koren',500),F2);
+  B.open(6000,F2-200,F2);B.fake('fake-jazbina',5980,F2-200,60,200);B.cudo(6600,F2,'Vilino pero');},
+ veze:[
+  ['podnozje','osmatracnica',null,true,{up:[['floor',590,1,[1840,225]],[[1840,225],[1400,-130],-1]]}],
+  ['vodopad@0','vodopad@-1',null,true,{chimney:['ch-vodopad',5650]}],
+  ['vodopad@-1','vodopad@0',null,true,{walk:[5650,-130,5415],wait:150}],
+  ['litica','stene',null,true,{up:[['floor',-130,1,[6540,-495]],[[6540,-495],[6150,-850],-1]]}],
+  ['suma','jele',null,true,{up:[['floor',590,1,[9440,225]],[[9440,225],[9000,-130],-1]]}],
+  ['jezero','klanac>',null,true,{up:[['floor',1310,1,[8190,945]],[[8190,945],[7600,590],-1]]}],
+  ['dubina','pecina',null,true,{chimney:['ch-dubina',3800]}],
+  ['pecina','dubina',null,true,{walk:[3900,1310,4115],wait:300}],
+  ['klanac','klanac>','nalet',false,{leap:['pit-klanac',1,590,7500,6600]}],
+  ['litica','litica>','nalet',false,{leap:['pit-litica',1,-130,8300,7400]}],
+  ['gnezdo','gnezdo>','nalet',false,{leap:['gap-gnezdo',1,-850,9550,8800]}],
+  ['ponor','ponor>','nalet',false,{leap:['pit-ponor',1,1310,7000,6100]}],
+  ['jele','skriveni',null,false,{walk:[10600,-130,11200],back:[11200,-130,10600]}],
+  ['koren','jazbina',null,false,{walk:[5800,2030,6400],back:[6400,2030,5800]}],
+  ['pecina','kristali',null,false,{break:['zid-kristali',2550,1310,1900]}]]}
 };
