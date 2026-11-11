@@ -6,9 +6,10 @@ drawn step gets three in-betweens. A pair whose two warped halves disagree too m
 change the flow cannot follow), or whose in-between comes out see-through (a double image), gets none: the game then simply
 holds the drawn frame there, as before.
 
-The pairs are the neighbours (0-1, 1-2, ...; and the last back to the first for a looping clip) plus the steps of the idle
-sequences the game plays out of order (FOE_IDLE, IDLE_SEQ and SHOULDER_SEQ, read from dist/game.js). A pair works both ways:
-the game reads it backwards when a sequence steps down.
+Every clip of the rig gets them, except the skeleton variants (SKIP). The pairs are the neighbours (0-1, 1-2, ...; and the last
+back to the first for a looping clip) plus the steps of the idle sequences the game plays out of order (FOE_IDLE, IDLE_SEQ and
+SHOULDER_SEQ, read from dist/game.js; a champion's idle borrows the soldiers' sequences). A pair works both ways: the game reads
+it backwards when a sequence steps down.
 
 The two frames are aligned on their soles first, the way the game places them, so the in-between is where the eye expects it.
 Each in-between is cut to the figure and stored at about the size the game ever draws it (k <= 1), so the sheets stay small:
@@ -66,13 +67,17 @@ FOE_ONCE = ['attack', 'shoot', 'shoot-down', 'hurt', 'death', 'jump', 'launch', 
 MUSA_LOOP = ['musa-run', 'musa-idle', 'musa-mounted']
 MUSA_ONCE = ['musa-attack', 'musa-hurt', 'musa-death', 'musa-mounted-strike', 'musa-sword', 'musa-grab', 'musa-throw-up', 'musa-stomp',
              'musa-roar', 'musa-block']
-LOOPS = MARKO_LOOP + [f + '-' + c for f in FOES for c in FOE_LOOP] + MUSA_LOOP
+MAIN_LOOPS = MARKO_LOOP + [f + '-' + c for f in FOES for c in FOE_LOOP] + MUSA_LOOP
 ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
-# Decided against, on purpose:
-#   marko-sablja-vihor: the game shifts every frame sideways (VIHOR_DX) to keep the boots still, an in-between cannot follow that
-#   *-spava, *-budi: sleeping and waking are seen once, and waking rescales per frame (BUDI_FIX)
-#   the named champions (aga, bajraktar, čauš, ...), travellers, birds, fire: not the main cast; a later pass can add them
-CLIPS = [c for c in LOOPS + ONCE if c in RIG and len(RIG[c]['frames']) > 1]
+# Everything else the rig has: champions, travellers, the fairy, birds, fire, grapples, sleeping and waking, finishing blows.
+# Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
+# at its last frame never asks for it).
+SKIP = {'kosturi'}   # not an animation: each frame is another skeleton, picked by the kind of soldier
+EXTRA = [c for c in RIG if c not in MAIN_LOOPS and c not in ONCE and c not in SKIP and not c.startswith('cast/')]
+LOOPS = MAIN_LOOPS + EXTRA
+# a champion's look borrows the idle sequence of the soldier it stands for
+LOOKS = ['hasan-aga', 'beg', 'ognjeni-aga', 'bajraktar', 'janicarski-aga', 'basa', 'lovac-aga', 'kopljanik-basa', 'mladi-turcin', 'caus']
+CLIPS = [c for c in MAIN_LOOPS + ONCE + EXTRA if c in RIG and len(RIG[c]['frames']) > 1]
 
 
 def sequences():
@@ -87,6 +92,9 @@ def sequences():
     if m: out['marko-idle'] = [int(x) for x in m.group(1).split(',')]
     m = re.search(r'SHOULDER_SEQ=\[([\d,]+)\]', src)
     if m: out['marko-idle-3'] = [int(x) for x in m.group(1).split(',')]
+    foe = [v for k, v in out.items() if k[:-5] in FOES]
+    for look in LOOKS:
+        out[look + '-idle'] = [x for q in foe for x in q + [-1]]   # -1 breaks the chain between sequences
     return out
 
 
@@ -98,7 +106,7 @@ def pairs_of(name, seqs):
     if s:
         for k in range(len(s)):
             a, b = s[k], s[(k + 1) % len(s)]
-            if a != b and a < n and b < n: ps.add((min(a, b), max(a, b)))
+            if a != b and 0 <= a < n and 0 <= b < n: ps.add((min(a, b), max(a, b)))
     return sorted(ps)
 
 

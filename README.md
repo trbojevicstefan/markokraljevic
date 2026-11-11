@@ -41,15 +41,16 @@ Sve ovo menja samo crtanje. Logika igre i dalje ide u koracima od 1/120 s, kao i
   - trzaje u poslednjih 10 s;
   - grafičku karticu, nivo kvaliteta i rezoluciju;
   - međukadrove: koliko sprite-ova je trenutno međukadar, koliko je listova učitano i koliko MB zauzimaju.
-- **Međukadrovi i nivo kvaliteta.** Listovi međukadrova se ne čekaju pri pokretanju. Učitavaju se tek kad ih neki pokret prvi put zatraži; dotle se crta nacrtani kadar. Na nivou 2 igra koristi samo međukadar na pola puta, pa učitava trećinu slika.
+- **Međukadrovi i nivo kvaliteta.** Listovi međukadrova se ne čekaju pri pokretanju. Učitavaju se tek kad ih neki pokret prvi put zatraži; dotle se crta nacrtani kadar. Na nivou 2 igra koristi samo međukadar na pola puta, pa učitava trećinu slika. List koji se 45 s ne koristi pušta se iz memorije, a preko 200 MB (64 MB na nivou 2) prvo se puštaju najduže nekorišćeni.
 
 ## Glatke animacije
 
 Nacrtanih kadrova je malo (većinom 6 po klipu), pa se između njih crtaju izračunati međukadrovi i jeftin proceduralni sloj. Sve je samo crtanje: tajming udaraca i logika se ne menjaju. `?anim=0` u adresi isključuje sve ovo radi poređenja (samo nacrtani kadrovi).
 
-- **Tri međukadra po koraku.** `python smooth-anims.py` optičkim tokom (OpenCV DIS) računa kadrove na 1/4, 1/2 i 3/4 puta između svaka dva kadra koje igra pokazuje jedan za drugim. To obuhvata i sekvence mirovanja koje skaču preko kadrova (`FOE_IDLE`, `IDLE_SEQ`). Važi za sve Markove klipove (trk, hod, udarci, kombo, skok, kolut, blok, vino, pogodak, smrt, Šarac, sablja) i za glavne neprijatelje i Musu: obrađeno je 179 klipova, a 157 ih koristi međukadrove.
+- **Tri međukadra po koraku.** `python smooth-anims.py` optičkim tokom (OpenCV DIS) računa kadrove na 1/4, 1/2 i 3/4 puta između svaka dva kadra koje igra pokazuje jedan za drugim. To obuhvata i sekvence mirovanja koje skaču preko kadrova (`FOE_IDLE`, `IDLE_SEQ`). Važi za sve animacije u igri: Marka (trk, hod, udarci, kombo, skok, kolut, blok, vino, pogodak, smrt, Šarac, sablja), vojnike, Musu, šampione, putnike, vilu, ptice, vatru i koštac. Obrađeno je 319 klipova, a 291 ih koristi međukadrove; lica šampiona dobijaju i parove iz sekvenci mirovanja vojnika.
   - Par koji tok ne prati (ud prelazi preko tela, preveliki zamah) ili koji bi ispao providan (dupla slika) ne dobija međukadrove. Tu igra drži nacrtani kadar.
-  - Svesno bez međukadrova: Markov vihor sa sabljom (svaki kadar se pomera ustranu), spavanje i buđenje, imenovani šampioni, putnici, ptice i vatra.
+  - Bez međukadrova je samo list kostura (`kosturi`: svaki kadar je drugi kostur, a ne pokret) i 28 klipova u kojima tok ne prati ni jedan korak.
+  - Gde igra pomera ili uvećava svaki kadar posebno (vihor sa sabljom, spavanje i buđenje), pomeraj i veličina idu zajedno sa međukadrom.
   - Posle novog izvoza listova pusti skriptu ponovo; `python smooth-anims.py --report` daje tabelu, a `--sheet <klip> <izlaz.jpg>` sliku za oko.
 - **Tempo.** Poza zna koliko je daleko do sledećeg kadra, pa se međukadar bira tačno, bez kašnjenja. Kod udarca priprema i kontakt drže celo svoje vreme, bez međukadra; međukadrovi su samo u zamahu ka pripremi i u oporavku. Kadrovi koje bira stanje (skok po brzini i sl.) prolaze kroz svoje međukadrove za najviše 70 ms.
 - **Proceduralni sloj:**

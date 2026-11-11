@@ -1,10 +1,10 @@
 # Glatke animacije: izveštaj
 
-**Grana:** `claude/glatke-animacije-590652` (od `claude/lost-crown-pokreti-218378`). Nije push-ovano niti spojeno u `main`.
+**Grana:** `claude/glatke-animacije-590652`, spojena u `main` (sa Lost Crown pokretima na kojima je zasnovana).
 
 ## Ukratko
 
-- **Tri međukadra po koraku** (1/4, 1/2, 3/4 puta) umesto jednog. Obrađeno je 179 klipova, a 157 ih u igri koristi međukadrove: svi Markovi (trk, hod, kombo, udarci, skok, kolut, blok, vino, pogodak, smrt, Šarac, sablja), devet vrsta vojnika i Musa. Pre ih je imalo 11 klipova (samo trk i hod), sa po jednim međukadrom.
+- **Tri međukadra po koraku** (1/4, 1/2, 3/4 puta) za sve animacije u igri: Marko, vojnici, Musa, šampioni, putnici, vila, ptice, vatra, koštac. Obrađeno je 319 klipova, a 291 ih koristi međukadrove. Pre je samo 11 klipova (trk i hod) imalo po jedan međukadar.
 - Na slikama nema duplih slika ni razmazanih udova. Gde tok ne prati ud (veliki zamah, ud preko tela), par ne dobija međukadar i igra drži nacrtani kadar. Gde se ud izgubi usred koraka, poza se promeni jednom, bez providnosti.
 - **Udarac ostaje oštar.** Priprema i kontakt drže celo svoje vreme, bez međukadra. Međukadrovi su samo u zamahu ka pripremi i u oporavku. Hitbox i tajming udarca nisu dirani (menjano je samo crtanje).
 - **Proceduralni sloj:**
@@ -14,7 +14,7 @@
   - trag topuza po luku nacrtanog zamaha, posebno za svaki udarac.
 
   „Smanjeno podrhtavanje i efekti“ gasi istezanje, sabijanje, nagib i pretapanje; trag ostaje samo kao bleda traka.
-- **Performanse:** FPS i vreme rada po kadru su isti kao pre. Listovi se više ne učitavaju pri pokretanju igre, nego kad ih pokret prvi put zatraži. Na nivou kvaliteta 2 učitavaju se samo međukadrovi na pola puta. List koji se 45 s ne koristi pušta se iz memorije.
+- **Performanse:** FPS i vreme rada po kadru su isti kao pre. Listovi se ne učitavaju pri pokretanju, nego kad ih pokret prvi put zatraži. Na nivou kvaliteta 2 učitavaju se samo međukadrovi na pola puta. List koji se 45 s ne koristi pušta se iz memorije, a preko 200 MB (64 MB na nivou 2) prvo se puštaju najduže nekorišćeni.
 - `?anim=0` u adresi isključuje sve novo (samo nacrtani kadrovi), radi poređenja u istoj verziji.
 
 ## Šta da pogledaš
@@ -24,14 +24,19 @@
    - `kombo.webp` i `kombo-sporo.webp` (J J J: priprema i kontakt ostaju isti, oporavak je tečan, trag topuza pre kontakta);
    - `skok.webp` (istezanje, pretapanje rise → pad);
    - `neprijatelj.webp` (sabljaš u prvom pohodu trči i zamahuje).
-2. **U igri:** trk, hod, kombo J J J, teški udarac K, skok i doskok sa visine, kolut, vino. Na neprijateljima pogledaj mirovanje (ranije 5 kadrova/s, sada do 20 slika/s), trk i zamah.
+2. **U igri:**
+   - Marko: trk, hod, kombo J J J, teški udarac K, skok i doskok sa visine, kolut, vino;
+   - vojnici i šampioni: mirovanje (ranije 5 kadrova/s, sada do 20 slika/s), trk i zamah;
+   - putnici, guslar, kovač, vila, orao i vatra: sada idu tečno.
 3. **Poređenje u istoj igri:** dodaj `?anim=0` u adresu, pa ukloni.
 4. **Merač F9 / `?fps`:** novi red `in-betweens` pokazuje koliko sprite-ova je međukadar i koliko MB listova je učitano.
 5. **Podešavanja:** uključi „Smanjeno podrhtavanje i efekti“; istezanje, nagib i pretapanje treba da nestanu.
 
-## Performanse (pre → posle)
+## Performanse
 
-Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 1600×900. U oba slučaja je isti prolaz od 16 s: trk, kombo, skokovi, trk nazad, teški udarac i borba sa najbližim vojnikom. Svaki slučaj je meren dvaput.
+Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 1600×900. U svakom merenju je isti prolaz od 16 s: trk, kombo, skokovi, trk nazad, teški udarac i borba sa najbližim vojnikom.
+
+**Prvo merenje (samo glavni likovi, mašina mirna; stara verzija prema novoj):**
 
 | | nivo 0 („Visok kvalitet“) | nivo 2 („Brže“) |
 |---|---|---|
@@ -43,46 +48,54 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 | listovi međukadrova u memoriji pre | 61 MB (svih 11 odmah pri startu) | 61 MB |
 | listovi međukadrova u memoriji posle (za 16 s igre) | 46 MB (34 lista) | 15–16 MB (18–19 listova, samo pola puta) |
 
-- Headless Chrome na nivou 0 daje ~45 FPS i pre i posle. Kadrovi naizmenično traju 16,7 i 33 ms, što dolazi od samog headless prikaza, a ne od igre. Na pravom ekranu treba da bude 60.
-- Razlike u vremenu rada su u granicama šuma (±0,3 ms).
-- Najgori slučaj, ako se u jednoj sesiji odigra baš svaki pokret: međukadrovi zauzimaju do 403 MB na nivoima 0 i 1, a 131 MB na nivou 2. To je oko 40% samih nacrtanih listova tih klipova. Ali list koji se 45 s ne koristi pušta se, pa se u memoriji drži samo ono što se trenutno igra.
-- Preuzimanje: 316 fajlova, ukupno 25,8 MB (ranije 11 fajlova, 1 MB). Ništa od toga se ne čeka pri pokretanju igre.
+**Konačno merenje (sve animacije; `?anim=0` prema novom, naizmenično, dok je mašinu opterećivala i druga grafika):**
+
+| | nivo 0 | nivo 2 |
+|---|---|---|
+| FPS bez međukadrova (`?anim=0`) | 25,6 / 25,2 | 45,3 / 44,7 |
+| FPS sa međukadrovima | 25,9 / 25,6 | 43,1 / 44,5 |
+| rad po kadru bez → sa | 2,32 / 1,78 → 2,15 / 1,75 ms | 1,45 / 1,25 → 1,47 / 1,47 ms |
+| listovi u memoriji (16 s igre) | 44–45 MB | 15–16 MB |
+
+- Headless Chrome ne daje pun FPS ni bez međukadrova. Na nivou 0 kadrovi naizmenično traju 16,7 i 33 ms, što dolazi od samog headless prikaza, a ne od igre. Bitno je poređenje u istim uslovima.
+- Razlike u FPS i radu su u granicama šuma.
+- Najgori slučaj: ako bi se u roku od 45 s pustilo baš svih 319 klipova, međukadrovi bi zauzeli do 993 MB (nivo 0 i 1), odnosno 320 MB (nivo 2). Zato postoji gornja granica od 200 MB (64 MB na nivou 2) iznad koje se puštaju najduže nekorišćeni listovi.
+- Preuzimanje: 584 fajla, ukupno 61,7 MB (ranije 11 fajlova, 1 MB). Ništa od toga se ne čeka pri pokretanju igre.
 
 ## Kako radi (kratko)
 
 - `smooth-anims.py`:
-  - računa optički tok (OpenCV DIS) za svaki par kadrova koje igra pokazuje jedan za drugim, uključujući sekvence mirovanja koje preskaču kadrove;
+  - računa optički tok (OpenCV DIS) za svaki par kadrova koje igra pokazuje jedan za drugim, uključujući sekvence mirovanja koje preskaču kadrove (lica šampiona dobijaju i sekvence vojnika);
   - kadrove prvo poravna po stopalima, pa ih iskrivi jedan ka drugom za 1/4, 1/2 i 3/4 puta;
   - par odbacuje ako se dve polovine ne slažu (greška > 0,13) ili ako međukadar ispadne providniji od nacrtanih;
   - isečene međukadrove čuva u veličini u kojoj ih igra crta, spakovane u dva lista po klipu: pola puta, i četvrtine.
 - `dist/game.js`:
-  - poza sada nosi `tw`, deo puta do sledećeg kadra, iz istog sata koji već bira kadar, pa nema kašnjenja;
+  - poza nosi `tw`, deo puta do sledećeg kadra, iz istog sata koji već bira kadar, pa nema kašnjenja; brojač koji crta kadar direktno prosleđuje i razlomak;
   - udarac nosi `keyAt`, fazu u kojoj počinje pogodak (ista kao u `attackActive`), da priprema i kontakt ostanu nacrtani;
-  - kadrovi koje bira stanje (skok po brzini) prolaze kroz međukadrove za najviše 70 ms.
+  - kadrovi koje bira stanje (skok po brzini) prolaze kroz međukadrove za najviše 70 ms;
+  - gde igra pomera ili uvećava svaki kadar posebno (vihor sa sabljom, spavanje i buđenje), pomeraj i veličina idu zajedno sa međukadrom.
 - Kvalitet optičkog toka je dovoljan za trk, hod, mirovanje i oporavak. Za veliki zamah nije, ali se tu ionako drži nacrtani kadar. Zato nije preuzet RIFE ni drugi interpolator.
 
 ## Svesno bez međukadrova
 
-- **22 klipa** u kojima tok ne prati ni jedan korak, pa igra drži nacrtane kadrove (vidi napomene u tabeli):
+- **`kosturi`**: nije animacija; svaki kadar je drugi kostur, po vrsti vojnika.
+- **28 klipova** u kojima tok ne prati ni jedan korak, pa igra drži nacrtane kadrove (vidi napomene u tabeli):
   - Marko: `marko-attack`, `marko-charged`, `marko-counter`, `marko-jump`, `marko-roll`, `marko-roll-land`, `marko-death`, `marko-plunge`, `mounted-jump`, dva dokrajčivanja i `marko-sablja-uvis`;
   - vojnici: većina akindžijinih poteza i nekoliko pogodaka i padova;
-  - Musa: `musa-attack`.
-- `marko-sablja-vihor`: svaki kadar se pomera ustranu da čizme stoje, i međukadar to ne može da prati.
-- Spavanje i buđenje, imenovani šampioni (age, bajraktar, čauš…), putnici, ptice, vatra: nisu glavni likovi. Može ih dodati sledeći prolaz (`python smooth-anims.py <klip>`).
+  - ostalo: `musa-attack`, `magija-zrak` i pojedini potezi bega, čauša, bajraktara i janičarske age.
 
 ## Šta nije provereno
 
 - FPS na pravom ekranu i na slabom uređaju (telefon, integrisana grafika). Mereno je samo u headless Chrome-u na jakoj kartici; panel browsera u aplikaciji je bio skriven i usporava crtanje.
-- Igra ljudskom rukom: pokreti su snimljeni skriptom, korak po korak.
-- Šampioni i bosovi osim Muse nemaju međukadrove.
+- Igra ljudskom rukom: pokreti su snimljeni skriptom, korak po korak. Šampioni, putnici i ptice provereni su testom crtanja (svih 15 pohoda bez greške) i pregledom slika međukadrova, ne gledanjem u igri.
 
 ## Testovi
 
-`npm run check && npm test && node animation-tests.mjs && node simulation-test.mjs` (ceo CI iz `pages.yml`) prolazi. `draw-test.mjs` crta 4431 kadar bez greške. U browserskim prolazima nije bilo JavaScript grešaka (pre, posle, „Smanjeno podrhtavanje“, `?anim=0`).
+`npm run check && npm test && node animation-tests.mjs && node simulation-test.mjs` (ceo CI iz `pages.yml`) prolazi. U browserskim prolazima nije bilo JavaScript grešaka (pre, posle, „Smanjeno podrhtavanje“, `?anim=0`, nivo 2).
 
 ## Tabela pre i posle, po klipu
 
-„Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.
+„Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s; „—“ znači da zavisi od scene). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.
 
 | klip | nacrtano | nacrtanih/s | pre: međukadrova | pre: slika po prolazu | posle: međukadrova | posle: slika po prolazu | koraci sa međukadrovima | napomena |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
@@ -265,4 +278,144 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 | musa-stomp | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | musa-roar | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
 | musa-block | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
-| **ukupno (179 klipova)** | **1102** | | **55** | **1172** | **1743** | **2860** | | |
+| orao-flight | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| fairy-cast | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| volovi-plug | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| volovi-beg | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| vila-let | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| vila-carolija | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
+| vila-isceljenje | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| vila-spreda | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| magija-bljesak | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
+| magija-zrak | 8 | — | 0 | 8 | 0 | 8 | 0/8 | tok ne prati pokret: drži nacrtane kadrove |
+| plamen | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| plamen-mali | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
+| eksplozija | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
+| svatovi-zarobljeni | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| svatovi-kolo | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| mladi-turcin-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| mladi-turcin-run | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
+| mladi-turcin-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
+| mladi-turcin-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
+| mladi-turcin-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| beg-mounted | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| beg-mounted-strike | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
+| beg-unhorsed | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
+| megdan-kostac | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| megdan-noz | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| putnik-starac-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| putnik-starac-walk | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| putnik-trgovac-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| putnik-trgovac-walk | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| putnica-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| putnica-walk | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| putnik-kaluder-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| putnik-kaluder-walk | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| arapin-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| arapin-run | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| arapin-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
+| arapin-throw | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
+| arapin-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
+| arapin-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| azdaja-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| azdaja-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
+| azdaja-death | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| azdaja-fire | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
+| azdaja-bite | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| dzelat-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| dzelat-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| dzelat-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
+| dzelat-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| dzelat-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| djemo-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| djemo-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| djemo-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
+| djemo-throw | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
+| djemo-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| djemo-death | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
+| vilinski-kamen-spava | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| vilinski-kamen-budi | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| vilinski-kamen-budan | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| kostac-janicar | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| kostac-janicar-kraj | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
+| kostac-oklopnik | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| kostac-oklopnik-kraj | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| kostac-pas | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| kostac-pas-kraj | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| orao-let | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| orao-obrusavanje | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| orao-hlad | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| lovac-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| lovac-aga-run | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
+| lovac-aga-attack | 6 | — | 0 | 6 | 12 | 18 | 4/6 | udarac: priprema i kontakt bez međukadrova |
+| lovac-aga-rog | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| lovac-aga-hurt | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| lovac-aga-death | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| guslar-svira | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| guslar-ceka | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| soko-let | 8 | — | 0 | 8 | 6 | 14 | 2/8 |  |
+| soko-napad | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| soko-voda | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| soko-ranjen | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| caus-idle | 4 | — | 0 | 70 | 51 | 121 | 17/70 |  |
+| caus-walk | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| caus-ferman | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| caus-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| caus-death | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
+| ognjeni-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| ognjeni-aga-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| ognjeni-aga-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
+| ognjeni-aga-ulje | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| ognjeni-aga-zadihan | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| ognjeni-aga-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| ognjeni-aga-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| hasan-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| hasan-aga-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| hasan-aga-attack | 6 | — | 0 | 6 | 12 | 18 | 4/6 | udarac: priprema i kontakt bez međukadrova |
+| hasan-aga-zalet | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| hasan-aga-zaglavljen | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| hasan-aga-hurt | 4 | — | 0 | 4 | 3 | 7 | 1/4 |  |
+| hasan-aga-death | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
+| bajraktar-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| bajraktar-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| bajraktar-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
+| bajraktar-poziv | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| bajraktar-hurt | 4 | — | 0 | 4 | 0 | 4 | 0/4 | tok ne prati pokret: drži nacrtane kadrove |
+| bajraktar-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| janicarski-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
+| janicarski-aga-run | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| janicarski-aga-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
+| janicarski-aga-skok | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
+| janicarski-aga-hurt | 4 | — | 0 | 4 | 3 | 7 | 1/4 |  |
+| janicarski-aga-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| mlada-trci | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| mlada-skok | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| mladozenja-trci | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| mladozenja-skok | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| sirotinja-ceka | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| sirotinja-blagoslov | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| marko-sablja-vihor | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
+| marko-sablja-glava | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
+| marko-sablja-proburazi | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
+| marko-sablja-preseci | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
+| marko-sablja-tiho | 7 | — | 0 | 7 | 15 | 22 | 5/7 |  |
+| sword-spava | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| sword-budi | 5 | — | 0 | 5 | 6 | 11 | 2/5 |  |
+| shield-spava | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| shield-budi | 5 | — | 0 | 5 | 6 | 11 | 2/5 |  |
+| sword-tiho-pada | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| kostur-stoji | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| kostur-pada | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
+| oklopnik-kostur-pada | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
+| marko-pocinak | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| marko-okovan | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| kostac-stoji | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| kostac-stoji-kraj | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| trgovac-tezga-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| utva-let | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
+| soko-vezirov-let | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
+| janja-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| janja-toci | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| novak-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| novak-kuje | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| **ukupno (319 klipova)** | **1999** | | **55** | **2519** | **4482** | **6946** | | |

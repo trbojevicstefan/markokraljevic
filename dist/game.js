@@ -535,7 +535,7 @@ function grappleClip(G){const e=G.e;if(G.champ){const c=KOSTAC_KIT[e.kit];return
 function grappleText(kind){return kind==='ledja'&&!rig?.['kostac-ledja']?'OBORIO TE S LEĐA':GRAPPLE[kind].text;}
 function drawKostacSklop(G,x,y){const e=G.e,s=G.s,M=rig['marko-push'],k=G.end>0?1-G.end/.6:0,ox=e.x,of=e.face,ok=e.knock,os=e.stun;
  e.grappling=false;e.x=x+s*(44+k*52)+(G.end>0?0:Math.sin(time*9)*2);e.face=-s;e.knock=0;e.stun=0;e.uKostacu=G.end>0?k:-1;drawSoldier(e);e.uKostacu=null;e.grappling=true;e.x=ox;e.face=of;e.knock=ok;e.stun=os;
- rigDraw('marko-push',G.end>0?Math.min(M.frames.length-1,2+Math.floor(k*4)):Math.floor(time*(G.shake>0?14:7))%M.frames.length,x-s*(24-k*10),y,s,{});}
+ rigDraw('marko-push',G.end>0?Math.min(M.frames.length-1,2+k*4):loopF(time*(G.shake>0?14:7),M.frames.length),x-s*(24-k*10),y,s,{});}
 function startGrapple(e,kind){if(grapple||grappleCool>0||level===undefined||horseMounted||p.pinned||!e.alive||e.champion||(!level&&zone===5))return false;
  grapple={e,kind,t:0,m:.22,end:0,s:Math.sign(e.x-p.x)||1};e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});
  e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(grappleText(kind),p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});return true;}
@@ -560,8 +560,8 @@ function updateGrapple(dt){grappleCool=Math.max(0,grappleCool-dt);
 function drawGrapple(){const G=grapple;if(!G)return;const e=G.e,I=GRAPPLE[G.kind],x=p.x+(G.shake>0?(Math.random()-.5)*6:0),y=p.y;shadow(x,y,90,.55);
  const clip=grappleClip(G),endClip=clip+'-kraj';
  if(!clip)drawKostacSklop(G,x,y);
- else if(G.end>0&&rig?.[endClip]){const n=rig[endClip].frames.length;rigDraw(endClip,Math.min(n-1,Math.floor((1-G.end/.6)*n)),x,y,G.s,{scale:kostacFit(endClip)*(G.champ?1:e.scale||1)});}
- else if(rig?.[clip]){const n=rig[clip].frames.length;rigDraw(clip,Math.floor(time*(G.shake>0?14:8))%n,x,y,G.s,{scale:kostacFit(clip)*(G.champ?1:e.scale||1)});}
+ else if(G.end>0&&rig?.[endClip]){const n=rig[endClip].frames.length;rigDraw(endClip,Math.min(n-1,(1-G.end/.6)*n),x,y,G.s,{scale:kostacFit(endClip)*(G.champ?1:e.scale||1)});}
+ else if(rig?.[clip]){const n=rig[clip].frames.length;rigDraw(clip,loopF(time*(G.shake>0?14:8),n),x,y,G.s,{scale:kostacFit(clip)*(G.champ?1:e.scale||1)});}
  else{const lie=rig?.['marko-knockdown'];if(lie)rigDraw('marko-knockdown',lie.frames.length-1,x-G.s*10,y,-G.s,{});const atk=rig?.[e.type+'-attack']?e.type+'-attack':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type;rigDraw(atk,1,x+G.s*14,y,-G.s,{dy:10,rot:-G.s*.25,scale:e.scale||1});}
  if(G.end<=0){const bx=x-50,by=y-138;ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(bx-2,by-2,104,12);ctx.fillStyle=G.m>.6?'#8dffa8':'#ffcf6a';ctx.fillRect(bx,by,100*Math.min(1,G.m),8);drawHvat(G,x,by);}}
 function drawHvat(G,x,by){if(!G.key){textLabel('OTMI SE',x,by-14,{font:'bold 13px Georgia',color:'#fff3e0',glow:'#c0301a'});return;}
@@ -745,7 +745,7 @@ function drawGibs(){const im=worldImg('kosti-delovi');for(const b of gibs){if(b.
   else if(b.kind===2){for(const r of[0,5,10])line(-10,r-6,10,r-6,'#e2d6bc',3);line(-12,-8,-12,8,'#d4c6aa',3);}
   else{const L=s/2;line(-L,0,L,0,'#e2d6bc',b.kind===4?3.4:4.6);for(const q of[-L,L]){ellipse(q,-2.5,3.2,3.2,'#ece2cc');ellipse(q,2.5,3.2,3.2,'#ece2cc');}}
   ctx.restore();}
- for(const B of booms){const R=rig?.['eksplozija'];if(!R)continue;rigDraw('eksplozija',Math.min(R.frames.length-1,Math.floor(B.t/.8*R.frames.length)),B.x,B.y+4,1,{});}}
+ for(const B of booms){const R=rig?.['eksplozija'];if(!R)continue;rigDraw('eksplozija',Math.min(R.frames.length-1,B.t/.8*R.frames.length),B.x,B.y+4,1,{});}}
 // blood on the lens: a few splashes over the screen that run and fade
 function screenBlood(n=2){if(!hasDom||settings.gore===false||settings.reduced)return;let box=$('krv-ekran');if(!box){box=document.createElement('div');box.id='krv-ekran';document.body.appendChild(box);}
  const art=!!worldImg('krv-ekran-1');for(let i=0;i<n;i++){const s=document.createElement('i'),w=150+Math.random()*230;s.style.cssText=`left:${8+Math.random()*78}%;top:${4+Math.random()*58}%;width:${w}px;height:${w}px;rotate:${Math.random()*360}deg`;
@@ -793,23 +793,29 @@ function silhouette(im,f,w,h,color,outline){const pad=outline?Math.ceil(outline)
 // never blurs them; the hit itself is timed by the game as before. ?anim=0 turns all of it off (drawn frames alone), for comparing.
 const ANIM=!/[?&]anim=0\b/.test(globalThis.location?.search||'');
 const tweenSheets={},tweenUse={},tweenStat={sheets:0,px:0,mids:0,drawn:0};let tweenTier=0,tweenSweep=0;
-const loopAt=(x,n)=>{const f=Math.floor(x);return{frame:((f%n)+n)%n,tw:x-f};};
-const onceAt=x=>{const f=Math.floor(x);return{frame:f,tw:x-f};};
+const loopAt=(x,n)=>{const f=Math.floor(x),i=((f%n)+n)%n;return{frame:i,tw:x-f,nx:(i+1)%n};};
+const loopF=(x,n)=>((x%n)+n)%n;   // a looping frame counter that keeps its fraction: rigDraw reads the fraction as tw
+const onceAt=x=>{const f=Math.floor(x);return{frame:f,tw:x-f,nx:undefined};};
 const seqAt=(seq,x)=>{const f=Math.floor(x),i=((f%seq.length)+seq.length)%seq.length;return{frame:seq[i],tw:x-f,nx:seq[(i+1)%seq.length]};};
 // The sheets load the first time a clip asks for them, and are decoded before first use; until then the drawn frame is shown.
-// A sheet no move has used for 45 s of play is let go, so a long session holds only what it is playing now.
+// A sheet no move has used for 45 s of play is let go, so a long session holds only what it is playing now; and past a budget
+// (200 MB of pictures, 64 MB on the fast tier) the longest unused go first.
+const TWEEN_BUDGET=[50e6,50e6,16e6];
 function tweenSheet(src){let s=tweenSheets[src];tweenUse[src]=time;
  if(s===undefined){s=tweenSheets[src]=null;if(typeof Image==='function'){const im=new Image();im.onload=()=>{const ok=()=>{if(tweenSheets[src]!==null)return;tweenSheets[src]=im;tweenStat.sheets++;tweenStat.px+=(im.naturalWidth||0)*(im.naturalHeight||0);};im.decode?im.decode().then(ok,ok):ok();};im.onerror=()=>{tweenSheets[src]=false;};im.src=`assets/${src}`;}}
- if(time-tweenSweep>5||time<tweenSweep){tweenSweep=time;for(const k in tweenSheets){const im=tweenSheets[k];if(im&&!(time-tweenUse[k]<45)){tweenStat.sheets--;tweenStat.px-=(im.naturalWidth||0)*(im.naturalHeight||0);delete tweenSheets[k];}}}
+ if(time-tweenSweep>5||time<tweenSweep){tweenSweep=time;const drop=k=>{const im=tweenSheets[k];tweenStat.sheets--;tweenStat.px-=(im.naturalWidth||0)*(im.naturalHeight||0);delete tweenSheets[k];};for(const k in tweenSheets)if(tweenSheets[k]&&!(time-tweenUse[k]<45))drop(k);const cap=TWEEN_BUDGET[clamp(tweenTier,0,2)];if(tweenStat.px>cap)for(const k of Object.keys(tweenSheets).filter(k=>tweenSheets[k]&&time-tweenUse[k]>1).sort((a,b)=>tweenUse[a]-tweenUse[b])){if(tweenStat.px<=cap)break;drop(k);}}
  return s||null;}
 function tweenPair(name,a,b){return smooth?.[name]?.mids[a<b?a+'-'+b:b+'-'+a];}
-function tweenMid(name,fi,o){const S=smooth?.[name];if(!S||!ANIM||settings.smooth===false)return null;const n=rig[name].frames.length;
+function tweenMid(name,fi,o,tw=o.tw){const S=smooth?.[name];if(!S||!ANIM||settings.smooth===false)return null;const n=rig[name].frames.length;
  if(o.keyAt!=null){const c=Math.floor(o.keyAt*n);if(fi===c||fi===c-1)return null;}
  const b=o.nx??(fi+1<n?fi+1:S.loop?0:-1);if(b<0||b===fi)return null;const m=tweenPair(name,fi,b);if(!m)return null;
- let q=o.tw<.25?-1:o.tw<.5?0:o.tw<.75?1:2;
+ let q=tw<.25?-1:tw<.5?0:tw<.75?1:2;
  if(tweenTier>=2)q=q>=1?1:-1;   // the fast tier keeps only the half-way in-betweens: a third of the pictures to load and hold
- if(q<0)return null;if(fi>b)q=2-q;   // the pair read backwards
- const im=tweenSheet(q===1?S.image:S.imageQ);return im?{im,f:m[q],k:S.k}:null;}
+ if(q<0)return null;const t=(q+1)/4;if(fi>b)q=2-q;   // the pair read backwards
+ const im=tweenSheet(q===1?S.image:S.imageQ);return im?{im,f:m[q],k:S.k,t}:null;}
+// how far toward the next frame the picture drawn for this pose really is (0: the drawn frame): for offsets set per frame
+function tweenShown(name,fi,tw,nx){return tw>0&&ANIM?tweenMid(name,fi,{nx},tw)?.t||0:0;}
+const lerpAt=(arr,f,t,d=0)=>(arr?.[f]??d)+((arr?.[f+1]??d)-(arr?.[f]??d))*t;
 // Per character, what was drawn last. A drawn step that comes without tw (a pose picked by state, like the jump by speed)
 // still passes through its in-betweens, in at most 70 ms; a change of clip dissolves the old pose under the new one for 70 ms,
 // except into a blow (its windup stays sharp), when he is hit, or when he turns round.
@@ -834,7 +840,7 @@ function bodyPose(pose){const m=animMem.get(p);if(!m)return;const dt=clamp(time-
  let sx=1,sy=1;const u=(time-(m.upAt??-9))/.18;if(u>=0&&u<1&&!p.grounded){const s=1-u;sy+=.07*s;sx-=.045*s;}
  const l=(time-(m.landAt??-9))/.16;if(l>=0&&l<1&&p.grounded){const s=Math.sin(l*Math.PI)*(.35+.65*(m.landK||0));sy-=.09*s;sx+=.06*s;}
  if(sx!==1||sy!==1){pose.sx=(pose.sx||1)*sx;pose.sy=(pose.sy||1)*sy;}if(Math.abs(m.lean)>.002)pose.rot=(pose.rot||0)+m.lean;}
-function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name];let im=r&&rigImages[r.image];if(!im)return false;const fi=clamp(Math.floor(frame),0,r.frames.length-1);let f=r.frames[fi];const k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;let dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k,ks=k;const M=o.tw>0?tweenMid(name,fi,o):null;if(M){im=M.im;f=M.f;ks=k/M.k;dx=f[4]*k;dy=f[5]*k;dw=f[2]*ks;dh=f[3]*ks;}if(!o.glow&&!o.color){tweenStat.drawn++;if(M)tweenStat.mids++;}g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=ks*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
+function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name];let im=r&&rigImages[r.image];if(!im)return false;const raw=Math.floor(frame),fi=clamp(raw,0,r.frames.length-1),tw=raw!==fi?0:o.tw??frame-raw;let f=r.frames[fi];const k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;let dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k,ks=k;const M=tw>0?tweenMid(name,fi,o,tw):null;if(M){im=M.im;f=M.f;ks=k/M.k;dx=f[4]*k;dy=f[5]*k;dw=f[2]*ks;dh=f[3]*ks;}if(!o.glow&&!o.color){tweenStat.drawn++;if(M)tweenStat.mids++;}g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=ks*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
 function rimGlow(pose,x,y,face,color,alpha,width=1.6){rigDraw(pose.name,pose.frame,x,y,face,{...pose,glow:true,color,outline:width,alpha});}
 function sprite(name,x,y,height=130,face=1,angle=0,alpha=1){const im=assets[name];if(!im)return;ctx.save();ctx.translate(x,y);ctx.scale(face,1);ctx.rotate(angle);ctx.globalAlpha=alpha;ctx.drawImage(im,-height/2,-height*369/384,height,height);ctx.restore();}
 function groundAt(x,y){let best=null;for(const q of world.platforms){if(x<q.x||x>q.x+q.w||q.y<y-2)continue;if(q.kind==='magic'&&!world.runes[q.rune]?.active)continue;if(best===null||q.y<best)best=q.y;}return best;}
@@ -946,14 +952,14 @@ function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.
 function playerPose(){return sabljaPose(basePose());}
 function basePose(){
  if(finisher?.kind==='oderi'&&rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.floor(k);return{name:'marko-brutal',frame:i>=4?6:ODERI_FRAMES[i%2][Math.min(3,Math.floor((k-i)*4))]};}
- if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.min(3,Math.floor(k)),nm=ODERI_CLIPS[i],n=rig?.[nm]?.frames.length||6;return{name:nm,frame:Math.min(n-1,Math.floor(Math.min(1,k-i)*n))};}
+ if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.min(3,Math.floor(k)),nm=ODERI_CLIPS[i],n=rig?.[nm]?.frames.length||6;return{name:nm,...onceAt(Math.min(n-1,Math.min(1,k-i)*n))};}
  if(finisher){const I=FIN_INFO[finisher.kind],name=rig?.[I.clip]?I.clip:rig?.[I.fb]?I.fb:'marko-combo-3',n=rig?.[name]?.frames.length||6,k=finisher.t/finisher.dur;
   const leap=finisher.kind==='gazi'?-Math.sin(Math.PI*clamp((k-.12)/(finisher.hitAt-.12),0,1))*120:finisher.kind==='smrskaj'?-skullLeap(k,finisher):0;return{name,...onceAt(Math.min(n-1,k*n)),...(finisher.hitAt>0?{keyAt:finisher.hitAt}:{}),dy:leap};}
  if(gunner&&rig?.['marko-push'])return{name:'marko-push',frame:gunner.recoil>.3?3:0};
- if(p.blastT>0&&!horseMounted&&rig?.['marko-blasted']){const n=rig['marko-blasted'].frames.length;return{name:'marko-blasted',frame:Math.min(n-1,Math.floor((1-p.blastT/BLAST_TIME)*n)),faceAs:-Math.sign(p.vx)||p.face};}
+ if(p.blastT>0&&!horseMounted&&rig?.['marko-blasted']){const n=rig['marko-blasted'].frames.length;return{name:'marko-blasted',...onceAt(Math.min(n-1,(1-p.blastT/BLAST_TIME)*n)),faceAs:-Math.sign(p.vx)||p.face};}
  if(mode==='levelDone'&&p.victoryAt&&rig?.['marko-victory'])return{name:'marko-victory',frame:celebrateFrame(performance.now()/1000-p.victoryAt)};
  if(p.celebrate>0&&p.grounded&&rig?.['marko-victory'])return{name:'marko-victory',frame:celebrateFrame(CELEBRATE_TIME-p.celebrate)};
- if(endSequence?.kind==='victory'){const a=endSequence.age;if(a>=1.4&&a<3.4&&rig?.['marko-victory'])return{name:'marko-victory',frame:celebrateFrame((a-1.4)*1.3)};if(a>=3.4&&rig?.['marko-wounded-walk'])return{name:'marko-wounded-walk',frame:Math.floor((a-3.4)*7)%rig['marko-wounded-walk'].frames.length,faceAs:1};}
+ if(endSequence?.kind==='victory'){const a=endSequence.age;if(a>=1.4&&a<3.4&&rig?.['marko-victory'])return{name:'marko-victory',frame:celebrateFrame((a-1.4)*1.3)};if(a>=3.4&&rig?.['marko-wounded-walk'])return{name:'marko-wounded-walk',...loopAt((a-3.4)*7,rig['marko-wounded-walk'].frames.length),faceAs:1};}
  if(horseMounted&&p.attack>0&&rig?.['marko-mounted-attack']){const n=rig['marko-mounted-attack'].frames.length;return{name:'marko-mounted-attack',...onceAt(Math.min(n-1,(1-p.attack/attackDuration())*n)),keyAt:attackKeyAt()};}
  if(horseMounted){if(!p.grounded||p.landing>0)return{name:'mounted-jump',frame:p.grounded?3:p.vy< -350?1:p.vy<250?2:3};if(Math.abs(p.vx)>35)return{name:'mounted-run',...loopAt(p.gait,6)};return{name:'mounted-jump',frame:0,sy:1+Math.sin(time*2.2)*.008};}
  if(p.climb)return climbPose();if(p.throwT>0)return throwPose();
@@ -1000,9 +1006,9 @@ function sabljaPose(P){if(!p?.sablja||!P)return P;
  // the jump clip: 1 rising, 2 over the head, 3 the cut, 4 after it, 5 the landing
  if(to==='skok'){P={...P,tw:undefined,nx:undefined};frame=p.grounded?n-1:p.attack>0&&p.airAtk?Math.min(4,2+Math.floor((1-p.attack/attackDuration())*3)):p.vy< -150?1:4;}
  else if(P.name==='marko-charge-hold'||P.name==='marko-charge-walk'){P={...P,tw:undefined};frame=Math.min(3,n-1);}
- else if(to==='idle')return{...P,name:nm,...loopAt(time*6,n),nx:undefined};
- else if(to==='vihor'){frame=P.frame%n;return{...P,name:nm,frame,tw:undefined,dx:(P.dx||0)+p.face*(VIHOR_DX[frame]||0)};}
- else if(to==='trci')return{...P,name:nm,...loopAt(p.gait,n),nx:undefined};
+ else if(to==='idle')return{...P,name:nm,...loopAt(time*6,n)};
+ else if(to==='vihor'){frame=P.frame%n;const nx=(frame+1)%n,t=tweenShown(nm,frame,P.tw,nx);return{...P,name:nm,frame,nx,dx:(P.dx||0)+p.face*((VIHOR_DX[frame]||0)+((VIHOR_DX[nx]||0)-(VIHOR_DX[frame]||0))*t)};}
+ else if(to==='trci')return{...P,name:nm,...loopAt(p.gait,n)};
  else{const src=rig?.[P.name]?.frames.length||n;if(P.ph!=null)return{...P,name:nm,...onceAt(Math.min(n-1,P.ph*n))};frame=Math.min(n-1,Math.floor((P.frame+.5)*n/src));}
  return{...P,name:nm,frame,tw:undefined,nx:undefined};}
 // The mace's sweep, from the end of the windup to just after the blow lands, along the arc of each clip's drawn swing:
@@ -1028,31 +1034,31 @@ function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying)return;let pose=nu
  drawFairy();}
 // Distance-driven stride: no root bobbing or rotation, soles stay on the rig baseline; tw is the way to the next frame (inline: animation-tests.mjs runs it alone).
 function locomotionPose(e){const stride=e.type==='musa'?120:e.type==='shield'?76:90;const g=(e.walk||0)/stride*6,f=Math.floor(g);return{name:e.type+'-run',frame:f%6,tw:g-f};}
-function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)return;const x=e.x+(e.knock||0);shadow(x,e.y,e.type==='shield'?36:32,.5);const atk=e.type==='archer'?(e.perch&&p.y>e.y+60&&rig?.['archer-shoot-down']?'archer-shoot-down':'archer-shoot'):e.type+'-attack';let pose={name:'cast/'+e.type,frame:0};const F=FOES[e.type];if((level||e.air)&&(e.climb||(!e.grounded&&e.air)||e.landT>0||(e.tossedT>0&&rig?.[e.type+'-launch']))&&e.mode!=='windup'&&e.mode!=='recover')pose=airPose(e);else if(e.type==='palikuca'&&e.burn>0&&rig?.['palikuca-burn'])pose={name:'palikuca-burn',frame:Math.floor(time*10)%rig['palikuca-burn'].frames.length};else if(e.reactT>0&&rig?.[e.react]){const n=rig[e.react].frames.length;pose={name:e.react,...onceAt(Math.min(n-1,(1-e.reactT/e.reactDur)*n))};}else if(F){pose=foePose(e,F);}else if(movePose(e)){pose=movePose(e);}else if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);pose={name:atk,...onceAt(e.type==='archer'?Math.min(3,progress*4):Math.min(2,progress*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;pose={name:atk,...onceAt(e.type==='archer'?4+Math.min(1,(1-e.timer/duration)*2):3+Math.min(2,(1-e.timer/duration)*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.moveT>0&&e.stun<=0&&rig?.[e.type+'-run']){pose=locomotionPose(e);}else if(e.hurtT>0&&rig?.[e.type+'-hurt']){pose={name:e.type+'-hurt',...onceAt(Math.min(3,(1-e.hurtT/.34)*4))};}else if(rig?.[e.type+'-idle']){pose={name:e.type+'-idle',...idleAt(e.type,e.id),sy:1+Math.sin(time*2.4+e.id)*.008};}else{pose.sy=1+Math.sin(time*2.6+e.id)*.012;}
+function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)return;const x=e.x+(e.knock||0);shadow(x,e.y,e.type==='shield'?36:32,.5);const atk=e.type==='archer'?(e.perch&&p.y>e.y+60&&rig?.['archer-shoot-down']?'archer-shoot-down':'archer-shoot'):e.type+'-attack';let pose={name:'cast/'+e.type,frame:0};const F=FOES[e.type];if((level||e.air)&&(e.climb||(!e.grounded&&e.air)||e.landT>0||(e.tossedT>0&&rig?.[e.type+'-launch']))&&e.mode!=='windup'&&e.mode!=='recover')pose=airPose(e);else if(e.type==='palikuca'&&e.burn>0&&rig?.['palikuca-burn'])pose={name:'palikuca-burn',...loopAt(time*10,rig['palikuca-burn'].frames.length)};else if(e.reactT>0&&rig?.[e.react]){const n=rig[e.react].frames.length;pose={name:e.react,...onceAt(Math.min(n-1,(1-e.reactT/e.reactDur)*n))};}else if(F){pose=foePose(e,F);}else if(movePose(e)){pose=movePose(e);}else if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);pose={name:atk,...onceAt(e.type==='archer'?Math.min(3,progress*4):Math.min(2,progress*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;pose={name:atk,...onceAt(e.type==='archer'?4+Math.min(1,(1-e.timer/duration)*2):3+Math.min(2,(1-e.timer/duration)*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.moveT>0&&e.stun<=0&&rig?.[e.type+'-run']){pose=locomotionPose(e);}else if(e.hurtT>0&&rig?.[e.type+'-hurt']){pose={name:e.type+'-hurt',...onceAt(Math.min(3,(1-e.hurtT/.34)*4))};}else if(rig?.[e.type+'-idle']){pose={name:e.type+'-idle',...idleAt(e.type,e.id),sy:1+Math.sin(time*2.4+e.id)*.008};}else{pose.sy=1+Math.sin(time*2.6+e.id)*.012;}
  // the stun and windup glows are drawn once the pose is final (a champion's own drawing, his size), or a plain soldier's outline shows inside him
- const glows=[];if(e.stun>0&&!e.tiho){const O=rig?.[e.type+'-omamljen'];if(O&&(pose.name===e.type+'-idle'||pose.name==='cast/'+e.type))pose={name:e.type+'-omamljen',frame:Math.floor(time*8+e.id)%O.frames.length};else pose.rot=(pose.rot||0)-e.face*.07;glows.push(['#8fffd8',.22+.12*Math.sin(time*10),1.4]);for(let s=0;s<3;s++){const a=time*4+s*2.1;textLabel('✦',x+Math.cos(a)*16,e.y-138+Math.sin(a)*5,{font:'15px Georgia',color:'#c8fff0',glow:'#7fffd0'});}}
+ const glows=[];if(e.stun>0&&!e.tiho){const O=rig?.[e.type+'-omamljen'];if(O&&(pose.name===e.type+'-idle'||pose.name==='cast/'+e.type))pose={name:e.type+'-omamljen',...loopAt(time*8+e.id,O.frames.length)};else pose.rot=(pose.rot||0)-e.face*.07;glows.push(['#8fffd8',.22+.12*Math.sin(time*10),1.4]);for(let s=0;s<3;s++){const a=time*4+s*2.1;textLabel('✦',x+Math.cos(a)*16,e.y-138+Math.sin(a)*5,{font:'15px Georgia',color:'#c8fff0',glow:'#7fffd0'});}}
  if(e.mode==='windup'){const urgency=1-e.timer/(e.windupDuration||.7);glows.push([neOdbijaSe(e)?'#ff2030':'#ffae2a',.18+.42*urgency*(.65+.35*Math.sin(time*30)),1.2+urgency*1.4]);}
  if(e.kit&&e.engaged){const kp=KITS[e.kit]?.pose?.(e);if(kp)pose=kp;}if(e.held&&impaled()===e&&rig?.[e.type+'-tiho-pada'])pose={name:e.type+'-tiho-pada',frame:2,rot:p.face*.2}; // run through, he sags on the blade, his sabre hanging
  else if(e.held){const L=rig?.[e.type+'-launch'],k=e.liftK||0;pose=L?{name:e.type+'-launch',frame:1,rot:p.face*1.45*k}:{name:rig?.[e.type+'-hurt']?e.type+'-hurt':pose.name,frame:1,rot:-p.face*1.35};}
- if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',frame:Math.min(4,Math.floor(e.prone*5))};}else if(e.spava&&(rig?.[e.type+'-spava']||rig?.[e.type+'-death'])){const S=rig[e.type+'-spava'],f=S?Math.floor(time*2.5+e.id*.7)%S.frames.length:0;pose=S?{name:e.type+'-spava',frame:f,dy:sanDy(e,'spava',f)}:{name:e.type+'-death',frame:3};}
- else if(time-(e.budiAt??-9)<BUDI_T&&rig?.[e.type+'-budi']&&!(e.hurtT>0)&&!(e.stun>0)&&e.mode!=='windup'){const n=rig[e.type+'-budi'].frames.length,f=Math.min(n-1,Math.floor((time-e.budiAt)/BUDI_T*n));pose={name:e.type+'-budi',frame:f,scale:BUDI_FIX[e.type]?.[f]??1,dy:sanDy(e,'budi',f)};}if(e.tiho&&finisher?.e===e&&!finisher.hit&&(finisher.kind==='tiho'||finisher.kind==='tihoS')){const held=finisher.t>=finisher.dur*.28;if(e.sanjao&&!held&&rig?.[e.type+'-spava'])pose={name:e.type+'-spava',frame:0,dy:sanDy(e,'spava',0)};else if(held&&rig?.[e.type+'-tiho-pada'])pose={name:e.type+'-tiho-pada',frame:1};else if(e.sanjao&&rig?.[e.type+'-budi']){const n=rig[e.type+'-budi'].frames.length-1;pose={name:e.type+'-budi',frame:n,scale:BUDI_FIX[e.type]?.[n]??1,dy:sanDy(e,'budi',n)};}else if(rig?.[e.type+'-idle'])pose={name:e.type+'-idle',frame:0};}
- if(e.hornT>0&&e.look&&rig?.[e.look+'-rog']){const R=rig[e.look+'-rog'];pose={...pose,name:e.look+'-rog',frame:Math.min(R.frames.length-1,Math.floor((1-e.hornT/HORN_T)*R.frames.length)),fixedScale:1};}
+ if(e.prone>0&&rig?.[e.type+'-death']){pose={name:e.type+'-death',...onceAt(Math.min(4,e.prone*5))};}else if(e.spava&&(rig?.[e.type+'-spava']||rig?.[e.type+'-death'])){const S=rig[e.type+'-spava'],x=S?loopF(time*2.5+e.id*.7,S.frames.length):0,f=Math.floor(x),nx=S?(f+1)%S.frames.length:0,t=S?tweenShown(e.type+'-spava',f,x-f,nx):0;pose=S?{name:e.type+'-spava',frame:f,tw:x-f,nx,dy:sanDy(e,'spava',f)+(sanDy(e,'spava',nx)-sanDy(e,'spava',f))*t}:{name:e.type+'-death',frame:3};}
+ else if(time-(e.budiAt??-9)<BUDI_T&&rig?.[e.type+'-budi']&&!(e.hurtT>0)&&!(e.stun>0)&&e.mode!=='windup'){const n=rig[e.type+'-budi'].frames.length,x=Math.min(n-1,(time-e.budiAt)/BUDI_T*n),f=Math.floor(x),t=tweenShown(e.type+'-budi',f,x-f);pose={name:e.type+'-budi',frame:f,tw:x-f,scale:lerpAt(BUDI_FIX[e.type],f,t,1),dy:sanDy(e,'budi',f)+(sanDy(e,'budi',f+1)-sanDy(e,'budi',f))*t};}if(e.tiho&&finisher?.e===e&&!finisher.hit&&(finisher.kind==='tiho'||finisher.kind==='tihoS')){const held=finisher.t>=finisher.dur*.28;if(e.sanjao&&!held&&rig?.[e.type+'-spava'])pose={name:e.type+'-spava',frame:0,dy:sanDy(e,'spava',0)};else if(held&&rig?.[e.type+'-tiho-pada'])pose={name:e.type+'-tiho-pada',frame:1};else if(e.sanjao&&rig?.[e.type+'-budi']){const n=rig[e.type+'-budi'].frames.length-1;pose={name:e.type+'-budi',frame:n,scale:BUDI_FIX[e.type]?.[n]??1,dy:sanDy(e,'budi',n)};}else if(rig?.[e.type+'-idle'])pose={name:e.type+'-idle',frame:0};}
+ if(e.hornT>0&&e.look&&rig?.[e.look+'-rog']){const R=rig[e.look+'-rog'];pose={...pose,keyAt:undefined,name:e.look+'-rog',...onceAt(Math.min(R.frames.length-1,(1-e.hornT/HORN_T)*R.frames.length)),fixedScale:1};}
  else if(e.look&&(pose.name.startsWith(e.type+'-')||pose.name==='cast/'+e.type)&&rig?.[e.look+'-idle']){const k=pose.name.startsWith('cast/')?'idle':pose.name.slice(e.type.length+1),near={lunge:'attack',launch:'hurt',jump:'run',climb:'run',walk:'run',run:'walk',shoot:'attack',kick:'attack',bomb:'attack',burn:'hurt',bash:'attack',guardbreak:'hurt',armorbreak:'hurt',grab:'attack'}[k],alt=[e.look+'-'+k,near&&e.look+'-'+near,e.look+'-idle'].find(n=>n&&rig?.[n]);
   // the moves are the sword-bearer's; a move the look lacks borrows its nearest drawing, so he is never drawn as someone else
-  pose={...pose,name:alt,...(alt===e.look+'-'+k?{frame:Math.min(pose.frame,rig[alt].frames.length-1)}:{frame:Math.floor(time*8)%rig[alt].frames.length,tw:undefined,nx:undefined}),...(e.champion?{fixedScale:1}:{})};}
- if(e.fermanT>0&&e.look&&rig?.[e.look+'-ferman']){const R=rig[e.look+'-ferman'];pose={...pose,name:e.look+'-ferman',frame:Math.min(R.frames.length-1,Math.floor((1-e.fermanT/1.8)*R.frames.length*1.4))};}
+  pose={...pose,name:alt,...(alt===e.look+'-'+k?{frame:Math.min(pose.frame,rig[alt].frames.length-1)}:{...loopAt(time*8,rig[alt].frames.length)}),...(e.champion?{fixedScale:1}:{})};}
+ if(e.fermanT>0&&e.look&&rig?.[e.look+'-ferman']){const R=rig[e.look+'-ferman'];pose={...pose,keyAt:undefined,name:e.look+'-ferman',...onceAt(Math.min(R.frames.length-1,(1-e.fermanT/1.8)*R.frames.length*1.4))};}
  // Ognjeni aga pours his oil from the jug, and stands bent and panting while he is open
- if(e.look&&e.kit==='ognjeni'){const U=rig?.[e.look+'-ulje'],Z=rig?.[e.look+'-zadihan'];if(U&&(e.ks==='oil'||e.ks==='burn'))pose={...pose,name:e.look+'-ulje',frame:e.ks==='burn'?U.frames.length-1:Math.min(U.frames.length-1,Math.floor((1-e.kt/1.8)*U.frames.length)),fixedScale:1};else if(Z&&e.kitOpen>0)pose={...pose,name:e.look+'-zadihan',frame:Math.floor(time*6)%Z.frames.length,fixedScale:1};}
+ if(e.look&&e.kit==='ognjeni'){const U=rig?.[e.look+'-ulje'],Z=rig?.[e.look+'-zadihan'];if(U&&(e.ks==='oil'||e.ks==='burn'))pose={...pose,keyAt:undefined,name:e.look+'-ulje',...(e.ks==='burn'?{frame:U.frames.length-1,tw:0}:onceAt(Math.min(U.frames.length-1,(1-e.kt/1.8)*U.frames.length))),fixedScale:1};else if(Z&&e.kitOpen>0)pose={...pose,keyAt:undefined,name:e.look+'-zadihan',...loopAt(time*6,Z.frames.length),fixedScale:1};}
  // Hasan-aga charges head down and stands dazed when he has rammed the wall; the janissary aga leaps with both sabres;
  // the standard-bearer raises his sabre when he calls his men
- if(e.look&&e.kit==='hasan'){const Zl=rig?.[e.look+'-zalet'],Zg=rig?.[e.look+'-zaglavljen'];if(Zl&&(e.ks==='prep'||e.ks==='ram'))pose={...pose,name:e.look+'-zalet',frame:e.ks==='prep'?0:Math.floor(time*12)%Zl.frames.length,fixedScale:1};else if(Zg&&e.kitOpen>0)pose={...pose,name:e.look+'-zaglavljen',frame:Math.floor(time*7)%Zg.frames.length,fixedScale:1};}
- if(e.look&&e.kit==='janicar'&&e.ks==='leap'){const J=rig?.[e.look+'-skok'];if(J){const L=J.frames.length;pose={...pose,name:e.look+'-skok',frame:e.grounded?Math.min(L-2,4):e.vy<-200?1:e.vy<0?2:Math.min(L-3,3),fixedScale:1};}}
- if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,name:e.look+'-poziv',frame:Math.min(P.frames.length-1,Math.floor((1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
+ if(e.look&&e.kit==='hasan'){const Zl=rig?.[e.look+'-zalet'],Zg=rig?.[e.look+'-zaglavljen'];if(Zl&&(e.ks==='prep'||e.ks==='ram'))pose={...pose,keyAt:undefined,name:e.look+'-zalet',...(e.ks==='prep'?{frame:0,tw:0}:loopAt(time*12,Zl.frames.length)),fixedScale:1};else if(Zg&&e.kitOpen>0)pose={...pose,keyAt:undefined,name:e.look+'-zaglavljen',...loopAt(time*7,Zg.frames.length),fixedScale:1};}
+ if(e.look&&e.kit==='janicar'&&e.ks==='leap'){const J=rig?.[e.look+'-skok'];if(J){const L=J.frames.length;pose={...pose,keyAt:undefined,tw:undefined,nx:undefined,name:e.look+'-skok',frame:e.grounded?Math.min(L-2,4):e.vy<-200?1:e.vy<0?2:Math.min(L-3,3),fixedScale:1};}}
+ if(e.look&&e.pozivT>0&&rig?.[e.look+'-poziv']){const P=rig[e.look+'-poziv'];pose={...pose,keyAt:undefined,name:e.look+'-poziv',...onceAt(Math.min(P.frames.length-1,(1-e.pozivT/1.1)*P.frames.length)),fixedScale:1};}
  if(e.gs){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,C=rig?.[H+'-hvata'],T=settings.difficulty==='story'?1.1:.8,k=e.gs==='prep'?clamp(1-e.gt/T,0,1):clamp(1-e.gt/.5,0,1);
-  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,name:H+'-hvata',frame:e.gs==='prep'?Math.min(h-1,Math.floor(k*h)):h+Math.floor(time*12)%(n-h),rot:0,...(H===e.look?{fixedScale:1}:{})};}
-  else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',frame:Math.floor(time*6)%I.frames.length}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(H===e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
+  if(C){const n=C.frames.length,h=Math.ceil(n/2);pose={...pose,keyAt:undefined,name:H+'-hvata',...(e.gs==='prep'?onceAt(Math.min(h-1,k*h)):{frame:h+Math.floor(time*12)%(n-h),tw:undefined,nx:undefined}),rot:0,...(H===e.look?{fixedScale:1}:{})};}
+  else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',...loopAt(time*6,I.frames.length)}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(H===e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
  if(e.uKostacu!=null){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,I=rig?.[H+'-idle'],U=rig?.[H+'-hurt'],k=e.uKostacu;
-  if(k>=0&&U)pose={name:H+'-hurt',frame:Math.min(U.frames.length-1,Math.floor(k*U.frames.length)),...(H===e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',frame:Math.floor(time*6)%I.frames.length,rot:e.face*.11,...(H===e.look?{fixedScale:1}:{})};}
+  if(k>=0&&U)pose={name:H+'-hurt',...onceAt(Math.min(U.frames.length-1,k*U.frames.length)),...(H===e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',...loopAt(time*6,I.frames.length),rot:e.face*.11,...(H===e.look?{fixedScale:1}:{})};}
  if(e.skriven)pose.alpha=.4;const fd=animTrack(e,pose,e.face,e.hurtT>0||e.flash>0);
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
  if(e.elite){pose.scale=(pose.scale||1)*1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}drawFade(fd,x,e.y,pose.alpha??1,pose.scale);for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.brutal>0?Math.max(e.brutal*.72,e.flash>0?e.flash/.15*.5:0):e.flash>0?e.flash/.15*.5:0,flashColor:e.brutal>0?'#5a0306':'#ffd6bf'});
@@ -1077,12 +1083,12 @@ function advanceFairy(dt){const active=fairy.age<fairy.duration;const approach=a
 // Codex's Ravijojla: flying in a loop, then casting (or healing), a ribbon of light to the target and a ring of runes there
 function rigDrawC(name,frame,x,y,face,o={}){const r=rig?.[name];if(!r)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)];return rigDraw(name,frame,x,y,face,{...o,dy:(o.dy||0)+(f[4]-f[3]/2)*r.scale*(o.scale||1)});}
 function drawVila(face,a,enter,fx,fy){const cast0=.28,cast1=1.15,heal=fairy.kind==='heal'&&rig?.['vila-isceljenje'],nm=heal?'vila-isceljenje':rig?.['vila-carolija']?'vila-carolija':'vila-let',k=(fairy.age-cast0)/(cast1-cast0);
- const name=k>=0&&k<1?nm:'vila-let',n=rig[name].frames.length,frame=name==='vila-let'?Math.floor(time*12)%n:Math.min(n-1,Math.floor(k*n)),sc=.85+.15*enter,y=fy-44;
+ const name=k>=0&&k<1?nm:'vila-let',n=rig[name].frames.length,frame=name==='vila-let'?loopF(time*12,n):Math.min(n-1,k*n),sc=.85+.15*enter,y=fy-44;
  rigDrawC(name,frame,fx,y,face,{alpha:a,scale:sc});emitters.push({id:'fairy',kind:'fairy',x:fx,y:y,rate:14*a});
  // the light leaves her hands at the release and travels to the target
  const tx=fairy.targetX,ty=fairy.targetY,hx=fx+face*28,hy=y-6;
  if(!heal&&k>.45&&k<1.05&&rig?.['magija-zrak']){const dx=tx-hx,dy=ty-hy,len=Math.hypot(dx,dy),R=rig['magija-zrak'],full=512*R.scale,fade=Math.sin(clamp((k-.45)/.6,0,1)*Math.PI);
-  rigDrawC('magija-zrak',Math.floor(time*14)%R.frames.length,(hx+tx)/2,(hy+ty)/2,1,{rot:Math.atan2(dy,dx),sx:len/full,sy:1.1,alpha:a*fade});}
+  rigDrawC('magija-zrak',loopF(time*14,R.frames.length),(hx+tx)/2,(hy+ty)/2,1,{rot:Math.atan2(dy,dx),sx:len/full,sy:1.1,alpha:a*fade});}
  if(k>.55&&k<1.35&&rig?.['magija-bljesak']){const B=rig['magija-bljesak'],bn=B.frames.length,bf=Math.min(bn-1,Math.floor((k-.55)/.8*bn));rigDrawC('magija-bljesak',bf,heal?p.x:tx,heal?p.y-60:ty,1,{alpha:a,scale:heal?.8:1});}
  textLabel('RAVIJOJLA',fx,y-58,{font:'bold 10px Georgia',color:'#daffe6',alpha:a*.9});}
 function drawFairy(){const active=fairy.age<fairy.duration,fx2=fairy.x,fy=fairy.y+Math.sin(time*3)*5;if(!active){halo(fx2,fy-22,26,'rgba(150,255,215,.45)');halo(fx2,fy-22,6,'rgba(255,255,240,.8)');ellipse(fx2,fy-22,2.5,2.5,'#f4fff8');for(let i=0;i<3;i++)ellipse(fx2+Math.sin(time*2+i*2)*9,fy-22+Math.cos(time*2+i*2)*7,1.3,1.3,'#d8ffe9',gctx);emitters.push({id:'fairy',kind:'fairy',x:fx2,y:fy-10,rate:22});return;}const enter=clamp(fairy.age/.22,0,1),leave=clamp((fairy.duration-fairy.age)/.65,0,1),a=enter*leave;const pose=fairy.age<.9?Math.min(5,Math.floor(fairy.age/.15)):5;const face=fairy.targetX>=fx2?1:-1;halo(fx2,fy-42,70,'rgba(140,255,210,.13)',a);
@@ -1251,10 +1257,10 @@ function bloodLand(a,q){if(decals.length>520)decals.splice(0,20);const r=a.r*(1.
   particles.push({kind:'blood',x:edge+side*2.5,y:q.y+fall,vx:side*6,vy:20,life:3,max:3,r:1.5+Math.random()*1.3,color:'#7a070b',delay:.5+Math.random()*.7});}}
 function drawFlame(x,y,w,h,seed=0,alpha=1){const t=time*9+seed;for(const [g,cols] of [[ctx,['rgba(214,60,14,.85)','rgba(255,150,30,.92)','rgba(255,236,160,.95)']],[gctx,['rgba(255,80,10,.45)','rgba(255,150,30,.5)','rgba(255,230,150,.55)']]]){for(let i=0;i<3;i++){const s=1-i*.3,fh=h*s*(.82+.18*Math.sin(t*1.3+i*2)),fw=w*s;g.beginPath();g.moveTo(x-fw/2,y);g.quadraticCurveTo(x-fw*.6,y-fh*.45,x+Math.sin(t+i)*fw*.22,y-fh);g.quadraticCurveTo(x+fw*.6,y-fh*.45,x+fw/2,y);g.closePath();g.globalAlpha=alpha;g.fillStyle=cols[i];g.fill();}g.globalAlpha=1;}}
 function drawFire(f){if(f.x<camera-120||f.x>camera+VIEW_W+120)return;const a=clamp(f.life/.6,0,1)*clamp((f.max-f.life)/.2,0,1);halo(f.x,f.y-20,f.w*1.1,'rgba(255,120,30,.55)',a);
- {const nm=f.w<52&&rig?.['plamen-mali']?'plamen-mali':'plamen',R=rig?.[nm];if(R){const grow=clamp((f.max-f.life)/.35,0,1);rigDraw(nm,Math.floor(time*12+f.seed)%R.frames.length,f.x,f.y+3,f.seed%2<1?1:-1,{scale:f.w/(nm==='plamen'?78:27)*(.55+.45*grow),alpha:a});emitters.push({id:'fire'+Math.round(f.seed*100),kind:'fire',x:f.x,y:f.y,w:f.w,rate:12*a});return;}}const n=Math.max(3,Math.round(f.w/18));for(let i=0;i<n;i++){const x=f.x-f.w/2+(i+.5)*f.w/n;drawFlame(x,f.y+2,20+((i*7+f.seed)%9),34+((i*13+f.seed)%22),f.seed+i*3.1,a);}emitters.push({id:'fire'+Math.round(f.seed*100),kind:'fire',x:f.x,y:f.y,w:f.w,rate:26*a});}
+ {const nm=f.w<52&&rig?.['plamen-mali']?'plamen-mali':'plamen',R=rig?.[nm];if(R){const grow=clamp((f.max-f.life)/.35,0,1);rigDraw(nm,loopF(time*12+f.seed,R.frames.length),f.x,f.y+3,f.seed%2<1?1:-1,{scale:f.w/(nm==='plamen'?78:27)*(.55+.45*grow),alpha:a});emitters.push({id:'fire'+Math.round(f.seed*100),kind:'fire',x:f.x,y:f.y,w:f.w,rate:12*a});return;}}const n=Math.max(3,Math.round(f.w/18));for(let i=0;i<n;i++){const x=f.x-f.w/2+(i+.5)*f.w/n;drawFlame(x,f.y+2,20+((i*7+f.seed)%9),34+((i*13+f.seed)%22),f.seed+i*3.1,a);}emitters.push({id:'fire'+Math.round(f.seed*100),kind:'fire',x:f.x,y:f.y,w:f.w,rate:26*a});}
 const BRAZIERS=[3760,4850,6420,24930,25980,27120,28420,29680];
 function drawBraziers(){if(!((zone===1||zone===4||zone===5)&&!level||level?.id==='tvrdjava'))return;for(const x of BRAZIERS){if(x<camera-80||x>camera+VIEW_W+80)continue;line(x-12,590,x-5,555,'#2c2622',4);line(x+12,590,x+5,555,'#2c2622',4);poly([[x-24,548],[x+24,548],[x+16,562],[x-16,562]],'#3b332c','#86745a');drawFlame(x,550,34,48+6*Math.sin(time*3+x),x);halo(x,530,90,'rgba(255,140,50,.45)',.8+.2*Math.sin(time*7+x));emitters.push({id:'braz'+x,kind:'fire',x,y:546,w:26,rate:16});}}
-function drawEagles(){if(!rig?.['orao-flight'])return;for(let i=0;i<3;i++){const span=VIEW_W+500,speed=60+i*22,par=.25+i*.08;const wx=camera+((i*610+time*speed-camera*par)%span+span)%span-250;const wy=camY+80+i*55+Math.sin(time*.6+i*2)*18;rigDraw('orao-flight',Math.floor(time*10+i*2)%6,wx,wy,1,{scale:.55-i*.1,alpha:.92});}}
+function drawEagles(){if(!rig?.['orao-flight'])return;for(let i=0;i<3;i++){const span=VIEW_W+500,speed=60+i*22,par=.25+i*.08;const wx=camera+((i*610+time*speed-camera*par)%span+span)%span-250;const wy=camY+80+i*55+Math.sin(time*.6+i*2)*18;rigDraw('orao-flight',loopF(time*10+i*2,6),wx,wy,1,{scale:.55-i*.1,alpha:.92});}}
 const FOE_RUN={akindzija:['akindzija-run',115],oklopnik:['oklopnik-walk',80],palikuca:['palikuca-run',90]};
 function foePose(e,F){if(e.hurtT>0&&e.mode!=='windup'&&e.mode!=='recover'&&rig?.[e.type+'-hurt'])return{name:e.type+'-hurt',...onceAt(Math.min(3,(1-e.hurtT/.34)*4))};const anim=F.anims[e.variant]||F.anims.main,nA=rig?.[anim]?.frames.length||6,cut=Math.max(3,Math.round(nA*.45));if(e.mode==='windup'){const pr=1-e.timer/(e.windupDuration||F.windup);return{name:anim,...onceAt(Math.min(cut-1,pr*cut)),keyAt:(cut+.5)/nA};}
  if(e.mode==='recover'){const pr=1-e.timer/F.recover;return{name:anim,...onceAt(cut+Math.min(nA-cut-1,pr*(nA-cut))),keyAt:(cut+.5)/nA,dy:-(e.hop||0)};}
@@ -1303,9 +1309,9 @@ function pack3Pose(){
  if(p.down>0){const t=DOWN_TIME-p.down;if(t<.55&&rig?.['marko-knockdown'])return{name:'marko-knockdown',...onceAt(Math.min(4,t/.55*5))};if(t<.75&&rig?.['marko-knockdown'])return{name:'marko-knockdown',frame:5};if(rig?.['marko-getup'])return{name:'marko-getup',...onceAt(Math.min(5,(t-.75)/.5*6))};}
  if(p.ledgeT>0&&rig?.['marko-ledge']){const k=1-p.ledgeT/LEDGE_TIME;return{name:'marko-ledge',frame:k<.1?0:k<.22?1:k<.34?2:Math.min(7,3+Math.floor((k-.34)/.66*5))};}
  if(p.wall&&rig?.['marko-wallslide'])return{name:'marko-wallslide',...loopAt(time*8,4),faceAs:p.wall};
- if(p.wall&&rig?.['marko-walljump'])return{name:'marko-walljump',frame:Math.floor(time*6)%2,faceAs:p.wall};
+ if(p.wall&&rig?.['marko-walljump'])return{name:'marko-walljump',...loopAt(time*6,2),faceAs:p.wall};
  if(p.wallJumpT>0&&rig?.['marko-walljump'])return{name:'marko-walljump',frame:3+Math.min(2,Math.floor((1-p.wallJumpT/.32)*3)),faceAs:p.wallSide};
- if(p.plunge===1&&rig?.['marko-plunge'])return{name:'marko-plunge',frame:Math.min(2,Math.floor((time-p.plungeStart)/.09))};
+ if(p.plunge===1&&rig?.['marko-plunge'])return{name:'marko-plunge',...onceAt(Math.min(2,(time-p.plungeStart)/.09))};
  if(p.plunge===2&&rig?.['marko-plunge'])return{name:'marko-plunge',frame:3+Math.min(2,Math.floor((1-p.plungeT/.4)*3))};
  if(p.dash>0&&p.airDash&&rig?.['marko-run-jump'])return{name:'marko-run-jump',frame:3};
  if(p.dash>0&&p.grounded&&rig?.['marko-roll'])return{name:'marko-roll',...onceAt(Math.min(5,(1-p.dash/ROLL_TIME)*6))};
@@ -1594,7 +1600,7 @@ function foeWalk(e,dir,speed,dt){
 function foeBody(e,dt){const x0=e.x;if(!e.climb){integrate(e,dt,world.platforms,world.runes);if(e.grounded){if(e.air){e.air=false;e.landT=.16;dust(e.x,e.y,6,1.1);sfx('land',{gain:.3,x:e.x});if(e.spiked)foeSlam(e);}}else e.jumpT=(e.jumpT||0)+dt;}
  e.landT=Math.max(0,(e.landT||0)-dt);const moved=Math.abs(e.x-x0);if(e.grounded&&moved>.2){e.walk=(e.walk||0)+moved;e.moveT=.12;}
  if(e.y>(world.pitY||900)){e.alive=false;kills++;say('tr_death',{chance:.6,x:e.x});toast('Turčin je pao u ponor',1.2);}}
-function airPose(e){const n=e.type+'-jump',L=rig?.[e.type+'-launch'];if(L&&e.tossedT>0&&!e.climb){const last=L.frames.length-1;const f=e.grounded?last:e.spiked||e.vy>480?Math.min(4,last):e.vy< -480?0:e.vy< -140?1:e.vy<140?2:Math.min(3,last);return{name:e.type+'-launch',frame:f};}if(e.climb&&rig?.[e.type+'-climb'])return{name:e.type+'-climb',...loopAt((e.climbDist||0)/24,rig[e.type+'-climb'].frames.length)};if(e.climb){const run=FOE_RUN[e.type]?.[0]||e.type+'-run';return{name:rig?.[run]?run:'cast/'+e.type,frame:Math.floor((e.climbDist||0)/30)%6,rot:-e.face*.05};}
+function airPose(e){const n=e.type+'-jump',L=rig?.[e.type+'-launch'];if(L&&e.tossedT>0&&!e.climb){const last=L.frames.length-1;const f=e.grounded?last:e.spiked||e.vy>480?Math.min(4,last):e.vy< -480?0:e.vy< -140?1:e.vy<140?2:Math.min(3,last);return{name:e.type+'-launch',frame:f};}if(e.climb&&rig?.[e.type+'-climb'])return{name:e.type+'-climb',...loopAt((e.climbDist||0)/24,rig[e.type+'-climb'].frames.length)};if(e.climb){const run=FOE_RUN[e.type]?.[0]||e.type+'-run';return{name:rig?.[run]?run:'cast/'+e.type,...loopAt((e.climbDist||0)/30,6),rot:-e.face*.05};}
  if(rig?.[n]){const f=e.landT>0?5:(e.jumpT||0)<.07?1:e.vy<-90?2:e.vy<90?3:4;return{name:n,frame:Math.min(rig[n].frames.length-1,f)};}
  const F=FOES[e.type],run=FOE_RUN[e.type]?.[0]||e.type+'-run',name=F?.anims.jump||(rig?.[run]?run:'cast/'+e.type);return{name,frame:F?.anims.jump?(e.vy<0?1:3):2,rot:-e.face*.08*Math.sign(e.vy)};}
 // aimed arrows from towers (and from below)
@@ -1616,11 +1622,11 @@ function updatePlows(dt){for(const pl of world.plowTeams||[]){pl.flash=Math.max(
 function drawPlows(){for(const pl of world.plowTeams||[]){if(pl.x<camera-400||pl.x>camera+VIEW_W+400)continue;
  for(const fx2 of pl.furrow){if(fx2<camera-40||fx2>camera+VIEW_W+40)continue;line(fx2-16,pl.y+2,fx2+16,pl.y+2,'rgba(50,32,18,.75)',4);line(fx2-14,pl.y,fx2+12,pl.y,'rgba(150,110,70,.5)',1.5);}
  if(pl.broken){const im=levelArt['plug-slomljen'];if(im){const bb=propBounds(im),k=80/bb.h;ctx.drawImage(im,bb.x,bb.y,bb.w,bb.h,pl.x-bb.w*k/2,pl.y-80+4,bb.w*k,80);}else{line(pl.x-50,pl.y-10,pl.x+30,pl.y-40,'#5a3c22',7);line(pl.x-20,pl.y,pl.x+10,pl.y-30,'#3e2a18',6);}
-  const a=1-clamp(pl.fleeT/2.4,0,1);if(a>0){const ox=pl.x-80+pl.fleeT*260,st=levelArt['volovi-plug-static'];if(rig?.['volovi-beg'])rigDraw('volovi-beg',Math.floor(pl.fleeT*12)%8,ox,pl.y,1,{alpha:a});else if(st){const k=150/st.height,sx=390,bob=Math.abs(Math.sin(pl.fleeT*14))*4;ctx.save();ctx.globalAlpha=a;ctx.drawImage(st,sx,0,st.width-sx,st.height,ox-60,pl.y-150-bob+6,(st.width-sx)*k,150);ctx.restore();}else drawOxen(ox,pl.y,1,pl.fleeT*14,a);}continue;}
+  const a=1-clamp(pl.fleeT/2.4,0,1);if(a>0){const ox=pl.x-80+pl.fleeT*260,st=levelArt['volovi-plug-static'];if(rig?.['volovi-beg'])rigDraw('volovi-beg',loopF(pl.fleeT*12,8),ox,pl.y,1,{alpha:a});else if(st){const k=150/st.height,sx=390,bob=Math.abs(Math.sin(pl.fleeT*14))*4;ctx.save();ctx.globalAlpha=a;ctx.drawImage(st,sx,0,st.width-sx,st.height,ox-60,pl.y-150-bob+6,(st.width-sx)*k,150);ctx.restore();}else drawOxen(ox,pl.y,1,pl.fleeT*14,a);}continue;}
  shadow(pl.x,pl.y,120,.45);
- const st=levelArt['volovi-plug-static'];if(rig?.['volovi-plug'])rigDraw('volovi-plug',Math.floor(pl.walk/14)%8,pl.x,pl.y,-1,{flash:pl.flash>0?pl.flash/.15*.5:0});
+ const st=levelArt['volovi-plug-static'];if(rig?.['volovi-plug'])rigDraw('volovi-plug',loopF(pl.walk/14,8),pl.x,pl.y,-1,{flash:pl.flash>0?pl.flash/.15*.5:0});
  else if(st){const k=150/st.height,w=st.width*k,bob=Math.abs(Math.sin(pl.walk/9))*3;ctx.save();ctx.translate(pl.x+10,pl.y+6-bob);ctx.scale(-1,1);ctx.drawImage(st,-w/2,-150,w,150);if(pl.flash>0){ctx.globalAlpha=pl.flash*3;ctx.globalCompositeOperation='lighter';ctx.drawImage(st,-w/2,-150,w,150);}ctx.restore();if(Math.random()<.25)dust(pl.x+60,pl.y,1,.5);}
- else{drawOxen(pl.x-70,pl.y,-1,pl.walk/9,1);line(pl.x-20,pl.y-46,pl.x+70,pl.y-40,'#5a3c22',6);line(pl.x+70,pl.y-40,pl.x+92,pl.y+2,'#3e2a18',7);line(pl.x+86,pl.y-70,pl.x+70,pl.y-40,'#5a3c22',4);rigDraw('sword-idle',Math.floor(time*8)%6,pl.x+120,pl.y,-1,{flash:pl.flash>0?.5:0})||rigDraw('cast/sword',0,pl.x+120,pl.y,-1);}
+ else{drawOxen(pl.x-70,pl.y,-1,pl.walk/9,1);line(pl.x-20,pl.y-46,pl.x+70,pl.y-40,'#5a3c22',6);line(pl.x+70,pl.y-40,pl.x+92,pl.y+2,'#3e2a18',7);line(pl.x+86,pl.y-70,pl.x+70,pl.y-40,'#5a3c22',4);rigDraw('sword-idle',loopF(time*8,6),pl.x+120,pl.y,-1,{flash:pl.flash>0?.5:0})||rigDraw('cast/sword',0,pl.x+120,pl.y,-1);}
  if(pl.hp<pl.maxHp){const bw=90,bx=pl.x-bw/2,by=pl.y-170;ctx.fillStyle='rgba(10,20,20,.8)';ctx.fillRect(bx-1,by-1,bw+2,6);ctx.fillStyle='#d98a4a';ctx.fillRect(bx,by,bw*Math.max(0,pl.hp/pl.maxHp),4);}
  if(Math.abs(p.x-pl.x)<500)textLabel('SLOMI RALO',pl.x,pl.y-186,{font:'bold 12px Georgia',color:'#fff0c8',glow:'#ff9a5a'});}}
 function drawOxen(x,y,face,ph,alpha){ctx.save();ctx.globalAlpha=alpha;for(const [dx,c] of[[18,'#5a4632'],[0,'#7a624a']]){const bx=x+dx*face;ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(bx,y-58,58,26,0,0,Math.PI*2);ctx.fill();ellipse(bx+face*58,y-66,15,13,c);line(bx+face*64,y-78,bx+face*76,y-90,'#e8dcc0',3);for(const lx of[-40,-24,30,44]){const s=Math.sin(ph+lx)*8;line(bx+lx,y-40,bx+lx+s,y,c,7);}}ctx.restore();}
@@ -1668,7 +1674,7 @@ function wallCheckLevel(){p.wall=0;if(!has('zid'))return;if(horseMounted||p.ledg
  for(const q of world.platforms){if(!q.solid||q.off||q.kind==='crate'||q.kind==='step'||q.pillar||q.h<100)continue;if(p.y<q.y+50||p.y-90>q.y+q.h)continue;const side=axis>0?q.x:q.x+q.w,edge=p.x+axis*17;
   if(Math.abs(edge-side)<12&&(axis>0?p.x<q.x:p.x>q.x+q.w)){p.x=side-axis*17;p.wall=axis;p.face=axis;if(p.vy>120)p.vy=120;if(Math.random()<.1)dust(side,p.y-30,1,.4);break;}}}
 function climbPose(){if(rig?.['marko-climb'])return{name:'marko-climb',...loopAt((p.climbDist||0)/22,rig['marko-climb'].frames.length)};const k=Math.floor((p.climbDist||0)/26)%2;return{name:'marko-jump',frame:3,faceAs:k?1:-1,sy:1+(k?.02:-.02)};}
-function throwPose(){const t=1-p.throwT/.5;if(p.lowThrow){const C=rig?.['marko-crouch-throw'];if(C)return{name:'marko-crouch-throw',...onceAt(Math.min(C.frames.length-1,t*C.frames.length))};if(rig?.['marko-crouch'])return{name:'marko-crouch',frame:Math.min(rig['marko-crouch'].frames.length-1,2),rot:p.face*(t<.5?-.12:.1)};}if(rig?.['marko-throw'])return{name:'marko-throw',...onceAt(Math.min(rig['marko-throw'].frames.length-1,t*rig['marko-throw'].frames.length))};return{name:'marko-attack',frame:Math.min(5,Math.floor(t*6))};}
+function throwPose(){const t=1-p.throwT/.5;if(p.lowThrow){const C=rig?.['marko-crouch-throw'];if(C)return{name:'marko-crouch-throw',...onceAt(Math.min(C.frames.length-1,t*C.frames.length))};if(rig?.['marko-crouch'])return{name:'marko-crouch',frame:Math.min(rig['marko-crouch'].frames.length-1,2),rot:p.face*(t<.5?-.12:.1)};}if(rig?.['marko-throw'])return{name:'marko-throw',...onceAt(Math.min(rig['marko-throw'].frames.length-1,t*rig['marko-throw'].frames.length))};return{name:'marko-attack',...onceAt(Math.min(5,t*6))};}
 function drawArrow(a){if(a.flame){const k=clamp(a.life/1.4,0,1);halo(a.x,a.y,26,`rgba(255,140,40,${.5*k})`);ellipse(a.x,a.y,14*k+6,9*k+4,`rgba(255,${120+Math.round(100*k)},40,${.85*k})`);ellipse(a.x,a.y,6,4,'rgba(255,240,180,.9)');return;}if(a.spear){const ang=Math.atan2(a.vy||0,a.vx);ctx.save();ctx.translate(a.x,a.y);ctx.rotate(ang);line(-78,0,0,0,'#6a4a2a',4);poly([[14,0],[-4,-6],[-4,6]],'#dfe4e8');ctx.restore();if(!a.enemy)line(a.x-Math.cos(ang)*60,a.y-Math.sin(ang)*60,a.x,a.y,'rgba(200,255,232,.9)',4,gctx);return;}if(a.bullet){const ang=Math.atan2(a.vy,a.vx);line(a.x-Math.cos(ang)*26,a.y-Math.sin(ang)*26,a.x,a.y,'rgba(255,230,170,.9)',2.5,gctx);ellipse(a.x,a.y,2.5,2.5,'#2a2a2a');return;}const ang=Math.atan2(a.vy||0,a.vx);ctx.save();ctx.translate(a.x,a.y);ctx.rotate(ang);line(-30,0,0,0,'#c9a46a',2.5);poly([[4,0],[-6,-4],[-6,4]],'#e7e3cd');poly([[-30,0],[-38,-5],[-34,0]],'#d9d2c0');poly([[-30,0],[-38,5],[-34,0]],'#b9b2a0');ctx.restore();if(!a.enemy)line(a.x-Math.cos(ang)*40,a.y-Math.sin(ang)*40,a.x,a.y,'rgba(200,255,232,.9)',3,gctx);}
 function drawCudo(i){const yy=i.y+Math.sin(time*2.4+i.id)*5,im=levelArt['cudo-'+i.cudo],have=ownedCuda().has(i.cudo);halo(i.x,yy,56,'rgba(255,220,130,.6)',(have?.4:.85)+.15*Math.sin(time*4));
  if(im){const bb=propBounds(im),k=58/Math.max(bb.w,bb.h);ctx.save();ctx.globalAlpha=have?.55:1;ctx.drawImage(im,bb.x,bb.y,bb.w,bb.h,i.x-bb.w*k/2,yy-bb.h*k/2,bb.w*k,bb.h*k);ctx.restore();}
@@ -1897,8 +1903,8 @@ function drawKavez(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const sh=t
  // the guests: huddled in the cage, then the kolo once they are out (a few seconds), then off home
  const dancing=t.open&&t.t<11,gone=t.open&&t.t>=11,off=t.open?Math.max(0,t.t-5)**1.4*70:0;
  if(!gone){const nm=dancing&&rig?.['svatovi-kolo']?'svatovi-kolo':rig?.['svatovi-zarobljeni']?'svatovi-zarobljeni':null,a=t.open?clamp((11-t.t)/1.2,0,1):1;
-  if(nm)rigDraw(nm,Math.floor(time*(dancing?9:5))%rig[nm].frames.length,t.x+(dancing?-30+off:0),t.y,1,{alpha:a});
-  else for(const [k,who] of [['putnik-putnica-idle',-28],['putnik-trgovac-idle',8],['putnik-starac-idle',40]])rigDraw(k,Math.floor(time*5)%(rig?.[k]?.frames.length||1),t.x+who+(dancing?Math.sin(time*6+who)*14:0),t.y,dancing?(Math.sin(time*3+who)>0?1:-1):-1,{alpha:a});}
+  if(nm)rigDraw(nm,loopF(time*(dancing?9:5),rig[nm].frames.length),t.x+(dancing?-30+off:0),t.y,1,{alpha:a});
+  else for(const [k,who] of [['putnik-putnica-idle',-28],['putnik-trgovac-idle',8],['putnik-starac-idle',40]])rigDraw(k,loopF(time*5,(rig?.[k]?.frames.length||1)),t.x+who+(dancing?Math.sin(time*6+who)*14:0),t.y,dancing?(Math.sin(time*3+who)>0?1:-1):-1,{alpha:a});}
  if(cage){const b=propBounds(cage),whole=worldImg('kavez-svatovi'),k=200/(whole?propBounds(whole).h:b.h),h=b.h*k,w=b.w*k;ctx.drawImage(cage,b.x,b.y,b.w,b.h,t.x-w/2+sh,t.y-h+6,w,h);}
  else if(!t.open){for(let bx=-80;bx<=80;bx+=20)line(t.x+bx+sh,t.y,t.x+bx+sh,t.y-170,'#4a3424',7);line(t.x-90+sh,t.y-170,t.x+90+sh,t.y-170,'#3a2a1c',10);line(t.x-90+sh,t.y-4,t.x+90+sh,t.y-4,'#3a2a1c',10);}
  if(t===world.mladenci&&t.open)drawMladenci(t);
@@ -1906,7 +1912,7 @@ function drawKavez(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const sh=t
 // the last cage held the bride and groom: they leap for joy beside the kolo, then run off down the road ahead of the guests
 function drawMladenci(t){const T=t.t||0;if(T<.5||T>15||!rig?.['mlada-trci']||!rig?.['mladozenja-trci'])return;const run=T>6,k=run?T-6:0,off=k*170+k*k*22,a=clamp((15-T)/1.2,0,1)*clamp(1-(off-700)/250,0,1);if(a<=0)return;
  if(!run){const f=Math.floor((T-.5)*9);if(rig['mlada-skok'])rigDraw('mlada-skok',f%rig['mlada-skok'].frames.length,t.x+70,t.y,1,{alpha:a});if(rig['mladozenja-skok'])rigDraw('mladozenja-skok',(f+3)%rig['mladozenja-skok'].frames.length,t.x+128,t.y,-1,{alpha:a});}
- else{rigDraw('mladozenja-trci',Math.floor(T*12)%8,t.x+128+off,t.y,1,{alpha:a});rigDraw('mlada-trci',Math.floor(T*12+3)%8,t.x+70+off*.97,t.y,1,{alpha:a});}
+ else{rigDraw('mladozenja-trci',loopF(T*12,8),t.x+128+off,t.y,1,{alpha:a});rigDraw('mlada-trci',loopF(T*12+3,8),t.x+70+off*.97,t.y,1,{alpha:a});}
  if(Math.random()<.25&&a>.3){const x=t.x+100+off;particles.push({kind:'dust',x:x+(Math.random()-.5)*60,y:t.y-150-Math.random()*30,vx:(Math.random()-.5)*60+(run?120:0),vy:-20-Math.random()*40,life:1.6,max:1.6,r:2+Math.random()*2,color:['#ff9db0','#fff3e0','#e8364a','#ffd36a'][Math.floor(Math.random()*4)]});}}
 // ================= Urvina: the last pohod ("Smrt Marka Kraljevića") =================
 // No one stands against him here. The road climbs the mountain by the sea, the vila tells him what waits, and on the top,
@@ -1942,7 +1948,7 @@ function drawVrh(t){if(t.x1<camera-600||t.x0>camera+VIEW_W+600)return;const jela
  if(step<2)rigDraw('cast/sarac',0,t.sarac,t.y,-1,{});else{ellipse(t.sarac,t.y-6,110,22,'#5a4632');ellipse(t.sarac,t.y-16,86,18,'#6b543c');if(krst)drawImgOn(krst,t.sarac+96,t.y+2,150);}
  if(step>=3){for(const [dx,r,l] of[[-46,.3,26],[-16,-.5,22],[12,.8,24],[40,-.2,20]]){ctx.save();ctx.translate(t.sablja+dx,t.y-5);ctx.rotate(r);line(-l/2,0,l/2,0,'#c8ccd2',4);ctx.restore();}for(let i=0;i<7;i++)line(t.sablja+80+i*17,t.y-3,t.sablja+92+i*17,t.y-9,'#5a3c22',4);}
  if(t.mace){const im=levelArt['predmet-topuz'],M=t.mace;ctx.save();ctx.translate(M.x,M.y);ctx.rotate(M.rot);if(im)ctx.drawImage(im,-34,-34,68,68);else{line(-30,0,6,0,'#4a3420',6);ellipse(16,0,14,14,'#5a5a60');}ctx.restore();}
- if(p.lying){const P=rig?.['marko-pocinak'],R=rig?.['marko-death'];if(P)rigDraw('marko-pocinak',Math.min(P.frames.length-1,Math.floor((t.lie||0)*2.2)),p.x,p.y,1,{});else{ctx.save();ctx.globalAlpha=.9;ellipse(p.x,p.y-3,74,9,'#2f5a3a');ctx.restore();if(R)rigDraw('marko-death',R.frames.length-1,p.x,p.y,1,{});}}
+ if(p.lying){const P=rig?.['marko-pocinak'],R=rig?.['marko-death'];if(P)rigDraw('marko-pocinak',Math.min(P.frames.length-1,(t.lie||0)*2.2),p.x,p.y,1,{});else{ctx.save();ctx.globalAlpha=.9;ellipse(p.x,p.y-3,74,9,'#2f5a3a');ctx.restore();if(R)rigDraw('marko-death',R.frames.length-1,p.x,p.y,1,{});}}
  else if(step<VRH.length){const s=VRH[step],x=t[s.at],d=Math.abs(p.x-x);if(d<620)textLabel(d<130?s.prompt:s.goal.toUpperCase(),x,t.y-(s.at==='sarac'&&step<2?230:190),{font:'bold 13px Georgia',color:'#e8f0ff'});}}
 // ================= the secret pohod: Marko's dream in the vila's cave ("Marko još spava") =================
 // Not on the map until the player spells М-А-Р-К-О there. No one to fight: four chambers, each a memory of a song and
@@ -2017,7 +2023,7 @@ function updatePotera(dt){const t=poteraTrap();if(!t)return;
  puzzleGate(t,t.done,t.state?'Stigni vilu i baci topuz (I).':'Uzjaši Šarca (E) i stigni vilu.');}
 function drawPotera(t){if(t.x1<camera-400||t.x0>camera+VIEW_W+400)return;
  if(!t.state){rigDraw('cast/sarac',0,t.sx,t.y,1,{});if(Math.abs(p.x-t.sx)<460)textLabel(Math.abs(p.x-t.sx)<150?'E · UZJAŠI ŠARCA':'ŠARAC ČEKA',t.sx,t.y-200,{font:'bold 13px Georgia',color:'#ffe9a8'});return;}
- const V=t.vila;if(V&&t.state!=='kraj'){const n=rig?.['vila-let']?.frames.length||0;if(n)rigDraw('vila-let',Math.floor(time*12)%n,V.x,V.y+70,t.state==='pala'?-1:1,{rot:t.state==='pala'?.9:0});halo(V.x,V.y,70,'rgba(170,255,225,.45)',.6+.2*Math.sin(time*5));
+ const V=t.vila;if(V&&t.state!=='kraj'){const n=rig?.['vila-let']?.frames.length||0;if(n)rigDraw('vila-let',loopF(time*12,n),V.x,V.y+70,t.state==='pala'?-1:1,{rot:t.state==='pala'?.9:0});halo(V.x,V.y,70,'rgba(170,255,225,.45)',.6+.2*Math.sin(time*5));
   if(t.state==='trka'&&t.reach)textLabel('I · BACI TOPUZ',p.x,p.y-250,{font:'bold 18px Georgia',color:'#fff3c0',glow:'#ff6a3a'});}
  if(t.mace&&V){const M=t.mace,x=M.x+(V.x-M.x)*M.k,y=M.y+(V.y-M.y)*M.k-Math.sin(M.k*Math.PI)*70,im=levelArt['predmet-topuz'];ctx.save();ctx.translate(x,y);ctx.rotate(M.k*14);if(im)ctx.drawImage(im,-30,-30,60,60);else{line(-26,0,6,0,'#4a3420',6);ellipse(14,0,13,13,'#5a5a60');}ctx.restore();}}
 // ================= the judgment ("Uroš i Mrnjavčevići") =================
@@ -2114,7 +2120,7 @@ function updatePogled(dt){const t=pogledTrap();if(!t)return;
  else if(t.state==='trepnuo'){t.t+=dt;p.vx=0;if(t.t>1.6)t.state=null;}
  puzzleGate(t,t.done,'Ljutica Bogdan ti preči put. Priđi mu i izdrži pogled (E).');}
 function drawPogled(t){if(t.x<camera-500||t.x>camera+VIEW_W+500)return;const jx=-(t.jolt>0?Math.sin(t.jolt/.3*Math.PI)*46:0),m=rig?.['beg-mounted']?'beg-mounted':rig?.['akindzija-idle']?'akindzija-idle':null;
- if(m)rigDraw(m,m==='beg-mounted'?0:Math.floor(time*5)%rig[m].frames.length,t.x+jx,t.y,-1,m==='beg-mounted'?{fixedScale:1}:{scale:1.25});
+ if(m)rigDraw(m,m==='beg-mounted'?0:loopF(time*5,rig[m].frames.length),t.x+jx,t.y,-1,m==='beg-mounted'?{fixedScale:1}:{scale:1.25});
  textLabel(t.done?'POBRATIM BOGDAN':!t.state&&Math.abs(p.x-t.x)<230?'E · IZDRŽI POGLED':'LJUTICA BOGDAN',t.x,t.y-250,{font:'bold 13px Georgia',color:'#ffe2a8'});
  if(t.state==='gleda'){const k=clamp(t.t/POGLED_T,0,1);ctx.save();ctx.globalAlpha=.3+.25*k;ctx.fillStyle='#050608';ctx.fillRect(camera-20,camY-20,VIEW_W+40,VIEW_H+40);ctx.restore();
   line(p.x+22,p.y-104,t.x-48+jx,t.y-150,`rgba(255,235,190,${.25+.4*k})`,2,gctx);halo(p.x+18,p.y-104,16,'rgba(255,240,200,.9)',.8);halo(t.x-46+jx,t.y-150,16,'rgba(255,170,140,.9)',.8*(1-k*.6));
@@ -2168,11 +2174,11 @@ function songWatch(){for(const o of songWatch.on){if((mode==='play'||mode==='pau
 function guslarSongTick(g){if(!g.song||!audio)return;const d=Math.abs(p.x-g.x)+Math.max(0,Math.abs(p.y-g.y)-150),v=clamp(1-(d-450)/900,0,1);
  g.song.gn.gain.setTargetAtTime(v,audio.currentTime,.2);if(v>.15)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+.3);if(d>1700||g.state==='bezi'){try{g.song.s.stop(audio.currentTime+.4);}catch{}g.song=null;}}
 function drawGuslar(g){if(g.x<camera-400||g.x>camera+VIEW_W+400||!g.state)return;const sh=g.shake>0?Math.sin(time*70)*3:0,face=p.x<g.x?-1:1;
- if(g.state==='bezi'){const a=clamp(1-(g.t-.4)/2.6,0,1),k=rig?.['putnik-starac-walk']?'putnik-starac-walk':'putnik-starac-idle';if(a>0)rigDraw(k,Math.floor(time*9)%(rig?.[k]?.frames.length||1),g.x+Math.max(0,g.t-.4)*150,g.y,1,{alpha:a});
+ if(g.state==='bezi'){const a=clamp(1-(g.t-.4)/2.6,0,1),k=rig?.['putnik-starac-walk']?'putnik-starac-walk':'putnik-starac-idle';if(a>0)rigDraw(k,loopF(time*9,(rig?.[k]?.frames.length||1)),g.x+Math.max(0,g.t-.4)*150,g.y,1,{alpha:a});
   for(const [dx,r] of [[-22,.6],[14,-.4]]){ctx.save();ctx.translate(g.x+dx,g.y-4);ctx.rotate(r);ellipse(0,0,13,8,'#6b4222');line(0,0,26,0,'#4a2c14',3);ctx.restore();}return;}
  const sing=g.state==='peva'||g.state==='gotov'||g.state==='odbrana',nm=sing&&rig?.['guslar-svira']?'guslar-svira':rig?.['guslar-ceka']?'guslar-ceka':null;
- if(nm)rigDraw(nm,Math.floor(time*(sing?8:4))%rig[nm].frames.length,g.x+sh,g.y,face);
- else{ellipse(g.x,g.y-14,40,16,'#5c564c');rigDraw('putnik-starac-idle',Math.floor(time*5)%(rig?.['putnik-starac-idle']?.frames.length||1),g.x+sh,g.y-10,face);}
+ if(nm)rigDraw(nm,loopF(time*(sing?8:4),rig[nm].frames.length),g.x+sh,g.y,face);
+ else{ellipse(g.x,g.y-14,40,16,'#5c564c');rigDraw('putnik-starac-idle',loopF(time*5,(rig?.['putnik-starac-idle']?.frames.length||1)),g.x+sh,g.y-10,face);}
  if(g.state==='napad'||g.state==='odbrana'){const w=90,k=Math.max(0,g.hp)/GUSLE_HP;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(g.x-w/2-2,g.y-178,w+4,10);ctx.fillStyle=k>.4?'#c9a35a':'#c0503a';ctx.fillRect(g.x-w/2,g.y-176,w*k,6);
   textLabel(g.odbrana?'GUSLAR':'GUSLE',g.x,g.y-188,{font:'bold 12px Georgia',color:'#ead9b0'});}
  if(g.state==='ceka'&&Math.abs(p.x-g.x)<520)textLabel('GUSLAR',g.x,g.y-170,{font:'bold 13px Georgia',color:'#ead9b0'});
@@ -2263,8 +2269,8 @@ function updateOrao(dt){const O=world.orao;if(!O)return;O.t+=dt;O.cd-=dt;O.hladC
 function oraoPose(O){const st=O.state,R=n=>rig?.[n]?n:null;
  // the dive: wings folded, then talons out (the 5th drawing grips); after the blow she climbs away (the 6th)
  if(st==='napad'||O.hitT>0){const n=R('orao-obrusavanje');if(n){const L=rig[n].frames.length;return{n,f:O.hitT>0?L-1:Math.min(L-2,Math.floor(Math.min(1,O.t/.6)*(L-1)))};}}
- if(st==='hlad'){const n=R('orao-hlad');if(n)return{n,f:Math.floor(time*9)%rig[n].frames.length};}
- const n=R('orao-let')||R('orao-flight');return n?{n,f:Math.floor(time*11)%rig[n].frames.length}:null;}
+ if(st==='hlad'){const n=R('orao-hlad');if(n)return{n,f:loopF(time*9,rig[n].frames.length)};}
+ const n=R('orao-let')||R('orao-flight');return n?{n,f:loopF(time*11,rig[n].frames.length)}:null;}
 const ORAO_SC=.6; // Codex's eagle cell is drawn larger than the falcon's; this brings her to the falcon's size
 function drawOrao(){const O=world.orao;if(!O||O.x<camera-300||O.x>camera+VIEW_W+300)return;const q=oraoPose(O);if(!q)return;
  if(q.n==='orao-flight')rigDraw(q.n,q.f,O.x,O.y+30,O.face,{scale:1.15*ORAO_SC});else oraoDraw(q.n,q.f,O.x,O.y,O.face,ORAO_SC);}
@@ -2276,10 +2282,10 @@ function drawGnezdo(t){if(t.x<camera-500||t.x>camera+VIEW_W+500||!t.state)return
  const nx=t.x+34,ny=t.y-H*.6,nest=worldImg('orlovo-gnezdo');
  if(nest){const b=propBounds(nest),w=175,h=b.h*w/b.w;ctx.save();if(burnt>.02)ctx.filter=`brightness(${(1-.6*burnt).toFixed(2)})`;ctx.drawImage(nest,b.x,b.y,b.w,b.h,nx-w/2,ny-h*.7,w,h);ctx.restore();}
  else{ellipse(nx,ny,54,16,burnt>=1?'#2a2420':'#5a4028');ellipse(nx,ny-6,40,10,'#3a2a1a');if(burnt<1)for(const s of[-14,12]){ellipse(nx+s,ny-18,9,10,'#e8dcc0');poly([[nx+s+6,ny-20],[nx+s+14,ny-16],[nx+s+6,ny-14]],'#d8a040');}}
- if(t.state==='gori'){const n=1+Math.floor(t.burn*5),R=rig?.['plamen'];for(let i=0;i<n;i++){const fy=t.y-10-i*(H*.6/5),fx=t.x+Math.sin(i*2.3)*14;if(R)rigDraw('plamen',Math.floor(time*12+i*3)%R.frames.length,fx,fy,i%2?1:-1,{scale:.62+.12*Math.sin(i)});else drawFlame(fx,fy,26,46,i*5.1,1);}
+ if(t.state==='gori'){const n=1+Math.floor(t.burn*5),R=rig?.['plamen'];for(let i=0;i<n;i++){const fy=t.y-10-i*(H*.6/5),fx=t.x+Math.sin(i*2.3)*14;if(R)rigDraw('plamen',loopF(time*12+i*3,R.frames.length),fx,fy,i%2?1:-1,{scale:.62+.12*Math.sin(i)});else drawFlame(fx,fy,26,46,i*5.1,1);}
   emitters.push({id:'gnezdo'+t.x,kind:'fire',x:t.x,y:t.y-t.burn*H*.3,w:40,rate:14});
   // the mother circles over the burning tree, crying
-  const ox=t.x+Math.cos(time*1.3)*170,oy=t.y-H*.8+Math.sin(time*2.6)*22;if(rig?.['orao-let'])oraoDraw('orao-let',Math.floor(time*11)%rig['orao-let'].frames.length,ox,oy,-Math.sign(Math.sin(time*1.3))||1,ORAO_SC);else if(rig?.['orao-flight'])rigDraw('orao-flight',Math.floor(time*10)%6,ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:1.15*ORAO_SC});
+  const ox=t.x+Math.cos(time*1.3)*170,oy=t.y-H*.8+Math.sin(time*2.6)*22;if(rig?.['orao-let'])oraoDraw('orao-let',loopF(time*11,rig['orao-let'].frames.length),ox,oy,-Math.sign(Math.sin(time*1.3))||1,ORAO_SC);else if(rig?.['orao-flight'])rigDraw('orao-flight',loopF(time*10,6),ox,oy,-Math.sign(Math.sin(time*1.3))||1,{scale:1.15*ORAO_SC});
   const w=110,k=1-t.burn;ctx.fillStyle='rgba(15,10,6,.75)';ctx.fillRect(nx-w/2-2,ny-114,w+4,10);ctx.fillStyle=k>.4?'#c9a35a':'#c0503a';ctx.fillRect(nx-w/2,ny-112,w*k,6);textLabel('GNEZDO',nx,ny-124,{font:'bold 12px Georgia',color:'#ead9b0'});}}
 // ================= the falcon ("Kraljević Marko i soko") =================
 // In the reeds the Turks hunt a falcon whose wing they broke. Drive them off and bind his wing (E beside him):
@@ -2318,11 +2324,11 @@ function updateSoko(dt){const S=world.soko;if(!S)return;S.t+=dt;S.cd-=dt;S.vodaC
 function sokoPose(S){const st=S.state,R=n=>rig?.[n]?n:null;
  if(st==='napad'||S.hitT>0){const n=R('soko-napad');if(n){const L=rig[n].frames.length;return{n,f:S.hitT>0?Math.min(L-1,3+Math.floor((1-S.hitT/.35)*(L-3))):Math.min(2,Math.floor(Math.min(1,S.t/.45)*3))};}
   const o=R('orao-obrusavanje');if(o){const L=rig[o].frames.length;return{n:o,f:S.hitT>0?L-1:Math.min(L-2,Math.floor(Math.min(1,S.t/.45)*(L-1))),sc:.55};}}
- if(st==='voda'){const n=R('soko-voda')||R('orao-hlad');if(n)return{n,f:Math.floor(time*10)%rig[n].frames.length,sc:n==='orao-hlad'?.55:1};}
- const n=R('soko-let')||R('orao-let');return n?{n,f:Math.floor(time*14)%rig[n].frames.length,sc:n==='orao-let'?.6:1}:null;}
+ if(st==='voda'){const n=R('soko-voda')||R('orao-hlad');if(n)return{n,f:loopF(time*10,rig[n].frames.length),sc:n==='orao-hlad'?.55:1};}
+ const n=R('soko-let')||R('orao-let');return n?{n,f:loopF(time*14,rig[n].frames.length),sc:n==='orao-let'?.6:1}:null;}
 function drawSoko(){const S=world.soko;if(!S||S.x<camera-300||S.x>camera+VIEW_W+300)return;const q=sokoPose(S);if(q)oraoDraw(q.n,q.f,S.x,S.y,S.face,q.sc||1);}
 function drawSokoTrap(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state||t.state==='spasen')return;const face=p.x<t.x?-1:1;
- if(rig?.['soko-ranjen'])rigDraw('soko-ranjen',Math.floor(time*5)%rig['soko-ranjen'].frames.length,t.x,t.y,face);
+ if(rig?.['soko-ranjen'])rigDraw('soko-ranjen',loopF(time*5,rig['soko-ranjen'].frames.length),t.x,t.y,face);
  else if(rig?.['orao-hlad'])oraoDraw('orao-hlad',2,t.x,t.y-26,face,.42);
  const art=worldImg('prop-trska');if(art){const b=propBounds(art);for(const [dx,h] of [[-70,96],[58,84]]){const w=b.w*h/b.h;ctx.drawImage(art,b.x,b.y,b.w,b.h,t.x+dx-w/2,t.y-h+6,w,h);}}
  const near=Math.abs(p.x-t.x)<520;if(t.state==='ranjen'&&near)textLabel(Math.abs(p.x-t.x)<110?'E · PREVIJ KRILO':'RANJEN SOKO',t.x,t.y-120,{font:'bold 13px Georgia',color:'#ead9b0'});
@@ -2391,11 +2397,11 @@ function updateLov(dt){const L=lov;if(!L)return false;L.t+=dt;p.invuln=Math.max(
   speak('„Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.',8);}
  return true;}
 function drawLov(){const L=lov;if(!L)return;
- for(const u of L.utve){const f=Math.sin(u.t*16),s=u.vx>=0?1:-1,U=rig?.['utva-let'];if(U){oraoDraw('utva-let',Math.floor(u.t*12)%U.frames.length,u.x,u.y,s,1);halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);continue;}ctx.save();ctx.translate(u.x,u.y);ctx.scale(s,1);poly([[-16,2],[-4,-5],[14,-3],[22,-8],[16,3],[-2,8]],'#c9922e','#5a3c12');poly([[-2,-3],[6,-3],[-6,-3-18*Math.max(.15,f)],[-14,-3-12*Math.max(.15,f)]],'#f2c14e','#7a5418');ellipse(19,-8,5,4,'#2f5a3a');poly([[23,-8],[30,-6],[23,-5]],'#e8a020');ctx.restore();halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);}
- const R=L.rival;if(R){const V=rig?.['soko-vezirov-let'],n=V?'soko-vezirov-let':R.state==='nalet'&&rig?.['orao-obrusavanje']?'orao-obrusavanje':'orao-let';if(rig?.[n])oraoDraw(n,!V&&R.state==='nalet'?2:Math.floor(time*(R.state==='nalet'?18:12))%rig[n].frames.length,R.x,R.y,R.face,V?1:.62);
+ for(const u of L.utve){const f=Math.sin(u.t*16),s=u.vx>=0?1:-1,U=rig?.['utva-let'];if(U){oraoDraw('utva-let',loopF(u.t*12,U.frames.length),u.x,u.y,s,1);halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);continue;}ctx.save();ctx.translate(u.x,u.y);ctx.scale(s,1);poly([[-16,2],[-4,-5],[14,-3],[22,-8],[16,3],[-2,8]],'#c9922e','#5a3c12');poly([[-2,-3],[6,-3],[-6,-3-18*Math.max(.15,f)],[-14,-3-12*Math.max(.15,f)]],'#f2c14e','#7a5418');ellipse(19,-8,5,4,'#2f5a3a');poly([[23,-8],[30,-6],[23,-5]],'#e8a020');ctx.restore();halo(u.x,u.y,26,'rgba(255,210,110,.35)',.5);}
+ const R=L.rival;if(R){const V=rig?.['soko-vezirov-let'],n=V?'soko-vezirov-let':R.state==='nalet'&&rig?.['orao-obrusavanje']?'orao-obrusavanje':'orao-let';if(rig?.[n])oraoDraw(n,!V&&R.state==='nalet'?2:loopF(time*(R.state==='nalet'?18:12),rig[n].frames.length),R.x,R.y,R.face,V?1:.62);
   if(R.state==='dolazi'&&R.t<1)textLabel('!! VEZIREV SOKO',R.x,R.y-60,{font:'bold 14px Georgia',color:'#ffb09a',glow:'#a03020'});if(R.state==='umoran')halo(R.x,R.y,40,'rgba(190,255,220,.4)',.6+.3*Math.sin(time*9));}
  const n=L.phase==='pad'||L.phase==='kraj'?(rig?.['soko-ranjen']?'soko-ranjen':'soko-let'):L.dive>0&&rig?.['soko-napad']?'soko-napad':'soko-let';
- if(rig?.[n]){const fr=n==='soko-napad'?Math.min(2,Math.floor((1-L.dive/.38)*3)):Math.floor(time*(n==='soko-ranjen'?6:14))%rig[n].frames.length;if(n==='soko-ranjen')rigDraw(n,fr,L.x,L.y+30,L.face,{rot:L.phase==='pad'?L.face*Math.min(1,L.t)*.9:0});else oraoDraw(n,fr,L.x,L.y,L.face,1);}
+ if(rig?.[n]){const fr=n==='soko-napad'?Math.min(2,Math.max(0,(1-L.dive/.38)*3)):loopF(time*(n==='soko-ranjen'?6:14),rig[n].frames.length);if(n==='soko-ranjen')rigDraw(n,fr,L.x,L.y+30,L.face,{rot:L.phase==='pad'?L.face*Math.min(1,L.t)*.9:0});else oraoDraw(n,fr,L.x,L.y,L.face,1);}
  if(L.stun>0&&Math.floor(time*14)%2)halo(L.x,L.y,34,'rgba(255,140,110,.35)');
 }
 // ================= the poor by the road ("Marko Kraljević i beg Kostadin") =================
@@ -2408,8 +2414,8 @@ function useSirotinja(){const t=(world.traps||[]).find(t=>t.kind==='sirotinja'&&
  p.hp=p.maxHp;p.buff=Math.max(p.buff||0,15);p.rage=Math.min(100,(p.rage||0)+30);sfx('coins',{gain:.6})||sfx('ring',{gain:.5,rate:1.3});sfx('ring',{gain:.45,rate:.8,delay:.6});
  label(dar?`-${dar} DUKATA`:'BLAGOSLOV',p.x,p.y-170,'#ffd36a');toast('„Bog ti dao zdravlje, Kraljeviću Marko!” Sirotinja te blagoslovi: rane zarastu, a snaga ti raste.',4);updateHud();return true;}
 function drawSirotinja(t){if(t.x<camera-300||t.x>camera+VIEW_W+300)return;const B=t.dato&&rig?.['sirotinja-blagoslov'],nm=B?'sirotinja-blagoslov':rig?.['sirotinja-ceka']?'sirotinja-ceka':null,face=p.x<t.x?-1:1;
- if(nm)rigDraw(nm,Math.floor(time*(B?7:3))%rig[nm].frames.length,t.x,t.y,face);
- else{rigDraw('putnik-starac-idle',Math.floor(time*4)%(rig?.['putnik-starac-idle']?.frames.length||1),t.x,t.y,face);}
+ if(nm)rigDraw(nm,loopF(time*(B?7:3),rig[nm].frames.length),t.x,t.y,face);
+ else{rigDraw('putnik-starac-idle',loopF(time*4,(rig?.['putnik-starac-idle']?.frames.length||1)),t.x,t.y,face);}
  const since=t.dato?time-t.datoAt:99;if(since<6){const a=Math.min(1,(6-since)/1.5);halo(t.x,t.y-70,90,`rgba(255,220,140,${.18*a})`,1);}
  if(!t.dato&&Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<150?'E · DAJ SIROTINJI DUKATE':'SIROTINJA KRAJ PUTA',t.x,t.y-130,{font:'bold 13px Georgia',color:'#ffe2a8'});}
 
@@ -2435,11 +2441,11 @@ function openDucan(){if(mode!=='play')return;mode='shop';keys.clear();pressed.cl
 function closeDucan(){if(mode!=='shop')return;mode='play';keys.clear();pressed.clear();if(hasDom)$('ducan').hidden=true;}
 function drawTrgovac(t){if(t.x<camera-400||t.x>camera+VIEW_W+400)return;const face=p.x<t.x?-1:1,kola=levelArt['prop-kola'],T=rig?.['trgovac-tezga-idle'],kovac=NOVAK_AT.has(level?.id)&&rig?.['novak-idle'],jx=janjaAt(t);
  if(kola&&!kovac)drawImgOn(kola,t.x+(T?125:70),t.y+4,118,false);
- if(T)rigDraw('trgovac-tezga-idle',Math.floor(time*4)%T.frames.length,t.x,t.y,-1);   // behind his stall, which faces the road Marko comes by
- else{const nm=rig?.['putnik-trgovac-idle']?'putnik-trgovac-idle':null;if(nm)rigDraw(nm,Math.floor(time*4)%rig[nm].frames.length,t.x-10,t.y,face);}
- if(kovac){const near=Math.abs(p.x-t.x)<360,n=near&&rig?.['novak-kuje']?'novak-kuje':'novak-idle',R=rig[n],f=Math.floor(time*(n==='novak-kuje'?9:4))%R.frames.length,nx=t.x+175;rigDraw(n,f,nx,t.y,-1);
-  if(n==='novak-kuje'&&(f===2||f===6)&&t.kf!==f)sfx('clang',{gain:.3,rate:1.35,x:nx});t.kf=f;if(Math.abs(p.x-nx)<420)textLabel('NOVAK KOVAČ',nx,t.y-168,{font:'bold 12px Georgia',color:'#ffe2a8'});}
- if(jx!=null){t.toci=Math.max(0,(t.toci||0)-1/60);const n=t.toci>0&&rig?.['janja-toci']?'janja-toci':'janja-idle',R=rig[n];rigDraw(n,Math.floor(time*(n==='janja-toci'?7:4))%R.frames.length,jx,t.y,p.x<jx?-1:1);
+ if(T)rigDraw('trgovac-tezga-idle',loopF(time*4,T.frames.length),t.x,t.y,-1);   // behind his stall, which faces the road Marko comes by
+ else{const nm=rig?.['putnik-trgovac-idle']?'putnik-trgovac-idle':null;if(nm)rigDraw(nm,loopF(time*4,rig[nm].frames.length),t.x-10,t.y,face);}
+ if(kovac){const near=Math.abs(p.x-t.x)<360,n=near&&rig?.['novak-kuje']?'novak-kuje':'novak-idle',R=rig[n],f=loopF(time*(n==='novak-kuje'?9:4),R.frames.length),nx=t.x+175;rigDraw(n,f,nx,t.y,-1);
+  const fk=Math.floor(f);if(n==='novak-kuje'&&(fk===2||fk===6)&&t.kf!==fk)sfx('clang',{gain:.3,rate:1.35,x:nx});t.kf=fk;if(Math.abs(p.x-nx)<420)textLabel('NOVAK KOVAČ',nx,t.y-168,{font:'bold 12px Georgia',color:'#ffe2a8'});}
+ if(jx!=null){t.toci=Math.max(0,(t.toci||0)-1/60);const n=t.toci>0&&rig?.['janja-toci']?'janja-toci':'janja-idle',R=rig[n];rigDraw(n,loopF(time*(n==='janja-toci'?7:4),R.frames.length),jx,t.y,p.x<jx?-1:1);
   if(Math.abs(p.x-jx)<420)textLabel(t.toceno?'KRČMARICA JANJA':Math.abs(p.x-jx)<80?'E · JANJA TOČI VINO':'KRČMARICA JANJA',jx,t.y-150,{font:'bold 13px Georgia',color:'#ffe2a8'});}
  if(Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<150?'E · TRGOVAC':'TRGOVAC KRAJ PUTA',t.x,t.y-150,{font:'bold 13px Georgia',color:'#ffe2a8'});}
 // ================= Ramadan wine ("Marko pije uz ramazan vino") =================
@@ -2477,11 +2483,11 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
  if(t.state==='puna'&&Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<100?'E · PIJ VINO':'VINO',t.x,t.y-H-14,{font:'bold 13px Georgia',color:'#ffd6a8'});
  if(t.state==='napad')textLabel('BAČVA',t.x,t.y-H-14,{font:'bold 12px Georgia',color:'#ead9b0'});
  const G=t.glasnik;if(G){const k=G.state==='cita'?'caus-ferman':'caus-walk',alt=G.state==='cita'?'putnik-trgovac-idle':'putnik-trgovac-walk',n=rig?.[k]?k:alt,R=rig?.[n];
-  if(R){const f=G.state==='cita'?Math.min(R.frames.length-1,Math.floor(G.t*5)):Math.floor(time*9)%R.frames.length;rigDraw(n,f,G.x,t.y,G.state==='odlazi'?1:-1);}
+  if(R){const f=G.state==='cita'?Math.min(R.frames.length-1,G.t*5):loopF(time*9,R.frames.length);rigDraw(n,f,G.x,t.y,G.state==='odlazi'?1:-1);}
   if(G.state==='cita')textLabel('STO DUKATA OD CARA',G.x,t.y-176,{font:'bold 13px Georgia',color:'#ffe39a'});}}
 function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
- if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',Math.floor(time*9)%rig['svatovi-kolo'].frames.length,level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
+ if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',loopF(time*9,rig['svatovi-kolo'].frames.length),level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
 function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}
 // ---------- champions: an arena that locks until the aga falls ----------
 let arena=null;
@@ -2565,10 +2571,10 @@ const KITS={
     if(p.dash>0||p.invuln>0)label('PROMAŠIO',e.x,e.y-200,'#e9ffe0');else{damage(22,e.rdir);foeSay(e,'attack');}}
    if(e.rdir>0?e.x>A.x1-70:e.x<A.x0+70){e.ks='turn';e.kt=1.2;e.rdir=-e.rdir;e.vx=0;label('OKREĆE KONJA · UDRI',e.x,e.y-210,'#d9f6c0');}
    return true;},
-  pose(e){if(e.ks==='unhorse'&&rig?.['beg-unhorsed']){const n=rig['beg-unhorsed'].frames.length;return{name:'beg-unhorsed',frame:Math.min(n-1,Math.floor((1-e.kt/.9)*n)),fixedScale:1};}
+  pose(e){if(e.ks==='unhorse'&&rig?.['beg-unhorsed']){const n=rig['beg-unhorsed'].frames.length;return{name:'beg-unhorsed',...onceAt(Math.min(n-1,(1-e.kt/.9)*n)),fixedScale:1};}
    if(e.ks==='down'&&rig?.['beg-unhorsed'])return{name:'beg-unhorsed',frame:3,fixedScale:1};
    if(!e.mounted||!rig?.['beg-mounted'])return null;const S=rig['beg-mounted-strike'];
-   if(e.ks==='ride'&&S&&Math.sign(p.x-e.x)===e.rdir&&Math.abs(p.x-e.x)<240){const n=S.frames.length;return{name:'beg-mounted-strike',frame:Math.min(n-1,Math.floor((1-Math.abs(p.x-e.x)/240)*n)),fixedScale:1};}
+   if(e.ks==='ride'&&S&&Math.sign(p.x-e.x)===e.rdir&&Math.abs(p.x-e.x)<240){const n=S.frames.length;return{name:'beg-mounted-strike',...onceAt(Math.min(n-1,(1-Math.abs(p.x-e.x)/240)*n)),fixedScale:1};}
    const n=rig['beg-mounted'].frames.length;return{name:'beg-mounted',frame:e.ks==='ride'?Math.floor((e.walk||0)/70)%n:0,fixedScale:1,rot:e.ks==='rear'?-e.face*.2:0};}},
  // the fire aga: oil over the floor, then fire; only the planks are safe; after the blaze he is out of breath
  ognjeni:{p2:'SVE NEKA GORI!',
@@ -2999,8 +3005,8 @@ function kostacStep(dt){const m=boss.mode;boss.timer-=dt;boss.flash=Math.max(0,b
  else if(m==='noz'){if(boss.timer<1&&!boss.stabbed){boss.stabbed=true;blood(boss.x,boss.y-90,boss.face,60);fx('hit',boss.x,boss.y-90,true);sound('hit');hitstop=.18;slowMo=1;shake=settings.reduced?0:10;fx('flash','#ffe0d0',.16);}
   if(boss.timer<=0){p.pinned=false;p.attack=0;p.attackKind='light';p.down=1;win();}}}
 function drawKostac(){const x=boss.x,y=boss.y,f=boss.face,sh=boss.shakeT>0?(Math.random()-.5)*6:0;shadow(x,y,96,.6);
- if(boss.mode==='noz'&&rig?.['megdan-noz']){const n=rig['megdan-noz'].frames.length;rigDraw('megdan-noz',Math.min(n-1,Math.floor((1-boss.timer/1.7)*n)),x,y,-f,{scale:kostacFit('megdan-noz')});}
- else if(rig?.['megdan-kostac']){const n=rig['megdan-kostac'].frames.length;rigDraw('megdan-kostac',Math.floor(time*(boss.shakeT>0?14:7))%n,x+sh,y,-f,{scale:kostacFit('megdan-kostac')});}
+ if(boss.mode==='noz'&&rig?.['megdan-noz']){const n=rig['megdan-noz'].frames.length;rigDraw('megdan-noz',Math.min(n-1,(1-boss.timer/1.7)*n),x,y,-f,{scale:kostacFit('megdan-noz')});}
+ else if(rig?.['megdan-kostac']){const n=rig['megdan-kostac'].frames.length;rigDraw('megdan-kostac',loopF(time*(boss.shakeT>0?14:7),n),x+sh,y,-f,{scale:kostacFit('megdan-kostac')});}
  else{const lie=rig?.['marko-knockdown'];if(lie)rigDraw('marko-knockdown',lie.frames.length-1,p.x-f*20+sh,p.y,-f,{});
   if(boss.mode==='noz'){const k=clamp(1-boss.timer/1.7,0,1);rigDraw(rig?.['musa-hurt']?'musa-hurt':'cast/musa',rig?.['musa-hurt']?Math.min(3,Math.floor(k*4)):0,x+f*k*60,y,f,{rot:f*k*.5,dy:-8});}
   else rigDraw(rig?.['musa-hurt']?'musa-hurt':'cast/musa',rig?.['musa-hurt']?3:0,x+sh,y,f,{dy:14,rot:boss.look?-f*.12:0});}
