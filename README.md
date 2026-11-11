@@ -39,7 +39,25 @@ Sve ovo menja samo crtanje. Logika igre i dalje ide u koracima od 1/120 s, kao i
   - FPS i najsporiji frame;
   - koliko traje rad jednog frame-a;
   - trzaje u poslednjih 10 s;
-  - grafičku karticu, nivo kvaliteta i rezoluciju.
+  - grafičku karticu, nivo kvaliteta i rezoluciju;
+  - međukadrove: koliko sprite-ova je trenutno međukadar, koliko je listova učitano i koliko MB zauzimaju.
+- **Međukadrovi i nivo kvaliteta.** Listovi međukadrova se ne čekaju pri pokretanju. Učitavaju se tek kad ih neki pokret prvi put zatraži; dotle se crta nacrtani kadar. Na nivou 2 igra koristi samo međukadar na pola puta, pa učitava trećinu slika.
+
+## Glatke animacije
+
+Nacrtanih kadrova je malo (većinom 6 po klipu), pa se između njih crtaju izračunati međukadrovi i jeftin proceduralni sloj. Sve je samo crtanje: tajming udaraca i logika se ne menjaju. `?anim=0` u adresi isključuje sve ovo radi poređenja (samo nacrtani kadrovi).
+
+- **Tri međukadra po koraku.** `python smooth-anims.py` optičkim tokom (OpenCV DIS) računa kadrove na 1/4, 1/2 i 3/4 puta između svaka dva kadra koje igra pokazuje jedan za drugim. To obuhvata i sekvence mirovanja koje skaču preko kadrova (`FOE_IDLE`, `IDLE_SEQ`). Važi za sve Markove klipove (trk, hod, udarci, kombo, skok, kolut, blok, vino, pogodak, smrt, Šarac, sablja) i za glavne neprijatelje i Musu: obrađeno je 179 klipova, a 157 ih koristi međukadrove.
+  - Par koji tok ne prati (ud prelazi preko tela, preveliki zamah) ili koji bi ispao providan (dupla slika) ne dobija međukadrove. Tu igra drži nacrtani kadar.
+  - Svesno bez međukadrova: Markov vihor sa sabljom (svaki kadar se pomera ustranu), spavanje i buđenje, imenovani šampioni, putnici, ptice i vatra.
+  - Posle novog izvoza listova pusti skriptu ponovo; `python smooth-anims.py --report` daje tabelu, a `--sheet <klip> <izlaz.jpg>` sliku za oko.
+- **Tempo.** Poza zna koliko je daleko do sledećeg kadra, pa se međukadar bira tačno, bez kašnjenja. Kod udarca priprema i kontakt drže celo svoje vreme, bez međukadra; međukadrovi su samo u zamahu ka pripremi i u oporavku. Kadrovi koje bira stanje (skok po brzini i sl.) prolaze kroz svoje međukadrove za najviše 70 ms.
+- **Proceduralni sloj:**
+  - blago istezanje pri odskoku (i Sokolovom krilu) i sabijanje pri doskoku, jače posle dugog pada;
+  - nagib tela u trku, po brzini;
+  - pretapanje od 70 ms pri prelazu iz klipa u klip (stara poza bledi ispod nove). Ne radi se u udarac, pri pogotku ni pri okretu;
+  - trag topuza po luku nacrtanog zamaha svakog udarca (kombo, teški, uvis, juriš, u skoku), od kraja pripreme do malo posle kontakta. Uz sablju je trag čelično plav.
+- **„Smanjeno podrhtavanje i efekti“** gasi istezanje, sabijanje, nagib i pretapanje, a trag topuza ostaje samo kao bleda traka, bez sjaja.
 
 ## Zvuk
 
@@ -232,7 +250,7 @@ Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i be
 - **Dukati:** trgovac pred svakim megdanom; zadužbina i sofra kod kovača. **Barjaci** unutar pohoda vraćaju palog Marka bez ponavljanja nivoa.
 - **Potera za vilom** na Šarcu otvara Ravijojlinu šumu; u Manastiru Marko presuđuje na kome je carstvo. U Oranju je nadstreljivanje sa Alil-agom: ko ga nadstreli, dobija pobratima čije strele pomažu u megdanu.
 - **Razgledanje:** `index.html?scout` otvara sve pohode bez neprijatelja, sa slobodnim kretanjem i ispisom položaja. `node megdan-bot.mjs` meri trajanje megdana.
-- **Međukadrovi:** `python smooth-anims.py` računa lokalno jedan kadar između svaka dva nacrtana (trk i hod); izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza tih listova pusti ga ponovo.
+- **Međukadrovi:** `python smooth-anims.py` računa ih lokalno; izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza listova pusti ga ponovo. Sada su to tri međukadra po koraku za sve glavne likove (vidi „Glatke animacije“).
 
 ## Kontrole
 
