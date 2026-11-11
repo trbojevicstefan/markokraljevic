@@ -1,16 +1,17 @@
 # Jutarnji izveštaj 2 — noć 10. na 11. novembar
 
-Sve je u grani `noc-poliranje`, u folderu `D:\projects\Marko Kraljevic\marko-noc`. Ništa nije gurnuto na `main` ni na
-GitHub Pages: igra na mreži je ista kao sinoć. Tvoj `main` (do commita 6e5c702) je spojen u granu bez sudara.
+**Stanje 11. novembra pre podne:** po tvom odobrenju grana je spojena u `main` i objavljena na GitHub Pages
+(objava je prošla sve provere). Rad se nastavlja u folderu `D:\projects\Marko Kraljevic\marko-noc` (grana
+`noc-poliranje`) i spaja se u `main` na celinama. Posle spajanja dodato: nadstreljivanje sa Alil-agom u Oranju
+(ko ga nadstreli, dobija pobratima čije strele pomažu u megdanu), tasteri 1–4 u dućanu i ispravka stare greške zbog
+koje je igra ponekad pravila četvrtog „trećeg janičara".
 
-## Kako da probaš
+Lokalno probanje:
 ```
 cd "D:\projects\Marko Kraljevic\marko-noc"
 set PORT=4174&& node server.mjs
 ```
-Pa otvori http://127.0.0.1:4174 (sa `?dev` na kraju su otvoreni svi nivoi i sve veštine).
-
-Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliranje`, pa `git push`.
+Pa otvori http://127.0.0.1:4174 (sa `?dev` su otvoreni svi nivoi i sve veštine, sa `?scout` se nivoi razgledaju bez neprijatelja).
 
 ## Šta je urađeno
 
