@@ -5,7 +5,7 @@ Ovde su samo ideje mehanika i strukture iz te igre. Iz nje ne uzimamo grafiku, k
 - **dorada**: postoji osnova, ali fali deo, najčešće sopstveni crtež ili kod;
 - **treba nacrtati**: nema ničeg; treba crtež, a obično i kod.
 
-Probni prostor je greybox: `index.html?greybox` (`dist/greybox.js`). Ima osam sivih soba, tri moći koje se skupljaju i kapije koje te moći otvaraju. Opis je na kraju.
+Probni prostor je greybox: `index.html?greybox` (`dist/greybox.js`). To je dugački nivo „Markove kule“ od 17 sivih soba na tri sprata. Ima tri moći koje se skupljaju, kapije koje te moći otvaraju i pet skrivenih soba. Opis je na kraju i u `NIVO-MARKOVE-KULE.md`.
 
 ## 1. Pokreti
 
@@ -132,24 +132,23 @@ Pravila su ista kao u DOPUNA briefovima: ćelija 512×512, oslonac na y=487, a k
 
 `index.html?greybox` (lokalno `npm start`, pa http://127.0.0.1:4173/index.html?greybox).
 
-| Soba | Šta je unutra |
-|---|---|
-| Skrivena riznica | tajna na humci iza prvog zida (+20 zdravlja); do nje se stiže tek sa krilom |
-| Predvorje | početak, čekpoint, visok zid prema tajni, uvala, nizak blok za vežbu hvata ivice, strmo brdo od 130 px |
-| Stražarnica | susret 1: janičar u uvali, strelac na bloku, štitonoša |
-| Sokolova odaja | Sokolovo krilo na vrhu brda, pa zid od 345 px (bez krila se dohvata 266, sa krilom 383) |
-| Ponor | susret 2: akindžija u uvali i štitonoša; Juriš u vazduhu; ponor od 500 px (bez juriša najviše 469, sa jurišem i običnim zaletom 553) |
-| Vilina odaja | prekidač kraj ulaza, Vilin trag, brdo, vrata 1300 px dalje koja ostaju otvorena 1 s |
-| Predsoblje | čekpoint 2, susret 3: oklopnik i palikuća na dva brda |
-| Arena čuvara | mini-bos Janičarski aga, sa gredama po kojima skače |
+Greybox je dugački nivo „Markove kule“. Mapa, tok igre sobu po sobu i mere za nove sobe su u `NIVO-MARKOVE-KULE.md`. Ukratko:
+- 17 soba na tri sprata, oko 18.000 px;
+- kula je okno kroz sva tri sprata;
+- kapije za krilo (ispusti od 345–365 px), juriš (ponori od 500 px) i trag (vrata i poklopac koji prekidač otvara na 1 s);
+- prečica do početka, koja se otvara samo sa druge strane;
+- pet skrivenih soba: iza lomljivog zida, iza lažnog zida, visoko (krilo), preko ponora (juriš) i ispod poklopca (trag). Svaka ima deo srca i zapis;
+- četiri čekpointa, 15 protivnika i čuvar arene.
 
 U greybox-u nema zid-skoka ni Vilinskog uzleta (E u skoku), jer bi preskočili kapije. Ništa se ne upisuje u sačuvanu igru: ni pohod, ni megdan, ni veština. Jedino dukati sa palih Turaka i dalje idu u kesu.
 
 Tlo nije kockasto: brda i uvale su prave kosine. Marko i Turci po njima hodaju, trče, kotrljaju se i doskaču (`topAt()`, platforma sa `surf` u `integrate()`); ravne platforme rade kao i pre.
 
-`node greybox-test.mjs` (52 provere, deo je `npm test`) radi stvarnim ulazima:
-- Marko hoda, kotrlja se i doskače po brdu i uvali bez odvajanja od tla, a Turčin izlazi iz uvale do njega;
-- svaka soba je dostižna kad se skupe moći;
-- svaka kapija ostaje zatvorena bez svoje moći: 40 pokušaja kod svakog zida i 234 pokušaja kod ponora;
-- kroz vrata se bez traga ne stiže;
-- prolazi ceo greybox od početka do čuvara, sa tajnom i povratkom na čekpoint posle pada.
+`node greybox-test.mjs` (71 provera, deo je `npm test`) radi stvarnim ulazima:
+- graf soba: svaka soba je dostižna kad se skupe moći, a bez svake moći ostaje zatvoren njen deo;
+- svaka kapija drži bez svoje moći: 60 pokušaja kod svakog ispusta i 234 pokušaja kod svakog ponora;
+- kroz vrata i poklopac se bez traga ne stiže;
+- lomljivi zid pada samo od teškog udarca, kroz lažni zid se prolazi, a prečica se otvara samo sa svoje strane;
+- ponor košta zdravlje i vraća na čvrsto tlo;
+- Marko i Turci idu po kosinama;
+- ceo nivo se prelazi od početka do čuvara, kroz svih 17 soba i svih 5 tajni.
