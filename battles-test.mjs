@@ -123,6 +123,7 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
  ok(boss.alive&&boss.stage==='kostac','musa: his last heart broken, he does not fall: he grapples');
  until(()=>boss.mode==='pin',120*4);ok(S().p.pinned,'musa: he throws Marko down and holds him');
  ok(S().p.rage===0&&S().p.energy===0,'musa: Marko\'s strength leaves him');
+ until(()=>S().p.hvat,120);{const h0=boss.holds||0,k=S().p.hvat;tap(k);ok(boss.holds===h0+1,'musa: the hold that is shown is the one that counts');until(()=>S().p.hvat,120);const bad=['KeyJ','KeyK','Space','ShiftLeft'].find(q=>q!==S().p.hvat);tap(bad);ok(boss.holds===h0+1,'musa: a wrong hold does not');}
  const hp0=S().p.hp;step(120*3);ok(S().p.hp<hp0&&S().p.hp>=1,'musa: held down, Marko weakens but does not die');
  until(()=>boss.vila,120*8);ok(boss.vila,'musa: Ravijojla calls from the cloud');
  until(()=>boss.look,120*12);ok(boss.look,'musa: Musa looks up at her');

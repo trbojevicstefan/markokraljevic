@@ -303,6 +303,8 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Plen, kao u *Metal Slug*-u.** Svaki šesti pali neprijatelj (u priči četvrti, u epskoj težini osmi) ostavlja čuturu, ali samo dok Markova nije puna.
 - **Dukati u nizu** zvone sve višim tonom, kao lumovi u *Rayman*-u.
 - **Primljen udarac** zaustavi igru na tren, kao u *Hollow Knight*-u, pa se oseti i ostavi trenutak za odgovor.
+- **Neprijatelji imaju živce, kao u *Metal Slug*-u.** Kad im drug padne od teškog udarca, trećeg u nizu ili dokrajčivanja, oni kraj njega ustuknu korak i zastanu, a jedan vikne (glasovi `tr_fear`, do sada neiskorišćeni).
+- **Musin koštac je pravo rvanje.** Dok Musa drži Marka, pokazuje se hvat kao u svakom drugom koštacu. Marko ne može da zbaci tri srca, ali tri dobra hvata dovode vilu ranije; bez njih dolazi kad i pre. Dugme J više ne treba lupati.
 - **Megdan na ekranu.** Dok traje megdan, red zadatka se sklanja, a ime i snaga megdandžije stoje na vrhu ekrana.
 
 ## Izvori
