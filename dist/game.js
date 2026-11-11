@@ -588,7 +588,7 @@ function drawCannons(){const im=worldImg('zag-top');for(const c of world.cannons
   if(c.broken&&Math.random()<.25)particles.push({kind:'dust',x:c.x+(Math.random()-.5)*60,y:c.y-60,vx:(Math.random()-.5)*20,vy:-30-Math.random()*30,life:1.4,max:1.4,r:4+Math.random()*5,color:'#6e6a64'});
   if(c.flash>0){const mx=c.broken?c.x:c.x+f*TOP_W*.47,my=c.broken?c.y-50:c.y-TOP_H*.83;halo(mx,my,c.broken?140:90,'rgba(255,165,80,.6)',Math.min(1,c.flash/.12));if(!c.broken){ctx.save();ctx.globalAlpha=Math.min(1,c.flash/.12);ellipse(mx,my,22,13,'#ffcf7a');ctx.restore();}}
   if(c.state==='fuse'&&c.shots<4)textLabel(c.next==='high'?'SAGNI SE!':'SKOČI!',c.x-40,c.y-TOP_H-26,{font:'bold 15px Georgia',color:'#ffd2a0'});}}
-function drawCannonBalls(){for(const c of world.cannons||[])for(const b of c.balls){if(b.x<camera-60||b.x>camera+VIEW_W+60)continue;const gy=groundAt(b.x,b.y)??b.gy,hgt=Math.max(0,gy-b.y-BALL_R);
+function drawCannonBalls(){for(const c of world.cannons||[])for(const b of c.balls||[]){if(b.x<camera-60||b.x>camera+VIEW_W+60)continue;const gy=groundAt(b.x,b.y)??b.gy,hgt=Math.max(0,gy-b.y-BALL_R);
   shadow(b.x,gy,BALL_R*(1.1-Math.min(.6,hgt/240)),.45*(1-Math.min(.7,hgt/260)));
   ctx.save();ctx.globalAlpha=.22;ellipse(b.x+BALL_R*1.3,b.y,BALL_R*1.4,BALL_R*.8,'#4a4640');ctx.restore();
   const im=worldImg('djule');
@@ -759,7 +759,7 @@ function edgeCovered(q,right){if(!level)return false;if(q.cover)return q.cover[r
 function drawStripFloor(q,G){const ground=isFloor(q),S=G.S,top=q.y-G.walk*S,rows=ground?G.im.height:Math.min(G.im.height,G.walk+120),capW=G.cap?G.cap.width*S:0,capL=!edgeCovered(q,false),capR=!edgeCovered(q,true),inset=Math.min(capW*.6,q.w*.3),inL=capL?inset:0,inR=capR?inset:0;
  const cut=top+(G.walk+150)*S,raised=ground&&level&&q.y<560;
  if(ground){const from=raised?790:top+G.im.height*S-2;ctx.fillStyle='#0b0f10';ctx.fillRect(q.x+inL,from,q.w-inL-inR,Math.max(640,q.y+q.h-from+4));}
- if(raised){const bx=q.x+(capL?capW*.18:0),bw=q.w-(capL?capW*.18:0)-(capR?capW*.18:0),b0=Math.max(cut-44,camY-30),b1=Math.min(792,camY+VIEW_H+30);G.body.setTransform(new DOMMatrix([S,0,0,S,0,cut-44]));ctx.fillStyle=G.body;if(b1>b0)ctx.fillRect(bx,b0,bw,b1-b0);const d=ctx.createLinearGradient(0,690,0,792);d.addColorStop(0,'rgba(11,15,16,0)');d.addColorStop(1,'rgba(11,15,16,1)');ctx.fillStyle=d;ctx.fillRect(bx,Math.max(cut,690),bw,792-Math.max(cut,690));for(const [ex,sg] of[[bx,1],[bx+bw,-1]]){const e=ctx.createLinearGradient(ex,0,ex+sg*22,0);e.addColorStop(0,'rgba(8,8,8,.6)');e.addColorStop(1,'rgba(8,8,8,0)');ctx.fillStyle=e;ctx.fillRect(sg>0?ex:ex-22,cut-2,22,792-cut);}}
+ if(raised){const bx=q.x+(capL?capW*.18:0),bw=q.w-(capL?capW*.18:0)-(capR?capW*.18:0),b0=Math.max(cut-44,camY-30),b1=Math.min(792,camY+VIEW_H+30);G.body.setTransform(new DOMMatrix([S,0,0,S,0,cut-44]));ctx.fillStyle=G.body;if(b1>b0){ctx.fillRect(bx,b0,bw,b1-b0);mottle(bx,b0,bw,b1-b0);deepen(bx,b0,bw,b1-b0,cut+40);}const d=ctx.createLinearGradient(0,690,0,792);d.addColorStop(0,'rgba(11,15,16,0)');d.addColorStop(1,'rgba(11,15,16,1)');ctx.fillStyle=d;ctx.fillRect(bx,Math.max(cut,690),bw,792-Math.max(cut,690));for(const [ex,sg] of[[bx,1],[bx+bw,-1]]){const e=ctx.createLinearGradient(ex,0,ex+sg*22,0);e.addColorStop(0,'rgba(8,8,8,.6)');e.addColorStop(1,'rgba(8,8,8,0)');ctx.fillStyle=e;ctx.fillRect(sg>0?ex:ex-22,cut-2,22,792-cut);}}
  const pat=raised?G.fade:G.pattern;pat.setTransform(new DOMMatrix([S,0,0,S,0,top]));ctx.fillStyle=pat;ctx.fillRect(q.x+inL,top,q.w-inL-inR,(raised?G.walk+150:rows)*S);
  if(G.cap){const w=Math.min(capW,q.w/2),cr=raised?G.walk+150:rows;if(capR)ctx.drawImage(G.cap,G.cap.width-w/S,0,w/S,cr,q.x+q.w-w,top,w,cr*S);if(capL){ctx.save();ctx.translate(q.x+w,top);ctx.scale(-1,1);ctx.drawImage(G.cap,G.cap.width-w/S,0,w/S,cr,0,0,w,cr*S);ctx.restore();}}
  if(!ground){const b=top+rows*S,sh=ctx.createLinearGradient(0,b-34,0,b);sh.addColorStop(0,'rgba(8,10,12,0)');sh.addColorStop(1,'rgba(8,10,12,.85)');ctx.fillStyle=sh;ctx.fillRect(q.x,b-34,q.w,34);}}
@@ -1521,8 +1521,19 @@ function wallPattern(dark=false){const id='zid-'+wallKind(),key=id+(dark?'#d':''
  let src=im;if(dark){src=makeCanvas(im.width,im.height);const g=src.getContext('2d');g.drawImage(im,0,0);g.fillStyle='rgba(12,14,18,.62)';g.fillRect(0,0,im.width,im.height);}return wallPats[key]=ctx.createPattern(src,'repeat');}
 const WALL_SCALE=.44;
 function fillWall(x,y,w,h,dark=false){const P=wallPattern(dark);if(P){P.setTransform(new DOMMatrix([WALL_SCALE,0,0,WALL_SCALE,0,0]));ctx.fillStyle=P;}else ctx.fillStyle=dark?'#2c2a26':'#8a7a62';ctx.fillRect(x,y,w,h);}
+// ---------- rock that does not read as wallpaper ----------
+// The earth under raised ground is one band of art tiled every few dozen pixels, and a tall cliff showed it as a grid.
+// Two things hide that, as in any painted platformer: large soft mottling and long cracks laid over the tiles at a scale
+// no tile shares, and the mass falling into darkness below the walking line, so only the lit edge is read as detail.
+let noiseP;
+function noisePat(){if(noiseP!==undefined)return noiseP;if(!hasDom)return noiseP=null;const N=512,c=makeCanvas(N,N),g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,N,N);let s=90210;const R=()=>(s=(s*1664525+1013904223)>>>0)/4294967296;
+ for(let i=0;i<90;i++){const x=R()*N,y=R()*N,r=30+R()*110,a=.07+R()*.2;for(const ox of[-N,0,N])for(const oy of[-N,0,N]){const gr=g.createRadialGradient(x+ox,y+oy,0,x+ox,y+oy,r);gr.addColorStop(0,`rgba(34,28,24,${a})`);gr.addColorStop(1,'rgba(34,28,24,0)');g.fillStyle=gr;g.fillRect(x+ox-r,y+oy-r,r*2,r*2);}}
+ g.strokeStyle='rgba(20,16,12,.2)';for(let i=0;i<12;i++){g.lineWidth=1+R()*2;g.beginPath();let x=-20,y=R()*N;const y0=y;g.moveTo(x,y);while(x<N-60){x+=20+R()*40;y+=(R()-.5)*14;g.lineTo(x,y);}g.lineTo(N+20,y0);g.stroke();}
+ return noiseP=ctx.createPattern(c,'repeat');}
+function mottle(x,y,w,h){const P=noisePat();if(!P||w<=0||h<=0)return;ctx.save();ctx.globalCompositeOperation='multiply';P.setTransform(new DOMMatrix([3.1,0,0,3.1,0,0]));ctx.fillStyle=P;ctx.fillRect(x,y,w,h);ctx.restore();}
+function deepen(x,y,w,h,from){if(w<=0||h<=0)return;const a=Math.max(y,from);if(y+h<=a)return;const d=ctx.createLinearGradient(0,from,0,from+620);d.addColorStop(0,'rgba(11,15,16,0)');d.addColorStop(.35,'rgba(11,15,16,.42)');d.addColorStop(1,'rgba(11,15,16,.88)');ctx.fillStyle=d;ctx.fillRect(x,a,w,y+h-a);}
 // light comes from the upper left: a lit top, a shaded right side, darkness near the ground
-function shadeBlock(x,y,w,h,ground){const v=ctx.createLinearGradient(0,y,0,y+h);v.addColorStop(0,'rgba(255,238,200,.16)');v.addColorStop(.18,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(10,10,14,.5)');ctx.fillStyle=v;ctx.fillRect(x,y,w,h);
+function shadeBlock(x,y,w,h,ground){mottle(x,y,w,h);const v=ctx.createLinearGradient(0,y,0,y+h);v.addColorStop(0,'rgba(255,238,200,.16)');v.addColorStop(.18,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(10,10,14,.5)');ctx.fillStyle=v;ctx.fillRect(x,y,w,h);
  const s=ctx.createLinearGradient(x,0,x+w,0);s.addColorStop(0,'rgba(255,230,190,.10)');s.addColorStop(.25,'rgba(0,0,0,0)');s.addColorStop(.8,'rgba(0,0,0,.12)');s.addColorStop(1,'rgba(0,0,0,.42)');ctx.fillStyle=s;ctx.fillRect(x,y,w,h);
  line(x+1,y,x+1,y+h,'rgba(20,16,12,.7)',2);line(x+w-1,y,x+w-1,y+h,'rgba(20,16,12,.85)',2);
  if(ground!==undefined){const g=ctx.createLinearGradient(0,ground-60,0,ground+4);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(10,8,6,.55)');ctx.fillStyle=g;ctx.fillRect(x,ground-60,w,64);}}
