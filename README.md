@@ -230,6 +230,8 @@ Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i be
 - **Novi nivoi:** Urvina planina (uspon i kraj pesme), let sokola na početku Noćne močvare, tajni „San Kraljevića Marka" (na mapi ukucaj `MARKO`).
 - **Guslar:** ceo snimak od 5 min 12 s; odbrana guslara u Klisuri; guslar sa stihovima svog kraja u svakom pohodu.
 - **Dukati:** trgovac pred svakim megdanom; zadužbina i sofra kod kovača. **Barjaci** unutar pohoda vraćaju palog Marka bez ponavljanja nivoa.
+- **Potera za vilom** na Šarcu otvara Ravijojlinu šumu; u Manastiru Marko presuđuje na kome je carstvo.
+- **Razgledanje:** `index.html?scout` otvara sve pohode bez neprijatelja, sa slobodnim kretanjem i ispisom položaja. `node megdan-bot.mjs` meri trajanje megdana.
 - **Međukadrovi:** `python smooth-anims.py` računa lokalno jedan kadar između svaka dva nacrtana (trk i hod); izlaz je `dist/assets/smooth/` i `dist/assets/sprite-smooth.json`. Posle novog izvoza tih listova pusti ga ponovo.
 
 ## Kontrole

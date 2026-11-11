@@ -28,7 +28,7 @@ if(hasDom&&assets.gorge){try{const m=await import('./stage3d.js');stage=await m.
 const screenCtx=stage?null:canvas.getContext?.('2d');
 const fx=(name,...args)=>stage?.[name]?.(...args);
 // ?dev and the test hub's ?go= scenarios: the test build (markoDev handle; Marko knows every move and has his father's sabre: G draws it)
-const DEV=typeof location!=='undefined'&&/[?&](dev\b|go=)/.test(location.search);
+const DEV=typeof location!=='undefined'&&/[?&](dev\b|scout\b|go=)/.test(location.search);
 $('continue').hidden=!saveState;$('difficulty').value=settings.difficulty;$('volume').value=settings.volume*100;$('vol-music').value=settings.music*100;$('vol-sfx').value=settings.sfx*100;$('vol-voice').value=settings.voice*100;$('quality').value=settings.quality;$('reduced').checked=settings.reduced;$('gore').checked=settings.gore!==false;
 $('loading').hidden=true;
 // ---------- audio: samples (Kenney CC0 + synthesised), ElevenLabs voices, composed music ----------
@@ -710,7 +710,7 @@ function updateVisuals(dt){for(const f of floating){f.y-=30*dt;f.life-=dt;}float
   if(a>=(won&&rig?.['marko-wounded-walk']?9:1.55)&&body?.grounded){if(won&&!endSequence.story){endSequence.story=true;playStory('end',()=>{$('victory').hidden=false;});}else if(!won||endSequence.storyDone)$(endSequence.kind).hidden=false;}}for(const g of ghosts)g.life-=dt;ghosts=ghosts.filter(g=>g.life>0);}
 function updateCamera(dt){if(lov){camera=lov.cam;camY+=(lov.camY-camY)*Math.min(1,dt*3);return;}const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);pressed.clear();return;}elapsed+=dt;music(dt);updateDefense(dt);if(hitstop>0){hitstop-=dt;return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!storySeen.has('lov'))lovStart();if(!updateLov(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updatePotera(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
+ if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!SCOUT&&!storySeen.has('lov'))lovStart();if(!updateScout(dt)&&!updateLov(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){updateUrvina(dt);updatePotera(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -1868,6 +1868,13 @@ function presuda(i){if(!presudaOpen||!PRESUDA[i])return false;if(PRESUDA[i][1]){
  presudaOpen=false;mode='play';keys.clear();pressed.clear();if(hasDom)$('presuda').hidden=true;p.blagoslov=true;p.power=(p.power||1)*1.12;p.rage=100;p.hp=p.maxHp;fx('flash','#fff2c8',.18);sfx('magic_big',{gain:1});label('CAREV BLAGOSLOV',p.x,p.y-180,'#ffe9a8');
  speak('„Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”',11);toast('Carev blagoslov: udarci su ti jači do kraja pohoda.',4);return true;}
 if(hasDom)document.addEventListener('keydown',e=>{if(presudaOpen&&/^[1-4]$/.test(e.key))presuda(+e.key-1);});
+// ================= scouting (…/index.html?scout): walk the land with no one in it =================
+// For looking at a pohod as scenery: every pohod is open, no enemy lives, Marko cannot be hurt and does not fall.
+// A D W S move him freely (Shift: fast); his place is written at the top, to note where a thing should stand.
+const SCOUT=typeof location!=='undefined'&&/[?&]scout\b/.test(location.search);
+function updateScout(dt){if(!SCOUT||!level)return false;for(const e of world.enemies)e.alive=false;p.invuln=9;p.hp=p.maxHp;const sp=(isDown('ShiftLeft','ShiftRight')?2400:900)*dt;
+ p.x=clamp(p.x+((isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0))*sp,40,level.width-40);p.y+=((isDown('KeyS','ArrowDown')?1:0)-(isDown('KeyW','ArrowUp')?1:0))*sp;p.vx=0;p.vy=0;p.grounded=true;p.on=null;if(isDown('KeyD','ArrowRight'))p.face=1;else if(isDown('KeyA','ArrowLeft'))p.face=-1;return true;}
+function drawScout(){if(!SCOUT||!level)return;textLabel(`${level.id} · x ${Math.round(p.x)} · y ${Math.round(p.y)} · ${Math.round(p.x/level.width*100)}%`,camera+VIEW_W/2,camY+118,{font:'bold 14px Georgia',color:'#fff0c8'});}
 // ================= the guslars of the Ibar gorge ("Guslar peva o Marku") =================
 // A guslar sits by the road. When Marko comes, Turks run in to break his gusle (a second band from behind).
 // Defend him and he sings a part of Marko's song: rage fills and wounds close. The last one sings in peace before the champion.
@@ -2261,7 +2268,7 @@ function kitRun(e,dt){const K=KITS[e.kit];if(!K)return false;
 // a leap that lands on (x,y) after t seconds
 function leapTo(e,x,y,t){e.vx=(x-e.x)/t;e.vy=((y-e.y)-.5*1750*t*t)/t;e.grounded=false;e.air=true;e.y-=2;sfx('whoosh_heavy',{gain:.7,x:e.x});dust(e.x,e.y,10,1.5);}
 function onPlank(){return p.grounded&&p.on&&!p.on.ground&&p.on.kind!=='stone'?p.on:null;}
-function drawKits(){drawCkpt();drawChampGuard();drawDrops();drawLov();for(const e of world.enemies)if(e.kit&&e.engaged&&(e.alive||e.flag))KITS[e.kit]?.draw?.(e);}
+function drawKits(){drawScout();drawCkpt();drawChampGuard();drawDrops();drawLov();for(const e of world.enemies)if(e.kit&&e.engaged&&(e.alive||e.flag))KITS[e.kit]?.draw?.(e);}
 // a red banner with the crescent, on the bajraktar's rock
 function drawOttomanFlag(F){const tilt=(F.fall||0)*1.45,sh=F.shake>0?Math.sin(time*60)*3:0;ctx.save();ctx.translate(F.x+sh,F.y);ctx.rotate(-tilt);const C=clothTex('tkanina-barjak-turski');if(C){drawPole(0,0,-212,'alem');drawCloth(C,2,-206,106,66,1,.12+.82*(1-(F.fall||0)),F.x*.01);}else{line(0,0,0,-210,'#5a3c22',6);ellipse(0,-214,6,6,'#e8c86a');
  const wv=t=>Math.sin(time*3+t)*6*(1-(F.fall||0));ctx.beginPath();ctx.moveTo(3,-206);for(let i=0;i<=8;i++)ctx.lineTo(3+i*14,-206+wv(i*.6));for(let i=8;i>=0;i--)ctx.lineTo(3+i*14,-130+wv(i*.6)+i*1.5);ctx.closePath();ctx.fillStyle='#b8231c';ctx.fill();

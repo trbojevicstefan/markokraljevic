@@ -82,6 +82,14 @@ Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliran
 - Knjiga dušmana ima stranice za deset megdandžija (otvaraju se kad ih pobediš). U Knjizi legendi ispravljena je
   svadbarina (šator na Kosovu; kula je iz pesme „Marko i Arapin") i dopunjen soko pesmom o lovu.
 
+**Alati**
+- `http://127.0.0.1:4174/?scout`: razgledanje nivoa bez neprijatelja. Svi pohodi su otvoreni, Marko lebdi na A D W S
+  (Shift ubrzava), a gore piše gde se nalazi (nivo, x, y, procenat puta), da se lako zabeleži gde nešto treba da stoji.
+- `node megdan-bot.mjs`: bot se bori sa svakim megdandžijom pravim tasterima i ispisuje koliko megdan traje. Ume samo
+  običnu borbu (ne penje se na kule, ne odbija konjanika), pa bosove sa posebnim trikom ne pobeđuje; korisno je za
+  merenje: Kopljanik-baša pada za oko 55 s, Ognjeni aga za 77 s, Janičarski aga za 137 s.
+- `python smooth-anims.py`: međukadrovi (vidi gore).
+
 **Usput popravljeno:** igra se rušila ako se turski top crta pre prvog koraka nivoa (`c.balls`). Ista greška postoji
 i na `main`; javio sam drugoj sesiji.
 
@@ -91,6 +99,8 @@ i na `main`; javio sam drugoj sesiji.
 - `node simulation-test.mjs`: pobeda u Kačaniku. `node animation-tests.mjs`: prolazi.
 
 ## Šta nije urađeno ili nije provereno
+- **Koštac je bio prečest** kad je više neprijatelja (bot je kod Tri janičara bivao oboren na svakih 13 s); razmak je
+  sada 13 s umesto 7 i šanse su manje. Vredi da osetiš da li je sada dobro.
 - **Nisam odigrao igru rukom.** Sve novo je provereno testovima i pojedinačnim kadrovima u pregledaču, ne celim
   prolaskom. Težinu bosova sa gardom treba da osetiš ti; ako je preteško, brojevi su na jednom mestu (`champGuard`).
 - **Tri sata igre je procena, nije mereno.** Bot koji ubija na dodir i preskače zagonetke prođe svih 15 pohoda za
