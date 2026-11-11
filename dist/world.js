@@ -201,7 +201,7 @@ export function buildLayout(L,variant='day'){
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the poor by the road: an old woman and an orphan; a quiet room, no Turks in it
   // the dream cave: four chambers, each a memory of a song, each shut by a gate until its riddle is answered
-  slova(){const x0=x,len=1050;ground(len);const g=['М','Н','В'],xs=[x0+380,x0+560,x0+740];traps.push({kind:'red',title:'OČINA SABLJA',objs:xs.map((ox,i)=>({x:ox,y:gy,glyph:g[i]})),order:[1,2,0],tablet:{x:x0+160,y:gy},gate:{x:x0+len-50,y:gy},
+  slova(){const x0=x,len=1050;ground(len);const g=['М','Н','В'],xs=[x0+380,x0+560,x0+740];traps.push({kind:'red',title:'OČINA SABLJA',objs:xs.map((ox,i)=>({x:ox,y:gy,glyph:g[i],h:150})),order:[1,2,0],tablet:{x:x0+160,y:gy},gate:{x:x0+len-50,y:gy},
     clue:'„Na sablji su tri slova rišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.” Kucni topuzom u kamenove onim redom kojim je sablja išla iz ruke u ruku.',hint:'Tri slova: kovač, kralj, pa sin.',wrong:'SABLJA NIJE TAKO IŠLA',win:'Novak je skova, Vukašin je nosi, Marko je poznade. Odaja se otvara.'});busy.push([x0,x0+len]);},
   jabuke(){const x0=x,len=1500;ground(len);const objs=[];for(let i=0;i<3;i++){objs.push({x:x0+340+i*190,y:gy,sym:'jabuka',h:70});objs.push({x:x0+435+i*190,y:gy,sym:'prsten',h:70});}
    ['МАРКО','ЈАНКО','ПАВЛЕ'].forEach((n,i)=>objs.push({x:x0+990+i*150,y:gy,glyph:n,small:true,h:150}));

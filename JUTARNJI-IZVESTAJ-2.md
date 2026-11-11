@@ -51,6 +51,9 @@ Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliran
   2. jabuke i prstenovi mudre devojke (ne diraš ni jedno ni drugo);
   3. suva drenovina koja pusti dve kaplje tek posle tri čaše vina;
   4. gusle javorove: melodija se pamti i ponavlja triput, svaki put duža.
+- **Potera za vilom** (početak Ravijojline šume, „Marko Kraljević i vila"): uzjašeš Šarca (E), galopiraš za vilom
+  preko Miroča, preskačeš balvane dok te ona gađa strelama, a kad je stigneš bacaš topuz (I). Vila izleči Miloša i
+  postane posestrima.
 - **Odbrana guslara** (Klisura): guslar peva pesmu o Musi, a Turci dolaze u pet četa sa obe strane. Ako ga poseku,
   Marko pada sa pesmom.
 
@@ -80,21 +83,23 @@ Ako ti se sviđa, spajanje je: u folderu `marko-game` → `git merge noc-poliran
 i na `main`; javio sam drugoj sesiji.
 
 ## Provere
-- `npm test` prolazi ceo: 1.374 provere prevoda, 15 pohoda, 144 mehaničke provere, bot prolazi sve nivoe, 276 provera
-  bitaka (od toga 126 novih za ovo iznad), crtanje bez greške.
+- `npm test` prolazi ceo: 1.389 provera prevoda, 15 pohoda, 146 mehaničkih provera, bot prolazi sve nivoe, 285 provera
+  bitaka (od toga 135 novih za ovo iznad), crtanje bez greške.
 - `node simulation-test.mjs`: pobeda u Kačaniku. `node animation-tests.mjs`: prolazi.
 
 ## Šta nije urađeno ili nije provereno
 - **Nisam odigrao igru rukom.** Sve novo je provereno testovima i pojedinačnim kadrovima u pregledaču, ne celim
   prolaskom. Težinu bosova sa gardom treba da osetiš ti; ako je preteško, brojevi su na jednom mestu (`champGuard`).
 - **Tri sata igre je procena, nije mereno.** Bot koji ubija na dodir i preskače zagonetke prođe svih 15 pohoda za
-  20 minuta (ranije 13 pohoda za 14). Uz borbe, zagonetke, megdane i Kačanik računam na dva i po do tri sata prvog
+  oko 21 minut (ranije 13 pohoda za 14). Uz borbe, zagonetke, megdane i Kačanik računam na dva i po do tri sata prvog
   prolaska.
 - **Međukadrovi:** gledao sam ih na tabli kadrova (čisti su, noge se ne vide duplo), ali ne i u pokretu. Udarci
   nemaju međukadrove: tamo je kretanje preveliko za ovaj postupak.
 - **Odjek i duga pesma** nisu provereni sluhom.
-- **Trka na Šarcu za vilom** nije napravljena (let sokola pokriva „letenje ili trkanje"). Jahanje je u kodu vezano
-  za IV poglavlje Kačanika i traži poseban posao.
+- **Brzina igre u pregledaču:** okno u kom sam gledao igru vrti je usporeno, pa trku, let i međukadrove nisam mogao
+  da ocenim u pravoj brzini. Logika je proverena testovima sa pravim tasterima.
+- **Veštine su premeštene** da prate novi redosled (odskok od zida se sada uči u Manastiru, jer ga Tvrđava traži).
+  Ko ima stari snimak igre zadržava naučene veštine, ali „Nagrada" na mapi sada piše drugačije.
 - **Prolaz kroz nivoe bez neprijatelja** uradio sam plitko: po jedan do četiri kadra po nivou. Nisam premeštao
   pojedinačne predmete. Zapažanja: u pozadini Sela crkva se ponavlja na svakih par ekrana (ponavlja se sloj
   pozadine); u Vilinskoj pećini i Rudniku u pozadini se vide seoska kuća i crkva.
