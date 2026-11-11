@@ -1679,7 +1679,7 @@ const SKILLS=[
 ];
 let skillCache=null;
 function ownedSkills(){if(skillCache)return skillCache;try{skillCache=new Set(JSON.parse(localStorage.getItem('marko-skills')||'[]'));}catch{skillCache=new Set();}return skillCache;}
-function has(id){return !level||DEV||level.id==='san'||ownedSkills().has(id);} // the test build knows every move
+function has(id){return !level||DEV||level.id==='san'||level.izazov||ownedSkills().has(id);} // the test build knows every move; so does a challenge pohod (izazov, world.js)
 function grantSkill(id){const s=ownedSkills();if(s.has(id))return null;s.add(id);try{localStorage.setItem('marko-skills',JSON.stringify([...s]));}catch{}return SKILLS.find(k=>k.id===id);}
 let lockedT=0;function locked(id){if(lockedT>0)return;lockedT=2.5;const k=SKILLS.find(k=>k.id===id);const L=k&&LEVELS.find(L=>L.id===k.land);toast(`${k?.name||'Veština'} se otključava posle pohoda „${L?.name||'—'}”.`,2.4);}
 // ---------- the letters М-А-Р-К-О (like HERCULES): find all five in a pohod ----------
@@ -1709,7 +1709,7 @@ function drawPowers(){for(const b of bolts){for(const [g,w,c] of[[gctx,5,'#bfe6f
 function setupTraps(){for(const t of world.traps||[]){t.t=0;if(t.kind==='tent')Object.assign(t,{hp:7,hp0:7,wave:0,cool:1.2,out:[],down:false,flap:0,shake:0});if(t.kind==='timed'){t.open=0;}if(t.kind==='boulder'){t.state='wait';}if(t.kind==='rocks'){t.falling=[];t.clock=0;}if(t.kind==='barrels'){t.list=[];t.clock=1;}}}
 function hurtBy(amount,dir,vy=-380){if(p.invuln>0||p.dash>0)return false;const before=p.hp;damage(amount,dir);if(p.hp<before){p.vy=Math.min(p.vy,vy);p.grounded=false;return true;}return false;}
 function splashIn(t,o,key){const s=t.y+12,inside=o.x>t.x-10&&o.x<t.x+t.w+10&&o.y>s;if(inside&&!o[key]){o[key]=true;const v=Math.min(1,Math.abs(o.vy||300)/700);for(let i=0;i<18;i++)particles.push({kind:'dust',x:o.x+(Math.random()-.5)*30,y:s,vx:(Math.random()-.5)*220,vy:-(120+Math.random()*320)*v,life:.8,max:.8,r:2+Math.random()*3,color:i%3?'#cfe8e4':'#8fbcbc'});(sfx('splash',{gain:.75,x:o.x})||sfx('fall',{gain:.6,rate:.6,x:o.x}));}if(!inside)o[key]=false;if(inside&&o.vy>140)o.vy*=Math.pow(.02,1/120);}
-function updateTraps(dt){for(const t of world.traps||[]){t.t+=dt;if(t.kind==='water'){splashIn(t,p,'wet'+t.x);for(const e of world.enemies)if(e.alive)splashIn(t,e,'wet');continue;}
+function updateTraps(dt){for(const t of world.traps||[]){t.t+=dt;if(t.tick){t.tick(dt,{p,arrows,sfx,toast});continue;}if(t.kind==='water'){splashIn(t,p,'wet'+t.x);for(const e of world.enemies)if(e.alive)splashIn(t,e,'wet');continue;}
  if(t.kind==='spikes'){spikeFoes(t);if(p.y>=t.y-6&&p.y<=t.y+4&&p.x+12>t.x&&p.x-12<t.x+t.w&&!p.climb&&!(p.pogoT>0)&&p.plunge!==1)hurtBy(18,p.x<t.x+t.w/2?-1:1,-520);
   for(const e of world.enemies)if(e.alive&&!e.champion&&Math.abs(e.y-t.y)<4&&e.x>t.x&&e.x<t.x+t.w&&e.grounded){e.hp-=90*dt*4;e.flash=.1;if(e.hp<=0){slay(e);blood(e.x,e.y-20,1,20);}}}
  else if(t.kind==='log'){const w=Math.sqrt(1750/t.arm)*.55,a=t.amp*Math.sin(t.t*w+t.phase),va=t.amp*w*Math.cos(t.t*w+t.phase);t.lx=t.x+Math.sin(a)*t.arm;t.ly=t.pivot+Math.cos(a)*t.arm;t.vx=Math.cos(a)*t.arm*va;
@@ -2369,7 +2369,7 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
 function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
  if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',Math.floor(time*9)%rig['svatovi-kolo'].frames.length,level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
-function drawTrapsFront(){for(const t of world.traps||[])if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}
+function drawTrapsFront(){for(const t of world.traps||[])if(t.draw)t.draw({ctx,gctx,time,rig,rigDraw});else if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}
 // ---------- champions: an arena that locks until the aga falls ----------
 let arena=null;
 function updateArena(){const c=world.enemies.find(e=>e.champion);if(!c)return;
@@ -2654,7 +2654,7 @@ function specialStrike(){if(p.attack>0||p.cooldown>0||p.climb||horseMounted||p.d
  return false;}
 function updateSpecial(dt){p.rollEnd=Math.max(0,(p.rollEnd||0)-dt);if(p.dash>0&&p.dash<dt*2)p.rollEnd=.18;if(p.jurisT>0){p.jurisT-=dt;p.vx=p.face*640;if(Math.random()<.5)ghosts.push({...playerPose(),x:p.x,y:p.y,face:p.face,life:.18});}}
 // ---------- the level list opens one pohod at a time ----------
-function levelOpen(i){if(LEVELS[i].secret)return tajnaOpen();if(i===0||DEV||levelStars(LEVELS[i]).done)return true;if(i>=MUSA_AFTER&&!kacanikWon())return false;const done=levelsDone(),prev=LEVELS[i-1];return done.some(k=>k===prev.id||k.startsWith(prev.id+'@'));}
+function levelOpen(i){if(LEVELS[i].secret)return tajnaOpen();if(i===0||DEV||LEVELS[i].izazov||levelStars(LEVELS[i]).done)return true;if(i>=MUSA_AFTER&&!kacanikWon())return false;const done=levelsDone(),prev=LEVELS[i-1];return done.some(k=>k===prev.id||k.startsWith(prev.id+'@'));}
 
 // ================= gamepad: Xbox controller and Logitech F310 (XInput, the "standard" layout) =================
 // A skok · X topuz · Y teški udarac · B kolut · LB blok/odbij · RB baci topuz · LT vino · RT vila/upotrebi
@@ -2905,7 +2905,7 @@ function drawMusaWindow(){if(!MUSA_OPEN.includes(boss.mode)||!boss.windowMax)ret
  if(boss.mode==='dazed'||boss.mode==='staggered')for(let s=0;s<3;s++){const a=time*5+s*2.1;textLabel('✦',x+Math.cos(a)*30,boss.y-195+Math.sin(a)*8,{font:'16px Georgia',color:'#fff3c0',glow:'#ffd27a'});}}
 
 // ================= interface: the map of pohodi, title cards, stars, the ledger, embers, sounds =================
-const MAP_POS=[[8,84],[18,67],[30,80],[40,62],[34,44],[21,33],[32,19],[46,27],[56,46],[66,31],[77,46],[86,27],[93,52],[95,14],[62,9]];
+const MAP_POS=[[8,84],[18,67],[30,80],[40,62],[34,44],[21,33],[32,19],[46,27],[56,46],[66,31],[77,46],[86,27],[93,52],[95,14],[62,9],[74,80]]; // the last: Azačka kula, outside the journey
 function mapPath(pts){let d=`M${pts[0][0]} ${pts[0][1]}`;for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;d+=` C${p1[0]+(p2[0]-p0[0])/6} ${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6} ${p2[1]-(p3[1]-p1[1])/6} ${p2[0]} ${p2[1]}`;}return d;}
 const vistaFile=L=>`assets/world/${L.vista||L.id}-vista.webp`; // a pohod without its own picture yet borrows one (L.vista)
 function mapDetail(i){const L=LEVELS[i];if(!L||!$('map-detail'))return;const k=SKILLS.find(k=>k.land===L.id),open=levelOpen(i);
@@ -3218,6 +3218,7 @@ const ZAPISI={
  rusevine:'Arapin je od svake svadbe uzimao danak, dok nije došao Marko i ukinuo svadbarinu.',
  reka:'Na Urvini, kažu, Marko prelomi koplje na sedam komada, da ne padne u turske ruke.',
  oranje:'Majka reče Marku da ostavi boj i ore; Marko zaora drumove, a turske rale vrati odakle su došle.',
+ azak:'Iz Azačke tamnice Marko je poslao knjigu po sivom sokolu. Dojčilo ju je pročitao u Solunu, obojio lice kao Arapin i dojahao po pobratima.',
 };
 const RELIC_ART={srce:'predmet-srce-deo',zapis:'predmet-zapis',kljuc:'predmet-kljuc'};
 const SLIDE_TIME=.5,KICK_TIME=.36;

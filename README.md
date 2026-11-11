@@ -307,6 +307,20 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Musin koštac je pravo rvanje.** Dok Musa drži Marka, pokazuje se hvat kao u svakom drugom koštacu. Marko ne može da zbaci tri srca, ali tri dobra hvata dovode vilu ranije; bez njih dolazi kad i pre. Dugme J više ne treba lupati.
 - **Megdan na ekranu.** Dok traje megdan, red zadatka se sklanja, a ime i snaga megdandžije stoje na vrhu ekrana.
 
+## Azačka kula: pohod uspona (izazov)
+
+Po pesmi „Marko Kraljević u Azačkoj tamnici": Marko izlazi iz tamnice uz kulu, a na vrhu sivi soko nosi njegovu knjigu Dojčilu u Solun. Kretanje je izazov koliko i borba, u duhu *The Lost Crown* (samo ideje, bez njenih crteža i imena). Grafika je postojeća: pozadine tvrđave i rekviziti.
+
+- **Gde je:** pohod 16 na mapi (dole desno). Stoji van Markovog puta: otvoren je od početka i Marko u njemu zna sve pokrete, kao u „Snu". U `world.js` to je `izazov:true`.
+- **Tok:** guslar peva stihove o sokolu → bunar od dva zida, 500 px odskokom od zida do zida → kameni stubovi nad ponorom, svaki viši od skoka, hvata se ivica → predah → hodnik sa kocima i dve strelnice u zidu → jama sa kocima: dve daske koje se krune, kameni stub, greda koja klizi i greda koja se diže → barjak → straža (tri čuvara) → tajna soba ispod napukle ploče → Arapin na vrhu kule → barjak, a sivi soko odleće sa knjigom (crtež `soko-let`).
+- **Strelnice** (`dist/zamke.js`): prorez zasija i škljocne pre hica. Visoka strela ide u grudi (S ili Shift), niska u gležanj (skok ili Shift). L je odbija nazad u zid. Na vrhu zida ćute.
+- **Jama:** koci bodu kao svuda u igri, jednom pri padu. Posle trenutka Ravijojla vraća Marka na ivicu ili na stub. Kraj zida su i lestve.
+- **Tajna soba:** ploča puca samo od udara odozgo (u skoku S + J). Dole su zapis legende o sokolu i Dojčilu, kovčeg dukata i deo srca.
+- **Barjaci** se dižu sami (sistem iz `game.js`). Jedan se diže odmah posle jame sa gredama.
+- **DUPLI SKOK, opciona gornja putanja:** iznad poslednjeg stuba nad ponorom stoje dve daske. Prva je 300 px iznad stuba, a na drugoj je kovčeg dukata. Skok sa ivicom doseže samo 266 px, pa glavni put ne zavisi od njih. Danas se do njih stiže Vilinskim uzletom (E u skoku), a kasnije duplim skokom: stani na desni kraj stuba, skoči, skoči ponovo u vazduhu, i ruke hvataju ivicu. U kodu je to komentar `DUPLI SKOK` u sobi `ivice` (`buildLayout`), a daske nose oznaku `tajna`, pa na njih nikad ne pada slovo МАРКО.
+- **Kod:** sobe `uspon`, `ivice`, `strelnice`, `krunjenje`, `predah`, `straza` i `tajna` u `buildLayout`. Zamke `strelnica`, `greda`, `jama` i `sokoGlasnik` su u `dist/zamke.js`: svaka nosi svoje `tick` i `draw`, a `game.js` ih samo poziva (`updateTraps`, `drawTrapsFront`).
+- **Provera:** `node levels-test.mjs` prolazi kulu stvarnim tasterima. Proverava bunar, ivice, strele (čučanj, skok, kolut), prelaz preko greda iz svakog trenutka njihovog hoda, pad u jamu, tajnu sobu i gornju putanju, i ceo nivo od početka do barjaka (31 provera).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

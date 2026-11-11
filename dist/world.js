@@ -1,3 +1,4 @@
+import{strelnica,greda,jama,sokoGlasnik}from'./zamke.js';
 export const W=1280,H=720,GRAVITY=1750;
 export const chapters=[
  {name:'I · DRUM JUNAKA',start:0,end:3200,goal:'Oslobodi drum od osmanske straže',message:'Marko, Musini ljudi su zatvorili drum, a putnici čekaju da ih provedeš. Prati naše crvene barjake.'},
@@ -57,7 +58,7 @@ export function integrate(body,dt,platforms,runes=[]){
 }
 
 // ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
-const THEME_FOES={selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['akindzija','oklopnik','sword','archer','shield','palikuca']};
+const THEME_FOES={azak:['sword','shield','akindzija'],selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['akindzija','oklopnik','sword','archer','shield','palikuca']};
 export const LEVEL_ZONE=6;
 // What each campaign asks before its end banner counts. use: press E beside it; take: walk over it;
 // gate: blocks the road until everything before it is done (guarded gates also wait for nearby foes); finish: art by the banner.
@@ -76,7 +77,8 @@ const GOAL_PLAN={
  rusevine:{goals:[],finish:'Popni se do poslednjeg barjaka'},
  reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'},
  urvina:{goals:[],finish:'Popni se do dve jele i bunara'},
- san:{goals:[],finish:'Prođi četiri odaje i probudi se'}
+ san:{goals:[],finish:'Prođi četiri odaje i probudi se'},
+ azak:{goals:[],finish:'Popni se na vrh kule, do sokola'}
 };
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
@@ -127,6 +129,10 @@ export const RECIPES={
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates ledges stairs+ sator flat guslar:mir spikes crates trgovac flat boss:trio',
+ // "Marko Kraljević u Azačkoj tamnici": out of the dungeon and up the tower, where the falcon takes his letter to Solun.
+ // The climb is the challenge as much as the fight: a shaft, pillars over the abyss, arrow slits, crumbling planks and
+ // moving beams, then a guard post, a hidden cellar and the Arab on top of his tower.
+ azak:'guslar:mir uspon ivice predah:300 strelnice krunjenje predah straza tajna boss:arapin',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
@@ -138,7 +144,7 @@ export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gr
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
 export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[];let x=0,gy=590,run=null,boss=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[],tajne=[];let x=0,gy=590,run=null,boss=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -195,7 +201,9 @@ export function buildLayout(L,variant='day'){
   // a Turkish tent: Ottomans come out of it while Marko is near, until he tears it down
   topnica(){const x0=x,len=1560;ground(len);traps.push({kind:'topnica',x:x0+190,y:gy,id:traps.length+1,face:1});busy.push([x0,x0+len]);},
   top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
-  guslar(arg){const big=arg==='odbrana',x0=x,len=big?ri(1500,1560):ri(1100,1180);ground(len);traps.push({kind:'guslar',x:x0+Math.round(len*(big?.5:.4)),y:gy,x0,x1:x0+len,mir:arg==='mir',odbrana:big});busy.push([x0,x0+len]);},
+  // a land with its own verse (L.stih) gives it to its quiet guslar; the others sing what game.js knows of their land
+  guslar(arg){const big=arg==='odbrana',x0=x,len=big?ri(1500,1560):ri(1100,1180);ground(len);const g={kind:'guslar',x:x0+Math.round(len*(big?.5:.4)),y:gy,x0,x1:x0+len,mir:arg==='mir',odbrana:big};
+   if(L.stih&&g.mir)Object.assign(g,{state:'ceka',hp:100,stih:L.stih});traps.push(g);busy.push([x0,x0+len]);},
   gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   // the falcon with a broken wing in the reeds; the reeds where archers lie hidden; a barrel of Ramadan wine
   soko(){const x0=x,len=ri(900,960);ground(len);traps.push({kind:'soko',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
@@ -260,6 +268,51 @@ export function buildLayout(L,variant='day'){
   // an iron door no blow can break, a keg of powder, a brazier on the beam above: push, climb, knock it down — and stand clear
   barut(){const x0=x,len=900;ground(len);platforms.push({x:x0+560,y:gy-150,w:150,h:18,kind:'plank'},{x:x0+130,y:gy-62,w:56,h:62,kind:'teret',solid:true,push:true,keg:true});
    traps.push({kind:'powder',brazier:{x:x0+690,y:gy-150},gate:{x:x0+len-90,y:gy}});busy.push([x0,x0+len]);},
+  // ===== the climb of a tower (Azačka kula): fixed measures, each piece asks one move of Marko =====
+  // Measures from game.js: a jump rises 126 px and carries ~200 px; a wall jump adds ~120 px; Marko catches an edge
+  // whose top is 84–266 px above the ground he jumped from (the hands reach it), and W or Space pulls him up.
+  // The shaft: walk under the hanging wall, then jump wall to wall (Space against a wall) up to the top of the tower.
+  uspon(){ground(260);const ax=x,aw=110,gap=150,bw=240,H=480;block(ax,aw,gy-H,{hang:true,h:H-150});ground(aw+gap+bw);
+   const b=block(x-bw,bw,gy-H-20,{tower:true,ground:true});busy.push([ax-60,x+40]);gy=b.y;run=null;},
+  // Stone pillars over the abyss, each one higher than a jump: jump at its face and catch the edge. A fall is the
+  // ordinary pit: Ravijojla brings Marko back to the last pillar he stood on.
+  ivice(){ground(220);const base=gy;let px=x;const P=[[110,100,150],[120,100,300],[150,110,230],[110,100,380]];
+   const pillars=P.map(([gap,w,up])=>{px+=gap;const q=block(px,w,base-up,{});px+=w;return q;});
+   // DUPLI SKOK (opciona gornja putanja): a plank 300 px over the last pillar, its left edge right above the pillar's
+   // right end, and a higher one beyond it with a chest of ducats. Stand at the end of the pillar facing on, jump, jump
+   // again in the air, and the hands catch the edge on the way down. One jump with the edge reaches only 266 px, so the
+   // main road never needs it; today Ravijojla's lift (E in the air) is that second jump, the double jump will be
+   // another. Marked `tajna`: no letter of МАРКО is ever placed up here.
+   const top=pillars[3],s1={x:top.x+top.w-10,y:top.y-300,w:150,h:18,kind:'plank',tajna:true},s2={x:s1.x+s1.w+70,y:s1.y-40,w:170,h:18,kind:'plank',tajna:true};
+   platforms.push(s1,s2);crate(s2.x+90,'kovceg',{y:s2.y,loot:{coins:ri(34,42)}});
+   busy.push([x-40,px+170]);x=px+130;run=null;gy=base-330;ground(160);},
+  // A corridor under two arrow slits, stakes on its floor. The wall at its end shoots along it: crouch (S) under the
+  // high arrow, jump the low one, or roll (Shift) through both; then catch the top of the wall between two shots.
+  // The wall is not ground: no banner is raised on it, the next one waits past the crumbling planks.
+  strelnice(){const x0=x,len=1000;ground(len);for(const k of[.3,.6])traps.push({kind:'spikes',x:Math.round(x0+len*k),w:90,y:gy});
+   const H=200,wall=block(x,220,gy-H,{tower:true});traps.push(strelnica({x,y:gy-84,gy}),strelnica({x,y:gy-26,gy,phase:.5}));
+   busy.push([x0,x+260]);x+=220;gy=wall.y;run=null;},
+  // A pit with stakes at the bottom: two planks that give way (a running jump from edge to edge lands on the next one),
+  // a stone post to wait on, a beam that slides and a beam that rises to the far bank. Stakes hurt as everywhere; then
+  // Ravijojla lifts Marko back to where he set off: the edge, or the post (by the wall a ladder leads out, too).
+  krunjenje(){const x0=x,W=1290,base=gy,floor=gy+300,post=[550,120];busy.push([x0-60,x0+W+60]);
+   block(x0-10,W+20,floor,{});ladders.push({x:x0+26,top:base,bottom:floor,side:-1});
+   for(const [a,b] of[[150,post[0]-10],[post[0]+post[1]+10,W-10]])traps.push({kind:'spikes',x:x0+a,w:b-a,y:floor,pit:true});
+   for(const px of[90,320])platforms.push({x:x0+px,y:base,w:140,h:18,kind:'plank',crumble:true});
+   const p3=block(x0+post[0],post[1],base,{pillar:true,h:300});
+   const b1={x:x0+760,y:base,w:140,h:18,kind:'plank'},b2={x:x0+1110,y:base-130,w:140,h:18,kind:'plank'};platforms.push(b1,b2);
+   traps.push(greda(b1,{ax:x0+760,bx:x0+900,period:5}),greda(b2,{ay:base+40,by:base-130,period:5,phase:.5}),
+    jama({x0,x1:p3.x,y:floor,back:{x:x0-70,y:base}}),jama({x0:p3.x+p3.w,x1:x0+W,y:floor,back:{x:p3.x+p3.w/2,y:base},safe:0}));
+   x=x0+W;run=null;gy=base-140;ground(320);},
+  // a quiet stretch to catch breath: game.js raises a banner on the first quiet ground far enough from the last one
+  predah(arg){ground(+arg||700);},
+  // the guard post: three of the king's men on open ground
+  straza(){const x0=x,len=1000;ground(len);for(const k of[.2,.55,.9])spots.push({x:x0+len*k,y:gy});},
+  // the hidden room: a cracked slab gives way only to a blow from above (S + J in the air). Below: the heart piece (at the
+  // middle less 40, as everywhere), the lore scroll right of it, then a chest of ducats; the ladder out is on the left.
+  tajna(){const x0=x,len=680,w=230,deep=180,cx=x0+250;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
+   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+26,top:gy,bottom:gy+deep,side:-1});
+   crate(cx+190,'kovceg',{y:gy+deep,loot:{coins:ri(36,44)}});cellars.push({x:cx+w/2,y:gy+deep});tajne.push({x:cx+132,y:gy+deep-44});busy.push([cx-60,cx+w+60]);},
   boss(type){const x0=x,len=ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
    const plank=(k,dy,w=150)=>platforms.push({x:Math.round(x0+len*k-w/2),y:g0-dy,w,h:18,kind:'plank',arena:true});
    ({oklopnik(){for(const k of[.13,.87])block(x0+len*k-35,70,g0-95,{pillar:true});plank(.5,175);},   // he rams the pillars
@@ -279,6 +332,8 @@ export function buildLayout(L,variant='day'){
  ground(ri(600,680));const spawn={x:80,y:590};
  for(const name of(RECIPES[L.id]||'flat crates stairs+ watch flat stairs- ledges flat tower flat').split(' ')){const [r,arg]=name.split(':');room[r]?.(arg);}
  if(!boss&&!L.peace)room.arena();const x0=x;ground(520);const goal={x:x0+380,y:gy};const width=x;
+ // a land whose song ends with a bird on the wing (L.soko) lets it fly off from beside the end banner
+ if(L.soko)traps.push(sokoGlasnik({x:goal.x+60,y:goal.y,text:L.soko}));
  // the best reward hides the land's marvel, the others become chests
  rewards.sort((a,b)=>b.prio-a.prio);const cudo=CUDA.find(c=>c.land===L.id);
  rewards.forEach((r,i)=>{if(i===0&&cudo)r.cudo=cudo.id;else crate(r.x,'kovceg',{y:r.y,loot:{coins:ri(14,22)}});});
@@ -289,8 +344,8 @@ export function buildLayout(L,variant='day'){
   let bx=x0+190;for(const kind of['cup','kovceg','cup','kovceg','korpa'])bx+=crate(bx,kind,{y:vy,loot:kind==='kovceg'?{coins:ri(16,24)}:{coins:ri(3,7)}})+ri(26,44);});
  // places worth reaching: the five letters М-А-Р-К-О and a power orb go to the best of them along the road
  const cands=[],grounds=platforms.filter(q=>q.ground).sort((a,b)=>a.x-b.x),taken=r=>rewards.some(o=>Math.abs(o.x-r.x)<90&&Math.abs(o.y-r.y)<90);
- for(const q of platforms){if(q.kind==='plank'&&!q.bridge)cands.push({x:q.x+q.w/2,y:q.y-44,s:2});else if(q.kind==='deck')cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.hang)cands.push({x:q.x+q.w/2,y:q.y-44,s:3});else if(q.tower&&!q.ground)cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.pillar)cands.push({x:q.x+q.w/2,y:q.y-80,s:1});}
- for(const t of traps)if(t.kind==='spikes')cands.push({x:t.x+t.w/2,y:t.y-(t.bed?230:150),s:t.bed?3:2});for(const c of cellars)cands.push({x:c.x+30,y:c.y-44,s:3});
+ for(const q of platforms){if(q.kind==='plank'&&!q.bridge&&!q.tajna&&!q.move)cands.push({x:q.x+q.w/2,y:q.y-44,s:2});else if(q.kind==='deck')cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.hang)cands.push({x:q.x+q.w/2,y:q.y-44,s:3});else if(q.tower&&!q.ground)cands.push({x:q.x+q.w*.75,y:q.y-44,s:2});else if(q.pillar)cands.push({x:q.x+q.w/2,y:q.y-80,s:1});}
+ for(const t of traps)if(t.kind==='spikes'&&!t.pit)cands.push({x:t.x+t.w/2,y:t.y-(t.bed?230:150),s:t.bed?3:2});for(const c of cellars)cands.push({x:c.x+30,y:c.y-44,s:3});
  for(let i=1;i<grounds.length;i++){const a=grounds[i-1],b=grounds[i],g=b.x-(a.x+a.w);if(g>60&&Math.abs(a.y-b.y)<30)cands.push({x:a.x+a.w+g/2,y:Math.min(a.y,b.y)-140,s:2});}
  for(let cx=700;cx<goal.x-300;cx+=650){const q=grounds.find(q=>cx>q.x+30&&cx<q.x+q.w-30);if(q)cands.push({x:cx,y:q.y-175,s:1});}
  const end=boss?boss.x0:goal.x-150,free=cands.filter(c=>!taken(c)&&c.x>500&&c.x<end),letters=[];
@@ -299,7 +354,8 @@ export function buildLayout(L,variant='day'){
  // the heart piece hides in the first treasury (or the cellar, or the hardest place left); the scroll waits on the way
  const hv=vaults[0],rest=free.filter(c=>c!==mid).sort((u,v)=>v.s-u.s||v.x-u.x);
  const heart=hv?{x:hv.x0+hv.w-110,y:hv.y-44}:cellars[0]?{x:cellars[0].x-40,y:cellars[0].y-44}:rest[0]||null;
- const zapis=rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
+ // a land with a hidden room (tajna) keeps its lore scroll there
+ const zapis=tajne[0]||rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
  return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina',width:7000,spawn:{x:80,y:590},goal:{x:6800,y:590},palette:'san u vilinskoj pećini',peace:true,secret:true,
@@ -313,7 +369,16 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
  nightLayers:[{id:'oranje-sky-night',speed:.04},{id:'oranje-far-night',speed:.16},{id:'oranje-mid-night',speed:.38},{id:'oranje-near-night',speed:.72}],stormLayers:[{id:'oranje-sky-storm',speed:.04},{id:'oranje-far-storm',speed:.16},{id:'oranje-mid-storm',speed:.38},{id:'oranje-near-storm',speed:.72}],
  fallbackLayers:[{id:'selo-sky',speed:.04},{id:'selo-far',speed:.16},{id:'selo-mid',speed:.38},{id:'selo-near',speed:.72}],ground:'selo',
  props:[{id:'prop-plast-sena',x:700,y:590,height:150},{id:'prop-kruska',x:1500,y:590,height:300},{id:'prop-medjas',x:2100,y:590,height:70},{id:'prop-kola-seno',x:2700,y:590,height:170},{id:'prop-krst-raskrsce',x:3400,y:590,height:190},{id:'prop-turski-sator',x:4100,y:590,height:200},{id:'prop-plast-sena',x:4800,y:590,height:150},{id:'prop-kruska',x:5500,y:590,height:300},{id:'prop-taraba-ravna',x:6000,y:590,height:140}],
- design:{goal:'Zaustavi turska rala i uzmi tri tovara blaga'}}];
+ design:{goal:'Zaustavi turska rala i uzmi tri tovara blaga'}},
+ // A climbing pohod in the manner of platformers where the road itself is the challenge (the measures are in buildLayout:
+ // uspon, ivice, strelnice, krunjenje). It stands apart from the journey (izazov): open from the start, and Marko
+ // knows every move in it, as in the dream. The double-jump secret above the pillars is described at `ivice`.
+ {id:'azak',name:'Azačka kula',vista:'tvrdjava',width:10970,spawn:{x:80,y:590},goal:{x:10830,y:-580},palette:'sumrak nad Azakom, kula od kamena',
+ izazov:true,bossHp:.6,soko:'Sivi soko je poneo knjigu ka Solunu, Dojčilu.',stih:['Pa dozivlje sivoga sokola:','„O sokole, pust mi ne ostao!','Nosi knjigu ka gradu Solunu.”'],
+ layers:[{id:'tvrdjava-sky',speed:.04},{id:'tvrdjava-far',speed:.16},{id:'tvrdjava-mid',speed:.38},{id:'tvrdjava-near',speed:.72}],
+ nightLayers:[{id:'tvrdjava-sky-night',speed:.04},{id:'tvrdjava-far-night',speed:.16},{id:'tvrdjava-mid-night',speed:.38},{id:'tvrdjava-near-night',speed:.72}],stormLayers:[{id:'tvrdjava-sky-storm',speed:.04},{id:'tvrdjava-far-storm',speed:.16},{id:'tvrdjava-mid-storm',speed:.38},{id:'tvrdjava-near-storm',speed:.72}],
+ ground:'tvrdjava',props:[{id:'prop-baklja-drzac',x:420,y:590,height:120},{id:'prop-sanduci',x:560,y:590,height:120},{id:'prop-strassarnica',x:7300,y:590,height:180},{id:'prop-baklja-drzac',x:7700,y:590,height:120},{id:'prop-sanduci',x:8350,y:590,height:120}],
+ design:{goal:'Iz tamnice uz kulu, od zida do zida i od ivice do ivice. Na vrhu čeka soko da odnese knjigu Dojčilu u Solun.'}}];
 export function makeLevel(L,index,variant='day',opts={}){
  const zone=LEVEL_ZONE+index,B=buildLayout(L,variant),enemies=[],items=[],platforms=B.platforms;
  const mix=L.design?.enemyMix,base=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer','akindzija']);
@@ -346,7 +411,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
   if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
  if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90});}
- if(B.boss){const S=BOSSES[B.boss.type],A=B.boss;foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp:Math.round(S.hp*(.62+.38*Math.min(1,index/9))),maxHp:Math.round(S.hp*(.62+.38*Math.min(1,index/9))),name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
+ // a land may soften its champion (bossHp): in a climbing pohod the climb is half the fight
+ if(B.boss){const S=BOSSES[B.boss.type],A=B.boss,hp=Math.round(S.hp*(.62+.38*Math.min(1,index/9))*(L.bossHp??1));foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp,maxHp:hp,name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out
  const sx=B.width/(L.width||6240),props=[];for(const pr of L.props||[]){if(pr.id.startsWith('prop-barjak-srpski'))continue;const x=pr.x*sx,q=floorAt(x);if(!q||B.busy.some(([a,b])=>x>a-60&&x<b+60))continue;props.push({...pr,x,y:q.y});}
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
