@@ -71,6 +71,13 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
  tap('KeyK');step(160);ok(!e.alive,'training: and the finish takes him');step(120*2);ok(w.enemies.filter(e=>e.alive).length>=2,'training: the next ones come');
  api.pressed.add('Digit9');step(120*4);ok(S().world.enemies.filter(e=>e.alive).every(e=>e.type==='pas'),'training: a number picks the kind of foe');}
 
+// ---- a foe answers: three light blows running and he stands firm; the heavy hand still breaks him ----
+{api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(e,{hp:900,maxHp:900,stun:0,mode:'idle',timer:9});const p=S().p;
+ const blow=k=>{Object.assign(p,{x:e.x-70,y:e.y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});p.invuln=99;p.hp=p.maxHp;tap(k);step(22);};
+ const x0=e.x;blow('KeyJ');ok(e.stun>0&&e.x>x0,'answer: a light blow staggers the janissary and moves him back');blow('KeyJ');ok(e.stun>0,'answer: so does the second');
+ blow('KeyJ');ok(!(e.stun>0)&&(e.mode==='windup'||e.mode==='recover'),'answer: at the third he stands firm and strikes back at once');
+ const hp=e.hp;blow('KeyJ');ok(e.hp<hp&&!(e.stun>0),'answer: while he stands firm light blows hurt but do not stop him');
+ blow('KeyK');step(20);ok(e.stun>0,'answer: a heavy blow breaks him all the same');}
 // ---- on the ground: a foe on top of Marko; mash to throw him off ----
 {api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,face:1,grounded:true,hp:S().p.maxHp,invuln:0});
  for(let n=0;n<20&&!e.grappling;n++){S().p.down=1;S().p.downRolled=false;step(2);S().p.down=0;step(1);}ok(e.grappling&&S().p.pinned,'grapple: knocked down by a janissary, he jumps on Marko with his knife');
