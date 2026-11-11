@@ -370,4 +370,15 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  Object.assign(p,{x:g.x,y:g.y,vx:0,vy:0,grounded:true,rage:0});safe();step(3);ok(g.done&&S().mode==='shop','judgment: taking the book puts the question: whose is the empire');
  const pw=p.power||1;ok(!api.presuda(0)&&S().mode==='shop','judgment: for his father is false, and the question stands');ok(!api.presuda(1)&&!api.presuda(2),'judgment: for his uncles is false too');
  ok(api.presuda(3)&&S().mode==='play'&&p.power>pw&&p.rage===100,'judgment: the empire is Uroš\'s: the tsar\'s blessing stays on Marko');}
+// ---- the archery match with Alil-aga on the sultan's road ----
+{const w=await land('oranje');const t=w.traps.find(t=>t.kind==='strela'),p=S().p;ok(t,'archery: Alil-aga stands in the road in Oranje');
+ Object.assign(p,{x:t.x+40,y:t.y,vx:0,vy:0,grounded:true});safe();step(3);api.pressed.add('KeyE');step(2);ok(t.state==='aga'&&p.noMace,'archery: E accepts the match; the mace waits');
+ until(()=>t.state==='marko',120*5);ok(t.state==='marko'&&t.r===0,'archery: the aga shoots first: 120 aršina');
+ // a weak pull falls short and the round is shot again
+ until(()=>t.t>.4&&t.pow<.25,120*5);api.pressed.add('KeyJ');step(2);until(()=>t.state==='marko'&&t.t<.2,120*5);ok(t.r===0&&!t.win,'archery: a slack string falls short and Marko shoots again');
+ for(let r=0;r<3;r++){until(()=>t.state==='marko'&&t.t>.4&&t.pow>.9,120*12);api.pressed.add('KeyJ');step(2);until(()=>t.r>r||t.state==='kraj',120*6);ok(t.r===r+1,'archery: a full draw beats the aga\'s '+[120,300,600][r]+' aršina');}
+ ok(t.state==='kraj'&&p.pobratim&&!p.noMace,'archery: beaten, Alil-aga is Marko\'s sworn brother');
+ const c=w.enemies.find(e=>e.champion);for(const e of w.enemies)if(e.champion||e.trioMate){e.alive=true;e.hp=e.maxHp;}
+ const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true});
+ let friendly=false;for(let i=0;i<120*14&&!friendly;i++){safe();step();friendly=S().arrows.some(a=>!a.enemy);}ok(friendly,'archery: in the megdan his arrows fall on Marko\'s foes');}
 console.log(`${checks} battle checks passed.`);

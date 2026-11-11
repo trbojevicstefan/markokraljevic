@@ -126,7 +126,7 @@ export const RECIPES={
  reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch guslar:mir logs flat spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
- oranje:'flat plow crates sator plow watch plate stairs+ flat stairs- plow crates ledges stairs+ sator flat guslar:mir spikes crates trgovac flat boss:trio',
+ oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates ledges stairs+ sator flat guslar:mir spikes crates trgovac flat boss:trio',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
@@ -217,6 +217,8 @@ export function buildLayout(L,variant='day'){
   potera(){const x0=x,len=4300;ground(len);const bars=[];for(let bx=x0+950;bx<x0+len-950;bx+=ri(440,580))bars.push(bx);traps.push({kind:'potera',x0,x1:x0+len,y:gy,sx:x0+280,bars,gate:{x:x0+len-50,y:gy}});busy.push([x0,x0+len]);},
   // the top of Urvina: two firs and the well, Šarac, the stone where the sabre breaks, and the cliff over the sea
   vrh(){const x0=x,len=1900;ground(len);traps.push({kind:'vrh',x0,x1:x0+len+520,y:gy,bunar:x0+520,sarac:x0+1020,sablja:x0+1480,more:x0+len+240});busy.push([x0,x0+len+520]);},
+  // "Marko Kraljević i Alil-aga": the aga stands in the road; the match is shot along the open stretch behind him
+  strela(){const x0=x,len=1500;ground(len);traps.push({kind:'strela',x:x0+260,y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},

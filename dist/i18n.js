@@ -6,6 +6,22 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["„Hajd’ na megdan, da se nadstreljujemo!” Tri strele svakome. Luk se zateže sam: pusti strelu (J) kad je tetiva najzategnutija.", "“Come to the field, let us shoot for distance!” Three arrows each. The bow draws by itself: loose the arrow (J) when the string is drawn tightest."],
+["Carev Alil-aga sa trideset janičara stoji nasred druma i hvata te za skut dolame. Neće te pustiti bez megdana.", "The sultan's Alil-aga, with thirty janissaries, stands in the middle of the road and catches you by the skirt of your cloak. He will not let you pass without a match."],
+["AGA", "THE AGA"],
+["ARŠINA", "ARŠIN"],
+["MARKO", "MARKO"],
+["MALO", "TOO SHORT"],
+["U PRAH I U MAGLU!", "INTO DUST AND MIST!"],
+["„Bogom brate, Kraljeviću Marko! Na čast tebi moji beli dvori, tek me nemoj, brate, obesiti!” A Marko: „Sve bih ti, brate, oprostio, ali si mi izdr’o dolamu: već daj mene tri tovara blaga.” Od tada krajinu brane zajedno.", "“Brother in God, Prince Marko! My white halls are yours, only do not hang me, brother!” And Marko: “I would forgive you everything, brother, but you tore my cloak: give me three loads of treasure.” From then on they guard the marches together."],
+["Alil-aga ti je pobratim: u megdanu ovog pohoda njegove strele padaju po tvojim dušmanima.", "Alil-aga is your sworn brother: in this quest's duel his arrows fall on your foes."],
+["Stiže ti strela Tataranka, sa devet belih sokolovih pera. Zategni do kraja!", "Your Tatar arrow has come, with nine white falcon feathers. Draw it to the full!"],
+["ALIL-AGA GAĐA!", "ALIL-AGA SHOOTS!"],
+["E · NADSTRELJIVANJE", "E · THE ARCHERY MATCH"],
+["POBRATIM ALIL-AGA", "SWORN BROTHER ALIL-AGA"],
+["ALIL-AGA", "ALIL-AGA"],
+["J · PUSTI TATARANKU", "J · LOOSE THE TATAR ARROW"],
+["J · PUSTI STRELU", "J · LOOSE THE ARROW"],
 ["Na kralja Vukašina, mog oca", "On King Vukašin, my father"],
 ["„Nemoj, sine, govoriti krivo, ni po babu, ni po stričevima, već po pravdi Boga istinoga.”", "“Do not, my son, speak falsely, neither for your father nor your uncles, but by the justice of the true God.”"],
 ["Na despota Uglješu, mog strica", "On Despot Uglješa, my uncle"],

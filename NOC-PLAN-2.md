@@ -29,7 +29,7 @@ sablju, dokrajčivanje, prikradanje, brutalnost i scene pre pohoda. `deathPose` 
 ## Ako se rad nastavlja (sledeće po vrednosti)
 1. Beg oko crkve od oca u Manastiru (treba crtež Vukašina); presuda je već unutra.
 2. Prerušavanje u kaluđera i kaluđersko kolo („Mina od Kostura") na Obali (treba crtež).
-3. Nadstreljivanje sa Alil-agom i megdan pogledom sa Ljuticom Bogdanom.
+3. Megdan pogledom sa Ljuticom Bogdanom (nadstreljivanje sa Alil-agom je urađeno, u Oranju).
 4. Ručno razmeštanje predmeta po nivoima uz `?scout` (do sada samo pregled po kadrovima, bez nađenih grešaka).
 5. Izbor džojstikom u dućanu i u presudi.
 
@@ -54,3 +54,5 @@ sablju, dokrajčivanje, prikradanje, brutalnost i scene pre pohoda. `deathPose` 
 | 02:01 | Potera za vilom na Šarcu | 4c4bf70 |
 | 02:08 | Presuda u Manastiru | f97cdba |
 | 02:14 | Režim razgledanja `?scout` | (ovaj commit) |
+| 11. 11. jutro | Stefan odobrio: grana spojena u `main` (c79aec2) i objavljena. Rad se nastavlja u `marko-noc`, spajanje na celinama. | c79aec2 |
+| 11. 11. jutro | Nadstreljivanje sa Alil-agom u Oranju (pobratim pomaže u megdanu); partner više ne kopira trećeg janičara; tasteri 1–4 u dućanu | (ovaj commit) |
