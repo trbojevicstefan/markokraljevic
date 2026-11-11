@@ -1213,7 +1213,9 @@ const LEVEL_INTRO={selo:'Kažu da je ovde potkovan Šarac i da je jedna potkova 
 // Each level comes in three lights painted by the artist: day, night and storm.
 const VARIANTS={day:{label:'Dan',icon:'☀',intro:''},night:{label:'Noć',icon:'☾',intro:'Noć je pala. '},storm:{label:'Oluja',icon:'⚡',intro:'Oluja bije, više ih je. '}};
 let levelVariant='day';try{levelVariant=VARIANTS[localStorage.getItem('marko-variant')]?localStorage.getItem('marko-variant'):'day';}catch{}
-const levelLayers=(L,v)=>(v==='night'&&L.nightLayers?.length?L.nightLayers:v==='storm'&&L.stormLayers?.length?L.stormLayers:L.layers);
+// a hand-composed layer (make-rucni-slojevi.py: a forest that is a forest) stands in for the artist's when the pack has one
+const rucniSloj=l=>{const m=/^(.+-(?:sky|far|mid|near))(-night|-storm)?$/.exec(l.id),id=m&&`${m[1]}-rucno${m[2]||''}`;return id&&worldFiles?.size&&worldFiles.has(id+'.webp')?{...l,id}:l;};
+const levelLayers=(L,v)=>(v==='night'&&L.nightLayers?.length?L.nightLayers:v==='storm'&&L.stormLayers?.length?L.stormLayers:L.layers).map(rucniSloj);
 const vistaId=(L,v)=>v==='day'?L.id+'-vista':`${L.id}-vista-${v}`;
 const doneKey=(L,v)=>v==='day'?L.id:`${L.id}@${v}`;
 function levelsDone(){try{return JSON.parse(localStorage.getItem('marko-levels')||'[]');}catch{return[];}}
@@ -3261,7 +3263,8 @@ function clearAbove(a,b,h,q){for(const o of world.platforms){if(o===q||o.off)con
 function layoutAudit(){const out=[];for(const pr of level?.props||[]){const im=levelArt[pr.id];if(!im||pr.id.startsWith('prop-barjak'))continue;const b=propBounds(im),w=b.w*pr.height/b.h,a=pr.x-w/2,c=pr.x+w/2;
  const q=world.platforms.find(o=>o.ground&&Math.abs(o.y-pr.y)<2&&pr.x>=o.x&&pr.x<=o.x+o.w);if(!q){out.push(`${pr.id}@${Math.round(pr.x)} floats`);continue;}
  if(a<q.x-10||c>q.x+q.w+10)out.push(`${pr.id}@${Math.round(pr.x)} hangs over the edge`);if(!clearAbove(a,c,pr.height,q))out.push(`${pr.id}@${Math.round(pr.x)} is cut by a platform, ladder or tower`);
- for(const t of world.traps||[]){const tx=t.x??t.gate?.x??0;if(tx+(t.w||0)>a-20&&tx<c+20&&Math.abs((t.y??q.y)-q.y)<10)out.push(`${pr.id}@${Math.round(pr.x)} stands on a ${t.kind}`);}}return out;}
+ for(const t of world.traps||[]){const tx=t.x??t.gate?.x??0;if(tx+(t.w||0)>a-20&&tx<c+20&&Math.abs((t.y??q.y)-q.y)<10)out.push(`${pr.id}@${Math.round(pr.x)} stands on a ${t.kind}`);}
+ for(const g of world.goals||[])if(g.x>a-70&&g.x<c+70&&Math.abs(g.y-q.y)<10)out.push(`${pr.id}@${Math.round(pr.x)} stands on a goal`);}return out;}
 
 // ---------- low walls and stakes ----------
 function lowCeiling(){return world.platforms?.some(q=>q.lintel&&!q.off&&p.x+16>q.x&&p.x-16<q.x+q.w&&q.y+q.h>p.y-114&&q.y+q.h<=p.y-50);}

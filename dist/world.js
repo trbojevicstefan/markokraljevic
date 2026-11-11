@@ -352,6 +352,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
  chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
  const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x));
+ // the artist's props give way to what the pohod is about: no shrine drawn across a fairy stone
+ for(const g of goals)for(let i=props.length-1;i>=0;i--)if(!props[i].id.startsWith('prop-barjak')&&Math.abs(props[i].x-g.x)<(g.kind==='gate'?300:190))props.splice(i,1);
  // nothing breakable stands inside a gate's passage
  for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
  // a guarded gate always has its guards
