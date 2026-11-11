@@ -122,3 +122,23 @@ i na `main`; javio sam drugoj sesiji.
   tvoje potvrde (pozadine Urvine, Marko pod jelom, utva, Janja, Novak, stojeći koštac). Do tada rade zamene:
   Urvina koristi pozadine Ruševina, utve su nacrtane kodom, a u košcu sa bosom Marko leži, a bos je nagnut nad njim.
 - **Muziku nisam dirao**, kako si rekao.
+
+## Dopuna posle spajanja u main (11. novembar, pre podne)
+
+- **Megdan pogledom sa Ljuticom Bogdanom** (Obala pred zoru, prečica `?novo=pogled`): Bogdan preči put kraj vinograda;
+  E započinje megdan, pa se šest i po sekundi ne dira nijedan taster dok se Bogdan tri puta trza. Ko pritisne bilo šta,
+  „trepnuo je" i megdan kreće ispočetka. Na kraju se mire: puna čutura, puno zdravlje, 30 dukata. Bogdan je za sada
+  nacrtan slikom bega na konju, jer svoj crtež nema.
+- **Pregled bez neprijatelja, ceo nivo, kadar po kadar:** Manastir, Oranje, Tvrđava, Podrum i prva polovina Močvare.
+  Predmeta koji lebde ili se sudaraju nema. Popravljeno je dvoje:
+  - tabla „FRESKA" kod zvona u Manastiru bila je goli tamni pravougaonik; sada je oslikana niša sa zlatnim okvirom;
+  - kapije u Podrumu bile su spoljašnja kula sa kupolom, krovom i barjakom usred zasvođenog podruma. Podrum sada ima
+    kameni portal bez kućice (`prolaz-podrum-otvoren.webp`, izveden lokalno skriptom `make-indoor-gate.py` iz
+    postojećeg crteža, bez Codexa), a Pećina i San rudarsku kapiju od stene i greda.
+- **Dućan i presuda džojstikom:** proverio sam kod: oba prozora već rade preko opšte navigacije menija (krstić ili
+  palica biraju, A potvrđuje, B zatvara dućan). Ranija stavka „izbor džojstikom nije dodat" nije bila tačna.
+  Sa pravim džojstikom nisam probao.
+- **Prečice:** `novo.html` sada ima i dugme za svaki pohod (`index.html?novo=<ime pohoda>`), a sa `&scout` na kraju
+  adrese pohod se razgleda bez neprijatelja.
+- Drugoj sesiji nisam javljao za novu sliku kapije jer miruje; `sync-world.py` je ne briše. Ako se ikad precrta
+  `prolaz-kamen-otvoren`, treba ponovo pokrenuti `make-indoor-gate.py`.
