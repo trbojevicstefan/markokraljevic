@@ -123,7 +123,7 @@ export const RECIPES={
  mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc spikebed watch ledges flat trska bridge pillars ferry watch crates trska guslar:mir bridge spikes crates ledges logs flat trgovac flat boss:tufekdzija',
  rudnik:'flat ladder+ crates rocks zid lift ledges tower lever greda chimney cellar teg crumble ladder+ barrels crates guslar:mir crumble flat rocks ledges spikes crates trgovac flat boss:shield',
  rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat spikebed zid svatovi ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
- reka:'flat crates bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch guslar:mir logs flat spikes crates tower flat trgovac flat boss:sword',
+ reka:'flat crates pogled bridge flat watch ferry sator top stairs+ logs kljuc stairs- plate bridge crumble crates ledges watch guslar:mir logs flat spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates ledges stairs+ sator flat guslar:mir spikes crates trgovac flat boss:trio',
@@ -219,6 +219,8 @@ export function buildLayout(L,variant='day'){
   vrh(){const x0=x,len=1900;ground(len);traps.push({kind:'vrh',x0,x1:x0+len+520,y:gy,bunar:x0+520,sarac:x0+1020,sablja:x0+1480,more:x0+len+240});busy.push([x0,x0+len+520]);},
   // "Marko Kraljević i Alil-aga": the aga stands in the road; the match is shot along the open stretch behind him
   strela(){const x0=x,len=1500;ground(len);traps.push({kind:'strela',x:x0+260,y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
+  // "Marko Kraljević i Ljutica Bogdan": Bogdan on his mare bars the road by his vineyard
+  pogled(){const x0=x,len=900;ground(len);traps.push({kind:'pogled',x:x0+Math.round(len*.6),y:gy,x0,x1:x0+len,gate:{x:x0+len-50,y:gy}});busy.push([x0,x0+len]);},
   trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},

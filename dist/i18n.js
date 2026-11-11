@@ -6,6 +6,19 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Navuci samur-kalpak na obrve i pogledaj ga popreko. Ne posež i za čim, Marko: ko prvi trepne, izgubio je.", "Pull your sable cap down to your brows and look at him askance. Reach for nothing, Marko: whoever blinks first has lost."],
+["Vinograd je Ljutice Bogdana. Pred njim si jednom već bežao uz krševito primorje, i sapom od topuza te je dohvatio. Eno ga, preči ti put.", "This is the vineyard of Ljutica Bogdan. You fled from him once already along the rocky coast, and he caught you with the shaft of his mace. There he is, barring your road."],
+["TREPNUO SI", "YOU BLINKED"],
+["„Već te moje oči ne viđele!” Bogdan se smeje. Hajde opet, i ovog puta ne miči ni prstom.", "“May my eyes never see you again!” Bogdan laughs. Once more, and this time do not move a finger."],
+["Pod Bogdanom noge obumreše. „Hodi, Marko, da se pomirimo.” Skide Marko mješinu sa Šarca, pa sjedoše piti rujno vino i mezetiti ga grozdom iz vinograda.", "Bogdan's legs went numb under him. “Come, Marko, let us make peace.” Marko took the wineskin from Šarac, and they sat down to drink red wine with grapes from the vineyard."],
+["Pomirili ste se: čutura je puna, a put kroz vinograd slobodan.", "You have made peace: the flask is full, and the road through the vineyard is open."],
+["Ljutica Bogdan ti preči put. Priđi mu i izdrži pogled (E).", "Ljutica Bogdan bars your road. Walk up to him and hold his look (E)."],
+["POBRATIM BOGDAN", "SWORN BROTHER BOGDAN"],
+["E · IZDRŽI POGLED", "E · HOLD HIS LOOK"],
+["LJUTICA BOGDAN", "LJUTICA BOGDAN"],
+["NE MIČI SE", "DO NOT MOVE"],
+["NE TREPNI", "DO NOT BLINK"],
+["PUSTI SVE TASTERE", "LET GO OF EVERY KEY"],
 ["Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.", "A duel by the new rules. Light blows (J) glance off the guard, and the third in a row earns a shove. Hold K to break the guard, or strike when he misses. The diamonds under his name are the acts."],
 ["Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili se otimaj: J J J.", "A blow or two more and the second act begins: the champion will throw you back, then rush to grab you. Get clear, or break free: J J J."],
 ["Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.", "The merchant stands before the duel: walk up and press E. You have a hundred ducats to try him with. Behind you a banner will be raised: if you fall, you go on from there."],

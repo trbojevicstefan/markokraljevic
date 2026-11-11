@@ -381,4 +381,12 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  const c=w.enemies.find(e=>e.champion);for(const e of w.enemies)if(e.champion||e.trioMate){e.alive=true;e.hp=e.maxHp;}
  const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true});
  let friendly=false;for(let i=0;i<120*14&&!friendly;i++){safe();step();friendly=S().arrows.some(a=>!a.enemy);}ok(friendly,'archery: in the megdan his arrows fall on Marko\'s foes');}
+// ---- the duel of looks with Ljutica Bogdan ----
+{const w=await land('reka');const t=w.traps.find(t=>t.kind==='pogled'),p=S().p;ok(t,'look: Ljutica Bogdan bars the road by the river');
+ Object.assign(p,{x:t.x-400,y:t.y,vx:0,vy:0,grounded:true});safe();api.keys.add('KeyD');step(120*4);api.keys.clear();ok(p.x<t.gate.x,'look: there is no way past him');
+ Object.assign(p,{x:t.x-160,y:t.y,vx:0,vy:0,grounded:true});step(3);api.pressed.add('KeyE');step(3);ok(t.state==='gleda','look: E and the two of them lock eyes');
+ step(120*2);ok(t.armed&&t.t>1.5&&t.f>=1,'look: Bogdan feints while Marko holds still');tap('KeyJ');step(2);ok(t.state==='trepnuo','look: reaching for the mace is blinking');
+ step(120*2);ok(!t.state&&!t.done,'look: and the duel begins again');
+ api.pressed.add('KeyE');step(3);for(let i=0;i<120*8&&!t.done;i++)step();ok(t.done&&p.wine>=3,'look: held to the end, Bogdan\'s legs go numb; they make peace and drink');
+ Object.assign(p,{x:t.gate.x-120,y:t.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(120*2);api.keys.clear();ok(p.x>t.gate.x,'look: the road through the vineyard is open');}
 console.log(`${checks} battle checks passed.`);
