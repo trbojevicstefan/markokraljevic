@@ -134,6 +134,9 @@ def raw_fixes(bname, key, im):
     d = ImageDraw.Draw(im)
     for x0, y0, x1, y1 in p.get('erase', []):
         d.rectangle([x0 * w, y0 * h, x1 * w, y1 * h], fill=(255, 0, 255))
+    if p.get('crop_top'):      # a thin band of sky the model put above a ground strip: cut it, stretch back
+        im = im.crop((0, round(h * p['crop_top']), w, h)).resize((w, h), Image.LANCZOS)
+        d = ImageDraw.Draw(im)
     if p.get('desat_red'):     # red highlights that read as lava: pull red down towards the other channels
         a = np.asarray(im, np.float32)
         ex = np.clip(a[..., 0] - np.maximum(a[..., 1], a[..., 2]) - 12, 0, None) * p['desat_red']

@@ -608,8 +608,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-selo/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-selo/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-selo/prop-fg-busen.webp",
+     "w": 68,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-selo/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 46,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-selo/prop-fg-koren.webp",
+     "w": 110,
+     "h": 76,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-selo/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 96,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "selo",
    "name": "Kosovsko selo"
   },
@@ -647,8 +687,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-klisura/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-klisura/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-klisura/prop-fg-busen.webp",
+     "w": 74,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-klisura/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 47,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-klisura/prop-fg-koren.webp",
+     "w": 110,
+     "h": 58,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-klisura/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 96,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "klisura",
    "name": "Klisura Ibra"
   },
@@ -686,8 +766,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-suma/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-suma/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-suma/prop-fg-busen.webp",
+     "w": 90,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-suma/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-suma/prop-fg-koren.webp",
+     "w": 110,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-suma/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 96,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "suma",
    "name": "Ravijojlina šuma"
   },
@@ -725,8 +845,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-manastir/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-manastir/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-manastir/prop-fg-busen.webp",
+     "w": 80,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-manastir/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-manastir/prop-fg-koren.webp",
+     "w": 110,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-manastir/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "manastir",
    "name": "Manastirski vis"
   },
@@ -764,8 +924,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-tvrdjava/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-tvrdjava/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-tvrdjava/prop-fg-busen.webp",
+     "w": 65,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-tvrdjava/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-tvrdjava/prop-fg-koren.webp",
+     "w": 110,
+     "h": 60,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-tvrdjava/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 96,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "tvrdjava",
    "name": "Opsednuta tvrđava"
   },
@@ -803,8 +1003,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-prevoj/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-prevoj/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-prevoj/prop-fg-busen.webp",
+     "w": 88,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-prevoj/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-prevoj/prop-fg-koren.webp",
+     "w": 110,
+     "h": 57,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-prevoj/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 95,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "prevoj",
    "name": "Zimski prevoj"
   },
@@ -842,8 +1082,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-pecina/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-pecina/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-pecina/prop-fg-busen.webp",
+     "w": 60,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-pecina/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-pecina/prop-fg-koren.webp",
+     "w": 110,
+     "h": 66,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-pecina/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "pecina",
    "name": "Vilinska pećina"
   },
@@ -881,8 +1161,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-podrum/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-podrum/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-podrum/prop-fg-busen.webp",
+     "w": 70,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-podrum/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-podrum/prop-fg-koren.webp",
+     "w": 110,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-podrum/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 94,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "podrum",
    "name": "Zaboravljeni podrum"
   },
@@ -920,8 +1240,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-mocvara/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-mocvara/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-mocvara/prop-fg-busen.webp",
+     "w": 80,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-mocvara/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-mocvara/prop-fg-koren.webp",
+     "w": 110,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-mocvara/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "mocvara",
    "name": "Noćna močvara"
   },
@@ -959,8 +1319,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-rudnik/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-rudnik/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-rudnik/prop-fg-busen.webp",
+     "w": 72,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-rudnik/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-rudnik/prop-fg-koren.webp",
+     "w": 110,
+     "h": 58,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-rudnik/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "rudnik",
    "name": "Stari rudnik"
   },
@@ -998,8 +1398,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-rusevine/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-rusevine/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-rusevine/prop-fg-busen.webp",
+     "w": 68,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-rusevine/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-rusevine/prop-fg-koren.webp",
+     "w": 110,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-rusevine/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 95,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "rusevine",
    "name": "Ruševine na brdu"
   },
@@ -1037,8 +1477,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-reka/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-reka/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-reka/prop-fg-busen.webp",
+     "w": 90,
+     "h": 68,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-reka/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 50,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-reka/prop-fg-koren.webp",
+     "w": 110,
+     "h": 56,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-reka/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 94,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "reka",
    "name": "Obala pred zoru"
   },
@@ -1076,8 +1556,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-oranje/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-oranje/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-oranje/prop-fg-busen.webp",
+     "w": 90,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-oranje/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 48,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-oranje/prop-fg-koren.webp",
+     "w": 110,
+     "h": 66,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-oranje/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 97,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "oranje",
    "name": "Oranje"
   },
@@ -1115,8 +1635,48 @@
    "interior": {
     "layers": []
    },
-   "materials": {},
-   "props": [],
+   "materials": {
+    "groundTop": "realisticno/svet-urvina/mat-groundTop.webp",
+    "groundFront": "realisticno/svet-urvina/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "fg-busen",
+     "file": "realisticno/svet-urvina/prop-fg-busen.webp",
+     "w": 80,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/svet-urvina/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 50,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/svet-urvina/prop-fg-koren.webp",
+     "w": 110,
+     "h": 52,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/svet-urvina/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 94,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ],
    "vista": "urvina",
    "name": "Urvina planina"
   }
