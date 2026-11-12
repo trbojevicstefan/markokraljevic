@@ -60,7 +60,7 @@ function kit(sobe){
   wing(id,dx,o={}){const r=room(id);K.n.krilo++;
    if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=r.floor;K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:node(id)}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
     K.veze.push([node(id),node(o.upper),'krilo',true,{up:[['floor',F,1,[lx+50,F-365]],[[lx+50,F-365],[hx-150,u.floor],-1]]}]);return K;}
-   const row=o.row??r.bottom,F=FY(row),x=r.x0+dx,top=FY(row-1),w=o.w??Math.min(500,r.x1-20-(x+250));
+   const row=o.row??r.bottom,F=FY(row),x=r.x0+dx,top=FY(row-1),w=o.w??r.x1-20-(x+250);
    op(B=>{B.ledge(x,F-365,100,{gbGate:'krilo'});B.block(x+250,top,w,40);});
    K.veze.push([node(id,row),node(id,row-1),'krilo',true,{up:[['floor',F,1,[x+50,F-365]],[[x+50,F-365],[x+250+Math.min(100,w/2),top],1]]}],
     [node(id,row-1),node(id,row),null,true,{walk:[x+250+Math.min(100,w/2),top,x+150],wait:150}]);return K;},
@@ -112,6 +112,10 @@ function kit(sobe){
 // one level from its words: the kit runs once, here, and build(B) replays what it set down
 function pohod(def){const K=kit(def.sobe);def.gradi(K);
  // a door out of the right side of a room whose far part lies past an abyss leaves from that part
+ // a hole must not open over another hole in the floor below it
+ for(const [id,a,b,o] of K.rupe){if(!o.to)continue;const r=K.R[id],t=K.R[o.to.split('@')[0]];for(const [id2,a2,b2] of K.rupe)if(id2===t.id&&r.x0+a<t.x0+b2&&t.x0+a2<r.x0+b)throw new Error(`${def.id}: rupa u ${id} (${a}–${b}) pada u rupu u ${id2} (${a2}–${b2})`);}
+ // the champion's arena closes behind Marko: the door into it goes one way
+ for(const v of K.vrata)if(v[1]===K.bosRoom)v[3].oneway=true;
  for(const v of K.vrata){const [a,,row,o]=v;if(o.na)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===a&&d.x1==null&&row===K.R[a].bottom)o.na=name;}
  const{gradi,...rest}=def;
  return{...rest,vrata:K.vrata,rupe:K.rupe,delovi:K.delovi,veze:K.veze,brda:def.brda||{},broj:K.n,bosSoba:K.bosRoom,build(B){for(const f of K.ops)f(B);}};}
@@ -186,7 +190,68 @@ export const GB_POHODI={
   // Šarčeva štala: krilo, treći čekpoint; Šarac čeka (volovi kao stoka u štali)
   K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
   // Izvor pod bunarom i riznica: napukli zid
-  K.door('izvor','bunar',2);K.heart('izvor',400,2);K.crack('bunar','riznica',{row:1});K.cudo('riznica',700,'Seoski dukati',1);}})
+  K.door('izvor','bunar',2);K.heart('izvor',400,2);K.crack('bunar','riznica',{row:1});K.cudo('riznica',700,'Seoski dukati',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 5 · Manastirski vis („Uroš i Mrnjavčevići“): četiri tabora na brdu kod crkve Samodreže, Marko ih obilazi gornjim putem
+// i spušta se u manastirski dvor (prečica do kapije). U kripti mu Ravijojla daje juriš u vazduhu; njime se prelazi provalija
+// pod manastirom do gubilišta, gde čeka Dželat, i ponor u kripti do isposnice.
+5:pohod({id:'manastir',ime:'Manastirski vis',biom:'klisura',zeljeniBiom:'manastir',daje:'nalet',pocetne:['krilo'],
+ cilj:'Obiđi četiri tabora, nađi juriš u kripti i pređi provaliju do gubilišta',start:'podnozje',spawnDx:260,
+ uvod:'Manastirski vis. Četiri tabora stoje oko crkve Samodreže, a manastirska kapija je zaključana iznutra. Juriš u vazduhu čeka u kripti; bez njega se provalija do gubilišta ne prelazi.',
+ sobe:[
+  ['podnozje','Podnožje brda',-1,0,1,1],
+  ['staza','Staza uz brdo',0,0,2,1],
+  ['tabor1','Tabor kralja Vukašina',0,-1,1,1],
+  ['tabor2','Tabor despota Uglješe',1,-1,1,1],
+  ['tabor3','Tabor vojvode Gojka',2,-1,1,1],
+  ['tabor4','Tabor cara Uroša',3,-1,1,1],
+  ['konak','Konak',2,0,1,1,{interior:true}],
+  ['porta','Manastirska kapija',3,0,1,1],
+  ['dvor','Manastirski dvor',4,0,2,1],
+  ['kelije','Kelije',4,-1,1,1,{interior:true}],
+  ['trpezarija','Trpezarija',5,-1,1,1,{interior:true}],
+  ['knjige','Knjige starostavne',5,-2,1,1,{secret:true,interior:true,lore:'Knjige starostavne. Marko ih je čitao i znao čije je carstvo; zato ga je otac jurio oko crkve.'}],
+  ['crkva','Crkva Samodreža',6,-2,1,3,{interior:true}],
+  ['riznica','Crkvena riznica',7,-2,1,1,{secret:true,interior:true,lore:'Crkvena riznica. U direku je i danas Vukašinov handžar; iz rane u drvetu kanula je krv.'}],
+  ['vinograd','Manastirski vinograd',7,-1,2,1],
+  ['klisura','Provalija pod manastirom',7,0,2,1],
+  ['gubiliste','Gubilište',9,0,1,1],
+  ['podrum','Podrum konaka',2,1,1,1,{interior:true}],
+  ['kosturnica','Kosturnica',3,1,1,1,{secret:true,interior:true,lore:'Kosturnica. Kosti kaluđera koje su Turci posekli; Marko je zapalio sveću za svakog.'}],
+  ['kripta','Kripta',4,1,2,1,{interior:true}],
+  ['isposnica','Isposnica',6,1,1,1,{secret:true,interior:true,lore:'Isposnica. Ovde se iguman molio četrdeset dana da Marko presudi po pravdi.'}]],
+ brda:{podnozje:[[500,900,40]],staza:[[1000,1400,50]],vinograd:[[200,700,40]]},
+ gradi(K){
+  // Podnožje i staza: guslar peva Jevrosimin savet; prva borba; krilo do prvog tabora
+  K.guslar('podnozje',760,['Nemoj, sine, govoriti krivo,','ni po babu, ni po stričevima,','već po pravdi Boga istinoga.']);K.prop('krst','podnozje',1000,170);K.door('podnozje','staza',0);
+  K.block('staza',1700,120,200,120);K.borba('staza',[['sword',1200],['archer',1800,120]]);K.wing('staza',500,{upper:'tabor1'});K.door('staza','konak',0);
+  // Četiri tabora: gornji put do kelija
+  K.door('tabor1','tabor2',-1);K.lik('tabor1',600,'putnik-starac-idle','Vukašinov sluga: Kralj hoće carstvo za sebe. Samo Marko zna šta piše u knjigama.',-1);
+  K.borba('tabor2',[['shield',400],['sword',850]],-1);K.door('tabor2','tabor3',-1);
+  K.strelnica('tabor3',1180,{row:-1,every:2.6});K.spikes('tabor3',500,120,-1);K.door('tabor3','tabor4',-1);
+  K.lik('tabor4',600,'putnik-kaluder-idle','Car Uroš: Kaži, Marko, po pravdi, čije je carstvo. Tebe će svi poslušati.',-1);K.door('tabor4','kelije',-1);
+  // Konak: majka Jevrosima; rupa u podrum
+  K.lik('konak',400,'putnica-idle','Jevrosima: Ne govori krivo, sine, ni po babu ni po stričevima. Kapija je zaključana; idi gornjim putem.');
+  K.drop('konak',900,1100,'podrum');K.door('konak','porta',0);
+  // Kapija: zaključana iznutra, poluga u dvoru
+  K.gate('porta','dvor',0);K.prop('kapija','porta',600,260);
+  // Kelije: rupa u dvor; trpezarija: borba i krilo do knjiga
+  K.drop('kelije',200,400,'dvor');K.door('kelije','trpezarija',-1);
+  K.borba('trpezarija',[['sword',800],['shield',1050]],-1);K.wing('trpezarija',250,{upper:'knjige'});K.cudo('knjige',800,'Knjige starostavne',-2);K.door('trpezarija','crkva',-1);
+  // Dvor: borba, kaluđer, čekpoint; rupa u kriptu
+  K.ckpt('dvor',1600);K.borba('dvor',[['shield',1900],['oklopnik',2150]]);K.lik('dvor',1450,'putnik-kaluder-idle','Kaluđer: Bež’ u crkvu, Marko! Otac te juri sa handžarom.');
+  K.drop('dvor',500,700,'kripta');K.door('dvor','crkva',0);
+  // Crkva: dimnjak i krilo do kubeta; napukli zid do riznice
+  K.chimney('crkva',700);K.wing('crkva',300,{row:-1});K.crack('crkva','riznica',{row:-2});K.cudo('riznica',600,'Vukašinov handžar',-2);
+  K.door('crkva','vinograd',-1);K.door('crkva','klisura',0);
+  // Vinograd: borba, greda nad jamom, deo srca
+  K.block('vinograd',1900,120,160,120,-1);K.borba('vinograd',[['archer',1950,120],['sword',900],['oklopnik',700]],-1);K.greda('vinograd',1150,{span:220,row:-1});K.heart('vinograd',2200,-1,120);
+  // Provalija: samo juriš je prelazi; gubilište i Dželat
+  K.dash('klisura',700);K.door('klisura','gubiliste',0);K.bos('gubiliste','dzelat');K.lik('klisura',300,'sirotinja-ceka','Na gubilištu seku sve koji ne daju harač. Provalija je široka i za krilo.');
+  // Podrum konaka: šiljci, daske koje popuštaju, dimnjak gore; napukli zid do kosturnice
+  K.chimney('podrum',250,{upper:'konak'});K.spikes('podrum',550,100);K.crumble('podrum',700,150,1,0);K.heart('podrum',1000,1);K.crack('podrum','kosturnica',{row:1});K.cudo('kosturnica',700,'Sveća za pale',1);
+  // Kripta: čekpoint, juriš; dimnjak u dvor; ponor do isposnice
+  K.ckpt('kripta',300);K.shrine('nalet','kripta',650);K.chimney('kripta',1000,{upper:'dvor'});K.dash('kripta',1250);K.door('kripta','isposnica',1);K.heart('isposnica',600,1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
