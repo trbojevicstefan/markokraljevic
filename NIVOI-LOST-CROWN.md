@@ -154,7 +154,12 @@ Staza se vidi blago odozgo, ali linija hoda i sudari ostaju isti:
 - ispod linije je tamnije prednje lice;
 - kosine imaju istu traku, a grede i ispusti tanju gornju stranu.
 
-Gornja površina je manifestov `materials.groundTop` (slika viđena odozgo), a prednje lice `materials.groundFront`. Bez njih se gornja površina pravi od skraćenog materijala, a prednje lice od zida.
+Gornja površina je manifestov `materials.groundTop` (1024×256, ponavlja se vodoravno), u traci od 50 px nad linijom hoda. Ispod ivice je `materials.groundFront` (96 px: ivica staze pa presek tla), a ispod njega `materials.ground`. Obe trake su isečene u stubiće od 8 px koji prate kosinu. Bez njih se gornja površina pravi od skraćenog materijala, a prednje lice od zida.
+
+**Vidici i zamene:**
+- `svet-<vista>`: nivo sa `zeljeniBiom` uzima spoljne slojeve, trake tla i prvi plan iz `svet-<vista>` kad je on u manifestu, a unutrašnjost ostaje od bioma;
+- soba sa `set` (šuma, reka, pećina) uzima `svet-<set>`;
+- `svet-predmeti`: naslikani predmet iz `world/` menja se realističnim po polju `replaces`, iste veličine i sa istim sidrom.
 
 **Prednji plan:** busenje, kamenje, korenje i ograda (manifestovi predmeti sa `"layer":"foreground"`) stoje ispred Marka, preko donje ivice slike. Tamniji su i kreću se malo brže od sveta.
 
