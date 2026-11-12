@@ -1,0 +1,109 @@
+{
+  "atlasMatchesFrames": true,
+  "evenFramesPixelExact": true,
+  "frameCount": 9,
+  "sourceClip": "marko-air-2",
+  "cell": [
+    512,
+    512
+  ],
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "visualReview": "pending",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        93,
+        184,
+        418,
+        488
+      ],
+      "sha256": "2114ee19abef49eefbe36608f01a2d410e1eeab7d527862d3c30dad8bbcf47b0"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        106,
+        184,
+        406,
+        488
+      ],
+      "sha256": "111ffcc3199564579b5e13e9804b83679fe93a21285a4a7ae614851422d895b7"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        94,
+        141,
+        417,
+        488
+      ],
+      "sha256": "68350e7b32983d01f0976ffcfc8318d6e9b88cd4cdd81a29824bec5954e7f72b"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        96,
+        160,
+        416,
+        488
+      ],
+      "sha256": "f1562129a2de1b519b300765d8ecdb1ef1ff48a3db6ee856f77b21b49019bb1f"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        55,
+        95,
+        457,
+        488
+      ],
+      "sha256": "0cb5a8c21b65df50193bc9014f116b48abb3f8a0e0c41077f800e5a949fb2ff3"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        94,
+        132,
+        418,
+        488
+      ],
+      "sha256": "8cdbafd5497ed237f40fb0c11ecc738298adf425367227363ca373c3ae891a8e"
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        86,
+        53,
+        426,
+        488
+      ],
+      "sha256": "3bf9eae8f78ea735c46e99104936a0d123bc3e8c044c4e581046bacdc4a2059c"
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        93,
+        167,
+        420,
+        488
+      ],
+      "sha256": "d24d0d4bc5eed4b30262e46222e0fb3fa88541b09c56c84a24a274d109a1570a"
+    },
+    {
+      "frame": 8,
+      "bounds": [
+        70,
+        129,
+        441,
+        488
+      ],
+      "sha256": "6b02df463923af67d5ba5438180b30800dedc4100ff41d52ed9fe1eab7596f47"
+    }
+  ]
+}
