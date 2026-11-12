@@ -521,3 +521,15 @@ BIOME = {
          'what': 'an old empty two-wheeled wooden hand cart with spoked wheels'},
     ],
 }
+
+BIOME['ground'] = {
+    'light': LIGHT, 'glight': 'warm golden evening sunlight raking across the surface', 'seed': 510,
+    'top': ('an old cobblestone street of rounded grey and honey-coloured stones with dust and dry grass in the '
+            'joints', (120, 96, 66), (170, 150, 124), 'stones'),
+    'front': ('the edge of a cobbled street: a row of worn curb stones on top, packed brown earth with pebbles and '
+              'dry grass roots below', (168, 146, 118), (112, 86, 60), (84, 64, 46), 'stones'),
+    'fg': {'busen': ('a tuft of tall dry golden grass and wild oats', (190, 160, 90)),
+           'kamenje': ('a cluster of rounded granite boulders', (176, 156, 132)),
+           'koren': ('gnarled roots of an old walnut tree rising out of the ground', (96, 72, 52)),
+           'ograda': ('a short piece of an old woven wattle fence on wooden stakes', (122, 94, 62))},
+}

@@ -1,0 +1,10 @@
+{
+ "sky": "urvina_sky_v1k66_s1.png",
+ "far": "urvina_far_v1k76_s1.png",
+ "mid": "urvina_mid_v1k76_s2.png",
+ "near": "urvina_near_v1k76_s1.png",
+ "in-back": "urvina_in-back_v1k66_s1.png",
+ "in-far": "urvina_in-far_v1k78_s1.png",
+ "in-mid": {"raw": "urvina_in-mid_v1k78_s1.png", "erase": [[0.42, 0.0, 0.68, 0.5]]},
+ "in-near": "urvina_in-near_v1k78_s1.png"
+}
