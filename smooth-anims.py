@@ -328,11 +328,23 @@ def iou(a, b):
 
 def v2_size(V):
     """How much larger the new poses of a -v2 clip are drawn than the old ones around them, for the clip as a whole (the
-    median, by the root of the figure's area): a pose may grow or shrink with a reached-out arm, but a whole clip drawn
-    smaller (combo-3, super, air-1, air-2 and uppercut came 9-13% small) is a slip of the drawing, put back by rescale."""
+    median, by the root of the figure's area), or 1 when the poses do not agree on it. A pose may grow or shrink with a
+    reached-out arm or a curled roll (roll-land: 1.02 1.12 1.17 1.18 1.07), but a whole clip drawn smaller, every pose by
+    about as much (combo-3, super, air-1, air-2, uppercut 9-13%, attack 26%), is a slip of the drawing, put back by rescale."""
     sz = lambda c: float(np.sqrt((c[..., 3] > 0.16).sum()))
-    r = [sz(V[n]) / max(1.0, (sz(V[n - 1]) + sz(V[n + 1])) / 2) for n in range(1, len(V) - 1, 2)]
-    return float(np.median(r)) if r else 1.0
+    r = np.array([sz(V[n]) / max(1.0, (sz(V[n - 1]) + sz(V[n + 1])) / 2) for n in range(1, len(V) - 1, 2)])
+    if not len(r): return 1.0
+    md = float(np.median(r))
+    return md if (np.abs(np.log(r / md)) <= 0.05).mean() >= 0.75 else 1.0
+
+
+def v2_pale(V):
+    """The largest share of a new pose that is opaque near-white without colour: a paper ground or guide lines the cut-out
+    kept (plunge 0.85, roll 0.43; a true drawing 0.001 at most, the cream shirt has colour)."""
+    def pale(c):
+        a = c[..., 3] > 0.5; rgb = c[..., :3]
+        return float((a & (rgb.min(axis=2) > 0.86) & (rgb.max(axis=2) - rgb.min(axis=2) < 0.07)).sum()) / max(1, a.sum())
+    return max((pale(V[n]) for n in range(1, len(V), 2)), default=0.0)
 
 
 def rescale(c, s):
@@ -354,6 +366,8 @@ def work(job):
     keep = {}; log = []; drawn = set()
     V = v2_cells(name)
     if V is not None and len(V) != 2 * len(F) - 1: V = None
+    if V is not None and v2_pale(V) > 0.05:
+        log.append((0, 0, None, None, 'v2 refused: pale ground %.2f' % v2_pale(V))); V = None
     vs = v2_size(V) if V is not None else 1.0
     vfix = 1 / vs if abs(np.log(vs)) > 0.03 else 1.0   # outside about ±3%: a slip of the whole drawing (the poses of one clip
     # agree to a percent or two: combo-3 0.89 0.89 0.89 0.92, against 0.99-1.01 for the clips drawn true)

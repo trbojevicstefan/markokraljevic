@@ -884,3 +884,15 @@ DOPUNA-45 deo 2: marko-attack-v2 — napomena: izvorni oslonac je y367; sacuvan 
 DOPUNA-45 deo 3: marko-charged-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-charged-v2/prompt.txt.
 
 DOPUNA-45 deo 3: marko-counter-v2 — GOTOVO; 15 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-counter-v2/prompt.txt.
+
+DOPUNA-45 deo 3: marko-roll-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-roll-v2/prompt.txt.
+
+DOPUNA-45 deo 3: marko-roll-land-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-roll-land-v2/prompt.txt.
+
+DOPUNA-45 deo 3: marko-plunge-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-plunge-v2/prompt.txt.
+
+DOPUNA-45 deo 3: archer-death-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/archer-death-v2/prompt.txt.
+
+DOPUNA-45 deo 3: akindzija-hurt-v2 — GOTOVO; 7 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/akindzija-hurt-v2/prompt.txt.
+
+DOPUNA-45 deo 3: akindzija-jump-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/akindzija-jump-v2/prompt.txt.
