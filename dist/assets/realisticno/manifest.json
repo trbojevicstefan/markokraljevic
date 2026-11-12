@@ -573,6 +573,552 @@
      "layer": "foreground"
     }
    ]
+  },
+  "svet-selo": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-selo/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-selo/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-selo/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-selo/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "selo",
+   "name": "Kosovsko selo"
+  },
+  "svet-klisura": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-klisura/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-klisura/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-klisura/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-klisura/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "klisura",
+   "name": "Klisura Ibra"
+  },
+  "svet-suma": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-suma/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-suma/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-suma/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-suma/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "suma",
+   "name": "Ravijojlina šuma"
+  },
+  "svet-manastir": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-manastir/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-manastir/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-manastir/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-manastir/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "manastir",
+   "name": "Manastirski vis"
+  },
+  "svet-tvrdjava": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-tvrdjava/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-tvrdjava/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-tvrdjava/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-tvrdjava/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "tvrdjava",
+   "name": "Opsednuta tvrđava"
+  },
+  "svet-prevoj": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-prevoj/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-prevoj/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-prevoj/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-prevoj/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "prevoj",
+   "name": "Zimski prevoj"
+  },
+  "svet-pecina": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-pecina/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-pecina/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-pecina/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-pecina/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "pecina",
+   "name": "Vilinska pećina"
+  },
+  "svet-podrum": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-podrum/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-podrum/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-podrum/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-podrum/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "podrum",
+   "name": "Zaboravljeni podrum"
+  },
+  "svet-mocvara": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-mocvara/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-mocvara/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-mocvara/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-mocvara/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "mocvara",
+   "name": "Noćna močvara"
+  },
+  "svet-rudnik": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-rudnik/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-rudnik/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-rudnik/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-rudnik/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "rudnik",
+   "name": "Stari rudnik"
+  },
+  "svet-rusevine": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-rusevine/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-rusevine/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-rusevine/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-rusevine/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "rusevine",
+   "name": "Ruševine na brdu"
+  },
+  "svet-reka": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-reka/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-reka/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-reka/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-reka/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "reka",
+   "name": "Obala pred zoru"
+  },
+  "svet-oranje": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-oranje/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-oranje/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-oranje/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-oranje/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "oranje",
+   "name": "Oranje"
+  },
+  "svet-urvina": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/svet-urvina/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/svet-urvina/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/svet-urvina/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/svet-urvina/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": []
+   },
+   "materials": {},
+   "props": [],
+   "vista": "urvina",
+   "name": "Urvina planina"
   }
  },
  "note": "Paths are relative to dist/assets/. Layers: w/h = image px, sky/back 1774x887 opaque, far/mid/near 2172x724 RGBA, all tile horizontally with no seam (no crossfade needed), bottom-anchored like dist/assets/world layers. interior.layers: same speeds, first is an opaque back wall. Materials: 512x512, tile both ways. Props: w/h = draw size in world px (the image is 2x that), anchor bottom-centre, solid = can be stood on / blocks."

@@ -10,12 +10,13 @@ SPEED = {'sky': 0.04, 'far': 0.16, 'mid': 0.38, 'near': 0.72}
 
 # Z-Image-Turbo runs without guidance, so it cannot negate: naming a thing ("no lamp posts, no cars") paints it.
 # Only describe what should be there; keep the old generic "no perspective / no people" that proved harmless.
-SIDE = ('Strict orthographic side view, a flat 2D side-scrolling game parallax layer like a painted theatre '
+SIDE = ('Strict orthographic side view, a flat 2D side-scrolling game parallax layer like a theatre '
         'backdrop: perfectly level horizon, no perspective, no vanishing point, no people. A wild, timeless '
         '14th-century Balkan world of stone, timber, earth and plants.')
 MAGENTA = ('Everything above and between the scenery is a flat, solid, pure magenta (#FF00FF) background with '
            'crisp clean edges, no sky, no gradient in the magenta.')
-REAL = 'Photorealistic, ultra detailed, real materials and textures, cinematic matte painting quality.'
+REAL = ('A real-world photograph with natural photographic colours, shot on a full-frame camera, ultra detailed real '
+        'materials and textures.')
 
 
 def layer_prompt(content, light):

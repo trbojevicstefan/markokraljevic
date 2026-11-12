@@ -133,10 +133,10 @@ def make_biome(vista):
     surface, base, stone, kind, lip_kind = ground
     desc = {'far': f'the far distance of {theme}: hills, mountains and distant shapes in atmospheric haze',
             'mid': f'the middle distance of {theme}', 'near': f'the close foreground of {theme}'}
-    layers = [{'id': 'sky', 'kind': 'sky', 'strength': 0.55, 'draw': (lambda: draft_from_world(vista, 'sky', SKY)),
+    layers = [{'id': 'sky', 'kind': 'sky', 'strength': 0.86, 'v': 2, 'draw': (lambda: draft_from_world(vista, 'sky', SKY)),
                'prompt': sky_prompt(skyw, light)}]
     for k in ('far', 'mid', 'near'):
-        layers.append({'id': k, 'kind': k, 'strength': 0.64,
+        layers.append({'id': k, 'kind': k, 'strength': 0.76,
                        'draw': (lambda kk=k: draft_from_world(vista, kk, LAYER)), 'prompt': layer_prompt(desc[k], light)})
     lip = tuple(int(v * 1.1) for v in stone)
     return {

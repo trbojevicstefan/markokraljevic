@@ -87,6 +87,6 @@ def make_biome():
         w, h = Image.open(f).size
         size = gen_size(w, h)
         props.append({'id': stem, 'kind': 'replace', 'draw': (lambda f=f, s=size: make_draft(f, s)), 'size': size,
-                      'what': describe(stem), 'full_prompt': prompt(stem), 'strength': 0.6, 'w': w, 'h': h,
+                      'what': describe(stem), 'full_prompt': prompt(stem), 'strength': 0.68, 'w': w, 'h': h,
                       'solid': False, 'replaces': f'world/{os.path.basename(f)}'})
     return {'id': 'svet-predmeti', 'layers': [], 'interior': [], 'materials': {}, 'props': props}
