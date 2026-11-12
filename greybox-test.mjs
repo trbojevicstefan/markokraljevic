@@ -104,6 +104,8 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)conti
   ok(walkLink(L,link,withAll),`${tag} ${a} → ${b} (${kind}${need?', '+need:''})`);
   if(!one)ok(walkLink(L,link,withAll,true),`${tag} ${b} → ${a} (${kind})`);
   if(need&&(GB.GB_MOCI[need]||GB.GB_KAPIJE.includes(need))&&!how.drop){const less=new Set([...withAll].filter(m=>m!==need));ok(!walkLink(L,link,less),`${tag} without ${need} ${a} → ${b} stays shut`);}
+  // an abyss under a runed wall: not even the best leap with the wing and the dash crosses it
+  if(how.zid&&how.pit){const z=(api.startGreybox(L.n),quiet(),setMoci(new Set([...withAll].filter(m=>m!==need))),G().named[how.pit]);ok(!leap(z,1,how.zid[1],{roll:null,jumpAt:0,k:72,n:16})&&!leap(z,-1,how.zid[1],{roll:null,jumpAt:0,k:72,n:16}),`${tag} ${how.pit} (${z.x1-z.x0} px) is too wide for the wing and the dash`);}
   if(need?.startsWith('posle:'))ok(!walkLink(L,link,new Set(all)),`${tag} ${a} → ${b} stays shut until the gate is opened from ${need.slice(6)}`);}
  // ---- the boss ----
  {api.startGreybox(+n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} the megdan with ${c.name} begins`);

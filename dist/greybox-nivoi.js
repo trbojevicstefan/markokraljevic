@@ -117,9 +117,9 @@ export const GB_NIVOI={
 // 2 · Urvina planina: cliffs over a waterfall, the eagle's nest high on the rock, Ravijojla's forest with its spring, and
 // caves deep inside the mountain. Marko comes with the falcon's wing and finds the air dash (Juriš u vazduhu) in the eagle's
 // nest; the gorge to the forest, the cave's abyss and the eagle's rock cannot be crossed without it.
-2:{id:'urvina',ime:'Urvina planina',biom:'urvina',daje:'nalet',pocetne:['krilo'],cilj:'Nađi juriš u vazduhu i pređi klanac do Vilinog izvora',
+2:{id:'urvina',ime:'Urvina planina',biom:'urvina',daje:'nalet',daje2:['zidotrk'],pocetne:['krilo','klizanje'],cilj:'Nađi juriš u vazduhu i pređi klanac do Vilinog izvora',
  start:'zaseok',spawnDx:300,
- uvod:'Urvina planina. Marko ima Sokolovo krilo. Juriš u vazduhu čeka u Orlovom gnezdu, visoko na litici iznad vodopada; bez njega se klanac ka Ravijojlinoj šumi ne prelazi.',
+ uvod:'Urvina planina. Marko ima Sokolovo krilo. Juriš u vazduhu čeka u Orlovom gnezdu, visoko na litici iznad vodopada; pred gnezdom je ponor koji se prelazi samo trkom po zidu sa Ravijojlinim šarama (u starom kamenolomu). Bez juriša se klanac ka Ravijojlinoj šumi ne prelazi.',
  sobe:[
   ['zaseok','Pastirski zaseok',-1,0,1,1],
   ['podnozje','Podnožje Urvine',0,0,2,1],
@@ -143,12 +143,12 @@ export const GB_NIVOI={
   ['dubina','Duboka pećina',2,2,2,1,{interior:true}],
   ['koren','Korenje',4,2,1,1,{interior:true}],
   ['jazbina','Vučja jazbina',5,2,1,1,{secret:true,interior:true,lore:'Vučja jazbina. Vukovi su je ostavili kad je Marko prošao planinom; na kamenu je ostalo samo vilino pero.'}]],
- delovi:{'klanac>':{room:'klanac',x0:7300},'gnezdo>':{room:'gnezdo',x0:9500},'ponor>':{room:'ponor',x0:6800},'litica>':{room:'litica',x0:8100}},
+ delovi:{'stene>':{room:'stene',x0:7900},'klanac>':{room:'klanac',x0:7300},'gnezdo>':{room:'gnezdo',x0:9500},'ponor>':{room:'ponor',x0:6800},'litica>':{room:'litica',x0:8100}},
  vrata:[['zaseok','podnozje',0],['podnozje','staza',0],['staza','vodopad',0],['vodopad','klanac',0],['klanac','suma',0,{na:'klanac>',sa:100}],['suma','izvor',0,{oneway:true}],
-  ['kamenolom','vodopad',-1],['vodopad','litica',-1],['litica','jele',-1,{na:'litica>'}],['stene','gnezdo',-2],['gnezdo','orlova',-2,{na:'gnezdo>',sa:60}],
+  ['kamenolom','vodopad',-1],['vodopad','litica',-1],['litica','jele',-1,{na:'litica>'}],['stene','gnezdo',-2,{na:'stene>'}],['gnezdo','orlova',-2,{na:'gnezdo>',sa:60}],
   ['pecina','ponor',1],['ponor','jezero',1,{na:'ponor>'}],['dubina','koren',2]],
  rupe:[['osmatracnica',1600,1900,{to:'podnozje'}],['staza',800,1000,{to:'pecina'}],['stene',300,600,{to:'litica'}],['gnezdo',600,1100,{to:'jele',lip:'R',need:'nalet'}],['litica',1600,2100,{lip:'R'}],['jele',800,1100,{to:'suma'}],
-  ['klanac',800,1300,{lip:'R'}],['klanac',1950,2250,{to:'jezero',from:'klanac>'}],['kamenolom',800,1200],['stene',1300,1700],['pecina',1600,1830],['ponor',1500,2000,{lip:'R'}]],
+  ['klanac',800,1300,{lip:'R'}],['klanac',1950,2250,{to:'jezero',from:'klanac>'}],['kamenolom',800,1200],['stene',1200,1900],['pecina',1600,1830],['ponor',1500,2000,{lip:'R'}]],
  brda:{podnozje:[[300,800,60]],staza:[[200,600,-40],[1400,2000,90]],suma:[[150,600,50],[1400,2000,-60]],zaseok:[[500,900,40]]},
  build(B){const{X}=B;
   // Pastirski zaseok and Podnožje: the start, a janičar and a dog; the ledge up to the Osmatračnica
@@ -158,6 +158,8 @@ export const GB_NIVOI={
   // Planinska staza: a janičar in the hollow, an archer on a rock; a hole down into the cave
   B.foe('sword',X('staza',450),F0-20);B.block(X('staza',1100),F0-120,200,120);B.foe('archer',X('staza',1200),F0-120);B.prop('stena',X('staza',1300),F0,220);
   // Stari kamenolom: planks that give way over a pit, a janičar, an archer on a block
+  // Stari kamenolom: Trk po zidu, past the crumbling planks
+  B.shrine('zidotrk',X('kamenolom',1500),FM1);
   B.crumble(X('kamenolom',800),FM1,200);B.crumble(X('kamenolom',1000),FM1,200);B.pit('pit-kamenolom',X('kamenolom',800),X('kamenolom',1200),FM1+150);
   B.foe('sword',X('kamenolom',300),FM1);B.block(X('kamenolom',1900),FM1-120,200,120);B.foe('archer',X('kamenolom',2000),FM1-120);
   // Vodopad: a chimney beside the falling water, from the path to the cliffs
@@ -166,7 +168,8 @@ export const GB_NIVOI={
   B.pit('pit-klanac',6800,7300,F0+150);B.foe('akindzija',X('klanac',300),F0);B.ledge(8140,F1-365,100);
   // Litica and Stenovita greda: archers on the rocks, the ledge up through the Stene's floor; stakes and crumbling rock above
   B.block(6250,FM1-120,100,120);B.block(6750,FM1-120,100,120);B.foe('archer',6300,FM1-120);B.foe('archer',6800,FM1-120);B.foe('sword',7200,FM1);B.ledge(6490,FM1-365,100);B.pit('pit-litica',7600,8100,FM1+150);
-  B.spikes(6900,FM2,200);B.crumble(7300,FM2,200);B.crumble(7500,FM2,200);B.pit('pit-stene',7300,7700,FM2+150);B.foe('oklopnik',7950,FM2);
+  // the Stene's abyss (700 px: more than the wing and the dash) under a wall with Ravijojla's runes: only the wall run crosses it
+  B.spikes(6620,FM2,150);B.pit('pit-stene',7200,7900,FM2+150);B.zid('zid-stene',7240,FM2-240,620,150);B.foe('oklopnik',8150,FM2);
   // Orlovo gnezdo: the checkpoint, the air dash, the eagle's rock across the gap (a miss drops Marko onto the Jelova padina)
   B.ckpt(8500,FM2);B.shrine('nalet',8700,FM2);B.gap('gap-gnezdo',9000,9500,FM2);B.cudo(10200,FM2,'Orlovo pero');
   // Jelova padina and Ravijojlina šuma: the ledge up from the forest, a fake wall to the hidden spring
@@ -193,6 +196,7 @@ export const GB_NIVOI={
   ['pecina','dubina',null,true,{walk:[3900,1310,4115],wait:300}],
   ['klanac','klanac>','nalet',false,{leap:['pit-klanac',1,590,7500,6600]}],
   ['litica','litica>','nalet',false,{leap:['pit-litica',1,-130,8300,7400]}],
+  ['stene','stene>','zidotrk',false,{zid:[6850,-850,7170,7960,0],back:[8330,-850,7930,7140,0],pit:'pit-stene'}],
   ['gnezdo','gnezdo>','nalet',false,{leap:['gap-gnezdo',1,-850,9550,8800]}],
   ['ponor','ponor>','nalet',false,{leap:['pit-ponor',1,1310,7000,6100]}],
   ['jele','skriveni',null,false,{walk:[10600,-130,11200],back:[11200,-130,10600]}],
