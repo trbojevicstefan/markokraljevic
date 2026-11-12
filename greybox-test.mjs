@@ -121,6 +121,16 @@ if(!ONLY||ONLY>3){let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-p
  const given=[],wrong=[];for(const n of Object.keys(pohodi)){if(ONLY&&+n!==ONLY)continue;api.startGreybox(+n);quiet();
   for(const s of G().shrines){const before=!!G().moci[s.moc];place(s.x-60,s.y,1);walk(s.x+20,300);step(10);(s.taken&&G().moci[s.moc]===true&&!before?given:wrong).push(`${n}:${s.moc}`);}}
  ok(given.length>0&&wrong.length===0,`pohodi: every shrine gives its power (${given.length}: ${given.join(' ')})${wrong.length?' — not: '+wrong.join(' '):''}`);}
+// ---- the dressing: every picture each level (1–19) asks for is on disk; each pohod with a vista wears its own ----
+{const {artFiles}=await import('./dist/greybox-svet.js');const m=JSON.parse(await fs.readFile('dist/assets/realisticno/manifest.json','utf8'));
+ let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-pohodi.js')).GB_POHODI||{};}catch{}GB.gbRegister(pohodi);
+ const missing=[],own=[],noVista=[];let n0=0;for(const n of Object.keys(GB.GB_LEVELS)){const L=GB.gbLevel(n),files=artFiles(L,m);n0+=files.length;
+  for(const f of files)if(!(await fs.stat('dist/assets/'+f).then(()=>true,()=>false)))missing.push(`${n}:${f}`);
+  if(+n>3){const v=Object.entries(m.biomes).find(([k,o])=>k===`svet-${L.zeljeniBiom}`||k.startsWith('svet-')&&o.vista===L.zeljeniBiom);
+   // its own vista, or (when every outdoor room picks a set, like the river and the forest) the vistas of its rooms
+   const used=[...new Set(files.filter(f=>f.startsWith('realisticno/svet-')).map(f=>f.split('/')[1]))];
+   if(v)(used.length?own:missing).push(`${n}:${used.includes(v[0])?v[0]:used.join('+')}`);else noVista.push(`${n}:${L.zeljeniBiom}`);}}
+ ok(missing.length===0&&own.length>0,`dressing: ${n0} pictures for ${Object.keys(GB.GB_LEVELS).length} levels, none missing; pohodi in their own vista (${own.join(' ')})${noVista.length?', with their biome: '+noVista.join(' '):''}${missing.length?' — MISSING '+missing.slice(0,8).join(' '):''}`);}
 // ---- hills and hollows: Marko walks along the slope ----
 if(!ONLY||ONLY===1){const L=GB.gbLevel(1);api.startGreybox(1);quiet();const R=GB.gbRoom(L,'varos'),qs=W().platforms.filter(q=>q.surf&&q.x<R.x1&&q.x+q.w>R.x0),under=x=>qs.find(q=>x>=q.x&&x<=q.x+q.w);
  place(R.x0+450,R.floor,1);api.keys.add('KeyD');let off=0,air=0,lo=1e9,hi=-1e9;for(let f=0;f<900&&P().x<R.x0+1000;f++){step();const p=P();if(!p.grounded)air++;else{const q=under(p.x);off=Math.max(off,Math.abs(p.y-(q?physics.topAt(q,p.x):R.floor)));}lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();

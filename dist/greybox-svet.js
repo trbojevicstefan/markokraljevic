@@ -51,16 +51,18 @@ function bounds(im){try{const s=Math.min(1,256/Math.max(im.width,im.height)),w=M
 const SETS=new Set(['klisura','manastir','mocvara','oranje','pecina','podrum','prevoj','reka','rudnik','rusevine','selo','suma','tvrdjava','urvina']);
 function standIn(L){const fb=FALLBACK[L.biom]||FALLBACK.podgradje,z=L.zeljeniBiom;if(!z||!SETS.has(z))return fb;
  return L._standIn??={...fb,layers:LAY(z),materials:{...fb.materials,ground:W(`tlo-${z}`)}};}
-function vista(L){const z=L.zeljeniBiom,v=z&&manifest?.biomes?.[`svet-${z}`];return v&&v.layers?.length&&!v.layers.some(l=>failed(l.file))?v:null;}
+// a vista is found by its "vista" field (the painted set it stands for), or by its name svet-<vista>
+function vistaOf(z){if(!z||!manifest?.biomes)return null;const B=manifest.biomes,v=B[`svet-${z}`]||Object.entries(B).find(([k,o])=>k.startsWith('svet-')&&o.vista===z)?.[1];return v&&v.layers?.length&&!v.layers.some(l=>failed(l.file))?v:null;}
+function vista(L){return vistaOf(L.zeljeniBiom);}
 function biome(L){askManifest();const fb=standIn(L),mb0=manifest?.biomes?.[L.biom],vb=vista(L);
  // a vista lends the outside, the ground strips and the foreground; the biome keeps the inside (vistas have none)
- const mb=vb?{...(mb0||{}),layers:vb.layers,interior:mb0?.interior,materials:{...(mb0?.materials||{}),...Object.fromEntries(Object.entries(vb.materials||{}).filter(([k])=>k.startsWith('ground')))},props:[...(mb0?.props||[]).filter(o=>o.layer!=='foreground'),...(vb.props||[]).filter(o=>o.layer==='foreground')]}:mb0;if(!mb)return fb;
+ const mb=vb?{...(mb0||{}),layers:vb.layers,interior:mb0?.interior,materials:{...(mb0?.materials||{}),...Object.fromEntries(Object.entries(vb.materials||{}).filter(([k])=>k.startsWith('ground')))},props:(vb.props||[]).some(o=>o.layer==='foreground')?[...(mb0?.props||[]).filter(o=>o.layer!=='foreground'),...vb.props.filter(o=>o.layer==='foreground')]:mb0?.props||[]}:mb0;if(!mb)return fb;
  const pickLayers=(m,f)=>m?.length&&!m.some(l=>failed(l.file))?m:f;
  const mats=Object.fromEntries(Object.entries(fb.materials).map(([k,v])=>[k,mb.materials?.[k]&&!failed(mb.materials[k])?mb.materials[k]:v]));
  if(!mb.materials?.groundIn&&isTex(mats.ground))mats.groundIn=mats.ground;
  for(const k of['groundTop','groundFront'])if(mb.materials?.[k]&&!failed(mb.materials[k]))mats[k]=mb.materials[k];
  return{...fb,real:true,layers:pickLayers(mb.layers,fb.layers),interior:{layers:pickLayers(mb.interior?.layers,fb.interior.layers)},materials:mats,props:mb.props||[]};}
-function layersFor(L,R){const b=biome(L),sv=R.set&&manifest?.biomes?.[`svet-${R.set}`];if(sv?.layers?.length&&!sv.layers.some(l=>failed(l.file)))return sv.layers;if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
+function layersFor(L,R){const b=biome(L),sv=(!R.interior||R.set==='pecina')&&vistaOf(R.set);if(sv)return sv.layers;if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
 
 export function artLook(L,R){const b=FALLBACK[L.biom]||FALLBACK.podgradje;if(!pic(layersFor(L,R)[0]?.file))return 10;return R.set&&b.lookSets?.[R.set]!=null?b.lookSets[R.set]:R.interior?b.lookIn:b.look;}
 export function artName(L,R){return null;}
@@ -168,3 +170,9 @@ export function artFore(G,L,R,platforms){if(!G.hasDom)return;const g=G.ctx,b=bio
   const it=pool[Math.floor(hash(i+R.gx*5,R.gy+9)*pool.length)],p=pic(it.file);if(!p)continue;const h=it.h?it.h:70+k*70,sx=x+(x-mid)*.18,y=(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w)?surfAt(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w),x):R.floor)+h*.72;
   if(sx<cam-200||sx>cam+VW+200)continue;prop(g,it.file,sx,y,h,k>.7);}
  g.restore();}
+
+// ---------- for the test: every picture a level would ask for, with a given manifest ----------
+export function artFiles(L,m){manifest=m;manifestAsked=true;delete L._standIn;const out=new Set(),b=biome(L);
+ for(const R of L.rooms)for(const l of layersFor(L,R))out.add(l.file);
+ for(const v of Object.values(b.materials||{}))if(typeof v==='string'&&v.includes('/'))out.add(v);
+ for(const o of b.props||[])out.add(o.file);return[...out];}
