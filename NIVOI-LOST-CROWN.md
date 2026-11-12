@@ -17,15 +17,32 @@ Iz *The Lost Crown* je uzeta samo struktura; raspored soba, crteži i imena su n
 - mapa koja se crta dok istražuješ;
 - ponor koji kažnjava (−20 zdravlja i povratak na čvrsto tlo), a ne ubija.
 
-| Nivo | Sobe | Spratova | Tajne | Čekpointi | Protivnici | Bos | Moć |
-|---|---|---|---|---|---|---|---|
-| 1 · Podgrađe pod Markovim kulama (Prilep) | 21 | 5 | 4 | 3 | 20 | Kapetan kule (Janičarski aga) | Sokolovo krilo |
-| 2 · Urvina planina | 22 | 5 | 4 | 3 | 23 | Lovac-aga sa psima | Juriš u vazduhu |
-| 3 · Kačanička klisura i Musina kula | 21 | 5 | 4 | 3 | 21 | Musa Kesedžija | Vilin trag |
+| Nivo | Sobe | Spratova | Tajne | Čekpointi | Protivnici | Bos | Moć | Druge moći (kapije) |
+|---|---|---|---|---|---|---|---|---|
+| 1 · Podgrađe pod Markovim kulama (Prilep) | 21 | 5 | 4 | 3 | 20 | Kapetan kule (Janičarski aga) | Sokolovo krilo | Klizanje |
+| 2 · Urvina planina | 22 | 5 | 4 | 3 | 23 | Lovac-aga sa psima | Juriš u vazduhu | Trk po zidu |
+| 3 · Kačanička klisura i Musina kula | 21 | 5 | 4 | 3 | 21 | Musa Kesedžija | Vilin trag | Ravijojlin lanac, Vilinsko oko |
 
 Moći se prenose iz nivoa u nivo:
-- nivo 2 počinje sa krilom;
-- nivo 3 počinje sa krilom i jurišem.
+- nivo 2 počinje sa krilom i klizanjem;
+- nivo 3 počinje sa krilom, jurišem, klizanjem i trkom po zidu.
+
+### Nove moći kao kapije i tajne
+Moći iz `MOCI2` u `game.js` (klizanje, trk po zidu, lanac, oko) ovde su kapije. Nivo ih daje oltarom (`daje2`), kao i svoju glavnu moć.
+- **Nivo 1, Klizanje:** oltar je u podrumu. Iz kovačnice u bunar (i nazad) ide se samo klizanjem ispod niskog prolaza, pa put do krila traži klizanje.
+- **Nivo 2, Trk po zidu:** oltar je u starom kamenolomu. Pred Orlovim gnezdom je ponor od 700 px (krilo i juriš daju najviše 553). Preko njega se ide samo trkom po zidu sa Ravijojlinim šarama, u oba smera.
+- **Nivo 3, Ravijojlin lanac:** oltar je u oružani. Drugi dimnjak kule je skinut, pa se sa galerije na gornju stazu, i do Muse, ide lancem preko dve srebrne kuke (prva levo, pa okret ka drugoj).
+- **Nivo 3, Vilinsko oko:** oltar je na podzemnom izvoru. Pred Skrivenom pećinom je ponor od 640 px, a most preko njega se vidi i drži samo dok je oko otvoreno (O, 3,2 s).
+- **Nivo 3, varka:** ulaz u Musinu riznicu je zid-varka. Prolazi se kroz njega, a oko ga pokaže.
+
+Graditelji u `B` su:
+- `B.zid(ime,x,y,w,h)`: zid sa šarama; Marko se hvata kad mu je struk u pravougaoniku;
+- `B.kuka(ime,x,y)`: srebrna kuka, domet lanca je 430 px od ruke;
+- `B.nisko(ime,x,vrh,pod)`: blok od plafona do 60 px iznad poda;
+- `B.oko(x,y,w)`: daska koja se vidi samo kroz oko;
+- `B.iluzija(ime,x,y,w,h)`: zid koji je varka.
+
+Test prelazi te prolaze stvarnim tasterima (`slide`, `zid`, `kuka`, `oko`). Proverava i da bez moći ostaju zatvoreni, a za ponore da ih ni najbolji skok sa krilom i jurišem ne prelazi.
 
 Zid-skok radi samo uz zidove dimnjaka (dva zida na 150 px). Vilinski uzlet je u ovim nivoima isključen, jer bi preskakao kapije. U sačuvanu igru se ništa ne upisuje.
 
@@ -44,8 +61,8 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 ```
 
 **Tok igre:**
-1. **Varoš i pijaca:** livada, varoš i pijaca. Iz pijace rupa vodi u podrum; gradska kapija je zaključana.
-2. **Podrumi do krila:** podrum i kovačnica imaju daske koje popuštaju nad jamom i šiljke. Bunar vodi do dna, a u Sokolovoj ćeliji je **krilo**.
+1. **Varoš i pijaca:** livada, varoš i pijaca. Iz pijace rupa vodi u podrum, gde je Klizanje; gradska kapija je zaključana.
+2. **Podrumi do krila:** podrum i kovačnica imaju daske koje popuštaju nad jamom i šiljke. Iz kovačnice se u bunar klizi ispod niskog prolaza. Bunar vodi do dna, a u Sokolovoj ćeliji je **krilo**.
 3. **Bunar nagore:** sa krilom se bunar penje ispust po ispust i izlazi kroz otvor u podu stepeništa. Poluga tamo otvara gradsku kapiju, prečicu do početka.
 4. **Tvrđava:** dvorište, kasarna, pa kula (dimnjak, pa ispusti za krilo) do bosa na vrhu. Uz put su bedem sa strelnicom i zvonik.
 
@@ -69,7 +86,7 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 
 **Tok igre:**
 1. **Do vodopada:** zaselak, podnožje, staza, pa dimnjak uz vodopad.
-2. **Do gnezda:** litica (pred jelovom padinom je ponor), ispust do stenovite grede, pa Orlovo gnezdo sa **jurišem**.
+2. **Do gnezda:** u starom kamenolomu je Trk po zidu. Zatim litica (pred jelovom padinom je ponor), ispust do stenovite grede, trk po šarenom zidu preko ponora i Orlovo gnezdo sa **jurišem**.
 3. **Preko klanca:** sa jurišem se prelazi ponor od 500 px u klancu, pa kroz Ravijojlinu šumu do Vilinog izvora i Lovac-age.
 4. **Pod zemljom:** pećine imaju dimnjak do duboke pećine i podzemni ponor do jezera. Iz jezera se ispustom izlazi gore u klanac, iza ponora.
 
@@ -98,15 +115,15 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 4. **Kroz kulu:**
    - dimnjak do međusprata;
    - ispust za krilo do galerije;
-   - dimnjak do gornje staze;
+   - lancem (oltar u oružani) preko dve kuke do gornje staze;
    - Musa na krovu.
    - U podu kule je poklopac ka tamnici, isto na trag.
 
 **Tajne:**
 - **Ispod mosta:** poklopac na mostu, trag.
 - **Kapela u steni:** vrata iz isposnice, trag.
-- **Musina riznica:** lažni zid na galeriji kule.
-- **Skrivena pećina:** lomljivi zid.
+- **Musina riznica:** zid-varka na galeriji kule.
+- **Skrivena pećina:** most preko ponora, vidljiv samo Vilinskim okom (oltar na podzemnom izvoru).
 
 **Čuda:** Guslareve gusle i Musina sablja.
 
@@ -117,13 +134,13 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 - **materijali:** `ground`, `wall`, `platform`, `beam`, `ceiling` su bešavne slike 512×512 koje se ponavljaju (zidovi i plafoni kao šara, ispusti i grede kao ploče); manifestov `ground` važi i za unutrašnje sobe;
 - **predmeti:** po `id` (nivo može da koristi i opšta imena: `tezga` → `kolica`, `kamen` → `kameni-blok`, `bure` → `bacva`, `luk` → `rusevni-luk`, `baklja` → `mangal`). `w`/`h` su u pikselima sveta. U ovim nivoima su predmeti samo ukras i ništa ne zaprečuju.
 
-Sada je realistično obučen nivo 1 (Podgrađe). Urvina i klisura još nose naslikane materijale iz `dist/assets/world/`, dok ne stignu u manifest:
+Sada je realistično obučen nivo 1 (Podgrađe), a sa njim i pohodi 4–19 čiji je biom `podgradje`. Urvina i klisura još nose naslikane materijale iz `dist/assets/world/`, dok ne stignu u manifest. Pohodi 4–19 tada nose set svog `zeljeniBiom` (selo, močvara, šuma, prevoj…) sa njegovim tlom:
 
 | Biom | Spolja | Unutra | Posebni setovi |
 |---|---|---|---|
 | podgradje | manifest (Prilep u zlatni sat) | manifest (podrum) | — |
 | urvina | urvina | pećina | šuma, reka |
-| klisura | klisura | tvrđava | reka |
+| klisura | klisura | podrum (pećine: pećina) | reka |
 
 ### Pod sa dubinom
 Staza se vidi blago odozgo, ali linija hoda i sudari ostaju isti:
