@@ -1,6 +1,6 @@
 # Glatke animacije: izveštaj
 
-**Grana:** `claude/glatke-animacije-590652`. Na `main` je otišao `752c729` (svi klipovi, sa Lost Crown pokretima na kojima je grana zasnovana); nastavak `45ae041` je spojen u `realisticni-svet`, a na `main` ga šalje orkestrator.
+**Grana:** `claude/glatke-animacije-590652`, spojena u `main` (sa Lost Crown pokretima na kojima je zasnovana).
 
 ## Ukratko
 
@@ -93,78 +93,6 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 
 `npm run check && npm test && node animation-tests.mjs && node simulation-test.mjs` (ceo CI iz `pages.yml`) prolazi. U browserskim prolazima nije bilo JavaScript grešaka (pre, posle, „Smanjeno podrhtavanje“, `?anim=0`, nivo 2).
 
-## Nastavak (noćni rad, grana spojena sa `realisticni-svet`)
-
-- Spojeno `realisticni-svet` (Azačka kula); jedan sukob u `game.js` razrešen (kolo svatova + crtanje zamki kule).
-- **Drugi pokušaj za parove koje tok nije pratio:** figure se prvo poravnaju po težištu (skok, juriš, pad), pa se računa samo promena poze. Spaseno je 131 par, između ostalog Markov skok (4/5), Šarac u skoku, Musin zamah i kraj koštaca. Sada **306 klipova** ima međukadrove.
-- **I dalje bez međukadrova (13 klipova), zato što tok ne prati pokret ni posle poravnanja** (greška 0,14–0,49, prag 0,13): `marko-charged`, `marko-counter`, `marko-roll`, `marko-roll-land`, `marko-plunge` (telo se okreće ili je zamah prevelik), `archer-death`, `akindzija-hurt/jump/launch/charge`, `beg-unhorsed`, `bajraktar-hurt` (velika promena poze), `magija-zrak` (svetlosni efekat: međukadar bi bio dupla slika).
-- **Lost Crown pokreti:** dupli skok se jače isteže; juriš u vazduhu se razvlači u pravcu kretanja, naginje i ostavlja brzinske linije; posle Vilinog traga nema pretapanja sa starog mesta, a Marko se pojavljuje blago izdužen. Sve se gasi uz „Smanjeno podrhtavanje i efekti“. Snimak: `izvestaj/glatke-animacije/lost-crown-pokreti.webp` (levo `?anim=0`, desno novo).
-- **Brzina:** mašinu su opterećivale druge sesije, pa je FPS skakao i bez međukadrova (19–35). Zato je mereno vreme crtanja jednog kadra, korak po korak, naizmenično: nivo 0 medijan 23,2 i 18,0 ms bez međukadrova, 17,5 i 17,6 ms sa njima; nivo 2: 11,3 i 11,1 ms bez, 11,2 i 11,8 ms sa. Razlike su u šumu. Ceo CI prolazi, bez JavaScript grešaka u Chrome-u.
-
-## DOPUNA-45 (Codex): naručeno, stiglo, u igri
-
-**Naručeno** (`art/world-pack-03/DOPUNA-45.md`, Codex CLI neinteraktivno, `codex exec`):
-- deo 1: 13 Markovih moći;
-- deo 2: međupoze za 10 udaraca kao `<klip>-v2` (stari kadrovi na parnim mestima, nove poze između, pa tajming i hitbox ostaju isti);
-- deo 3: isto za 12 klipova kojima tok ne pomaže;
-- deo 4: soko, kostur, vrač, šarka i Ala.
-
-**Stiglo:** 12 od 13 klipova dela 1: `marko-krilo`, `marko-nalet`, `marko-nalet-kraj`, `marko-trag-ostavi`, `marko-trag-povratak`, `marko-air-3`, `marko-kuka-baci`, `marko-kuka-let`, `marko-odmor`, `marko-odmor-ustaje`, `marko-klizanje`, `marko-zid-trk`. Sve je isti Marko, u meri `marko-idle-2`. U 01:51 Codex je stao jer je nalog ostao bez kredita („workspace is out of credits“). Nisu stigli `marko-launcher`, delovi 2–4 i nijedan `-v2` klip.
-
-**U igri:**
-- Sokolovo krilo, juriš u vazduhu i izlazak iz njega, Vilin trag (ostavljanje i povratak) i treći udarac u vazduhu koriste svoje crteže (`powersPose`, `marko-air-3`). Do sada su pozajmljivali tuđe poze.
-- Kuka, odmor, klizanje i trk uz zid su u rig-u i imaju međukadrove, ali te pokrete u kod dodaje sesija „lc-pokreti“.
-- Prihvat `-v2` je spreman: `smooth-anims.py` nacrtanu međupozu stavlja kao polovinu koraka, a četvrtine računa tokom. U igri nacrtana poza prolazi i kroz pripremu i kontakt udarca.
-
-**Pregled u igri** (snimak korak po korak u prvom pohodu: klizanje, skok, krilo, vazdušni kombo, juriš, Vilin trag):
-- Veličina se ne menja na prelazima: visina krajnjih poza je ista kao kod `marko-idle-2` i `marko-fall`, a oslonac je isti do 0,6 jedinica.
-- Trup je skakao vodoravno na nekoliko prelaza, jer se sidro računa kao medijan klipa, a ogrtač raširen kao krila ili noga ispružena napred ga pomeraju. Najviše kod klizanja (55 jedinica), `air-3` (25) i krila (15). Sidro novih klipova je pomereno tako da se trup poklopi sa susednim klipovima (`ANCHOR_FIX` u `build-sprite-rig.py`).
-- Klizanje (S u trku) koristi `marko-klizanje` u sredini, a početak i kraj iz `marko-slide`. Lanac koristi `marko-kuka-baci` i `marko-kuka-let`, a trk po zidu `marko-zid-trk`. Lanac i trk po zidu traže kuke i zidove iz greybox nivoa, pa ih u igri nisam video; vezani su za `p.lanac` i `p.zidotrk`.
-- `marko-launcher` je alias za `marko-uppercut`, uz proceduralni sloj: skupi se pred udarac i istegne se nagore kad udari.
-
-**Nastavak, kad se kredit dopuni:** pokrenuti `art/world-pack-03/codex-nastavak.cmd`. Codex radi od dela 2 (udarci `-v2`, pa tvrdi klipovi `-v2`, pa protivnici); `marko-launcher` crta na kraju.
-
-## DOPUNA-46: šta Marku još treba za lanac, kuke i nove junačke udare
-
-Naručeno je u `art/world-pack-03/DOPUNA-46.md`; Codex ga radi prvi kad se kredit obnovi.
-- **Marko:** `marko-lanac-trgne`, `marko-lanac-vuce`, `marko-potres`, `marko-zvizduk` (Šarčev gaz), `marko-oko` (Vilinsko oko), `marko-zid-trk-vodoravno` (trk po zidu je vodoravan, a već stigli `marko-zid-trk` ide uz zid naviše) i `marko-launcher`.
-- **Šarac:** `sarac-galop`, Šarac bez jahača za gaz. Danas klizi statična slika.
-- **Ikone za traku** (fale): `ikona-trag`, `ikona-lanac`, `ikona-oko`, `ikona-potres`, `ikona-gaz`.
-- **Lanac i kuka:** `lanac-karika`, `lanac-kuka`, `kuka-alka`.
-
-Igra ih već čeka: klip se koristi čim ga rig ima, sa međukadrovima. Razmere su u `build-sprite-rig.py`, a veze u `powersPose`, u izboru udarca (Potres), u Šarčevom gazu i u tabeli luka topuza. Već sada, bez novih crteža, Marko sedne kraj izvora dok je izvor otvoren (`marko-odmor`) i ustane kad ga zatvori.
-
-**Codex kredit:**
-- nalog je Team, a Codex je stao jer su potrošeni krediti člana radnog prostora;
-- petočasovni prozor je bio na 98% i obnavlja se 12. novembra u 06:23;
-- nedeljni je na 93% i obnavlja se 16. novembra u 10:39.
-
-Posle 06:23 ostaje oko 7% nedeljne kvote, osim ako vlasnik radnog prostora dopuni kredite. Pokretanje: `art/world-pack-03/codex-nastavak.cmd`.
-
-## Codex, drugo pokretanje (12. novembar, 03:30–04:27)
-
-Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je sve što je isporučio:
-- **DOPUNA-46, deo 1 i 2:**
-  - `marko-lanac-trgne` i `marko-lanac-vuce` (ponovo nacrtan, jer je prvi imao papirnu pozadinu);
-  - `marko-potres` (kontakt u kadru 4);
-  - `marko-zvizduk` i `marko-oko`: Codex ih je ostavio kao nezavršene zbog lažne uzbune za pozadinu, a alfa je bila ispravna, pa sam ih izvezao istim skriptom;
-  - `marko-zid-trk-vodoravno`: pogrešno isečen, ponovo izvezen sa rezovima između figura;
-  - pravi `marko-launcher` (kontakt u kadru 3);
-  - `sarac-galop` (Šarčev gaz više ne klizi kao slika).
-- **DOPUNA-46, deo 3:** ikone za trag, lanac, oko, Potres i gaz su na traci veština.
-- **DOPUNA-45, deo 2:** nacrtane međupoze za `marko-combo-1` do `marko-combo-4` i `marko-super`.
-  - Svaki korak ima pravu nacrtanu polovinu, i zamah od pripreme do kontakta.
-  - Parni kadrovi su tačne kopije originala (poklapanje 1,00).
-  - Svetli rub od skinute pozadine se čisti u `smooth-anims.py`.
-  - U igri su na mestu, bez skoka.
-- Sidra novih klipova su poravnata po trupu suseda.
-
-**Ostalo za sledeći kredit** (`art/world-pack-03/codex-nastavak.cmd`, prompt je već ažuriran):
-- iz DOPUNA-45 dela 2: `run-attack`, `air-1`, `air-2`, `uppercut`, `attack` (`-v2`);
-- ceo DOPUNA-45 deo 3;
-- lanac i kuka kao slike (DOPUNA-46 deo 4);
-- protivnici (DOPUNA-45 deo 4).
-
 ## Tabela pre i posle, po klipu
 
 „Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s; „—“ znači da zavisi od scene). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.
@@ -186,11 +114,11 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | marko-hang | 6 | 5 | 0 | 6 | 18 | 24 | 6/6 |  |
 | marko-wallslide | 4 | 8 | 0 | 4 | 12 | 16 | 4/4 |  |
 | marko-push | 6 | 8 | 0 | 6 | 18 | 24 | 6/6 |  |
-| marko-teeter | 6 | 8 | 0 | 6 | 18 | 24 | 6/6 |  |
-| marko-vihor | 8 | 20 | 0 | 8 | 9 | 17 | 3/8 |  |
+| marko-teeter | 6 | 8 | 0 | 6 | 15 | 21 | 5/6 |  |
+| marko-vihor | 8 | 20 | 0 | 8 | 6 | 14 | 2/8 |  |
 | marko-charge-hold | 4 | 9 | 0 | 4 | 12 | 16 | 4/4 |  |
 | marko-fall | 4 | 9 | 0 | 4 | 12 | 16 | 4/4 |  |
-| mounted-run | 6 | ≈11 | 0 | 6 | 12 | 18 | 4/6 |  |
+| mounted-run | 6 | ≈11 | 0 | 6 | 9 | 15 | 3/6 |  |
 | marko-sablja-idle | 6 | 6 | 0 | 6 | 18 | 24 | 6/6 |  |
 | marko-sablja-trci | 6 | 10,6 | 0 | 6 | 15 | 21 | 5/6 |  |
 | sword-run | 6 | ≈8 | 6 | 12 | 18 | 24 | 6/6 |  |
@@ -198,120 +126,120 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | sword-climb | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | shield-run | 6 | ≈8 | 6 | 12 | 18 | 24 | 6/6 |  |
 | shield-idle | 6 | 5 | 0 | 8 | 24 | 32 | 8/8 |  |
-| archer-run | 6 | ≈8 | 6 | 12 | 18 | 24 | 6/6 |  |
+| archer-run | 6 | ≈8 | 6 | 12 | 15 | 21 | 5/6 |  |
 | archer-idle | 6 | 5 | 0 | 8 | 24 | 32 | 8/8 |  |
-| akindzija-run | 8 | ≈8 | 2 | 10 | 12 | 20 | 4/8 |  |
+| akindzija-run | 8 | ≈8 | 2 | 10 | 6 | 14 | 2/8 |  |
 | akindzija-idle | 6 | 5 | 0 | 8 | 24 | 32 | 8/8 |  |
 | oklopnik-idle | 6 | 5 | 0 | 6 | 18 | 24 | 6/6 |  |
 | oklopnik-walk | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
-| palikuca-run | 6 | ≈8 | 2 | 8 | 18 | 24 | 6/6 |  |
+| palikuca-run | 6 | ≈8 | 2 | 8 | 6 | 12 | 2/6 |  |
 | palikuca-idle | 6 | 5 | 0 | 10 | 30 | 40 | 10/10 |  |
-| palikuca-burn | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
+| palikuca-burn | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
 | kopljanik-run | 8 | ≈8 | 7 | 15 | 21 | 29 | 7/8 |  |
 | kopljanik-idle | 6 | 5 | 0 | 10 | 30 | 40 | 10/10 |  |
-| tufekdzija-run | 8 | ≈8 | 2 | 10 | 9 | 17 | 3/8 |  |
+| tufekdzija-run | 8 | ≈8 | 2 | 10 | 6 | 14 | 2/8 |  |
 | tufekdzija-idle | 6 | 5 | 0 | 6 | 18 | 24 | 6/6 |  |
-| pas-run | 8 | ≈8 | 5 | 13 | 21 | 29 | 7/8 |  |
+| pas-run | 8 | ≈8 | 5 | 13 | 18 | 26 | 6/8 |  |
 | pas-idle | 4 | 5 | 0 | 4 | 12 | 16 | 4/4 |  |
 | musa-run | 6 | ≈6 | 5 | 11 | 15 | 21 | 5/6 |  |
 | musa-idle | 6 | 5 | 0 | 6 | 18 | 24 | 6/6 |  |
 | musa-mounted | 8 | po putu | 0 | 8 | 24 | 32 | 8/8 |  |
-| marko-attack | 6 | — | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
+| marko-attack | 6 | — | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove; udarac: priprema i kontakt bez međukadrova |
 | marko-combo-1 | 6 | 16,7* | 0 | 6 | 9 | 15 | 3/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-combo-2 | 6 | 16,7* | 0 | 6 | 9 | 15 | 3/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-combo-3 | 6 | 12* | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
-| marko-combo-4 | 8 | 14,3 | 0 | 8 | 15 | 23 | 5/7 | udarac: priprema i kontakt bez međukadrova |
+| marko-combo-4 | 8 | 14,3 | 0 | 8 | 12 | 20 | 4/7 | udarac: priprema i kontakt bez međukadrova |
 | marko-charged | 6 | 11,5 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove; udarac: priprema i kontakt bez međukadrova |
 | marko-super | 6 | 6,3 | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-counter | 8 | 14,5 | 0 | 8 | 0 | 8 | 0/7 | tok ne prati pokret: drži nacrtane kadrove; udarac: priprema i kontakt bez međukadrova |
 | marko-run-attack | 6 | 16,7* | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-air-1 | 5 | 16,7* | 0 | 5 | 3 | 8 | 1/4 | udarac: priprema i kontakt bez međukadrova |
-| marko-air-2 | 5 | 14,7 | 0 | 5 | 6 | 11 | 2/4 | udarac: priprema i kontakt bez međukadrova |
+| marko-air-2 | 5 | 14,7 | 0 | 5 | 3 | 8 | 1/4 | udarac: priprema i kontakt bez međukadrova |
 | marko-uppercut | 6 | 14,3 | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-dash-strike | 6 | 14,3 | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-mounted-attack | 6 | — | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
-| marko-jump | 6 | po brzini | 0 | 6 | 12 | 18 | 4/5 |  |
+| marko-jump | 6 | po brzini | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-jump-rise | 4 | 12,5 | 0 | 4 | 9 | 13 | 3/3 |  |
-| marko-run-jump | 8 | 11,4 | 0 | 8 | 21 | 29 | 7/7 |  |
+| marko-run-jump | 8 | 11,4 | 0 | 8 | 18 | 26 | 6/7 |  |
 | marko-land | 4 | 20 | 0 | 4 | 6 | 10 | 2/3 |  |
 | marko-roll | 6 | 17,6 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-roll-land | 6 | 14,3 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-block | 6 | po stanju | 0 | 6 | 15 | 21 | 5/5 |  |
-| marko-block-hit | 4 | 18 | 0 | 4 | 9 | 13 | 3/3 |  |
-| marko-crouch | 6 | po stanju | 0 | 6 | 15 | 21 | 5/5 |  |
+| marko-block-hit | 4 | 18 | 0 | 4 | 6 | 10 | 2/3 |  |
+| marko-crouch | 6 | po stanju | 0 | 6 | 9 | 15 | 3/5 |  |
 | marko-drink | 6 | 7 | 0 | 6 | 15 | 21 | 5/5 |  |
 | marko-hurt | 4 | 18 | 0 | 4 | 9 | 13 | 3/3 |  |
 | marko-hurt-air | 4 | 18 | 0 | 4 | 3 | 7 | 1/3 |  |
-| marko-death | 6 | ≈6,7 | 0 | 6 | 3 | 9 | 1/5 |  |
+| marko-death | 6 | ≈6,7 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-knockdown | 6 | 9 | 0 | 6 | 9 | 15 | 3/5 |  |
 | marko-getup | 6 | 12 | 0 | 6 | 3 | 9 | 1/5 |  |
 | marko-turn | 4 | 25 | 0 | 4 | 3 | 7 | 1/3 |  |
 | marko-run-start | 4 | 22 | 0 | 4 | 9 | 13 | 3/3 |  |
 | marko-run-stop | 4 | 15,4 | 0 | 4 | 6 | 10 | 2/3 |  |
 | marko-combo-recover | 4 | 16,7 | 0 | 4 | 6 | 10 | 2/3 |  |
-| marko-ledge | 8 | — | 0 | 8 | 6 | 14 | 2/7 |  |
-| marko-walljump | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
+| marko-ledge | 8 | — | 0 | 8 | 3 | 11 | 1/7 |  |
+| marko-walljump | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | marko-plunge | 6 | — | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-kick | 6 | 16,7 | 0 | 6 | 9 | 15 | 3/5 | udarac: priprema i kontakt bez međukadrova |
 | marko-slide | 6 | 12 | 0 | 6 | 9 | 15 | 3/5 |  |
 | marko-lever | 6 | 12 | 0 | 6 | 15 | 21 | 5/5 |  |
-| marko-throw | 8 | 16 | 0 | 8 | 18 | 26 | 6/7 |  |
-| marko-crouch-throw | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
-| marko-pickup | 6 | 10 | 0 | 6 | 12 | 18 | 4/5 |  |
+| marko-throw | 8 | 16 | 0 | 8 | 15 | 23 | 5/7 |  |
+| marko-crouch-throw | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
+| marko-pickup | 6 | 10 | 0 | 6 | 9 | 15 | 3/5 |  |
 | marko-call | 6 | 8 | 0 | 6 | 15 | 21 | 5/5 |  |
-| marko-open | 6 | 14,3 | 0 | 6 | 15 | 21 | 5/5 |  |
+| marko-open | 6 | 14,3 | 0 | 6 | 9 | 15 | 3/5 |  |
 | marko-victory | 8 | ≈6 | 0 | 8 | 21 | 29 | 7/7 |  |
 | marko-idle-3 | 12 | 4 | 0 | 13 | 36 | 49 | 12/12 |  |
 | marko-idle-4 | 12 | 6 | 0 | 12 | 33 | 45 | 11/11 |  |
 | marko-blasted | 6 | — | 0 | 6 | 3 | 9 | 1/5 |  |
-| mounted-jump | 4 | po brzini | 0 | 4 | 3 | 7 | 1/3 |  |
-| marko-finisher | 8 | — | 0 | 8 | 6 | 14 | 2/7 |  |
-| marko-finisher-smash | 8 | — | 0 | 8 | 15 | 23 | 5/7 |  |
+| mounted-jump | 4 | po brzini | 0 | 4 | 0 | 4 | 0/3 | tok ne prati pokret: drži nacrtane kadrove |
+| marko-finisher | 8 | — | 0 | 8 | 3 | 11 | 1/7 |  |
+| marko-finisher-smash | 8 | — | 0 | 8 | 9 | 17 | 3/7 |  |
 | marko-finisher-throw | 8 | — | 0 | 8 | 18 | 26 | 6/7 |  |
-| marko-finisher-stomp | 8 | — | 0 | 8 | 6 | 14 | 2/7 |  |
-| marko-finisher-legs | 8 | — | 0 | 8 | 3 | 11 | 1/7 |  |
-| marko-finisher-skull | 8 | — | 0 | 8 | 6 | 14 | 2/7 |  |
+| marko-finisher-stomp | 8 | — | 0 | 8 | 3 | 11 | 1/7 |  |
+| marko-finisher-legs | 8 | — | 0 | 8 | 0 | 8 | 0/7 | tok ne prati pokret: drži nacrtane kadrove |
+| marko-finisher-skull | 8 | — | 0 | 8 | 0 | 8 | 0/7 | tok ne prati pokret: drži nacrtane kadrove |
 | marko-brutal | 8 | — | 0 | 8 | 21 | 29 | 7/7 |  |
-| marko-tiho | 7 | — | 0 | 7 | 15 | 22 | 5/6 |  |
+| marko-tiho | 7 | — | 0 | 7 | 12 | 19 | 4/6 |  |
 | marko-sablja-izvlaci | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
 | marko-sablja-vraca | 5 | — | 0 | 5 | 12 | 17 | 4/4 |  |
 | marko-sablja-udarac-1 | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | marko-sablja-udarac-2 | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
-| marko-sablja-udarac-3 | 7 | — | 0 | 7 | 12 | 19 | 4/6 |  |
-| marko-sablja-skok | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
-| marko-sablja-tezak | 7 | — | 0 | 7 | 9 | 16 | 3/6 |  |
-| marko-sablja-ubod | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
-| marko-sablja-uvis | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
+| marko-sablja-udarac-3 | 7 | — | 0 | 7 | 9 | 16 | 3/6 |  |
+| marko-sablja-skok | 6 | — | 0 | 6 | 3 | 9 | 1/5 |  |
+| marko-sablja-tezak | 7 | — | 0 | 7 | 6 | 13 | 2/6 |  |
+| marko-sablja-ubod | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
+| marko-sablja-uvis | 6 | — | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | sword-attack | 6 | 3,5–4,3 | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
-| sword-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
+| sword-hurt | 4 | 11,8 | 0 | 4 | 0 | 4 | 0/3 | tok ne prati pokret: drži nacrtane kadrove |
 | sword-death | 6 | ≈6,7 | 0 | 6 | 6 | 12 | 2/5 |  |
-| sword-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
+| sword-jump | 6 | po brzini | 0 | 6 | 9 | 15 | 3/5 |  |
 | sword-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
 | sword-lunge | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
-| shield-attack | 6 | 3,5–4,3 | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
+| shield-attack | 6 | 3,5–4,3 | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
 | shield-hurt | 4 | 11,8 | 0 | 4 | 6 | 10 | 2/3 |  |
 | shield-death | 6 | ≈6,7 | 0 | 6 | 3 | 9 | 1/5 |  |
-| shield-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
+| shield-jump | 6 | po brzini | 0 | 6 | 12 | 18 | 4/5 |  |
 | shield-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
-| shield-bash | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
-| shield-guardbreak | 4 | — | 0 | 4 | 6 | 10 | 2/3 |  |
+| shield-bash | 6 | — | 0 | 6 | 3 | 9 | 1/5 |  |
+| shield-guardbreak | 4 | — | 0 | 4 | 3 | 7 | 1/3 |  |
 | archer-shoot | 6 | 3,5–4,3 | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
 | archer-shoot-down | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
 | archer-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
 | archer-death | 6 | ≈6,7 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
-| archer-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
+| archer-jump | 6 | po brzini | 0 | 6 | 6 | 12 | 2/5 |  |
 | archer-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
-| archer-kick | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
+| archer-kick | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
 | akindzija-hurt | 4 | 11,8 | 0 | 4 | 0 | 4 | 0/3 | tok ne prati pokret: drži nacrtane kadrove |
 | akindzija-death | 6 | ≈6,7 | 0 | 6 | 6 | 12 | 2/5 |  |
 | akindzija-jump | 6 | po brzini | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | akindzija-launch | 6 | po brzini | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
-| akindzija-spin | 6 | — | 0 | 6 | 3 | 9 | 1/5 |  |
+| akindzija-spin | 6 | — | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
 | akindzija-charge | 6 | — | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
-| akindzija-backstep | 4 | — | 0 | 4 | 9 | 13 | 3/3 |  |
+| akindzija-backstep | 4 | — | 0 | 4 | 6 | 10 | 2/3 |  |
 | oklopnik-hurt | 4 | 11,8 | 0 | 4 | 9 | 13 | 3/3 |  |
 | oklopnik-death | 6 | ≈6,7 | 0 | 6 | 6 | 12 | 2/5 |  |
-| oklopnik-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
+| oklopnik-jump | 6 | po brzini | 0 | 6 | 12 | 18 | 4/5 |  |
 | oklopnik-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
 | oklopnik-armorbreak | 4 | — | 0 | 4 | 9 | 13 | 3/3 |  |
 | oklopnik-slam | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
@@ -319,55 +247,55 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | oklopnik-grab | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | palikuca-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
 | palikuca-death | 6 | ≈6,7 | 0 | 6 | 3 | 9 | 1/5 |  |
-| palikuca-jump | 6 | po brzini | 0 | 6 | 12 | 18 | 4/5 |  |
+| palikuca-jump | 6 | po brzini | 0 | 6 | 6 | 12 | 2/5 |  |
 | palikuca-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
 | palikuca-bomb | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
 | palikuca-torch | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
-| palikuca-fire | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
+| palikuca-fire | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
 | kopljanik-attack | 8 | 3,5–4,3 | 0 | 8 | 12 | 20 | 4/7 | udarac: priprema i kontakt bez međukadrova |
 | kopljanik-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
-| kopljanik-death | 8 | ≈6,7 | 0 | 8 | 12 | 20 | 4/7 |  |
-| kopljanik-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
-| kopljanik-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
-| kopljanik-sweep | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
+| kopljanik-death | 8 | ≈6,7 | 0 | 8 | 9 | 17 | 3/7 |  |
+| kopljanik-jump | 6 | po brzini | 0 | 6 | 9 | 15 | 3/5 |  |
+| kopljanik-launch | 6 | po brzini | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove |
+| kopljanik-sweep | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
 | tufekdzija-shoot | 8 | 3,5–4,3 | 0 | 8 | 15 | 23 | 5/7 | udarac: priprema i kontakt bez međukadrova |
-| tufekdzija-hurt | 4 | 11,8 | 0 | 4 | 6 | 10 | 2/3 |  |
-| tufekdzija-death | 8 | ≈6,7 | 0 | 8 | 15 | 23 | 5/7 |  |
-| tufekdzija-jump | 6 | po brzini | 0 | 6 | 15 | 21 | 5/5 |  |
+| tufekdzija-hurt | 4 | 11,8 | 0 | 4 | 0 | 4 | 0/3 | tok ne prati pokret: drži nacrtane kadrove |
+| tufekdzija-death | 8 | ≈6,7 | 0 | 8 | 9 | 17 | 3/7 |  |
+| tufekdzija-jump | 6 | po brzini | 0 | 6 | 12 | 18 | 4/5 |  |
 | tufekdzija-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
 | tufekdzija-butt | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
-| pas-attack | 6 | 3,5–4,3 | 0 | 6 | 9 | 15 | 3/5 | udarac: priprema i kontakt bez međukadrova |
+| pas-attack | 6 | 3,5–4,3 | 0 | 6 | 6 | 12 | 2/5 | udarac: priprema i kontakt bez međukadrova |
 | pas-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
-| pas-death | 6 | ≈6,7 | 0 | 6 | 12 | 18 | 4/5 |  |
+| pas-death | 6 | ≈6,7 | 0 | 6 | 6 | 12 | 2/5 |  |
 | pas-launch | 6 | po brzini | 0 | 6 | 3 | 9 | 1/5 |  |
-| musa-attack | 6 | 3,2 | 0 | 6 | 3 | 9 | 1/5 | udarac: priprema i kontakt bez međukadrova |
+| musa-attack | 6 | 3,2 | 0 | 6 | 0 | 6 | 0/5 | tok ne prati pokret: drži nacrtane kadrove; udarac: priprema i kontakt bez međukadrova |
 | musa-hurt | 4 | 11,8 | 0 | 4 | 3 | 7 | 1/3 |  |
 | musa-death | 6 | ≈6,7 | 0 | 6 | 3 | 9 | 1/5 |  |
-| musa-mounted-strike | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
+| musa-mounted-strike | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
 | musa-sword | 6 | 3–10 | 0 | 6 | 3 | 9 | 1/5 |  |
-| musa-grab | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
+| musa-grab | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | musa-throw-up | 8 | — | 0 | 8 | 15 | 23 | 5/7 |  |
-| musa-stomp | 6 | — | 0 | 6 | 12 | 18 | 4/5 |  |
+| musa-stomp | 6 | — | 0 | 6 | 6 | 12 | 2/5 |  |
 | musa-roar | 6 | — | 0 | 6 | 15 | 21 | 5/5 |  |
 | musa-block | 6 | — | 0 | 6 | 9 | 15 | 3/5 |  |
 | orao-flight | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
 | fairy-cast | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
 | volovi-plug | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | volovi-beg | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
-| vila-let | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
+| vila-let | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
 | vila-carolija | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
 | vila-isceljenje | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | vila-spreda | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
-| magija-bljesak | 8 | — | 0 | 8 | 6 | 14 | 2/8 |  |
+| magija-bljesak | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
 | magija-zrak | 8 | — | 0 | 8 | 0 | 8 | 0/8 | tok ne prati pokret: drži nacrtane kadrove |
-| plamen | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
-| plamen-mali | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| plamen | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| plamen-mali | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
 | eksplozija | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
 | svatovi-zarobljeni | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | svatovi-kolo | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | mladi-turcin-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
-| mladi-turcin-run | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
-| mladi-turcin-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
+| mladi-turcin-run | 8 | — | 0 | 8 | 3 | 11 | 1/8 |  |
+| mladi-turcin-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
 | mladi-turcin-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
 | mladi-turcin-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | beg-mounted | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
@@ -388,17 +316,17 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | arapin-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
 | arapin-throw | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
 | arapin-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
-| arapin-death | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
+| arapin-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | azdaja-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | azdaja-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
 | azdaja-death | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
-| azdaja-fire | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
+| azdaja-fire | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
 | azdaja-bite | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
 | dzelat-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | dzelat-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | dzelat-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
-| dzelat-hurt | 4 | — | 0 | 4 | 9 | 13 | 3/4 |  |
-| dzelat-death | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| dzelat-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
+| dzelat-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | djemo-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | djemo-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | djemo-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
@@ -409,7 +337,7 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | vilinski-kamen-budi | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | vilinski-kamen-budan | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | kostac-janicar | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
-| kostac-janicar-kraj | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| kostac-janicar-kraj | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
 | kostac-oklopnik | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | kostac-oklopnik-kraj | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
 | kostac-pas | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
@@ -425,18 +353,18 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | lovac-aga-death | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
 | guslar-svira | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | guslar-ceka | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
-| soko-let | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
-| soko-napad | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
+| soko-let | 8 | — | 0 | 8 | 6 | 14 | 2/8 |  |
+| soko-napad | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
 | soko-voda | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
-| soko-ranjen | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
+| soko-ranjen | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
 | caus-idle | 4 | — | 0 | 70 | 51 | 121 | 17/70 |  |
 | caus-walk | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
 | caus-ferman | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
 | caus-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
-| caus-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| caus-death | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
 | ognjeni-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
 | ognjeni-aga-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
-| ognjeni-aga-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
+| ognjeni-aga-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
 | ognjeni-aga-ulje | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | ognjeni-aga-zadihan | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
 | ognjeni-aga-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
@@ -446,8 +374,8 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | hasan-aga-attack | 6 | — | 0 | 6 | 12 | 18 | 4/6 | udarac: priprema i kontakt bez međukadrova |
 | hasan-aga-zalet | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | hasan-aga-zaglavljen | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
-| hasan-aga-hurt | 4 | — | 0 | 4 | 6 | 10 | 2/4 |  |
-| hasan-aga-death | 6 | — | 0 | 6 | 12 | 18 | 4/6 |  |
+| hasan-aga-hurt | 4 | — | 0 | 4 | 3 | 7 | 1/4 |  |
+| hasan-aga-death | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
 | bajraktar-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
 | bajraktar-run | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | bajraktar-attack | 6 | — | 0 | 6 | 6 | 12 | 2/6 | udarac: priprema i kontakt bez međukadrova |
@@ -455,39 +383,39 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 | bajraktar-hurt | 4 | — | 0 | 4 | 0 | 4 | 0/4 | tok ne prati pokret: drži nacrtane kadrove |
 | bajraktar-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | janicarski-aga-idle | 6 | — | 0 | 70 | 162 | 232 | 54/70 |  |
-| janicarski-aga-run | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
-| janicarski-aga-attack | 6 | — | 0 | 6 | 12 | 18 | 4/6 | udarac: priprema i kontakt bez međukadrova |
-| janicarski-aga-skok | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
+| janicarski-aga-run | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| janicarski-aga-attack | 6 | — | 0 | 6 | 9 | 15 | 3/6 | udarac: priprema i kontakt bez međukadrova |
+| janicarski-aga-skok | 6 | — | 0 | 6 | 0 | 6 | 0/6 | tok ne prati pokret: drži nacrtane kadrove |
 | janicarski-aga-hurt | 4 | — | 0 | 4 | 3 | 7 | 1/4 |  |
 | janicarski-aga-death | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
-| mlada-trci | 8 | — | 0 | 8 | 21 | 29 | 7/8 |  |
-| mlada-skok | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
-| mladozenja-trci | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| mlada-trci | 8 | — | 0 | 8 | 18 | 26 | 6/8 |  |
+| mlada-skok | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
+| mladozenja-trci | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
 | mladozenja-skok | 6 | — | 0 | 6 | 6 | 12 | 2/6 |  |
 | sirotinja-ceka | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
-| sirotinja-blagoslov | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
-| marko-sablja-vihor | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
-| marko-sablja-glava | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
-| marko-sablja-proburazi | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| sirotinja-blagoslov | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
+| marko-sablja-vihor | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
+| marko-sablja-glava | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
+| marko-sablja-proburazi | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
 | marko-sablja-preseci | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
-| marko-sablja-tiho | 7 | — | 0 | 7 | 18 | 25 | 6/7 |  |
+| marko-sablja-tiho | 7 | — | 0 | 7 | 15 | 22 | 5/7 |  |
 | sword-spava | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
-| sword-budi | 5 | — | 0 | 5 | 9 | 14 | 3/5 |  |
+| sword-budi | 5 | — | 0 | 5 | 6 | 11 | 2/5 |  |
 | shield-spava | 4 | — | 0 | 4 | 12 | 16 | 4/4 |  |
-| shield-budi | 5 | — | 0 | 5 | 9 | 14 | 3/5 |  |
+| shield-budi | 5 | — | 0 | 5 | 6 | 11 | 2/5 |  |
 | sword-tiho-pada | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
-| kostur-stoji | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
+| kostur-stoji | 6 | — | 0 | 6 | 15 | 21 | 5/6 |  |
 | kostur-pada | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
-| oklopnik-kostur-pada | 8 | — | 0 | 8 | 15 | 23 | 5/8 |  |
+| oklopnik-kostur-pada | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
 | marko-pocinak | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | marko-okovan | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | kostac-stoji | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
 | kostac-stoji-kraj | 6 | — | 0 | 6 | 3 | 9 | 1/6 |  |
 | trgovac-tezga-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | utva-let | 6 | — | 0 | 6 | 9 | 15 | 3/6 |  |
-| soko-vezirov-let | 8 | — | 0 | 8 | 12 | 20 | 4/8 |  |
+| soko-vezirov-let | 8 | — | 0 | 8 | 9 | 17 | 3/8 |  |
 | janja-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | janja-toci | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | novak-idle | 6 | — | 0 | 6 | 18 | 24 | 6/6 |  |
 | novak-kuje | 8 | — | 0 | 8 | 24 | 32 | 8/8 |  |
-| **ukupno (319 klipova)** | **1999** | | **55** | **2519** | **4863** | **7327** | | |
+| **ukupno (319 klipova)** | **1999** | | **55** | **2519** | **4482** | **6946** | | |

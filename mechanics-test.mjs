@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,startVezbaliste,MOCI2,AMAJLIJE,amState,am,amToggle,resetMoci2:()=>{amCache=null;udarCache=null;udarNext=0;},udari,izaberiUdar,izvori,putuj,closeIzvor,closeKarta,lanacTarget,ducanList,buyDucan,UK,moc2,OKO_MAX,ZID_TIME,setBank,bank,setLevel:v=>{level=v;},shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe,gaz,talasi,ckpt,izvorAt})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -25,7 +25,7 @@ const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sor
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 
 // ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
-{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.filter(L=>!L.izazov).map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka urvina san','journey: the pohodi follow the life of Marko');ok(api.LEVELS.findIndex(L=>L.izazov)>=api.LEVELS.length-api.LEVELS.filter(L=>L.izazov).length,'journey: the challenge pohodi (izazov) stand after it, apart from the song');
+{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka urvina san','journey: the pohodi follow the life of Marko');
  {const done=api.LEVELS.slice(0,9).map(L=>L.id);storage.set('marko-levels',JSON.stringify(done));ok(api.levelOpen(8)&&!api.levelOpen(9),'journey: after the ninth pohod the road is shut until Musa falls');storage.set('marko-kacanik','won');ok(api.levelOpen(9)&&!api.levelOpen(10),'journey: Musa fallen, the gorge opens');storage.delete('marko-levels');storage.delete('marko-kacanik');}
  {const order=api.LEVELS.map(L=>L.id),learn=id=>order.indexOf(api.SKILLS.find(k=>k.id===id).land),need=order.filter(id=>(physics.RECIPES[id]||'').split(' ').includes('chimney^'));ok(need.length>=3&&need.every(id=>learn('zid')<order.indexOf(id)),'journey: every pohod whose road climbs wall to wall ('+need.join(', ')+') comes after the wall jump is learned');
   ok(api.SKILLS.every((k,i)=>i===0||learn(k.id)>learn(api.SKILLS[i-1].id)),'journey: the skills are learned in the order they are listed');}
@@ -206,7 +206,7 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  stand(q.x-260,gy);api.keys.add('KeyD');step(40);tap('KeyS');step(120*4);api.keys.clear();step(30);ok(S().p.x>q.x+q.w&&!(S().p.y<gy-2),'low wall: a slide carries him under it');}
 {const w=await start('selo');const t=w.traps.find(t=>t.kind==='spikes'&&!t.bed);const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);Object.assign(e,{type:'sword',x:t.x-45,y:t.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false,grounded:true});
  stand(t.x-125,t.y);S().p.face=1;api.keys.add('KeyS');tap('KeyJ');api.keys.clear();let hit=false;for(let i=0;i<120;i++){step();if(e.hp<=600-60)hit=true;}ok(hit,'stakes: a kicked janissary lands on the stakes and bleeds');}
-{const R=physics.RECIPES,haz=new Set(['spikes','crumble','logs','rocks','barrels','lever','chase','spikebed','greda','zid','sator','top','ivice','strelnice','krunjenje']),rest=new Set(['flat','crates','cellar','kljuc','plate','arena','watch','ledges','zvona','ogledala','teg','kolo','barut','svatovi','guslar','gnezdo','predah','straza','tajna']);let worst='';
+{const R=physics.RECIPES,haz=new Set(['spikes','crumble','logs','rocks','barrels','lever','chase','spikebed','greda','zid','sator','top']),rest=new Set(['flat','crates','cellar','kljuc','plate','arena','watch','ledges','zvona','ogledala','teg','kolo','barut','svatovi','guslar','gnezdo']);let worst='';
  for(const [land,rec] of Object.entries(R)){const rooms=rec.split(' ').map(r=>r.split(':')[0]);let run=0,since=0;for(const r of rooms){run=haz.has(r)?run+1:0;since=rest.has(r)?0:since+1;if(run>2)worst+=`${land}: three hazards in a row; `;if(since>5)worst+=`${land}: six rooms without rest; `;}}
  ok(!worst,'pacing: never three hazards in a row, a rest or reward at least every six rooms'+(worst?' — '+worst:''));}
 // ---- polish: landings and labels ----
@@ -278,102 +278,4 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  hold(13,true);hold(7,true);ok(pressed.has('KeyV')&&!pressed.has('KeyE'),'gamepad: ↓ + RT leaves the fairy\'s trace and does not call the fairy');
  hold(7,false);hold(13,false);fresh();hold(7,true);ok(pressed.has('KeyE')&&!keys.has('KeyV'),'gamepad: RT alone still calls the fairy');
  hold(7,false);fresh();hold(0,true);ok(pressed.has('Space'),'gamepad: A jumps, in the air the falcon\'s wing');hold(0,false);fresh();hold(1,true);ok(pressed.has('ShiftLeft'),'gamepad: B rolls, in the air the dash');hold(1,false);}
-// ---- The Lost Crown, second set (?go=moci): flags, slide, wall run, air combo, chain, eye, charms, springs, marks, heroic blows ----
-{const V=()=>{api.startVezbaliste();api.keys.clear();api.pressed.clear();return S().world;};
- const fresh=()=>{storage.delete('marko-amajlije');storage.delete('marko-udari');api.resetMoci2();};
- const foe=(x,type='sword',y=590)=>{const hp=type==='shield'?125:type==='oklopnik'?240:90,w=S().world;const e={id:70000+w.enemies.length,x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone:S().zone,face:-1,mode:'idle',timer:99,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true};w.enemies.push(e);return e;};
- fresh();
- // the flags: open everywhere but in the greybox, where the gate powers wait for their shrine
- {V();const ids=Object.keys(api.MOCI2);ok(['klizanje','zidotrk','kombo','lanac','oko','amajlije','putovanje','oznake','potres','gaz'].every(id=>ids.includes(id)),'lost crown II: every new power has its flag ('+ids.join(', ')+')');
-  ok(ids.every(id=>api.moc2(id)),'lost crown II: outside the greybox Marko has every one from the start');
-  const keep=S().level,w=S().world;api.setLevel({greybox:true});w.gb={moci:{krilo:true}};const shut=ids.filter(id=>!api.moc2(id)).join(' ');w.gb.moci.lanac=true;const lanacOpen=api.moc2('lanac');w.gb.moci.amajlije=false;const amShut=!api.moc2('amajlije');api.setLevel(keep);delete w.gb;
-  ok(shut==='klizanje zidotrk kombo lanac oko'&&lanacOpen&&amShut,'lost crown II: a greybox level keeps the five gate powers shut until world.gb.moci[id] is set; springs, charms, marks and blows stay open unless it sets them false');}
- // Klizanje: under the low wall and under a blow
- {V();quiet(S().world);stand(300,590);press('KeyD');step(150);const blocked=S().p.x;release('KeyD');
-  stand(390,590);S().p.invuln=0;press('KeyD');step(20);press('KeyS');step(2);tap('ShiftLeft');const sliding=S().p.slide>0,hp=S().p.hp;api.damage(30,-1);const dodged=S().p.hp===hp;step(100);release('KeyS');step(20);release('KeyD');
-  ok(blocked<520&&sliding&&S().p.x>660,`klizanje: on foot Marko stops at the low wall (${Math.round(blocked)}); S + Shift in a run slides him under it to ${Math.round(S().p.x)}`);
-  ok(dodged,'klizanje: a blow during the slide passes over him');}
- // Trk po zidu: across an abyss no jump, dash and wing cross
- {V();quiet(S().world);stand(700,590);press('KeyD');let jumped=false,off=false,ranY=[],wingBack=false;
-  for(let i=0;i<500;i++){const P=S().p;if(!jumped&&P.x>975){tap('Space');jumped=true;continue;}if(P.zidotrk){ranY.push(P.y);if(P.zidotrk.t<.12&&!off){wingBack=!P.kriloUsed;tap('Space');off=true;continue;}}step();if(jumped&&i>40&&S().p.grounded)break;}
-  release('KeyD');const P=S().p,first=ranY.slice(0,40),hold=Math.max(...first)-Math.min(...first);
-  ok(ranY.length>60&&hold<3&&off&&P.grounded&&P.x>1640&&P.y===590&&P.hp===P.maxHp,`trk po zidu: Marko runs ${ranY.length} steps along the runed wall (height held within ${hold.toFixed(1)}px), jumps off with Space and lands across the 640px abyss at ${Math.round(P.x)}`);
-  ok(wingBack,'trk po zidu: the wall gives the falcon\'s wing back, like any wall');
-  V();quiet(S().world);S().world.zidovi=[];stand(700,590);S().p.invuln=0;press('KeyD');jumped=false;let used=false;
-  for(let i=0;i<600;i++){const P=S().p;if(!jumped&&P.x>975){tap('Space');jumped=true;continue;}if(jumped&&!used&&!P.grounded&&P.vy>-100){tap('ShiftLeft');step(26);tap('Space');used=true;continue;}step();if(jumped&&i>40&&S().p.grounded)break;}release('KeyD');
-  ok(S().p.x<1000&&S().p.hp<S().p.maxHp,`trk po zidu: without the runed wall the same jump with the dash and the wing falls short (back on firm ground at ${Math.round(S().p.x)}, hurt)`);}
- // Vazdušni kombo: W + K throws the foe up, Space follows, J J keeps him up, the third blow nails him down onto his mate
- {V();quiet(S().world);stand(2500,590);S().p.face=1;S().p.invuln=99;const e=foe(2580),mate=foe(2680);e.hp=e.maxHp=400;
-  press('KeyW');tap('KeyK');release('KeyW');let t=0;while(!(e.lansiran>0)&&t++<60)step();const launched=e.vy<-600&&e.lansiran>0;
-  step(12);tap('Space');step(3);const leap=S().p.vy<-650;let holds=0,spiked=false,top=590,lastHp=e.hp;
-  for(let i=0;i<240&&!spiked;i++){if(i%22===8){tap('KeyJ');step(2);if(e.hp<lastHp&&!e.spiked&&e.vy<=-255&&!e.grounded)holds++;lastHp=e.hp;}else step();top=Math.min(top,e.y);if(e.spiked)spiked=true;}
-  step(120);
-  ok(launched&&leap,'vazdušni kombo: W + K throws the foe up, Space right after leaps after him');
-  ok(holds>=2&&spiked&&top<440,`vazdušni kombo: J J pushes him up again (${holds} times, ${590-Math.round(top)}px over the ground) and the third blow nails him down`);
-  ok(mate.hp<mate.maxHp,'vazdušni kombo: where he is nailed the ground shakes his mate');}
- // Ravijojlin lanac: to the hook, a light foe to Marko, the shield out of a hand, Marko to a heavy foe
- {V();quiet(S().world);stand(1780,590);S().p.face=1;press('KeyD');ok(api.lanacTarget()?.kind==='kuka','lanac: the silver hook above is the chain\'s mark');tap('KeyC');step(150);release('KeyD');step(30);
-  ok(S().p.grounded&&S().p.y===200&&S().p.x>1950,`lanac: C pulls Marko to the hook and onto the plank 390px up (${Math.round(S().p.x)}, ${S().p.y})`);
-  stand(2500,590);S().p.face=1;const e=foe(2800);tap('KeyC');step(60);ok(Math.abs(e.x-S().p.x)<130&&e.stun>0,`lanac: a light foe 300px off is pulled to Marko (${Math.round(Math.abs(e.x-S().p.x))}px) and stunned`);
-  tap('KeyC');ok(!S().p.lanac,'lanac: it rests a moment before it flies again');
-  step(120);quiet(S().world);stand(2500,590);S().p.face=1;const s=foe(2800,'shield');tap('KeyC');step(60);ok(s.guardBroken>0,'lanac: the shield is torn out of its bearer\'s hand');
-  step(120);quiet(S().world);stand(2500,590);S().p.face=1;const o=foe(2850,'oklopnik');tap('KeyC');step(90);ok(S().p.x>2720&&Math.abs(S().p.x-o.x)<110,`lanac: an armoured foe is too heavy, the chain takes Marko ${Math.round(S().p.x-2500)}px to him`);}
- // Vilinsko oko: hidden stairs, a wall that is only a trick
- {V();quiet(S().world);fresh();const w=S().world,hid=w.platforms.filter(q=>q.oko),ilu=w.platforms.find(q=>q.iluzija);stand(2150,590);step(2);ok(hid.length===3&&hid.every(q=>q.off),'vilinsko oko: the hidden stair is not there for a closed eye');
-  press('KeyO');step(3);ok(hid.every(q=>!q.off)&&S().p.oko,'vilinsko oko: holding O opens Ravijojla\'s eye and the stair holds');
-  press('KeyD');let top=590;for(let i=0;i<360;i++){const P=S().p;if(P.grounded&&P.x<2700&&(P.x>2205||P.on?.oko))tap('Space');else step();top=Math.min(top,S().p.grounded?S().p.y:top);if(P.grounded&&P.y===290&&P.x>2700)break;}
-  release('KeyD');step(30);ok(top===290&&api.amState().have.includes('vranino-pero'),`vilinsko oko: up the hidden stair to the plank at 290 and the charm left there (${api.amState().have.join(', ')})`);
-  release('KeyO');step(60);ok(hid.every(q=>q.off)&&!S().p.oko,'vilinsko oko: the eye closed, the stair is gone');
-  stand(2300,590);step(600);press('KeyO');let open=0;for(let i=0;i<Math.ceil(api.OKO_MAX*120)+240;i++){step();if(S().p.oko)open++;}ok(!S().p.oko&&Math.abs(open/120-api.OKO_MAX)<.05,`vilinsko oko: it tires after ${(open/120).toFixed(2)} s and stays shut while O is still held`);release('KeyO');
-  stand(2900,590);press('KeyD');step(150);release('KeyD');ok(S().p.x>ilu.x+ilu.w&&ilu.off,'vilinsko oko: the wall before the second spring is only a trick; Marko walks through it');}
- // Ravijojlini izvori: finding one, resting, travelling, never with a foe close
- {V();quiet(S().world);fresh();const w=S().world;stand(700,590);step(2);const before=w.izvori[0].found;stand(260,590);step(2);ok(!before&&w.izvori[0].found,'izvori: walking by the spring finds it');
-  S().p.hp=20;S().p.wine=0;tap('KeyE');ok(S().mode==='izvor'&&S().p.hp===S().p.maxHp&&S().p.wine>=3,'izvori: E at the spring: rest, health and wine are full');
-  api.closeIzvor();ok(S().mode==='play'&&!api.putuj('v2'),'brzo putovanje: a spring not found yet cannot be reached');
-  stand(3120,590);step(2);tap('KeyE');ok(w.izvori[1].found&&S().mode==='izvor','izvori: the spring behind the trick wall is found and rested at');
-  api.putuj('v1');ok(S().mode==='play'&&Math.abs(S().p.x-230)<1,'brzo putovanje: from the second spring straight to the first');
-  foe(420);tap('KeyE');ok(S().mode==='play','izvori: no rest with a foe close by');}
- // Amajlije: found, changed only at a spring, three places (five with the girdles), and what they do
- {V();quiet(S().world);fresh();stand(2100,200);step(4);const got=api.amState().have.includes('gvozdeni-prsten');
-  ok(got&&!api.amToggle('gvozdeni-prsten')&&!api.am('gvozdeni-prsten'),'amajlije: the charm on the high plank is found, but is not put on away from a spring');
-  stand(230,590);step(2);tap('KeyL');step();const plain=S().p.parry;step(120);tap('KeyE');api.amToggle('gvozdeni-prsten');api.closeIzvor();step(90);tap('KeyL');step();
-  ok(api.am('gvozdeni-prsten')&&S().p.parry>plain*1.5,`amajlije: at the spring the iron ring goes on, and the parry window is longer (${plain.toFixed(2)} → ${S().p.parry.toFixed(2)} s)`);
-  storage.set('marko-amajlije',JSON.stringify({have:api.AMAJLIJE.map(a=>a.id),on:[],slots:3}));api.resetMoci2();V();quiet(S().world);stand(230,590);step(2);tap('KeyE');const hp0=S().p.maxHp;
-  const a=api.amToggle('kamen-srcanik'),b=api.amToggle('sokolova-kandza'),c=api.amToggle('vilin-pramen');
-  ok(api.AMAJLIJE.length>=10&&a&&!b&&c&&S().p.maxHp===hp0+30,`amajlije: ${api.AMAJLIJE.length} charms; three places hold the heart stone (two) and one more, not two big ones; the heart stone gives +30 health`);
-  api.closeIzvor();step(2);tap('KeyV');ok(S().p.trag?.left===14,'amajlije: Vilin pramen keeps the fairy\'s trace 14 seconds');tap('KeyV');
-  api.setBank(500);const shop=api.ducanList().map(d=>d.id);ok(shop.includes('pojas'),'amajlije: the merchant sells Ravijojla\'s girdle');api.buyDucan('pojas');
-  stand(230,590);step(2);tap('KeyE');api.amToggle('vilin-pramen');const d=api.amToggle('sokolova-kandza');api.closeIzvor();
-  ok(api.amState().slots===4&&d,'amajlije: with the girdle there are four places, and the falcon\'s claw fits beside the heart stone');
-  stand(600,590);step(2);tap('Space');step(30);tap('ShiftLeft');step(30);tap('ShiftLeft');ok(S().p.airDash&&S().p.naletN===2,'amajlije: the falcon\'s claw gives two dashes in one flight');step(120);
-  storage.set('marko-amajlije',JSON.stringify({have:api.AMAJLIJE.map(a=>a.id),on:[],slots:3}));api.resetMoci2();
-  const kill=async on=>{if(on){storage.set('marko-amajlije',JSON.stringify({have:api.AMAJLIJE.map(a=>a.id),on:['hajducka-kesa'],slots:3}));api.resetMoci2();}const w=await start('selo');quiet(w);const e=w.enemies.find(e=>!e.champion&&!e.elite);e.alive=true;e.hp=1;stand(e.x-60,e.y);S().p.face=1;const n=S().bank;tap('KeyJ');step(20);for(const c of S().coins){c.x=S().p.x;c.y=S().p.y-30;}step(240);return e.alive?-99:S().bank-n;};
-  const plainC=await kill(false),kesa=await kill(true);ok(kesa===plainC+2,`amajlije: the outlaw's purse adds 2 ducats to each fallen foe (${plainC} → ${kesa})`);
-  fresh();}
- // Oznake i mapa
- {V();quiet(S().world);const w=S().world;stand(700,590);tap('KeyB');const one=w.oznake.length;tap('KeyB');ok(one===1&&w.oznake.length===0,'oznake: B leaves a mark on the map, B by it takes it off');
-  for(const x of[100,300,500,700,900,1700,1900,2500,2700]){stand(x,590);step();tap('KeyB');}ok(w.oznake.length===8,'oznake: eight marks at most');
-  tap('KeyM');ok(S().mode==='karta','mapa: M opens the map');api.closeKarta();ok(S().mode==='play'&&w.istr.size>=6,`mapa: closed again; ${w.istr.size} map cells explored so far`);}
- // Junački udari: two of four, on F and R
- {V();quiet(S().world);fresh();ok(api.udari().join()==='vihor,super'&&api.UK('vihor')==='KeyF'&&api.UK('super')==='KeyR','junački udari: Vihor on F and the heroic blow on R, as before');
-  api.izaberiUdar('potres');ok(api.udari().join()==='potres,super'&&api.UK('vihor')==='-','junački udari: Potres takes F in Vihor\'s place');
-  stand(2800,590);S().p.face=1;S().p.invuln=99;S().p.rage=100;const a=foe(3060),b=foe(2540);tap('KeyF');step(80);
-  ok(a.hp<a.maxHp&&b.hp<b.maxHp&&S().p.rage===50&&!(S().p.spin>0),`potres: F drives the mace into the ground, the wave hits foes on both sides 260px off; 50 rage spent`);
-  api.izaberiUdar('gaz');ok(api.udari().join()==='potres,gaz','junački udari: Šarčev gaz takes R');
-  quiet(S().world);step(60);stand(2500,590);S().p.face=1;S().p.invuln=99;S().p.rage=100;const row=[2650,2760,2870].map(x=>foe(x));tap('KeyR');step(220);
-  ok(row.every(e=>e.hp<e.maxHp)&&S().p.rage===0&&!S().gaz,'šarčev gaz: R calls Šarac, he tramples the whole row and is gone; all rage spent');
-  api.izaberiUdar('potres');ok(api.udari().join()==='gaz,potres','junački udari: picking one already carried swaps F and R');fresh();}
-}
-// the gamepad and the touch screen for the second set
-{const grab=name=>{const i=source.indexOf(name);let d=0,j=source.indexOf('{',i);for(;j<source.length;j++){if(source[j]==='{')d++;else if(source[j]==='}'&&--d===0)break;}return source.slice(i,j+1);};
- const buttons=Array.from({length:17},()=>({pressed:false,value:0})),pad={index:0,id:'test pad',buttons,axes:[0,0,0,0]},keys=new Set(),pressed=new Set();
- const poll=new Function('navigator','$','keys','pressed',`let hasDom=true,mode='play',padIndex=0,stickMag=1,padPrev={},padNav={};const padRest=new Set(),padHeld=new Set(),markPad=()=>{},padConnected=()=>{},pause=()=>{},padMenu=()=>{};${source.match(/const PAD_MAP=\{[^}]*\};/)[0]}${grab('function padSet(')}${grab('function pollPads(')}return pollPads;`)({getGamepads:()=>[pad]},()=>null,keys,pressed);
- const hold=(i,on)=>{buttons[i].pressed=on;buttons[i].value=on?1:0;poll();},clear=()=>{for(let i=0;i<17;i++)hold(i,false);pressed.clear();};
- hold(12,true);hold(5,true);ok(pressed.has('KeyC')&&!keys.has('KeyI'),'gamepad: ↑ + RB throws Ravijojla\'s chain, not the mace');clear();
- hold(5,true);ok(pressed.has('KeyI')&&!keys.has('KeyC'),'gamepad: RB alone still throws the mace');clear();
- hold(12,true);hold(6,true);ok(keys.has('KeyO')&&!keys.has('KeyQ'),'gamepad: ↑ + LT held opens the fairy\'s eye and does not drink');clear();
- hold(13,true);hold(8,true);ok(pressed.has('KeyM')&&!keys.has('KeyG'),'gamepad: ↓ + ⧉ opens the map');clear();
- hold(12,true);hold(8,true);ok(pressed.has('KeyB')&&!keys.has('KeyG'),'gamepad: ↑ + ⧉ leaves a mark on the map');clear();
- hold(8,true);ok(pressed.has('KeyG'),'gamepad: ⧉ alone is still the father\'s sabre');clear();
- const html=await fs.readFile('dist/index.html','utf8');ok(['KeyC','KeyO','KeyB','KeyM'].every(k=>html.includes(`data-key="${k}"`)&&new RegExp(k+":'<").test(source)),'touch: chain, eye, mark and map have their buttons, drawn like the others');}
 console.log(`${checks} pohod mechanics checks passed.`);

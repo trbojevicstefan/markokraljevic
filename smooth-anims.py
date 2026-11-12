@@ -73,9 +73,6 @@ ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
 # Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
 # at its last frame never asks for it).
 SKIP = {'kosturi'}   # not an animation: each frame is another skeleton, picked by the kind of soldier
-# the same sheet under another name (build-sprite-rig.py), until the clip gets its own drawing: the same in-betweens
-ALIASES = {a: b for a, b in {'marko-launcher': 'marko-uppercut'}.items() if a in RIG and b in RIG and RIG[a]['image'] == RIG[b]['image']}
-SKIP |= set(ALIASES)
 EXTRA = [c for c in RIG if c not in MAIN_LOOPS and c not in ONCE and c not in SKIP and not c.startswith('cast/')]
 LOOPS = MAIN_LOOPS + EXTRA
 # a champion's look borrows the idle sequence of the soldier it stands for
@@ -124,20 +121,6 @@ def shift(c, dy):
     if not dy: return c
     M = np.float32([[1, 0, 0], [0, 1, dy]])
     return cv2.warpAffine(c, M, (c.shape[1], c.shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
-
-
-def shift2(c, d):
-    """The cell moved by d = (dx, dy) pixels, the edge filled with nothing."""
-    M = np.float32([[1, 0, d[0]], [0, 1, d[1]]])
-    return cv2.warpAffine(c, M, (c.shape[1], c.shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
-
-
-def centre(c):
-    """The centre of the figure (alpha-weighted), (x, y)."""
-    al = c[..., 3]; s = al.sum()
-    if s <= 0: return np.zeros(2, np.float32)
-    ys, xs = np.mgrid[0:al.shape[0], 0:al.shape[1]]
-    return np.array([(xs * al).sum() / s, (ys * al).sum() / s], np.float32)
 
 
 def gray(c):
@@ -242,7 +225,6 @@ def skyline(sizes, width):
 
 def pack(items):
     """[(key, img)] -> (sheet, {key: [x, y, w, h]}): the strip width that wastes the least picture."""
-    if not items: return np.zeros((1, 1, 4), np.uint8), {}
     sizes = [(im.shape[1], im.shape[0]) for _, im in items]
     area = sum(w * h for w, h in sizes); wmax = max(w for w, _ in sizes) + 1
     best = None
@@ -266,66 +248,6 @@ def clip_scale(r):
     return min(1.0, round(r['scale'] * DISPLAY * 20 + 0.49) / 20)
 
 
-# ---------- drawn in-betweens (DOPUNA-45): <clip>-v2 has 2n-1 frames, the old ones at the even places, new poses between ----------
-V2 = os.path.join(ROOT, 'art', 'animation-pack-04', 'assets')
-
-
-def v2_cells(name):
-    d = os.path.join(V2, name + '-v2')
-    try:
-        man = json.load(open(os.path.join(d, 'manifest.json'), encoding='utf-8'))
-        im = cv2.imread(os.path.join(d, 'atlas.png'), cv2.IMREAD_UNCHANGED)
-        rows = list(man['frame_layout']['rows'].values())[0]
-        return [im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']].astype(np.float32) / 255 for c in rows]
-    except Exception:
-        return None
-
-
-def bbox(c):
-    ys, xs = np.nonzero(c[..., 3] > 0.3)
-    return (xs.min(), ys.min(), xs.max(), ys.max()) if len(xs) else None
-
-
-def fit(v, x):
-    """The zoom and shift that lay drawing v onto x (the same pose, perhaps in another cell or zoom): (s, tx, ty)."""
-    bv, bx = bbox(v), bbox(x)
-    if bv is None or bx is None: return (1.0, 0.0, 0.0)
-    s = (bx[3] - bx[1]) / max(1, bv[3] - bv[1])
-    return s, (bx[0] + bx[2]) / 2 - s * (bv[0] + bv[2]) / 2, bx[3] - s * bv[3]
-
-
-def place(v, f, shape):
-    M = np.float32([[f[0], 0, f[1]], [0, f[0], f[2]]])
-    return cv2.warpAffine(v, M, (shape[1], shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
-
-
-def defringe(c):
-    """A drawn frame keyed off a light ground can keep a pale rim, soft or solid: light, colourless pixels on the outer edge of
-    the figure go, peeled a few times (a cream sleeve has colour and stays)."""
-    out = c.copy()
-    for _ in range(3):
-        al = out[..., 3]; rgb = out[..., :3]
-        solid = (al > 0.5).astype(np.uint8)
-        edge = (al > 0.02) & (cv2.erode(solid, np.ones((5, 5), np.uint8)) == 0)
-        pale = (rgb.min(axis=2) > 0.58) & (rgb.max(axis=2) - rgb.min(axis=2) < 0.10)
-        rim = edge & pale
-        if not rim.any(): break
-        out[..., 3][rim] = 0
-    # and the thin soft rim left of it: the edge of the alpha pulled in by 2 px (well under a pixel on screen)
-    out[..., 3] = np.minimum(out[..., 3], cv2.erode(out[..., 3], np.ones((3, 3), np.uint8), iterations=2))
-    return out
-
-
-def sole_of(c):
-    ys = np.nonzero((c[..., 3] > 0.5).any(axis=1))[0]
-    return float(ys.max()) if len(ys) else c.shape[0] - 1.0
-
-
-def iou(a, b):
-    x, y = a[..., 3] > 0.5, b[..., 3] > 0.5
-    return float((x & y).sum()) / max(1, (x | y).sum())
-
-
 def work(job):
     name, pairs = job
     r = RIG[name]
@@ -333,51 +255,21 @@ def work(job):
     if img is None or img.ndim < 3 or img.shape[2] != 4:
         return name, None, 'no alpha sheet'
     F = r['frames']; k = clip_scale(r)
-    keep = {}; log = []; drawn = set()
-    V = v2_cells(name)
-    if V is not None and len(V) != 2 * len(F) - 1: V = None
+    keep = {}; log = []
     for (i, j) in pairs:
         if F[i][2:4] != F[j][2:4]:
             log.append((i, j, None, None, 'cell size')); continue
-        if V is not None and j == i + 1:
-            # the drawn pose between them, laid into this clip's cell by its neighbours (copies of frames i and j); its own
-            # sole is where the game puts it on the ground. The quarters are the flow between it and each neighbour.
-            a, b = cell(img, F[i]), cell(img, F[j])
-            fa, fb = fit(V[2 * i], a), fit(V[2 * j], b)
-            D = defringe(place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape))
-            match = min(iou(place(V[2 * i], fa, a.shape), a), iou(place(V[2 * j], fb, b.shape), b))
-            sd = sole_of(D); mid = crop(D, k)
-            if mid is not None and match > 0.7:
-                q1 = betweens(a, shift(D, int(round(F[i][4] - sd))))[1]
-                q3 = betweens(D, shift(b, int(round(sd - F[j][4]))))[1]
-                ok = lambda q: q[1] <= MAX_ERR and q[2] <= MAX_GHOST
-                cuts = [crop(q1[0], k) if ok(q1) else None, mid, crop(q3[0], k) if ok(q3) else None]
-                keep[(i, j)] = [(c[0], c[1] - r['anchor'], c[2] - base) if c else None for c, base in zip(cuts, (F[i][4], sd, sd))]
-                drawn.add((i, j)); log.append((i, j, max(q1[1], q3[1]), match, 'drawn')); continue
-            log.append((i, j, None, match, 'v2 off'))
         a = cell(img, F[i])
         b = shift(cell(img, F[j]), int(round(F[i][4] - F[j][4])))   # b's sole onto a's
         res = betweens(a, b)
         err = max(e for _, e, _ in res); ghost = max(g for _, _, g in res)
         why = 'flow' if err > MAX_ERR else 'ghost' if ghost > MAX_GHOST else ''
-        note = why
-        if why:
-            # A second try for a figure that moves across its cell (a leap, a lunge, a fall): b is first laid onto a by the
-            # centres of their figures, the flow follows only the change of pose, and each in-between is moved back by its
-            # share of the way.
-            s = centre(b) - centre(a)
-            if np.hypot(*s) > 3:
-                res2 = betweens(a, shift2(b, -s))
-                err2 = max(e for _, e, _ in res2); ghost2 = max(g for _, _, g in res2)
-                if err2 <= MAX_ERR and ghost2 <= MAX_GHOST:
-                    res = [(shift2(m, s * t), e, g) for (m, e, g), t in zip(res2, TS)]
-                    err, ghost, why, note = err2, ghost2, '', 'centred'
-        log.append((i, j, err, ghost, note))
+        log.append((i, j, err, ghost, why))
         if why: continue
         cuts = [crop(m, k) for m, _, _ in res]
         if any(c is None for c in cuts): continue
         keep[(i, j)] = [(c[0], c[1] - r['anchor'], c[2] - F[i][4]) for c in cuts]
-    return name, (k, keep, drawn), log
+    return name, (k, keep), log
 
 
 def run(names):
@@ -388,12 +280,11 @@ def run(names):
     for n in names:
         if n not in RIG: print('skip (not in the rig):', n)
     total = 0
-    # a few workers: each holds a sheet and its flows in memory (SMOOTH_WORKERS to change)
-    with ProcessPoolExecutor(max_workers=int(os.environ.get('SMOOTH_WORKERS', min(6, max(1, (os.cpu_count() or 2) - 1))))) as ex:
+    with ProcessPoolExecutor(max_workers=max(1, (os.cpu_count() or 2) - 1)) as ex:
         for name, res, log in ex.map(work, jobs):
             if res is None:
                 print('skip (%s): %s' % (log, name)); continue
-            k, keep, drawn = res
+            k, keep = res
             for ext in ('.webp', '-q.webp'):
                 old = os.path.join(OUT, name + ext)
                 if os.path.exists(old): os.remove(old)
@@ -403,22 +294,19 @@ def run(names):
                 half, quarter = [], []
                 for (i, j), cuts in keep.items():
                     half.append(((i, j, 1), cuts[1][0]))
-                    quarter += [((i, j, q), cuts[q][0]) for q in (0, 2) if cuts[q]]
+                    quarter += [((i, j, 0), cuts[0][0]), ((i, j, 2), cuts[2][0])]
                 s1, r1 = pack(half); s2, r2 = pack(quarter)
                 cv2.imwrite(os.path.join(OUT, name + '.webp'), s1, [cv2.IMWRITE_WEBP_QUALITY, 88])
                 cv2.imwrite(os.path.join(OUT, name + '-q.webp'), s2, [cv2.IMWRITE_WEBP_QUALITY, 88])
                 mids = {}
                 for (i, j), cuts in keep.items():
-                    rr = [r2.get((i, j, 0)), r1[(i, j, 1)], r2.get((i, j, 2))]
-                    mids['%d-%d' % (i, j)] = [rr[q] + [round(cuts[q][1], 1), round(cuts[q][2], 1)] if cuts[q] else None for q in range(3)]
+                    rr = [r2[(i, j, 0)], r1[(i, j, 1)], r2[(i, j, 2)]]
+                    mids['%d-%d' % (i, j)] = [rr[q] + [round(cuts[q][1], 1), round(cuts[q][2], 1)] for q in range(3)]
                 meta[name] = {'image': 'smooth/' + name + '.webp', 'imageQ': 'smooth/' + name + '-q.webp', 'k': k,
                               'loop': name in LOOPS, 'mids': mids}
-                if drawn: meta[name]['drawn'] = sorted('%d-%d' % p for p in drawn)   # drawn poses: a blow passes through them
                 total += s1.shape[0] * s1.shape[1] + s2.shape[0] * s2.shape[1]
             print('%-26s %2d/%2d pairs  k=%.2f  %s' % (name, len(keep), len(log), k,
                   ' '.join('%d-%d:%s' % (i, j, ('%.3f/%.2f' % (e, g)) + ('!' + w if w else '') if e is not None else w) for i, j, e, g, w in log)), flush=True)
-    for alias, src in ALIASES.items():
-        if src in meta and alias in RIG: meta[alias] = meta[src]
     meta = {k: meta[k] for k in sorted(meta)}
     json.dump(meta, open(META, 'w', encoding='utf-8'), separators=(',', ':'))
     print('sheets written: %.1f Mpx (%.0f MB decoded)' % (total / 1e6, total * 4 / 1e6))
@@ -459,14 +347,14 @@ def sheet(name, dst, size=220, only=None):
         m = meta.get('mids', {}).get('%d-%d' % (i, j))
         for q in range(3):
             canvas = np.zeros((h, w, 4), np.uint8)
-            if m and m[q]:
+            if m:
                 x, y, ww, hh, dx, dy = m[q]
                 part = (sh[1] if q == 1 else sh[0])[y:y + hh, x:x + ww]
                 part = cv2.resize(part, (max(1, round(ww / k)), max(1, round(hh / k))), interpolation=cv2.INTER_LINEAR)
                 X, Y = int(round(r['anchor'] + dx)), int(round(fa[4] + dy))
                 X1, Y1 = min(w, X + part.shape[1]), min(h, Y + part.shape[0])
                 canvas[Y:Y1, X:X1] = part[:Y1 - Y, :X1 - X]
-            put(canvas, row, 1 + q, red=not (m and m[q]))
+            put(canvas, row, 1 + q, red=not m)
     cv2.imwrite(dst, out, [cv2.IMWRITE_JPEG_QUALITY, 84])
 
 

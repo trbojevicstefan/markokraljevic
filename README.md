@@ -263,19 +263,12 @@ Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i be
 | K | Teški udarac, razbijanje garda |
 | L | Drži za blok; pritisni u pravom trenutku za odbijanje |
 | S / strelica dole | Čučanj, sporije kretanje i izbegavanje strela |
-| R | Super udarac pri 100 junačkog besa (ili drugi izabrani junački udar) |
+| R | Super udarac pri 100 junačkog besa |
 | Shift | Izmicanje (kolut); u vazduhu: juriš napred |
 | E | Ravijojla / aktiviranje kamena / uzjahivanje Šarca |
-| F (drži) | Vihor: Marko se vrti sa topuzom i udara sve oko sebe; traži 25 besa i troši ga dok se vrti (ili prvi izabrani junački udar) |
+| F (drži) | Vihor: Marko se vrti sa topuzom i udara sve oko sebe; traži 25 besa i troši ga dok se vrti |
 | Q | Vino: 12 s, +30% štete, 20% manje primljene štete, +18 zdravlja |
 | V | Vilin trag: ostavi ga, pa se u roku od 8 s vrati na njega |
-| S + Shift u trku | Klizanje: ispod niskog zida i ispod udarca |
-| W + K | Podizač: baca dušmanina uvis; Space odmah posle skače za njim |
-| C | Ravijojlin lanac: do srebrne kuke, ili dušmanina k sebi |
-| O (drži) | Vilinsko oko: skrivene platforme, zidovi-varke, tajne sobe |
-| M | Mapa (sa izvora i brzo putovanje) |
-| B | Oznaka na mapi sa sličicom mesta; B kod nje je skida |
-| E na izvoru | Odmor, amajlije, izbor junačkih udara, put do drugog izvora |
 | Esc | Pauza |
 
 Dodirne kontrole se pojavljuju na uređajima sa primarnim touch pokazivačem. Podešavanja nude lakši režim, jačinu zvuka i manje podrhtavanja. Igra se automatski pauzira pri gubitku fokusa. Kontrolne tačke i podešavanja čuvaju se u localStorage, bez naloga ili server baze.
@@ -289,97 +282,6 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 - **Vilin trag:** V (džojstik ↓ + RT, dodir: dugme sa zvezdom iznad vile) ostavlja svetli Ravijojlin trag. Ponovo V u roku od 8 s vraća Marka na trag: vraća se samo mesto, zdravlje ne. Radi i usred udarca, kao izmicanje; posle povratka odmara 3,5 s. Ne izvlači Marka iz megdana.
 - **Sigurno tlo:** pad u ponor je već radio po tom pravilu (−20 zdravlja, povratak na poslednje čvrsto tlo). Sada se daska koja popušta i tlo uz kolje ne računaju kao čvrsto tlo, pa Marko više ne pada ponovo u istu rupu. Kolje i dalje rani i odbaci Marka uvis, kao i pre.
 - **Skok:** Space pritisnut visoko u vazduhu više se ne pamti do doskoka (Marko ranije sam skoči kad dotakne tlo).
-
-**Lost Crown pohodi** (dugme u meniju, ili `index.html?greybox=1|2|3`) su tri duga nivoa. Motor je u `dist/greybox.js`, nivoi u `dist/greybox-nivoi.js`, a oblačenje u `dist/greybox-svet.js`. Mape i opis su u `NIVOI-LOST-CROWN.md`.
-- **Nivo 1, Podgrađe pod Markovim kulama:** 21 soba, tu se dobija krilo.
-- **Nivo 2, Urvina planina:** 22 sobe, tu se dobija juriš.
-- **Nivo 3, Kačanička klisura i Musina kula:** 21 soba, tu se dobija Vilin trag; Musa je na krovu kule.
-- Svaki nivo ima pet spratova, četiri skrivene sobe, dva čuda i tri čekpointa. Prečice, dimnjaci za zid-skok, šiljci, daske koje popuštaju, strelnice i grede su iz `zamke.js`.
-- Gore desno je mapa koja se crta dok istražuješ. Skrivene sobe su prekrivene kao stena dok ne uđeš.
-- Oblačenje čita `dist/assets/realisticno/manifest.json`. Dok njega nema, koristi naslikane materijale iz `dist/assets/world/`, a dok se ni oni ne učitaju, ostaje sivo.
-- Tlo nije kockasto: ima brda i uvale, a Marko i Turci hodaju, trče, kotrljaju se i doskaču po nagibu. Kosina je platforma sa `surf` (visina na svakih 8 px) i radi u `integrate()` za svako telo. Ravne platforme rade kao i pre.
-- Zid-skok radi samo uz zidove dimnjaka, a Vilinski uzlet je isključen. Ništa se ne upisuje u sačuvanu igru.
-- `node greybox-test.mjs` za svaki nivo prelazi svaku vezu između soba stvarnim ulazima i proverava da nijedna kapija ne pušta bez svoje moći.
-- Šta još treba nacrtati za ovaj stil igre piše u `LOST-CROWN-POTREBE.md`.
-
-## Lost Crown pokreti, druga serija
-
-Opet su uzete samo ideje. Svaka moć ima zastavicu (`MOCI2` u `dist/game.js`). Van greybox nivoa sve su Markove od početka. U greybox nivou pet kapija (`klizanje`, `zidotrk`, `kombo`, `lanac`, `oko`) ostaju zatvorene dok nivo ne postavi `world.gb.moci[id]=true`, na primer na oltaru. Ostale (`amajlije`, `putovanje`, `oznake`, `potres`, `gaz`) su otvorene dok ih nivo ne postavi na `false`. Sve se vidi u vežbalištu: `index.html?go=moci` (link je i u `test.html`).
-
-- **Klizanje** (`klizanje`): S + Shift u trku (džojstik ↓ + B), a i dalje samo S u trku. Marko klizi ispod niskog zida i ispod udarca, jer ga za to vreme ništa ne dotiče. Ako je nad njim još nizak zid, klizi dalje dok ne izađe.
-- **Trk po zidu** (`zidotrk`): skoči na zid sa Ravijojlinim šarama i drži smer. Marko pretrči oko 400 px vodoravno, pa Space skače sa zida. Zid mu vraća krilo i juriš. Nivo ga dobija listom `world.zidovi=[{x,y,w,h}]`.
-- **Vazdušni kombo** (`kombo`): W + K je podizač i baca dušmanina uvis. Space odmah posle skače za njim, J J ga drži gore, a treći udarac ga zakuca. Gde padne, tlo udari i dušmanina pored njega. Aperkat (S + K) i stari vazdušni niz ostaju kakvi su bili.
-- **Ravijojlin lanac** (`lanac`, C, džojstik ↑ + RB):
-  - privuče Marka do srebrne kuke (`world.kuke=[{x,y}]`) i vrati mu krilo i juriš;
-  - laka dušmanina privuče k Marku i ošamuti ga;
-  - štitonoši otme štit;
-  - oklopnika i megdandžiju ne pomera, nego Marka privuče k njima.
-
-  Lanac se crta proceduralno dok ne stigne crtež.
-- **Vilinsko oko** (`oko`, drži O, džojstik drži ↑ + LT): traje 3,2 s, pa mora da se pusti i odmori. Dok je otvoreno:
-  - platforme sa `oko:true` postaju vidljive i čvrste;
-  - zid sa `iluzija:true` se vidi kao varka (kroz njega se uvek prolazi);
-  - u greybox-u se otvaraju lažni zidovi i ocrtavaju tajne sobe.
-- **Amajlije** (`amajlije`): 12 amajlija, a svaka traži jedno ili dva mesta.
-  - Ima tri mesta, a dva Ravijojlina pojasa daju do pet.
-  - Nalaze se u tajnim sobama greybox-a (jedna po sobi), na tlu (`world.nalazi`) i kod trgovca.
-  - Stavljaju se samo na izvoru i čuvaju se u `marko-amajlije`.
-  - Perkovi su: duži trenutak za odbijanje, jača kontra, vino leči duplo, vino traje 20 s, dva juriša u vazduhu, +30 zdravlja, +2 dukata po dušmaninu, Vilin trag 14 s, oko traje duplo, jači teški udarci, lanac dalje i brže, i bes raste brže.
-- **Izvori, odmor i brzo putovanje** (`putovanje`): izvor je čekpoint greybox-a, izvor iz `world.izvori` ili podignut barjak u pohodu.
-  - Kad Marko prođe pored izvora, nađe ga.
-  - E na izvoru vraća zdravlje, vino i vilinsku snagu i postavlja čekpoint.
-  - Tu se menjaju amajlije i junački udari i putuje do svakog nađenog izvora.
-  - Kad su dušmani blizu, odmora nema.
-- **Oznake na mapi** (`oznake`): B ostavlja oznaku sa sličicom tog mesta (do 8), a B kod oznake je skida. M otvara mapu onoga što je Marko video, sa izvorima, trgovcem, zidovima za trk i oznakama.
-- **Junački udari** (`potres`, `gaz`): od četiri udara Marko nosi dva, prvi na F (L3), drugi na R (R3); bira ih na izvoru.
-  - Vihor i Junački udar su kao pre.
-  - **Potres** (50 besa): talas ide po tlu na obe strane i baca dušmane uvis.
-  - **Šarčev gaz** (100 besa): Šarac proleti kroz ekran i pregazi ceo red dušmana.
-- Crteži za klizanje, zid, podizač i kuku naručeni su kod sesije „glatke-animacije“. Do tada rade postojeći klipovi i proceduralni sloj.
-- Testovi su u `mechanics-test.mjs` i rade sa stvarnim tasterima, uz džojstik kroz pravi `pollPads`.
-- **Megdani** (`megdani-test.mjs`): bot se bori sa svakim megdandžijom iz pohoda, sa Musom i sa tri greybox bosa. U svakoj borbi koristi sve nove poteze redom. Nijedan potez ne sme da baci grešku, da izbaci Marka iz ringa, da pogodi megdandžiju između činova, bajraktara dok mu barjak stoji ili Musu kroz zatvoren gard, ni da ošamuti megdandžiju. Posle borbe svaki megdandžija mora i dalje da padne. Pravila za nove udarce:
-  - Potres, Šarčev gaz, talas zakucavanja i lanac idu kroz ista pravila kao težak udarac topuzom (štit, oklop, gard, činovi, kit megdandžije), a Musu pogađaju samo kad mu je gard otvoren.
-  - Bez topuza nema Potresa ni podizača; u zaključanim igrama (gađanje strelom) nove moći miruju.
-  - Klizanje štiti samo prvu trećinu i traži predah od 0,4 s, pa nizanje ne daje večnu nepobedivost.
-  - E kod barjaka uz dušmane i dalje zove vilu; vilinsko oko, mapa i oznaka rade i dok Marko visi na ivici.
-
-**Lost Crown verzije svih pohoda** (`index.html?greybox=4` do `?greybox=19`, i u istom meniju) su šesnaest nivoa, redom priče. Podaci su u `dist/greybox-nivoi-pohodi.js`, u istom obliku kao `greybox-nivoi.js`, a motor je isti.
-
-| `?greybox=` | Nivo (pesma) | Sobe | Moć | Bos | Biom |
-|---|---|---|---|---|---|
-| 4 | Kosovsko selo („Jao Šaro, moje desno krilo“) | 21 | krilo | Kopljanik-baša | podgradje |
-| 5 | Manastirski vis (Uroš i Mrnjavčevići) | 21 | juriš | Dželat | klisura |
-| 6 | Oranje drumova | 21 | Vilin trag | Tri janičara | podgradje |
-| 7 | Opsednuta tvrđava (Marko poznaje očinu sablju) | 21 | krilo | Hasan-aga | klisura |
-| 8 | Zaboravljeni podrum (vino uz ramazan) | 21 | juriš | Ognjeni aga | podgradje |
-| 9 | Noćna močvara (Lov Markov s Turcima) | 21 | Vilin trag | Tufekdžija-baša | urvina |
-| 10 | Ravijojlina šuma (Marko i vila) | 21 | krilo | Lovac-aga | urvina |
-| 11 | Vilinska pećina (Marko u pećini) | 20 | juriš | Aždaja | urvina |
-| 12 | Zimski prevoj (Đemo: „topuzinu baca u oblake“) | 21 | Vilin trag | Akindžijski beg | urvina |
-| 13 | Klisura Ibra (Đemo Brđanin) | 21 | krilo | Đemo Brđanin | klisura |
-| 14 | Ruševine na brdu (Marko ukida svadbarinu) | 20 | juriš | Arapin | podgradje |
-| 15 | Stari rudnik (Azačka tamnica: „voda do koljena“) | 20 | Vilin trag | Bajraktar | klisura |
-| 16 | Obala pred zoru („Poranio Kraljeviću Marko“) | 20 | krilo | Janičarski aga | klisura |
-| 17 | San Kraljevića Marka (četiri odaje sna) | 20 | juriš | Musa iz sna | urvina |
-| 18 | Azačka kula (soko nosi knjigu Dojčilu) | 20 | Vilin trag | Arapin | klisura |
-| 19 | Tri srca Kačanika (šest poglavlja glavne priče) | 20 | krilo | Musa Kesedžija | klisura |
-
-- Svaki nivo ima 22–23 sobe na tri do pet spratova i četiri do šest tajnih soba (bar jedna čeka moć tog nivoa, jedna novu moć, ostale oštro oko). Ima i dva čekpointa, četiri do šest borbi sa neprijateljima tog kraja i bosa tog pohoda.
-- Ima i likove iz pesme: guslar peva stihove, a ostali kažu svoju reč kad Marko priđe (`lik` u `zamke.js`). Zamke su strelnice i grede iz `zamke.js`, plus šiljci, ponori i daske koje popuštaju.
-- Biom je jedan od tri iz manifesta realističnih slika (`podgradje`, `urvina`, `klisura`); polje `zeljeniBiom` kaže koji bi crtež tu išao kad ga bude.
-- Moći se smenjuju redom priče: krilo (bez početnih moći), juriš (uz krilo) i Vilin trag (uz krilo i juriš). Kapije za moći su ispusti od 365 px za krilo, ponori od 500 px za juriš i vrata na prekidač udaljen 1100 px za Vilin trag. Do bosa se ne stiže bez moći tog nivoa.
-- **Druga moć iz `lc-pokreti`** (`daje2`): svaki nivo ima i oltar sa jednom od novih moći, odmah pored oltara svoje glavne moći. Moći se smenjuju redom: klizanje (4, 8, 12, 16), lanac (5, 9, 13, 17), trk po zidu (6, 10, 14, 18) i Vilinsko oko (7, 11, 15, 19).
-  - Ta moć otvara **Ravijojlinu stazu**: sobu od tri polja zapadno od početne sobe (u Azačkoj kuli istočno od vode do kolena), sa dva izazova. Iza staze je tajna soba, a ulaz u nju je zid koji je varka (`iluzija:true`). Na pola staze je amajlija na tlu. Ravijojla na ulazu kaže šta treba i gde je oltar.
-  - Izazovi: nizak prolaz od 60 px ispod nadvratnika (`lintel`) za klizanje; ponor od 650 px sa dve srebrne kuke (`world.kuke`) za lanac, od kuke do kuke; ponor od 650 px pod zidom sa šarama (`world.zidovi`) za trk po zidu; ponor od 650 px sa skrivenim daskama (`oko:true`) za Vilinsko oko. Bez moći nijedan se ne prelazi: test to proba, a krilo i juriš ne dobacuju (najviše 553 px).
-  - Izvori za odmor i brzo putovanje su čekpointi nivoa, a tajne sobe daju amajlije, kako ih `game.js` već vodi.
-  - Kuka u `greybox.js` (`makeGreybox`): `B.kuka`, `B.zid`, `B.nalaz` i `B.zamka`, a svet nivoa dobija `kuke`, `zidovi` i `nalazi`. Nove moći su u `GB_MOCI` dodate iz `greybox-nivoi-pohodi.js`, ali se ne nabrajaju, pa mapa i meni ostaju sa tri moći.
-- Nivoe ne piše ruka, nego mali alat u istom fajlu (`kit`). `K.chimney`, `K.wing`, `K.dash`, `K.trace`, `K.crack`, `K.fake`, `K.gate`, `K.drop`, `K.borba`, `K.lik`, `K.guslar` i `K.bos` postave blokove i u istom potezu zapišu vezu za test. Alat odbija rupu iznad rupe i krilo ili dimnjak koji nisu ispod svoje sobe.
-- Kuka do registra u `greybox.js`: `world.js` uvozi `greybox-nivoi-pohodi.js` samo u pregledaču, a fajl sam dodaje nivoe u `GB_NIVOI`. Sopstvene zamke (likove, guslare) nivo predaje kroz `B.strelnica({zamka})`, dok `greybox.js` ne dobije `B.zamka`.
-- `node greybox-pohodi-test.mjs [broj]` (deo `npm test`) za svaki nivo:
-  - proverava graf: sobe, tajne, čekpointe, borbe, likove, zamke i kapije; šta je dostižno sa moćima, a šta ostaje zatvoreno bez moći tog nivoa;
-  - prelazi svaku vezu stvarnim tasterima u oba smera i svaku kapiju proba i bez njene moći;
-  - pušta bota da jednim neprekinutim trčanjem, samo tasterima i bez teleporta, ide od početka do moći i do arene bosa. Bot preskače rupe i šiljke, čeka gredu i vozi se na njoj; Turci su za to trčanje sklonjeni, a zamke ostaju;
-  - obara bosa.
 
 ## Sadržaj
 
@@ -434,20 +336,6 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Neprijatelji imaju živce, kao u *Metal Slug*-u.** Kad im drug padne od teškog udarca, trećeg u nizu ili dokrajčivanja, oni kraj njega ustuknu korak i zastanu, a jedan vikne (glasovi `tr_fear`, do sada neiskorišćeni).
 - **Musin koštac je pravo rvanje.** Dok Musa drži Marka, pokazuje se hvat kao u svakom drugom koštacu. Marko ne može da zbaci tri srca, ali tri dobra hvata dovode vilu ranije; bez njih dolazi kad i pre. Dugme J više ne treba lupati.
 - **Megdan na ekranu.** Dok traje megdan, red zadatka se sklanja, a ime i snaga megdandžije stoje na vrhu ekrana.
-
-## Azačka kula: pohod uspona (izazov)
-
-Po pesmi „Marko Kraljević u Azačkoj tamnici": Marko izlazi iz tamnice uz kulu, a na vrhu sivi soko nosi njegovu knjigu Dojčilu u Solun. Kretanje je izazov koliko i borba, u duhu *The Lost Crown* (samo ideje, bez njenih crteža i imena). Grafika je postojeća: pozadine tvrđave i rekviziti.
-
-- **Gde je:** pohod 16 na mapi (dole desno). Stoji van Markovog puta: otvoren je od početka i Marko u njemu zna sve pokrete, kao u „Snu". U `world.js` to je `izazov:true`.
-- **Tok:** guslar peva stihove o sokolu → bunar od dva zida, 500 px odskokom od zida do zida → kameni stubovi nad ponorom, svaki viši od skoka, hvata se ivica → predah → hodnik sa kocima i dve strelnice u zidu → jama sa kocima: dve daske koje se krune, kameni stub, greda koja klizi i greda koja se diže → barjak → straža (tri čuvara) → tajna soba ispod napukle ploče → Arapin na vrhu kule → barjak, a sivi soko odleće sa knjigom (crtež `soko-let`).
-- **Strelnice** (`dist/zamke.js`): prorez zasija i škljocne pre hica. Visoka strela ide u grudi (S ili Shift), niska u gležanj (skok ili Shift). L je odbija nazad u zid. Na vrhu zida ćute.
-- **Jama:** koci bodu kao svuda u igri, jednom pri padu. Posle trenutka Ravijojla vraća Marka na ivicu ili na stub. Kraj zida su i lestve.
-- **Tajna soba:** ploča puca samo od udara odozgo (u skoku S + J). Dole su zapis legende o sokolu i Dojčilu, kovčeg dukata i deo srca.
-- **Barjaci** se dižu sami (sistem iz `game.js`). Jedan se diže odmah posle jame sa gredama.
-- **DUPLI SKOK, opciona gornja putanja:** iznad poslednjeg stuba nad ponorom stoje dve daske. Prva je 300 px iznad stuba, a na drugoj je kovčeg dukata. Skok sa ivicom doseže samo 266 px, pa glavni put ne zavisi od njih. Danas se do njih stiže Vilinskim uzletom (E u skoku), a kasnije duplim skokom: stani na desni kraj stuba, skoči, skoči ponovo u vazduhu, i ruke hvataju ivicu. U kodu je to komentar `DUPLI SKOK` u sobi `ivice` (`buildLayout`), a daske nose oznaku `tajna`, pa na njih nikad ne pada slovo МАРКО.
-- **Kod:** sobe `uspon`, `ivice`, `strelnice`, `krunjenje`, `predah`, `straza` i `tajna` u `buildLayout`. Zamke `strelnica`, `greda`, `jama` i `sokoGlasnik` su u `dist/zamke.js`: svaka nosi svoje `tick` i `draw`, a `game.js` ih samo poziva (`updateTraps`, `drawTrapsFront`).
-- **Provera:** `node levels-test.mjs` prolazi kulu stvarnim tasterima. Proverava bunar, ivice, strele (čučanj, skok, kolut), prelaz preko greda iz svakog trenutka njihovog hoda, pad u jamu, tajnu sobu i gornju putanju, i ceo nivo od početka do barjaka (31 provera).
 
 ## Izvori
 

@@ -1,9 +1,0 @@
-{
- "mat-groundFront": {
-  "raw": "svet-reka_mat-groundFront_v2k76_s1.png",
-  "crop_top": 0.1
- },
- "far": "svet-reka_far_v9k72_s1.png",
- "mid": "svet-reka_mid_v9k72_s1.png",
- "near": "svet-reka_near_v9k72_s1.png"
-}

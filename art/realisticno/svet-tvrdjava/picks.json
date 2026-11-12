@@ -1,9 +1,0 @@
-{
- "mat-groundFront": {
-  "raw": "svet-tvrdjava_mat-groundFront_v2k76_s1.png",
-  "crop_top": 0.12
- },
- "far": "svet-tvrdjava_far_v9k72_s1.png",
- "mid": "svet-tvrdjava_mid_v9k72_s1.png",
- "near": "svet-tvrdjava_near_v9k72_s1.png"
-}
