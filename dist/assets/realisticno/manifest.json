@@ -1,0 +1,159 @@
+{
+ "version": 1,
+ "biomes": {
+  "podgradje": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/podgradje/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/podgradje/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/podgradje/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/podgradje/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": [
+     {
+      "id": "in-back",
+      "file": "realisticno/podgradje/in-back.webp",
+      "speed": 0.04,
+      "w": 1774,
+      "h": 887
+     },
+     {
+      "id": "in-far",
+      "file": "realisticno/podgradje/in-far.webp",
+      "speed": 0.16,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-mid",
+      "file": "realisticno/podgradje/in-mid.webp",
+      "speed": 0.38,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-near",
+      "file": "realisticno/podgradje/in-near.webp",
+      "speed": 0.72,
+      "w": 2172,
+      "h": 724
+     }
+    ]
+   },
+   "materials": {
+    "ground": "realisticno/podgradje/mat-ground.webp",
+    "wall": "realisticno/podgradje/mat-wall.webp",
+    "platform": "realisticno/podgradje/mat-platform.webp",
+    "beam": "realisticno/podgradje/mat-beam.webp",
+    "ceiling": "realisticno/podgradje/mat-ceiling.webp"
+   },
+   "props": [
+    {
+     "id": "sanduk",
+     "file": "realisticno/podgradje/prop-sanduk.webp",
+     "w": 64,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "bacva",
+     "file": "realisticno/podgradje/prop-bacva.webp",
+     "w": 52,
+     "h": 72,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "kameni-blok",
+     "file": "realisticno/podgradje/prop-kameni-blok.webp",
+     "w": 82,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "greda",
+     "file": "realisticno/podgradje/prop-greda.webp",
+     "w": 300,
+     "h": 33,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "rusevni-luk",
+     "file": "realisticno/podgradje/prop-rusevni-luk.webp",
+     "w": 254,
+     "h": 260,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "mangal",
+     "file": "realisticno/podgradje/prop-mangal.webp",
+     "w": 60,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "kapija",
+     "file": "realisticno/podgradje/prop-kapija.webp",
+     "w": 170,
+     "h": 200,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "cup",
+     "file": "realisticno/podgradje/prop-cup.webp",
+     "w": 60,
+     "h": 80,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "bunar",
+     "file": "realisticno/podgradje/prop-bunar.webp",
+     "w": 98,
+     "h": 130,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "kolica",
+     "file": "realisticno/podgradje/prop-kolica.webp",
+     "w": 170,
+     "h": 71,
+     "anchor": "bottom",
+     "solid": true
+    }
+   ]
+  }
+ },
+ "note": "Paths are relative to dist/assets/. Layers: w/h = image px, sky/back 1774x887 opaque, far/mid/near 2172x724 RGBA, all tile horizontally with no seam (no crossfade needed), bottom-anchored like dist/assets/world layers. interior.layers: same speeds, first is an opaque back wall. Materials: 512x512, tile both ways. Props: w/h = draw size in world px (the image is 2x that), anchor bottom-centre, solid = can be stood on / blocks."
+}
