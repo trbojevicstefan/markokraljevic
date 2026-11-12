@@ -421,6 +421,10 @@ for name in ['kostur-napad', 'kostur-hurt']:
 for name in ['vrac-idle', 'vrac-carolija', 'vrac-nestaje', 'vrac-pojavljuje', 'vrac-hurt', 'vrac-death', 'sarka-puzi', 'sarka-napad', 'sarka-death']:
     if _have(name) and 'sword-idle' in SCALES:
         SCALES[name] = (SCALES['sword-idle'][0], 'feet')
+# vrac-pojavljuje came drawn a third larger in its cells than vrac-idle: the old man whole again (its last frame) at his idle height
+if _have('vrac-pojavljuje') and _have('vrac-idle') and 'vrac-idle' in SCALES:
+    SCALES['vrac-pojavljuje'] = (SCALES['vrac-idle'][0] * float(np.median([body_height(c) for c in _cells('vrac-idle')]))
+                                 / body_height(_cells('vrac-pojavljuje')[-1]), 'feet')
 if _have('ala-let'):
     s_ = 250 / max(body_height(c) for c in _cells('ala-let'))
     for k in ['let', 'obrusavanje', 'oluja', 'hurt', 'pad']:

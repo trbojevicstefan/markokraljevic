@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        167,
+        124,
+        345,
+        488
+      ],
+      "footY": 487,
+      "sha256": "fb1c3235a6ea249b46261877516c51f5469b89c43d3993ae03e9b548d605ff4e"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        167,
+        125,
+        345,
+        488
+      ],
+      "footY": 487,
+      "sha256": "3a67458b7e0dd0504ad2d0e1c02028aa3f014135af2b8b013f183dc71e911496"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        169,
+        125,
+        343,
+        488
+      ],
+      "footY": 487,
+      "sha256": "b0b372f8cd7229078fda7d4baa0906c9d0e5091d0b85e56c4f14b725d4f1ea8c"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        152,
+        124,
+        360,
+        488
+      ],
+      "footY": 487,
+      "sha256": "a0fadb1d3d7134c2ccab6a1601a3ebd4f96d34e69fed2de5e8a2cdcb7246da5e"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        150,
+        125,
+        362,
+        488
+      ],
+      "footY": 487,
+      "sha256": "2ed88e9031e6f379b9d39c93b691e5827b58c677f76018e5cf05fa36bac42eae"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        158,
+        126,
+        354,
+        488
+      ],
+      "footY": 487,
+      "sha256": "5fd3587d2882556973a91e04e3339526a8cfa01d382e7144a3e46826dfdc42a1"
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        169,
+        124,
+        343,
+        488
+      ],
+      "footY": 487,
+      "sha256": "5a771e675fd8c9c1eea86dad1702b857ad4e1f35353d93562706cffbbf1b1e5a"
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        167,
+        124,
+        344,
+        488
+      ],
+      "footY": 487,
+      "sha256": "9b44152b3efff48e40f864a591760d640fcd81cac52024bd7f00285ff81d7669"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "loop": false,
+  "holdLastFrame": true,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.789587852494577,
+  "visualReview": "pending"
+}
