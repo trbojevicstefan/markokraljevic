@@ -424,7 +424,61 @@ export const GB_POHODI={
   K.crumble('cisterna',400,180,1);K.crumble('cisterna',580,180,1);K.pit('cisterna',400,760);K.door('cisterna','ponor',1);
   K.dash('ponor',700);K.door('ponor','vinarija',1);
   K.lik('vinarija',600,'putnik-starac-idle','Podrumar: Gvozdena vrata otvara poluga sa ove strane. Popni se kroz stari podrum.',1);K.spikes('vinarija',900,120,1);K.door('vinarija','stari',1);
-  K.strelnica('stari',2380,{every:2.6});K.chimney('stari',300,{upper:'hodnik'});K.crack('stari','tamnica',{row:1});K.cudo('tamnica',600,'Careva kesa',1);}})
+  K.strelnica('stari',2380,{every:2.6});K.chimney('stari',300,{upper:'hodnik'});K.crack('stari','tamnica',{row:1});K.cudo('tamnica',600,'Careva kesa',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 9 · Noćna močvara („Lov Markov s Turcima“): kraj Zelenog jezera vezir je slomio krilo Markovom sokolu o jelu. Marko ide
+// kroz tršćak i potopljene prelaze; Vilin trag čeka na Vilinom ostrvu ispod vode, a vezirov čardak ima zadnja vrata na
+// daleki prekidač. Iza čardaka je lovačka staza do Zelenog jezera, gde čeka Tufekdžija-baša sa vezirovim delijama.
+9:pohod({id:'mocvara',ime:'Noćna močvara',biom:'urvina',zeljeniBiom:'mocvara',daje:'trag',pocetne:['krilo','nalet'],
+ cilj:'Nađi Vilin trag na ostrvu pod vodom, prođi vezirov čardak i stigni do Zelenog jezera',start:'obala',spawnDx:240,
+ uvod:'Noćna močvara. Vezir je slomio krilo Markovom sokolu. Vezirov čardak ima zadnja vrata na daleki prekidač; Vilin trag svetli na ostrvu ispod vode.',
+ sobe:[
+  ['obala','Obala jezera',-1,0,1,1,{set:'reka'}],
+  ['vrbak','Vrbak',-1,-1,1,1,{set:'suma'}],
+  ['trscak','Tršćak',0,0,2,1,{set:'reka'}],
+  ['jele','Jelova greda',0,-1,2,1,{set:'suma'}],
+  ['gnezdo','Sokolovo gnezdo',2,-1,1,1,{set:'suma'}],
+  ['vidikovac','Vidikovac',3,-1,1,1,{secret:true,set:'suma',lore:'Vidikovac. Odavde se vidi celo Zeleno jezero i utve zlatokrile kad slete na vodu.'}],
+  ['brvna','Brvna preko vode',2,0,2,1,{set:'reka'}],
+  ['ostrvo','Ostrvo',4,0,1,1,{set:'reka'}],
+  ['cardak','Vezirov čardak',5,0,1,1,{interior:true}],
+  ['sprat','Sprat čardaka',5,-1,1,1,{interior:true}],
+  ['staza','Lovačka staza',6,0,2,1,{set:'suma'}],
+  ['krosnje','Krošnje',6,-1,1,1,{set:'suma'}],
+  ['utve','Gnezdo utava',7,-1,1,1,{secret:true,set:'suma',lore:'Gnezdo utava. Utve zlatokrile ovde legu mlade; vezirov soko ih nikad nije stigao.'}],
+  ['jezero','Zeleno jezero',8,0,1,1,{set:'reka'}],
+  ['jazbina','Vidrina jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Vidrina jazbina. Vidra je ovde krila ribe iz jezera, a Marko joj je ostavio pola svoje pogače.'}],
+  ['mulj','Mulj pod tršćakom',0,1,2,1,{interior:true}],
+  ['potopljeni','Potopljeni prelaz',2,1,2,1,{interior:true}],
+  ['svetiljke','Vilino ostrvo',4,1,1,1,{interior:true}],
+  ['riznica','Vezirova riznica',5,1,1,1,{secret:true,interior:true,lore:'Vezirova riznica. Zlato za dvanaest delija koji su lovili sa vezirom; nijedan se nije vratio.'}],
+  ['blato','Crno blato',7,1,1,1,{interior:true}],
+  ['kaliste','Kalište',8,1,1,1,{secret:true,interior:true,lore:'Kalište. Ovde se Markov soko oporavio, pre nego što je opet poleteo za utvom.'}]],
+ brda:{obala:[[500,900,-30]],staza:[[400,900,50]]},
+ gradi(K){
+  // Obala: guslar, krilo do vrbaka
+  K.guslar('obala',900,['Teško mene i tebe, sokole,','lov loveći s Turci bez Srbalja,','lov loveći, krivo dijeleći!']);K.wing('obala',300,{upper:'vrbak'});K.heart('vrbak',800,-1);K.door('obala','trscak',0);
+  // Tršćak: prva borba, krilo na jelovu gredu, rupa u mulj
+  K.borba('trscak',[['sword',950],['akindzija',1300],['archer',2050]]);K.wing('trscak',500,{upper:'jele'});K.drop('trscak',1500,1700,'mulj');K.door('trscak','brvna',0);
+  // Jelova greda i gnezdo: druga borba; ranjeni soko; lažni zid do vidikovca
+  K.borba('jele',[['archer',700],['sword',1300]],-1);K.strelnica('jele',2380,{row:-1,every:2.8});K.drop('jele',1900,2100,'trscak');K.door('jele','gnezdo',-1);
+  K.lik('gnezdo',600,'soko-ranjen','Soko: Vezir mi je slomio krilo o jelu. Previj mi ga, Marko, pa ću ti pokazati put.',-1);K.fake('gnezdo','vidikovac',{row:-1});K.cudo('vidikovac',700,'Sokolovo pero',-1);
+  // Brvna: juriš preko vode do ostrva
+  K.dash('brvna',700);K.door('brvna','ostrvo',0);K.lik('ostrvo',800,'utva-let','Utve zlatokrile lete nad jezerom. Vezirov soko ih promaši, a Markov ih stiže.');K.door('ostrvo','cardak',0);
+  // Čardak: zadnja vrata na prekidač; sprat sa vezirovim slugom
+  K.chimney('cardak',600,{upper:'sprat'});K.lik('sprat',400,'caus-idle','Vezirov sluga: Vezir je otišao na jezero sa dvanaest delija. Zadnja vrata čardaka ne puštaju nikog.',-1);K.heart('sprat',900,-1);K.trace('cardak','staza');
+  // Lovačka staza: čekpoint, treća borba, krilo u krošnje; jezero i Tufekdžija-baša
+  K.ckpt('staza',200);K.borba('staza',[['sword',1000],['shield',1300],['akindzija',1800]]);K.wing('staza',300,{upper:'krosnje'});K.heart('krosnje',900,-1);K.crack('krosnje','utve',{row:-1});K.cudo('utve',600,'Zlatno pero utve',-1);
+  K.drop('staza',1500,1700,'blato');K.door('staza','jezero',0);K.bos('jezero','basa');
+  // Mulj: psi, dimnjak gore; lažni zid do jazbine
+  K.borba('mulj',[['pas',600],['pas',900],['sword',2000]]);K.chimney('mulj',1000,{upper:'trscak'});K.fake('mulj','jazbina',{row:1});K.heart('jazbina',500,1);K.door('mulj','potopljeni',1);
+  // Potopljeni prelaz: greda nad vodom, daske, borba
+  K.greda('potopljeni',500,{span:220});K.crumble('potopljeni',1300,160,1);K.crumble('potopljeni',1460,160,1);K.pit('potopljeni',1300,1620);
+  K.borba('potopljeni',[['sword',1900],['shield',2150]]);K.door('potopljeni','svetiljke',1);
+  // Vilino ostrvo: Vilin trag, čekpoint, dimnjak na ostrvo; vezirova riznica iza vrata na prekidač
+  K.ckpt('svetiljke',450);K.shrine('trag','svetiljke',800);K.chimney('svetiljke',300,{upper:'ostrvo'});K.trace('svetiljke','riznica');K.cudo('riznica',600,'Vezirov prsten',1);
+  // Crno blato: dimnjak na stazu, šiljci; napukli zid do kališta
+  K.chimney('blato',700,{upper:'staza'});K.spikes('blato',300,100,1);K.crack('blato','kaliste',{row:1});K.heart('kaliste',600,1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
