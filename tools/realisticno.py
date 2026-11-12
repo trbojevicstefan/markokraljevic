@@ -106,6 +106,38 @@ def cmd_jobs(bname, keys=None, seeds='1,2', strength=None, steps=10):
     print(path, len(jobs), 'jobs')
 
 
+PHOTO = ('Ultra-realistic location photograph: true-to-life light and shadow, natural muted colours, real stone, '
+         'wood, earth and foliage textures, fine photographic detail.')
+
+
+def cmd_refine(bname, keys=None, strength='0.6'):
+    """Second img2img pass: the chosen first-pass output (with its picks fixes) is the draft, so the composition
+    stays and the remaining painted look goes. Writes <key>-r.png drafts and jobs named <biome>_<key>_v9k<strength>."""
+    b = biome(bname)
+    jobs = []
+    for it in pick_keys(items(b), keys):
+        if it['group'] not in ('layers', 'interior'):
+            continue
+        raw = chosen_raw(bname, it['key'])
+        if not raw:
+            continue
+        im = raw_fixes(bname, it['key'], Image.open(raw).convert('RGB'))
+        if im.size != tuple(it['size']):
+            im = im.resize(tuple(it['size']), Image.LANCZOS)
+        dp = draft_path(bname, it['key'] + '-r')
+        im.save(dp)
+        for st in str(strength).split(','):
+            st = float(st)
+            jobs.append({'name': f"{bname}_{it['key']}_v9k{round(st * 100)}",
+                         'draft': os.path.relpath(dp, ROOT).replace(chr(92), '/'),
+                         'prompt': f"{PHOTO} {it['prompt']}", 'w': it['size'][0], 'h': it['size'][1],
+                         'strength': st, 'steps': 10, 'seeds': [1], 'wrap': it['wrap']})
+    path = os.path.join(ART, bname, 'jobs_refine.json')
+    json.dump(jobs, open(path, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    print(path, len(jobs), 'jobs')
+    return jobs
+
+
 def raws(bname, key):
     fs = glob.glob(os.path.join(RAW, f'{bname}_{key}_v*_s*.png'))
     return sorted(fs, key=os.path.getmtime)
@@ -165,7 +197,25 @@ def over(rgba, bg):
     return base.convert('RGB')
 
 
+def grade(im, sat=0.9):
+    """A tenth less saturation: the model's colours are a little too rich for a photograph."""
+    from PIL import ImageEnhance
+    if im.mode == 'RGBA':
+        a = im.getchannel('A')
+        im = ImageEnhance.Color(im.convert('RGB')).enhance(sat).convert('RGBA')
+        im.putalpha(a)
+        return im
+    return ImageEnhance.Color(im).enhance(sat)
+
+
 def process(bname, it, raw):
+    out = _process(bname, it, raw)
+    if it['kind'] in ('sky', 'far', 'mid', 'near') and '_v9k' in os.path.basename(raw):
+        out = grade(out)
+    return out
+
+
+def _process(bname, it, raw):
     """Raw generator output -> final image (PIL) for an item."""
     im = Image.open(raw).convert('RGB')
     if raw == chosen_raw(bname, it['key']):
@@ -174,7 +224,8 @@ def process(bname, it, raw):
     if k == 'sky':
         return resize_wrap(im, FINAL_SKY)
     if k in ('far', 'mid', 'near'):
-        d = Image.open(draft_path(bname, it['key']))
+        refined = '_v9k' in os.path.basename(raw)
+        d = Image.open(draft_path(bname, it['key'] + ('-r' if refined else '')))
         return resize_wrap(key_layer(im, d, band=it.get('band', 56)), FINAL_LAYER)
     if k == 'tile':
         return resize_wrap_xy(im, FINAL_TILE)
@@ -270,7 +321,12 @@ def cmd_finish(bname, keys=None):
     mp0 = os.path.join(DIST, 'manifest.json')
     old = (json.load(open(mp0, encoding='utf-8'))['biomes'].get(bname) if os.path.exists(mp0) else None) or {}
     want = set(keys.split(',')) if keys else None
+    pp = os.path.join(ART, bname, 'picks.json')
+    picks = json.load(open(pp, encoding='utf-8')) if os.path.exists(pp) else {}
     for it in items(b):
+        if isinstance(picks.get(it['key']), dict) and picks[it['key']].get('skip'):
+            report.append(f"SKIP {it['key']}: {picks[it['key']].get('why', '')}")
+            continue
         if want is not None and it['key'] not in want and it['group'] not in want:
             fname = f"{it['id']}.webp" if it['kind'] == 'replace' else f"{it['key']}.webp"
             if it['group'] in ('layers', 'interior'):
@@ -378,5 +434,7 @@ if __name__ == '__main__':
         cmd_review(bname, keys)
     elif cmd == 'finish':
         cmd_finish(bname, keys)
+    elif cmd == 'refine':
+        cmd_refine(bname, keys, opts.get('strength', '0.6'))
     elif cmd == 'preview':
         cmd_preview(bname)
