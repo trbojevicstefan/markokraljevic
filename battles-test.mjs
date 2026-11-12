@@ -407,4 +407,24 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  step(120*2);ok(!t.state&&!t.done,'look: and the duel begins again');
  api.pressed.add('KeyE');step(3);for(let i=0;i<120*8&&!t.done;i++)step();ok(t.done&&p.wine>=3,'look: held to the end, Bogdan\'s legs go numb; they make peace and drink');
  Object.assign(p,{x:t.gate.x-120,y:t.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(120*2);api.keys.clear();ok(p.x>t.gate.x,'look: the road through the vineyard is open');}
+// ---- longer fights: tougher foes, a second blow after the first, three arrows in a row, the hammer's tremor, the raider's leap back ----
+{const w=await land('selo'),p=S().p,gy=p.y,rnd=Math.random;const wake=(type,dx)=>{const e=w.enemies.find(e=>e.type===type&&!e.perch&&!e.champion&&!e.kit&&!e.gunner);if(!e)return null;
+  Object.assign(e,{alive:true,hp:e.maxHp,x:p.x+dx,y:gy,vx:0,vy:0,grounded:true,mode:'idle',timer:5,stun:0,climb:null,lunge:null,pendingHit:null,inChain:false,chainLeft:0,moveCool:9,spava:false,patrola:false,skriven:false,elite:false,enter:null});return e;};
+ Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true});step(30);safe();const e=wake('sword',80);
+ ok(e&&e.maxHp>100,'tough: a janissary of the road carries more health than his ninety');
+ Math.random=()=>0;Object.assign(e,{mode:'windup',timer:.02,windupDuration:.7});until(()=>e.mode==='recover',60);ok(e.chainLeft===1&&e.timer<.5,'chain: after his blow he does not rest');
+ let idle=false;for(let i=0;i<120&&e.mode!=='windup';i++){step();if(e.mode==='idle')idle=true;}ok(e.mode==='windup'&&!idle&&e.chain2,'chain: a second blow follows the first with no pause between');
+ until(()=>e.mode==='idle',120*3);ok(!e.inChain&&!e.chain2,'chain: then he stands back as before');Math.random=rnd;e.alive=false;
+ const a=wake('archer',320);if(a){safe();a.shotN=2;Object.assign(a,{mode:'windup',timer:.02,windupDuration:1});const n0=S().arrows.length;step(4);ok(a.volley?.n===2,'volley: an archer on foot follows his third shot with two more');
+  step(120);ok(S().arrows.length>=1&&!a.volley,'volley: the arrows fly one after another');a.alive=false;}}
+{const w=await land('manastir'),p=S().p,o=w.enemies.find(e=>e.type==='oklopnik'&&!e.champion&&!e.perch);
+ if(o){Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true});step(30);const gy=p.y;Object.assign(o,{alive:true,hp:o.maxHp,x:p.x+210,y:gy,vx:0,vy:0,grounded:true,stun:0,climb:null,lunge:null,pendingHit:null,inChain:true,chainLeft:0,variant:'slam',mode:'windup',timer:.02,windupDuration:1,face:-1});
+  p.invuln=0;p.hp=p.maxHp;const hp=p.hp;until(()=>o.pendingHit?.quake,120);ok(!!o.pendingHit?.quake&&p.hp===hp,'tremor: the hammer misses a man two hundred paces off, but the ground shakes toward him');
+  until(()=>!o.pendingHit,120);ok(p.hp<hp,'tremor: standing on the ground, Marko is thrown by it');
+  Object.assign(o,{variant:'slam',mode:'windup',timer:.02,windupDuration:1,pendingHit:null,inChain:true,stun:0});p.invuln=0;p.hp=p.maxHp;const hp2=p.hp;until(()=>o.pendingHit?.quake,120);Object.assign(p,{grounded:false,vy:-520,y:gy-30});until(()=>!o.pendingHit,120);
+  ok(p.hp===hp2,'tremor: a jump clears it');o.alive=false;}}
+{const w=await land('selo'),p=S().p,r=w.enemies.find(e=>e.type==='akindzija'&&!e.champion&&!e.perch&&!e.kit);
+ if(r){Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true,face:1});step(30);safe();Object.assign(r,{alive:true,hp:r.maxHp,x:p.x+110,y:p.y,vx:0,vy:0,grounded:true,mode:'idle',timer:2,stun:0,climb:null,lunge:null,dodgeCd:0,spava:false,patrola:false,skriven:false,enter:null});
+  p.attack=.3;p.attackKind='heavy';p.face=1;const x0=r.x;step(2);ok(r.lunge?.t>0&&r.lunge.v>0&&r.dodgeCd>3,'raider: he leaps back from a heavy blow he sees coming');
+  step(40);ok(r.x>x0+40,'raider: and lands out of its reach');r.alive=false;}}
 console.log(`${checks} battle checks passed.`);

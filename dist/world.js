@@ -171,7 +171,8 @@ export function buildLayout(L,variant='day'){
   pillars(){const x0=x,len=ri(460,540);ground(len);for(const k of[.3,.68]){const pw=ri(70,90),ph=ri(60,90);block(x0+len*k,pw,gy-ph,{pillar:true});}busy.push([x0+len*.25,x0+len*.8]);spots.push({x:x0+len*.5,y:gy});},
   gap(){busy.push([x-40,x+200]);x+=ri(130,165);run=null;ground(ri(260,340));},
   bridge(){const w=ri(280,340);busy.push([x-40,x+w+40]);platforms.push({x:x-10,y:gy,w:w+20,h:18,kind:'plank',bridge:true});x+=w;run=null;ground(ri(260,340));},
-  plow(){const x0=x,len=ri(1000,1150);ground(len);plows.push({x:x0+len*.8,y:gy});spots.push({x:x0+len*.55,y:gy});busy.push([x0+len*.6,x0+len]);},
+  // Marko's own team waits at the head of the stretch; he plows it to the boundary stone, and there the janissaries meet him
+  plow(){const x0=x,len=ri(1300,1420);ground(len);plows.push({x:x0+260,y:gy,x1:x0+len-560});busy.push([x0,x0+len]);},
   // sharpened stakes across the road: jump them, or knock a janissary onto them
   spikes(){const x0=x,len=ri(440,520);ground(len);const w=ri(90,130),sx=Math.round(x0+len*.45);traps.push({kind:'spikes',x:sx,w,y:gy});busy.push([sx-30,sx+w+30]);spots.push({x:x0+len*.85,y:gy});},
   // planks over a pit that give way a moment after Marko steps on them
@@ -313,7 +314,7 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
  nightLayers:[{id:'oranje-sky-night',speed:.04},{id:'oranje-far-night',speed:.16},{id:'oranje-mid-night',speed:.38},{id:'oranje-near-night',speed:.72}],stormLayers:[{id:'oranje-sky-storm',speed:.04},{id:'oranje-far-storm',speed:.16},{id:'oranje-mid-storm',speed:.38},{id:'oranje-near-storm',speed:.72}],
  fallbackLayers:[{id:'selo-sky',speed:.04},{id:'selo-far',speed:.16},{id:'selo-mid',speed:.38},{id:'selo-near',speed:.72}],ground:'selo',
  props:[{id:'prop-plast-sena',x:700,y:590,height:150},{id:'prop-kruska',x:1500,y:590,height:300},{id:'prop-medjas',x:2100,y:590,height:70},{id:'prop-kola-seno',x:2700,y:590,height:170},{id:'prop-krst-raskrsce',x:3400,y:590,height:190},{id:'prop-turski-sator',x:4100,y:590,height:200},{id:'prop-plast-sena',x:4800,y:590,height:150},{id:'prop-kruska',x:5500,y:590,height:300},{id:'prop-taraba-ravna',x:6000,y:590,height:140}],
- design:{goal:'Zaustavi turska rala i uzmi tri tovara blaga'}}];
+ design:{goal:'Zaori careve drumove i uzmi tri tovara blaga'}}];
 export function makeLevel(L,index,variant='day',opts={}){
  const zone=LEVEL_ZONE+index,B=buildLayout(L,variant),enemies=[],items=[],platforms=B.platforms;
  const mix=L.design?.enemyMix,base=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer','akindzija']);
@@ -323,7 +324,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  const quiet=B.traps.filter(t=>t.kind==='sirotinja');if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
  let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(L.peace)break;if(Math.abs(s.x-B.spawn.x)<480)continue;
   if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
-  if(s.x-lastX<330)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
+  if(s.x-lastX<450)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
  for(const t of B.traps)if(t.kind==='top')foe('palikuca',t.x+80,t.y,{gunner:true});
  // the Arab's men guard each cage of wedding guests

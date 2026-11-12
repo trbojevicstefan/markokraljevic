@@ -12,7 +12,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,breakPlow,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,plowSpoils,slay,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -83,10 +83,16 @@ await climbShaft('rusevine',true);
  const shot=S().world&&api.state();ok(a.alive&&a.perch,'archers: a tower archer stays on his perch');}
 {const w=await start('manastir');const a=w.enemies.find(e=>e.perch);quiet(w,[a]);const gy=floorAt(w,a.x-260)?.y??590;stand(a.x-260,gy);S().p.invuln=0;const hp=S().p.hp;step(120*4);
  ok(S().p.hp<hp,`archers: arrows aimed down from ${Math.round(gy-a.y)}px above hit Marko`);}
-// ---- the plowing road: the oxen trample, the plow breaks under the mace ----
-{const w=await start('oranje');quiet(w);const pl=w.plowTeams[0];stand(pl.x-700,pl.y);const x0=pl.x;step(120*2);ok(pl.x<x0,'plow: the team plows the road toward Marko');
- stand(pl.x-120,pl.y);S().p.face=1;for(let i=0;i<40&&!pl.broken;i++){tap('KeyK');step(80);}ok(pl.broken,'plow: heavy blows break the plow');
- ok(w.items.some(i=>i.type==='tovar'&&i.plow===pl),'plow: the broken plow leaves a load of treasure');}
+// ---- the plowing road: Marko plows it himself; the janissaries come to forbid it; he lifts the plow and the oxen ----
+{const w=await start('oranje');quiet(w);const pl=w.plowTeams[0],x0=pl.x;stand(pl.x-700,pl.y);step(120*2);ok(pl.x===x0&&!w.enemies.some(e=>e.alive&&e.plow===pl.id),'plow: the team waits for Marko, and no Turk plows the road');
+ stand(pl.x-165,pl.y);S().p.invuln=0;tap('KeyE');step(3);ok(pl.held&&S().p.ore===pl,'plow: Marko takes the plow by the handles');
+ press('KeyD');step(120*2);ok(pl.x>x0+150&&Math.abs(S().p.x-(pl.x-165))<3&&pl.furrow.length>3,'plow: he plows the road and walks behind the team');
+ for(let i=0;i<120*12&&pl.phase==='ore';i++)step();release('KeyD');ok(pl.phase==='boj'&&pl.x===pl.x1,'plow: the furrow reaches the boundary stone');
+ const turks=w.enemies.filter(e=>e.alive&&e.plow===pl.id);ok(turks.length===3&&turks.every(e=>e.x>pl.x+300),'plow: three janissaries come to forbid the plowing');
+ for(const e of turks){e.x=S().p.x+150+turks.indexOf(e)*60;}S().p.invuln=99;const hp=turks.map(e=>e.hp);tap('KeyK');step(2);
+ ok(pl.lifted&&!pl.held&&turks.every((e,k)=>e.hp<hp[k]||!e.alive),'plow: he lifts the plow and the oxen, and the blow falls on all three');
+ for(const e of turks)if(e.alive)api.slay(e);step(60);ok(pl.phase==='gotovo'&&w.items.some(i=>i.type==='tovar'&&i.plow===pl),'plow: the janissaries fallen, a load of treasure lies on the furrow');
+ stand(pl.x-165,pl.y);tap('KeyE');step(2);ok(!pl.held,'plow: a finished stretch is not plowed twice');}
 // ---- down + jump drops through planks in a pohod, and through the floating stones of the Kačanik story ----
 {const w=await start('selo');quiet(w);const q=w.platforms.find(q=>q.kind==='plank'&&!q.bridge&&!q.crumble);stand(q.x+q.w/2,q.y);step(5);api.keys.add('KeyS');step(3);tap('Space');step(30);api.keys.clear();step(60);
  ok(S().p.y>q.y+60&&S().p.grounded,`drop: S+Space leaves a plank ${Math.round(S().p.y-q.y)}px above the road`);}

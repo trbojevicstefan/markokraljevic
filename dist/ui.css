@@ -714,3 +714,33 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #game-shell:has(#boss-hud:not([hidden])) .quest{display:none}
 @media(min-width:901px){#game-shell:has(#boss-hud:not([hidden])) #boss-hud{top:22px;left:max(50%,720px)}#game-shell:has(#boss-hud:not([hidden])) #toast{top:150px}}
 @media(max-width:600px){#game-shell:has(#boss-hud:not([hidden])) #boss-hud{top:84px}#game-shell:has(#boss-hud:not([hidden])) #toast{top:190px}}
+/* ---------- the map: five songs side by side, forks inside each, the duel at Kačanik on the same road ---------- */
+#levels .modal-card:has(.pohod-map.grana){width:min(1160px,100%);max-width:min(1160px,96vw)}
+.pohod-map.grana{grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+.pohod-map.grana .map-scroll{overflow-x:auto;overflow-y:hidden}
+.pohod-map.grana .map-field{height:440px;min-width:740px}
+.map-field svg.decor{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.map-field .reka{fill:none;stroke:#5f8a96;stroke-width:9;opacity:.36;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.map-field .gora{fill:none;stroke:#6a4a1a;stroke-width:2;opacity:.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.map-field .suma{fill:#4a5a2a;opacity:.42}
+.map-field .put{fill:none;stroke:#6a4a1a;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round;opacity:.45;vector-effect:non-scaling-stroke}
+.map-field .put.on{stroke:#7a2a1a;stroke-dasharray:none;opacity:.85;stroke-width:3.5}
+.map-place{position:absolute;font:italic 13px var(--display);color:#5a3c14;opacity:.6;letter-spacing:1px;pointer-events:none;white-space:nowrap}
+.map-pesma{position:absolute;top:8px;transform:translateX(-50%);text-align:center;font:italic 700 15px/1.1 var(--display);color:#4a2e0e;white-space:nowrap;pointer-events:none}
+.map-pesma small{display:block;font:700 10px Arial;letter-spacing:2px;color:#7a5a24;font-style:normal;margin-bottom:1px}
+.map-pesma.megdan,.map-pesma.megdan small{color:#7a1a1a}
+.map-ras{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;transform:rotate(45deg);background:#f3dca0;border:2px solid #8a6a2c;box-shadow:0 1px 3px #0006;pointer-events:none}
+.map-ras.on{background:#ffcf6a;border-color:#7a2a1a}
+.pohod-map.grana .map-node{width:58px;height:58px;margin:-29px 0 0 -29px}
+.map-node b{position:absolute;left:50%;top:100%;margin-top:17px;transform:translateX(-50%);width:96px;font:600 11.5px/1.1 var(--display);color:#3a2610;text-align:center;white-space:normal;text-shadow:0 1px 0 #f3dca0cc;pointer-events:none}
+.map-node:disabled b{color:#1c1408}
+.map-node.megdan{border-color:#a3323c;background-color:#5c151c;background-size:118%;background-position:center 20%}
+.map-node.megdan span{background:#7a1a1a;color:#ffe2a8;border-color:#3a0a0a}
+.pohod-map.grana .map-title{left:auto;right:16px;top:auto;bottom:8px;font-size:16px;opacity:.75}
+@media(min-width:901px) and (max-width:1180px){.pohod-map.grana{grid-template-columns:1fr}.pohod-map.grana .map-detail{flex-direction:row;min-height:150px}
+ .pohod-map.grana .map-detail .vista{width:250px;height:auto;min-height:150px;flex:none;box-shadow:inset -40px 0 40px #0b1c1e}
+ .pohod-map.grana .map-detail .info{display:grid;grid-template-columns:1fr auto;column-gap:18px;align-content:start}
+ .pohod-map.grana .map-detail .info>*{grid-column:1}
+ .pohod-map.grana .map-detail .primary{grid-column:2;grid-row:1/span 7;align-self:center;width:auto;min-width:200px;margin:0}}
+.map-detail .pesma-ref{color:#c9b98a;font-style:italic;font-size:14px;margin:0 0 2px}
+@media(max-width:900px){.pohod-map.grana{grid-template-columns:1fr}.pohod-map.grana .map-field{height:400px}}
