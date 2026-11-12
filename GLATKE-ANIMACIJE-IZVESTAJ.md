@@ -101,6 +101,23 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 - **Lost Crown pokreti:** dupli skok se jače isteže; juriš u vazduhu se razvlači u pravcu kretanja, naginje i ostavlja brzinske linije; posle Vilinog traga nema pretapanja sa starog mesta, a Marko se pojavljuje blago izdužen. Sve se gasi uz „Smanjeno podrhtavanje i efekti“. Snimak: `izvestaj/glatke-animacije/lost-crown-pokreti.webp` (levo `?anim=0`, desno novo).
 - **Brzina:** mašinu su opterećivale druge sesije, pa je FPS skakao i bez međukadrova (19–35). Zato je mereno vreme crtanja jednog kadra, korak po korak, naizmenično: nivo 0 medijan 23,2 i 18,0 ms bez međukadrova, 17,5 i 17,6 ms sa njima; nivo 2: 11,3 i 11,1 ms bez, 11,2 i 11,8 ms sa. Razlike su u šumu. Ceo CI prolazi, bez JavaScript grešaka u Chrome-u.
 
+## DOPUNA-45 (Codex): naručeno, stiglo, u igri
+
+**Naručeno** (`art/world-pack-03/DOPUNA-45.md`, Codex CLI neinteraktivno, `codex exec`):
+- deo 1: 13 Markovih moći;
+- deo 2: međupoze za 10 udaraca kao `<klip>-v2` (stari kadrovi na parnim mestima, nove poze između, pa tajming i hitbox ostaju isti);
+- deo 3: isto za 12 klipova kojima tok ne pomaže;
+- deo 4: soko, kostur, vrač, šarka i Ala.
+
+**Stiglo:** 12 od 13 klipova dela 1: `marko-krilo`, `marko-nalet`, `marko-nalet-kraj`, `marko-trag-ostavi`, `marko-trag-povratak`, `marko-air-3`, `marko-kuka-baci`, `marko-kuka-let`, `marko-odmor`, `marko-odmor-ustaje`, `marko-klizanje`, `marko-zid-trk`. Sve je isti Marko, u meri `marko-idle-2`. U 01:51 Codex je stao jer je nalog ostao bez kredita („workspace is out of credits“). Nisu stigli `marko-launcher`, delovi 2–4 i nijedan `-v2` klip.
+
+**U igri:**
+- Sokolovo krilo, juriš u vazduhu i izlazak iz njega, Vilin trag (ostavljanje i povratak) i treći udarac u vazduhu koriste svoje crteže (`powersPose`, `marko-air-3`). Do sada su pozajmljivali tuđe poze.
+- Kuka, odmor, klizanje i trk uz zid su u rig-u i imaju međukadrove, ali te pokrete u kod dodaje sesija „lc-pokreti“.
+- Prihvat `-v2` je spreman: `smooth-anims.py` nacrtanu međupozu stavlja kao polovinu koraka, a četvrtine računa tokom. U igri nacrtana poza prolazi i kroz pripremu i kontakt udarca.
+
+**Nastavak, kad se kredit dopuni:** ponovo pokrenuti Codex sa istim brief-om. On upisuje status u `STATUS-ANIMACIJE.md` i nastavlja od `marko-launcher`.
+
 ## Tabela pre i posle, po klipu
 
 „Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s; „—“ znači da zavisi od scene). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.

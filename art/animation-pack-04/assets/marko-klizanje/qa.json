@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        32,
+        138,
+        480,
+        488
+      ],
+      "footY": 487,
+      "sha256": "b6d88fb654676d0d1315e0aaaac2d28108477aa7e0db7b4d49fc9cb5622ac295"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        30,
+        135,
+        481,
+        488
+      ],
+      "footY": 487,
+      "sha256": "ecfd16340ac817f8e60cc8c1c5feadb5cf5b54acbd588098d9e1086254fae450"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        26,
+        105,
+        486,
+        488
+      ],
+      "footY": 487,
+      "sha256": "432fdb8c2af4fccfd5a7dc0dac5a6571073496607e341248a04103b76381f9d0"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        30,
+        108,
+        482,
+        488
+      ],
+      "footY": 487,
+      "sha256": "94681fdb3c31c428e82eb614a96bb06b7edc00e9ac8865a8feef5a64236bbdd7"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        30,
+        138,
+        481,
+        488
+      ],
+      "footY": 487,
+      "sha256": "9f8b231d818723daf77bdaaf827117601c1d3eb8e07e7fbff52ae35c90dabd7b"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        31,
+        138,
+        480,
+        488
+      ],
+      "footY": 487,
+      "sha256": "2b1b7b9bc41ee79ed12a647df9461f6b2aa7665e544a567a4652e9ce7d0f72ca"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": true,
+  "holdLastFrame": false,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.9228915662650602,
+  "visualReview": "Pregledan atlas: prednja noga ispruzena, telo unazad, slobodna ruka balansira, ogrtac vijori; kosina se ne crta."
+}

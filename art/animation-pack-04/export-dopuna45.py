@@ -18,12 +18,18 @@ im=Image.open(run/'grid.png').convert('RGBA')
 if im.getchannel('A').getextrema()[0]>200:
  sys.path.insert(0,'D:/projects/Marko Kraljevic/tools/sprite-gen')
  from sprite_gen.frames.extract import remove_chroma_background
- im=remove_chroma_background(im,(255,255,255),45,110,30)
+ key=(0,255,0) if im.getpixel((0,0))[1]>im.getpixel((0,0))[0]+80 else (255,255,255)
+ im=remove_chroma_background(im,key,60 if key[0]==0 else 45,110,30)
  im.save(run/'keyed-source.png')
 rows=(n+cols-1)//cols;w,h=im.width//cols,im.height//rows
+cw=w
+if name=='marko-air-3':w+=16
 strip=Image.new('RGBA',(w*n,h))
 for i in range(n):
- cell=im.crop((i%cols*w,i//cols*h,(i%cols+1)*w,(i//cols+1)*h));inner=cell.crop((3,3,w-3,h-3));cell=Image.new('RGBA',(w,h));cell.paste(inner,(3,3));strip.paste(cell,(i*w,0))
+ box=(i%cols*cw,i//cols*h,(i%cols+1)*cw,(i//cols+1)*h)
+ if name=='marko-air-3' and i==3:box=(0,h,370,2*h)
+ if name=='marko-air-3' and i==4:box=(370,h,724,2*h)
+ cell=im.crop(box);inner=cell.crop((1,3,cell.width-1,cell.height-3));cell=Image.new('RGBA',(w,h));cell.paste(inner,(1,3));strip.paste(cell,(i*w,0))
 (run/'raw').mkdir(exist_ok=True);strip.resize((512*n,512),Image.Resampling.LANCZOS).save(run/'raw/motion.png')
 sg('extract','--run-dir',run,'--allow-slot-fallback','--decontam','off')
 # Preserve generated alpha and shared anatomical scale; trim only near-invisible alpha noise.
@@ -31,7 +37,8 @@ parts=[]
 for i in range(n):
  cell=strip.crop((i*w,0,(i+1)*w,h));a=cell.getchannel('A');a=a.point(lambda v:0 if v<8 else v);cell.putalpha(a)
  b=a.getbbox();assert b;parts.append(cell.crop(b))
-scale=min(383/max(p.height for p in parts),480/max(p.width for p in parts))
+target=435 if name=='marko-air-3' else 450 if name=='marko-kuka-let' else 383
+scale=min(target/max(p.height for p in parts),480/max(p.width for p in parts))
 qa=[]
 for i,p in enumerate(parts):
  p=p.resize((round(p.width*scale),round(p.height*scale)),Image.Resampling.LANCZOS)
@@ -39,6 +46,8 @@ for i,p in enumerate(parts):
  cell=Image.new('RGBA',(512,512));cell.alpha_composite(p,((512-p.width)//2,488-p.height));cell.save(run/f'frames/motion/frame-{i}.png')
  if name=='marko-nalet-kraj' and i in (0,2):
   src='marko-nalet' if i==0 else 'marko-fall';cell=Image.open(ROOT/f'assets/{src}/atlas.png').convert('RGBA').crop((0,0,512,512));cell.save(run/f'frames/motion/frame-{i}.png')
+ if name=='marko-odmor-ustaje' and i in (0,3):
+  src='marko-odmor' if i==0 else 'marko-idle-2';si=5 if i==0 else 0;cell=Image.open(ROOT/f'assets/{src}/atlas.png').convert('RGBA').crop((si*512,0,(si+1)*512,512));cell.save(run/f'frames/motion/frame-{i}.png')
  qa.append({'frame':i,'bounds':cell.getchannel('A').getbbox(),'footY':487,'sha256':hashlib.sha256(cell.tobytes()).hexdigest()})
 sg('compose-atlas','--run-dir',run)
 out.mkdir(parents=True,exist_ok=True);shutil.copytree(run/'frames',out/'frames',dirs_exist_ok=True);shutil.copy2(run/'sprite-sheet-alpha.png',out/'atlas.png');shutil.copy2(ref,out/'reference.png')
