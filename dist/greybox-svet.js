@@ -46,7 +46,12 @@ function bounds(im){try{const s=Math.min(1,256/Math.max(im.width,im.height)),w=M
  return x1<x0?{x:0,y:0,w:im.width,h:im.height}:{x:x0/s,y:y0/s,w:(x1-x0+1)/s,h:(y1-y0+1)/s};}catch{return{x:0,y:0,w:im.width,h:im.height};}}
 // what a biome offers: the manifest's entry where it has one, the stand-ins where it does not; a manifest file that fails
 // to load falls back to the stand-in of the same slot
-function biome(L){askManifest();const fb=FALLBACK[L.biom]||FALLBACK.podgradje,mb=manifest?.biomes?.[L.biom];if(!mb)return fb;
+// the painted sets in dist/assets/world: a level that names the look it wants (zeljeniBiom, the pohodi 4–19) gets that set
+// outside, and its ground strip, while its biome is not in the manifest yet
+const SETS=new Set(['klisura','manastir','mocvara','oranje','pecina','podrum','prevoj','reka','rudnik','rusevine','selo','suma','tvrdjava','urvina']);
+function standIn(L){const fb=FALLBACK[L.biom]||FALLBACK.podgradje,z=L.zeljeniBiom;if(!z||!SETS.has(z))return fb;
+ return L._standIn??={...fb,layers:LAY(z),materials:{...fb.materials,ground:W(`tlo-${z}`)}};}
+function biome(L){askManifest();const fb=standIn(L),mb=manifest?.biomes?.[L.biom];if(!mb)return fb;
  const pickLayers=(m,f)=>m?.length&&!m.some(l=>failed(l.file))?m:f;
  const mats=Object.fromEntries(Object.entries(fb.materials).map(([k,v])=>[k,mb.materials?.[k]&&!failed(mb.materials[k])?mb.materials[k]:v]));
  if(!mb.materials?.groundIn&&isTex(mats.ground))mats.groundIn=mats.ground;
