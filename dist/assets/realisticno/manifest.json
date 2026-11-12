@@ -382,6 +382,197 @@
      "layer": "foreground"
     }
    ]
+  },
+  "klisura": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/klisura/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/klisura/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/klisura/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/klisura/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": [
+     {
+      "id": "in-back",
+      "file": "realisticno/klisura/in-back.webp",
+      "speed": 0.04,
+      "w": 1774,
+      "h": 887
+     },
+     {
+      "id": "in-far",
+      "file": "realisticno/klisura/in-far.webp",
+      "speed": 0.16,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-mid",
+      "file": "realisticno/klisura/in-mid.webp",
+      "speed": 0.38,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-near",
+      "file": "realisticno/klisura/in-near.webp",
+      "speed": 0.72,
+      "w": 2172,
+      "h": 724
+     }
+    ]
+   },
+   "materials": {
+    "ground": "realisticno/klisura/mat-ground.webp",
+    "wall": "realisticno/klisura/mat-wall.webp",
+    "platform": "realisticno/klisura/mat-platform.webp",
+    "beam": "realisticno/klisura/mat-beam.webp",
+    "ceiling": "realisticno/klisura/mat-ceiling.webp",
+    "groundTop": "realisticno/klisura/mat-groundTop.webp",
+    "groundFront": "realisticno/klisura/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "sanduk",
+     "file": "realisticno/klisura/prop-sanduk.webp",
+     "w": 64,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "bacva",
+     "file": "realisticno/klisura/prop-bacva.webp",
+     "w": 52,
+     "h": 72,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "kameni-blok",
+     "file": "realisticno/klisura/prop-kameni-blok.webp",
+     "w": 84,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "most",
+     "file": "realisticno/klisura/prop-most.webp",
+     "w": 300,
+     "h": 47,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "rusevni-luk",
+     "file": "realisticno/klisura/prop-rusevni-luk.webp",
+     "w": 251,
+     "h": 260,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "baklja",
+     "file": "realisticno/klisura/prop-baklja.webp",
+     "w": 34,
+     "h": 90,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "vrata",
+     "file": "realisticno/klisura/prop-vrata.webp",
+     "w": 170,
+     "h": 186,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "cekrk",
+     "file": "realisticno/klisura/prop-cekrk.webp",
+     "w": 130,
+     "h": 96,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "konopac",
+     "file": "realisticno/klisura/prop-konopac.webp",
+     "w": 76,
+     "h": 50,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "kolje",
+     "file": "realisticno/klisura/prop-kolje.webp",
+     "w": 200,
+     "h": 107,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "fg-busen",
+     "file": "realisticno/klisura/prop-fg-busen.webp",
+     "w": 68,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/klisura/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/klisura/prop-fg-koren.webp",
+     "w": 110,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/klisura/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 90,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ]
   }
  },
  "note": "Paths are relative to dist/assets/. Layers: w/h = image px, sky/back 1774x887 opaque, far/mid/near 2172x724 RGBA, all tile horizontally with no seam (no crossfade needed), bottom-anchored like dist/assets/world layers. interior.layers: same speeds, first is an opaque back wall. Materials: 512x512, tile both ways. Props: w/h = draw size in world px (the image is 2x that), anchor bottom-centre, solid = can be stood on / blocks."
