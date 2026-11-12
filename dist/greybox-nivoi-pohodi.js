@@ -48,9 +48,9 @@ function kit(sobe){
   pit(id,dx0,dx1,o={}){const r=room(id),name=o.name||`pit-${id}-${dx0}`;K.rupe.push([id,dx0,dx1,o.lip?{lip:o.lip}:{}]);op(B=>B.pit(name,r.x0+dx0,r.x0+dx1,r.floor+150));return name;},
   // two walls 150 px apart climbed wall to wall, from a floor up to the row above; in a tall room the row above gets a
   // walkway on both sides, between two rooms the chimney rises through a hole in the upper room's floor
-  chimney(id,dx,o={}){const r=room(id),x=r.x0+dx,name=`ch-${id}-${dx}`,upper=o.upper;
-   if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;if(x+40<u.x0+40||x+190>u.x1-40)throw new Error(`dimnjak iz ${id} nije ispod sobe ${upper}`);K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:node(id)}]);op(B=>B.chimney(name,x,top,bottom));
-    K.veze.push([node(id),node(upper),null,true,{chimney:[name,x+430]}]);return K;}
+  chimney(id,dx,o={}){const r=room(id),x=r.x0+dx,name=`ch-${id}-${dx}`,upper=o.upper,low=o.part||node(id);
+   if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;if(x+40<u.x0+40||x+190>u.x1-40)throw new Error(`dimnjak iz ${id} nije ispod sobe ${upper}`);K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:low}]);op(B=>B.chimney(name,x,top,bottom));
+    K.veze.push([low,node(upper),null,true,{chimney:[name,x+430]}]);return K;}
    const row=o.row??r.bottom,rowTop=row-1,top=FY(rowTop),bottom=FY(row)-150;
    op(B=>{B.chimney(name,x,top,bottom);if(x>r.x0+20)B.block(r.x0+20,top,x-r.x0-20,40);if(x+230<r.x1-20)B.block(x+230,top,r.x1-20-x-230,40);});
    const exit=x+230+200<r.x1-60?x+430:x-200;
@@ -113,7 +113,7 @@ function kit(sobe){
 function pohod(def){const K=kit(def.sobe);def.gradi(K);
  // a door out of the right side of a room whose far part lies past an abyss leaves from that part
  // a hole must not open over another hole in the floor below it
- for(const [id,a,b,o] of K.rupe){if(!o.to)continue;const r=K.R[id],t=K.R[o.to.split('@')[0]];for(const [id2,a2,b2] of K.rupe)if(id2===t.id&&r.x0+a<t.x0+b2&&t.x0+a2<r.x0+b)throw new Error(`${def.id}: rupa u ${id} (${a}–${b}) pada u rupu u ${id2} (${a2}–${b2})`);}
+ for(const [id,a,b,o] of K.rupe){if(!o.to)continue;const r=K.R[id],t=K.R[K.delovi[o.to]?.room||o.to.split('@')[0]];for(const [id2,a2,b2] of K.rupe)if(id2===t.id&&r.x0+a<t.x0+b2&&t.x0+a2<r.x0+b)throw new Error(`${def.id}: rupa u ${id} (${a}–${b}) pada u rupu u ${id2} (${a2}–${b2})`);}
  // the champion's arena closes behind Marko: the door into it goes one way
  for(const v of K.vrata)if(v[1]===K.bosRoom)v[3].oneway=true;
  for(const v of K.vrata){const [a,,row,o]=v;if(o.na)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===a&&d.x1==null&&row===K.R[a].bottom)o.na=name;}
@@ -533,7 +533,58 @@ export const GB_POHODI={
   K.drop('pecina',1300,1500,'brlog');K.chimney('brlog',700,{upper:'pecina'});K.heart('brlog',300,2);K.door('pecina','izvor',1);
   // Vilinski izvor: krilo, čekpoint, Ravijojla bere bilje; dimnjak u guštaru; treći kamen i vilina riznica
   K.ckpt('izvor',600);K.shrine('krilo','izvor',850);K.lik('izvor',1050,'vila-isceljenje','Ravijojla bere bilje po Miroču i leči Miloša. Uzmi krilo, Marko, i popni se na vrh.',1);
-  K.chimney('izvor',300,{upper:'gustis'});K.door('izvor','vilina',1);K.lik('vilina',500,'vilinski-kamen-budan','Treći vilinski kamen je budan. Iza njega je zid koji zvuči šuplje.',1);K.crack('vilina','riznica',{row:1});K.cudo('riznica',600,'Bilje sa Miroča',1);}})
+  K.chimney('izvor',300,{upper:'gustis'});K.door('izvor','vilina',1);K.lik('vilina',500,'vilinski-kamen-budan','Treći vilinski kamen je budan. Iza njega je zid koji zvuči šuplje.',1);K.crack('vilina','riznica',{row:1});K.cudo('riznica',600,'Bilje sa Miroča',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 11 · Vilinska pećina („Marko Kraljević u pećini“): u pećini Marko spava, sablja mu sama izleće iz korica, a Ravijojla drži
+// gusle javorove što same gude. Kristalna dvorana i ponor pod njom prelaze se samo jurišem; juriš daje Ravijojla u svojoj
+// odaji kraj podzemne reke. Na kraju pećine je leglo Aždaje.
+11:pohod({id:'pecina',ime:'Vilinska pećina',biom:'urvina',zeljeniBiom:'pecina',daje:'nalet',pocetne:['krilo'],
+ cilj:'Nađi Ravijojlinu odaju, pređi kristalnu dvoranu jurišem i stigni do Aždajinog legla',start:'pred',spawnDx:240,
+ uvod:'Vilinska pećina. Gusle javorove same gude negde duboko. Kristalna dvorana je presečena ponorom; juriš u vazduhu daje Ravijojla u svojoj odaji, kraj podzemne reke.',
+ sobe:[
+  ['pred','Pred pećinom',-1,0,1,1],
+  ['litica','Litica nad pećinom',-1,-1,1,1],
+  ['usta','Usta pećine',0,0,2,1,{interior:true}],
+  ['svod','Svod',0,-1,2,1,{interior:true}],
+  ['misevi','Odaja slepih miševa',2,-1,1,1,{secret:true,interior:true,lore:'Odaja slepih miševa. Ovde su gusle javorove čekale Ravijojlu; same su gudele kad bi Marko zahrkao.'}],
+  ['dvorana','Kristalna dvorana',2,0,2,1,{interior:true}],
+  ['sablja','Odaja sablje',4,0,1,1,{interior:true}],
+  ['stalaktiti','Stalaktiti',5,0,2,1,{interior:true}],
+  ['svod2','Visoki svod',6,-1,1,1,{interior:true}],
+  ['mahovina','Šarčeva mahovina',7,-1,1,1,{interior:true}],
+  ['galerija','Kristalna galerija',8,-1,1,1,{interior:true}],
+  ['leglo','Aždajino leglo',7,0,1,1,{interior:true}],
+  ['skroviste','Skrovište',-1,1,1,1,{secret:true,interior:true,lore:'Skrovište. Čobani su ovde krili ovce od Aždaje; ostao je samo kraj od frule.'}],
+  ['reka','Podzemna reka',0,1,2,1,{interior:true}],
+  ['izvor','Ledeni izvor',1,2,1,1,{interior:true}],
+  ['odaja','Ravijojlina odaja',2,1,1,1,{interior:true}],
+  ['ponor','Ponor pod dvoranom',3,1,2,1,{interior:true}],
+  ['jezero','Podzemno jezero',5,1,1,1,{interior:true}],
+  ['kristalni','Kristalni prolaz',6,1,1,1,{secret:true,interior:true,lore:'Kristalni prolaz. Ravijojla ga pokazuje samo onome ko pređe ponor; kristali svetle kao sveće.'}],
+  ['kosti','Kosti junaka',5,2,1,1,{interior:true}]],
+ brda:{pred:[[500,800,30]]},
+ gradi(K){
+  // Pred pećinom: guslar; krilo na liticu
+  K.guslar('pred',900,['A pred Markom vila Ravijojla,','u ruke joj gusli javorove:','same gude, same udaraju.']);K.wing('pred',300,{upper:'litica'});K.heart('litica',900,-1);K.door('pred','usta',0);
+  // Usta pećine: psi i janičar; krilo na svod, rupa u podzemnu reku
+  K.borba('usta',[['pas',850],['sword',1350],['pas',2100]]);K.wing('usta',500,{upper:'svod'});K.drop('usta',1600,1800,'reka');K.door('usta','dvorana',0);
+  // Svod: strelac i janičar, strelnica; lažni zid do odaje slepih miševa
+  K.block('svod',1000,120,140,120,-1);K.borba('svod',[['archer',1050,120],['sword',600]],-1);K.strelnica('svod',2380,{row:-1,every:2.8});K.fake('svod','misevi',{row:-1});K.cudo('misevi',600,'Gusle javorove',-1);
+  // Kristalna dvorana: juriš preko ponora; odaja sablje
+  K.dash('dvorana',700);K.door('dvorana','sablja',0);K.cudo('sablja',800,'Sablja iz korica');K.door('sablja','stalaktiti',0);
+  // Stalaktiti: čekpoint, borba, šiljci; krilo do visokog svoda; Aždajino leglo
+  K.ckpt('stalaktiti',200);K.borba('stalaktiti',[['oklopnik',1000],['shield',1400],['sword',1700]]);K.spikes('stalaktiti',2000,120);K.wing('stalaktiti',1500,{upper:'svod2'});
+  K.heart('svod2',900,-1);K.door('svod2','mahovina',-1);K.strelnica('mahovina',1180,{row:-1,every:2.6});K.door('mahovina','galerija',-1);K.heart('galerija',600,-1);
+  K.door('stalaktiti','leglo',0);K.bos('leglo','azdaja');
+  // Podzemna reka: greda nad vodom, borba; napukli zid do skrovišta; ledeni izvor ispod
+  K.greda('reka',300,{span:220});K.borba('reka',[['sword',800],['pas',1150]]);K.crack('reka','skroviste',{row:1});K.heart('skroviste',500,1);
+  K.chimney('reka',1000,{upper:'usta'});K.drop('reka',1300,1450,'izvor');K.chimney('izvor',600,{upper:'reka'});K.heart('izvor',900,2);K.door('reka','odaja',1);
+  // Ravijojlina odaja: juriš i čekpoint
+  K.ckpt('odaja',300);K.shrine('nalet','odaja',700);K.lik('odaja',1000,'vila-carolija','Ravijojla: Spavaj, Marko, dok ja guslam. A kad se probudiš, juriš preko ponora.',1);K.door('odaja','ponor',1);
+  // Ponor: juriš; dimnjak u odaju sablje; podzemno jezero i kristalni prolaz
+  const dalje=K.dash('ponor',700);K.chimney('ponor',1500,{upper:'sablja',part:dalje});K.door('ponor','jezero',1);
+  K.borba('jezero',[['sword',600],['shield',900]]);K.crack('jezero','kristalni',{row:1});K.cudo('kristalni',600,'Kristal',1);
+  K.drop('jezero',300,500,'kosti');K.chimney('kosti',800,{upper:'jezero'});K.lik('kosti',400,'kostur-stoji','Kostur junaka: I ja sam tražio kristalni prolaz. Ponor me je stigao pre juriša.',2);K.heart('kosti',1000,2);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
