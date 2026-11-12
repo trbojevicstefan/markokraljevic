@@ -134,23 +134,29 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 - **materijali:** `ground`, `wall`, `platform`, `beam`, `ceiling` su bešavne slike 512×512 koje se ponavljaju (zidovi i plafoni kao šara, ispusti i grede kao ploče); manifestov `ground` važi i za unutrašnje sobe;
 - **predmeti:** po `id` (nivo može da koristi i opšta imena: `tezga` → `kolica`, `kamen` → `kameni-blok`, `bure` → `bacva`, `luk` → `rusevni-luk`, `baklja` → `mangal`). `w`/`h` su u pikselima sveta. U ovim nivoima su predmeti samo ukras i ništa ne zaprečuju.
 
-Sada je realistično obučen nivo 1 (Podgrađe), a sa njim i pohodi 4–19 čiji je biom `podgradje`. Urvina i klisura još nose naslikane materijale iz `dist/assets/world/`, dok ne stignu u manifest. Pohodi 4–19 tada nose set svog `zeljeniBiom` (selo, močvara, šuma, prevoj…) sa njegovim tlom:
+Sva tri bioma su u manifestu, pa su sva tri nivoa i pohodi 4–19 obučeni realistično:
 
-| Biom | Spolja | Unutra | Posebni setovi |
-|---|---|---|---|
-| podgradje | manifest (Prilep u zlatni sat) | manifest (podrum) | — |
-| urvina | urvina | pećina | šuma, reka |
-| klisura | klisura | podrum (pećine: pećina) | reka |
+| Biom | Spolja | Unutra |
+|---|---|---|
+| podgradje | Prilep u zlatni sat | podrum |
+| urvina | jutarnja magla, vodopadi | pećina |
+| klisura | klisura u sumrak i oluju | Musina kula |
+
+Kad je biom u manifestu, naslikani setovi soba (šuma, reka) ustupaju realističnim slojevima, a pećine dobijaju unutrašnji set.
+
+Ako manifest ili neki njegov fajl nedostaje, uskaču naslikane slike iz `dist/assets/world/`:
+- tri nivoa nose set svog bioma (oranje/podrum, urvina/pećina, klisura/podrum, uz šumu, reku i pećinu);
+- pohodi 4–19 nose set svog `zeljeniBiom`.
 
 ### Pod sa dubinom
 Staza se vidi blago odozgo, ali linija hoda i sudari ostaju isti:
 - iznad linije hoda je traka od 30 px; dalja ivica je gore i uvučena na krajevima bloka, a tekstura je skraćena i ima izmaglicu prema daljoj ivici;
-- ispod linije je tamnije prednje lice (u Podgrađu zid od kamena);
+- ispod linije je tamnije prednje lice;
 - kosine imaju istu traku, a grede i ispusti tanju gornju stranu.
 
-Kad manifest dobije `materials.groundTop` (slika viđena odozgo) i `materials.groundFront`, koriste se one.
+Gornja površina je manifestov `materials.groundTop` (slika viđena odozgo), a prednje lice `materials.groundFront`. Bez njih se gornja površina pravi od skraćenog materijala, a prednje lice od zida.
 
-**Prednji plan:** busenje, paprat, kamenje i korenje stoje ispred Marka, preko donje ivice slike. Tamniji su i kreću se malo brže od sveta. Kad biom dobije predmete sa `"layer":"foreground"`, koriste se oni.
+**Prednji plan:** busenje, kamenje, korenje i ograda (manifestovi predmeti sa `"layer":"foreground"`) stoje ispred Marka, preko donje ivice slike. Tamniji su i kreću se malo brže od sveta.
 
 **Rupe u podu** pokazuju sobu ispod, a ne nebo sobe iznad.
 
