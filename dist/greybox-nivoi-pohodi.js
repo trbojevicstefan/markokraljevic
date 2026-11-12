@@ -50,7 +50,7 @@ function kit(sobe){
   // walkway on both sides, between two rooms the chimney rises through a hole in the upper room's floor
   chimney(id,dx,o={}){const r=room(id),x=r.x0+dx,name=`ch-${id}-${dx}`,upper=o.upper,low=o.part||node(id);
    if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;if(x+40<u.x0+40||x+190>u.x1-40)throw new Error(`dimnjak iz ${id} nije ispod sobe ${upper}`);K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:low}]);op(B=>B.chimney(name,x,top,bottom));
-    K.veze.push([low,node(upper),null,true,{chimney:[name,x+430]}]);return K;}
+    K.veze.push([low,node(upper),null,true,{chimney:[name,x+430<u.x1-60?x+430:x-200]}]);return K;}
    const row=o.row??r.bottom,rowTop=row-1,top=FY(rowTop),bottom=FY(row)-150;
    op(B=>{B.chimney(name,x,top,bottom);if(x>r.x0+20)B.block(r.x0+20,top,x-r.x0-20,40);if(x+230<r.x1-20)B.block(x+230,top,r.x1-20-x-230,40);});
    const exit=x+230+200<r.x1-60?x+430:x-200;
@@ -907,7 +907,57 @@ export const GB_POHODI={
   K.drop('ponor',2000,2150,'izvor');K.chimney('izvor',300,{upper:'ponor'});K.heart('izvor',900,2);K.door('ponor','jezero',1);
   // Vilino jezero: juriš i čekpoint; dimnjak u odaju slova; korenje i riznica sna iza ponora
   K.ckpt('jezero',200);K.shrine('nalet','jezero',950);K.chimney('jezero',500,{upper:'slova'});K.door('jezero','korenje',1);
-  K.dash('korenje',700);K.door('korenje','riznica',1);K.cudo('riznica',600,'Zlato iz sna',1);}})
+  K.dash('korenje',700);K.door('korenje','riznica',1);K.cudo('riznica',600,'Zlato iz sna',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 18 · Azačka kula („Marko Kraljević u Azačkoj tamnici“): iz tamnice gde je voda do kolena Marko izlazi kroz tamnički
+// prozor i avliju, uz kulu od dvadeset tavana. Vrata kule otvara daleki prekidač u stražari; Vilin trag čeka u cisterni
+// ispod avlije. Na vrhu kule je Arapin, a u golubarniku sivi soko čeka knjigu za Dojčila u Solunu.
+18:pohod({id:'azak',ime:'Azačka kula',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'trag',pocetne:['krilo','nalet'],
+ cilj:'Iz tamnice kroz avliju, Vilinim tragom kroz vrata kule i na vrh, do Arapina',start:'tamnica',spawnDx:240,
+ uvod:'Azačka tamnica. Voda do kolena, kosti do pojasa. Vrata kule otvara prekidač u stražari, predaleko od vrata; Vilin trag čeka u cisterni ispod avlije.',
+ sobe:[
+  ['tamnica','Azačka tamnica',0,1,2,1,{interior:true}],
+  ['kosti','Kosti sužanja',-1,1,1,1,{secret:true,interior:true,lore:'Kosti sužanja. Sedam godina je Marko brojao zime po grudvi snega, a leta po struku bosiljka.'}],
+  ['izvor','Voda do kolena',1,2,1,1,{interior:true}],
+  ['prozor','Tamnički prozor',0,0,2,1],
+  ['zaduzbina','Zadužbina',-1,0,1,1,{secret:true,interior:true,lore:'Zadužbina. Marko se pokajao što je posekao kraljevu kćer koja ga je izbavila, pa je zidao zadužbine.'}],
+  ['zmije','Zmije i jakrepi',2,1,1,1,{interior:true}],
+  ['cisterna','Cisterna',3,1,1,1,{interior:true}],
+  ['potkop','Potkop pod kulom',4,1,2,1,{interior:true}],
+  ['riznica','Arapsko blago',6,1,1,1,{secret:true,interior:true,lore:'Arapsko blago. Kraljeva kći je donela tovar blaga da kupi Marka; on ga je razdao manastirima.'}],
+  ['avlija','Avlija kule',2,0,2,1],
+  ['bedem','Bedem',2,-1,2,1],
+  ['osmatracnica','Osmatračnica',2,-2,1,1],
+  ['strelnice','Hodnik strelnica',4,-1,1,1,{interior:true}],
+  ['straza','Stražara',4,0,1,1,{interior:true}],
+  ['kula','Kula od dvadeset tavana',5,-2,1,3,{interior:true}],
+  ['konjusnica','Konjušnica',6,0,1,1,{interior:true}],
+  ['more','Kula nad morem',7,0,1,1],
+  ['arapkina','Odaja kraljeve kćeri',6,-1,1,1,{interior:true}],
+  ['golubarnik','Golubarnik',7,-1,1,1,{interior:true}],
+  ['vrh','Vrh kule',6,-2,1,1]],
+ gradi(K){
+  // Azačka tamnica: sužanj guslar peva o sokolu; krilo do prozora, lažni zid do kostiju, voda do kolena ispod
+  K.guslar('tamnica',850,['Pa dozivlje sivoga sokola:','„O sokole, pust mi ne ostao!','Nosi knjigu ka gradu Solunu.”']);K.wing('tamnica',400,{upper:'prozor'});
+  K.fake('tamnica','kosti',{row:1});K.cudo('kosti',500,'Grudva snega',1);K.drop('tamnica',1500,1650,'izvor');K.chimney('izvor',800,{upper:'tamnica'});K.heart('izvor',200,2);K.door('tamnica','zmije',1);
+  // Tamnički prozor: devojke; napukli zid do zadužbine
+  K.lik('prozor',1100,'putnica-idle','Devojka: Zimi mu ubacimo grudvu snega, a leti struk bosiljka, da zna koje je doba godine.');K.crack('prozor','zaduzbina',{row:0});K.cudo('zaduzbina',600,'Zadužbina');K.heart('prozor',1900,0);K.door('prozor','avlija',0);
+  // Zmije i jakrepi: treća borba; dimnjak u avliju; cisterna sa Vilinim tragom
+  K.borba('zmije',[['pas',600],['pas',900]],1);K.chimney('zmije',200,{upper:'avlija'});K.door('zmije','cisterna',1);
+  K.ckpt('cisterna',300);K.shrine('trag','cisterna',700);K.door('cisterna','potkop',1);
+  // Potkop: greda, četvrta borba; arapsko blago iza vrata na prekidač
+  K.greda('potkop',400,{span:220});K.borba('potkop',[['sword',900],['shield',1100]]);K.trace('potkop','riznica');K.cudo('riznica',600,'Arapsko blago',1);
+  // Avlija: prva borba, juriš preko jarka; krilo na bedem
+  K.borba('avlija',[['sword',1000],['akindzija',2000]]);K.dash('avlija',1200);K.wing('avlija',500,{upper:'bedem'});K.door('avlija','straza',0);
+  K.block('bedem',1300,120,140,120,-1);K.borba('bedem',[['archer',1350,120],['sword',1900]],-1);K.wing('bedem',860,{upper:'osmatracnica'});K.heart('osmatracnica',300,-2);K.door('bedem','strelnice',-1);
+  K.strelnica('strelnice',1180,{row:-1,every:2.4});K.strelnica('strelnice',1180,{row:-1,every:2.4,low:true,phase:.5});K.heart('strelnice',1000,-1);
+  // Stražara: čekpoint; vrata kule na daleki prekidač (Vilin trag)
+  K.ckpt('straza',500);K.lik('straza',300,'caus-idle','Stražar: Vrata kule otvara prekidač kraj ulaza, a zatvore se pre nego što stigneš.');K.trace('straza','kula');
+  // Kula od dvadeset tavana: peta borba, dimnjak, krilo; Arapin na vrhu
+  K.borba('kula',[['sword',400],['akindzija',1000]],0);K.chimney('kula',700);K.wing('kula',300,{row:-1});K.door('kula','konjusnica',0);K.door('kula','arapkina',-1);K.door('kula','vrh',-2);K.bos('vrh','arapin');
+  K.heart('konjusnica',600,0);K.door('konjusnica','more',0);K.strelnica('more',1180,{every:2.6});K.cudo('more',700,'Pogled na more');
+  K.lik('arapkina',600,'putnica-idle','Kraljeva kći: Izbaviću te, Marko, ako me uzmeš za ljubu. Na vrhu kule je Arapin.',-1);K.door('arapkina','golubarnik',-1);
+  K.lik('golubarnik',600,'soko-let','Sivi soko: Daj mi knjigu, Marko. Odneću je Dojčilu u Solun.',-1);K.heart('golubarnik',950,-1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
