@@ -59,3 +59,7 @@ Kad TTS iz projekta Videos radi na istoj kartici, slika traje i do 2,5 puta duž
 - **Ručno obrisano:** anahroni fenjeri u kuli Klisure, lebdeće brvno u pećini Urvine i lebdeći kamen na nebu klisure Ibra.
 - **Noćne i olujne varijante** postojećih pejzaža (`-night`, `-storm`) nisu rađene; postoje samo dnevne.
 - **Stil:** Klisura i deo postojećih pejzaža (kristali pećine, žute stene klisure Ibra) i posle drugog prolaza čuvaju trag stila originala.
+  - Treći prolaz (0,62) za svih 42 sloja postojećih pejzaža skoro ništa nije promenio, pa je odbačen.
+  - Prolaz direktno iz starog crteža na 0,86 (klisura Ibra, pećina, rudnik, šuma) takođe zadržava stil, a pomera kompoziciju. I on je odbačen.
+  - Stil nose sami stari crteži. Za potpuno fotografske verzije tih setova treba napraviti nove draftove, kao za tri glavna bioma.
+- Zadnji zid rudnika ima tunel koji vodi u dubinu, kao i originalni crtež.
