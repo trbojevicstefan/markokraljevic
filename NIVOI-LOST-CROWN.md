@@ -161,7 +161,17 @@ Gornja površina je manifestov `materials.groundTop` (1024×256, ponavlja se vod
 - soba sa `set` (šuma, reka, pećina) uzima `svet-<set>`;
 - `svet-predmeti`: naslikani predmet iz `world/` menja se realističnim po polju `replaces`, iste veličine i sa istim sidrom.
 
-**Prednji plan:** busenje, kamenje, korenje i ograda (manifestovi predmeti sa `"layer":"foreground"`) stoje ispred Marka, preko donje ivice slike. Tamniji su i kreću se malo brže od sveta.
+**Predmeti, sve ručno, ništa nasumično:** svaki predmet je upisan u tabelu `ukras` nivoa, soba po sobu: `[id, mesto od leve ivice sobe, {fg, row}]`.
+- Predmet se crta posle tla i stoji na stazi, na površini pod sobom (i na kosini), u veličini iz manifesta.
+- `fg` je prvi plan ispred Marka (busenje, kamenje, korenje, ograda), tamniji i malo brži od sveta, preko donje ivice slike. Prvi plan je samo ono što je upisano.
+- U tri nivoa je 293 predmeta. Test proverava da svaki stoji na čvrstom tlu, da nije nad rupom i da je dalje od oltara, čekpointa, prekidača, poluga i vrata.
+- Plan protivnika po sobama je u `PLAN-PROTIVNIKA.md`.
+
+**Brdo:** ivica staze prati kosinu, a zemlja ispod se rasteže do iste linije kao pod pored, pa brdo izgleda kao humka, a ne kao most nad tamnim lukom.
+
+**Vrata, poklopci i kapija** su od drveta ili kamena, sa tankom ivicom u boji. Lažni zid je od istog zida kao zidovi oko njega.
+
+**Sopstveni predmeti** (`dist/assets/greybox/`): oltar moći, kameni prekidač i poluga. Prave se lokalno: skice su u `art/greybox/sketches.py`, slike daje Z-Image img2img (isti radnik kao za realistične pozadine), a `art/greybox/finish.py` ih iseca i snima. Dok ih nema, crta se kameni blok, odnosno oznake u boji.
 
 **Rupe u podu** pokazuju sobu ispod, a ne nebo sobe iznad.
 
