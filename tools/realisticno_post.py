@@ -50,12 +50,19 @@ def key_layer(raw, draft=None, band=56, lo=70, hi=150, wrap_x=True, spill_band=2
     empty, and in between the magenta key decides, so whatever the model added close to the silhouette stays."""
     rgb = np.asarray(raw.convert('RGB'), np.float32)
     m = magentaness(rgb)
-    a = 1 - np.clip((m - lo) / (hi - lo), 0, 1)
     if draft is not None:
         d = np.asarray(draft.convert('RGB').resize(raw.size, Image.NEAREST), np.float32)
         fg = magentaness(d) < 120
         core = _erode(fg, band, wrap_x)
         out = ~_dilate(fg, band, wrap_x)
+        # The model's magenta is not always pure (a second pass returns it paler): put the upper threshold just
+        # under the background it actually painted, so a pale background still keys out completely.
+        if out.any():
+            m_bg = float(np.percentile(m[out], 10))
+            hi = min(hi, m_bg - 12)
+            lo = min(lo, hi - 45)
+    a = 1 - np.clip((m - lo) / max(1.0, hi - lo), 0, 1)
+    if draft is not None:
         a[core & (m < 110)] = 1           # holes in foliage inside the silhouette still show magenta: keep them keyed
         a[out] = 0
     a8 = (a * 255).astype(np.uint8)
