@@ -206,9 +206,9 @@ export const GB_NIVOI={
 // 3 · Kačanička klisura i Musina kula: the river in the gorge, a broken stone bridge, a mill on the rapids, the hermit's
 // cell up on the canyon wall where Ravijojla leaves the fairy's trace (Vilin trag), and Musa's tower, climbed from its
 // gate to its top through doors and trapdoors that only the trace gets Marko through. Musa Kesedžija waits on the roof.
-3:{id:'klisura',ime:'Kačanička klisura i Musina kula',biom:'klisura',daje:'trag',pocetne:['krilo','nalet'],cilj:'Nađi Vilin trag, uđi u Musinu kulu i popni se do Muse',
+3:{id:'klisura',ime:'Kačanička klisura i Musina kula',biom:'klisura',daje:'trag',daje2:['lanac','oko'],pocetne:['krilo','nalet','klizanje','zidotrk'],cilj:'Nađi Vilin trag, uđi u Musinu kulu i popni se do Muse',
  start:'ulaz',spawnDx:300,
- uvod:'Kačanička klisura. Marko ima krilo i juriš. Musina kula je zaključana vratima koja daleki prekidač otvara na tren; Vilin trag ostavlja Ravijojla u isposnici gore na zidu kanjona.',
+ uvod:'Kačanička klisura. Marko ima krilo i juriš. Musina kula je zaključana vratima koja daleki prekidač otvara na tren; Vilin trag ostavlja Ravijojla u isposnici gore na zidu kanjona. Na vrh kule se ide Ravijojlinim lancem, a on čeka u oružani.',
  sobe:[
   ['ulaz','Ulaz u klisuru',-1,0,1,1],
   ['obala','Obala Lepenca',0,0,2,1,{set:'reka'}],
@@ -236,7 +236,7 @@ export const GB_NIVOI={
   ['kula','oruzana',-1],['strazara','kula',-2],['kula','vrh',-3,{oneway:true}],['staza','isposnica',-1],
   ['izvor','mlin',1],['mlin','brzaci',1]],
  rupe:[['obala',1500,1800,{to:'pecina'}],['most',200,500],['most',1650,1950],['most',700,1000],['kula',1500,1800],['skela',700,1200,{to:'brzaci',lip:'R'}],
-  ['staza',2700,2930],['vodenica',800,1030],['brzaci',1300,1700]],
+  ['staza',2700,2930],['pecina',60,700],['vodenica',800,1030],['brzaci',1300,1700]],
  brda:{ulaz:[[500,900,40]],obala:[[300,800,50],[1950,2300,-40]]},
  build(B){const{X}=B;
   // Ulaz and Obala Lepenca: the start, a janičar and a dog on the bank, the hole down into the cave
@@ -259,18 +259,19 @@ export const GB_NIVOI={
   B.ckpt(X('podnozje',250),F0);B.foe('oklopnik',X('podnozje',700),F0);B.open(9600,F0-260,F0);B.door('door-kula',9540,F0-260,F0,{x:8500,y:F0});
   // Musina kula: a chimney to the mezzanine, the wing's ledge to the gallery, a chimney to the top walk; a trapdoor to the dungeon
   B.chimney('ch-kula1',10000,FM1,F0-150);B.block(10230,FM1,1260,40);B.ledge(11640,FM1-365,100);
-  B.block(9600,FM2,1850,40);B.block(11750,FM2,250,40);B.chimney('ch-kula2',10000,-1570,FM2-150);B.block(10230,-1570,1520,40);
+  B.block(9600,FM2,1850,40);B.block(11750,FM2,250,40);B.kuka('kuka-kula1',9800,FM2-470);B.kuka('kuka-kula2',10050,FM2-830);B.block(10230,-1570,1520,40);
   B.trapdoor('trap-kula',11100,F0,300,{x:9800,y:F0});B.ledge(11290,F1-365,100);
   B.foe('sword',10700,FM1);B.foe('archer',9900,FM2);B.strelnica({x:11980,y:FM2-40,gy:FM2,dir:-1,every:2.8});
-  B.open(12000,FM2-200,FM2);B.fake('fake-riznica',11980,FM2-200,60,200);B.cudo(X('riznica',600),FM2,'Musina sablja');
+  B.open(12000,FM2-200,FM2);B.iluzija('varka-riznica',11980,FM2-200,60,200);B.cudo(X('riznica',600),FM2,'Musina sablja');
   // Oružana and Stražara: armoured men and archers
-  B.foe('oklopnik',X('oruzana',500),FM1);B.foe('shield',X('oruzana',900),FM1);B.heart(X('oruzana',1050),FM1);
+  B.shrine('lanac',X('oruzana',300),FM1);B.foe('oklopnik',X('oruzana',500),FM1);B.foe('shield',X('oruzana',900),FM1);B.heart(X('oruzana',1050),FM1);
   B.foe('archer',X('strazara',400),FM2);B.foe('archer',X('strazara',800),FM2);
   // Krov Musine kule: Musa Kesedžija, leaping from beam to beam
   {const a0=X('vrh',40),a1=X('vrh',1160);B.boss('sword',Math.round(a0+(a1-a0)*.68),-1570,{hp:900,maxHp:900,name:'Musa Kesedžija',kit:'janicar',look:'musa'},{x0:a0,x1:a1,y:-1570},AGA_PLANKS(a1-a0));}
   // Pećina pod obalom, Skrivena pećina, Ispod mosta, Podzemni izvor, Musina tamnica
-  B.foe('pas',X('pecina',900),F1);B.foe('sword',X('pecina',1500),F1);B.open(0,F1-205,F1);B.breakable('zid-skrivena',0,F1);B.heart(X('skrivena',600),F1);
-  B.cudo(X('ispodmosta',300),F1,'Guslareve gusle');B.heart(X('izvor',600),F1);
+  // Pećina pod obalom: an abyss before the hidden cave; the bridge over it is seen and firm only through Vilinsko oko
+  B.foe('pas',X('pecina',1000),F1);B.foe('sword',X('pecina',1500),F1);B.open(0,F1-205,F1);B.pit('pit-pecina',60,700,F1+150);B.oko(70,F1,620);B.heart(X('skrivena',600),F1);
+  B.cudo(X('ispodmosta',300),F1,'Guslareve gusle');B.heart(X('izvor',600),F1);B.shrine('oko',X('izvor',300),F1);
   B.foe('sword',X('tamnica',500),F1);B.foe('sword',X('tamnica',1900),F1);B.spikes(X('tamnica',900),F1,150);B.heart(X('tamnica',2200),F1);},
  veze:[
   ['pecina','obala',null,true,{up:[['floor',1310,1,[1740,945]],[[1740,945],[1300,590],-1]]}],
@@ -293,8 +294,8 @@ export const GB_NIVOI={
   ['kula@-1','kula@0',null,true,{walk:[10400,-130,10115],wait:150}],
   ['kula@-1','kula@-2',null,true,{up:[[[11300,-130],[11690,-495],1],[[11690,-495],[11000,-850],-1]]}],
   ['kula@-2','kula@-1',null,true,{walk:[11300,-850,11470],wait:150}],
-  ['kula@-2','kula@-3',null,true,{chimney:['ch-kula2',10700]}],
+  ['kula@-2','kula@-3','lanac',true,{kuka:{from:[9900,-850],hooks:[['kuka-kula1',0],['kuka-kula2',60,1]],to:10400}}],
   ['kula@-3','kula@-2',null,true,{walk:[10400,-1570,10115],wait:250}],
   ['kula@-2','riznica',null,false,{walk:[11850,-850,12500],back:[12500,-850,11850]}],
-  ['pecina','skrivena',null,false,{break:['zid-skrivena',150,1310,-500]}]]}
+  ['pecina','skrivena','oko',false,{oko:[780,1310,-300,[]],back:[-300,1310,780,[]],pit:'pit-pecina'}]]}
 };
