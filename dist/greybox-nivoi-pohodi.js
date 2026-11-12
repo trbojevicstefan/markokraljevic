@@ -1,0 +1,193 @@
+// ================= Lost Crown pohodi za sve pohode igre (…/index.html?greybox=4 i dalje; motor je greybox.js) =================
+// Isti oblik podataka kao greybox-nivoi.js: sobe na mreži 1200×720 ([id, ime, kolona, red, širina, visina, opcije]; red 0 je
+// drum, iznad su zidovi i kule, ispod podrumi i pećine), vrata, rupe, brda, build(B) i `veze` sa uputstvom kako ih test prelazi.
+// Ovde ih ne piše ruka nego mali alat (`kit`): dimnjak, ispust za krilo, ponor za juriš, vrata za Vilin trag, napukli i lažni
+// zid, prečica sa polugom. Svaki pomoćnik postavi blokove i u istom potezu zapiše vezu, pa soba, test i mapa uvek pričaju isto.
+// Nivoi idu redom priče (JOURNEY u game.js), posle tri nivoa iz greybox-nivoi.js: ?greybox=4 je Kosovsko selo.
+// Od igre Lost Crown je uzeta samo ideja strukture; sobe, imena i priča su iz pesama o Marku (pesme/) i iz pohoda ove igre.
+// Biom (`biom`) je iz manifesta realističnih slika (podgradje, urvina, klisura); `zeljeniBiom` kaže koji bi crtež tu išao.
+// Kuka dok greybox.js nema registar: ovaj fajl sam doda svoje nivoe u GB_NIVOI (world.js ga uvozi samo u pregledaču).
+import{GB_NIVOI}from'./greybox-nivoi.js';
+import{lik}from'./zamke.js';
+
+const CW=1200,CH=720;
+export const FY=row=>(row+1)*CH-130;   // pod reda: red 0 → 590, red -1 → -130, red 1 → 1310
+const F0=FY(0);
+
+// bosovi iz BOSSES (world.js) sa svojim nameštajem arene; snaga je oko pola, kao kod greybox bosova
+const BOS={
+ oklopnik:{type:'oklopnik',name:'Hasan-aga Oklopnik',hp:1000,kit:'hasan',look:'hasan-aga',arena:(a,pl)=>{a.block(.13,70,95,{pillar:true});a.block(.87,70,95,{pillar:true});pl(.5,175);}},
+ akindzija:{type:'akindzija',name:'Akindžijski beg',hp:800,kit:'beg',look:'beg',arena:(a,pl)=>{pl(.3,140);pl(.7,140);}},
+ palikuca:{type:'palikuca',name:'Ognjeni aga',hp:760,kit:'ognjeni',look:'ognjeni-aga',arena:(a,pl)=>{pl(.2,120);pl(.5,195);pl(.8,120);}},
+ shield:{type:'shield',name:'Bajraktar sa štitom',hp:880,kit:'bajraktar',look:'bajraktar',arena:(a,pl)=>{pl(.45,150,130);}},
+ sword:{type:'sword',name:'Janičarski aga',hp:780,kit:'janicar',look:'janicarski-aga',arena:(a,pl)=>{pl(.16,150);pl(.4,265,140);pl(.64,150);pl(.86,240,140);}},
+ lovac:{type:'sword',name:'Lovac-aga',hp:760,kit:'lovac',look:'lovac-aga',arena:(a,pl)=>{pl(.35,150);pl(.65,150);}},
+ azdaja:{type:'azdaja',name:'Aždaja',hp:1500,kit:'azdaja',scale:1,arena:(a,pl)=>{a.block(.2,70,110,{pillar:true});a.block(.45,70,110,{pillar:true});pl(.32,170,130);pl(.68,175,170);},x:.8},
+ dzelat:{type:'dzelat',name:'Dželat',hp:1100,kit:'dzelat',scale:1,arena:(a,pl)=>{pl(.25,140);pl(.5,140);pl(.75,140);pl(.38,260,120);pl(.62,260,120);}},
+ djemo:{type:'djemo',name:'Đemo Brđanin',hp:1000,kit:'djemo',scale:1,arena:(a,pl)=>{pl(.3,150);pl(.7,150);}},
+ trio:{type:'sword',name:'Tri janičara',hp:480,kit:'trio',scale:1.15,arena:(a,pl)=>{pl(.5,160,170);}},
+ kopljanik:{type:'kopljanik',name:'Kopljanik-baša',hp:860,kit:'kopljanik',scale:1.3,look:'kopljanik-basa',arena:(a,pl)=>{pl(.35,150);pl(.65,150);}},
+ arapin:{type:'arapin',name:'Arapin',hp:1200,kit:'arapin',scale:1,arena:(a,pl)=>{pl(.3,150);pl(.7,150);}},
+ basa:{type:'tufekdzija',name:'Tufekdžija-baša',hp:700,kit:'basa',scale:1.3,look:'basa',arena:(a,pl)=>{pl(.3,140);pl(.55,140);pl(.8,150);}}
+};
+
+// ---------- the kit: rooms by name, and the passages written once for the build, the map and the test ----------
+function kit(sobe){
+ const R={};for(const [id,name,gx,gy,w,h,o={}] of sobe)R[id]={id,name,gx,gy,w,h,x0:gx*CW,x1:(gx+w)*CW,y0:gy*CH,floor:FY(gy+h-1),top:gy,bottom:gy+h-1,...o};
+ const K={R,vrata:[],rupe:[],veze:[],delovi:{},ops:[],brda:{},n:{borbe:0,likovi:0,zamke:0,krilo:0,nalet:0,trag:0,lomljiv:0,lazni:0,precica:0}};
+ const room=id=>{const r=R[id];if(!r)throw new Error(`nema sobe ${id}`);return r;};
+ const node=(id,row)=>{const r=room(id);row??=r.bottom;if(row<r.top||row>r.bottom)throw new Error(`${id} nema red ${row}`);return r.h>1?`${id}@${row}`:id;};
+ const X=(id,dx)=>room(id).x0+dx;
+ const op=f=>K.ops.push(f);
+ Object.assign(K,{node,X,
+  // ---- passages ----
+  door(a,b,row,o={}){row??=Math.max(room(a).top,room(b).top);if(room(a).x1!==room(b).x0)throw new Error(`${a} i ${b} nisu susedi`);node(a,row);node(b,row);K.vrata.push([a,b,row,o]);return K;},
+  // a hole in the floor down into the room below (its node is `to`)
+  drop(id,dx0,dx1,to,o={}){K.rupe.push([id,dx0,dx1,{to,...o}]);return K;},
+  // a hole with nothing under it but stakes: the game's pit rule (a fall costs health and Marko is back on the edge)
+  pit(id,dx0,dx1,o={}){const r=room(id),name=o.name||`pit-${id}-${dx0}`;K.rupe.push([id,dx0,dx1,o.lip?{lip:o.lip}:{}]);op(B=>B.pit(name,r.x0+dx0,r.x0+dx1,r.floor+150));return name;},
+  // two walls 150 px apart climbed wall to wall, from a floor up to the row above; in a tall room the row above gets a
+  // walkway on both sides, between two rooms the chimney rises through a hole in the upper room's floor
+  chimney(id,dx,o={}){const r=room(id),x=r.x0+dx,name=`ch-${id}-${dx}`,upper=o.upper;
+   if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:node(id)}]);op(B=>B.chimney(name,x,top,bottom));
+    K.veze.push([node(id),node(upper),null,true,{chimney:[name,x+430]}]);return K;}
+   const row=o.row??r.bottom,rowTop=row-1,top=FY(rowTop),bottom=FY(row)-150;
+   op(B=>{B.chimney(name,x,top,bottom);if(x>r.x0+20)B.block(r.x0+20,top,x-r.x0-20,40);if(x+230<r.x1-20)B.block(x+230,top,r.x1-20-x-230,40);});
+   const exit=x+230+200<r.x1-60?x+430:x-200;
+   K.veze.push([node(id,rowTop+1),node(id,rowTop),null,true,{chimney:[name,exit]}],[node(id,rowTop),node(id,rowTop+1),null,true,{walk:[exit>x?x+330:x-120,top,x+115],wait:150}]);return K;},
+  // the wing's ledge (365 px up, one jump does 266) and a walkway one row up whose edge is caught with the wing again;
+  // in a tall room from the row `row` to the one above it, between rooms through a hole in the upper room's floor
+  wing(id,dx,o={}){const r=room(id);K.n.krilo++;
+   if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=r.floor;K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:node(id)}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
+    K.veze.push([node(id),node(o.upper),'krilo',true,{up:[['floor',F,1,[lx+50,F-365]],[[lx+50,F-365],[hx-150,u.floor],-1]]}]);return K;}
+   const row=o.row??r.bottom,F=FY(row),x=r.x0+dx,top=FY(row-1),w=o.w??Math.min(500,r.x1-20-(x+250));
+   op(B=>{B.ledge(x,F-365,100,{gbGate:'krilo'});B.block(x+250,top,w,40);});
+   K.veze.push([node(id,row),node(id,row-1),'krilo',true,{up:[['floor',F,1,[x+50,F-365]],[[x+50,F-365],[x+250+Math.min(100,w/2),top],1]]}],
+    [node(id,row-1),node(id,row),null,true,{walk:[x+250+Math.min(100,w/2),top,x+150],wait:150}]);return K;},
+  // an abyss of 500 px that only the dash crosses; the far side is its own node (`soba>`)
+  dash(id,dx0,o={}){const r=room(id),F=r.floor,x0=r.x0+dx0,name=`pit-${id}-${dx0}`,part=`${id}>`;K.n.nalet++;
+   if(dx0<620||x0+700>r.x1)throw new Error(`ponor u ${id} nema zaleta`);
+   K.rupe.push([id,dx0,dx0+500,{lip:'R'}]);K.delovi[part]={room:id,x0:x0+500};op(B=>B.pit(name,x0,x0+500,F+150));
+   K.veze.push([node(id),part,'nalet',false,{leap:[name,1,F,x0+700,x0-200]}]);return part;},
+  // a door on a far switch (1100 px away) between two neighbouring rooms: only the fairy's trace gets Marko through
+  trace(id,to,o={}){const a=room(id),b=room(to),right=a.x1===b.x0;if(!right&&b.x1!==a.x0)throw new Error(`${id} i ${to} nisu susedi`);K.n.trag++;
+   const row=o.row??Math.max(a.top,b.top),F=FY(row),x=right?a.x1:a.x0,name=`vrata-${id}-${to}`,dq=right?x-60:x+16,sw=right?x-1100:x+1100,stand=right?x-130:x+130;
+   op(B=>{B.open(x,F-260,F);B.door(name,dq,F-260,F,{x:sw,y:F});});
+   K.veze.push([o.from||node(id,row),node(to,row),'trag',true,{trace:[name,[stand,F]]}],[node(to,row),o.from||node(id,row),null,true,{open:name,walk:[right?x+300:x-300,F,right?x-400:x+400]}]);return K;},
+  // a cracked wall (the heavy blow, K) or a wall that is not there at all, between two neighbouring rooms
+  crack(id,to,o={}){const a=room(id),b=room(to),right=a.x1===b.x0,row=o.row??Math.max(a.top,b.top),F=FY(row),x=right?a.x1:a.x0,name=`zid-${id}-${to}`;K.n.lomljiv++;
+   op(B=>{B.open(x,F-205,F);B.breakable(name,x,F);});K.veze.push([node(id,row),node(to,row),null,false,{break:[name,right?x-150:x+150,F,right?x+600:x-600]}]);return K;},
+  fake(id,to,o={}){const a=room(id),b=room(to),right=a.x1===b.x0,row=o.row??Math.max(a.top,b.top),F=FY(row),x=right?a.x1:a.x0,name=`lazni-${id}-${to}`;K.n.lazni++;
+   op(B=>{B.open(x,F-200,F);B.fake(name,x-20,F-200,60,200);});K.veze.push([node(id,row),node(to,row),null,false,{walk:[right?x-250:x+250,F,right?x+550:x-550],back:[right?x+550:x-550,F,right?x-250:x+250]}]);return K;},
+  // a shortcut: a gate in the door from a to b whose lever stands on b's side; it opens once Marko comes round to b
+  gate(a,b,row,o={}){const A=room(a);row??=Math.max(A.top,room(b).top);const F=FY(row),name=`kapija-${a}-${b}`;K.n.precica++;
+   K.door(a,b,row,{...o,need:`posle:${node(b,row)}`});op(B=>B.gate(name,A.x1-60,row*CH,F,{x:A.x1+80,y:F}));return K;},
+  // ---- what stands in the rooms ----
+  ckpt:(id,dx,row)=>op(B=>B.ckpt(X(id,dx),FY(row??room(id).bottom))),
+  shrine:(moc,id,dx,row)=>op(B=>B.shrine(moc,X(id,dx),FY(row??room(id).bottom))),
+  heart:(id,dx,row,dy=0)=>op(B=>B.heart(X(id,dx),FY(row??room(id).bottom)-dy)),
+  cudo:(id,dx,name,row)=>op(B=>B.cudo(X(id,dx),FY(row??room(id).bottom),name)),
+  prop:(pid,id,dx,h,row)=>op(B=>B.prop(pid,X(id,dx),FY(row??room(id).bottom),h)),
+  block:(id,dx,dy,w,h,row,o)=>op(B=>B.block(X(id,dx),FY(row??room(id).bottom)-dy,w,h,o)),
+  plank:(id,dx,dy,w,row)=>op(B=>B.plank(X(id,dx),FY(row??room(id).bottom)-dy,w)),
+  // a fight: a band of the land's foes; [type, dx, dy] each, dy for one standing on a block
+  borba(id,foes,row){K.n.borbe++;op(B=>{for(const [type,dx,dy=0] of foes)B.foe(type,X(id,dx),FY(row??room(id).bottom)-dy);});return K;},
+  // traps from zamke.js and the game's own
+  spikes:(id,dx,w,row)=>op(B=>B.spikes(X(id,dx),FY(row??room(id).bottom),w)),
+  crumble:(id,dx,w,row,dy=0)=>op(B=>B.crumble(X(id,dx),FY(row??room(id).bottom)-dy,w)),
+  strelnica(id,dx,o={}){K.n.zamke++;const F=FY(o.row??room(id).bottom);op(B=>B.strelnica({x:X(id,dx),y:F-(o.low?26:40),gy:F,dir:o.dir??-1,every:o.every??2.6,phase:o.phase??0}));return K;},
+  // a beam that slides over a pit of stakes: the pit is a hole, the beam carries Marko across
+  greda(id,dx,o={}){K.n.zamke++;const r=room(id),F=FY(o.row??r.bottom),w=o.w??140,x=r.x0+dx,span=o.span??260,pw=span+w;
+   K.pit(id,dx,dx+pw,{name:`pit-greda-${id}-${dx}`});
+   op(B=>{const q=B.plank(x,F,w);B.greda(q,{ax:x,bx:x+span,period:o.period??3.4,phase:o.phase??0});});return K;},
+  // a guslar who sings the song's verses as Marko comes near, and the song's people, each with a line
+  guslar(id,dx,stih,row){K.n.likovi++;op(B=>B.strelnica({zamka:{kind:'guslar',x:X(id,dx),y:FY(row??room(id).bottom),mir:true,state:'ceka',hp:100,stih,t:0}}));return K;},
+  lik(id,dx,clip,text,row,o={}){K.n.likovi++;op(B=>B.strelnica({zamka:lik({x:X(id,dx),y:FY(row??room(id).bottom),clip,text,...o})}));return K;},
+  // the land's champion in the last room, with his arena furniture
+  bos(id,kind,o={}){const r=room(id),S=BOS[kind],y=r.floor,x0=r.x0+40,x1=r.x1-40,len=x1-x0,planks=[],a={block:(k,w,h,bo)=>op(B=>B.block(Math.round(x0+len*k-w/2),y-h,w,h,bo))};
+   S.arena(a,(k,dy,w=150)=>planks.push([len*k,dy,w]));K.bosRoom=id;
+   op(B=>B.boss(S.type,Math.round(x0+len*(S.x??.68)),y,{hp:o.hp??S.hp,maxHp:o.hp??S.hp,name:o.name||S.name,kit:S.kit,look:S.look,scale:S.scale??1.35},{x0,x1,y},planks));return K;}});
+ return K;}
+
+// one level from its words: the kit runs once, here, and build(B) replays what it set down
+function pohod(def){const K=kit(def.sobe);def.gradi(K);
+ // a door out of the right side of a room whose far part lies past an abyss leaves from that part
+ for(const v of K.vrata){const [a,,row,o]=v;if(o.na)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===a&&d.x1==null&&row===K.R[a].bottom)o.na=name;}
+ const{gradi,...rest}=def;
+ return{...rest,vrata:K.vrata,rupe:K.rupe,delovi:K.delovi,veze:K.veze,brda:def.brda||{},broj:K.n,bosSoba:K.bosRoom,build(B){for(const f of K.ops)f(B);}};}
+
+export const GB_POHODI={
+// ---------------------------------------------------------------------------------------------------------------------
+// 4 · Kosovsko selo („Jao Šaro, moje desno krilo“): selo pod turskom stražom, kapija zatvorena iznutra. Marko ulazi preko
+// osmatračnice i palisade, spušta se na trg i otvara kapiju (prečica); Sokolovo krilo čeka u Šarčevoj štali, dole kraj bunara,
+// a sa njim se penje na zvonik i na kulu nad bunarom, gde čeka Kopljanik-baša.
+4:pohod({id:'selo',ime:'Kosovsko selo',biom:'podgradje',zeljeniBiom:'selo',daje:'krilo',pocetne:[],
+ cilj:'Uđi u selo, nađi Šarčevu štalu i popni se na kulu nad bunarom',start:'livada',spawnDx:260,
+ uvod:'Kosovsko selo. Kapija je zatvorena iznutra, a na kuli nad bunarom sedi Kopljanik-baša. Sokolovo krilo čeka u Šarčevoj štali; uđi preko osmatračnice.',
+ sobe:[
+  ['livada','Livada pred selom',-1,0,1,1],
+  ['put','Seoski put',0,0,1,1],
+  ['straza','Osmatračnica',1,-1,1,2],
+  ['kapija','Seoska kapija',2,0,1,1],
+  ['palisada','Palisada',2,-1,2,1],
+  ['trg','Seoski trg',3,0,2,1],
+  ['krcma','Krčma',4,-1,1,1,{interior:true}],
+  ['tavan','Tavan krčme',4,-2,1,1,{secret:true,interior:true,lore:'Tavan krčme. Ovde je krčmar krio Markovo vino od Turaka; bure je i danas puno.'}],
+  ['crkva','Crkva',5,-2,1,3,{interior:true}],
+  ['zvonara','Zvonara',6,-2,1,1,{secret:true,interior:true,lore:'Zvonara. Zvono su seljaci zakopali kad su došli Turci, a Marko ga je iskopao i vratio na zvonik.'}],
+  ['sokak','Sokak',6,0,1,1],
+  ['kovacnica','Kovačnica',6,-1,1,1,{interior:true}],
+  ['vocnjak','Voćnjak',7,0,2,1],
+  ['bunar','Bunar',9,-1,1,4],
+  ['kula','Kula nad bunarom',10,-1,1,1],
+  ['podrum','Podrum pod trgom',3,1,2,1,{interior:true}],
+  ['vinski','Vinski podrum',2,1,1,1,{secret:true,interior:true,lore:'Vinski podrum. Tri bureta: jedno za Marka, jedno za Šarca, jedno za onoga ko ih nađe.'}],
+  ['tunel','Stari tunel',5,1,2,1,{interior:true}],
+  ['stala','Šarčeva štala',7,1,2,1,{interior:true}],
+  ['izvor','Izvor pod bunarom',8,2,1,1,{interior:true}],
+  ['riznica','Seoska riznica',10,1,1,1,{secret:true,interior:true,lore:'Seoska riznica. Dukati za otkup roblja; Marko ih je vratio selu kad je oterao Kopljanik-bašu.'}]],
+ brda:{livada:[[500,900,40]],vocnjak:[[300,900,50],[1500,2100,-40]]},
+ gradi(K){
+  // Livada: početak, guslar peva o Šarcu, prvi čekpoint
+  K.guslar('livada',760,['Jao Šaro, moje desno krilo,','čistim ću te srebrom potkovati,','čistim srebrom i žeženim zlatom.']);K.prop('drvo','livada',1050,300);
+  K.door('livada','put',0);
+  // Seoski put: prva borba (janičar i strelac na kamenu), putnica koja beži iz sela
+  K.block('put',700,120,200,120);K.borba('put',[['sword',500],['archer',800,120]]);K.lik('put',250,'putnica-idle','Ne idi kroz kapiju, junače! Zatvorili su je iznutra. Popni se na osmatračnicu.');
+  K.door('put','straza',0);
+  // Osmatračnica: dimnjak do palisade
+  K.chimney('straza',500);K.door('straza','kapija',0);K.door('straza','palisada',-1);
+  // Kapija: zatvorena iznutra; poluga je na trgu (prečica)
+  K.gate('kapija','trg',0);K.prop('kapija','kapija',600,260);
+  // Palisada: strelci na zupcima, strelnica u zidu krčme, rupa na trg
+  K.block('palisada',600,120,100,120,-1);K.block('palisada',1700,120,100,120,-1);K.borba('palisada',[['archer',650,120],['archer',1750,120],['sword',1200]],-1);
+  K.strelnica('palisada',2380,{row:-1,every:2.8});K.drop('palisada',1300,1550,'trg');K.door('palisada','krcma',-1);
+  // Krčma: krčmarica Janja; krilo kroz rupu u tavanu
+  K.lik('krcma',500,'janja-idle','Marko! Tvoje vino je na tavanu, ali do tavana bez krila ne stižeš.',-1);K.wing('krcma',300,{upper:'tavan'});K.heart('tavan',800,-2);
+  K.drop('krcma',1000,1150,'trg');
+  // Trg: druga borba, sirotinja, drugi čekpoint, rupa u podrum
+  K.ckpt('trg',350);K.borba('trg',[['sword',800],['akindzija',1150],['sword',1950]]);K.lik('trg',600,'sirotinja-ceka','Turci su nam uzeli i hleb i dukate. Bog da te čuva, Marko.');
+  K.drop('trg',1500,1700,'podrum');K.door('trg','crkva',0);
+  // Crkva: dimnjak, pa krilo do zvonika; iza zvonika zvonara
+  K.chimney('crkva',700);K.wing('crkva',300,{row:-1});K.door('crkva','kovacnica',-1);K.door('crkva','zvonara',-2);K.door('crkva','sokak',0);
+  K.lik('crkva',350,'putnik-kaluder-idle','Kaluđer: Zvono je zakopano, a zvonara gore zaključana visinom. Krilo, sine.',0);
+  // Kovačnica: Novak kuje; čudo; dole u sokak rupa
+  K.lik('kovacnica',700,'novak-kuje','Novak kovač: Potkovaću ti Šarca srebrom, Marko, kad oteraš bašu.',-1);K.cudo('kovacnica',1000,'Srebrne potkovice',-1);K.drop('kovacnica',150,400,'sokak');
+  // Sokak i Voćnjak: treća borba, šiljci, greda nad jamom
+  K.borba('sokak',[['sword',500],['archer',900]]);K.spikes('sokak',700,120);K.door('sokak','vocnjak',0);
+  K.borba('vocnjak',[['akindzija',600],['sword',1300],['pas',1700]]);K.greda('vocnjak',950,{span:200});
+  // Bunar: od izvora do kule, krilom (dole) i dimnjakom (gore)
+  K.chimney('bunar',300,{row:2});K.chimney('bunar',750,{row:1});K.wing('bunar',350,{row:0});K.door('bunar','kula',-1,{oneway:true});K.door('stala','bunar',1);K.door('vocnjak','bunar',0);
+  // Kula nad bunarom: Kopljanik-baša
+  K.bos('kula','kopljanik');
+  // Podrum pod trgom: psi, lažni zid ka vinskom podrumu, prolaz u tunel
+  K.borba('podrum',[['pas',700],['pas',1000],['sword',1600]]);K.fake('podrum','vinski');K.heart('vinski',500,1);K.door('podrum','tunel',1);
+  // Tunel: daske koje popuštaju nad jamom, strelnica
+  K.crumble('tunel',800,180,1);K.crumble('tunel',980,180,1);K.pit('tunel',800,1160);K.strelnica('tunel',2380,{every:2.4});K.door('tunel','stala',1);
+  // Šarčeva štala: krilo, treći čekpoint; Šarac čeka (volovi kao stoka u štali)
+  K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
+  // Izvor pod bunarom i riznica: napukli zid
+  K.door('izvor','bunar',2);K.heart('izvor',400,2);K.crack('bunar','riznica',{row:1});K.cudo('riznica',700,'Seoski dukati',1);}})
+};
+
+// kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
+Object.assign(GB_NIVOI,GB_POHODI);
