@@ -957,7 +957,63 @@ export const GB_POHODI={
   K.borba('kula',[['sword',400],['akindzija',1000]],0);K.chimney('kula',700);K.wing('kula',300,{row:-1});K.door('kula','konjusnica',0);K.door('kula','arapkina',-1);K.door('kula','vrh',-2);K.bos('vrh','arapin');
   K.heart('konjusnica',600,0);K.door('konjusnica','more',0);K.strelnica('more',1180,{every:2.6});K.cudo('more',700,'Pogled na more');
   K.lik('arapkina',600,'putnica-idle','Kraljeva kći: Izbaviću te, Marko, ako me uzmeš za ljubu. Na vrhu kule je Arapin.',-1);K.door('arapkina','golubarnik',-1);
-  K.lik('golubarnik',600,'soko-let','Sivi soko: Daj mi knjigu, Marko. Odneću je Dojčilu u Solun.',-1);K.heart('golubarnik',950,-1);}})
+  K.lik('golubarnik',600,'soko-let','Sivi soko: Daj mi knjigu, Marko. Odneću je Dojčilu u Solun.',-1);K.heart('golubarnik',950,-1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 19 · Tri srca Kačanika („Marko Kraljević i Musa Kesedžija“, glavni nivo igre): šest poglavlja glavne priče kao sobe.
+// Drum junaka, zatočena kapija sa putnicima (prečica iz hana), tri vilinska kamena (treći daje Sokolovo krilo: „u vazduhu
+// te mogu podići još jednom“), srušeni drum na koji se penje krilom, obruč i poslednji barjak, i megdan sa Musom.
+19:pohod({id:'kacanik',ime:'Tri srca Kačanika',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',pocetne:[],
+ cilj:'Oslobodi drum i kapiju, probudi tri vilinska kamena i izađi na megdan Musi',start:'raskrsce',spawnDx:240,
+ uvod:'Tri srca Kačanika. Musini ljudi su zatvorili drum i kapiju hana, a putnici čekaju. Tri vilinska kamena spavaju pod drumom; treći daje Sokolovo krilo, a bez njega se na srušeni drum ne penje.',
+ sobe:[
+  ['raskrsce','Raskršće',-1,0,1,1],
+  ['drum','Drum junaka',0,0,2,1],
+  ['straza','Osmatračnica nad drumom',1,-1,2,1],
+  ['bedem','Bedem hana',3,-1,1,1],
+  ['han','Soba u hanu',4,-1,1,1,{interior:true}],
+  ['kapija','Zatočena kapija',2,0,1,1],
+  ['trg','Putnički han',3,0,2,1],
+  ['kamen1','Prvi vilinski kamen',5,0,1,1],
+  ['urvina','Srušeni drum',6,-1,1,2],
+  ['gnezdo','Orlovo gnezdo',6,-2,1,1,{secret:true,lore:'Orlovo gnezdo. Orao čuva pero za Marka; vila mu je rekla da će junak doći na Šarcu.'}],
+  ['greben','Greben nad drumom',7,-1,2,1],
+  ['obruc','Obruč',9,-1,1,1],
+  ['megdan','Musin megdan',10,-1,1,1],
+  ['drum2','Drum pod grebenom',7,0,2,1],
+  ['tamnica','Musina tamnica',9,0,1,1,{interior:true}],
+  ['jazbina','Jazbina pod drumom',-1,1,1,1,{secret:true,interior:true,lore:'Jazbina pod drumom. Ovde su putnici krili dukate od Musinih ljudi; Marko ih je vratio vlasnicima.'}],
+  ['potok','Potok pod drumom',0,1,2,1,{interior:true}],
+  ['pecina','Vilinska pećina',2,1,2,1,{interior:true}],
+  ['izvor','Vilinski izvor',4,1,1,1,{interior:true}],
+  ['kesa','Musina kesa',5,1,1,1,{secret:true,interior:true,lore:'Musina kesa. Plen sa zatvorenog druma; Musa je devet godina dvorio cara i nijednom nije bio plaćen.'}]],
+ brda:{raskrsce:[[500,900,40]],greben:[[300,800,40]]},
+ gradi(K){
+  // I · Drum junaka: guslar o tri Musina srca; prva borba; dimnjak do osmatračnice, rupa u potok
+  K.guslar('raskrsce',850,['Ali u Musi tri srca junačka:','jedno mu se srce umorilo,','a drugo se jako razigralo.']);K.door('raskrsce','drum',0);
+  K.borba('drum',[['sword',600],['shield',1000]]);K.spikes('drum',1300,120);K.chimney('drum',1500,{upper:'straza'});K.drop('drum',300,500,'potok');K.door('drum','kapija',0);
+  K.strelnica('straza',2380,{row:-1,every:2.8});K.heart('straza',300,-1);K.door('straza','bedem',-1);
+  K.drop('bedem',400,600,'trg');K.door('bedem','han',-1);K.lik('han',600,'putnik-trgovac-idle','Hančija: Musini ljudi su zatvorili kapiju hana. Poluga je ovde, sa naše strane.',-1);K.heart('han',950,-1);
+  // II · Zatočena kapija: zatvorena iznutra, poluga u hanu; putnici čekaju
+  K.gate('kapija','trg',0);K.prop('kapija','kapija',600,260);
+  K.borba('trg',[['sword',1000],['akindzija',1400]]);K.lik('trg',1800,'svatovi-zarobljeni','Putnici: Musini ljudi su nas zatvorili. Oslobodi drum, Marko!');K.door('trg','kamen1',0);
+  // III · Vilinski trag: tri kamena; prvi na drumu, drugi u pećini, treći kraj izvora sa krilom
+  K.lik('kamen1',600,'vilinski-kamen-spava','Prvi vilinski kamen se budi. Drugi i treći su pod drumom, u pećini.');K.door('kamen1','urvina',0);
+  // IV · Srušeni drum: penje se samo krilom; Ravijojla; orlovo gnezdo iznad
+  K.wing('urvina',300,{row:0});K.lik('urvina',900,'vila-spreda','Ravijojla: U vazduhu te mogu podići još jednom. Gore je greben, a iza njega Musa.',-1);
+  K.wing('urvina',600,{upper:'gnezdo',row:-1});K.cudo('gnezdo',300,'Orlovo pero',-2);K.door('urvina','greben',-1);K.door('urvina','drum2',0);
+  // V · Poslednji barjak: greben i obruč, čekpoint
+  K.block('greben',1000,120,140,120,-1);K.borba('greben',[['archer',1050,120],['sword',1500],['oklopnik',1900]],-1);K.strelnica('greben',2380,{row:-1,every:2.6});K.door('greben','obruc',-1);
+  K.ckpt('obruc',200);K.borba('obruc',[['shield',600],['sword',900]],-1);K.cudo('obruc',1050,'Poslednji barjak',-1);K.door('obruc','megdan',-1);
+  // VI · Tri srca Kačanika: Musa Kesedžija
+  K.bos('megdan','sword',{name:'Musa Kesedžija',look:'musa',hp:900});
+  // Drum pod grebenom i Musina tamnica
+  K.crumble('drum2',600,170);K.crumble('drum2',770,170);K.pit('drum2',600,940);K.heart('drum2',1600,0);K.door('drum2','tamnica',0);
+  K.lik('tamnica',600,'putnik-starac-idle','Sužanj: Tri godine je Marko ovde čekao megdan; kosa mu je narasla do zemlje.');K.heart('tamnica',950,0);
+  // Pod drumom: potok sa gredom, lažni zid do jazbine; pećina sa drugim kamenom; izvor sa trećim kamenom i krilom
+  K.chimney('potok',1000,{upper:'drum'});K.greda('potok',1400,{span:220});K.fake('potok','jazbina',{row:1});K.heart('jazbina',500,1);K.door('potok','pecina',1);
+  K.borba('pecina',[['pas',600],['sword',900]]);K.lik('pecina',1500,'vilinski-kamen-budi','Drugi vilinski kamen se budi. Treći je kraj izvora.',1);K.door('pecina','izvor',1);
+  K.chimney('izvor',300,{upper:'trg'});K.ckpt('izvor',600);K.shrine('krilo','izvor',900);K.lik('izvor',450,'vilinski-kamen-budan','Treći vilinski kamen: Uzmi krilo, Marko. Srušeni drum se penje samo njime.',1);
+  K.crack('izvor','kesa',{row:1});K.cudo('kesa',600,'Musina kesa',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
