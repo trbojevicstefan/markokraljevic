@@ -23,7 +23,8 @@ const S=()=>api.state(),P=()=>S().p,W=()=>S().world,G=()=>W().gb;
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 const tap=k=>{api.pressed.add(k);api.keys.add(k);step();api.keys.delete(k);};
 const quiet=()=>{for(const e of W().enemies)if(!e.champion)e.alive=false;};
-const setMoci=m=>{const g=G();for(const k of Object.keys(g.moci))g.moci[k]=m.has(k);};
+const SVE_MOCI=['krilo','nalet','trag','klizanje','zidotrk','lanac','oko'];
+const setMoci=m=>{const g=G();for(const k of new Set([...Object.keys(g.moci),...SVE_MOCI]))g.moci[k]=m.has(k);};
 const top=(q,x)=>q.surf?physics.topAt(q,x):q.y;
 // the platform Marko would stand on at x, its top nearest y
 const platformAt=(x,y)=>W().platforms.filter(q=>!q.off&&x>=q.x&&x<=q.x+q.w&&Math.abs(top(q,x)-y)<160).sort((u,v)=>Math.abs(top(u,x)-y)-Math.abs(top(v,x)-y))[0];
@@ -93,13 +94,24 @@ function walkLink(L,[a,b,need,one,how],moci,back=false){if(!NOTP){api.startGreyb
  else if(how.chimney){const [name,exitX]=how.chimney,C=G().named[name];if(!chimney(C,floorY((C.x0+C.x1)/2,C.bottom+150)))return false;{const dir=exitX>P().x?1:-1;api.keys.add(dir>0?'KeyD':'KeyA');step(2);tap('Space');api.keys.add(dir>0?'KeyD':'KeyA');step(60);api.keys.clear();}walk(exitX,900);}
  else if(how.break){const [name,x,y,x1]=how.break,b=G().named[name];place(x,y,x1>x?1:-1);for(let i=0;i<10&&!b.broken;i++){tap('KeyK');step(80);}if(!b.broken)return false;if(back){walk(x1,900);place(x1,y,x1>x?-1:1);walk(x,900);}else walk(x1,900);}
  else if(how.leap){const [name,dir,y,after,before]=how.leap,z=G().named[name],d=back?-dir:dir;if(moci.has('nalet')){if(!leap(z,d,y,{roll:null,jumpAt:0,k:72,n:16}))return false;walk(back?before:after,900);settle(60);}else return noDash(z,d,y);}
+ else if(how.slide||how.hook||how.zidrun||how.okom){const k=Object.keys(how)[0],[e0,f0,y,a0,b0]=how[k],near=back?f0:e0,far=back?e0:f0,after=back?b0:a0,dir=far>near?1:-1,key=dir>0?'KeyD':'KeyA';
+  // klizanje: zalet i S pred niskim prolazom; lanac: skok sa ivice i C dvaput (dve kuke); zid: skok na zid sa šarama i SPACE na kraju; oko: drži O i pređi skrivene daske
+  if(k==='okom'){place(near-dir*150,y,dir);api.keys.add('KeyO');const ok2=go(after);api.keys.delete('KeyO');if(!ok2)return false;}
+  else{place(near-dir*(k==='hook'?350:k==='zidrun'?300:320),y,dir);api.keys.add(key);let jf=-1,done=false;
+   for(let f=0;f<900;f++){const p=P();
+    if(k==='slide'){if(jf<0&&dir*(p.x-(near-dir*110))>=0){jf=f;api.pressed.add('KeyS');}}
+    else if(jf<0&&dir*(p.x-(near-dir*10))>=0){jf=f;api.pressed.add('Space');}
+    if(k==='hook'&&jf>=0&&(f-jf===12||f-jf===102))api.pressed.add('KeyC');
+    if(k==='zidrun'&&p.zidotrk&&p.zidotrk.t<.05)api.pressed.add('Space');
+    step();const Q=P();Q.invuln=1e9;if(Q.grounded&&dir*(Q.x-far)>10&&Math.abs(Q.y-y)<3){done=true;break;}if(Q.y>y+200)break;if(k==='slide'&&jf>=0&&f-jf>200)break;}
+   api.keys.clear();step(2);if(!done)return false;walk(after,900);}}
  else if(how.trace){const [name,stand]=how.trace,D=G().named[name];if(moci.has('trag')){if(!traced(D,{x:stand[0],y:stand[1]}))return false;api.keys.add(D.sw.x<D.q.x?'KeyD':'KeyA');for(let f=0;f<300&&!D.solved;f++)step();api.keys.clear();step(150);}else{const r=race(D);if(r.through)return true;return false;}}
  return nodeAt(L)===to;}
 
 
 const POHODI=Object.keys(GB_POHODI).map(Number);
 ok(POHODI.every(n=>GB.GB_LEVELS[n]===GB_POHODI[n])&&POHODI.every(n=>!GB.GB_LEVELS[n]||n>3),`${POHODI.length} pohoda su u spisku greybox nivoa, posle tri nivoa iz greybox-nivoi.js`);
-for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje]),before=new Set(L.pocetne||[]);
+for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje,...(L.daje2?[L.daje2]:[])]),before=new Set(L.pocetne||[]);
  const nodesAll=new Set(L.links.flatMap(l=>[l[0],l[1]])),roomsOf=list=>new Set(list.map(x=>L.delovi?.[x]?.room||GB.gbNodeRoom(x))),secret=L.rooms.filter(R=>R.secret).map(R=>R.id);
  const tag=`${n} ${L.id}:`,N=L.broj;
  // ---- the map as a graph ----
@@ -117,7 +129,14 @@ for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new 
  {const shut=L.rooms.map(R=>R.id).filter(id=>!roomsOf(GB.gbReach(L,before)).has(id));ok(shut.length>0&&!GB.gbReach(L,before).includes(L.links.find(l=>l[2]===L.daje)[1]),`${tag} bez ${L.daje} ostaju zatvorene: ${shut.join(', ')}`);
   ok(shut.includes(L.bosSoba),`${tag} do bosa (${L.bosSoba}) se ne stiže bez ${L.daje}`);
   ok(secret.some(id=>shut.includes(id))&&secret.some(id=>!shut.includes(id)),`${tag} neke tajne čekaju ${L.daje} (${secret.filter(id=>shut.includes(id)).join(', ')}), druge oštro oko (${secret.filter(id=>!shut.includes(id)).join(', ')})`);}
- {const shrineRoom=L.rooms[GB.gbRoomAt(L,G().shrines[0].x,G().shrines[0].y)].id;ok(roomsOf(GB.gbReach(L,before)).has(shrineRoom),`${tag} ${L.daje} čeka u sobi ${shrineRoom}, do koje se stiže i bez nje`);}
+ {const S0=G().shrines.find(s=>s.moc===L.daje),shrineRoom=L.rooms[GB.gbRoomAt(L,S0.x,S0.y)].id;ok(roomsOf(GB.gbReach(L,before)).has(shrineRoom),`${tag} ${L.daje} čeka u sobi ${shrineRoom}, do koje se stiže i bez nje`);}
+ // ---- the second power (lc-pokreti): an altar, at least two challenges, and a secret that waits for it ----
+ if(L.daje2){const M2=L.daje2,no2=new Set([...all].filter(m=>m!==M2)),reach2=GB.gbReach(L,no2),r2=roomsOf(reach2),shutN=[...nodesAll].filter(x=>!reach2.includes(x)),shutR=L.rooms.map(R=>R.id).filter(id=>!r2.has(id));
+  ok(N[M2]>=2&&shutN.length>=3,`${tag} ${GB.GB_MOCI[M2].name}: ${N[M2]} izazova; bez nje se ne stiže u ${shutN.join(', ')}`);
+  ok(secret.some(id=>shutR.includes(id)),`${tag} tajna koja traži ${GB.GB_MOCI[M2].name}: ${secret.filter(id=>shutR.includes(id)).join(', ')}`);
+  const al=G().shrines.find(s=>s.moc===M2),alRoom=al&&L.rooms[GB.gbRoomAt(L,al.x,al.y)].id;ok(al&&r2.has(alRoom)&&roomsOf(GB.gbReach(L,before)).has(alRoom),`${tag} oltar za ${GB.GB_MOCI[M2].name} je u sobi ${alRoom}, do koje se stiže bez nje i bez ${L.daje}`);
+  const w=W();ok((M2!=='lanac'||w.kuke?.length>=4)&&(M2!=='zidotrk'||w.zidovi?.length>=2)&&(M2!=='oko'||w.platforms.filter(q=>q.oko).length>=4)&&(M2!=='klizanje'||w.platforms.filter(q=>q.lintel).length>=2)&&w.nalazi?.length>=1&&w.platforms.some(q=>q.iluzija),
+   `${tag} u svetu: ${M2==='lanac'?w.kuke.length+' kuke':M2==='zidotrk'?w.zidovi.length+' zida sa šarama':M2==='oko'?w.platforms.filter(q=>q.oko).length+' skrivene daske':w.platforms.filter(q=>q.lintel).length+' niska prolaza'}, ${w.nalazi.length} amajlija na tlu, zid koji je varka; ${G().ckpts.length} izvora za odmor i putovanje`);}
  // ---- every passage with real input ----
  const walked=new Set();
  for(const link of L.links){const [a,b,need,one,how]=link,kind=Object.keys(how)[0],withAll=new Set([...all,'posle']);
@@ -137,7 +156,7 @@ for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new 
   api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} pada i pohod je pređen`);}
  // ---- the bot: one unbroken run with keys only, from the start to the power and on to the boss (the land's foes are
  // taken out, its traps stay); after each passage it looks where it is and picks the next one, so a fall only changes its way ----
- {api.startGreybox(n);quiet();NOTP=true;const g=G(),S0=g.shrines[0],trail=[];let falls=0,ok2=false;
+ {api.startGreybox(n);quiet();NOTP=true;const g=G(),S0=g.shrines.find(s=>s.moc===L.daje),trail=[];let falls=0,ok2=false;
   const bossNode=GB.gbNode(L,L.bosSoba,GB.gbRoom(L,L.bosSoba).gy+GB.gbRoom(L,L.bosSoba).h-1),shrineNode=GB.gbNodeAt(L,S0.x,S0.y);
   const failed=new Map(),usable=(l,from)=>{const [a,b,need,one,how]=l,fwd=from===a;if(!fwd&&one)return false;if((failed.get(l)||0)>=2)return false;if(need&&GB.GB_MOCI[need]&&!g.moci[need])return false;
    if(need?.startsWith('posle:')&&fwd){const A=GB.gbRoom(L,how.door[0]),gt=g.gates.find(o=>Math.abs(o.q.x-(A.x1-60))<2);if(!gt?.open)return false;}
