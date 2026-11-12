@@ -8,7 +8,17 @@
 // Biom (`biom`) je iz manifesta realističnih slika (podgradje, urvina, klisura); `zeljeniBiom` kaže koji bi crtež tu išao.
 // Kuka dok greybox.js nema registar: ovaj fajl sam doda svoje nivoe u GB_NIVOI (world.js ga uvozi samo u pregledaču).
 import{GB_NIVOI}from'./greybox-nivoi.js';
+import{GB_MOCI}from'./greybox.js';
 import{lik}from'./zamke.js';
+
+// nove moći iz lc-pokreti (MOCI2 u game.js) kao oltari u greybox-u: greybox.js ih ne nabraja (mapa i meni ostaju sa tri moći),
+// ali ih oltar (B.shrine) i natpis nad ispustom nađu po imenu
+const NOVE={
+ klizanje:{name:'Klizanje',key:'u trku S + SHIFT',color:'#e8c890',text:'U trku kliziš po zemlji, ispod niskih prolaza i ispod udaraca.'},
+ zidotrk:{name:'Trk po zidu',key:'skoči na zid sa šarama',color:'#ffd27a',text:'Na zidu sa Ravijojlinim šarama pretrčiš nekoliko koraka vodoravno, pa skočiš sa njega (SPACE).'},
+ lanac:{name:'Ravijojlin lanac',key:'C',color:'#9fe8ff',text:'Lanac te privuče do srebrne kuke i vrati ti krilo i juriš.'},
+ oko:{name:'Vilinsko oko',key:'drži O',color:'#c3b2ff',text:'Dok držiš O, vidiš skrivene platforme i zidove koji su varka.'}};
+for(const [id,M] of Object.entries(NOVE))if(!GB_MOCI[id])Object.defineProperty(GB_MOCI,id,{value:M,enumerable:false,configurable:true});
 
 const CW=1200,CH=720;
 export const FY=row=>(row+1)*CH-130;   // pod reda: red 0 → 590, red -1 → -130, red 1 → 1310
@@ -33,7 +43,7 @@ const BOS={
 // ---------- the kit: rooms by name, and the passages written once for the build, the map and the test ----------
 function kit(sobe){
  const R={};for(const [id,name,gx,gy,w,h,o={}] of sobe)R[id]={id,name,gx,gy,w,h,x0:gx*CW,x1:(gx+w)*CW,y0:gy*CH,floor:FY(gy+h-1),top:gy,bottom:gy+h-1,...o};
- const K={R,vrata:[],rupe:[],veze:[],delovi:{},ops:[],brda:{},n:{borbe:0,likovi:0,zamke:0,krilo:0,nalet:0,trag:0,lomljiv:0,lazni:0,precica:0}};
+ const K={R,vrata:[],rupe:[],veze:[],delovi:{},ops:[],brda:{},n:{borbe:0,likovi:0,zamke:0,krilo:0,nalet:0,trag:0,lomljiv:0,lazni:0,precica:0,klizanje:0,zidotrk:0,lanac:0,oko:0,iluzija:0,nalazi:0}};
  const room=id=>{const r=R[id];if(!r)throw new Error(`nema sobe ${id}`);return r;};
  const node=(id,row)=>{const r=room(id);row??=r.bottom;if(row<r.top||row>r.bottom)throw new Error(`${id} nema red ${row}`);return r.h>1?`${id}@${row}`:id;};
  const X=(id,dx)=>room(id).x0+dx;
@@ -100,8 +110,36 @@ function kit(sobe){
    K.pit(id,dx,dx+pw,{name:`pit-greda-${id}-${dx}`});
    op(B=>{const q=B.plank(x,F,w);B.greda(q,{ax:x,bx:x+span,period:o.period??3.4,phase:o.phase??0});});return K;},
   // a guslar who sings the song's verses as Marko comes near, and the song's people, each with a line
-  guslar(id,dx,stih,row){K.n.likovi++;op(B=>B.strelnica({zamka:{kind:'guslar',x:X(id,dx),y:FY(row??room(id).bottom),mir:true,state:'ceka',hp:100,stih,t:0}}));return K;},
-  lik(id,dx,clip,text,row,o={}){K.n.likovi++;op(B=>B.strelnica({zamka:lik({x:X(id,dx),y:FY(row??room(id).bottom),clip,text,...o})}));return K;},
+  guslar(id,dx,stih,row){K.n.likovi++;op(B=>{const z={kind:'guslar',x:X(id,dx),y:FY(row??room(id).bottom),mir:true,state:'ceka',hp:100,stih,t:0};B.zamka?B.zamka(z):B.strelnica({zamka:z});});return K;},
+  lik(id,dx,clip,text,row,o={}){K.n.likovi++;op(B=>{const z=lik({x:X(id,dx),y:FY(row??room(id).bottom),clip,text,...o});B.zamka?B.zamka(z):B.strelnica({zamka:z});});return K;},
+  // ---- moći iz lc-pokreti ----
+  // oltar: nova moć na kamenu, kao krilo i juriš (B.shrine; GB_MOCI je zna po imenu)
+  oltar:(moc,id,dx,row)=>op(B=>B.shrine(moc,X(id,dx),FY(row??room(id).bottom))),
+  // amajlija na tlu (world.nalazi); bez imena daje sledeću amajliju koju Marko još nema
+  nalaz(id,dx,row,o={}){K.n.nalazi++;op(B=>B.nalaz?.({x:X(id,dx),y:FY(row??room(id).bottom),...o}));return K;},
+  // zid koji je varka (iluzija): izgleda kao zid, a uvek se prolazi; Vilinsko oko ga ocrta
+  iluzija(id,dx,row,w=40,h=260){K.n.iluzija++;const F=FY(row??room(id).bottom);op(B=>B.block(X(id,dx),F-h,w,h,{kind:'iluzija',iluzija:true,off:true,solid:false}));return K;},
+  // izazov nove moći usred sobe, koji je deli na delove: dir 1 ide udesno (`soba>`, pa `soba>>`), -1 ulevo (`soba<`, `soba<<`).
+  // `edge` je bliža ivica prepreke. klizanje: nizak prolaz (60 px) ispod nadvratnika; lanac: ponor od 650 px sa dve srebrne kuke;
+  // zidotrk: ponor od 650 px pod zidom sa šarama; oko: ponor od 650 px sa skrivenim daskama. Bez moći se ne prelazi (test proba).
+  izazov(id,edge,moc,o={}){const r=room(id),dir=o.dir??1,row=r.bottom,F=r.floor,top=row*CH,W=moc==='klizanje'?200:650,e=r.x0+edge,x0=dir>0?e:e-W,x1=x0+W;K.n[moc]++;
+   const mark=dir>0?'>':'<',parts=Object.keys(K.delovi).filter(k=>K.delovi[k].room===id&&k.startsWith(id+mark)),prev=parts.at(-1),near=prev||node(id),far=id+mark.repeat(parts.length+1);
+   if(prev){if(dir>0)K.delovi[prev].x1=x0;else K.delovi[prev].x0=x1;}K.delovi[far]=dir>0?{room:id,x0:x1}:{room:id,x1:x0};
+   const farE=dir>0?x1:x0,how=[e,farE,F,farE+dir*220,e-dir*220];
+   if(moc==='klizanje'){op(B=>B.block(x0,top,W,F-60-top,{lintel:true}));K.veze.push([near,far,moc,false,{slide:how}]);return far;}
+   const name=`pit-${moc}-${id}-${edge}`;K.rupe.push([id,x0-r.x0,x1-r.x0,{lip:dir>0?'R':'L'}]);op(B=>B.pit(name,x0,x1,F+150));
+   if(moc==='lanac')op(B=>{B.kuka(x0+180,F-240);B.kuka(x1-180,F-240);});
+   if(moc==='zidotrk')op(B=>B.zid(x0+15,F-260,W-30,220));
+   if(moc==='oko')op(B=>{for(const [a,b] of [[130,290],[360,520]])B.block(x0+a,F,b-a,18,{kind:'oko',oko:true,off:true});});
+   K.veze.push([near,far,moc,false,{[moc==='lanac'?'hook':moc==='zidotrk'?'zidrun':'okom']:how}]);return far;},
+  // Ravijojlina staza: soba od tri polja uz `do` sa dva izazova moći `moc` i tajnom sobom iza njih (iza zida koji je varka);
+  // dir -1: staza je levo od `do` (zapadno krilo), 1: desno. Na pola puta je amajlija na tlu.
+  staza({soba,tajna,do:uz,moc,dir=-1,nalaz=true}){const r=room(soba),row=r.bottom;
+   if(dir<0){K.door(soba,uz,row);K.izazov(soba,2900,moc,{dir});const mid=K.izazov(soba,moc==='klizanje'?1400:1500,moc,{dir});K.door(tajna,soba,row);
+    K.iluzija(soba,-20,row);if(nalaz)K.nalaz(soba,moc==='klizanje'?1900:1850,row);void mid;}
+   else{K.door(uz,soba,row);K.izazov(soba,700,moc,{dir});K.izazov(soba,2100,moc,{dir});K.door(soba,tajna,row);
+    K.iluzija(soba,r.x1-r.x0-20,row);if(nalaz)K.nalaz(soba,moc==='klizanje'?1750:1750,row);}
+   return K;},
   // the land's champion in the last room, with his arena furniture
   bos(id,kind,o={}){const r=room(id),S=BOS[kind],y=r.floor,x0=r.x0+40,x1=r.x1-40,len=x1-x0,planks=[],a={block:(k,w,h,bo)=>op(B=>B.block(Math.round(x0+len*k-w/2),y-h,w,h,bo))};
    S.arena(a,(k,dy,w=150)=>planks.push([len*k,dy,w]));K.bosRoom=id;
@@ -109,13 +147,14 @@ function kit(sobe){
  return K;}
 
 // one level from its words: the kit runs once, here, and build(B) replays what it set down
-function pohod(def){const K=kit(def.sobe);def.gradi(K);
+export function pohod(def){const K=kit(def.sobe);def.gradi(K);
  // a door out of the right side of a room whose far part lies past an abyss leaves from that part
  // a hole must not open over another hole in the floor below it
  for(const [id,a,b,o] of K.rupe){if(!o.to)continue;const r=K.R[id],t=K.R[K.delovi[o.to]?.room||o.to.split('@')[0]];for(const [id2,a2,b2] of K.rupe)if(id2===t.id&&r.x0+a<t.x0+b2&&t.x0+a2<r.x0+b)throw new Error(`${def.id}: rupa u ${id} (${a}–${b}) pada u rupu u ${id2} (${a2}–${b2})`);}
  // the champion's arena closes behind Marko: the door into it goes one way
  for(const v of K.vrata)if(v[1]===K.bosRoom)v[3].oneway=true;
  for(const v of K.vrata){const [a,,row,o]=v;if(o.na)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===a&&d.x1==null&&row===K.R[a].bottom)o.na=name;}
+ for(const v of K.vrata){const [,b,row,o]=v;if(o.nb)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===b&&d.x0==null&&d.x1!=null&&row===K.R[b].bottom)o.nb=name;}
  const{gradi,...rest}=def;
  return{...rest,vrata:K.vrata,rupe:K.rupe,delovi:K.delovi,veze:K.veze,brda:def.brda||{},broj:K.n,bosSoba:K.bosRoom,build(B){for(const f of K.ops)f(B);}};}
 
@@ -124,10 +163,12 @@ export const GB_POHODI={
 // 4 · Kosovsko selo („Jao Šaro, moje desno krilo“): selo pod turskom stražom, kapija zatvorena iznutra. Marko ulazi preko
 // osmatračnice i palisade, spušta se na trg i otvara kapiju (prečica); Sokolovo krilo čeka u Šarčevoj štali, dole kraj bunara,
 // a sa njim se penje na zvonik i na kulu nad bunarom, gde čeka Kopljanik-baša.
-4:pohod({id:'selo',ime:'Kosovsko selo',biom:'podgradje',zeljeniBiom:'selo',daje:'krilo',pocetne:[],
+4:pohod({id:'selo',ime:'Kosovsko selo',biom:'podgradje',zeljeniBiom:'selo',daje:'krilo',daje2:'klizanje',pocetne:[],
  cilj:'Uđi u selo, nađi Šarčevu štalu i popni se na kulu nad bunarom',start:'livada',spawnDx:260,
  uvod:'Kosovsko selo. Kapija je zatvorena iznutra, a na kuli nad bunarom sedi Kopljanik-baša. Sokolovo krilo čeka u Šarčevoj štali; uđi preko osmatračnice.',
  sobe:[
+  ['skroviste','Vilinsko skrovište',-5,0,1,1,{secret:true,interior:true,lore:'Vilinsko skrovište. Ovde je Ravijojla čuvala Šarčevu srebrnu potkovicu dok Marko ne dođe po nju.'}],
+  ['staza','Ravijojlina staza',-4,0,3,1,{interior:true}],
   ['livada','Livada pred selom',-1,0,1,1],
   ['put','Seoski put',0,0,1,1],
   ['straza','Osmatračnica',1,-1,1,2],
@@ -153,6 +194,8 @@ export const GB_POHODI={
  gradi(K){
   // Livada: početak, guslar peva o Šarcu, prvi čekpoint
   K.guslar('livada',760,['Jao Šaro, moje desno krilo,','čistim ću te srebrom potkovati,','čistim srebrom i žeženim zlatom.']);K.prop('drvo','livada',1050,300);
+  // Ravijojlina staza (zapadno od livade): dva niska prolaza za klizanje, amajlija na tlu, vilinsko skrovište iza zida koji je varka
+  K.staza({soba:'staza',tajna:'skroviste',do:'livada',moc:'klizanje'});K.cudo('skroviste',600,'Srebrna potkovica');K.lik('staza',3300,'vila-spreda','Ravijojla: Niski prolazi se prelaze samo klizanjem. Kamen za klizanje je u Šarčevoj štali.');
   K.door('livada','put',0);
   // Seoski put: prva borba (janičar i strelac na kamenu), putnica koja beži iz sela
   K.block('put',700,120,200,120);K.borba('put',[['sword',500],['archer',800,120]]);K.lik('put',250,'putnica-idle','Ne idi kroz kapiju, junače! Zatvorili su je iznutra. Popni se na osmatračnicu.');
@@ -187,7 +230,7 @@ export const GB_POHODI={
   // Tunel: daske koje popuštaju nad jamom, strelnica
   K.crumble('tunel',800,180,1);K.crumble('tunel',980,180,1);K.pit('tunel',800,1160);K.strelnica('tunel',2380,{every:2.4});K.door('tunel','stala',1);
   // Šarčeva štala: krilo, treći čekpoint; Šarac čeka (volovi kao stoka u štali)
-  K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
+  K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.oltar('klizanje','stala',1100,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
   // Izvor pod bunarom i riznica: napukli zid
   K.door('izvor','bunar',2);K.heart('izvor',400,2);K.crack('bunar','riznica',{row:1});K.cudo('riznica',700,'Seoski dukati',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------

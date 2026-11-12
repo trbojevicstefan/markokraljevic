@@ -58,7 +58,9 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  const R=rid=>gbRoom(L,rid),X=(rid,dx)=>R(rid).x0+dx,Y=rid=>R(rid).floor;
  const block=(x,y,w,h,o={})=>{const q={x,y,w,h,kind:'stone',solid:true,noCling:!o.cling,...o};delete q.cling;platforms.push(q);if(o.name)named[o.name]=q;return q;};
  const foe=(type,x,y,o={})=>{const hp={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70,pas:60,kopljanik:100,tufekdzija:90}[type]??90;enemies.push({id:id++,x,y,vx:0,vy:0,w:36,h:type==='pas'?50:75,hp,maxHp:hp,type,zone:GB_ZONE,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});return enemies.at(-1);};
- const B={L,R,X,Y,named,
+ // kuka (lc-nivoi-svi): srebrne kuke za lanac, zidovi sa šarama za trk po zidu i amajlije na tlu idu u svet nivoa (game.js ih čita)
+ const svet={kuke:[],zidovi:[],nalazi:[]};
+ const B={L,R,X,Y,named,kuka:(x,y)=>svet.kuke.push({x,y}),zid:(x,y,w,h)=>svet.zidovi.push({x,y,w,h}),nalaz:o=>svet.nalazi.push(o),zamka:z=>traps.push(Object.assign(z,{t:z.t||0})),
   block,ledge:(x,y,w=200,o={})=>block(x,y,w,40,o),
   plank:(x,y,w,o={})=>block(x,y,w,18,{kind:'plank',solid:false,...o}),
   crumble:(x,y,w)=>block(x,y,w,18,{kind:'plank',solid:false,crumble:true}),
@@ -110,7 +112,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  for(const Rm of L.rooms)if(Rm.secret)S.cover[Rm.id]=1;S.secrets=L.rooms.filter(Rm=>Rm.secret).length;
  const sp=R(gbNodeRoom(L.start)),spawn={x:sp.x0+(L.spawnDx||200),y:sp.floor};
  const level={id:'greybox',greybox:true,n:L.n,name:L.ime,width:L.X1,spawn,goal:{x:L.X1+5000,y:spawn.y},props:[],peace:false,design:{goal:L.cilj}};
- return{platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
+ return{...svet,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
   chapter:{name:`LOST CROWN · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
 }
 
