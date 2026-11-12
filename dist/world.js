@@ -432,5 +432,3 @@ export function makeLevel(L,index,variant='day',opts={}){
 }
 // the greybox (?greybox) builds its own rooms; game.js reaches them through this one name
 export * as greybox from './greybox.js';
-// kuka do registra u greybox.js: Lost Crown pohodi (?greybox=4 i dalje) se dodaju u spisak nivoa, samo u pregledaču
-if(typeof window!=='undefined')import('./greybox-nivoi-pohodi.js');

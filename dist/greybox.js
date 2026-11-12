@@ -20,7 +20,15 @@ export const GB_MOCI={
  nalet:{name:'Juriš u vazduhu',key:'u skoku SHIFT',color:'#ffcf6a',text:'Kratak nalet napred, bez pada. Skoči, jurni, pa krilo: tako se prelaze ponori.'},
  trag:{name:'Vilin trag',key:'V',color:'#8fffe0',text:'Ostavi trag kraj vrata (V), stani na prekidač, pa se tragom vrati (V) dok su vrata otvorena.'}
 };
+// ---------- the registry of levels: the three here (greybox-nivoi.js) and whatever a data file adds ----------
+// dist/greybox-nivoi-pohodi.js (the Lost Crown versions of the other pohodi, ?greybox=4 and on) exports GB_POHODI in the same
+// format; in the browser it is loaded once, and if it is not there the three levels are all there is. gbRegister takes any
+// {number: level} object, keeps the numbers already taken, and tells the menu.
 export const GB_LEVELS=GB_NIVOI;
+const gbListeners=[];
+export function gbRegister(levels){for(const [n,L] of Object.entries(levels||{}))if(L?.sobe&&!GB_NIVOI[n])GB_NIVOI[n]=L;for(const f of gbListeners)try{f();}catch{}return GB_NIVOI;}
+export const gbOnRegister=f=>{gbListeners.push(f);};
+export const gbReady=typeof window==='undefined'?Promise.resolve(GB_NIVOI):import('./greybox-nivoi-pohodi.js').then(m=>gbRegister(m.GB_POHODI||m.default),()=>GB_NIVOI);
 const clampN=(n,a,b)=>Math.max(a,Math.min(b,n));
 
 // ---------- a level as rooms, nodes and links (shared by the game and the reachability test) ----------
@@ -215,6 +223,7 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
 // ---------- the menu: "Lost Crown pohodi", the three levels without URL tricks ----------
 export function gbMenu(start){if(typeof document==='undefined'||!document.querySelector)return;const links=document.querySelector('#menu .menu-links');if(!links||document.getElementById('gb-menu-open'))return;
  const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Lost Crown pohodi';links.append(sep,b);
- b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';
-  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p>${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime} · ${GB_MOCI[L.daje]?.name||''}</button>`).join('')}<button class="text-button" data-gb="0">Nazad</button></div>`;
-  document.body.appendChild(m);m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});}m.hidden=false;};}
+ // the list is made each time it opens, so levels registered later are in it too
+ b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
+  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
+  m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});m.hidden=false;};}

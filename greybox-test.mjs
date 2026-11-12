@@ -74,7 +74,8 @@ function walkLink(L,[a,b,need,one,how],moci,back=false){api.startGreybox(L.n);qu
  else if(how.trace){const [name,stand]=how.trace,D=G().named[name];if(moci.has('trag')){if(!traced(D,{x:stand[0],y:stand[1]}))return false;api.keys.add(D.sw.x<D.q.x?'KeyD':'KeyA');for(let f=0;f<300&&!D.solved;f++)step();api.keys.clear();step(150);}else{const r=race(D);if(r.through)return true;return false;}}
  return nodeAt(L)===to;}
 
-for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(ONLY&&+n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje]),before=new Set(L.pocetne||[]);
+// the three levels of greybox-nivoi.js (the registered pohodi have greybox-pohodi-test.mjs)
+for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje]),before=new Set(L.pocetne||[]);
  const nodesAll=new Set(L.links.flatMap(l=>[l[0],l[1]])),roomsOf=list=>new Set(list.map(x=>L.delovi?.[x]?.room||GB.gbNodeRoom(x))),secret=L.rooms.filter(R=>R.secret).map(R=>R.id);
  const tag=`${n} ${L.id}:`;
  // ---- the map as a graph ----
