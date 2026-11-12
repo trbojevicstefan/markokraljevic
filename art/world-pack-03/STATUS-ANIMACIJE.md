@@ -847,3 +847,13 @@ DOPUNA-46: marko-lanac-vuce — ODBIJEN (Claude): izvor ima svetlu papirnu pozad
 DOPUNA-46: marko-zid-trk-vodoravno — ISPRAVLJEN (Claude): izvor je jedan red od 6 figura; ponovo izvezen sa 6 kolona i rezovima između figura, sitni delovi suseda uklonjeni.
 
 DOPUNA-46: ikona-trag — GOTOVO; art/world-pack-03/ikona-trag.png, 128x128 RGBA, ugradjeni image_gen.
+
+DOPUNA-46: marko-launcher — GOTOVO; 6 kadrova, jednom; assets/marko-launcher/, alfa overena na kontrolnoj pozadini, y=487, atlas=frames; skala tela prema kadru2 uz ogranicenje siluete na 480px.
+
+DOPUNA-46: ikona-lanac — GOTOVO; art/world-pack-03/ikona-lanac.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-oko — GOTOVO; art/world-pack-03/ikona-oko.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-potres — GOTOVO; art/world-pack-03/ikona-potres.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-gaz — GOTOVO; art/world-pack-03/ikona-gaz.png, 128x128 RGBA; image_gen.
