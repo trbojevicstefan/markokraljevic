@@ -857,3 +857,5 @@ DOPUNA-46: ikona-oko — GOTOVO; art/world-pack-03/ikona-oko.png, 128x128 RGBA; 
 DOPUNA-46: ikona-potres — GOTOVO; art/world-pack-03/ikona-potres.png, 128x128 RGBA; image_gen.
 
 DOPUNA-46: ikona-gaz — GOTOVO; art/world-pack-03/ikona-gaz.png, 128x128 RGBA; image_gen.
+
+DOPUNA-45 deo 2: marko-combo-1-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets i sprite-rig.json, neparni image_gen; atlas=frames, alfa proverena.
