@@ -49,7 +49,7 @@ function kit(sobe){
   // two walls 150 px apart climbed wall to wall, from a floor up to the row above; in a tall room the row above gets a
   // walkway on both sides, between two rooms the chimney rises through a hole in the upper room's floor
   chimney(id,dx,o={}){const r=room(id),x=r.x0+dx,name=`ch-${id}-${dx}`,upper=o.upper;
-   if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:node(id)}]);op(B=>B.chimney(name,x,top,bottom));
+   if(upper){const u=room(upper),top=u.floor,bottom=r.floor-150;if(x+40<u.x0+40||x+190>u.x1-40)throw new Error(`dimnjak iz ${id} nije ispod sobe ${upper}`);K.rupe.push([upper,x+40-u.x0,x+190-u.x0,{to:node(id)}]);op(B=>B.chimney(name,x,top,bottom));
     K.veze.push([node(id),node(upper),null,true,{chimney:[name,x+430]}]);return K;}
    const row=o.row??r.bottom,rowTop=row-1,top=FY(rowTop),bottom=FY(row)-150;
    op(B=>{B.chimney(name,x,top,bottom);if(x>r.x0+20)B.block(r.x0+20,top,x-r.x0-20,40);if(x+230<r.x1-20)B.block(x+230,top,r.x1-20-x-230,40);});
@@ -58,7 +58,7 @@ function kit(sobe){
   // the wing's ledge (365 px up, one jump does 266) and a walkway one row up whose edge is caught with the wing again;
   // in a tall room from the row `row` to the one above it, between rooms through a hole in the upper room's floor
   wing(id,dx,o={}){const r=room(id);K.n.krilo++;
-   if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=r.floor;K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:node(id)}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
+   if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=r.floor;if(hx<u.x0+200||hx+300>u.x1-20)throw new Error(`krilo iz ${id} nije ispod sobe ${o.upper}`);K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:node(id)}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
     K.veze.push([node(id),node(o.upper),'krilo',true,{up:[['floor',F,1,[lx+50,F-365]],[[lx+50,F-365],[hx-150,u.floor],-1]]}]);return K;}
    const row=o.row??r.bottom,F=FY(row),x=r.x0+dx,top=FY(row-1),w=o.w??r.x1-20-(x+250);
    op(B=>{B.ledge(x,F-365,100,{gbGate:'krilo'});B.block(x+250,top,w,40);});
@@ -308,7 +308,67 @@ export const GB_POHODI={
   K.chimney('jarak',1200,{upper:'drum'});K.greda('jarak',1500,{span:220});K.crumble('jarak',300,150,1);K.fake('jarak','jazbina',{row:1});K.heart('jazbina',500,1);K.door('jarak','podrum',1);
   // Podrum hana: Vilin trag, čekpoint; potok i vodenica iza vrata na prekidač
   K.ckpt('podrum',300);K.shrine('trag','podrum',750);K.door('podrum','potok',1);
-  K.strelnica('potok',300,{dir:1,every:2.6});K.trace('potok','vodenica');K.cudo('vodenica',700,'Drugi tovar blaga',1);}})
+  K.strelnica('potok',300,{dir:1,every:2.6});K.trace('potok','vodenica');K.cudo('vodenica',700,'Drugi tovar blaga',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 7 · Opsednuta tvrđava („Marko poznaje očinu sablju“): pod tvrđavom na Marici je turski opsadni logor; kapija je zatvorena
+// iznutra. Marko prolazi lagumima ispod reke do cisterne, gde čeka Sokolovo krilo, i izlazi iza kapije (prečica).
+// Krilom se penje na bedem, do oružarnice sa Vukašinovom sabljom i na kulu Hasan-age.
+7:pohod({id:'tvrdjava',ime:'Opsednuta tvrđava',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'krilo',pocetne:[],
+ cilj:'Prođi lagumima do cisterne, otvori kapiju i popni se na kulu Hasan-age',start:'logor',spawnDx:260,
+ uvod:'Opsednuta tvrđava na Marici. Kapija je zatvorena iznutra. Lagumi idu ispod reke do cisterne; tamo čeka Sokolovo krilo, a sa njim bedem i kula Hasan-age.',
+ sobe:[
+  ['logor','Opsadni logor',-1,0,1,1],
+  ['sanac','Topovski šanac',0,0,2,1],
+  ['osmatracnica','Osmatračnica nad šancem',1,-1,1,1],
+  ['strazara','Turska stražara',2,-1,1,1,{interior:true}],
+  ['sator','Mustaf-agin šator',2,0,1,1,{interior:true}],
+  ['obala','Obala Marice',3,0,2,1,{set:'reka'}],
+  ['podzid','Pod zidinama',5,0,1,1],
+  ['kapija','Tvrđavska kapija',6,0,1,1],
+  ['dvoriste','Unutrašnje dvorište',7,0,2,1],
+  ['bedem','Bedem',5,-1,3,1],
+  ['oruzarnica','Oružarnica',6,-2,1,1,{secret:true,interior:true,lore:'Oružarnica. Sablja sa tri slova: Novaka kovača, Vukašina kralja i Marka. Nikome se ne da izvaditi, a Marku sama iskoči.'}],
+  ['barutana','Barutana',8,-1,1,1,{interior:true}],
+  ['kula','Kula',9,-2,1,3,{interior:true}],
+  ['vrh','Kula Hasan-age',10,-2,1,1],
+  ['skroviste','Skrovište',-1,1,1,1,{secret:true,interior:true,lore:'Skrovište. Ovde je Turkinja devojka sakrila ranjenika koga je izvukla iz Marice.'}],
+  ['lagum','Lagum',0,1,2,1,{interior:true}],
+  ['lagum2','Lagum pod šatorom',2,1,2,1,{interior:true}],
+  ['lagum3','Lagum pod Maricom',4,1,2,1,{interior:true}],
+  ['cisterna','Cisterna',6,1,1,1,{interior:true}],
+  ['tamnica','Tamnica',7,1,1,1,{secret:true,interior:true,lore:'Tamnica. Mustaf-aga je ovde bacio ranjenika kad mu je uzeo sablju; na zidu je urezao tri slova.'}],
+  ['izvor','Izvor pod cisternom',6,2,1,1,{interior:true}]],
+ brda:{logor:[[500,900,40]],obala:[[200,700,-40]]},
+ gradi(K){
+  // Opsadni logor: guslar i Novak kovač
+  K.guslar('logor',780,['Na sablji su tri slova rišćanska:','jedno slovo Novaka kovača,','drugo slovo Vukašina kralja.']);
+  K.lik('logor',450,'novak-kuje','Novak kovač: Tu sablju sam kovao Vukašinu. Samo njegov sin će je izvaditi iz korica.');K.door('logor','sanac',0);
+  // Topovski šanac: prva borba, kolje; krilo do osmatračnice, rupa u lagum
+  K.block('sanac',2100,120,160,120);K.borba('sanac',[['palikuca',800],['shield',1300],['archer',2150,120]]);K.spikes('sanac',1000,120);
+  K.wing('sanac',1500,{upper:'osmatracnica'});K.drop('sanac',300,500,'lagum');K.door('sanac','sator',0);
+  K.heart('osmatracnica',900,-1);K.door('osmatracnica','strazara',-1);K.lik('strazara',600,'caus-idle','Čauš: Hasan-aga ne silazi sa kule. Kaže da ga niko ne može dohvatiti.',-1);
+  // Šator i obala: devojka sa Marice; druga borba, greda nad rekom
+  K.lik('sator',600,'putnica-idle','Devojka: Marica nosi konje i kalpake. Mustaf-aga je ubio ranjenika zbog sablje.');K.door('sator','obala',0);
+  K.borba('obala',[['akindzija',500],['sword',1900]]);K.greda('obala',1000,{span:240});K.door('obala','podzid',0);
+  // Pod zidinama: strelnica i kolje; kapija zatvorena iznutra
+  K.strelnica('podzid',1180,{every:2.4});K.spikes('podzid',600,120);K.gate('podzid','kapija',0);
+  // Kapija: krilo na bedem; dvorište sa borbom i čekpointom
+  K.wing('kapija',200,{upper:'bedem'});K.door('kapija','dvoriste',0);
+  K.ckpt('dvoriste',700);K.borba('dvoriste',[['oklopnik',1300],['shield',1700]]);K.door('dvoriste','kula',0);
+  // Bedem: strelci na zupcima, strelnica; krilo do oružarnice; rupe u podzid i dvorište
+  K.block('bedem',600,120,100,120,-1);K.block('bedem',2400,120,100,120,-1);K.borba('bedem',[['archer',650,120],['archer',2450,120],['sword',1100]],-1);
+  K.strelnica('bedem',3580,{row:-1,every:2.8});K.wing('bedem',1900,{upper:'oruzarnica'});K.cudo('oruzarnica',300,'Vukašinova sablja',-2);
+  K.drop('bedem',300,500,'podzid');K.drop('bedem',2700,2900,'dvoriste');K.door('bedem','barutana',-1);
+  K.lik('barutana',600,'putnik-starac-idle','Topdžija: Barut je vlažan od Marice. Turci ne mogu da pucaju na kulu.',-1);K.door('barutana','kula',-1);
+  // Kula: dimnjak, krilo, Hasan-aga na vrhu
+  K.chimney('kula',700);K.wing('kula',300,{row:-1});K.door('kula','vrh',-2);K.bos('vrh','oklopnik');
+  // Lagumi: daske nad jamom, borba, greda; lažni zid do skrovišta
+  K.crumble('lagum',700,180,1);K.crumble('lagum',880,180,1);K.pit('lagum',700,1060);K.fake('lagum','skroviste',{row:1});K.heart('skroviste',500,1);K.door('lagum','lagum2',1);
+  K.borba('lagum2',[['sword',700],['shield',1200],['pas',1700]]);K.spikes('lagum2',2000,100,1);K.door('lagum2','lagum3',1);
+  K.greda('lagum3',900,{span:220});K.strelnica('lagum3',2380,{every:2.6});K.door('lagum3','cisterna',1);
+  // Cisterna: krilo i čekpoint; dimnjak do kapije; napukli zid do tamnice; izvor ispod
+  K.ckpt('cisterna',150);K.shrine('krilo','cisterna',1000);K.chimney('cisterna',660,{upper:'kapija'});K.crack('cisterna','tamnica',{row:1});K.cudo('tamnica',700,'Tri slova',1);
+  K.chimney('izvor',340,{upper:'cisterna'});K.heart('izvor',800,2);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
