@@ -1,0 +1,44 @@
+[
+ {
+  "name": "podgradje_far_v2k76",
+  "draft": "art/realisticno/podgradje/draft/far.png",
+  "prompt": "Strict orthographic side view, a flat 2D side-scrolling game parallax layer like a painted theatre backdrop: perfectly level horizon, no perspective, no vanishing point, no road or path leading into the distance, no people, no animals, no text, no frame, nothing modern (no lamp posts, no power lines, no cars, no signs, no paved roads): a medieval world. The layer shows distant hazy Balkan mountain ridges in blue-violet atmospheric haze, and on a rocky granite hill in the middle the far-away ruined medieval fortress of Prilep (Markove kule): stone walls and square towers following the crest, rounded granite boulders on the slopes, a flat golden plain at the bottom. Lighting: warm golden hour light, low sun from the left, long soft shadows, honey-coloured light on stone, light atmospheric haze, Balkan summer evening. Photorealistic, ultra detailed, real materials and textures, cinematic matte painting quality. Everything above and between the scenery is a flat, solid, pure magenta (#FF00FF) background with crisp clean edges, no sky, no gradient in the magenta.",
+  "w": 2048,
+  "h": 688,
+  "strength": 0.76,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "wrap": "x"
+ },
+ {
+  "name": "podgradje_mid_v2k76",
+  "draft": "art/realisticno/podgradje/draft/mid.png",
+  "prompt": "Strict orthographic side view, a flat 2D side-scrolling game parallax layer like a painted theatre backdrop: perfectly level horizon, no perspective, no vanishing point, no road or path leading into the distance, no people, no animals, no text, no frame, nothing modern (no lamp posts, no power lines, no cars, no signs, no paved roads): a medieval world. The layer shows the medieval Serbian town of Prilep under its fortress: a long stone rampart with crenellations and square towers, some with red tile pyramid roofs, an arched gate, in front of the wall the houses of the podgrađe with whitewashed and stone walls and red clay tile roofs, dark cypresses and walnut trees, rounded granite boulders, a strip of dry golden grass at the bottom. Lighting: warm golden hour light, low sun from the left, long soft shadows, honey-coloured light on stone, light atmospheric haze, Balkan summer evening. Photorealistic, ultra detailed, real materials and textures, cinematic matte painting quality. Everything above and between the scenery is a flat, solid, pure magenta (#FF00FF) background with crisp clean edges, no sky, no gradient in the magenta.",
+  "w": 2048,
+  "h": 688,
+  "strength": 0.76,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "wrap": "x"
+ },
+ {
+  "name": "podgradje_near_v2k76",
+  "draft": "art/realisticno/podgradje/draft/near.png",
+  "prompt": "Strict orthographic side view, a flat 2D side-scrolling game parallax layer like a painted theatre backdrop: perfectly level horizon, no perspective, no vanishing point, no road or path leading into the distance, no people, no animals, no text, no frame, nothing modern (no lamp posts, no power lines, no cars, no signs, no paved roads): a medieval world. The layer shows close foreground of a medieval Balkan town street seen from the side: on the left a two-storey house with a stone ground floor, whitewashed timber-framed upper floor, a carved wooden balcony and a red tile roof; a low dry-stone garden wall with a wooden gate and green bushes in the middle; a big old walnut tree on the right, a stack of firewood, a haystack and the corner of a stone tower at the right edge; packed earth ground at the bottom. Lighting: warm golden hour light, low sun from the left, long soft shadows, honey-coloured light on stone, light atmospheric haze, Balkan summer evening. Photorealistic, ultra detailed, real materials and textures, cinematic matte painting quality. Everything above and between the scenery is a flat, solid, pure magenta (#FF00FF) background with crisp clean edges, no sky, no gradient in the magenta.",
+  "w": 2048,
+  "h": 688,
+  "strength": 0.76,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "wrap": "x"
+ }
+]
