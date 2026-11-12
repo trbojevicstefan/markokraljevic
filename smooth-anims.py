@@ -326,6 +326,36 @@ def iou(a, b):
     return float((x & y).sum()) / max(1, (x | y).sum())
 
 
+def v2_size(V):
+    """How much larger the new poses of a -v2 clip are drawn than the old ones around them, for the clip as a whole (the
+    median, by the root of the figure's area), or 1 when the poses do not agree on it. A pose may grow or shrink with a
+    reached-out arm or a curled roll (roll-land: 1.02 1.12 1.17 1.18 1.07), but a whole clip drawn smaller, every pose by
+    about as much (combo-3, super, air-1, air-2, uppercut 9-13%, attack 26%), is a slip of the drawing, put back by rescale."""
+    sz = lambda c: float(np.sqrt((c[..., 3] > 0.16).sum()))
+    r = np.array([sz(V[n]) / max(1.0, (sz(V[n - 1]) + sz(V[n + 1])) / 2) for n in range(1, len(V) - 1, 2)])
+    if not len(r): return 1.0
+    md = float(np.median(r))
+    return md if (np.abs(np.log(r / md)) <= 0.05).mean() >= 0.75 else 1.0
+
+
+def v2_pale(V):
+    """The largest share of a new pose that is opaque near-white without colour: a paper ground or guide lines the cut-out
+    kept (plunge 0.85, roll 0.43; a true drawing 0.001 at most, the cream shirt has colour)."""
+    def pale(c):
+        a = c[..., 3] > 0.5; rgb = c[..., :3]
+        return float((a & (rgb.min(axis=2) > 0.86) & (rgb.max(axis=2) - rgb.min(axis=2) < 0.07)).sum()) / max(1, a.sum())
+    return max((pale(V[n]) for n in range(1, len(V), 2)), default=0.0)
+
+
+def rescale(c, s):
+    """c zoomed by s about the middle of its sole, where the game stands it."""
+    b = bbox(c)
+    if b is None or abs(s - 1) < 1e-3: return c
+    px, py = (b[0] + b[2]) / 2, sole_of(c)
+    M = np.float32([[s, 0, px * (1 - s)], [0, s, py * (1 - s)]])
+    return cv2.warpAffine(c, M, (c.shape[1], c.shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+
+
 def work(job):
     name, pairs = job
     r = RIG[name]
@@ -336,6 +366,12 @@ def work(job):
     keep = {}; log = []; drawn = set()
     V = v2_cells(name)
     if V is not None and len(V) != 2 * len(F) - 1: V = None
+    if V is not None and v2_pale(V) > 0.05:
+        log.append((0, 0, None, None, 'v2 refused: pale ground %.2f' % v2_pale(V))); V = None
+    vs = v2_size(V) if V is not None else 1.0
+    vfix = 1 / vs if abs(np.log(vs)) > 0.03 else 1.0   # outside about ±3%: a slip of the whole drawing (the poses of one clip
+    # agree to a percent or two: combo-3 0.89 0.89 0.89 0.92, against 0.99-1.01 for the clips drawn true)
+    if vfix != 1.0: log.append((0, 0, None, None, 'v2 size %.2f, drawn poses zoomed %.2f' % (vs, vfix)))
     for (i, j) in pairs:
         if F[i][2:4] != F[j][2:4]:
             log.append((i, j, None, None, 'cell size')); continue
@@ -344,7 +380,7 @@ def work(job):
             # sole is where the game puts it on the ground. The quarters are the flow between it and each neighbour.
             a, b = cell(img, F[i]), cell(img, F[j])
             fa, fb = fit(V[2 * i], a), fit(V[2 * j], b)
-            D = defringe(place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape))
+            D = rescale(defringe(place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape)), vfix)
             match = min(iou(place(V[2 * i], fa, a.shape), a), iou(place(V[2 * j], fb, b.shape), b))
             sd = sole_of(D); mid = crop(D, k)
             if mid is not None and match > 0.7:
@@ -415,7 +451,8 @@ def run(names):
                               'loop': name in LOOPS, 'mids': mids}
                 if drawn: meta[name]['drawn'] = sorted('%d-%d' % p for p in drawn)   # drawn poses: a blow passes through them
                 total += s1.shape[0] * s1.shape[1] + s2.shape[0] * s2.shape[1]
-            print('%-26s %2d/%2d pairs  k=%.2f  %s' % (name, len(keep), len(log), k,
+            notes = [w for i, j, e, g, w in log if i == j]; log = [x for x in log if x[0] != x[1]]
+            print('%-26s %2d/%2d pairs  k=%.2f  %s' % (name, len(keep), len(log), k, ''.join(w + '  ' for w in notes) +
                   ' '.join('%d-%d:%s' % (i, j, ('%.3f/%.2f' % (e, g)) + ('!' + w if w else '') if e is not None else w) for i, j, e, g, w in log)), flush=True)
     for alias, src in ALIASES.items():
         if src in meta and alias in RIG: meta[alias] = meta[src]

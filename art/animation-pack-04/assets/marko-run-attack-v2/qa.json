@@ -1,0 +1,129 @@
+{
+  "atlasMatchesFrames": true,
+  "evenFramesPixelExact": true,
+  "frameCount": 11,
+  "sourceClip": "marko-run-attack",
+  "cell": [
+    512,
+    512
+  ],
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "visualReview": "pending",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        81,
+        125,
+        431,
+        488
+      ],
+      "sha256": "27334b6c8466c2d45b99ddc9fd0fe6a950247339efe7047ac81ac2974aaa1617"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        91,
+        125,
+        421,
+        488
+      ],
+      "sha256": "00500520cd4e00680e9fad5bbc10fb0881d1e0a2e562b635defa7abc06d60ffa"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        79,
+        105,
+        432,
+        488
+      ],
+      "sha256": "e476e0088a85f39058d0c2680b9521239da55e28537b66e52fac2da80ed209fe"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        70,
+        131,
+        442,
+        488
+      ],
+      "sha256": "498ffce51e5a75e81d924da6b08aa5fd767e2f666ea7ee0f4ed6a56fc85cf999"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        52,
+        134,
+        460,
+        488
+      ],
+      "sha256": "37aa7b208ab81dd9840c3e31210c30e72b6430a584c6a45bcff143614863cb69"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        66,
+        140,
+        447,
+        488
+      ],
+      "sha256": "28e8d3ad877662580ff0c43c14346549911c7db9759bf76ba779704baa04a310"
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        55,
+        141,
+        457,
+        488
+      ],
+      "sha256": "59a55bd3c8de223755379cd9c94aec9cdbdbe533db3ebf7a275c238543e15c69"
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        87,
+        132,
+        426,
+        488
+      ],
+      "sha256": "e51a3c56eae2d4ba6f658aae12f5ff126990e1dfe283962ada5d98af03cf50db"
+    },
+    {
+      "frame": 8,
+      "bounds": [
+        69,
+        122,
+        443,
+        488
+      ],
+      "sha256": "0097c13c2bc9c34477b1876debf4f2d6dff8e3e2bb057ebbbf1ad31bfe22b59a"
+    },
+    {
+      "frame": 9,
+      "bounds": [
+        79,
+        123,
+        433,
+        488
+      ],
+      "sha256": "2686843c017fba17a9b5c3e0e9d0f1d0a9bd56ac0dd7e3f67be062a0c4e0698a"
+    },
+    {
+      "frame": 10,
+      "bounds": [
+        78,
+        117,
+        433,
+        488
+      ],
+      "sha256": "21b9ee10bd534e1b1755b2a575d86beadd1143d52187045ed2d25f652fd8bce1"
+    }
+  ]
+}
