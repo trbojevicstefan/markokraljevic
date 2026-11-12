@@ -10,7 +10,7 @@ import os
 import numpy as np
 from PIL import Image
 
-from realisticno_common import LAYER, SKY, layer_prompt, sky_prompt
+from realisticno_common import LAYER, SKY, back_prompt, layer_prompt, sky_prompt
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORLD = os.path.join(ROOT, 'dist', 'assets', 'world')
@@ -86,6 +86,11 @@ VISTAS = {
                 'grass'), (90, 120, 60)),
 }
 ORDER = list(VISTAS)
+UNDERGROUND = {'pecina': 'the far rock wall of a huge limestone cave with stalactites, pools and faintly glowing '
+                         'turquoise crystals',
+               'podrum': 'the back wall of an old vaulted stone cellar: brick arches, niches with barrels, oil lamps',
+               'rudnik': 'the back wall of an old silver mine gallery: rough grey rock, timber supports, a wooden '
+                         'ladder, ore carts and lanterns'}
 GLIGHT = {'selo': 'warm morning sunlight', 'klisura': 'bright afternoon sunlight', 'suma': 'soft green forest light',
           'manastir': 'warm afternoon sunlight', 'tvrdjava': 'warm firelight', 'prevoj': 'cold bright winter daylight',
           'pecina': 'dim turquoise cave light', 'podrum': 'dim amber lamplight', 'mocvara': 'cold blue moonlight',
@@ -135,6 +140,8 @@ def make_biome(vista):
             'mid': f'the middle distance of {theme}', 'near': f'the close foreground of {theme}'}
     layers = [{'id': 'sky', 'kind': 'sky', 'strength': 0.86, 'v': 2, 'draw': (lambda: draft_from_world(vista, 'sky', SKY)),
                'prompt': sky_prompt(skyw, light)}]
+    if vista in UNDERGROUND:      # their 'sky' is the back wall of a cave, cellar or mine: never clouds
+        layers[0].update(strength=0.8, v=3, prompt=back_prompt(UNDERGROUND[vista], light))
     for k in ('far', 'mid', 'near'):
         layers.append({'id': k, 'kind': k, 'strength': 0.76,
                        'draw': (lambda kk=k: draft_from_world(vista, kk, LAYER)), 'prompt': layer_prompt(desc[k], light)})

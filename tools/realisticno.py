@@ -225,7 +225,11 @@ def _process(bname, it, raw):
         return resize_wrap(im, FINAL_SKY)
     if k in ('far', 'mid', 'near'):
         refined = '_v9k' in os.path.basename(raw)
-        d = Image.open(draft_path(bname, it['key'] + ('-r' if refined else '')))
+        # the silhouette always comes from the clean first draft (the first-pass output is not pure magenta),
+        # with a wider band because two passes may move edges a little further
+        d = Image.open(draft_path(bname, it['key']))
+        if refined:
+            return resize_wrap(key_layer(im, d, band=max(it.get('band', 56), 90)), FINAL_LAYER)
         return resize_wrap(key_layer(im, d, band=it.get('band', 56)), FINAL_LAYER)
     if k == 'tile':
         return resize_wrap_xy(im, FINAL_TILE)
