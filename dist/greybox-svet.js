@@ -19,7 +19,7 @@ const FALLBACK={
   materials:{ground:W('tlo-rusevine'),groundIn:W('tlo-podrum'),wall:W('zid-kamen'),platform:'kamen',beam:'greda',ceiling:W('zid-stena')}},
  urvina:{layers:LAY('urvina'),interior:{layers:LAY('pecina')},sets:{suma:LAY('suma'),reka:LAY('reka')},look:11,lookIn:7,lookSets:{suma:2,reka:12},
   materials:{ground:W('tlo-rusevine'),groundIn:W('tlo-pecina'),wall:W('zid-stena'),platform:'mahovina',beam:'greda',ceiling:W('zid-stena')}},
- klisura:{layers:LAY('klisura'),interior:{layers:LAY('tvrdjava')},sets:{reka:LAY('reka')},look:3,lookIn:5,lookSets:{reka:12},
+ klisura:{layers:LAY('klisura'),interior:{layers:LAY('podrum')},sets:{reka:LAY('reka'),pecina:LAY('pecina')},look:3,lookIn:8,lookSets:{reka:12,pecina:7},
   materials:{ground:W('tlo-klisura'),groundIn:W('tlo-tvrdjava'),wall:W('zid-kamen'),platform:'kamen',beam:'greda',ceiling:W('zid-cigla')}}
 };
 // generic prop names the levels use, and the painted props that stand in for them
