@@ -105,12 +105,32 @@ def raws(bname, key):
 
 
 def chosen_raw(bname, key):
+    """picks.json: {key: "raw.png"} or {key: {"raw": "raw.png", "erase": [[x0,y0,x1,y1]], "clone": [[x0,y0,x1,y1,dx]]}}
+    (boxes as fractions of the raw image). erase paints magenta over a stray object standing in the empty
+    part; clone covers a box with the pixels dx (fraction of the width) to its side."""
     pp = os.path.join(ART, bname, 'picks.json')
     picks = json.load(open(pp, encoding='utf-8')) if os.path.exists(pp) else {}
     if key in picks:
-        return os.path.join(RAW, picks[key])
+        p = picks[key]
+        return os.path.join(RAW, p if isinstance(p, str) else p['raw'])
     fs = raws(bname, key)
     return fs[-1] if fs else None
+
+
+def raw_fixes(bname, key, im):
+    pp = os.path.join(ART, bname, 'picks.json')
+    p = (json.load(open(pp, encoding='utf-8')) if os.path.exists(pp) else {}).get(key)
+    if not isinstance(p, dict):
+        return im
+    w, h = im.size
+    im = im.copy()
+    d = ImageDraw.Draw(im)
+    for x0, y0, x1, y1 in p.get('erase', []):
+        d.rectangle([x0 * w, y0 * h, x1 * w, y1 * h], fill=(255, 0, 255))
+    for x0, y0, x1, y1, dx in p.get('clone', []):
+        box = tuple(round(v) for v in ((x0 + dx) * w, y0 * h, (x1 + dx) * w, y1 * h))
+        im.paste(im.crop(box), (round(x0 * w), round(y0 * h)))
+    return im
 
 
 def checker(size, a=(70, 70, 70), b=(110, 110, 110), s=24):
@@ -132,6 +152,8 @@ def over(rgba, bg):
 def process(bname, it, raw):
     """Raw generator output -> final image (PIL) for an item."""
     im = Image.open(raw).convert('RGB')
+    if raw == chosen_raw(bname, it['key']):
+        im = raw_fixes(bname, it['key'], im)
     k = it['kind']
     if k == 'sky':
         return resize_wrap(im, FINAL_SKY)
