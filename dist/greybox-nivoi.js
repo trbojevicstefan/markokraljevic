@@ -17,9 +17,9 @@ export const GB_NIVOI={
 // ---------------------------------------------------------------------------------------------------------------------
 // 1 · Podgrađe pod Markovim kulama (Prilep): the town under the fortress, its walls and towers, the bell tower, the cellars
 // and the dungeon under the town. Marko finds the falcon's wing (Sokolovo krilo) in the falcon's cell at the bottom of the well.
-1:{id:'podgradje',ime:'Podgrađe pod Markovim kulama',biom:'podgradje',daje:'krilo',pocetne:[],cilj:'Nađi Sokolovo krilo i popni se na vrh kule',
+1:{id:'podgradje',ime:'Podgrađe pod Markovim kulama',biom:'podgradje',daje:'krilo',daje2:['klizanje'],pocetne:[],cilj:'Nađi Sokolovo krilo i popni se na vrh kule',
  start:'livada',spawnDx:250,
- uvod:'Prilep. Marko je pod svojim kulama bez Sokolovog krila. Krilo čeka u Sokolovoj ćeliji, na dnu bunara ispod grada. Mapa je gore desno.',
+ uvod:'Prilep. Marko je pod svojim kulama bez Sokolovog krila. Krilo čeka u Sokolovoj ćeliji, na dnu bunara ispod grada; do bunara se iz kovačnice ide niskim prolazom, a klizanje je u podrumu. Mapa je gore desno.',
  sobe:[
   ['livada','Livada pod gradom',-1,0,1,1],
   ['varos','Varoš',0,0,2,1],
@@ -44,7 +44,7 @@ export const GB_NIVOI={
   ['riznica','Riznica',7,2,1,1,{secret:true,interior:true,lore:'Riznica. Tri kese dukata: jedna za crkvu, jedna za sirotinju, jedna za onoga ko Marka sahrani.'}]],
  vrata:[['livada','varos',0],['varos','pijaca',0],['pijaca','kapija',0],['kapija','stepeniste',0,{need:'posle:stepeniste@0'}],['stepeniste','dvoriste',0],
   ['dvoriste','kasarna',0],['kasarna','kula',0],['kula','oruzarnica',0],['stepeniste','bedem',-1],['bedem','kula',-1],['kula','vrh',-2,{oneway:true}],
-  ['podrum','kovacnica',1],['kovacnica','bunar',1],['celija','bunar',2],['bunar','tamnica',2]],
+  ['podrum','kovacnica',1],['kovacnica','bunar',1,{need:'klizanje',how:{slide:[4560,1310,4960]}}],['celija','bunar',2],['bunar','tamnica',2]],
  rupe:[['pijaca',550,750,{to:'podrum'}],['golubarnik',750,1050,{to:'varos'}],['bedem',1400,1700,{to:'dvoriste'}],['zvonik',500,800,{to:'bedem'}],['stepeniste',600,900,{to:'bunar@2'}],
   ['kovacnica',300,700],['oruzarnica',550,850]],
  brda:{livada:[[600,1000,50]],varos:[[600,950,-50],[1350,1800,90]],dvoriste:[[1500,2100,60]],tamnica:[[300,800,-40]]},
@@ -82,12 +82,14 @@ export const GB_NIVOI={
   B.pit('pit-oruzarnica',X('oruzarnica',550),X('oruzarnica',850),F0+150);B.strelnica({x:X('oruzarnica',1160),y:F0-40,gy:F0,dir:-1,every:2.4});B.heart(X('oruzarnica',1050),F0);
   // Podrum: a dog and a janičar, stakes; the wall to the left gives way (Vinski podrum)
   B.prop('bacva',X('podrum',250),F1);B.prop('cup',X('podrum',330),F1);B.prop('bacva',X('vinski',350),F1);B.prop('bacva',X('vinski',430),F1);B.prop('cup',X('vinski',800),F1);
+  // Podrum: Klizanje (in a run S + SHIFT) at the back of the cellar; the way on to the well is a low passage in the Kovačnica
+  B.shrine('klizanje',X('podrum',470),F1);
   B.foe('pas',X('podrum',700),F1);B.foe('sword',X('podrum',950),F1);B.spikes(X('podrum',1000),F1,120);
   B.open(2400,F1-200,F1);B.fake('fake-vinski',2380,F1-200,60,200);B.heart(X('vinski',600),F1);
   // Kovačnica: planks that give way over a pit, stakes, a fire-raiser
   B.prop('mangal',X('kovacnica',140),F1);B.prop('kameni-blok',X('kovacnica',220),F1);
   B.crumble(X('kovacnica',300),F1,200);B.crumble(X('kovacnica',500),F1,200);B.pit('pit-kovacnica',X('kovacnica',300),X('kovacnica',700),F1+150);
-  B.spikes(X('kovacnica',820),F1,140);B.foe('palikuca',X('kovacnica',1050),F1);
+  B.spikes(X('kovacnica',820),F1,140);B.foe('palikuca',X('kovacnica',1000),F1);B.nisko('nisko-bunar',X('kovacnica',1090),720,F1);
   // Bunar: the well, from the cellars down to the dungeon; the wing's ledges up and out through the Stepenište
   B.ledge(5550,F2-355,250,{gbGate:'krilo'});B.ledge(5250,F1,150,{gbGate:'krilo'});B.ledge(5590,F1-355,100,{gbGate:'krilo'});
   // Sokolova ćelija: the falcon's wing and the third checkpoint

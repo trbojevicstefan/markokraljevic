@@ -72,10 +72,20 @@ function walkLink(L,[a,b,need,one,how],moci,back=false){api.startGreybox(L.n);qu
  else if(how.break){const [name,x,y,x1]=how.break,b=G().named[name];place(x,y,x1>x?1:-1);for(let i=0;i<10&&!b.broken;i++){tap('KeyK');step(80);}if(!b.broken)return false;if(back){walk(x1,900);place(x1,y,x1>x?-1:1);walk(x,900);}else walk(x1,900);}
  else if(how.leap){const [name,dir,y,after,before]=how.leap,z=G().named[name],d=back?-dir:dir;if(moci.has('nalet')){if(!leap(z,d,y,{roll:null,jumpAt:0,k:72,n:16}))return false;walk(back?before:after,900);settle(60);}else return noDash(z,d,y);}
  else if(how.trace){const [name,stand]=how.trace,D=G().named[name];if(moci.has('trag')){if(!traced(D,{x:stand[0],y:stand[1]}))return false;api.keys.add(D.sw.x<D.q.x?'KeyD':'KeyA');for(let f=0;f<300&&!D.solved;f++)step();api.keys.clear();step(150);}else{const r=race(D);if(r.through)return true;return false;}}
+ else if(how.slide){const [x0,y,x1]=back?(how.back||[how.slide[2],how.slide[1],how.slide[0]]):how.slide,dir=x1>x0?1:-1,key=dir>0?'KeyD':'KeyA';place(x0,y,dir);api.keys.add(key);step(40);
+  api.keys.add('KeyS');api.pressed.add('ShiftLeft');step(2);api.keys.delete('KeyS');for(let f=0;f<700&&dir*(P().x-x1)<0;f++){step();if(f>60&&Math.abs(P().vx)<1)break;}api.keys.clear();settle(60);}
+ else if(how.zid){const [x0,y,jx,x1,kk]=back&&how.back?how.back:how.zid,dir=x1>x0?1:-1,key=dir>0?'KeyD':'KeyA';place(x0,y,dir);api.keys.add(key);let jf=-1,wj=-1;
+  for(let f=0;f<1000;f++){const p=P();if(jf<0&&dir*(p.x-jx)>=0){jf=f;api.pressed.add('Space');}if(p.zidotrk&&p.zidotrk.t<.12&&wj<0){wj=f;api.pressed.add('Space');}if(wj>=0&&kk&&f-wj===kk)api.pressed.add('Space');
+   step();if(jf>=0&&f-jf>20&&P().grounded)break;if(P().y>y+300)break;}api.keys.clear();settle(60);}
+ else if(how.kuka){for(const [x0,y,name,x1,kk] of back&&how.back?how.back:how.kuka){const K=G().named[name],dir=x1>x0?1:-1;if(Math.abs(P().x-x0)>6||Math.abs(P().y-y)>6)place(x0,y,K.x>=x0?1:-1);else P().face=K.x>=x0?1:-1;
+  tap('KeyC');for(let f=0;f<240&&(P().lanac||f<4);f++)step();api.keys.add(dir>0?'KeyD':'KeyA');for(let g=0;g<500;g++){if(kk&&g===kk)api.pressed.add('Space');step();if(P().grounded&&g>6)break;if(g>=kk&&kk<0&&P().vy>0)break;}api.keys.clear();step(4);}settle(60);}
+ else if(how.oko){const [x0,y,x1,jumps=[]]=back&&how.back?how.back:how.oko,dir=x1>x0?1:-1;place(x0,y,dir);api.keys.add('KeyO');api.pressed.add('KeyO');step(4);api.keys.add(dir>0?'KeyD':'KeyA');const done=new Map();
+  for(let f=0;f<1200&&dir*(P().x-x1)<0;f++){const p=P();for(const [jx,k] of jumps){if(!done.has(jx)&&p.grounded&&dir*(p.x-jx)>=0)done.set(jx,f),api.pressed.add('Space');if(done.get(jx)!=null&&k&&f-done.get(jx)===k)api.pressed.add('Space');}step();if(P().y>y+260)break;}
+  api.keys.clear();settle(60);}
  return nodeAt(L)===to;}
 
 // the three levels of greybox-nivoi.js (the registered pohodi have greybox-pohodi-test.mjs)
-for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje]),before=new Set(L.pocetne||[]);
+for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)continue;const L=GB.gbLevel(n),all=new Set([...(L.pocetne||[]),L.daje,...(L.daje2||[])]),before=new Set(L.pocetne||[]);
  const nodesAll=new Set(L.links.flatMap(l=>[l[0],l[1]])),roomsOf=list=>new Set(list.map(x=>L.delovi?.[x]?.room||GB.gbNodeRoom(x))),secret=L.rooms.filter(R=>R.secret).map(R=>R.id);
  const tag=`${n} ${L.id}:`;
  // ---- the map as a graph ----
@@ -83,16 +93,17 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)conti
  ok(secret.length>=2,`${tag} ${secret.length} hidden rooms (${secret.join(', ')})`);
  api.startGreybox(+n);{const g=G();ok(g.ckpts.length>=2&&g.cuda.length>=1,`${tag} ${g.ckpts.length} checkpoints, ${g.hearts.length} pieces of heart, ${g.cuda.length} marvels`);
   const foes=W().enemies.filter(e=>!e.champion),boss=W().enemies.find(e=>e.champion);ok(foes.length>=8&&boss,`${tag} ${foes.length} foes in the rooms and a boss (${boss?.name})`);
-  ok(Object.entries(g.moci).every(([k,v])=>v===before.has(k)),`${tag} Marko starts with ${[...before].join(', ')||'no power'}, and finds ${L.daje} here`);}
+  ok(Object.entries(g.moci).every(([k,v])=>v===before.has(k)),`${tag} Marko starts with ${[...before].join(', ')||'no power'}, and finds ${[L.daje,...(L.daje2||[])].join(', ')} here`);}
  ok(roomsOf(GB.gbReach(L,all)).size===L.rooms.length&&GB.gbReach(L,all).length===nodesAll.size,`${tag} holding ${[...all].join(' and ')}, every room can be entered`);
  {const shut=L.rooms.map(R=>R.id).filter(id=>!roomsOf(GB.gbReach(L,before)).has(id));ok(shut.length>0&&!GB.gbReach(L,before).includes(L.links.find(l=>l[2]===L.daje)[1]),`${tag} without ${L.daje} these stay shut: ${shut.join(', ')}`);
   ok(secret.some(id=>shut.includes(id))&&secret.some(id=>!shut.includes(id)),`${tag} some secrets wait for ${L.daje} (${secret.filter(id=>shut.includes(id)).join(', ')}), others for a sharp eye (${secret.filter(id=>!shut.includes(id)).join(', ')})`);}
- {const shrineRoom=L.rooms[GB.gbRoomAt(L,G().shrines[0].x,G().shrines[0].y)].id;ok(roomsOf(GB.gbReach(L,before)).has(shrineRoom),`${tag} ${L.daje} waits in ${shrineRoom}, which Marko reaches without it`);}
+ // every power of the level waits where Marko gets without it (with the others he can find there)
+ for(const m of [L.daje,...(L.daje2||[])]){const sh=G().shrines.find(s=>s.moc===m),shrineRoom=L.rooms[GB.gbRoomAt(L,sh.x,sh.y)].id;ok(roomsOf(GB.gbReach(L,new Set([...all].filter(x=>x!==m)))).has(shrineRoom),`${tag} ${m} waits in ${shrineRoom}, which Marko reaches without it`);}
  // ---- every passage with real input ----
  for(const link of L.links){const [a,b,need,one,how]=link,kind=Object.keys(how)[0],withAll=new Set([...all,'posle']);
   ok(walkLink(L,link,withAll),`${tag} ${a} → ${b} (${kind}${need?', '+need:''})`);
   if(!one)ok(walkLink(L,link,withAll,true),`${tag} ${b} → ${a} (${kind})`);
-  if(need&&GB.GB_MOCI[need]&&!how.drop){const less=new Set([...withAll].filter(m=>m!==need));ok(!walkLink(L,link,less),`${tag} without ${need} ${a} → ${b} stays shut`);}
+  if(need&&(GB.GB_MOCI[need]||GB.GB_KAPIJE.includes(need))&&!how.drop){const less=new Set([...withAll].filter(m=>m!==need));ok(!walkLink(L,link,less),`${tag} without ${need} ${a} → ${b} stays shut`);}
   if(need?.startsWith('posle:'))ok(!walkLink(L,link,new Set(all)),`${tag} ${a} → ${b} stays shut until the gate is opened from ${need.slice(6)}`);}
  // ---- the boss ----
  {api.startGreybox(+n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} the megdan with ${c.name} begins`);

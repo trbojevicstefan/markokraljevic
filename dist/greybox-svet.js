@@ -126,7 +126,7 @@ export function artFront(G,L,R,{S,platforms,traps}){if(!G.hasDom)return;const g=
  const vis=q=>q.x+q.w>Math.max(R.x0,cam-60)&&q.x<Math.min(R.x1,cam+VW+60)&&q.y+q.h>Math.max(R.y0-160,cy-60)&&q.y<Math.min(R.y1,cy+VH+60);
  // props stand behind the path
  for(const pr of S.props){if(pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=b.props?.find(o=>o.id===pr.id||o.id===ALIAS[pr.id]);prop(g,m?.file||PROPS[pr.id],pr.x,pr.y,pr.h||m?.h||120,pr.flip);}
- for(const q of platforms){if(q.off||q.kind==='crate'||q.gbDoor||q.gbTrap||q.gbOneWay||!vis(q))continue;
+ for(const q of platforms){if(q.off||q.oko||q.iluzija||q.kind==='crate'||q.gbDoor||q.gbTrap||q.gbOneWay||!vis(q))continue;
   if(q.ground&&q.kind!=='step'){const gf=R.interior?M.groundIn||M.ground:M.ground;if(!deepGround(g,G,R,q,M,gf))fill(g,q,M.wall,.36,.4);continue;}
   if(q.kind==='plank'&&isTex(M.beam)&&!q.crumble){slab(g,q,M.beam,.2);topOf(g,q,M.beam,10);continue;}
   if(q.kind==='plank'){if(q.crumble){tiles(g,q,'greda')&&(g.strokeStyle='rgba(40,25,15,.8)',g.lineWidth=2,[.3,.6].forEach(f=>{g.beginPath();g.moveTo(q.x+q.w*f,q.y);g.lineTo(q.x+q.w*f+8,q.y+q.h);g.stroke();}));continue;}tiles(g,q,M.beam==='greda'||!M.beam?'greda':null,M.beam!=='greda'?M.beam:null);continue;}

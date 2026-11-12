@@ -25,6 +25,10 @@ export const GB_MOCI={
 // format; in the browser it is loaded once, and if it is not there the three levels are all there is. gbRegister takes any
 // {number: level} object, keeps the numbers already taken, and tells the menu.
 export const GB_LEVELS=GB_NIVOI;
+// the gate powers of the game's second set (MOCI2 in game.js): a level grants them at a shrine (daje2) like its own power
+export const GB_KAPIJE=['klizanje','zidotrk','lanac','oko','kombo'];
+const MOC_NAMES={klizanje:{name:'Klizanje',color:'#e8c890'},zidotrk:{name:'Trk po zidu',color:'#ffd27a'},lanac:{name:'Ravijojlin lanac',color:'#9fe8ff'},oko:{name:'Vilinsko oko',color:'#c3b2ff'},kombo:{name:'Vazdušni kombo',color:'#ffb86a'}};
+export const gbMoc=(G,id)=>GB_MOCI[id]||G?.moci?.[id]||MOC_NAMES[id]||{name:id,color:'#e8e0c8',key:'',text:''};
 const gbListeners=[];
 export function gbRegister(levels){for(const [n,L] of Object.entries(levels||{}))if(L?.sobe&&!GB_NIVOI[n])GB_NIVOI[n]=L;for(const f of gbListeners)try{f();}catch{}return GB_NIVOI;}
 export const gbOnRegister=f=>{gbListeners.push(f);};
@@ -35,7 +39,7 @@ const clampN=(n,a,b)=>Math.max(a,Math.min(b,n));
 export function gbLevel(n){const k=GB_NIVOI[n]?+n:1,L=GB_NIVOI[k];if(L.ready)return L;L.n=k;
  L.rooms=L.sobe.map(([id,name,gx,gy,w,h,o={}])=>({id,name,gx,gy,w,h,x0:gx*CW,y0:gy*CH,x1:(gx+w)*CW,y1:(gy+h)*CH,floor:(gy+h)*CH-FL,...o}));
  const xs=L.rooms.flatMap(R=>[R.x0,R.x1]),ys=L.rooms.flatMap(R=>[R.y0,R.y1]);L.X0=Math.min(...xs);L.X1=Math.max(...xs);L.Y0=Math.min(...ys);L.Y1=Math.max(...ys);
- L.links=[];for(const [a,b,row,o={}] of L.vrata||[])L.links.push([o.na||gbNode(L,a,row),o.nb||gbNode(L,b,row),o.need||null,!!o.oneway,{door:[a,b,row,o]}]);
+ L.links=[];for(const [a,b,row,o={}] of L.vrata||[])L.links.push([o.na||gbNode(L,a,row),o.nb||gbNode(L,b,row),o.need||null,!!o.oneway,o.how||{door:[a,b,row,o]}]);
  for(const [r,dx0,dx1,o={}] of L.rupe||[])if(o.to){const R=gbRoom(L,r);L.links.push([o.from||gbNode(L,r,R.gy+R.h-1),o.to,o.need||null,true,{drop:[r,dx0,dx1]}]);}
  L.links.push(...(L.veze||[]));L.ready=true;return L;}
 export const gbRoom=(L,id)=>L.rooms.find(R=>R.id===id);
@@ -51,10 +55,10 @@ export function gbReach(L,moci,start=L.start){const seen=new Set([start]);let gr
  return[...seen];}
 
 // ---------- building a level into the game's world ----------
-export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],breakables=[],traps=[],pits=[],named={},opens=[],holes=[];let id=3000;
+export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],breakables=[],traps=[],pits=[],named={},opens=[],holes=[],zidovi=[],kuke=[];let id=3000;
  const S={L,t:0,room:-1,seen:new Set(),moci:{krilo:false,nalet:false,trag:false},pits,holes,shrines:[],ckpts:[],doors:[],gates:[],fakes:[],hearts:[],cuda:[],props:[],ckpt:0,
   found:new Set(),cover:{},done:false,told:{},named};
- for(const m of L.pocetne||[])S.moci[m]=true;
+ for(const m of L.daje2||[])S.moci[m]=false;for(const m of L.pocetne||[])S.moci[m]=true;
  const R=rid=>gbRoom(L,rid),X=(rid,dx)=>R(rid).x0+dx,Y=rid=>R(rid).floor;
  const block=(x,y,w,h,o={})=>{const q={x,y,w,h,kind:'stone',solid:true,noCling:!o.cling,...o};delete q.cling;platforms.push(q);if(o.name)named[o.name]=q;return q;};
  const foe=(type,x,y,o={})=>{const hp={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70,pas:60,kopljanik:100,tufekdzija:90}[type]??90;enemies.push({id:id++,x,y,vx:0,vy:0,w:36,h:type==='pas'?50:75,hp,maxHp:hp,type,zone:GB_ZONE,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});return enemies.at(-1);};
@@ -62,6 +66,13 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
   block,ledge:(x,y,w=200,o={})=>block(x,y,w,40,o),
   plank:(x,y,w,o={})=>block(x,y,w,18,{kind:'plank',solid:false,...o}),
   crumble:(x,y,w)=>block(x,y,w,18,{kind:'plank',solid:false,crumble:true}),
+  // the second set of powers: a wall with Ravijojla's runes (the wall run), a silver hook (the chain), a low passage (the slide:
+  // a block from the ceiling down to 60 px over the floor), a plank seen and firm only through the fairy's eye, a wall that is a trick
+  zid:(name,x,y,w,h)=>{const z={name,x,y,w,h};zidovi.push(z);named[name]=z;return z;},
+  kuka:(name,x,y)=>{const k={name,x,y};kuke.push(k);named[name]=k;return k;},
+  nisko:(name,x,top,floor,w=110)=>{const q=block(x,top,w,floor-60-top,{lintel:true});named[name]=q;return q;},
+  oko:(x,y,w=110)=>{const q={x,y,w,h:18,kind:'oko',oko:true,off:true,solid:false};platforms.push(q);return q;},
+  iluzija:(name,x,y,w,h)=>{const q={x,y,w,h,kind:'iluzija',iluzija:true,off:true,solid:false};platforms.push(q);named[name]=q;return q;},
   // two facing walls Marko climbs wall to wall (the only walls he can cling to in a greybox level)
   chimney(name,x,top,bottom,gap=150){block(x,top,40,bottom-top,{cling:true,gbChimney:true});block(x+40+gap,top,40,bottom-top,{cling:true,gbChimney:true});named[name]={x0:x+40,x1:x+40+gap,top,bottom};},
   spikes:(x,y,w)=>{traps.push({kind:'spikes',x,y,w,t:0});},
@@ -110,7 +121,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  for(const Rm of L.rooms)if(Rm.secret)S.cover[Rm.id]=1;S.secrets=L.rooms.filter(Rm=>Rm.secret).length;
  const sp=R(gbNodeRoom(L.start)),spawn={x:sp.x0+(L.spawnDx||200),y:sp.floor};
  const level={id:'greybox',greybox:true,n:L.n,name:L.ime,width:L.X1,spawn,goal:{x:L.X1+5000,y:spawn.y},props:[],peace:false,design:{goal:L.cilj}};
- return{platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
+ return{zidovi,kuke,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
   chapter:{name:`LOST CROWN · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
 }
 
@@ -122,7 +133,7 @@ export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play'
   if(!S.seen.has(r)){if(S.t>.5)G.toast((artName(L,R)||R.name).toUpperCase(),1.6);if(R.secret){S.found.add(R.id);G.sfx('magic',{gain:.6});G.toast(`Tajna soba! ${S.found.size}/${S.secrets}`,2.4);if(R.lore)G.speak(R.lore,8);}}S.seen.add(r);}
  for(const R of L.rooms)if(R.secret&&S.found.has(R.id))S.cover[R.id]=Math.max(0,S.cover[R.id]-dt*1.6);
  const near=(o,dx=46,dy=70)=>Math.abs(p.x-o.x)<dx&&Math.abs(p.y-o.y)<dy;
- for(const s of S.shrines)if(!s.taken&&near(s)){s.taken=true;S.moci[s.moc]=true;const M=GB_MOCI[s.moc];G.burst(s.x,s.y-70,M.color,40,240);G.sfx('magic_big',{gain:.9});G.label(M.name.toUpperCase(),s.x,s.y-160,M.color);G.speak(`${M.name} (${M.key}). ${M.text}`,9);}
+ for(const s of S.shrines)if(!s.taken&&near(s)){s.taken=true;S.moci[s.moc]=true;const M=gbMoc(G,s.moc);G.burst(s.x,s.y-70,M.color,40,240);G.sfx('magic_big',{gain:.9});G.label(M.name.toUpperCase(),s.x,s.y-160,M.color);G.speak(`${M.name} (${M.key}). ${M.text}`,9);}
  for(const h of S.hearts)if(!h.taken&&near(h,50)){h.taken=true;p.maxHp+=10;p.hp=p.maxHp;G.sfx('coins',{gain:1});G.burst(h.x,h.y-40,'#ff8a8a',30,200);G.label('DEO SRCA · +10 ZDRAVLJA',h.x,h.y-150,'#ffb0a0');}
  for(const c of S.cuda)if(!c.taken&&near(c,50)){c.taken=true;G.sfx('magic_big',{gain:.8});G.burst(c.x,c.y-50,'#ffe39a',40,220);G.label(`ČUDO · ${c.name.toUpperCase()}`,c.x,c.y-160,'#ffe39a');G.toast(`Čudo: ${c.name}`,2.6);}
  // a checkpoint fills the health each time Marko steps on it again, and Ravijojla brings him back to the last one
@@ -172,7 +183,7 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=
   g.strokeStyle=C.grid;g.lineWidth=1;g.beginPath();for(let x=Math.max(R.x0,Math.floor((cam-60)/100)*100);x<Math.min(R.x1,cam+VW+60);x+=100){g.moveTo(x,Math.max(R.y0,cy-60));g.lineTo(x,Math.min(R.floor,cy+VH+60));}for(let y=R.floor-100;y>R.y0;y-=100){if(y<cy-60||y>cy+VH+60)continue;g.moveTo(Math.max(R.x0,cam-60),y);g.lineTo(Math.min(R.x1,cam+VW+60),y);}g.stroke();});
  // an abyss is dark down through the floor, but stops at the ceiling of a room under it
  for(const z of S.pits)if(vis(z.x0,z.y-150,z.x1,z.y+400)){let b=z.y+374;for(const R of L.rooms)if(R.x0<z.x1&&R.x1>z.x0&&R.y0>=z.y-150&&R.y0<b)b=R.y0;g.fillStyle='#141518';g.fillRect(z.x0,z.y-146,z.x1-z.x0,b-z.y+146);}
- for(const q of W.platforms){if(!vis(q.x,q.y,q.x+q.w,q.y+q.h)||q.kind==='crate'||(q.off&&q.arena))continue;
+ for(const q of W.platforms){if(!vis(q.x,q.y,q.x+q.w,q.y+q.h)||q.kind==='crate'||(q.off&&q.arena)||q.oko||q.iluzija)continue;   // the eye's planks and the tricks are drawn by game.js
   if(q.gbDoor||q.gbTrap||q.gbOneWay){const col=q.gbOneWay?'#8f7a4a':'#3f8f7e',line=q.gbOneWay?'#ffe39a':'#8fffe0';
    if(q.off){g.strokeStyle=line;g.globalAlpha=.5;g.setLineDash([8,8]);g.strokeRect(q.x,q.y,q.w,q.h);g.setLineDash([]);g.globalAlpha=1;}
    else{g.fillStyle=col;g.fillRect(q.x,q.y,q.w,q.h);g.fillStyle=line;if(q.gbTrap)for(let x=q.x+12;x<q.x+q.w;x+=30)g.fillRect(x,q.y+q.h/2-3,16,6);else for(let y=q.y+30;y<q.y+q.h;y+=70)g.fillRect(q.x+q.w/2-3,y,6,30);}continue;}
@@ -188,7 +199,7 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=
  for(const R of shown)if(dressed.has(R.id))inRoom(R,()=>artFront(G,L,R,{S,platforms:W.platforms,traps:W.traps}));
  // the gameplay marks stay readable over the materials: the wing's ledges, the far lip of an abyss
  for(const q of W.platforms){if(q.off||!vis(q.x,q.y,q.x+q.w,q.y+q.h))continue;if(q.gbGate){g.fillStyle=GB_MOCI[q.gbGate].color;g.globalAlpha=.85;g.fillRect(q.x,q.y-2,q.w,5);g.globalAlpha=1;}if(q.gbLip){g.fillStyle=GB_MOCI.nalet.color;g.fillRect(q.x,q.y-2,q.w,5);}}
- for(const s of S.shrines){if(!vis(s.x-80,s.y-150,s.x+80,s.y))continue;const M=GB_MOCI[s.moc];g.fillStyle=C.dark;g.fillRect(s.x-34,s.y-36,68,36);g.fillStyle=C.edge;g.fillRect(s.x-34,s.y-36,68,3);
+ for(const s of S.shrines){if(!vis(s.x-80,s.y-150,s.x+80,s.y))continue;const M=gbMoc(G,s.moc);g.fillStyle=C.dark;g.fillRect(s.x-34,s.y-36,68,36);g.fillStyle=C.edge;g.fillRect(s.x-34,s.y-36,68,3);
   if(!s.taken){const y=s.y-74+Math.sin(t*2.5)*6;G.halo(s.x,y,52,M.color,.8);g.fillStyle=M.color;g.beginPath();g.arc(s.x,y,16,0,Math.PI*2);g.fill();G.textLabel(M.name.toUpperCase(),s.x,s.y-112,{font:'bold 13px Georgia',color:M.color});}}
  for(const c of S.ckpts){if(!vis(c.x-40,c.y-140,c.x+40,c.y))continue;const on=S.ckpt===c.id;g.fillStyle=on?'#9fe6cf':'#8d9198';g.fillRect(c.x-10,c.y-120,20,120);g.fillRect(c.x-22,c.y-12,44,12);if(on)G.halo(c.x,c.y-126,40,'#a6ffe1',.7+.2*Math.sin(t*3));G.textLabel('ČEKPOINT',c.x,c.y-136,{font:'bold 12px Georgia',color:on?'#a6ffe1':'#c9ccd2'});}
  for(const D of S.doors){const sw=D.sw,q=D.q;if(vis(sw.x-60,sw.y-60,sw.x+60,sw.y+10)){g.fillStyle=D.down||D.open>0?'#8fffe0':'#3f8f7e';g.fillRect(sw.x-sw.w/2,sw.y-(D.down?3:9),sw.w,D.down?3:9);G.textLabel(D.solved?'PREKIDAČ':D.floor?'PREKIDAČ · POKLOPAC SE OTVORI NA TREN':'PREKIDAČ · VRATA SE OTVORE NA TREN',sw.x,sw.y-40,{font:'bold 12px Georgia',color:'#8fffe0'});}
@@ -215,7 +226,7 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
  g.fillText('MAPA · '+(L.rooms[S.room]?.name||''),15,15);g.fillStyle='#ffe39a';g.fillText(`Tajne ${S.found.size}/${S.secrets}`,282,15);
  L.rooms.forEach((R,i)=>{if(!S.seen.has(i))return;const x=X0(R.x0),y=Y0(R.y0),w=(R.x1-R.x0)*k,h=(R.y1-R.y0)*k;g.fillStyle=i===S.room?'#5f6570':R.secret?'#4a3f55':'#3d4148';g.fillRect(x+.5,y+.5,w-1,h-1);g.strokeStyle=i===S.room?'#e6e9ee':R.secret?'#ffe39a':'#6b7079';g.lineWidth=1;g.strokeRect(x+.5,y+.5,w-1,h-1);});
  const seenAt=(x,y)=>S.seen.has(gbRoomAt(L,x,y)),dot=(x,y,c,r=2.4)=>{g.fillStyle=c;g.beginPath();g.arc(X0(x),Y0(y-60),r,0,Math.PI*2);g.fill();};
- for(const s of S.shrines)if(!s.taken&&seenAt(s.x,s.y))dot(s.x,s.y,GB_MOCI[s.moc].color,3.2);
+ for(const s of S.shrines)if(!s.taken&&seenAt(s.x,s.y))dot(s.x,s.y,gbMoc(G,s.moc).color,3.2);
  for(const h of S.hearts)if(!h.taken&&seenAt(h.x,h.y))dot(h.x,h.y,'#ff8a8a',2.8);
  for(const c of S.cuda)if(!c.taken&&seenAt(c.x,c.y))dot(c.x,c.y,'#ffe39a',3);
  for(const c of S.ckpts)if(seenAt(c.x,c.y)){g.fillStyle=S.ckpt===c.id?'#a6ffe1':'#8b8f98';g.fillRect(X0(c.x)-1.5,Y0(c.y)-8,3,6);}
@@ -224,7 +235,7 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
  for(const z of S.pits)if(z.x1-z.x0>=GB_GAP&&(seenAt(z.x0-60,z.y-150)||seenAt(z.x1+60,z.y-150))){g.fillStyle=S.moci.nalet?'#5f6570':GB_MOCI.nalet.color;g.fillRect(X0(z.x0),Y0(z.y-150)-1,(z.x1-z.x0)*k,2.5);}
  {const c=G.world.enemies.find(e=>e.champion);if(c?.alive&&seenAt(c.x,c.y)){g.strokeStyle='#ff6a5a';g.lineWidth=2;const cx=X0(c.x),cy=Y0(c.y-60);g.beginPath();g.moveTo(cx-4,cy-4);g.lineTo(cx+4,cy+4);g.moveTo(cx+4,cy-4);g.lineTo(cx-4,cy+4);g.stroke();}}
  dot(G.p.x,G.p.y,'#ffffff',3);
- g.font='11px Georgia';let mx=15;for(const id of Object.keys(GB_MOCI)){const M=GB_MOCI[id],have=S.moci[id];g.fillStyle=have?M.color:'#6b7079';const txt=(have?'● ':'○ ')+M.name;g.fillText(txt,mx,142);mx+=g.measureText(txt).width+14;}}
+ g.font='11px Georgia';let mx=15;for(const id of Object.keys(S.moci)){const M=gbMoc(G,id),have=S.moci[id];g.fillStyle=have?M.color:'#6b7079';const txt=(have?'● ':'○ ')+M.name;g.fillText(txt,mx,142);mx+=g.measureText(txt).width+14;}}
 
 // ---------- the menu: "Lost Crown pohodi", the three levels without URL tricks ----------
 export function gbMenu(start){if(typeof document==='undefined'||!document.querySelector)return;const links=document.querySelector('#menu .menu-links');if(!links||document.getElementById('gb-menu-open'))return;
