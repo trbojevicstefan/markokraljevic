@@ -696,7 +696,59 @@ export const GB_POHODI={
   K.ckpt('podrum',300);K.shrine('krilo','podrum',700);K.door('podrum','potkop',1);
   // Stari potkop: peta borba, daske; dimnjak na put; tamnica i blago
   K.borba('potkop',[['pas',500],['sword',800]]);K.crumble('potkop',1500,160,1);K.crumble('potkop',1660,160,1);K.pit('potkop',1500,1820);K.chimney('potkop',1200,{upper:'put'});K.door('potkop','tamnica',1);
-  K.chimney('tamnica',900,{upper:'most2'});K.lik('tamnica',500,'putnik-starac-idle','Sužanj: Ovde je Đemo okovao Marka, bukagije na noge, belenzuke na ruke.',1);K.crack('tamnica','riznica',{row:1});K.cudo('riznica',600,'Tri tovara blaga',1);}})
+  K.chimney('tamnica',900,{upper:'most2'});K.lik('tamnica',500,'putnik-starac-idle','Sužanj: Ovde je Đemo okovao Marka, bukagije na noge, belenzuke na ruke.',1);K.crack('tamnica','riznica',{row:1});K.cudo('riznica',600,'Tri tovara blaga',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 14 · Ruševine na brdu („Marko ukida svadbarinu“): Arap prekomorac je zakupio Kosovo i uzima svadbarinu; Kosovka devojka
+// je osedela čekajući svadbu. Marko ide preko Arapove avlije i ruševina crkve na vrh brda, do poslednjeg barjaka. Juriš
+// u vazduhu čeka u kripti pod ruševinama; greben pod vrhom i katakombe prelaze se samo njime.
+14:pohod({id:'rusevine',ime:'Ruševine na brdu',biom:'podgradje',zeljeniBiom:'rusevine',daje:'nalet',pocetne:['krilo'],
+ cilj:'Nađi juriš u kripti, pređi greben jurišem i stigni do poslednjeg barjaka',start:'podnozje',spawnDx:240,
+ uvod:'Ruševine na brdu. Arap prekomorac uzima svadbarinu od svake svadbe na Kosovu. Do poslednjeg barjaka na vrhu vodi greben koji se prelazi samo jurišem; juriš čeka u kripti pod ruševinama.',
+ sobe:[
+  ['podnozje','Podnožje brda',-1,0,1,1],
+  ['kuca','Kuća Kosovke devojke',-1,-1,1,1,{interior:true}],
+  ['staza','Kosovo polje',0,0,2,1],
+  ['svadbari','Tabor svatova',0,-1,2,1],
+  ['kolo','Kolo svatova',2,-1,1,1],
+  ['kula','Arapova kula',3,-1,2,1,{interior:true}],
+  ['zvonik','Srušeni zvonik',4,-2,1,1,{secret:true,lore:'Srušeni zvonik. Zvono je palo kad je Arap zakupio Kosovo; Marko je obećao da će zazvoniti za svaku svadbu.'}],
+  ['sator','Arapov šator',2,0,1,1,{interior:true}],
+  ['avlija','Avlija sa kolcima',3,0,2,1],
+  ['rusevine','Ruševine crkve',5,-2,1,3],
+  ['trem','Trem',6,0,1,1],
+  ['vinograd','Zapušteni vinograd',7,0,2,1],
+  ['vidikovac','Vidikovac',7,-1,1,1],
+  ['greben','Greben pod vrhom',6,-2,2,1],
+  ['vrh','Poslednji barjak',8,-2,1,1],
+  ['tamnica','Tamnica svatova',2,1,1,1,{secret:true,interior:true,lore:'Tamnica svatova. Svatovi koji nisu imali za svadbarinu čekali su ovde; Marko je platio za sve.'}],
+  ['bunar','Arapov bunar',3,1,2,1,{interior:true}],
+  ['kripta','Kripta',5,1,1,1,{interior:true}],
+  ['katakombe','Katakombe',6,1,2,1,{interior:true}],
+  ['riznica','Arapova riznica',8,1,1,1,{secret:true,interior:true,lore:'Arapova riznica. Svadbarina sa celog Kosova; Marko ju je razdelio devojkama za darove.'}]],
+ brda:{podnozje:[[500,900,40]],staza:[[1000,1400,40]]},
+ gradi(K){
+  // Podnožje: guslar; krilo do kuće Kosovke devojke
+  K.guslar('podnozje',850,['Odsad više nema svadbarine,','Marko za sve svadbarinu plati:','Bog da živi Kraljevića Marka!']);K.wing('podnozje',400,{upper:'kuca'});
+  K.lik('kuca',600,'putnica-idle','Kosovka devojka: Osedela sam čekajući svadbu. Arap traži trideset dukata od svake mlade.',-1);K.heart('kuca',950,-1);K.door('podnozje','staza',0);
+  // Kosovo polje: prva borba; krilo do tabora svatova
+  K.block('staza',2050,120,160,120);K.borba('staza',[['sword',800],['akindzija',1600],['archer',2100,120]]);K.wing('staza',500,{upper:'svadbari'});K.door('staza','sator',0);
+  K.heart('svadbari',1500,-1);K.door('svadbari','kolo',-1);K.lik('kolo',600,'svatovi-kolo','Svatovi igraju kolo, a svadba ne sme bez Arapove dozvole.',-1);K.door('kolo','kula',-1);
+  // Arapova kula: borba, strelnica; krilo do srušenog zvonika
+  K.block('kula',600,120,120,120,-1);K.borba('kula',[['archer',650,120],['shield',1000],['sword',1300]],-1);K.strelnica('kula',2380,{row:-1,every:2.8});K.wing('kula',1500,{upper:'zvonik'});K.cudo('zvonik',800,'Zvono za svadbe',-2);K.door('kula','rusevine',-1);
+  // Šator i avlija: sluga; druga borba i kolci; rupa u bunar
+  K.lik('sator',600,'caus-idle','Arapov sluga: Arap je zakupio Kosovo. Avlija mu je ograđena kolcima, a na kolcima su glave.');K.door('sator','avlija',0);
+  K.borba('avlija',[['sword',700],['shield',1100]]);K.spikes('avlija',300,150);K.drop('avlija',1500,1700,'bunar');K.door('avlija','rusevine',0);
+  // Ruševine crkve: dimnjak, krilo; greben (juriš) do poslednjeg barjaka i Arapina
+  K.chimney('rusevine',700);K.wing('rusevine',300,{row:-1});K.door('rusevine','trem',0);K.door('rusevine','greben',-2);
+  K.dash('greben',700);K.door('greben','vrh',-2);K.bos('vrh','arapin');
+  // Trem i vinograd: čekpoint, mladoženja; četvrta borba, greda; krilo do vidikovca
+  K.ckpt('trem',200);K.lik('trem',700,'mladozenja-trci','Mladoženja: Bez svadbarine nema svadbe, kaže Arap. Gore na brdu stoji njegov barjak.');K.door('trem','vinograd',0);
+  K.borba('vinograd',[['sword',1500],['oklopnik',1900]]);K.greda('vinograd',900,{span:220});K.wing('vinograd',300,{upper:'vidikovac'});K.heart('vidikovac',900,-1);
+  // Arapov bunar: peta borba, dimnjak gore; lažni zid do tamnice svatova; kripta sa jurišem
+  K.borba('bunar',[['pas',500],['sword',800]]);K.chimney('bunar',1900,{upper:'avlija'});K.fake('bunar','tamnica',{row:1});K.lik('tamnica',600,'svatovi-zarobljeni','Svatovi: Nismo imali za svadbarinu, pa nas je Arap zatvorio.',1);K.door('bunar','kripta',1);
+  K.ckpt('kripta',600);K.shrine('nalet','kripta',900);K.chimney('kripta',300,{upper:'rusevine'});K.door('kripta','katakombe',1);
+  // Katakombe: juriš preko ponora do Arapove riznice
+  K.dash('katakombe',700);K.door('katakombe','riznica',1);K.cudo('riznica',600,'Svadbarina sa Kosova',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
