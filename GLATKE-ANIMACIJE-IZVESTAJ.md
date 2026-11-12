@@ -122,7 +122,24 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 - Klizanje (S u trku) koristi `marko-klizanje` u sredini, a početak i kraj iz `marko-slide`. Lanac koristi `marko-kuka-baci` i `marko-kuka-let`, a trk po zidu `marko-zid-trk`. Lanac i trk po zidu traže kuke i zidove iz greybox nivoa, pa ih u igri nisam video; vezani su za `p.lanac` i `p.zidotrk`.
 - `marko-launcher` je alias za `marko-uppercut`, uz proceduralni sloj: skupi se pred udarac i istegne se nagore kad udari.
 
-**Nastavak, kad se kredit dopuni:** pokrenuti `art/world-pack-03/DOPUNA-45-nastavak.cmd`. Codex radi od dela 2 (udarci `-v2`, pa tvrdi klipovi `-v2`, pa protivnici); `marko-launcher` crta na kraju.
+**Nastavak, kad se kredit dopuni:** pokrenuti `art/world-pack-03/codex-nastavak.cmd`. Codex radi od dela 2 (udarci `-v2`, pa tvrdi klipovi `-v2`, pa protivnici); `marko-launcher` crta na kraju.
+
+## DOPUNA-46: šta Marku još treba za lanac, kuke i nove junačke udare
+
+Naručeno je u `art/world-pack-03/DOPUNA-46.md`; Codex ga radi prvi kad se kredit obnovi.
+- **Marko:** `marko-lanac-trgne`, `marko-lanac-vuce`, `marko-potres`, `marko-zvizduk` (Šarčev gaz), `marko-oko` (Vilinsko oko), `marko-zid-trk-vodoravno` (trk po zidu je vodoravan, a već stigli `marko-zid-trk` ide uz zid naviše) i `marko-launcher`.
+- **Šarac:** `sarac-galop`, Šarac bez jahača za gaz. Danas klizi statična slika.
+- **Ikone za traku** (fale): `ikona-trag`, `ikona-lanac`, `ikona-oko`, `ikona-potres`, `ikona-gaz`.
+- **Lanac i kuka:** `lanac-karika`, `lanac-kuka`, `kuka-alka`.
+
+Igra ih već čeka: klip se koristi čim ga rig ima, sa međukadrovima. Razmere su u `build-sprite-rig.py`, a veze u `powersPose`, u izboru udarca (Potres), u Šarčevom gazu i u tabeli luka topuza. Već sada, bez novih crteža, Marko sedne kraj izvora dok je izvor otvoren (`marko-odmor`) i ustane kad ga zatvori.
+
+**Codex kredit:**
+- nalog je Team, a Codex je stao jer su potrošeni krediti člana radnog prostora;
+- petočasovni prozor je bio na 98% i obnavlja se 12. novembra u 06:23;
+- nedeljni je na 93% i obnavlja se 16. novembra u 10:39.
+
+Posle 06:23 ostaje oko 7% nedeljne kvote, osim ako vlasnik radnog prostora dopuni kredite. Pokretanje: `art/world-pack-03/codex-nastavak.cmd`.
 
 ## Tabela pre i posle, po klipu
 

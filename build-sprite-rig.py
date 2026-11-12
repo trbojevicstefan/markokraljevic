@@ -403,12 +403,15 @@ for who, height in {'janja': 112, 'novak': 112}.items():  # Novak is broad, not 
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
 # sword-bearer's zoom, the falcon like soko-let, the skeleton like kostur-stoji, and Ala by her height (two Markos).
-for name in ['marko-krilo', 'marko-nalet', 'marko-nalet-kraj', 'marko-air-3', 'marko-kuka-let', 'marko-zid-trk']:
+for name in ['marko-krilo', 'marko-nalet', 'marko-nalet-kraj', 'marko-air-3', 'marko-kuka-let', 'marko-zid-trk', 'marko-zid-trk-vodoravno']:
     if _have(name) and 'marko-idle-2' in SCALES:
         SCALES[name] = (SCALES['marko-idle-2'][0], 'torso')
-for name in ['marko-trag-ostavi', 'marko-trag-povratak', 'marko-kuka-baci', 'marko-odmor', 'marko-odmor-ustaje', 'marko-klizanje', 'marko-launcher']:
+for name in ['marko-trag-ostavi', 'marko-trag-povratak', 'marko-kuka-baci', 'marko-odmor', 'marko-odmor-ustaje', 'marko-klizanje', 'marko-launcher',
+             'marko-lanac-vuce', 'marko-lanac-trgne', 'marko-potres', 'marko-zvizduk', 'marko-oko']:   # DOPUNA-46 too
     if _have(name) and 'marko-idle-2' in SCALES:
         SCALES[name] = (SCALES['marko-idle-2'][0], 'feet')
+if _have('sarac-galop') and 'mounted-run' in SCALES:   # DOPUNA-46: Šarac alone, the horse of mounted-run
+    SCALES['sarac-galop'] = (SCALES['mounted-run'][0], 'center')
 for name in ['soko-pogodjen', 'soko-pad']:
     if _have(name) and 'soko-let' in SCALES:
         SCALES[name] = (SCALES['soko-let'][0], 'center')
