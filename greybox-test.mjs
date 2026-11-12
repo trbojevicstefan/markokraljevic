@@ -121,6 +121,18 @@ if(!ONLY||ONLY>3){let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-p
  const given=[],wrong=[];for(const n of Object.keys(pohodi)){if(ONLY&&+n!==ONLY)continue;api.startGreybox(+n);quiet();
   for(const s of G().shrines){const before=!!G().moci[s.moc];place(s.x-60,s.y,1);walk(s.x+20,300);step(10);(s.taken&&G().moci[s.moc]===true&&!before?given:wrong).push(`${n}:${s.moc}`);}}
  ok(given.length>0&&wrong.length===0,`pohodi: every shrine gives its power (${given.length}: ${given.join(' ')})${wrong.length?' — not: '+wrong.join(' '):''}`);}
+// ---- the props of the three levels, each set by hand: on firm ground (no hole under any part of it), clear of shrines, checkpoints,
+// switches, levers and doorways; only pictures the biome has ----
+{const m=JSON.parse(await fs.readFile('dist/assets/realisticno/manifest.json','utf8'));const bad=[];let count=0;
+ for(const n of [1,2,3]){if(ONLY&&ONLY!==n)continue;const L=GB.gbLevel(n),w=GB.makeGreybox(n),S=w.gb,B=m.biomes[L.biom],ids=new Set(B.props.map(o=>o.id));
+  const keep=[...S.shrines.map(s=>[s.x,s.y,'oltar']),...S.ckpts.map(c=>[c.x,c.y,'ckpt']),...S.doors.filter(d=>d.sw).map(d=>[d.sw.x,d.sw.y,'prekidac']),...S.gates.filter(g=>g.lever).map(g=>[g.lever.x,g.lever.y,'poluga'])];
+  for(const p of S.props){count++;const o=B.props.find(o=>o.id===p.id),half=(o?.w||80)/2,tag=`${n}:${p.id}@${p.x}`;if(!ids.has(p.id)){bad.push(tag+' (not in '+L.biom+')');continue;}
+   const R=L.rooms.find(R=>p.x>=R.x0&&p.x<R.x1&&p.y>R.y0&&p.y<=R.y1);if(!R){bad.push(tag+' (in no room)');continue;}
+   if(p.x-half<R.x0+40||p.x+half>R.x1-40)bad.push(tag+' (at a doorway)');
+   if(!p.fg){const firm=x=>w.platforms.some(q=>!q.off&&q.solid!==false&&x>=q.x&&x<=q.x+q.w&&Math.abs((q.surf?physics.topAt(q,x):q.y)-p.y)<100);if(!firm(p.x-half+6)||!firm(p.x)||!firm(p.x+half-6))bad.push(tag+' (over a hole)');}
+   else if(!w.platforms.some(q=>!q.off&&p.x>=q.x&&p.x<=q.x+q.w&&Math.abs(q.y-p.y)<100))bad.push(tag+' (foreground over a hole)');
+   for(const [x,y,k] of keep)if(!p.fg&&Math.abs(x-p.x)<half+50&&Math.abs(y-p.y)<60)bad.push(tag+` (on the ${k})`);}}
+ ok(bad.length===0,`props: ${count} set by hand in the three levels, each on firm ground and clear of shrines, checkpoints, switches and doorways${bad.length?' — '+bad.join(', '):''}`);}
 // ---- the dressing: every picture each level (1–19) asks for is on disk; each pohod with a vista wears its own ----
 {const {artFiles}=await import('./dist/greybox-svet.js');const m=JSON.parse(await fs.readFile('dist/assets/realisticno/manifest.json','utf8'));
  let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-pohodi.js')).GB_POHODI||{};}catch{}GB.gbRegister(pohodi);
