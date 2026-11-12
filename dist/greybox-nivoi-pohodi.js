@@ -637,7 +637,66 @@ export const GB_POHODI={
   K.greda('vucji',900,{span:220});K.strelnica('vucji',2380,{every:2.6});K.drop('vucji',1500,1700,'jama');K.chimney('jama',700,{upper:'vucji'});K.heart('jama',300,2);K.door('vucji','izvor',1);
   // Ledeni izvor: Vilin trag i čekpoint; zaleđeni potok i riznica iza vrata na prekidač
   K.ckpt('izvor',300);K.shrine('trag','izvor',700);K.lik('izvor',1000,'vila-spreda','Ravijojla: Ostavi trag kraj vrata, stani na prekidač, pa se tragom vrati.',1);K.door('izvor','potok',1);
-  K.borba('potok',[['sword',400],['shield',700]]);K.trace('potok','riznica');K.cudo('riznica',600,'Carina sa prevoja',1);}})
+  K.borba('potok',[['sword',400],['shield',700]]);K.trace('potok','riznica');K.cudo('riznica',600,'Carina sa prevoja',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 13 · Klisura Ibra („Marko Kraljević i Đemo Brđanin“): Marko je na slavu otišao bez oružja; Đemo ga je stigao topuzom,
+// okovao i vodi ga klisurom od vešala do vešala: pod Ohridom, pod Vučitrnom, pod Zvečanom. Krčmarica Janja ga raskiva u
+// svom podrumu (tamo čeka Sokolovo krilo); sa krilom se ide uz stenu i uz Zvečan, do vešala gde čeka Đemo.
+13:pohod({id:'klisura',ime:'Klisura Ibra',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',pocetne:[],
+ cilj:'Pređi srušene mostove, nađi krilo u Janjinom podrumu i popni se uz Zvečan do Đema',start:'ulaz',spawnDx:240,
+ uvod:'Klisura Ibra. Đemo vodi okovanog Marka od vešala do vešala. Mostovi su srušeni; krčmarica Janja čuva Sokolovo krilo u svom podrumu.',
+ sobe:[
+  ['ulaz','Ulaz u klisuru',-1,0,1,1],
+  ['obala','Obala Ibra',0,0,2,1,{set:'reka'}],
+  ['stena','Stenoviti put',0,-1,2,1],
+  ['isposnica','Isposnica u steni',2,-1,1,1,{secret:true,interior:true,lore:'Isposnica u steni. Kaluđer koji je tražio ribu iz Ohrida ovde se kajao što je Marka poslao bez oružja.'}],
+  ['most1','Prvi srušeni most',2,0,2,1,{set:'reka'}],
+  ['krcma','Janjina krčma',4,0,1,1,{interior:true}],
+  ['put','Put uz stenu',5,0,2,1],
+  ['strazara','Kula stražara',5,-1,1,1,{interior:true}],
+  ['vucitrn','Vešala pod Vučitrnom',6,-1,1,1],
+  ['ohrid','Vešala pod Ohridom',7,-1,1,1],
+  ['litica','Litica pod Zvečanom',8,-1,1,1],
+  ['most2','Drugi srušeni most',7,0,2,1,{set:'reka'}],
+  ['zvecan','Zvečan',9,-2,1,3,{interior:true}],
+  ['vesala','Vešala pod Zvečanom',10,-2,1,1],
+  ['jazbina','Vidrina jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Vidrina jazbina. Ovde je Šarac čekao Marka dok su ga vodili u okovima; nije hteo da ode.'}],
+  ['vir','Vir',0,1,2,1,{interior:true}],
+  ['podmost','Ispod mosta',2,1,2,1,{interior:true}],
+  ['podrum','Janjin podrum',4,1,1,1,{interior:true}],
+  ['potkop','Stari potkop',5,1,2,1,{interior:true}],
+  ['tamnica','Zvečanska tamnica',7,1,1,1,{interior:true}],
+  ['riznica','Tri tovara blaga',8,1,1,1,{secret:true,interior:true,lore:'Tri tovara blaga. Gospoda iz tri grada platila su Đemu da Marka ne obesi kod njih; Marko je blago vratio gradovima.'}]],
+ brda:{ulaz:[[500,900,40]],put:[[600,1100,50]]},
+ gradi(K){
+  // Ulaz: guslar peva o slavi; majka savetuje bez oružja
+  K.guslar('ulaz',850,['Slavu slavi Kraljeviću Marko,','slavu slavi svetoga Đorđija.','U Marka su mloge uzvanice.']);
+  K.lik('ulaz',450,'putnica-idle','Jevrosima: Na slavu ne nosi oružje, sine. A kad krene put Ohrida, ponesi bar pamet.');K.door('ulaz','obala',0);
+  // Obala Ibra: prva borba; krilo na stenoviti put; rupa u vir
+  K.block('obala',2050,120,160,120);K.borba('obala',[['sword',900],['archer',2100,120]]);K.wing('obala',500,{upper:'stena'});K.drop('obala',1700,1900,'vir');K.door('obala','most1',0);
+  // Stenoviti put: druga borba; lažni zid do isposnice
+  K.block('stena',1000,120,140,120,-1);K.borba('stena',[['archer',1050,120],['sword',1500]],-1);K.heart('stena',300,-1);K.fake('stena','isposnica',{row:-1});K.cudo('isposnica',600,'Riba iz Ohrida',-1);
+  // Prvi srušeni most: daske koje popuštaju nad vodom; rupa ispod mosta
+  K.crumble('most1',600,170,0);K.crumble('most1',770,170,0);K.pit('most1',600,940);K.drop('most1',1300,1450,'podmost');K.door('most1','krcma',0);
+  // Janjina krčma
+  K.lik('krcma',600,'janja-idle','Janja: Đemo pije kod mene. Uspavaću ga biljem, a ti siđi u podrum, Marko.');K.heart('krcma',950,0);K.door('krcma','put',0);
+  // Put uz stenu: čekpoint, treća borba, strelnica; krilo do kule stražara, gornji put preko troja vešala
+  K.ckpt('put',200);K.borba('put',[['sword',800],['shield',1600],['akindzija',2000]]);K.strelnica('put',2380,{every:2.6});K.wing('put',300,{upper:'strazara'});K.door('put','most2',0);
+  K.door('strazara','vucitrn',-1);K.lik('vucitrn',600,'putnik-trgovac-idle','Gospodar Vučitrna: Platili smo Đemu tovar blaga da Marka ne obesi pod našim gradom.',-1);K.door('vucitrn','ohrid',-1);
+  K.lik('ohrid',600,'putnik-kaluder-idle','Kaluđer: Tražio sam ribu iz Ohrida, a Đemo je doveo Marka u okovima.',-1);K.door('ohrid','litica',-1);
+  K.strelnica('litica',1180,{row:-1,every:2.8});K.heart('litica',300,-1);K.door('litica','zvecan',-1);
+  // Drugi srušeni most: greda, četvrta borba; rupa u tamnicu
+  K.greda('most2',1300,{span:220});K.borba('most2',[['sword',1900],['oklopnik',2150]]);K.drop('most2',300,500,'tamnica');K.door('most2','zvecan',0);
+  // Zvečan: dimnjak i krilo do vešala; Đemo Brđanin
+  K.chimney('zvecan',700);K.wing('zvecan',300,{row:-1});K.door('zvecan','vesala',-2);K.bos('vesala','djemo');
+  // Vir: dimnjak gore, napukli zid do jazbine; ispod mosta: dimnjak i strelnica
+  K.chimney('vir',1000,{upper:'obala'});K.crack('vir','jazbina',{row:1});K.heart('jazbina',500,1);K.door('vir','podmost',1);
+  K.chimney('podmost',1700,{upper:'most1'});K.strelnica('podmost',2380,{every:2.6});K.door('podmost','podrum',1);
+  // Janjin podrum: krilo i čekpoint
+  K.ckpt('podrum',300);K.shrine('krilo','podrum',700);K.door('podrum','potkop',1);
+  // Stari potkop: peta borba, daske; dimnjak na put; tamnica i blago
+  K.borba('potkop',[['pas',500],['sword',800]]);K.crumble('potkop',1500,160,1);K.crumble('potkop',1660,160,1);K.pit('potkop',1500,1820);K.chimney('potkop',1200,{upper:'put'});K.door('potkop','tamnica',1);
+  K.chimney('tamnica',900,{upper:'most2'});K.lik('tamnica',500,'putnik-starac-idle','Sužanj: Ovde je Đemo okovao Marka, bukagije na noge, belenzuke na ruke.',1);K.crack('tamnica','riznica',{row:1});K.cudo('riznica',600,'Tri tovara blaga',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
