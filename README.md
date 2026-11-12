@@ -337,6 +337,11 @@ Opet su uzete samo ideje. Svaka moć ima zastavicu (`MOCI2` u `dist/game.js`). V
   - **Šarčev gaz** (100 besa): Šarac proleti kroz ekran i pregazi ceo red dušmana.
 - Crteži za klizanje, zid, podizač i kuku naručeni su kod sesije „glatke-animacije“. Do tada rade postojeći klipovi i proceduralni sloj.
 - Testovi su u `mechanics-test.mjs` i rade sa stvarnim tasterima, uz džojstik kroz pravi `pollPads`.
+- **Megdani** (`megdani-test.mjs`): bot se bori sa svakim megdandžijom iz pohoda, sa Musom i sa tri greybox bosa. U svakoj borbi koristi sve nove poteze redom. Nijedan potez ne sme da baci grešku, da izbaci Marka iz ringa, da pogodi megdandžiju između činova, bajraktara dok mu barjak stoji ili Musu kroz zatvoren gard, ni da ošamuti megdandžiju. Posle borbe svaki megdandžija mora i dalje da padne. Pravila za nove udarce:
+  - Potres, Šarčev gaz, talas zakucavanja i lanac idu kroz ista pravila kao težak udarac topuzom (štit, oklop, gard, činovi, kit megdandžije), a Musu pogađaju samo kad mu je gard otvoren.
+  - Bez topuza nema Potresa ni podizača; u zaključanim igrama (gađanje strelom) nove moći miruju.
+  - Klizanje štiti samo prvu trećinu i traži predah od 0,4 s, pa nizanje ne daje večnu nepobedivost.
+  - E kod barjaka uz dušmane i dalje zove vilu; vilinsko oko, mapa i oznaka rade i dok Marko visi na ivici.
 
 **Lost Crown verzije svih pohoda** (`index.html?greybox=4` do `?greybox=19`, i u istom meniju) su šesnaest nivoa, redom priče. Podaci su u `dist/greybox-nivoi-pohodi.js`, u istom obliku kao `greybox-nivoi.js`, a motor je isti.
 
