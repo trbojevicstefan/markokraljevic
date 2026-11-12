@@ -1,0 +1,230 @@
+{
+  "characterId": "beg-unhorsed-v2",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": false,
+  "frame_variant": "pixel",
+  "sprite_sheet_alpha": "atlas.png",
+  "sprite_sheet_alpha_report": "sprite-sheet-alpha.report.json",
+  "base_image": "reference.png",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "cyan",
+    "hex": "#00FFFF",
+    "rgb": [
+      0,
+      255,
+      255
+    ],
+    "selection": "auto",
+    "score": 245.48,
+    "min_subject_distance": 225.22,
+    "background": {
+      "mode": "transparent",
+      "opaque_border_fraction": 0.0,
+      "subject_pixels": 19736
+    },
+    "candidates": [
+      {
+        "name": "magenta",
+        "hex": "#FF00FF",
+        "score": 206.89,
+        "min_subject_distance": 194.38,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "green",
+        "hex": "#00FF00",
+        "score": 214.62,
+        "min_subject_distance": 208.09,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "cyan",
+        "hex": "#00FFFF",
+        "score": 245.48,
+        "min_subject_distance": 225.22,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "blue",
+        "hex": "#004DFF",
+        "score": 213.94,
+        "min_subject_distance": 200.97,
+        "clears_erase_radius": true
+      }
+    ],
+    "selection_reason": "highest 1st-percentile subject distance among the 4 candidate(s) clearing the 96 erase radius"
+  },
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 11,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 11,
+        "fps": 24,
+        "durations_ms": [
+          42,
+          42,
+          42,
+          42,
+          42,
+          42,
+          42,
+          42,
+          42,
+          42,
+          42
+        ],
+        "loop": false,
+        "frame_variant": "pixel",
+        "holdLastFrame": true
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 5632,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3584,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 4096,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 4608,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 5120,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "holdLastFrame": true,
+  "sourceClip": "beg-unhorsed",
+  "sourceRig": {
+    "image": "beg-unhorsed.png",
+    "scale": 0.46,
+    "anchor": 255.8,
+    "frames": [
+      [
+        0,
+        0,
+        512,
+        512,
+        487,
+        141
+      ],
+      [
+        512,
+        0,
+        512,
+        512,
+        487,
+        136
+      ],
+      [
+        1024,
+        0,
+        512,
+        512,
+        487,
+        166
+      ],
+      [
+        1536,
+        0,
+        512,
+        512,
+        487,
+        225
+      ],
+      [
+        2048,
+        0,
+        512,
+        512,
+        487,
+        280
+      ],
+      [
+        2560,
+        0,
+        512,
+        512,
+        487,
+        411
+      ]
+    ]
+  },
+  "evenFramesPixelExact": true
+}

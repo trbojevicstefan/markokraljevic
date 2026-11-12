@@ -900,3 +900,5 @@ DOPUNA-45 deo 3: akindzija-jump-v2 — GOTOVO; 11 kadrova, ista velicina celija 
 DOPUNA-45 deo 3: akindzija-launch-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/akindzija-launch-v2/prompt.txt.
 
 DOPUNA-45 deo 3: akindzija-charge-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/akindzija-charge-v2/prompt.txt.
+
+DOPUNA-45 deo 3: beg-unhorsed-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/beg-unhorsed-v2/prompt.txt.
