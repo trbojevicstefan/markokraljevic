@@ -12,7 +12,6 @@ import{lik}from'./zamke.js';
 
 const CW=1200,CH=720;
 export const FY=row=>(row+1)*CH-130;   // pod reda: red 0 → 590, red -1 → -130, red 1 → 1310
-const F0=FY(0);
 
 // bosovi iz BOSSES (world.js) sa svojim nameštajem arene; snaga je oko pola, kao kod greybox bosova
 const BOS={
