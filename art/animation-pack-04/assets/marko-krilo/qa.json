@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        107,
+        208,
+        405,
+        488
+      ],
+      "footY": 487,
+      "sha256": "391447146c61f46a971ebe9374d15393412cf9a819ffc0b3d547ff791e24797d"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        118,
+        196,
+        393,
+        488
+      ],
+      "footY": 487,
+      "sha256": "152573054db478e8b531a4bb7bd273bd6b4e9165340fcfe3ee714731dea7ca54"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        162,
+        430,
+        488
+      ],
+      "footY": 487,
+      "sha256": "f49660994629c0db248f36f28e4db134d4f5d7bb501cac837d0778d393c898e0"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        68,
+        143,
+        444,
+        488
+      ],
+      "footY": 487,
+      "sha256": "255f12933a85fb4e5680cecfd6f33dd7fe5d4a0fef7ba1ee4e9cf6c4fb855ad7"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        74,
+        124,
+        437,
+        488
+      ],
+      "footY": 487,
+      "sha256": "80e33f2675ad447daae9b24b8c61579b4bb837c982af18467fe617f042782eca"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        70,
+        105,
+        441,
+        488
+      ],
+      "footY": 487,
+      "sha256": "9ced163cada8207335c531cbfe6a24d5dcaf5eee2f6a795e538026c3c237881f"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": false,
+  "holdLastFrame": true,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8492239467849224,
+  "visualReview": "Reviewed atlas: six distinct poses, consistent face/costume, no effects, complete silhouettes."
+}

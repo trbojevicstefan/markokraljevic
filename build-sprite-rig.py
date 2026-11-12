@@ -401,6 +401,29 @@ for who, height in {'janja': 112, 'novak': 112}.items():  # Novak is broad, not 
             if _have(f'{who}-{k}'):
                 SCALES[f'{who}-{k}'] = (s_, 'feet')
 
+# DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
+# sword-bearer's zoom, the falcon like soko-let, the skeleton like kostur-stoji, and Ala by her height (two Markos).
+for name in ['marko-krilo', 'marko-nalet', 'marko-nalet-kraj', 'marko-air-3', 'marko-kuka-let', 'marko-zid-trk']:
+    if _have(name) and 'marko-idle-2' in SCALES:
+        SCALES[name] = (SCALES['marko-idle-2'][0], 'torso')
+for name in ['marko-trag-ostavi', 'marko-trag-povratak', 'marko-kuka-baci', 'marko-odmor', 'marko-odmor-ustaje', 'marko-klizanje', 'marko-launcher']:
+    if _have(name) and 'marko-idle-2' in SCALES:
+        SCALES[name] = (SCALES['marko-idle-2'][0], 'feet')
+for name in ['soko-pogodjen', 'soko-pad']:
+    if _have(name) and 'soko-let' in SCALES:
+        SCALES[name] = (SCALES['soko-let'][0], 'center')
+for name in ['kostur-napad', 'kostur-hurt']:
+    if _have(name) and 'kostur-stoji' in SCALES:
+        SCALES[name] = (SCALES['kostur-stoji'][0], 'feet')
+for name in ['vrac-idle', 'vrac-carolija', 'vrac-nestaje', 'vrac-pojavljuje', 'vrac-hurt', 'vrac-death', 'sarka-puzi', 'sarka-napad', 'sarka-death']:
+    if _have(name) and 'sword-idle' in SCALES:
+        SCALES[name] = (SCALES['sword-idle'][0], 'feet')
+if _have('ala-let'):
+    s_ = 250 / max(body_height(c) for c in _cells('ala-let'))
+    for k in ['let', 'obrusavanje', 'oluja', 'hurt', 'pad']:
+        if _have('ala-' + k):
+            SCALES['ala-' + k] = (s_, 'center')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

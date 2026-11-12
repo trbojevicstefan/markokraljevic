@@ -807,11 +807,14 @@ function tweenSheet(src){let s=tweenSheets[src];tweenUse[src]=time;
  return s||null;}
 function tweenPair(name,a,b){return smooth?.[name]?.mids[a<b?a+'-'+b:b+'-'+a];}
 function tweenMid(name,fi,o,tw=o.tw){const S=smooth?.[name];if(!S||!ANIM||settings.smooth===false)return null;const n=rig[name].frames.length;
- if(o.keyAt!=null){const c=Math.floor(o.keyAt*n);if(fi===c||fi===c-1)return null;}
  const b=o.nx??(fi+1<n?fi+1:S.loop?0:-1);if(b<0||b===fi)return null;const m=tweenPair(name,fi,b);if(!m)return null;
+ // a computed in-between never blurs a blow's windup or contact; a drawn pose between them (DOPUNA-45) is part of the blow
+ if(o.keyAt!=null&&!S.drawn?.includes(fi<b?fi+'-'+b:b+'-'+fi)){const c=Math.floor(o.keyAt*n);if(fi===c||fi===c-1)return null;}
  let q=tw<.25?-1:tw<.5?0:tw<.75?1:2;
  if(tweenTier>=2)q=q>=1?1:-1;   // the fast tier keeps only the half-way in-betweens: a third of the pictures to load and hold
- if(q<0)return null;const t=(q+1)/4;if(fi>b)q=2-q;   // the pair read backwards
+ if(q<0)return null;let t=(q+1)/4;if(fi>b)q=2-q;   // the pair read backwards
+ // a drawn pose may lack a quarter: nearer the drawn pose it stands in, nearer the frame the frame stays
+ if(!m[q]){if(m[1]&&(fi<b?q===2:q===0)){q=1;t=.5;}else return null;}
  const im=tweenSheet(q===1?S.image:S.imageQ);return im?{im,f:m[q],k:S.k,t}:null;}
 // how far toward the next frame the picture drawn for this pose really is (0: the drawn frame): for offsets set per frame
 function tweenShown(name,fi,tw,nx){return tw>0&&ANIM?tweenMid(name,fi,{nx},tw)?.t||0:0;}
@@ -974,7 +977,7 @@ function basePose(){
  if(p.climb)return climbPose();if(p.throwT>0)return throwPose();
  {const x=pack3Pose();if(x)return x;}
  if(p.spin>0){if(rig?.['marko-vihor'])return{name:'marko-vihor',...loopAt(p.spin*20,8)};const k=Math.floor(p.spin/.09);return{name:'marko-attack',frame:[2,3,4,3][k%4],faceFlip:Math.floor(p.spin/.18)%2===1,sy:1-.03*Math.abs(Math.sin(p.spin*18))};}
- if(p.attack>0){const duration=attackDuration(),ph0=1-p.attack/duration,phase=p.attackKind==='light'?Math.pow(ph0,.62):ph0;return attackFrame(phase,{name:p.attackKind==='tresak'?(rig?.['marko-air-2']?'marko-air-2':'marko-charged'):p.attackKind==='lomilac'?(rig?.['marko-combo-4']?'marko-combo-4':'marko-charged'):p.attackKind==='uvis'?(rig?.['marko-uppercut']?'marko-uppercut':'marko-combo-3'):p.attackKind==='juris'?(rig?.['marko-dash-strike']?'marko-dash-strike':'marko-combo-2'):p.attackKind==='light'&&p.airAtk&&rig?.['marko-air-1']?(p.combo===2&&rig?.['marko-air-2']?'marko-air-2':'marko-air-1'):p.attackKind==='super'?'marko-super':p.attackKind==='counter'&&rig?.['marko-counter']?'marko-counter':p.attackKind==='heavy'&&rig?.['marko-charged']?'marko-charged':p.attackKind==='light'&&p.runAtk&&rig?.['marko-run-attack']?'marko-run-attack':p.attackKind==='light'&&rig?.['marko-combo-1']?'marko-combo-'+((p.combo||0)+1):'marko-attack'});}
+ if(p.attack>0){const duration=attackDuration(),ph0=1-p.attack/duration,phase=p.attackKind==='light'?Math.pow(ph0,.62):ph0;return attackFrame(phase,{name:p.attackKind==='tresak'?(rig?.['marko-air-2']?'marko-air-2':'marko-charged'):p.attackKind==='lomilac'?(rig?.['marko-combo-4']?'marko-combo-4':'marko-charged'):p.attackKind==='uvis'?(rig?.['marko-uppercut']?'marko-uppercut':'marko-combo-3'):p.attackKind==='juris'?(rig?.['marko-dash-strike']?'marko-dash-strike':'marko-combo-2'):p.attackKind==='light'&&p.airAtk&&rig?.['marko-air-1']?(p.combo===2&&rig?.['marko-air-3']?'marko-air-3':(rig?.['marko-air-3']?p.combo>=1:p.combo===2)&&rig?.['marko-air-2']?'marko-air-2':'marko-air-1'):p.attackKind==='super'?'marko-super':p.attackKind==='counter'&&rig?.['marko-counter']?'marko-counter':p.attackKind==='heavy'&&rig?.['marko-charged']?'marko-charged':p.attackKind==='light'&&p.runAtk&&rig?.['marko-run-attack']?'marko-run-attack':p.attackKind==='light'&&rig?.['marko-combo-1']?'marko-combo-'+((p.combo||0)+1):'marko-attack'});}
  if(!p.grounded&&p.runJump&&p.airT<1.1&&!(p.hurt>.02)&&rig?.['marko-run-jump']){const n=rig['marko-run-jump'].frames.length;return{name:'marko-run-jump',...onceAt(Math.min(n-1,p.airT/.7*n))};}
  if(!p.grounded){if(p.vy< -150&&p.airT<.32&&rig?.['marko-jump-rise'])return{name:'marko-jump-rise',...onceAt(Math.min(3,p.airT/.32*4))};if(p.vy>160&&rig?.['marko-fall'])return{name:'marko-fall',...loopAt(p.airT*9,4)};return{name:'marko-jump',frame:p.vy< -520?2:p.vy<220?3:4};}
  if(p.vida>0&&rig?.['marko-pickup'])return{name:'marko-pickup',frame:p.vidaK<.2?Math.floor(p.vidaK*12):2+Math.floor(time*4)%2};
@@ -1006,7 +1009,7 @@ function toggleSablja(){if(!rig?.['marko-sablja-idle'])return;if(!perks.has('oce
 function sabljaTick(dt){if(!(p.sabljaT>0))return;p.sabljaT=Math.max(0,p.sabljaT-dt);if(p.sabljaT===0&&!p.sabljaOut)p.sablja=false;}
 const SABLJA_MAP={'marko-idle':'idle','marko-idle-2':'idle','marko-idle-3':'idle','marko-idle-4':'idle','marko-turn':'idle','marko-land':'idle','marko-run-stop':'idle',
  'marko-run':'trci','marko-walk':'trci','marko-run-start':'trci','marko-combo-1':'udarac-1','marko-combo-2':'udarac-2','marko-combo-3':'udarac-3','marko-run-attack':'udarac-1','marko-attack':'udarac-1',
- 'marko-air-1':'skok','marko-air-2':'skok','marko-jump':'skok','marko-jump-rise':'skok','marko-fall':'skok','marko-run-jump':'skok',
+ 'marko-air-1':'skok','marko-air-2':'skok','marko-air-3':'skok','marko-krilo':'skok','marko-nalet':'skok','marko-nalet-kraj':'skok','marko-jump':'skok','marko-jump-rise':'skok','marko-fall':'skok','marko-run-jump':'skok',
  'marko-charged':'tezak','marko-combo-4':'tezak','marko-charge-hold':'tezak','marko-charge-walk':'tezak','marko-uppercut':'uvis','marko-dash-strike':'ubod','marko-vihor':'vihor'};
 function sabljaPose(P){if(!p?.sablja||!P)return P;
  // drawing it from the scabbard, or wiping it on the cloak and putting it back
@@ -1025,7 +1028,7 @@ function sabljaPose(P){if(!p?.sablja||!P)return P;
 // a faint band on the picture, without the glow.
 const SWING={'marko-attack':[-1.75,.85,84],'marko-combo-1':[-2.3,.1,84],'marko-combo-2':[-1.9,1,88],'marko-combo-3':[-1.7,1.15,100],'marko-combo-4':[-1.8,1.1,100],
  'marko-charged':[-1.8,1.1,100],'marko-super':[-1.7,1.2,104],'marko-run-attack':[-2,.7,90],'marko-air-1':[-2.4,.1,86],'marko-air-2':[1,-.9,88],
- 'marko-uppercut':[2.1,-1.1,92],'marko-dash-strike':[.45,-.05,104],'marko-counter':[-1.8,.1,86]};
+ 'marko-uppercut':[2.1,-1.1,92],'marko-air-3':[-1.9,1.2,96],'marko-dash-strike':[.45,-.05,104],'marko-counter':[-1.8,.1,86]};
 function maceSmear(P){if(p.attack<=0)return;const d=attackDuration(),src=P?.swing&&SWING[P.swing]?P.swing:'marko-attack',[a0,a1,R0]=SWING[src],n=rig?.[src]?.frames.length||6,
  x=(P?.ph??1-p.attack/d)*n,c=Math.floor((P?.keyAt??.42)*n),t=clamp((x-(c-.4))/.65,0,1),fade=1-clamp((x-(c+.25))/1.2,0,1);if(t<=0||fade<=0)return;
  const heavy=p.attackKind==='heavy'||p.attackKind==='lomilac'||p.attackKind==='super',R=R0*(heavy?1.06:1),inner=R*(heavy?.8:.84),ease=1-Math.pow(1-t,3),dir=Math.sign(a1-a0),
@@ -1304,7 +1307,18 @@ function flyCorpse(c,dt){if(!c.landed){if(!c.grounded){c.spinAngle+=c.spinV*dt;c
 
 // ================= pack 03: movement and combat =================
 const ROLL_TIME=.34,DOWN_TIME=1.25,LEDGE_TIME=.72;
-function pack3Pose(){
+// DOPUNA-45: the falcon's wing, the dash in the air and its end, the fairy's trace left and the return by it, in their own
+// drawings once the rig has them (until then the poses they borrowed). The dash's end is seen by the drawing, not the game.
+function powersPose(){const M=animMem.get(p),R=n=>rig?.[n]?.frames.length||0;
+ if(M){if(p.dash>0&&p.airDash)M.naletOn=true;else if(M.naletOn){M.naletOn=false;M.naletEnd=time;}}
+ if(p.attack>0||p.climb||horseMounted)return null;
+ if(p.dash>0&&p.airDash&&R('marko-nalet'))return{name:'marko-nalet',...loopAt(time*14,R('marko-nalet'))};
+ if(!p.grounded&&p.kriloT>0&&R('marko-krilo'))return{name:'marko-krilo',...onceAt(Math.min(R('marko-krilo')-1,(1-p.kriloT/KRILO_TIME)*R('marko-krilo')))};
+ const ne=time-(M?.naletEnd??-9);if(!p.grounded&&ne>=0&&ne<.2&&R('marko-nalet-kraj'))return{name:'marko-nalet-kraj',...onceAt(Math.min(R('marko-nalet-kraj')-1,ne/.2*R('marko-nalet-kraj')))};
+ const back=TRAG_CD-(p.cd?.trag||0);if(!p.trag&&back>=0&&back<.45&&R('marko-trag-povratak'))return{name:'marko-trag-povratak',...onceAt(Math.min(R('marko-trag-povratak')-1,back/.45*R('marko-trag-povratak')))};
+ const left=p.trag?TRAG_LIFE-p.trag.left:9;if(left<.5&&p.grounded&&Math.abs(p.vx)<35&&R('marko-trag-ostavi'))return{name:'marko-trag-ostavi',...onceAt(Math.min(R('marko-trag-ostavi')-1,left/.5*R('marko-trag-ostavi')))};
+ return null;}
+function pack3Pose(){{const w=powersPose();if(w)return w;}
  if(p.turnT>0&&p.grounded&&p.attack<=0&&!p.crouching&&!p.blocking&&rig?.['marko-turn']){const n=rig['marko-turn'].frames.length;return{name:'marko-turn',...onceAt(Math.min(n-1,(1-p.turnT/TURN_TIME)*n)),faceAs:-p.face};}
  if(p.runStartT>0&&p.grounded&&p.attack<=0&&Math.abs(p.vx)>35&&!p.crouching&&!p.blocking&&rig?.['marko-run-start']){const n=rig['marko-run-start'].frames.length;return{name:'marko-run-start',...onceAt(Math.min(n-1,(1-p.runStartT/RUNSTART_TIME)*n))};}
  if(p.dizzy>0){if(rig?.['marko-dizzy'])return{name:'marko-dizzy',...loopAt(time*8,rig['marko-dizzy'].frames.length)};const w=Math.sin(time*6.5);return{name:rig?.['marko-idle']?'marko-idle':'cast/marko',frame:0,rot:w*.1,dx:Math.sin(time*3.2)*6,sy:.97};}
