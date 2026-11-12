@@ -869,3 +869,5 @@ DOPUNA-45 deo 2: marko-combo-3-v2 — GOTOVO; 11 kadrova, parni tacno iz dist/as
 DOPUNA-45 deo 2: marko-combo-4-v2 — GOTOVO; 15 kadrova; parni identicni izvornim, 7 nacrtanih medjupoza; alfa i atlas=frames provereni.
 
 DOPUNA-45 deo 2: marko-super-v2 — GOTOVO; 11 kadrova; parni piksel-identicni, nove medjupoze, alfa i atlas=frames provereni.
+
+DOPUNA-45 deo 2: marko-run-attack-v2 — GOTOVO; 11 kadrova 512x512, providna pozadina, oslonac prema originalu (oko y487); parni piksel-identicni, 5 novih medjupoza; jedan image_gen poziv, prompt u sources/marko-run-attack-v2/prompt.txt.
