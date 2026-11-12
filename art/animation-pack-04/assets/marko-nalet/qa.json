@@ -1,0 +1,61 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        20,
+        185,
+        492,
+        488
+      ],
+      "footY": 487,
+      "sha256": "decb342cc290a1df8d7165c12b004d0a5f107665b9dc4fc16ed0c98fe4a15b7a"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        19,
+        157,
+        493,
+        488
+      ],
+      "footY": 487,
+      "sha256": "0a340fee7ccc214463adb89d274333bf45adbc71c1b0f3257983f504f2b252ca"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        22,
+        199,
+        489,
+        488
+      ],
+      "footY": 487,
+      "sha256": "3f8a3e24391a3ef9f66d6e51ceaaef7591d3b13c6ef80eee5088373457cf1259"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        16,
+        174,
+        496,
+        488
+      ],
+      "footY": 487,
+      "sha256": "e16d0f5ef6f6967a40c82e4934319139ef7af20f2a5bd5daf47f8f098ce7ce90"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 4,
+  "loop": true,
+  "holdLastFrame": false,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8938547486033519,
+  "visualReview": "Pregledan atlas: vodoravni juris, topuz iza tela, razlicite faze ogrtaca i nogu. Izvor i prompt u sources/marko-nalet/."
+}

@@ -48,9 +48,13 @@ def far():
     d.wall(w * 0.50, w * 0.72, h * 0.33, h * 0.44, stone, crenel=8, gap=7, merlon_h=7)
     for tx, top, tw in ((0.51, 0.24, 34), (0.57, 0.27, 26), (0.615, 0.17, 44), (0.67, 0.25, 30), (0.715, 0.28, 30)):
         d.tower(w * tx, tw, h * top, h * 0.42, stone, crenel=True, slit=True, windows=1)
-    d.rect(0, h * 0.82, w, h, (178, 150, 112))       # the plain, hazy
-    d.ridge(h * 0.84, h * 0.012, (168, 142, 106), seed=24, kmax=60)
-    m = d.layer_mask()
+    # the plain: strips of fields with hedgerows and lone trees, so nothing reads as a road
+    for k, (y0, col) in enumerate(((0.80, (176, 152, 104)), (0.86, (150, 140, 84)), (0.92, (190, 160, 100)))):
+        d.rect(0, h * y0, w, h, col)
+    for i in range(150):
+        x = r.uniform(0, w)
+        y = h * r.choice([0.80, 0.86, 0.92]) + 2
+        d.ellipse(x, y - 6, r.uniform(10, 26), r.uniform(6, 12), jitter((96, 96, 60), r, 10))
     return d.finish(noise=5, blotch=10, seed=25)
 
 
@@ -442,18 +446,18 @@ BIOME = {
          'prompt': sky_prompt('a wide golden hour sky over the Pelagonia plain: deep blue-violet at the top, '
                               'warm peach and gold towards the horizon, a low hazy sun glow on the left, '
                               'long soft cumulus and stratus clouds lit orange and pink from below', LIGHT)},
-        {'id': 'far', 'draw': far, 'kind': 'far', 'strength': 0.76, 'v': 2,
+        {'id': 'far', 'draw': far, 'kind': 'far', 'strength': 0.74, 'v': 3,
          'prompt': layer_prompt('distant hazy Balkan mountain ridges in blue-violet atmospheric haze, and on a '
                                 'rocky granite hill in the middle the far-away ruined medieval fortress of Prilep '
                                 '(Markove kule): stone walls and square towers following the crest, rounded granite '
                                 'boulders on the slopes, a flat golden plain at the bottom', LIGHT)},
-        {'id': 'mid', 'draw': mid, 'kind': 'mid', 'strength': 0.76, 'v': 2,
+        {'id': 'mid', 'draw': mid, 'kind': 'mid', 'strength': 0.74, 'v': 3,
          'prompt': layer_prompt('the medieval Serbian town of Prilep under its fortress: a long stone rampart with '
                                 'crenellations and square towers, some with red tile pyramid roofs, an arched gate, '
                                 'in front of the wall the houses of the podgrađe with whitewashed and stone walls and '
                                 'red clay tile roofs, dark cypresses and walnut trees, rounded granite boulders, '
                                 'a strip of dry golden grass at the bottom', LIGHT)},
-        {'id': 'near', 'draw': near, 'kind': 'near', 'strength': 0.76, 'v': 2,
+        {'id': 'near', 'draw': near, 'kind': 'near', 'strength': 0.74, 'v': 3,
          'prompt': layer_prompt('close foreground of a medieval Balkan town street seen from the side: on the left a '
                                 'two-storey house with a stone ground floor, whitewashed timber-framed upper floor, '
                                 'a carved wooden balcony and a red tile roof; a low dry-stone garden wall with a '
@@ -476,7 +480,7 @@ BIOME = {
                                    'racks with their round ends facing the viewer, a prison cell with a stone frame and '
                                    'rusty iron bars with darkness behind them, iron chains hanging on the wall, worn '
                                    'stone stairs rising to the right, stone floor', INSIDE)},
-        {'id': 'in-near', 'draw': in_near, 'kind': 'near', 'strength': 0.68,
+        {'id': 'in-near', 'draw': in_near, 'kind': 'near', 'strength': 0.68, 'band': 110,
          'prompt': interior_prompt('dark foreground of a medieval dungeon: two massive rough stone pillars, a heavy '
                                    'wooden beam along the top, rusty iron chains hanging down, a burning torch in an '
                                    'iron bracket on a pillar, rubble on the floor', INSIDE)},

@@ -10,7 +10,10 @@ const TAU=Math.PI*2;
 // Visoka strela (u grudi) se izbegava čučnjem (S) ili kolutom (Shift); niska (u gležanj) skokom ili kolutom.
 // Odbijanje (L) je vraća u zid. Pre hica prorez zasija i škljocne, da se vidi koja ide. Puca samo dok je Marko
 // ispred zida, na visini hodnika; na vrhu zida ga ne dira.
-export function strelnica({x,y,gy,dir=-1,every=2.6,phase=0,warn=.7,speed=540,range=1100,reach=170}){
+export function strelnica(o){
+ // greybox pohodi (greybox-nivoi-pohodi.js) predaju sopstvenu zamku kroz B.strelnica({zamka}) dok greybox.js ne dobije B.zamka
+ if(o.zamka)return o.zamka;
+ const{x,y,gy,dir=-1,every=2.6,phase=0,warn=.7,speed=540,range=1100,reach=170}=o;
  return{kind:'strelnica',x,y,gy,dir,every,warn,speed,range,reach,low:gy-y<50,clock:warn+every*phase,glow:0,armed:false,
   tick(dt,{p,arrows,sfx}){
    this.glow=Math.max(0,this.glow-dt*3);
@@ -66,4 +69,17 @@ export function jama({x0,x1,y,back,safe=150}){
    this.down=inPit?this.down+dt:0;if(this.down<.75)return;
    this.down=0;Object.assign(p,{x:this.back.x,y:this.back.y,vx:0,vy:0,grounded:true,climb:null,wall:0,invuln:Math.max(p.invuln||0,1)});
    toast('Ravijojla te izvukla iz jame. Pokušaj ponovo.',2.2);}};
+}
+
+// Lik iz pesme: stoji na svom mestu (ili radi svoj posao, crtež `clip`), okrene se ka Marku i kad on priđe kaže svoje
+// jednom (poruka na dnu ekrana). Ništa ne traži i ništa ne brani; greybox pohodi ga stavljaju po sobama.
+export function lik({x,y,clip,text,face=-1,near=280,scale=1}){
+ return{kind:'lik',x,y,clip,text,face,near,scale,said:false,
+  tick(dt,{p,toast}){
+   if(Math.abs(p.y-this.y)<300)this.face=p.x<this.x?-1:1;
+   if(this.said||Math.abs(p.x-this.x)>this.near||Math.abs(p.y-this.y)>160)return;
+   this.said=true;toast(this.text,3.6);},
+  draw({rig,rigDraw,time}){
+   const r=rig?.[this.clip];if(!r)return;
+   rigDraw(this.clip,Math.floor(time*8)%r.frames.length,this.x,this.y,this.face,{scale:this.scale});}};
 }
