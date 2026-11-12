@@ -1,0 +1,89 @@
+{
+  "atlasMatchesFrames": true,
+  "evenFramesPixelExact": true,
+  "frameCount": 7,
+  "sourceClip": "bajraktar-hurt",
+  "cell": [
+    512,
+    512
+  ],
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "visualReview": "pending",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        58,
+        34,
+        454,
+        488
+      ],
+      "sha256": "2de3a7f473ed0a413c7e781555ff0732f46ce351e7a7fa1194cfe3fcb46da591"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        52,
+        34,
+        460,
+        488
+      ],
+      "sha256": "d433db2fa45056c523237c26793607059ef48c39a61fdac347e77965812d53c3"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        53,
+        78,
+        458,
+        488
+      ],
+      "sha256": "24287f29eb7b17709211fcb2d8dc5794bd81aa42594e54cf06e233975f12c2e5"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        55,
+        39,
+        457,
+        488
+      ],
+      "sha256": "6daef2b99ab459a48ea38762e08b14c29770a8b78dc9dfbe2b1e9d29dff217ab"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        47,
+        16,
+        465,
+        488
+      ],
+      "sha256": "7b4dbc7481eea5ed0e1d9ba2d62c655af397aa9ae0300cbbb3a5992bebabea2c"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        56,
+        55,
+        457,
+        488
+      ],
+      "sha256": "98a340504dd518c5f4a1d364339852b8c09fa36d2c5e81eb1efc938a847adc6a"
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        63,
+        47,
+        448,
+        488
+      ],
+      "sha256": "3ef76f6daa524d7a12bcd9061deefaf809a288baa9ac22a1c990df98ebe3434a"
+    }
+  ]
+}
