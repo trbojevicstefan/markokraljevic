@@ -882,3 +882,5 @@ DOPUNA-45 deo 2: marko-attack-v2 — GOTOVO; 11 kadrova, ista velicina celija i 
 DOPUNA-45 deo 2: marko-attack-v2 — napomena: izvorni oslonac je y367; sacuvan radi piksel-identicnih parnih kadrova, bez pomeranja na y487.
 
 DOPUNA-45 deo 3: marko-charged-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-charged-v2/prompt.txt.
+
+DOPUNA-45 deo 3: marko-counter-v2 — GOTOVO; 15 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/marko-counter-v2/prompt.txt.
