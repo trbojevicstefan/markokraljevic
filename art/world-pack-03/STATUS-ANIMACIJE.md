@@ -867,3 +867,5 @@ DOPUNA-45 deo 2: marko-combo-2-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel
 DOPUNA-45 deo 2: marko-combo-3-v2 — GOTOVO; 11 kadrova, parni tacno iz dist/assets i rig-a, neparni image_gen; atlas=frames, alfa, uklonjeni sitni fragmenti suseda.
 
 DOPUNA-45 deo 2: marko-combo-4-v2 — GOTOVO; 15 kadrova; parni identicni izvornim, 7 nacrtanih medjupoza; alfa i atlas=frames provereni.
+
+DOPUNA-45 deo 2: marko-super-v2 — GOTOVO; 11 kadrova; parni piksel-identicni, nove medjupoze, alfa i atlas=frames provereni.
