@@ -42,6 +42,15 @@ Sve ovo menja samo crtanje. Logika igre i dalje ide u koracima od 1/120 s, kao i
   - grafičku karticu, nivo kvaliteta i rezoluciju;
   - međukadrove: koliko sprite-ova je trenutno međukadar, koliko je listova učitano i koliko MB zauzimaju.
 - **Međukadrovi i nivo kvaliteta.** Listovi međukadrova se ne čekaju pri pokretanju. Učitavaju se tek kad ih neki pokret prvi put zatraži; dotle se crta nacrtani kadar. Na nivou 2 igra koristi samo međukadar na pola puta, pa učitava trećinu slika. List koji se 45 s ne koristi pušta se iz memorije, a preko 200 MB (64 MB na nivou 2) prvo se puštaju najduže nekorišćeni.
+- **Učitavanje po potrebi** (loader na vrhu `dist/game.js`). Ranije se pre prve slike skidao svaki list sprite-ova u igri: 361 MB u 400 fajlova za `?greybox=1`. Telefon to nije izvlačio i ostajao je na ekranu učitavanja. Sada:
+  - prva slika čeka samo Markove svakodnevne klipove (stajanje, trk, skok, pad, udarci, blok, čučanj) i likove iz `cast/`;
+  - protivnici se traže kad se pojave na sceni, a Musa kad dojaše;
+  - klip koji još nije stigao traži se kad se prvi put crta, a dotle ga zamenjuje stajanje istog lika ili njegova slika iz `cast/`;
+  - 1,2 s posle prvog odigranog kadra ostalo se učitava u pozadini. Na računaru stigne svaki list (na lokalnoj mreži za nekoliko sekundi). Na telefonu i na „Brže“ stigne samo ostatak Markovih klipova, a ostali kad zatrebaju;
+  - telefon i „Brže“ uzimaju kopije listova na pola rezolucije iz `dist/assets/pola/` (WebP, ukupno 30 MB umesto 350 MB PNG-a, a u memoriji četiri puta manje piksela). Pravi ih `python tools/pola_sprites.py`, koji treba ponovo pokrenuti posle `build-sprite-rig.py`. Ako kopija ne stigne, uzima se pun list;
+  - glasovi, muzika i međukadrovi čekaju prvi odigrani kadar. Telefon glas traži tek kad ga igra prvi put zatraži, pa se taj glas čuje od sledećeg puta.
+
+  „Telefon“ ovde znači: ekran na dodir, najviše 4 jezgra, zapamćen nivo 2 ili izabrano „Brže“. `?lite=1` i `?lite=0` to menjaju na silu. Igra postavlja oznake `marko-prvi-kadar` i `marko-prva-igra`, a `globalThis.markoUcitavanje` pokazuje koliko je listova stiglo i koliko čeka. Merenje: `node tools/meri-ucitavanje.mjs [url] [telefon|desktop]` u Chrome-u ili Edge-u bez prozora (server na 4181). Za `?greybox=1` pre prve odigrane slike: telefon 11,5 MB u 89 fajlova, računar 29 MB.
 
 ## Glatke animacije
 

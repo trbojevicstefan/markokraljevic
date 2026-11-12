@@ -1,5 +1,6 @@
 import{W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,greybox,topAt}from'./world.js';
 const $=id=>document.getElementById(id),canvas=$('game');
+globalThis.performance?.setResourceTimingBufferSize?.(5000);   // every file in performance.getEntriesByType('resource'), not the first 250
 const tr=s=>globalThis.markoI18n?globalThis.markoI18n.tr(s):s;
 var mmReady=false;
 // The camera shows the world 15% closer; ground sits at y=612 on a 720p screen.
@@ -17,7 +18,50 @@ const rigImages={};const LEVELS=[...await fetch('assets/world/levels.json').then
 const JOURNEY=['selo','manastir','oranje','tvrdjava','podrum','mocvara','suma','pecina','prevoj','klisura','rusevine','rudnik','reka','urvina','san'],MUSA_AFTER=9;
 LEVELS.sort((a,b)=>(JOURNEY.indexOf(a.id)+1||99)-(JOURNEY.indexOf(b.id)+1||99));
 const smooth=await fetch('assets/sprite-smooth.json').then(r=>r.json()).catch(()=>null);
-if(rig)await Promise.all([...new Set(Object.values(rig).map(r=>r.image))].map(src=>new Promise(resolve=>{const im=new Image();im.onload=()=>{rigImages[src]=im;resolve();};im.onerror=()=>resolve();im.src=`assets/${src}`;})));
+// ================= loading: the first picture waits only for what it shows =================
+// A phone stayed on the loading screen: every sprite sheet of the game (350 MB of PNG) was fetched before the first picture.
+// Now the first picture waits for Marko's everyday clips and the cast alone. A level asks for its foes when they appear, a clip
+// nobody asked for yet is fetched the first time it is drawn (until it comes, the character's idle or his cast picture stands in),
+// and a moment after the first played frame the rest comes in the background: on a computer every sheet, on a phone and on the
+// 'Brže' tier only Marko's (the others when they are needed). Phones and 'Brže' take the half-size copies in assets/pola
+// (tools/pola_sprites.py): a tenth of the bytes and a quarter of the memory; a copy that fails falls back to the full sheet.
+// Voices, music and the in-between sheets also wait for the first played frame. ?lite=1 / ?lite=0 force either way.
+// performance marks: 'marko-prvi-kadar' (first frame drawn) and 'marko-prva-igra' (first frame of play).
+const RIG_LAZY=hasDom&&typeof location!=='undefined';   // the test harnesses load everything up front, as before
+const LITE=RIG_LAZY&&(()=>{try{const q=new URLSearchParams(location.search).get('lite');if(q!=null)return q!=='0';const s=JSON.parse(localStorage.getItem('marko-settings')||'{}').quality;if(s==='low')return true;if(s==='high')return false;
+ const t=JSON.parse(localStorage.getItem('marko-perf-v1')||'null');return matchMedia('(pointer:coarse)').matches||(navigator.hardwareConcurrency||8)<=4||(t?.tier|0)>=2;}catch{return false;}})();
+const rigScale=new WeakMap(),rigAsked={},rigQ=[[],[],[]],RIG_PAR=LITE?4:8;let rigBusy=0,tweenOn=!RIG_LAZY,posleGo;
+const posleStarta=new Promise(r=>posleGo=r);if(!RIG_LAZY)posleGo();
+function rigFetch(src){return new Promise(res=>{if(typeof Image!=='function'){res(null);return;}
+ const full=()=>{const im=new Image();im.decoding='async';im.onload=()=>{rigImages[src]=im;res(im);};im.onerror=()=>res(null);im.src=`assets/${src}`;};
+ if(!LITE){full();return;}const h=new Image();h.decoding='async';h.onload=()=>{rigScale.set(h,.5);rigImages[src]=h;res(h);};h.onerror=full;h.src=`assets/pola/${src.replace(/\.png$/,'.webp')}`;});}
+// priority 0: drawn now or in this level; 1: the rest of Marko; 2: everything else (a computer only)
+function rigWant(src,pri=0){if(!src||rigImages[src])return;let a=rigAsked[src];
+ if(a){if(a.q>pri){rigQ[a.q].splice(rigQ[a.q].indexOf(a),1);a.q=pri;rigQ[pri].push(a);rigPump();}return a.p;}
+ a=rigAsked[src]={src,q:pri};a.p=new Promise(r=>a.done=r);rigQ[pri].push(a);rigPump();return a.p;}
+function rigPump(){while(rigBusy<RIG_PAR){const a=rigQ[0].shift()||rigQ[1].shift()||rigQ[2].shift();if(!a)return;a.q=-1;rigBusy++;rigFetch(a.src).then(im=>{rigBusy--;a.done(im);rigPump();});}}
+function rigClips(pre,pri=0){if(rig&&pre)for(const k in rig)if(k.startsWith(pre+'-')||k==='cast/'+pre)rigWant(rig[k].image,pri);}
+// a clip still on its way: the same character's idle (or run, or the clip his name starts with), else his cast picture
+const rigAlt={};function rigStandIn(name){const c=rigAlt[name]??=(()=>{const out=[],parts=name.replace(/^cast\//,'').split('-');
+ for(let i=parts.length-1;i>0;i--){const P=parts.slice(0,i).join('-');out.push(P+'-idle',P+'-idle-2',P,P+'-run');}out.push('cast/'+parts[0]);return out.filter(k=>k!==name&&rig?.[k]);})();
+ return c.find(k=>rigImages[rig[k].image]);}
+// what is on the stage: every foe type (and his look) the first time it is seen, Musa when he rides in
+const rigTypes=new Set();let rigScanAt=0;
+function rigScan(){if(!RIG_LAZY||!rig||mode==='menu')return;   // the menu's world behind the title is not on the stage
+const now=performance.now();if(now-rigScanAt<400)return;rigScanAt=now;
+ for(const e of world.enemies||[])for(const t of[e.type,e.look])if(t&&!rigTypes.has(t)){rigTypes.add(t);rigClips(t,0);}
+ if(boss?.alive&&zone===5&&!level&&!rigTypes.has('musa')){rigTypes.add('musa');rigClips('musa',0);}}
+const loadMarks={};
+function loadStage(){if(!RIG_LAZY)return;
+ if(!loadMarks.first){loadMarks.first=1;performance.mark?.('marko-prvi-kadar');setTimeout(posleStartaNow,6000);}
+ if(!loadMarks.play&&mode==='play'){loadMarks.play=1;performance.mark?.('marko-prva-igra');setTimeout(posleStartaNow,1200);}
+ rigScan();}
+function posleStartaNow(){if(loadMarks.posle)return;loadMarks.posle=1;posleGo();setTimeout(()=>{tweenOn=true;},LITE?3000:0);
+ if(rig)for(const k in rig){if(k.startsWith('marko-'))rigWant(rig[k].image,1);else if(!LITE)rigWant(rig[k].image,2);}}
+// read-only, for measuring: how many sheets have come, how many wait (now, Marko, the rest), and whether the start is behind us
+if(RIG_LAZY)globalThis.markoUcitavanje={get lite(){return LITE;},get listova(){return Object.keys(rigImages).length;},get ukupno(){return rig?new Set(Object.values(rig).map(r=>r.image)).size:0;},get cekaju(){return rigQ.map(q=>q.length);},get ucitava(){return rigBusy;},get posleStarta(){return !!loadMarks.posle;},get medjukadrovi(){return tweenOn;}};
+const RIG_CORE=['marko-idle','marko-idle-2','marko-run','marko-run-start','marko-run-stop','marko-walk','marko-jump','marko-jump-rise','marko-fall','marko-land','marko-attack','marko-combo-1','marko-combo-2','marko-combo-3','marko-crouch','marko-block','marko-hurt','marko-turn'];
+if(rig)await Promise.all((RIG_LAZY?[...RIG_CORE,...Object.keys(rig).filter(k=>k.startsWith('cast/'))]:Object.keys(rig)).map(k=>rigWant(rig[k]?.image,0)));
 let lastSafeY=590,defenses={},world=makeWorld(),p,mode='menu',camera=0,camY=CAM_Y0,time=0,elapsed=0,zone=0,checkpoint=0,boss,particles=[],arrows=[],floating=[],corpses=[],ghosts=[],attackSerial=0,shake=0,hitstop=0,dialogueTime=0,toastTime=0,saveState=null,deaths=0,kills=0,relics=0,horseX=10960,horseMounted=false,horseCompleted=false,lastSafe=150,audioEnabled=true,settings={difficulty:'normal',volume:.4,music:.35,sfx:.55,voice:.9,quality:'auto',gore:true,reduced:false};
 let training=null,endSequence=null,bones=[],heads=[],limbs=[],fountains=[],finisher=null,grapple=null,grappleCool=0;const ROT_AT=10;
 const keys=new Set(),pressed=new Set();let audio=null,musicClock=0;
@@ -39,9 +83,14 @@ const ECHO={pecina:.34,san:.38,podrum:.24,rudnik:.3};
 async function loadAudio(){const get=async(url)=>{try{const r=await fetch(url);if(!r.ok)return null;return await audio.decodeAudioData(await r.arrayBuffer());}catch{return null;}};
  const groups=await fetch('assets/sfx/sfx.json').then(r=>r.json()).catch(()=>({}));SND.groups=groups;
  const voices=await fetch('assets/voice/lines.json').then(r=>r.json()).catch(()=>[]);SND.voices=voices;
- await Promise.all([...Object.values(groups).flat().map(async n=>{SND.buf['sfx/'+n]=await get(`assets/sfx/${n}.ogg`);}),...voices.map(async n=>{const b=await get(`assets/voice/${n}.mp3`);SND.buf['voice/'+n]=b;if(b){const d=b.getChannelData(0);let sum=0,cnt=0;for(let i=0;i<d.length;i+=8){const v=d[i];if(Math.abs(v)>.02){sum+=v*v;cnt++;}}const rms=Math.sqrt(sum/Math.max(1,cnt));SND.norm[n]=clamp(.2/Math.max(rms,.01),.6,3);}})]);
+ await Promise.all(Object.values(groups).flat().map(async n=>{SND.buf['sfx/'+n]=await get(`assets/sfx/${n}.ogg`);}));
  SND.ready=true;
- for(const n of ['drum','megdan','rain','night'])SND.buf['music/'+n]=await get(`assets/music/${n}.ogg`);}
+ // a voice line is fetched once; until it has come, say() stays silent for it (the line sounds from the next time on)
+ SND.voiceGet=async n=>{if(SND.buf['voice/'+n]!==undefined)return;SND.buf['voice/'+n]=null;const b=await get(`assets/voice/${n}.mp3`);SND.buf['voice/'+n]=b;if(b){const d=b.getChannelData(0);let sum=0,cnt=0;for(let i=0;i<d.length;i+=8){const v=d[i];if(Math.abs(v)>.02){sum+=v*v;cnt++;}}const rms=Math.sqrt(sum/Math.max(1,cnt));SND.norm[n]=clamp(.2/Math.max(rms,.01),.6,3);}};
+ await posleStarta;voiceWant('grunt');voiceWant('gruntheavy');
+ if(!LITE){let i=0;await Promise.all([0,1,2].map(async()=>{while(i<voices.length)await SND.voiceGet(voices[i++]);}));}   // a phone asks for each line when it is first wanted
+ for(const n of ['drum','megdan','rain','night'])if(SND.buf['music/'+n]===undefined)SND.buf['music/'+n]=await get(`assets/music/${n}.ogg`);}
+function voiceWant(group){if(SND.voiceGet)for(const v of SND.voices)if(v===group||v.startsWith(group+'_'))SND.voiceGet(v);}
 function tone(freq,duration=.15,type='sine',gain=.08,end=freq){if(!audio||!audioEnabled||!settings.volume)return;const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(freq,audio.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(20,end),audio.currentTime+duration);g.gain.setValueAtTime(gain*settings.volume,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);}
 function panAt(x){return x==null?0:clamp((x-camera-VIEW_W/2)/(VIEW_W/2),-1,1)*.55;}
 function playBuf(b,{gain=1,rate=1,pan=0,bus='sfx',delay=0}={}){if(!audio||!b||!SND.bus[bus])return null;const s=audio.createBufferSource();s.buffer=b;s.playbackRate.value=rate;const g=audio.createGain();g.gain.value=gain;s.connect(g);let node=g;if(pan&&audio.createStereoPanner){const pn=audio.createStereoPanner();pn.pan.value=pan;g.connect(pn);node=pn;}node.connect(SND.bus[bus]);s.start(audio.currentTime+delay);return s;}
@@ -53,7 +102,7 @@ const ENEMY_VOICE=new Set(['turk','akindzija','oklopnik','palikuca','strelac']);
 const FOE_VOICE={akindzija:'ak',oklopnik:'ok',palikuca:'pl',archer:'ar',tufekdzija:'ar'};
 function foeSay(e,kind,o={}){if(Math.random()>(o.chance??1))return false;const v=FOE_VOICE[e?.type],q={...o,chance:1,x:o.x??e?.x};return(v&&say(v+'_'+kind,q))||say('tr_'+kind,q);}
 // say('kill') plays a random line whose id is 'kill' or starts with 'kill_'. One line per speaker at a time; higher priority interrupts.
-function say(group,{chance=1,priority=1,delay=0,x=null,gap=.6}={}){if(!audio||!SND.ready||Math.random()>chance)return false;const ids=SND.voices.filter(v=>(v===group||v.startsWith(group+'_'))&&SND.buf['voice/'+v]);if(!ids.length)return false;const speaker=VOICE_SPEAKER[group.split('_')[0]]||'marko';const now=audio.currentTime+delay,cur=SND.speaking[speaker];if(cur&&now<cur.until){if(priority<=cur.priority)return false;try{cur.src.stop();}catch{}}let id=ids[Math.floor(Math.random()*ids.length)];if(ids.length>1&&id===SND.last[group])id=ids[(ids.indexOf(id)+1)%ids.length];SND.last[group]=id;const b=SND.buf['voice/'+id];const src=playBuf(b,{bus:ENEMY_VOICE.has(speaker)?'enemy':'voice',gain:SND.norm[id]||1,pan:speaker==='marko'?0:panAt(x)*.5,delay});SND.speaking[speaker]={src,until:now+b.duration+gap,priority};if(!ENEMY_VOICE.has(speaker))SND.duckUntil=Math.max(SND.duckUntil,now+b.duration);return true;}
+function say(group,{chance=1,priority=1,delay=0,x=null,gap=.6}={}){if(!audio||!SND.ready||Math.random()>chance)return false;const ids=SND.voices.filter(v=>(v===group||v.startsWith(group+'_'))&&SND.buf['voice/'+v]);if(!ids.length){voiceWant(group);return false;}const speaker=VOICE_SPEAKER[group.split('_')[0]]||'marko';const now=audio.currentTime+delay,cur=SND.speaking[speaker];if(cur&&now<cur.until){if(priority<=cur.priority)return false;try{cur.src.stop();}catch{}}let id=ids[Math.floor(Math.random()*ids.length)];if(ids.length>1&&id===SND.last[group])id=ids[(ids.indexOf(id)+1)%ids.length];SND.last[group]=id;const b=SND.buf['voice/'+id];const src=playBuf(b,{bus:ENEMY_VOICE.has(speaker)?'enemy':'voice',gain:SND.norm[id]||1,pan:speaker==='marko'?0:panAt(x)*.5,delay});SND.speaking[speaker]={src,until:now+b.duration+gap,priority};if(!ENEMY_VOICE.has(speaker))SND.duckUntil=Math.max(SND.duckUntil,now+b.duration);return true;}
 function sound(type){const lt=()=>{if(type==='hit'){tone(110,.13,'triangle',.5,30);tone(480,.06,'sawtooth',.1,90);}else if(type==='parry'){tone(740,.4,'triangle',.3,1400);tone(1110,.5,'sine',.15);}else if(type==='jump')tone(180,.18,'sine',.14,340);else if(type==='magic'){[440,660,880].forEach((f,i)=>setTimeout(()=>tone(f,.6,'sine',.16),i*80));}else if(type==='hurt')tone(130,.22,'sawtooth',.18,45);else if(type==='wine')tone(300,.35,'sine',.22,600);else tone(220,.1,'triangle',.1,150);};
  if(!SND.ready)return lt();
  if(type==='hit'){sfx('hit_body');sfx('hit_armor',{gain:.55});}else if(type==='parry'){sfx('clang',{gain:.9});sfx('ring',{gain:.45});}else if(type==='jump')sfx('cloth',{gain:.6});else if(type==='magic')sfx('magic',{gain:.75});else if(type==='hurt')sfx('hit_body',{gain:.8,rate:.85});else if(type==='wine')sfx('gulp',{gain:.8});else if(type==='swing'){if(p&&p.attack>0)sayGrunt(p.attackKind!=='light');else sfx('whoosh_heavy',{gain:.45});}else lt();}
@@ -786,7 +835,7 @@ function rigPick(im,s){
  fetch(im.currentSrc||im.src).then(r=>r.ok?r.blob():Promise.reject(r.status)).then(b=>createImageBitmap(b,{resizeWidth:w,resizeHeight:hh,resizeQuality:'high'})).then(bm=>rigHalf.set(im,{bm,kx:w/im.naturalWidth,ky:hh/im.naturalHeight})).catch(()=>{});
  return null;
 }
-function blitFrame(g,im,f,x,y,w,h,s){const c=rigPick(im,s);if(c)g.drawImage(c.bm,f[0]*c.kx,f[1]*c.ky,f[2]*c.kx,f[3]*c.ky,x,y,w,h);else g.drawImage(im,f[0],f[1],f[2],f[3],x,y,w,h);}
+function blitFrame(g,im,f,x,y,w,h,s){const k=rigScale.get(im);if(k){g.drawImage(im,f[0]*k,f[1]*k,f[2]*k,f[3]*k,x,y,w,h);return;}const c=rigPick(im,s);if(c)g.drawImage(c.bm,f[0]*c.kx,f[1]*c.ky,f[2]*c.kx,f[3]*c.ky,x,y,w,h);else g.drawImage(im,f[0],f[1],f[2],f[3],x,y,w,h);}
 function silhouette(im,f,w,h,color,outline){const pad=outline?Math.ceil(outline)+2:0,w2=w+pad*2,h2=h+pad*2,sc=Math.max(w/f[2],h/f[3]);if(scratch.width<w2||scratch.height<h2){scratch.width=Math.max(scratch.width,w2);scratch.height=Math.max(scratch.height,h2);}sctx.setTransform(1,0,0,1,0,0);sctx.globalAlpha=1;sctx.globalCompositeOperation='source-over';sctx.clearRect(0,0,w2,h2);if(outline){for(let i=0;i<8;i++){const a=i*Math.PI/4;blitFrame(sctx,im,f,pad+Math.cos(a)*outline,pad+Math.sin(a)*outline,w,h,sc);}}else blitFrame(sctx,im,f,0,0,w,h,sc);sctx.globalCompositeOperation='source-in';sctx.fillStyle=color;sctx.fillRect(0,0,w2,h2);if(outline){sctx.globalCompositeOperation='destination-out';blitFrame(sctx,im,f,pad,pad,w,h,sc);}sctx.globalCompositeOperation='source-over';return{pad,w2,h2};}
 // ================= smooth animation (drawing only; the in-betweens come from smooth-anims.py) =================
 // A pose may say how far it is on the way to the next drawn frame (tw, 0..1) and which frame that is (nx; else the next one,
@@ -808,7 +857,7 @@ function tweenSheet(src){let s=tweenSheets[src];tweenUse[src]=time;
  if(time-tweenSweep>5||time<tweenSweep){tweenSweep=time;const drop=k=>{const im=tweenSheets[k];tweenStat.sheets--;tweenStat.px-=(im.naturalWidth||0)*(im.naturalHeight||0);delete tweenSheets[k];};for(const k in tweenSheets)if(tweenSheets[k]&&!(time-tweenUse[k]<45))drop(k);const cap=TWEEN_BUDGET[clamp(tweenTier,0,2)];if(tweenStat.px>cap)for(const k of Object.keys(tweenSheets).filter(k=>tweenSheets[k]&&time-tweenUse[k]>1).sort((a,b)=>tweenUse[a]-tweenUse[b])){if(tweenStat.px<=cap)break;drop(k);}}
  return s||null;}
 function tweenPair(name,a,b){return smooth?.[name]?.mids[a<b?a+'-'+b:b+'-'+a];}
-function tweenMid(name,fi,o,tw=o.tw){const S=smooth?.[name];if(!S||!ANIM||settings.smooth===false)return null;const n=rig[name].frames.length;
+function tweenMid(name,fi,o,tw=o.tw){const S=smooth?.[name];if(!S||!ANIM||!tweenOn||settings.smooth===false)return null;const n=rig[name].frames.length;
  const b=o.nx??(fi+1<n?fi+1:S.loop?0:-1);if(b<0||b===fi)return null;const m=tweenPair(name,fi,b);if(!m)return null;
  // a computed in-between never blurs a blow's windup or contact; a drawn pose between them (DOPUNA-45) is part of the blow
  if(o.keyAt!=null&&!S.drawn?.includes(fi<b?fi+'-'+b:b+'-'+fi)){const c=Math.floor(o.keyAt*n);if(fi===c||fi===c-1)return null;}
@@ -856,7 +905,7 @@ function bodyPose(pose){const m=animMem.get(p);if(!m)return false;const dt=clamp
 function drawNaletStreak(){if(!(p.dash>0&&p.airDash)||!ANIM||settings.reduced)return;const d=clamp(1-p.dash/NALET_TIME,0,1),f=p.naletDir||p.face,len=60+140*Math.min(1,d*2),fade=1-d*d;
  for(const g of[ctx,gctx]){g.save();g.lineCap='round';for(let i=0;i<4;i++){const y=p.y-34-i*24-(i%2)*6,x0=p.x-f*(18+i*7),x1=x0-f*len*(1-i*.15),gr=g.createLinearGradient(x0,y,x1,y);
   gr.addColorStop(0,`rgba(255,244,214,${(g===gctx?.4:.32)*fade})`);gr.addColorStop(1,'rgba(255,244,214,0)');g.strokeStyle=gr;g.lineWidth=g===gctx?4:2;g.beginPath();g.moveTo(x0,y);g.lineTo(x1,y);g.stroke();}g.restore();}}
-function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name];let im=r&&rigImages[r.image];if(!im)return false;const raw=Math.floor(frame),fi=clamp(raw,0,r.frames.length-1),tw=raw!==fi?0:o.tw??frame-raw;let f=r.frames[fi];const k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;let dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k,ks=k;const M=tw>0?tweenMid(name,fi,o,tw):null;if(M){im=M.im;f=M.f;ks=k/M.k;dx=f[4]*k;dy=f[5]*k;dw=f[2]*ks;dh=f[3]*ks;}if(!o.glow&&!o.color){tweenStat.drawn++;if(M)tweenStat.mids++;}g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=ks*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
+function rigDraw(name,frame,x,y,face=1,o={}){const r=rig?.[name];let im=r&&rigImages[r.image];if(!im){if(!r)return false;rigWant(r.image,0);const s=rigStandIn(name);return s?rigDraw(s,Math.floor(time*6)%rig[s].frames.length,x,y,face,{...o,tw:0,nx:undefined}):false;}const raw=Math.floor(frame),fi=clamp(raw,0,r.frames.length-1),tw=raw!==fi?0:o.tw??frame-raw;let f=r.frames[fi];const k=r.scale*(o.scale||1),g=o.glow?gctx:ctx,dev=o.glow?glowScale:pxScale;let dx=-r.anchor*k,dy=-f[4]*k,dw=f[2]*k,dh=f[3]*k,ks=k;const M=tw>0?tweenMid(name,fi,o,tw):null;if(M){im=M.im;f=M.f;ks=k/M.k;dx=f[4]*k;dy=f[5]*k;dw=f[2]*ks;dh=f[3]*ks;}if(!o.glow&&!o.color){tweenStat.drawn++;if(M)tweenStat.mids++;}g.save();g.translate(x+(o.dx||0),y+(o.dy||0));if(o.rot)g.rotate(o.rot);g.scale(face*(o.sx||1),o.sy||1);g.globalAlpha=o.alpha??1;let sc=0;if(hasDom&&g.getTransform){const m=g.getTransform();sc=ks*Math.max(Math.hypot(m.a,m.b),Math.hypot(m.c,m.d));}if(o.color){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.color,o.outline?o.outline*dev:0),pad=s.pad/dev;g.drawImage(scratch,0,0,s.w2,s.h2,dx-pad,dy-pad,dw+pad*2,dh+pad*2);}else{blitFrame(g,im,f,dx,dy,dw,dh,sc);if(o.flash>0){const pw=Math.max(1,Math.round(dw*dev)),ph=Math.max(1,Math.round(dh*dev)),s=silhouette(im,f,pw,ph,o.flashColor||'#ffffff',0);g.globalAlpha=(o.alpha??1)*Math.min(1,o.flash);g.drawImage(scratch,0,0,s.w2,s.h2,dx,dy,dw,dh);}}g.restore();return true;}
 function rimGlow(pose,x,y,face,color,alpha,width=1.6){rigDraw(pose.name,pose.frame,x,y,face,{...pose,glow:true,color,outline:width,alpha});}
 function sprite(name,x,y,height=130,face=1,angle=0,alpha=1){const im=assets[name];if(!im)return;ctx.save();ctx.translate(x,y);ctx.scale(face,1);ctx.rotate(angle);ctx.globalAlpha=alpha;ctx.drawImage(im,-height/2,-height*369/384,height,height);ctx.restore();}
 function groundAt(x,y){let best=null;for(const q of world.platforms){const t=q.surf?topAt(q,x):q.y;if(x<q.x||x>q.x+q.w||t<y-2)continue;if(q.kind==='magic'&&!world.runes[q.rune]?.active)continue;if(best===null||t<best)best=t;}return best;}
@@ -1190,7 +1239,7 @@ function perfTick(now,gap,work){
  tweenStat.mids=0;tweenStat.drawn=0;perfHud.n=0;perfHud.sum=0;perfHud.worst=0;perfHud.work=0;perfHud.since=now;
 }
 if(hasDom)document.addEventListener('keydown',e=>{if(e.code!=='F9')return;e.preventDefault();perfHud.on=!perfHud.on;if(!perfHud.on&&perfHud.el){perfHud.el.remove();perfHud.el=null;}});
-let last=performance.now(),acc=0;function frame(now){const t0=performance.now(),gap=now-last;drawSerial++;songWatch();let dt=Math.min(frameDt((now-last)/1000),.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){lerpSnap();update(1/120);acc-=1/120;}drawFrame(dt);perfTick(now,gap,performance.now()-t0);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+let last=performance.now(),acc=0;function frame(now){const t0=performance.now(),gap=now-last;drawSerial++;songWatch();loadStage();let dt=Math.min(frameDt((now-last)/1000),.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){lerpSnap();update(1/120);acc-=1/120;}drawFrame(dt);perfTick(now,gap,performance.now()-t0);requestAnimationFrame(frame);}requestAnimationFrame(frame);
 // Read-only QA snapshot; no cheats are exposed to players.
 window.markoState=()=>({mode,zone,charge:p?.charge||0,x:p?.x,y:p?.y,hp:p?.hp,energy:p?.energy,wine:p?.wine,buff:p?.buff,horseMounted,kills,elapsed,fairyVisible:fairy.age<fairy.duration,fairyAge:fairy.age,castPending:!!pendingMagic,defense:defenses[zone],bossHp:boss?.hp,runes:world.runes.map(r=>r.active),goals:world.goals?.map(g=>({kind:g.kind,x:Math.round(g.x),y:g.y,done:g.done,label:g.label})),enemies:world.enemies.filter(e=>e.alive&&e.zone===zone).map(e=>({x:e.x,hp:e.hp,mode:e.mode,type:e.type,moving:e.moveT>0&&e.stun<=0,walk:e.walk||0,frame:locomotionPose(e).frame})),bossMode:boss?.mode,bossX:boss?.x,grounded:p?.grounded,remaining:world.enemies.filter(e=>e.alive&&e.zone===zone).length,renderer:stage?'three':'2d',rage:p.rage,guard:p.guard,blocking:p.blocking,crouching:p.crouching,playerHeight:p.h,attackKind:p.attackKind,attack:p.attack,deathSequence:endSequence,corpses:corpses.map(c=>({type:c.type,frame:deathPose(c).frame,t:c.t,grounded:c.grounded,x:Math.round(c.x),y:Math.round(c.y),launched:!!c.launched}))});
 
@@ -4001,14 +4050,14 @@ function bookGo(i,dir){if(bookIsClosed()){bookOpenCover();return;}const N=bookSp
  bookBusy=leaf;const done=()=>{if(bookBusy!==leaf)return;bookBusy=null;if(dir>0){L.innerHTML=left;bookWire();}else{R.innerHTML=right;readWire();}leaf.remove();if(reader)readMark(reader.line);};
  leaf.addEventListener('animationend',e=>{if(e.target===leaf)done();});setTimeout(done,2000);}
 // draws one frame of a foe clip into a canvas: feet on a painted ground, unknown foes as ink silhouettes
-function drawFoe(c,pg,clip,t,o={}){const g=c?.getContext?.('2d');if(!g)return;const W2=c.width,H2=c.height,name=`${pg.t}-${clip}`,r=rig?.[name]||rig?.[`${pg.t}-idle`],im=r&&rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W2,H2);if(!im)return;
+function drawFoe(c,pg,clip,t,o={}){const g=c?.getContext?.('2d');if(!g)return;const W2=c.width,H2=c.height,name=`${pg.t}-${clip}`,r=rig?.[name]||rig?.[`${pg.t}-idle`],im=r&&rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W2,H2);if(!im){if(r)rigWant(r.image,0);return;}
  const n=r.frames.length,fps=clip==='idle'?7:11,once=BOOK_ONCE.has(clip),hold=Math.round(fps*.9),k=Math.floor(t*fps)%(n+(once?hold:0)),fi=Math.min(n-1,k),f=r.frames[fi];
  // one size per foe, fitted from his idle: the stage shows him whole, a tab shows head and shoulders
  const ri=rig[`${pg.t}-idle`]||r,fi0=ri.frames[0],bodyH=Math.max(1,(fi0[4]-fi0[5])*ri.scale),dog=pg.t==='pas';
  const unit=o.portrait?(dog?H2*.62:H2*1.5)/bodyH:(dog?H2*.4:H2*.62)/bodyH,s=r.scale*unit,ground=o.portrait?(dog?H2*.86:H2*.1+bodyH*unit):H2*.86;
  let y=ground,x=W2*(o.portrait&&!dog?.52:.5);if(clip==='launch'){y=ground-H2*.16-Math.sin(Math.min(1,fi/(n-1))*Math.PI)*H2*.12;}
  if(!o.portrait){g.save();g.globalAlpha=.32;g.fillStyle='#3a2414';g.beginPath();g.ellipse(x,ground+4,W2*.16*(clip==='launch'?.6:1),H2*.03,0,0,Math.PI*2);g.fill();g.restore();}
- g.save();g.translate(x,y);g.drawImage(im,f[0],f[1],f[2],f[3],-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s);g.restore();
+ g.save();g.translate(x,y);blitFrame(g,im,f,-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s,0);g.restore();
  if(!bookKnown(pg)){g.save();g.globalCompositeOperation='source-atop';g.fillStyle=o.portrait?'#3b2a1c':'rgba(46,30,18,.94)';g.fillRect(0,0,W2,H2);g.restore();}}
 function bookTick(now){if($('knjiga').hidden){bookRaf=0;stopReading();return;}bookRaf=requestAnimationFrame(bookTick);const dt=Math.min(.05,Math.max(0,(now-bookLast)/1000));bookLast=now;readerTick();
  const cur=bookSpreads[bookAt],pg=cur?.foe!=null&&BOOK_PAGES[cur.foe];if(pg&&bookAuto&&bookKnown(pg)){bookPoseT+=dt;if(bookPoseT>BOOK_POSE_TIME){bookPoseT=0;bookPose=(bookPose+1)%pg.poses.length;bookSetPose();}}
@@ -4047,10 +4096,10 @@ function menuMarkoTick(t){if($('menu').hidden||!mmCanvas){mmRaf=0;return;}mmRaf=
  if(mv&&fi>=n*mmLoops){mmClip=MM_IDLE;mmT=0;fi=0;}
  if(!mv){mmNext-=dt;if(mmNext<=0&&!settings.reduced)menuMarkoMove(false);}
  drawMenuMarko(mmClip,fi%rig[mmClip].frames.length,mmT);}
-function drawMenuMarko(name,fi,t){const c=mmCanvas,g=c.getContext('2d'),r=rig[name],im=rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,c.width,c.height);if(!im)return;
+function drawMenuMarko(name,fi,t){if(!rigImages[rig[name]?.image]){rigWant(rig[name]?.image,0);name=MM_IDLE;fi=Math.min(fi,rig[MM_IDLE].frames.length-1);}const c=mmCanvas,g=c.getContext('2d'),r=rig[name],im=rigImages[r.image];g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,c.width,c.height);if(!im)return;
  const ri=rig[MM_IDLE],f0=ri.frames[0],body=(f0[4]-f0[5])*ri.scale,unit=c.height*.78/body,s=r.scale*unit,f=r.frames[fi],x=c.width*.6,y=c.height*.96,breath=name===MM_IDLE?1+Math.sin(t*1.7)*.006:1;
  g.save();g.globalAlpha=.4;const sh=g.createRadialGradient(x,y,0,x,y,c.width*.24);sh.addColorStop(0,'#000c');sh.addColorStop(1,'#0000');g.fillStyle=sh;g.scale(1,.12);g.fillRect(0,(y-c.width*.24)/.12,c.width,c.width*.48/.12);g.restore();
- g.save();g.translate(x,y);g.scale(-1,breath);g.drawImage(im,f[0],f[1],f[2],f[3],-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s);g.restore();}
+ g.save();g.translate(x,y);g.scale(-1,breath);blitFrame(g,im,f,-r.anchor*s,-f[4]*s,f[2]*s,f[3]*s,0);g.restore();}
 menuLedger();
 
 // ---------- Marko's in-between clips (Codex, DOPUNA-8): walk, braking, rise and fall, a longer rest, recovery, rolls ----------
