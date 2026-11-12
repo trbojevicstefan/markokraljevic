@@ -126,7 +126,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  const sp=R(gbNodeRoom(L.start)),spawn={x:sp.x0+(L.spawnDx||200),y:sp.floor};
  const level={id:'greybox',greybox:true,n:L.n,name:L.ime,width:L.X1,spawn,goal:{x:L.X1+5000,y:spawn.y},props:[],peace:false,design:{goal:L.cilj}};
  return{...svet,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
-  chapter:{name:`LOST CROWN · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
+  chapter:{name:`JUNAČKI POHOD · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
 }
 
 // ---------- once a step (game.js calls it from update while a greybox level is on) ----------
@@ -244,8 +244,8 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
 
 // ---------- the menu: "Lost Crown pohodi", the three levels without URL tricks ----------
 export function gbMenu(start){if(typeof document==='undefined'||!document.querySelector)return;const links=document.querySelector('#menu .menu-links');if(!links||document.getElementById('gb-menu-open'))return;
- const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Lost Crown pohodi';links.append(sep,b);
+ const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Junački pohodi';links.append(sep,b);
  // the list is made each time it opens, so levels registered later are in it too
  b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
-  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
+  m.innerHTML=`<div class="modal-card"><p class="eyebrow">DUGI NIVOI SA SOBAMA I TAJNAMA</p><h2>Junački pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
   m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});m.hidden=false;};}
