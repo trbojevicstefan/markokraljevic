@@ -803,7 +803,59 @@ export const GB_POHODI={
   K.borba('tamnica',[['sword',1300],['pas',1600]]);K.spikes('tamnica',1900,100);K.drop('tamnica',500,700,'prozor');K.door('tamnica','kapela',1);
   K.chimney('prozor',900,{upper:'tamnica'});K.lik('prozor',300,'soko-voda','Soko donosi vodu sužnju kroz tamnički prozor.',2);K.heart('prozor',600,2);K.crack('prozor','kosti',{row:2});K.cudo('kosti',600,'Okovi sužnja',2);
   // Stara kapela: Vilin trag i čekpoint; rudarska riznica iza vrata na prekidač
-  K.ckpt('kapela',300);K.shrine('trag','kapela',700);K.trace('kapela','riznica');K.cudo('riznica',600,'Rudarsko srebro',1);}})
+  K.ckpt('kapela',300);K.shrine('trag','kapela',700);K.trace('kapela','riznica');K.cudo('riznica',600,'Rudarsko srebro',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 16 · Obala pred zoru („Poranio Kraljeviću Marko u neđelju prije jarkog sunca“): pred zoru Marko jaše obalom ka moru.
+// Vodenica, skela i pristanište su u turskim rukama; Sokolovo krilo čeka u Vilinom viru ispod obale, a sa njim se penje
+// na svetionik i na bedem nad morem, gde stoji Janičarski aga. Na liticama kod dve tanke jele Ravijojla ga opominje.
+16:pohod({id:'reka',ime:'Obala pred zoru',biom:'klisura',zeljeniBiom:'reka',daje:'krilo',pocetne:[],
+ cilj:'Nađi krilo u Vilinom viru, popni se na svetionik i oteraj agu sa bedema nad morem',start:'zora',spawnDx:240,
+ uvod:'Obala pred zoru. Pristanište i svetionik su u turskim rukama. Sokolovo krilo čeka u Vilinom viru, ispod obale; bez njega se na bedem nad morem ne stiže.',
+ sobe:[
+  ['zora','Obala pred zoru',-1,0,1,1,{set:'reka'}],
+  ['pesak','Peščani sprud',0,0,2,1,{set:'reka'}],
+  ['litica','Litica',0,-1,2,1],
+  ['gnezdo','Galebovo gnezdo',2,-1,1,1,{secret:true,lore:'Galebovo gnezdo. Odavde se vidi more i galija koja jednom čeka da odnese Marka u Hilandar.'}],
+  ['trska','Tršćak',2,0,1,1,{set:'reka'}],
+  ['vodenica','Vodenica',3,-1,1,2,{interior:true}],
+  ['tavan','Tavan vodenice',4,-1,1,1,{interior:true}],
+  ['jele','Dve tanke jele',5,-1,1,1],
+  ['skela','Skela',4,0,2,1,{set:'reka'}],
+  ['pristan','Pristanište',6,0,1,1,{set:'reka'}],
+  ['svetionik','Svetionik',7,-2,1,3,{interior:true}],
+  ['kula','Stražarnica',8,-1,1,1,{interior:true}],
+  ['bedem','Bedem nad morem',8,-2,1,1],
+  ['jazbina','Rakova jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Rakova jazbina. Ribari su ovde krili mreže od turske carine; Marko im je platio carinu.'}],
+  ['pecina','Morska pećina',0,1,2,1,{interior:true}],
+  ['vir','Podvodni prolaz',2,1,2,1,{interior:true}],
+  ['izvor','Slatki izvor',3,2,1,1,{interior:true}],
+  ['vilin','Vilin vir',4,1,1,1,{interior:true}],
+  ['lada','Potonula lađa',5,1,2,1,{interior:true}],
+  ['riznica','Blago potonule lađe',7,1,1,1,{secret:true,interior:true,lore:'Blago potonule lađe. Dubrovački trgovci su ga izgubili u oluji; Marko ga je vratio njihovim udovicama.'}]],
+ brda:{zora:[[500,900,-30]],pesak:[[200,400,30]]},
+ gradi(K){
+  // Obala pred zoru: guslar peva Markovo poslednje jutro
+  K.guslar('zora',850,['Poranio Kraljeviću Marko','u neđelju prije jarkog sunca,','pokraj mora Urvinom planinom.']);K.door('zora','pesak',0);
+  // Peščani sprud: prva borba; krilo na liticu, rupa u morsku pećinu
+  K.block('pesak',2050,120,160,120);K.borba('pesak',[['sword',900],['pas',1500],['archer',2100,120]]);K.wing('pesak',500,{upper:'litica'});K.drop('pesak',1700,1900,'pecina');K.door('pesak','trska',0);
+  K.strelnica('litica',2380,{row:-1,every:2.8});K.heart('litica',1500,-1);K.fake('litica','gnezdo',{row:-1});K.cudo('gnezdo',600,'Galebovo pero',-1);
+  // Tršćak i vodenica: vodeničar; dimnjak do tavana
+  K.prop('trska','trska',600,120);K.heart('trska',900,0);K.door('trska','vodenica',0);
+  K.lik('vodenica',300,'putnik-starac-idle','Vodeničar: Turci melju brašno za galiju. Na bedem nad morem ne stiže se bez krila.',0);K.chimney('vodenica',700);K.door('vodenica','skela',0);K.door('vodenica','tavan',-1);
+  K.heart('tavan',600,-1);K.door('tavan','jele',-1);K.lik('jele',600,'vila-spreda','Ravijojla: Ne žuri, Marko. Umrećeš od Boga, od starog krvnika, kod dve tanke jele i bunara.',-1);
+  // Skela: druga borba, greda nad vodom; krilo do jela
+  K.greda('skela',600,{span:220});K.borba('skela',[['shield',1500],['sword',1900]]);K.wing('skela',1500,{upper:'jele'});K.door('skela','pristan',0);
+  // Pristanište: čekpoint, iguman Vaso; svetionik, stražarnica i bedem nad morem
+  K.ckpt('pristan',200);K.lik('pristan',700,'putnik-kaluder-idle','Iguman Vaso: Pred zoru se ne plovi. Na bedemu nad morem stoji Janičarski aga.');K.door('pristan','svetionik',0);
+  K.borba('svetionik',[['sword',300],['akindzija',1000]],0);K.chimney('svetionik',700);K.wing('svetionik',300,{row:-1});K.door('svetionik','kula',-1);K.door('svetionik','bedem',-2);K.bos('bedem','sword');
+  K.strelnica('kula',1180,{row:-1,every:2.6});K.heart('kula',400,-1);
+  // Morska pećina: treća borba, dimnjak gore, napukli zid do jazbine
+  K.borba('pecina',[['pas',500],['sword',1400]]);K.chimney('pecina',1000,{upper:'pesak'});K.crack('pecina','jazbina',{row:1});K.heart('jazbina',500,1);K.door('pecina','vir',1);
+  // Podvodni prolaz: daske nad vodom; slatki izvor ispod
+  K.crumble('vir',600,170,1);K.crumble('vir',770,170,1);K.pit('vir',600,940);K.drop('vir',1500,1700,'izvor');K.chimney('izvor',700,{upper:'vir'});K.heart('izvor',300,2);K.door('vir','vilin',1);
+  // Vilin vir: krilo i čekpoint; potonula lađa i njeno blago
+  K.ckpt('vilin',300);K.shrine('krilo','vilin',700);K.door('vilin','lada',1);
+  K.borba('lada',[['sword',600],['shield',900]]);K.strelnica('lada',2380,{every:2.6});K.crack('lada','riznica',{row:1});K.cudo('riznica',600,'Blago potonule lađe',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
