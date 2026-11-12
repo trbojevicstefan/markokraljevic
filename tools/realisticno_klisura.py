@@ -466,3 +466,15 @@ BIOME = {
          'what': 'a palisade of sharpened wooden stakes tied together with two cross rails'},
     ],
 }
+
+BIOME['ground'] = {
+    'light': LIGHT, 'glight': 'cold dim dusk light with a faint red glow on wet surfaces', 'seed': 530,
+    'top': ('a wet path of dark slate slabs and river gravel with puddles reflecting the red sky', (52, 50, 58),
+            (96, 92, 104), 'slabs'),
+    'front': ('the edge of a rocky path above a river: broken dark slate on top, wet dark rock and gravel below',
+              (90, 86, 96), (58, 54, 62), (36, 34, 40), 'stones'),
+    'fg': {'busen': ('a clump of dry grass bent sideways by the storm wind', (122, 104, 72)),
+           'kamenje': ('a cluster of sharp wet dark slate rocks', (74, 72, 82)),
+           'koren': ('exposed twisted roots of a mountain pine clinging to rock', (70, 54, 44)),
+           'ograda': ('a short broken wooden railing with a frayed rope tied between two posts', (84, 64, 48))},
+}

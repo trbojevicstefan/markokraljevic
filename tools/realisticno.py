@@ -32,6 +32,10 @@ ORDER = ['podgradje', 'urvina', 'klisura']
 
 
 def biome(name):
+    if name == 'svet-predmeti':
+        return importlib.import_module('realisticno_zamena').make_biome()
+    if name.startswith('svet-'):
+        return importlib.import_module('realisticno_svet').BIOMES[name]
     return importlib.import_module(f'realisticno_{name}').BIOME
 
 
@@ -45,13 +49,16 @@ def items(b):
         out.append(dict(m, key=f'mat-{name}', id=name, group='materials', kind='tile',
                         prompt=m.get('full_prompt') or tile_prompt(m['prompt']), strength=m.get('strength', 0.86)))
     for p in b['props']:
-        out.append(dict(p, key=f"prop-{p['id']}", group='props', kind='prop',
+        out.append(dict(p, key=f"prop-{p['id']}", group='props', kind=p.get('kind', 'prop'),
                         prompt=p.get('full_prompt') or prop_prompt(p['what']), strength=p.get('strength', 0.78)))
+    if b.get('ground'):
+        from realisticno_ground import ground_items
+        out += ground_items(b['ground'])
     for it in out:
         k = it['kind']
         it.setdefault('size', SKY if k == 'sky' else LAYER if k in ('far', 'mid', 'near') else
                       TILE if k == 'tile' else (1024, 1024))
-        it['wrap'] = 'x' if k in ('sky', 'far', 'mid', 'near') else 'xy' if k == 'tile' else None
+        it['wrap'] = 'x' if k in ('sky', 'far', 'mid', 'near', 'gtop') else 'xy' if k == 'tile' else None
         it.setdefault('v', 1)
     return out
 
@@ -127,6 +134,12 @@ def raw_fixes(bname, key, im):
     d = ImageDraw.Draw(im)
     for x0, y0, x1, y1 in p.get('erase', []):
         d.rectangle([x0 * w, y0 * h, x1 * w, y1 * h], fill=(255, 0, 255))
+    if p.get('desat_red'):     # red highlights that read as lava: pull red down towards the other channels
+        a = np.asarray(im, np.float32)
+        ex = np.clip(a[..., 0] - np.maximum(a[..., 1], a[..., 2]) - 12, 0, None) * p['desat_red']
+        a[..., 0] -= ex
+        im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(im)
     for x0, y0, x1, y1, dx in p.get('clone', []):
         box = tuple(round(v) for v in ((x0 + dx) * w, y0 * h, (x1 + dx) * w, y1 * h))
         im.paste(im.crop(box), (round(x0 * w), round(y0 * h)))
@@ -162,6 +175,11 @@ def process(bname, it, raw):
         return resize_wrap(key_layer(im, d, band=it.get('band', 56)), FINAL_LAYER)
     if k == 'tile':
         return resize_wrap_xy(im, FINAL_TILE)
+    if k == 'gtop':
+        return resize_wrap(im, (1024, 256))
+    if k == 'replace':     # same pixel size as the old prop, so it drops in for it
+        d = Image.open(draft_path(bname, it['key']))
+        return key_layer(im, d, band=it.get('band', 24), wrap_x=False).resize((it['w'], it['h']), Image.LANCZOS)
     # prop: magenta key guided by the draft, refined by BiRefNet where the key is unsure
     d = Image.open(draft_path(bname, it['key']))
     keyed = key_layer(im, d, band=it.get('band', 70), wrap_x=False)
@@ -193,7 +211,7 @@ def cmd_review(bname, keys=None):
         rows = []
         for f in fs:
             fin = process(bname, it, f)
-            if k in ('sky', 'far', 'mid', 'near'):
+            if k in ('sky', 'far', 'mid', 'near', 'gtop'):
                 W = 1400
                 raw = Image.open(f).convert('RGB')
                 r1 = raw.resize((W, round(W * raw.height / raw.width)))
@@ -239,19 +257,35 @@ def cmd_review(bname, keys=None):
         print(p)
 
 
-def cmd_finish(bname):
+def cmd_finish(bname, keys=None):
+    """keys: only redo these items and keep the rest of the biome's manifest entry as it is."""
     b = biome(bname)
     os.makedirs(os.path.join(DIST, bname), exist_ok=True)
     rel = lambda f: f'realisticno/{bname}/{f}'
     entry = {'layers': [], 'interior': {'layers': []}, 'materials': {}, 'props': []}
     report = []
+    mp0 = os.path.join(DIST, 'manifest.json')
+    old = (json.load(open(mp0, encoding='utf-8'))['biomes'].get(bname) if os.path.exists(mp0) else None) or {}
+    want = set(keys.split(',')) if keys else None
     for it in items(b):
+        if want is not None and it['key'] not in want and it['group'] not in want:
+            fname = f"{it['id']}.webp" if it['kind'] == 'replace' else f"{it['key']}.webp"
+            if it['group'] in ('layers', 'interior'):
+                src = old.get('layers', []) if it['group'] == 'layers' else old.get('interior', {}).get('layers', [])
+                hit = [L for L in src if L['id'] == it['id']]
+                (entry['layers'] if it['group'] == 'layers' else entry['interior']['layers']).extend(hit)
+            elif it['group'] == 'materials':
+                if it['id'] in old.get('materials', {}):
+                    entry['materials'][it['id']] = old['materials'][it['id']]
+            else:
+                entry['props'].extend(P for P in old.get('props', []) if P['id'] == it['id'])
+            continue
         raw = chosen_raw(bname, it['key'])
         if not raw:
             report.append(f"MISSING {it['key']}")
             continue
         fin = process(bname, it, raw)
-        fname = f"{it['key']}.webp"
+        fname = f"{it['id']}.webp" if it['kind'] == 'replace' else f"{it['key']}.webp"
         q, size = save_webp(fin, os.path.join(DIST, bname, fname), q0=90 if it['kind'] != 'prop' else 92)
         seam = seam_score(fin) if it['wrap'] else None
         seam_y = seam_score(fin, 'y') if it['wrap'] == 'xy' else None
@@ -263,13 +297,25 @@ def cmd_finish(bname):
         elif it['group'] == 'materials':
             entry['materials'][it['id']] = rel(fname)
         else:
-            entry['props'].append({'id': it['id'], 'file': rel(fname), 'w': round(fin.width / 2),
-                                   'h': round(fin.height / 2), 'anchor': 'bottom', 'solid': bool(it['solid'])})
+            half = 1 if it['kind'] == 'replace' else 2
+            P = {'id': it['id'], 'file': rel(fname), 'w': round(fin.width / half), 'h': round(fin.height / half),
+                 'anchor': 'bottom', 'solid': bool(it['solid'])}
+            if it.get('layer'):
+                P['layer'] = it['layer']
+            if it.get('replaces'):
+                P['replaces'] = it['replaces']
+            entry['props'].append(P)
     mp = os.path.join(DIST, 'manifest.json')
     man = json.load(open(mp, encoding='utf-8')) if os.path.exists(mp) else {'version': 1, 'biomes': {}}
     man['version'] = 1
     man['biomes'][bname] = entry
-    man['biomes'] = {k: man['biomes'][k] for k in ORDER if k in man['biomes']}
+    if b.get('vista'):
+        entry['vista'] = b['vista']
+        entry['name'] = b['name']
+        man['biomes'][bname] = entry
+    from realisticno_svet import ORDER as SVET
+    order = ORDER + [f'svet-{v}' for v in SVET] + ['svet-predmeti']
+    man['biomes'] = {k: man['biomes'][k] for k in order if k in man['biomes']}
     man['note'] = ('Paths are relative to dist/assets/. Layers: w/h = image px, sky/back 1774x887 opaque, '
                    'far/mid/near 2172x724 RGBA, all tile horizontally with no seam (no crossfade needed), '
                    'bottom-anchored like dist/assets/world layers. interior.layers: same speeds, first is an '
@@ -328,6 +374,6 @@ if __name__ == '__main__':
     elif cmd == 'review':
         cmd_review(bname, keys)
     elif cmd == 'finish':
-        cmd_finish(bname)
+        cmd_finish(bname, keys)
     elif cmd == 'preview':
         cmd_preview(bname)

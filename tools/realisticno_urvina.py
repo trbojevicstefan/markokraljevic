@@ -439,3 +439,15 @@ BIOME = {
          'what': 'a big rounded grey boulder partly covered in thick green moss'},
     ],
 }
+
+BIOME['ground'] = {
+    'light': LIGHT, 'glight': 'soft cool morning daylight, dew on the surface', 'seed': 520,
+    'top': ('a mossy mountain forest path of dark earth, flat limestone stones, moss, fallen needles and small ferns',
+            (62, 66, 44), (140, 142, 126), 'stones'),
+    'front': ('the edge of a mountain path: an overhang of moss and grass on top, dark earth with limestone stones '
+              'and thin roots below', (74, 108, 52), (70, 60, 46), (48, 42, 34), 'grass'),
+    'fg': {'busen': ('a lush clump of ferns and mountain grass with dew', (72, 118, 56)),
+           'kamenje': ('a cluster of grey limestone rocks covered in moss', (130, 136, 120)),
+           'koren': ('twisted mossy roots of an old beech tree', (96, 90, 72)),
+           'ograda': ('a short piece of a rustic split-rail fence of grey weathered branches', (118, 110, 96))},
+}

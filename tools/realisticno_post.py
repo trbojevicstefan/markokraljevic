@@ -74,6 +74,11 @@ def key_layer(raw, draft=None, band=56, lo=70, hi=150, wrap_x=True, spill_band=2
     for ch in (0, 2):
         c[..., ch] = np.where(near, c[..., ch] - spill * 0.9, c[..., ch])
     c = np.clip(c, 0, 255)
+    # Half-transparent mist and glow over magenta un-mix to a false green or purple when alpha is a little off:
+    # take most of their colour away (they are light and haze, their hue comes from the layers behind).
+    soft = (a > 0.02) & (a < 0.9)
+    luma = (c[..., 0] * 0.3 + c[..., 1] * 0.55 + c[..., 2] * 0.15)[..., None]
+    c = np.where(soft[..., None], c * 0.3 + luma * 0.7, c)
     rgba = np.dstack([c, a * 255]).round().astype(np.uint8)
     return Image.fromarray(rgba, 'RGBA')
 
