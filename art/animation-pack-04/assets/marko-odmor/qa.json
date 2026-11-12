@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        105,
+        105,
+        407,
+        488
+      ],
+      "footY": 487,
+      "sha256": "c6663311e5caabb89540096784879bb0371aff69a3e372f383a0b8a443a11a8f"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        99,
+        134,
+        412,
+        488
+      ],
+      "footY": 487,
+      "sha256": "15e37490997176f2792603d4549896dbc5585bc914953e5329a1e3a0385329b8"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        86,
+        193,
+        425,
+        488
+      ],
+      "footY": 487,
+      "sha256": "b4b606a41ca4fe79638bd76d6c980e5b676fabc1459cdb25b23ece52dea3e132"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        71,
+        211,
+        440,
+        488
+      ],
+      "footY": 487,
+      "sha256": "5563d0708f485026dc55236e05f6546e9f06f8cc4b15be7323234baf3bddae00"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        73,
+        220,
+        439,
+        488
+      ],
+      "footY": 487,
+      "sha256": "e559db6735014bab792775262594fa2ecc083e34db3dd51d33d61ca254b9686d"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        68,
+        232,
+        443,
+        488
+      ],
+      "footY": 487,
+      "sha256": "b4d31155b68c56ee1626b0f7c0be61e5dbb9fafb86bb9725111b20f4cf9f2858"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": false,
+  "holdLastFrame": true,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8183760683760684,
+  "visualReview": "Pregledan atlas: sedanje, naslonjena ledja, topuz preko kolena; kamen se ne crta."
+}

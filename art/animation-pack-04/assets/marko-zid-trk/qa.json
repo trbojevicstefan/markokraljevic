@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        132,
+        105,
+        380,
+        488
+      ],
+      "footY": 487,
+      "sha256": "acbc81821afbd37147aa5ae0ec591c8f36ad5e60267589032debf3610d40d137"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        128,
+        124,
+        383,
+        488
+      ],
+      "footY": 487,
+      "sha256": "bf9b818a5107c384837c3a3b9ee2ff33bbf0a740291edd42e337f977d2bcba2b"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        130,
+        114,
+        381,
+        488
+      ],
+      "footY": 487,
+      "sha256": "33869d61215231bad9591226b543eeb07ec8755dca71d12b79585177bef6202c"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        130,
+        123,
+        381,
+        488
+      ],
+      "footY": 487,
+      "sha256": "6408ce0133e0bee29480f5328279efa37dbe24a3a434fa580ab102dc0ec9349c"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        133,
+        123,
+        378,
+        488
+      ],
+      "footY": 487,
+      "sha256": "06abec1fe984104e5cd783f44e4762dcd9ccbe7e3cda4cfe05cfaff8ebad9ce0"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        130,
+        110,
+        381,
+        488
+      ],
+      "footY": 487,
+      "sha256": "df07c22e619f67d886d6453550f390eb9fa1ab62a0c41902f457f4a6404a63f4"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": true,
+  "holdLastFrame": false,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.838074398249453,
+  "visualReview": "Pregledan atlas; donji red ponovo nacrtan radi razlicitih faza nogu. Stopala desno prema nevidljivom zidu, topuz u levoj ruci, ogrtac visi."
+}
