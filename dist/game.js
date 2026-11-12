@@ -1411,15 +1411,17 @@ const MOCI2={
  gaz:{name:'Šarčev gaz',key:'F ili R',color:'#ffe9c0',text:'Junački udar: Marko zazviždi, Šarac proleti i pregazi ceo red dušmana. 100 besa.'}};
 const moc2=id=>{const M=MOCI2[id];if(!M||!level?.greybox)return true;const v=world.gb?.moci?.[id];return v===undefined?!M.gate:!!v;};
 function moci2Tick(dt){if(p.grounded&&Math.abs(p.vx)>200)p.trkT=.3;else p.trkT=Math.max(0,(p.trkT||0)-dt);
+ if(p.slide>0)p.wasSliding=true;else if(p.wasSliding){p.wasSliding=false;p.slideCd=KLIZ_CD;}if(p.slideCd>0)p.slideCd-=dt;
+ if(gaz&&gaz.world!==world)gaz=null;if(talasi.some(w=>w.world!==world))talasi=talasi.filter(w=>w.world===world);
  if(p.grounded||p.climb||p.ledgeT>0)p.zidUsed=null;if(!(p.attack>0))p.launcher=false;
  zidotrkTick(dt);lanacTick(dt);okoTick(dt);komboTick(dt);udariTick(dt);izvoriTick(dt);istraziTick(dt);nalaziTick();
- if(tap('KeyC'))lanac();if(tap('KeyB'))oznaka();if(tap('KeyM'))openKarta();}
+ if(tap('KeyC'))lanac();const free=!(p.down>0)&&!(p.dizzy>0);if(free&&pressed.has('KeyB'))oznaka();if(free&&pressed.has('KeyM'))openKarta();}
 
 // ---------- Klizanje ----------
-const KLIZ_INV=.42;
+const KLIZ_INV=.32,KLIZ_CD=.4;   // untouchable for the first part of the slide only, and a breath before the next: no endless dodging
 function startKliz(dir){p.slide=SLIDE_TIME;p.slideDir=dir||p.face;p.slideHit=new Set();p.invuln=Math.max(p.invuln,KLIZ_INV);sfx('whoosh',{gain:.5,rate:.7});sfx('cloth',{gain:.5});dust(p.x,p.y,10,1.6);}
 // S pressed first slows Marko into a crouch, so the run is remembered for a moment (trkT)
-function slideShift(){if(!moc2('klizanje')||!p.grounded||horseMounted||!isDown('KeyS','ArrowDown')||!(p.trkT>0)||p.slide>0||p.attack>0||p.dash>0||p.down>0||p.climb||p.kick>0||p.drink>0)return false;startKliz(p.face);return true;}
+function slideShift(){if(!moc2('klizanje')||p.slideCd>0||tragBlocked()||!p.grounded||horseMounted||!isDown('KeyS','ArrowDown')||!(p.trkT>0)||p.slide>0||p.attack>0||p.dash>0||p.down>0||p.climb||p.kick>0||p.drink>0)return false;startKliz(p.face);return true;}
 
 // ---------- Trk po zidu ----------
 const ZID_TIME=1,ZID_SPEED=440;
@@ -1441,7 +1443,7 @@ function drawZidovi(){for(const z of world.zidovi||[]){if(z.x>camera+VIEW_W+40||
  ctx.restore();halo(z.x+z.w/2,ry,Math.min(240,z.w*.4),'rgba(255,210,122,.14)',on?1:.5+.3*pulse);}}
 
 // ---------- Vazdušni kombo ----------
-function launcherStrike(){if(!moc2('kombo')||!p.grounded||!isDown('KeyW','ArrowUp')||!tap('KeyK')||ladderNear())return false;p.crouching=false;p.crouch=0;
+function launcherStrike(){if(!moc2('kombo')||p.noMace||thrown||tragBlocked()||!p.grounded||!isDown('KeyW','ArrowUp')||!tap('KeyK')||ladderNear())return false;p.crouching=false;p.crouch=0;
  if(!cdReady('uvis')){cdDenied('uvis');return false;}cdStart('uvis');p.launchT=.6;p.attack=.42;p.attackKind='uvis';p.launcher=true;p.cooldown=.3;p.attackId=++attackSerial;sound('swing');sayGrunt(true);return true;}
 function lansiraj(e){e.vy=-780;e.juggle=1.6;e.lansiran=2.4;e.stun=Math.max(e.stun,1.6);p.zaNjim={e,t:.7};}
 function komboTick(dt){const z=p.zaNjim;if(z){z.t-=dt;
@@ -1450,7 +1452,7 @@ function komboTick(dt){const z=p.zaNjim;if(z){z.t-=dt;
   if(z.t<=0||z.done&&p.grounded)p.zaNjim=null;}
  for(const e of world.enemies)if(e.lansiran>0)e.lansiran-=dt;}
 function zakucanTalas(e){e.zakucan=false;fx('hit',e.x,e.y-20,true);burst(e.x,e.y-10,'#ffb86a',22,260);label('ZAKUCAN!',e.x,e.y-150,'#ffb86a');
- for(const o of world.enemies){if(o===e||!o.alive||o.champion||Math.abs(o.x-e.x)>150||Math.abs(o.y-e.y)>60)continue;o.hp-=20*(p.power||1);o.stun=Math.max(o.stun,1);o.mode='stun';o.vy=-280;o.grounded=false;o.air=true;o.juggle=.4;label(20,o.x,o.y-120);if(o.hp<=0)slay(o);}}
+ for(const o of world.enemies){if(o===e||!o.alive||o.champion||Math.abs(o.x-e.x)>150||Math.abs(o.y-e.y)>60)continue;if(udarFoe(o,20,Math.sign(o.x-e.x))>0&&o.alive&&!armored(o)){o.stun=Math.max(o.stun,1);o.mode='stun';o.vy=-280;o.grounded=false;o.air=true;o.juggle=.4;}}}
 
 // ---------- Ravijojlin lanac ----------
 const LANAC_REACH=430,LANAC_CD=.7,LANAC_FLY=2600,LANAC_PULL=1050,LAKI=new Set(['sword','archer','palikuca','pas','akindzija','tufekdzija','kopljanik']);
@@ -1461,7 +1463,7 @@ function lanacTarget(){const R=lanacReach(),h=lanacHand();let best=null,bs=1e9;
  if(best)return best;
  for(const e of world.enemies){if(!e.alive||e.held||e.grappling)continue;const dx=e.x-p.x;if(dx*p.face<30||Math.abs(dx)>R*.9||Math.abs(e.y-p.y)>130)continue;const s=Math.abs(dx);if(s<bs){bs=s;best={kind:e.champion||e.type==='oklopnik'||e.kit?'tezak':e.type==='shield'&&!(e.guardBroken>0)?'stit':LAKI.has(e.type)?'lak':'tezak',e};}}
  return best;}
-function lanac(){if(!moc2('lanac')){toast('Ravijojlin lanac još nije tvoj.',1.4);return;}if(p.lanac||horseMounted||p.climb||p.lying||p.pinned||p.down>0||finisher||grapple||gunner||p.ledgeT>0)return;
+function lanac(){if(!moc2('lanac')){toast('Ravijojlin lanac još nije tvoj.',1.4);return;}if(p.lanac||p.climb||p.ledgeT>0||tragBlocked())return;
  if(!cdReady('lanac')){cdDenied('lanac');return;}p.cd??={};p.cd.lanac=LANAC_CD*(am('srebrna-karika')?.6:1);
  const T=lanacTarget(),h=lanacHand();let tx,ty;if(T){tx=T.kind==='kuka'?T.x:T.e.x;ty=T.kind==='kuka'?T.y:T.e.y-60;}else{tx=h.x+p.face*lanacReach();ty=h.y-40;}
  if(T&&T.kind!=='kuka')p.face=Math.sign(tx-p.x)||p.face;
@@ -1473,14 +1475,14 @@ function lanacTick(dt){const L=p.lanac;if(!L)return;L.t+=dt;const h=lanacHand();
   if(!T){L.phase='back';L.dur=.18;sfx('clang',{gain:.3,rate:1.4});return;}
   if(T.kind==='kuka'||T.kind==='tezak'){L.phase='pull';L.dur=.75;p.airDash=false;p.dash=0;p.wall=0;p.grounded=false;p.zidotrk=null;sfx('clang',{gain:.5,rate:1.2,x:L.tx});burst(L.tx,L.ty,MOCI2.lanac.color,14,170);if(T.kind==='tezak')label('PRETEŽAK · K NJEMU!',T.e.x,T.e.y-150,'#d8d2c0');return;}
   const e=T.e;L.phase='yank';L.dur=.26;L.from=e.x;L.to=p.x+p.face*72;e.stun=Math.max(e.stun,1.1);e.mode='stun';e.vx=0;e.flash=.12;
-  if(T.kind==='stit'){e.guardBroken=3;e.hp-=6;label('ŠTIT OTET!',e.x,e.y-150,'#9fe8ff');sfx('shield',{gain:.8,x:e.x});L.to=e.x+(L.to-e.x)*.45;}
-  else{e.hp-=6;label('K MENI!',e.x,e.y-150,'#9fe8ff');sfx('hit',{gain:.45,x:e.x});e.vy=-220;e.grounded=false;e.air=true;e.juggle=.45;}
-  if(e.hp<=0)slay(e);return;}
+  if(T.kind==='stit'){e.guardBroken=3;label('ŠTIT OTET!',e.x,e.y-150,'#9fe8ff');sfx('shield',{gain:.8,x:e.x});L.to=e.x+(L.to-e.x)*.45;udarFoe(e,6);}
+  else{label('K MENI!',e.x,e.y-150,'#9fe8ff');sfx('hit',{gain:.45,x:e.x});e.vy=-220;e.grounded=false;e.air=true;e.juggle=.45;udarFoe(e,6);}
+  return;}
  if(L.phase==='pull'){const T=L.T,gx=T.kind==='kuka'?T.x:T.e.x-p.face*70,gy=T.kind==='kuka'?T.y+60:T.e.y;L.tx=T.kind==='kuka'?T.x:T.e.x;L.ty=T.kind==='kuka'?T.y:T.e.y-60;
   const dx=gx-p.x,dy=gy-p.y,d=Math.hypot(dx,dy);
   if(d<26||L.t>L.dur||(T.kind!=='kuka'&&!T.e.alive)||(p.wallHit&&L.t>.08&&Math.abs(dx)>30)){p.lanac=null;
    if(T.kind==='kuka'){p.vy=-650;p.vx=p.face*230;p.kriloUsed=false;p.naletUsed=false;p.naletN=0;p.coyote=0;burst(T.x,T.y,'#d8f6ff',16,170);sfx('cloth',{gain:.5});}
-   else{p.vx=0;p.vy=Math.min(p.vy,0);if(T.e.alive){T.e.stun=Math.max(T.e.stun,.5);T.e.mode='stun';}}return;}
+   else{p.vx=0;p.vy=Math.min(p.vy,0);if(T.e.alive&&!T.e.champion){T.e.stun=Math.max(T.e.stun,.5);T.e.mode='stun';}}return;}
   const s=Math.min(LANAC_PULL,d/dt);p.vx=dx/d*s;p.vy=dy/d*s-1750*dt;p.face=Math.sign(dx)||p.face;p.jumpBuffer=0;
   if(Math.floor(L.t/.03)!==L.g){L.g=Math.floor(L.t/.03);ghosts.push({...playerPose(),x:p.x,y:p.y,face:p.face,life:.16});}return;}
  if(L.phase==='yank'){const e=L.T.e,k=clamp(L.t/L.dur,0,1),ease=1-(1-k)*(1-k);if(e.alive){e.x=L.from+(L.to-L.from)*ease;L.tx=e.x;L.ty=e.y-60;}if(k>=1){p.lanac=null;}return;}
@@ -1502,7 +1504,7 @@ function drawKuke(){const T=!p.lanac&&moc2('lanac')&&lanacTarget();
 
 // ---------- Vilinsko oko ----------
 const OKO_MAX=3.2;
-function okoTick(dt){if(p.okoE===undefined)p.okoE=OKO_MAX;const want=isDown('KeyO')&&moc2('oko');if(!isDown('KeyO'))p.okoTired=false;
+function okoTick(dt){if(p.okoE===undefined)p.okoE=OKO_MAX;const oHeld=keys.has('KeyO')&&!(p.down>0)&&!(p.dizzy>0),want=oHeld&&moc2('oko');if(!oHeld)p.okoTired=false;   // the eye opens on a ledge too
  if(tap('KeyO')&&!moc2('oko'))toast('Vilinsko oko još nije tvoje.',1.4);
  if(want&&!p.okoTired&&(p.oko||p.okoE>.5)&&p.okoE>0){if(!p.oko){p.oko=true;sfx('magic',{gain:.5,rate:.8});burst(p.x,p.y-90,MOCI2.oko.color,14,120);}p.okoE=Math.max(0,p.okoE-dt*(am('vranino-pero')?.5:1));if(p.okoE<=0){p.oko=false;p.okoTired=true;sfx('magic',{gain:.25,rate:.5});}}
  else{if(p.oko)sfx('magic',{gain:.25,rate:.6});p.oko=false;p.okoE=Math.min(OKO_MAX,p.okoE+dt*.9);}
@@ -1572,7 +1574,7 @@ function izvoriTick(){if(!moc2('putovanje')&&!moc2('amajlije'))return;for(const 
 function izvorNear(){return izvori().find(s=>s.found&&Math.abs(p.x-s.x)<80&&Math.abs(p.y-s.y)<60);}
 let izvorAt=null;
 function useIzvor(){if(mode!=='play'||!(moc2('putovanje')||moc2('amajlije')))return false;const s=izvorNear();if(!s||!p.grounded||horseMounted)return false;
- if(world.enemies.some(e=>e.alive&&!e.spava&&Math.abs(e.x-p.x)<480&&Math.abs(e.y-p.y)<200)){toast('Ne možeš se odmoriti dok su dušmani blizu.',2);return true;}
+ if(world.enemies.some(e=>e.alive&&!e.spava&&Math.abs(e.x-p.x)<480&&Math.abs(e.y-p.y)<200)||zone===5&&!level&&boss?.alive){toast('Ne možeš se odmoriti dok su dušmani blizu.',2);return false;}   // E stays the fairy's in a fight
  openIzvor(s);return true;}
 function openIzvor(s){izvorAt=s;mode='izvor';keys.clear();pressed.clear();p.vx=0;
  p.hp=p.maxHp;p.wine=Math.max(p.wine||0,p.wineMax||3);p.energy=100;p.okoE=OKO_MAX;p.trag=null;
@@ -1649,24 +1651,34 @@ function izaberiUdar(id){if(!udarOtvoren(id))return false;const v=[...udari()],i
 const udarOtvoren=id=>id==='vihor'||id==='super'||moc2(id);
 const UK=id=>{const i=udari().indexOf(id);return i===0?'KeyF':i===1?'KeyR':'-';};
 const POTRES_COST=50,GAZ_COST=100;let talasi=[],gaz=null;
-function udarReady(cost,msg){if(!(has('junacki')||has('vihor'))){locked('junacki');return false;}if(p.rage<cost){toast(msg,2);return false;}
+// Every new blow (the quake, Šarac, the nailed foe's wave, the chain) is a heavy blow of the mace to the rules of the fight:
+// a shield and armour take it as they take the mace, a champion's guard, his acts and his kit decide (a banner on the rock, a fire
+// aga not yet winded give 0), and Musa takes it only when his guard is open. A champion is hurt by them, never thrown or stunned.
+function udarFoe(e,amount,dir){const k=p.attackKind,f=p.face;p.attackKind='heavy';p.face=dir||Math.sign(e.x-p.x)||p.face;let m;try{m=foeDefense(e,true);if(e.champion)m=champGuard(e,true,m);}finally{p.attackKind=k;p.face=f;}
+ if(!(m>0))return 0;const dmg=amount*m*(p.power||1)*(p.buff>0?1.3:1);e.hp-=dmg;e.flash=.15;e.hurtT=.34;label(Math.round(dmg),e.x,e.y-120,'#ffcf6a');if(e.hp<=0)slay(e,.6);return dmg;}
+const armored=e=>e.type==='oklopnik'&&(e.armor??3)>0;
+const musaNear=(x,y,r)=>zone===5&&!level&&boss?.alive&&Math.abs(boss.x-x)<r&&Math.abs(boss.y-y)<110;
+function udarMusa(amount){if(zone!==5||level||!boss?.alive||boss.stage==='joust'||boss.stage==='kostac')return 0;
+ if(!MUSA_OPEN.includes(boss.mode)){label('ČELIČNI GARD',boss.x,boss.y-170,'#c1ced4');sound('parry');boss.blockT=.45;return 0;}
+ const dmg=amount*(p.buff>0?1.3:1);boss.hp=Math.max(0,boss.hp-dmg);boss.hurtT=.34;boss.flash=.16;label(Math.round(dmg),boss.x,boss.y-160,'#ffcf6a');sound('hit');bossAfterDamage();return dmg;}
+function udarReady(cost,msg,mace){if(tragBlocked()||mace&&(p.noMace||thrown||p.throwT>0))return false;if(!(has('junacki')||has('vihor'))){locked('junacki');return false;}if(p.rage<cost){toast(msg,2);return false;}
  return!(p.cooldown>0||p.attack>0||p.dash>0||p.drink>0||horseMounted||!p.grounded||p.guardBreak>0||p.climb||p.spin>0);}
-function potres(){if(!udarReady(POTRES_COST,'Potres traži 50 besa · bes se puni udarcima'))return;p.rage-=POTRES_COST;p.attack=.52;p.attackKind='heavy';p.cooldown=.75;p.attackId=++attackSerial;p.charge=0;p.chargeable=false;p.potresT=.24;p.invuln=Math.max(p.invuln,.5);sound('swing');sayGrunt(true);toast('POTRES',1);}
+function potres(){if(!udarReady(POTRES_COST,'Potres traži 50 besa · bes se puni udarcima',true))return;p.rage-=POTRES_COST;p.attack=.52;p.attackKind='heavy';p.cooldown=.75;p.attackId=++attackSerial;p.charge=0;p.chargeable=false;p.potresT=.24;p.invuln=Math.max(p.invuln,.5);sound('swing');sayGrunt(true);toast('POTRES',1);}
 function sarcevGaz(){if(!udarReady(GAZ_COST,'Šarčev gaz traži 100 besa · bes se puni udarcima'))return;p.rage=0;p.invuln=Math.max(p.invuln,1.3);p.cooldown=.6;const dir=p.face;
- gaz={x:p.x-dir*(VIEW_W*.62),y:p.y,dir,t:0,hit:new Set(),step:-1};sfx('whistle',{gain:.7})||sfx('ring',{gain:.4,rate:1.8});say('horse',{priority:3});toast('ŠARČEV GAZ',1.2);}
+ gaz={x:p.x-dir*(VIEW_W*.62),y:p.y,dir,t:0,hit:new Set(),step:-1,world};sfx('whistle',{gain:.7})||sfx('ring',{gain:.4,rate:1.8});say('horse',{priority:3});toast('ŠARČEV GAZ',1.2);}
 function udariTick(dt){if(tap(UK('potres')))potres();if(tap(UK('gaz')))sarcevGaz();
- if(p.potresT>0){p.potresT-=dt;if(p.potresT<=0){const y=p.y;for(const dir of[-1,1])talasi.push({x:p.x+dir*40,y,dir,t:.9,hit:new Set()});sfx('boom',{gain:.9});sfx('rock',{gain:.8});shake=settings.reduced?0:8;rumble(.7,200);dust(p.x+p.face*50,p.y,22,2.6);burst(p.x+p.face*50,p.y-10,'#ffcf6a',26,260);}}
+ if(p.potresT>0){p.potresT-=dt;if(p.potresT<=0){const y=p.y;for(const dir of[-1,1])talasi.push({x:p.x+dir*40,y,dir,t:.9,hit:new Set(),world});sfx('boom',{gain:.9});sfx('rock',{gain:.8});shake=settings.reduced?0:8;rumble(.7,200);dust(p.x+p.face*50,p.y,22,2.6);burst(p.x+p.face*50,p.y-10,'#ffcf6a',26,260);}}
  for(const w of talasi){w.t-=dt;w.x+=w.dir*720*dt;
   const ground=world.platforms.some(q=>!q.off&&w.x>q.x&&w.x<q.x+q.w&&Math.abs(q.y-w.y)<26),wall=world.platforms.some(q=>q.solid&&!q.off&&w.x>q.x&&w.x<q.x+q.w&&q.y<w.y-20&&q.y+q.h>w.y-60);if(!ground||wall)w.t=0;
   if(Math.random()<.6)dust(w.x,w.y,2,1.4);
-  for(const e of world.enemies){if(!e.alive||w.hit.has(e)||Math.abs(e.x-w.x)>46||Math.abs(e.y-w.y)>70)continue;w.hit.add(e);const dmg=(e.champion?25:40)*(p.power||1);e.hp-=dmg;e.flash=.15;label(Math.round(dmg),e.x,e.y-120,'#ffcf6a');
-   if(!e.champion){e.vy=-480;e.grounded=false;e.air=true;e.climb=null;e.juggle=.6;e.stun=Math.max(e.stun,1.3);e.mode='stun';if(e.type==='shield')e.guardBroken=2;}else{e.stun=Math.max(e.stun,.4);}
-   sfx('hit',{gain:.6,x:e.x});if(e.hp<=0)slay(e,.6);}}
+  for(const e of world.enemies){if(!e.alive||w.hit.has(e)||Math.abs(e.x-w.x)>46||Math.abs(e.y-w.y)>70)continue;w.hit.add(e);const dmg=udarFoe(e,e.champion?25:40,w.dir);sfx(dmg>0?'hit':'shield',{gain:.6,x:e.x});
+   if(dmg>0&&e.alive&&!e.champion&&!armored(e)){e.vy=-480;e.grounded=false;e.air=true;e.climb=null;e.juggle=.6;e.stun=Math.max(e.stun,1.3);e.mode='stun';}}
+  if(!w.musa&&musaNear(w.x,w.y,60)){w.musa=true;udarMusa(40);}}
  talasi=talasi.filter(w=>w.t>0);
  if(gaz){const G=gaz;G.t+=dt;G.x+=G.dir*1150*dt;const s=Math.floor(G.t/.11);if(s!==G.step){G.step=s;sfx('hoof',{gain:.55,x:G.x});dust(G.x-G.dir*30,G.y,4,1.6);}
-  for(const e of world.enemies){if(!e.alive||G.hit.has(e)||Math.abs(e.x-G.x)>70||Math.abs(e.y-G.y)>100)continue;G.hit.add(e);const dmg=(e.champion?45:75)*(p.power||1);e.hp-=dmg;e.flash=.15;label(Math.round(dmg),e.x,e.y-120,'#ffe9c0');
-   if(!e.champion){e.vx=G.dir*520;e.vy=-560;e.grounded=false;e.air=true;e.climb=null;e.juggle=.8;e.stun=Math.max(e.stun,1.6);e.mode='stun';label('PREGAŽEN!',e.x,e.y-160,'#ffe9c0');}else e.stun=Math.max(e.stun,.8);
-   sfx('hit',{gain:.8,x:e.x});shake=settings.reduced?0:5;if(e.hp<=0)slay(e,1);}
+  for(const e of world.enemies){if(!e.alive||G.hit.has(e)||Math.abs(e.x-G.x)>70||Math.abs(e.y-G.y)>100)continue;G.hit.add(e);const dmg=udarFoe(e,e.champion?45:75,G.dir);sfx(dmg>0?'hit':'shield',{gain:.8,x:e.x});
+   if(dmg>0&&e.alive&&!e.champion&&!armored(e)){e.vx=G.dir*520;e.vy=-560;e.grounded=false;e.air=true;e.climb=null;e.juggle=.8;e.stun=Math.max(e.stun,1.6);e.mode='stun';label('PREGAŽEN!',e.x,e.y-160,'#ffe9c0');}if(dmg>0)shake=settings.reduced?0:5;}
+  if(!G.musa&&musaNear(G.x,G.y,80)){G.musa=true;udarMusa(70);}
   if(G.t>2.2||Math.abs(G.x-p.x)>VIEW_W*.9&&Math.sign(G.x-p.x)===G.dir)gaz=null;}}
 function drawUdari(){for(const w of talasi){const a=clamp(w.t/.9,0,1);ctx.save();ctx.globalAlpha=a;ctx.strokeStyle='#ffcf6a';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(w.x-w.dir*90,w.y);for(let i=0;i<6;i++)ctx.lineTo(w.x-w.dir*(90-i*15),w.y-(i%2?9:2));ctx.stroke();ctx.restore();halo(w.x,w.y-18,60,'rgba(255,207,106,.5)',a);}
  if(gaz){const G=gaz,bob=Math.abs(Math.sin(G.t*14))*9;for(let k=3;k>=1;k--)rigDraw('cast/sarac',0,G.x-G.dir*k*40,G.y+1-bob,G.dir,{sy:1+Math.sin(G.t*28)*.03,alpha:.3/k});
@@ -2533,7 +2545,7 @@ function ckptTick(){if(!level||mode!=='play')return;
  ckpt={x:p.x,y:p.y};ckptFlags.push({x:p.x-34,y:p.y,t:time});if(p.zaduzbina&&p.hp<p.maxHp){p.hp=Math.min(p.maxHp,p.hp+15*p.zaduzbina);label('BLAGOSLOV',p.x,p.y-170,'#ffe9a8');}toast('Barjak je podignut. Ako padneš, odavde nastavljaš.',2.4);sfx('cloth',{gain:.7});sfx('ring',{gain:.4,rate:.9});}
 function champReset(e){if(!e.pristine)return;const keep=e.pristine,P=JSON.parse(keep);for(const k of Object.keys(e))if(!(k in P))delete e[k];Object.assign(e,P);e.pristine=keep;}
 function ckptRespawn(){mode='play';horseMounted=false;{const t=strelaTrap();if(t&&t.locked){t.state=null;t.locked=false;t.fly=null;}}{const t=pogledTrap();if(t&&!t.done)t.state=null;}{const t=poteraTrap();if(t&&!t.done){t.state=null;t.vila=null;t.mace=null;}}endSequence=null;corpses=corpses.filter(c=>c.type!=='marko');arrows=[];fires=[];world.drops=[];grapple=null;finisher=null;arena=null;slowMo=0;hitstop=0;
- Object.assign(p,{x:ckpt.x,y:ckpt.y,vx:0,vy:0,hp:p.maxHp,grounded:true,noMace:false,invuln:2.5,attack:0,dash:0,down:0,hurt:0,drink:0,spin:0,plunge:0,slide:0,kick:0,dizzy:0,charge:0,combo:0,shoveT:0,pinned:false,blocking:false,crouching:false,climb:null,wall:0,rage:Math.min(p.rage||0,50),wine:Math.max(p.wine||0,2)});
+ Object.assign(p,{x:ckpt.x,y:ckpt.y,vx:0,vy:0,hp:p.maxHp,grounded:true,noMace:false,invuln:2.5,attack:0,dash:0,down:0,hurt:0,drink:0,spin:0,plunge:0,slide:0,kick:0,dizzy:0,charge:0,combo:0,shoveT:0,pinned:false,blocking:false,crouching:false,climb:null,wall:0,lanac:null,zidotrk:null,potresT:0,oko:false,slideCd:0,rage:Math.min(p.rage||0,50),wine:Math.max(p.wine||0,2)});
  {const c=world.enemies.find(e=>e.champion),A=c?.arena;for(const e of world.enemies){e.grappling=false;e.held=false;if(e.champion&&e.alive)champReset(e);else if(e.alive&&!e.trioMate&&(e.id>=40000||(e.id>=9100&&A&&e.x>A.x0-300&&e.x<A.x1+300)))e.alive=false;}}
  for(const q of world.platforms)if(q.cut){q.off=false;q.cut=false;}
  for(const t of world.traps||[])if(t.kind==='guslar'&&(t.fallen||t.state==='napad'||t.state==='odbrana')){t.state=null;t.fallen=false;t.wave=0;t.t=0;}
@@ -3716,7 +3728,7 @@ function wallClang(b){b.shake=.12;b.flash=.06;sfx('clang',{gain:.7,x:b.x});dust(
 function wallFalls(b){sfx('rock',{gain:1,rate:.7,x:b.x});sfx('boom',{gain:.6,rate:1.1,x:b.x});dust(b.x,b.y,22,2.6);burst(b.x,b.y-b.h/2,'#a59a80',40,280,'dust');shake=settings.reduced?0:7;rumble(.6,160);label('ZID JE PAO!',b.x,b.y-b.h-20,'#ffe39a');}
 // ---------- Marko's new moves: slide (S while running), kick (S+K), hanging from a ledge ----------
 function moveExtras(dt){if(p.ledgeCool>0)p.ledgeCool-=dt;markoFlow(dt);if(p.leverT>0)p.leverT-=dt;if(p.turnT>0)p.turnT-=dt;if(p.runStartT>0)p.runStartT-=dt;if(p.lastFace&&p.face!==p.lastFace&&p.grounded&&p.attack<=0&&!horseMounted&&!(p.slide>0)&&!p.blocking)p.turnT=TURN_TIME;p.lastFace=p.face;{const mv=p.grounded&&Math.abs(p.vx)>35;if(mv&&!p.wasMoving&&p.attack<=0&&!(p.turnT>0)&&!p.crouching&&!p.blocking)p.runStartT=RUNSTART_TIME;p.wasMoving=mv;}if(p.kickCd>0)p.kickCd-=dt;if(!level&&!world.vezbaliste||horseMounted)return;
- if(moc2('klizanje')&&!(p.slide>0)&&p.grounded&&p.attack<=0&&p.dash<=0&&!(p.down>0)&&!p.climb&&!(p.kick>0)&&Math.abs(p.vx)>200&&tap('KeyS','ArrowDown')&&!isDown('Space')){
+ if(moc2('klizanje')&&!(p.slideCd>0)&&!(p.castLock>0)&&!(p.slide>0)&&p.grounded&&p.attack<=0&&p.dash<=0&&!(p.down>0)&&!p.climb&&!(p.kick>0)&&Math.abs(p.vx)>200&&tap('KeyS','ArrowDown')&&!isDown('Space')){
   startKliz(Math.sign(p.vx));}
  if(p.slide>0){p.slide-=dt;if(p.slide<.1&&lowCeiling()&&!p.wallHit)p.slide=.1;if(!p.grounded||p.down>0)p.slide=0;else{p.vx=p.slideDir*(250+330*p.slide/SLIDE_TIME);p.face=p.slideDir;p.crouching=false;p.h=60;if(lowCeiling())p.crouch=1;if(Math.random()<.4)dust(p.x-p.slideDir*20,p.y,1,.8);
   for(const e of world.enemies){if(!e.alive||e.zone!==zone||e.champion||p.slideHit.has(e)||Math.abs(e.x-p.x)>48||Math.abs(e.y-p.y)>30)continue;p.slideHit.add(e);
