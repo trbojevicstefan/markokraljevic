@@ -8,7 +8,17 @@
 // Biom (`biom`) je iz manifesta realističnih slika (podgradje, urvina, klisura); `zeljeniBiom` kaže koji bi crtež tu išao.
 // Kuka dok greybox.js nema registar: ovaj fajl sam doda svoje nivoe u GB_NIVOI (world.js ga uvozi samo u pregledaču).
 import{GB_NIVOI}from'./greybox-nivoi.js';
+import{GB_MOCI}from'./greybox.js';
 import{lik}from'./zamke.js';
+
+// nove moći iz lc-pokreti (MOCI2 u game.js) kao oltari u greybox-u: greybox.js ih ne nabraja (mapa i meni ostaju sa tri moći),
+// ali ih oltar (B.shrine) i natpis nad ispustom nađu po imenu
+const NOVE={
+ klizanje:{name:'Klizanje',key:'u trku S + SHIFT',color:'#e8c890',text:'U trku kliziš po zemlji, ispod niskih prolaza i ispod udaraca.'},
+ zidotrk:{name:'Trk po zidu',key:'skoči na zid sa šarama',color:'#ffd27a',text:'Na zidu sa Ravijojlinim šarama pretrčiš nekoliko koraka vodoravno, pa skočiš sa njega (SPACE).'},
+ lanac:{name:'Ravijojlin lanac',key:'C',color:'#9fe8ff',text:'Lanac te privuče do srebrne kuke i vrati ti krilo i juriš.'},
+ oko:{name:'Vilinsko oko',key:'drži O',color:'#c3b2ff',text:'Dok držiš O, vidiš skrivene platforme i zidove koji su varka.'}};
+for(const [id,M] of Object.entries(NOVE))if(!GB_MOCI[id])Object.defineProperty(GB_MOCI,id,{value:M,enumerable:false,configurable:true});
 
 const CW=1200,CH=720;
 export const FY=row=>(row+1)*CH-130;   // pod reda: red 0 → 590, red -1 → -130, red 1 → 1310
@@ -33,7 +43,7 @@ const BOS={
 // ---------- the kit: rooms by name, and the passages written once for the build, the map and the test ----------
 function kit(sobe){
  const R={};for(const [id,name,gx,gy,w,h,o={}] of sobe)R[id]={id,name,gx,gy,w,h,x0:gx*CW,x1:(gx+w)*CW,y0:gy*CH,floor:FY(gy+h-1),top:gy,bottom:gy+h-1,...o};
- const K={R,vrata:[],rupe:[],veze:[],delovi:{},ops:[],brda:{},n:{borbe:0,likovi:0,zamke:0,krilo:0,nalet:0,trag:0,lomljiv:0,lazni:0,precica:0}};
+ const K={R,vrata:[],rupe:[],veze:[],delovi:{},ops:[],brda:{},n:{borbe:0,likovi:0,zamke:0,krilo:0,nalet:0,trag:0,lomljiv:0,lazni:0,precica:0,klizanje:0,zidotrk:0,lanac:0,oko:0,iluzija:0,nalazi:0}};
  const room=id=>{const r=R[id];if(!r)throw new Error(`nema sobe ${id}`);return r;};
  const node=(id,row)=>{const r=room(id);row??=r.bottom;if(row<r.top||row>r.bottom)throw new Error(`${id} nema red ${row}`);return r.h>1?`${id}@${row}`:id;};
  const X=(id,dx)=>room(id).x0+dx;
@@ -100,8 +110,36 @@ function kit(sobe){
    K.pit(id,dx,dx+pw,{name:`pit-greda-${id}-${dx}`});
    op(B=>{const q=B.plank(x,F,w);B.greda(q,{ax:x,bx:x+span,period:o.period??3.4,phase:o.phase??0});});return K;},
   // a guslar who sings the song's verses as Marko comes near, and the song's people, each with a line
-  guslar(id,dx,stih,row){K.n.likovi++;op(B=>B.strelnica({zamka:{kind:'guslar',x:X(id,dx),y:FY(row??room(id).bottom),mir:true,state:'ceka',hp:100,stih,t:0}}));return K;},
-  lik(id,dx,clip,text,row,o={}){K.n.likovi++;op(B=>B.strelnica({zamka:lik({x:X(id,dx),y:FY(row??room(id).bottom),clip,text,...o})}));return K;},
+  guslar(id,dx,stih,row){K.n.likovi++;op(B=>{const z={kind:'guslar',x:X(id,dx),y:FY(row??room(id).bottom),mir:true,state:'ceka',hp:100,stih,t:0};B.zamka?B.zamka(z):B.strelnica({zamka:z});});return K;},
+  lik(id,dx,clip,text,row,o={}){K.n.likovi++;op(B=>{const z=lik({x:X(id,dx),y:FY(row??room(id).bottom),clip,text,...o});B.zamka?B.zamka(z):B.strelnica({zamka:z});});return K;},
+  // ---- moći iz lc-pokreti ----
+  // oltar: nova moć na kamenu, kao krilo i juriš (B.shrine; GB_MOCI je zna po imenu)
+  oltar:(moc,id,dx,row)=>op(B=>B.shrine(moc,X(id,dx),FY(row??room(id).bottom))),
+  // amajlija na tlu (world.nalazi); bez imena daje sledeću amajliju koju Marko još nema
+  nalaz(id,dx,row,o={}){K.n.nalazi++;op(B=>B.nalaz?.({x:X(id,dx),y:FY(row??room(id).bottom),...o}));return K;},
+  // zid koji je varka (iluzija): izgleda kao zid, a uvek se prolazi; Vilinsko oko ga ocrta
+  iluzija(id,dx,row,w=40,h=260){K.n.iluzija++;const F=FY(row??room(id).bottom);op(B=>B.block(X(id,dx),F-h,w,h,{kind:'iluzija',iluzija:true,off:true,solid:false}));return K;},
+  // izazov nove moći usred sobe, koji je deli na delove: dir 1 ide udesno (`soba>`, pa `soba>>`), -1 ulevo (`soba<`, `soba<<`).
+  // `edge` je bliža ivica prepreke. klizanje: nizak prolaz (60 px) ispod nadvratnika; lanac: ponor od 650 px sa dve srebrne kuke;
+  // zidotrk: ponor od 650 px pod zidom sa šarama; oko: ponor od 650 px sa skrivenim daskama. Bez moći se ne prelazi (test proba).
+  izazov(id,edge,moc,o={}){const r=room(id),dir=o.dir??1,row=r.bottom,F=r.floor,top=row*CH,W=moc==='klizanje'?200:650,e=r.x0+edge,x0=dir>0?e:e-W,x1=x0+W;K.n[moc]++;
+   const mark=dir>0?'>':'<',parts=Object.keys(K.delovi).filter(k=>K.delovi[k].room===id&&k.startsWith(id+mark)),prev=parts.at(-1),near=prev||node(id),far=id+mark.repeat(parts.length+1);
+   if(prev){if(dir>0)K.delovi[prev].x1=x0;else K.delovi[prev].x0=x1;}K.delovi[far]=dir>0?{room:id,x0:x1}:{room:id,x1:x0};
+   const farE=dir>0?x1:x0,how=[e,farE,F,farE+dir*220,e-dir*220];
+   if(moc==='klizanje'){op(B=>B.block(x0,top,W,F-60-top,{lintel:true}));K.veze.push([near,far,moc,false,{slide:how}]);return far;}
+   const name=`pit-${moc}-${id}-${edge}`;K.rupe.push([id,x0-r.x0,x1-r.x0,{lip:dir>0?'R':'L'}]);op(B=>B.pit(name,x0,x1,F+150));
+   if(moc==='lanac')op(B=>{B.kuka(x0+180,F-240);B.kuka(x1-180,F-240);});
+   if(moc==='zidotrk')op(B=>B.zid(x0+15,F-260,W-30,220));
+   if(moc==='oko')op(B=>{for(const [a,b] of [[130,290],[360,520]])B.block(x0+a,F,b-a,18,{kind:'oko',oko:true,off:true});});
+   K.veze.push([near,far,moc,false,{[moc==='lanac'?'hook':moc==='zidotrk'?'zidrun':'okom']:how}]);return far;},
+  // Ravijojlina staza: soba od tri polja uz `do` sa dva izazova moći `moc` i tajnom sobom iza njih (iza zida koji je varka);
+  // dir -1: staza je levo od `do` (zapadno krilo), 1: desno. Na pola puta je amajlija na tlu.
+  staza({soba,tajna,do:uz,moc,dir=-1,nalaz=true}){const r=room(soba),row=r.bottom;
+   if(dir<0){K.door(soba,uz,row);K.izazov(soba,2900,moc,{dir});const mid=K.izazov(soba,moc==='klizanje'?1400:1500,moc,{dir});K.door(tajna,soba,row);
+    K.iluzija(soba,-20,row);if(nalaz)K.nalaz(soba,moc==='klizanje'?1900:1850,row);void mid;}
+   else{K.door(uz,soba,row);K.izazov(soba,700,moc,{dir});K.izazov(soba,2100,moc,{dir});K.door(soba,tajna,row);
+    K.iluzija(soba,r.x1-r.x0-20,row);if(nalaz)K.nalaz(soba,moc==='klizanje'?1750:1750,row);}
+   return K;},
   // the land's champion in the last room, with his arena furniture
   bos(id,kind,o={}){const r=room(id),S=BOS[kind],y=r.floor,x0=r.x0+40,x1=r.x1-40,len=x1-x0,planks=[],a={block:(k,w,h,bo)=>op(B=>B.block(Math.round(x0+len*k-w/2),y-h,w,h,bo))};
    S.arena(a,(k,dy,w=150)=>planks.push([len*k,dy,w]));K.bosRoom=id;
@@ -109,13 +147,14 @@ function kit(sobe){
  return K;}
 
 // one level from its words: the kit runs once, here, and build(B) replays what it set down
-function pohod(def){const K=kit(def.sobe);def.gradi(K);
+export function pohod(def){const K=kit(def.sobe);def.gradi(K);
  // a door out of the right side of a room whose far part lies past an abyss leaves from that part
  // a hole must not open over another hole in the floor below it
  for(const [id,a,b,o] of K.rupe){if(!o.to)continue;const r=K.R[id],t=K.R[K.delovi[o.to]?.room||o.to.split('@')[0]];for(const [id2,a2,b2] of K.rupe)if(id2===t.id&&r.x0+a<t.x0+b2&&t.x0+a2<r.x0+b)throw new Error(`${def.id}: rupa u ${id} (${a}–${b}) pada u rupu u ${id2} (${a2}–${b2})`);}
  // the champion's arena closes behind Marko: the door into it goes one way
  for(const v of K.vrata)if(v[1]===K.bosRoom)v[3].oneway=true;
  for(const v of K.vrata){const [a,,row,o]=v;if(o.na)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===a&&d.x1==null&&row===K.R[a].bottom)o.na=name;}
+ for(const v of K.vrata){const [,b,row,o]=v;if(o.nb)continue;for(const [name,d] of Object.entries(K.delovi))if(d.room===b&&d.x0==null&&d.x1!=null&&row===K.R[b].bottom)o.nb=name;}
  const{gradi,...rest}=def;
  return{...rest,vrata:K.vrata,rupe:K.rupe,delovi:K.delovi,veze:K.veze,brda:def.brda||{},broj:K.n,bosSoba:K.bosRoom,build(B){for(const f of K.ops)f(B);}};}
 
@@ -124,10 +163,12 @@ export const GB_POHODI={
 // 4 · Kosovsko selo („Jao Šaro, moje desno krilo“): selo pod turskom stražom, kapija zatvorena iznutra. Marko ulazi preko
 // osmatračnice i palisade, spušta se na trg i otvara kapiju (prečica); Sokolovo krilo čeka u Šarčevoj štali, dole kraj bunara,
 // a sa njim se penje na zvonik i na kulu nad bunarom, gde čeka Kopljanik-baša.
-4:pohod({id:'selo',ime:'Kosovsko selo',biom:'podgradje',zeljeniBiom:'selo',daje:'krilo',pocetne:[],
+4:pohod({id:'selo',ime:'Kosovsko selo',biom:'podgradje',zeljeniBiom:'selo',daje:'krilo',daje2:'klizanje',pocetne:[],
  cilj:'Uđi u selo, nađi Šarčevu štalu i popni se na kulu nad bunarom',start:'livada',spawnDx:260,
  uvod:'Kosovsko selo. Kapija je zatvorena iznutra, a na kuli nad bunarom sedi Kopljanik-baša. Sokolovo krilo čeka u Šarčevoj štali; uđi preko osmatračnice.',
  sobe:[
+  ['skroviste','Vilinsko skrovište',-5,0,1,1,{secret:true,interior:true,lore:'Vilinsko skrovište. Ovde je Ravijojla čuvala Šarčevu srebrnu potkovicu dok Marko ne dođe po nju.'}],
+  ['staza','Ravijojlina staza',-4,0,3,1,{interior:true}],
   ['livada','Livada pred selom',-1,0,1,1],
   ['put','Seoski put',0,0,1,1],
   ['straza','Osmatračnica',1,-1,1,2],
@@ -153,6 +194,8 @@ export const GB_POHODI={
  gradi(K){
   // Livada: početak, guslar peva o Šarcu, prvi čekpoint
   K.guslar('livada',760,['Jao Šaro, moje desno krilo,','čistim ću te srebrom potkovati,','čistim srebrom i žeženim zlatom.']);K.prop('drvo','livada',1050,300);
+  // Ravijojlina staza (zapadno od livade): dva niska prolaza za klizanje, amajlija na tlu, vilinsko skrovište iza zida koji je varka
+  K.staza({soba:'staza',tajna:'skroviste',do:'livada',moc:'klizanje'});K.cudo('skroviste',600,'Srebrna potkovica');K.lik('staza',3300,'vila-spreda','Ravijojla: Niski prolazi se prelaze samo klizanjem. Kamen za klizanje je u Šarčevoj štali.');
   K.door('livada','put',0);
   // Seoski put: prva borba (janičar i strelac na kamenu), putnica koja beži iz sela
   K.block('put',700,120,200,120);K.borba('put',[['sword',500],['archer',800,120]]);K.lik('put',250,'putnica-idle','Ne idi kroz kapiju, junače! Zatvorili su je iznutra. Popni se na osmatračnicu.');
@@ -187,17 +230,19 @@ export const GB_POHODI={
   // Tunel: daske koje popuštaju nad jamom, strelnica
   K.crumble('tunel',800,180,1);K.crumble('tunel',980,180,1);K.pit('tunel',800,1160);K.strelnica('tunel',2380,{every:2.4});K.door('tunel','stala',1);
   // Šarčeva štala: krilo, treći čekpoint; Šarac čeka (volovi kao stoka u štali)
-  K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
+  K.ckpt('stala',300,1);K.shrine('krilo','stala',700,1);K.oltar('klizanje','stala',1100,1);K.lik('stala',1500,'volovi-plug','Šarac je odveden na kulu nad bunarom, a ovde su ostali samo volovi.',1);
   // Izvor pod bunarom i riznica: napukli zid
   K.door('izvor','bunar',2);K.heart('izvor',400,2);K.crack('bunar','riznica',{row:1});K.cudo('riznica',700,'Seoski dukati',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 5 · Manastirski vis („Uroš i Mrnjavčevići“): četiri tabora na brdu kod crkve Samodreže, Marko ih obilazi gornjim putem
 // i spušta se u manastirski dvor (prečica do kapije). U kripti mu Ravijojla daje juriš u vazduhu; njime se prelazi provalija
 // pod manastirom do gubilišta, gde čeka Dželat, i ponor u kripti do isposnice.
-5:pohod({id:'manastir',ime:'Manastirski vis',biom:'klisura',zeljeniBiom:'manastir',daje:'nalet',pocetne:['krilo'],
+5:pohod({id:'manastir',ime:'Manastirski vis',biom:'klisura',zeljeniBiom:'manastir',daje:'nalet',daje2:'lanac',pocetne:['krilo'],
  cilj:'Obiđi četiri tabora, nađi juriš u kripti i pređi provaliju do gubilišta',start:'podnozje',spawnDx:260,
  uvod:'Manastirski vis. Četiri tabora stoje oko crkve Samodreže, a manastirska kapija je zaključana iznutra. Juriš u vazduhu čeka u kripti; bez njega se provalija do gubilišta ne prelazi.',
  sobe:[
+  ['vskrov','Zvono pod stenom',-5,0,1,1,{secret:true,interior:true,lore:'Zvono pod stenom. Kaluđeri su ga sakrili od Turaka u steni; Marko ga je izvukao lancem i vratio na crkvu.'}],
+  ['vstaza','Litica isposnika',-4,0,3,1,{interior:true}],
   ['podnozje','Podnožje brda',-1,0,1,1],
   ['staza','Staza uz brdo',0,0,2,1],
   ['tabor1','Tabor kralja Vukašina',0,-1,1,1],
@@ -221,6 +266,8 @@ export const GB_POHODI={
   ['isposnica','Isposnica',6,1,1,1,{secret:true,interior:true,lore:'Isposnica. Ovde se iguman molio četrdeset dana da Marko presudi po pravdi.'}]],
  brda:{podnozje:[[500,900,40]],staza:[[1000,1400,50]],vinograd:[[200,700,40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (lanac), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi kripta
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'podnozje',moc:'lanac'});K.cudo('vskrov',600,'Zvono pod stenom');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Ponori sa srebrnim kukama prelaze se Ravijojlinim lancem (C), od kuke do kuke. Kamen za tu moć je u sobi Kripta.');
   // Podnožje i staza: guslar peva Jevrosimin savet; prva borba; krilo do prvog tabora
   K.guslar('podnozje',760,['Nemoj, sine, govoriti krivo,','ni po babu, ni po stričevima,','već po pravdi Boga istinoga.']);K.prop('krst','podnozje',1000,170);K.door('podnozje','staza',0);
   K.block('staza',1700,120,200,120);K.borba('staza',[['sword',1200],['archer',1800,120]]);K.wing('staza',500,{upper:'tabor1'});K.door('staza','konak',0);
@@ -250,15 +297,17 @@ export const GB_POHODI={
   // Podrum konaka: šiljci, daske koje popuštaju, dimnjak gore; napukli zid do kosturnice
   K.chimney('podrum',250,{upper:'konak'});K.spikes('podrum',550,100);K.crumble('podrum',700,150,1,0);K.heart('podrum',1000,1);K.crack('podrum','kosturnica',{row:1});K.cudo('kosturnica',700,'Sveća za pale',1);
   // Kripta: čekpoint, juriš; dimnjak u dvor; ponor do isposnice
-  K.ckpt('kripta',300);K.shrine('nalet','kripta',650);K.chimney('kripta',1000,{upper:'dvor'});K.dash('kripta',1250);K.door('kripta','isposnica',1);K.heart('isposnica',600,1);}}),
+  K.ckpt('kripta',300);K.shrine('nalet','kripta',650);K.oltar('lanac','kripta',850);K.chimney('kripta',1000,{upper:'dvor'});K.dash('kripta',1250);K.door('kripta','isposnica',1);K.heart('isposnica',600,1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 6 · Oranje drumova („Oranje Marka Kraljevića“): Marko ore careve drumove, janičari gaze oranje. Han na drumu ima zadnja
 // vrata na daleki prekidač; Vilin trag čeka u podrumu hana, ispod jarka. Iza hana su carski drum, srušen most i turski
 // tabor sa tri tovara blaga, gde čekaju Tri janičara. Tovari su skriveni: u karauli, u vodenici i pod taborom.
-6:pohod({id:'oranje',ime:'Oranje drumova',biom:'podgradje',zeljeniBiom:'oranje',daje:'trag',pocetne:['krilo','nalet'],
+6:pohod({id:'oranje',ime:'Oranje drumova',biom:'podgradje',zeljeniBiom:'oranje',daje:'trag',daje2:'zidotrk',pocetne:['krilo','nalet'],
  cilj:'Nađi Vilin trag pod hanom, prođi zadnja vrata hana i stigni do turskog tabora',start:'dom',spawnDx:240,
  uvod:'Oranje drumova. Majka kaže: ostavi četovanje, uzmi plug i volove. Ali drum gaze janičari, a zadnja vrata hana otvara daleki prekidač. Vilin trag je u podrumu hana.',
  sobe:[
+  ['vskrov','Rimska riznica',-5,0,1,1,{secret:true,interior:true,lore:'Rimska riznica. Pod zidom starog grada orač je izorao stari novac; Marko ga je dao za crkvu.'}],
+  ['vstaza','Zid starog grada',-4,0,3,1,{interior:true}],
   ['dom','Markov dom',-1,0,1,1],
   ['njiva','Njiva',0,0,2,1],
   ['brdo','Brdo nad njivom',0,-1,2,1],
@@ -282,6 +331,8 @@ export const GB_POHODI={
   ['blago','Blago pod taborom',10,1,1,1,{secret:true,interior:true,lore:'Blago pod taborom. Treći tovar: Marko ga je odneo majci, a ona ga razdelila sirotinji.'}]],
  brda:{dom:[[500,900,40]],njiva:[[1200,1700,-40]],drum2:[[300,800,50]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (zidotrk), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi podrum
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'dom',moc:'zidotrk'});K.cudo('vskrov',600,'Stari novac');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Zid sa šarama pretrčiš samo trkom po zidu: skoči na njega i drži smer, pa SPACE. Kamen za tu moć je u sobi Podrum hana.');
   // Markov dom: guslar i majka Jevrosima
   K.guslar('dom',820,['„More Marko, ne ori drumova!”','„More Turci, ne gaz’te oranja!”','„To sam tebe danas izorao.”']);
   K.lik('dom',450,'putnica-idle','Jevrosima: Ostavi, sine, četovanje. Uzmi plug i volove, pa ori brda i doline.');K.door('dom','njiva',0);
@@ -306,16 +357,18 @@ export const GB_POHODI={
   // Jarak: greda nad jamom, daske, dimnjak gore; lažni zid do jazbine
   K.chimney('jarak',1200,{upper:'drum'});K.greda('jarak',1500,{span:220});K.crumble('jarak',300,150,1);K.fake('jarak','jazbina',{row:1});K.heart('jazbina',500,1);K.door('jarak','podrum',1);
   // Podrum hana: Vilin trag, čekpoint; potok i vodenica iza vrata na prekidač
-  K.ckpt('podrum',300);K.shrine('trag','podrum',750);K.door('podrum','potok',1);
+  K.ckpt('podrum',300);K.shrine('trag','podrum',750);K.oltar('zidotrk','podrum',1000);K.door('podrum','potok',1);
   K.strelnica('potok',300,{dir:1,every:2.6});K.trace('potok','vodenica');K.cudo('vodenica',700,'Drugi tovar blaga',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 7 · Opsednuta tvrđava („Marko poznaje očinu sablju“): pod tvrđavom na Marici je turski opsadni logor; kapija je zatvorena
 // iznutra. Marko prolazi lagumima ispod reke do cisterne, gde čeka Sokolovo krilo, i izlazi iza kapije (prečica).
 // Krilom se penje na bedem, do oružarnice sa Vukašinovom sabljom i na kulu Hasan-age.
-7:pohod({id:'tvrdjava',ime:'Opsednuta tvrđava',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'krilo',pocetne:[],
+7:pohod({id:'tvrdjava',ime:'Opsednuta tvrđava',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'krilo',daje2:'oko',pocetne:[],
  cilj:'Prođi lagumima do cisterne, otvori kapiju i popni se na kulu Hasan-age',start:'logor',spawnDx:260,
  uvod:'Opsednuta tvrđava na Marici. Kapija je zatvorena iznutra. Lagumi idu ispod reke do cisterne; tamo čeka Sokolovo krilo, a sa njim bedem i kula Hasan-age.',
  sobe:[
+  ['vskrov','Skrivena kapela',-5,0,1,1,{secret:true,interior:true,lore:'Skrivena kapela. Branioci tvrđave su se ovde molili sv. Đorđu; most do nje vidi samo vila.'}],
+  ['vstaza','Vilinski most',-4,0,3,1,{interior:true}],
   ['logor','Opsadni logor',-1,0,1,1],
   ['sanac','Topovski šanac',0,0,2,1],
   ['osmatracnica','Osmatračnica nad šancem',1,-1,1,1],
@@ -339,6 +392,8 @@ export const GB_POHODI={
   ['izvor','Izvor pod cisternom',6,2,1,1,{interior:true}]],
  brda:{logor:[[500,900,40]],obala:[[200,700,-40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (oko), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi cisterna
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'logor',moc:'oko'});K.cudo('vskrov',600,'Ikona sv. Đorđa');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Daske preko ponora vide se samo Vilinskim okom: drži O dok prelaziš. Kamen za tu moć je u sobi Cisterna.');
   // Opsadni logor: guslar i Novak kovač
   K.guslar('logor',780,['Na sablji su tri slova rišćanska:','jedno slovo Novaka kovača,','drugo slovo Vukašina kralja.']);
   K.lik('logor',450,'novak-kuje','Novak kovač: Tu sablju sam kovao Vukašinu. Samo njegov sin će je izvaditi iz korica.');K.door('logor','sanac',0);
@@ -366,16 +421,18 @@ export const GB_POHODI={
   K.borba('lagum2',[['sword',700],['shield',1200],['pas',1700]]);K.spikes('lagum2',2000,100,1);K.door('lagum2','lagum3',1);
   K.greda('lagum3',900,{span:220});K.strelnica('lagum3',2380,{every:2.6});K.door('lagum3','cisterna',1);
   // Cisterna: krilo i čekpoint; dimnjak do kapije; napukli zid do tamnice; izvor ispod
-  K.ckpt('cisterna',150);K.shrine('krilo','cisterna',1000);K.chimney('cisterna',660,{upper:'kapija'});K.crack('cisterna','tamnica',{row:1});K.cudo('tamnica',700,'Tri slova',1);
+  K.ckpt('cisterna',150);K.shrine('krilo','cisterna',1000);K.oltar('oko','cisterna',780);K.chimney('cisterna',660,{upper:'kapija'});K.crack('cisterna','tamnica',{row:1});K.cudo('tamnica',700,'Tri slova',1);
   K.chimney('izvor',340,{upper:'cisterna'});K.heart('izvor',800,2);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 8 · Zaboravljeni podrum („Marko pije uz ramazan vino“): car je zabranio vino uz ramazan, a Marko pije u mehani nad
 // starim podrumima. Gvozdena vrata podruma su zatvorena iznutra; put vodi dole, do vrela gde čeka juriš u vazduhu, preko
 // ponora pod vinskim podrumom i kroz stari podrum nazad gore, do barutane u kojoj Ognjeni aga hoće da zapali zalihe.
-8:pohod({id:'podrum',ime:'Zaboravljeni podrum',biom:'podgradje',zeljeniBiom:'podrum',daje:'nalet',pocetne:['krilo'],
+8:pohod({id:'podrum',ime:'Zaboravljeni podrum',biom:'podgradje',zeljeniBiom:'podrum',daje:'nalet',daje2:'klizanje',pocetne:['krilo'],
  cilj:'Siđi do vrela po juriš, pređi ponor i otvori gvozdena vrata iznutra',start:'mehana',spawnDx:240,
  uvod:'Zaboravljeni podrum. Car je zabranio vino uz ramazan, a Ognjeni aga hoće da zapali zalihe. Gvozdena vrata su zatvorena iznutra; juriš u vazduhu čeka dole, kraj podzemnog vrela.',
  sobe:[
+  ['vskrov','Skrivena kaca',-5,0,1,1,{secret:true,interior:true,lore:'Skrivena kaca. Kaca od dvanaest oka, Markova; car je za nju znao, ali nije smeo da je traži.'}],
+  ['vstaza','Niski podrumi',-4,0,3,1,{interior:true}],
   ['mehana','Mehana',-1,0,1,1,{interior:true}],
   ['prolaz','Prolaz pod čaršijom',0,0,2,1,{interior:true}],
   ['carsija','Čaršija',0,-1,2,1],
@@ -399,6 +456,8 @@ export const GB_POHODI={
   ['tamnica','Careva tamnica',8,1,1,1,{secret:true,interior:true,lore:'Careva tamnica. Ovde je čauš držao one što piju uz ramazan; Marko ih je pustio i počastio.'}]],
  brda:{carsija:[[1500,2100,40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (klizanje), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi izvor
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'mehana',moc:'klizanje'});K.cudo('vskrov',600,'Zlatna kupa');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Niski prolazi se prelaze samo klizanjem: zaleti se i pritisni S. Kamen za tu moć je u sobi Podzemno vrelo.');
   // Mehana: guslar i krčmarica; prolaz sa prvom borbom, krilo do čaršije, rupa u donji podrum
   K.guslar('mehana',800,['Marko nosi zelenu dolamu,','Marko pije uz ramazan vino,','još nagoni odže i adžije.']);
   K.lik('mehana',450,'janja-toci','Krčmarica: Pij, Marko, car je zabranio, ali ovde ga niko ne pita.');K.door('mehana','prolaz',0);
@@ -418,7 +477,7 @@ export const GB_POHODI={
   K.borba('donji',[['pas',700],['pas',1000],['sword',1250]]);K.fake('donji','grobnica',{row:1});K.heart('grobnica',500,1);
   K.chimney('donji',1000,{upper:'prolaz'});K.drop('donji',1500,1700,'izvor');K.door('donji','cisterna',1);
   // Podzemno vrelo: juriš i čekpoint, dimnjak nazad
-  K.ckpt('izvor',150);K.shrine('nalet','izvor',350);K.chimney('izvor',600,{upper:'donji'});
+  K.ckpt('izvor',150);K.shrine('nalet','izvor',350);K.oltar('klizanje','izvor',900);K.chimney('izvor',600,{upper:'donji'});
   // Cisterna: daske nad vodom; ponor samo za juriš
   K.crumble('cisterna',400,180,1);K.crumble('cisterna',580,180,1);K.pit('cisterna',400,760);K.door('cisterna','ponor',1);
   K.dash('ponor',700);K.door('ponor','vinarija',1);
@@ -428,10 +487,12 @@ export const GB_POHODI={
 // 9 · Noćna močvara („Lov Markov s Turcima“): kraj Zelenog jezera vezir je slomio krilo Markovom sokolu o jelu. Marko ide
 // kroz tršćak i potopljene prelaze; Vilin trag čeka na Vilinom ostrvu ispod vode, a vezirov čardak ima zadnja vrata na
 // daleki prekidač. Iza čardaka je lovačka staza do Zelenog jezera, gde čeka Tufekdžija-baša sa vezirovim delijama.
-9:pohod({id:'mocvara',ime:'Noćna močvara',biom:'urvina',zeljeniBiom:'mocvara',daje:'trag',pocetne:['krilo','nalet'],
+9:pohod({id:'mocvara',ime:'Noćna močvara',biom:'urvina',zeljeniBiom:'mocvara',daje:'trag',daje2:'lanac',pocetne:['krilo','nalet'],
  cilj:'Nađi Vilin trag na ostrvu pod vodom, prođi vezirov čardak i stigni do Zelenog jezera',start:'obala',spawnDx:240,
  uvod:'Noćna močvara. Vezir je slomio krilo Markovom sokolu. Vezirov čardak ima zadnja vrata na daleki prekidač; Vilin trag svetli na ostrvu ispod vode.',
  sobe:[
+  ['vskrov','Ostrvo utava',-5,0,1,1,{secret:true,interior:true,lore:'Ostrvo utava. Utve zlatokrile ovde noće; Markov soko ih čuva, a vezirov ih nikad ne nađe.'}],
+  ['vstaza','Kuke nad vodom',-4,0,3,1,{interior:true}],
   ['obala','Obala jezera',-1,0,1,1,{set:'reka'}],
   ['vrbak','Vrbak',-1,-1,1,1,{set:'suma'}],
   ['trscak','Tršćak',0,0,2,1,{set:'reka'}],
@@ -455,6 +516,8 @@ export const GB_POHODI={
   ['kaliste','Kalište',8,1,1,1,{secret:true,interior:true,lore:'Kalište. Ovde se Markov soko oporavio, pre nego što je opet poleteo za utvom.'}]],
  brda:{obala:[[500,900,-30]],staza:[[400,900,50]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (lanac), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi svetiljke
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'obala',moc:'lanac'});K.cudo('vskrov',600,'Utvino pero');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Ponori sa srebrnim kukama prelaze se Ravijojlinim lancem (C), od kuke do kuke. Kamen za tu moć je u sobi Vilino ostrvo.');
   // Obala: guslar, krilo do vrbaka
   K.guslar('obala',900,['Teško mene i tebe, sokole,','lov loveći s Turci bez Srbalja,','lov loveći, krivo dijeleći!']);K.wing('obala',300,{upper:'vrbak'});K.heart('vrbak',800,-1);K.door('obala','trscak',0);
   // Tršćak: prva borba, krilo na jelovu gredu, rupa u mulj
@@ -475,17 +538,19 @@ export const GB_POHODI={
   K.greda('potopljeni',500,{span:220});K.crumble('potopljeni',1300,160,1);K.crumble('potopljeni',1460,160,1);K.pit('potopljeni',1300,1620);
   K.borba('potopljeni',[['sword',1900],['shield',2150]]);K.door('potopljeni','svetiljke',1);
   // Vilino ostrvo: Vilin trag, čekpoint, dimnjak na ostrvo; vezirova riznica iza vrata na prekidač
-  K.ckpt('svetiljke',450);K.shrine('trag','svetiljke',800);K.chimney('svetiljke',300,{upper:'ostrvo'});K.trace('svetiljke','riznica');K.cudo('riznica',600,'Vezirov prsten',1);
+  K.ckpt('svetiljke',450);K.shrine('trag','svetiljke',800);K.oltar('lanac','svetiljke',1000);K.chimney('svetiljke',300,{upper:'ostrvo'});K.trace('svetiljke','riznica');K.cudo('riznica',600,'Vezirov prsten',1);
   // Crno blato: dimnjak na stazu, šiljci; napukli zid do kališta
   K.chimney('blato',700,{upper:'staza'});K.spikes('blato',300,100,1);K.crack('blato','kaliste',{row:1});K.heart('kaliste',600,1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 10 · Ravijojlina šuma („Marko Kraljević i vila“): na Miroču vila Ravijojla ustreli Miloša što je pevao lepše od nje; Marko
 // je stiže, a ona bere bilje po Miroču i leči pobratima. U šumi spavaju tri vilinska kamena; Sokolovo krilo čeka kraj
 // vilinskog izvora pod korenjem, a sa njim se penje klancem na vrh Miroča, gde Lovac-aga pušta pse po gori.
-10:pohod({id:'suma',ime:'Ravijojlina šuma',biom:'urvina',zeljeniBiom:'suma',daje:'krilo',pocetne:[],
+10:pohod({id:'suma',ime:'Ravijojlina šuma',biom:'urvina',zeljeniBiom:'suma',daje:'krilo',daje2:'zidotrk',pocetne:[],
  cilj:'Probudi tri vilinska kamena, nađi krilo kraj izvora i popni se na vrh Miroča',start:'proplanak',spawnDx:240,
  uvod:'Ravijojlina šuma na Miroču. Tri vilinska kamena spavaju, a Lovac-aga goni po gori. Sokolovo krilo čeka kraj vilinskog izvora, pod korenjem.',
  sobe:[
+  ['vskrov','Vilino ogledalo',-5,0,1,1,{secret:true,interior:true,lore:'Vilino ogledalo. Ravijojla se ogleda u vodi pod stenom; ko je vidi, ne zaboravlja Miroč.'}],
+  ['vstaza','Vilinske stene',-4,0,3,1,{interior:true}],
   ['proplanak','Proplanak',-1,0,1,1,{set:'suma'}],
   ['bukvik','Bukova šuma',0,0,2,1,{set:'suma'}],
   ['jelak','Jelak',0,-1,2,1,{set:'suma'}],
@@ -509,6 +574,8 @@ export const GB_POHODI={
   ['riznica','Vilina riznica',6,1,1,1,{secret:true,interior:true,lore:'Vilina riznica. Bilje sa Miroča: Ravijojla ga je brala da izleči Miloša, pobratima Markova.'}]],
  brda:{proplanak:[[500,900,40]],bukvik:[[200,400,30]],gustis:[[600,1100,50]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (zidotrk), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi izvor
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'proplanak',moc:'zidotrk'});K.cudo('vskrov',600,'Vilino ogledalo');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Zid sa šarama pretrčiš samo trkom po zidu: skoči na njega i drži smer, pa SPACE. Kamen za tu moć je u sobi Vilinski izvor.');
   // Proplanak i bukova šuma: guslar, prva borba, krilo u jelak, rupa u korenje
   K.guslar('proplanak',800,['Ne streljajte po gori junaka','dok je glasa Kraljevića Marka','i njegova vidovita Šarca!']);K.prop('bukva','proplanak',400,340);K.door('proplanak','bukvik',0);
   K.block('bukvik',2050,120,160,120);K.borba('bukvik',[['akindzija',850],['sword',1400],['archer',2100,120]]);K.wing('bukvik',500,{upper:'jelak'});K.drop('bukvik',1600,1800,'korenje');K.door('bukvik','potok',0);
@@ -531,16 +598,18 @@ export const GB_POHODI={
   K.crumble('pecina',700,180,1);K.crumble('pecina',880,180,1);K.pit('pecina',700,1060);K.borba('pecina',[['sword',1500],['shield',2100]]);K.strelnica('pecina',2380,{every:2.6});
   K.drop('pecina',1300,1500,'brlog');K.chimney('brlog',700,{upper:'pecina'});K.heart('brlog',300,2);K.door('pecina','izvor',1);
   // Vilinski izvor: krilo, čekpoint, Ravijojla bere bilje; dimnjak u guštaru; treći kamen i vilina riznica
-  K.ckpt('izvor',600);K.shrine('krilo','izvor',850);K.lik('izvor',1050,'vila-isceljenje','Ravijojla bere bilje po Miroču i leči Miloša. Uzmi krilo, Marko, i popni se na vrh.',1);
+  K.ckpt('izvor',600);K.shrine('krilo','izvor',850);K.oltar('zidotrk','izvor',150);K.lik('izvor',1050,'vila-isceljenje','Ravijojla bere bilje po Miroču i leči Miloša. Uzmi krilo, Marko, i popni se na vrh.',1);
   K.chimney('izvor',300,{upper:'gustis'});K.door('izvor','vilina',1);K.lik('vilina',500,'vilinski-kamen-budan','Treći vilinski kamen je budan. Iza njega je zid koji zvuči šuplje.',1);K.crack('vilina','riznica',{row:1});K.cudo('riznica',600,'Bilje sa Miroča',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 11 · Vilinska pećina („Marko Kraljević u pećini“): u pećini Marko spava, sablja mu sama izleće iz korica, a Ravijojla drži
 // gusle javorove što same gude. Kristalna dvorana i ponor pod njom prelaze se samo jurišem; juriš daje Ravijojla u svojoj
 // odaji kraj podzemne reke. Na kraju pećine je leglo Aždaje.
-11:pohod({id:'pecina',ime:'Vilinska pećina',biom:'urvina',zeljeniBiom:'pecina',daje:'nalet',pocetne:['krilo'],
+11:pohod({id:'pecina',ime:'Vilinska pećina',biom:'urvina',zeljeniBiom:'pecina',daje:'nalet',daje2:'oko',pocetne:['krilo'],
  cilj:'Nađi Ravijojlinu odaju, pređi kristalnu dvoranu jurišem i stigni do Aždajinog legla',start:'pred',spawnDx:240,
  uvod:'Vilinska pećina. Gusle javorove same gude negde duboko. Kristalna dvorana je presečena ponorom; juriš u vazduhu daje Ravijojla u svojoj odaji, kraj podzemne reke.',
  sobe:[
+  ['vskrov','Kristalno srce',-5,0,1,1,{secret:true,interior:true,lore:'Kristalno srce. Najveći kristal pećine; kažu da kuca kad Marko hrče u snu.'}],
+  ['vstaza','Nevidljivi most',-4,0,3,1,{interior:true}],
   ['pred','Pred pećinom',-1,0,1,1],
   ['litica','Litica nad pećinom',-1,-1,1,1],
   ['usta','Usta pećine',0,0,2,1,{interior:true}],
@@ -563,6 +632,8 @@ export const GB_POHODI={
   ['kosti','Kosti junaka',5,2,1,1,{interior:true}]],
  brda:{pred:[[500,800,30]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (oko), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi odaja
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'pred',moc:'oko'});K.cudo('vskrov',600,'Kristalno srce');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Daske preko ponora vide se samo Vilinskim okom: drži O dok prelaziš. Kamen za tu moć je u sobi Ravijojlina odaja.');
   // Pred pećinom: guslar; krilo na liticu
   K.guslar('pred',900,['A pred Markom vila Ravijojla,','u ruke joj gusli javorove:','same gude, same udaraju.']);K.wing('pred',300,{upper:'litica'});K.heart('litica',900,-1);K.door('pred','usta',0);
   // Usta pećine: psi i janičar; krilo na svod, rupa u podzemnu reku
@@ -579,7 +650,7 @@ export const GB_POHODI={
   K.greda('reka',300,{span:220});K.borba('reka',[['sword',800],['pas',1150]]);K.crack('reka','skroviste',{row:1});K.heart('skroviste',500,1);
   K.chimney('reka',1000,{upper:'usta'});K.drop('reka',1300,1450,'izvor');K.chimney('izvor',600,{upper:'reka'});K.heart('izvor',900,2);K.door('reka','odaja',1);
   // Ravijojlina odaja: juriš i čekpoint
-  K.ckpt('odaja',300);K.shrine('nalet','odaja',700);K.lik('odaja',1000,'vila-carolija','Ravijojla: Spavaj, Marko, dok ja guslam. A kad se probudiš, juriš preko ponora.',1);K.door('odaja','ponor',1);
+  K.ckpt('odaja',300);K.shrine('nalet','odaja',700);K.oltar('oko','odaja',500);K.lik('odaja',1000,'vila-carolija','Ravijojla: Spavaj, Marko, dok ja guslam. A kad se probudiš, juriš preko ponora.',1);K.door('odaja','ponor',1);
   // Ponor: juriš; dimnjak u odaju sablje; podzemno jezero i kristalni prolaz
   const dalje=K.dash('ponor',700);K.chimney('ponor',1500,{upper:'sablja',part:dalje});K.door('ponor','jezero',1);
   K.borba('jezero',[['sword',600],['shield',900]]);K.crack('jezero','kristalni',{row:1});K.cudo('kristalni',600,'Kristal',1);
@@ -588,10 +659,12 @@ export const GB_POHODI={
 // 12 · Zimski prevoj (stih o Đemu: „topuzinu baca u oblake“): Marko prati barjake preko snežnog prevoja. Karavan je zapeo
 // u konačištu, snežni most je pukao (juriš), a karaula na sedlu prevoja ima vrata na daleki prekidač. Vilin trag čeka kraj
 // ledenog izvora pod prevojem; na kuli iza karaule je Akindžijski beg.
-12:pohod({id:'prevoj',ime:'Zimski prevoj',biom:'urvina',zeljeniBiom:'prevoj',daje:'trag',pocetne:['krilo','nalet'],
+12:pohod({id:'prevoj',ime:'Zimski prevoj',biom:'urvina',zeljeniBiom:'prevoj',daje:'trag',daje2:'klizanje',pocetne:['krilo','nalet'],
  cilj:'Prati barjake preko prevoja, nađi Vilin trag kraj ledenog izvora i prođi karaulu do kule',start:'podnozje',spawnDx:240,
  uvod:'Zimski prevoj. Barjaci vode do kule na prevoju, ali karaula na sedlu otvara vrata samo na daleki prekidač. Vilin trag čeka kraj ledenog izvora, ispod snega.',
  sobe:[
+  ['vskrov','Zaleđeni grob',-5,0,1,1,{secret:true,interior:true,lore:'Zaleđeni grob. Ovde je sahranjen barjaktar koji je prvi poneo barjak preko prevoja.'}],
+  ['vstaza','Ledeni tunel',-4,0,3,1,{interior:true}],
   ['podnozje','Podnožje prevoja',-1,0,1,1],
   ['serpentina','Serpentina',0,0,2,1],
   ['smrekovi','Smrekova šuma',0,-1,2,1,{set:'suma'}],
@@ -615,6 +688,8 @@ export const GB_POHODI={
   ['riznica','Riznica karaule',7,1,1,1,{secret:true,interior:true,lore:'Riznica karaule. Carina sa prevoja: svaki karavan je ostavljao po kesu; Marko ju je vratio trgovcima.'}]],
  brda:{podnozje:[[500,900,40]],sedlo:[[900,1400,60]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (klizanje), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi izvor
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'podnozje',moc:'klizanje'});K.cudo('vskrov',600,'Zimski plašt');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Niski prolazi se prelaze samo klizanjem: zaleti se i pritisni S. Kamen za tu moć je u sobi Ledeni izvor.');
   // Podnožje i serpentina: guslar; prva borba; krilo u smrekovu šumu, rupa u ledenu pećinu
   K.guslar('podnozje',850,['Na vrančiću noge prekrstio,','topuzinu baca u oblake,','dočekuje u bijele ruke.']);K.prop('putokaz','podnozje',450,120);K.door('podnozje','serpentina',0);
   K.block('serpentina',2050,120,160,120);K.borba('serpentina',[['akindzija',900],['sword',1300],['archer',2100,120]]);K.wing('serpentina',500,{upper:'smrekovi'});K.drop('serpentina',1700,1900,'pecina');K.door('serpentina','konaciste',0);
@@ -635,16 +710,18 @@ export const GB_POHODI={
   // Vučji prolaz: greda, strelnica; snežna jama ispod
   K.greda('vucji',900,{span:220});K.strelnica('vucji',2380,{every:2.6});K.drop('vucji',1500,1700,'jama');K.chimney('jama',700,{upper:'vucji'});K.heart('jama',300,2);K.door('vucji','izvor',1);
   // Ledeni izvor: Vilin trag i čekpoint; zaleđeni potok i riznica iza vrata na prekidač
-  K.ckpt('izvor',300);K.shrine('trag','izvor',700);K.lik('izvor',1000,'vila-spreda','Ravijojla: Ostavi trag kraj vrata, stani na prekidač, pa se tragom vrati.',1);K.door('izvor','potok',1);
+  K.ckpt('izvor',300);K.shrine('trag','izvor',700);K.oltar('klizanje','izvor',500);K.lik('izvor',1000,'vila-spreda','Ravijojla: Ostavi trag kraj vrata, stani na prekidač, pa se tragom vrati.',1);K.door('izvor','potok',1);
   K.borba('potok',[['sword',400],['shield',700]]);K.trace('potok','riznica');K.cudo('riznica',600,'Carina sa prevoja',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 13 · Klisura Ibra („Marko Kraljević i Đemo Brđanin“): Marko je na slavu otišao bez oružja; Đemo ga je stigao topuzom,
 // okovao i vodi ga klisurom od vešala do vešala: pod Ohridom, pod Vučitrnom, pod Zvečanom. Krčmarica Janja ga raskiva u
 // svom podrumu (tamo čeka Sokolovo krilo); sa krilom se ide uz stenu i uz Zvečan, do vešala gde čeka Đemo.
-13:pohod({id:'klisura',ime:'Klisura Ibra',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',pocetne:[],
+13:pohod({id:'klisura',ime:'Klisura Ibra',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',daje2:'lanac',pocetne:[],
  cilj:'Pređi srušene mostove, nađi krilo u Janjinom podrumu i popni se uz Zvečan do Đema',start:'ulaz',spawnDx:240,
  uvod:'Klisura Ibra. Đemo vodi okovanog Marka od vešala do vešala. Mostovi su srušeni; krčmarica Janja čuva Sokolovo krilo u svom podrumu.',
  sobe:[
+  ['vskrov','Gnezdo nad Ibrom',-5,0,1,1,{secret:true,interior:true,lore:'Gnezdo nad Ibrom. Orao je ovde čuvao Markovu sablju dok je Marko bio u okovima.'}],
+  ['vstaza','Kuke nad Ibrom',-4,0,3,1,{interior:true}],
   ['ulaz','Ulaz u klisuru',-1,0,1,1],
   ['obala','Obala Ibra',0,0,2,1,{set:'reka'}],
   ['stena','Stenoviti put',0,-1,2,1],
@@ -668,6 +745,8 @@ export const GB_POHODI={
   ['riznica','Tri tovara blaga',8,1,1,1,{secret:true,interior:true,lore:'Tri tovara blaga. Gospoda iz tri grada platila su Đemu da Marka ne obesi kod njih; Marko je blago vratio gradovima.'}]],
  brda:{ulaz:[[500,900,40]],put:[[600,1100,50]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (lanac), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi podrum
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'ulaz',moc:'lanac'});K.cudo('vskrov',600,'Okovi bez ključa');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Ponori sa srebrnim kukama prelaze se Ravijojlinim lancem (C), od kuke do kuke. Kamen za tu moć je u sobi Janjin podrum.');
   // Ulaz: guslar peva o slavi; majka savetuje bez oružja
   K.guslar('ulaz',850,['Slavu slavi Kraljeviću Marko,','slavu slavi svetoga Đorđija.','U Marka su mloge uzvanice.']);
   K.lik('ulaz',450,'putnica-idle','Jevrosima: Na slavu ne nosi oružje, sine. A kad krene put Ohrida, ponesi bar pamet.');K.door('ulaz','obala',0);
@@ -692,7 +771,7 @@ export const GB_POHODI={
   K.chimney('vir',1000,{upper:'obala'});K.crack('vir','jazbina',{row:1});K.heart('jazbina',500,1);K.door('vir','podmost',1);
   K.chimney('podmost',1700,{upper:'most1'});K.strelnica('podmost',2380,{every:2.6});K.door('podmost','podrum',1);
   // Janjin podrum: krilo i čekpoint
-  K.ckpt('podrum',300);K.shrine('krilo','podrum',700);K.door('podrum','potkop',1);
+  K.ckpt('podrum',300);K.shrine('krilo','podrum',700);K.oltar('lanac','podrum',1000);K.door('podrum','potkop',1);
   // Stari potkop: peta borba, daske; dimnjak na put; tamnica i blago
   K.borba('potkop',[['pas',500],['sword',800]]);K.crumble('potkop',1500,160,1);K.crumble('potkop',1660,160,1);K.pit('potkop',1500,1820);K.chimney('potkop',1200,{upper:'put'});K.door('potkop','tamnica',1);
   K.chimney('tamnica',900,{upper:'most2'});K.lik('tamnica',500,'putnik-starac-idle','Sužanj: Ovde je Đemo okovao Marka, bukagije na noge, belenzuke na ruke.',1);K.crack('tamnica','riznica',{row:1});K.cudo('riznica',600,'Tri tovara blaga',1);}}),
@@ -700,10 +779,12 @@ export const GB_POHODI={
 // 14 · Ruševine na brdu („Marko ukida svadbarinu“): Arap prekomorac je zakupio Kosovo i uzima svadbarinu; Kosovka devojka
 // je osedela čekajući svadbu. Marko ide preko Arapove avlije i ruševina crkve na vrh brda, do poslednjeg barjaka. Juriš
 // u vazduhu čeka u kripti pod ruševinama; greben pod vrhom i katakombe prelaze se samo njime.
-14:pohod({id:'rusevine',ime:'Ruševine na brdu',biom:'podgradje',zeljeniBiom:'rusevine',daje:'nalet',pocetne:['krilo'],
+14:pohod({id:'rusevine',ime:'Ruševine na brdu',biom:'podgradje',zeljeniBiom:'rusevine',daje:'nalet',daje2:'zidotrk',pocetne:['krilo'],
  cilj:'Nađi juriš u kripti, pređi greben jurišem i stigni do poslednjeg barjaka',start:'podnozje',spawnDx:240,
  uvod:'Ruševine na brdu. Arap prekomorac uzima svadbarinu od svake svadbe na Kosovu. Do poslednjeg barjaka na vrhu vodi greben koji se prelazi samo jurišem; juriš čeka u kripti pod ruševinama.',
  sobe:[
+  ['vskrov','Freska',-5,0,1,1,{secret:true,interior:true,lore:'Freska. Na zidu srušene crkve još se vidi sv. Đorđe na belom konju; Marko je zastao i prekrstio se.'}],
+  ['vstaza','Zid starih crkava',-4,0,3,1,{interior:true}],
   ['podnozje','Podnožje brda',-1,0,1,1],
   ['kuca','Kuća Kosovke devojke',-1,-1,1,1,{interior:true}],
   ['staza','Kosovo polje',0,0,2,1],
@@ -726,6 +807,8 @@ export const GB_POHODI={
   ['riznica','Arapova riznica',8,1,1,1,{secret:true,interior:true,lore:'Arapova riznica. Svadbarina sa celog Kosova; Marko ju je razdelio devojkama za darove.'}]],
  brda:{podnozje:[[500,900,40]],staza:[[1000,1400,40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (zidotrk), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi kripta
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'podnozje',moc:'zidotrk'});K.cudo('vskrov',600,'Freska sv. Đorđa');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Zid sa šarama pretrčiš samo trkom po zidu: skoči na njega i drži smer, pa SPACE. Kamen za tu moć je u sobi Kripta.');
   // Podnožje: guslar; krilo do kuće Kosovke devojke
   K.guslar('podnozje',850,['Odsad više nema svadbarine,','Marko za sve svadbarinu plati:','Bog da živi Kraljevića Marka!']);K.wing('podnozje',400,{upper:'kuca'});
   K.lik('kuca',600,'putnica-idle','Kosovka devojka: Osedela sam čekajući svadbu. Arap traži trideset dukata od svake mlade.',-1);K.heart('kuca',950,-1);K.door('podnozje','staza',0);
@@ -745,17 +828,19 @@ export const GB_POHODI={
   K.borba('vinograd',[['sword',1500],['oklopnik',1900]]);K.greda('vinograd',900,{span:220});K.wing('vinograd',300,{upper:'vidikovac'});K.heart('vidikovac',900,-1);
   // Arapov bunar: peta borba, dimnjak gore; lažni zid do tamnice svatova; kripta sa jurišem
   K.borba('bunar',[['pas',500],['sword',800]]);K.chimney('bunar',1900,{upper:'avlija'});K.fake('bunar','tamnica',{row:1});K.lik('tamnica',600,'svatovi-zarobljeni','Svatovi: Nismo imali za svadbarinu, pa nas je Arap zatvorio.',1);K.door('bunar','kripta',1);
-  K.ckpt('kripta',600);K.shrine('nalet','kripta',900);K.chimney('kripta',300,{upper:'rusevine'});K.door('kripta','katakombe',1);
+  K.ckpt('kripta',600);K.shrine('nalet','kripta',900);K.oltar('zidotrk','kripta',1100);K.chimney('kripta',300,{upper:'rusevine'});K.door('kripta','katakombe',1);
   // Katakombe: juriš preko ponora do Arapove riznice
   K.dash('katakombe',700);K.door('katakombe','riznica',1);K.cudo('riznica',600,'Svadbarina sa Kosova',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 15 · Stari rudnik („U tamnici voda do koljena“, iz pesme o Azačkoj tamnici): stari rudnik je postao tamnica; voda do
 // kolena, kosti do pojasa. Glavno okno vodi od potopljenih hodnika do izvoza, a stari izlaz iz rudnika otvara daleki
 // prekidač. Vilin trag čeka u staroj kapeli rudara; na rudarskom trgu pred izlazom stoji Bajraktar sa štitom.
-15:pohod({id:'rudnik',ime:'Stari rudnik',biom:'klisura',zeljeniBiom:'rudnik',daje:'trag',pocetne:['krilo','nalet'],
+15:pohod({id:'rudnik',ime:'Stari rudnik',biom:'klisura',zeljeniBiom:'rudnik',daje:'trag',daje2:'oko',pocetne:['krilo','nalet'],
  cilj:'Siđi u tamnicu po Vilin trag, popni se glavnim oknom i otvori stari izlaz',start:'selo',spawnDx:240,
  uvod:'Stari rudnik. U tamnici je voda do kolena, a stari izlaz otvara prekidač koji je predaleko od vrata. Vilin trag čeka u staroj kapeli rudara, duboko dole.',
  sobe:[
+  ['vskrov','Srebrna žila',-5,0,1,1,{secret:true,interior:true,lore:'Srebrna žila. Rudari su je krili od carskih ćehaja; skele do nje vidi samo vila.'}],
+  ['vstaza','Skrivene skele',-4,0,3,1,{interior:true}],
   ['selo','Rudarsko selo',-1,0,1,1],
   ['izvoriste','Izvorište',-1,-1,1,1],
   ['ulaz','Ulaz u rudnik',0,0,2,1,{interior:true}],
@@ -778,6 +863,8 @@ export const GB_POHODI={
   ['prozor','Tamnički prozor',4,2,1,1,{interior:true}]],
  brda:{selo:[[400,700,30]],izlaz:[[900,1400,40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (oko), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi kapela
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'selo',moc:'oko'});K.cudo('vskrov',600,'Srebrna žila');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Daske preko ponora vide se samo Vilinskim okom: drži O dok prelaziš. Kamen za tu moć je u sobi Stara kapela.');
   // Rudarsko selo: guslar i rudar; krilo do izvorišta
   K.guslar('selo',900,['U tamnici voda do koljena,','od junaka kosti do pojasa:','tamnica je kuća neobična.']);
   K.lik('selo',450,'putnik-starac-idle','Rudar: Stari izlaz su Turci zatvorili vratima na prekidač. Dole je tamnica, voda do kolena.');K.wing('selo',600,{upper:'izvoriste'});K.heart('izvoriste',300,-1);K.door('selo','ulaz',0);
@@ -802,15 +889,17 @@ export const GB_POHODI={
   K.borba('tamnica',[['sword',1300],['pas',1600]]);K.spikes('tamnica',1900,100);K.drop('tamnica',500,700,'prozor');K.door('tamnica','kapela',1);
   K.chimney('prozor',900,{upper:'tamnica'});K.lik('prozor',300,'soko-voda','Soko donosi vodu sužnju kroz tamnički prozor.',2);K.heart('prozor',600,2);K.crack('prozor','kosti',{row:2});K.cudo('kosti',600,'Okovi sužnja',2);
   // Stara kapela: Vilin trag i čekpoint; rudarska riznica iza vrata na prekidač
-  K.ckpt('kapela',300);K.shrine('trag','kapela',700);K.trace('kapela','riznica');K.cudo('riznica',600,'Rudarsko srebro',1);}}),
+  K.ckpt('kapela',300);K.shrine('trag','kapela',700);K.oltar('oko','kapela',950);K.trace('kapela','riznica');K.cudo('riznica',600,'Rudarsko srebro',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 16 · Obala pred zoru („Poranio Kraljeviću Marko u neđelju prije jarkog sunca“): pred zoru Marko jaše obalom ka moru.
 // Vodenica, skela i pristanište su u turskim rukama; Sokolovo krilo čeka u Vilinom viru ispod obale, a sa njim se penje
 // na svetionik i na bedem nad morem, gde stoji Janičarski aga. Na liticama kod dve tanke jele Ravijojla ga opominje.
-16:pohod({id:'reka',ime:'Obala pred zoru',biom:'klisura',zeljeniBiom:'reka',daje:'krilo',pocetne:[],
+16:pohod({id:'reka',ime:'Obala pred zoru',biom:'klisura',zeljeniBiom:'reka',daje:'krilo',daje2:'klizanje',pocetne:[],
  cilj:'Nađi krilo u Vilinom viru, popni se na svetionik i oteraj agu sa bedema nad morem',start:'zora',spawnDx:240,
  uvod:'Obala pred zoru. Pristanište i svetionik su u turskim rukama. Sokolovo krilo čeka u Vilinom viru, ispod obale; bez njega se na bedem nad morem ne stiže.',
  sobe:[
+  ['vskrov','Biserna školjka',-5,0,1,1,{secret:true,interior:true,lore:'Biserna školjka. Ribari kažu da je u njoj suza vile koja je plakala za Markom.'}],
+  ['vstaza','Podvodni prolazi',-4,0,3,1,{interior:true}],
   ['zora','Obala pred zoru',-1,0,1,1,{set:'reka'}],
   ['pesak','Peščani sprud',0,0,2,1,{set:'reka'}],
   ['litica','Litica',0,-1,2,1],
@@ -833,6 +922,8 @@ export const GB_POHODI={
   ['riznica','Blago potonule lađe',7,1,1,1,{secret:true,interior:true,lore:'Blago potonule lađe. Dubrovački trgovci su ga izgubili u oluji; Marko ga je vratio njihovim udovicama.'}]],
  brda:{zora:[[500,900,-30]],pesak:[[200,400,30]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (klizanje), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi vilin
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'zora',moc:'klizanje'});K.cudo('vskrov',600,'Biserna školjka');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Niski prolazi se prelaze samo klizanjem: zaleti se i pritisni S. Kamen za tu moć je u sobi Vilin vir.');
   // Obala pred zoru: guslar peva Markovo poslednje jutro
   K.guslar('zora',850,['Poranio Kraljeviću Marko','u neđelju prije jarkog sunca,','pokraj mora Urvinom planinom.']);K.door('zora','pesak',0);
   // Peščani sprud: prva borba; krilo na liticu, rupa u morsku pećinu
@@ -853,16 +944,18 @@ export const GB_POHODI={
   // Podvodni prolaz: daske nad vodom; slatki izvor ispod
   K.crumble('vir',600,170,1);K.crumble('vir',770,170,1);K.pit('vir',600,940);K.drop('vir',1500,1700,'izvor');K.chimney('izvor',700,{upper:'vir'});K.heart('izvor',300,2);K.door('vir','vilin',1);
   // Vilin vir: krilo i čekpoint; potonula lađa i njeno blago
-  K.ckpt('vilin',300);K.shrine('krilo','vilin',700);K.door('vilin','lada',1);
+  K.ckpt('vilin',300);K.shrine('krilo','vilin',700);K.oltar('klizanje','vilin',1000);K.door('vilin','lada',1);
   K.borba('lada',[['sword',600],['shield',900]]);K.strelnica('lada',2380,{every:2.6});K.crack('lada','riznica',{row:1});K.cudo('riznica',600,'Blago potonule lađe',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 17 · San Kraljevića Marka („Marko Kraljević u pećini“): Marko spava u vilinskoj pećini, sablja mu sama izleće iz korica.
 // U snu prolazi četiri odaje: slova na sablji, jabuke i prstenove, suvu drenovinu i gusle što same gude. Juriš u vazduhu
 // je na dnu sna, kraj vilinog jezera; na kraju sna čeka Musa, stari megdan koji se sanja.
-17:pohod({id:'san',ime:'San Kraljevića Marka',biom:'urvina',zeljeniBiom:'san',daje:'nalet',pocetne:['krilo'],
+17:pohod({id:'san',ime:'San Kraljevića Marka',biom:'urvina',zeljeniBiom:'san',daje:'nalet',daje2:'lanac',pocetne:['krilo'],
  cilj:'Prođi četiri odaje sna i probudi se',start:'postelja',spawnDx:240,
  uvod:'San Kraljevića Marka. Četiri odaje: slova, jabuke, drenovina i gusle. Hodnik senki se prelazi samo jurišem, a juriš je na dnu sna, kraj vilinog jezera.',
  sobe:[
+  ['vskrov','Odaja buđenja',-5,0,1,1,{secret:true,interior:true,lore:'Odaja buđenja. Ovde se san završava; ko stigne dovde, budi se pre zore.'}],
+  ['vstaza','Lanac sna',-4,0,3,1,{interior:true}],
   ['postelja','Kamena postelja',-1,0,1,1,{interior:true}],
   ['vrata','Vrata sna',-1,-1,1,1,{interior:true}],
   ['predvorje','Predvorje sna',0,0,2,1,{interior:true}],
@@ -884,6 +977,8 @@ export const GB_POHODI={
   ['korenje','Korenje sna',3,1,2,1,{interior:true}],
   ['riznica','Riznica sna',5,1,1,1,{secret:true,interior:true,lore:'Riznica sna. Sve što je Marko dao sirotinji vraća mu se u snu, zlatom i pesmom.'}]],
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (lanac), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi jezero
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'postelja',moc:'lanac'});K.cudo('vskrov',600,'Zvezdani prsten');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Ponori sa srebrnim kukama prelaze se Ravijojlinim lancem (C), od kuke do kuke. Kamen za tu moć je u sobi Vilino jezero.');
   // Kamena postelja: guslar; krilo do vrata sna
   K.guslar('postelja',850,['Kad u sanku čudan san viđelo,','da to nije za njega livada,','već bijaše vilinska pećina.']);K.wing('postelja',400,{upper:'vrata'});K.heart('vrata',900,-1);K.door('postelja','predvorje',0);
   // Predvorje: senke janičara; krilo na svod, rupa u ponor sna
@@ -905,19 +1000,21 @@ export const GB_POHODI={
   K.greda('ponor',400,{span:220});K.borba('ponor',[['pas',1300],['sword',1850]]);K.fake('ponor','senka',{row:1});K.heart('senka',500,1);K.chimney('ponor',1000,{upper:'predvorje'});
   K.drop('ponor',2000,2150,'izvor');K.chimney('izvor',300,{upper:'ponor'});K.heart('izvor',900,2);K.door('ponor','jezero',1);
   // Vilino jezero: juriš i čekpoint; dimnjak u odaju slova; korenje i riznica sna iza ponora
-  K.ckpt('jezero',200);K.shrine('nalet','jezero',950);K.chimney('jezero',500,{upper:'slova'});K.door('jezero','korenje',1);
+  K.ckpt('jezero',200);K.shrine('nalet','jezero',950);K.oltar('lanac','jezero',1100);K.chimney('jezero',500,{upper:'slova'});K.door('jezero','korenje',1);
   K.dash('korenje',700);K.door('korenje','riznica',1);K.cudo('riznica',600,'Zlato iz sna',1);}}),
 // ---------------------------------------------------------------------------------------------------------------------
 // 18 · Azačka kula („Marko Kraljević u Azačkoj tamnici“): iz tamnice gde je voda do kolena Marko izlazi kroz tamnički
 // prozor i avliju, uz kulu od dvadeset tavana. Vrata kule otvara daleki prekidač u stražari; Vilin trag čeka u cisterni
 // ispod avlije. Na vrhu kule je Arapin, a u golubarniku sivi soko čeka knjigu za Dojčila u Solunu.
-18:pohod({id:'azak',ime:'Azačka kula',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'trag',pocetne:['krilo','nalet'],
+18:pohod({id:'azak',ime:'Azačka kula',biom:'klisura',zeljeniBiom:'tvrdjava',daje:'trag',daje2:'zidotrk',pocetne:['krilo','nalet'],
  cilj:'Iz tamnice kroz avliju, Vilinim tragom kroz vrata kule i na vrh, do Arapina',start:'tamnica',spawnDx:240,
  uvod:'Azačka tamnica. Voda do kolena, kosti do pojasa. Vrata kule otvara prekidač u stražari, predaleko od vrata; Vilin trag čeka u cisterni ispod avlije.',
  sobe:[
   ['tamnica','Azačka tamnica',0,1,2,1,{interior:true}],
   ['kosti','Kosti sužanja',-1,1,1,1,{secret:true,interior:true,lore:'Kosti sužanja. Sedam godina je Marko brojao zime po grudvi snega, a leta po struku bosiljka.'}],
   ['izvor','Voda do kolena',1,2,1,1,{interior:true}],
+  ['vstaza','Zidine Azaka',2,2,3,1,{interior:true}],
+  ['vskrov','Dojčilov pečat',5,2,1,1,{secret:true,interior:true,lore:'Dojčilov pečat. Dojčilo je pečatom iz Soluna potvrdio da je knjigu dobio; soko ga je doneo nazad.'}],
   ['prozor','Tamnički prozor',0,0,2,1],
   ['zaduzbina','Zadužbina',-1,0,1,1,{secret:true,interior:true,lore:'Zadužbina. Marko se pokajao što je posekao kraljevu kćer koja ga je izbavila, pa je zidao zadužbine.'}],
   ['zmije','Zmije i jakrepi',2,1,1,1,{interior:true}],
@@ -936,6 +1033,8 @@ export const GB_POHODI={
   ['golubarnik','Golubarnik',7,-1,1,1,{interior:true}],
   ['vrh','Vrh kule',6,-2,1,1]],
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (zidotrk), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi cisterna
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'izvor',moc:'zidotrk',dir:1});K.cudo('vskrov',600,'Pečat iz Soluna');K.lik('vstaza',300,'vila-spreda','Ravijojla: Zid sa šarama pretrčiš samo trkom po zidu: skoči na njega i drži smer, pa SPACE. Kamen za tu moć je u sobi Cisterna.');
   // Azačka tamnica: sužanj guslar peva o sokolu; krilo do prozora, lažni zid do kostiju, voda do kolena ispod
   K.guslar('tamnica',850,['Pa dozivlje sivoga sokola:','„O sokole, pust mi ne ostao!','Nosi knjigu ka gradu Solunu.”']);K.wing('tamnica',400,{upper:'prozor'});
   K.fake('tamnica','kosti',{row:1});K.cudo('kosti',500,'Grudva snega',1);K.drop('tamnica',1500,1650,'izvor');K.chimney('izvor',800,{upper:'tamnica'});K.heart('izvor',200,2);K.door('tamnica','zmije',1);
@@ -943,7 +1042,7 @@ export const GB_POHODI={
   K.lik('prozor',1100,'putnica-idle','Devojka: Zimi mu ubacimo grudvu snega, a leti struk bosiljka, da zna koje je doba godine.');K.crack('prozor','zaduzbina',{row:0});K.cudo('zaduzbina',600,'Zadužbina');K.heart('prozor',1900,0);K.door('prozor','avlija',0);
   // Zmije i jakrepi: treća borba; dimnjak u avliju; cisterna sa Vilinim tragom
   K.borba('zmije',[['pas',600],['pas',900]],1);K.chimney('zmije',200,{upper:'avlija'});K.door('zmije','cisterna',1);
-  K.ckpt('cisterna',300);K.shrine('trag','cisterna',700);K.door('cisterna','potkop',1);
+  K.ckpt('cisterna',300);K.shrine('trag','cisterna',700);K.oltar('zidotrk','cisterna',1000);K.door('cisterna','potkop',1);
   // Potkop: greda, četvrta borba; arapsko blago iza vrata na prekidač
   K.greda('potkop',400,{span:220});K.borba('potkop',[['sword',900],['shield',1100]]);K.trace('potkop','riznica');K.cudo('riznica',600,'Arapsko blago',1);
   // Avlija: prva borba, juriš preko jarka; krilo na bedem
@@ -961,10 +1060,12 @@ export const GB_POHODI={
 // 19 · Tri srca Kačanika („Marko Kraljević i Musa Kesedžija“, glavni nivo igre): šest poglavlja glavne priče kao sobe.
 // Drum junaka, zatočena kapija sa putnicima (prečica iz hana), tri vilinska kamena (treći daje Sokolovo krilo: „u vazduhu
 // te mogu podići još jednom“), srušeni drum na koji se penje krilom, obruč i poslednji barjak, i megdan sa Musom.
-19:pohod({id:'kacanik',ime:'Tri srca Kačanika',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',pocetne:[],
+19:pohod({id:'kacanik',ime:'Tri srca Kačanika',biom:'klisura',zeljeniBiom:'klisura',daje:'krilo',daje2:'oko',pocetne:[],
  cilj:'Oslobodi drum i kapiju, probudi tri vilinska kamena i izađi na megdan Musi',start:'raskrsce',spawnDx:240,
  uvod:'Tri srca Kačanika. Musini ljudi su zatvorili drum i kapiju hana, a putnici čekaju. Tri vilinska kamena spavaju pod drumom; treći daje Sokolovo krilo, a bez njega se na srušeni drum ne penje.',
  sobe:[
+  ['vskrov','Treće srce',-5,0,1,1,{secret:true,interior:true,lore:'Treće srce. „Na trećemu ljuta guja spava“: Ravijojla je zmiju zatvorila u kamen.'}],
+  ['vstaza','Vilinski most nad drumom',-4,0,3,1,{interior:true}],
   ['raskrsce','Raskršće',-1,0,1,1],
   ['drum','Drum junaka',0,0,2,1],
   ['straza','Osmatračnica nad drumom',1,-1,2,1],
@@ -987,6 +1088,8 @@ export const GB_POHODI={
   ['kesa','Musina kesa',5,1,1,1,{secret:true,interior:true,lore:'Musina kesa. Plen sa zatvorenog druma; Musa je devet godina dvorio cara i nijednom nije bio plaćen.'}]],
  brda:{raskrsce:[[500,900,40]],greben:[[300,800,40]]},
  gradi(K){
+  // Ravijojlina staza: dva izazova moći (oko), amajlija na tlu, tajna soba iza zida koji je varka; oltar je u sobi izvor
+  K.staza({soba:'vstaza',tajna:'vskrov',do:'raskrsce',moc:'oko'});K.cudo('vskrov',600,'Kamen sa zmijom');K.lik('vstaza',3300,'vila-spreda','Ravijojla: Daske preko ponora vide se samo Vilinskim okom: drži O dok prelaziš. Kamen za tu moć je u sobi Vilinski izvor.');
   // I · Drum junaka: guslar o tri Musina srca; prva borba; dimnjak do osmatračnice, rupa u potok
   K.guslar('raskrsce',850,['Ali u Musi tri srca junačka:','jedno mu se srce umorilo,','a drugo se jako razigralo.']);K.door('raskrsce','drum',0);
   K.borba('drum',[['sword',600],['shield',1000]]);K.spikes('drum',1300,120);K.chimney('drum',1500,{upper:'straza'});K.drop('drum',300,500,'potok');K.door('drum','kapija',0);
@@ -1011,7 +1114,7 @@ export const GB_POHODI={
   // Pod drumom: potok sa gredom, lažni zid do jazbine; pećina sa drugim kamenom; izvor sa trećim kamenom i krilom
   K.chimney('potok',1000,{upper:'drum'});K.greda('potok',1400,{span:220});K.fake('potok','jazbina',{row:1});K.heart('jazbina',500,1);K.door('potok','pecina',1);
   K.borba('pecina',[['pas',600],['sword',900]]);K.lik('pecina',1500,'vilinski-kamen-budi','Drugi vilinski kamen se budi. Treći je kraj izvora.',1);K.door('pecina','izvor',1);
-  K.chimney('izvor',300,{upper:'trg'});K.ckpt('izvor',600);K.shrine('krilo','izvor',900);K.lik('izvor',450,'vilinski-kamen-budan','Treći vilinski kamen: Uzmi krilo, Marko. Srušeni drum se penje samo njime.',1);
+  K.chimney('izvor',300,{upper:'trg'});K.ckpt('izvor',600);K.shrine('krilo','izvor',900);K.oltar('oko','izvor',750);K.lik('izvor',450,'vilinski-kamen-budan','Treći vilinski kamen: Uzmi krilo, Marko. Srušeni drum se penje samo njime.',1);
   K.crack('izvor','kesa',{row:1});K.cudo('kesa',600,'Musina kesa',1);}})
 };
 

@@ -1,0 +1,7 @@
+Ti si crtač animacija za igru „Marko — Tri srca Kačanika“ (repo je ovaj folder). Nastavi brief art/world-pack-03/DOPUNA-45.md. Deo 1 je gotov (vidi art/world-pack-03/STATUS-ANIMACIJE.md, redovi „DOPUNA-45 deo 1“). Radi redom od dela 2, kako piše u delu „Redosled“: deo 2 (prvo marko-combo-1-v2, marko-combo-2-v2, marko-combo-3-v2, pa ostali), deo 3, deo 4. `marko-launcher` iz dela 1 nacrtaj tek na kraju, ako ostane kredita (igra do tada koristi marko-uppercut).
+
+Postupak je isti kao za deo 1: ugrađeni image_gen, pa sprite-gen extract → compose-atlas → compose-gif, i u art/animation-pack-04/assets/<klip>/ atlas.png, manifest.json (frame_layout), frames/, preview.gif, reference.png i qa.json. Izvozni skript iz dela 1 je art/animation-pack-04/export-dopuna45.py.
+
+Za klipove <klip>-v2 (delovi 2 i 3): parne kadrove prepiši tačno, piksel po piksel, iz postojećeg crteža tog klipa (atlas u art/animation-pack-0*/assets/<klip>/ ili dist/assets/<klip>.png sa kadrovima iz dist/assets/sprite-rig.json, ćelija na istom mestu i u istoj razmeri), a neparne kadrove nacrtaj kao prave međupoze. Proveri da su parni kadrovi isti kao postojeći, pre izvoza.
+
+Posle svakog klipa upiši red u art/world-pack-03/STATUS-ANIMACIJE.md. Kod igre i dist/ ne menjaj i ne commit-uj ništa. Ne postavljaj pitanja: kad nešto nije jasno, odluči sam u duhu igre i zapiši u STATUS-ANIMACIJE.md. Radi dok ne završiš sve delove ili dok ne nestane kredita.

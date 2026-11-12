@@ -359,11 +359,15 @@ Opet su uzete samo ideje. Svaka moć ima zastavicu (`MOCI2` u `dist/game.js`). V
 | 18 | Azačka kula (soko nosi knjigu Dojčilu) | 20 | Vilin trag | Arapin | klisura |
 | 19 | Tri srca Kačanika (šest poglavlja glavne priče) | 20 | krilo | Musa Kesedžija | klisura |
 
-- Svaki nivo ima 20–21 sobu na tri do pet spratova i tri do pet tajnih soba (bar jedna čeka moć tog nivoa, ostale oštro oko). Ima i dva čekpointa, četiri do šest borbi sa neprijateljima tog kraja i bosa tog pohoda.
+- Svaki nivo ima 22–23 sobe na tri do pet spratova i četiri do šest tajnih soba (bar jedna čeka moć tog nivoa, jedna novu moć, ostale oštro oko). Ima i dva čekpointa, četiri do šest borbi sa neprijateljima tog kraja i bosa tog pohoda.
 - Ima i likove iz pesme: guslar peva stihove, a ostali kažu svoju reč kad Marko priđe (`lik` u `zamke.js`). Zamke su strelnice i grede iz `zamke.js`, plus šiljci, ponori i daske koje popuštaju.
 - Biom je jedan od tri iz manifesta realističnih slika (`podgradje`, `urvina`, `klisura`); polje `zeljeniBiom` kaže koji bi crtež tu išao kad ga bude.
 - Moći se smenjuju redom priče: krilo (bez početnih moći), juriš (uz krilo) i Vilin trag (uz krilo i juriš). Kapije za moći su ispusti od 365 px za krilo, ponori od 500 px za juriš i vrata na prekidač udaljen 1100 px za Vilin trag. Do bosa se ne stiže bez moći tog nivoa.
-- Moći iz `lc-pokreti` (klizanje, trčanje po zidu, Ravijojlin lanac, Vilinsko oko) još ne postoje u `greybox.js`, pa nivoi nemaju njihove kapije.
+- **Druga moć iz `lc-pokreti`** (`daje2`): svaki nivo ima i oltar sa jednom od novih moći, odmah pored oltara svoje glavne moći. Moći se smenjuju redom: klizanje (4, 8, 12, 16), lanac (5, 9, 13, 17), trk po zidu (6, 10, 14, 18) i Vilinsko oko (7, 11, 15, 19).
+  - Ta moć otvara **Ravijojlinu stazu**: sobu od tri polja zapadno od početne sobe (u Azačkoj kuli istočno od vode do kolena), sa dva izazova. Iza staze je tajna soba, a ulaz u nju je zid koji je varka (`iluzija:true`). Na pola staze je amajlija na tlu. Ravijojla na ulazu kaže šta treba i gde je oltar.
+  - Izazovi: nizak prolaz od 60 px ispod nadvratnika (`lintel`) za klizanje; ponor od 650 px sa dve srebrne kuke (`world.kuke`) za lanac, od kuke do kuke; ponor od 650 px pod zidom sa šarama (`world.zidovi`) za trk po zidu; ponor od 650 px sa skrivenim daskama (`oko:true`) za Vilinsko oko. Bez moći nijedan se ne prelazi: test to proba, a krilo i juriš ne dobacuju (najviše 553 px).
+  - Izvori za odmor i brzo putovanje su čekpointi nivoa, a tajne sobe daju amajlije, kako ih `game.js` već vodi.
+  - Kuka u `greybox.js` (`makeGreybox`): `B.kuka`, `B.zid`, `B.nalaz` i `B.zamka`, a svet nivoa dobija `kuke`, `zidovi` i `nalazi`. Nove moći su u `GB_MOCI` dodate iz `greybox-nivoi-pohodi.js`, ali se ne nabrajaju, pa mapa i meni ostaju sa tri moći.
 - Nivoe ne piše ruka, nego mali alat u istom fajlu (`kit`). `K.chimney`, `K.wing`, `K.dash`, `K.trace`, `K.crack`, `K.fake`, `K.gate`, `K.drop`, `K.borba`, `K.lik`, `K.guslar` i `K.bos` postave blokove i u istom potezu zapišu vezu za test. Alat odbija rupu iznad rupe i krilo ili dimnjak koji nisu ispod svoje sobe.
 - Kuka do registra u `greybox.js`: `world.js` uvozi `greybox-nivoi-pohodi.js` samo u pregledaču, a fajl sam dodaje nivoe u `GB_NIVOI`. Sopstvene zamke (likove, guslare) nivo predaje kroz `B.strelnica({zamka})`, dok `greybox.js` ne dobije `B.zamka`.
 - `node greybox-pohodi-test.mjs [broj]` (deo `npm test`) za svaki nivo:

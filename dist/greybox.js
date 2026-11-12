@@ -55,21 +55,23 @@ export function gbReach(L,moci,start=L.start){const seen=new Set([start]);let gr
  return[...seen];}
 
 // ---------- building a level into the game's world ----------
-export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],breakables=[],traps=[],pits=[],named={},opens=[],holes=[],zidovi=[],kuke=[];let id=3000;
+export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],breakables=[],traps=[],pits=[],named={},opens=[],holes=[];let id=3000;
  const S={L,t:0,room:-1,seen:new Set(),moci:{krilo:false,nalet:false,trag:false},pits,holes,shrines:[],ckpts:[],doors:[],gates:[],fakes:[],hearts:[],cuda:[],props:[],ckpt:0,
   found:new Set(),cover:{},done:false,told:{},named};
  for(const m of L.daje2||[])S.moci[m]=false;for(const m of L.pocetne||[])S.moci[m]=true;
  const R=rid=>gbRoom(L,rid),X=(rid,dx)=>R(rid).x0+dx,Y=rid=>R(rid).floor;
  const block=(x,y,w,h,o={})=>{const q={x,y,w,h,kind:'stone',solid:true,noCling:!o.cling,...o};delete q.cling;platforms.push(q);if(o.name)named[o.name]=q;return q;};
  const foe=(type,x,y,o={})=>{const hp={shield:125,archer:65,akindzija:80,oklopnik:240,palikuca:70,pas:60,kopljanik:100,tufekdzija:90}[type]??90;enemies.push({id:id++,x,y,vx:0,vy:0,w:36,h:type==='pas'?50:75,hp,maxHp:hp,type,zone:GB_ZONE,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});return enemies.at(-1);};
- const B={L,R,X,Y,named,
+ // the level's world parts game.js reads: silver hooks for the chain, runed walls for the wall run, charms lying about.
+ // B.kuka(x,y) or B.kuka(name,x,y) and B.zid(x,y,w,h) or B.zid(name,x,y,w,h): a first argument that is a string is a name (for the test)
+ const svet={kuke:[],zidovi:[],nalazi:[]},imenom=(a,n)=>typeof a[0]==='string'?a:[null,...a].slice(0,n+1),
+  dodaj=(list,name,o)=>{if(name){o.name=name;named[name]=o;}list.push(o);return o;};
+ const B={L,R,X,Y,named,kuka:(...a)=>{const [name,x,y]=imenom(a,2);return dodaj(svet.kuke,name,{x,y});},zid:(...a)=>{const [name,x,y,w,h]=imenom(a,4);return dodaj(svet.zidovi,name,{x,y,w,h});},nalaz:o=>svet.nalazi.push(o),zamka:z=>traps.push(Object.assign(z,{t:z.t||0})),
   block,ledge:(x,y,w=200,o={})=>block(x,y,w,40,o),
   plank:(x,y,w,o={})=>block(x,y,w,18,{kind:'plank',solid:false,...o}),
   crumble:(x,y,w)=>block(x,y,w,18,{kind:'plank',solid:false,crumble:true}),
-  // the second set of powers: a wall with Ravijojla's runes (the wall run), a silver hook (the chain), a low passage (the slide:
-  // a block from the ceiling down to 60 px over the floor), a plank seen and firm only through the fairy's eye, a wall that is a trick
-  zid:(name,x,y,w,h)=>{const z={name,x,y,w,h};zidovi.push(z);named[name]=z;return z;},
-  kuka:(name,x,y)=>{const k={name,x,y};kuke.push(k);named[name]=k;return k;},
+  // the second set of powers (with B.kuka and B.zid above): a low passage for the slide (a block from the ceiling down to 60 px
+  // over the floor), a plank seen and firm only through the fairy's eye, a wall that is a trick
   nisko:(name,x,top,floor,w=110)=>{const q=block(x,top,w,floor-60-top,{lintel:true});named[name]=q;return q;},
   oko:(x,y,w=110)=>{const q={x,y,w,h:18,kind:'oko',oko:true,off:true,solid:false};platforms.push(q);return q;},
   iluzija:(name,x,y,w,h)=>{const q={x,y,w,h,kind:'iluzija',iluzija:true,off:true,solid:false};platforms.push(q);named[name]=q;return q;},
@@ -121,7 +123,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  for(const Rm of L.rooms)if(Rm.secret)S.cover[Rm.id]=1;S.secrets=L.rooms.filter(Rm=>Rm.secret).length;
  const sp=R(gbNodeRoom(L.start)),spawn={x:sp.x0+(L.spawnDx||200),y:sp.floor};
  const level={id:'greybox',greybox:true,n:L.n,name:L.ime,width:L.X1,spawn,goal:{x:L.X1+5000,y:spawn.y},props:[],peace:false,design:{goal:L.cilj}};
- return{zidovi,kuke,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
+ return{...svet,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
   chapter:{name:`LOST CROWN · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
 }
 
