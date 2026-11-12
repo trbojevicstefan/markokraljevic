@@ -5,6 +5,9 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+// ---- junački pohodi (greybox): the list and the end screen ----
+["Junački pohodi","Heroic Quests"],["Tajne sobe","Secret rooms"],["Ostani i traži tajne","Stay and look for secrets"],["BOS JE PAO","THE BOSS HAS FALLEN"],["Megdan je dobijen","The duel is won"],
+["DUGI NIVOI SA SOBAMA I TAJNAMA","LONG LEVELS WITH ROOMS AND SECRETS"],["Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.","Long levels with rooms, secrets and powers. Each gives Marko a new power."],
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
 ["DRŽI SE!", "HOLD ON!"],
 ["UZMI HVAT KOJI SE POKAŽE", "TAKE THE HOLD THAT IS SHOWN"],
@@ -943,6 +946,8 @@ const PATTERNS=[
 [/^(\d+) ODJEDNOM!$/,'$1 AT ONCE!'],
  [/^POGLAVLJE (.+)$/,'CHAPTER $1'],
  [/^POHOD (\d+)$/,'QUEST $1'],
+ [/^JUNAČKI POHOD (\d+)$/,'HEROIC QUEST $1'],
+ [/^Tajne sobe: (\d+)\/(\d+) · Čuda: (\d+)\/(\d+)$/,'Secret rooms: $1/$2 · Marvels: $3/$4'],
  [/^Preostalo čuvara: (\d+)\. Oslobodi drum\.$/,'Guards left: $1. Free the road.'],
  [/^Kapija je zatvorena\. Preostalo čuvara: (\d+)\.$/,'The gate is shut. Guards left: $1.'],
  [/^Zatvoreno\. (.+)\.$/,(m,a)=>`Closed. ${T(a)}.`],

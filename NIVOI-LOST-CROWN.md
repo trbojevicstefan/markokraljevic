@@ -182,6 +182,16 @@ Gornja površina je manifestov `materials.groundTop` (1024×256, ponavlja se vod
 - U pregledaču `gbReady` jednom učita `dist/greybox-nivoi-pohodi.js` (njegov `GB_POHODI`, nivoi 4 i dalje). Ako fajla nema, ostaju tri nivoa.
 - Meni „Lost Crown pohodi“ pravi spisak pri svakom otvaranju, a `?greybox=N` kreće tek kad je registar spreman.
 
+## Kraj nivoa
+
+- **Bos se pamti na prvom ticku** (`S.boss`, `gbBoss`). Ako nivo ima više šampiona, bos je onaj iz arene u `bosSoba`, inače poslednji napravljen. Nivo je pređen kad bos padne ili kad ga igra izbaci iz `enemies` (ponor, dokrajčivanje, gaz, prizor), čak i pre nego što ga provera vidi mrtvog.
+- **Ekran pobede** dolazi `GB_WIN_AFTER` = 2 s posle pada: naslov „<NIVO> · PREĐEN“, vreme, tajne sobe i čuda. Igra za to vreme stoji (`mode='gbDone'`).
+  - **Sledeći pohod** (Enter, A): nivo n+1, a adresa prelazi na `?greybox=n+1`. Posle poslednjeg nivoa vodi u spisak pohoda.
+  - **Ostani i traži tajne** (Esc, B): ekran se zatvara, a nivo ide dalje i ekran se više ne vraća.
+  - **Junački pohodi**: glavni meni sa otvorenim spiskom.
+- Pređeni nivoi se pamte pod `marko-junacki-pohodi` (`GB_DONE_KEY`, niz brojeva) i u spisku imaju kvačicu. `marko-megdani` i `marko-levels` se ne diraju.
+- `greybox-test.mjs` (nivoi 1–3) i `greybox-pohodi-test.mjs` (4–19) za svaki nivo proveravaju četiri stvari: ekran posle 2 s, „Ostani“, bosa izbačenog iz liste i „Sledeći pohod“ do n+1, a posle 19 u meni.
+
 ## Provereno u pravoj igri
 
 Sva tri nivoa su pređena u pregledaču pravim tasterima, od starta do bosa: moći, dimnjaci, ispusti, poluga, vrata na trag, juriš preko ponora u oba smera, tajne Orlova stena i Kapela u steni. Prolaz je našao tri greške, sada popravljene:

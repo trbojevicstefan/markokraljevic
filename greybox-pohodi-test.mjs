@@ -15,12 +15,25 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,greybox,topAt}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startGreybox,startChapter,update,keys,pressed,has,retry,damage,VIEW_W,state:()=>({p,world,mode,level,zone,arena,ckpt,camera,camY})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {GBX,startGreybox,startChapter,update,keys,pressed,has,retry,damage,VIEW_W,state:()=>({p,world,mode,level,zone,arena,ckpt,camera,camY})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const GB=physics.greybox,ONLY=process.argv[2]?+process.argv[2]:0;
 const BUDUCE=new Set(['klizanje','zid','lanac','oko']);   // moći iz lc-pokreti koje još ne postoje u greybox.js
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state(),P=()=>S().p,W=()=>S().world,G=()=>W().gb;
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
+// ---- the end of a level: the screen GB_WIN_AFTER s after the boss falls (time, secrets, wonders, saved under GB_DONE_KEY);
+// "Ostani" lets the level go on without the screen coming back; a boss the game drops from its list (an abyss, a finisher,
+// a stomp, a scene) ends the level too; "Sledeći pohod" loads n+1, and after the last one the list of pohodi ----
+function endScreen(n,tag,lang){const T=lang==='sr'?{scr:'ekran pobede posle',stay:'„Ostani i traži tajne” zatvara ekran i igra ide dalje',drop:'bos uklonjen iz liste pre provere: ekran ipak dolazi',next:'„Sledeći pohod” učitava',menu:'posle poslednjeg „Sledeći pohod” vodi u meni'}:{scr:'the end screen comes',stay:'"Ostani i traži tajne" closes the screen and the level goes on',drop:'a boss dropped from the list before the check still ends the level',next:'"Sledeći pohod" loads',menu:'after the last one "Sledeći pohod" leads to the menu'};
+ const wait=()=>{for(let f=0;f<600&&S().mode!=='gbDone';f++){step();P().invuln=1e9;}};
+ wait();const g=G(),w=g.win,saved=JSON.parse(storage.get(GB.GB_DONE_KEY)||'[]');
+ ok(S().mode==='gbDone'&&w&&w.n===+n&&g.t-g.doneT>=GB.GB_WIN_AFTER-1e-6&&g.t-g.doneT<GB.GB_WIN_AFTER+.02&&w.secrets===g.secrets&&w.cudaN===g.cuda.length&&saved.includes(+n),`${tag} ${T.scr} ${(g.t-g.doneT).toFixed(2)} s: ${w?.ime} · ${Math.floor(w?.t/60)}:${String(Math.floor(w?.t%60)).padStart(2,'0')} · ${w?.found}/${w?.secrets} · ${w?.cuda}/${w?.cudaN} (${GB.GB_DONE_KEY}: ${saved.join(',')})`);
+ GB.gbStay(api.GBX);step(600);ok(S().mode==='play'&&G()===g,`${tag} ${T.stay}`);
+ api.startGreybox(+n);quiet();step(2);const b=G().boss;W().enemies=W().enemies.filter(e=>e!==b);wait();
+ ok(b?.champion&&b.alive&&S().mode==='gbDone'&&G().win,`${tag} ${T.drop} (${b?.name})`);
+ const nx=GB.GB_LEVELS[+n+1];GB.gbNext(api.GBX);
+ ok(nx?S().mode==='play'&&S().level.n===+n+1&&G().L===GB.gbLevel(+n+1)&&!G().win:S().mode==='menu',nx?`${tag} ${T.next} ${+n+1}. ${nx.ime}`:`${tag} ${T.menu}`);}
+
 const tap=k=>{api.pressed.add(k);api.keys.add(k);step();api.keys.delete(k);};
 const quiet=()=>{for(const e of W().enemies)if(!e.champion)e.alive=false;};
 const SVE_MOCI=['krilo','nalet','trag','klizanje','zidotrk','lanac','oko'];
@@ -153,7 +166,7 @@ for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new 
  // ---- the boss: the bot walks up to him (Đemo first knocks the mace away: the bot picks it up) and strikes ----
  {api.startGreybox(n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} megdan sa ${c.name} počinje`);
   c.hp=1;c.invT=0;for(let f=0;f<1800&&c.alive;f++){const p=P(),tx=c.topuz?c.topuz.x:c.x;p.face=tx>p.x?1:-1;api.keys.clear();if(Math.abs(tx-p.x)>(c.topuz?20:90))api.keys.add(p.face>0?'KeyD':'KeyA');if(p.grounded&&p.wallHit)api.pressed.add('Space');if(f%30===0){api.pressed.add('KeyK');api.keys.add('KeyK');}step();p.invuln=1e9;c.guard=0;if(c.hp>1&&c.alive)c.hp=1;}
-  api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} pada i pohod je pređen`);}
+  api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} pada i pohod je pređen`);endScreen(n,tag,'sr');}
  // ---- the bot: one unbroken run with keys only, from the start to the power and on to the boss (the land's foes are
  // taken out, its traps stay); after each passage it looks where it is and picks the next one, so a fall only changes its way ----
  {api.startGreybox(n);quiet();NOTP=true;const g=G(),S0=g.shrines.find(s=>s.moc===L.daje),trail=[];let falls=0,ok2=false;

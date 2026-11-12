@@ -160,8 +160,34 @@ export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play'
  for(const b of W.breakables)if(!b.broken&&!S.told[b.name]&&Math.abs(p.x-b.x)<260&&Math.abs(p.y-b.y)<20){S.told[b.name]=true;G.toast('Zid je napukao. Laki udarac odskače, teški (K) ga ruši.',3);}
  for(const q of W.platforms)if(q.gbGate&&!S.moci[q.gbGate]&&p.grounded&&q.y<p.y-266&&q.y>p.y-500&&Math.abs(p.x-(q.x+q.w/2))<q.w/2+150&&!S.told[q.x+'|'+q.y]){S.told[q.x+'|'+q.y]=true;G.toast(`Previsoko za jedan skok. Treba ti ${GB_MOCI[q.gbGate].name}.`,2.6);}
  for(const z of S.pits)if(!S.moci.nalet&&z.x1-z.x0>=GB_GAP&&p.grounded&&!S.told['pit'+z.x0]&&Math.abs(p.y-(z.y-150))<10&&(Math.abs(p.x-z.x0)<120||Math.abs(p.x-z.x1)<120)){S.told['pit'+z.x0]=true;G.toast('Preširoko i za krilo. Treba ti Juriš u vazduhu.',2.6);}
- const c=W.enemies.find(e=>e.champion);if(c&&!c.alive&&!S.done){S.done=true;S.doneT=S.t;const m=Math.floor(S.t/60),s=Math.floor(S.t%60);G.showTitle(`${L.ime.toUpperCase()} · PREĐENO`,`${m}:${String(s).padStart(2,'0')}`,`Tajne sobe: ${S.found.size}/${S.secrets} · Čuda: ${S.cuda.filter(c=>c.taken).length}/${S.cuda.length}`);}
+ // the end: the boss is remembered at the first tick, so he ends the level however he goes (killed, into an abyss, finished
+ // off, stomped, in a scene) and even when the game drops him from its list first; two seconds later, the screen
+ if(S.boss===undefined)S.boss=gbBoss(W.enemies,L);
+ const c=S.boss;if(c&&!S.done&&(!c.alive||!W.enemies.includes(c))){S.done=true;S.doneT=S.t;G.saveDone?.(L.n);G.showTitle(`${L.ime.toUpperCase()} · PREĐEN`,c.name||'Megdan je dobijen');}
+ if(S.done&&!S.win&&S.t-S.doneT>=GB_WIN_AFTER){S.win=gbWinInfo(S);G.mode='gbDone';G.clearKeys?.();gbWinShow(G,S.win);return;}
  gbMap(G);}
+
+// ---------- the end of a pohod: the screen with the time, the secret rooms and the wonders, and where to go on ----------
+export const GB_WIN_AFTER=2;                    // seconds from the boss's fall to the screen
+export const GB_DONE_KEY='marko-junacki-pohodi'; // the numbers of the pohodi Marko has finished (the menu ticks them)
+export function gbDoneSet(store=globalThis.localStorage){try{return new Set(JSON.parse(store?.getItem(GB_DONE_KEY)||'[]').map(Number));}catch{return new Set();}}
+// the boss: the level's champion; when it has more, the one in its last arena (bosSoba), else the last one made
+export function gbBoss(enemies,L){const all=enemies.filter(e=>e.champion);if(all.length<2)return all[0]||null;const R=L.bosSoba&&gbRoom(L,L.bosSoba);
+ return(R&&all.find(e=>e.arena&&e.arena.x0>=R.x0-1&&e.arena.x1<=R.x1+1&&e.arena.y>R.y0&&e.arena.y<=R.y1+1))||all[all.length-1];}
+function gbWinInfo(S){const L=S.L,n=L.n,nx=GB_NIVOI[n+1];return{n,ime:L.ime,t:S.doneT,found:S.found.size,secrets:S.secrets,cuda:S.cuda.filter(c=>c.taken).length,cudaN:S.cuda.length,next:nx?{n:n+1,ime:nx.ime}:null};}
+const gbClock=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+const winEl=()=>typeof document!=='undefined'&&document.getElementById?document.getElementById('gb-win'):null;
+function gbWinHide(){const m=winEl();if(m)m.hidden=true;}
+// Sledeći pohod (Enter): the next one, or the list after the last; Ostani (Esc): the screen goes, the level goes on; Junački pohodi: the list
+export function gbNext(G){const w=G.world.gb?.win;if(!w)return;gbWinHide();if(w.next)G.start(w.next.n);else gbToMenu(G);}
+export function gbStay(G){const S=G.world.gb;if(!S?.win)return;gbWinHide();G.mode='play';G.clearKeys?.();G.toast(`Tajne sobe: ${S.found.size}/${S.secrets} · Čuda: ${S.cuda.filter(c=>c.taken).length}/${S.cuda.length}`,3);}
+export function gbToMenu(G){gbWinHide();G.mainMenu();if(G.hasDom)document.getElementById('gb-menu-open')?.click?.();}
+function gbWinShow(G,w){if(!G.hasDom)return;const t=document.getElementById('title-card');if(t)t.hidden=true;
+ let m=winEl();if(!m){m=document.createElement('section');m.id='gb-win';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
+ const stat=(v,k)=>`<div><b style="display:block;color:#e9cc92;font:700 24px var(--display,Georgia);margin-bottom:2px;white-space:nowrap">${v}</b>${k}</div>`;
+ m.innerHTML=`<div class="modal-card" style="width:min(520px,100%)"><p class="eyebrow">JUNAČKI POHOD ${w.n} · BOS JE PAO</p><h2>${w.ime.toUpperCase()} · PREĐEN</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 14px;margin:14px 0 18px;font-size:11px;color:#c2d7cb">${stat(gbClock(w.t),'Vreme')}${stat(`${w.found}/${w.secrets}`,'Tajne sobe')}${stat(`${w.cuda}/${w.cudaN}`,'Čuda')}</div>`+
+  `<button class="primary" data-w="next">${w.next?`Sledeći pohod: ${w.next.ime} →`:'Junački pohodi →'} <small>Enter</small></button><button class="secondary" data-w="stay">Ostani i traži tajne <small>Esc</small></button><button class="text-button" data-w="menu">Junački pohodi</button></div>`;
+ const act={next:()=>gbNext(G),stay:()=>gbStay(G),menu:()=>gbToMenu(G)};m.querySelectorAll('[data-w]').forEach(x=>x.onclick=act[x.dataset.w]);m.hidden=false;}
 
 // ---------- camera: held inside the room Marko is in, sliding over when he walks into the next one ----------
 export function gbCamera(G,dt){const S=G.world.gb,p=G.p,L=S.L,R=L.rooms[S.room>=0?S.room:Math.max(0,gbRoomAt(L,p.x,p.y))];
@@ -238,7 +264,7 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
  for(const gt of S.gates){const q=gt.q;if(seenAt(q.x-60,q.y+q.h)||seenAt(q.x+80,q.y+q.h)){g.fillStyle=gt.open?'#5f6570':'#ffe39a';g.fillRect(X0(q.x)-1,Y0(q.y),2.5,Math.max(2,q.h*k));}}
  for(const D of S.doors){const q=D.q;if(!seenAt(D.sw.x,D.sw.y))continue;g.fillStyle=D.solved?'#5f6570':GB_MOCI.trag.color;D.floor?g.fillRect(X0(q.x),Y0(q.y)-1,Math.max(2,q.w*k),2.5):g.fillRect(X0(q.x)-1,Y0(q.y),2.5,Math.max(2,q.h*k));}
  for(const z of S.pits)if(z.x1-z.x0>=GB_GAP&&(seenAt(z.x0-60,z.y-150)||seenAt(z.x1+60,z.y-150))){g.fillStyle=S.moci.nalet?'#5f6570':GB_MOCI.nalet.color;g.fillRect(X0(z.x0),Y0(z.y-150)-1,(z.x1-z.x0)*k,2.5);}
- {const c=G.world.enemies.find(e=>e.champion);if(c?.alive&&seenAt(c.x,c.y)){g.strokeStyle='#ff6a5a';g.lineWidth=2;const cx=X0(c.x),cy=Y0(c.y-60);g.beginPath();g.moveTo(cx-4,cy-4);g.lineTo(cx+4,cy+4);g.moveTo(cx+4,cy-4);g.lineTo(cx-4,cy+4);g.stroke();}}
+ {const c=S.boss||G.world.enemies.find(e=>e.champion);if(c?.alive&&seenAt(c.x,c.y)){g.strokeStyle='#ff6a5a';g.lineWidth=2;const cx=X0(c.x),cy=Y0(c.y-60);g.beginPath();g.moveTo(cx-4,cy-4);g.lineTo(cx+4,cy+4);g.moveTo(cx+4,cy-4);g.lineTo(cx-4,cy+4);g.stroke();}}
  dot(G.p.x,G.p.y,'#ffffff',3);
  g.font='11px Georgia';let mx=15;for(const id of Object.keys(S.moci)){const M=gbMoc(G,id),have=S.moci[id];g.fillStyle=have?M.color:'#6b7079';const txt=(have?'● ':'○ ')+M.name;g.fillText(txt,mx,142);mx+=g.measureText(txt).width+14;}}
 
@@ -247,5 +273,5 @@ export function gbMenu(start){if(typeof document==='undefined'||!document.queryS
  const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Junački pohodi';links.append(sep,b);
  // the list is made each time it opens, so levels registered later are in it too
  b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
-  m.innerHTML=`<div class="modal-card"><p class="eyebrow">DUGI NIVOI SA SOBAMA I TAJNAMA</p><h2>Junački pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
+  m.innerHTML=`<div class="modal-card"><p class="eyebrow">DUGI NIVOI SA SOBAMA I TAJNAMA</p><h2>Junački pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${(done=>Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}${done.has(+n)?' · ✓':''}</button>`).join(''))(gbDoneSet())}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
   m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});m.hidden=false;};}
