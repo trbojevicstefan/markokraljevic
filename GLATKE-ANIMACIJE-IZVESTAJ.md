@@ -116,7 +116,13 @@ Mereno u Chrome-u bez prozora (headless), na istoj kartici (AMD RX 9060 XT), 160
 - Kuka, odmor, klizanje i trk uz zid su u rig-u i imaju međukadrove, ali te pokrete u kod dodaje sesija „lc-pokreti“.
 - Prihvat `-v2` je spreman: `smooth-anims.py` nacrtanu međupozu stavlja kao polovinu koraka, a četvrtine računa tokom. U igri nacrtana poza prolazi i kroz pripremu i kontakt udarca.
 
-**Nastavak, kad se kredit dopuni:** ponovo pokrenuti Codex sa istim brief-om. On upisuje status u `STATUS-ANIMACIJE.md` i nastavlja od `marko-launcher`.
+**Pregled u igri** (snimak korak po korak u prvom pohodu: klizanje, skok, krilo, vazdušni kombo, juriš, Vilin trag):
+- Veličina se ne menja na prelazima: visina krajnjih poza je ista kao kod `marko-idle-2` i `marko-fall`, a oslonac je isti do 0,6 jedinica.
+- Trup je skakao vodoravno na nekoliko prelaza, jer se sidro računa kao medijan klipa, a ogrtač raširen kao krila ili noga ispružena napred ga pomeraju. Najviše kod klizanja (55 jedinica), `air-3` (25) i krila (15). Sidro novih klipova je pomereno tako da se trup poklopi sa susednim klipovima (`ANCHOR_FIX` u `build-sprite-rig.py`).
+- Klizanje (S u trku) koristi `marko-klizanje` u sredini, a početak i kraj iz `marko-slide`. Lanac koristi `marko-kuka-baci` i `marko-kuka-let`, a trk po zidu `marko-zid-trk`. Lanac i trk po zidu traže kuke i zidove iz greybox nivoa, pa ih u igri nisam video; vezani su za `p.lanac` i `p.zidotrk`.
+- `marko-launcher` je alias za `marko-uppercut`, uz proceduralni sloj: skupi se pred udarac i istegne se nagore kad udari.
+
+**Nastavak, kad se kredit dopuni:** pokrenuti `art/world-pack-03/DOPUNA-45-nastavak.cmd`. Codex radi od dela 2 (udarci `-v2`, pa tvrdi klipovi `-v2`, pa protivnici); `marko-launcher` crta na kraju.
 
 ## Tabela pre i posle, po klipu
 
