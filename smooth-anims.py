@@ -73,6 +73,8 @@ ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
 # Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
 # at its last frame never asks for it).
 SKIP = {'kosturi'}   # not an animation: each frame is another skeleton, picked by the kind of soldier
+ALIASES = {'marko-launcher': 'marko-uppercut'}   # the same sheet under another name (build-sprite-rig.py): the same in-betweens
+SKIP |= set(ALIASES)
 EXTRA = [c for c in RIG if c not in MAIN_LOOPS and c not in ONCE and c not in SKIP and not c.startswith('cast/')]
 LOOPS = MAIN_LOOPS + EXTRA
 # a champion's look borrows the idle sequence of the soldier it stands for
@@ -368,7 +370,8 @@ def run(names):
     for n in names:
         if n not in RIG: print('skip (not in the rig):', n)
     total = 0
-    with ProcessPoolExecutor(max_workers=max(1, (os.cpu_count() or 2) - 1)) as ex:
+    # a few workers: each holds a sheet and its flows in memory (SMOOTH_WORKERS to change)
+    with ProcessPoolExecutor(max_workers=int(os.environ.get('SMOOTH_WORKERS', min(6, max(1, (os.cpu_count() or 2) - 1))))) as ex:
         for name, res, log in ex.map(work, jobs):
             if res is None:
                 print('skip (%s): %s' % (log, name)); continue
@@ -396,6 +399,8 @@ def run(names):
                 total += s1.shape[0] * s1.shape[1] + s2.shape[0] * s2.shape[1]
             print('%-26s %2d/%2d pairs  k=%.2f  %s' % (name, len(keep), len(log), k,
                   ' '.join('%d-%d:%s' % (i, j, ('%.3f/%.2f' % (e, g)) + ('!' + w if w else '') if e is not None else w) for i, j, e, g, w in log)), flush=True)
+    for alias, src in ALIASES.items():
+        if src in meta and alias in RIG: meta[alias] = meta[src]
     meta = {k: meta[k] for k in sorted(meta)}
     json.dump(meta, open(META, 'w', encoding='utf-8'), separators=(',', ':'))
     print('sheets written: %.1f Mpx (%.0f MB decoded)' % (total / 1e6, total * 4 / 1e6))
