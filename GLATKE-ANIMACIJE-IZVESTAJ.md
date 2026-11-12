@@ -1,6 +1,6 @@
 # Glatke animacije: izveštaj
 
-**Grana:** `claude/glatke-animacije-590652`, spojena u `main` (sa Lost Crown pokretima na kojima je zasnovana).
+**Grana:** `claude/glatke-animacije-590652`. Na `main` je otišao `752c729` (svi klipovi, sa Lost Crown pokretima na kojima je grana zasnovana); nastavak `45ae041` je spojen u `realisticni-svet`, a na `main` ga šalje orkestrator.
 
 ## Ukratko
 
