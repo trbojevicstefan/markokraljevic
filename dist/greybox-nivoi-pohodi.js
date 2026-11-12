@@ -478,7 +478,62 @@ export const GB_POHODI={
   // Vilino ostrvo: Vilin trag, čekpoint, dimnjak na ostrvo; vezirova riznica iza vrata na prekidač
   K.ckpt('svetiljke',450);K.shrine('trag','svetiljke',800);K.chimney('svetiljke',300,{upper:'ostrvo'});K.trace('svetiljke','riznica');K.cudo('riznica',600,'Vezirov prsten',1);
   // Crno blato: dimnjak na stazu, šiljci; napukli zid do kališta
-  K.chimney('blato',700,{upper:'staza'});K.spikes('blato',300,100,1);K.crack('blato','kaliste',{row:1});K.heart('kaliste',600,1);}})
+  K.chimney('blato',700,{upper:'staza'});K.spikes('blato',300,100,1);K.crack('blato','kaliste',{row:1});K.heart('kaliste',600,1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 10 · Ravijojlina šuma („Marko Kraljević i vila“): na Miroču vila Ravijojla ustreli Miloša što je pevao lepše od nje; Marko
+// je stiže, a ona bere bilje po Miroču i leči pobratima. U šumi spavaju tri vilinska kamena; Sokolovo krilo čeka kraj
+// vilinskog izvora pod korenjem, a sa njim se penje klancem na vrh Miroča, gde Lovac-aga pušta pse po gori.
+10:pohod({id:'suma',ime:'Ravijojlina šuma',biom:'urvina',zeljeniBiom:'suma',daje:'krilo',pocetne:[],
+ cilj:'Probudi tri vilinska kamena, nađi krilo kraj izvora i popni se na vrh Miroča',start:'proplanak',spawnDx:240,
+ uvod:'Ravijojlina šuma na Miroču. Tri vilinska kamena spavaju, a Lovac-aga goni po gori. Sokolovo krilo čeka kraj vilinskog izvora, pod korenjem.',
+ sobe:[
+  ['proplanak','Proplanak',-1,0,1,1,{set:'suma'}],
+  ['bukvik','Bukova šuma',0,0,2,1,{set:'suma'}],
+  ['jelak','Jelak',0,-1,2,1,{set:'suma'}],
+  ['kolo','Vilino kolo',2,-1,1,1,{set:'suma'}],
+  ['gnezdo','Orlovo gnezdo',3,-1,1,1,{secret:true,set:'suma',lore:'Orlovo gnezdo. Orao je ovde čuvao vilino pero dok se Ravijojla ne vrati sa Miroča.'}],
+  ['potok','Šumski potok',2,0,1,1,{set:'reka'}],
+  ['lovacka','Lovačka kuća',3,0,1,1,{interior:true}],
+  ['gustis','Guštara',4,0,2,1,{set:'suma'}],
+  ['brest','Stari brest',4,-1,2,1,{set:'suma'}],
+  ['vidikovac','Vidikovac',6,-1,1,1,{set:'suma'}],
+  ['kamen1','Prvi vilinski kamen',6,0,1,1,{set:'suma'}],
+  ['klanac','Klanac pod Miročem',7,-2,1,3],
+  ['kamen2','Drugi vilinski kamen',8,-1,1,1],
+  ['vrh','Vrh Miroča',8,-2,1,1],
+  ['jazbina','Vučja jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Vučja jazbina. Vukovi su je ostavili kad je Šarac skočio za vilom „po tri koplja u visinu“.'}],
+  ['korenje','Korenje',0,1,2,1,{interior:true}],
+  ['pecina','Pećina pod šumom',2,1,2,1,{interior:true}],
+  ['brlog','Medveđi brlog',3,2,1,1,{interior:true}],
+  ['izvor','Vilinski izvor',4,1,1,1,{interior:true}],
+  ['vilina','Vilina pećina',5,1,1,1,{interior:true}],
+  ['riznica','Vilina riznica',6,1,1,1,{secret:true,interior:true,lore:'Vilina riznica. Bilje sa Miroča: Ravijojla ga je brala da izleči Miloša, pobratima Markova.'}]],
+ brda:{proplanak:[[500,900,40]],bukvik:[[200,400,30]],gustis:[[600,1100,50]]},
+ gradi(K){
+  // Proplanak i bukova šuma: guslar, prva borba, krilo u jelak, rupa u korenje
+  K.guslar('proplanak',800,['Ne streljajte po gori junaka','dok je glasa Kraljevića Marka','i njegova vidovita Šarca!']);K.prop('bukva','proplanak',400,340);K.door('proplanak','bukvik',0);
+  K.block('bukvik',2050,120,160,120);K.borba('bukvik',[['akindzija',850],['sword',1400],['archer',2100,120]]);K.wing('bukvik',500,{upper:'jelak'});K.drop('bukvik',1600,1800,'korenje');K.door('bukvik','potok',0);
+  // Jelak, Vilino kolo: strelnica; Ravijojla; lažni zid do orlovog gnezda
+  K.strelnica('jelak',2380,{row:-1,every:2.8});K.heart('jelak',1400,-1);K.door('jelak','kolo',-1);
+  K.lik('kolo',500,'vila-spreda','Ravijojla: Ne streljaj po gori, Marko. Miloš je pevao lepše od mene, a ja sam se naljutila.',-1);K.drop('kolo',700,850,'potok');K.fake('kolo','gnezdo',{row:-1});K.cudo('gnezdo',700,'Vilino pero',-1);
+  // Potok i lovačka kuća: greda nad vodom; lovac
+  K.greda('potok',300,{span:220});K.door('potok','lovacka',0);
+  K.lik('lovacka',500,'putnik-starac-idle','Lovac: Lovac-aga je pustio pse po gori. Gore na Miroču ga čeka megdan.');K.heart('lovacka',900,0);K.door('lovacka','gustis',0);
+  // Guštara: palikuća pali šumu, trnje; krilo na stari brest
+  K.borba('gustis',[['palikuca',800],['sword',1000]]);K.spikes('gustis',2000,120);K.wing('gustis',1300,{upper:'brest'});K.door('gustis','kamen1',0);
+  K.block('brest',500,120,120,120,-1);K.block('brest',1900,120,120,120,-1);K.borba('brest',[['archer',560,120],['archer',1960,120],['sword',1100]],-1);K.heart('brest',2200,-1);K.door('brest','vidikovac',-1);K.door('vidikovac','klanac',-1);
+  // Prvi kamen, klanac, drugi kamen, vrh Miroča
+  K.ckpt('kamen1',300);K.lik('kamen1',800,'vilinski-kamen-spava','Prvi vilinski kamen se budi kad mu priđeš. Ostala dva su u klancu i pod zemljom.');K.door('kamen1','klanac',0);
+  K.chimney('klanac',700);K.wing('klanac',300,{row:-1});K.door('klanac','kamen2',-1);K.lik('kamen2',600,'vilinski-kamen-budi','Drugi vilinski kamen se budi. Vrh Miroča je iznad, samo krilom.',-1);
+  K.door('klanac','vrh',-2);K.bos('vrh','lovac');
+  // Korenje: psi Lovac-age, dimnjak gore, lažni zid do jazbine
+  K.borba('korenje',[['pas',600],['pas',800],['sword',2100]]);K.chimney('korenje',1000,{upper:'bukvik'});K.fake('korenje','jazbina',{row:1});K.heart('jazbina',500,1);K.door('korenje','pecina',1);
+  // Pećina: daske, strelnica, borba; rupa u brlog
+  K.crumble('pecina',700,180,1);K.crumble('pecina',880,180,1);K.pit('pecina',700,1060);K.borba('pecina',[['sword',1500],['shield',2100]]);K.strelnica('pecina',2380,{every:2.6});
+  K.drop('pecina',1300,1500,'brlog');K.chimney('brlog',700,{upper:'pecina'});K.heart('brlog',300,2);K.door('pecina','izvor',1);
+  // Vilinski izvor: krilo, čekpoint, Ravijojla bere bilje; dimnjak u guštaru; treći kamen i vilina riznica
+  K.ckpt('izvor',600);K.shrine('krilo','izvor',850);K.lik('izvor',1050,'vila-isceljenje','Ravijojla bere bilje po Miroču i leči Miloša. Uzmi krilo, Marko, i popni se na vrh.',1);
+  K.chimney('izvor',300,{upper:'gustis'});K.door('izvor','vilina',1);K.lik('vilina',500,'vilinski-kamen-budan','Treći vilinski kamen je budan. Iza njega je zid koji zvuči šuplje.',1);K.crack('vilina','riznica',{row:1});K.cudo('riznica',600,'Bilje sa Miroča',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
