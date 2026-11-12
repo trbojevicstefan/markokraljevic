@@ -859,3 +859,9 @@ DOPUNA-46: ikona-potres — GOTOVO; art/world-pack-03/ikona-potres.png, 128x128 
 DOPUNA-46: ikona-gaz — GOTOVO; art/world-pack-03/ikona-gaz.png, 128x128 RGBA; image_gen.
 
 DOPUNA-45 deo 2: marko-combo-1-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets i sprite-rig.json, neparni image_gen; atlas=frames, alfa proverena.
+
+DOPUNA-46: marko-lanac-vuce — GOTOVO; ponovo nacrtano na providnoj pozadini, 6 kadrova petlja, y=487, atlas=frames; rezovi po prazninama, bez susednih fragmenata.
+
+DOPUNA-45 deo 2: marko-combo-2-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets/sprite-rig.json, neparni image_gen; atlas=frames, svetla pozadina uklonjena sprite-gen cutout.
+
+DOPUNA-45 deo 2: marko-combo-3-v2 — GOTOVO; 11 kadrova, parni tacno iz dist/assets i rig-a, neparni image_gen; atlas=frames, alfa, uklonjeni sitni fragmenti suseda.
