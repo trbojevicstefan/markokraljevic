@@ -165,6 +165,36 @@ Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je s
 - lanac i kuka kao slike (DOPUNA-46 deo 4);
 - protivnici (DOPUNA-45 deo 4).
 
+## Codex, treće pokretanje (12. novembar, 10:25–10:55)
+
+Pokrenuto posle obnove limita. Codex je radio 30 minuta, pa je radni prostor opet ostao bez kredita (posle `vrac-hurt`). Svaki klip sam pregledao i ubacio u igru čim je stigao. Commit-ovi idu od `8e51608` do `2565bb5`, bez push-a.
+
+- **DOPUNA-45 deo 2 je gotov:** `run-attack`, `air-1`, `air-2`, `uppercut` i `attack` imaju nacrtane međupoze.
+- **DOPUNA-45 deo 3:** od 12 klipova, 10 je u igri sa nacrtanim međupozama:
+  - Marko: `charged`, `counter`, `roll-land`;
+  - protivnici: `archer-death`, `akindzija-hurt`, `-jump`, `-launch`, `-charge`, `beg-unhorsed`, `bajraktar-hurt`.
+- **DOPUNA-46 deo 4:** lanac je sada nacrtan od pravih karika (svaka druga iz profila), sa kukom na vrhu, a alke su ukovane u kamen. Proverio sam u igri, u pregledaču. Bez slika ostaje stari crtež.
+- **DOPUNA-45 deo 4:** u rig-u sa međukadrovima su `soko-pogodjen`, `soko-pad`, `kostur-napad`, `kostur-hurt`, `vrac-idle`, `vrac-carolija`, `vrac-pojavljuje` i `vrac-hurt`. U igru ih uvodi sesija koja pravi te protivnike.
+
+**Šta sam popravio:**
+- **Razmera nacrtanih poza.** Codex je u 11 klipova nove poze nacrtao dosledno manje ili veće od originala:
+  - combo-3 0,89, super 0,91, run-attack 0,96;
+  - air-1 0,89, air-2 0,87, uppercut 0,87, attack 0,74;
+  - akindžija: hurt 0,92, jump 0,80, launch 1,11, charge 0,89.
+
+  U igri bi lik pulsirao. `smooth-anims.py` sada meri odnos veličine svake nacrtane poze prema susednim kadrovima. Kad se poze klipa slažu (bar 3/4 unutar ±5% od medijane) i medijana odstupa više od 3%, nacrtane poze se skaliraju nazad oko stopala. Kod koluta, pada i kombo udaraca 1, 2 i 4 poze se ne slažu ili ne odstupaju, pa ostaju kakve jesu.
+- **Odbijena su tri crteža.** `marko-roll-v2` ima sitne figure i bele pomoćne linije. `marko-plunge-v2` i `vrac-nestaje` imaju neprovidnu belu pozadinu.
+  - `smooth-anims.py` sada sam odbija -v2 klip sa takvom pozadinom: ispravan crtež ima najviše 0,1% belih neprovidnih piksela, a ovi su imali 43–85%.
+  - Odbijeni izvozi su u `sources/<klip>/odbijen-izvoz`.
+  - Kolut i zakucavanje se ponašaju kao pre ovog pokretanja.
+- **Veličina vrača.** `vrac-pojavljuje` je nacrtan za trećinu veći od `vrac-idle`, pa ga rig svodi na istu visinu.
+- **Novi klipovi koji se puštaju jednom** više nemaju par „poslednji → prvi“.
+
+**Ostalo** (`art/world-pack-03/codex-nastavak.cmd`, prompt je ažuriran i sada izričito traži providnu pozadinu i istu veličinu):
+- ponovo nacrtati `marko-roll-v2`, `marko-plunge-v2` i `vrac-nestaje`;
+- `vrac-death`;
+- šarka (3 klipa) i Ala (5 klipova).
+
 ## Tabela pre i posle, po klipu
 
 „Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s; „—“ znači da zavisi od scene). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.

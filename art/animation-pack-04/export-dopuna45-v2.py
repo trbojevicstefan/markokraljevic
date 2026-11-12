@@ -64,7 +64,11 @@ m.update(game_input='atlas.png',sprite_sheet_alpha='atlas.png',base_image='refer
 m['animation']['rows']['motion']['holdLastFrame']=True
 (out/'manifest.json').write_text(json.dumps(m,indent=2),encoding='utf8')
 sg('compose-gif',*[fd/f'frame-{i}.png' for i in range(total)],'--output',out/'preview.gif','--delay-ticks','4','--loop-count','1')
-atlas=Image.open(out/'atlas.png').convert('RGBA')
+# Keep RGB bytes beneath fully transparent source pixels as well.
+atlas=Image.new('RGBA',(cw*total,ch))
+for i,im in enumerate(frames):atlas.paste(im,(i*cw,0))
+atlas.save(out/'atlas.png')
+atlas.save(run/'sprite-sheet-alpha.png')
 assert atlas.size==(cw*total,ch)
 for i,im in enumerate(frames):
  assert atlas.crop((i*cw,0,(i+1)*cw,ch)).tobytes()==im.tobytes()

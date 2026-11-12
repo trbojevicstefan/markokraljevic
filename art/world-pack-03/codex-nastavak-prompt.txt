@@ -1,11 +1,14 @@
-Ti si crtač animacija za igru „Marko — Tri srca Kačanika“ (repo je ovaj folder). Radi štedljivo: ne čitaj ponovo dokumentaciju koju znaš, ne pravi probne slike, jedan image_gen poziv po klipu. Postupak i alati kao do sada: art/animation-pack-04/export-dopuna45.py za nove klipove i art/animation-pack-04/export-dopuna45-v2.py za <klip>-v2 (parni kadrovi tačno iz postojećeg klipa, neparni nacrtani). Provera je samo osnovna: providna pozadina, oslonac y=487, ista veličina, parni kadrovi isti kao original.
+Ti si crtač animacija za igru „Marko — Tri srca Kačanika“ (repo je ovaj folder). Radi štedljivo: ne čitaj ponovo dokumentaciju koju znaš, ne pravi probne slike, jedan image_gen poziv po klipu. Postupak i alati kao do sada: art/animation-pack-04/export-dopuna45.py za nove klipove i art/animation-pack-04/export-dopuna45-v2.py za <klip>-v2 (parni kadrovi tačno iz postojećeg klipa, neparni nacrtani).
 
-Urađeno je (art/world-pack-03/STATUS-ANIMACIJE.md): ceo DOPUNA-46 deo 1–3, a iz DOPUNA-45 dela 2 marko-combo-1..4-v2 i marko-super-v2.
+Provera pre nego što upišeš GOTOVO (prethodna tri crteža su odbijena baš zbog ovoga):
+- pozadina je providna u SVIM kadrovima, bez bele podloge, papira ili pomoćnih linija (tlo, okvir, ugao);
+- lik je iste veličine kao u susednim postojećim kadrovima (ne manji, ne veći), oslonac kao original;
+- kod -v2 parni kadrovi su isti kao original.
+
+Urađeno je (art/world-pack-03/STATUS-ANIMACIJE.md): DOPUNA-46 ceo, DOPUNA-45 delovi 1-3 osim tri odbijena, a iz dela 4 soko, kostur i vrač osim vrac-nestaje i vrac-death.
 
 Redosled ostatka (važnije je gore; ako nestane kredita, stani tu gde si):
-1. DOPUNA-45 deo 2: marko-run-attack-v2, marko-air-1-v2, marko-air-2-v2, marko-uppercut-v2, marko-attack-v2.
-2. DOPUNA-45 deo 3 (12 klipova -v2), redom iz tabele.
-3. DOPUNA-46 deo 4 (lanac-karika, lanac-kuka, kuka-alka).
-4. DOPUNA-45 deo 4 (soko, kostur, vrač, šarka, Ala).
+1. Ponovo, jer su odbijeni: marko-roll-v2, marko-plunge-v2 (DOPUNA-45 deo 3), vrac-nestaje (deo 4: vrač se rasprši u ljubičast dim, na providnoj pozadini).
+2. DOPUNA-45 deo 4: vrac-death, pa sarka (-puzi, -napad, -death), pa ala (-let, -obrusavanje, -oluja, -hurt, -pad).
 
-Posle svakog klipa ili slike upiši jedan kratak red u art/world-pack-03/STATUS-ANIMACIJE.md. Kod igre i dist/ ne menjaj i ne commit-uj ništa. Ne postavljaj pitanja; kad nešto nije jasno, odluči sam.
+Posle svakog klipa upiši jedan kratak red u art/world-pack-03/STATUS-ANIMACIJE.md. Kod igre i dist/ ne menjaj i ne commit-uj ništa. Ne postavljaj pitanja; kad nešto nije jasno, odluči sam.

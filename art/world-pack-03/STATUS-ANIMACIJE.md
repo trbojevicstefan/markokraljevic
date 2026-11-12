@@ -928,3 +928,8 @@ DOPUNA-45 deo 4: vrac-nestaje — GOTOVO; 6 kadrova 512x512, jednom, providna po
 DOPUNA-45 deo 4: vrac-pojavljuje — GOTOVO; 6 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-pojavljuje/; jedan image_gen poziv, prompt u sources/vrac-pojavljuje/prompt.txt.
 
 DOPUNA-45 deo 4: vrac-hurt — GOTOVO; 4 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-hurt/; jedan image_gen poziv, prompt u sources/vrac-hurt/prompt.txt.
+
+Claude, 12. nov. 11:10: marko-roll-v2 ODBIJEN (nacrtane poze sitne, sa belim pomoćnim linijama: podloga i ugao L), crtati ponovo.
+Claude, 12. nov. 11:10: marko-plunge-v2 ODBIJEN (nacrtane poze na neprovidnoj beloj pozadini, kao papir), crtati ponovo.
+Claude, 12. nov. 11:10: vrac-nestaje ODBIJEN (neprovidna bela pozadina u svim kadrovima), crtati ponovo. Odbijeni izvozi su u sources/<klip>/odbijen-izvoz.
+Claude, 12. nov. 11:10: razmera nacrtanih poza u -v2 ispravljena u smooth-anims.py (combo-3, super, run-attack, air-1, air-2, uppercut, attack, akindzija-hurt/-jump/-launch/-charge); vrac-pojavljuje sveden na visinu vrac-idle u rig-u. Ubuduće: nove poze iste veličine kao susedni kadrovi.
