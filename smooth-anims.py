@@ -67,8 +67,11 @@ FOE_ONCE = ['attack', 'shoot', 'shoot-down', 'hurt', 'death', 'jump', 'launch', 
 MUSA_LOOP = ['musa-run', 'musa-idle', 'musa-mounted']
 MUSA_ONCE = ['musa-attack', 'musa-hurt', 'musa-death', 'musa-mounted-strike', 'musa-sword', 'musa-grab', 'musa-throw-up', 'musa-stomp',
              'musa-roar', 'musa-block']
-MAIN_LOOPS = MARKO_LOOP + [f + '-' + c for f in FOES for c in FOE_LOOP] + MUSA_LOOP
-ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
+# the new foes of DOPUNA-45 that play once (holdLastFrame in their art): no last-to-first pair
+NEW_FOE_ONCE = ['soko-pogodjen', 'soko-pad', 'kostur-napad', 'kostur-hurt', 'vrac-carolija', 'vrac-nestaje', 'vrac-pojavljuje', 'vrac-hurt',
+                'vrac-death', 'sarka-napad', 'sarka-death', 'ala-obrusavanje', 'ala-oluja', 'ala-hurt', 'ala-pad']
+MAIN_LOOPS =MARKO_LOOP + [f + '-' + c for f in FOES for c in FOE_LOOP] + MUSA_LOOP
+ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE + NEW_FOE_ONCE
 # Everything else the rig has: champions, travellers, the fairy, birds, fire, grapples, sleeping and waking, finishing blows.
 # Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
 # at its last frame never asks for it).

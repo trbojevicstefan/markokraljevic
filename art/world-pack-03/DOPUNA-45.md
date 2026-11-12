@@ -104,3 +104,9 @@ Ako nestane kredita, ono što je gore važnije je.
 - **Deo 1 je gotov**, osim `marko-launcher`: 12 klipova je u igri ili u rig-u (`STATUS-ANIMACIJE.md`). Codex je stao kad je nalog ostao bez kredita. Podizač dok ne dobije svoj crtež koristi `marko-uppercut` (alias u `build-sprite-rig.py`), uz proceduralni sloj: skupi se pred udarac i istegne se nagore kad udari.
 - **Nastavak:** posle dopune kredita pokreni `art/world-pack-03/codex-nastavak.cmd`. On pokreće Codex neinteraktivno sa `codex-nastavak-prompt.txt`, od dela 2. Dnevnik je u `art/world-pack-03/codex-nastavak.log`.
 - **Posle Codex-a (Claude):** `python sync-anims.py`, `python build-sprite-rig.py`, `python smooth-anims.py` za nove klipove i za one koji su dobili `-v2`. Nacrtane međupoze iz `-v2` ulaze u igru kao polovine koraka, a priprema i kontakt udarca ostaju na svom vremenu. Novi protivnici (deo 4) idu u rig, a u igru ih uvodi sesija koja pravi te protivnike.
+
+## Stanje (12. novembar, 11:10)
+
+- Deo 1, 2 i 3 su gotovi, osim `marko-roll-v2` i `marko-plunge-v2`: oba su odbijena zbog belih linija i pozadine, i treba ih nacrtati ponovo.
+- Iz dela 4 su u rig-u soko, kostur i vrač. Fale `vrac-nestaje` (odbijen), `vrac-death`, šarka i Ala.
+- Nastavak je u `codex-nastavak.cmd`, a prompt je ažuriran.
