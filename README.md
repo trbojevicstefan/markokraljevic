@@ -295,6 +295,40 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 - `node greybox-test.mjs` za svaki nivo prelazi svaku vezu između soba stvarnim ulazima i proverava da nijedna kapija ne pušta bez svoje moći.
 - Šta još treba nacrtati za ovaj stil igre piše u `LOST-CROWN-POTREBE.md`.
 
+**Lost Crown verzije svih pohoda** (`index.html?greybox=4` do `?greybox=19`, i u istom meniju) su šesnaest nivoa, redom priče. Podaci su u `dist/greybox-nivoi-pohodi.js`, u istom obliku kao `greybox-nivoi.js`, a motor je isti.
+
+| `?greybox=` | Nivo (pesma) | Sobe | Moć | Bos | Biom |
+|---|---|---|---|---|---|
+| 4 | Kosovsko selo („Jao Šaro, moje desno krilo“) | 21 | krilo | Kopljanik-baša | podgradje |
+| 5 | Manastirski vis (Uroš i Mrnjavčevići) | 21 | juriš | Dželat | klisura |
+| 6 | Oranje drumova | 21 | Vilin trag | Tri janičara | podgradje |
+| 7 | Opsednuta tvrđava (Marko poznaje očinu sablju) | 21 | krilo | Hasan-aga | klisura |
+| 8 | Zaboravljeni podrum (vino uz ramazan) | 21 | juriš | Ognjeni aga | podgradje |
+| 9 | Noćna močvara (Lov Markov s Turcima) | 21 | Vilin trag | Tufekdžija-baša | urvina |
+| 10 | Ravijojlina šuma (Marko i vila) | 21 | krilo | Lovac-aga | urvina |
+| 11 | Vilinska pećina (Marko u pećini) | 20 | juriš | Aždaja | urvina |
+| 12 | Zimski prevoj (Đemo: „topuzinu baca u oblake“) | 21 | Vilin trag | Akindžijski beg | urvina |
+| 13 | Klisura Ibra (Đemo Brđanin) | 21 | krilo | Đemo Brđanin | klisura |
+| 14 | Ruševine na brdu (Marko ukida svadbarinu) | 20 | juriš | Arapin | podgradje |
+| 15 | Stari rudnik (Azačka tamnica: „voda do koljena“) | 20 | Vilin trag | Bajraktar | klisura |
+| 16 | Obala pred zoru („Poranio Kraljeviću Marko“) | 20 | krilo | Janičarski aga | klisura |
+| 17 | San Kraljevića Marka (četiri odaje sna) | 20 | juriš | Musa iz sna | urvina |
+| 18 | Azačka kula (soko nosi knjigu Dojčilu) | 20 | Vilin trag | Arapin | klisura |
+| 19 | Tri srca Kačanika (šest poglavlja glavne priče) | 20 | krilo | Musa Kesedžija | klisura |
+
+- Svaki nivo ima 20–21 sobu na tri do pet spratova i tri do pet tajnih soba (bar jedna čeka moć tog nivoa, ostale oštro oko). Ima i dva čekpointa, četiri do šest borbi sa neprijateljima tog kraja i bosa tog pohoda.
+- Ima i likove iz pesme: guslar peva stihove, a ostali kažu svoju reč kad Marko priđe (`lik` u `zamke.js`). Zamke su strelnice i grede iz `zamke.js`, plus šiljci, ponori i daske koje popuštaju.
+- Biom je jedan od tri iz manifesta realističnih slika (`podgradje`, `urvina`, `klisura`); polje `zeljeniBiom` kaže koji bi crtež tu išao kad ga bude.
+- Moći se smenjuju redom priče: krilo (bez početnih moći), juriš (uz krilo) i Vilin trag (uz krilo i juriš). Kapije za moći su ispusti od 365 px za krilo, ponori od 500 px za juriš i vrata na prekidač udaljen 1100 px za Vilin trag. Do bosa se ne stiže bez moći tog nivoa.
+- Moći iz `lc-pokreti` (klizanje, trčanje po zidu, Ravijojlin lanac, Vilinsko oko) još ne postoje u `greybox.js`, pa nivoi nemaju njihove kapije.
+- Nivoe ne piše ruka, nego mali alat u istom fajlu (`kit`). `K.chimney`, `K.wing`, `K.dash`, `K.trace`, `K.crack`, `K.fake`, `K.gate`, `K.drop`, `K.borba`, `K.lik`, `K.guslar` i `K.bos` postave blokove i u istom potezu zapišu vezu za test. Alat odbija rupu iznad rupe i krilo ili dimnjak koji nisu ispod svoje sobe.
+- Kuka do registra u `greybox.js`: `world.js` uvozi `greybox-nivoi-pohodi.js` samo u pregledaču, a fajl sam dodaje nivoe u `GB_NIVOI`. Sopstvene zamke (likove, guslare) nivo predaje kroz `B.strelnica({zamka})`, dok `greybox.js` ne dobije `B.zamka`.
+- `node greybox-pohodi-test.mjs [broj]` (deo `npm test`) za svaki nivo:
+  - proverava graf: sobe, tajne, čekpointe, borbe, likove, zamke i kapije; šta je dostižno sa moćima, a šta ostaje zatvoreno bez moći tog nivoa;
+  - prelazi svaku vezu stvarnim tasterima u oba smera i svaku kapiju proba i bez njene moći;
+  - pušta bota da jednim neprekinutim trčanjem, samo tasterima i bez teleporta, ide od početka do moći i do arene bosa. Bot preskače rupe i šiljke, čeka gredu i vozi se na njoj; Turci su za to trčanje sklonjeni, a zamke ostaju;
+  - obara bosa.
+
 ## Sadržaj
 
 Šest povezanih deonica: Drum junaka, Zatočena kapija, Vilinski trag, Šarčev zalet, Poslednji barjak i Tri srca Kačanika. Ukupno 55 čuvara kroz osnovne susrete i devet talasa pojačanja; tri vilinska mosta; upravljiv Šarac; tri opciona zapisa koji povećavaju maksimalno zdravlje; završni megdan sa tri faze, dva zamaha i talasom po tlu.

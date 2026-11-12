@@ -31,15 +31,36 @@ const floorY=(x,y)=>{const q=platformAt(x,y);return q?top(q,x):y;};
 const nodeAt=L=>GB.gbNodeAt(L,P().x,P().y);
 
 // ---- moving Marko: set him down once, then only keys ----
-function place(x,y,face=1){const p=P();Object.assign(p,{x,y:floorY(x,y),vx:0,vy:0,grounded:true,climb:null,hang:false,ledgeT:0,ledge:null,wall:0,attack:0,dash:0,airDash:false,kriloUsed:false,naletUsed:false,face,hp:p.maxHp,invuln:1e9,trag:null,cd:{},jumpBuffer:0,coyote:.12,plunge:0,down:0,hurt:0,slide:0,spin:0,throwT:0});api.keys.clear();api.pressed.clear();step(2);}
+// go(x): the bot walks to x with keys only. It jumps blocks and stakes, jumps holes (the wing at the top and the dash over a
+// wide one, when Marko has them), waits at a pit for the beam that slides over it and rides it across, climbs a caught ledge.
+const support=(x,y)=>W().platforms.some(q=>!q.off&&!q.gbWall&&x>=q.x&&x<=q.x+q.w&&Math.abs(top(q,x)-y)<=26);
+function gapWidth(x,y,dir){for(let d=0;d<700;d+=10)if(support(x+dir*d,y))return d;return 999;}
+function go(x,limit=3600){let air=0,wide=0,jumped=false;
+ for(let f=0;f<limit;f++){const p=P();p.invuln=1e9;p.hp=p.maxHp;const dx=x-p.x;if(Math.abs(dx)<12&&p.grounded){api.keys.clear();step(4);return true;}
+  const dir=dx>0?1:-1,key=dir>0?'KeyD':'KeyA',g=G();api.keys.delete(dir>0?'KeyA':'KeyD');api.keys.add(key);
+  if(p.hang&&p.ledgeT>0&&f%6===0)api.pressed.add('KeyW');
+  if(p.grounded){air=0;jumped=false;const ahead=p.x+dir*30,near=Math.abs(dx)<40;
+   const beam=W().traps.find(t=>t.kind==='greda'&&p.on===t.q);
+   if(beam){const q=beam.q,front=dir>0?q.x+q.w:q.x;if(!support(front+dir*24,p.y)||W().platforms.every(o=>o===q||o.off||!(front+dir*24>=o.x&&front+dir*24<=o.x+o.w&&Math.abs(top(o,front+dir*24)-p.y)<=26)))api.keys.delete(key);}
+   else if(!near&&!support(ahead,p.y)){const w=gapWidth(ahead,p.y,dir),rail=W().traps.find(t=>t.kind==='greda'&&Math.abs(t.q.y-p.y)<30&&(dir>0?t.q.move.ax:t.q.move.ax+t.q.w)>=Math.min(ahead,ahead+dir*w)-40&&t.q.move.ax<=Math.max(ahead,ahead+dir*w)+40);
+    if(rail&&!(g.moci.krilo&&w<380)&&!(g.moci.nalet&&g.moci.krilo))api.keys.delete(key);   // wait for the beam to come
+    else{api.pressed.add('Space');jumped=true;wide=w;}}
+   else if(p.wallHit||W().traps.some(t=>t.kind==='spikes'&&Math.abs(t.y-p.y)<12&&ahead+dir*50>t.x&&ahead<t.x+t.w+50&&dir*(t.x+t.w/2-p.x)>0)){api.pressed.add('Space');jumped=true;wide=0;}}
+  else{air++;if(jumped&&g.moci.nalet&&wide>300&&air===12)api.pressed.add('ShiftLeft');if(jumped&&g.moci.krilo&&air===(wide>300?60:26))api.pressed.add('Space');}
+  step();}
+ api.keys.clear();step(4);return false;}
+// the bot's run (NOTP): Marko is never set down; place() walks him there with keys and waits until he stands still
+let NOTP=false;
+function place(x,y,face=1){if(NOTP){go(x);const q=P();api.keys.clear();for(let i=0;i<120&&!(q.grounded&&Math.abs(q.vx)<5);i++){step();q.invuln=1e9;q.hp=q.maxHp;}return;}const p=P();Object.assign(p,{x,y:floorY(x,y),vx:0,vy:0,grounded:true,climb:null,hang:false,ledgeT:0,ledge:null,wall:0,attack:0,dash:0,airDash:false,kriloUsed:false,naletUsed:false,face,hp:p.maxHp,invuln:1e9,trag:null,cd:{},jumpBuffer:0,coyote:.12,plunge:0,down:0,hurt:0,slide:0,spin:0,throwT:0});api.keys.clear();api.pressed.clear();step(2);}
 const walk=(x,limit=3000)=>{const dir=x>P().x?1:-1,key=dir>0?'KeyD':'KeyA';api.keys.add(key);for(let f=0;f<limit&&(dir>0?P().x<x:P().x>x);f++){const p=P();if(p.grounded&&p.wallHit)api.pressed.add('Space');if(p.hang&&p.ledgeT>0&&f%6===0)api.pressed.add('KeyW');step();P().invuln=1e9;}api.keys.clear();step(4);return dir>0?P().x>=x:P().x<=x;};
 const settle=(n=240)=>{for(let f=0;f<n;f++){step();if(P().grounded&&f>20)break;}step(10);};
 function climb(q,sx,sy,dir,jx,k){place(sx,sy,dir);const key=dir>0?'KeyD':'KeyA';api.keys.add(key);let jf=-1;const y0=P().y;
  for(let f=0;f<480;f++){const p=P();if(jf<0&&(dir>0?p.x>=jx:p.x<=jx)){jf=f;api.pressed.add('Space');}if(jf>=0&&f-jf===k)api.pressed.add('Space');if(p.hang&&p.ledgeT>0&&f%6===0)tap('KeyW');
   step();const Q=P();if(Q.grounded&&Math.abs(Q.y-q.y)<2&&Q.x>q.x&&Q.x<q.x+q.w){api.keys.clear();step(2);return true;}if(jf>=0&&f-jf>40&&Q.grounded&&Math.abs(Q.y-y0)<2)break;}
  api.keys.clear();step(2);return false;}
-function fromFloor(q,y,dir){const edge=dir>0?q.x:q.x+q.w;for(const d of[10,40,80,130,170,210])for(const k of[8,14,20,26,32,38,44,50,56,999])if(climb(q,edge-dir*(d+60),y,dir,edge-dir*d,k))return{d,k};return null;}
-function fromBlock(q,src,dir){const edge=dir>0?src.x+src.w:src.x,sx=src.x+src.w/2;for(const d of[2,12,25,45,70])for(const k of[8,14,20,26,32,38,44,50,56,999])if(climb(q,sx,src.y,dir,edge-dir*d,k))return{d,k};return null;}
+const BEST=new Map(),firstBest=(key,ds,ks)=>{const b=BEST.get(key),all=ds.flatMap(d=>ks.map(k=>({d,k})));return NOTP?(b?[b,b]:all.slice(0,6)):b?[b,...all]:all;};
+function fromFloor(q,y,dir){const edge=dir>0?q.x:q.x+q.w,key=`${q.x}|${q.y}|${dir}`;for(const {d,k} of firstBest(key,[10,40,80,130,170,210],[8,14,20,26,32,38,44,50,56,999]))if(climb(q,edge-dir*(d+60),y,dir,edge-dir*d,k)){BEST.set(key,{d,k});return{d,k};}return null;}
+function fromBlock(q,src,dir){const edge=dir>0?src.x+src.w:src.x,sx=src.x+src.w/2,key=`${q.x}|${q.y}|${dir}|${src.x}|${src.y}`;for(const {d,k} of firstBest(key,[2,12,25,45,70],[8,14,20,26,32,38,44,50,56,999]))if(climb(q,sx,src.y,dir,edge-dir*d,k)){BEST.set(key,{d,k});return{d,k};}return null;}
 // a chimney: two walls 150 px apart, climbed wall to wall from the floor under it
 function chimney(C,y){place((C.x0+C.x1)/2,y,1);let dir=1;for(let i=0;i<120*12;i++){const p=P();api.keys.delete(dir>0?'KeyA':'KeyD');api.keys.add(dir>0?'KeyD':'KeyA');
   if(p.grounded&&p.y>C.top+20){tap('Space');continue;}if(p.wall){dir=-p.wall;tap('Space');continue;}step();if(P().grounded&&P().y<=C.top+2)break;}
@@ -59,8 +80,8 @@ function traced(D,stand){const q=D.q;place(stand.x,stand.y,1);tap('KeyV');const 
  const open=D.open>0;tap('KeyV');return left&&open;}
 
 // one passage, walked with the powers in `moci`; true when Marko ends up in its far node
-function walkLink(L,[a,b,need,one,how],moci,back=false){api.startGreybox(L.n);quiet();setMoci(moci);const from=back?b:a,to=back?a:b;
- if(how.open){const D=G().named[how.open];D.solved=true;D.q.off=true;}
+function walkLink(L,[a,b,need,one,how],moci,back=false){if(!NOTP){api.startGreybox(L.n);quiet();setMoci(moci);}const from=back?b:a,to=back?a:b;
+ if(how.open&&!NOTP){const D=G().named[how.open];D.solved=true;D.q.off=true;}
  if(how.door){const [ra,rb,row,dop={}]=how.door,sa=dop.sa||200,sb=dop.sb||200,A=GB.gbRoom(L,ra),Bb=GB.gbRoom(L,rb),y=(row+1)*GB.GB_CH-GB.GB_FL,ltr=(L.delovi?.[from]?.room||GB.gbNodeRoom(from))===ra;
   if(need?.startsWith('posle:')&&!back&&moci.has('posle')){place(Bb.x0+400,y,-1);walk(A.x1-400);}
   if(ltr){place(A.x1-sa,y,1);walk(Bb.x0+sb,900);}else{place(Bb.x0+sb,y,-1);walk(A.x1-sa,900);}}
@@ -114,6 +135,21 @@ for(const n of POHODI){if(ONLY&&n!==ONLY)continue;const L=GB.gbLevel(n),all=new 
  {api.startGreybox(n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} megdan sa ${c.name} počinje`);
   c.hp=1;c.invT=0;for(let f=0;f<1800&&c.alive;f++){const p=P(),tx=c.topuz?c.topuz.x:c.x;p.face=tx>p.x?1:-1;api.keys.clear();if(Math.abs(tx-p.x)>(c.topuz?20:90))api.keys.add(p.face>0?'KeyD':'KeyA');if(p.grounded&&p.wallHit)api.pressed.add('Space');if(f%30===0){api.pressed.add('KeyK');api.keys.add('KeyK');}step();p.invuln=1e9;c.guard=0;if(c.hp>1&&c.alive)c.hp=1;}
   api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} pada i pohod je pređen`);}
+ // ---- the bot: one unbroken run with keys only, from the start to the power and on to the boss (the land's foes are
+ // taken out, its traps stay); after each passage it looks where it is and picks the next one, so a fall only changes its way ----
+ {api.startGreybox(n);quiet();NOTP=true;const g=G(),S0=g.shrines[0],trail=[];let falls=0,ok2=false;
+  const bossNode=GB.gbNode(L,L.bosSoba,GB.gbRoom(L,L.bosSoba).gy+GB.gbRoom(L,L.bosSoba).h-1),shrineNode=GB.gbNodeAt(L,S0.x,S0.y);
+  const failed=new Map(),usable=(l,from)=>{const [a,b,need,one,how]=l,fwd=from===a;if(!fwd&&one)return false;if((failed.get(l)||0)>=2)return false;if(need&&GB.GB_MOCI[need]&&!g.moci[need])return false;
+   if(need?.startsWith('posle:')&&fwd){const A=GB.gbRoom(L,how.door[0]),gt=g.gates.find(o=>Math.abs(o.q.x-(A.x1-60))<2);if(!gt?.open)return false;}
+   if(how.open&&!g.named[how.open].solved)return false;return walked.has((fwd?a:b)+'>'+(fwd?b:a));};
+  const plan=(from,to)=>{const prev=new Map([[from,null]]),q=[from];while(q.length){const u=q.shift();if(u===to)break;for(const l of L.links)for(const [x,y] of [[l[0],l[1]],[l[1],l[0]]])if(x===u&&!prev.has(y)&&usable(l,u))prev.set(y,{u,l});q.push(...[...prev.keys()].filter(k=>!q.includes(k)&&k!==u&&prev.get(k)?.u===u));}
+   if(!prev.has(to))return null;let v=to,first=null;while(prev.get(v)){first=prev.get(v);v=first.u;}return first;};
+  for(let i=0;i<90;i++){const at=nodeAt(L),goal=S0.taken?bossNode:shrineNode;if(trail.at(-1)!==at)trail.push(at);
+   if(at===goal){if(!S0.taken){go(S0.x);if(!S0.taken)break;continue;}ok2=true;break;}
+   const nx=plan(at,goal);if(!nx)break;const {l}=nx,back=l[1]===at;const y0=P().y,t0=Date.now();walkLink(L,l,new Set(Object.keys(g.moci).filter(k=>g.moci[k])),back);const end=nodeAt(L);
+   if(end!==(back?l[0]:l[1])){failed.set(l,(failed.get(l)||0)+1);if(P().y>y0+300)falls++;}if(process.env.BOT_LOG)console.log('  bot',at,back?'<-':'->',back?l[0]:l[1],Object.keys(l[4])[0],'=>',end,Date.now()-t0,'ms');}
+  NOTP=false;ok(ok2&&S0.taken,`${tag} bot bez teleporta: ${trail.join(' → ')}${falls?` (${falls} pada usput)`:''}`);
+  if(ok2){const c=W().enemies.find(e=>e.champion);go(c.arena.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} bot je stigao u arenu: ${c.name}`);}}
  ok(storage.get('marko-megdani')===undefined&&storage.get('marko-levels')===undefined,`${tag} ništa nije upisano u sačuvanu igru`);}
 console.log(`
 ${checks} provera Lost Crown pohoda prošlo`);
