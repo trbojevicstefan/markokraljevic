@@ -7,7 +7,7 @@
 // game.js owns Marko, the foes and the drawing helpers and hands them in as `G` (GBX in game.js); this file never writes the save.
 import{strelnica,greda}from'./zamke.js';
 import{GB_NIVOI}from'./greybox-nivoi.js';
-import{artBack,artFront,artLook,artName}from'./greybox-svet.js';
+import{artBack,artFront,artFore,artLook,artName}from'./greybox-svet.js';
 
 export const GB_ZONE=60;
 export const GB_WALL=345;      // one jump and a ledge grab reach 266 px, the wing and a ledge grab 383 (greybox-test measures both)
@@ -20,7 +20,15 @@ export const GB_MOCI={
  nalet:{name:'Juriš u vazduhu',key:'u skoku SHIFT',color:'#ffcf6a',text:'Kratak nalet napred, bez pada. Skoči, jurni, pa krilo: tako se prelaze ponori.'},
  trag:{name:'Vilin trag',key:'V',color:'#8fffe0',text:'Ostavi trag kraj vrata (V), stani na prekidač, pa se tragom vrati (V) dok su vrata otvorena.'}
 };
+// ---------- the registry of levels: the three here (greybox-nivoi.js) and whatever a data file adds ----------
+// dist/greybox-nivoi-pohodi.js (the Lost Crown versions of the other pohodi, ?greybox=4 and on) exports GB_POHODI in the same
+// format; in the browser it is loaded once, and if it is not there the three levels are all there is. gbRegister takes any
+// {number: level} object, keeps the numbers already taken, and tells the menu.
 export const GB_LEVELS=GB_NIVOI;
+const gbListeners=[];
+export function gbRegister(levels){for(const [n,L] of Object.entries(levels||{}))if(L?.sobe&&!GB_NIVOI[n])GB_NIVOI[n]=L;for(const f of gbListeners)try{f();}catch{}return GB_NIVOI;}
+export const gbOnRegister=f=>{gbListeners.push(f);};
+export const gbReady=typeof window==='undefined'?Promise.resolve(GB_NIVOI):import('./greybox-nivoi-pohodi.js').then(m=>gbRegister(m.GB_POHODI||m.default),()=>GB_NIVOI);
 const clampN=(n,a,b)=>Math.max(a,Math.min(b,n));
 
 // ---------- a level as rooms, nodes and links (shared by the game and the reachability test) ----------
@@ -44,7 +52,7 @@ export function gbReach(L,moci,start=L.start){const seen=new Set([start]);let gr
 
 // ---------- building a level into the game's world ----------
 export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],breakables=[],traps=[],pits=[],named={},opens=[],holes=[];let id=3000;
- const S={L,t:0,room:-1,seen:new Set(),moci:{krilo:false,nalet:false,trag:false},pits,shrines:[],ckpts:[],doors:[],gates:[],fakes:[],hearts:[],cuda:[],props:[],ckpt:0,
+ const S={L,t:0,room:-1,seen:new Set(),moci:{krilo:false,nalet:false,trag:false},pits,holes,shrines:[],ckpts:[],doors:[],gates:[],fakes:[],hearts:[],cuda:[],props:[],ckpt:0,
   found:new Set(),cover:{},done:false,told:{},named};
  for(const m of L.pocetne||[])S.moci[m]=true;
  const R=rid=>gbRoom(L,rid),X=(rid,dx)=>R(rid).x0+dx,Y=rid=>R(rid).floor;
@@ -108,6 +116,8 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
 
 // ---------- once a step (game.js calls it from update while a greybox level is on) ----------
 export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play')return;const L=S.L;S.t+=dt;
+ // the arena's door is an open doorway here: once the megdan begins, the aga and whatever he calls stay inside it
+ for(const c of W.enemies)if(c.champion&&c.alive&&c.engaged&&c.arena){const A=c.arena;for(const e of W.enemies)if(e.alive&&Math.abs(e.y-A.y)<300&&e.x>A.x0-260&&e.x<A.x1+260)e.x=Math.max(A.x0+25,Math.min(A.x1-25,e.x));}
  const r=gbRoomAt(L,p.x,p.y);if(r>=0&&r!==S.room){S.room=r;const R=L.rooms[r];G.look=artLook(L,R);
   if(!S.seen.has(r)){if(S.t>.5)G.toast((artName(L,R)||R.name).toUpperCase(),1.6);if(R.secret){S.found.add(R.id);G.sfx('magic',{gain:.6});G.toast(`Tajna soba! ${S.found.size}/${S.secrets}`,2.4);if(R.lore)G.speak(R.lore,8);}}S.seen.add(r);}
  for(const R of L.rooms)if(R.secret&&S.found.has(R.id))S.cover[R.id]=Math.max(0,S.cover[R.id]-dt*1.6);
@@ -149,12 +159,19 @@ const C={back:'#25272c',back2:'#2a2c32',secret:'#2c2836',grid:'rgba(255,255,255,
 export const gbSurfAt=(q,x)=>{const S=q.surf,k=clampN((x-q.x)/q.sx,0,S.length-1),i=Math.floor(k);return i>=S.length-1?S[S.length-1]:S[i]+(S[i+1]-S[i])*(k-i);};
 export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H,t=G.time;if(!g||!S)return;
  const vis=(x0,y0,x1,y1)=>x1>cam-80&&x0<cam+VW+80&&y1>cy-80&&y0<cy+VH+80,shown=L.rooms.filter(R=>vis(R.x0,R.y0,R.x1,R.y1));
- const inRoom=(R,fn)=>{g.save();g.beginPath();g.rect(R.x0,R.y0-160,R.x1-R.x0,R.y1-R.y0+160);g.clip();fn();g.restore();};
+ // a room's art may rise 160 px over its top (trees, towers), but not into a room above it
+ const over=R=>R.over??=L.rooms.some(Q=>Q!==R&&Q.y1===R.y0&&Q.x0<R.x1&&Q.x1>R.x0)?0:160;
+ const inRoom=(R,fn)=>{const o=over(R);g.save();g.beginPath();g.rect(R.x0,R.y0-o,R.x1-R.x0,R.y1-R.y0+o);g.clip();fn();g.restore();};
  g.save();g.fillStyle=C.rock;g.fillRect(cam-60,cy-60,VW+120,VH+120);
  const dressed=new Set();for(const R of shown){inRoom(R,()=>{if(artBack(G,L,R))dressed.add(R.id);});}
+ // through a hole in a floor the room below shows (its backdrop, up through the floor's thickness), not the sky of the room above
+ for(const [rid,a,b] of S.holes||[]){const R=gbRoom(L,rid);if(!R||!shown.includes(R))continue;const x0=R.x0+a,x1=R.x0+b,mid=(x0+x1)/2,Q=L.rooms.filter(Q=>Q!==R&&Q.y0>=R.floor-1&&Q.x0<=mid&&Q.x1>mid).sort((u,v)=>u.y0-v.y0)[0];
+  if(!Q||!vis(x0,R.floor,x1,Q.y0))continue;g.save();g.beginPath();g.rect(x0,R.floor-2,x1-x0,Q.y0-R.floor+4);g.clip();if(!artBack(G,L,Q)){g.fillStyle='#141518';g.fillRect(x0,R.floor-2,x1-x0,Q.y0-R.floor+4);}
+  const sh=g.createLinearGradient(0,R.floor,0,Q.y0);sh.addColorStop(0,'rgba(10,12,14,.55)');sh.addColorStop(1,'rgba(10,12,14,.15)');g.fillStyle=sh;g.fillRect(x0,R.floor-2,x1-x0,Q.y0-R.floor+4);g.restore();}
  L.rooms.forEach((R,i)=>{if(!shown.includes(R)||dressed.has(R.id))return;g.fillStyle=R.secret?C.secret:i%2?C.back2:C.back;g.fillRect(R.x0,R.y0,R.x1-R.x0,R.floor-R.y0);
   g.strokeStyle=C.grid;g.lineWidth=1;g.beginPath();for(let x=Math.max(R.x0,Math.floor((cam-60)/100)*100);x<Math.min(R.x1,cam+VW+60);x+=100){g.moveTo(x,Math.max(R.y0,cy-60));g.lineTo(x,Math.min(R.floor,cy+VH+60));}for(let y=R.floor-100;y>R.y0;y-=100){if(y<cy-60||y>cy+VH+60)continue;g.moveTo(Math.max(R.x0,cam-60),y);g.lineTo(Math.min(R.x1,cam+VW+60),y);}g.stroke();});
- for(const z of S.pits)if(vis(z.x0,z.y-150,z.x1,z.y+400)){g.fillStyle='#141518';g.fillRect(z.x0,z.y-146,z.x1-z.x0,520);}
+ // an abyss is dark down through the floor, but stops at the ceiling of a room under it
+ for(const z of S.pits)if(vis(z.x0,z.y-150,z.x1,z.y+400)){let b=z.y+374;for(const R of L.rooms)if(R.x0<z.x1&&R.x1>z.x0&&R.y0>=z.y-150&&R.y0<b)b=R.y0;g.fillStyle='#141518';g.fillRect(z.x0,z.y-146,z.x1-z.x0,b-z.y+146);}
  for(const q of W.platforms){if(!vis(q.x,q.y,q.x+q.w,q.y+q.h)||q.kind==='crate'||(q.off&&q.arena))continue;
   if(q.gbDoor||q.gbTrap||q.gbOneWay){const col=q.gbOneWay?'#8f7a4a':'#3f8f7e',line=q.gbOneWay?'#ffe39a':'#8fffe0';
    if(q.off){g.strokeStyle=line;g.globalAlpha=.5;g.setLineDash([8,8]);g.strokeRect(q.x,q.y,q.w,q.h);g.setLineDash([]);g.globalAlpha=1;}
@@ -179,10 +196,12 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=
  for(const gt of S.gates){const Lv=gt.lever;if(!vis(Lv.x-40,Lv.y-80,Lv.x+40,Lv.y))continue;g.strokeStyle='#ffe39a';g.lineWidth=5;g.beginPath();g.moveTo(Lv.x,Lv.y);g.lineTo(Lv.x+(gt.open?24:-24),Lv.y-54);g.stroke();g.fillStyle='#8f7a4a';g.fillRect(Lv.x-14,Lv.y-10,28,10);if(!gt.open)G.textLabel('POLUGA',Lv.x,Lv.y-80,{font:'bold 12px Georgia',color:'#ffe39a'});}
  for(const h of S.hearts){if(h.taken||!vis(h.x-40,h.y-120,h.x+40,h.y))continue;const y=h.y-60+Math.sin(t*2.6)*5;G.halo(h.x,y,46,'#ff8a8a',.7);g.fillStyle='#ff7a7a';g.beginPath();g.moveTo(h.x,y+14);g.bezierCurveTo(h.x-26,y-4,h.x-12,y-24,h.x,y-10);g.bezierCurveTo(h.x+12,y-24,h.x+26,y-4,h.x,y+14);g.fill();G.textLabel('DEO SRCA',h.x,y-30,{font:'bold 12px Georgia',color:'#ffb0a0'});}
  for(const c of S.cuda){if(c.taken||!vis(c.x-40,c.y-140,c.x+40,c.y))continue;const y=c.y-70+Math.sin(t*2.2)*5;G.halo(c.x,y,60,'#ffe39a',.8);g.fillStyle='#ffe39a';g.beginPath();for(let k=0;k<10;k++){const a=k*Math.PI/5-Math.PI/2,r=k%2?9:20;g.lineTo(c.x+Math.cos(a)*r,y+Math.sin(a)*r);}g.closePath();g.fill();G.textLabel(`ČUDO · ${c.name.toUpperCase()}`,c.x,y-34,{font:'bold 12px Georgia',color:'#ffe39a'});}
- for(const R of shown){if(R.secret&&!S.found.has(R.id))continue;const mx=clampN(cam+VW/2,R.x0+200,R.x1-200);G.textLabel((artName(L,R)||R.name).toUpperCase(),mx,Math.max(R.y0+40,cy+30),{font:'bold 16px Georgia',color:dressed.has(R.id)?'#f1e3bd':'#8b8f98'});}
+ for(const R of shown){if(R.secret&&!S.found.has(R.id))continue;// a room whose top is above the view keeps its name at the top only while Marko is in it (no names stacked on each other)
+  const ny=R.y0+40>=cy+30?R.y0+40:L.rooms[S.room]===R?cy+30:null;if(ny==null)continue;const mx=clampN(cam+VW/2,R.x0+200,R.x1-200);G.textLabel((artName(L,R)||R.name).toUpperCase(),mx,ny,{font:'bold 16px Georgia',color:dressed.has(R.id)?'#f1e3bd':'#8b8f98'});}
  g.restore();}
 // in front of everything: the fake walls, and the rock that covers a hidden room until Marko steps into it
 export function gbDrawFront(G){const g=G.ctx,S=G.world.gb,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H;if(!g||!S)return;g.save();
+ for(const R of S.L.rooms)if(R.x1>cam-200&&R.x0<cam+VW+200&&R.y1>cy&&R.y0<cy+VH)artFore(G,S.L,R,G.world.platforms);
  for(const f of S.fakes){f.a=Math.max(0,(f.a??1)-(f.found?.04:0));if(f.a<=0||f.x>cam+VW||f.x+f.w<cam)continue;g.globalAlpha=f.a;g.fillStyle=C.dark;g.fillRect(f.x,f.y,f.w,f.h);g.strokeStyle=C.dark;g.lineWidth=2;g.strokeRect(f.x+1,f.y+1,f.w-2,f.h-2);}
  for(const R of S.L.rooms){if(!R.secret)continue;const a=S.cover[R.id];if(a<=0||R.x1<cam||R.x0>cam+VW||R.y1<cy||R.y0>cy+VH)continue;g.globalAlpha=a;g.fillStyle=C.rock;g.fillRect(R.x0+20,R.y0,R.x1-R.x0-40,R.floor-R.y0);}
  g.restore();}
@@ -210,6 +229,7 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
 // ---------- the menu: "Lost Crown pohodi", the three levels without URL tricks ----------
 export function gbMenu(start){if(typeof document==='undefined'||!document.querySelector)return;const links=document.querySelector('#menu .menu-links');if(!links||document.getElementById('gb-menu-open'))return;
  const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Lost Crown pohodi';links.append(sep,b);
- b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';
-  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p>${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime} · ${GB_MOCI[L.daje]?.name||''}</button>`).join('')}<button class="text-button" data-gb="0">Nazad</button></div>`;
-  document.body.appendChild(m);m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});}m.hidden=false;};}
+ // the list is made each time it opens, so levels registered later are in it too
+ b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
+  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
+  m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});m.hidden=false;};}

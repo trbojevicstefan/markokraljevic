@@ -1,6 +1,6 @@
 # Lost Crown pohodi: tri duga nivoa
 
-Pokreću se iz menija (dugme **Lost Crown pohodi** u donjem redu) ili adresom `index.html?greybox=1`, `?greybox=2` i `?greybox=3`.
+Pokreću se iz menija (dugme **Lost Crown pohodi** u donjem redu) ili adresom `index.html?greybox=1`, `?greybox=2` i `?greybox=3`. Pohodi 4 i dalje dolaze iz `dist/greybox-nivoi-pohodi.js` preko registra (vidi dole).
 
 | Šta | Fajl |
 |---|---|
@@ -114,20 +114,44 @@ Jedna ćelija je 1200 × 720 px; red 0 je glavni put, gore su zidine i stene, do
 
 `greybox-svet.js` čita `dist/assets/realisticno/manifest.json` (dogovor sa sesijom „realisticne-pozadine“) za biome `podgradje`, `urvina` i `klisura`:
 - **slojevi:** paralaksa po biomu, a za sobe sa `interior` unutrašnji set;
-- **materijali:** `ground`, `wall`, `platform`, `beam`, `ceiling`;
-- **predmeti:** po `id`.
+- **materijali:** `ground`, `wall`, `platform`, `beam`, `ceiling` su bešavne slike 512×512 koje se ponavljaju (zidovi i plafoni kao šara, ispusti i grede kao ploče); manifestov `ground` važi i za unutrašnje sobe;
+- **predmeti:** po `id` (nivo može da koristi i opšta imena: `tezga` → `kolica`, `kamen` → `kameni-blok`, `bure` → `bacva`, `luk` → `rusevni-luk`, `baklja` → `mangal`). `w`/`h` su u pikselima sveta. U ovim nivoima su predmeti samo ukras i ništa ne zaprečuju.
 
-Dok manifest ili neki fajl iz njega ne postoji, koriste se naslikani materijali iz `dist/assets/world/`:
+Sada je realistično obučen nivo 1 (Podgrađe). Urvina i klisura još nose naslikane materijale iz `dist/assets/world/`, dok ne stignu u manifest:
 
 | Biom | Spolja | Unutra | Posebni setovi |
 |---|---|---|---|
-| podgradje | oranje | podrum | — |
+| podgradje | manifest (Prilep u zlatni sat) | manifest (podrum) | — |
 | urvina | urvina | pećina | šuma, reka |
 | klisura | klisura | tvrđava | reka |
 
-Uz to idu trake tla, zid-kamen, zid-stena i zid-cigla, platforme `plat-kamen`, `plat-mahovina` i `plat-greda`, kolje i šiljci. Dok se slike ne učitaju, soba je siva.
+### Pod sa dubinom
+Staza se vidi blago odozgo, ali linija hoda i sudari ostaju isti:
+- iznad linije hoda je traka od 30 px; dalja ivica je gore i uvučena na krajevima bloka, a tekstura je skraćena i ima izmaglicu prema daljoj ivici;
+- ispod linije je tamnije prednje lice (u Podgrađu zid od kamena);
+- kosine imaju istu traku, a grede i ispusti tanju gornju stranu.
 
-Tlo se seče u stubiće od 4 px i prati svaku kosinu. Zidovi, ispusti i grede se pune materijalom tačno gde im stoje blokovi. Oznake igre se crtaju preko materijala: traka krila na ispustima, rub ponora, vrata, kapije i prekidači.
+Kad manifest dobije `materials.groundTop` (slika viđena odozgo) i `materials.groundFront`, koriste se one.
+
+**Prednji plan:** busenje, paprat, kamenje i korenje stoje ispred Marka, preko donje ivice slike. Tamniji su i kreću se malo brže od sveta. Kad biom dobije predmete sa `"layer":"foreground"`, koriste se oni.
+
+**Rupe u podu** pokazuju sobu ispod, a ne nebo sobe iznad.
+
+## Registar nivoa
+
+`GB_LEVELS` u `greybox.js` je registar.
+- `gbRegister({broj: nivo})` dodaje nivoe; zauzeti brojevi ostaju.
+- U pregledaču `gbReady` jednom učita `dist/greybox-nivoi-pohodi.js` (njegov `GB_POHODI`, nivoi 4 i dalje). Ako fajla nema, ostaju tri nivoa.
+- Meni „Lost Crown pohodi“ pravi spisak pri svakom otvaranju, a `?greybox=N` kreće tek kad je registar spreman.
+
+## Provereno u pravoj igri
+
+Sva tri nivoa su pređena u pregledaču pravim tasterima, od starta do bosa: moći, dimnjaci, ispusti, poluga, vrata na trag, juriš preko ponora u oba smera, tajne Orlova stena i Kapela u steni. Prolaz je našao tri greške, sada popravljene:
+- bos je izlazio iz arene kroz otvor vrata (sada ostaje unutra dok traje megdan);
+- tamna rupa ponora prekrivala je plafon sobe ispod;
+- nebo sobe ispod virilo je iznad poda sobe iznad.
+
+Test meri u koracima od 1/120 s, kao igra. Pragovi su široki: na primer, uspon na poslednji ispust u bunaru uspeva za skok bilo gde u oko 130 px pred ivicom i krilo oko 0,25–0,5 s posle skoka.
 
 ## Mere za nove sobe
 

@@ -4127,7 +4127,7 @@ function startGreybox(n=1){initAudio();world=greybox.makeGreybox(n);level=world.
  hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;$('dialogue').hidden=true;keys.clear();pressed.clear();pendingMagic=null;
  fairy={x:p.x-55,y:p.y-125,age:99,duration:3.2,targetX:p.x,targetY:p.y-80,kind:'hover'};stage?.setLevel?.(null);updateHud();
  speak(world.gb.L.uvod,9);}
-if(GREYBOX)setTimeout(()=>{try{startGreybox(GREYBOX);}catch(e){console.error(e);}},400);
+if(GREYBOX)setTimeout(()=>greybox.gbReady.then(()=>{try{startGreybox(GREYBOX);}catch(e){console.error(e);}}),400);
 if(hasDom)greybox.gbMenu(n=>startGreybox(n));
 // ================= quick test links (test.html): ?go=<scene> drops Marko straight into a new feature =================
 const GO=hasDom&&new URLSearchParams(location.search).get('go');

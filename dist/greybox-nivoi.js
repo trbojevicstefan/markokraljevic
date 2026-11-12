@@ -50,19 +50,22 @@ export const GB_NIVOI={
  brda:{livada:[[600,1000,50]],varos:[[600,950,-50],[1350,1800,90]],dvoriste:[[1500,2100,60]],tamnica:[[300,800,-40]]},
  build(B){const{X,Y}=B;
   // Livada: the start and the first checkpoint
-  B.ckpt(X('livada',400),F0);B.prop('kamen',X('livada',800),F0,90);
+  B.ckpt(X('livada',400),F0);B.prop('kamen',X('livada',800),F0,90);B.prop('kolica',X('livada',1080),F0);
   // Varoš: a janičar and a dog on the hill, a low block to learn the ledge grab, the wing's ledge under the Golubarnik
+  B.prop('bunar',X('varos',320),F0);B.prop('bacva',X('varos',1270),F0);B.prop('sanduk',X('varos',2080),F0);B.prop('bacva',X('varos',2160),F0);
   B.block(X('varos',1050),F0-150,170,150);B.foe('sword',X('varos',1550),F0-110);B.foe('pas',X('varos',1900),F0);
   B.ledge(2140,F0-365,100,{gbGate:'krilo'});B.heart(1500,FM1);
   // Pijaca: a janičar and a dog among the stalls; a hole down into the cellar
-  B.foe('sword',X('pijaca',300),F0);B.foe('pas',X('pijaca',1000),F0);B.prop('tezga',X('pijaca',250),F0,110);B.prop('tezga',X('pijaca',950),F0,110);
+  B.foe('sword',X('pijaca',300),F0);B.foe('pas',X('pijaca',1000),F0);B.prop('tezga',X('pijaca',250),F0,110);B.prop('tezga',X('pijaca',950),F0,110);B.prop('cup',X('pijaca',120),F0);B.prop('sanduk',X('pijaca',1120),F0);
   // Gradska kapija: two shieldmen; the gate opens only from the Stepenište
-  B.foe('shield',X('kapija',300),F0);B.foe('shield',X('kapija',700),F0);B.gate('kapija-gate',4740,0,F0,{x:4880,y:F0});
+  B.prop('mangal',X('kapija',120),F0);B.foe('shield',X('kapija',300),F0);B.foe('shield',X('kapija',700),F0);B.gate('kapija-gate',4740,0,F0,{x:4880,y:F0});
   // Stepenište: a chimney up to the walls (climbed wall to wall), the walkway to the Bedem, the hole down the well
   B.chimney('ch-step',4900,FM1,F0-150);B.block(5130,FM1,620,40);
   // Dvorište: the second checkpoint, a rider and an armoured man
+  B.prop('rusevni-luk',X('dvoriste',650),F0);B.prop('mangal',X('dvoriste',1250),F0);
   B.ckpt(X('dvoriste',300),F0);B.foe('akindzija',X('dvoriste',1000),F0);B.foe('oklopnik',X('dvoriste',2100),F0);
   // Kasarna: a janičar, an archer on a raised block, a shieldman
+  B.prop('mangal',X('kasarna',140),F0);B.prop('bacva',X('kasarna',1080),F0);B.prop('sanduk',X('kasarna',1140),F0);
   B.block(X('kasarna',500),F0-120,200,120);B.foe('sword',X('kasarna',300),F0);B.foe('archer',X('kasarna',600),F0-120);B.foe('shield',X('kasarna',900),F0);
   // Kula: a chimney from the floor to the walls' level, then the wing's ledges to the top
   B.chimney('ch-kula',9860,FM1,F0-150);B.block(10090,FM1,60,40);B.ledge(10300,FM1-365,100,{gbGate:'krilo'});
@@ -78,9 +81,11 @@ export const GB_NIVOI={
   B.spikes(X('oruzarnica',250),F0,200);{const q=B.plank(X('oruzarnica',550),F0,120);B.greda(q,{ax:X('oruzarnica',550),bx:X('oruzarnica',730),period:3.2});}
   B.pit('pit-oruzarnica',X('oruzarnica',550),X('oruzarnica',850),F0+150);B.strelnica({x:X('oruzarnica',1160),y:F0-40,gy:F0,dir:-1,every:2.4});B.heart(X('oruzarnica',1050),F0);
   // Podrum: a dog and a janičar, stakes; the wall to the left gives way (Vinski podrum)
+  B.prop('bacva',X('podrum',250),F1);B.prop('cup',X('podrum',330),F1);B.prop('bacva',X('vinski',350),F1);B.prop('bacva',X('vinski',430),F1);B.prop('cup',X('vinski',800),F1);
   B.foe('pas',X('podrum',700),F1);B.foe('sword',X('podrum',950),F1);B.spikes(X('podrum',1000),F1,120);
   B.open(2400,F1-200,F1);B.fake('fake-vinski',2380,F1-200,60,200);B.heart(X('vinski',600),F1);
   // Kovačnica: planks that give way over a pit, stakes, a fire-raiser
+  B.prop('mangal',X('kovacnica',140),F1);B.prop('kameni-blok',X('kovacnica',220),F1);
   B.crumble(X('kovacnica',300),F1,200);B.crumble(X('kovacnica',500),F1,200);B.pit('pit-kovacnica',X('kovacnica',300),X('kovacnica',700),F1+150);
   B.spikes(X('kovacnica',820),F1,140);B.foe('palikuca',X('kovacnica',1050),F1);
   // Bunar: the well, from the cellars down to the dungeon; the wing's ledges up and out through the Stepenište
@@ -88,6 +93,7 @@ export const GB_NIVOI={
   // Sokolova ćelija: the falcon's wing and the third checkpoint
   B.ckpt(X('celija',250),F2);B.shrine('krilo',X('celija',700),F2);
   // Tamnica: two janičari, stakes; a cracked wall to the Riznica
+  B.prop('sanduk',X('tamnica',150),F2);B.prop('sanduk',X('riznica',250),F2);B.prop('cup',X('riznica',1050),F2);
   B.foe('sword',X('tamnica',900),F2);B.foe('sword',X('tamnica',1700),F2);B.spikes(X('tamnica',1150),F2,150);
   B.open(8400,F2-205,F2);B.breakable('zid-riznica',8400,F2);B.heart(X('riznica',450),F2);B.cudo(X('riznica',850),F2,'Markov pehar');},
  veze:[
