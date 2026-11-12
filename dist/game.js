@@ -3788,7 +3788,7 @@ function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0
 // the phase (as drawn) where the blow starts to land: the light blows start early on an eased clock, the super late
 function attackKeyAt(){return p.attackKind==='super'?.5:p.attackKind==='light'?Math.pow(.2,.62):.42;}
 // a drawing whose blow lands later in the clip than the game's phase says (only how it looks: the hit keeps its time)
-const CLIP_KEY={'marko-air-3':3.5/5,'marko-potres':4.5/8};
+const CLIP_KEY={'marko-air-3':3.5/5,'marko-potres':4.5/8,'marko-launcher':3.5/6};
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;Object.assign(o,onceAt(Math.min(n-1,phase*n)));o.keyAt=CLIP_KEY[o.name]??attackKeyAt();o.swing=o.name;o.ph=phase;return o;}
 // dev only: open the game with ?dev to reach the pohodi from the console
 if(DEV)window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},get fires(){return fires;},addFire,step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};

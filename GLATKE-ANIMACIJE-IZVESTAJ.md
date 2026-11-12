@@ -141,6 +141,30 @@ Igra ih već čeka: klip se koristi čim ga rig ima, sa međukadrovima. Razmere 
 
 Posle 06:23 ostaje oko 7% nedeljne kvote, osim ako vlasnik radnog prostora dopuni kredite. Pokretanje: `art/world-pack-03/codex-nastavak.cmd`.
 
+## Codex, drugo pokretanje (12. novembar, 03:30–04:27)
+
+Codex je ponovo ostao bez kredita u 04:27, posle 226 hiljada tokena. U igri je sve što je isporučio:
+- **DOPUNA-46, deo 1 i 2:**
+  - `marko-lanac-trgne` i `marko-lanac-vuce` (ponovo nacrtan, jer je prvi imao papirnu pozadinu);
+  - `marko-potres` (kontakt u kadru 4);
+  - `marko-zvizduk` i `marko-oko`: Codex ih je ostavio kao nezavršene zbog lažne uzbune za pozadinu, a alfa je bila ispravna, pa sam ih izvezao istim skriptom;
+  - `marko-zid-trk-vodoravno`: pogrešno isečen, ponovo izvezen sa rezovima između figura;
+  - pravi `marko-launcher` (kontakt u kadru 3);
+  - `sarac-galop` (Šarčev gaz više ne klizi kao slika).
+- **DOPUNA-46, deo 3:** ikone za trag, lanac, oko, Potres i gaz su na traci veština.
+- **DOPUNA-45, deo 2:** nacrtane međupoze za `marko-combo-1` do `marko-combo-4` i `marko-super`.
+  - Svaki korak ima pravu nacrtanu polovinu, i zamah od pripreme do kontakta.
+  - Parni kadrovi su tačne kopije originala (poklapanje 1,00).
+  - Svetli rub od skinute pozadine se čisti u `smooth-anims.py`.
+  - U igri su na mestu, bez skoka.
+- Sidra novih klipova su poravnata po trupu suseda.
+
+**Ostalo za sledeći kredit** (`art/world-pack-03/codex-nastavak.cmd`, prompt je već ažuriran):
+- iz DOPUNA-45 dela 2: `run-attack`, `air-1`, `air-2`, `uppercut`, `attack` (`-v2`);
+- ceo DOPUNA-45 deo 3;
+- lanac i kuka kao slike (DOPUNA-46 deo 4);
+- protivnici (DOPUNA-45 deo 4).
+
 ## Tabela pre i posle, po klipu
 
 „Nacrtanih/s“ je brzina kojom igra smenjuje nacrtane kadrove (trk pri 265 px/s, vojnik oko 120 px/s; „—“ znači da zavisi od scene). Zvezdica znači da laki udarci idu po ubrzanom satu, brže na početku. „Slika po prolazu“ je koliko različitih slika se vidi u jednom krugu petlje ili jednom izvođenju klipa, na nivou 0 i 1; na nivou 2 svaki korak sa međukadrovima daje jednu sliku više umesto tri.

@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        76,
+        213,
+        435,
+        488
+      ],
+      "footY": 487,
+      "sha256": "3b8e62934b8ae2bc6d01023cc20eef308199454ab7194c4b106c1a5ca669b82b"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        74,
+        213,
+        438,
+        488
+      ],
+      "footY": 487,
+      "sha256": "e1fe1c1c111ef1d107c764dc836540483be3ca817b8f824cd527d63eca565999"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        68,
+        259,
+        443,
+        488
+      ],
+      "footY": 487,
+      "sha256": "00777fb5be39ad75531f84982f67974cf5f066621eeffcd32221ef44612bc61f"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        69,
+        217,
+        443,
+        488
+      ],
+      "footY": 487,
+      "sha256": "0edee919c0d188b539a7c19f9c38231a0950b2e72d0c083dcb3920b74d7478f2"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        72,
+        220,
+        439,
+        488
+      ],
+      "footY": 487,
+      "sha256": "b42940274ffd7a4856c0a0696bb7d46ff782ca45c19ffe30ce4b6e394e3c9348"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        70,
+        220,
+        442,
+        488
+      ],
+      "footY": 487,
+      "sha256": "50fc169e86124e38a6c1926baa0ebbc56d4b1f23b7002ae5a56bfb6997e3038a"
+    },
+    {
+      "frame": 6,
+      "bounds": [
+        75,
+        266,
+        437,
+        488
+      ],
+      "footY": 487,
+      "sha256": "6256afe75ba7ebd2d8bea8c22c62078ca2fdb6c9ea874d1f3a6fa45c26db37e7"
+    },
+    {
+      "frame": 7,
+      "bounds": [
+        70,
+        218,
+        441,
+        488
+      ],
+      "footY": 487,
+      "sha256": "821df5fcac35ec394a51bf4d68b548a1f9cb90ea91739d4a93d48b7c89c46f2a"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "loop": true,
+  "holdLastFrame": false,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8928571428571429,
+  "visualReview": "passed"
+}

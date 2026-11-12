@@ -454,7 +454,7 @@ for name, (scale, mode) in SCALES.items():
 
 # DOPUNA-45: the torso of a new drawing lands where the torso of the clips around it is (the median of a whole clip is pulled
 # aside by a cloak spread like wings or a leg slid far forward), measured on the frames where one clip hands over to the next.
-ANCHOR_FIX = {"marko-krilo": 36.1, "marko-air-3": -68.6, "marko-klizanje": -163.5, "marko-nalet-kraj": 21.1, "marko-trag-ostavi": 9.1, "marko-kuka-baci": -14.5, "marko-kuka-let": 28.8, "marko-zid-trk": 18.7, "marko-odmor": 10.5, "marko-odmor-ustaje": 18.7}
+ANCHOR_FIX = {"marko-krilo": 36.1, "marko-air-3": -68.6, "marko-klizanje": -163.5, "marko-nalet-kraj": 21.1, "marko-trag-ostavi": 9.1, "marko-kuka-baci": -14.5, "marko-kuka-let": 28.8, "marko-zid-trk": 18.7, "marko-odmor": 10.5, "marko-odmor-ustaje": 18.7, "marko-potres": -6.4, "marko-lanac-trgne": -9.4, "marko-zvizduk": 14.0, "marko-oko": -6.6, "marko-zid-trk-vodoravno": -24.1, "marko-launcher": 25.3}
 for name, d in ANCHOR_FIX.items():
     if name in rig:
         rig[name]['anchor'] = round(rig[name]['anchor'] + d, 1)
