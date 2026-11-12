@@ -51,13 +51,16 @@ function bounds(im){try{const s=Math.min(1,256/Math.max(im.width,im.height)),w=M
 const SETS=new Set(['klisura','manastir','mocvara','oranje','pecina','podrum','prevoj','reka','rudnik','rusevine','selo','suma','tvrdjava','urvina']);
 function standIn(L){const fb=FALLBACK[L.biom]||FALLBACK.podgradje,z=L.zeljeniBiom;if(!z||!SETS.has(z))return fb;
  return L._standIn??={...fb,layers:LAY(z),materials:{...fb.materials,ground:W(`tlo-${z}`)}};}
-function biome(L){askManifest();const fb=standIn(L),mb=manifest?.biomes?.[L.biom];if(!mb)return fb;
+function vista(L){const z=L.zeljeniBiom,v=z&&manifest?.biomes?.[`svet-${z}`];return v&&v.layers?.length&&!v.layers.some(l=>failed(l.file))?v:null;}
+function biome(L){askManifest();const fb=standIn(L),mb0=manifest?.biomes?.[L.biom],vb=vista(L);
+ // a vista lends the outside, the ground strips and the foreground; the biome keeps the inside (vistas have none)
+ const mb=vb?{...(mb0||{}),layers:vb.layers,interior:mb0?.interior,materials:{...(mb0?.materials||{}),...Object.fromEntries(Object.entries(vb.materials||{}).filter(([k])=>k.startsWith('ground')))},props:[...(mb0?.props||[]).filter(o=>o.layer!=='foreground'),...(vb.props||[]).filter(o=>o.layer==='foreground')]}:mb0;if(!mb)return fb;
  const pickLayers=(m,f)=>m?.length&&!m.some(l=>failed(l.file))?m:f;
  const mats=Object.fromEntries(Object.entries(fb.materials).map(([k,v])=>[k,mb.materials?.[k]&&!failed(mb.materials[k])?mb.materials[k]:v]));
  if(!mb.materials?.groundIn&&isTex(mats.ground))mats.groundIn=mats.ground;
  for(const k of['groundTop','groundFront'])if(mb.materials?.[k]&&!failed(mb.materials[k]))mats[k]=mb.materials[k];
  return{...fb,real:true,layers:pickLayers(mb.layers,fb.layers),interior:{layers:pickLayers(mb.interior?.layers,fb.interior.layers)},materials:mats,props:mb.props||[]};}
-function layersFor(L,R){const b=biome(L);if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
+function layersFor(L,R){const b=biome(L),sv=R.set&&manifest?.biomes?.[`svet-${R.set}`];if(sv?.layers?.length&&!sv.layers.some(l=>failed(l.file)))return sv.layers;if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
 
 export function artLook(L,R){const b=FALLBACK[L.biom]||FALLBACK.podgradje;if(!pic(layersFor(L,R)[0]?.file))return 10;return R.set&&b.lookSets?.[R.set]!=null?b.lookSets[R.set]:R.interior?b.lookIn:b.look;}
 export function artName(L,R){return null;}
@@ -91,12 +94,12 @@ function groundTex(g,G,R,q,file){const p=pic(file);if(!p)return false;const cam=
 // at the true ends of the block, like the top of a path or a beam seen at 25–35°. The band is a foreshortened texture: the
 // manifest's groundTop when it has one (a picture seen from above), else the floor's own material squashed, with a haze
 // toward the far edge. Under the line the front face goes on darker. Only pictures change; the bodies and the line do not.
-const DEPTH=30,NEAR=6;
+const DEPTH=30,NEAR=6,DEPTH_TOP=40,NEAR_TOP=10,FRONT_H=96;
 function bandPath(g,q,a,b,depth,near,inset){const x0=a<=q.x+.5?a+inset:a,x1=b>=q.x+q.w-.5?b-inset:b;g.beginPath();g.moveTo(a,surfAt(q,a)+near);for(let x=a+8;x<b;x+=8)g.lineTo(x,surfAt(q,x)+near);g.lineTo(b,surfAt(q,b)+near);
  g.lineTo(x1,surfAt(q,x1)-depth);for(let x=Math.floor(x1/8)*8;x>x0;x-=8)g.lineTo(x,surfAt(q,x)-depth);g.lineTo(x0,surfAt(q,x0)-depth);g.closePath();}
 function band(g,q,a,b,{file,top,depth=DEPTH,near=NEAR,inset=depth*.7,scale=.5}){const p=pic(top||file);if(!p)return false;
  bandPath(g,q,a,b,depth,near,inset);g.save();g.clip();
- if(top){const im=p.im,h=depth+near,w=im.width*h/im.height;for(let x=Math.floor(a/w)*w;x<b;x+=w-1){const y=Math.min(surfAt(q,Math.max(a,x)),surfAt(q,Math.min(b,x+w)))-depth;g.drawImage(im,x,y,w,h+Math.abs(surfAt(q,Math.max(a,x))-surfAt(q,Math.min(b,x+w))));}}
+ if(top){const im=p.im,h=depth+near,k=h/im.height,col=8;for(let x=Math.floor(a/col)*col;x<b;x+=col){const u=((x/k)%im.width+im.width)%im.width,sw=Math.min(col/k,im.width-u);g.drawImage(im,u,0,sw,im.height,x,surfAt(q,x+col/2)-depth,sw*k+.7,h);}}
  else{const m=pattern(g,p,scale);m.setTransform?.(new DOMMatrix([scale,0,0,scale*.4,0,0]));g.fillStyle=m;g.fillRect(a-2,q.y-depth-120,b-a+4,q.h+depth+260);}
  const yTop=Math.min(surfAt(q,a),surfAt(q,b),q.y)-depth,yBot=Math.max(surfAt(q,a),surfAt(q,b),q.y)+near,haze=g.createLinearGradient(0,yTop,0,yBot);
  haze.addColorStop(0,'rgba(60,66,80,.28)');haze.addColorStop(.5,'rgba(255,236,200,.06)');haze.addColorStop(1,'rgba(255,238,200,.2)');g.fillStyle=haze;g.fillRect(a-2,yTop-140,b-a+4,yBot-yTop+280);g.restore();
@@ -104,12 +107,21 @@ function band(g,q,a,b,{file,top,depth=DEPTH,near=NEAR,inset=depth*.7,scale=.5}){
  g.lineWidth=2;g.strokeStyle='rgba(15,18,22,.35)';g.beginPath();const x0=a<=q.x+.5?a+inset:a,x1=b>=q.x+q.w-.5?b-inset:b;for(let x=x0;x<=x1;x+=8)x===x0?g.moveTo(x,surfAt(q,x)-depth):g.lineTo(x,surfAt(q,x)-depth);g.stroke();
  g.lineWidth=2.5;g.strokeStyle='rgba(255,236,190,.5)';g.beginPath();for(let x=a;x<=b;x+=8)x===a?g.moveTo(x,surfAt(q,x)+near):g.lineTo(x,surfAt(q,x)+near);g.stroke();return true;}
 // the floor's front face from a seamless texture (groundFront, else the ground material darkened), from the near lip down
+function frontStrip(g,q,file,base,a,b){const p=pic(file),pb=pic(base);if(!p)return false;const im=p.im,h=FRONT_H,k=h/im.height,col=8,bottom=q.y+q.h+4;
+ // under the strip: the ground material (both ways), darkening toward the bottom
+ g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,surfAt(q,x)+NEAR_TOP+h-6);g.lineTo(b,surfAt(q,b)+NEAR_TOP+h-6);g.lineTo(b,bottom);g.closePath();g.save();g.clip();
+ if(pb){g.fillStyle=pattern(g,pb,.3);g.fillRect(a,q.y,b-a,q.h+120);}else{g.fillStyle='#1d1a17';g.fillRect(a,q.y,b-a,q.h+120);}
+ const s=g.createLinearGradient(0,q.y,0,bottom);s.addColorStop(0,'rgba(8,10,12,.35)');s.addColorStop(1,'rgba(8,10,12,.8)');g.fillStyle=s;g.fillRect(a,q.y,b-a,q.h+120);g.restore();
+ g.save();g.beginPath();g.rect(a,q.y-140,b-a,q.h+280);g.clip();
+ for(let x=Math.floor(a/col)*col;x<b;x+=col){const u=((x/k)%im.width+im.width)%im.width,sw=Math.min(col/k,im.width-u);g.drawImage(im,u,0,sw,im.height,x,surfAt(q,x+col/2)+NEAR_TOP-2,sw*k+.7,h);}
+ g.restore();return true;}
 function front(g,G,R,q,file,a,b){const p=pic(file);if(!p)return false;const bottom=q.y+q.h+4;g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,surfAt(q,x)+NEAR-1);g.lineTo(b,surfAt(q,b)+NEAR-1);g.lineTo(b,bottom);g.closePath();
  g.save();g.clip();g.fillStyle=pattern(g,p,.3);g.fillRect(a,q.y-40,b-a,q.h+90);const s=g.createLinearGradient(0,q.y,0,bottom);s.addColorStop(0,'rgba(8,10,12,.3)');s.addColorStop(1,'rgba(8,10,12,.72)');g.fillStyle=s;g.fillRect(a,q.y-40,b-a,q.h+90);g.restore();return true;}
 // the whole floor block: the front face, then the walkable top over it
 function deepGround(g,G,R,q,M,gf){const cam=G.camera,a=Math.max(q.x,R.x0,Math.floor((cam-20)/8)*8),b=Math.min(q.x+q.w,R.x1,cam+G.VIEW_W+24);if(b<=a)return true;
- const fr=M.groundFront||(isTex(M.wall)?M.wall:isTex(gf)?gf:null);if(fr){if(!front(g,G,R,q,fr,a,b))return false;}else if(!ground(g,G,R,q,gf))return false;
- return band(g,q,a,b,{file:isTex(gf)?gf:M.wall,top:M.groundTop})||true;}
+ if(M.groundFront){if(!frontStrip(g,q,M.groundFront,isTex(gf)?gf:null,a,b))return false;}
+ else{const fr=isTex(M.wall)?M.wall:isTex(gf)?gf:null;if(fr){if(!front(g,G,R,q,fr,a,b))return false;}else if(!ground(g,G,R,q,gf))return false;}
+ return band(g,q,a,b,M.groundTop?{top:M.groundTop,depth:DEPTH_TOP,near:NEAR_TOP}:{file:isTex(gf)?gf:M.wall})||true;}
 // a ledge, a beam, a platform: its top seen from above, a thin band over its slab
 const topOf=(g,q,file,depth=12)=>band(g,q,q.x,q.x+q.w,{file,depth,near:0,inset:depth*.6,scale:.22});
 
@@ -125,7 +137,8 @@ function tiles(g,q,kind,file){const parts=file?[file,file,file]:['levo','sredina
  const h=Math.max(q.h+30,64),k=h/ps[1].im.height,capL=ps[0].im.width*k,capR=ps[2].im.width*k,mid=ps[1].im.width*k,y=q.y-12;
  g.save();g.beginPath();g.rect(q.x-capL*.25,y-10,q.w+capL*.25+capR*.25,h+20);g.clip();
  g.drawImage(ps[0].im,q.x-capL*.25,y,capL,h);for(let x=q.x+capL*.75;x<q.x+q.w-capR*.75;x+=mid-1)g.drawImage(ps[1].im,x,y,Math.min(mid,q.x+q.w-capR*.75-x+1),h);g.drawImage(ps[2].im,q.x+q.w-capR*.75,y,capR,h);g.restore();return true;}
-function prop(g,file,x,y,h,flip){const p=pic(file);if(!p)return;const b=p.b,k=h/b.h,w=b.w*k;g.save();g.translate(x,y+4);if(flip)g.scale(-1,1);g.drawImage(p.im,b.x,b.y,b.w,b.h,-w/2,-h,w,h);g.restore();}
+let repl=null;const replaced=file=>{if(!repl&&manifest){repl={};for(const o of manifest.biomes?.['svet-predmeti']?.props||[])if(o.replaces&&o.file)repl[o.replaces]=o.file;}const r=repl?.[file];return r&&!failed(r)?r:file;};
+function prop(g,file,x,y,h,flip){file=replaced(file);const p=pic(file);if(!p)return;const b=p.b,k=h/b.h,w=b.w*k;g.save();g.translate(x,y+4);if(flip)g.scale(-1,1);g.drawImage(p.im,b.x,b.y,b.w,b.h,-w/2,-h,w,h);g.restore();}
 
 export function artFront(G,L,R,{S,platforms,traps}){if(!G.hasDom)return;const g=G.ctx,b=biome(L),M=b.materials,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H;
  const vis=q=>q.x+q.w>Math.max(R.x0,cam-60)&&q.x<Math.min(R.x1,cam+VW+60)&&q.y+q.h>Math.max(R.y0-160,cy-60)&&q.y<Math.min(R.y1,cy+VH+60);
@@ -152,6 +165,6 @@ export function artFore(G,L,R,platforms){if(!G.hasDom)return;const g=G.ctx,b=bio
  const solidAt=x=>platforms.some(q=>q.ground&&!q.off&&x>=q.x&&x<=q.x+q.w&&Math.abs(surfAt(q,x)-R.floor)<140);
  g.save();g.filter='brightness(0.5) saturate(0.8)';
  for(let i=0,x=R.x0+120;x<R.x1-60;i++,x+=260+hash(R.gx*31+i,R.gy*17)*320){const k=hash(i*7+R.gx,R.gy*13+3);if(k<.35||!solidAt(x))continue;
-  const it=pool[Math.floor(hash(i+R.gx*5,R.gy+9)*pool.length)],p=pic(it.file);if(!p)continue;const h=it.h?it.h*1.25:70+k*70,sx=x+(x-mid)*.18,y=(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w)?surfAt(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w),x):R.floor)+h*.72;
+  const it=pool[Math.floor(hash(i+R.gx*5,R.gy+9)*pool.length)],p=pic(it.file);if(!p)continue;const h=it.h?it.h:70+k*70,sx=x+(x-mid)*.18,y=(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w)?surfAt(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w),x):R.floor)+h*.72;
   if(sx<cam-200||sx>cam+VW+200)continue;prop(g,it.file,sx,y,h,k>.7);}
  g.restore();}
