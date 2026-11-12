@@ -904,3 +904,27 @@ DOPUNA-45 deo 3: akindzija-charge-v2 — GOTOVO; 11 kadrova, ista velicina celij
 DOPUNA-45 deo 3: beg-unhorsed-v2 — GOTOVO; 11 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/beg-unhorsed-v2/prompt.txt.
 
 DOPUNA-45 deo 3: bajraktar-hurt-v2 — GOTOVO; 7 kadrova, ista velicina celija i oslonac kao original, providna pozadina; parni piksel-identicni, neparni nacrtani jednim image_gen pozivom; prompt u sources/bajraktar-hurt-v2/prompt.txt.
+
+DOPUNA-46 deo 4: lanac-karika — GOTOVO; 32x64 RGBA, providna pozadina; art/world-pack-03/lanac-karika.png; jedan image_gen poziv, izvor i prompt u sources/lanac-karika/.
+
+DOPUNA-46 deo 4: lanac-kuka — GOTOVO; 96x96 RGBA, providna pozadina; art/world-pack-03/lanac-kuka.png; jedan image_gen poziv, izvor i prompt u sources/lanac-kuka/.
+
+DOPUNA-46 deo 4: kuka-alka — GOTOVO; 96x96 RGBA, providna pozadina; art/world-pack-03/kuka-alka.png; jedan image_gen poziv, izvor i prompt u sources/kuka-alka/.
+
+DOPUNA-45 deo 4: soko-pogodjen — GOTOVO; 4 kadrova 512x512, jednom, providna pozadina, y487; assets/soko-pogodjen/; jedan image_gen poziv, prompt u sources/soko-pogodjen/prompt.txt.
+
+DOPUNA-45 deo 4: soko-pad — GOTOVO; 6 kadrova 512x512, jednom, providna pozadina, y487; assets/soko-pad/; jedan image_gen poziv, prompt u sources/soko-pad/prompt.txt.
+
+DOPUNA-45 deo 4: kostur-napad — GOTOVO; 6 kadrova 512x512, jednom, providna pozadina, y487; assets/kostur-napad/; jedan image_gen poziv, prompt u sources/kostur-napad/prompt.txt.
+
+DOPUNA-45 deo 4: kostur-hurt — GOTOVO; 4 kadrova 512x512, jednom, providna pozadina, y487; assets/kostur-hurt/; jedan image_gen poziv, prompt u sources/kostur-hurt/prompt.txt.
+
+DOPUNA-45 deo 4: vrac-idle — GOTOVO; 6 kadrova 512x512, petlja, providna pozadina, y487; assets/vrac-idle/; jedan image_gen poziv, prompt u sources/vrac-idle/prompt.txt.
+
+DOPUNA-45 deo 4: vrac-carolija — GOTOVO; 8 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-carolija/; jedan image_gen poziv, prompt u sources/vrac-carolija/prompt.txt.
+
+DOPUNA-45 deo 4: vrac-nestaje — GOTOVO; 6 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-nestaje/; jedan image_gen poziv, prompt u sources/vrac-nestaje/prompt.txt.
+
+DOPUNA-45 deo 4: vrac-pojavljuje — GOTOVO; 6 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-pojavljuje/; jedan image_gen poziv, prompt u sources/vrac-pojavljuje/prompt.txt.
+
+DOPUNA-45 deo 4: vrac-hurt — GOTOVO; 4 kadrova 512x512, jednom, providna pozadina, y487; assets/vrac-hurt/; jedan image_gen poziv, prompt u sources/vrac-hurt/prompt.txt.
