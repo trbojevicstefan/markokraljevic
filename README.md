@@ -305,7 +305,7 @@ Uzete su samo ideje mehanika, bez ikakvih asseta, koda ili imena iz te igre. Mar
 - **Nivo 3, Kačanička klisura i Musina kula:** 21 soba, tu se dobija Vilin trag; Musa je na krovu kule.
 - Svaki nivo ima pet spratova, četiri skrivene sobe, dva čuda i tri čekpointa. Prečice, dimnjaci za zid-skok, šiljci, daske koje popuštaju, strelnice i grede su iz `zamke.js`.
 - Gore desno je mapa koja se crta dok istražuješ. Skrivene sobe su prekrivene kao stena dok ne uđeš.
-- Oblačenje čita `dist/assets/realisticno/manifest.json`. Dok njega nema, koristi naslikane materijale iz `dist/assets/world/`, a dok se ni oni ne učitaju, ostaje sivo.
+- Oblačenje: v2 nosi stare naslikane crteže iz `dist/assets/world/` (Stefan, 12. 11. 2026: „stare asete za pozadinu itd, a ne ove realistične“). Pozadine su setovi pohoda, a ručni slojevi (`<set>-<sloj>-rucno`) idu tamo gde ih koristi i v1. Tlo, zidovi, platforme i predmeti su naslikani, a visine predmeta su u `PROP_H`. Oltar je Ravijojlin kamen, prekidač je ploča na pritisak, a poluga je naslikana poluga. Realistični set (`dist/assets/realisticno/manifest.json`) ostaje na disku i vidi se samo sa `&realisticno=1` (npr. `index.html?greybox=1&realisticno=1`), radi poređenja. Dok se crteži ne učitaju, soba ostaje siva.
 - Tlo nije kockasto: ima brda i uvale, a Marko i Turci hodaju, trče, kotrljaju se i doskaču po nagibu. Kosina je platforma sa `surf` (visina na svakih 8 px) i radi u `integrate()` za svako telo. Ravne platforme rade kao i pre.
 - Zid-skok radi samo uz zidove dimnjaka, a Vilinski uzlet je isključen. Ništa se ne upisuje u sačuvanu igru.
 - `node greybox-test.mjs` za svaki nivo prelazi svaku vezu između soba stvarnim ulazima i proverava da nijedna kapija ne pušta bez svoje moći.

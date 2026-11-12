@@ -10,8 +10,12 @@
 // Backdrops are drawn with parallax inside the room; the ground strip is cut into narrow columns that follow every slope;
 // walls, ledges and beams are filled with their materials exactly where their blocks stand, so what Marko stands on is what
 // is painted. Gameplay marks (the wing's ledges, the dash's lips, doors, gates, switches) are drawn over it by greybox.js.
+// v2 wears the painted art (Stefan, 12. 11. 2026: the old assets for the backdrops and the rest, not the realistic ones):
+// the manifest is not read, so every level gets the stand-ins below, with the hand-made layers (<set>-<layer>-rucno) where
+// v1 uses them too. index.html?greybox=N&realisticno=1 still shows the realistic set, to compare.
 
 const BASE='assets/';
+const REAL=typeof location!=='undefined'&&/[?&]realisticno=1(&|$)/.test(location.search||'');
 // the stand-ins from dist/assets/world, per biome and per backdrop set
 const W=id=>`world/${id}.webp`,LAY=(set,sp=[.04,.16,.38,.72])=>['sky','far','mid','near'].map((k,i)=>({id:`${set}-${k}`,file:W(`${set}-${k}`),speed:sp[i]}));
 const FALLBACK={
@@ -27,7 +31,11 @@ const PROPS={kamen:W('prop-stena-mala'),stena:W('prop-stena-visoka'),tezga:W('pr
  kruska:W('prop-kruska'),kuca:W('prop-kuca'),svetiliste:W('prop-svetiliste'),putokaz:W('prop-kamen-putokaz'),krst:W('prop-krst-raskrsce'),zbun:W('prop-zbun'),paprat:W('prop-paprat'),
  korenje:W('prop-korenje'),kristal:W('prop-kristal'),baklja:W('prop-baklja-drzac'),stub:W('prop-stub-kameni'),luk:W('prop-luk-kameni'),vodopad:W('prop-vodopad'),trska:W('prop-trska'),
  most:W('prop-most-kameni'),sanduk:W('prop-sanduci'),bacva:W('prop-bure'),'kameni-blok':W('prop-stena-mala'),'rusevni-luk':W('prop-luk-kameni'),
- mangal:W('prop-baklja-drzac'),'fg-busen':W('prop-zbun'),'fg-kamenje':W('prop-stena-mala'),'fg-koren':W('prop-korenje'),'fg-ograda':W('prop-ograda-kamen'),cup:W('prop-bure'),bunar:W('prop-svetiliste'),kolica:W('prop-sanduci'),most_drvo:W('prop-most-drveni'),palisada:W('prop-palisada'),kapija:W('prop-kapija-tvrdjava'),ograda:W('prop-ograda-kamen'),pecurke:W('prop-pecurke'),zvono:W('prop-svetiliste')};
+ mangal:W('prop-ognjiste'),'fg-busen':W('prop-zbun'),'fg-kamenje':W('prop-stena-mala'),'fg-koren':W('prop-korenje'),'fg-ograda':W('prop-ograda-kamen'),cup:W('prop-krcag'),bunar:W('prop-bunar'),kolica:W('prop-kola'),most_drvo:W('prop-most-drveni'),palisada:W('prop-palisada'),kapija:W('prop-kapija-tvrdjava'),ograda:W('prop-ograda-kamen'),pecurke:W('prop-pecurke'),zvono:W('prop-svetiliste'),
+ panj:W('prop-panj'),'oboreno-stablo':W('prop-balvan'),cekrk:W('kotur'),kolje:W('prop-palisada')};
+// how tall each painted prop stands when the level does not say (the levels 1–3 took it from the manifest)
+const PROP_H={sanduk:70,bacva:72,'kameni-blok':56,'rusevni-luk':260,mangal:50,kapija:200,cup:80,bunar:130,kolica:80,baklja:100,panj:70,paprat:52,stena:100,
+ 'oboreno-stablo':44,cekrk:110,kolje:96,'fg-busen':70,'fg-kamenje':49,'fg-koren':76,'fg-ograda':92};
 
 // the levels' generic prop names and the manifest's names for the same thing
 const ALIAS={tezga:'kolica',kamen:'kameni-blok',bure:'bacva',luk:'rusevni-luk',baklja:'mangal'};
@@ -36,8 +44,13 @@ const isTex=f=>typeof f==='string'&&f.startsWith('realisticno/');
 
 // ---------- loading: the manifest once, each picture once ----------
 let manifest,manifestAsked=false;const pics={};
-function askManifest(){if(manifestAsked||typeof fetch!=='function')return;manifestAsked=true;
+function askManifest(){if(!REAL||manifestAsked||typeof fetch!=='function')return;manifestAsked=true;
  fetch(BASE+'realisticno/manifest.json').then(r=>r.ok?r.json():null).then(m=>{manifest=m&&m.version?m:null;}).catch(()=>{manifest=null;});}
+// the hand-made layers: <set>-<layer>-rucno.webp stands in for <set>-<layer>.webp when dist/assets/world has it (as in game.js)
+let worldFiles=null,worldAsked=false;
+function askWorld(){if(worldAsked)return;worldAsked=true;if(typeof fetch!=='function'){worldFiles=new Set();return;}
+ fetch(BASE+'world/files.json').then(r=>r.ok?r.json():[]).then(a=>{worldFiles=new Set(Array.isArray(a)?a:[]);}).catch(()=>{worldFiles=new Set();});}
+const hand=file=>{const m=/^world\/(.+-(?:sky|far|mid|near))\.webp$/.exec(file||''),r=m&&`${m[1]}-rucno.webp`;return r&&worldFiles?.has(r)&&!failed('world/'+r)?'world/'+r:file;};
 function pic(file){if(!file)return null;let p=pics[file];if(!p){p=pics[file]={im:null,b:null,bad:false};if(typeof Image!=='function')return null;const im=new Image();im.onload=()=>{p.im=im;p.b=bounds(im);};im.onerror=()=>{p.bad=true;};im.src=BASE+file;}return p.im?p:null;}
 const failed=file=>!file||pics[file]?.bad;
 // the drawn part of a picture with transparent margins, found once on a small copy
@@ -64,13 +77,13 @@ function biome(L){askManifest();const fb=standIn(L),mb0=manifest?.biomes?.[L.bio
  return{...fb,real:true,layers:pickLayers(mb.layers,fb.layers),interior:{layers:pickLayers(mb.interior?.layers,fb.interior.layers)},materials:mats,props:mb.props||[]};}
 function layersFor(L,R){const b=biome(L),sv=(!R.interior||R.set==='pecina')&&vistaOf(R.set);if(sv)return sv.layers;if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
 
-export function artLook(L,R){const b=FALLBACK[L.biom]||FALLBACK.podgradje;if(!pic(layersFor(L,R)[0]?.file))return 10;return R.set&&b.lookSets?.[R.set]!=null?b.lookSets[R.set]:R.interior?b.lookIn:b.look;}
+export function artLook(L,R){const b=FALLBACK[L.biom]||FALLBACK.podgradje;askWorld();if(!worldFiles||!pic(hand(layersFor(L,R)[0]?.file)))return 10;return R.set&&b.lookSets?.[R.set]!=null?b.lookSets[R.set]:R.interior?b.lookIn:b.look;}
 export function artName(L,R){return null;}
 
 // ---------- the backdrop of a room: its layers with parallax, the first one covering the view ----------
-export function artBack(G,L,R){if(!G.hasDom)return false;const lay=layersFor(L,R),g=G.ctx,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H,first=pic(lay[0]?.file);if(!first)return false;
+export function artBack(G,L,R){if(!G.hasDom)return false;askWorld();if(!worldFiles)return false;const lay=layersFor(L,R),g=G.ctx,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H,first=pic(hand(lay[0]?.file));if(!first)return false;
  {const im=first.im,h=VH+140,w=Math.max(VW+200,im.width*h/im.height);g.drawImage(im,cam-100-(cam-R.x0)*(lay[0].speed||.03),cy-70,w,h);}
- for(const l of lay.slice(1)){const p=pic(l.file);if(!p)continue;const im=p.im,h=Math.min(VH*1.05,520+l.speed*120),w=im.width*h/im.height,x=cam-(cam-R.x0)*l.speed-100,y=R.floor+40+(cy-(R.floor-470))*(l.speed*.5)-h;
+ for(const l of lay.slice(1)){const p=pic(hand(l.file));if(!p)continue;const im=p.im,h=Math.min(VH*1.05,520+l.speed*120),w=im.width*h/im.height,x=cam-(cam-R.x0)*l.speed-100,y=R.floor+40+(cy-(R.floor-470))*(l.speed*.5)-h;
   for(let k=0;x+k*w<cam+VW+100;k++)g.drawImage(im,x+k*w,y,w,h);}
  return true;}
 
@@ -165,7 +178,7 @@ export function artFront(G,L,R,{S,platforms,traps}){if(!G.hasDom)return;const g=
   fill(g,q,M.wall,q.gbChimney?.3:.36,q.gbChimney?.55:.35);}
  // the props of the room, each set by hand in the level's data, standing on the path (after the floor, so it does not cut them)
  for(const pr of S.props){if(pr.fg||pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=propOf(b,pr.id);const y=surfaceAt(platforms,pr.x,pr.y)-(pr.back??8);
-  prop(g,m?.file||PROPS[pr.id],pr.x,y,m?.h?m.h*(pr.k||1):pr.h||120,pr.flip);}
+  prop(g,m?.file||PROPS[pr.id],pr.x,y,m?.h?m.h*(pr.k||1):pr.h||(PROP_H[pr.id]||120)*(pr.k||1),pr.flip);}
  for(const t of traps)if(t.kind==='spikes'&&t.x+t.w>R.x0&&t.x<R.x1){const p=pic(R.interior?W('siljci'):W('kolje'));if(!p)continue;const h=46,w=p.im.width*h/p.im.height;g.save();g.beginPath();g.rect(t.x-4,t.y-h-4,t.w+8,h+8);g.clip();for(let x=t.x-4;x<t.x+t.w+4;x+=w-1)g.drawImage(p.im,x,t.y-h+6,w,h);g.restore();}}
 
 // ---------- the foreground: tufts, stones and roots in front of Marko, over the bottom edge of the view ----------
@@ -174,7 +187,7 @@ export function artFront(G,L,R,{S,platforms,traps}){if(!G.hasDom)return;const g=
 // nearer), and are darker. Placed by a fixed hash per room, never over a hole.
 export function artFore(G,L,R,S,platforms){if(!G.hasDom)return;const g=G.ctx,b=biome(L),cam=G.camera,VW=G.VIEW_W,mid=cam+VW/2;let on=false;
  for(const pr of S.props){if(!pr.fg||pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=propOf(b,pr.id),file=m?.file||PROPS[pr.id];if(!pic(file))continue;
-  const h=m?.h?m.h*(pr.k||1):pr.h||110,sx=pr.x+(pr.x-mid)*.12,y=surfaceAt(platforms,pr.x,pr.y)+(pr.dy??Math.round(h*.62));if(sx<cam-260||sx>cam+VW+260)continue;
+  const h=m?.h?m.h*(pr.k||1):pr.h||(PROP_H[pr.id]||110)*(pr.k||1),sx=pr.x+(pr.x-mid)*.12,y=surfaceAt(platforms,pr.x,pr.y)+(pr.dy??Math.round(h*.62));if(sx<cam-260||sx>cam+VW+260)continue;
   if(!on){g.save();g.filter='brightness(0.62) saturate(0.85)';on=true;}prop(g,file,sx,y,h,pr.flip);}
  if(on)g.restore();}
 // a prop of the biome by its id (or the generic name the levels use)
@@ -184,9 +197,14 @@ function surfaceAt(platforms,x,y){let best=y,d=1e9;for(const q of platforms){if(
 // the stone under a shrine: the biome's stone block when it has one
 // the greybox's own props (dist/assets/greybox, made from sketches in art/greybox): the altar of a power, the switch, the lever
 const OWN={oltar:'greybox/oltar.webp',prekidac:'greybox/prekidac.webp',poluga:'greybox/poluga.webp'};
-export function artPedestal(G,L,x,y){if(!G.hasDom)return false;if(pic(OWN.oltar)){prop(G.ctx,OWN.oltar,x,y+4,58);return true;}const m=propOf(biome(L),'kameni-blok');if(!m||!pic(m.file))return false;prop(G.ctx,m.file,x,y+6,46);return true;}
-export function artSwitch(G,x,y,down){if(!G.hasDom||!pic(OWN.prekidac))return false;prop(G.ctx,OWN.prekidac,x,y+(down?7:3),down?18:24);return true;}
-export function artLever(G,x,y,open){if(!G.hasDom||!pic(OWN.poluga))return false;prop(G.ctx,OWN.poluga,x,y+3,80,!open);return true;}
+// with the painted art: Ravijojla's stone for the altar (grey with a green mark, it stands out on any floor), the pressure
+// plate for the switch, the painted lever (both its states)
+export function artPedestal(G,L,x,y){if(!G.hasDom)return false;if(!REAL){const f=W('cilj-vilinski-kamen-budan');if(!pic(f))return false;prop(G.ctx,f,x,y+4,54);return true;}
+ if(pic(OWN.oltar)){prop(G.ctx,OWN.oltar,x,y+4,58);return true;}const m=propOf(biome(L),'kameni-blok');if(!m||!pic(m.file))return false;prop(G.ctx,m.file,x,y+6,46);return true;}
+export function artSwitch(G,x,y,down){if(!G.hasDom)return false;if(!REAL){const f=W(down?'ploca-pritisak-stisnuta':'ploca-pritisak');if(!pic(f))return false;prop(G.ctx,f,x,y+4,down?13:17);return true;}
+ if(!pic(OWN.prekidac))return false;prop(G.ctx,OWN.prekidac,x,y+(down?7:3),down?18:24);return true;}
+export function artLever(G,x,y,open){if(!G.hasDom)return false;if(!REAL){const f=W(open?'cilj-poluga-povucena':'cilj-poluga');if(!pic(f))return false;prop(G.ctx,f,x,y+3,64);return true;}
+ if(!pic(OWN.poluga))return false;prop(G.ctx,OWN.poluga,x,y+3,80,!open);return true;}
 
 // ---------- for the test: every picture a level would ask for, with a given manifest ----------
 export function artFiles(L,m){manifest=m;manifestAsked=true;delete L._standIn;const out=new Set(),b=biome(L);
