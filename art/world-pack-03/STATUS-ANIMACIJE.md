@@ -830,3 +830,9 @@ DOPUNA-45 deo 1: marko-odmor-ustaje — GOTOVO; 4 kadrova 512x512, 12 FPS, jedno
 DOPUNA-45 deo 1: marko-klizanje — GOTOVO; 6 kadrova 512x512, 12 FPS, petlja. assets/marko-klizanje/: atlas.png, manifest.json(frame_layout), frames/, preview.gif, reference.png, qa.json. Ugradjeni image_gen → sprite-gen extract → compose-atlas → compose-gif. Provereni atlas=frames, GIF6, alfa i oslonac y487. Pregledan atlas: prednja noga ispruzena, telo unazad, slobodna ruka balansira, ogrtac vijori; kosina se ne crta.
 
 DOPUNA-45 deo 1: marko-zid-trk — GOTOVO; 6 kadrova 512x512, 12 FPS, petlja. assets/marko-zid-trk/: atlas.png, manifest.json(frame_layout), frames/, preview.gif, reference.png, qa.json. Ugradjeni image_gen → sprite-gen extract → compose-atlas → compose-gif. Provereni atlas=frames, GIF6, alfa i oslonac y487. Pregledan atlas; donji red ponovo nacrtan radi razlicitih faza nogu. Stopala desno prema nevidljivom zidu, topuz u levoj ruci, ogrtac visi.
+
+DOPUNA-46: marko-lanac-trgne — GOTOVO; 5 kadrova, jednom; assets/marko-lanac-trgne/, alfa, y=487, atlas=frames; image_gen → extract → compose-atlas → compose-gif.
+
+DOPUNA-46: marko-potres — GOTOVO; 8 kadrova, jednom; assets/marko-potres/, alfa, y=487, atlas=frames; skala tela prema kadru0 (383px), topuz ne smanjuje Marka.
+
+DOPUNA-46: marko-zvizduk — NEZAVRSENO; sest poza u sources/marko-zvizduk/, image_gen vratio neprovidnu pozadinu i nakon korekcije; nema gotovog atlasa.
