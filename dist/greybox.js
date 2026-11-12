@@ -7,7 +7,7 @@
 // game.js owns Marko, the foes and the drawing helpers and hands them in as `G` (GBX in game.js); this file never writes the save.
 import{strelnica,greda}from'./zamke.js';
 import{GB_NIVOI}from'./greybox-nivoi.js';
-import{artBack,artFront,artFore,artLook,artName}from'./greybox-svet.js';
+import{artBack,artFront,artFore,artLook,artName,artPedestal,artFake,artSwitch,artLever}from'./greybox-svet.js';
 
 export const GB_ZONE=60;
 export const GB_WALL=345;      // one jump and a ledge grab reach 266 px, the wing and a ledge grab 383 (greybox-test measures both)
@@ -96,6 +96,8 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
   boss(type,x,y,o,arena,planks=[]){for(const [dx,dy,w] of planks)platforms.push({x:Math.round(arena.x0+dx-w/2),y:arena.y-dy,w,h:18,kind:'plank',arena:true});
    return foe(type,x,y,{id:3100,champion:true,scale:1.35,w:50,h:100,arena,...o});}};
  L.build(B);
+ // the level's props, each set by hand per room (ukras): on the floor of its row (the bottom one unless said), in front when fg
+ for(const [rid,items] of Object.entries(L.ukras||{})){const Rm=R(rid);if(!Rm)continue;for(const [id,dx,o={}] of items){const row=o.row??Rm.gy+Rm.h-1;S.props.push({id,x:Rm.x0+dx,y:(row+1)*CH-FL,fg:!!o.fg,...(o.flip?{flip:true}:{}),...(o.k?{k:o.k}:{})});}}
  // the doors between rooms: an opening in the shared wall at the floor of that row, and a landing where a tall room has no floor there
  for(const [a,b,row,o={}] of L.vrata||[]){const A=R(a),Bb=R(b),y=(row+1)*CH-FL,top=y-(o.h||260);opens.push([A.x1,top,y]);
   if(A.floor!==y)block(A.x1-250,y,250,FL,{gbLanding:true});if(Bb.floor!==y)block(Bb.x0,y,250,FL,{gbLanding:true});}
@@ -124,7 +126,7 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
  const sp=R(gbNodeRoom(L.start)),spawn={x:sp.x0+(L.spawnDx||200),y:sp.floor};
  const level={id:'greybox',greybox:true,n:L.n,name:L.ime,width:L.X1,spawn,goal:{x:L.X1+5000,y:spawn.y},props:[],peace:false,design:{goal:L.cilj}};
  return{...svet,platforms,enemies,items:[],runes:[],barriers:[],goals:[],level,ladders:[],breakables,towers:[],plows:[],plowTeams:[],traps,cannons:[],guns:[],vaults:[],logori:[],busy:[],y0:L.Y0,pitY:L.Y1+500,gb:S,
-  chapter:{name:`LOST CROWN · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
+  chapter:{name:`JUNAČKI POHOD · ${L.ime.toUpperCase()}`,start:L.X0,end:L.X1,goal:L.cilj,message:''}};
 }
 
 // ---------- once a step (game.js calls it from update while a greybox level is on) ----------
@@ -201,12 +203,13 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=
  for(const R of shown)if(dressed.has(R.id))inRoom(R,()=>artFront(G,L,R,{S,platforms:W.platforms,traps:W.traps}));
  // the gameplay marks stay readable over the materials: the wing's ledges, the far lip of an abyss
  for(const q of W.platforms){if(q.off||!vis(q.x,q.y,q.x+q.w,q.y+q.h))continue;if(q.gbGate){g.fillStyle=GB_MOCI[q.gbGate].color;g.globalAlpha=.85;g.fillRect(q.x,q.y-2,q.w,5);g.globalAlpha=1;}if(q.gbLip){g.fillStyle=GB_MOCI.nalet.color;g.fillRect(q.x,q.y-2,q.w,5);}}
- for(const s of S.shrines){if(!vis(s.x-80,s.y-150,s.x+80,s.y))continue;const M=gbMoc(G,s.moc);g.fillStyle=C.dark;g.fillRect(s.x-34,s.y-36,68,36);g.fillStyle=C.edge;g.fillRect(s.x-34,s.y-36,68,3);
+ for(const s of S.shrines){if(!vis(s.x-80,s.y-150,s.x+80,s.y))continue;const M=gbMoc(G,s.moc);if(!artPedestal(G,L,s.x,s.y)){g.fillStyle=C.dark;g.fillRect(s.x-34,s.y-36,68,36);g.fillStyle=C.edge;g.fillRect(s.x-34,s.y-36,68,3);}
   if(!s.taken){const y=s.y-74+Math.sin(t*2.5)*6;G.halo(s.x,y,52,M.color,.8);g.fillStyle=M.color;g.beginPath();g.arc(s.x,y,16,0,Math.PI*2);g.fill();G.textLabel(M.name.toUpperCase(),s.x,s.y-112,{font:'bold 13px Georgia',color:M.color});}}
- for(const c of S.ckpts){if(!vis(c.x-40,c.y-140,c.x+40,c.y))continue;const on=S.ckpt===c.id;g.fillStyle=on?'#9fe6cf':'#8d9198';g.fillRect(c.x-10,c.y-120,20,120);g.fillRect(c.x-22,c.y-12,44,12);if(on)G.halo(c.x,c.y-126,40,'#a6ffe1',.7+.2*Math.sin(t*3));G.textLabel('ČEKPOINT',c.x,c.y-136,{font:'bold 12px Georgia',color:on?'#a6ffe1':'#c9ccd2'});}
- for(const D of S.doors){const sw=D.sw,q=D.q;if(vis(sw.x-60,sw.y-60,sw.x+60,sw.y+10)){g.fillStyle=D.down||D.open>0?'#8fffe0':'#3f8f7e';g.fillRect(sw.x-sw.w/2,sw.y-(D.down?3:9),sw.w,D.down?3:9);G.textLabel(D.solved?'PREKIDAČ':D.floor?'PREKIDAČ · POKLOPAC SE OTVORI NA TREN':'PREKIDAČ · VRATA SE OTVORE NA TREN',sw.x,sw.y-40,{font:'bold 12px Georgia',color:'#8fffe0'});}
+ for(const c of S.ckpts){if(!vis(c.x-40,c.y-140,c.x+40,c.y))continue;const on=S.ckpt===c.id;   // the checkpoint is Ravijojla's spring, which game.js draws (stone basin and water); here only its glow and name
+  if(on)G.halo(c.x,c.y-60,40,'#a6ffe1',.5+.2*Math.sin(t*3));G.textLabel('ČEKPOINT',c.x,c.y-70,{font:'bold 12px Georgia',color:on?'#a6ffe1':'#c9ccd2'});}
+ for(const D of S.doors){const sw=D.sw,q=D.q;if(vis(sw.x-60,sw.y-60,sw.x+60,sw.y+10)){if(!artSwitch(G,sw.x,sw.y,D.down)){g.fillStyle=D.down||D.open>0?'#8fffe0':'#3f8f7e';g.fillRect(sw.x-sw.w/2,sw.y-(D.down?3:9),sw.w,D.down?3:9);}G.textLabel(D.solved?'PREKIDAČ':D.floor?'PREKIDAČ · POKLOPAC SE OTVORI NA TREN':'PREKIDAČ · VRATA SE OTVORE NA TREN',sw.x,sw.y-40,{font:'bold 12px Georgia',color:'#8fffe0'});}
   if(D.open>0&&!D.solved){const k=D.open/GB_DOOR,cx=q.x+q.w/2,cyy=D.floor?q.y-60:q.y+q.h-260;g.strokeStyle='#8fffe0';g.lineWidth=4;g.beginPath();g.arc(cx,cyy,16,-Math.PI/2,-Math.PI/2+Math.PI*2*k);g.stroke();}}
- for(const gt of S.gates){const Lv=gt.lever;if(!vis(Lv.x-40,Lv.y-80,Lv.x+40,Lv.y))continue;g.strokeStyle='#ffe39a';g.lineWidth=5;g.beginPath();g.moveTo(Lv.x,Lv.y);g.lineTo(Lv.x+(gt.open?24:-24),Lv.y-54);g.stroke();g.fillStyle='#8f7a4a';g.fillRect(Lv.x-14,Lv.y-10,28,10);if(!gt.open)G.textLabel('POLUGA',Lv.x,Lv.y-80,{font:'bold 12px Georgia',color:'#ffe39a'});}
+ for(const gt of S.gates){const Lv=gt.lever;if(!vis(Lv.x-40,Lv.y-80,Lv.x+40,Lv.y))continue;if(!artLever(G,Lv.x,Lv.y,gt.open)){g.strokeStyle='#ffe39a';g.lineWidth=5;g.beginPath();g.moveTo(Lv.x,Lv.y);g.lineTo(Lv.x+(gt.open?24:-24),Lv.y-54);g.stroke();g.fillStyle='#8f7a4a';g.fillRect(Lv.x-14,Lv.y-10,28,10);}if(!gt.open)G.textLabel('POLUGA',Lv.x,Lv.y-80,{font:'bold 12px Georgia',color:'#ffe39a'});}
  for(const h of S.hearts){if(h.taken||!vis(h.x-40,h.y-120,h.x+40,h.y))continue;const y=h.y-60+Math.sin(t*2.6)*5;G.halo(h.x,y,46,'#ff8a8a',.7);g.fillStyle='#ff7a7a';g.beginPath();g.moveTo(h.x,y+14);g.bezierCurveTo(h.x-26,y-4,h.x-12,y-24,h.x,y-10);g.bezierCurveTo(h.x+12,y-24,h.x+26,y-4,h.x,y+14);g.fill();G.textLabel('DEO SRCA',h.x,y-30,{font:'bold 12px Georgia',color:'#ffb0a0'});}
  for(const c of S.cuda){if(c.taken||!vis(c.x-40,c.y-140,c.x+40,c.y))continue;const y=c.y-70+Math.sin(t*2.2)*5;G.halo(c.x,y,60,'#ffe39a',.8);g.fillStyle='#ffe39a';g.beginPath();for(let k=0;k<10;k++){const a=k*Math.PI/5-Math.PI/2,r=k%2?9:20;g.lineTo(c.x+Math.cos(a)*r,y+Math.sin(a)*r);}g.closePath();g.fill();G.textLabel(`ČUDO · ${c.name.toUpperCase()}`,c.x,y-34,{font:'bold 12px Georgia',color:'#ffe39a'});}
  for(const R of shown){if(R.secret&&!S.found.has(R.id))continue;// a room whose top is above the view keeps its name at the top only while Marko is in it (no names stacked on each other)
@@ -214,8 +217,8 @@ export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=
  g.restore();}
 // in front of everything: the fake walls, and the rock that covers a hidden room until Marko steps into it
 export function gbDrawFront(G){const g=G.ctx,S=G.world.gb,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H;if(!g||!S)return;g.save();
- for(const R of S.L.rooms)if(R.x1>cam-200&&R.x0<cam+VW+200&&R.y1>cy&&R.y0<cy+VH)artFore(G,S.L,R,G.world.platforms);
- for(const f of S.fakes){f.a=Math.max(0,(f.a??1)-(f.found?.04:0));if(f.a<=0||f.x>cam+VW||f.x+f.w<cam)continue;g.globalAlpha=f.a;g.fillStyle=C.dark;g.fillRect(f.x,f.y,f.w,f.h);g.strokeStyle=C.dark;g.lineWidth=2;g.strokeRect(f.x+1,f.y+1,f.w-2,f.h-2);}
+ for(const R of S.L.rooms)if(R.x1>cam-200&&R.x0<cam+VW+200&&R.y1>cy&&R.y0<cy+VH)artFore(G,S.L,R,S,G.world.platforms);
+ for(const f of S.fakes){f.a=Math.max(0,(f.a??1)-(f.found?.04:0));if(f.a<=0||f.x>cam+VW||f.x+f.w<cam)continue;g.globalAlpha=f.a;if(!artFake(G,S.L,f)){g.fillStyle=C.dark;g.fillRect(f.x,f.y,f.w,f.h);g.strokeStyle=C.dark;g.lineWidth=2;g.strokeRect(f.x+1,f.y+1,f.w-2,f.h-2);}}
  for(const R of S.L.rooms){if(!R.secret)continue;const a=S.cover[R.id];if(a<=0||R.x1<cam||R.x0>cam+VW||R.y1<cy||R.y0>cy+VH)continue;g.globalAlpha=a;g.fillStyle=C.rock;g.fillRect(R.x0+20,R.y0,R.x1-R.x0-40,R.floor-R.y0);}
  g.restore();}
 
@@ -241,8 +244,8 @@ export function gbMap(G){if(!G.hasDom)return;const S=G.world.gb;if(!S)return;con
 
 // ---------- the menu: "Lost Crown pohodi", the three levels without URL tricks ----------
 export function gbMenu(start){if(typeof document==='undefined'||!document.querySelector)return;const links=document.querySelector('#menu .menu-links');if(!links||document.getElementById('gb-menu-open'))return;
- const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Lost Crown pohodi';links.append(sep,b);
+ const sep=document.createElement('i');sep.textContent='✦';const b=document.createElement('button');b.id='gb-menu-open';b.textContent='Junački pohodi';links.append(sep,b);
  // the list is made each time it opens, so levels registered later are in it too
  b.onclick=()=>{let m=document.getElementById('gb-menu');if(!m){m=document.createElement('section');m.id='gb-menu';m.className='modal';m.style.zIndex='60';document.body.appendChild(m);}
-  m.innerHTML=`<div class="modal-card"><p class="eyebrow">PO UZORU NA THE LOST CROWN</p><h2>Lost Crown pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
+  m.innerHTML=`<div class="modal-card"><p class="eyebrow">DUGI NIVOI SA SOBAMA I TAJNAMA</p><h2>Junački pohodi</h2><p>Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.</p><div style="max-height:58vh;overflow:auto">${Object.entries(GB_NIVOI).map(([n,L])=>`<button class="primary" data-gb="${n}" style="display:block;width:100%;margin:8px 0">${n}. ${L.ime}${GB_MOCI[L.daje]?' · '+GB_MOCI[L.daje].name:''}</button>`).join('')}</div><button class="text-button" data-gb="0">Nazad</button></div>`;
   m.querySelectorAll('[data-gb]').forEach(x=>x.onclick=()=>{m.hidden=true;const n=+x.dataset.gb;if(n)start(n);});m.hidden=false;};}

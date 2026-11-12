@@ -830,3 +830,42 @@ DOPUNA-45 deo 1: marko-odmor-ustaje — GOTOVO; 4 kadrova 512x512, 12 FPS, jedno
 DOPUNA-45 deo 1: marko-klizanje — GOTOVO; 6 kadrova 512x512, 12 FPS, petlja. assets/marko-klizanje/: atlas.png, manifest.json(frame_layout), frames/, preview.gif, reference.png, qa.json. Ugradjeni image_gen → sprite-gen extract → compose-atlas → compose-gif. Provereni atlas=frames, GIF6, alfa i oslonac y487. Pregledan atlas: prednja noga ispruzena, telo unazad, slobodna ruka balansira, ogrtac vijori; kosina se ne crta.
 
 DOPUNA-45 deo 1: marko-zid-trk — GOTOVO; 6 kadrova 512x512, 12 FPS, petlja. assets/marko-zid-trk/: atlas.png, manifest.json(frame_layout), frames/, preview.gif, reference.png, qa.json. Ugradjeni image_gen → sprite-gen extract → compose-atlas → compose-gif. Provereni atlas=frames, GIF6, alfa i oslonac y487. Pregledan atlas; donji red ponovo nacrtan radi razlicitih faza nogu. Stopala desno prema nevidljivom zidu, topuz u levoj ruci, ogrtac visi.
+
+DOPUNA-46: marko-lanac-trgne — GOTOVO; 5 kadrova, jednom; assets/marko-lanac-trgne/, alfa, y=487, atlas=frames; image_gen → extract → compose-atlas → compose-gif.
+
+DOPUNA-46: marko-potres — GOTOVO; 8 kadrova, jednom; assets/marko-potres/, alfa, y=487, atlas=frames; skala tela prema kadru0 (383px), topuz ne smanjuje Marka.
+
+DOPUNA-46: marko-zvizduk — NEZAVRSENO; sest poza u sources/marko-zvizduk/, image_gen vratio neprovidnu pozadinu i nakon korekcije; nema gotovog atlasa.
+
+DOPUNA-46: marko-oko — NEZAVRSENO; sest poza u sources/marko-oko/grid-opaque.png; generisana neprovidna pozadina, nije spremno za igru.
+
+DOPUNA-46: sarac-galop — GOTOVO; 8 kadrova, petlja; assets/sarac-galop/, alfa, y=487, atlas=frames; vysina konja 275px prema mounted-run, bela pozadina uklonjena sprite-gen cutout.
+
+DOPUNA-46: marko-oko i marko-zvizduk — GOTOVO (Claude): alfa iz sources/<klip>/grid-opaque.png je bila ispravna; izvezeno istim export-dopuna45.py (6 kadrova; oko petlja, zvižduk jednom).
+
+DOPUNA-46: marko-lanac-vuce — ODBIJEN (Claude): izvor ima svetlu papirnu pozadinu sa nagorelim ivicama, koja se ne skida bez štete po košulji; izvoz je premešten u sources/marko-lanac-vuce/odbijen-izvoz. Treba ga ponovo nacrtati na providnoj pozadini. Igra za trzaj lanca koristi marko-lanac-trgne.
+DOPUNA-46: marko-zid-trk-vodoravno — ISPRAVLJEN (Claude): izvor je jedan red od 6 figura; ponovo izvezen sa 6 kolona i rezovima između figura, sitni delovi suseda uklonjeni.
+
+DOPUNA-46: ikona-trag — GOTOVO; art/world-pack-03/ikona-trag.png, 128x128 RGBA, ugradjeni image_gen.
+
+DOPUNA-46: marko-launcher — GOTOVO; 6 kadrova, jednom; assets/marko-launcher/, alfa overena na kontrolnoj pozadini, y=487, atlas=frames; skala tela prema kadru2 uz ogranicenje siluete na 480px.
+
+DOPUNA-46: ikona-lanac — GOTOVO; art/world-pack-03/ikona-lanac.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-oko — GOTOVO; art/world-pack-03/ikona-oko.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-potres — GOTOVO; art/world-pack-03/ikona-potres.png, 128x128 RGBA; image_gen.
+
+DOPUNA-46: ikona-gaz — GOTOVO; art/world-pack-03/ikona-gaz.png, 128x128 RGBA; image_gen.
+
+DOPUNA-45 deo 2: marko-combo-1-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets i sprite-rig.json, neparni image_gen; atlas=frames, alfa proverena.
+
+DOPUNA-46: marko-lanac-vuce — GOTOVO; ponovo nacrtano na providnoj pozadini, 6 kadrova petlja, y=487, atlas=frames; rezovi po prazninama, bez susednih fragmenata.
+
+DOPUNA-45 deo 2: marko-combo-2-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets/sprite-rig.json, neparni image_gen; atlas=frames, svetla pozadina uklonjena sprite-gen cutout.
+
+DOPUNA-45 deo 2: marko-combo-3-v2 — GOTOVO; 11 kadrova, parni tacno iz dist/assets i rig-a, neparni image_gen; atlas=frames, alfa, uklonjeni sitni fragmenti suseda.
+
+DOPUNA-45 deo 2: marko-combo-4-v2 — GOTOVO; 15 kadrova; parni identicni izvornim, 7 nacrtanih medjupoza; alfa i atlas=frames provereni.
+
+DOPUNA-45 deo 2: marko-super-v2 — GOTOVO; 11 kadrova; parni piksel-identicni, nove medjupoze, alfa i atlas=frames provereni.

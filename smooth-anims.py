@@ -73,7 +73,8 @@ ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
 # Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
 # at its last frame never asks for it).
 SKIP = {'kosturi'}   # not an animation: each frame is another skeleton, picked by the kind of soldier
-ALIASES = {'marko-launcher': 'marko-uppercut'}   # the same sheet under another name (build-sprite-rig.py): the same in-betweens
+# the same sheet under another name (build-sprite-rig.py), until the clip gets its own drawing: the same in-betweens
+ALIASES = {a: b for a, b in {'marko-launcher': 'marko-uppercut'}.items() if a in RIG and b in RIG and RIG[a]['image'] == RIG[b]['image']}
 SKIP |= set(ALIASES)
 EXTRA = [c for c in RIG if c not in MAIN_LOOPS and c not in ONCE and c not in SKIP and not c.startswith('cast/')]
 LOOPS = MAIN_LOOPS + EXTRA
@@ -298,6 +299,23 @@ def place(v, f, shape):
     return cv2.warpAffine(v, M, (shape[1], shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
 
 
+def defringe(c):
+    """A drawn frame keyed off a light ground can keep a pale rim, soft or solid: light, colourless pixels on the outer edge of
+    the figure go, peeled a few times (a cream sleeve has colour and stays)."""
+    out = c.copy()
+    for _ in range(3):
+        al = out[..., 3]; rgb = out[..., :3]
+        solid = (al > 0.5).astype(np.uint8)
+        edge = (al > 0.02) & (cv2.erode(solid, np.ones((5, 5), np.uint8)) == 0)
+        pale = (rgb.min(axis=2) > 0.58) & (rgb.max(axis=2) - rgb.min(axis=2) < 0.10)
+        rim = edge & pale
+        if not rim.any(): break
+        out[..., 3][rim] = 0
+    # and the thin soft rim left of it: the edge of the alpha pulled in by 2 px (well under a pixel on screen)
+    out[..., 3] = np.minimum(out[..., 3], cv2.erode(out[..., 3], np.ones((3, 3), np.uint8), iterations=2))
+    return out
+
+
 def sole_of(c):
     ys = np.nonzero((c[..., 3] > 0.5).any(axis=1))[0]
     return float(ys.max()) if len(ys) else c.shape[0] - 1.0
@@ -326,7 +344,7 @@ def work(job):
             # sole is where the game puts it on the ground. The quarters are the flow between it and each neighbour.
             a, b = cell(img, F[i]), cell(img, F[j])
             fa, fb = fit(V[2 * i], a), fit(V[2 * j], b)
-            D = place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape)
+            D = defringe(place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape))
             match = min(iou(place(V[2 * i], fa, a.shape), a), iou(place(V[2 * j], fb, b.shape), b))
             sd = sole_of(D); mid = crop(D, k)
             if mid is not None and match > 0.7:

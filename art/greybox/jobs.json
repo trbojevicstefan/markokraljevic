@@ -1,0 +1,41 @@
+[
+ {
+  "name": "gb-oltar",
+  "draft": "D:/projects/Marko Kraljevic/marko-game/.claude/worktrees/greybox-26132d/art/greybox/draft/gb-oltar.png",
+  "w": 768,
+  "h": 576,
+  "strength": 0.78,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "prompt": "A single small medieval Balkan altar block carved from pale limestone, a round carved rune disc with a faint blue glow on its front face, worn edges, a little moss in the cracks, seen exactly from the side (orthographic side view, no perspective), whole object visible and centered, standing upright. A realistic game prop, photorealistic, ultra detailed real materials, soft even lighting. Isolated on a flat, solid, pure magenta (#FF00FF) background, no ground, no cast shadow, no other objects, no people, no text."
+ },
+ {
+  "name": "gb-poluga",
+  "draft": "D:/projects/Marko Kraljevic/marko-game/.claude/worktrees/greybox-26132d/art/greybox/draft/gb-poluga.png",
+  "w": 576,
+  "h": 768,
+  "strength": 0.78,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "prompt": "A single medieval wrought iron lever on a squat carved stone base, the iron arm tilted to the right with a worn wooden handle at its end, seen exactly from the side (orthographic side view, no perspective), whole object visible and centered, standing upright. A realistic game prop, photorealistic, ultra detailed real materials, soft even lighting. Isolated on a flat, solid, pure magenta (#FF00FF) background, no ground, no cast shadow, no other objects, no people, no text."
+ },
+ {
+  "name": "gb-prekidac",
+  "draft": "D:/projects/Marko Kraljevic/marko-game/.claude/worktrees/greybox-26132d/art/greybox/draft/gb-prekidac.png",
+  "w": 768,
+  "h": 384,
+  "strength": 0.78,
+  "steps": 10,
+  "seeds": [
+   1,
+   2
+  ],
+  "prompt": "A single low flat stone pressure plate set in a worn limestone frame, a carved rune circle on its front edge, seen exactly from the side (orthographic side view, no perspective), whole object visible and centered, standing upright. A realistic game prop, photorealistic, ultra detailed real materials, soft even lighting. Isolated on a flat, solid, pure magenta (#FF00FF) background, no ground, no cast shadow, no other objects, no people, no text."
+ }
+]

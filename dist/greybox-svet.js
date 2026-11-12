@@ -27,7 +27,7 @@ const PROPS={kamen:W('prop-stena-mala'),stena:W('prop-stena-visoka'),tezga:W('pr
  kruska:W('prop-kruska'),kuca:W('prop-kuca'),svetiliste:W('prop-svetiliste'),putokaz:W('prop-kamen-putokaz'),krst:W('prop-krst-raskrsce'),zbun:W('prop-zbun'),paprat:W('prop-paprat'),
  korenje:W('prop-korenje'),kristal:W('prop-kristal'),baklja:W('prop-baklja-drzac'),stub:W('prop-stub-kameni'),luk:W('prop-luk-kameni'),vodopad:W('prop-vodopad'),trska:W('prop-trska'),
  most:W('prop-most-kameni'),sanduk:W('prop-sanduci'),bacva:W('prop-bure'),'kameni-blok':W('prop-stena-mala'),'rusevni-luk':W('prop-luk-kameni'),
- mangal:W('prop-baklja-drzac'),cup:W('prop-bure'),bunar:W('prop-svetiliste'),kolica:W('prop-sanduci'),most_drvo:W('prop-most-drveni'),palisada:W('prop-palisada'),kapija:W('prop-kapija-tvrdjava'),ograda:W('prop-ograda-kamen'),pecurke:W('prop-pecurke'),zvono:W('prop-svetiliste')};
+ mangal:W('prop-baklja-drzac'),'fg-busen':W('prop-zbun'),'fg-kamenje':W('prop-stena-mala'),'fg-koren':W('prop-korenje'),'fg-ograda':W('prop-ograda-kamen'),cup:W('prop-bure'),bunar:W('prop-svetiliste'),kolica:W('prop-sanduci'),most_drvo:W('prop-most-drveni'),palisada:W('prop-palisada'),kapija:W('prop-kapija-tvrdjava'),ograda:W('prop-ograda-kamen'),pecurke:W('prop-pecurke'),zvono:W('prop-svetiliste')};
 
 // the levels' generic prop names and the manifest's names for the same thing
 const ALIAS={tezga:'kolica',kamen:'kameni-blok',bure:'bacva',luk:'rusevni-luk',baklja:'mangal'};
@@ -109,20 +109,26 @@ function band(g,q,a,b,{file,top,depth=DEPTH,near=NEAR,inset=depth*.7,scale=.5}){
  g.lineWidth=2;g.strokeStyle='rgba(15,18,22,.35)';g.beginPath();const x0=a<=q.x+.5?a+inset:a,x1=b>=q.x+q.w-.5?b-inset:b;for(let x=x0;x<=x1;x+=8)x===x0?g.moveTo(x,surfAt(q,x)-depth):g.lineTo(x,surfAt(q,x)-depth);g.stroke();
  g.lineWidth=2.5;g.strokeStyle='rgba(255,236,190,.5)';g.beginPath();for(let x=a;x<=b;x+=8)x===a?g.moveTo(x,surfAt(q,x)+near):g.lineTo(x,surfAt(q,x)+near);g.stroke();return true;}
 // the floor's front face from a seamless texture (groundFront, else the ground material darkened), from the near lip down
-function frontStrip(g,q,file,base,a,b){const p=pic(file),pb=pic(base);if(!p)return false;const im=p.im,h=FRONT_H,k=h/im.height,col=8,bottom=q.y+q.h+4;
+function frontStrip(g,q,file,base,a,b,bottom=q.y+q.h+4,baseY=null){const p=pic(file),pb=pic(base);if(!p)return false;const im=p.im,h=FRONT_H,k=h/im.height,col=8;
+ // on a hill the path's edge (the top third of the strip) follows the slope, and its earth stretches down to the line where the
+ // strip ends on the flat floor beside it, so a hill is a mound of earth, not a bridge over a dark arch
+ const edge=Math.round(im.height*.34),flatEnd=baseY!=null?baseY+NEAR_TOP-2+h:-1e9,end=x=>Math.max(surfAt(q,x)+NEAR_TOP-2+h,flatEnd);
  // under the strip: the ground material (both ways), darkening toward the bottom
- g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,surfAt(q,x)+NEAR_TOP+h-6);g.lineTo(b,surfAt(q,b)+NEAR_TOP+h-6);g.lineTo(b,bottom);g.closePath();g.save();g.clip();
- if(pb){g.fillStyle=pattern(g,pb,.3);g.fillRect(a,q.y,b-a,q.h+120);}else{g.fillStyle='#1d1a17';g.fillRect(a,q.y,b-a,q.h+120);}
- const s=g.createLinearGradient(0,q.y,0,bottom);s.addColorStop(0,'rgba(8,10,12,.35)');s.addColorStop(1,'rgba(8,10,12,.8)');g.fillStyle=s;g.fillRect(a,q.y,b-a,q.h+120);g.restore();
+ g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,end(x)-6);g.lineTo(b,end(b)-6);g.lineTo(b,bottom);g.closePath();g.save();g.clip();
+ if(pb){g.fillStyle=pattern(g,pb,.3);g.fillRect(a,q.y-100,b-a,bottom-q.y+110);}else{g.fillStyle='#1d1a17';g.fillRect(a,q.y-100,b-a,bottom-q.y+110);}
+ // darker going down, measured from the floor around (a hill's soil is as light as the soil beside it)
+ const top0=bottom-130,s=g.createLinearGradient(0,top0,0,bottom);s.addColorStop(0,'rgba(8,10,12,.35)');s.addColorStop(1,'rgba(8,10,12,.8)');g.fillStyle=s;g.fillRect(a,q.y-100,b-a,bottom-q.y+110);g.restore();
  g.save();g.beginPath();g.rect(a,q.y-140,b-a,q.h+280);g.clip();
- for(let x=Math.floor(a/col)*col;x<b;x+=col){const u=((x/k)%im.width+im.width)%im.width,sw=Math.min(col/k,im.width-u);g.drawImage(im,u,0,sw,im.height,x,surfAt(q,x+col/2)+NEAR_TOP-2,sw*k+.7,h);}
+ for(let x=Math.floor(a/col)*col;x<b;x+=col){const u=((x/k)%im.width+im.width)%im.width,sw=Math.min(col/k,im.width-u),y0=surfAt(q,x+col/2)+NEAR_TOP-2,eh=edge*k,y1=end(x+col/2);
+  g.drawImage(im,u,0,sw,edge,x,y0,sw*k+.7,eh);g.drawImage(im,u,edge,sw,im.height-edge,x,y0+eh-.5,sw*k+.7,y1-y0-eh+.5);}
  g.restore();return true;}
-function front(g,G,R,q,file,a,b){const p=pic(file);if(!p)return false;const bottom=q.y+q.h+4;g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,surfAt(q,x)+NEAR-1);g.lineTo(b,surfAt(q,b)+NEAR-1);g.lineTo(b,bottom);g.closePath();
+function front(g,G,R,q,file,a,b,bottom=q.y+q.h+4){const p=pic(file);if(!p)return false;g.beginPath();g.moveTo(a,bottom);for(let x=a;x<=b;x+=8)g.lineTo(x,surfAt(q,x)+NEAR-1);g.lineTo(b,surfAt(q,b)+NEAR-1);g.lineTo(b,bottom);g.closePath();
  g.save();g.clip();g.fillStyle=pattern(g,p,.3);g.fillRect(a,q.y-40,b-a,q.h+90);const s=g.createLinearGradient(0,q.y,0,bottom);s.addColorStop(0,'rgba(8,10,12,.3)');s.addColorStop(1,'rgba(8,10,12,.72)');g.fillStyle=s;g.fillRect(a,q.y-40,b-a,q.h+90);g.restore();return true;}
 // the whole floor block: the front face, then the walkable top over it
 function deepGround(g,G,R,q,M,gf){const cam=G.camera,a=Math.max(q.x,R.x0,Math.floor((cam-20)/8)*8),b=Math.min(q.x+q.w,R.x1,cam+G.VIEW_W+24);if(b<=a)return true;
- if(M.groundFront){if(!frontStrip(g,q,M.groundFront,isTex(gf)?gf:null,a,b))return false;}
- else{const fr=isTex(M.wall)?M.wall:isTex(gf)?gf:null;if(fr){if(!front(g,G,R,q,fr,a,b))return false;}else if(!ground(g,G,R,q,gf))return false;}
+ const bottom=Math.max(q.y+q.h,R.floor+130)+4;
+ if(M.groundFront){if(!frontStrip(g,q,M.groundFront,isTex(gf)?gf:null,a,b,bottom,R.floor))return false;}
+ else{const fr=isTex(M.wall)?M.wall:isTex(gf)?gf:null;if(fr){if(!front(g,G,R,q,fr,a,b,bottom))return false;}else if(!ground(g,G,R,q,gf))return false;}
  return band(g,q,a,b,M.groundTop?{top:M.groundTop,depth:DEPTH_TOP,near:NEAR_TOP}:{file:isTex(gf)?gf:M.wall})||true;}
 // a ledge, a beam, a platform: its top seen from above, a thin band over its slab
 const topOf=(g,q,file,depth=12)=>band(g,q,q.x,q.x+q.w,{file,depth,near:0,inset:depth*.6,scale:.22});
@@ -144,35 +150,48 @@ function prop(g,file,x,y,h,flip){file=replaced(file);const p=pic(file);if(!p)ret
 
 export function artFront(G,L,R,{S,platforms,traps}){if(!G.hasDom)return;const g=G.ctx,b=biome(L),M=b.materials,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H;
  const vis=q=>q.x+q.w>Math.max(R.x0,cam-60)&&q.x<Math.min(R.x1,cam+VW+60)&&q.y+q.h>Math.max(R.y0-160,cy-60)&&q.y<Math.min(R.y1,cy+VH+60);
- // props stand behind the path
- for(const pr of S.props){if(pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=b.props?.find(o=>o.id===pr.id||o.id===ALIAS[pr.id]);prop(g,m?.file||PROPS[pr.id],pr.x,pr.y,pr.h||m?.h||120,pr.flip);}
- for(const q of platforms){if(q.off||q.oko||q.iluzija||q.kind==='crate'||q.gbDoor||q.gbTrap||q.gbOneWay||!vis(q))continue;
-  if(q.ground&&q.kind!=='step'){const gf=R.interior?M.groundIn||M.ground:M.ground;if(!deepGround(g,G,R,q,M,gf))fill(g,q,M.wall,.36,.4);continue;}
+ for(const q of platforms){if(q.off||q.oko||q.iluzija||q.kind==='crate'||!vis(q))continue;
+  // doors and trapdoors on a switch are wood, the gate is masonry; a thin edge in the power's colour keeps them readable
+  if(q.gbDoor||q.gbTrap||q.gbOneWay){const ok=q.gbOneWay?fill(g,q,M.wall,.36,.35):isTex(M.beam)?(fill(g,q,M.beam,.22,.3),true):fill(g,q,M.wall,.36,.35);if(!ok)continue;
+   const line=q.gbOneWay?'#ffe39a':'#8fffe0';g.save();g.globalAlpha=.85;g.strokeStyle=line;g.lineWidth=3;g.strokeRect(q.x+1.5,q.y+1.5,q.w-3,q.h-3);g.globalAlpha=.55;g.fillStyle=line;
+   if(q.gbTrap)for(let x=q.x+14;x<q.x+q.w-10;x+=36)g.fillRect(x,q.y+q.h/2-2,14,4);else for(let y=q.y+40;y<q.y+q.h-20;y+=80)g.fillRect(q.x+q.w/2-2,y,4,22);g.restore();continue;}
+  if(q.ground&&q.kind!=='step'){if(q.y<R.y0||q.y>=R.y1)continue;   // a floor belongs to the room it is the floor of (the room under it would draw it again)
+   const gf=R.interior?M.groundIn||M.ground:M.ground;if(!deepGround(g,G,R,q,M,gf))fill(g,q,M.wall,.36,.4);continue;}
   if(q.kind==='plank'&&isTex(M.beam)&&!q.crumble){slab(g,q,M.beam,.2);topOf(g,q,M.beam,10);continue;}
   if(q.kind==='plank'){if(q.crumble){tiles(g,q,'greda')&&(g.strokeStyle='rgba(40,25,15,.8)',g.lineWidth=2,[.3,.6].forEach(f=>{g.beginPath();g.moveTo(q.x+q.w*f,q.y);g.lineTo(q.x+q.w*f+8,q.y+q.h);g.stroke();}));continue;}tiles(g,q,M.beam==='greda'||!M.beam?'greda':null,M.beam!=='greda'?M.beam:null);continue;}
   if(q.gbRoof){fill(g,q,M.ceiling,.32,.5);continue;}
   if(q.h<=60&&isTex(M.platform)){slab(g,q,M.platform,.22);topOf(g,q,M.platform,12);continue;}
   if(q.h<=60){tiles(g,q,M.platform==='kamen'||M.platform==='mahovina'?M.platform:null,M.platform!=='kamen'&&M.platform!=='mahovina'?M.platform:null);continue;}
   fill(g,q,M.wall,q.gbChimney?.3:.36,q.gbChimney?.55:.35);}
+ // the props of the room, each set by hand in the level's data, standing on the path (after the floor, so it does not cut them)
+ for(const pr of S.props){if(pr.fg||pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=propOf(b,pr.id);const y=surfaceAt(platforms,pr.x,pr.y)-(pr.back??8);
+  prop(g,m?.file||PROPS[pr.id],pr.x,y,m?.h?m.h*(pr.k||1):pr.h||120,pr.flip);}
  for(const t of traps)if(t.kind==='spikes'&&t.x+t.w>R.x0&&t.x<R.x1){const p=pic(R.interior?W('siljci'):W('kolje'));if(!p)continue;const h=46,w=p.im.width*h/p.im.height;g.save();g.beginPath();g.rect(t.x-4,t.y-h-4,t.w+8,h+8);g.clip();for(let x=t.x-4;x<t.x+t.w+4;x+=w-1)g.drawImage(p.im,x,t.y-h+6,w,h);g.restore();}}
 
 // ---------- the foreground: tufts, stones and roots in front of Marko, over the bottom edge of the view ----------
 // The manifest's props with "layer":"foreground" when the biome has them, else the painted stand-ins. They stand on the
 // floor's front face (their tops at most a little over the walk line), move a little faster than the world (they are
 // nearer), and are darker. Placed by a fixed hash per room, never over a hole.
-const FORE_OUT=['prop-zbun','prop-paprat','prop-stena-mala','prop-zbun','prop-paprat'].map(W),FORE_IN=['prop-stena-mala','prop-korenje','prop-stena-mala'].map(W);
-const hash=(a,b)=>{let h=(a*374761393+b*668265263)|0;h=(h^(h>>>13))*1274126177|0;return((h^(h>>>16))>>>0)/4294967296;};
-export function artFore(G,L,R,platforms){if(!G.hasDom)return;const g=G.ctx,b=biome(L),cam=G.camera,VW=G.VIEW_W,mid=cam+VW/2;
- const own=(b.props||[]).filter(o=>o.layer==='foreground'),pool=own.length?own.map(o=>({file:o.file,h:o.h})):(R.interior?FORE_IN:FORE_OUT).map(file=>({file}));
- const solidAt=x=>platforms.some(q=>q.ground&&!q.off&&x>=q.x&&x<=q.x+q.w&&Math.abs(surfAt(q,x)-R.floor)<140);
- g.save();g.filter='brightness(0.5) saturate(0.8)';
- for(let i=0,x=R.x0+120;x<R.x1-60;i++,x+=260+hash(R.gx*31+i,R.gy*17)*320){const k=hash(i*7+R.gx,R.gy*13+3);if(k<.35||!solidAt(x))continue;
-  const it=pool[Math.floor(hash(i+R.gx*5,R.gy+9)*pool.length)],p=pic(it.file);if(!p)continue;const h=it.h?it.h:70+k*70,sx=x+(x-mid)*.18,y=(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w)?surfAt(platforms.find(q=>q.ground&&x>=q.x&&x<=q.x+q.w),x):R.floor)+h*.72;
-  if(sx<cam-200||sx>cam+VW+200)continue;prop(g,it.file,sx,y,h,k>.7);}
- g.restore();}
+export function artFore(G,L,R,S,platforms){if(!G.hasDom)return;const g=G.ctx,b=biome(L),cam=G.camera,VW=G.VIEW_W,mid=cam+VW/2;let on=false;
+ for(const pr of S.props){if(!pr.fg||pr.x<R.x0||pr.x>R.x1||pr.y<R.y0||pr.y>R.y1)continue;const m=propOf(b,pr.id),file=m?.file||PROPS[pr.id];if(!pic(file))continue;
+  const h=m?.h?m.h*(pr.k||1):pr.h||110,sx=pr.x+(pr.x-mid)*.12,y=surfaceAt(platforms,pr.x,pr.y)+(pr.dy??Math.round(h*.62));if(sx<cam-260||sx>cam+VW+260)continue;
+  if(!on){g.save();g.filter='brightness(0.62) saturate(0.85)';on=true;}prop(g,file,sx,y,h,pr.flip);}
+ if(on)g.restore();}
+// a prop of the biome by its id (or the generic name the levels use)
+function propOf(b,id){return b.props?.find(o=>o.id===id)||b.props?.find(o=>o.id===ALIAS[id]);}
+// the walkable surface under x nearest to y (a hill's slope included)
+function surfaceAt(platforms,x,y){let best=y,d=1e9;for(const q of platforms){if(!q.ground||q.off||x<q.x||x>q.x+q.w)continue;const t=surfAt(q,x),e=Math.abs(t-y);if(e<d&&e<160){d=e;best=t;}}return best;}
+// the stone under a shrine: the biome's stone block when it has one
+// the greybox's own props (dist/assets/greybox, made from sketches in art/greybox): the altar of a power, the switch, the lever
+const OWN={oltar:'greybox/oltar.webp',prekidac:'greybox/prekidac.webp',poluga:'greybox/poluga.webp'};
+export function artPedestal(G,L,x,y){if(!G.hasDom)return false;if(pic(OWN.oltar)){prop(G.ctx,OWN.oltar,x,y+4,58);return true;}const m=propOf(biome(L),'kameni-blok');if(!m||!pic(m.file))return false;prop(G.ctx,m.file,x,y+6,46);return true;}
+export function artSwitch(G,x,y,down){if(!G.hasDom||!pic(OWN.prekidac))return false;prop(G.ctx,OWN.prekidac,x,y+(down?7:3),down?18:24);return true;}
+export function artLever(G,x,y,open){if(!G.hasDom||!pic(OWN.poluga))return false;prop(G.ctx,OWN.poluga,x,y+3,80,!open);return true;}
 
 // ---------- for the test: every picture a level would ask for, with a given manifest ----------
 export function artFiles(L,m){manifest=m;manifestAsked=true;delete L._standIn;const out=new Set(),b=biome(L);
  for(const R of L.rooms)for(const l of layersFor(L,R))out.add(l.file);
  for(const v of Object.values(b.materials||{}))if(typeof v==='string'&&v.includes('/'))out.add(v);
  for(const o of b.props||[])out.add(o.file);return[...out];}
+// a fake wall looks like the walls around it until Marko finds it
+export function artFake(G,L,f){if(!G.hasDom)return false;const b=biome(L);return fill(G.ctx,{x:f.x,y:f.y,w:f.w,h:f.h},b.materials.wall,.36,.35);}

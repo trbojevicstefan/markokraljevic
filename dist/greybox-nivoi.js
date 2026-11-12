@@ -20,6 +20,30 @@ export const GB_NIVOI={
 1:{id:'podgradje',ime:'Podgrađe pod Markovim kulama',biom:'podgradje',daje:'krilo',daje2:['klizanje'],pocetne:[],cilj:'Nađi Sokolovo krilo i popni se na vrh kule',
  start:'livada',spawnDx:250,
  uvod:'Prilep. Marko je pod svojim kulama bez Sokolovog krila. Krilo čeka u Sokolovoj ćeliji, na dnu bunara ispod grada; do bunara se iz kovačnice ide niskim prolazom, a klizanje je u podrumu. Mapa je gore desno.',
+ // Every prop by hand, room by room: [id, dx from the room's left edge, {fg: in front of Marko, row: a floor of a tall room}].
+ // Only the biome's own pictures (manifest); none stands on a hole, a door, a switch, a shrine or a checkpoint.
+ ukras:{
+  livada:[['kolica',180],['kameni-blok',1090],['fg-busen',260,{fg:1}],['fg-ograda',720,{fg:1}]],
+  varos:[['bunar',300],['bacva',460],['bacva',1290],['kolica',2050],['bacva',2250],['fg-kamenje',180,{fg:1}],['fg-busen',1120,{fg:1}],['fg-koren',2150,{fg:1}]],
+  golubarnik:[['sanduk',120],['bacva',560],['cup',630],['fg-koren',200,{fg:1}]],
+  pijaca:[['kolica',230],['cup',420],['sanduk',880],['bacva',1060],['fg-busen',100,{fg:1}],['fg-kamenje',1000,{fg:1}]],
+  kapija:[['mangal',100],['kameni-blok',520],['mangal',1000],['fg-ograda',300,{fg:1}],['fg-kamenje',900,{fg:1}]],
+  stepeniste:[['bacva',420],['sanduk',1000],['mangal',600,{row:-1}],['fg-kamenje',480,{fg:1}]],
+  dvoriste:[['rusevni-luk',650],['mangal',1250],['kolica',2220],['fg-busen',450,{fg:1}],['fg-ograda',1100,{fg:1}],['fg-kamenje',1900,{fg:1}]],
+  kasarna:[['mangal',140],['sanduk',990],['bacva',1070],['fg-kamenje',250,{fg:1}]],
+  kula:[['bacva',700],['sanduk',760],['mangal',1050]],
+  vrh:[['mangal',90],['mangal',1110],['fg-kamenje',600,{fg:1}]],
+  bedem:[['mangal',300],['kameni-blok',1100],['sanduk',2000],['bacva',2060],['mangal',3300],['fg-kamenje',900,{fg:1}],['fg-koren',2500,{fg:1}]],
+  zvonik:[['mangal',120],['kameni-blok',950],['fg-kamenje',300,{fg:1}]],
+  zvonara:[['sanduk',200],['bacva',900],['cup',1000]],
+  oruzarnica:[['sanduk',140],['bacva',940],['mangal',1100]],
+  podrum:[['bacva',180],['cup',260],['sanduk',640]],
+  vinski:[['mangal',100],['bacva',200],['bacva',260],['bacva',860],['sanduk',940],['cup',1010]],
+  kovacnica:[['mangal',120],['kameni-blok',210],['fg-kamenje',150,{fg:1}]],
+  bunar:[['cup',300],['kameni-blok',1000]],
+  celija:[['sanduk',90],['mangal',450],['mangal',950]],
+  tamnica:[['sanduk',150],['mangal',1450],['bacva',2000],['cup',2060]],
+  riznica:[['sanduk',250],['sanduk',310],['bacva',650],['cup',1050]]},
  sobe:[
   ['livada','Livada pod gradom',-1,0,1,1],
   ['varos','Varoš',0,0,2,1],
@@ -50,22 +74,22 @@ export const GB_NIVOI={
  brda:{livada:[[600,1000,50]],varos:[[600,950,-50],[1350,1800,90]],dvoriste:[[1500,2100,60]],tamnica:[[300,800,-40]]},
  build(B){const{X,Y}=B;
   // Livada: the start and the first checkpoint
-  B.ckpt(X('livada',400),F0);B.prop('kamen',X('livada',800),F0,90);B.prop('kolica',X('livada',1080),F0);
+  B.ckpt(X('livada',400),F0);
   // Varoš: a janičar and a dog on the hill, a low block to learn the ledge grab, the wing's ledge under the Golubarnik
-  B.prop('bunar',X('varos',320),F0);B.prop('bacva',X('varos',1270),F0);B.prop('sanduk',X('varos',2080),F0);B.prop('bacva',X('varos',2160),F0);
+  
   B.block(X('varos',1050),F0-150,170,150);B.foe('sword',X('varos',1550),F0-110);B.foe('pas',X('varos',1900),F0);
   B.ledge(2140,F0-365,100,{gbGate:'krilo'});B.heart(1500,FM1);
   // Pijaca: a janičar and a dog among the stalls; a hole down into the cellar
-  B.foe('sword',X('pijaca',300),F0);B.foe('pas',X('pijaca',1000),F0);B.prop('tezga',X('pijaca',250),F0,110);B.prop('tezga',X('pijaca',950),F0,110);B.prop('cup',X('pijaca',120),F0);B.prop('sanduk',X('pijaca',1120),F0);
+  B.foe('sword',X('pijaca',300),F0);B.foe('pas',X('pijaca',1000),F0);
   // Gradska kapija: two shieldmen; the gate opens only from the Stepenište
-  B.prop('mangal',X('kapija',120),F0);B.foe('shield',X('kapija',300),F0);B.foe('shield',X('kapija',700),F0);B.gate('kapija-gate',4740,0,F0,{x:4880,y:F0});
+  B.foe('shield',X('kapija',300),F0);B.foe('shield',X('kapija',700),F0);B.gate('kapija-gate',4740,0,F0,{x:4880,y:F0});
   // Stepenište: a chimney up to the walls (climbed wall to wall), the walkway to the Bedem, the hole down the well
   B.chimney('ch-step',4900,FM1,F0-150);B.block(5130,FM1,620,40);
   // Dvorište: the second checkpoint, a rider and an armoured man
-  B.prop('rusevni-luk',X('dvoriste',650),F0);B.prop('mangal',X('dvoriste',1250),F0);
+  
   B.ckpt(X('dvoriste',300),F0);B.foe('akindzija',X('dvoriste',1000),F0);B.foe('oklopnik',X('dvoriste',2100),F0);
   // Kasarna: a janičar, an archer on a raised block, a shieldman
-  B.prop('mangal',X('kasarna',140),F0);B.prop('bacva',X('kasarna',1080),F0);B.prop('sanduk',X('kasarna',1140),F0);
+  
   B.block(X('kasarna',500),F0-120,200,120);B.foe('sword',X('kasarna',300),F0);B.foe('archer',X('kasarna',600),F0-120);B.foe('shield',X('kasarna',900),F0);
   // Kula: a chimney from the floor to the walls' level, then the wing's ledges to the top
   B.chimney('ch-kula',9860,FM1,F0-150);B.block(10090,FM1,60,40);B.ledge(10300,FM1-365,100,{gbGate:'krilo'});
@@ -75,19 +99,19 @@ export const GB_NIVOI={
   B.block(6600,FM1-120,100,120);B.block(8700,FM1-120,100,120);B.foe('archer',6650,FM1-120);B.foe('archer',8750,FM1-120);B.foe('sword',8200,FM1);
   B.strelnica({x:9560,y:FM1-40,gy:FM1,dir:-1,every:2.8});B.ledge(7890,FM1-365,100,{gbGate:'krilo'});
   // Zvonik and Zvonara: a cracked wall to the bell-ringer's room
-  B.open(8400,FM2-205,FM2);B.breakable('zid-zvonara',8400,FM2);B.foe('archer',X('zvonik',300),FM2);B.prop('zvono',X('zvonik',900),FM2,160);
+  B.open(8400,FM2-205,FM2);B.breakable('zid-zvonara',8400,FM2);B.foe('archer',X('zvonik',300),FM2);
   B.cudo(X('zvonara',600),FM2,'Prilepsko zvono');
   // Oružarnica: stakes, a beam that slides over a pit, an arrow slit; a piece of heart at the end
   B.spikes(X('oruzarnica',250),F0,200);{const q=B.plank(X('oruzarnica',550),F0,120);B.greda(q,{ax:X('oruzarnica',550),bx:X('oruzarnica',730),period:3.2});}
   B.pit('pit-oruzarnica',X('oruzarnica',550),X('oruzarnica',850),F0+150);B.strelnica({x:X('oruzarnica',1160),y:F0-40,gy:F0,dir:-1,every:2.4});B.heart(X('oruzarnica',1050),F0);
   // Podrum: a dog and a janičar, stakes; the wall to the left gives way (Vinski podrum)
-  B.prop('bacva',X('podrum',250),F1);B.prop('cup',X('podrum',330),F1);B.prop('bacva',X('vinski',350),F1);B.prop('bacva',X('vinski',430),F1);B.prop('cup',X('vinski',800),F1);
+  
   // Podrum: Klizanje (in a run S + SHIFT) at the back of the cellar; the way on to the well is a low passage in the Kovačnica
   B.shrine('klizanje',X('podrum',470),F1);
   B.foe('pas',X('podrum',700),F1);B.foe('sword',X('podrum',950),F1);B.spikes(X('podrum',1000),F1,120);
   B.open(2400,F1-200,F1);B.fake('fake-vinski',2380,F1-200,60,200);B.heart(X('vinski',600),F1);
   // Kovačnica: planks that give way over a pit, stakes, a fire-raiser
-  B.prop('mangal',X('kovacnica',140),F1);B.prop('kameni-blok',X('kovacnica',220),F1);
+  
   B.crumble(X('kovacnica',300),F1,200);B.crumble(X('kovacnica',500),F1,200);B.pit('pit-kovacnica',X('kovacnica',300),X('kovacnica',700),F1+150);
   B.spikes(X('kovacnica',820),F1,140);B.foe('palikuca',X('kovacnica',1000),F1);B.nisko('nisko-bunar',X('kovacnica',1090),720,F1);
   // Bunar: the well, from the cellars down to the dungeon; the wing's ledges up and out through the Stepenište
@@ -95,7 +119,7 @@ export const GB_NIVOI={
   // Sokolova ćelija: the falcon's wing and the third checkpoint
   B.ckpt(X('celija',250),F2);B.shrine('krilo',X('celija',700),F2);
   // Tamnica: two janičari, stakes; a cracked wall to the Riznica
-  B.prop('sanduk',X('tamnica',150),F2);B.prop('sanduk',X('riznica',250),F2);B.prop('cup',X('riznica',1050),F2);
+  
   B.foe('sword',X('tamnica',900),F2);B.foe('sword',X('tamnica',1700),F2);B.spikes(X('tamnica',1150),F2,150);
   B.open(8400,F2-205,F2);B.breakable('zid-riznica',8400,F2);B.heart(X('riznica',450),F2);B.cudo(X('riznica',850),F2,'Markov pehar');},
  veze:[
@@ -120,6 +144,29 @@ export const GB_NIVOI={
 2:{id:'urvina',ime:'Urvina planina',biom:'urvina',daje:'nalet',daje2:['zidotrk'],pocetne:['krilo','klizanje'],cilj:'Nađi juriš u vazduhu i pređi klanac do Vilinog izvora',
  start:'zaseok',spawnDx:300,
  uvod:'Urvina planina. Marko ima Sokolovo krilo. Juriš u vazduhu čeka u Orlovom gnezdu, visoko na litici iznad vodopada; pred gnezdom je ponor koji se prelazi samo trkom po zidu sa Ravijojlinim šarama (u starom kamenolomu). Bez juriša se klanac ka Ravijojlinoj šumi ne prelazi.',
+ ukras:{
+  zaseok:[['panj',120],['bacva',430],['stena',1050],['fg-busen',200,{fg:1}],['fg-ograda',700,{fg:1}]],
+  podnozje:[['panj',150],['stena',880],['paprat',1300],['oboreno-stablo',1600],['kameni-blok',2260],['fg-kamenje',500,{fg:1}],['fg-busen',1400,{fg:1}],['fg-koren',2000,{fg:1}]],
+  osmatracnica:[['baklja',100],['sanduk',560],['bacva',1100],['baklja',2100],['kameni-blok',2250],['fg-kamenje',300,{fg:1}]],
+  staza:[['panj',100],['paprat',700],['kameni-blok',2100],['paprat',2250],['fg-busen',300,{fg:1}],['fg-koren',1700,{fg:1}]],
+  kamenolom:[['kameni-blok',120],['kameni-blok',205],['sanduk',600],['stena',1290],['kameni-blok',1750],['panj',2250],['fg-kamenje',500,{fg:1}],['fg-kamenje',1700,{fg:1}]],
+  vodopad:[['stena',150],['paprat',950],['fg-busen',1050,{fg:1}]],
+  klanac:[['stena',170],['panj',600],['kameni-blok',1500],['fg-kamenje',400,{fg:1}],['fg-busen',1600,{fg:1}]],
+  litica:[['baklja',120],['panj',600],['kameni-blok',1000],['stena',1450],['bacva',2250],['fg-kamenje',700,{fg:1}],['fg-koren',1350,{fg:1}]],
+  stene:[['kameni-blok',150],['stena',1000],['panj',1990],['fg-kamenje',900,{fg:1}]],
+  gnezdo:[['stena',480],['fg-busen',200,{fg:1}]],
+  orlova:[['stena',300],['panj',900],['paprat',1050],['fg-busen',700,{fg:1}]],
+  jele:[['panj',150],['paprat',450],['oboreno-stablo',1350],['stena',2000],['fg-busen',300,{fg:1}],['fg-koren',1600,{fg:1}]],
+  suma:[['paprat',700],['panj',880],['oboreno-stablo',2150],['fg-busen',100,{fg:1}],['fg-koren',1000,{fg:1}],['fg-busen',2250,{fg:1}]],
+  izvor:[['baklja',60],['baklja',1140],['fg-busen',200,{fg:1}],['fg-busen',1000,{fg:1}]],
+  skriveni:[['paprat',300],['stena',900],['panj',1050],['fg-busen',500,{fg:1}]],
+  pecina:[['stena',250],['baklja',700],['kameni-blok',1450],['bacva',2000],['baklja',2300],['fg-kamenje',800,{fg:1}],['fg-koren',2100,{fg:1}]],
+  kristali:[['stena',250],['baklja',500],['stena',950],['fg-kamenje',700,{fg:1}]],
+  ponor:[['baklja',100],['stena',900],['kameni-blok',1300],['bacva',2250],['fg-kamenje',600,{fg:1}]],
+  jezero:[['baklja',500],['stena',700],['kameni-blok',1050],['fg-koren',200,{fg:1}]],
+  dubina:[['baklja',100],['stena',900],['bacva',2000],['sanduk',2060],['baklja',2300],['fg-kamenje',1100,{fg:1}],['fg-koren',2200,{fg:1}]],
+  koren:[['panj',150],['stena',850],['fg-koren',400,{fg:1}]],
+  jazbina:[['stena',250],['panj',950],['fg-koren',800,{fg:1}]]},
  sobe:[
   ['zaseok','Pastirski zaseok',-1,0,1,1],
   ['podnozje','Podnožje Urvine',0,0,2,1],
@@ -152,18 +199,18 @@ export const GB_NIVOI={
  brda:{podnozje:[[300,800,60]],staza:[[200,600,-40],[1400,2000,90]],suma:[[150,600,50],[1400,2000,-60]],zaseok:[[500,900,40]]},
  build(B){const{X}=B;
   // Pastirski zaseok and Podnožje: the start, a janičar and a dog; the ledge up to the Osmatračnica
-  B.ckpt(X('zaseok',300),F0);B.foe('sword',X('podnozje',1000),F0);B.foe('pas',X('podnozje',2150),F0);B.ledge(1790,F0-365,100);B.prop('drvo',X('zaseok',950),F0,320);
+  B.ckpt(X('zaseok',300),F0);B.foe('sword',X('podnozje',1000),F0);B.foe('pas',X('podnozje',2150),F0);B.ledge(1790,F0-365,100);
   // Osmatračnica: two archers on the lookout, a piece of heart
   B.foe('archer',800,FM1);B.foe('archer',1300,FM1);B.heart(400,FM1);
   // Planinska staza: a janičar in the hollow, an archer on a rock; a hole down into the cave
-  B.foe('sword',X('staza',450),F0-20);B.block(X('staza',1100),F0-120,200,120);B.foe('archer',X('staza',1200),F0-120);B.prop('stena',X('staza',1300),F0,220);
+  B.foe('sword',X('staza',450),F0-20);B.block(X('staza',1100),F0-120,200,120);B.foe('archer',X('staza',1200),F0-120);
   // Stari kamenolom: planks that give way over a pit, a janičar, an archer on a block
   // Stari kamenolom: Trk po zidu, past the crumbling planks
   B.shrine('zidotrk',X('kamenolom',1500),FM1);
   B.crumble(X('kamenolom',800),FM1,200);B.crumble(X('kamenolom',1000),FM1,200);B.pit('pit-kamenolom',X('kamenolom',800),X('kamenolom',1200),FM1+150);
   B.foe('sword',X('kamenolom',300),FM1);B.block(X('kamenolom',1900),FM1-120,200,120);B.foe('archer',X('kamenolom',2000),FM1-120);
   // Vodopad: a chimney beside the falling water, from the path to the cliffs
-  B.chimney('ch-vodopad',5300,FM1,F0-150);B.block(5050,FM1,250,40);B.block(5530,FM1,220,40);B.prop('vodopad',5900,F0,520);
+  B.chimney('ch-vodopad',5300,FM1,F0-150);B.block(5050,FM1,250,40);B.block(5530,FM1,220,40);
   // Klanac: the abyss only the dash crosses, the hole down to the underground lake on its far side
   B.pit('pit-klanac',6800,7300,F0+150);B.foe('akindzija',X('klanac',300),F0);B.ledge(8140,F1-365,100);
   // Litica and Stenovita greda: archers on the rocks, the ledge up through the Stene's floor; stakes and crumbling rock above
@@ -174,12 +221,12 @@ export const GB_NIVOI={
   B.ckpt(8500,FM2);B.shrine('nalet',8700,FM2);B.gap('gap-gnezdo',9000,9500,FM2);B.cudo(10200,FM2,'Orlovo pero');
   // Jelova padina and Ravijojlina šuma: the ledge up from the forest, a fake wall to the hidden spring
   B.ledge(9390,F0-365,100);B.foe('sword',X('jele',600),FM1);B.foe('archer',X('jele',1700),FM1);B.open(10800,FM1-200,FM1);B.fake('fake-skriveni',10780,FM1-200,60,200);B.heart(11400,FM1);
-  B.ckpt(X('suma',1200),F0);B.foe('sword',X('suma',400),F0-80);B.foe('palikuca',X('suma',1700),F0-20);B.prop('bukva',X('suma',700),F0,340);B.prop('paprat',X('suma',1100),F0,90);
+  B.ckpt(X('suma',1200),F0);B.foe('sword',X('suma',400),F0-80);B.foe('palikuca',X('suma',1700),F0-20);
   // Vilin izvor: Lovac-aga, who calls his dogs
   {const a0=X('izvor',40),a1=X('izvor',1160);B.boss('sword',Math.round(a0+(a1-a0)*.68),F0,{hp:700,maxHp:700,name:'Lovac-aga',kit:'lovac',look:'lovac-aga'},{x0:a0,x1:a1,y:F0},[[(a1-a0)*.35,150,150],[(a1-a0)*.65,150,150]]);}
   // Pećina, Kristalna dvorana: dogs and stakes, the chimney down to the deep cave, a cracked wall to the crystals
   B.foe('pas',X('pecina',500),F1);B.foe('pas',X('pecina',900),F1);B.spikes(X('pecina',1100),F1,150);B.chimney('ch-dubina',4000,F1,F2-150);
-  B.open(2400,F1-205,F1);B.breakable('zid-kristali',2400,F1);B.heart(X('kristali',600),F1);B.prop('kristal',X('kristali',300),F1,120);B.prop('kristal',X('kristali',900),F1,150);
+  B.open(2400,F1-205,F1);B.breakable('zid-kristali',2400,F1);B.heart(X('kristali',600),F1);
   // Podzemni ponor and jezero: a shieldman, the cave's abyss (the dash), the lake and the ledge up into the Klanac
   B.foe('shield',X('ponor',400),F1);B.pit('pit-ponor',6300,6800,F1+150);B.heart(7500,F1);
   // Duboka pećina, Korenje, Vučja jazbina: a janičar and a shieldman, stakes, a fake wall among the roots
@@ -209,6 +256,28 @@ export const GB_NIVOI={
 3:{id:'klisura',ime:'Kačanička klisura i Musina kula',biom:'klisura',daje:'trag',daje2:['lanac','oko'],pocetne:['krilo','nalet','klizanje','zidotrk'],cilj:'Nađi Vilin trag, uđi u Musinu kulu i popni se do Muse',
  start:'ulaz',spawnDx:300,
  uvod:'Kačanička klisura. Marko ima krilo i juriš. Musina kula je zaključana vratima koja daleki prekidač otvara na tren; Vilin trag ostavlja Ravijojla u isposnici gore na zidu kanjona. Na vrh kule se ide Ravijojlinim lancem, a on čeka u oružani.',
+ ukras:{
+  ulaz:[['kameni-blok',120],['bacva',440],['rusevni-luk',980],['fg-busen',200,{fg:1}],['fg-kamenje',700,{fg:1}]],
+  obala:[['konopac',200],['sanduk',880],['bacva',940],['cekrk',1300],['fg-busen',100,{fg:1}],['fg-kamenje',1200,{fg:1}],['fg-busen',2100,{fg:1}]],
+  most:[['konopac',600],['kameni-blok',1100],['sanduk',2040],['fg-kamenje',1300,{fg:1}]],
+  vodenica:[['bacva',120],['cekrk',650],['sanduk',1100]],
+  skela:[['cekrk',540],['konopac',640],['bacva',1500],['sanduk',1560],['kolje',2150],['fg-busen',200,{fg:1}],['fg-ograda',1800,{fg:1}]],
+  podnozje:[['kameni-blok',560],['baklja',1050],['fg-kamenje',400,{fg:1}],['fg-ograda',900,{fg:1}]],
+  kula:[['bacva',800],['sanduk',860],['baklja',1300],['bacva',2200],['sanduk',1000,{row:-1}],['baklja',1400,{row:-1}],['bacva',900,{row:-2}],['baklja',1200,{row:-2}],['baklja',1000,{row:-3}],['sanduk',1800,{row:-3}]],
+  vrh:[['baklja',60],['baklja',1140],['fg-kamenje',600,{fg:1}]],
+  oruzana:[['sanduk',120],['bacva',700],['baklja',1110]],
+  strazara:[['baklja',100],['sanduk',600],['bacva',1100]],
+  riznica:[['sanduk',300],['sanduk',360],['bacva',900],['konopac',1050]],
+  staza:[['kameni-blok',200],['kolje',1050],['bacva',2300],['baklja',3100],['kameni-blok',3400],['fg-busen',300,{fg:1}],['fg-kamenje',1200,{fg:1}],['fg-koren',2500,{fg:1}]],
+  isposnica:[['konopac',300],['baklja',760]],
+  kapela:[['baklja',300],['baklja',900],['sanduk',1100]],
+  pecina:[['baklja',800],['kameni-blok',1300],['bacva',2200],['fg-kamenje',900,{fg:1}],['fg-koren',1900,{fg:1}]],
+  skrivena:[['kameni-blok',200],['sanduk',400],['baklja',1000],['fg-koren',700,{fg:1}]],
+  ispodmosta:[['baklja',150],['konopac',600],['sanduk',1000]],
+  izvor:[['kameni-blok',800],['baklja',1080],['fg-kamenje',500,{fg:1}]],
+  mlin:[['sanduk',150],['cekrk',560],['bacva',1090]],
+  brzaci:[['konopac',200],['kameni-blok',1000],['kolje',2250],['fg-busen',400,{fg:1}],['fg-kamenje',1150,{fg:1}]],
+  tamnica:[['baklja',100],['sanduk',1300],['bacva',1360],['baklja',1700],['konopac',2000]]},
  sobe:[
   ['ulaz','Ulaz u klisuru',-1,0,1,1],
   ['obala','Obala Lepenca',0,0,2,1,{set:'reka'}],
@@ -240,7 +309,7 @@ export const GB_NIVOI={
  brda:{ulaz:[[500,900,40]],obala:[[300,800,50],[1950,2300,-40]]},
  build(B){const{X}=B;
   // Ulaz and Obala Lepenca: the start, a janičar and a dog on the bank, the hole down into the cave
-  B.ckpt(X('ulaz',300),F0);B.prop('krst',X('ulaz',900),F0,170);B.foe('sword',X('obala',1000),F0);B.foe('pas',X('obala',2150),F0);B.ledge(1690,F1-365,100);
+  B.ckpt(X('ulaz',300),F0);B.foe('sword',X('obala',1000),F0);B.foe('pas',X('obala',2150),F0);B.ledge(1690,F1-365,100);
   // Srušeni kameni most: two breaks in the bridge (the wing jumps them), a trapdoor whose switch stands on the bridge
   B.pit('pit-most1',2600,2900,F0+150);B.pit('pit-most2',4050,4350,F0+150);B.foe('shield',X('most',2200),F0);
   B.trapdoor('trap-most',3100,F0,300,{x:3980,y:F0});B.ledge(3290,F1-365,100);
