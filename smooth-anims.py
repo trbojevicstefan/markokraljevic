@@ -239,6 +239,7 @@ def skyline(sizes, width):
 
 def pack(items):
     """[(key, img)] -> (sheet, {key: [x, y, w, h]}): the strip width that wastes the least picture."""
+    if not items: return np.zeros((1, 1, 4), np.uint8), {}
     sizes = [(im.shape[1], im.shape[0]) for _, im in items]
     area = sum(w * h for w, h in sizes); wmax = max(w for w, _ in sizes) + 1
     best = None
@@ -262,6 +263,49 @@ def clip_scale(r):
     return min(1.0, round(r['scale'] * DISPLAY * 20 + 0.49) / 20)
 
 
+# ---------- drawn in-betweens (DOPUNA-45): <clip>-v2 has 2n-1 frames, the old ones at the even places, new poses between ----------
+V2 = os.path.join(ROOT, 'art', 'animation-pack-04', 'assets')
+
+
+def v2_cells(name):
+    d = os.path.join(V2, name + '-v2')
+    try:
+        man = json.load(open(os.path.join(d, 'manifest.json'), encoding='utf-8'))
+        im = cv2.imread(os.path.join(d, 'atlas.png'), cv2.IMREAD_UNCHANGED)
+        rows = list(man['frame_layout']['rows'].values())[0]
+        return [im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']].astype(np.float32) / 255 for c in rows]
+    except Exception:
+        return None
+
+
+def bbox(c):
+    ys, xs = np.nonzero(c[..., 3] > 0.3)
+    return (xs.min(), ys.min(), xs.max(), ys.max()) if len(xs) else None
+
+
+def fit(v, x):
+    """The zoom and shift that lay drawing v onto x (the same pose, perhaps in another cell or zoom): (s, tx, ty)."""
+    bv, bx = bbox(v), bbox(x)
+    if bv is None or bx is None: return (1.0, 0.0, 0.0)
+    s = (bx[3] - bx[1]) / max(1, bv[3] - bv[1])
+    return s, (bx[0] + bx[2]) / 2 - s * (bv[0] + bv[2]) / 2, bx[3] - s * bv[3]
+
+
+def place(v, f, shape):
+    M = np.float32([[f[0], 0, f[1]], [0, f[0], f[2]]])
+    return cv2.warpAffine(v, M, (shape[1], shape[0]), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+
+
+def sole_of(c):
+    ys = np.nonzero((c[..., 3] > 0.5).any(axis=1))[0]
+    return float(ys.max()) if len(ys) else c.shape[0] - 1.0
+
+
+def iou(a, b):
+    x, y = a[..., 3] > 0.5, b[..., 3] > 0.5
+    return float((x & y).sum()) / max(1, (x | y).sum())
+
+
 def work(job):
     name, pairs = job
     r = RIG[name]
@@ -269,10 +313,28 @@ def work(job):
     if img is None or img.ndim < 3 or img.shape[2] != 4:
         return name, None, 'no alpha sheet'
     F = r['frames']; k = clip_scale(r)
-    keep = {}; log = []
+    keep = {}; log = []; drawn = set()
+    V = v2_cells(name)
+    if V is not None and len(V) != 2 * len(F) - 1: V = None
     for (i, j) in pairs:
         if F[i][2:4] != F[j][2:4]:
             log.append((i, j, None, None, 'cell size')); continue
+        if V is not None and j == i + 1:
+            # the drawn pose between them, laid into this clip's cell by its neighbours (copies of frames i and j); its own
+            # sole is where the game puts it on the ground. The quarters are the flow between it and each neighbour.
+            a, b = cell(img, F[i]), cell(img, F[j])
+            fa, fb = fit(V[2 * i], a), fit(V[2 * j], b)
+            D = place(V[2 * i + 1], tuple((p + q) / 2 for p, q in zip(fa, fb)), a.shape)
+            match = min(iou(place(V[2 * i], fa, a.shape), a), iou(place(V[2 * j], fb, b.shape), b))
+            sd = sole_of(D); mid = crop(D, k)
+            if mid is not None and match > 0.7:
+                q1 = betweens(a, shift(D, int(round(F[i][4] - sd))))[1]
+                q3 = betweens(D, shift(b, int(round(sd - F[j][4]))))[1]
+                ok = lambda q: q[1] <= MAX_ERR and q[2] <= MAX_GHOST
+                cuts = [crop(q1[0], k) if ok(q1) else None, mid, crop(q3[0], k) if ok(q3) else None]
+                keep[(i, j)] = [(c[0], c[1] - r['anchor'], c[2] - base) if c else None for c, base in zip(cuts, (F[i][4], sd, sd))]
+                drawn.add((i, j)); log.append((i, j, max(q1[1], q3[1]), match, 'drawn')); continue
+            log.append((i, j, None, match, 'v2 off'))
         a = cell(img, F[i])
         b = shift(cell(img, F[j]), int(round(F[i][4] - F[j][4])))   # b's sole onto a's
         res = betweens(a, b)
@@ -295,7 +357,7 @@ def work(job):
         cuts = [crop(m, k) for m, _, _ in res]
         if any(c is None for c in cuts): continue
         keep[(i, j)] = [(c[0], c[1] - r['anchor'], c[2] - F[i][4]) for c in cuts]
-    return name, (k, keep), log
+    return name, (k, keep, drawn), log
 
 
 def run(names):
@@ -310,7 +372,7 @@ def run(names):
         for name, res, log in ex.map(work, jobs):
             if res is None:
                 print('skip (%s): %s' % (log, name)); continue
-            k, keep = res
+            k, keep, drawn = res
             for ext in ('.webp', '-q.webp'):
                 old = os.path.join(OUT, name + ext)
                 if os.path.exists(old): os.remove(old)
@@ -320,16 +382,17 @@ def run(names):
                 half, quarter = [], []
                 for (i, j), cuts in keep.items():
                     half.append(((i, j, 1), cuts[1][0]))
-                    quarter += [((i, j, 0), cuts[0][0]), ((i, j, 2), cuts[2][0])]
+                    quarter += [((i, j, q), cuts[q][0]) for q in (0, 2) if cuts[q]]
                 s1, r1 = pack(half); s2, r2 = pack(quarter)
                 cv2.imwrite(os.path.join(OUT, name + '.webp'), s1, [cv2.IMWRITE_WEBP_QUALITY, 88])
                 cv2.imwrite(os.path.join(OUT, name + '-q.webp'), s2, [cv2.IMWRITE_WEBP_QUALITY, 88])
                 mids = {}
                 for (i, j), cuts in keep.items():
-                    rr = [r2[(i, j, 0)], r1[(i, j, 1)], r2[(i, j, 2)]]
-                    mids['%d-%d' % (i, j)] = [rr[q] + [round(cuts[q][1], 1), round(cuts[q][2], 1)] for q in range(3)]
+                    rr = [r2.get((i, j, 0)), r1[(i, j, 1)], r2.get((i, j, 2))]
+                    mids['%d-%d' % (i, j)] = [rr[q] + [round(cuts[q][1], 1), round(cuts[q][2], 1)] if cuts[q] else None for q in range(3)]
                 meta[name] = {'image': 'smooth/' + name + '.webp', 'imageQ': 'smooth/' + name + '-q.webp', 'k': k,
                               'loop': name in LOOPS, 'mids': mids}
+                if drawn: meta[name]['drawn'] = sorted('%d-%d' % p for p in drawn)   # drawn poses: a blow passes through them
                 total += s1.shape[0] * s1.shape[1] + s2.shape[0] * s2.shape[1]
             print('%-26s %2d/%2d pairs  k=%.2f  %s' % (name, len(keep), len(log), k,
                   ' '.join('%d-%d:%s' % (i, j, ('%.3f/%.2f' % (e, g)) + ('!' + w if w else '') if e is not None else w) for i, j, e, g, w in log)), flush=True)
@@ -373,14 +436,14 @@ def sheet(name, dst, size=220, only=None):
         m = meta.get('mids', {}).get('%d-%d' % (i, j))
         for q in range(3):
             canvas = np.zeros((h, w, 4), np.uint8)
-            if m:
+            if m and m[q]:
                 x, y, ww, hh, dx, dy = m[q]
                 part = (sh[1] if q == 1 else sh[0])[y:y + hh, x:x + ww]
                 part = cv2.resize(part, (max(1, round(ww / k)), max(1, round(hh / k))), interpolation=cv2.INTER_LINEAR)
                 X, Y = int(round(r['anchor'] + dx)), int(round(fa[4] + dy))
                 X1, Y1 = min(w, X + part.shape[1]), min(h, Y + part.shape[0])
                 canvas[Y:Y1, X:X1] = part[:Y1 - Y, :X1 - X]
-            put(canvas, row, 1 + q, red=not m)
+            put(canvas, row, 1 + q, red=not (m and m[q]))
     cv2.imwrite(dst, out, [cv2.IMWRITE_JPEG_QUALITY, 84])
 
 
