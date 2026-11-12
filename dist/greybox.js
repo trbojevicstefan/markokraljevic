@@ -108,6 +108,8 @@ export function makeGreybox(n=1){const L=gbLevel(n),platforms=[],enemies=[],brea
 
 // ---------- once a step (game.js calls it from update while a greybox level is on) ----------
 export function gbTick(G,dt){const W=G.world,S=W.gb,p=G.p;if(!S||G.mode!=='play')return;const L=S.L;S.t+=dt;
+ // the arena's door is an open doorway here: once the megdan begins, the aga and whatever he calls stay inside it
+ for(const c of W.enemies)if(c.champion&&c.alive&&c.engaged&&c.arena){const A=c.arena;for(const e of W.enemies)if(e.alive&&Math.abs(e.y-A.y)<300&&e.x>A.x0-260&&e.x<A.x1+260)e.x=Math.max(A.x0+25,Math.min(A.x1-25,e.x));}
  const r=gbRoomAt(L,p.x,p.y);if(r>=0&&r!==S.room){S.room=r;const R=L.rooms[r];G.look=artLook(L,R);
   if(!S.seen.has(r)){if(S.t>.5)G.toast((artName(L,R)||R.name).toUpperCase(),1.6);if(R.secret){S.found.add(R.id);G.sfx('magic',{gain:.6});G.toast(`Tajna soba! ${S.found.size}/${S.secrets}`,2.4);if(R.lore)G.speak(R.lore,8);}}S.seen.add(r);}
  for(const R of L.rooms)if(R.secret&&S.found.has(R.id))S.cover[R.id]=Math.max(0,S.cover[R.id]-dt*1.6);
@@ -149,12 +151,15 @@ const C={back:'#25272c',back2:'#2a2c32',secret:'#2c2836',grid:'rgba(255,255,255,
 export const gbSurfAt=(q,x)=>{const S=q.surf,k=clampN((x-q.x)/q.sx,0,S.length-1),i=Math.floor(k);return i>=S.length-1?S[S.length-1]:S[i]+(S[i+1]-S[i])*(k-i);};
 export function gbDraw(G){const g=G.ctx,W=G.world,S=W.gb,L=S?.L,cam=G.camera,cy=G.camY,VW=G.VIEW_W,VH=G.VIEW_H,t=G.time;if(!g||!S)return;
  const vis=(x0,y0,x1,y1)=>x1>cam-80&&x0<cam+VW+80&&y1>cy-80&&y0<cy+VH+80,shown=L.rooms.filter(R=>vis(R.x0,R.y0,R.x1,R.y1));
- const inRoom=(R,fn)=>{g.save();g.beginPath();g.rect(R.x0,R.y0-160,R.x1-R.x0,R.y1-R.y0+160);g.clip();fn();g.restore();};
+ // a room's art may rise 160 px over its top (trees, towers), but not into a room above it
+ const over=R=>R.over??=L.rooms.some(Q=>Q!==R&&Q.y1===R.y0&&Q.x0<R.x1&&Q.x1>R.x0)?0:160;
+ const inRoom=(R,fn)=>{const o=over(R);g.save();g.beginPath();g.rect(R.x0,R.y0-o,R.x1-R.x0,R.y1-R.y0+o);g.clip();fn();g.restore();};
  g.save();g.fillStyle=C.rock;g.fillRect(cam-60,cy-60,VW+120,VH+120);
  const dressed=new Set();for(const R of shown){inRoom(R,()=>{if(artBack(G,L,R))dressed.add(R.id);});}
  L.rooms.forEach((R,i)=>{if(!shown.includes(R)||dressed.has(R.id))return;g.fillStyle=R.secret?C.secret:i%2?C.back2:C.back;g.fillRect(R.x0,R.y0,R.x1-R.x0,R.floor-R.y0);
   g.strokeStyle=C.grid;g.lineWidth=1;g.beginPath();for(let x=Math.max(R.x0,Math.floor((cam-60)/100)*100);x<Math.min(R.x1,cam+VW+60);x+=100){g.moveTo(x,Math.max(R.y0,cy-60));g.lineTo(x,Math.min(R.floor,cy+VH+60));}for(let y=R.floor-100;y>R.y0;y-=100){if(y<cy-60||y>cy+VH+60)continue;g.moveTo(Math.max(R.x0,cam-60),y);g.lineTo(Math.min(R.x1,cam+VW+60),y);}g.stroke();});
- for(const z of S.pits)if(vis(z.x0,z.y-150,z.x1,z.y+400)){g.fillStyle='#141518';g.fillRect(z.x0,z.y-146,z.x1-z.x0,520);}
+ // an abyss is dark down through the floor, but stops at the ceiling of a room under it
+ for(const z of S.pits)if(vis(z.x0,z.y-150,z.x1,z.y+400)){let b=z.y+374;for(const R of L.rooms)if(R.x0<z.x1&&R.x1>z.x0&&R.y0>=z.y-150&&R.y0<b)b=R.y0;g.fillStyle='#141518';g.fillRect(z.x0,z.y-146,z.x1-z.x0,b-z.y+146);}
  for(const q of W.platforms){if(!vis(q.x,q.y,q.x+q.w,q.y+q.h)||q.kind==='crate'||(q.off&&q.arena))continue;
   if(q.gbDoor||q.gbTrap||q.gbOneWay){const col=q.gbOneWay?'#8f7a4a':'#3f8f7e',line=q.gbOneWay?'#ffe39a':'#8fffe0';
    if(q.off){g.strokeStyle=line;g.globalAlpha=.5;g.setLineDash([8,8]);g.strokeRect(q.x,q.y,q.w,q.h);g.setLineDash([]);g.globalAlpha=1;}

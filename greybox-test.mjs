@@ -95,6 +95,7 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(ONLY&&+n!==ONLY)continue;co
   if(need?.startsWith('posle:'))ok(!walkLink(L,link,new Set(all)),`${tag} ${a} → ${b} stays shut until the gate is opened from ${need.slice(6)}`);}
  // ---- the boss ----
  {api.startGreybox(+n);quiet();setMoci(all);const c=W().enemies.find(e=>e.champion),A=c.arena;place(A.x0+60,A.y,1);walk(A.x0+200);ok(S().arena&&S().arena.boss===c,`${tag} the megdan with ${c.name} begins`);
+  {const x=c.x;c.x=A.x0-120;step(2);ok(c.x>=A.x0+20,`${tag} ${c.name} cannot leave the arena through its doorway`);c.x=x;step(2);}
   c.hp=1;c.invT=0;for(let f=0;f<900&&c.alive;f++){const p=P();p.face=c.x>p.x?1:-1;api.keys.clear();if(Math.abs(c.x-p.x)>90)api.keys.add(p.face>0?'KeyD':'KeyA');if(f%30===0){api.pressed.add('KeyK');api.keys.add('KeyK');}step();p.invuln=1e9;c.guard=0;if(c.hp>1&&c.alive)c.hp=1;}
   api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} falls and the level is done`);}
  ok(storage.get('marko-megdani')===undefined&&storage.get('marko-levels')===undefined,`${tag} nothing was written into the save`);}
