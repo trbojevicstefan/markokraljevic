@@ -251,7 +251,64 @@ export const GB_POHODI={
   // Podrum konaka: šiljci, daske koje popuštaju, dimnjak gore; napukli zid do kosturnice
   K.chimney('podrum',250,{upper:'konak'});K.spikes('podrum',550,100);K.crumble('podrum',700,150,1,0);K.heart('podrum',1000,1);K.crack('podrum','kosturnica',{row:1});K.cudo('kosturnica',700,'Sveća za pale',1);
   // Kripta: čekpoint, juriš; dimnjak u dvor; ponor do isposnice
-  K.ckpt('kripta',300);K.shrine('nalet','kripta',650);K.chimney('kripta',1000,{upper:'dvor'});K.dash('kripta',1250);K.door('kripta','isposnica',1);K.heart('isposnica',600,1);}})
+  K.ckpt('kripta',300);K.shrine('nalet','kripta',650);K.chimney('kripta',1000,{upper:'dvor'});K.dash('kripta',1250);K.door('kripta','isposnica',1);K.heart('isposnica',600,1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 6 · Oranje drumova („Oranje Marka Kraljevića“): Marko ore careve drumove, janičari gaze oranje. Han na drumu ima zadnja
+// vrata na daleki prekidač; Vilin trag čeka u podrumu hana, ispod jarka. Iza hana su carski drum, srušen most i turski
+// tabor sa tri tovara blaga, gde čekaju Tri janičara. Tovari su skriveni: u karauli, u vodenici i pod taborom.
+6:pohod({id:'oranje',ime:'Oranje drumova',biom:'podgradje',zeljeniBiom:'oranje',daje:'trag',pocetne:['krilo','nalet'],
+ cilj:'Nađi Vilin trag pod hanom, prođi zadnja vrata hana i stigni do turskog tabora',start:'dom',spawnDx:240,
+ uvod:'Oranje drumova. Majka kaže: ostavi četovanje, uzmi plug i volove. Ali drum gaze janičari, a zadnja vrata hana otvara daleki prekidač. Vilin trag je u podrumu hana.',
+ sobe:[
+  ['dom','Markov dom',-1,0,1,1],
+  ['njiva','Njiva',0,0,2,1],
+  ['brdo','Brdo nad njivom',0,-1,2,1],
+  ['vetrenjaca','Vetrenjača',2,-1,1,1,{interior:true}],
+  ['osmatracnica','Turska osmatračnica',3,-1,1,1],
+  ['tavan','Tavan hana',4,-1,1,1,{secret:true,interior:true,lore:'Tavan hana. Hančija je ovde krio so i barut od turskih tovara.'}],
+  ['drum','Carski drum',2,0,2,1],
+  ['han','Han na drumu',4,0,1,1,{interior:true}],
+  ['dvoriste','Dvorište hana',5,0,1,1],
+  ['ambar','Ambar',5,-1,1,1,{interior:true}],
+  ['drum2','Drum ka Vardaru',6,0,2,1],
+  ['karaula','Karaula',6,-1,1,1,{secret:true,interior:true,lore:'Karaula. Prvi tovar blaga: careva harač-kesa sa drumova.'}],
+  ['most','Srušeni most',8,0,2,1,{set:'reka'}],
+  ['tabor','Turski tabor',10,0,1,1],
+  ['jazbina','Lisičja jazbina',1,1,1,1,{secret:true,interior:true,lore:'Lisičja jazbina. Lisica je ovde nosila kokoške iz Markovog dvora; Marko joj je oprostio.'}],
+  ['jarak','Jarak pod drumom',2,1,2,1,{interior:true}],
+  ['podrum','Podrum hana',4,1,1,1,{interior:true}],
+  ['potok','Podzemni potok',5,1,2,1,{interior:true}],
+  ['vodenica','Stara vodenica',7,1,1,1,{secret:true,interior:true,lore:'Stara vodenica. Drugi tovar blaga: Turci su ga zakopali pod vodenični kamen.'}],
+  ['pecina','Pećina pod mostom',8,1,2,1,{interior:true}],
+  ['blago','Blago pod taborom',10,1,1,1,{secret:true,interior:true,lore:'Blago pod taborom. Treći tovar: Marko ga je odneo majci, a ona ga razdelila sirotinji.'}]],
+ brda:{dom:[[500,900,40]],njiva:[[1200,1700,-40]],drum2:[[300,800,50]]},
+ gradi(K){
+  // Markov dom: guslar i majka Jevrosima
+  K.guslar('dom',820,['„More Marko, ne ori drumova!”','„More Turci, ne gaz’te oranja!”','„To sam tebe danas izorao.”']);
+  K.lik('dom',450,'putnica-idle','Jevrosima: Ostavi, sine, četovanje. Uzmi plug i volove, pa ori brda i doline.');K.door('dom','njiva',0);
+  // Njiva: volovi, janičari gaze oranje; krilo na brdo
+  K.lik('njiva',250,'volovi-plug','Volovi čekaju u brazdi. Janičari su im pregazili oranje.');K.borba('njiva',[['sword',1300],['sword',1650],['pas',1900]]);
+  K.wing('njiva',500,{upper:'brdo'});K.door('njiva','drum',0);
+  // Brdo, vetrenjača, osmatračnica: gornji put; strelnica, lažni zid do tavana
+  K.strelnica('brdo',2380,{row:-1,every:2.8});K.heart('brdo',1500,-1);K.door('brdo','vetrenjaca',-1);
+  K.lik('vetrenjaca',600,'putnik-starac-idle','Vodeničar: Vetrenjača melje za Turke. Brašno nose u tabor kraj Vardara.',-1);K.door('vetrenjaca','osmatracnica',-1);
+  K.block('osmatracnica',800,120,120,120,-1);K.borba('osmatracnica',[['archer',850,120],['archer',300]],-1);K.drop('osmatracnica',300,500,'drum');K.fake('osmatracnica','tavan',{row:-1});K.cudo('tavan',700,'Hančijina so',-1);
+  // Carski drum: čekpoint, borba sa akindžijama; rupa u jarak, dimnjak iz jarka
+  K.ckpt('drum',250);K.block('drum',2050,120,180,120);K.borba('drum',[['akindzija',1000],['sword',1800],['archer',2120,120]]);K.drop('drum',600,800,'jarak');K.door('drum','han',0);
+  // Han: trgovac; zadnja vrata na daleki prekidač (Vilin trag)
+  K.lik('han',600,'putnik-trgovac-idle','Trgovac: Zadnja vrata hana otvara prekidač kraj ulaza, a zatvore se pre nego što stigneš.');K.trace('han','dvoriste');
+  // Dvorište i ambar: palikuća pali žito
+  K.chimney('dvoriste',300,{upper:'ambar'});K.borba('ambar',[['palikuca',900],['sword',650]],-1);K.heart('ambar',1050,-1);K.door('dvoriste','drum2',0);
+  // Drum ka Vardaru: borba, šiljci, krilo do karaule
+  K.borba('drum2',[['shield',1000],['sword',1300],['akindzija',1900]]);K.spikes('drum2',1550,120);K.wing('drum2',300,{upper:'karaula'});K.cudo('karaula',800,'Prvi tovar blaga',-1);K.door('drum2','most',0);
+  // Srušeni most: juriš preko reke; pećina ispod; turski tabor
+  K.drop('most',100,250,'pecina');K.dash('most',1100);K.door('most','tabor',0);K.bos('tabor','trio');
+  K.chimney('pecina',300,{upper:'most'});K.borba('pecina',[['pas',900],['pas',1200],['sword',1600]]);K.crack('pecina','blago',{row:1});K.cudo('blago',600,'Treći tovar blaga',1);
+  // Jarak: greda nad jamom, daske, dimnjak gore; lažni zid do jazbine
+  K.chimney('jarak',1200,{upper:'drum'});K.greda('jarak',1500,{span:220});K.crumble('jarak',300,150,1);K.fake('jarak','jazbina',{row:1});K.heart('jazbina',500,1);K.door('jarak','podrum',1);
+  // Podrum hana: Vilin trag, čekpoint; potok i vodenica iza vrata na prekidač
+  K.ckpt('podrum',300);K.shrine('trag','podrum',750);K.door('podrum','potok',1);
+  K.strelnica('potok',300,{dir:1,every:2.6});K.trace('potok','vodenica');K.cudo('vodenica',700,'Drugi tovar blaga',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
