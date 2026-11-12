@@ -15,7 +15,7 @@ def sg(*a):
  if p.returncode:raise RuntimeError(p.stdout+p.stderr)
 sg('prepare','--out-dir',run,'--force','--character-id',name,'--base-image',ref,'--cell-size','512','--safe-margin','24','--no-fit-pixel-unfake','--fit-align-y','bottom','--request-json',json.dumps({'states':{'motion':{'frames':n,'fps':12,'loop':loop,'action':name}}}))
 im=Image.open(run/'grid.png').convert('RGBA')
-if im.getchannel('A').getextrema()[0]>200:
+if im.getchannel('A').getextrema()[0]>200 or os.environ.get('SPRITE_FORCE_CHROMA')=='1':
  sys.path.insert(0,'D:/projects/Marko Kraljevic/tools/sprite-gen')
  from sprite_gen.frames.extract import remove_chroma_background
  key=(0,255,0) if im.getpixel((0,0))[1]>im.getpixel((0,0))[0]+80 else (255,255,255)
@@ -23,10 +23,13 @@ if im.getchannel('A').getextrema()[0]>200:
  im.save(run/'keyed-source.png')
 rows=(n+cols-1)//cols;w,h=im.width//cols,im.height//rows
 cw=w
+boundaries=json.loads(os.environ["SPRITE_X_BOUNDS"]) if "SPRITE_X_BOUNDS" in os.environ else None
+if boundaries:w=max(b-a for a,b in zip(boundaries,boundaries[1:]))
 if name=='marko-air-3':w+=16
 strip=Image.new('RGBA',(w*n,h))
 for i in range(n):
  box=(i%cols*cw,i//cols*h,(i%cols+1)*cw,(i//cols+1)*h)
+ if boundaries:box=(boundaries[i],0,boundaries[i+1],h)
  if name=='marko-air-3' and i==3:box=(0,h,370,2*h)
  if name=='marko-air-3' and i==4:box=(370,h,724,2*h)
  cell=im.crop(box);inner=cell.crop((1,3,cell.width-1,cell.height-3));cell=Image.new('RGBA',(w,h));cell.paste(inner,(1,3));strip.paste(cell,(i*w,0))
@@ -36,9 +39,13 @@ sg('extract','--run-dir',run,'--allow-slot-fallback','--decontam','off')
 parts=[]
 for i in range(n):
  cell=strip.crop((i*w,0,(i+1)*w,h));a=cell.getchannel('A');a=a.point(lambda v:0 if v<8 else v);cell.putalpha(a)
+ if os.environ.get('SPRITE_CLEAN_FRAGMENTS')=='1':
+  import numpy as np
+  from scipy.ndimage import label
+  ar=np.array(a);labels,count=label(ar>0);sizes=np.bincount(labels.ravel());sizes[0]=0;ar[sizes[labels]<sizes.max()*0.03]=0;a=Image.fromarray(ar);cell.putalpha(a)
  b=a.getbbox();assert b;parts.append(cell.crop(b))
 target=435 if name=='marko-air-3' else 450 if name=='marko-kuka-let' else 383
-scale=min(target/max(p.height for p in parts),480/max(p.width for p in parts))
+scale=min(float(os.environ['SPRITE_BODY_HEIGHT'])/parts[int(os.environ.get('SPRITE_BODY_FRAME','0'))].height,480/max(p.width for p in parts),480/max(p.height for p in parts)) if 'SPRITE_BODY_HEIGHT' in os.environ else min(target/max(p.height for p in parts),480/max(p.width for p in parts))
 qa=[]
 for i,p in enumerate(parts):
  p=p.resize((round(p.width*scale),round(p.height*scale)),Image.Resampling.LANCZOS)

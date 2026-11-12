@@ -73,7 +73,8 @@ ONCE = MARKO_ONCE + [f + '-' + c for f in FOES for c in FOE_ONCE] + MUSA_ONCE
 # Their frame counters loop or stop at the last frame; the last-to-first pair is computed for all of them (a clip that stops
 # at its last frame never asks for it).
 SKIP = {'kosturi'}   # not an animation: each frame is another skeleton, picked by the kind of soldier
-ALIASES = {'marko-launcher': 'marko-uppercut'}   # the same sheet under another name (build-sprite-rig.py): the same in-betweens
+# the same sheet under another name (build-sprite-rig.py), until the clip gets its own drawing: the same in-betweens
+ALIASES = {a: b for a, b in {'marko-launcher': 'marko-uppercut'}.items() if a in RIG and b in RIG and RIG[a]['image'] == RIG[b]['image']}
 SKIP |= set(ALIASES)
 EXTRA = [c for c in RIG if c not in MAIN_LOOPS and c not in ONCE and c not in SKIP and not c.startswith('cast/')]
 LOOPS = MAIN_LOOPS + EXTRA

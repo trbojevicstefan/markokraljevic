@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        133,
+        106,
+        378,
+        488
+      ],
+      "footY": 487,
+      "sha256": "00ff9cb665ef653803103a95bb4c940ee817cf98e9c9b914fc8fdd7d5afdd77c"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        137,
+        106,
+        374,
+        488
+      ],
+      "footY": 487,
+      "sha256": "4141ecba4e8504a1b749cf910cc7ca9c3d5a558b5ab6aa2f65c21e073a518cef"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        122,
+        105,
+        390,
+        488
+      ],
+      "footY": 487,
+      "sha256": "edf0bf37271b72720e33063c1e8fcc9b9ae79b1488db4f55943a95ccd23e57ff"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        120,
+        105,
+        391,
+        488
+      ],
+      "footY": 487,
+      "sha256": "fe7f17f494837de4a6b7b78a8451135f9b4431d8b599d41ccfd552a39b85b650"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        129,
+        105,
+        382,
+        488
+      ],
+      "footY": 487,
+      "sha256": "7f727a0eb2a200e32b844201d17177fe195c18052cdecbaf0ba56613ad221535"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        136,
+        106,
+        376,
+        488
+      ],
+      "footY": 487,
+      "sha256": "a4e2c8aa9a63cfeb8e58ff397b107930ec89373fe2841e30d6e8a571df396169"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": true,
+  "holdLastFrame": false,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8704545454545455,
+  "visualReview": "pending"
+}

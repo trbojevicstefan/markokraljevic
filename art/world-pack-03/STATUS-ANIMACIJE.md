@@ -836,3 +836,14 @@ DOPUNA-46: marko-lanac-trgne — GOTOVO; 5 kadrova, jednom; assets/marko-lanac-t
 DOPUNA-46: marko-potres — GOTOVO; 8 kadrova, jednom; assets/marko-potres/, alfa, y=487, atlas=frames; skala tela prema kadru0 (383px), topuz ne smanjuje Marka.
 
 DOPUNA-46: marko-zvizduk — NEZAVRSENO; sest poza u sources/marko-zvizduk/, image_gen vratio neprovidnu pozadinu i nakon korekcije; nema gotovog atlasa.
+
+DOPUNA-46: marko-oko — NEZAVRSENO; sest poza u sources/marko-oko/grid-opaque.png; generisana neprovidna pozadina, nije spremno za igru.
+
+DOPUNA-46: sarac-galop — GOTOVO; 8 kadrova, petlja; assets/sarac-galop/, alfa, y=487, atlas=frames; vysina konja 275px prema mounted-run, bela pozadina uklonjena sprite-gen cutout.
+
+DOPUNA-46: marko-oko i marko-zvizduk — GOTOVO (Claude): alfa iz sources/<klip>/grid-opaque.png je bila ispravna; izvezeno istim export-dopuna45.py (6 kadrova; oko petlja, zvižduk jednom).
+
+DOPUNA-46: marko-lanac-vuce — ODBIJEN (Claude): izvor ima svetlu papirnu pozadinu sa nagorelim ivicama, koja se ne skida bez štete po košulji; izvoz je premešten u sources/marko-lanac-vuce/odbijen-izvoz. Treba ga ponovo nacrtati na providnoj pozadini. Igra za trzaj lanca koristi marko-lanac-trgne.
+DOPUNA-46: marko-zid-trk-vodoravno — ISPRAVLJEN (Claude): izvor je jedan red od 6 figura; ponovo izvezen sa 6 kolona i rezovima između figura, sitni delovi suseda uklonjeni.
+
+DOPUNA-46: ikona-trag — GOTOVO; art/world-pack-03/ikona-trag.png, 128x128 RGBA, ugradjeni image_gen.
