@@ -176,8 +176,15 @@ def raw_fixes(bname, key, im):
         im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(im)
     for x0, y0, x1, y1, dx in p.get('clone', []):
+        # feathered, so the patch has no visible rectangle edge
+        from PIL import ImageFilter
         box = tuple(round(v) for v in ((x0 + dx) * w, y0 * h, (x1 + dx) * w, y1 * h))
-        im.paste(im.crop(box), (round(x0 * w), round(y0 * h)))
+        patch = im.crop(box)
+        f = max(8, min(patch.size) // 5)
+        mask = Image.new('L', patch.size, 0)
+        ImageDraw.Draw(mask).rectangle([f, f, patch.size[0] - f, patch.size[1] - f], fill=255)
+        mask = mask.filter(ImageFilter.GaussianBlur(f / 2))
+        im.paste(patch, (round(x0 * w), round(y0 * h)), mask)
     return im
 
 
