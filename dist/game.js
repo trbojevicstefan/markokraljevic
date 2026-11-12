@@ -981,7 +981,7 @@ function basePose(){
  if(p.climb)return climbPose();if(p.throwT>0)return throwPose();
  {const x=pack3Pose();if(x)return x;}
  if(p.spin>0){if(rig?.['marko-vihor'])return{name:'marko-vihor',...loopAt(p.spin*20,8)};const k=Math.floor(p.spin/.09);return{name:'marko-attack',frame:[2,3,4,3][k%4],faceFlip:Math.floor(p.spin/.18)%2===1,sy:1-.03*Math.abs(Math.sin(p.spin*18))};}
- if(p.attack>0){const duration=attackDuration(),ph0=1-p.attack/duration,phase=p.attackKind==='light'?Math.pow(ph0,.62):ph0;return attackFrame(phase,{name:p.attackKind==='tresak'?(rig?.['marko-air-2']?'marko-air-2':'marko-charged'):p.attackKind==='lomilac'?(rig?.['marko-combo-4']?'marko-combo-4':'marko-charged'):p.attackKind==='uvis'?(p.launcher&&rig?.['marko-launcher']?'marko-launcher':rig?.['marko-uppercut']?'marko-uppercut':'marko-combo-3'):p.attackKind==='juris'?(rig?.['marko-dash-strike']?'marko-dash-strike':'marko-combo-2'):p.attackKind==='light'&&p.airAtk&&rig?.['marko-air-1']?(p.combo===2&&rig?.['marko-air-3']?'marko-air-3':(rig?.['marko-air-3']?p.combo>=1:p.combo===2)&&rig?.['marko-air-2']?'marko-air-2':'marko-air-1'):p.attackKind==='super'?'marko-super':p.attackKind==='counter'&&rig?.['marko-counter']?'marko-counter':p.attackKind==='heavy'&&rig?.['marko-charged']?'marko-charged':p.attackKind==='light'&&p.runAtk&&rig?.['marko-run-attack']?'marko-run-attack':p.attackKind==='light'&&rig?.['marko-combo-1']?'marko-combo-'+((p.combo||0)+1):'marko-attack'});}
+ if(p.attack>0){const duration=attackDuration(),ph0=1-p.attack/duration,phase=p.attackKind==='light'?Math.pow(ph0,.62):ph0;return attackFrame(phase,{name:animMem.get(p)?.potresId===p.attackId&&p.attackKind==='heavy'&&rig?.['marko-potres']?'marko-potres':p.attackKind==='tresak'?(rig?.['marko-air-2']?'marko-air-2':'marko-charged'):p.attackKind==='lomilac'?(rig?.['marko-combo-4']?'marko-combo-4':'marko-charged'):p.attackKind==='uvis'?(p.launcher&&rig?.['marko-launcher']?'marko-launcher':rig?.['marko-uppercut']?'marko-uppercut':'marko-combo-3'):p.attackKind==='juris'?(rig?.['marko-dash-strike']?'marko-dash-strike':'marko-combo-2'):p.attackKind==='light'&&p.airAtk&&rig?.['marko-air-1']?(p.combo===2&&rig?.['marko-air-3']?'marko-air-3':(rig?.['marko-air-3']?p.combo>=1:p.combo===2)&&rig?.['marko-air-2']?'marko-air-2':'marko-air-1'):p.attackKind==='super'?'marko-super':p.attackKind==='counter'&&rig?.['marko-counter']?'marko-counter':p.attackKind==='heavy'&&rig?.['marko-charged']?'marko-charged':p.attackKind==='light'&&p.runAtk&&rig?.['marko-run-attack']?'marko-run-attack':p.attackKind==='light'&&rig?.['marko-combo-1']?'marko-combo-'+((p.combo||0)+1):'marko-attack'});}
  if(!p.grounded&&p.runJump&&p.airT<1.1&&!(p.hurt>.02)&&rig?.['marko-run-jump']){const n=rig['marko-run-jump'].frames.length;return{name:'marko-run-jump',...onceAt(Math.min(n-1,p.airT/.7*n))};}
  if(!p.grounded){if(p.vy< -150&&p.airT<.32&&rig?.['marko-jump-rise'])return{name:'marko-jump-rise',...onceAt(Math.min(3,p.airT/.32*4))};if(p.vy>160&&rig?.['marko-fall'])return{name:'marko-fall',...loopAt(p.airT*9,4)};return{name:'marko-jump',frame:p.vy< -520?2:p.vy<220?3:4};}
  if(p.vida>0&&rig?.['marko-pickup'])return{name:'marko-pickup',frame:p.vidaK<.2?Math.floor(p.vidaK*12):2+Math.floor(time*4)%2};
@@ -1032,7 +1032,7 @@ function sabljaPose(P){if(!p?.sablja||!P)return P;
 // a faint band on the picture, without the glow.
 const SWING={'marko-attack':[-1.75,.85,84],'marko-combo-1':[-2.3,.1,84],'marko-combo-2':[-1.9,1,88],'marko-combo-3':[-1.7,1.15,100],'marko-combo-4':[-1.8,1.1,100],
  'marko-charged':[-1.8,1.1,100],'marko-super':[-1.7,1.2,104],'marko-run-attack':[-2,.7,90],'marko-air-1':[-2.4,.1,86],'marko-air-2':[1,-.9,88],
- 'marko-uppercut':[2.1,-1.1,92],'marko-launcher':[2.2,-1.3,98],'marko-air-3':[-1.9,1.2,96],'marko-dash-strike':[.45,-.05,104],'marko-counter':[-1.8,.1,86]};
+ 'marko-uppercut':[2.1,-1.1,92],'marko-potres':[-1.8,1.25,104],'marko-launcher':[2.2,-1.3,98],'marko-air-3':[-1.9,1.2,96],'marko-dash-strike':[.45,-.05,104],'marko-counter':[-1.8,.1,86]};
 function maceSmear(P){if(p.attack<=0)return;const d=attackDuration(),src=P?.swing&&SWING[P.swing]?P.swing:'marko-attack',[a0,a1,R0]=SWING[src],n=rig?.[src]?.frames.length||6,
  x=(P?.ph??1-p.attack/d)*n,c=Math.floor((P?.keyAt??.42)*n),t=clamp((x-(c-.4))/.65,0,1),fade=1-clamp((x-(c+.25))/1.2,0,1);if(t<=0||fade<=0)return;
  const heavy=p.attackKind==='heavy'||p.attackKind==='lomilac'||p.attackKind==='super',R=R0*(heavy?1.06:1),inner=R*(heavy?.8:.84),ease=1-Math.pow(1-t,3),dir=Math.sign(a1-a0),
@@ -1314,14 +1314,23 @@ const ROLL_TIME=.34,DOWN_TIME=1.25,LEDGE_TIME=.72;
 // DOPUNA-45: the falcon's wing, the dash in the air and its end, the fairy's trace left and the return by it, in their own
 // drawings once the rig has them (until then the poses they borrowed). The dash's end is seen by the drawing, not the game.
 function powersPose(){const M=animMem.get(p),R=n=>rig?.[n]?.frames.length||0;
- if(M){if(p.dash>0&&p.airDash)M.naletOn=true;else if(M.naletOn){M.naletOn=false;M.naletEnd=time;}}
+ if(M){if(p.dash>0&&p.airDash)M.naletOn=true;else if(M.naletOn){M.naletOn=false;M.naletEnd=time;}if(p.potresT>0)M.potresId=p.attackId;}
+ // at Ravijojla's spring he sits by it while the spring is open, and gets up after (on the clock of the page: the game waits)
+ const wall=performance.now()/1000;if(M){if(mode==='izvor'){if(M.izvorFrom==null)M.izvorFrom=wall;}else if(M.izvorFrom!=null){M.izvorFrom=null;M.izvorEnd=wall;}}
+ if(M?.izvorFrom!=null&&R('marko-odmor'))return{name:'marko-odmor',...onceAt(Math.min(R('marko-odmor')-1,(wall-M.izvorFrom)/.6*R('marko-odmor')))};
+ const up=wall-(M?.izvorEnd??-9);if(up>=0&&up<.4&&p.grounded&&R('marko-odmor-ustaje'))return{name:'marko-odmor-ustaje',...onceAt(Math.min(R('marko-odmor-ustaje')-1,up/.4*R('marko-odmor-ustaje')))};
  if(p.attack>0||p.climb||horseMounted)return null;
+ if(gaz&&gaz.t<.6&&p.grounded&&R('marko-zvizduk'))return{name:'marko-zvizduk',...onceAt(Math.min(R('marko-zvizduk')-1,gaz.t/.6*R('marko-zvizduk')))};
+ if(p.oko&&p.grounded&&Math.abs(p.vx)<35&&R('marko-oko'))return{name:'marko-oko',...loopAt(time*6,R('marko-oko'))};
  if(p.dash>0&&p.airDash&&R('marko-nalet'))return{name:'marko-nalet',...loopAt(time*14,R('marko-nalet'))};
  if(!p.grounded&&p.kriloT>0&&R('marko-krilo'))return{name:'marko-krilo',...onceAt(Math.min(R('marko-krilo')-1,(1-p.kriloT/KRILO_TIME)*R('marko-krilo')))};
  const ne=time-(M?.naletEnd??-9);if(!p.grounded&&ne>=0&&ne<.2&&R('marko-nalet-kraj'))return{name:'marko-nalet-kraj',...onceAt(Math.min(R('marko-nalet-kraj')-1,ne/.2*R('marko-nalet-kraj')))};
  // the moves of the second Lost Crown series (p.lanac, p.zidotrk, the slide): their drawings once both are in the game
- if(p.lanac){if(p.lanac.phase==='pull'&&R('marko-kuka-let'))return{name:'marko-kuka-let',...loopAt(time*10,R('marko-kuka-let'))};if(R('marko-kuka-baci')){const n=R('marko-kuka-baci');return{name:'marko-kuka-baci',...onceAt(Math.min(n-1,(p.lanac.phase==='out'?clamp(p.lanac.k||0,0,1):1)*n))};}}
- if(p.zidotrk&&R('marko-zid-trk'))return{name:'marko-zid-trk',...loopAt(time*12,R('marko-zid-trk'))};
+ if(p.lanac){const L=p.lanac;if(L.phase==='pull'&&R('marko-kuka-let'))return{name:'marko-kuka-let',...loopAt(time*10,R('marko-kuka-let'))};
+  if(L.phase==='yank'){const y=R('marko-lanac-trgne')?'marko-lanac-trgne':R('marko-lanac-vuce')?'marko-lanac-vuce':null;if(y)return{name:y,...onceAt(Math.min(R(y)-1,clamp(L.t/(L.dur||.26),0,1)*R(y)))};}
+  if(R('marko-kuka-baci')){const n=R('marko-kuka-baci');return{name:'marko-kuka-baci',...onceAt(Math.min(n-1,(L.phase==='out'?clamp(L.k||0,0,1):1)*n))};}}
+ // the run along a patterned wall is horizontal: its own drawing when there is one (marko-zid-trk is the run up a wall)
+ if(p.zidotrk&&R('marko-zid-trk-vodoravno'))return{name:'marko-zid-trk-vodoravno',...loopAt(time*12,R('marko-zid-trk-vodoravno'))};
  if(p.slide>0&&p.grounded&&R('marko-klizanje')){const k=1-p.slide/SLIDE_TIME;if(k>.18&&k<.82)return{name:'marko-klizanje',...loopAt(time*12,R('marko-klizanje'))};}
  const back=TRAG_CD-(p.cd?.trag||0);if(!p.trag&&back>=0&&back<.45&&R('marko-trag-povratak'))return{name:'marko-trag-povratak',...onceAt(Math.min(R('marko-trag-povratak')-1,back/.45*R('marko-trag-povratak')))};
  const left=p.trag?TRAG_LIFE-p.trag.left:9;if(left<.5&&p.grounded&&Math.abs(p.vx)<35&&R('marko-trag-ostavi'))return{name:'marko-trag-ostavi',...onceAt(Math.min(R('marko-trag-ostavi')-1,left/.5*R('marko-trag-ostavi')))};
@@ -1689,8 +1698,8 @@ function udariTick(dt){if(tap(UK('potres')))potres();if(tap(UK('gaz')))sarcevGaz
    sfx('hit',{gain:.8,x:e.x});shake=settings.reduced?0:5;if(e.hp<=0)slay(e,1);}
   if(G.t>2.2||Math.abs(G.x-p.x)>VIEW_W*.9&&Math.sign(G.x-p.x)===G.dir)gaz=null;}}
 function drawUdari(){for(const w of talasi){const a=clamp(w.t/.9,0,1);ctx.save();ctx.globalAlpha=a;ctx.strokeStyle='#ffcf6a';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(w.x-w.dir*90,w.y);for(let i=0;i<6;i++)ctx.lineTo(w.x-w.dir*(90-i*15),w.y-(i%2?9:2));ctx.stroke();ctx.restore();halo(w.x,w.y-18,60,'rgba(255,207,106,.5)',a);}
- if(gaz){const G=gaz,bob=Math.abs(Math.sin(G.t*14))*9;for(let k=3;k>=1;k--)rigDraw('cast/sarac',0,G.x-G.dir*k*40,G.y+1-bob,G.dir,{sy:1+Math.sin(G.t*28)*.03,alpha:.3/k});
-  shadow(G.x,G.y,62,.5);rigDraw('cast/sarac',0,G.x,G.y+1-bob,G.dir,{sy:1+Math.sin(G.t*28)*.03});halo(G.x,G.y-80,140,'rgba(255,233,192,.25)',1);}}
+ if(gaz){const G=gaz,SG=rig?.['sarac-galop'],sn=SG?'sarac-galop':'cast/sarac',sf=SG?loopF(G.t*16,SG.frames.length):0,bob=SG?0:Math.abs(Math.sin(G.t*14))*9;for(let k=3;k>=1;k--)rigDraw(sn,sf,G.x-G.dir*k*40,G.y+1-bob,G.dir,{sy:SG?1:1+Math.sin(G.t*28)*.03,alpha:.3/k});
+  shadow(G.x,G.y,62,.5);rigDraw(sn,sf,G.x,G.y+1-bob,G.dir,{sy:SG?1:1+Math.sin(G.t*28)*.03});halo(G.x,G.y-80,140,'rgba(255,233,192,.25)',1);}}
 
 // ---------- Vežbalište moći (test.html → ?go=moci): every new power in one short field, in chapter I's bounds ----------
 function startVezbaliste(){start(false);for(const k of['0','1','2','3','4','5'])storySeen.add(k);
@@ -3767,7 +3776,7 @@ function hangUpdate(){const L=p.ledge;if(!L){p.hang=false;return false;}p.x=L.x0
 // the phase (as drawn) where the blow starts to land: the light blows start early on an eased clock, the super late
 function attackKeyAt(){return p.attackKind==='super'?.5:p.attackKind==='light'?Math.pow(.2,.62):.42;}
 // a drawing whose blow lands later in the clip than the game's phase says (only how it looks: the hit keeps its time)
-const CLIP_KEY={'marko-air-3':3.5/5};
+const CLIP_KEY={'marko-air-3':3.5/5,'marko-potres':4.5/8};
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;Object.assign(o,onceAt(Math.min(n-1,phase*n)));o.keyAt=CLIP_KEY[o.name]??attackKeyAt();o.swing=o.name;o.ph=phase;return o;}
 // dev only: open the game with ?dev to reach the pohodi from the console
 if(DEV)window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},get fires(){return fires;},addFire,step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};
