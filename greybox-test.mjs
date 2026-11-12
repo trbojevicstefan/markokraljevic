@@ -116,6 +116,11 @@ for(const [n,L0] of Object.entries(GB.GB_LEVELS)){if(+n>3||ONLY&&+n!==ONLY)conti
   api.keys.clear();step(240);ok(!c.alive&&G().done,`${tag} ${c.name} falls and the level is done`);}
  ok(storage.get('marko-megdani')===undefined&&storage.get('marko-levels')===undefined,`${tag} nothing was written into the save`);}
 
+// ---- the pohodi 4–19 (dist/greybox-nivoi-pohodi.js, registered as in the browser): every shrine gives its power ----
+if(!ONLY||ONLY>3){let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-pohodi.js')).GB_POHODI||{};}catch{}GB.gbRegister(pohodi);
+ const given=[],wrong=[];for(const n of Object.keys(pohodi)){if(ONLY&&+n!==ONLY)continue;api.startGreybox(+n);quiet();
+  for(const s of G().shrines){const before=!!G().moci[s.moc];place(s.x-60,s.y,1);walk(s.x+20,300);step(10);(s.taken&&G().moci[s.moc]===true&&!before?given:wrong).push(`${n}:${s.moc}`);}}
+ ok(given.length>0&&wrong.length===0,`pohodi: every shrine gives its power (${given.length}: ${given.join(' ')})${wrong.length?' — not: '+wrong.join(' '):''}`);}
 // ---- hills and hollows: Marko walks along the slope ----
 if(!ONLY||ONLY===1){const L=GB.gbLevel(1);api.startGreybox(1);quiet();const R=GB.gbRoom(L,'varos'),qs=W().platforms.filter(q=>q.surf&&q.x<R.x1&&q.x+q.w>R.x0),under=x=>qs.find(q=>x>=q.x&&x<=q.x+q.w);
  place(R.x0+450,R.floor,1);api.keys.add('KeyD');let off=0,air=0,lo=1e9,hi=-1e9;for(let f=0;f<900&&P().x<R.x0+1000;f++){step();const p=P();if(!p.grounded)air++;else{const q=under(p.x);off=Math.max(off,Math.abs(p.y-(q?physics.topAt(q,p.x):R.floor)));}lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();
