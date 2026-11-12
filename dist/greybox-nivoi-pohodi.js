@@ -58,8 +58,8 @@ function kit(sobe){
   // the wing's ledge (365 px up, one jump does 266) and a walkway one row up whose edge is caught with the wing again;
   // in a tall room from the row `row` to the one above it, between rooms through a hole in the upper room's floor
   wing(id,dx,o={}){const r=room(id);K.n.krilo++;
-   if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=r.floor;if(hx<u.x0+200||hx+300>u.x1-20)throw new Error(`krilo iz ${id} nije ispod sobe ${o.upper}`);K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:node(id)}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
-    K.veze.push([node(id),node(o.upper),'krilo',true,{up:[['floor',F,1,[lx+50,F-365]],[[lx+50,F-365],[hx-150,u.floor],-1]]}]);return K;}
+   if(o.upper){const u=room(o.upper),hx=r.x0+dx,lx=hx+190,F=FY(o.row??r.bottom),low=node(id,o.row);if(hx<u.x0+200||hx+300>u.x1-20)throw new Error(`krilo iz ${id} nije ispod sobe ${o.upper}`);K.rupe.push([o.upper,hx-u.x0,hx+300-u.x0,{to:low}]);op(B=>B.ledge(lx,F-365,100,{gbGate:'krilo'}));
+    K.veze.push([low,node(o.upper),'krilo',true,{up:[['floor',F,1,[lx+50,F-365]],[[lx+50,F-365],[hx-150,u.floor],-1]]}]);return K;}
    const row=o.row??r.bottom,F=FY(row),x=r.x0+dx,top=FY(row-1),w=o.w??r.x1-20-(x+250);
    op(B=>{B.ledge(x,F-365,100,{gbGate:'krilo'});B.block(x+250,top,w,40);});
    K.veze.push([node(id,row),node(id,row-1),'krilo',true,{up:[['floor',F,1,[x+50,F-365]],[[x+50,F-365],[x+250+Math.min(100,w/2),top],1]]}],
@@ -106,7 +106,7 @@ function kit(sobe){
   // the land's champion in the last room, with his arena furniture
   bos(id,kind,o={}){const r=room(id),S=BOS[kind],y=r.floor,x0=r.x0+40,x1=r.x1-40,len=x1-x0,planks=[],a={block:(k,w,h,bo)=>op(B=>B.block(Math.round(x0+len*k-w/2),y-h,w,h,bo))};
    S.arena(a,(k,dy,w=150)=>planks.push([len*k,dy,w]));K.bosRoom=id;
-   op(B=>B.boss(S.type,Math.round(x0+len*(S.x??.68)),y,{hp:o.hp??S.hp,maxHp:o.hp??S.hp,name:o.name||S.name,kit:S.kit,look:S.look,scale:S.scale??1.35},{x0,x1,y},planks));return K;}});
+   op(B=>B.boss(S.type,Math.round(x0+len*(S.x??.68)),y,{hp:o.hp??S.hp,maxHp:o.hp??S.hp,name:o.name||S.name,kit:S.kit,look:o.look??S.look,scale:S.scale??1.35},{x0,x1,y},planks));return K;}});
  return K;}
 
 // one level from its words: the kit runs once, here, and build(B) replays what it set down
@@ -855,7 +855,59 @@ export const GB_POHODI={
   K.crumble('vir',600,170,1);K.crumble('vir',770,170,1);K.pit('vir',600,940);K.drop('vir',1500,1700,'izvor');K.chimney('izvor',700,{upper:'vir'});K.heart('izvor',300,2);K.door('vir','vilin',1);
   // Vilin vir: krilo i čekpoint; potonula lađa i njeno blago
   K.ckpt('vilin',300);K.shrine('krilo','vilin',700);K.door('vilin','lada',1);
-  K.borba('lada',[['sword',600],['shield',900]]);K.strelnica('lada',2380,{every:2.6});K.crack('lada','riznica',{row:1});K.cudo('riznica',600,'Blago potonule lađe',1);}})
+  K.borba('lada',[['sword',600],['shield',900]]);K.strelnica('lada',2380,{every:2.6});K.crack('lada','riznica',{row:1});K.cudo('riznica',600,'Blago potonule lađe',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 17 · San Kraljevića Marka („Marko Kraljević u pećini“): Marko spava u vilinskoj pećini, sablja mu sama izleće iz korica.
+// U snu prolazi četiri odaje: slova na sablji, jabuke i prstenove, suvu drenovinu i gusle što same gude. Juriš u vazduhu
+// je na dnu sna, kraj vilinog jezera; na kraju sna čeka Musa, stari megdan koji se sanja.
+17:pohod({id:'san',ime:'San Kraljevića Marka',biom:'urvina',zeljeniBiom:'san',daje:'nalet',pocetne:['krilo'],
+ cilj:'Prođi četiri odaje sna i probudi se',start:'postelja',spawnDx:240,
+ uvod:'San Kraljevića Marka. Četiri odaje: slova, jabuke, drenovina i gusle. Hodnik senki se prelazi samo jurišem, a juriš je na dnu sna, kraj vilinog jezera.',
+ sobe:[
+  ['postelja','Kamena postelja',-1,0,1,1,{interior:true}],
+  ['vrata','Vrata sna',-1,-1,1,1,{interior:true}],
+  ['predvorje','Predvorje sna',0,0,2,1,{interior:true}],
+  ['svod','Svod pećine',0,-1,2,1,{interior:true}],
+  ['zvezde','Odaja zvezda',2,-1,1,1,{secret:true,interior:true,lore:'Odaja zvezda. Na svodu su zvezde kao na Đurđevdan, kad je Marko slavio krsnu slavu.'}],
+  ['slova','Odaja slova',2,0,1,1,{interior:true}],
+  ['hodnik','Hodnik senki',3,0,2,1,{interior:true}],
+  ['mahovina','Šarčeva mahovina',3,-1,2,1,{interior:true}],
+  ['jabuke','Odaja jabuka',5,0,1,1,{interior:true}],
+  ['sablja','Sablja iz korica',5,-1,1,1,{interior:true}],
+  ['drenovina','Odaja drenovine',6,-1,1,2,{interior:true}],
+  ['oblak','Oblak nad snom',6,-2,1,1,{interior:true}],
+  ['gusle','Odaja gusala',7,-1,1,1,{interior:true}],
+  ['kraj','Kraj sna',8,-1,1,1,{interior:true}],
+  ['senka','Senka',-1,1,1,1,{secret:true,interior:true,lore:'Senka. U snu Marko vidi svoju senku kako jaše Šarca; senka se ne osvrće.'}],
+  ['ponor','Ponor sna',0,1,2,1,{interior:true}],
+  ['izvor','Izvor sna',1,2,1,1,{interior:true}],
+  ['jezero','Vilino jezero',2,1,1,1,{interior:true}],
+  ['korenje','Korenje sna',3,1,2,1,{interior:true}],
+  ['riznica','Riznica sna',5,1,1,1,{secret:true,interior:true,lore:'Riznica sna. Sve što je Marko dao sirotinji vraća mu se u snu, zlatom i pesmom.'}]],
+ gradi(K){
+  // Kamena postelja: guslar; krilo do vrata sna
+  K.guslar('postelja',850,['Kad u sanku čudan san viđelo,','da to nije za njega livada,','već bijaše vilinska pećina.']);K.wing('postelja',400,{upper:'vrata'});K.heart('vrata',900,-1);K.door('postelja','predvorje',0);
+  // Predvorje: senke janičara; krilo na svod, rupa u ponor sna
+  K.block('predvorje',2050,120,160,120);K.borba('predvorje',[['sword',900],['pas',1400],['archer',2100,120]]);K.wing('predvorje',500,{upper:'svod'});K.drop('predvorje',1700,1900,'ponor');K.door('predvorje','slova',0);
+  K.block('svod',1000,120,140,120,-1);K.borba('svod',[['archer',1050,120],['sword',1500]],-1);K.strelnica('svod',300,{row:-1,dir:1,every:2.8});K.crack('svod','zvezde',{row:-1});K.cudo('zvezde',600,'Đurđevdanska zvezda',-1);
+  // Prva odaja: slova na sablji; pod se otvara ka vilinom jezeru
+  K.lik('slova',200,'novak-idle','Novak kovač: Tri slova na sablji: moje, Vukašinovo i tvoje. Ko ih pročita, ide dalje.');K.cudo('slova',950,'Tri slova');K.door('slova','hodnik',0);
+  // Hodnik senki: juriš preko ponora; krilo do Šarčeve mahovine
+  K.dash('hodnik',700);K.strelnica('hodnik',2380,{every:2.6});K.wing('hodnik',200,{upper:'mahovina'});K.door('hodnik','jabuke',0);
+  K.crumble('mahovina',900,170,-1);K.crumble('mahovina',1070,170,-1);K.pit('mahovina',900,1240);K.heart('mahovina',1800,-1);
+  // Druga odaja: jabuke i prstenovi; čekpoint
+  K.ckpt('jabuke',200);K.lik('jabuke',700,'putnica-idle','Devojka: Jabuka je dečja zabava, a prsten junačka belega. Šta ćeš uzeti, Marko?');K.door('jabuke','drenovina',0);
+  // Treća odaja: suva drenovina; Musa iz sna čeka na kraju
+  K.borba('drenovina',[['sword',300],['shield',1000]],0);K.lik('drenovina',500,'musa-idle','Musa: Iscedi vodu iz suve drenovine, Marko, pa izađi na megdan.',0);K.chimney('drenovina',700);
+  K.wing('drenovina',200,{upper:'oblak',row:-1});K.heart('oblak',800,-2);K.door('sablja','drenovina',-1);K.cudo('sablja',500,'Sablja iz korica',-1);K.door('drenovina','gusle',-1);
+  // Četvrta odaja: gusle što same gude; kraj sna
+  K.lik('gusle',600,'vila-carolija','Ravijojla: Gusle same gude, Marko. Kad se probudiš, sablja će sama izleteti iz korica.',-1);K.door('gusle','kraj',-1);K.bos('kraj','sword',{name:'Musa iz sna',look:'musa',hp:820});
+  // Ponor sna: greda, borba; lažni zid do senke; izvor ispod
+  K.greda('ponor',400,{span:220});K.borba('ponor',[['pas',1300],['sword',1850]]);K.fake('ponor','senka',{row:1});K.heart('senka',500,1);K.chimney('ponor',1000,{upper:'predvorje'});
+  K.drop('ponor',2000,2150,'izvor');K.chimney('izvor',300,{upper:'ponor'});K.heart('izvor',900,2);K.door('ponor','jezero',1);
+  // Vilino jezero: juriš i čekpoint; dimnjak u odaju slova; korenje i riznica sna iza ponora
+  K.ckpt('jezero',200);K.shrine('nalet','jezero',950);K.chimney('jezero',500,{upper:'slova'});K.door('jezero','korenje',1);
+  K.dash('korenje',700);K.door('korenje','riznica',1);K.cudo('riznica',600,'Zlato iz sna',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
