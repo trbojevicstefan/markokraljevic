@@ -1,6 +1,8 @@
 from pathlib import Path
 from PIL import Image
-import json,subprocess,shutil,sys,hashlib
+import json,subprocess,shutil,sys,hashlib,os
+os.environ["OPENBLAS_NUM_THREADS"]="1"
+os.environ["OMP_NUM_THREADS"]="1"
 ROOT=Path(__file__).resolve().parent
 SG=Path('D:/projects/Marko Kraljevic/tools/sprite-gen/.venv/Scripts/sprite-gen.exe')
 name,n,cols,loop=sys.argv[1],int(sys.argv[2]),int(sys.argv[3]),sys.argv[4]=='true'
@@ -12,10 +14,17 @@ def sg(*a):
  (run/(a[0]+'.log')).write_text(p.stdout+'\n'+p.stderr,encoding='utf8')
  if p.returncode:raise RuntimeError(p.stdout+p.stderr)
 sg('prepare','--out-dir',run,'--force','--character-id',name,'--base-image',ref,'--cell-size','512','--safe-margin','24','--no-fit-pixel-unfake','--fit-align-y','bottom','--request-json',json.dumps({'states':{'motion':{'frames':n,'fps':12,'loop':loop,'action':name}}}))
-im=Image.open(run/'grid.png').convert('RGBA');rows=(n+cols-1)//cols;w,h=im.width//cols,im.height//rows
+im=Image.open(run/'grid.png').convert('RGBA')
+if im.getchannel('A').getextrema()[0]>200:
+ sys.path.insert(0,'D:/projects/Marko Kraljevic/tools/sprite-gen')
+ from sprite_gen.frames.extract import remove_chroma_background
+ im=remove_chroma_background(im,(255,255,255),45,110,30)
+ im.save(run/'keyed-source.png')
+rows=(n+cols-1)//cols;w,h=im.width//cols,im.height//rows
 strip=Image.new('RGBA',(w*n,h))
-for i in range(n):strip.paste(im.crop((i%cols*w,i//cols*h,(i%cols+1)*w,(i//cols+1)*h)),(i*w,0))
-(run/'raw').mkdir(exist_ok=True);strip.save(run/'raw/motion.png')
+for i in range(n):
+ cell=im.crop((i%cols*w,i//cols*h,(i%cols+1)*w,(i//cols+1)*h));inner=cell.crop((3,3,w-3,h-3));cell=Image.new('RGBA',(w,h));cell.paste(inner,(3,3));strip.paste(cell,(i*w,0))
+(run/'raw').mkdir(exist_ok=True);strip.resize((512*n,512),Image.Resampling.LANCZOS).save(run/'raw/motion.png')
 sg('extract','--run-dir',run,'--allow-slot-fallback','--decontam','off')
 # Preserve generated alpha and shared anatomical scale; trim only near-invisible alpha noise.
 parts=[]

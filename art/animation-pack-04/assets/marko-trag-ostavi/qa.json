@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        115,
+        113,
+        396,
+        488
+      ],
+      "footY": 487,
+      "sha256": "82935e3ae5883a9b1596f57f61d16860ddd556bd2e51167b13f2f5f4e291f3c4"
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        105,
+        152,
+        406,
+        488
+      ],
+      "footY": 487,
+      "sha256": "0910b2cc575bff33b917baae5797a57adc1254a16330ed2a996ae70f757fbeb9"
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        205,
+        430,
+        488
+      ],
+      "footY": 487,
+      "sha256": "80aa424027fe9cc74d72f7b7aee3cfe556bf3c059f9412fbefd4773666399221"
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        86,
+        226,
+        425,
+        488
+      ],
+      "footY": 487,
+      "sha256": "cf78e2361eb2508e8ae4dcd1a5057b40530ea8b7d16092a904509af96ce6d73c"
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        98,
+        170,
+        413,
+        488
+      ],
+      "footY": 487,
+      "sha256": "810d464fa20f3b47744c12c10a2c4685c390310ca28748632ed20439faf65ca1"
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        105,
+        105,
+        406,
+        488
+      ],
+      "footY": 487,
+      "sha256": "3b6672a754287ed752e5ec2c0d5cf4aab2a09dc43d8e876fd384f26ff7404b62"
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": false,
+  "holdLastFrame": true,
+  "generator": "built-in image_gen",
+  "pipeline": [
+    "extract",
+    "compose-atlas",
+    "compose-gif"
+  ],
+  "alphaNoiseFloor": 8,
+  "scale": 0.8166311300639659,
+  "visualReview": "Pregledan atlas: klecanje, levi dlan na tlu, podizanje; bez svetla i senke."
+}
