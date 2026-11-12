@@ -865,3 +865,5 @@ DOPUNA-46: marko-lanac-vuce — GOTOVO; ponovo nacrtano na providnoj pozadini, 6
 DOPUNA-45 deo 2: marko-combo-2-v2 — GOTOVO; 11 kadrova, parni piksel-po-piksel iz dist/assets/sprite-rig.json, neparni image_gen; atlas=frames, svetla pozadina uklonjena sprite-gen cutout.
 
 DOPUNA-45 deo 2: marko-combo-3-v2 — GOTOVO; 11 kadrova, parni tacno iz dist/assets i rig-a, neparni image_gen; atlas=frames, alfa, uklonjeni sitni fragmenti suseda.
+
+DOPUNA-45 deo 2: marko-combo-4-v2 — GOTOVO; 15 kadrova; parni identicni izvornim, 7 nacrtanih medjupoza; alfa i atlas=frames provereni.
