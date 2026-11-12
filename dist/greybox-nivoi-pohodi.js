@@ -584,7 +584,60 @@ export const GB_POHODI={
   // Ponor: juriš; dimnjak u odaju sablje; podzemno jezero i kristalni prolaz
   const dalje=K.dash('ponor',700);K.chimney('ponor',1500,{upper:'sablja',part:dalje});K.door('ponor','jezero',1);
   K.borba('jezero',[['sword',600],['shield',900]]);K.crack('jezero','kristalni',{row:1});K.cudo('kristalni',600,'Kristal',1);
-  K.drop('jezero',300,500,'kosti');K.chimney('kosti',800,{upper:'jezero'});K.lik('kosti',400,'kostur-stoji','Kostur junaka: I ja sam tražio kristalni prolaz. Ponor me je stigao pre juriša.',2);K.heart('kosti',1000,2);}})
+  K.drop('jezero',300,500,'kosti');K.chimney('kosti',800,{upper:'jezero'});K.lik('kosti',400,'kostur-stoji','Kostur junaka: I ja sam tražio kristalni prolaz. Ponor me je stigao pre juriša.',2);K.heart('kosti',1000,2);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 12 · Zimski prevoj (stih o Đemu: „topuzinu baca u oblake“): Marko prati barjake preko snežnog prevoja. Karavan je zapeo
+// u konačištu, snežni most je pukao (juriš), a karaula na sedlu prevoja ima vrata na daleki prekidač. Vilin trag čeka kraj
+// ledenog izvora pod prevojem; na kuli iza karaule je Akindžijski beg.
+12:pohod({id:'prevoj',ime:'Zimski prevoj',biom:'urvina',zeljeniBiom:'prevoj',daje:'trag',pocetne:['krilo','nalet'],
+ cilj:'Prati barjake preko prevoja, nađi Vilin trag kraj ledenog izvora i prođi karaulu do kule',start:'podnozje',spawnDx:240,
+ uvod:'Zimski prevoj. Barjaci vode do kule na prevoju, ali karaula na sedlu otvara vrata samo na daleki prekidač. Vilin trag čeka kraj ledenog izvora, ispod snega.',
+ sobe:[
+  ['podnozje','Podnožje prevoja',-1,0,1,1],
+  ['serpentina','Serpentina',0,0,2,1],
+  ['smrekovi','Smrekova šuma',0,-1,2,1,{set:'suma'}],
+  ['greben','Lavinski greben',2,-1,2,1],
+  ['orlova','Orlova stena',4,-1,1,1,{secret:true,lore:'Orlova stena. Đemo je odavde bacao topuz u oblake i dočekivao ga u bele ruke.'}],
+  ['konaciste','Konačište',2,0,1,1,{interior:true}],
+  ['most','Snežni most',3,0,2,1],
+  ['karaula','Karaula',5,0,1,1,{interior:true}],
+  ['sedlo','Sedlo prevoja',6,0,2,1],
+  ['vidikovac','Vidikovac',6,-1,1,1],
+  ['staja','Staja za konje',7,-1,1,1,{interior:true}],
+  ['kula','Kula na prevoju',8,-2,1,3,{interior:true}],
+  ['barjak','Poslednji barjak',9,-1,1,1],
+  ['vrh','Vrh kule',9,-2,1,1],
+  ['jazbina','Medveđa jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Medveđa jazbina. Mečka je ovde prezimila; ostavila je saće meda i miran san.'}],
+  ['pecina','Ledena pećina',0,1,2,1,{interior:true}],
+  ['vucji','Vučji prolaz',2,1,2,1,{interior:true}],
+  ['jama','Snežna jama',3,2,1,1,{interior:true}],
+  ['izvor','Ledeni izvor',4,1,1,1,{interior:true}],
+  ['potok','Zaleđeni potok',5,1,2,1,{interior:true}],
+  ['riznica','Riznica karaule',7,1,1,1,{secret:true,interior:true,lore:'Riznica karaule. Carina sa prevoja: svaki karavan je ostavljao po kesu; Marko ju je vratio trgovcima.'}]],
+ brda:{podnozje:[[500,900,40]],sedlo:[[900,1400,60]]},
+ gradi(K){
+  // Podnožje i serpentina: guslar; prva borba; krilo u smrekovu šumu, rupa u ledenu pećinu
+  K.guslar('podnozje',850,['Na vrančiću noge prekrstio,','topuzinu baca u oblake,','dočekuje u bijele ruke.']);K.prop('putokaz','podnozje',450,120);K.door('podnozje','serpentina',0);
+  K.block('serpentina',2050,120,160,120);K.borba('serpentina',[['akindzija',900],['sword',1300],['archer',2100,120]]);K.wing('serpentina',500,{upper:'smrekovi'});K.drop('serpentina',1700,1900,'pecina');K.door('serpentina','konaciste',0);
+  // Smrekova šuma i lavinski greben: strelnica, druga borba, daske nad provalijom; lažni zid do Orlove stene
+  K.strelnica('smrekovi',2380,{row:-1,every:2.8});K.heart('smrekovi',1500,-1);K.door('smrekovi','greben',-1);
+  K.block('greben',600,120,120,120,-1);K.borba('greben',[['archer',650,120],['sword',1000]],-1);K.crumble('greben',1800,160,-1);K.crumble('greben',1960,160,-1);K.pit('greben',1800,2120);
+  K.drop('greben',1300,1500,'most');K.fake('greben','orlova',{row:-1});K.cudo('orlova',600,'Đemov topuz',-1);
+  // Konačište: karavan u snegu; snežni most (juriš); karaula sa vratima na prekidač
+  K.lik('konaciste',500,'putnik-trgovac-idle','Trgovac: Karavan je zapeo u snegu. Karaula na sedlu ne pušta nikog bez prekidača.');K.heart('konaciste',950,0);K.door('konaciste','most',0);
+  K.dash('most',700);K.door('most','karaula',0);
+  K.lik('karaula',600,'caus-idle','Stražar: Vrata karaule otvara prekidač kraj ulaza. Dok stigneš do njih, zatvore se.');K.trace('karaula','sedlo');
+  // Sedlo prevoja: čekpoint, borba, krilo do vidikovca; staja; kula sa barjakom i begom
+  K.ckpt('sedlo',200);K.borba('sedlo',[['akindzija',1500],['shield',1800],['sword',2100]]);K.wing('sedlo',300,{upper:'vidikovac'});K.door('sedlo','kula',0);
+  K.heart('vidikovac',900,-1);K.door('vidikovac','staja',-1);K.lik('staja',500,'putnik-starac-idle','Konjušar: Begov konj je odmoran. Beg čeka na vrhu kule, da te obori sa prevoja.',-1);K.door('staja','kula',-1);
+  K.chimney('kula',700);K.wing('kula',300,{row:-1});K.door('kula','barjak',-1);K.cudo('barjak',600,'Barjak sa prevoja',-1);K.door('kula','vrh',-2);K.bos('vrh','akindzija');
+  // Ledena pećina: psi, dimnjak gore; napukli zid do jazbine
+  K.borba('pecina',[['pas',600],['pas',900]]);K.chimney('pecina',1000,{upper:'serpentina'});K.crack('pecina','jazbina',{row:1});K.heart('jazbina',500,1);K.door('pecina','vucji',1);
+  // Vučji prolaz: greda, strelnica; snežna jama ispod
+  K.greda('vucji',900,{span:220});K.strelnica('vucji',2380,{every:2.6});K.drop('vucji',1500,1700,'jama');K.chimney('jama',700,{upper:'vucji'});K.heart('jama',300,2);K.door('vucji','izvor',1);
+  // Ledeni izvor: Vilin trag i čekpoint; zaleđeni potok i riznica iza vrata na prekidač
+  K.ckpt('izvor',300);K.shrine('trag','izvor',700);K.lik('izvor',1000,'vila-spreda','Ravijojla: Ostavi trag kraj vrata, stani na prekidač, pa se tragom vrati.',1);K.door('izvor','potok',1);
+  K.borba('potok',[['sword',400],['shield',700]]);K.trace('potok','riznica');K.cudo('riznica',600,'Carina sa prevoja',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
