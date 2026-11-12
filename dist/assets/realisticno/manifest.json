@@ -69,7 +69,9 @@
     "wall": "realisticno/podgradje/mat-wall.webp",
     "platform": "realisticno/podgradje/mat-platform.webp",
     "beam": "realisticno/podgradje/mat-beam.webp",
-    "ceiling": "realisticno/podgradje/mat-ceiling.webp"
+    "ceiling": "realisticno/podgradje/mat-ceiling.webp",
+    "groundTop": "realisticno/podgradje/mat-groundTop.webp",
+    "groundFront": "realisticno/podgradje/mat-groundFront.webp"
    },
    "props": [
     {
@@ -151,6 +153,233 @@
      "h": 71,
      "anchor": "bottom",
      "solid": true
+    },
+    {
+     "id": "fg-busen",
+     "file": "realisticno/podgradje/prop-fg-busen.webp",
+     "w": 70,
+     "h": 70,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/podgradje/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/podgradje/prop-fg-koren.webp",
+     "w": 110,
+     "h": 76,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/podgradje/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 94,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    }
+   ]
+  },
+  "urvina": {
+   "layers": [
+    {
+     "id": "sky",
+     "file": "realisticno/urvina/sky.webp",
+     "speed": 0.04,
+     "w": 1774,
+     "h": 887
+    },
+    {
+     "id": "far",
+     "file": "realisticno/urvina/far.webp",
+     "speed": 0.16,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "mid",
+     "file": "realisticno/urvina/mid.webp",
+     "speed": 0.38,
+     "w": 2172,
+     "h": 724
+    },
+    {
+     "id": "near",
+     "file": "realisticno/urvina/near.webp",
+     "speed": 0.72,
+     "w": 2172,
+     "h": 724
+    }
+   ],
+   "interior": {
+    "layers": [
+     {
+      "id": "in-back",
+      "file": "realisticno/urvina/in-back.webp",
+      "speed": 0.04,
+      "w": 1774,
+      "h": 887
+     },
+     {
+      "id": "in-far",
+      "file": "realisticno/urvina/in-far.webp",
+      "speed": 0.16,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-mid",
+      "file": "realisticno/urvina/in-mid.webp",
+      "speed": 0.38,
+      "w": 2172,
+      "h": 724
+     },
+     {
+      "id": "in-near",
+      "file": "realisticno/urvina/in-near.webp",
+      "speed": 0.72,
+      "w": 2172,
+      "h": 724
+     }
+    ]
+   },
+   "materials": {
+    "ground": "realisticno/urvina/mat-ground.webp",
+    "wall": "realisticno/urvina/mat-wall.webp",
+    "platform": "realisticno/urvina/mat-platform.webp",
+    "beam": "realisticno/urvina/mat-beam.webp",
+    "ceiling": "realisticno/urvina/mat-ceiling.webp",
+    "groundTop": "realisticno/urvina/mat-groundTop.webp",
+    "groundFront": "realisticno/urvina/mat-groundFront.webp"
+   },
+   "props": [
+    {
+     "id": "sanduk",
+     "file": "realisticno/urvina/prop-sanduk.webp",
+     "w": 64,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "bacva",
+     "file": "realisticno/urvina/prop-bacva.webp",
+     "w": 52,
+     "h": 72,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "kameni-blok",
+     "file": "realisticno/urvina/prop-kameni-blok.webp",
+     "w": 82,
+     "h": 64,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "oboreno-stablo",
+     "file": "realisticno/urvina/prop-oboreno-stablo.webp",
+     "w": 300,
+     "h": 30,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "rusevni-luk",
+     "file": "realisticno/urvina/prop-rusevni-luk.webp",
+     "w": 253,
+     "h": 260,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "baklja",
+     "file": "realisticno/urvina/prop-baklja.webp",
+     "w": 18,
+     "h": 110,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "vrata",
+     "file": "realisticno/urvina/prop-vrata.webp",
+     "w": 150,
+     "h": 166,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "panj",
+     "file": "realisticno/urvina/prop-panj.webp",
+     "w": 80,
+     "h": 80,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "paprat",
+     "file": "realisticno/urvina/prop-paprat.webp",
+     "w": 110,
+     "h": 52,
+     "anchor": "bottom",
+     "solid": false
+    },
+    {
+     "id": "stena",
+     "file": "realisticno/urvina/prop-stena.webp",
+     "w": 130,
+     "h": 100,
+     "anchor": "bottom",
+     "solid": true
+    },
+    {
+     "id": "fg-busen",
+     "file": "realisticno/urvina/prop-fg-busen.webp",
+     "w": 90,
+     "h": 69,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-kamenje",
+     "file": "realisticno/urvina/prop-fg-kamenje.webp",
+     "w": 120,
+     "h": 49,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-koren",
+     "file": "realisticno/urvina/prop-fg-koren.webp",
+     "w": 110,
+     "h": 62,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
+    },
+    {
+     "id": "fg-ograda",
+     "file": "realisticno/urvina/prop-fg-ograda.webp",
+     "w": 200,
+     "h": 92,
+     "anchor": "bottom",
+     "solid": false,
+     "layer": "foreground"
     }
    ]
   }
