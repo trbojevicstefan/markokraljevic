@@ -368,7 +368,63 @@ export const GB_POHODI={
   K.greda('lagum3',900,{span:220});K.strelnica('lagum3',2380,{every:2.6});K.door('lagum3','cisterna',1);
   // Cisterna: krilo i čekpoint; dimnjak do kapije; napukli zid do tamnice; izvor ispod
   K.ckpt('cisterna',150);K.shrine('krilo','cisterna',1000);K.chimney('cisterna',660,{upper:'kapija'});K.crack('cisterna','tamnica',{row:1});K.cudo('tamnica',700,'Tri slova',1);
-  K.chimney('izvor',340,{upper:'cisterna'});K.heart('izvor',800,2);}})
+  K.chimney('izvor',340,{upper:'cisterna'});K.heart('izvor',800,2);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 8 · Zaboravljeni podrum („Marko pije uz ramazan vino“): car je zabranio vino uz ramazan, a Marko pije u mehani nad
+// starim podrumima. Gvozdena vrata podruma su zatvorena iznutra; put vodi dole, do vrela gde čeka juriš u vazduhu, preko
+// ponora pod vinskim podrumom i kroz stari podrum nazad gore, do barutane u kojoj Ognjeni aga hoće da zapali zalihe.
+8:pohod({id:'podrum',ime:'Zaboravljeni podrum',biom:'podgradje',zeljeniBiom:'podrum',daje:'nalet',pocetne:['krilo'],
+ cilj:'Siđi do vrela po juriš, pređi ponor i otvori gvozdena vrata iznutra',start:'mehana',spawnDx:240,
+ uvod:'Zaboravljeni podrum. Car je zabranio vino uz ramazan, a Ognjeni aga hoće da zapali zalihe. Gvozdena vrata su zatvorena iznutra; juriš u vazduhu čeka dole, kraj podzemnog vrela.',
+ sobe:[
+  ['mehana','Mehana',-1,0,1,1,{interior:true}],
+  ['prolaz','Prolaz pod čaršijom',0,0,2,1,{interior:true}],
+  ['carsija','Čaršija',0,-1,2,1],
+  ['dzamija','Pred džamijom',2,-1,1,1],
+  ['krovovi','Krovovi čaršije',2,-2,2,1,{secret:true,lore:'Krovovi čaršije. Odavde je Marko gledao kako hodže i hadžije beže pred njegovom zelenom dolamom.'}],
+  ['kafana','Krčma na čaršiji',3,-1,1,1,{interior:true}],
+  ['riznica','Careva riznica',4,-1,1,1,{secret:true,interior:true,lore:'Careva riznica. Kesa dukata koju car daje Marku „da se napije vina“, samo da ga ne ljuti.'}],
+  ['bacvara','Bačvara',2,0,1,1,{interior:true}],
+  ['vinski','Vinski podrum',3,0,2,1,{interior:true}],
+  ['gvozdena','Gvozdena vrata',5,0,1,1,{interior:true}],
+  ['hodnik','Hodnik stražara',6,0,2,1,{interior:true}],
+  ['strazarnica','Stražarnica',7,-1,1,1,{interior:true}],
+  ['barutana','Barutana',8,0,1,1,{interior:true}],
+  ['grobnica','Grobnica',-1,1,1,1,{secret:true,interior:true,lore:'Grobnica. Ovde leže majstori koji su zidali podrume; svaki je ostavio po jedno bure za dušu.'}],
+  ['donji','Donji podrum',0,1,2,1,{interior:true}],
+  ['izvor','Podzemno vrelo',1,2,1,1,{interior:true}],
+  ['cisterna','Cisterna',2,1,1,1,{interior:true}],
+  ['ponor','Ponor pod podrumom',3,1,2,1,{interior:true}],
+  ['vinarija','Stara vinarija',5,1,1,1,{interior:true}],
+  ['stari','Stari podrum',6,1,2,1,{interior:true}],
+  ['tamnica','Careva tamnica',8,1,1,1,{secret:true,interior:true,lore:'Careva tamnica. Ovde je čauš držao one što piju uz ramazan; Marko ih je pustio i počastio.'}]],
+ brda:{carsija:[[1500,2100,40]]},
+ gradi(K){
+  // Mehana: guslar i krčmarica; prolaz sa prvom borbom, krilo do čaršije, rupa u donji podrum
+  K.guslar('mehana',800,['Marko nosi zelenu dolamu,','Marko pije uz ramazan vino,','još nagoni odže i adžije.']);
+  K.lik('mehana',450,'janja-toci','Krčmarica: Pij, Marko, car je zabranio, ali ovde ga niko ne pita.');K.door('mehana','prolaz',0);
+  K.borba('prolaz',[['sword',800],['sword',1400]]);K.wing('prolaz',500,{upper:'carsija'});K.drop('prolaz',200,400,'donji');K.door('prolaz','bacvara',0);
+  // Čaršija i džamija: borba, strelnica; čauš čita ferman; krilo na krovove
+  K.block('carsija',1000,120,140,120,-1);K.borba('carsija',[['archer',1050,120],['sword',600]],-1);K.strelnica('carsija',2380,{row:-1,every:2.8});K.drop('carsija',1300,1500,'prolaz');K.door('carsija','dzamija',-1);
+  K.lik('dzamija',600,'caus-ferman','Čauš: Car zabranjuje vino uz ramazan, zelenu dolamu i sablju o pojasu. Ko prekrši, ide u tamnicu.',-1);
+  K.wing('dzamija',300,{upper:'krovovi'});K.cudo('krovovi',1600,'Zelena dolama',-2);K.door('dzamija','kafana',-1);
+  K.drop('kafana',800,1000,'vinski');K.crack('kafana','riznica',{row:-1});K.cudo('riznica',700,'Kupa od dvanaest oka',-1);
+  // Bačvara i vinski podrum: druga borba, greda nad kacom; gvozdena vrata zatvorena iznutra
+  K.prop('bure','bacvara',400,90);K.prop('bure','bacvara',800,90);K.heart('bacvara',1000,0);K.door('bacvara','vinski',0);
+  K.borba('vinski',[['shield',600],['sword',1100],['pas',1900]]);K.greda('vinski',1300,{span:220});K.gate('vinski','gvozdena',0);
+  // Hodnik stražara: borba, čekpoint, krilo do stražarnice; barutana i Ognjeni aga
+  K.door('gvozdena','hodnik',0);K.ckpt('hodnik',900);K.borba('hodnik',[['oklopnik',1200],['shield',1700],['sword',2100]]);
+  K.wing('hodnik',1500,{upper:'strazarnica'});K.heart('strazarnica',900,-1);K.door('hodnik','barutana',0);K.bos('barutana','palikuca');
+  // Donji podrum: psi; lažni zid do grobnice; rupa do vrela, dimnjak gore u prolaz
+  K.borba('donji',[['pas',700],['pas',1000],['sword',1250]]);K.fake('donji','grobnica',{row:1});K.heart('grobnica',500,1);
+  K.chimney('donji',1000,{upper:'prolaz'});K.drop('donji',1500,1700,'izvor');K.door('donji','cisterna',1);
+  // Podzemno vrelo: juriš i čekpoint, dimnjak nazad
+  K.ckpt('izvor',150);K.shrine('nalet','izvor',350);K.chimney('izvor',600,{upper:'donji'});
+  // Cisterna: daske nad vodom; ponor samo za juriš
+  K.crumble('cisterna',400,180,1);K.crumble('cisterna',580,180,1);K.pit('cisterna',400,760);K.door('cisterna','ponor',1);
+  K.dash('ponor',700);K.door('ponor','vinarija',1);
+  K.lik('vinarija',600,'putnik-starac-idle','Podrumar: Gvozdena vrata otvara poluga sa ove strane. Popni se kroz stari podrum.',1);K.spikes('vinarija',900,120,1);K.door('vinarija','stari',1);
+  K.strelnica('stari',2380,{every:2.6});K.chimney('stari',300,{upper:'hodnik'});K.crack('stari','tamnica',{row:1});K.cudo('tamnica',600,'Careva kesa',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
