@@ -56,8 +56,8 @@ function biome(L){askManifest();const fb=standIn(L),mb=manifest?.biomes?.[L.biom
  const mats=Object.fromEntries(Object.entries(fb.materials).map(([k,v])=>[k,mb.materials?.[k]&&!failed(mb.materials[k])?mb.materials[k]:v]));
  if(!mb.materials?.groundIn&&isTex(mats.ground))mats.groundIn=mats.ground;
  for(const k of['groundTop','groundFront'])if(mb.materials?.[k]&&!failed(mb.materials[k]))mats[k]=mb.materials[k];
- return{...fb,layers:pickLayers(mb.layers,fb.layers),interior:{layers:pickLayers(mb.interior?.layers,fb.interior.layers)},materials:mats,props:mb.props||[]};}
-function layersFor(L,R){const b=biome(L);if(R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior?b.interior.layers:b.layers;}
+ return{...fb,real:true,layers:pickLayers(mb.layers,fb.layers),interior:{layers:pickLayers(mb.interior?.layers,fb.interior.layers)},materials:mats,props:mb.props||[]};}
+function layersFor(L,R){const b=biome(L);if(!b.real&&R.set&&b.sets?.[R.set])return b.sets[R.set];return R.interior||b.real&&R.set==='pecina'?b.interior.layers:b.layers;}
 
 export function artLook(L,R){const b=FALLBACK[L.biom]||FALLBACK.podgradje;if(!pic(layersFor(L,R)[0]?.file))return 10;return R.set&&b.lookSets?.[R.set]!=null?b.lookSets[R.set]:R.interior?b.lookIn:b.look;}
 export function artName(L,R){return null;}
