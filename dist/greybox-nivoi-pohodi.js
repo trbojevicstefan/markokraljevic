@@ -748,7 +748,62 @@ export const GB_POHODI={
   K.borba('bunar',[['pas',500],['sword',800]]);K.chimney('bunar',1900,{upper:'avlija'});K.fake('bunar','tamnica',{row:1});K.lik('tamnica',600,'svatovi-zarobljeni','Svatovi: Nismo imali za svadbarinu, pa nas je Arap zatvorio.',1);K.door('bunar','kripta',1);
   K.ckpt('kripta',600);K.shrine('nalet','kripta',900);K.chimney('kripta',300,{upper:'rusevine'});K.door('kripta','katakombe',1);
   // Katakombe: juriš preko ponora do Arapove riznice
-  K.dash('katakombe',700);K.door('katakombe','riznica',1);K.cudo('riznica',600,'Svadbarina sa Kosova',1);}})
+  K.dash('katakombe',700);K.door('katakombe','riznica',1);K.cudo('riznica',600,'Svadbarina sa Kosova',1);}}),
+// ---------------------------------------------------------------------------------------------------------------------
+// 15 · Stari rudnik („U tamnici voda do koljena“, iz pesme o Azačkoj tamnici): stari rudnik je postao tamnica; voda do
+// kolena, kosti do pojasa. Glavno okno vodi od potopljenih hodnika do izvoza, a stari izlaz iz rudnika otvara daleki
+// prekidač. Vilin trag čeka u staroj kapeli rudara; na rudarskom trgu pred izlazom stoji Bajraktar sa štitom.
+15:pohod({id:'rudnik',ime:'Stari rudnik',biom:'klisura',zeljeniBiom:'rudnik',daje:'trag',pocetne:['krilo','nalet'],
+ cilj:'Siđi u tamnicu po Vilin trag, popni se glavnim oknom i otvori stari izlaz',start:'selo',spawnDx:240,
+ uvod:'Stari rudnik. U tamnici je voda do kolena, a stari izlaz otvara prekidač koji je predaleko od vrata. Vilin trag čeka u staroj kapeli rudara, duboko dole.',
+ sobe:[
+  ['selo','Rudarsko selo',-1,0,1,1],
+  ['izvoriste','Izvorište',-1,-1,1,1],
+  ['ulaz','Ulaz u rudnik',0,0,2,1,{interior:true}],
+  ['skela','Skele',0,-1,2,1,{interior:true}],
+  ['svetlarnik','Svetlarnik',2,-1,1,1,{interior:true}],
+  ['kovacnica','Kovačnica',2,0,1,1,{interior:true}],
+  ['okno','Glavno okno',3,-1,1,3,{interior:true}],
+  ['izvoz','Izvoz',4,-1,1,1,{interior:true}],
+  ['izlaz','Stari izlaz',5,-1,2,1],
+  ['trg','Rudarski trg',7,-1,1,1],
+  ['hodnik','Hodnik sa šinama',4,0,2,1,{interior:true}],
+  ['skladiste','Skladište baruta',6,0,1,1,{interior:true}],
+  ['jazbina','Jazbina',-1,1,1,1,{secret:true,interior:true,lore:'Jazbina. Rudari su ovde krili srebro od carskih ćehaja; ostao je jedan grumen.'}],
+  ['vagoneti','Pruga za vagonete',0,1,2,1,{interior:true}],
+  ['potop','Potopljeno okno',2,1,1,1,{interior:true}],
+  ['tamnica','Tamnica',4,1,2,1,{interior:true}],
+  ['kapela','Stara kapela',6,1,1,1,{interior:true}],
+  ['riznica','Rudarska riznica',7,1,1,1,{secret:true,interior:true,lore:'Rudarska riznica. Srebro iz rudnika, koje su rudari čuvali za otkup sužanja iz tamnice.'}],
+  ['kosti','Kosti do pojasa',3,2,1,1,{secret:true,interior:true,lore:'Kosti do pojasa. „Od junaka kosti do pojasa“: ovde su ležali oni koje niko nije otkupio.'}],
+  ['prozor','Tamnički prozor',4,2,1,1,{interior:true}]],
+ brda:{selo:[[400,700,30]],izlaz:[[900,1400,40]]},
+ gradi(K){
+  // Rudarsko selo: guslar i rudar; krilo do izvorišta
+  K.guslar('selo',900,['U tamnici voda do koljena,','od junaka kosti do pojasa:','tamnica je kuća neobična.']);
+  K.lik('selo',450,'putnik-starac-idle','Rudar: Stari izlaz su Turci zatvorili vratima na prekidač. Dole je tamnica, voda do kolena.');K.wing('selo',600,{upper:'izvoriste'});K.heart('izvoriste',300,-1);K.door('selo','ulaz',0);
+  // Ulaz u rudnik: prva borba; krilo na skele; rupa do pruge
+  K.borba('ulaz',[['sword',900],['shield',1300]]);K.wing('ulaz',500,{upper:'skela'});K.drop('ulaz',1700,1900,'vagoneti');K.door('ulaz','kovacnica',0);
+  K.block('skela',1000,120,140,120,-1);K.borba('skela',[['archer',1050,120],['sword',1500]],-1);K.strelnica('skela',2380,{row:-1,every:2.8});K.door('skela','svetlarnik',-1);
+  K.heart('svetlarnik',600,-1);K.door('svetlarnik','okno',-1);
+  K.lik('kovacnica',600,'novak-kuje','Kovač: Okovao sam vrata starog izlaza. Prekidač je daleko, a vrata se brzo zatvore.');K.door('kovacnica','okno',0);
+  // Glavno okno: dimnjak od tamnice do hodnika, krilo do izvoza
+  K.chimney('okno',700,{row:1});K.wing('okno',300,{row:0});K.door('okno','hodnik',0);K.door('okno','izvoz',-1);K.door('okno','tamnica',1);
+  // Izvoz i stari izlaz: vrata na prekidač; Bajraktar na rudarskom trgu
+  K.lik('izvoz',600,'caus-idle','Stražar: Ko prođe kroz stari izlaz, prošao je i mene. A vrata ne čekaju nikog.',-1);K.trace('izvoz','izlaz');
+  K.ckpt('izlaz',200);K.borba('izlaz',[['shield',1400],['archer',1800]],-1);K.strelnica('izlaz',2380,{row:-1,every:2.6});K.door('izlaz','trg',-1);K.bos('trg','shield');
+  // Hodnik sa šinama: borba, juriš preko urušenog dela; skladište baruta
+  K.borba('hodnik',[['sword',250],['akindzija',500]]);K.dash('hodnik',700);K.door('hodnik','skladiste',0);
+  K.lik('skladiste',600,'putnik-trgovac-idle','Barutdžija: Barut je za stari izlaz, ali Turci su ga zatvorili pre nego što smo ga upalili.');K.heart('skladiste',950,0);
+  // Pruga za vagonete: peta borba, dimnjak gore, lažni zid do jazbine; potopljeno okno sa gredom
+  K.borba('vagoneti',[['pas',500],['sword',1400]]);K.chimney('vagoneti',1000,{upper:'ulaz'});K.fake('vagoneti','jazbina',{row:1});K.cudo('jazbina',500,'Grumen srebra',1);K.door('vagoneti','potop',1);
+  K.greda('potop',300,{span:220});K.door('potop','okno',1);
+  // Tamnica: voda do kolena; devojke sa snegom i bosiljkom; rupa do tamničkog prozora
+  K.lik('tamnica',250,'putnica-idle','Devojka: Zimi mu bacimo grudvu snega, leti struk bosiljka, da zna koje je doba godine.',1);
+  K.borba('tamnica',[['sword',1300],['pas',1600]]);K.spikes('tamnica',1900,100);K.drop('tamnica',500,700,'prozor');K.door('tamnica','kapela',1);
+  K.chimney('prozor',900,{upper:'tamnica'});K.lik('prozor',300,'soko-voda','Soko donosi vodu sužnju kroz tamnički prozor.',2);K.heart('prozor',600,2);K.crack('prozor','kosti',{row:2});K.cudo('kosti',600,'Okovi sužnja',2);
+  // Stara kapela: Vilin trag i čekpoint; rudarska riznica iza vrata na prekidač
+  K.ckpt('kapela',300);K.shrine('trag','kapela',700);K.trace('kapela','riznica');K.cudo('riznica',600,'Rudarsko srebro',1);}})
 };
 
 // kuka do registra u greybox.js: pohodi ulaze u isti spisak kao tri nivoa iz greybox-nivoi.js
