@@ -40,9 +40,13 @@ parts=[]
 for i in range(n):
  cell=strip.crop((i*w,0,(i+1)*w,h));a=cell.getchannel('A');a=a.point(lambda v:0 if v<8 else v);cell.putalpha(a)
  if os.environ.get('SPRITE_CLEAN_FRAGMENTS')=='1':
-  import numpy as np
-  from scipy.ndimage import label
-  ar=np.array(a);labels,count=label(ar>0);sizes=np.bincount(labels.ravel());sizes[0]=0;ar[sizes[labels]<sizes.max()*0.03]=0;a=Image.fromarray(ar);cell.putalpha(a)
+  from PIL import ImageDraw
+  sys.path.insert(0,'D:/projects/Marko Kraljevic/tools/sprite-gen')
+  from sprite_gen.frames.extract import connected_components
+  components=connected_components(cell);largest=max(c['area'] for c in components);draw=ImageDraw.Draw(a)
+  for c in components:
+   if c['area']<largest*0.03:draw.rectangle(c['bbox'],fill=0)
+  cell.putalpha(a)
  b=a.getbbox();assert b;parts.append(cell.crop(b))
 target=435 if name=='marko-air-3' else 450 if name=='marko-kuka-let' else 383
 scale=min(float(os.environ['SPRITE_BODY_HEIGHT'])/parts[int(os.environ.get('SPRITE_BODY_FRAME','0'))].height,480/max(p.width for p in parts),480/max(p.height for p in parts)) if 'SPRITE_BODY_HEIGHT' in os.environ else min(target/max(p.height for p in parts),480/max(p.width for p in parts))
