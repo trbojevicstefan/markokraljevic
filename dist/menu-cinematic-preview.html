@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08141a"><title>Marko Kraljević · Cinematic Menu — 25 FPS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Ruslan+Display&display=swap">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="ui.css"><link rel="stylesheet" href="menu-cinematic.css">
+<style>
+#game-shell{height:100dvh!important}
+.preview-bar{position:fixed;z-index:40;left:50%;bottom:8px;transform:translateX(-50%);padding:6px 11px;background:#071112c9;border:1px solid #d5b68166;font:600 11px Arial;color:#dfd2ad;white-space:nowrap;border-radius:8px}
+.preview-bar a{color:#f3e6ba}
+</style>
+</head>
+<body>
+<main id="game-shell">
+<section id="menu" class="overlay cinematic-menu">
+<div class="menu-backdrop" aria-hidden="true"><div class="bd-far"></div><div class="bd-ground"></div></div><div class="embers"></div><div class="fairy-dust"></div>
+<button id="fullscreen-menu" class="fs-btn" title="Ceo ekran" aria-label="Ceo ekran">⛶</button>
+<div class="menu-decoration"><span>✦</span><div></div><span>SRPSKA EPSKA AVANTURA</span></div>
+<div class="menu-copy">
+<p class="eyebrow">PESMA O KRALJEVIĆU MARKU</p>
+<h1><span class="ini" aria-hidden="true">М</span><span class="rest" aria-hidden="true">АРКО</span><span class="sr-only">МАРКО</span></h1>
+<div class="subtitle"><span></span> OD PRILEPA DO URVINE <span></span></div>
+<p class="intro">Topuz u ruci. Šarac pod sedlom.<br>Jedan život koji je postao pesma.</p>
+<div class="menu-actions">
+<button id="continue" class="secondary" hidden>Nastavi od poslednjeg barjaka</button>
+<button id="start" class="primary">Započni legendu <span>→</span></button>
+<div class="ms-list">
+<button id="menu-pohodi" class="ms-item"><span class="lbl">Mapa putovanja</span><small>jedna priča, šesnaest poglavlja</small></button>
+<button id="menu-legende" class="ms-item"><span class="lbl">Knjiga legendi</span><small>Marko, Šarac, vila Ravijojla, Musa</small></button>
+<button id="menu-knjiga" class="ms-item"><span class="lbl">Knjiga dušmana</span><small>snaga i slabost svakog dušmana</small></button>
+</div></div>
+<div id="menu-ledger"><button><b>15</b><small>POHODI</small></button><button><b>114</b><small>ANIMACIJE</small></button></div>
+<div class="menu-links"><button id="settings-open">Podešavanja</button><i>✦</i><button id="menu-riznica">Riznica</button><i>✦</i><button id="kontrole-open">Kontrole</button><i>✦</i><button id="intro-open">Uvod</button></div>
+</div>
+<img class="menu-marko" src="assets/cast/marko.png" alt="Kraljević Marko"><img class="menu-fairy" src="assets/cast/fairy.png" alt="Vila Ravijojla">
+<p class="quote">„Ni po babu, ni po stričevima, već po pravdi Boga istinoga.”<small>UROŠ I MRNJAVČEVIĆI · NARODNA PESMA</small></p>
+<div class="menu-bottom"><span>01 / KLISURA TRI SRCA</span><span>Slobodna adaptacija srpskih narodnih pesama</span></div>
+</section>
+</main>
+<div class="preview-bar">Vizuelni pregled · 25 FPS · <a href="./index.html">Otvori celu igru</a></div>
+<script type="module" src="menu-cinematic.js"></script>
+<script>
+document.querySelectorAll('#menu button').forEach(b=>{
+ b.addEventListener('click',()=>{
+  if(b.id==='fullscreen-menu'){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();return;}
+  location.href='./index.html';
+ });
+});
+</script>
+</body></html>

@@ -4205,7 +4205,7 @@ function menuButtons(){const c=$('continue'),s=$('start');if(!c||!s||!hasDom)ret
 // each line of the menu opens with an illuminated initial: the first letter of its label, in either language
 function menuInitials(){document.querySelectorAll?.('#menu .ms-item').forEach(b=>{b.dataset.ini=(b.querySelector('.lbl')?.textContent||'').trim().charAt(0);});}
 // the main action's banner is a waving cloth (barjak3d.js); without WebGL the SVG banner stays
-if(hasDom&&!matchMedia('(max-width:600px)').matches)import('./barjak3d.js').then(m=>{for(const id of['start','continue']){const el=$(id);if(el)m.mountBanner(el).catch(()=>{});}}).catch(()=>{});
+if(hasDom&&!document.getElementById('menu')?.classList.contains('cinematic-menu')&&!matchMedia('(max-width:600px)').matches)import('./barjak3d.js').then(m=>{for(const id of['start','continue']){const el=$(id);if(el)m.mountBanner(el).catch(()=>{});}}).catch(()=>{});
 function fairyDust(){const box=document.querySelector?.('#menu .fairy-dust');if(!box||box.childElementCount)return;let html='';for(let i=0;i<18;i++){const d=3+Math.random()*4;html+=`<i style="left:${Math.random()*100}%;top:${Math.random()*40}%;animation-duration:${d}s;animation-delay:${-Math.random()*d}s;--dx:${-20-Math.random()*60}px"></i>`;}box.innerHTML=html;}
 if(hasDom){
  $('menu-riznica')&&($('menu-riznica').onclick=openRiznica);$('menu-knjiga')&&($('menu-knjiga').onclick=()=>openBook());$('pause-knjiga')&&($('pause-knjiga').onclick=()=>openBook());
@@ -4362,7 +4362,7 @@ function readWire(){document.querySelectorAll('#knjiga [data-read]').forEach(b=>
 const MM_IDLE=rig?.['marko-idle-2']?'marko-idle-2':'marko-idle';
 const MM_MOVES=[['marko-charged',8,1],['marko-super',10,1],['marko-combo-1',11,1],['marko-combo-3',10,1],['marko-vihor',14,2],['marko-throw',11,1],['marko-counter',11,1],['marko-uppercut',11,1]].filter(([n])=>rig?.[n]);
 let mmCanvas=null,mmClip=MM_IDLE,mmT=0,mmNext=4,mmLoops=1,mmLast=0,mmRaf=0;mmReady=true;
-function menuMarkoStart(){if(!mmReady||!hasDom||!rig?.[MM_IDLE]||!rigImages[rig[MM_IDLE].image])return;
+function menuMarkoStart(){if(document.getElementById('menu')?.classList.contains('cinematic-menu'))return;if(!mmReady||!hasDom||!rig?.[MM_IDLE]||!rigImages[rig[MM_IDLE].image])return;
  if(!mmCanvas){const img=document.querySelector('#menu img.menu-marko');if(!img)return;mmCanvas=document.createElement('canvas');mmCanvas.className='menu-marko live';mmCanvas.width=900;mmCanvas.height=900;mmCanvas.setAttribute('role','img');mmCanvas.setAttribute('aria-label','Kraljević Marko sa bodljikavim topuzom');mmCanvas.title='';img.replaceWith(mmCanvas);mmCanvas.addEventListener('click',()=>{if(mmClip===MM_IDLE)menuMarkoMove(true);});}
  if(!mmRaf){mmLast=performance.now();mmRaf=requestAnimationFrame(menuMarkoTick);}}
 function menuMarkoMove(loud){if(!MM_MOVES.length)return;let m;do m=MM_MOVES[Math.floor(Math.random()*MM_MOVES.length)];while(MM_MOVES.length>1&&m[0]===menuMarkoMove.last);menuMarkoMove.last=m[0];

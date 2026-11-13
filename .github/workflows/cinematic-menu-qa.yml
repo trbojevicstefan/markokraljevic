@@ -1,0 +1,32 @@
+name: Cinematic menu QA
+on:
+  push:
+    branches:
+      - feat/cinematic-menu-25fps
+  pull_request:
+    paths:
+      - dist/menu-cinematic-core.js
+      - dist/menu-cinematic.js
+      - dist/menu-cinematic.css
+      - dist/menu-cinematic-preview.html
+      - dist/index.html
+      - dist/game.js
+      - menu-cinematic-tests.mjs
+      - .github/workflows/cinematic-menu-qa.yml
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and menu integration
+        run: |
+          node --check dist/menu-cinematic-core.js
+          node --check dist/menu-cinematic.js
+          node --check dist/game.js
+          node menu-cinematic-tests.mjs
+          node animation-tests.mjs

@@ -1,0 +1,203 @@
+/* Entirely new main-menu presentation. Applies ONLY to #menu.cinematic-menu. */
+#menu.cinematic-menu{
+ isolation:isolate;overflow:hidden;background:#07131a!important;
+ --cm-gold:#f3d8a0;--cm-muted:#aaab9e;--cm-ink:#071014;
+}
+#menu.cinematic-menu .cinematic-scene{
+ position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:fill;
+ pointer-events:none;z-index:0;background:#0a1820;
+}
+#menu.cinematic-menu .menu-backdrop,#menu.cinematic-menu>.embers,#menu.cinematic-menu>.fairy-dust,
+#menu.cinematic-menu>.menu-marko,#menu.cinematic-menu>.menu-fairy,
+#menu.cinematic-menu::after{display:none!important;animation:none!important}
+#menu.cinematic-menu .menu-copy{
+ position:absolute;left:clamp(38px,6vw,110px)!important;top:50%!important;
+ width:min(570px,49vw)!important;max-width:570px;
+ max-height:calc(100% - 112px);overflow:visible;
+ transform:translateY(-48%)!important;padding:0!important;background:none!important;
+ box-shadow:none!important;border:0!important;outline:none!important;
+ color:#f3e8cd!important;z-index:4;
+}
+#menu.cinematic-menu .menu-copy::before{display:none!important}
+#menu.cinematic-menu:not([hidden]) .menu-copy{animation:cmReveal .75s ease-out both!important}
+#menu.cinematic-menu .eyebrow{
+ font:700 clamp(10px,1vw,13px)/1.4 Arial,sans-serif!important;
+ color:#e5c18b!important;letter-spacing:5.2px!important;
+ margin:0 0 12px 2px!important;text-shadow:0 2px 12px #000b;
+}
+#menu.cinematic-menu .menu-copy h1{
+ --hs:0px!important;display:block!important;
+ background:none!important;color:#f9e4b6!important;-webkit-text-fill-color:currentColor!important;
+ font:700 clamp(85px,9.3vw,146px)/.83 "Ruslan Display",Georgia,serif!important;
+ letter-spacing:6px!important;margin:0 0 18px -6px!important;
+ filter:drop-shadow(0 4px 0 #311a0f) drop-shadow(0 12px 22px #000f)!important;
+ text-shadow:0 0 1px #fff0e1aa!important;white-space:nowrap;
+}
+#menu.cinematic-menu:not([hidden]) .menu-copy h1{animation:cmTitle .95s .14s cubic-bezier(.18,.8,.2,1) both!important}
+#menu.cinematic-menu .menu-copy h1 .ini,#menu.cinematic-menu .menu-copy h1 .rest{
+ background:none!important;width:auto!important;height:auto!important;margin:0!important;
+ font:inherit!important;display:inline!important;color:inherit!important;
+ -webkit-text-fill-color:inherit!important;filter:none!important;
+}
+#menu.cinematic-menu .subtitle{
+ display:flex;align-items:center;gap:13px;margin:0 0 14px 3px!important;
+ color:#d2a877!important;font:700 clamp(10px,1.2vw,16px)/1.3 "Cormorant Garamond",Georgia,serif!important;
+ letter-spacing:7px!important;text-shadow:0 2px 8px #000;
+}
+#menu.cinematic-menu .subtitle span{width:31px;height:1px;background:#e2be8c!important;filter:none!important;opacity:.65}
+#menu.cinematic-menu .intro{
+ display:block!important;max-width:390px;margin:0 0 25px 3px!important;
+ font:italic 500 19px/1.55 "Cormorant Garamond",Georgia,serif!important;
+ letter-spacing:.3px;color:#ded1b8!important;opacity:.88;
+}
+#menu.cinematic-menu .menu-actions{
+ display:flex;flex-direction:column;align-items:stretch;gap:1px!important;
+ max-width:435px;margin:0!important;padding:0;
+}
+#menu.cinematic-menu .menu-actions>button,
+#menu.cinematic-menu .ms-item{
+ display:flex!important;align-items:center!important;width:100%!important;
+ position:relative;min-width:0!important;min-height:43px;
+ margin:0!important;padding:7px 18px 7px 30px!important;
+ border:0!important;border-bottom:1px solid #cfb58c2b!important;clip-path:none!important;
+ box-shadow:none!important;filter:none!important;transform:none!important;
+ background:linear-gradient(90deg,#21302d00,#10202500)!important;
+ color:#e5dac5!important;font:600 clamp(19px,2.1vw,26px)/1.18 "Cormorant Garamond",Georgia,serif!important;
+ letter-spacing:1.2px!important;text-shadow:0 2px 10px #000d!important;text-align:left!important;
+ transition:color .24s ease,background .24s ease,padding-left .24s ease!important;
+ animation:none!important;
+}
+#menu.cinematic-menu .menu-actions>button::before,
+#menu.cinematic-menu .ms-item::before{
+ content:"✦"!important;position:absolute;left:2px;top:50%;
+ display:block!important;width:20px!important;height:24px!important;
+ transform:translateY(-50%) scale(.55)!important;transform-origin:50% 50%;
+ font:15px/24px Georgia,serif!important;text-align:center;
+ color:#e6bd72!important;background:none!important;box-shadow:none!important;
+ opacity:0;transition:opacity .2s,transform .2s!important;
+}
+#menu.cinematic-menu .menu-actions>button:hover::before,
+#menu.cinematic-menu .menu-actions>button:focus-visible::before,
+#menu.cinematic-menu .menu-actions>button.pad-focus::before,
+#menu.cinematic-menu .ms-item:hover::before,
+#menu.cinematic-menu .ms-item:focus-visible::before,
+#menu.cinematic-menu .ms-item.pad-focus::before{
+ opacity:1!important;transform:translateY(-50%) scale(1)!important;
+}
+#menu.cinematic-menu .menu-actions>button:hover,
+#menu.cinematic-menu .menu-actions>button:focus-visible,
+#menu.cinematic-menu .menu-actions>button.pad-focus,
+#menu.cinematic-menu .ms-item:hover,
+#menu.cinematic-menu .ms-item:focus-visible,
+#menu.cinematic-menu .ms-item.pad-focus{
+ padding-left:36px!important;background:linear-gradient(90deg,#9b7b3b30,#d8c19508 75%,#0000)!important;
+ color:#fff5d4!important;text-shadow:0 0 18px #e7bb6666,0 2px 10px #000!important;
+ outline:none!important;
+}
+#menu.cinematic-menu #start{
+ display:flex!important;justify-content:space-between!important;
+ min-height:62px;margin:0 0 8px!important;padding:10px 23px 10px 29px!important;
+ border:1px solid #eac48b9e!important;
+ background:linear-gradient(110deg,#7c261d 0%,#a3452d 45%,#6a1f1c 100%)!important;
+ box-shadow:0 14px 28px #0008,inset 0 0 0 1px #ffe0a32c!important;
+ font-size:clamp(22px,2.6vw,31px)!important;letter-spacing:1px!important;
+ color:#fff3d1!important;
+}
+#menu.cinematic-menu #start:hover,#menu.cinematic-menu #start:focus-visible,#menu.cinematic-menu #start.pad-focus{
+ background:linear-gradient(110deg,#a03425 0%,#c25e36 45%,#8c2b21 100%)!important;
+ box-shadow:0 0 24px #eab97645,0 14px 28px #0008!important;
+}
+#menu.cinematic-menu #start span{
+ display:inline!important;visibility:visible!important;margin:0 0 0 18px!important;
+ color:#f7d8a3!important;font-size:30px!important;line-height:1!important;
+}
+#menu.cinematic-menu #start::after,#menu.cinematic-menu #start::before{display:none!important}
+#menu.cinematic-menu #continue{
+ margin-bottom:8px!important;min-height:48px;
+ color:#f3d6a4!important;font-size:23px!important;
+ border:1px solid #eac48b50!important;
+}
+#menu.cinematic-menu .ms-list{display:flex!important;flex-direction:column;margin:0!important;padding:0;border:0!important;width:100%!important}
+#menu.cinematic-menu .ms-item{display:grid!important;grid-template-columns:1fr 20px;grid-template-rows:auto auto;gap:0!important}
+#menu.cinematic-menu .ms-item .lbl{grid-column:1;grid-row:1;color:inherit!important;font:inherit!important}
+#menu.cinematic-menu .ms-item small{
+ grid-column:1;grid-row:2;display:block!important;height:auto;max-height:none!important;
+ margin-top:2px;color:#b5aa96!important;opacity:1!important;overflow:visible;
+ font:italic 400 13.5px/1.2 "Cormorant Garamond",Georgia,serif!important;
+ letter-spacing:.5px!important;
+}
+#menu.cinematic-menu .ms-item::after{
+ content:"›"!important;display:block!important;grid-column:2;grid-row:1/3;
+ position:static;transform:none;font:25px Georgia,serif;color:#d8b781!important;
+ opacity:.5!important;align-self:center;
+}
+#menu.cinematic-menu .menu-copy #menu-ledger{
+ display:flex!important;position:static;margin:16px 0 0 4px!important;
+ padding:9px 0;border:0!important;border-top:1px solid #d1ae7545!important;
+ gap:19px!important;justify-content:flex-start;
+}
+#menu.cinematic-menu #menu-ledger button{border:none!important;display:flex!important;gap:5px;align-items:baseline}
+#menu.cinematic-menu #menu-ledger button b{font:700 20px "Cormorant Garamond",Georgia,serif!important;color:#f5d390!important}
+#menu.cinematic-menu #menu-ledger button small{font:700 9px Arial,sans-serif!important;color:#c6ba9d!important;letter-spacing:1.6px!important}
+#menu.cinematic-menu .menu-links{
+ display:flex!important;justify-content:flex-start;flex-wrap:wrap!important;
+ gap:8px!important;margin:12px 0 0 3px!important;padding:0;
+}
+#menu.cinematic-menu .menu-links button{font:700 10px Arial,sans-serif!important;text-transform:uppercase;letter-spacing:1.2px;color:#c8baa0!important}
+#menu.cinematic-menu .menu-links i{font-size:7px;color:#dcbf83!important}
+#menu.cinematic-menu .menu-links button:hover{color:#fff0ce!important}
+#menu.cinematic-menu .quote{
+ display:block;position:absolute;right:3.5%!important;bottom:40px!important;
+ width:min(355px,30vw);max-width:355px;padding:0!important;
+ font:italic 15px/1.5 "Cormorant Garamond",Georgia,serif!important;
+ color:#dcd2b9;background:none!important;text-shadow:0 2px 12px #000c;
+ z-index:2;
+}
+#menu.cinematic-menu .quote small{font:700 9px Arial,sans-serif;letter-spacing:2px;color:#d6ad72}
+#menu.cinematic-menu .menu-bottom{
+ display:flex!important;left:clamp(38px,6vw,110px);right:3%;
+ bottom:20px;justify-content:space-between;font-size:9px;
+ color:#c2b9a5;z-index:2;
+}
+#menu.cinematic-menu .menu-decoration{display:none!important}
+#menu.cinematic-menu .menu-note{display:none!important}
+#menu.cinematic-menu .lang-pick,#menu.cinematic-menu .fs-btn{z-index:7}
+#menu.cinematic-menu .menu-actions .flag3d{display:none!important}
+@keyframes cmReveal{from{opacity:0;translate:-25px 0}to{opacity:1;translate:0 0}}
+@keyframes cmTitle{from{opacity:0;transform:translateY(18px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@media(max-width:1050px){
+ #menu.cinematic-menu .menu-copy{width:min(525px,54vw)!important}
+ #menu.cinematic-menu .menu-copy h1{font-size:clamp(78px,9vw,116px)!important}
+ #menu.cinematic-menu .intro{display:none!important}
+ #menu.cinematic-menu .quote{display:none!important}
+}
+@media(max-width:760px){
+ #menu.cinematic-menu .menu-copy{
+  left:5%!important;width:90%!important;max-width:none;
+  top:auto!important;bottom:38px!important;
+  transform:none!important;max-height:calc(100% - 106px)!important;
+  overflow:auto!important;scrollbar-width:none;
+  padding:0 8px 5px 0!important;
+ }
+ #menu.cinematic-menu .menu-copy h1{font-size:clamp(65px,16vw,110px)!important;margin-bottom:10px!important}
+ #menu.cinematic-menu .eyebrow{font-size:10px!important;letter-spacing:3px!important}
+ #menu.cinematic-menu .subtitle{font-size:12px!important;letter-spacing:4px!important}
+ #menu.cinematic-menu .menu-actions{max-width:470px}
+ #menu.cinematic-menu #start{min-height:53px;font-size:23px!important}
+ #menu.cinematic-menu .ms-item{min-height:38px;padding-top:4px!important;padding-bottom:4px!important}
+ #menu.cinematic-menu .ms-item small{font-size:12px!important}
+ #menu.cinematic-menu .menu-copy #menu-ledger{margin-top:10px!important}
+ #menu.cinematic-menu .menu-links{margin-top:8px!important;gap:7px!important}
+ #menu.cinematic-menu .menu-bottom{display:none!important}
+}
+@media(max-height:700px) and (min-width:761px){
+ #menu.cinematic-menu .menu-copy{top:52%!important;transform:translateY(-50%)!important}
+ #menu.cinematic-menu .menu-copy h1{font-size:95px!important}
+ #menu.cinematic-menu .intro{display:none!important}
+ #menu.cinematic-menu .ms-item{min-height:36px;padding-top:4px!important;padding-bottom:4px!important}
+ #menu.cinematic-menu #menu-ledger{margin-top:9px!important}
+ #menu.cinematic-menu .menu-links{margin-top:7px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #menu.cinematic-menu .menu-copy,#menu.cinematic-menu .menu-copy h1{animation:none!important}
+}
