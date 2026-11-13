@@ -16,7 +16,7 @@ storage.set('marko-moci',JSON.stringify(['trag','kombo','potres','oko','krilo','
 const window={addEventListener(){}};
 class Image{constructor(){this.width=64;this.height=64;this.naturalWidth=64;this.naturalHeight=64;}set src(v){queueMicrotask(()=>this.onload?.());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url.split('?')[0],'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('__any','physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startChapter,startLevel,update,draw,keys,pressed,LEVELS,state:()=>({p,world,mode,boss,arrows,heads,bones,corpses})};')(any,physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 await new Promise(r=>setTimeout(r,300));   // the rig and the art load

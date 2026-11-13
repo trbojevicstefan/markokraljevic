@@ -11,7 +11,7 @@ const storage=new Map();const localStorage={getItem:k=>storage.get(k)||null,setI
 storage.set('marko-moci',JSON.stringify(['trag','kombo','potres','oko','krilo','lanac','nalet','gaz','zidotrk']));
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
-let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame',source+'\nreturn {start,update,keys,pressed,die,slay,win,pause,deathPose,damage,state:()=>({p,boss,world,mode,zone,elapsed,kills,horseMounted,horseX,corpses,arrows}),settings,restore,save};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{});
 api.settings.difficulty='classic'; // exact numbers below are checked against the original balance

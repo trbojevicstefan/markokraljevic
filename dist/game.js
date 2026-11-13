@@ -2364,8 +2364,18 @@ function drawWatchtowers(){const im=levelArt['kula-strazara'];for(const t of wor
  const H=t.base-t.top;for(const dx of[-78,78])line(t.x+dx,t.top,t.x+dx*1.12,t.base+4,'#3e2b18',9);for(const dx of[-40,40])line(t.x+dx,t.top,t.x+dx*1.05,t.base+4,'#2e2012',6);
  for(let y=t.top+40;y<t.base-20;y+=H/3){line(t.x-80,y,t.x+80,y+H/3-14,'#4a3420',4);line(t.x+80,y,t.x-80,y+H/3-14,'#4a3420',4);}
  ctx.fillStyle='#6e4c2a';ctx.fillRect(t.x-90,t.top,180,16);line(t.x-90,t.top+1,t.x+90,t.top+1,'#c9a06a',2);}}
+// a slope of the road (padina, world.js `ramp`): the strip of the level's ground drawn in narrow slices, each at the height
+// of the slope there, so the grass follows the rise and the earth under it joins the floor the slope lies on
+function drawPadina(q){if(q.x+q.w<camera-40||q.x>camera+VIEW_W+40)return;const G=levelGround(),S0=q.surf,sx=q.sx;
+ if(!G){ctx.fillStyle='#6e6a55';ctx.beginPath();ctx.moveTo(q.x,q.lo+6);for(let i=0;i<S0.length;i++)ctx.lineTo(q.x+i*sx,S0[i]);ctx.lineTo(q.x+q.w,q.lo+6);ctx.closePath();ctx.fill();return;}
+ const S=G.S,rows=Math.min(G.im.height,G.walk+150);ctx.save();ctx.fillStyle=G.pattern;
+ // seven slices more at the upper end, level with it: they close the seam where the floor above is drawn a little inset
+ const n=S0.length-1,upL=S0[0]<S0[n],i0=upL?-7:0,i1=upL?n:n+7;
+ for(let i=i0;i<i1;i++){const x0=q.x+i*sx;if(x0<camera-20||x0>camera+VIEW_W+20)continue;const y=i<0?S0[0]:i>=n?S0[n]:(S0[i]+S0[i+1])/2,top=y-G.walk*S,h=Math.max(rows*S,q.lo-top+(G.walk+24)*S);G.pattern.setTransform(new DOMMatrix([S,0,0,S,0,top]));ctx.fillRect(x0,top,sx+.6,Math.min(h,G.im.height*S));}
+ ctx.restore();}
 function drawTerrain(){if(level.greybox){greybox.gbDraw(GBX);return;}const plats=world.platforms;
  plats.filter(q=>q.ground&&!q.tower).sort((a,b)=>b.y-a.y).forEach(drawFloor);
+ for(const q of plats)if(q.padina)drawPadina(q);
  drawShafts();drawWatchtowers();
  for(const q of plats){if(q.kind!=='step'&&q.solid&&q.kind==='stone'&&!q.vault&&(!q.ground||q.tower))drawBlock(q);}
  drawStairs();

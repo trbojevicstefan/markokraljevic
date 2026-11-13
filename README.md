@@ -363,7 +363,7 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Jedna mapa, jedan niz poglavlja.** Nema više jezičaka „Pesme o Marku” i „Pohodi”: mapa ide od Kosovskog sela do Urvine, megdan na Kačaniku je deseto poglavlje na istom drumu (njegovih šest delova bira se u opisu čvora), a sve se zove poglavlje. V2 nivoi („Junački pohodi”) su sklonjeni iz menija dok ne dobiju slike.
 - **Ravijojlina šuma je drugo poglavlje.** Do nje vila nije uz Marka: E je ne zove, savete daje guslar, njenog svetla i merača nema. Posle potere na Šarcu („Bogom brate, Kraljeviću Marko”) postaje posestrima i igra tada objasni šta radi E.
 - **Moći iz V2 se nalaze na putu**, svaka na oltaru u poglavlju kome po pesmi pripada: Vilin trag u šumi, Vazdušni kombo kod manastira, Potres na oranju, Vilinsko oko u podrumu, Sokolovo krilo u močvari (gde Marko previja sokolu krilo), Ravijojlin lanac u pećini, Juriš u vazduhu na prevoju, Šarčev gaz u klisuri, Trk po zidu u ruševinama. Oltar stoji na glavnom drumu; ko ga ipak promaši, moć dobija na kraju poglavlja. Stara čuvanja dobijaju moći poglavlja koja su već pređena. Mapa u opisu poglavlja piše koja moć je na putu.
-- **Kapije su presek zida** (Stefan, uz snimak iz The Lost Crown: „sve kapije u igri moraju da izgledaju ovako, kao presek”). Kapija više nije kućica sa crkvom na vrhu gledana spreda, nego debeo zid presečen ravni slike: tamna masa preko cele visine ekrana, zasvođen prolaz u dnu, a rešetka se vidi sa strane i diže se u svoj žleb u zidu (`drawSection` u `dist/game.js`; kamen, palisada, rudnik, podrum). Ukrasne kapije gledane spreda (`prop-kapija-*`) još nisu zamenjene.
+- **Kapije su presek zida** (Stefan, uz snimak iz The Lost Crown: „sve kapije u igri moraju da izgledaju ovako, kao presek”). Kapija više nije kućica sa crkvom na vrhu gledana spreda, nego debeo zid presečen ravni slike: tamna masa preko cele visine ekrana, zasvođen prolaz u dnu, a rešetka se vidi sa strane i diže se u svoj žleb u zidu (`drawSection` u `dist/game.js`; kamen, palisada, rudnik, podrum). Ukrasne kapije gledane spreda (`prop-kapija-*`) se u igri ne postavljaju; spreda su ostali samo ulazi u riznice, u koje se ulazi sa W.
 - Nad oltarom lebdi znak moći; kad Codex isporuči animirane crteže (`moc-<ime>`, `art/world-pack-03/DOPUNA-47.md`), igra ih sama crta umesto svetla, a uzeti znak uleti u Marka.
 - Testovi: `mechanics-test` proverava red priče, vilu pre i posle šume i oltar u svakom poglavlju.
 
@@ -401,6 +401,11 @@ Dve prostorije iz V2 sada su u poglavljima priče (`vreme` i `kuke` u `dist/worl
 
 - **Kapija na vreme** (posle šume, gde se nalazi Vilin trag): poluga je predaleko od kapije da se stigne trkom dok je otvorena. Ostavi se trag kraj kapije (V), povuče poluga (E), pa se tragom vrati (V). U Manastirskom visu, Opsednutoj tvrđavi, podrumu, močvari, na prevoju, u rudniku i na obali.
 - **Kuke nad jarugom** (posle pećine, gde se nalazi Ravijojlin lanac): dve srebrne kuke nad jarugom bez mosta; lanac (C) nosi Marka od prve do druge i preko. Ko lanac ne baci, silazi lestvama i ide dnom, gde je kovčeg i straža. Na prevoju, u klisuri, ruševinama, rudniku i na obali.
+
+## 13. novembar (10): bregovi i uvale
+
+- Drum više nije samo ravan sa stepenicama: prostorije **breg** (uz padinu, preko zaravni, niz padinu) i **uvala** (niz padinu u udolinu i nazad) koriste kose ploče iz V2 (`ramp` u `dist/world.js`, `surf`). Tlo padine se crta trakom tla tog poglavlja u uskim kriškama, pa trava prati nagib (`drawPadina` u `dist/game.js`); posebni crteži nisu bili potrebni. U selu, šumi, kod manastira, na oranju, u tvrđavi, močvari, na prevoju, u klisuri i na obali.
+- Probni programi su dobili `topAt` (visina kose ploče), koji im je falio dok u poglavljima nije bilo padina.
 
 ## Izvori
 
