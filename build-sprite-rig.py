@@ -79,7 +79,7 @@ def analyse(cell):
 # retain that fixed scale as the character kneels and lies down.
 for character, height in {'marko': 125, 'sword': 110, 'shield': 103, 'archer': 115, 'musa': 161}.items():
     name = character + '-death'
-    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
     c = list(manifest['frame_layout']['rows'].values())[0][0]
     im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
     info = analyse(im[c['y']:c['y']+c['h'], c['x']:c['x']+c['w']])
@@ -87,7 +87,7 @@ for character, height in {'marko': 125, 'sword': 110, 'shield': 103, 'archer': 1
 
 for action in ['crouch', 'block', 'super']:
     name = 'marko-' + action
-    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
     c = list(manifest['frame_layout']['rows'].values())[0][5]  # upright return pose, no raised weapon
     im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
     info = analyse(im[c['y']:c['y']+c['h'], c['x']:c['x']+c['w']])
@@ -113,7 +113,7 @@ for name in PACK3:
     if not os.path.exists(os.path.join(ROOT, name + '.json')):
         continue
     who = name.split('-')[0]
-    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
     cells = list(manifest['frame_layout']['rows'].values())[0]
     im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
     tallest = max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
@@ -138,7 +138,7 @@ for name, ref in PACK4_REF.items():
     if ref:
         SCALES[name] = (SCALES[ref][0], mode)
     else:  # the oxen team: the tallest frame (yoke horns to hooves) stands 165 world px
-        manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+        manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
         cells = list(manifest['frame_layout']['rows'].values())[0]
         im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
         tall = max(analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['sole'] - analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']])['top'] for c in cells)
@@ -154,7 +154,7 @@ NEW_FOES = {'kopljanik': 118, 'tufekdzija': 116, 'pas': 58}
 for who, height in NEW_FOES.items():
     if not os.path.exists(os.path.join(ROOT, who + '-idle.json')):
         continue
-    manifest = json.load(open(os.path.join(ROOT, who + '-idle.json')))
+    manifest = json.load(open(os.path.join(ROOT, who + '-idle.json'), encoding='utf-8-sig'))
     cells = list(manifest['frame_layout']['rows'].values())[0]
     im = np.array(Image.open(os.path.join(ROOT, who + '-idle.png')).convert('RGBA'))
     scale = height / max(body_height(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells)
@@ -168,7 +168,7 @@ MARKO_H = 128
 MARKO_REF = {'marko-idle': 0, 'marko-idle-2': 'median', 'marko-block': 0, 'marko-crouch': 0, 'marko-drink': 0, 'marko-hurt': 0,
              'marko-combo-1': 0, 'marko-combo-2': 0, 'marko-combo-3': 5, 'marko-getup': 5, 'marko-jump': 0, 'marko-charged': 0, 'marko-kick': 0}  # run and attack are the user's calibration (128)
 def visible_px(name, ref):
-    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
     cells = list(manifest['frame_layout']['rows'].values())[0]
     im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
     hs = [analyse(im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']]) for c in cells]
@@ -205,7 +205,7 @@ for who, height in FOE_H.items():
 
 # DOPUNA-10: Marko striking from Šarac, Musa's new stages, the beg on horseback, the travellers, the Arab
 def _cells(name):
-    manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+    manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
     im = np.array(Image.open(os.path.join(ROOT, name + '.png')).convert('RGBA'))
     return [im[c['y']:c['y'] + c['h'], c['x']:c['x'] + c['w']] for c in list(manifest['frame_layout']['rows'].values())[0]]
 def _width(cell):
@@ -546,7 +546,7 @@ for name, (scale, mode) in SCALES.items():
         cells = [{'x': 0, 'y': 0, 'w': im.shape[1], 'h': im.shape[0]}]
     else:
         image = name + '.png'
-        manifest = json.load(open(os.path.join(ROOT, name + '.json')))
+        manifest = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf-8-sig'))
         im = np.array(Image.open(os.path.join(ROOT, image)).convert('RGBA'))
         cells = list(manifest['frame_layout']['rows'].values())[0]
     frames, anchors = [], []
