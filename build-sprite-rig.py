@@ -475,6 +475,11 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
 
 # ===== noc-poliranje: the other session's own clips go only between these two lines (helpers such as _cells, _road
 # and body_height are defined above). This session never writes here and puts its new blocks above this line. =====
+# archer-rafal (DOPUNA-46): three arrows in a row. Drawn closer than archer-shoot; the man looses in the same wide stance
+# in both, so the frame where he has just loosed is measured against the loosing frame of archer-shoot; the new drawing stands
+# lower and broader (legs wide, body leaning), and seen beside an archer on the road its head matched at 0.78 of that.
+if _have('archer-rafal') and 'archer-shoot' in SCALES:
+    SCALES['archer-rafal'] = (SCALES['archer-shoot'][0] * body_height(_cells('archer-shoot')[3]) / body_height(_cells('archer-rafal')[1]) * .78, 'feet')
 # ===== end of the noc-poliranje block =====
 
 rig = {}

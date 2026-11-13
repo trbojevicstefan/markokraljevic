@@ -1,0 +1,89 @@
+{
+    "identitySizeComparison":  "identity-size-comparison.png",
+    "renderScale":  1,
+    "frames":  [
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  0
+                   },
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  1
+                   },
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  2
+                   },
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  3
+                   },
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  4
+                   },
+                   {
+                       "bounds":  [
+                                      0,
+                                      0,
+                                      512,
+                                      487
+                                  ],
+                       "anchor":  {
+                                      "y":  487,
+                                      "x":  256
+                                  },
+                       "frame":  5
+                   }
+               ],
+    "atlasMatchesFrames":  true,
+    "holdLastFrame":  true,
+    "loop":  false,
+    "sizeOverlay":  "size-overlay.png",
+    "gifFrames":  6
+}
