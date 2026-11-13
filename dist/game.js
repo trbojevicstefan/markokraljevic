@@ -1666,7 +1666,8 @@ function drawPlows(){for(const pl of world.plowTeams||[]){if(pl.x<camera-1200||p
  const k=pl.liftT>0?Math.sin(Math.PI*(1-pl.liftT/PLOW_LIFT)):0;shadow(X+70,Y,120,.45*(1-k*.6));
  // the old drawing has a janissary at the handles: he is cut away, and Marko stands where he stood
  const V=rig?.['volovi-ralo']?'volovi-ralo':rig?.['volovi-plug']?'volovi-plug':null;
- if(V&&!(k>0&&rig?.['marko-dize-ralo'])){ctx.save();if(k>0){ctx.translate(hx+53,Y-62);ctx.rotate(-k*1.45);ctx.translate(-(hx+53),-(Y-62));}
+ if(k>0&&rig?.['marko-dize-ralo']){}
+ else if(V){ctx.save();if(k>0){ctx.translate(hx+53,Y-62);ctx.rotate(-k*1.45);ctx.translate(-(hx+53),-(Y-62));}
   if(V==='volovi-plug'){ctx.beginPath();ctx.moveTo(X-124,Y-73);ctx.lineTo(X-36,Y-73);ctx.lineTo(X-36,Y-262);ctx.lineTo(X+272,Y-262);ctx.lineTo(X+272,Y+14);ctx.lineTo(X-124,Y+14);ctx.closePath();ctx.clip();}
   rigDraw(V,pl.moveT>0?loopF(pl.walk/14,rig[V].frames.length):0,X,Y,1,{flash:pl.flash>0?pl.flash/.15*.5:0});ctx.restore();}
  else{drawOxen(X+60,Y,1,pl.walk/9,1);line(X-110,Y-60,X-60,Y-40,'#5a3c22',6);line(X-60,Y-40,X-84,Y+2,'#3e2a18',7);line(X-60,Y-40,X+40,Y-46,'#5a3c22',5);}
