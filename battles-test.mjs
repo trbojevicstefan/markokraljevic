@@ -437,4 +437,21 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  if(r){Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true,face:1});step(30);safe();Object.assign(r,{alive:true,hp:r.maxHp,x:p.x+110,y:p.y,vx:0,vy:0,grounded:true,mode:'idle',timer:2,stun:0,climb:null,lunge:null,dodgeCd:0,spava:false,patrola:false,skriven:false,enter:null});
   const dt0=r.dodgeT||0;p.attack=.3;p.attackKind='heavy';p.face=1;const x0=r.x;step(2);ok(r.lunge?.t>0&&r.lunge.v>0&&r.dodgeCd>3&&r.react==='akindzija-backstep'&&(r.dodgeT||0)===dt0,'raider: he leaps back from a heavy blow he sees coming, in his own backstep, and his other dodge keeps its clock');
   step(40);ok(r.x>x0+40,'raider: and lands out of its reach');r.alive=false;}}
+// ---- tandems: a shield holds his post before the shooter; of two blades one goes round to Marko's back; the survivor avenges ----
+{const w=await land('manastir'),p=S().p,gy=p.y;Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true});step(30);safe();
+ const free=type=>w.enemies.find(e=>e.type===type&&!e.perch&&!e.champion&&!e.kit&&!e.gunner&&!e.tanUsed);
+ const put=(type,dx)=>{const e=free(type)||free('sword');e.tanUsed=true;Object.assign(e,{type,alive:true,hp:e.maxHp,x:p.x+dx,y:gy,home:p.x+dx,vx:0,vy:0,grounded:true,mode:'idle',timer:9,stun:0,climb:null,lunge:null,pendingHit:null,inChain:false,chainLeft:0,moveCool:99,spava:false,patrola:false,skriven:false,elite:false,enter:null,alert:true,par:null,tan:null});return e;};
+ const others=keep=>{for(const o of w.enemies)if(!keep.includes(o))o.alive=false;};
+ ok(w.enemies.some(e=>e.par!=null&&e.tan)&&w.enemies.filter(e=>e.par!=null).every(e=>w.enemies.find(o=>o.id===e.par)?.par===e.id),'tandem: the level pairs foes who stand side by side, each the other\'s mate');
+ const g=put('shield',470),a=put('archer',380);others([g,a]);g.par=a.id;a.par=g.id;g.tan='stit';a.tan='strelac';a.timer=99;
+ for(let i=0;i<420;i++){safe();g.timer=9;a.timer=99;step();}
+ ok(g.x<a.x-70&&g.x>a.x-150,`tandem: the shield takes his post between Marko and the archer (${Math.round(a.x-g.x)}px before him)`);
+ p.x-=260;for(let i=0;i<360;i++){safe();g.timer=9;a.timer=99;step();}
+ ok(g.x<a.x-70&&g.x>a.x-150,'tandem: Marko steps back and the shield does not leave the archer to chase him');
+ a.alive=false;step(3);ok(g.par==null&&g.bes>0,'tandem: the archer falls and the shield goes wild (OSVETA)');g.alive=false;
+ const h=put('sword',110),f=put('sword',230);others([h,f]);h.par=f.id;f.par=h.id;h.tan='drzi';f.tan='zalazi';
+ let behind=false;for(let i=0;i<720&&!behind;i++){safe();h.timer=9;f.timer=9;h.x=p.x+110;step();behind=f.x<p.x-30;}
+ ok(behind,'tandem: while one blade holds Marko from the front the other runs round to his back');
+ h.mode='windup';h.timer=.5;f.timer=0;step(2);ok(f.timer>=.25&&f.mode==='idle','tandem: he does not strike together with the holder');
+ h.mode='recover';h.timer=.6;f.timer=5;f.dvaput=false;step(2);ok(f.timer<.2,'tandem: he strikes as the holder\'s blow ends');others([]);}
 console.log(`${checks} battle checks passed.`);

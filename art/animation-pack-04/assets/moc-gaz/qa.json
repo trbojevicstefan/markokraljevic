@@ -1,0 +1,96 @@
+{
+  "clip": "moc-gaz",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        147,
+        145,
+        365,
+        367
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        128,
+        144,
+        383,
+        368
+      ],
+      "touchesEdge": false,
+      "components": 4
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        118,
+        141,
+        394,
+        371
+      ],
+      "touchesEdge": false,
+      "components": 7
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        138,
+        406,
+        373
+      ],
+      "touchesEdge": false,
+      "components": 8
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        117,
+        141,
+        394,
+        370
+      ],
+      "touchesEdge": false,
+      "components": 13
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        129,
+        144,
+        383,
+        368
+      ],
+      "touchesEdge": false,
+      "components": 5
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        134,
+        145,
+        378,
+        367
+      ],
+      "touchesEdge": false,
+      "components": 7
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        148,
+        145,
+        364,
+        367
+      ],
+      "touchesEdge": false,
+      "components": 1
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

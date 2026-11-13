@@ -1,0 +1,96 @@
+{
+  "clip": "moc-zidotrk",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        106,
+        183,
+        405,
+        328
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        111,
+        171,
+        400,
+        341
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        120,
+        153,
+        392,
+        359
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        127,
+        134,
+        385,
+        377
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        123,
+        137,
+        389,
+        374
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        111,
+        165,
+        400,
+        346
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        106,
+        185,
+        406,
+        327
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        106,
+        186,
+        406,
+        325
+      ],
+      "touchesEdge": false,
+      "components": 1
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

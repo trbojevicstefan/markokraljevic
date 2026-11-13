@@ -20,3 +20,30 @@
 - `oklopnik-drugi` v3 (GPT-6.1-Sol): PRIHVAĆEN. Pravi lik, malj ceo u svih šest kadrova, poslednji kadar je stav iz `oklopnik-slam`. U igri je to nizak zamah posle malja odozgo, koji se preskače.
 - `fx-potres` v3 (GPT-6.1-Sol): PRIHVAĆEN. Šest zasebnih sličica talasa, prašina 100 px. Poslednjem kadru je skinut zelenkast trag ključa (zelena svedena na crvenu gde je bila jača). U igri talas ide dok udar putuje, pa prašina bledi.
 
+
+
+- 2026-11-13 — D47 moc-krilo: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni u art/animation-pack-04/assets/moc-krilo/. QA: svi kadrovi jedan connected predmet, touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-lanac: NIJE IZVEZENO posle 3 image_gen pokušaja; QA je odbio pokušaje zbog odvojenih alfa-komponenti (pokušaj 1: kadar 0 = 3 komponente, pokušaj 2: kadar 3 = 2, pokušaj 3: kadar 6 = 2). Nema klipa u art/animation-pack-04/assets/moc-lanac/.
+
+- 2026-11-13 — D47 moc-oko: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA prošao: jedan connected predmet po kadru, touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-trag: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA prošao: komponente izmerene po kadru (otisak + tri lista i prateći sjaj), touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-potres: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA prošao: komponente izmerene po kadru (kamen i povratni kamenčići), touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-nalet: GOTOVO, ponovljen export istog image_gen izvora; 8 kadrova 512x512, bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA: komponente izmerene po kadru zbog tri odvojene vazdušne trake, touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-kombo: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA: komponente izmerene zbog spiralnog vihora, touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-gaz: GOTOVO, ponovljen export istog image_gen izvora; 8 kadrova 512x512, bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA: komponente izmerene zbog varnica, touchesEdge=false, bez zelenih piksela.
+
+- 2026-11-13 — D47 moc-zidotrk: GOTOVO, image_gen 4x2 isečen na 8 kadrova 512x512; bez lika, petlja loop=true/holdLastFrame=false; atlas, frames, preview.gif, manifest i qa izvezeni. QA prošao: jedan connected predmet po kadru, touchesEdge=false, bez zelenih piksela.
+- 2026-11-13 — D47 v2 moc-lanac: GOTOVO, novi 4x2 image_gen izvor isečen na 8 kadrova 512x512; srebrni lanac sa kukom obiđe pun krug za 8 kadrova, sjaj svetloplav #9fe8ff; atlas/frames/preview.gif/manifest/qa izvezeni u art/animation-pack-04/assets/moc-lanac/. QA: touchesEdge=false i bez vidljivih zelenih piksela u svih 8 kadrova; components 2–3 su samo upisani u qa.json po posebnom pravilu za lanac.
+
+## Pregled DOPUNA-47 (Claude, 13. 11. 2026)
+
+- Pogledano svih devet listova na tamnoj podlozi i `moc-krilo` u igri nad oltarom (Noćna močvara): **svih devet prihvaćeno** (`moc-krilo`, `moc-lanac` v2, `moc-oko`, `moc-trag`, `moc-potres`, `moc-nalet`, `moc-kombo`, `moc-gaz`, `moc-zidotrk`). Crtao GPT-5.6-Luna (medium), bez jačeg modela.
+- `moc-lanac` u prvoj turi nije izvezen zbog mog pravila „jedan povezan predmet po kadru”, koje za lanac ne važi; pravilo je za njega ukinuto i druga tura je prošla.
+- Predmeti su nacrtani manji nego što je brief tražio (oko 150 px u ćeliji 512): u rigu im je mera 0.44 (`build-sprite-rig.py`, blok noc-poliranje). `moc-gaz` ima žućkasto-zelen sjaj umesto belo-zlatnog; ostavljeno.
+- Tri manifesta su imala slova sa kvačicama u opisu, na čemu `build-sprite-rig.py` pada bez UTF-8 režima: prepisani su kao čist ASCII. U sledećim briefovima tražiti opis bez naših slova.

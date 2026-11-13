@@ -501,6 +501,11 @@ if _have('oklopnik-drugi') and 'oklopnik-slam' in SCALES:
 # fx-potres (DOPUNA-46 v3): the tremor of his hammer along the ground, at the zoom of oklopnik-slam; no figure in it
 if _have('fx-potres') and 'oklopnik-slam' in SCALES:
     SCALES['fx-potres'] = (SCALES['oklopnik-slam'][0], 'center')
+# moc-* (DOPUNA-47): the animated signs of the powers that float over a shrine; no figure, drawn about their own middle.
+# The drawing is some 150 px in a 512 cell and is shown some 70 to 130 px across over the shrine.
+for _m in ('krilo', 'lanac', 'oko', 'trag', 'potres', 'nalet', 'kombo', 'gaz', 'zidotrk'):
+    if _have('moc-' + _m):
+        SCALES['moc-' + _m] = (.44, 'center')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

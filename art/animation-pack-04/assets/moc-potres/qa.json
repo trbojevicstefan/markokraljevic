@@ -1,0 +1,96 @@
+{
+  "clip": "moc-potres",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        122,
+        388,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        124,
+        122,
+        388,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        117,
+        122,
+        394,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        122,
+        406,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 3
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        121,
+        122,
+        391,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        124,
+        122,
+        388,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        124,
+        122,
+        388,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        124,
+        122,
+        388,
+        389
+      ],
+      "touchesEdge": false,
+      "components": 1
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

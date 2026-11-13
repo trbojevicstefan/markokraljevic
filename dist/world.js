@@ -405,9 +405,10 @@ export function makeLevel(L,index,variant='day',opts={}){
  const floorAt=x=>{let best=null;for(const q of platforms)if(q.ground&&x>q.x+40&&x<q.x+q.w-40&&(!best||q.y<best.y))best=q;return best;};
  const foe=(type,x,y,o={})=>{const hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+enemies.length,x:Math.round(x),y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
  const quiet=B.traps.filter(t=>t.kind==='sirotinja');if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
- let k=0,lastX=-1e9;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(L.peace)break;if(Math.abs(s.x-B.spawn.x)<480)continue;
+ let k=0,lastX=-1e9,thin=0;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(L.peace)break;if(Math.abs(s.x-B.spawn.x)<480)continue;
   if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
-  if(s.x-lastX<450)continue;lastX=s.x;const type=pool[k%pool.length];foe(type,s.x,s.y);
+  // fewer and tougher (Stefan, 13. 11.): every third man of the road is left out; those who stay carry more health and work in pairs (game.js)
+  if(s.x-lastX<450)continue;lastX=s.x;if(thin++%3===2)continue;const type=pool[k%pool.length];foe(type,s.x,s.y);
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
  for(const t of B.traps)if(t.kind==='top')foe('palikuca',t.x+80,t.y,{gunner:true});
  // the Arab's men guard each cage of wedding guests

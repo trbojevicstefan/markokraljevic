@@ -1,0 +1,96 @@
+{
+  "clip": "moc-nalet",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        107,
+        204,
+        405,
+        307
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        108,
+        201,
+        404,
+        310
+      ],
+      "touchesEdge": false,
+      "components": 2
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        107,
+        202,
+        405,
+        310
+      ],
+      "touchesEdge": false,
+      "components": 3
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        203,
+        406,
+        309
+      ],
+      "touchesEdge": false,
+      "components": 3
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        107,
+        201,
+        405,
+        310
+      ],
+      "touchesEdge": false,
+      "components": 3
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        106,
+        200,
+        405,
+        312
+      ],
+      "touchesEdge": false,
+      "components": 2
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        107,
+        203,
+        404,
+        308
+      ],
+      "touchesEdge": false,
+      "components": 2
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        106,
+        203,
+        405,
+        309
+      ],
+      "touchesEdge": false,
+      "components": 1
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

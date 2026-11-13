@@ -1,0 +1,96 @@
+{
+  "clip": "moc-oko",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        108,
+        167,
+        404,
+        345
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        108,
+        158,
+        404,
+        354
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        107,
+        149,
+        405,
+        363
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        140,
+        406,
+        372
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        106,
+        140,
+        405,
+        371
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        107,
+        154,
+        405,
+        357
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        108,
+        167,
+        404,
+        345
+      ],
+      "touchesEdge": false,
+      "components": 1
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        107,
+        158,
+        404,
+        353
+      ],
+      "touchesEdge": false,
+      "components": 1
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

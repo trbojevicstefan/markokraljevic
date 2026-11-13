@@ -367,6 +367,12 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - Nad oltarom lebdi znak moći; kad Codex isporuči animirane crteže (`moc-<ime>`, `art/world-pack-03/DOPUNA-47.md`), igra ih sama crta umesto svetla, a uzeti znak uleti u Marka.
 - Testovi: `mechanics-test` proverava red priče, vilu pre i posle šume i oltar u svakom poglavlju.
 
+## 13. novembar (5): manje protivnika, jači su i rade u paru; animirani znakovi moći
+
+- **Manje ih je i jači su.** Svaki treći protivnik sa druma je izostavljen (oko četvrtine manje po poglavlju), a oni koji ostaju nose više zdravlja (`FOE_TOUGH` 1.75).
+- **Tandemi.** Dva protivnika koji stoje jedan do drugog rade zajedno (`makeTandems`, `tandemStep` u `dist/game.js`), a nad glavama im stoje dve spojene karike. Štitonoša ili sabljaš sa strelcem: prvi stane između Marka i strelca i tu ostaje, udara samo ono što mu priđe, a strele lete preko njegovog ramena. Dva sabljaša: jedan drži Marka spreda, drugi trkom zalazi za leđa, i udaraju jedan za drugim, nikad zajedno. Kad jedan iz para padne, drugi podivlja na nekoliko sekundi („OSVETA!”). Drugi čovek koga dodaje težina igre sada je uvek onaj koji dopunjuje prvog (štit strelcu, strelac štitu, sablja sablji).
+- **Animirani znakovi moći.** Nad oltarom više nije svetla loptica nego nacrtan znak koji se kreće: sokolovo krilo maše, lanac sa kukom kruži, vilinsko oko trepće, potkova sevne, kamen puca po zlatnoj pukotini, topuz se vrti u vihoru, opanak maše krilom, pero strele vijori, vilin otisak pulsira (`moc-*`, devet klipova po 8 kadrova, `art/world-pack-03/DOPUNA-47.md`). Uzeti znak uleti u Marka.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

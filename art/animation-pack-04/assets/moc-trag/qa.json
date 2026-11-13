@@ -1,0 +1,96 @@
+{
+  "clip": "moc-trag",
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        111,
+        120,
+        400,
+        392
+      ],
+      "touchesEdge": false,
+      "components": 9
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        121,
+        115,
+        390,
+        397
+      ],
+      "touchesEdge": false,
+      "components": 9
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        116,
+        119,
+        396,
+        392
+      ],
+      "touchesEdge": false,
+      "components": 8
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        114,
+        406,
+        398
+      ],
+      "touchesEdge": false,
+      "components": 7
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        106,
+        120,
+        406,
+        391
+      ],
+      "touchesEdge": false,
+      "components": 7
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        108,
+        114,
+        403,
+        398
+      ],
+      "touchesEdge": false,
+      "components": 5
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        115,
+        119,
+        396,
+        392
+      ],
+      "touchesEdge": false,
+      "components": 4
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        113,
+        118,
+        399,
+        394
+      ],
+      "touchesEdge": false,
+      "components": 6
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "atlasMatchesFrames": true
+}

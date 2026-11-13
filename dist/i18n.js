@@ -9,6 +9,11 @@ const EN_PAIRS=[
 ["Junački pohodi","Heroic Quests"],["Tajne sobe","Secret rooms"],["Ostani i traži tajne","Stay and look for secrets"],["BOS JE PAO","THE BOSS HAS FALLEN"],["Megdan je dobijen","The duel is won"],
 ["DUGI NIVOI SA SOBAMA I TAJNAMA","LONG LEVELS WITH ROOMS AND SECRETS"],["Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.","Long levels with rooms, secrets and powers. Each gives Marko a new power."],
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["ZAJEDNO!", "TOGETHER!"],
+["OSVETA!", "REVENGE!"],
+["ZALAZI TI ZA LEĐA!", "HE IS GOING ROUND YOUR BACK!"],
+["Štitonoša zaklanja strelca: stoji pred njim i ne da ti da priđeš. Preskoči ga, slomi mu gard teškim udarcem (K), ili vrati strelu odbijanjem (L).", "The shield-bearer covers the archer: he stands in front of him and will not let you near. Jump over him, break his guard with a heavy blow (K), or send the arrow back with a parry (L)."],
+["Ova dvojica rade zajedno: jedan te drži spreda, a drugi ti zalazi za leđa. Ne daj da te uklešte: obori prvo onoga koji trči.", "These two work together: one holds you from the front while the other goes round your back. Do not let them pin you: bring down the runner first."],
 ["Vilu Ravijojlu ćeš tek sresti, u njenoj šumi.", "You have yet to meet the vila Ravijojla, in her forest."],
 ["Izvukao si se iz ponora · −20 zdravlja", "You climbed out of the chasm · −20 health"],
 ["Guslar: Još tvoja pesma nije završena.", "The guslar: Your song is not finished yet."],
