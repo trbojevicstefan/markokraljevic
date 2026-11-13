@@ -1,0 +1,223 @@
+{
+  "clip": "fx-potres",
+  "version": "v3",
+  "attempts": 1,
+  "frames": [
+    {
+      "frame": 0,
+      "sourceGridCell": [
+        0,
+        0
+      ],
+      "sourceBounds": [
+        20,
+        231,
+        171,
+        340
+      ],
+      "bounds": [
+        35,
+        388,
+        165,
+        488
+      ],
+      "left": 35,
+      "right": 164,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        36,
+        388,
+        164,
+        488
+      ],
+      "opaqueHeight": 100,
+      "opaqueCorePixels": 5884,
+      "darkCrackThicknessPixels": 8
+    },
+    {
+      "frame": 1,
+      "sourceGridCell": [
+        1,
+        0
+      ],
+      "sourceBounds": [
+        29,
+        231,
+        271,
+        342
+      ],
+      "bounds": [
+        90,
+        388,
+        310,
+        488
+      ],
+      "left": 90,
+      "right": 309,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        93,
+        389,
+        310,
+        486
+      ],
+      "opaqueHeight": 97,
+      "opaqueCorePixels": 8014,
+      "darkCrackThicknessPixels": 6
+    },
+    {
+      "frame": 2,
+      "sourceGridCell": [
+        2,
+        0
+      ],
+      "sourceBounds": [
+        30,
+        230,
+        397,
+        343
+      ],
+      "bounds": [
+        90,
+        388,
+        510,
+        488
+      ],
+      "left": 90,
+      "right": 509,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        94,
+        389,
+        509,
+        486
+      ],
+      "opaqueHeight": 97,
+      "opaqueCorePixels": 14635,
+      "darkCrackThicknessPixels": 6
+    },
+    {
+      "frame": 3,
+      "sourceGridCell": [
+        0,
+        1
+      ],
+      "sourceBounds": [
+        31,
+        226,
+        509,
+        342
+      ],
+      "bounds": [
+        90,
+        388,
+        730,
+        488
+      ],
+      "left": 90,
+      "right": 729,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        95,
+        389,
+        730,
+        488
+      ],
+      "opaqueHeight": 99,
+      "opaqueCorePixels": 21138,
+      "darkCrackThicknessPixels": 8
+    },
+    {
+      "frame": 4,
+      "sourceGridCell": [
+        1,
+        1
+      ],
+      "sourceBounds": [
+        31,
+        224,
+        696,
+        343
+      ],
+      "bounds": [
+        90,
+        388,
+        965,
+        488
+      ],
+      "left": 90,
+      "right": 964,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        94,
+        388,
+        964,
+        486
+      ],
+      "opaqueHeight": 98,
+      "opaqueCorePixels": 28759,
+      "darkCrackThicknessPixels": 6
+    },
+    {
+      "frame": 5,
+      "sourceGridCell": [
+        2,
+        1
+      ],
+      "sourceBounds": [
+        31,
+        227,
+        696,
+        343
+      ],
+      "bounds": [
+        90,
+        388,
+        980,
+        488
+      ],
+      "left": 90,
+      "right": 979,
+      "top": 388,
+      "bottom": 487,
+      "height": 100,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        95,
+        389,
+        979,
+        486
+      ],
+      "opaqueHeight": 97,
+      "opaqueCorePixels": 26069,
+      "darkCrackThicknessPixels": 6
+    }
+  ],
+  "endpointExactSource": false,
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": false,
+  "holdLastFrame": true,
+  "visualReviewPassed": true
+}

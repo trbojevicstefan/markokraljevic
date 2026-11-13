@@ -50,3 +50,31 @@ Zato za likove važi ovaj postupak, korak po korak. Bez njega klip ne izvozi.
 Za `fx-potres` (bez lika): prašina mora biti visoka 90 do 110 px u ćeliji, gusta i toplo smeđa, neprovidna u jezgru i providna samo po obodu; pukotina u tlu tamna, široka 6 do 10 px. U kadru 0 udar kod x≈100 (prsne zemlja uvis), u kadrovima 1–4 čelo talasa ide udesno do x≈950 a iza njega ostaje prašina, u kadru 5 se sve razilazi. Tlo je na y=487.
 
 Opisi poza ostaju kao u tabeli gore. Status upiši kao nove redove sa oznakom `v2`.
+
+---
+
+## Treći pokušaj (v3, jači model): `oklopnik-drugi` i `fx-potres`
+
+`archer-rafal` v2 je prihvaćen i u igri je; njega ne diraj. Druga dva klipa su odbijena i drugi put:
+
+- `oklopnik-drugi` v2: lik je bio pravi, ali je malj u kadrovima 2 i 4 izašao iz ćelije i odsečen je njenom ivicom, a u kadru 5 Oklopnik nije u stavu u kom završava `oklopnik-slam`.
+- `fx-potres` v2: u svaku od šest ćelija stao je ceo umanjeni niz od šest sličica, umesto jedne sličice po ćeliji.
+
+Postupak za lik ostaje onaj iz dela „Ponavljanje (v2)" (uzor je kadar 0 iz `dist/assets/oklopnik-idle.png`, `image_gen` kao uređivanje slike, provera lika i veličine). Postupak izvoza pogledaj u `art/world-pack-03/export-dopuna44-deo3-v2.py` i ostalim `export-dopuna44-*.py`. Dodatno:
+
+### `oklopnik-drugi` (512×512, 6 kadrova, jednom)
+
+1. Ceo lik SA MALJEM mora u svakom kadru da stane u ćeliju, sa bar 24 px praznine do svake ivice. Malj se vidi u svih šest kadrova, ceo. Ako zamah ne staje, nacrtaj lik manji: zum ne mora da bude kao `oklopnik-slam`, veličinu ću podesiti u rigu.
+2. Pokret: kadar 0 je stav posle udarca o zemlju (malj spušten pred njim, kao poslednji kadrovi `oklopnik-slam`); kadrovi 1–2 zamah: malj ide unazad pored desnog boka, nisko; kadrovi 3–4 udarac: širok vodoravan zamah napred u visini kolena, u kadru 4 malj je ispružen pred njim; kadar 5 je povratak u stav, ista poza i visina kao poslednji kadar `oklopnik-slam`.
+3. Stopala ostaju na istom mestu u svih šest kadrova (y=487), lik gleda udesno, štit ostaje na levoj ruci.
+4. Pre izvoza proveri svaki kadar posebno: da li bilo koji neprovidan piksel dodiruje ivicu ćelije. Ako dodiruje, kadar nije dobar. Rezultat te provere upiši u `qa.json` (`touchesEdge` po kadru).
+
+### `fx-potres` (ćelija 1024×512, 6 kadrova, jednom, bez lika)
+
+1. Atlas je 6144×512: šest ćelija jedna do druge, u SVAKOJ ćeliji JEDNA sličica talasa u punoj veličini. Nacrtaj šest zasebnih sličica (ili jednu mrežu 3×2 koju pre izvoza isečeš na šest), ne umanjuj niz.
+2. Tlo je na y=487 u svakoj ćeliji. Prašina je visoka 90 do 110 px (vrh na y≈380–397), gusta, toplo smeđa kao zemlja u `oklopnik-slam`, neprovidna u jezgru. Pukotina u tlu je tamna, široka 6 do 10 px, duž y≈480–487.
+3. Kadar 0: udar kod x≈100, zemlja prsne uvis. Kadrovi 1–4: čelo talasa je redom na x≈300, 500, 720, 950, a iza njega do x≈100 ostaje niža prašina i pukotina. Kadar 5: prašina se razilazi celom dužinom, pukotina ostaje.
+4. Pre izvoza izmeri u svakoj ćeliji granice neprovidnog sadržaja (levo, desno, vrh) i upiši ih u `qa.json`; desna granica mora da raste od kadra 0 do 4.
+
+Status upiši kao nove redove sa oznakom `v3`. Najviše tri pokušaja po klipu; ako ni treći ne prođe provere, ne izvozi.
+

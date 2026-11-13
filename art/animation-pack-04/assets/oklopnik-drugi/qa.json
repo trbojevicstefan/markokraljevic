@@ -1,0 +1,232 @@
+{
+  "clip": "oklopnik-drugi",
+  "version": "v3",
+  "attempts": 2,
+  "frames": [
+    {
+      "frame": 0,
+      "sourceGridCell": [
+        0,
+        0
+      ],
+      "sourceBounds": [
+        109,
+        136,
+        431,
+        481
+      ],
+      "rearFootX": 142,
+      "frontFootX": 352,
+      "soleY": 487,
+      "registrationScaleX": 1.0824742268041236,
+      "bounds": [
+        114,
+        162,
+        445,
+        488
+      ],
+      "left": 114,
+      "right": 444,
+      "top": 162,
+      "bottom": 487,
+      "height": 326,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        118,
+        163,
+        443,
+        486
+      ],
+      "opaqueHeight": 323
+    },
+    {
+      "frame": 1,
+      "sourceGridCell": [
+        1,
+        0
+      ],
+      "sourceBounds": [
+        65,
+        124,
+        393,
+        481
+      ],
+      "rearFootX": 142,
+      "frontFootX": 352,
+      "soleY": 487,
+      "registrationScaleX": 1.0047846889952152,
+      "bounds": [
+        82,
+        148,
+        392,
+        488
+      ],
+      "left": 82,
+      "right": 391,
+      "top": 148,
+      "bottom": 487,
+      "height": 340,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        83,
+        151,
+        391,
+        485
+      ],
+      "opaqueHeight": 334
+    },
+    {
+      "frame": 2,
+      "sourceGridCell": [
+        2,
+        0
+      ],
+      "sourceBounds": [
+        27,
+        105,
+        391,
+        481
+      ],
+      "rearFootX": 142,
+      "frontFootX": 352,
+      "soleY": 487,
+      "registrationScaleX": 0.9859154929577465,
+      "bounds": [
+        50,
+        130,
+        393,
+        488
+      ],
+      "left": 50,
+      "right": 392,
+      "top": 130,
+      "bottom": 487,
+      "height": 358,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        53,
+        133,
+        389,
+        485
+      ],
+      "opaqueHeight": 352
+    },
+    {
+      "frame": 3,
+      "sourceGridCell": [
+        0,
+        1
+      ],
+      "sourceBounds": [
+        110,
+        92,
+        427,
+        479
+      ],
+      "rearFootX": 142,
+      "frontFootX": 352,
+      "soleY": 487,
+      "registrationScaleX": 1.0047846889952152,
+      "bounds": [
+        117,
+        121,
+        419,
+        488
+      ],
+      "left": 117,
+      "right": 418,
+      "top": 121,
+      "bottom": 487,
+      "height": 367,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        119,
+        124,
+        417,
+        487
+      ],
+      "opaqueHeight": 363
+    },
+    {
+      "frame": 4,
+      "sourceGridCell": [
+        1,
+        1
+      ],
+      "sourceBounds": [
+        86,
+        92,
+        478,
+        479
+      ],
+      "rearFootX": 142,
+      "frontFootX": 352,
+      "soleY": 487,
+      "registrationScaleX": 0.9292035398230089,
+      "bounds": [
+        119,
+        122,
+        462,
+        488
+      ],
+      "left": 119,
+      "right": 461,
+      "top": 122,
+      "bottom": 487,
+      "height": 366,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        121,
+        125,
+        461,
+        488
+      ],
+      "opaqueHeight": 363
+    },
+    {
+      "frame": 5,
+      "sourceGridCell": [
+        2,
+        1
+      ],
+      "sourceBounds": [
+        80,
+        81,
+        403,
+        480
+      ],
+      "bounds": [
+        110,
+        125,
+        373,
+        488
+      ],
+      "left": 110,
+      "right": 372,
+      "top": 125,
+      "bottom": 487,
+      "height": 363,
+      "touchesEdge": false,
+      "minMargin": 24,
+      "opaqueBounds": [
+        110,
+        125,
+        373,
+        488
+      ],
+      "opaqueHeight": 363
+    }
+  ],
+  "endpointExactSource": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "loop": false,
+  "holdLastFrame": true,
+  "visualReviewPassed": true,
+  "endpointMatchesSlamPixels": true
+}

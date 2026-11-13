@@ -424,7 +424,11 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
   p.invuln=0;p.hp=p.maxHp;const hp=p.hp;until(()=>o.pendingHit?.quake,120);ok(!!o.pendingHit?.quake&&p.hp===hp,'tremor: the hammer misses a man two hundred paces off, but the ground shakes toward him');
   until(()=>!o.pendingHit,120);ok(p.hp<hp,'tremor: standing on the ground, Marko is thrown by it');
   Object.assign(o,{variant:'slam',mode:'windup',timer:.02,windupDuration:1,pendingHit:null,inChain:true,stun:0});p.invuln=0;p.hp=p.maxHp;const hp2=p.hp;until(()=>o.pendingHit?.quake,120);Object.assign(p,{grounded:false,vy:-520,y:gy-30});until(()=>!o.pendingHit,120);
-  ok(p.hp===hp2,'tremor: a jump clears it');o.alive=false;}}
+  ok(p.hp===hp2,'tremor: a jump clears it');
+  if(globalThis.__rig['oklopnik-drugi']){const rnd=Math.random;Math.random=()=>0;Object.assign(p,{x:o.x-110,y:gy,vx:0,vy:0,grounded:true,invuln:99});Object.assign(o,{variant:'slam',mode:'windup',timer:.02,windupDuration:1,pendingHit:null,inChain:false,chainLeft:0,stun:0,lunge:null});
+   until(()=>o.chain2&&o.mode==='windup',120*3);ok(o.chain2&&o.variant==='zamah','sweep: after the hammer from above the armoured one swings low');
+   until(()=>o.pendingHit&&!o.pendingHit.quake&&o.pendingHit.low,120*2);ok(o.pendingHit?.low&&!o.pendingHit.quake,'sweep: the second blow is a low one, to be jumped');Math.random=rnd;}
+  o.alive=false;}}
 {const w=await land('selo'),p=S().p,r=w.enemies.find(e=>e.type==='akindzija'&&!e.champion&&!e.perch&&!e.kit);
  if(r){Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true,face:1});step(30);safe();Object.assign(r,{alive:true,hp:r.maxHp,x:p.x+110,y:p.y,vx:0,vy:0,grounded:true,mode:'idle',timer:2,stun:0,climb:null,lunge:null,dodgeCd:0,spava:false,patrola:false,skriven:false,enter:null});
   const dt0=r.dodgeT||0;p.attack=.3;p.attackKind='heavy';p.face=1;const x0=r.x;step(2);ok(r.lunge?.t>0&&r.lunge.v>0&&r.dodgeCd>3&&r.react==='akindzija-backstep'&&(r.dodgeT||0)===dt0,'raider: he leaps back from a heavy blow he sees coming, in his own backstep, and his other dodge keeps its clock');

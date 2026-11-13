@@ -480,6 +480,13 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
 # lower and broader (legs wide, body leaning), and seen beside an archer on the road its head matched at 0.78 of that.
 if _have('archer-rafal') and 'archer-shoot' in SCALES:
     SCALES['archer-rafal'] = (SCALES['archer-shoot'][0] * body_height(_cells('archer-shoot')[3]) / body_height(_cells('archer-rafal')[1]) * .78, 'feet')
+# oklopnik-drugi (DOPUNA-46 v3): the low sweep after the hammer from above. He ends in the stance oklopnik-slam ends in,
+# so the last frames are made the same height (the rule of the other -drugi clips).
+if _have('oklopnik-drugi') and 'oklopnik-slam' in SCALES:
+    SCALES['oklopnik-drugi'] = (SCALES['oklopnik-slam'][0] * body_height(_cells('oklopnik-slam')[-1]) / body_height(_cells('oklopnik-drugi')[-1]), 'feet')
+# fx-potres (DOPUNA-46 v3): the tremor of his hammer along the ground, at the zoom of oklopnik-slam; no figure in it
+if _have('fx-potres') and 'oklopnik-slam' in SCALES:
+    SCALES['fx-potres'] = (SCALES['oklopnik-slam'][0], 'center')
 # ===== end of the noc-poliranje block =====
 
 rig = {}
