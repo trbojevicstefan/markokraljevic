@@ -195,8 +195,9 @@ function atmosphere(g,t){
  g.fillStyle=gradient(g,0,720,[[0,'rgba(3,9,12,.30)'],[.25,'rgba(3,9,12,.08)'],[.75,'rgba(4,10,12,.02)'],[1,'rgba(3,9,11,.74)']]);
  g.fillRect(0,0,W,H);
  g.fillStyle=rad(g,580,350,970,'rgba(0,0,0,0)','rgba(0,2,5,.42)');g.fillRect(0,0,W,H);
- g.fillStyle=gradient(g,0,0+W,[[0,'rgba(1,8,11,.95)'],[.23,'rgba(1,8,11,.74)'],[.47,'rgba(2,9,11,.33)'],[.78,'rgba(1,7,9,.02)'],[1,'rgba(1,7,9,.12)']]);
- g.fillRect(0,0,W,H);
+ const left=g.createLinearGradient(0,0,W,0);
+ for(const [at,color] of [[0,'rgba(1,8,11,.95)'],[.23,'rgba(1,8,11,.74)'],[.47,'rgba(2,9,11,.33)'],[.78,'rgba(1,7,9,.02)'],[1,'rgba(1,7,9,.12)']])left.addColorStop(at,color);
+ g.fillStyle=left;g.fillRect(0,0,W,H);
 }
 function render(){
  if(!ctx||!canvas)return;
