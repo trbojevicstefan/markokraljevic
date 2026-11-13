@@ -434,6 +434,14 @@ for kit, who in KOSTAC_LIK.items():
         if _have(n_):
             SCALES[n_] = (s_, 'feet')
     print(clip, round(s_, 4), 'marko', round(m_ * s_ / _road('marko-idle-2'), 2), 'protivnik', round(o_ * s_ / _road(f'{who}-idle'), 2))
+# The janissary who leaps on Marko's back: Marko stands alone in the last frame of the throw, so his height there
+# (left part of the cell, the janissary lies to the right) makes him as tall as on the road.
+if _have('kostac-ledja-kraj') and 'marko-idle-2' in SCALES:
+    s_ = _road('marko-idle-2') / body_height(_cells('kostac-ledja-kraj')[-1][:, :300])
+    for n_ in ['kostac-ledja', 'kostac-ledja-kraj']:
+        if _have(n_):
+            SCALES[n_] = (s_, 'feet')
+    print('kostac-ledja', round(s_, 4))
 # The second strike in a row came out at a closer zoom than the first; the soldier ends both back in his stance,
 # so the last frames are made the same height.
 for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-attack'), ('akindzija-drugi', 'akindzija-spin'),
@@ -468,7 +476,7 @@ for name, (scale, mode) in SCALES.items():
 
 # A champion's grapple ending keeps the anchor of its loop: Marko stays where he stood while he throws the man
 # (the feet of the man lying on the ground would otherwise pull the anchor aside and the pair would jump).
-for kit in KOSTAC_LIK:
+for kit in list(KOSTAC_LIK) + ['ledja']:
     loop, end = f'kostac-{kit}', f'kostac-{kit}-kraj'
     if loop in rig and end in rig:
         rig[end]['anchor'] = rig[loop]['anchor']
