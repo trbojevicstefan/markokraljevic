@@ -118,17 +118,17 @@ export const CUDA=[
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
  selo:'flat crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tower flat trgovac flat boss:kopljanik',
- klisura:'flat terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
+ klisura:'flat terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat potera watch crates gnezdo logs plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
- manastir:'flat stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid stairs- jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
- tvrdjava:'flat topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
- prevoj:'flat stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat jaruga rocks zid terrace+ crates guslar:mir ladder+ rocks flat crumble watch logs crates trgovac flat boss:akindzija',
+ manastir:'flat stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
+ tvrdjava:'flat topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
+ prevoj:'flat stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks flat crumble watch logs crates trgovac flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks flat spikebed ledges crumble crates trgovac flat boss:azdaja',
- podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga zid chimney crates stairs+ barrels guslar:mir crumble crates ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
- mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc jaruga spikebed watch ledges flat trska bridge pillars ferry watch crates trska guslar:mir bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
- rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates guslar:mir crumble flat bedem rocks ledges spikes crates trgovac flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
- reka:'flat crates pogled bridge flat jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate bridge crumble crates ledges watch guslar:mir logs flat spikes crates tower flat trgovac flat boss:sword',
+ podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
+ mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc jaruga spikebed watch ledges flat trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
+ rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates guslar:mir crumble flat bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
+ rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
+ reka:'flat crates pogled bridge flat jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs flat spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator flat guslar:mir spikes crates trgovac flat boss:trio',
@@ -149,7 +149,7 @@ export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
  // the forks draw their sizes from their own dice, so adding one does not reshuffle the rest of the land
  const R2=seeded(L.id+'|raskrsce'),fr=(a,b)=>Math.floor(a+R2()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[],tajne=[];let x=0,gy=590,run=null,boss=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[],tajne=[],kuke=[];let x=0,gy=590,run=null,boss=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -287,6 +287,16 @@ export function buildLayout(L,variant='day'){
    block(x0-20,w+40,gy+deep,{cellar:true});ladders.push({x:x0+24,top:gy,bottom:gy+deep,side:-1},{x:x0+w-26,top:gy,bottom:gy+deep,side:1});
    crate(x0+w*.55,'kovceg',{y:gy+deep,loot:{coins:fr(20,28)}});rewards.push({x:x0+w*.3,y:gy+deep,prio:1});spots.push({x:x0+w*.72,y:gy+deep});
    x+=w;run=null;ground(fr(280,340));},
+  // a gate on a clock, too far from its lever to reach at a run: it is passed with the vila's trace (V by the gate, back to
+  // the lever, pull it, V again). The same timed gate as `lever`, with a longer road and a shorter clock. Its own dice (fr).
+  vreme(){const x0=x,len=fr(1160,1240);ground(len);traps.push({kind:'timed',vreme:true,lever:{x:x0+110,y:gy},gate:{x:x0+len-120,y:gy},time:2.6});busy.push([x0,x0+len]);spots.push({x:x0+len*.32,y:gy});},
+  // a ravine with no bridge: two silver hooks hang over it for Ravijojla's chain (C); or down the ladder, along the bottom
+  // past its guard and up the ladder on the far side. Nobody falls into a pit here.
+  kuke(){const w=fr(720,780),deep=Math.max(150,Math.min(fr(205,230),800-gy)),x0=x;busy.push([x0-60,x0+w+60]);
+   block(x0-20,w+40,gy+deep,{cellar:true});ladders.push({x:x0+24,top:gy,bottom:gy+deep,side:-1},{x:x0+w-26,top:gy,bottom:gy+deep,side:1});
+   kuke.push({x:x0+Math.round(w*.34),y:gy-250},{x:x0+Math.round(w*.74),y:gy-250});
+   crate(x0+w*.5,'kovceg',{y:gy+deep,loot:{coins:fr(18,26)}});spots.push({x:x0+w*.7,y:gy+deep});
+   x+=w;run=null;ground(fr(280,340));},
   // ===== the climb of a tower (Azačka kula): fixed measures, each piece asks one move of Marko =====
   // Measures from game.js: a jump rises 126 px and carries ~200 px; a wall jump adds ~120 px; Marko catches an edge
   // whose top is 84–266 px above the ground he jumped from (the hands reach it), and W or Space pulls him up.
@@ -375,7 +385,7 @@ export function buildLayout(L,variant='day'){
  const heart=hv?{x:hv.x0+hv.w-110,y:hv.y-44}:cellars[0]?{x:cellars[0].x-40,y:cellars[0].y-44}:rest[0]||null;
  // a land with a hidden room (tajna) keeps its lore scroll there
  const zapis=tajne[0]||rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
- return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,kuke,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina',width:7000,spawn:{x:80,y:590},goal:{x:6800,y:590},palette:'san u vilinskoj pećini',peace:true,secret:true,
  layers:[{id:'san-sky',speed:.04},{id:'san-far',speed:.16},{id:'san-mid',speed:.38},{id:'san-near',speed:.72}],
@@ -445,7 +455,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
- return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,kuke:B.kuke,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }
 // the greybox (?greybox) builds its own rooms; game.js reaches them through this one name
 export * as greybox from './greybox.js';

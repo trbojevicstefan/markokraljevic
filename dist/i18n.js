@@ -9,6 +9,8 @@ const EN_PAIRS=[
 ["Junački pohodi","Heroic Quests"],["Tajne sobe","Secret rooms"],["Ostani i traži tajne","Stay and look for secrets"],["BOS JE PAO","THE BOSS HAS FALLEN"],["Megdan je dobijen","The duel is won"],
 ["DUGI NIVOI SA SOBAMA I TAJNAMA","LONG LEVELS WITH ROOMS AND SECRETS"],["Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.","Long levels with rooms, secrets and powers. Each gives Marko a new power."],
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Ova kapija se zatvori pre nego što do nje dotrčiš. Ostavi Vilin trag kraj kapije (V), vrati se do poluge i povuci je (E), pa se tragom vrati (V) dok je otvorena.", "This gate shuts before you can run to it. Leave the vila's trace by the gate (V), go back to the lever and pull it (E), then return by the trace (V) while it is open."],
+["Nad jarugom vise srebrne kuke. Baci Ravijojlin lanac na prvu (C), pa iz leta na drugu. Ko lanac nema, silazi lestvama i ide dnom.", "Silver hooks hang over the ravine. Throw Ravijojla's chain at the first (C), then from the air at the second. Without the chain, take the ladder down and go along the bottom."],
 ["KRVARI", "BLEEDING"],
 ["Očeva sablja nije topuz. Seče brže (J J J), rane krvare, a treći rez je ubod dugog dometa. K je prolet: prođeš kroz dušmane i izađeš im za leđa. Štit i oklop je zaustavljaju: za njih vrati topuz (G).", "Your father's sabre is not the mace. It cuts faster (J J J), the wounds bleed, and the third cut is a thrust with a long reach. K is the pass: you go through the foes and come out behind them. A shield and an armour stop it: for those take the mace back (G)."],
 ["ZEMLJA PUCA!", "THE GROUND IS BREAKING!"],

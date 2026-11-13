@@ -395,6 +395,13 @@ Stefan: „sablja treba da ima drugačije poteze od topuza, a ne identične”. 
 - **Početni ekran** je bez pergamentne kartice: slika preko celog ekrana, veliko zlatno ime, jedna kolona krupnih stavki sa zlatnom oznakom kraj izabrane (strelice ili W/S, Enter; prva stavka je odmah izabrana), a brojači i sitne veze su nisko levo. Dugmad i njihovi id-jevi su isti.
 - **Optimizacija:** napravljene su 92 lake kopije crteža koje su falile u `dist/assets/pola` (klipovi nacrtani posle V2), pa telefoni i režim „Brže” više ne traže pa ne nalaze fajl i ne učitavaju punu sliku; iz učitavanja nivoa je izbačeno osam slika starih kapija koje se više ne crtaju (oko 1,3 MB po nivou).
 
+## 13. novembar (9): kapija na vreme i kuke u poglavljima
+
+Dve prostorije iz V2 sada su u poglavljima priče (`vreme` i `kuke` u `dist/world.js`), pa su i nivoi duži:
+
+- **Kapija na vreme** (posle šume, gde se nalazi Vilin trag): poluga je predaleko od kapije da se stigne trkom dok je otvorena. Ostavi se trag kraj kapije (V), povuče poluga (E), pa se tragom vrati (V). U Manastirskom visu, Opsednutoj tvrđavi, podrumu, močvari, na prevoju, u rudniku i na obali.
+- **Kuke nad jarugom** (posle pećine, gde se nalazi Ravijojlin lanac): dve srebrne kuke nad jarugom bez mosta; lanac (C) nosi Marka od prve do druge i preko. Ko lanac ne baci, silazi lestvama i ide dnom, gde je kovčeg i straža. Na prevoju, u klisuri, ruševinama, rudniku i na obali.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

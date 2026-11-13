@@ -421,4 +421,17 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  p.x=q.x-500;step(6);ok(q.puca.s===1&&!q.off,'ride: as Šarac comes near, the ground cracks, and still bears');
  step(70);ok(q.off&&q.puca.s===2&&!whole(q.x+q.w/2),'ride: then it breaks and falls, and there is a hole to jump');
  step(160);ok(q.puca.s===3&&fills[1].puca.s===0,'ride: the pieces are gone; the next place is whole until he reaches it');}
+// ---- the gate on a clock (passed with the vila's trace) and the hooks over a ravine (Ravijojla's chain) ----
+{const w=await start('manastir');quiet(w);const p=S().p,tr=w.traps.find(t=>t.vreme);ok(tr&&tr.gate.x-tr.lever.x>900,'time gate: the forest behind him, Marko meets a gate far from its lever');
+ stand(tr.lever.x,tr.lever.y);step(2);tap('KeyE');ok(tr.open>0,'time gate: the lever opens it');api.keys.add('KeyD');let reached=false;for(let i=0;i<120*6&&tr.open>0;i++){step();if(p.x>tr.gate.x-60)reached=true;}api.keys.clear();
+ ok(!reached&&p.x<tr.gate.x-200,`time gate: at a run it shuts before he is there (${Math.round(tr.gate.x-p.x)}px short)`);
+ stand(tr.gate.x-90,tr.gate.y);step(40);tap('KeyV');step(4);stand(tr.lever.x,tr.lever.y);step(30);tap('KeyE');for(let i=0;i<240&&(p.castLock>0||p.leverT>0);i++)step();const left=tr.open;tap('KeyV');step(30);
+ ok(tr.open>0&&Math.abs(p.x-(tr.gate.x-90))<40,`time gate: the trace left by the gate brings him back to it while it is open (${left.toFixed(1)}s left after the pull, trace ${p.trag?'still there':'used'}, ${Math.round(p.x-tr.gate.x)}px from the gate)`);
+ api.keys.add('KeyD');for(let i=0;i<120*2&&p.x<tr.gate.x+80;i++)step();api.keys.clear();ok(p.x>tr.gate.x+60,'time gate: and he walks through');}
+{const w=await start('klisura');quiet(w);const p=S().p,K=[...w.kuke].sort((a,b)=>a.x-b.x);ok(K.length===2,'hooks: past the cave, two silver hooks hang over a ravine');
+ const gy=K[0].y+250,x0=K[0].x-260,far=w.platforms.filter(q=>q.ground&&Math.abs(q.y-gy)<4&&q.x>K[1].x).sort((a,b)=>a.x-b.x)[0];
+ stand(x0-30,gy);p.face=1;step(3);tap('KeyC');api.keys.add('KeyD');let second=false;
+ for(let i=0;i<120*5;i++){step();p.invuln=99;if(!second&&!p.lanac&&!p.grounded&&p.x>K[0].x-40&&!(p.cd?.lanac>0)){p.face=1;tap('KeyC');second=!!p.lanac;}if(second&&!p.lanac&&p.grounded)break;}api.keys.clear();
+ ok(second&&p.grounded&&p.x>=far.x-10&&Math.abs(p.y-gy)<6,`hooks: the chain takes him from the first hook to the second and over the ravine (lands ${Math.round(p.x-far.x)}px past its edge)`);
+ stand(x0-30,gy);api.keys.add('KeyD');for(let i=0;i<120*3;i++){step();p.invuln=99;}api.keys.clear();ok(p.y>gy+120&&p.hp>0&&S().mode==='play','hooks: without the chain he drops to the bottom of the ravine, not into a pit');}
 console.log(`${checks} pohod mechanics checks passed.`);
