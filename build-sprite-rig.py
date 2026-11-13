@@ -408,6 +408,31 @@ if _have('volovi-ralo'):
     SCALES['volovi-ralo'] = (64 / 119, 'center')
 if _have('marko-ore') and 'marko-walk' in SCALES:
     SCALES['marko-ore'] = (SCALES['marko-walk'][0], 'feet')
+
+# DOPUNA-44: the standing grapple with each champion. Both men share one cell, Marko on the left. The artist drew the
+# champions shorter against Marko than they stand on the road, so the scale splits the difference (geometric mean of
+# Marko's and the champion's road scale): both are off by the same few percent instead of one of them jumping.
+# A clip in KOSTAC_CEKA is drawn wrong and waits for a redraw: Đemo came out in Hasan-aga's helmet and mail, and
+# Hasan-aga came out as tall and slim as Marko, a head shorter and much narrower than on the road.
+def _halves(name):
+    cs = _cells(name)
+    return float(np.median([body_height(c[:, :230]) for c in cs])), float(np.median([body_height(c[:, 290:]) for c in cs]))
+def _road(name):
+    return float(np.median([body_height(c) for c in _cells(name)])) * SCALES[name][0]
+KOSTAC_LIK = {'hasan': 'hasan-aga', 'djemo': 'djemo', 'dzelat': 'dzelat', 'ognjeni': 'ognjeni-aga', 'bajraktar': 'bajraktar',
+              'aga': 'janicarski-aga', 'arapin': 'arapin', 'lovac': 'lovac-aga', 'musa': 'musa', 'basa': 'basa',
+              'kopljanik-basa': 'kopljanik-basa', 'beg': 'beg'}
+KOSTAC_CEKA = {'djemo', 'hasan'}
+for kit, who in KOSTAC_LIK.items():
+    clip = f'kostac-{kit}'
+    if kit in KOSTAC_CEKA or not (_have(clip) and f'{who}-idle' in SCALES and 'marko-idle-2' in SCALES):
+        continue
+    m_, o_ = _halves(clip)
+    s_ = float(np.sqrt(_road('marko-idle-2') / m_ * _road(f'{who}-idle') / o_))
+    for n_ in [clip, clip + '-kraj']:
+        if _have(n_):
+            SCALES[n_] = (s_, 'feet')
+    print(clip, round(s_, 4), 'marko', round(m_ * s_ / _road('marko-idle-2'), 2), 'protivnik', round(o_ * s_ / _road(f'{who}-idle'), 2))
 # The second strike in a row came out at a closer zoom than the first; the soldier ends both back in his stance,
 # so the last frames are made the same height.
 for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-attack'), ('akindzija-drugi', 'akindzija-spin'),
@@ -439,6 +464,13 @@ for name, (scale, mode) in SCALES.items():
     }
     heights = [round((f[4] - f[5]) * scale) for f in frames]
     print(f'{name:14s} scale {scale:.3f} anchor {rig[name]["anchor"]:6.1f}  world heights {heights}')
+
+# A champion's grapple ending keeps the anchor of its loop: Marko stays where he stood while he throws the man
+# (the feet of the man lying on the ground would otherwise pull the anchor aside and the pair would jump).
+for kit in KOSTAC_LIK:
+    loop, end = f'kostac-{kit}', f'kostac-{kit}-kraj'
+    if loop in rig and end in rig:
+        rig[end]['anchor'] = rig[loop]['anchor']
 
 with open(os.path.join(ROOT, 'sprite-rig.json'), 'w') as f:
     json.dump(rig, f, separators=(',', ':'))

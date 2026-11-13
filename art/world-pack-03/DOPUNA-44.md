@@ -28,6 +28,25 @@ Ovo je isti prizor kao `kostac-stoji`, ali sa pravim protivnikom. Oba lika su u 
 
 **Zum je jedan za sve:** Marko je 4/5 svoje veličine iz `kostac-stoji`, oko 295 px od temena do pete. Tako i najviši protivnik staje u ćeliju.
 
+**Provera veličine (obavezna, prvi koštaci su ispali premali).** Pre izvoza:
+1. Uzmi kadar 0 iz `marko-idle-2` i umanji ga na 0,80. Uzmi kadar 0 iz `<lik>-idle` i umanji ga faktorom iz tabele ispod.
+2. Postavi ih jedan pored drugog na y=487. To su tačne veličine.
+3. Marko i protivnik u koštacu moraju biti iste visine i iste širine ramena kao ta dva umanjena crteža. Ako nisu, ispravi pre nego što upišeš status.
+
+Isti čovek mora da ostane isti: krupan megdandžija ne sme da postane vitak.
+
+| Lik | Faktor za `<lik>-idle` |
+|---|---|
+| `hasan-aga` | 0,93 |
+| `djemo` | 0,84 |
+| `dzelat` | 0,80 |
+| `ognjeni-aga` | 0,95 |
+| `bajraktar` | 0,90 |
+| `janicarski-aga` | 0,83 |
+| `arapin` | 0,85 |
+| `lovac-aga` | 0,77 |
+| `musa-idle` | 0,89 |
+
 Uz svaki koštac ide i `-kraj`, 6 kadrova, jednom. Marko prebaci protivnika preko kuka, kao u `kostac-stoji-kraj`. U poslednjem kadru protivnik leži, a Marko stoji. Zum je isti kao u koštacu.
 
 | Klip (petlja 8, kraj 6) | Lik (postojeći crtež) | Visina prema Marku |
