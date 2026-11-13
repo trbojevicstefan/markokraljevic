@@ -388,6 +388,13 @@ Stefan: „sablja treba da ima drugačije poteze od topuza, a ne identične”. 
 - Sa sabljom u ruci trenutak za odbijanje (L) traje duže.
 - Trk sa sabljom je bio nacrtan 28 px iza mesta na kom Marko stoji, pa je lik trzao unazad kad potrči: pomak je ispravljen (`SABLJA_TRK_DX`). Druge greške u crtežima nisam našao merenjem; u igri uživo nisam gledao.
 
+## 13. novembar (8): tajne sobe, novi napukli zid, početni ekran, lake kopije crteža
+
+- **Tajne sobe se ne odaju.** Merdevine iz skrivenog podruma se ne crtaju (i savet za lestve ih ne pominje) dok ploča nad njima nije razbijena; posle toga se završavaju ispod ivice rupe, ne vire iz zemlje (`ladderShut`, `skriven` u `dist/world.js`).
+- **Napukli zid** više nije kratak stub sa nalepljenim pukotinama. To je zid kao i kapije: masa u preseku preko cele visine slike koja zatvara drum, sa mrežom pukotina kroz koje se vidi svetlo s druge strane. Svaki teški udarac izbije kamenje, pa se kroz rupe vidi predeo iza; kad padne, ostaje otkinuta masa nad prolazom i šut na drumu (`drawCrackWall`, `drawWallRuin`). Ne može se preskočiti ni sa Sokolovim krilom, a sablja ga ne ruši.
+- **Početni ekran** je bez pergamentne kartice: slika preko celog ekrana, veliko zlatno ime, jedna kolona krupnih stavki sa zlatnom oznakom kraj izabrane (strelice ili W/S, Enter; prva stavka je odmah izabrana), a brojači i sitne veze su nisko levo. Dugmad i njihovi id-jevi su isti.
+- **Optimizacija:** napravljene su 92 lake kopije crteža koje su falile u `dist/assets/pola` (klipovi nacrtani posle V2), pa telefoni i režim „Brže” više ne traže pa ne nalaze fajl i ne učitavaju punu sliku; iz učitavanja nivoa je izbačeno osam slika starih kapija koje se više ne crtaju (oko 1,3 MB po nivou).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

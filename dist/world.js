@@ -245,7 +245,7 @@ export function buildLayout(L,variant='day'){
   greda(){const x0=x,len=ri(620,700);ground(len);const wx=x0+Math.round(len*.45),ww=170;platforms.push({x:wx,y:gy-1300,w:ww,h:1300-72,kind:'lintel',solid:true,lintel:true});crate(wx+ww+150,'kovceg',{loot:{coins:ri(14,20)}});busy.push([x0,x0+len]);spots.push({x:x0+90,y:gy});},
   // a cracked slab over a hidden cellar: only a blow from above breaks it; a chest and a ladder wait below
   cellar(){const x0=x,len=ri(560,640);const cx=x0+Math.round(len*.5),w=130,deep=170;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
-   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1});
+   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+w-26,top:gy,bottom:gy+deep,side:1,skriven:true});
    crate(cx+40,'kovceg',{y:gy+deep,loot:{coins:ri(24,32)}});cellars.push({x:cx+w/2,y:gy+deep});busy.push([cx-60,cx+w+60]);spots.push({x:x0+len*.85,y:gy});},
   // a bed of stakes too wide to jump: fall on it with a blow from above and bounce off (like a pogo)
   spikebed(){const x0=x,len=ri(700,780);ground(len);const w=ri(300,330),sx=Math.round(x0+len*.5-w/2);traps.push({kind:'spikes',x:sx,w,y:gy,bed:true});busy.push([sx-60,sx+w+60]);},
@@ -330,7 +330,7 @@ export function buildLayout(L,variant='day'){
   // the hidden room: a cracked slab gives way only to a blow from above (S + J in the air). Below: the heart piece (at the
   // middle less 40, as everywhere), the lore scroll right of it, then a chest of ducats; the ladder out is on the left.
   tajna(){const x0=x,len=680,w=230,deep=180,cx=x0+250;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
-   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+26,top:gy,bottom:gy+deep,side:-1});
+   platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+26,top:gy,bottom:gy+deep,side:-1,skriven:true});
    crate(cx+190,'kovceg',{y:gy+deep,loot:{coins:ri(36,44)}});cellars.push({x:cx+w/2,y:gy+deep});tajne.push({x:cx+132,y:gy+deep-44});busy.push([cx-60,cx+w+60]);},
   boss(type){const x0=x,len=ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
    const plank=(k,dy,w=150)=>platforms.push({x:Math.round(x0+len*k-w/2),y:g0-dy,w,h:18,kind:'plank',arena:true});

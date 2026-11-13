@@ -13,10 +13,10 @@ Stanje se upisuje ovde posle svake faze (✔ gotovo i objavljeno, ◐ u toku, �
 3. ✔ **Protivnici** (13. 11.): svaki treći sa druma izostavljen, zdravlje ×1.75, tandemi (štit ili sablja pred strelcem; dva sabljaša, jedan drži a drugi zalazi za leđa; osveta kad jedan padne). Nije urađeno: oklopnik sa palikućom kao poseban par, i tandemi u megdanu na Kačaniku (tamo su talasi).
 4. ✔ **Šarac pred Musom** (13. 11.): drum je ceo dok Marko ne priđe; ploča napukne, raspadne se i padne, pa tek tada postoji rupa. Viđeno na snimcima iz igre (pukotina, pa rupa); samo kretanje komada nisam gledao uživo.
 5. ✔ **Sablja** (13. 11.): svoji potezi (brži rezovi koji krvare, ubod, prolet na K, duže odbijanje; štit i oklop je zaustavljaju), trk poravnat. Novi crteži nisu naručivani: prolet koristi postojeći `marko-sablja-ubod`. Ako Stefan pokaže šta mu tačno smeta u animacijama, to je sledeća narudžbina.
-6. ☐ **Nivoi**: duži i širi, bregovi i uvale gde ima smisla (aseti), tajne sobe sa skrivenim merdevinama, bolji napukli zid, bar jedan nivo u zatvorenom, zamena kapija sa crkvom na vrhu.
+6. ◐ **Nivoi**: urađeno (13. 11.): tajne sobe sa skrivenim merdevinama, novi napukli zid, kapije kao presek. Ostaje: duži i širi nivoi, bregovi i uvale (aseti), kuke u poglavljima posle pećine, bar jedan nivo u zatvorenom, zamena ukrasnih kapija gledanih spreda (`prop-kapija-*`).
    - **Kapije kao presek (Stefan, 13. 11., uz snimak iz The Lost Crown):** „sve kapije u igri moraju da izgledaju ovako. Kao presek.” Kapija, prolaz i prelaz između prostorija crtaju se kao debeo zid presečen i gledan sa strane (tamna masa zida preko visine ekrana, sa otvorom), ne kao građevina gledana spreda sa krovom ili crkvom. Važi za sve nivoe.
 7. ☐ **Time eventovi** (trenuci sa tasterom na vreme) u megdanima i na prelomnim mestima priče.
-8. ☐ **Početni ekran** kao velika igra; **optimizacija** (učitavanje, crtanje).
+8. ◐ **Početni ekran** ✔ (13. 11.); **optimizacija**: lake kopije crteža i manje učitavanje ✔; merenje brzine crtanja po nivoima nije rađeno.
 
 ## Pravila rada
 

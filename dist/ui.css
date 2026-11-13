@@ -753,3 +753,60 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #gb-menu-open,#menu .menu-links i:has(+ #gb-menu-open){display:none}
 /* before the forest of the vila her label and her meter are not in the HUD */
 .bez-vile .fairy-label,.bez-vile .fairy-meter,.bez-vile .divider{display:none!important}
+/* ---------- the start screen as a big game (Stefan, 13. 11. 2026: „kao prava AAA igra”, after The Lost Crown) ----------
+   No parchment card: the picture fills the screen, the name of the game stands on it in gold, and under it one column of
+   plain large entries with a gold mark that slides in beside the chosen one. Counts, small links and the key hints sit low,
+   out of the way. The same buttons and ids as before; only their dress is new. */
+#menu{background:linear-gradient(90deg,#02080bf2 0%,#030c0fd9 24%,#05131699 42%,#0000 64%),radial-gradient(ellipse at 76% 56%,#0000 0%,#02080a55 68%,#010506a8 100%),linear-gradient(0deg,#010607c0 0%,#0000 24%,#0000 78%,#01060790 100%)!important}
+#menu::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,#ffd9a000 38%,#ffd9a012 47%,#ffd9a000 56%);mix-blend-mode:screen;animation:menuRay 11s ease-in-out infinite}
+@keyframes menuRay{0%,100%{opacity:.35;transform:translateX(-3%)}50%{opacity:1;transform:translateX(3%)}}
+#menu .menu-decoration{display:none}
+#menu .menu-copy{left:6.5%!important;top:50%!important;transform:translateY(-52%)!important;width:min(600px,46vw)!important;padding:0!important;background:none!important;box-shadow:none!important;border:0!important;color:#efe4c8!important;z-index:4}
+#menu .menu-copy::before{display:none!important}
+#menu:not([hidden]) .menu-copy{animation:none}
+#menu .eyebrow{color:#d9b56a!important;font-size:13px!important;letter-spacing:8px!important;font-weight:700;margin:0 0 2px 4px}
+#menu .menu-copy h1{--hs:128px;font-size:128px!important;line-height:1;letter-spacing:10px!important;margin:0 0 2px -4px!important;white-space:nowrap;background:linear-gradient(180deg,#fff6d2 0%,#f3d583 34%,#b9852d 58%,#f7df98 76%,#8c5c1e 100%)!important;background-size:100% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 0 #2a1406) drop-shadow(0 16px 34px #000d)}
+#menu:not([hidden]) .menu-copy h1{animation:titleIn 1.2s .15s cubic-bezier(.3,.7,.2,1) both!important}
+#menu .menu-copy h1 .ini{display:inline!important;font-size:inherit!important;width:auto!important;height:auto!important;margin:0!important;background:none!important;-webkit-text-fill-color:transparent}
+#menu .subtitle{color:#e6c27f!important;font-size:16px!important;letter-spacing:9px!important;margin-left:4px;display:flex;align-items:center;gap:14px}
+#menu .subtitle span{filter:none!important;width:54px;opacity:.9}
+#menu .intro{color:#d9cfb6!important;font-size:19px!important;line-height:1.5!important;margin:16px 0 0 4px!important;opacity:.88;max-width:420px}
+/* the entries */
+#menu .menu-actions{margin:26px 0 0!important;gap:0;align-items:flex-start}
+#menu .ms-list{margin:0!important;border:0!important;width:100%}
+#menu .menu-actions>button,#menu .ms-item{display:block!important;position:relative;width:auto!important;min-width:0!important;margin:0!important;padding:8px 26px 8px 40px!important;background:none!important;box-shadow:none!important;border:0!important;clip-path:none!important;outline:none!important;text-align:left!important;font:600 27px/1.2 var(--display)!important;letter-spacing:2.5px!important;color:#e4d8b8!important;text-shadow:0 2px 10px #000c!important;cursor:pointer;transition:color .18s,padding-left .18s,text-shadow .18s!important;transform:none!important;filter:none!important;animation:none}
+#menu .menu-actions>button.primary::after{display:none!important}
+#menu .menu-actions .flag3d,#menu .menu-actions canvas{display:none!important}
+#menu #start{font-size:36px!important;color:#f7df98!important;letter-spacing:3px!important;padding-top:6px!important;padding-bottom:10px!important}
+#menu #start span{display:none}
+#menu #continue{font-size:30px!important;color:#f7df98!important}
+#menu #continue small{display:inline!important;font:italic 500 15px var(--display)!important;letter-spacing:.5px;color:#cdbf9c!important;margin:0 0 0 14px!important;text-shadow:none}
+#menu .ms-item .lbl{font:inherit!important;color:inherit!important;letter-spacing:inherit!important}
+#menu .ms-item small{display:block!important;font:italic 500 14.5px/1.2 var(--display)!important;letter-spacing:.4px;color:#b9ad8c!important;margin-top:1px;opacity:0;max-height:0;overflow:hidden;transition:opacity .2s,max-height .2s;white-space:nowrap}
+#menu .menu-actions>button::before,#menu .ms-item::before{content:""!important;position:absolute;left:0;top:calc(50% - 1px);width:26px!important;height:2px!important;padding:0!important;display:block!important;background:linear-gradient(90deg,#f7df98,#f7df9800)!important;box-shadow:0 0 12px #f7df98aa!important;border:0!important;border-radius:0!important;transform:scaleX(0)!important;transform-origin:left;transition:transform .2s!important;font-size:0!important}
+#menu .ms-item::after{display:none!important}
+#menu .menu-actions>button:hover,#menu .menu-actions>button:focus-visible,#menu .menu-actions>button.pad-focus,#menu .ms-item:hover,#menu .ms-item:focus-visible,#menu .ms-item.pad-focus{color:#fff6d2!important;padding-left:54px!important;text-shadow:0 0 22px #f3d58388,0 2px 10px #000c!important;background:none!important}
+#menu .menu-actions>button:hover::before,#menu .menu-actions>button:focus-visible::before,#menu .menu-actions>button.pad-focus::before,#menu .ms-item:hover::before,#menu .ms-item:focus-visible::before,#menu .ms-item.pad-focus::before{transform:scaleX(1.5)!important}
+#menu .ms-item:hover small,#menu .ms-item:focus-visible small,#menu .ms-item.pad-focus small{opacity:1;max-height:22px}
+#menu .ms-item:hover .lbl,#menu .ms-item:focus-visible .lbl,#menu .ms-item.pad-focus .lbl{color:inherit!important}
+#menu:not([hidden]) .menu-actions>button,#menu:not([hidden]) .ms-item{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+#menu:not([hidden]) #continue{animation-delay:.45s}#menu:not([hidden]) #start{animation-delay:.55s}#menu:not([hidden]) .ms-item:nth-child(1){animation-delay:.65s}#menu:not([hidden]) .ms-item:nth-child(2){animation-delay:.75s}#menu:not([hidden]) .ms-item:nth-child(3){animation-delay:.85s}
+/* counts and small links: low on the left, one line each */
+#menu #menu-ledger{position:static;margin:30px 0 0 40px!important;gap:26px!important;justify-content:flex-start}
+#menu #menu-ledger button{background:none!important;box-shadow:none!important;padding:0!important;text-align:left!important;display:flex;align-items:baseline;gap:8px;flex:none!important;transform:none!important}
+#menu #menu-ledger button b{font:700 19px var(--display)!important;color:#f3d583!important;display:inline!important}
+#menu #menu-ledger button small{font:700 10px Arial!important;letter-spacing:2.5px!important;color:#a9a48e!important}
+#menu #menu-ledger button:hover small,#menu #menu-ledger button:focus-visible small{color:#fff6d2!important}
+#menu .menu-links{position:static;margin:14px 0 0 40px!important;gap:6px;justify-content:flex-start}
+#menu .menu-links button{color:#b9b199!important;font-size:14px!important;letter-spacing:1.5px;text-transform:uppercase;background:none!important}
+#menu .menu-links button:hover,#menu .menu-links button:focus-visible{color:#fff6d2!important}
+#menu .menu-links i{color:#d9b56a!important;opacity:.6}
+#menu .menu-copy :focus-visible{outline:none!important}
+#menu .menu-bottom{display:none}
+#menu .menu-note{display:none!important}
+#menu .menu-actions>button[hidden]{display:none!important}
+#menu .menu-backdrop::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#02080bf0 0%,#030c0fd0 22%,#05131690 40%,#0000 62%),linear-gradient(0deg,#010607b0 0%,#0000 26%,#0000 80%,#01060780 100%)}
+#menu .quote{right:0!important;bottom:36px!important;padding:14px 2.5% 14px 60px!important;background:linear-gradient(90deg,#02080b00,#02080bb8 34%)!important;box-shadow:none!important;max-width:440px}
+#menu .menu-marko,#menu .menu-marko.live{right:9%!important}
+@media(max-height:690px){#menu .menu-copy h1{--hs:100px;font-size:100px!important}#menu .intro{display:none}#menu .menu-actions{margin-top:16px!important}#menu .menu-actions>button,#menu .ms-item{font-size:23px!important;padding-top:6px!important;padding-bottom:6px!important}#menu #start{font-size:30px!important}}
+@media(max-width:900px){#menu .menu-copy{left:5%!important;width:90vw!important}#menu .menu-copy h1{--hs:84px;font-size:84px!important;letter-spacing:5px!important}#menu #menu-ledger{gap:14px!important}#menu .quote{display:none}}
