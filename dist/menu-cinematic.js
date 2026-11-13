@@ -225,7 +225,7 @@ function frame(now){
  const step=menuFrame(now,lastTick);
  if(!step.due)return;
  lastTick=step.next;
- elapsed+=(reduced.matches?.2:step.dt);
+ if(!reduced.matches)elapsed+=step.dt;
  render();
 }
 function init(){
