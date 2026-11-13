@@ -413,7 +413,8 @@ if _have('marko-ore') and 'marko-walk' in SCALES:
 # champions shorter against Marko than they stand on the road, so the scale splits the difference (geometric mean of
 # Marko's and the champion's road scale): both are off by the same few percent instead of one of them jumping.
 # A clip in KOSTAC_CEKA is drawn wrong and waits for a redraw: Đemo came out in Hasan-aga's helmet and mail, and
-# Hasan-aga came out as tall and slim as Marko, a head shorter and much narrower than on the road.
+# Hasan-aga came out as tall and slim as Marko, a head shorter and much narrower than on the road; the fiery aga,
+# the standard-bearer and the janissary aga all came out as the same plain Turk in a helmet and red mail.
 def _halves(name):
     cs = _cells(name)
     return float(np.median([body_height(c[:, :230]) for c in cs])), float(np.median([body_height(c[:, 290:]) for c in cs]))
@@ -422,7 +423,7 @@ def _road(name):
 KOSTAC_LIK = {'hasan': 'hasan-aga', 'djemo': 'djemo', 'dzelat': 'dzelat', 'ognjeni': 'ognjeni-aga', 'bajraktar': 'bajraktar',
               'aga': 'janicarski-aga', 'arapin': 'arapin', 'lovac': 'lovac-aga', 'musa': 'musa', 'basa': 'basa',
               'kopljanik-basa': 'kopljanik-basa', 'beg': 'beg'}
-KOSTAC_CEKA = {'djemo', 'hasan'}
+KOSTAC_CEKA = {'djemo', 'hasan', 'ognjeni', 'bajraktar', 'aga'}
 for kit, who in KOSTAC_LIK.items():
     clip = f'kostac-{kit}'
     if kit in KOSTAC_CEKA or not (_have(clip) and f'{who}-idle' in SCALES and 'marko-idle-2' in SCALES):
