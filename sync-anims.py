@@ -12,6 +12,8 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
             continue
         if 'frame_layout' not in json.load(open(manifest, encoding='utf-8-sig')):
             print('preskačem (nema frame_layout):', name); continue
+        if name.endswith('-v2'):  # DOPUNA-45: the drawn in-betweens of a clip; smooth-anims.py reads them from art/ itself
+            continue
         if name == 'pauza-logor-16':  # the same 16-frame camp ships from art/world-pack-03/pauza-logor.png (sync-world.py)
             continue
         if name.startswith(('barjak-', 'pauza-', 'prelaz-')):  # banner loops, the pause scene and the scenes between pohodi are world art: a light WebP strip, not part of the sprite rig
