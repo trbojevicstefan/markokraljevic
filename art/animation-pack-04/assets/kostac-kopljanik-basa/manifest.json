@@ -1,0 +1,130 @@
+{
+  "characterId": "kostac-kopljanik-basa",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": false,
+  "frame_variant": "painted",
+  "sprite_sheet_alpha": "atlas.png",
+  "sprite_sheet_alpha_report": null,
+  "base_image": "frames/motion/frame-0.png",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ]
+  },
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 8,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 8,
+        "fps": 10,
+        "durations_ms": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "loop": true,
+        "frame_variant": "pixel",
+        "holdLastFrame": false
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 4096,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3584,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "scaleReference": {
+    "markoIdleFactor": 0.8,
+    "enemyIdleFactor": 0.9317073170731708,
+    "markoHeight": 306,
+    "enemyHeight": 382,
+    "footY": 487
+  },
+  "holdLastFrame": false,
+  "renderScale": 1,
+  "renderAnchor": {
+    "x": 256,
+    "y": 488
+  },
+  "worldBodyHeight": 306,
+  "identityReferences": [
+    "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+    "art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png"
+  ]
+}

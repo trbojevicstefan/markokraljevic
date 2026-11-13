@@ -979,3 +979,15 @@ DOPUNA-44 deo 3: basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/anim
 DOPUNA-44 deo 3: kopljanik-basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png, zum kao idle (410px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/kopljanik-basa-hvata/grid.png.
 
 DOPUNA-44 deo 3: beg-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png, zum kao idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/beg-hvata/grid.png.
+
+DOPUNA-44 deo 1 tri nove base: kostac-basa — GOTOVO; 8 kadrova 512x512, petlja; uzori marko-idle-2 i basa-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 367px (odnos 1.2); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 1 tri nove base: kostac-basa-kraj — GOTOVO; 6 kadrova 512x512, jednom, holdLastFrame; uzori marko-idle-2 i basa-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 367px (odnos 1.2); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 1 tri nove base: kostac-kopljanik-basa — GOTOVO; 8 kadrova 512x512, petlja; uzori marko-idle-2 i kopljanik-basa-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 382px (odnos 1.25); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 1 tri nove base: kostac-kopljanik-basa-kraj — GOTOVO; 6 kadrova 512x512, jednom, holdLastFrame; uzori marko-idle-2 i kopljanik-basa-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 382px (odnos 1.25); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 1 tri nove base: kostac-beg — GOTOVO; 8 kadrova 512x512, petlja; uzori marko-idle-2 i beg-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 398px (odnos 1.3); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 1 tri nove base: kostac-beg-kraj — GOTOVO; 6 kadrova 512x512, jednom, holdLastFrame; uzori marko-idle-2 i beg-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 398px (odnos 1.3); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.

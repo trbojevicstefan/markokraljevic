@@ -1,0 +1,88 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        85,
+        121,
+        427,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        73,
+        121,
+        439,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        61,
+        118,
+        450,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        37,
+        90,
+        474,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        9,
+        202,
+        502,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        10,
+        163,
+        501,
+        488
+      ]
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "targets": {
+    "target": {
+      "ratio": 1.2,
+      "refs": [
+        {
+          "id": "marko-idle-2",
+          "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\assets\\marko-idle-2\\frames\\motion\\frame-0.png",
+          "height": 306,
+          "factor": 0.7989556135770235,
+          "width": 235
+        },
+        {
+          "id": "basa-idle",
+          "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\assets\\basa-idle\\frames\\motion\\frame-0.png",
+          "height": 367,
+          "factor": 0.7791932059447984,
+          "width": 259
+        }
+      ]
+    },
+    "uniformScale": 1.0,
+    "fitLimited": false,
+    "observedMarkoHeadToGround": 311,
+    "markoDifferencePx": 5,
+    "pairFirstHeight": 367
+  },
+  "identityCheck": "actual idle frame-0 checked visually alongside generated frame",
+  "sizeCheck": "overlay inspected before export"
+}
