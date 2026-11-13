@@ -1,0 +1,12 @@
+{
+  "jobs": [
+    {"id":"sword-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/sword-spava/reference.png"],"prompt":"Dizzy stagger preserving sword-spava identity, lowered sword."},
+    {"id":"shield-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":454,"references":["art/animation-pack-04/assets/shield-spava/reference.png"],"prompt":"Dizzy stagger preserving shield-spava identity, drooping shield and sword."},
+    {"id":"archer-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":455,"references":["art/animation-pack-04/assets/archer-shoot-down/reference.png"],"prompt":"Dizzy stagger preserving archer identity, lowered bow."},
+    {"id":"akindzija-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":370,"references":["art/animation-pack-04/assets/akindzija-spin/reference.png"],"prompt":"Dizzy stagger preserving akindzija identity, sabres lowered."},
+    {"id":"oklopnik-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":428,"references":["art/animation-pack-04/assets/oklopnik-jump/reference.png"],"prompt":"Dizzy stagger preserving oklopnik identity, weapon lowered."},
+    {"id":"palikuca-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":456,"references":["art/animation-pack-04/assets/palikuca-jump/reference.png"],"prompt":"Dizzy stagger preserving palikuca identity, inactive lowered torch."},
+    {"id":"kopljanik-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/kopljanik-idle/reference.png"],"prompt":"Dizzy stagger preserving kopljanik identity, lowered spear."},
+    {"id":"tufekdzija-omamljen","kind":"human","frames":6,"cols":6,"rows":1,"loop":true,"fps":8,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/tufekdzija-idle/reference.png"],"prompt":"Dizzy stagger preserving tufekdzija identity, lowered musket."}
+  ]
+}

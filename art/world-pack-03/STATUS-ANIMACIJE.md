@@ -821,3 +821,78 @@ DOPUNA-45: marko-ore — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_la
 
 DOPUNA-45: marko-ore — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-ore/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45.json, izvor sacuvan.
 DOPUNA-45 ispravka marko-ore: MERENO; 8 akcionih kadrova, alpha bbox donja ivica y=488 (oslonac y=487), akcioni bbox visina 346-353 px zbog nagnute poze, kalibracioni Marko 383 px. Sake su u ciljanoj zoni y=225-235 i priblizno 170 px desno od sredine stopala; ralo nije nacrtano. Stari izvor je sacuvan u sources/marko-ore/grid-first-attempt.png, nova verzija u sources/marko-ore-v2/.
+
+DOPUNA-44 deo 1: kostac-hasan — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-hasan/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-djemo — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-djemo/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-dzelat — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-dzelat/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-hasan-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-hasan-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-djemo-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-djemo-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-dzelat-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-dzelat-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo1.json, izvor sacuvan.
+DOPUNA-44 deo 1 merenje: svih 6 klipova imaju kalibracionog Marka 295 px (brief 4/5 kostac-stoji), oslonac y=487; Hasan/Djemo/Dzelat su nacrtani u odnosu 1.3/1.15/1.15 prema Marku. Nije bila potrebna korekcija posle izvoza.
+
+DOPUNA-44 deo 1: kostac-ognjeni — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-ognjeni/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-bajraktar — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-bajraktar/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-aga — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-aga/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-ognjeni-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-ognjeni-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-bajraktar-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-bajraktar-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+
+DOPUNA-44 deo 1: kostac-aga-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-aga-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-ognjeni-bajraktar-aga.json, izvor sacuvan.
+DOPUNA-44 deo 1 merenje (ognjeni/bajraktar/aga): svih 6 klipova imaju kalibracionog Marka 295 px i oslonac y=487; protivnici su nacrtani u odnosu 1.3/1.35/1.35 prema Marku. Provera atlasa, GIF broja kadrova i frame_layout prošla; korekcija nije bila potrebna.
+
+DOPUNA-44 deo 2: kostac-ledja — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-ledja/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo2.json, izvor sacuvan.
+
+DOPUNA-44 deo 2: kostac-ledja-kraj — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kostac-ledja-kraj/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo2.json, izvor sacuvan.
+DOPUNA-44 deo 2 merenje: kostac-ledja i kostac-ledja-kraj imaju kalibracionog Marka 295 px, oslonac y=487, 8/6 kadrova i GIF 8/6 frejmova. Janičar je postavljen na 0.9 Markove visine prema briefu; korekcija posle merenja nije bila potrebna.
+
+DOPUNA-44 deo 3: hasan-aga-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/hasan-aga-hvata/. renderScale=1.0938, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: ognjeni-aga-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/ognjeni-aga-hvata/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: lovac-aga-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/lovac-aga-hvata/. renderScale=1.1343, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: bajraktar-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/bajraktar-hvata/. renderScale=1.2250, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: janicarski-aga-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/janicarski-aga-hvata/. renderScale=1.2250, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: djemo-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/djemo-hvata/. renderScale=1.0568, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: dzelat-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/dzelat-hvata/. renderScale=1.0516, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+
+DOPUNA-44 deo 3: arapin-hvata — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/arapin-hvata/. renderScale=1.0891, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo3.json, izvor sacuvan.
+DOPUNA-44 deo 3 merenje: svih 8 hvata klipova imaju 6/6 kadrova, oslonac y=487 i renderScale prema idle referenci; kalibracione visine su 448/426/432/400/400/405/407/404 px zbog raširenih ruku u ćeliji, a reference idle visine su 490/426/490/490/490/428/428/440 px. Manifesti čuvaju renderScale za tačan idle zum; identiteti su provereni prema idle referencama.
+
+DOPUNA-44 deo 4: sword-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: shield-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/shield-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: archer-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/archer-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: akindzija-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/akindzija-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: oklopnik-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/oklopnik-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: palikuca-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/palikuca-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: kopljanik-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kopljanik-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+
+DOPUNA-44 deo 4: tufekdzija-omamljen — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/tufekdzija-omamljen/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo4.json, izvor sacuvan.
+DOPUNA-44 deo 4 merenje: svih 8 omamljen klipova imaju po 6 kadrova u petlji, oslonac y=487 i kalibracione visine tačno prema idle referencama (sword426, shield454, archer455, akindzija370, oklopnik428, palikuca456, kopljanik426, tufekdzija426 px). Identiteti i oprema provereni prema referentnim idle crtežima; oružja su spuštena u svim kadrovima.
+
+DOPUNA-44 deo 6: basa-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-idle/. renderScale=1.0381, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
+
+DOPUNA-44 deo 6: basa-run — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-run/. renderScale=1.0381, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
+
+DOPUNA-44 deo 6: basa-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-attack/. renderScale=1.0403, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
+
+DOPUNA-44 deo 6: basa-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-hurt/. renderScale=1.0448, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
+
+DOPUNA-44 deo 6: basa-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-death/. renderScale=2.6630, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.

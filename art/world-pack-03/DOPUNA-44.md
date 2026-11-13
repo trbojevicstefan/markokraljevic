@@ -10,6 +10,12 @@ Pravila su ista kao za ostale klipove:
 
 Slikano, mat, bez krvi. Svaki lik mora da liči na svoj postojeći crtež: isto lice, odeća, boje i oprema. Turci nose turbane, a Marko ne. Kod igre i `dist/` ne diraj.
 
+**Uzor lika (najvažnije, zbog ovoga su prvi koštaci i hvat ispali pogrešni).** `reference.png` u folderima megdandžija NIJE taj lik. U `hasan-aga-idle`, `lovac-aga-idle`, `bajraktar-idle` i drugim folderima to je stari opšti janičar od koga je crtež nekad pravljen.
+
+Uzor lika je uvek `art/animation-pack-04/assets/<lik>-idle/frames/motion/frame-0.png`. Za `musa`, `sword`, `shield`, `archer`, `akindzija`, `oklopnik` i `palikuca`, koji nemaju taj folder, uzor je prvi kadar iz `dist/assets/<lik>-idle.png` (samo čitaj).
+
+Pre izvoza stavi prvi kadar novog klipa pored uzora i proveri lice, kapu, odeću, boje i oružje.
+
 ## Veličina (najvažnije)
 
 U koštacu likovi ne smeju da promene veličinu u odnosu na put. Marko u svakom novom klipu mora da bude iste veličine kao u `marko-idle-2`. Kad leži, dug je koliko je visok kad stoji. Protivnik je prema Marku u istoj srazmeri kao u igri: visine su u tabelama.

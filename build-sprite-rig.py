@@ -434,6 +434,20 @@ for kit, who in KOSTAC_LIK.items():
         if _have(n_):
             SCALES[n_] = (s_, 'feet')
     print(clip, round(s_, 4), 'marko', round(m_ * s_ / _road('marko-idle-2'), 2), 'protivnik', round(o_ * s_ / _road(f'{who}-idle'), 2))
+# The stunned soldier staggers bent over: as tall as his idle less the stoop (5%).
+for t_ in ['sword', 'shield', 'archer', 'akindzija', 'oklopnik', 'palikuca', 'kopljanik', 'tufekdzija']:
+    n_ = f'{t_}-omamljen'
+    if _have(n_) and f'{t_}-idle' in SCALES:
+        SCALES[n_] = (_road(f'{t_}-idle') * .95 / float(np.median([body_height(c) for c in _cells(n_)])), 'feet')
+# The three champions who were enlarged soldiers get their own figures at the size the game drew them so far
+# (tufekdžija and kopljanik × 1.3, the akinji × 1.35): one scale per figure, from its idle; the grab follows it.
+for who, ref, k in [('basa', 'tufekdzija-idle', 1.3), ('kopljanik-basa', 'kopljanik-idle', 1.3), ('beg', 'akindzija-idle', 1.35)]:
+    if _have(f'{who}-idle') and ref in SCALES:
+        s_ = _road(ref) * k / float(np.median([body_height(c) for c in _cells(f'{who}-idle')]))
+        for c_ in ['idle', 'run', 'attack', 'hurt', 'death', 'hvata']:
+            if _have(f'{who}-{c_}'):
+                SCALES[f'{who}-{c_}'] = (s_, 'center' if c_ == 'death' else 'feet')
+        print(who, round(s_, 4), 'visina', round(_road(ref) * k))
 # The janissary who leaps on Marko's back: Marko stands alone in the last frame of the throw, so his height there
 # (left part of the cell, the janissary lies to the right) makes him as tall as on the road.
 if _have('kostac-ledja-kraj') and 'marko-idle-2' in SCALES:
