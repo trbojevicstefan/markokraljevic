@@ -16,7 +16,7 @@ Slikano, mat, bez krvi. Svaki lik je isti kao njegov postojeći crtež. Kod igre
 |---|---|---|
 | `volovi-ralo` | 1024×512, 8, petlja | Isti kadrovi kao `volovi-plug`, samo bez orača. Najbolje je obrisati janičara iz `volovi-plug` i doslikati ono što je bio zaklonio. Volovi, jaram i ralo ostaju isti, na istom mestu i u istoj veličini. Ručke rala su cele i slobodne. |
 | `marko-ore` | 512×512, 8, petlja | Marko ide za ralom, nagnut napred, obema rukama drži ručke. Ralo nije u ćeliji, samo Marko. Zum je kao `marko-walk`. Šake su oko 256 px iznad oslonca (y≈231) i oko 170 px ispred sredine stopala. Topuz je za pojasom. |
-| `marko-dize-ralo` | 1024×1024, 8, jednom | Marko digne ralo zajedno sa volovima iznad glave (kadrovi 0–3) i obori ih pred sebe (4–7). Volovi i ralo su iste veličine kao u `volovi-plug`, a Marko je u istoj razmeri prema njima kao u igri: oko 263 px od temena do pete. U poslednjem kadru volovi stoje na zemlji ispred njega, a Marko drži ručke kao u `marko-ore`. |
+| `marko-dize-ralo` | 1024×1024, 8, jednom | Marko digne ralo zajedno sa volovima iznad glave (kadrovi 0–3) i obori ih pred sebe (4–7). Volovi i ralo su isti kao u `volovi-ralo`, a Marko kao u `marko-ore`. Razmera je kao u igri: Marko je oko 300 px od temena do pete, volovi sa jarmom su 0,8 njegove visine (oko 240 px), a ceo zapreg sa ralom je širok oko 2 Marka (oko 610 px). U poslednjem kadru volovi stoje na zemlji ispred njega, a Marko drži ručke kao u `marko-ore`. |
 
 ## Deo 2: drugi udarac u nizu
 
