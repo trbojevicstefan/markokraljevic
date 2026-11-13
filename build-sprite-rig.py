@@ -401,6 +401,20 @@ for who, height in {'janja': 112, 'novak': 112}.items():  # Novak is broad, not 
             if _have(f'{who}-{k}'):
                 SCALES[f'{who}-{k}'] = (s_, 'feet')
 
+# DOPUNA-45: Marko ploughs himself. marko-ore holds his fists about 60 world px above the ground (hip height, leaning
+# into the plough), so the oxen without the ploughman are scaled until the plough handles (119 px above the sole in
+# their cell) top out at 64 px: small Balkan oxen, horns about 0.8 of Marko. Only the plough team uses these oxen.
+if _have('volovi-ralo'):
+    SCALES['volovi-ralo'] = (64 / 119, 'center')
+if _have('marko-ore') and 'marko-walk' in SCALES:
+    SCALES['marko-ore'] = (SCALES['marko-walk'][0], 'feet')
+# The second strike in a row came out at a closer zoom than the first; the soldier ends both back in his stance,
+# so the last frames are made the same height.
+for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-attack'), ('akindzija-drugi', 'akindzija-spin'),
+                  ('kopljanik-drugi', 'kopljanik-attack')]:
+    if _have(name) and ref in SCALES:
+        SCALES[name] = (SCALES[ref][0] * body_height(_cells(ref)[-1]) / body_height(_cells(name)[-1]), 'feet')
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):

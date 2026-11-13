@@ -804,3 +804,20 @@ DOPUNA-43 ljudi: novak-kuje — GOTOVO; 8kadova512x512, petlja, atlas/manifest/f
 DOPUNA-43 ljudi: trgovac-tezga-idle — GOTOVO; 6kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/trgovac-tezga-idle/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna43-ljudi.json, izvor sacuvan.
 
 DOPUNA-43 ljudi ZAVRSENO6/6: janja-idle6, janja-toci6, marko-okovan8, novak-idle6, novak-kuje8, trgovac-tezga-idle6 — ukupno40RGBAkadova512x512, svepetlje. Provereni alpha/y487/atlas=frames/frame_layout/GIF. Marko383px; novi ljudi i trgovac426px; primeniti renderScale/renderAnchor iz manifesta. Kovanje: impactFrames[2,6] (kadrovi3i7). Pregled preview-dopuna43-ljudi.html; validation-dopuna43-ljudi.json; tacni promptovi prompts-dopuna43-ljudi.json. Ugradjeni image_gen, izvori animation-pack-04/sources/<klip>/. Kod i dist nisu menjani.
+
+DOPUNA-45: volovi-ralo — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/volovi-ralo/. renderScale=2.2188, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45.json, izvor sacuvan.
+
+DOPUNA-45: marko-ore — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-ore/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45.json, izvor sacuvan.
+
+DOPUNA-45 deo 2: sword-drugi — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/sword-drugi/. renderScale=1.0467, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45-deo2.json, izvor sacuvan.
+
+DOPUNA-45 deo 2: shield-drugi — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/shield-drugi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45-deo2.json, izvor sacuvan.
+
+DOPUNA-45 deo 2: akindzija-drugi — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/akindzija-drugi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45-deo2.json, izvor sacuvan.
+
+DOPUNA-45 deo 2: kopljanik-drugi — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/kopljanik-drugi/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45-deo2.json, izvor sacuvan.
+
+DOPUNA-45: marko-ore — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-ore/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45.json, izvor sacuvan.
+
+DOPUNA-45: marko-ore — GOTOVO; 8kadova512x512, petlja, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/marko-ore/. renderScale=1.0000, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna45.json, izvor sacuvan.
+DOPUNA-45 ispravka marko-ore: MERENO; 8 akcionih kadrova, alpha bbox donja ivica y=488 (oslonac y=487), akcioni bbox visina 346-353 px zbog nagnute poze, kalibracioni Marko 383 px. Sake su u ciljanoj zoni y=225-235 i priblizno 170 px desno od sredine stopala; ralo nije nacrtano. Stari izvor je sacuvan u sources/marko-ore/grid-first-attempt.png, nova verzija u sources/marko-ore-v2/.

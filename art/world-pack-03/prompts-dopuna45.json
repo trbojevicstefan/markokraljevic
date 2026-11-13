@@ -1,0 +1,32 @@
+{
+  "jobs": [
+    {
+      "id": "volovi-ralo",
+      "kind": "human",
+      "frames": 8,
+      "cols": 4,
+      "rows": 3,
+      "loop": true,
+      "fps": 10,
+      "calibrationFrame": 8,
+      "targetHeight": 426,
+      "references": ["art/animation-pack-04/assets/volovi-plug/reference.png"],
+      "prompt": "Volovi and plow only, janissary removed; same two oxen, yoke, harness, plow, colors and proportions as volovi-plug, facing right, full plow handles restored and free, subtle eight-frame plowing loop, flat magenta background.",
+      "note": "Source sheet is 4x3; first eight cells are motion and cell 8 calibration."
+    },
+    {
+      "id": "marko-ore",
+      "kind": "human",
+      "frames": 8,
+      "cols": 3,
+      "rows": 3,
+      "loop": true,
+      "fps": 10,
+      "calibrationFrame": 8,
+      "targetHeight": 383,
+      "references": ["art/animation-pack-04/assets/marko-walk/reference.png"],
+      "prompt": "Marko plowing walk, exact marko-walk identity and zoom, faces right, leans forward and grips invisible plow handles with both hands, topuz belted, no plow or other character, eight-frame loop plus neutral calibration, flat magenta background.",
+      "note": "Hands around y=231, boots on y=487; source sheet is 3x3."
+    }
+  ]
+}
