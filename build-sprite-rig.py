@@ -423,16 +423,18 @@ KOSTAC_LIK = {'hasan': 'hasan-aga', 'djemo': 'djemo', 'dzelat': 'dzelat', 'ognje
               'aga': 'janicarski-aga', 'arapin': 'arapin', 'lovac': 'lovac-aga', 'musa': 'musa', 'basa': 'basa',
               'kopljanik-basa': 'kopljanik-basa', 'beg': 'beg'}
 KOSTAC_CEKA = set()
-for kit, who in KOSTAC_LIK.items():
-    clip = f'kostac-{kit}'
-    if kit in KOSTAC_CEKA or not (_have(clip) and f'{who}-idle' in SCALES and 'marko-idle-2' in SCALES):
-        continue
-    m_, o_ = _halves(clip)
-    s_ = float(np.sqrt(_road('marko-idle-2') / m_ * _road(f'{who}-idle') / o_))
-    for n_ in [clip, clip + '-kraj']:
-        if _have(n_):
-            SCALES[n_] = (s_, 'feet')
-    print(clip, round(s_, 4), 'marko', round(m_ * s_ / _road('marko-idle-2'), 2), 'protivnik', round(o_ * s_ / _road(f'{who}-idle'), 2))
+def _kostaci():  # run again after the three baše get their own scale below
+    for kit, who in KOSTAC_LIK.items():
+        clip = f'kostac-{kit}'
+        if kit in KOSTAC_CEKA or clip in SCALES or not (_have(clip) and f'{who}-idle' in SCALES and 'marko-idle-2' in SCALES):
+            continue
+        m_, o_ = _halves(clip)
+        s_ = float(np.sqrt(_road('marko-idle-2') / m_ * _road(f'{who}-idle') / o_))
+        for n_ in [clip, clip + '-kraj']:
+            if _have(n_):
+                SCALES[n_] = (s_, 'feet')
+        print(clip, round(s_, 4), 'marko', round(m_ * s_ / _road('marko-idle-2'), 2), 'protivnik', round(o_ * s_ / _road(f'{who}-idle'), 2))
+_kostaci()
 # The stunned soldier staggers bent over: as tall as his idle less the stoop (5%).
 for t_ in ['sword', 'shield', 'archer', 'akindzija', 'oklopnik', 'palikuca', 'kopljanik', 'tufekdzija']:
     n_ = f'{t_}-omamljen'
@@ -457,6 +459,7 @@ for who, ref, k in [('basa', 'tufekdzija-idle', 1.3), ('kopljanik-basa', 'koplja
             if _have(f'{who}-{c_}'):
                 SCALES[f'{who}-{c_}'] = (s_ * (_grab_k(f'{who}-{c_}') if c_ == 'hvata' else 1), 'center' if c_ == 'death' else 'feet')
         print(who, round(s_, 4), 'visina', round(_road(ref) * k))
+_kostaci()  # the grapples with the baše, now that their figures have a scale
 # The janissary who leaps on Marko's back: Marko stands alone in the last frame of the throw, so his height there
 # (left part of the cell, the janissary lies to the right) makes him as tall as on the road.
 if _have('kostac-ledja-kraj') and 'marko-idle-2' in SCALES:
