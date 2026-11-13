@@ -744,3 +744,12 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
  .pohod-map.grana .map-detail .primary{grid-column:2;grid-row:1/span 7;align-self:center;width:auto;min-width:200px;margin:0}}
 .map-detail .pesma-ref{color:#c9b98a;font-style:italic;font-size:14px;margin:0 0 2px}
 @media(max-width:900px){.pohod-map.grana{grid-template-columns:1fr}.pohod-map.grana .map-field{height:400px}}
+/* ---------- one story: the six parts of the duel inside its chapter; the grey trial levels stay out of the menu ---------- */
+.megdan-delovi{display:flex;gap:6px;margin:8px 0 2px}
+.megdan-delovi button{flex:1;min-width:0;padding:6px 0;font:700 14px var(--display);color:#f3dca0;background:#3a1418;border:1px solid #a3323c;cursor:pointer}
+.megdan-delovi button.done{background:#5c151c;border-color:#d9b56a}
+.megdan-delovi button.next{box-shadow:0 0 0 2px #ffcf6a}
+.megdan-delovi button:disabled{filter:grayscale(1) brightness(.6);cursor:default}
+#gb-menu-open,#menu .menu-links i:has(+ #gb-menu-open){display:none}
+/* before the forest of the vila her label and her meter are not in the HUD */
+.bez-vile .fairy-label,.bez-vile .fairy-meter,.bez-vile .divider{display:none}

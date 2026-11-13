@@ -9,12 +9,14 @@ import * as physics from './dist/world.js';
 const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,value:'normal',checked:false,style:{},textContent:'',innerHTML:'',firstElementChild:{style:{}},classList:{add(){},remove(){},toggle(){}},setAttribute(){},getContext(){return{};},addEventListener(){}});return nodes.get(id);};
 const document={getElementById:node,querySelectorAll:()=>[],addEventListener(){},activeElement:{tagName:'BODY'}};
 const storage=new Map();const localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v)),removeItem:k=>storage.delete(k)};
+// the powers of the road (shrines, marko-moci) are all found, unless a test takes them away
+storage.set('marko-moci',JSON.stringify(['trag','kombo','potres','oko','krilo','lanac','nalet','gaz','zidotrk']));
 const window={addEventListener(){}};
 class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,plowSpoils,slay,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,startVezbaliste,MOCI2,AMAJLIJE,amState,am,amToggle,resetMoci2:()=>{amCache=null;udarCache=null;udarNext=0;},udari,izaberiUdar,izvori,putuj,closeIzvor,closeKarta,lanacTarget,ducanList,buyDucan,UK,moc2,OKO_MAX,ZID_TIME,setBank,bank,setLevel:v=>{level=v;},shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe,gaz,talasi,ckpt,izvorAt})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,update,keys,pressed,LEVELS,plowSpoils,slay,has,SKILLS,levelOpen,completeLevel,playerPose,placeLabel,idleFrame,FOE_IDLE,damage,TRAG_LIFE,TRAG_CD,startVezbaliste,MOCI2,AMAJLIJE,amState,am,amToggle,resetMoci2:()=>{amCache=null;udarCache=null;udarNext=0;},udari,izaberiUdar,izvori,putuj,closeIzvor,closeKarta,lanacTarget,ducanList,buyDucan,UK,moc2,moc,vilaTu,MOC_GDE,mociReset:()=>{mociCache=null;},OKO_MAX,ZID_TIME,setBank,bank,setLevel:v=>{level=v;},shakeNow:()=>shake,grunts:()=>gruntCount,state:()=>({p,world,mode,level,thrown,coins,perks,bank:bank(),zone,boss,arrows,lastSafe,gaz,talasi,ckpt,izvorAt})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
@@ -27,7 +29,7 @@ const floorAt=(w,x)=>w.platforms.filter(q=>q.ground&&x>q.x+10&&x<q.x+q.w-10).sor
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 
 // ---- the journey: pohodi open one by one, each finished pohod teaches a skill ----
-{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.filter(L=>!L.izazov).map(L=>L.id).join(' ')==='selo manastir oranje tvrdjava podrum mocvara suma pecina prevoj klisura rusevine rudnik reka urvina san','journey: the pohodi follow the life of Marko');ok(api.LEVELS.findIndex(L=>L.izazov)>=api.LEVELS.length-api.LEVELS.filter(L=>L.izazov).length,'journey: the challenge pohodi (izazov) stand after it, apart from the song');
+{ok(api.levelOpen(0)&&!api.levelOpen(1),'journey: the song begins in the village, and only the first pohod is open');ok(api.LEVELS.filter(L=>!L.izazov).map(L=>L.id).join(' ')==='selo suma manastir oranje tvrdjava podrum mocvara pecina prevoj klisura rusevine rudnik reka urvina san','journey: the pohodi follow the life of Marko');ok(api.LEVELS.findIndex(L=>L.izazov)>=api.LEVELS.length-api.LEVELS.filter(L=>L.izazov).length,'journey: the challenge pohodi (izazov) stand after it, apart from the song');
  {const done=api.LEVELS.slice(0,9).map(L=>L.id);storage.set('marko-levels',JSON.stringify(done));ok(api.levelOpen(8)&&!api.levelOpen(9),'journey: after the ninth pohod the road is shut until Musa falls');storage.set('marko-kacanik','won');ok(api.levelOpen(9)&&!api.levelOpen(10),'journey: Musa fallen, the gorge opens');storage.delete('marko-levels');storage.delete('marko-kacanik');}
  {const order=api.LEVELS.map(L=>L.id),learn=id=>order.indexOf(api.SKILLS.find(k=>k.id===id).land),need=order.filter(id=>(physics.RECIPES[id]||'').split(' ').includes('chimney^'));ok(need.length>=3&&need.every(id=>learn('zid')<order.indexOf(id)),'journey: every pohod whose road climbs wall to wall ('+need.join(', ')+') comes after the wall jump is learned');
   ok(api.SKILLS.every((k,i)=>i===0||learn(k.id)>learn(api.SKILLS[i-1].id)),'journey: the skills are learned in the order they are listed');}
@@ -395,4 +397,20 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  hold(12,true);hold(8,true);ok(pressed.has('KeyB')&&!keys.has('KeyG'),'gamepad: ↑ + ⧉ leaves a mark on the map');clear();
  hold(8,true);ok(pressed.has('KeyG'),'gamepad: ⧉ alone is still the father\'s sabre');clear();
  const html=await fs.readFile('dist/index.html','utf8');ok(['KeyC','KeyO','KeyB','KeyM'].every(k=>html.includes(`data-key="${k}"`)&&new RegExp(k+":'<").test(source)),'touch: chain, eye, mark and map have their buttons, drawn like the others');}
+// ---- one story: the vila joins in her forest, the powers wait at shrines on the road ----
+{const w=await start('selo');quiet(w);ok(!api.vilaTu(),'one story: in the village the vila is not yet with Marko');
+ {const {p}=S(),e0=p.energy;stand(p.x,p.y);tap('KeyE');step(5);ok(p.energy===e0&&!(p.castLock>0),'one story: E in the village does not call the vila');}
+ const w2=await start('suma');quiet(w2);const pt=w2.traps.find(t=>t.kind==='potera');ok(pt&&!api.vilaTu(),'one story: in her forest she is the one Marko rides down, not yet his sworn sister');
+ pt.state='kraj';pt.done=true;ok(api.vilaTu(),'one story: the chase over, the vila is Marko\'s sworn sister');
+ await start('manastir');ok(api.vilaTu(),'one story: after the forest she is with him in every chapter');
+ ok(api.LEVELS.findIndex(L=>L.id==='suma')===1,'one story: the forest of the vila is the second chapter');
+ const saved=storage.get('marko-moci');storage.set('marko-moci','[]');storage.delete('marko-levels');api.mociReset();
+ const w3=await start('mocvara');quiet(w3);const o=w3.oltari[0];ok(w3.oltari.length===1&&o.moc==='krilo','shrine: the marsh, where Marko binds the falcon\'s wing, holds the shrine of the falcon\'s wing');
+ ok(!api.moc('krilo')&&!api.moc('nalet')&&!api.moc2('lanac'),'shrine: the powers are not Marko\'s before he finds them');
+ ok(o.x>S().level.spawn.x+800&&o.x<S().level.goal.x-600&&!!floorAt(w3,o.x),'shrine: it stands on the road, away from the start and the goal');
+ stand(o.x,o.y);step(3);ok(o.taken&&api.moc('krilo')&&JSON.parse(storage.get('marko-moci')).includes('krilo'),'shrine: walking up to it gives the power for good');
+ await start('pecina');ok(api.moc('krilo')&&!api.moc2('lanac')&&S().world.oltari[0]?.moc==='lanac','shrine: the wing is kept in the next chapter, where the chain waits');
+ api.completeLevel();ok(JSON.parse(storage.get('marko-moci')).includes('lanac'),'shrine: a chapter finished without its shrine still gives its power');storage.delete('marko-levels');
+ for(const [k,id] of Object.entries(api.MOC_GDE)){storage.set('marko-moci','[]');api.mociReset();const w4=await start(id);ok(w4.oltari.length===1&&w4.oltari[0].moc===k,`shrine: ${id} has a place for ${k}`);}
+ storage.set('marko-moci',saved);storage.delete('marko-levels');api.mociReset();}
 console.log(`${checks} pohod mechanics checks passed.`);

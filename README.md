@@ -358,6 +358,13 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Koštac sa Musom** (`kostacStep`, `musaHvat`, `musaObori`, `drawKostac`): kad mu pukne poslednje srce, Musa i Marko se prvo nose stojeći (`kostac-musa`, tri hvata), pa ga Musa obori (`kostac-musa-kraj`) i tek tada sedne na njega (`megdan-kostac`), gde opet idu hvatovi dok vila ne zovne. Par na zemlji je isti crtež kao poslednji kadar obaranja, pa je `KOSTAC_FIT` za `megdan-kostac` i `megdan-noz` podignut na 0,84 da se veličina ne promeni u prelazu.
 - **Narudžbine od Codexa iz ove sesije**: Stefan je 13. 11. rekao da se animacije naručuju i odavde. Briefovi su `art/world-pack-03/DOPUNA-46.md` i dalje, status u `STATUS-ANIMACIJE-NOC.md`, Codex radi u worktree-u `marko-noc` kao posebna Codex sesija (najslabiji model), a klipovi ulaze u rig kroz blok `# ---- noc-poliranje` na kraju tabele u `build-sprite-rig.py`. Klip se ugrađuje tek kad se pogleda pored pravog lika: prvi izvoz DOPUNA-46 (rafal, drugi udarac Oklopnika, potres) je odbijen jer likovi nisu bili oni iz igre. Iz ponovljenog je prihvaćen `archer-rafal`; `oklopnik-drugi` i `fx-potres` su odbijeni i drugi put (pregled je u `STATUS-ANIMACIJE-NOC.md`).
 
+## 13. novembar (4): jedna priča
+
+- **Jedna mapa, jedan niz poglavlja.** Nema više jezičaka „Pesme o Marku” i „Pohodi”: mapa ide od Kosovskog sela do Urvine, megdan na Kačaniku je deseto poglavlje na istom drumu (njegovih šest delova bira se u opisu čvora), a sve se zove poglavlje. V2 nivoi („Junački pohodi”) su sklonjeni iz menija dok ne dobiju slike.
+- **Ravijojlina šuma je drugo poglavlje.** Do nje vila nije uz Marka: E je ne zove, savete daje guslar, njenog svetla i merača nema. Posle potere na Šarcu („Bogom brate, Kraljeviću Marko”) postaje posestrima i igra tada objasni šta radi E.
+- **Moći iz V2 se nalaze na putu**, svaka na oltaru u poglavlju kome po pesmi pripada: Vilin trag u šumi, Vazdušni kombo kod manastira, Potres na oranju, Vilinsko oko u podrumu, Sokolovo krilo u močvari (gde Marko previja sokolu krilo), Ravijojlin lanac u pećini, Juriš u vazduhu na prevoju, Šarčev gaz u klisuri, Trk po zidu u ruševinama. Oltar stoji na glavnom drumu; ko ga ipak promaši, moć dobija na kraju poglavlja. Stara čuvanja dobijaju moći poglavlja koja su već pređena. Mapa u opisu poglavlja piše koja moć je na putu.
+- Testovi: `mechanics-test` proverava red priče, vilu pre i posle šume i oltar u svakom poglavlju.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

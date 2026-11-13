@@ -11,6 +11,8 @@ const canvas=()=>({width:1280,height:720,style:{},getContext:()=>any(),addEventL
 const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{...canvas(),hidden:false,value:'normal',checked:false,textContent:'',innerHTML:'',firstElementChild:{style:{}},classList:{add(){},remove(){},toggle(){}},setAttribute(){},querySelector(){return null;},querySelectorAll(){return[];}});return nodes.get(id);};
 const document={getElementById:node,querySelectorAll:()=>[],addEventListener(){},activeElement:{tagName:'BODY'}};
 const storage=new Map();const localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v)),removeItem:k=>storage.delete(k)};
+// the powers of the road (shrines, marko-moci) are all found, unless a test takes them away
+storage.set('marko-moci',JSON.stringify(['trag','kombo','potres','oko','krilo','lanac','nalet','gaz','zidotrk']));
 const window={addEventListener(){}};
 class Image{constructor(){this.width=64;this.height=64;this.naturalWidth=64;this.naturalHeight=64;}set src(v){queueMicrotask(()=>this.onload?.());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url.split('?')[0],'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
