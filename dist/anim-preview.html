@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marko Kraljević — pre i posle | Animacije</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0d1416;color:#eaf1ed}
+*{box-sizing:border-box}
+body{margin:0;padding:24px}
+main{max-width:1160px;margin:auto}
+h1{font-size:clamp(24px,4vw,38px);letter-spacing:-.045em;margin:12px 0 8px}
+p{line-height:1.55;color:#a9b9b6}
+.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.eyebrow{color:#b7cba4;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+button{font:inherit;color:#dde8e4;background:#1a292c;border:1px solid #334649;border-radius:8px;padding:10px 13px;cursor:pointer}
+button:hover{background:#26393d}
+button[aria-pressed=true]{background:#d4e0c8;border-color:#d4e0c8;color:#17211b;font-weight:650}
+.separator{flex:1}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid #334345;background:#142124;border-radius:14px;overflow:hidden}
+.head{padding:14px 16px 8px;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:space-between}
+.tag{color:#bacdbd;background:#263e35;padding:5px 8px;border-radius:6px;font-size:11px}
+canvas{display:block;width:100%;height:auto;background:#122025}
+.desc{margin:0;padding:11px 16px 16px;min-height:64px;font-size:12px;color:#a7b8b1}
+.status{font-size:13px;color:#b8c6bd;padding:16px;background:#182428;border:1px solid #344448;border-radius:10px;margin-top:18px}
+.status.error{border-color:#a16c62;color:#ffd5ca}
+.meta{margin-top:15px;font-size:12px;color:#81918e}
+a{color:#bdd4af}
+@media(max-width:700px){body{padding:14px}.grid{grid-template-columns:1fr}.separator{display:none}.controls{gap:7px}button{font-size:13px;padding:8px 10px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">Marko Kraljević · Originalni spriteovi iz igre</div>
+<div class="top">
+<div>
+<h1>Uporedi fluidnost animacija</h1>
+<p>Levo je prikaz osnovnih kadrova; desno je demonstracija novih pravila prelaza. Nema izmišljenog crteža: oba prikaza koriste isti Markov sprite atlas.</p>
+</div>
+</div>
+<div class="controls" id="controls">
+<button data-mode="movement" aria-pressed="true">Hod / trk</button>
+<button data-mode="jump" aria-pressed="false">Skok</button>
+<button data-mode="roll" aria-pressed="false">Kolut</button>
+<button data-mode="attack" aria-pressed="false">Udarac</button>
+<button data-mode="sabre" aria-pressed="false">Sablja</button>
+<div class="separator"></div>
+<button id="slow" aria-pressed="true">Usporeno 0.3×</button>
+<button id="normal" aria-pressed="false">Normalno 1×</button>
+<button id="pause">Pauza</button>
+</div>
+<div class="grid">
+<section class="card"><div class="head">PRE <span class="tag">Osnovni kadrovi</span></div><canvas width="480" height="310" id="before"></canvas><p class="desc">Kadrovi iz originalnih sprite sheetova, bez novih prelaza.</p></section>
+<section class="card"><div class="head">POSLE <span class="tag">Nova pravila</span></div><canvas width="480" height="310" id="after"></canvas><p class="desc">Kompatibilni stavovi prelaze mekše; kontakt udarca ostaje oštar. Slabi pokreti dobijaju kratko ublažavanje skoka između poza.</p></section>
+</div>
+<div class="status" id="status">Učitavam lokalne assete igre...</div>
+<div class="meta">Ovo je namenski vizuelni preview koda iz PR #1, ne puna simulacija fizike ili inputa. Originalni kadrovi nisu precrtani. <a href="./" target="_blank" rel="noopener">Otvori celu igru</a> · <a href="https://github.com/trbojevicstefan/markokraljevic/pull/1" target="_blank" rel="noopener">Pregled izmena</a></div>
+</main>
+<script type="module">
+const ROOT='./assets/';
+const modeScript={
+ movement:[['marko-idle-2',.8,6],['marko-walk',1,12],['marko-run',1.4,12],['marko-walk',1,12],['marko-idle-2',.8,6]],
+ jump:[['marko-idle-2',.55,6],['marko-jump-rise',.5,10],['marko-fall',.5,9],['marko-idle-2',.7,6]],
+ roll:[['marko-idle-2',.55,6],['marko-roll',.6,11],['marko-idle-2',.75,6]],
+ attack:[['marko-idle-2',.55,6],['marko-attack',.6,10],['marko-idle-2',.75,6]],
+ sabre:[['marko-sablja-idle',.7,6],['marko-sablja-trci',1.5,12],['marko-sablja-idle',.7,6]]
+};
+const fading=new Map([
+ ['marko-idle-2|marko-walk',.105],['marko-walk|marko-run',.105],
+ ['marko-run|marko-walk',.105],['marko-walk|marko-idle-2',.105],
+ ['marko-jump-rise|marko-fall',.080],['marko-sablja-idle|marko-sablja-trci',.095],
+ ['marko-sablja-trci|marko-sablja-idle',.095]
+]);
+const weak=new Set(['marko-attack','marko-roll','marko-jump-rise','marko-fall']);
+const echoes={ 'marko-attack':.028,'marko-roll':.028,'marko-jump-rise':.042,'marko-fall':.042};
+let mode='movement',rate=.3,paused=false,elapsed=0,last=performance.now(),metadata,images=new Map(),pending=new Map();
+const status=document.querySelector('#status'),before=document.querySelector('#before'),after=document.querySelector('#after');
+const ease=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x)};
+function loadImage(name){
+ if(pending.has(name))return pending.get(name);
+ const promise=new Promise(resolve=>{
+  const im=new Image();const imgName=metadata[name]?.image||name+'.png';
+  const png=ROOT+imgName;
+  im.onload=()=>{images.set(name,im);resolve(true)};
+  im.onerror=()=>{if(im.src.endsWith('.webp'))im.src=png;else resolve(false)};
+  im.src=ROOT+'pola/'+imgName.replace(/\.png$/,'.webp');
+ });pending.set(name,promise);return promise;
+}
+function sequence(t){
+ const events=modeScript[mode],duration=events.reduce((s,e)=>s+e[1],0),local=((t%duration)+duration)%duration;
+ let start=0;
+ for(let i=0;i<events.length;i++){
+  const [name,dur,fps]=events[i];const end=start+dur;
+  if(local<end||i===events.length-1){
+   const frames=metadata[name]?.frames?.length||1;
+   const at=local-start;
+   const frame=Math.min(frames-1,Math.floor(at*fps)%frames);
+   const prev=events[i-1];
+   return {name,frame,at,start,prev,allTime:local,fps};
+  }start=end;
+ }
+}
+function drawEnv(c){
+ const g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);
+ g.fillStyle='#16292d';g.fillRect(0,0,c.width,c.height);
+ g.strokeStyle='#233c3c';g.lineWidth=1;for(let x=0;x<c.width;x+=40){g.beginPath();g.moveTo(x,0);g.lineTo(x,c.height);g.stroke()}
+ g.fillStyle='#2a3f35';g.fillRect(0,268,c.width,42);
+ g.fillStyle='#9caa83';g.fillRect(0,267,c.width,2);
+ g.fillStyle='#071b1b88';g.beginPath();g.ellipse(240,270,48,7,0,0,Math.PI*2);g.fill();
+ return g;
+}
+function drawFrame(g,name,fi,alpha=1){
+ const meta=metadata[name],img=images.get(name);
+ if(!img||!meta)return false;
+ const f=meta.frames[Math.max(0,Math.min(meta.frames.length-1,fi))];
+ const sheetWidth=Math.max(...meta.frames.map(x=>x[0]+x[2]));
+ const factor=img.naturalWidth/sheetWidth;
+ const k=meta.scale,cx=240-meta.anchor*k,cy=267-f[4]*k;
+ g.save();g.globalAlpha=alpha;g.imageSmoothingEnabled=true;
+ g.drawImage(img,f[0]*factor,f[1]*factor,f[2]*factor,f[3]*factor,cx,cy,f[2]*k,f[3]*k);
+ g.restore();return true;
+}
+function paint(canvas,newAnim,sec){
+ const g=drawEnv(canvas),s=sequence(sec);if(!s)return;
+ if(newAnim){
+  if(s.prev&&s.prev[0]!==s.name){
+   const dur=fading.get(s.prev[0]+'|'+s.name)||0;
+   if(dur&&s.at<dur){
+    const prevMeta=metadata[s.prev[0]];
+    const idx=Math.min(prevMeta.frames.length-1,Math.floor((s.prev[1]-.001)*s.prev[2])%prevMeta.frames.length);
+    drawFrame(g,s.prev[0],idx,.5*(1-ease(s.at/dur)));
+   }
+  }else if(weak.has(s.name)&&s.frame>0) {
+   const dt=s.at-s.frame/s.fps,dur=echoes[s.name]||0;
+   const contact=s.name==='marko-attack'&&s.frame>=3;
+   if(dur&&!contact&&dt>=0&&dt<dur)drawFrame(g,s.name,s.frame-1,.16*(1-ease(dt/dur)));
+  }
+ }
+ drawFrame(g,s.name,s.frame,1);
+ g.fillStyle='#bbcecc';g.font='13px ui-monospace,monospace';g.fillText(s.name,14,22);
+ g.fillStyle='#7c9893';g.font='12px ui-monospace,monospace';g.fillText('frame '+(s.frame+1)+' / '+metadata[s.name].frames.length,14,42);
+}
+async function choose(v){
+ mode=v;elapsed=0;
+ document.querySelectorAll('button[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===v)));
+ const keys=[...new Set(modeScript[v].map(x=>x[0]))];
+ status.classList.remove('error');status.textContent='Učitavam '+keys.map(x=>x.replace('marko-','')).join(', ')+'...';
+ const res=await Promise.all(keys.map(loadImage));
+ status.textContent=res.every(Boolean)?'Spriteovi učitani. Prikaz animacije je aktivan.':'Neki spriteovi nisu učitani; proveri internet vezu i ponovo otvori stranicu.';
+ status.classList.toggle('error',!res.every(Boolean));
+}
+document.querySelector('#controls').addEventListener('click',e=>{
+ const btn=e.target.closest('button');if(!btn)return;
+ if(btn.dataset.mode)choose(btn.dataset.mode);
+ if(btn.id==='slow'||btn.id==='normal'){
+  rate=btn.id==='slow'?.3:1;
+  document.querySelector('#slow').setAttribute('aria-pressed',String(rate===.3));
+  document.querySelector('#normal').setAttribute('aria-pressed',String(rate===1));
+ }
+ if(btn.id==='pause'){paused=!paused;btn.textContent=paused?'Nastavi':'Pauza';}
+});
+function tick(now){
+ const dt=Math.min(.1,(now-last)/1000);last=now;
+ if(!paused)elapsed+=dt*rate;
+ if(metadata){paint(before,false,elapsed);paint(after,true,elapsed);}
+ requestAnimationFrame(tick);
+}
+try{
+ const res=await fetch(ROOT+'sprite-rig.json');if(!res.ok)throw new Error('Nedostaje sprite-rig.json ('+res.status+')');
+ metadata=await res.json();await choose(mode);requestAnimationFrame(tick);
+}catch(err){status.textContent='Greška: '+err.message+'. Otvori preview sa objavljene GitHub Pages adrese, ne direktno sa diska.';status.classList.add('error')}
+</script>
+</body>
+</html>
