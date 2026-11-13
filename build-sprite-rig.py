@@ -412,9 +412,8 @@ if _have('marko-ore') and 'marko-walk' in SCALES:
 # DOPUNA-44: the standing grapple with each champion. Both men share one cell, Marko on the left. The artist drew the
 # champions shorter against Marko than they stand on the road, so the scale splits the difference (geometric mean of
 # Marko's and the champion's road scale): both are off by the same few percent instead of one of them jumping.
-# A clip in KOSTAC_CEKA is drawn wrong and waits for a redraw: Đemo came out in Hasan-aga's helmet and mail, and
-# Hasan-aga came out as tall and slim as Marko, a head shorter and much narrower than on the road; the fiery aga,
-# the standard-bearer and the janissary aga all came out as the same plain Turk in a helmet and red mail.
+# A clip in KOSTAC_CEKA is drawn wrong and waits for a redraw (the first ones came out as one plain Turk because the
+# artist took reference.png, an old generic janissary, as the champion's look; GPT-6.1-Sol redrew them).
 def _halves(name):
     cs = _cells(name)
     return float(np.median([body_height(c[:, :230]) for c in cs])), float(np.median([body_height(c[:, 290:]) for c in cs]))
@@ -423,7 +422,7 @@ def _road(name):
 KOSTAC_LIK = {'hasan': 'hasan-aga', 'djemo': 'djemo', 'dzelat': 'dzelat', 'ognjeni': 'ognjeni-aga', 'bajraktar': 'bajraktar',
               'aga': 'janicarski-aga', 'arapin': 'arapin', 'lovac': 'lovac-aga', 'musa': 'musa', 'basa': 'basa',
               'kopljanik-basa': 'kopljanik-basa', 'beg': 'beg'}
-KOSTAC_CEKA = {'djemo', 'hasan', 'ognjeni', 'bajraktar', 'aga'}
+KOSTAC_CEKA = set()
 for kit, who in KOSTAC_LIK.items():
     clip = f'kostac-{kit}'
     if kit in KOSTAC_CEKA or not (_have(clip) and f'{who}-idle' in SCALES and 'marko-idle-2' in SCALES):
@@ -439,14 +438,24 @@ for t_ in ['sword', 'shield', 'archer', 'akindzija', 'oklopnik', 'palikuca', 'ko
     n_ = f'{t_}-omamljen'
     if _have(n_) and f'{t_}-idle' in SCALES:
         SCALES[n_] = (_road(f'{t_}-idle') * .95 / float(np.median([body_height(c) for c in _cells(n_)])), 'feet')
+# The champion's grab: the artist drew each one smaller than his idle, by the grapple factor of the brief, and wrote
+# it in the manifest (scaleReference): the idle scale is enlarged by the same factor so he keeps his size.
+def _grab_k(name):
+    ref_ = json.load(open(os.path.join(ROOT, name + '.json'), encoding='utf8')).get('scaleReference') or {}
+    return ref_['idleAlphaHeight'] / ref_['targetHeight'] if ref_.get('targetHeight') else 1
+for who in ['hasan-aga', 'ognjeni-aga', 'lovac-aga', 'bajraktar', 'janicarski-aga', 'djemo', 'dzelat', 'arapin']:
+    if _have(f'{who}-hvata') and f'{who}-idle' in SCALES:
+        SCALES[f'{who}-hvata'] = (SCALES[f'{who}-idle'][0] * _grab_k(f'{who}-hvata'), 'feet')
 # The three champions who were enlarged soldiers get their own figures at the size the game drew them so far
 # (tufekdžija and kopljanik × 1.3, the akinji × 1.35): one scale per figure, from its idle; the grab follows it.
+# A figure in BASA_CEKA waits for a redraw (kopljanik-baša's run and hurt came out cut across the cell edges).
+BASA_CEKA = {'kopljanik-basa'}
 for who, ref, k in [('basa', 'tufekdzija-idle', 1.3), ('kopljanik-basa', 'kopljanik-idle', 1.3), ('beg', 'akindzija-idle', 1.35)]:
-    if _have(f'{who}-idle') and ref in SCALES:
+    if who not in BASA_CEKA and _have(f'{who}-idle') and ref in SCALES:
         s_ = _road(ref) * k / float(np.median([body_height(c) for c in _cells(f'{who}-idle')]))
         for c_ in ['idle', 'run', 'attack', 'hurt', 'death', 'hvata']:
             if _have(f'{who}-{c_}'):
-                SCALES[f'{who}-{c_}'] = (s_, 'center' if c_ == 'death' else 'feet')
+                SCALES[f'{who}-{c_}'] = (s_ * (_grab_k(f'{who}-{c_}') if c_ == 'hvata' else 1), 'center' if c_ == 'death' else 'feet')
         print(who, round(s_, 4), 'visina', round(_road(ref) * k))
 # The janissary who leaps on Marko's back: Marko stands alone in the last frame of the throw, so his height there
 # (left part of the cell, the janissary lies to the right) makes him as tall as on the road.

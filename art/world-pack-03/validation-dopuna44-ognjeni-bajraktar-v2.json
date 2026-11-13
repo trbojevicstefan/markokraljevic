@@ -1,0 +1,54 @@
+[
+  {
+    "clip": "kostac-ognjeni",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../ognjeni-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-ognjeni-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../ognjeni-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-bajraktar",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../bajraktar-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-bajraktar-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../bajraktar-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  }
+]

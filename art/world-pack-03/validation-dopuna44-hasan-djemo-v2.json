@@ -1,0 +1,54 @@
+[
+  {
+    "clip": "kostac-hasan",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../hasan-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-hasan-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../hasan-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-djemo",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../djemo-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-djemo-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../djemo-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  }
+]

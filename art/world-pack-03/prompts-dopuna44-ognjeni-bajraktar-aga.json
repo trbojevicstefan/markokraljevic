@@ -1,0 +1,10 @@
+{
+  "jobs": [
+    {"id":"kostac-ognjeni","kind":"human","frames":8,"cols":3,"rows":3,"loop":true,"fps":10,"calibrationFrame":8,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji/reference.png","art/animation-pack-04/assets/ognjeni-aga-idle/reference.png"],"prompt":"Shoulder-grip loop, Marko 295px, Ognjeni 1.3x Marko."},
+    {"id":"kostac-bajraktar","kind":"human","frames":8,"cols":3,"rows":3,"loop":true,"fps":10,"calibrationFrame":8,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji/reference.png","art/animation-pack-04/assets/bajraktar-idle/reference.png"],"prompt":"Shoulder-grip loop, Marko 295px, Bajraktar 1.35x Marko."},
+    {"id":"kostac-aga","kind":"human","frames":8,"cols":3,"rows":3,"loop":true,"fps":10,"calibrationFrame":8,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji/reference.png","art/animation-pack-04/assets/janicarski-aga-idle/reference.png"],"prompt":"Shoulder-grip loop, Marko 295px, Janissary Aga 1.35x Marko."},
+    {"id":"kostac-ognjeni-kraj","kind":"human","frames":6,"cols":4,"rows":2,"loop":false,"fps":10,"calibrationFrame":6,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji-kraj/reference.png","art/animation-pack-04/assets/ognjeni-aga-idle/reference.png"],"prompt":"Hip throw ending, Marko 295px, Ognjeni 1.3x; cell7 Marko calibration, cell8 empty."},
+    {"id":"kostac-bajraktar-kraj","kind":"human","frames":6,"cols":4,"rows":2,"loop":false,"fps":10,"calibrationFrame":6,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji-kraj/reference.png","art/animation-pack-04/assets/bajraktar-idle/reference.png"],"prompt":"Hip throw ending, Marko 295px, Bajraktar 1.35x; cell7 Marko calibration, cell8 empty."},
+    {"id":"kostac-aga-kraj","kind":"human","frames":6,"cols":4,"rows":2,"loop":false,"fps":10,"calibrationFrame":6,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji-kraj/reference.png","art/animation-pack-04/assets/janicarski-aga-idle/reference.png"],"prompt":"Hip throw ending, Marko 295px, Janissary Aga 1.35x; cell7 Marko calibration, cell8 empty."}
+  ]
+}

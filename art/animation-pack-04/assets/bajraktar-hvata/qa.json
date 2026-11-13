@@ -1,0 +1,68 @@
+{
+  "clip": "bajraktar-hvata",
+  "reference": "art/animation-pack-04/assets/bajraktar-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        51,
+        63,
+        461,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        68,
+        63,
+        443,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        63,
+        430,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        72,
+        63,
+        439,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        65,
+        63,
+        447,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        62,
+        63,
+        450,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 472,
+  "targetHeight": 425,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.9,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

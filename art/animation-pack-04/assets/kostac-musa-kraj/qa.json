@@ -1,0 +1,76 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        77,
+        85,
+        435,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        46,
+        106,
+        466,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        24,
+        101,
+        487,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        29,
+        118,
+        482,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        88,
+        243,
+        423,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        101,
+        242,
+        411,
+        488
+      ]
+    }
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "identityReference": "actual idle frame-0, not reference.png",
+  "sizeCheck": "identity-size-comparison.png and size-overlay.png inspected",
+  "targets": {
+    "scale": 0.9757869249394673,
+    "poseScaleCorrections": {
+      "4": 0.77
+    },
+    "targetEnemyHeight": 403,
+    "markoTargetHeight": 306,
+    "observedMarkoHeadToGround": 313,
+    "observedMarkoDifferencePx": 7,
+    "referenceFactors": {
+      "marko": 0.8,
+      "musa": 0.89
+    }
+  }
+}

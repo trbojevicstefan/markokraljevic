@@ -1,0 +1,54 @@
+[
+  {
+    "clip": "kostac-aga",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../janicarski-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-aga-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../janicarski-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-arapin",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../arapin-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  },
+  {
+    "clip": "kostac-arapin-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../arapin-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png"
+  }
+]
