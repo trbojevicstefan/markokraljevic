@@ -991,3 +991,15 @@ DOPUNA-44 deo 1 tri nove base: kostac-kopljanik-basa-kraj — GOTOVO; 6 kadrova 
 DOPUNA-44 deo 1 tri nove base: kostac-beg — GOTOVO; 8 kadrova 512x512, petlja; uzori marko-idle-2 i beg-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 398px (odnos 1.3); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
 
 DOPUNA-44 deo 1 tri nove base: kostac-beg-kraj — GOTOVO; 6 kadrova 512x512, jednom, holdLastFrame; uzori marko-idle-2 i beg-idle/frames/motion/frame-0.png; Marko 306px, protivnik cilj 398px (odnos 1.3); pregled lika i preklopa pre izvoza, atlas/manifest/frames/GIF/QA provereni. Prethodni istoimeni klip nije postojao.
+
+DOPUNA-44 deo 5: kostac-akindzija — GOTOVO; 8 kadrova 512x512, petlja; rvanje na zemlji kao kostac-janicar, zum0.76, stvarni idle frame-0 uzori (akindzija izdvojen iz dist atlasa samo citanjem), pre izvoza pregled identiteta i preklopa velicine; atlas/manifest/frames/GIF/QA provereni, y487. Prethodni istoimeni klip nije postojao; napravljen novi.
+
+DOPUNA-44 deo 5: kostac-akindzija-kraj — GOTOVO; 6 kadrova 512x512, jednom/holdLastFrame=true; rvanje na zemlji kao kostac-janicar-kraj, zum0.76, stvarni idle frame-0 uzori (akindzija izdvojen iz dist atlasa samo citanjem), pre izvoza pregled identiteta i preklopa velicine; atlas/manifest/frames/GIF/QA provereni, y487. Prethodni istoimeni klip nije postojao; napravljen novi.
+
+DOPUNA-44 deo 5: kostac-kopljanik — GOTOVO; 8 kadrova 512x512, petlja; rvanje na zemlji kao kostac-janicar, zum0.76, stvarni idle frame-0 uzori (akindzija izdvojen iz dist atlasa samo citanjem), pre izvoza pregled identiteta i preklopa velicine; atlas/manifest/frames/GIF/QA provereni, y487. Prethodni istoimeni klip nije postojao; napravljen novi.
+
+DOPUNA-44 deo 5: kostac-kopljanik-kraj — GOTOVO; 6 kadrova 512x512, jednom/holdLastFrame=true; rvanje na zemlji kao kostac-janicar-kraj, zum0.76, stvarni idle frame-0 uzori (akindzija izdvojen iz dist atlasa samo citanjem), pre izvoza pregled identiteta i preklopa velicine; atlas/manifest/frames/GIF/QA provereni, y487. Prethodni istoimeni klip nije postojao; napravljen novi.
+
+DOPUNA-44 deo 5 — zavrsna provera: sva cetiri klipa / 28 kadrova prosla validate-dopuna44-deo5.py; izvestaj validation-dopuna44-deo5.json. Zavrsni klipovi pocinju identicnim kadrom petlje. Prvi pokusaj sa nozem odbijen od generatora; isporuceni klipovi imaju prazan hvat rukama i preokret guranjem, bez noza. Promptovi: prompts-dopuna44-deo5.json; izvori, preklopi i merenja: art/animation-pack-04/sources/dopuna44-deo5/.
+
+DOPUNA-45 deo 1: marko-dize-ralo - GOTOVO; 8 kadrova 1024x1024, jednom/holdLastFrame=true, oslonac y=999; uzori volovi-ralo/frames/motion/frame-0.png i marko-ore/frames/motion/frame-0.png, provera identiteta i velicine pre izvoza; atlas, manifest, frames, preview.gif i QA provereni. Kadar 0-3 dizanje zaprega, 4-7 spustanje ispred Marka.
