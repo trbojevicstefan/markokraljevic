@@ -1,84 +1,133 @@
 {
   "clip": "kopljanik-basa-run",
+  "passed": true,
   "frames": [
     {
       "frame": 0,
-      "bounds": [
-        58,
-        78,
-        454,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        71,
+        77,
+        441,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 1,
-      "bounds": [
-        35,
-        78,
-        476,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        74,
+        76,
+        439,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 2,
-      "bounds": [
-        37,
-        78,
-        475,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        77,
+        68,
+        436,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 3,
-      "bounds": [
-        159,
-        78,
-        352,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        79,
+        67,
+        433,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 4,
-      "bounds": [
-        48,
-        78,
-        464,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        79,
+        65,
+        433,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 5,
-      "bounds": [
-        20,
-        162,
-        492,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        76,
+        70,
+        437,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 6,
-      "bounds": [
-        20,
-        167,
-        492,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        74,
+        73,
+        439,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 7,
-      "bounds": [
-        124,
-        78,
-        387,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        69,
+        76,
+        444,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     }
   ],
-  "loop": true,
-  "identityReference": "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
-  "hasanReference": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
-  "identityAlphaHeight": 410,
-  "hasanAlphaHeight": 463,
-  "markoIdleAlphaHeight": 383,
-  "atlasMatchesFrames": true
+  "idleReference": "art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png",
+  "sourceGrid": [
+    443,
+    443
+  ],
+  "uniformScale": 1.0649350649350648,
+  "neighborBleedCheck": "passed by per-cell crop"
 }

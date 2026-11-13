@@ -1,0 +1,73 @@
+{
+  "clip": "beg-hurt",
+  "passed": true,
+  "frames": [
+    {
+      "frame": 0,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        124,
+        24,
+        389,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 1,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        107,
+        31,
+        405,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 2,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        98,
+        55,
+        414,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 3,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        125,
+        23,
+        387,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    }
+  ],
+  "idleReference": "art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png",
+  "sourceGrid": [
+    543,
+    724
+  ],
+  "uniformScale": 0.6889880952380952,
+  "neighborBleedCheck": "passed by per-cell crop"
+}

@@ -1,0 +1,133 @@
+{
+  "clip": "beg-run",
+  "passed": true,
+  "frames": [
+    {
+      "frame": 0,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        107,
+        24,
+        405,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 1,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        99,
+        24,
+        413,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 2,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        83,
+        55,
+        429,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 3,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        98,
+        22,
+        415,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 4,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        105,
+        22,
+        407,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 5,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        109,
+        24,
+        404,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 6,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        112,
+        25,
+        401,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    },
+    {
+      "frame": 7,
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        114,
+        25,
+        398,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
+    }
+  ],
+  "idleReference": "art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png",
+  "sourceGrid": [
+    443,
+    443
+  ],
+  "uniformScale": 1.1403940886699508,
+  "neighborBleedCheck": "passed by per-cell crop"
+}

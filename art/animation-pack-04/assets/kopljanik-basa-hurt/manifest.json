@@ -3,26 +3,26 @@
   "engine": "component-row",
   "game_input": "atlas.png",
   "degraded_static_fallback": false,
-  "curation_applied": false,
+  "curation_applied": true,
   "frame_variant": "pixel",
   "sprite_sheet_alpha": "atlas.png",
-  "sprite_sheet_alpha_report": "sprite-sheet-alpha.report.json",
   "base_image": "reference.png",
   "cell": {
     "shape": "square",
     "width": 512,
     "height": 512,
-    "safe_margin_x": 24,
-    "safe_margin_y": 24,
+    "safe_margin_x": 8,
+    "safe_margin_y": 8,
     "size": 512,
-    "safe_margin": 24
+    "safe_margin": 8
   },
   "chroma_key": {
-    "name": "green",
-    "hex": "#00FF00",
+    "name": "transparent",
+    "hex": "#00000000",
     "rgb": [
       0,
-      255,
+      0,
+      0,
       0
     ]
   },
@@ -42,15 +42,16 @@
           100
         ],
         "loop": false,
+        "holdLastFrame": true,
         "frame_variant": "pixel"
       }
     }
   },
   "frame_layout": {
-    "cellWidth": 512,
-    "cellHeight": 512,
     "sheetWidth": 2048,
     "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
     "rows": {
       "motion": [
         {
@@ -81,22 +82,16 @@
     }
   },
   "scaleReference": {
-    "identityIdle": "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
-    "hasanIdle": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
-    "identityAlphaHeight": 410,
-    "hasanAlphaHeight": 463,
-    "markoIdleAlphaHeight": 383,
-    "appliedScaleMin": 0.8232931726907631,
-    "footY": 487
+    "idleAlphaHeightPx": 410,
+    "uniformScale": 0.8704883227176221,
+    "footY": 487,
+    "centerX": 256
   },
-  "identityReferences": [
-    "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png"
-  ],
-  "worldBodyHeight": 410,
-  "renderScale": 1,
+  "renderScale": 1.0,
   "renderAnchor": {
     "x": 256,
-    "y": 488
+    "y": 487
   },
-  "holdLastFrame": true
+  "worldBodyHeight": 410,
+  "identityReference": "art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png"
 }

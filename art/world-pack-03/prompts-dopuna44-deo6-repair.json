@@ -1,0 +1,9 @@
+{
+  "clips": [
+    {"clip":"kopljanik-basa-run","frames":8,"loop":true,"reference":"art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png","raw":"exec-04b7cfc3-ae1f-410f-b93c-b7b0ec591358.png"},
+    {"clip":"kopljanik-basa-hurt","frames":4,"loop":false,"reference":"art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png","raw":"exec-2008521e-2a99-4fae-8a71-163aee7c079b.png"},
+    {"clip":"beg-run","frames":8,"loop":true,"reference":"art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png","raw":"exec-69b683d9-3632-468e-89e4-71b459f132ee.png"},
+    {"clip":"beg-hurt","frames":4,"loop":false,"reference":"art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png","raw":"exec-5e3bab10-48fa-4030-bd26-5d9c496e7e54.png"}
+  ],
+  "export": {"cell":"512x512","centerX":256,"footY":487,"sideMarginMinimum":8,"neighborBleed":"rejected by per-cell alpha crop"}
+}
