@@ -463,6 +463,11 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
     if _have(name) and ref in SCALES:
         SCALES[name] = (SCALES[ref][0] * body_height(_cells(ref)[-1]) / body_height(_cells(name)[-1]), 'feet')
 
+
+# ===== noc-poliranje: the other session's own clips go only between these two lines (helpers such as _cells, _road
+# and body_height are defined above). This session never writes here and puts its new blocks above this line. =====
+# ===== end of the noc-poliranje block =====
+
 rig = {}
 for name, (scale, mode) in SCALES.items():
     if name.startswith('cast/'):
