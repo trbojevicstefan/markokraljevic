@@ -1629,13 +1629,14 @@ function aimArrow(e,speed=440){const sx=e.x+e.face*28,sy=e.y-82,tx=p.x,ty=p.y-58
 // ---------- the plowing level: Marko plows the tsar's road, as his mother asked; the janissaries come to forbid it ----------
 // "More Marko, ne ori drumova!" — "More Turci, ne gaz'te oranja!" Then he lifts the plow and the oxen, and the load of
 // treasure is his. He takes the plow by the handles (E), plows to the boundary stone (D), and may swing the whole team once (K).
-const PLOW_HX=165,PLOW_V=105,PLOW_LIFT=.7;
+// how far behind the team Marko stands: with the drawing made for it (volovi-ralo, marko-ore) the tips of the handles lie in his fists at 171
+const PLOW_V=105,PLOW_LIFT=.7,plowHX=()=>rig?.['volovi-ralo']&&rig?.['marko-ore']?171:165;
 function setupPlows(){world.plowTeams=(world.plows||[]).map((q,i)=>({id:i,x:q.x,y:q.y,x0:q.x,x1:q.x1??q.x+520,phase:'ceka',held:false,walk:0,moveT:0,flash:0,liftT:0,lifted:false,t:0,furrow:[],treasure:null}));
  if(level.id==='oranje'){world.goals=world.plowTeams.map((pl,i)=>({id:i,kind:'plow',plow:pl,x:pl.x,y:pl.y,label:'Zaori carski drum i odbrani brazdu',doneText:'Tovar blaga je tvoj.',done:false,t:9,h:120,off:'cilj-tovar-blaga'}));}}
 const plowTurks=pl=>world.enemies.filter(e=>e.alive&&e.plow===pl.id);
 function plowFree(pl){return pl.phase!=='gotovo'&&!(pl.phase==='boj'&&pl.lifted)&&pl.liftT<=0;}
-function usePlow(){if(p.ore){plowDrop(p.ore);return true;}const pl=(world.plowTeams||[]).find(pl=>plowFree(pl)&&Math.abs(p.x-(pl.x-PLOW_HX))<80&&Math.abs(p.y-pl.y)<40);if(!pl||!p.grounded||p.attack>0||mode!=='play')return false;
- pl.held=true;pl.php=p.hp;if(pl.phase==='ceka')pl.phase='ore';p.ore=pl;p.x=pl.x-PLOW_HX;p.vx=0;p.face=1;sfx('leather',{gain:.6,x:p.x});if(!world.oreTold){world.oreTold=true;toast('Drži napred i ori drum do međaša. E pušta ralo.',3.2);}return true;}
+function usePlow(){if(p.ore){plowDrop(p.ore);return true;}const pl=(world.plowTeams||[]).find(pl=>plowFree(pl)&&Math.abs(p.x-(pl.x-plowHX()))<80&&Math.abs(p.y-pl.y)<40);if(!pl||!p.grounded||p.attack>0||mode!=='play')return false;
+ pl.held=true;pl.php=p.hp;if(pl.phase==='ceka')pl.phase='ore';p.ore=pl;p.x=pl.x-plowHX();p.vx=0;p.face=1;sfx('leather',{gain:.6,x:p.x});if(!world.oreTold){world.oreTold=true;toast('Drži napred i ori drum do međaša. E pušta ralo.',3.2);}return true;}
 function plowDrop(pl){pl.held=false;if(p.ore===pl)p.ore=null;}
 function plowQuarrel(pl){pl.phase='boj';pl.t=0;const kinds=[['sword','sword','shield'],['sword','akindzija','sword'],['shield','sword','akindzija']][pl.id%3],HP={sword:90,shield:125,akindzija:80},made=[];
  kinds.forEach((type,k)=>{let sx=pl.x+660+k*95;while(sx>pl.x+320&&!supportAt(sx,pl.y,4))sx-=40;const hp=HP[type];made.push({id:8800+pl.id*10+k,x:sx,y:pl.y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:1+k*.45,stun:0,flash:0,alive:true,home:pl.x+220,attackId:0,grounded:true,plow:pl.id});});
@@ -1651,7 +1652,7 @@ function updatePlows(dt){const T=world.plowTeams||[];p.dizeT=Math.max(0,(p.dizeT
    else if(p.ore!==pl||!p.grounded||p.attack>0||p.dash>0||axis<0||p.hp<pl.php||p.hp<=0||mode!=='play'||!plowFree(pl))plowDrop(pl);
    else{pl.php=p.hp;if(axis>0&&pl.phase==='ore'){const nx=Math.min(pl.x1,pl.x+PLOW_V*dt);if(supportAt(nx+200,pl.y,STEP_UP)){pl.walk+=nx-pl.x;pl.x=nx;pl.moveT=.12;if(!pl.furrow.length||pl.x-88-pl.furrow[pl.furrow.length-1]>26){pl.furrow.push(pl.x-88);if(pl.furrow.length>170)pl.furrow.shift();}if(Math.random()<.2)dust(pl.x-90,pl.y,1,.6);}
      if(pl.x>=pl.x1)plowQuarrel(pl);}
-    p.x=pl.x-PLOW_HX;p.vx=0;p.face=1;}}
+    p.x=pl.x-plowHX();p.vx=0;p.face=1;}}
   if(pl.phase==='boj'){const t0=pl.t;pl.t+=dt;const lead=plowTurks(pl)[0];
    if(t0<.5&&pl.t>=.5&&lead){speak('„More Marko, ne ori drumova!”',2.6,'JANIČARI');foeSay(lead,'attack',{chance:1});}
    if(t0<2.9&&pl.t>=2.9&&lead)speak('„More Turci, ne gaz’te oranja!”',2.8,'MARKO');
@@ -1659,12 +1660,12 @@ function updatePlows(dt){const T=world.plowTeams||[];p.dizeT=Math.max(0,(p.dizeT
  if(T.length&&!world.izorao&&T.every(q=>q.treasureTaken)){world.izorao=true;speak('„To sam tebe danas izorao.”',5,'MARKO');}}
 function drawPlows(){for(const pl of world.plowTeams||[]){if(pl.x<camera-1200||pl.x0>camera+VIEW_W+500)continue;
  for(const fx2 of pl.furrow){if(fx2<camera-40||fx2>camera+VIEW_W+40)continue;line(fx2-16,pl.y+2,fx2+16,pl.y+2,'rgba(50,32,18,.75)',4);line(fx2-14,pl.y,fx2+12,pl.y,'rgba(150,110,70,.5)',1.5);}
- const X=pl.x,Y=pl.y,hx=X-PLOW_HX,ms=levelArt['prop-medjas'];if(ms&&pl.phase!=='gotovo')drawImgOn(ms,pl.x1+300,Y+4,64,false);
+ const X=pl.x,Y=pl.y,hx=X-plowHX(),ms=levelArt['prop-medjas'];if(ms&&pl.phase!=='gotovo')drawImgOn(ms,pl.x1+300,Y+4,64,false);
  if(X<camera-400||X>camera+VIEW_W+400)continue;
  const k=pl.liftT>0?Math.sin(Math.PI*(1-pl.liftT/PLOW_LIFT)):0;shadow(X+70,Y,120,.45*(1-k*.6));
  // the old drawing has a janissary at the handles: he is cut away, and Marko stands where he stood
  const V=rig?.['volovi-ralo']?'volovi-ralo':rig?.['volovi-plug']?'volovi-plug':null;
- if(V&&!(k>0&&rig?.['marko-dize-ralo'])){ctx.save();if(k>0){ctx.translate(hx+40,Y-60);ctx.rotate(-k*1.45);ctx.translate(-(hx+40),-(Y-60));}
+ if(V&&!(k>0&&rig?.['marko-dize-ralo'])){ctx.save();if(k>0){ctx.translate(hx+53,Y-62);ctx.rotate(-k*1.45);ctx.translate(-(hx+53),-(Y-62));}
   if(V==='volovi-plug'){ctx.beginPath();ctx.moveTo(X-124,Y-73);ctx.lineTo(X-36,Y-73);ctx.lineTo(X-36,Y-262);ctx.lineTo(X+272,Y-262);ctx.lineTo(X+272,Y+14);ctx.lineTo(X-124,Y+14);ctx.closePath();ctx.clip();}
   rigDraw(V,pl.moveT>0?loopF(pl.walk/14,rig[V].frames.length):0,X,Y,1,{flash:pl.flash>0?pl.flash/.15*.5:0});ctx.restore();}
  else{drawOxen(X+60,Y,1,pl.walk/9,1);line(X-110,Y-60,X-60,Y-40,'#5a3c22',6);line(X-60,Y-40,X-84,Y+2,'#3e2a18',7);line(X-60,Y-40,X+40,Y-46,'#5a3c22',5);}

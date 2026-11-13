@@ -86,7 +86,7 @@ await climbShaft('rusevine',true);
 // ---- the plowing road: Marko plows it himself; the janissaries come to forbid it; he lifts the plow and the oxen ----
 {const w=await start('oranje');quiet(w);const pl=w.plowTeams[0],x0=pl.x;stand(pl.x-700,pl.y);step(120*2);ok(pl.x===x0&&!w.enemies.some(e=>e.alive&&e.plow===pl.id),'plow: the team waits for Marko, and no Turk plows the road');
  stand(pl.x-165,pl.y);S().p.invuln=0;tap('KeyE');step(3);ok(pl.held&&S().p.ore===pl,'plow: Marko takes the plow by the handles');
- press('KeyD');step(120*2);ok(pl.x>x0+150&&Math.abs(S().p.x-(pl.x-165))<3&&pl.furrow.length>3,'plow: he plows the road and walks behind the team');
+ press('KeyD');step(120*2);ok(pl.x>x0+150&&Math.abs(S().p.x-(pl.x-168))<4&&pl.furrow.length>3,'plow: he plows the road and walks behind the team');
  for(let i=0;i<120*12&&pl.phase==='ore';i++)step();release('KeyD');ok(pl.phase==='boj'&&pl.x===pl.x1,'plow: the furrow reaches the boundary stone');
  const turks=w.enemies.filter(e=>e.alive&&e.plow===pl.id);ok(turks.length===3&&turks.every(e=>e.x>pl.x+300),'plow: three janissaries come to forbid the plowing');
  for(const e of turks){e.x=S().p.x+150+turks.indexOf(e)*60;}S().p.invuln=99;const hp=turks.map(e=>e.hp);tap('KeyK');step(2);
