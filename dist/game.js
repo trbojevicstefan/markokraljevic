@@ -773,11 +773,11 @@ const FOE_TOUGH=1.4;
 function chainRoll(e){if(e.champion||e.perch||e.gunner||e.kit)return 0;const k=settings.difficulty==='story'?.5:1,n={sword:.5,shield:.35,akindzija:.45,kopljanik:.5,oklopnik:.25}[e.type]||0;return(Math.random()<n*k?1:0)+(e.elite&&Math.random()<.5*k?1:0);}
 function chainGo(e,F){if(!(e.chainLeft>0))return false;e.chainLeft--;const d=Math.abs(p.x-e.x);if(d>230||Math.abs(p.y-e.y)>80||(level&&!e.grounded)||e.stun>0||mode!=='play'){e.chainLeft=0;return false;}
  e.face=p.x>e.x?1:-1;e.chain2=true;e.mode='windup';e.timer=e.windupDuration=.38*D().wind;e.move=null;if(F)e.variant=F.pick(d);if(d>70)e.lunge={v:e.face*Math.min(420,(d-60)/.2),t:.2,total:.2,hop:0};sfx('draw',{gain:.3,x:e.x});return true;}
-function foeTricks(e,dt){if(e.volley)e.volleyT=(e.volleyT||0)+dt;e.dodgeCd=Math.max(0,(e.dodgeCd||0)-dt);e.dodgeT=Math.max(0,(e.dodgeT||0)-dt);
+function foeTricks(e,dt){if(e.volley)e.volleyT=(e.volleyT||0)+dt;e.dodgeCd=Math.max(0,(e.dodgeCd||0)-dt);
  if(e.volley){e.volley.t-=dt;if(e.volley.t<=0){if(e.stun>0||e.mode==='stun')e.volley=null;else{arrows.push({...aimArrow(e),life:3,enemy:true});sfx('bow',{gain:.6,x:e.x});if(--e.volley.n<=0)e.volley=null;else e.volley.t=.24;}}}
  if(e.pendingHit?.quake&&Math.random()<.6)dust(e.x+e.face*(60+(1-clamp(e.pendingHit.t/.34,0,1))*250),e.y,2,1.1);
  if(e.type==='akindzija'&&!e.champion&&!e.kit&&e.mode==='idle'&&e.dodgeCd<=0&&!(e.stun>0)&&!(e.lunge?.t>0)&&!e.spava&&!e.held&&!e.grappling&&(!level||e.grounded)&&mode==='play'&&p.attack>0&&p.attackKind!=='light'&&Math.abs(p.x-e.x)<170&&Math.abs(p.y-e.y)<70&&(e.x-p.x)*p.face>0){
-  const s=Math.sign(e.x-p.x)||1;e.lunge={v:s*430,t:.26,total:.26,hop:38};e.dodgeT=.26;e.dodgeCd=3.2;e.timer=Math.min(e.timer,.3);label('IZMAKAO SE',e.x,e.y-140,'#d9f6c0');sfx('cloth',{gain:.5,x:e.x});}}
+  const s=Math.sign(e.x-p.x)||1;e.lunge={v:s*430,t:.26,total:.26,hop:38};react(e,'akindzija-backstep',.3);e.dodgeCd=3.2;e.timer=Math.min(e.timer,.3);label('IZMAKAO SE',e.x,e.y-140,'#d9f6c0');sfx('cloth',{gain:.5,x:e.x});}}
 function hardenFoes(list){for(const e of list){if(e.hardened)continue;e.hardened=true;e.hp=e.maxHp=Math.round(e.maxHp*D().hp*(e.champion?CHAMP_HP:FOE_TOUGH));}}
 let pxScale=1,glowScale=.5,emitters=[];
 function poly(points,fill,stroke,g=ctx){g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();if(fill){g.fillStyle=fill;g.fill();}if(stroke){g.strokeStyle=stroke;g.stroke();}}
@@ -1073,9 +1073,8 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
   else if(e.gs==='prep'){const I=rig?.[H+'-idle'],q=Math.min(1,k*2.5);pose={...pose,...(I?{name:H+'-idle',...loopAt(time*6,I.frames.length)}:{}),rot:-e.face*.13*q,sy:1-.06*q,sx:1+.05*q,...(H===e.look?{fixedScale:1}:{})};}else pose={...pose,rot:e.face*.2};}
  if(e.uKostacu!=null){const H=e.look&&rig?.[e.look+'-idle']?e.look:e.type,I=rig?.[H+'-idle'],U=rig?.[H+'-hurt'],k=e.uKostacu;
   if(k>=0&&U)pose={name:H+'-hurt',...onceAt(Math.min(U.frames.length-1,k*U.frames.length)),...(H===e.look?{fixedScale:1}:{})};else if(I)pose={name:H+'-idle',...loopAt(time*6,I.frames.length),rot:e.face*.11,...(H===e.look?{fixedScale:1}:{})};}
- {const Z=e.dodgeT>0&&rig?.['akindzija-izmak'],R=e.volley&&rig?.['archer-rafal'],T2=e.chain2&&(e.mode==='windup'||e.mode==='recover')&&rig?.[e.type+'-drugi'];
-  if(Z)pose={name:'akindzija-izmak',frame:Math.min(Z.frames.length-1,Math.floor((1-e.dodgeT/.26)*Z.frames.length))};
-  else if(R)pose={name:'archer-rafal',frame:Math.min(R.frames.length-1,1+Math.floor((e.volleyT||0)/.12))};
+ {const R=e.volley&&rig?.['archer-rafal'],T2=e.chain2&&(e.mode==='windup'||e.mode==='recover')&&rig?.[e.type+'-drugi'];
+  if(R)pose={name:'archer-rafal',frame:Math.min(R.frames.length-1,1+Math.floor((e.volleyT||0)/.12))};
   else if(T2){const n=T2.frames.length,h=Math.ceil(n/2);pose={name:e.type+'-drugi',frame:e.mode==='windup'?Math.min(h-1,Math.floor((1-e.timer/(e.windupDuration||.38))*h)):Math.min(n-1,h+Math.floor((1-e.timer/(e.recDur||.85))*(n-h)))};}
   if(e.pendingHit?.quake&&rig?.['fx-potres']){const Q=rig['fx-potres'];rigDraw('fx-potres',Math.min(Q.frames.length-1,Math.floor((1-clamp(e.pendingHit.t/.34,0,1))*Q.frames.length)),x+e.face*150,e.y,e.face,{});}}
  if(e.skriven)pose.alpha=.4;const fd=animTrack(e,pose,e.face,e.hurtT>0||e.flash>0);

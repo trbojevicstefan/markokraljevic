@@ -425,6 +425,6 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
   ok(p.hp===hp2,'tremor: a jump clears it');o.alive=false;}}
 {const w=await land('selo'),p=S().p,r=w.enemies.find(e=>e.type==='akindzija'&&!e.champion&&!e.perch&&!e.kit);
  if(r){Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true,face:1});step(30);safe();Object.assign(r,{alive:true,hp:r.maxHp,x:p.x+110,y:p.y,vx:0,vy:0,grounded:true,mode:'idle',timer:2,stun:0,climb:null,lunge:null,dodgeCd:0,spava:false,patrola:false,skriven:false,enter:null});
-  p.attack=.3;p.attackKind='heavy';p.face=1;const x0=r.x;step(2);ok(r.lunge?.t>0&&r.lunge.v>0&&r.dodgeCd>3,'raider: he leaps back from a heavy blow he sees coming');
+  const dt0=r.dodgeT||0;p.attack=.3;p.attackKind='heavy';p.face=1;const x0=r.x;step(2);ok(r.lunge?.t>0&&r.lunge.v>0&&r.dodgeCd>3&&r.react==='akindzija-backstep'&&(r.dodgeT||0)===dt0,'raider: he leaps back from a heavy blow he sees coming, in his own backstep, and his other dodge keeps its clock');
   step(40);ok(r.x>x0+40,'raider: and lands out of its reach');r.alive=false;}}
 console.log(`${checks} battle checks passed.`);
