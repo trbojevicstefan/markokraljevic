@@ -1,3 +1,4 @@
+import{fluidEase,fluidFadeDuration,fluidEchoDuration,fluidEchoAlpha}from'./anim-fluid.js';
 import{W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,greybox,topAt}from'./world.js';
 const $=id=>document.getElementById(id),canvas=$('game');
 globalThis.performance?.setResourceTimingBufferSize?.(5000);   // every file in performance.getEntriesByType('resource'), not the first 250
@@ -952,13 +953,45 @@ const lerpAt=(arr,f,t,d=0)=>(arr?.[f]??d)+((arr?.[f+1]??d)-(arr?.[f]??d))*t;
 const animMem=new WeakMap(),STEP_T=.07,FADE_T=.07;
 function animTrack(who,pose,face,sharp){let m=animMem.get(who);const now=time;
  if(!m){animMem.set(who,m={name:pose.name,frame:pose.frame,at:now,face,pose:{...pose}});return null;}
- if(pose.name!==m.name){m.step=null;m.fade=ANIM&&!settings.reduced&&!sharp&&pose.keyAt==null&&m.face===face&&now>m.at?{pose:m.pose,face:m.face,at:now}:null;}
- else if(pose.frame!==m.frame&&pose.tw===undefined&&ANIM&&tweenPair(pose.name,m.frame,pose.frame))m.step={from:m.frame,to:pose.frame,at:now,T:Math.min(STEP_T,(now-m.at)*.75)};
- if(pose.frame!==m.frame||pose.name!==m.name)m.at=now;m.name=pose.name;m.frame=pose.frame;m.face=face;
- const s=m.step;if(s&&pose.tw===undefined&&pose.frame===s.to&&s.T>0){const k=(now-s.at)/s.T;if(k>=0&&k<1){pose.frame=s.from;pose.tw=.25+.75*k;pose.nx=s.to;}else m.step=null;}
+ const prevName=m.name,prevFrame=m.frame,prevPose=m.pose,prevFace=m.face;
+ const changed=pose.name!==prevName,advanced=pose.frame!==prevFrame;
+ const eligible=ANIM&&!settings.reduced&&!sharp&&m.face===face&&now>m.at;
+ if(changed){
+  m.step=null;m.echo=null;
+  // Character stances may blend longer; blows, damage and death never cross-fade.
+  const dur=pose.name.startsWith('marko-')&&prevName.startsWith('marko-')
+   ?fluidFadeDuration(prevName,pose.name,{enabled:ANIM,reduced:settings.reduced,sharp:sharp||pose.keyAt!=null,sameFace:prevFace===face})
+   :eligible&&pose.keyAt==null?FADE_T:0;
+  m.fade=eligible&&dur>0?{pose:prevPose,face:prevFace,at:now,T:dur}:null;
+ }else if(advanced){
+  const flow=tweenPair(pose.name,prevFrame,pose.frame);
+  if(pose.tw===undefined&&ANIM&&flow)m.step={from:prevFrame,to:pose.frame,at:now,T:Math.min(STEP_T,(now-m.at)*.75)};
+  // No optical-flow midframe: a subtle *authored* prior frame trail, NOT a body morph.
+  const frames=rig?.[pose.name]?.frames.length||0;
+  const dur=Math.abs(pose.frame-prevFrame)===1&&eligible
+   ?fluidEchoDuration(pose.name,prevFrame,pose.frame,{enabled:ANIM,reduced:settings.reduced,hasFlow:!!flow,keyAt:pose.keyAt??null,frames})
+   :0;
+  m.echo=dur>0?{pose:prevPose,face:prevFace,at:now,T:dur}:null;
+ }
+ if(advanced||changed)m.at=now;
+ m.name=pose.name;m.frame=pose.frame;m.face=face;
+ const step=m.step;
+ if(step&&pose.tw===undefined&&pose.frame===step.to&&step.T>0){
+  const k=(now-step.at)/step.T;
+  if(k>=0&&k<1){pose.frame=step.from;pose.tw=.25+.75*k;pose.nx=step.to;}else m.step=null;
+ }
  m.pose={...pose};
- const F=m.fade;if(!F)return null;const k=(now-F.at)/FADE_T;if(k<0||k>=1){m.fade=null;return null;}return{pose:F.pose,face:F.face,alpha:.5*(1-k)};}
-function drawFade(fd,x,y,alpha=1,scale){if(fd)rigDraw(fd.pose.name,fd.pose.frame,x,y,fd.face,{...fd.pose,...(scale!=null?{scale}:{}),alpha:fd.alpha*alpha*(fd.pose.alpha??1),flash:0});}
+ const layers=[];
+ const F=m.fade;
+ if(F){const k=(now-F.at)/F.T;if(k<0||k>=1)m.fade=null;else layers.push({pose:F.pose,face:F.face,alpha:.5*(1-fluidEase(k))});}
+ const E=m.echo;
+ if(E){const a=fluidEchoAlpha(now-E.at,E.T);if(!a)m.echo=null;else layers.push({pose:E.pose,face:E.face,alpha:a});}
+ return layers.length?layers:null;
+}
+function drawFade(fd,x,y,alpha=1,scale){
+ if(!fd)return;
+ for(const f of Array.isArray(fd)?fd:[fd])rigDraw(f.pose.name,f.pose.frame,x,y,f.face,{...f.pose,...(scale!=null?{scale}:{}),alpha:f.alpha*alpha*(f.pose.alpha??1),flash:0,tw:0,nx:undefined});
+}
 // Marko's body: a stretch on the way up (more for the falcon's wing), a squash on landing (more after a long fall), a lean into
 // the run, the dash in the air drawn out along its way, and after the fairy's trace he takes shape where he lands. Off with
 // 'Smanjeno podrhtavanje i efekti', on horseback, on a ladder and in a finishing blow. Returns true when he has just jumped
