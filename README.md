@@ -352,6 +352,11 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Kule i zidovi** (`shadeBlock`, `drawBlock`, `drawTop`, `wallPattern`): crtež zida je svetao i topao, a kule su bile crne od senki preko njega. Sada su senke smeđe i tanke, šara za sirovu stenu je na zidanom jedva vidljiva, zidovi imaju ugaono kamenje, venac i zupce celom dužinom, svod od tesanog kamena, toplu unutrašnjost prolaza sa bakljama i puškarnice koje svetle.
 - Saveti „bedem" i „jaruga" se pokažu jednom, kad Marko prvi put naiđe (`updateHints`).
 
+## 13. novembar (3): stene u krajevima sirove stene, narudžbine iz ove sesije
+
+- **Stene** (`drawRockBlock`, `WALL_TINT` u `dist/game.js`): u Klisuri, na Prevoju, u Pećini i Rudniku kula, stub i stepenik više nisu pravougaonik sa tapetom jesenje stene. Crtaju se kao izdanak stene te zemlje: telo od zida stene sa nazubljenim bokovima, a na vrhu traka tla tog pohoda sa njegovim krajevima litice. Zid stene je u Pećini siv i hladan, u Rudniku smeđ, na Prevoju bled, bez jesenjeg žbunja (`WALL_TINT` se peče u šaru zida).
+- **Narudžbine od Codexa iz ove sesije**: Stefan je 13. 11. rekao da se animacije naručuju i odavde. Briefovi su `art/world-pack-03/DOPUNA-46.md` i dalje, status u `STATUS-ANIMACIJE-NOC.md`, Codex radi u worktree-u `marko-noc` kao posebna Codex sesija (najslabiji model), a klipovi ulaze u rig kroz blok `# ---- noc-poliranje` na kraju tabele u `build-sprite-rig.py`. Klip se ugrađuje tek kad se pogleda pored pravog lika: prvi izvoz DOPUNA-46 (rafal, drugi udarac Oklopnika, potres) je odbijen jer likovi nisu bili oni iz igre.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

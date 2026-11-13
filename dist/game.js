@@ -1076,7 +1076,7 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
  {const R=e.volley&&rig?.['archer-rafal'],T2=e.chain2&&(e.mode==='windup'||e.mode==='recover')&&rig?.[e.type+'-drugi'];
   if(R)pose={name:'archer-rafal',frame:Math.min(R.frames.length-1,1+Math.floor((e.volleyT||0)/.12))};
   else if(T2){const n=T2.frames.length,h=Math.ceil(n/2);pose={name:e.type+'-drugi',frame:e.mode==='windup'?Math.min(h-1,Math.floor((1-e.timer/(e.windupDuration||.38))*h)):Math.min(n-1,h+Math.floor((1-e.timer/(e.recDur||.85))*(n-h)))};}
-  if(e.pendingHit?.quake&&rig?.['fx-potres']){const Q=rig['fx-potres'];rigDraw('fx-potres',Math.min(Q.frames.length-1,Math.floor((1-clamp(e.pendingHit.t/.34,0,1))*Q.frames.length)),x+e.face*150,e.y,e.face,{});}}
+  if(e.pendingHit?.quake&&rig?.['fx-potres']){const Q=rig['fx-potres'];rigDraw('fx-potres',Math.min(Q.frames.length-1,Math.floor((1-clamp(e.pendingHit.t/.34,0,1))*Q.frames.length)),x+e.face*(64-(100-Q.anchor)*Q.scale),e.y+3,e.face,{});}}
  if(e.skriven)pose.alpha=.4;const fd=animTrack(e,pose,e.face,e.hurtT>0||e.flash>0);
  if(e.champion){pose.scale=pose.fixedScale??e.scale;rimGlow(pose,x,e.y,e.face,e.hp<e.maxHp/2?'#ff3a1a':'#ffd27a',.28+.12*Math.sin(time*6),2);}if(e.scale&&!pose.scale)pose.scale=e.scale;
  if(e.elite){pose.scale=(pose.scale||1)*1.08;rimGlow(pose,x,e.y,e.face,'#ffcf6a',.22+.08*Math.sin(time*5+e.id),1.4);}drawFade(fd,x,e.y,pose.alpha??1,pose.scale);for(const [c,a,w] of glows)rimGlow(pose,x,e.y,e.face,c,a,w);rigDraw(pose.name,pose.frame,x,e.y,e.face,{...pose,flash:e.brutal>0?Math.max(e.brutal*.72,e.flash>0?e.flash/.15*.5:0):e.flash>0?e.flash/.15*.5:0,flashColor:e.brutal>0?'#5a0306':'#ffd6bf'});
@@ -1736,7 +1736,9 @@ foeAttack=function(e,F){const d=Math.abs(p.x-e.x);
  return baseFoeAttack(e,F);};
 $('riznica-open')&&($('riznica-open').onclick=openRiznica);$('riznica-close')&&($('riznica-close').onclick=()=>$('riznica').hidden=true);
 function wallKind(){return WALL_OF[level?.id]||'kamen';}
-function wallPattern(dark=false){const id='zid-'+wallKind(),key=id+(dark?'#d':'');if(key in wallPats)return wallPats[key];const im=levelArt[id];if(!im||!hasDom)return null;
+const WALL_TINT={pecina:['#7f8c8c',.72,'rgb(170,205,205)'],rudnik:['#8a8076',.66,'rgb(214,192,168)'],prevoj:['#9aa0a6',.8,'rgb(214,224,236)']};
+function wallPattern(dark=false){const T=wallKind()==='stena'?WALL_TINT[level?.id]:null,id='zid-'+wallKind(),key=id+(T?'@'+level.id:'')+(dark?'#d':'');if(key in wallPats)return wallPats[key];let im=levelArt[id];if(!im||!hasDom)return null;
+ if(T){const c=makeCanvas(im.width,im.height),g=c.getContext('2d');g.drawImage(im,0,0);g.globalCompositeOperation='saturation';g.globalAlpha=T[1];g.fillStyle=T[0];g.fillRect(0,0,im.width,im.height);g.globalAlpha=1;g.globalCompositeOperation='multiply';g.fillStyle=T[2];g.fillRect(0,0,im.width,im.height);im=c;}
  let src=im;if(dark){src=makeCanvas(im.width,im.height);const g=src.getContext('2d');g.drawImage(im,0,0);g.fillStyle='rgba(44,28,16,.5)';g.fillRect(0,0,im.width,im.height);}return wallPats[key]=ctx.createPattern(src,'repeat');}
 const WALL_SCALE=.44;
 function fillWall(x,y,w,h,dark=false){const P=wallPattern(dark);if(P){P.setTransform(new DOMMatrix([WALL_SCALE,0,0,WALL_SCALE,0,0]));ctx.fillStyle=P;}else ctx.fillStyle=dark?'#2c2a26':'#8a7a62';ctx.fillRect(x,y,w,h);}
@@ -1768,8 +1770,25 @@ function drawTop(x,y,w){const k=wallKind();
 // grass and earth in front of a tower's foot, so it stands in the ground instead of on it
 function plantFoot(x,w,gy){const G=levelGround();if(!G)return;const S=G.S;ctx.save();ctx.beginPath();ctx.rect(x-4,gy-G.walk*S,w+8,(G.walk+16)*S);ctx.clip();G.pattern.setTransform(new DOMMatrix([S,0,0,S,0,gy-G.walk*S]));ctx.fillStyle=G.pattern;ctx.fillRect(x-4,gy-G.walk*S,w+8,(G.walk+16)*S);ctx.restore();}
 function groundBelow(x,y){let best=null;for(const q of world.platforms)if(q.ground&&!q.tower&&x>q.x&&x<q.x+q.w&&q.y>=y-2&&(best===null||q.y<best))best=q.y;return best??y+300;}
+// In the lands of raw rock (the gorge, the pass, the cave, the mine) a tower, a pillar or a step is not masonry: it is an
+// outcrop of the same rock the road runs on. It is drawn with the land's own ground: its walking strip on top, its cliff
+// ends on both sides, its earth below, with ragged flanks instead of a ruled edge.
+function drawRockBlock(q,G){const S=G.S,top=q.y-G.walk*S,gy=Math.min(q.y+q.h,groundBelow(q.x+q.w/2,q.y+4)),capW=G.cap?G.cap.width*S:0,inset=Math.min(capW*.6,q.w*.3),rows=G.walk+150,stripH=rows*S,b0=q.y+10;
+ const bx=q.x+Math.min(capW*.14,q.w*.1),bw=q.w-2*(bx-q.x),jag=(y,k)=>{const h=Math.sin((q.x*.37+y*.61+k*91.7))*43758.5453;return(h-Math.floor(h))*Math.min(11,q.w*.08);};
+ // the body: the rock wall of the land, ragged down both flanks
+ if(gy>b0){ctx.save();ctx.beginPath();ctx.moveTo(bx+jag(b0,0),b0);for(let y=b0+22;y<gy;y+=22)ctx.lineTo(bx+jag(y,0),y);ctx.lineTo(bx,gy+4);ctx.lineTo(bx+bw,gy+4);for(let y=gy-((gy-b0)%22||22);y>b0;y-=22)ctx.lineTo(bx+bw-jag(y,1),y);ctx.lineTo(bx+bw-jag(b0,1),b0);ctx.closePath();ctx.clip();
+  fillWall(bx,b0,bw,gy-b0+4);mottle(bx,b0,bw,gy-b0+4,.35);
+  const s=ctx.createLinearGradient(q.x,0,q.x+q.w,0);s.addColorStop(0,'rgba(255,240,210,.12)');s.addColorStop(.3,'rgba(0,0,0,0)');s.addColorStop(1,'rgba(20,16,12,.26)');ctx.fillStyle=s;ctx.fillRect(bx,b0,bw,gy-b0+4);
+  const f=ctx.createLinearGradient(0,gy-46,0,gy+4);f.addColorStop(0,'rgba(0,0,0,0)');f.addColorStop(1,'rgba(14,12,10,.3)');ctx.fillStyle=f;ctx.fillRect(bx,gy-46,bw,50);ctx.restore();}
+ // the top: the land's own walking strip and its cliff ends, fading into the rock below
+ if(G.cap&&!G.capF){const c=makeCanvas(G.cap.width,rows),g=c.getContext('2d');g.drawImage(G.cap,0,0,G.cap.width,rows,0,0,G.cap.width,rows);g.globalCompositeOperation='destination-in';const r=g.createLinearGradient(0,G.walk+70,0,rows);r.addColorStop(0,'#000');r.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=r;g.fillRect(0,0,G.cap.width,rows);G.capF=c;}
+ ctx.save();ctx.beginPath();ctx.rect(q.x-6,top-4,q.w+12,gy-top+8);ctx.clip();
+ G.fade.setTransform(new DOMMatrix([S,0,0,S,0,top]));ctx.fillStyle=G.fade;ctx.fillRect(q.x+inset,top,q.w-2*inset,stripH);
+ if(G.capF){const w=Math.min(capW,q.w/2);ctx.drawImage(G.capF,G.capF.width-w/S,0,w/S,rows,q.x+q.w-w,top,w,stripH);ctx.save();ctx.translate(q.x+w,top);ctx.scale(-1,1);ctx.drawImage(G.capF,G.capF.width-w/S,0,w/S,rows,0,0,w,stripH);ctx.restore();}
+ ctx.restore();plantFoot(q.x,q.w,gy);}
 function drawBlock(q){if(q.x+q.w<camera-120||q.x>camera+VIEW_W+120||q.y>camY+VIEW_H+80||q.y+q.h<camY-80)return;
  if(q.kind==='step')return;
+ if(!q.hang&&wallKind()==='stena'){const LG=levelGround();if(LG?.body){drawRockBlock(q,LG);return;}}
  const gy=q.hang?groundBelow(q.x+q.w/2,q.y+q.h):Math.min(q.y+q.h,groundBelow(q.x+q.w/2,q.y+4)),bottom=q.hang?gy:Math.min(q.y+q.h,camY+VIEW_H+60);
  if(q.pillar){fillWall(q.x,q.y,q.w,gy-q.y+4);shadeBlock(q.x,q.y,q.w,gy-q.y+4,gy);drawTop(q.x,q.y,q.w);plantFoot(q.x,q.w,gy);return;}
  if(q.hang){// a wall with an archway through it: the road passes under the arch
