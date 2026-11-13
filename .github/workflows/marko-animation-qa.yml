@@ -1,0 +1,27 @@
+name: Marko animation QA
+on:
+  pull_request:
+    paths:
+      - 'dist/game.js'
+      - 'dist/anim-fluid.js'
+      - 'anim-fluid-tests.mjs'
+      - 'animation-tests.mjs'
+      - '.github/workflows/marko-animation-qa.yml'
+  push:
+    branches: [improve/marko-fluidity-20261113]
+permissions:
+  contents: read
+jobs:
+  animation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and Marko animation tests
+        run: |
+          node --check dist/game.js
+          node --check dist/anim-fluid.js
+          node anim-fluid-tests.mjs
+          node animation-tests.mjs
