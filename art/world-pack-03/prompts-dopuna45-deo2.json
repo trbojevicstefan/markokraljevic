@@ -1,0 +1,8 @@
+{
+  "jobs": [
+    {"id":"sword-drugi","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":12,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/sword-lunge/reference.png"],"prompt":"Second reverse sword cut, six frames, same sword-lunge identity and zoom."},
+    {"id":"shield-drugi","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":12,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/shield-bash/reference.png"],"prompt":"Short sword cut under shield, six frames, same shield-bash identity and zoom."},
+    {"id":"akindzija-drugi","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":12,"calibrationFrame":5,"targetHeight":370,"references":["art/animation-pack-04/assets/akindzija-spin/reference.png"],"prompt":"Crossed double-sabre reverse cut, six frames, same akindzija-spin identity and zoom."},
+    {"id":"kopljanik-drugi","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":12,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/kopljanik-attack/reference.png"],"prompt":"Double spear thrust, six frames, same kopljanik-attack identity and zoom."}
+  ]
+}
