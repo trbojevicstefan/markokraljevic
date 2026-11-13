@@ -1,0 +1,13 @@
+{
+  "note": "DOPUNA-44 Deo 3 regenerated from actual <lik>-idle/frames/motion/frame-0.png; reference.png was not used. Each source is a 3x2 six-frame sheet; exporter crops the featured enemy side, aligns feet to y=487 and scales to the idle reference factor.",
+  "jobs": [
+    {"id":"hasan-aga-hvata","lik":"hasan-aga","factor":0.93,"source":"exec-3cfe8242-0370-4ef0-a03c-828737926339.png"},
+    {"id":"ognjeni-aga-hvata","lik":"ognjeni-aga","factor":0.95,"source":"exec-b07242bf-ff85-4af3-a488-3c51fd61800b.png"},
+    {"id":"lovac-aga-hvata","lik":"lovac-aga","factor":0.77,"source":"exec-4bf622b7-3ca6-4c36-ab24-0423ab2cb358.png"},
+    {"id":"bajraktar-hvata","lik":"bajraktar","factor":0.90,"source":"exec-cf077c89-c1d6-40a3-8a72-bb9fec8bbb3a.png"},
+    {"id":"janicarski-aga-hvata","lik":"janicarski-aga","factor":0.83,"source":"exec-1d14d2b7-0dc5-4212-be97-747f0fbf6cfc.png"},
+    {"id":"djemo-hvata","lik":"djemo","factor":0.84,"source":"exec-a4421d60-90f5-405b-8dac-8580746ac20d.png"},
+    {"id":"dzelat-hvata","lik":"dzelat","factor":0.80,"source":"exec-aab4fc0f-660d-4317-81bb-444ecacefb51.png"},
+    {"id":"arapin-hvata","lik":"arapin","factor":0.85,"source":"exec-a72167d1-c91e-4be1-add7-c514f1eafc75.png"}
+  ]
+}

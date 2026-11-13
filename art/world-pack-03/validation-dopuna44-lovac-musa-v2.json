@@ -1,0 +1,74 @@
+[
+  {
+    "clip": "kostac-lovac",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../lovac-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png",
+    "exactTransitionSourceVerified": null,
+    "transition": null
+  },
+  {
+    "clip": "kostac-lovac-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../lovac-aga-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png",
+    "exactTransitionSourceVerified": null,
+    "transition": null
+  },
+  {
+    "clip": "kostac-musa",
+    "frames": 8,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": false,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../../sources/dopuna44-lovac-musa-v2/musa-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png",
+    "exactTransitionSourceVerified": null,
+    "transition": null
+  },
+  {
+    "clip": "kostac-musa-kraj",
+    "frames": 6,
+    "RGBA": true,
+    "atlasMatchesFrames": true,
+    "holdLastFrame": true,
+    "actualIdleReferences": [
+      "../marko-idle-2/frames/motion/frame-0.png",
+      "../../sources/dopuna44-lovac-musa-v2/musa-idle/frames/motion/frame-0.png"
+    ],
+    "identityComparison": "identity-size-comparison.png",
+    "overlay": "size-overlay.png",
+    "exactTransitionSourceVerified": true,
+    "transition": {
+      "targetClip": "megdan-kostac",
+      "targetFrame": 0,
+      "sourceScale": 0.7786259541984732,
+      "sourceMarkoLengthPx": 393,
+      "targetMarkoLengthPx": 306,
+      "nextClipRequiredScale": 0.7786259541984732,
+      "nextClipSourceOffset": {
+        "x": 56.61832061068702,
+        "y": 108.07633587786259
+      },
+      "note": "Apply scale and source offset to next clip for the same ground and placement. Original megdan-kostac is unchanged."
+    }
+  }
+]

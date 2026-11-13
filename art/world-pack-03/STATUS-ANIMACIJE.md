@@ -896,3 +896,86 @@ DOPUNA-44 deo 6: basa-attack — GOTOVO; 6kadova512x512, jednom, atlas/manifest/
 DOPUNA-44 deo 6: basa-hurt — GOTOVO; 4kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-hurt/. renderScale=1.0448, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
 
 DOPUNA-44 deo 6: basa-death — GOTOVO; 6kadova512x512, jednom, atlas/manifest/frame_layout/frames/preview.gif/qa.json u art/animation-pack-04/assets/basa-death/. renderScale=2.6630, renderAnchor={'x': 256, 'y': 488}. Ugradjeni image_gen, izvor i kalibracija sacuvani; prompt prompts-dopuna44-deo6.json, izvor sacuvan.
+
+DOPUNA-44 oprava uzora: kostac-hasan — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / hasan-aga x0.93; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-hasan/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-hasan-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / hasan-aga x0.93; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-hasan-kraj/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-djemo — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / djemo x0.84; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-djemo/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-hasan-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / hasan-aga x0.93; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-hasan-kraj/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-djemo-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / djemo x0.84; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-djemo-kraj/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-hasan-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / hasan-aga x0.93; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-hasan-djemo-v2/kostac-hasan-kraj/previous-*/.
+DOPUNA-44 Hasan/Djemo revizija — ZAVRSENO 4/4: kostac-hasan8, kostac-hasan-kraj6, kostac-djemo8, kostac-djemo-kraj6. Ugradjeni image_gen; stvarni idle frame-0 uzori (ne stari reference.png). Pre izvoza provereni lice/kapa/odeca/boje i size-overlay.png prema idle faktorima .80/.93/.84; Hasan prosiren, Djemo sa krznenim kalpakom i smedjim kozuhom; korigovana duzina palog Hasana i poslednji Markov oslonac. Sacuvani identity-size-comparison.png i size-overlay.png uz svaki klip. PASS28 razlicitih RGBA kadrova: atlas=frames, frame_layout, GIF broj kadrova, y487, holdLastFrame za krajeve. Izvestaj validation-dopuna44-hasan-djemo-v2.json; promptovi prompts-dopuna44-hasan-djemo-v2.json.
+
+DOPUNA-44 oprava uzora: kostac-ognjeni — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / ognjeni-aga x0.95; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-ognjeni-bajraktar-v2/kostac-ognjeni/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-ognjeni-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / ognjeni-aga x0.95; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-ognjeni-bajraktar-v2/kostac-ognjeni-kraj/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-bajraktar — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / bajraktar x0.9; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-ognjeni-bajraktar-v2/kostac-bajraktar/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-bajraktar-kraj — GOTOVO; prepisano 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / bajraktar x0.9; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Prethodni izvoz sacuvan u sources/dopuna44-ognjeni-bajraktar-v2/kostac-bajraktar-kraj/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-arapin — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / arapin x0.85; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-aga-arapin-v2/kostac-arapin/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-aga — GOTOVO; prepisano 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / janicarski-aga x0.83; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Prethodni izvoz sacuvan u sources/dopuna44-aga-arapin-v2/kostac-aga/previous-*/.
+
+DOPUNA-44 oprava uzora: kostac-arapin-kraj — GOTOVO; napravljeno (prethodni klip nije postojao), 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / arapin x0.85; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Arhiva prethodnog izvoza: nema — novi klip.
+
+DOPUNA-44 oprava uzora: kostac-aga-kraj — GOTOVO; prepisano, 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / janicarski-aga x0.83; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Arhiva prethodnog izvoza: D:\projects\Marko Kraljevic\marko-game\art\animation-pack-04\sources\dopuna44-aga-arapin-v2\kostac-aga-kraj\previous-1794566421237779900.
+
+DOPUNA-44 aga/arapin revizija ZAVRSENO4/4: kostac-aga8, kostac-aga-kraj6, kostac-arapin8, kostac-arapin-kraj6. Ugradjeni image_gen, stvarni idle frame-0 uzori. Poredjenje i size-overlay sacuvani uz svaki klip; uzor Marko x0.80=306px, Aga x0.83=392px, Arapin x0.85=362px; izmereni prvi Markovi kadrovi310/313px. Zavrsni prvi kadar identican petlji; poslednji kadrovi provereni na celu figuru i duzinu palog protivnika. PASS28 RGBA kadrova, atlas/frame_layout/GIF, y487, holdLastFrame. Agini klipovi zamenjeni i prethodni sacuvani; Arapinovi klipovi nisu postojali lokalno i napravljeni su novi (prvi red o arhivi za kostac-arapin nije primenjiv). Izvestaj validation-dopuna44-aga-arapin-v2.json; promptovi prompts-dopuna44-aga-arapin-v2.json.
+
+DOPUNA-44 oprava uzora: kostac-lovac — GOTOVO; napravljeno (prethodni klip nije postojao), 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / lovac-aga x0.77; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Arhiva prethodnog izvoza: nema — novi klip.
+
+DOPUNA-44 oprava uzora: kostac-lovac-kraj — GOTOVO; napravljeno (prethodni klip nije postojao), 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / lovac-aga x0.77; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Arhiva prethodnog izvoza: nema — novi klip.
+
+DOPUNA-44 oprava uzora: kostac-musa — GOTOVO; napravljeno (prethodni klip nije postojao), 8 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / musa x0.89; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=False. Arhiva prethodnog izvoza: nema — novi klip.
+
+DOPUNA-44 oprava uzora: kostac-musa-kraj — GOTOVO; napravljeno (prethodni klip nije postojao), 6 kadrova 512x512; stvarni idle frame-0 uzori, proveren lik i preklapanje velicine, Marko x0.80 / musa x0.89; atlas/manifest/frames/GIF/QA, oslonac y487, renderScale1, holdLastFrame=True. Arhiva prethodnog izvoza: nema — novi klip.
+
+DOPUNA-44 Lovac/Musa ZAVRSENO4/4: kostac-lovac8, kostac-lovac-kraj6, kostac-musa8, kostac-musa-kraj6; 28 razlicitih RGBA kadrova512x512. Stvarni idle frame0 uzori, Musa tacno izdvojen iz dist musa-idle motion0. Uzori Marko x0.80=306px, Lovac x0.77=359px, Musa x0.89=403px; prvi Markovi kadrovi izmereni315/313px, podaci u QA. Provereni likovi i preklopi velicine; svi prilozi identity-size-comparison i size-overlay sacuvani. Musa petlja8fps, nadvladava Marka; kraj obara Marka na ledja. Poslednji kadar je TACAN umanjeni megdan-kostac motion0, art i dist izvor su isti; manifest.transition ima nextClipRequiredScale i nextClipSourceOffset za nastavak. transition-comparison.png potvrdjen bajt-po-bajt. PASS atlas=frames, frame_layout, GIF, alpha, y487, holdLastFrame. Promptovi prompts-dopuna44-lovac-musa-v2.json; izvestaj validation-dopuna44-lovac-musa-v2.json.
+
+DOPUNA-44 deo 3 v2: hasan-aga-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (hasan-aga), ciljna visina 431px prema faktoru 0.93, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/hasan-aga-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: ognjeni-aga-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (ognjeni-aga), ciljna visina 402px prema faktoru 0.95, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/ognjeni-aga-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: lovac-aga-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (lovac-aga), ciljna visina 359px prema faktoru 0.77, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/lovac-aga-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: bajraktar-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (bajraktar), ciljna visina 425px prema faktoru 0.9, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/bajraktar-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: janicarski-aga-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (janicarski-aga), ciljna visina 392px prema faktoru 0.83, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/janicarski-aga-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: djemo-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (djemo), ciljna visina 353px prema faktoru 0.84, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/djemo-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: dzelat-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (dzelat), ciljna visina 337px prema faktoru 0.8, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/dzelat-hvata/grid.png.
+
+DOPUNA-44 deo 3 v2: arapin-hvata — GOTOVO; 6 kadrova, isti stvarni idle uzor (arapin), ciljna visina 362px prema faktoru 0.85, Marko idle visina 383px, preklop identiteta i veličine u identity-size-comparison.png/size-overlay.png, atlas/GIF/manifest/QA provereni; source: art/animation-pack-04/sources/dopuna44-deo3-v2/arapin-hvata/grid.png.
+
+DOPUNA-44 deo 6: kopljanik-basa-idle — GOTOVO; 6 kadrova, petlja, identitet iz kopljanik-idle/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-kopljanik-basa/kopljanik-basa-idle/grid.png.
+
+DOPUNA-44 deo 6: kopljanik-basa-run — GOTOVO; 8 kadrova, petlja, identitet iz kopljanik-idle/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-kopljanik-basa/kopljanik-basa-run/grid.png.
+
+DOPUNA-44 deo 6: kopljanik-basa-attack — GOTOVO; 6 kadrova, jednom, identitet iz kopljanik-idle/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-kopljanik-basa/kopljanik-basa-attack/grid.png.
+
+DOPUNA-44 deo 6: kopljanik-basa-hurt — GOTOVO; 4 kadrova, jednom, identitet iz kopljanik-idle/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-kopljanik-basa/kopljanik-basa-hurt/grid.png.
+
+DOPUNA-44 deo 6: kopljanik-basa-death — GOTOVO; 6 kadrova, jednom, identitet iz kopljanik-idle/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-kopljanik-basa/kopljanik-basa-death/grid.png.
+
+DOPUNA-44 deo 6: beg-idle — GOTOVO; 6 kadrova, petlja, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-idle/grid.png.
+
+DOPUNA-44 deo 6: beg-run — GOTOVO; 8 kadrova, petlja, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-run/grid.png.
+
+DOPUNA-44 deo 6: beg-attack — GOTOVO; 6 kadrova, jednom, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-attack/grid.png.
+
+DOPUNA-44 deo 6: beg-hurt — GOTOVO; 4 kadrova, jednom, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-hurt/grid.png.
+
+DOPUNA-44 deo 6: beg-death — GOTOVO; 6 kadrova, jednom, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-death/grid.png.
+
+DOPUNA-44 deo 3: basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/basa-idle/frames/motion/frame-0.png, zum kao idle (471px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/basa-hvata/grid.png.
+
+DOPUNA-44 deo 3: kopljanik-basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png, zum kao idle (410px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/kopljanik-basa-hvata/grid.png.
+
+DOPUNA-44 deo 3: beg-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png, zum kao idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/beg-hvata/grid.png.

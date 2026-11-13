@@ -1,0 +1,68 @@
+{
+  "clip": "djemo-hvata",
+  "reference": "art/animation-pack-04/assets/djemo-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        85,
+        135,
+        427,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        95,
+        135,
+        416,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        105,
+        135,
+        407,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        101,
+        135,
+        411,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        101,
+        135,
+        411,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        102,
+        135,
+        409,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 420,
+  "targetHeight": 353,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.84,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

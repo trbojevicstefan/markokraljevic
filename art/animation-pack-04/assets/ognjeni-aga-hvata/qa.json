@@ -1,0 +1,68 @@
+{
+  "clip": "ognjeni-aga-hvata",
+  "reference": "art/animation-pack-04/assets/ognjeni-aga-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        51,
+        87,
+        461,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        67,
+        86,
+        444,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        86,
+        429,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        73,
+        86,
+        439,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        78,
+        86,
+        433,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        66,
+        86,
+        445,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 423,
+  "targetHeight": 402,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.95,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

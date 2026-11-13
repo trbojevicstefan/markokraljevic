@@ -1,0 +1,130 @@
+{
+  "characterId": "kostac-musa-kraj",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": false,
+  "frame_variant": "painted",
+  "sprite_sheet_alpha": "atlas.png",
+  "sprite_sheet_alpha_report": null,
+  "base_image": "frames/motion/frame-0.png",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": {
+    "name": "green",
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ]
+  },
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 6,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 6,
+        "fps": 10,
+        "durations_ms": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "loop": false,
+        "frame_variant": "pixel",
+        "holdLastFrame": true
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 3072,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "scaleReference": {
+    "markoIdleFactor": 0.8,
+    "enemyIdleFactor": 0.89,
+    "markoHeight": 306,
+    "enemyHeight": 403,
+    "footY": 487
+  },
+  "renderScale": 1,
+  "renderAnchor": {
+    "x": 256,
+    "y": 488
+  },
+  "worldBodyHeight": 306,
+  "renderNote": "Apply renderScale about renderAnchor; birds use torso center y300, humans use ground y488.",
+  "holdLastFrame": true,
+  "identityReferences": [
+    "../marko-idle-2/frames/motion/frame-0.png",
+    "../../sources/dopuna44-lovac-musa-v2/musa-idle/frames/motion/frame-0.png"
+  ],
+  "transition": {
+    "targetClip": "megdan-kostac",
+    "targetFrame": 0,
+    "sourceScale": 0.7786259541984732,
+    "sourceMarkoLengthPx": 393,
+    "targetMarkoLengthPx": 306,
+    "nextClipRequiredScale": 0.7786259541984732,
+    "nextClipSourceOffset": {
+      "x": 56.61832061068702,
+      "y": 108.07633587786259
+    },
+    "note": "Apply scale and source offset to next clip for the same ground and placement. Original megdan-kostac is unchanged."
+  }
+}

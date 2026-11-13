@@ -1,0 +1,68 @@
+{
+  "clip": "lovac-aga-hvata",
+  "reference": "art/animation-pack-04/assets/lovac-aga-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        79,
+        129,
+        432,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        88,
+        129,
+        423,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        98,
+        129,
+        413,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        103,
+        129,
+        408,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        97,
+        129,
+        415,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        95,
+        129,
+        416,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 466,
+  "targetHeight": 359,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.77,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

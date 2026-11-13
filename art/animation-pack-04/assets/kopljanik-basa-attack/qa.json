@@ -1,0 +1,66 @@
+{
+  "clip": "kopljanik-basa-attack",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        55,
+        78,
+        456,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        44,
+        78,
+        467,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        20,
+        103,
+        492,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        20,
+        115,
+        492,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        24,
+        78,
+        487,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        55,
+        78,
+        457,
+        488
+      ]
+    }
+  ],
+  "loop": false,
+  "identityReference": "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
+  "hasanReference": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
+  "identityAlphaHeight": 410,
+  "hasanAlphaHeight": 463,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}

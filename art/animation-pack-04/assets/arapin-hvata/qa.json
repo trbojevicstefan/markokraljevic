@@ -1,0 +1,68 @@
+{
+  "clip": "arapin-hvata",
+  "reference": "art/animation-pack-04/assets/arapin-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        97,
+        126,
+        414,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        99,
+        126,
+        412,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        104,
+        126,
+        408,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        110,
+        126,
+        401,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        109,
+        126,
+        402,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        104,
+        126,
+        408,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 426,
+  "targetHeight": 362,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.85,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

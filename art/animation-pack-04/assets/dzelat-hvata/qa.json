@@ -1,0 +1,68 @@
+{
+  "clip": "dzelat-hvata",
+  "reference": "art/animation-pack-04/assets/dzelat-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        82,
+        151,
+        429,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        98,
+        151,
+        414,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        105,
+        151,
+        407,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        106,
+        151,
+        406,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        113,
+        151,
+        398,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        123,
+        151,
+        388,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 421,
+  "targetHeight": 337,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.8,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

@@ -1,0 +1,68 @@
+{
+  "clip": "hasan-aga-hvata",
+  "reference": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        58,
+        57,
+        453,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        73,
+        57,
+        438,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        83,
+        57,
+        429,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        69,
+        57,
+        443,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        84,
+        57,
+        427,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        104,
+        57,
+        407,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 463,
+  "targetHeight": 431,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.93,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

@@ -1,0 +1,12 @@
+{
+  "jobs": [
+    {"id":"hasan-aga-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":490,"references":["art/animation-pack-04/assets/hasan-aga-idle/reference.png"],"prompt":"Grab lunge preserving Hasan idle identity, weapons absent."},
+    {"id":"ognjeni-aga-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":426,"references":["art/animation-pack-04/assets/ognjeni-aga-idle/reference.png"],"prompt":"Grab lunge preserving Ognjeni idle identity, weapon absent."},
+    {"id":"lovac-aga-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":490,"references":["art/animation-pack-04/assets/lovac-aga-idle/reference.png"],"prompt":"Grab lunge preserving Lovac idle identity, weapon absent."},
+    {"id":"bajraktar-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":490,"references":["art/animation-pack-04/assets/bajraktar-idle/reference.png"],"prompt":"Grab lunge preserving Bajraktar idle identity, banner absent."},
+    {"id":"janicarski-aga-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":490,"references":["art/animation-pack-04/assets/janicarski-aga-idle/reference.png"],"prompt":"Grab lunge preserving Janissary Aga idle identity, weapon absent."},
+    {"id":"djemo-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":428,"references":["art/animation-pack-04/assets/djemo-idle/reference.png"],"prompt":"Grab lunge preserving Djemo idle identity, weapons absent."},
+    {"id":"dzelat-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":428,"references":["art/animation-pack-04/assets/dzelat-idle/reference.png"],"prompt":"Grab lunge preserving Dzelat idle identity, axe absent."},
+    {"id":"arapin-hvata","kind":"human","frames":6,"cols":6,"rows":1,"loop":false,"fps":10,"calibrationFrame":5,"targetHeight":440,"references":["art/animation-pack-04/assets/arapin-idle/reference.png"],"prompt":"Grab lunge preserving Arapin idle identity, weapon absent."}
+  ]
+}

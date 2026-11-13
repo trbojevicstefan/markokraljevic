@@ -1,0 +1,6 @@
+{
+  "jobs": [
+    {"id":"kostac-ledja","kind":"human","frames":8,"cols":3,"rows":3,"loop":true,"fps":10,"calibrationFrame":8,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji/reference.png","art/animation-pack-04/assets/janicarski-aga-idle/reference.png"],"prompt":"Piggyback janissary struggle loop, Marko 295px and janissary 0.9 Marko."},
+    {"id":"kostac-ledja-kraj","kind":"human","frames":6,"cols":4,"rows":2,"loop":false,"fps":10,"calibrationFrame":6,"targetHeight":295,"references":["art/animation-pack-04/assets/kostac-stoji-kraj/reference.png","art/animation-pack-04/assets/janicarski-aga-idle/reference.png"],"prompt":"Six-frame shoulder throw ending, Marko 295px, janissary 0.9 Marko; cell7 Marko calibration, cell8 empty."}
+  ]
+}

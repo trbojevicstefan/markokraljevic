@@ -1,0 +1,63 @@
+{
+  "clip": "beg-attack",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        85,
+        25,
+        426,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        90,
+        25,
+        421,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        82,
+        25,
+        430,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        65,
+        25,
+        446,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        26,
+        25,
+        485,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        22,
+        25,
+        489,
+        488
+      ]
+    }
+  ],
+  "identityReference": "art/animation-pack-04/assets/beg-mounted/frames/motion/frame-0.png",
+  "hasanIdleAlphaHeight": 463,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}

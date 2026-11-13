@@ -1,0 +1,68 @@
+{
+  "clip": "janicarski-aga-hvata",
+  "reference": "art/animation-pack-04/assets/janicarski-aga-idle/frames/motion/frame-0.png",
+  "markoReference": "art/animation-pack-04/assets/marko-idle-2/frames/motion/frame-0.png",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        121,
+        96,
+        391,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        102,
+        96,
+        410,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        85,
+        96,
+        426,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        95,
+        96,
+        417,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        92,
+        96,
+        420,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        89,
+        96,
+        423,
+        488
+      ]
+    }
+  ],
+  "actualIdleAlphaHeight": 472,
+  "targetHeight": 392,
+  "markoIdleAlphaHeight": 383,
+  "factor": 0.83,
+  "identityOverlay": "identity-size-comparison.png",
+  "sizeOverlay": "size-overlay.png",
+  "atlasMatchesFrames": true
+}

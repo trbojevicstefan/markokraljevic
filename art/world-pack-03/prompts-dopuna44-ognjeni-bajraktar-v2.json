@@ -1,0 +1,32 @@
+{
+  "generator": "built-in image_gen",
+  "bajraktarFinisherPrompt": "Use case identity-preserve. Six-frame standing hip-throw animation kostac-bajraktar-kraj, exactly3columns2rows square cells. Matte hand-painted2D sprites, flat chroma green background, no borders/grid/shadow/text. Reference1 exact starting pose and SCALE; reference2 original Bajraktar exact face/costume; reference3 Marko exact face/costume. Marko LEFT redgoldcloak blackhair moustache ivory embroidered sleeves brownlamellar. Bajraktar RIGHT tall white FELT cap with long whitecloth tail, olivegreen gold-trimmed kaftan, dark lamellar chestshoulderarmor, metal bracers, redsash, darktrousers brownboots, rectangular wooden shield strapped BACK, curvedsword SHEATHED. Preserve original face, clothes colors and body breadth. BOTH HANDS EMPTY. Precisely same size in ALL frames: Marko306px crown-to-sole, y182..487; Bajraktar425px cap-tip-to-sole,y63..487. Marko72% of enemyheight. Frame0 same upright shouldergrip as ref1. Frame1 Marko turns hips takes enemy arm. Frame2 loads enemy across hip. Frame3 throws enemy horizontal with full body visible. Frame4 enemy lands on back right, Marko rising. Frame5 Marko stands left at crown y182 sole y487; enemy lies fullyextended headRIGHT feetLEFT, FULL425px length across x70..495. Bodies may overlap, enemy feet infront of Marko shins; keep samegroundline and sameanatomical size. Do not enlarge final standing Marko or shrink fallen enemy to fit. Preserve long white cap while lying. No blood/flame/scenery.",
+  "additionalCorrections": ["Bajraktar: left Marko reduced20%, then20%, then7%, preserving enemy", "Finisher last poses normalized to same actor size at export: Ognjeni0.87, Bajraktar0.89"],
+  "referenceRule": "actual <lik>-idle/frames/motion/frame-0.png only",
+  "factors": {
+    "marko": 0.8,
+    "ognjeni": 0.95,
+    "bajraktar": 0.9
+  },
+  "jobs": [
+    {
+      "id": "kostac-ognjeni",
+      "prompt": "Use case identity-preserve. Sprite animation kostac-ognjeni: exactly8 square cells,4columns2rows, matte hand-painted2D matching references. Solid chroma green, no grid borders, text, shadows or scenery. Image1 Marko exact identity, image2 Ognjeni-aga exact identity, image3 exact required sizes. Marko LEFT facing right: black hair and moustache, red gold cloak, ivory red embroidered sleeves, brown lamellar cuirass. Ognjeni RIGHT facing left: huge broad stocky dark-bearded man, large cream/brown soot-stained turban wrapped around pointed helmet, reddish weathered gold-trimmed coat, dark lamellar chest armor and metal bracers, dark baggy trousers, boots, copper liquid canister strapped to back. Preserve original face, headgear, coat and body breadth; NEVER generic janissary. Both empty hands grip each other's shoulders at cell center x256, weapons put away, no held torch or flame. Precise sizes each512cell: feet y487; Marko crown y182,306px tall; Ognjeni helmet/turban top y86,402px tall. Marko76% Ognjeni height, SMALLER than typical equal-sized grapplers, while Ognjeni maintains broad shoulders. Pair x20..492. Eight loop poses: neutral grip; Marko pushes; Ognjeni braces; sway right; recover; Ognjeni pushes; Marko braces; return. Nearly upright, subtle distinct steps, same head/body size across frames. Match reference3 scale exactly, do not fill whole height of cell with Marko. No blood.",
+      "corrections": [
+        "Reduce Marko11%, then13% to correct relative scale",
+        "Widen Ognjeni torso20%, maintain height"
+      ]
+    },
+    {
+      "id": "kostac-ognjeni-kraj",
+      "prompt": "Use case identity-preserve. Six-frame hip throw animation kostac-ognjeni-kraj, EXACT3columns2rows square cells, matte painted2D, solid chroma green background without gridlines. Image1 first pose and EXACT actor scale, image2 exact original Ognjeni identity, image3 exact original Marko identity. Marko left red cloak black moustache, ivory embroidered sleeves brown lamellar; Ognjeni right huge barrel-chested sooty cream turban, pointed helmet tip, dark armor, weathered RED gold-trimmed coat, dark trousers boots, copper canister back. Preserve faces/costumes/colors/body breadth. Empty hands, weapons put away. Size in EACH512cell: Marko306px high, head y182 feet y487; Ognjeni402px high, turban/helmet top y86 feet y487. Marko76% enemy height; never enlarge Marko during throw, never shrink enemy after fall. Frame0 exact standing shoulder grip as image1. Frame1 Marko turns hip, seizes enemy arm; frame2 enemy loaded across hip; frame3 full hip throw horizontal in air; frame4 enemy landing on back right while Marko rises; frame5 Marko standing LEFT crown y182 sole y487, enemy lies fully extended across x90..492 with FULL BODY LENGTH402px, turban head toward RIGHT feetleft. Overlap enemy feet in front of Marko shins to fit, do not shrink either man. Both on SAME ground baseline, no floating. Full figures no clipping. No flame, blood, text, scenery or shadows."
+    },
+    {
+      "id": "kostac-bajraktar",
+      "prompt": "Use case identity-preserve. Sprite animation kostac-bajraktar,8 distinct square cells in4columns2rows, hand-painted matte2D same style as original references. Flat chroma green background no border/grid/text/shadows/scenery. Image1 exact Marko identity; image2 exact Bajraktar identity; image3 exact SCALED target. Marko LEFT right-facing, black hair moustache, red gold cloak ivory red embroidery brown lamellar. Bajraktar RIGHT left-facing, stern dark moustache and short pointed black beard, tall elongated WHITE felt cap wrapped with white cloth long trailing tail, olive GREEN knee-length gold-trimmed kaftan, lamellar shoulder/chest armor and metal forearm bracers, red sash, dark trousers, brown boots. Match these distinctive original garments and face exactly, not generic turban soldier. Shield strapped flat to back, sword sheathed: EMPTY HANDS gripping each other's shoulders at center x256. Scale: Marko306px high from crown to foot (y182..487), Bajraktar425px high cap-tip to foot(y63..487); Marko ONLY72% Bajraktar height. Preserve original body breadth. Both feet same baseline; pair within x20..492. 8 seamless-loop poses: neutral; Marko pushes; enemy braces; sway; recovery; enemy pushes; Marko braces; return. Nearly upright, subtle steps, same anatomical sizes across frames. Do NOT enlarge Marko to equal enemy. Tall white cap is essential; no torch, no blood.",
+      "corrections": [
+        "Reduce Marko20%, retain Bajraktar"
+      ]
+    }
+  ]
+}
