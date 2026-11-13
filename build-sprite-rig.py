@@ -474,6 +474,11 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
                   ('kopljanik-drugi', 'kopljanik-attack')]:
     if _have(name) and ref in SCALES:
         SCALES[name] = (SCALES[ref][0] * body_height(_cells(ref)[-1]) / body_height(_cells(name)[-1]), 'feet')
+# The ground grapple with the akinji and the spearman: the same pose and place as kostac-janicar, drawn 0.76 as large
+# (kostac-janicar itself came out 1.3 too large and the game shrinks it), so at its scale they are true size.
+for n_ in ['kostac-akindzija', 'kostac-akindzija-kraj', 'kostac-kopljanik', 'kostac-kopljanik-kraj']:
+    if _have(n_) and 'kostac-janicar' in SCALES:
+        SCALES[n_] = (SCALES['kostac-janicar'][0], 'feet')
 
 
 # ===== noc-poliranje: the other session's own clips go only between these two lines (helpers such as _cells, _road
@@ -512,7 +517,7 @@ for name, (scale, mode) in SCALES.items():
 
 # A champion's grapple ending keeps the anchor of its loop: Marko stays where he stood while he throws the man
 # (the feet of the man lying on the ground would otherwise pull the anchor aside and the pair would jump).
-for kit in list(KOSTAC_LIK) + ['ledja']:
+for kit in list(KOSTAC_LIK) + ['ledja', 'akindzija', 'kopljanik']:
     loop, end = f'kostac-{kit}', f'kostac-{kit}-kraj'
     if loop in rig and end in rig:
         rig[end]['anchor'] = rig[loop]['anchor']

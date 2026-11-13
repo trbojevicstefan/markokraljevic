@@ -1,0 +1,103 @@
+{
+  "bounds": [
+    [
+      102,
+      273,
+      410,
+      488
+    ],
+    [
+      101,
+      267,
+      410,
+      488
+    ],
+    [
+      100,
+      283,
+      412,
+      488
+    ],
+    [
+      96,
+      280,
+      416,
+      488
+    ],
+    [
+      99,
+      284,
+      413,
+      488
+    ],
+    [
+      101,
+      277,
+      411,
+      488
+    ],
+    [
+      100,
+      287,
+      411,
+      488
+    ],
+    [
+      100,
+      280,
+      412,
+      488
+    ]
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "identityAndScaleCheckedBeforeExport": true,
+  "targets": {
+    "zoomRelativeToOriginal": 0.76,
+    "uniformScale": 0.9903536977491961,
+    "referencePairFirstBounds": [
+      101,
+      256,
+      409,
+      487
+    ],
+    "referencePairLastBounds": [
+      101,
+      256,
+      410,
+      487
+    ],
+    "outputPairFirstBounds": [
+      102,
+      273,
+      410,
+      488
+    ],
+    "outputPairLastBounds": [
+      100,
+      280,
+      412,
+      488
+    ],
+    "markoHeightEquivalent": 306,
+    "enemyHeightEquivalent": 306,
+    "enemyToMarko": 1,
+    "fitLimited": false,
+    "actualIdleReferences": [
+      {
+        "id": "marko-idle-2",
+        "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\assets\\marko-idle-2\\frames\\motion\\frame-0.png",
+        "height": 306,
+        "factor": 0.7989556135770235,
+        "width": 235
+      },
+      {
+        "id": "akindzija",
+        "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\sources\\dopuna44-deo5\\akindzija-idle\\frames\\motion\\frame-0.png",
+        "height": 306,
+        "factor": 0.827027027027027,
+        "width": 273
+      }
+    ]
+  }
+}

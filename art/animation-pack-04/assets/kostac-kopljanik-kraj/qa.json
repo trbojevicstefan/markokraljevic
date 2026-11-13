@@ -1,0 +1,91 @@
+{
+  "bounds": [
+    [
+      102,
+      263,
+      410,
+      488
+    ],
+    [
+      100,
+      252,
+      412,
+      488
+    ],
+    [
+      92,
+      247,
+      420,
+      488
+    ],
+    [
+      76,
+      292,
+      435,
+      488
+    ],
+    [
+      75,
+      291,
+      437,
+      488
+    ],
+    [
+      76,
+      285,
+      436,
+      488
+    ]
+  ],
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "identityAndScaleCheckedBeforeExport": true,
+  "targets": {
+    "zoomRelativeToOriginal": 0.76,
+    "uniformScale": 0.7247058823529412,
+    "referencePairFirstBounds": [
+      106,
+      260,
+      405,
+      487
+    ],
+    "referencePairLastBounds": [
+      77,
+      295,
+      434,
+      488
+    ],
+    "outputPairFirstBounds": [
+      102,
+      263,
+      410,
+      488
+    ],
+    "outputPairLastBounds": [
+      76,
+      285,
+      436,
+      488
+    ],
+    "markoHeightEquivalent": 306,
+    "enemyHeightEquivalent": 291,
+    "enemyToMarko": 0.95,
+    "fitLimited": false,
+    "actualIdleReferences": [
+      {
+        "id": "marko-idle-2",
+        "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\assets\\marko-idle-2\\frames\\motion\\frame-0.png",
+        "height": 306,
+        "factor": 0.7989556135770235,
+        "width": 235
+      },
+      {
+        "id": "kopljanik",
+        "path": "D:\\projects\\Marko Kraljevic\\marko-game\\art\\animation-pack-04\\assets\\kopljanik-idle\\frames\\motion\\frame-0.png",
+        "height": 291,
+        "factor": 0.7097560975609756,
+        "width": 309
+      }
+    ]
+  }
+}
