@@ -1,48 +1,73 @@
 {
   "clip": "kopljanik-basa-hurt",
+  "passed": true,
   "frames": [
     {
       "frame": 0,
-      "bounds": [
-        138,
-        78,
-        373,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        80,
+        77,
+        433,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 1,
-      "bounds": [
-        125,
-        78,
-        387,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        90,
+        80,
+        423,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 2,
-      "bounds": [
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        97,
         99,
-        78,
-        413,
-        488
-      ]
+        416,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     },
     {
       "frame": 3,
-      "bounds": [
-        128,
-        78,
-        384,
-        488
-      ]
+      "size": [
+        512,
+        512
+      ],
+      "bbox": [
+        84,
+        80,
+        428,
+        487
+      ],
+      "touchesSide": false,
+      "groundY": 487
     }
   ],
-  "loop": false,
-  "identityReference": "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
-  "hasanReference": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
-  "identityAlphaHeight": 410,
-  "hasanAlphaHeight": 463,
-  "markoIdleAlphaHeight": 383,
-  "atlasMatchesFrames": true
+  "idleReference": "art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png",
+  "sourceGrid": [
+    443,
+    887
+  ],
+  "uniformScale": 0.8704883227176221,
+  "neighborBleedCheck": "passed by per-cell crop"
 }

@@ -1,0 +1,97 @@
+{
+  "characterId": "beg-hurt",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": true,
+  "frame_variant": "pixel",
+  "sprite_sheet_alpha": "atlas.png",
+  "base_image": "reference.png",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 8,
+    "safe_margin_y": 8,
+    "size": 512,
+    "safe_margin": 8
+  },
+  "chroma_key": {
+    "name": "transparent",
+    "hex": "#00000000",
+    "rgb": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 4,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 4,
+        "fps": 10,
+        "durations_ms": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "loop": false,
+        "holdLastFrame": true,
+        "frame_variant": "pixel"
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 2048,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "scaleReference": {
+    "idleAlphaHeightPx": 463,
+    "uniformScale": 0.6889880952380952,
+    "footY": 487,
+    "centerX": 256
+  },
+  "renderScale": 1.0,
+  "renderAnchor": {
+    "x": 256,
+    "y": 487
+  },
+  "worldBodyHeight": 463,
+  "identityReference": "art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png"
+}

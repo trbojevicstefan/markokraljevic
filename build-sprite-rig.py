@@ -450,8 +450,9 @@ for who in ['hasan-aga', 'ognjeni-aga', 'lovac-aga', 'bajraktar', 'janicarski-ag
         SCALES[f'{who}-hvata'] = (SCALES[f'{who}-idle'][0] * _grab_k(f'{who}-hvata'), 'feet')
 # The three champions who were enlarged soldiers get their own figures at the size the game drew them so far
 # (tufekdžija and kopljanik × 1.3, the akinji × 1.35): one scale per figure, from its idle; the grab follows it.
-# A figure in BASA_CEKA waits for a redraw (kopljanik-baša's and the bey's run and hurt came out cut across the cell edges).
-BASA_CEKA = {'kopljanik-basa', 'beg'}
+# A figure in BASA_CEKA waits for a redraw (the kopljanik-baša's and the bey's run and hurt first came out cut across
+# the cell edges; redrawn).
+BASA_CEKA = set()
 for who, ref, k in [('basa', 'tufekdzija-idle', 1.3), ('kopljanik-basa', 'kopljanik-idle', 1.3), ('beg', 'akindzija-idle', 1.35)]:
     if who not in BASA_CEKA and _have(f'{who}-idle') and ref in SCALES:
         s_ = _road(ref) * k / float(np.median([body_height(c) for c in _cells(f'{who}-idle')]))
