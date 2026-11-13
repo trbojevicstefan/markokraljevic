@@ -529,7 +529,7 @@ const GRAPPLE={champ:{rate:6,clip:'kostac-stoji',text:'U KOŠTAC'},ledja:{rate:6
 // which drawing a grapple plays. A champion wrestles in his own shape: his own clinch once it is drawn (kostac-<name>),
 // and until then his own figure set against Marko's shove, so that Hasan-aga never turns into a nameless man in brown.
 const KOSTAC_KIT={hasan:'kostac-hasan',djemo:'kostac-djemo',dzelat:'kostac-dzelat',ognjeni:'kostac-ognjeni',bajraktar:'kostac-bajraktar',janicar:'kostac-aga',arapin:'kostac-arapin',lovac:'kostac-lovac',basa:'kostac-basa',kopljanik:'kostac-kopljanik-basa',beg:'kostac-beg'};
-const KOSTAC_FIT={'kostac-janicar':.76,'kostac-oklopnik':.76,'kostac-pas':.82,'megdan-kostac':.76,'megdan-noz':.76},kostacFit=n=>KOSTAC_FIT[n]??KOSTAC_FIT[n.replace(/-kraj$/,'')]??1;
+const KOSTAC_FIT={'kostac-janicar':.76,'kostac-oklopnik':.76,'kostac-pas':.82,'megdan-kostac':.84,'megdan-noz':.84},kostacFit=n=>KOSTAC_FIT[n]??KOSTAC_FIT[n.replace(/-kraj$/,'')]??1;
 function grappleClip(G){const e=G.e;if(G.champ){const c=KOSTAC_KIT[e.kit];return c&&rig?.[c]?c:rig?.['marko-push']?null:'kostac-stoji';}
  if(G.kind==='ledja'&&rig?.['kostac-ledja'])return'kostac-ledja';if(G.kind==='janicar'&&rig?.['kostac-'+e.type])return'kostac-'+e.type;return GRAPPLE[G.kind].clip;}
 function grappleText(kind){return kind==='ledja'&&!rig?.['kostac-ledja']?'OBORIO TE S LEĐA':GRAPPLE[kind].text;}
@@ -1086,7 +1086,7 @@ function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)re
 function makeCorpse(type,x,y,face,persist=false,vy=0){return{type,x,y,face,persist,t:0,vx:0,vy:Math.max(0,vy),w:34,h:40,grounded:false};}
 function deathPose(c){if(c.skel&&typeof rig!=='undefined'){const S=c.skel,own=S.fall!=='kostur-pada';if(c.t<S.stand){if(own)return{name:S.fall,frame:Math.floor(c.t*3)%2,alpha:1};const n=rig['kostur-stoji'].frames.length;return{name:'kostur-stoji',frame:Math.floor(c.t*7)%n,alpha:1};}const n=rig[S.fall].frames.length,a=own?2:0;return{name:S.fall,frame:Math.min(n-1,a+Math.floor((c.t-S.stand)/.8*(n-a))),alpha:1};}if(c.clip&&typeof rig!=='undefined'&&rig?.[c.clip]){const n=rig[c.clip].frames.length,a=c.clipFrom||0,x=Math.min(n-1,a+c.t/(c.clipDur||1)*(n-a));return{name:c.clip,frame:Math.floor(x),tw:x%1,alpha:c.persist?1:1-clamp((c.t-ROT_AT)/1.4,0,1)};}if(c.launched){const hasDeath=typeof rig!=='undefined'&&!!rig?.[c.type+'-death'],F=typeof FOES!=='undefined'?FOES[c.type]:null,name=hasDeath?c.type+'-death':(F?F.anims.main:c.type+'-death'),alpha=c.persist?1:1-clamp((c.t-ROT_AT)/1.4,0,1);if(!c.landed)return{name,frame:hasDeath?1:0,rot:c.spinAngle||0,alpha};const lt=c.t-(c.landT||0);if(hasDeath)return{name,frame:lt<.12?3:lt<.26?4:5,alpha};return{name,frame:0,rot:-c.face*1.42,dx:-c.face*20,dy:4,alpha};}const F=typeof FOES!=='undefined'?FOES[c.type]:null;if(F&&!(typeof rig!=='undefined'&&rig?.[c.type+'-death'])){const fall=clamp(c.t/.45,0,1),ease=fall*fall,back=-c.face;return{name:F.anims.main,frame:0,rot:back*ease*1.42,dx:back*ease*20,dy:ease*4,alpha:1-clamp((c.t-ROT_AT)/1.4,0,1)};}const T=[0,.13,.30,.49,.70,.90],frame=c.t<.13?0:c.t<.30?1:c.t<.49?2:c.t<.70?3:c.t<.90?4:5;return{name:c.type+'-death',frame,tw:frame<5?(c.t-T[frame])/(T[frame+1]-T[frame]):0,alpha:c.persist?1:1-clamp((c.t-ROT_AT)/1.4,0,1)};}
 function drawCorpse(c){if(c.headless)return drawHeadless(c);if(c.legless)return drawLegless(c);if(c.crushed){const a=c.persist?1:1-clamp((c.t-ROT_AT)/1.4,0,1),k=clamp(c.t/.2,0,1);if(a<=0)return;shadow(c.x,c.y,50,.4*a);ellipse(c.x,c.y+1,46*Math.min(1,c.t/1.5+.3),9,`rgba(100,8,10,${.8*a})`);rigDraw(c.crushed.name,0,c.x,c.y,c.face,{scale:c.crushed.scale,sy:1-.62*k,sx:1+.3*k,alpha:a});return;}const pose=deathPose(c);shadow(c.x,c.y,c.type==='musa'?65:45,.35*pose.alpha);if(settings.gore!==false&&c.t>.5){const k=clamp((c.t-.5)/2.2,0,1)*pose.alpha;const r=(c.type==='musa'?46:32)*Math.sqrt(k);const gr=ctx.createRadialGradient(c.x-c.face*30,c.y+1,0,c.x-c.face*30,c.y+1,r);gr.addColorStop(0,`rgba(92,8,10,${.85*pose.alpha})`);gr.addColorStop(.75,`rgba(110,12,14,${.7*pose.alpha})`);gr.addColorStop(1,'rgba(110,12,14,0)');ctx.save();ctx.translate(c.x-c.face*30,c.y+1);ctx.scale(1,.22);ctx.translate(-(c.x-c.face*30),-(c.y+1));ctx.fillStyle=gr;ctx.fillRect(c.x-c.face*30-r,c.y+1-r,r*2,r*2);ctx.restore();}rigDraw(pose.name,pose.frame,c.x,c.y,c.face,{rot:pose.rot,dx:pose.dx,dy:pose.dy,alpha:pose.alpha,tw:pose.tw,flash:c.t<.1?(.1-c.t)*4:0,flashColor:'#fff2d0'});}
-function drawBoss(){if(zone!==5||!boss.alive)return;if(boss.stage==='kostac'&&(boss.mode==='pin'||boss.mode==='noz')){drawKostac();return;}const pose=musaPose();if(boss.knock)pose.dx=(pose.dx||0)+boss.knock;const fd=animTrack(boss,pose,boss.face,boss.hurtT>0);
+function drawBoss(){if(zone!==5||!boss.alive)return;if(boss.stage==='kostac'&&(boss.mode==='pin'||boss.mode==='noz'||boss.mode==='stoji'||boss.mode==='obara')){drawKostac();return;}const pose=musaPose();if(boss.knock)pose.dx=(pose.dx||0)+boss.knock;const fd=animTrack(boss,pose,boss.face,boss.hurtT>0);
  shadow(boss.x,boss.y,boss.mounted?92:56,.6);
  if(boss.stage==='joust'&&boss.mounted&&!rig?.['musa-mounted']){const f=boss.face,y=boss.y-118;line(boss.x-f*30,y+8,boss.x+f*210,y-6,'#5a3c22',6);poly([[boss.x+f*210,y-12],[boss.x+f*244,y-6],[boss.x+f*210,y]],'#d8dde2');}
  if(boss.mode==='windup'||boss.mode==='second')rimGlow(pose,boss.x,boss.y,boss.face,'#ff3a18',.35+.25*Math.sin(time*28),2.4);
@@ -3061,18 +3061,25 @@ function joustEnd(){joustDone=true;boss.mounted=false;boss.mode='jBreak';boss.ti
 // Ravijojla calls from the cloud, Musa looks up — and Marko draws the hidden knife
 function startKostac(){if(boss.stage==='kostac')return;boss.stage='kostac';boss.hp=1;boss.mode='grabPrep';boss.timer=1;boss.look=false;boss.vila=false;boss.saidPinned=false;boss.holds=0;boss.key=null;slowMo=.6;arrows=arrows.filter(a=>!a.enemy);
  fx('flash','#fff2d0',.2);say('musa_kostac',{priority:5,x:boss.x});label('!! U KOŠTAC',boss.x,boss.y-260,'#ffb09a');toast('Polomiše se i sablje i topuzi. U koštac!',3);}
+function musaObori(){boss.mode='pin';boss.pinT=0;boss.holds=0;boss.key=null;p.hvat=null;boss.x=p.x+boss.face*7;shake=settings.reduced?0:12;rumble(1,400);sfx('fall',{gain:1});sfx('hit_body',{gain:1,rate:.7});dust(p.x,p.y,30,3);say('musa_pin',{priority:6,x:boss.x,delay:.3});toast('Musa obori Marka. Snaga ga napušta.',4);}
+// the hold contest of the grapple with Musa, standing and on the ground: the hold that is shown is the one that counts
+function musaHvat(dt){if(!boss.key){const ks=HVAT.filter(k=>k!==boss.keyLast);boss.key=boss.keyLast=ks[Math.floor(Math.random()*ks.length)];boss.kt=0;}boss.kt+=dt;boss.lock=Math.max(0,(boss.lock||0)-dt);boss.miss=Math.max(0,(boss.miss||0)-dt);
+ const hk=HVAT.find(k=>pressed.has(k));
+ if(hk&&boss.lock<=0){if(hk===boss.key){boss.holds=(boss.holds||0)+1;boss.shakeT=.22;boss.key=null;sfx('hit_heavy',{gain:.6,rate:1.1});sfx('cloth',{gain:.6,rate:1.2});shake=settings.reduced?0:5;rumble(.5,120);label('DRŽI SE!',p.x,p.y-250,'#ffe39a');}
+  else{boss.lock=.35;boss.miss=.35;p.hp=Math.max(1,p.hp-3);sfx('clang',{gain:.5});label('PROMAŠEN HVAT',p.x,p.y-250,'#ff9a8a');}}
+ else if(boss.kt>hvatTime()){boss.key=null;boss.miss=.35;p.hp=Math.max(1,p.hp-4);sfx('cloth',{gain:.8,rate:.8});label('STEŽE TE',p.x,p.y-250,'#ff9a8a');}
+ p.hvat=boss.key;}
 function kostacStep(dt){const m=boss.mode;boss.timer-=dt;boss.flash=Math.max(0,boss.flash-dt);boss.shakeT=Math.max(0,(boss.shakeT||0)-dt);
  if(m==='grabPrep'){boss.face=p.x>boss.x?1:-1;if(boss.timer<=0){boss.mode='grab';boss.grabT=0;sfx('whoosh_heavy',{gain:1,x:boss.x});}}
  else if(m==='grab'){boss.grabT+=dt;const dx=p.x-boss.x;boss.face=dx>0?1:-1;boss.x+=Math.sign(dx)*Math.min(Math.abs(dx),560*dt);boss.walk=(boss.walk||0)+560*dt;
-  if(Math.abs(p.x-boss.x)<70||boss.grabT>2.5){boss.mode='pin';boss.pinT=0;boss.x=p.x+boss.face*12;Object.assign(p,{pinned:true,vx:0,attack:0,spin:0,rage:0,energy:0,buff:0,face:-boss.face});horseMounted=false;
-   shake=settings.reduced?0:12;rumble(1,400);sfx('fall',{gain:1});sfx('hit_body',{gain:1,rate:.7});dust(p.x,p.y,30,3);say('musa_pin',{priority:6,x:boss.x,delay:.3});toast('Musa obori Marka. Snaga ga napušta.',4);}}
+  if(Math.abs(p.x-boss.x)<70||boss.grabT>2.5){Object.assign(p,{pinned:true,vx:0,attack:0,spin:0,rage:0,energy:0,buff:0,face:-boss.face});horseMounted=false;
+   if(rig?.['kostac-musa']&&rig?.['kostac-musa-kraj']){boss.mode='stoji';boss.stojiT=0;boss.holds=0;boss.key=null;boss.x=p.x-boss.face*10;shake=settings.reduced?0:6;rumble(.6,200);sfx('cloth',{gain:.9});sfx('hit_body',{gain:.8,rate:.9});dust(p.x,p.y,16,2);toast('Uhvatiše se u koštac. Uzmi hvat koji se pokaže.',3.2);}
+   else musaObori();}}
+ // they wrestle standing: every hold Marko takes holds Musa off, but in the end, as in the song, Musa throws him on the grass
+ else if(m==='stoji'){boss.stojiT+=dt;musaHvat(dt);if(boss.stojiT>5||((boss.holds||0)>=3&&boss.stojiT>2.2)){boss.mode='obara';boss.timer=.8;boss.key=null;p.hvat=null;sfx('whoosh_heavy',{gain:1,x:boss.x});label('MUSA GA DIŽE',p.x,p.y-250,'#ffb09a');}}
+ else if(m==='obara'){if(boss.timer<=0)musaObori();}
  else if(m==='pin'){boss.pinT+=dt;p.hp=Math.max(1,p.hp-3*dt);
-  if(!boss.vila){if(!boss.key){const ks=HVAT.filter(k=>k!==boss.keyLast);boss.key=boss.keyLast=ks[Math.floor(Math.random()*ks.length)];boss.kt=0;}boss.kt+=dt;boss.lock=Math.max(0,(boss.lock||0)-dt);boss.miss=Math.max(0,(boss.miss||0)-dt);
-   const hk=HVAT.find(k=>pressed.has(k));
-   if(hk&&boss.lock<=0){if(hk===boss.key){boss.holds=(boss.holds||0)+1;boss.shakeT=.22;boss.key=null;sfx('hit_heavy',{gain:.6,rate:1.1});sfx('cloth',{gain:.6,rate:1.2});shake=settings.reduced?0:5;rumble(.5,120);label('DRŽI SE!',p.x,p.y-250,'#ffe39a');}
-    else{boss.lock=.35;boss.miss=.35;p.hp=Math.max(1,p.hp-3);sfx('clang',{gain:.5});label('PROMAŠEN HVAT',p.x,p.y-250,'#ff9a8a');}}
-   else if(boss.kt>hvatTime()){boss.key=null;boss.miss=.35;p.hp=Math.max(1,p.hp-4);sfx('cloth',{gain:.8,rate:.8});label('STEŽE TE',p.x,p.y-250,'#ff9a8a');}
-   p.hvat=boss.key;}
+  if(!boss.vila)musaHvat(dt);
   if(boss.pinT>2.4&&!boss.saidPinned){boss.saidPinned=true;say('pinned',{priority:6});}
   if((boss.pinT>5||((boss.holds||0)>=3&&boss.pinT>2.6))&&!boss.vila){boss.vila=true;boss.key=null;p.hvat=null;boss.vilaAt=boss.pinT;fairy={x:boss.x-70,y:boss.y-300,age:0,duration:16,kind:'hover',targetX:boss.x-70,targetY:boss.y-290};burst(boss.x-70,boss.y-300,'#caffdf',40,140);sound('magic');say('vila_kostac',{priority:6,x:boss.x});}
   const vilaLen=SND.buf['voice/vila_kostac']?.duration||7;
@@ -3081,6 +3088,8 @@ function kostacStep(dt){const m=boss.mode;boss.timer-=dt;boss.flash=Math.max(0,b
  else if(m==='noz'){if(boss.timer<1&&!boss.stabbed){boss.stabbed=true;blood(boss.x,boss.y-90,boss.face,60);fx('hit',boss.x,boss.y-90,true);sound('hit');hitstop=.18;slowMo=1;shake=settings.reduced?0:10;fx('flash','#ffe0d0',.16);}
   if(boss.timer<=0){p.pinned=false;p.attack=0;p.attackKind='light';p.down=1;win();}}}
 function drawKostac(){const x=boss.x,y=boss.y,f=boss.face,sh=boss.shakeT>0?(Math.random()-.5)*6:0;shadow(x,y,96,.6);
+ if(boss.mode==='stoji'){const C=rig['kostac-musa'];rigDraw('kostac-musa',loopF(time*(boss.shakeT>0?14:8),C.frames.length),p.x+sh,y,-f,{});const by=y-186;ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(p.x-52,by-2,104,12);ctx.fillStyle='#ffcf6a';ctx.fillRect(p.x-50,by,100*Math.min(1,(boss.holds||0)/3),8);drawHvat(boss,p.x,by);return;}
+ if(boss.mode==='obara'){const C=rig['kostac-musa-kraj'];rigDraw('kostac-musa-kraj',Math.min(C.frames.length-1,Math.floor((1-boss.timer/.8)*C.frames.length)),p.x,y,-f,{});return;}
  if(boss.mode==='noz'&&rig?.['megdan-noz']){const n=rig['megdan-noz'].frames.length;rigDraw('megdan-noz',Math.min(n-1,(1-boss.timer/1.7)*n),x,y,-f,{scale:kostacFit('megdan-noz')});}
  else if(rig?.['megdan-kostac']){const n=rig['megdan-kostac'].frames.length;rigDraw('megdan-kostac',loopF(time*(boss.shakeT>0?14:7),n),x+sh,y,-f,{scale:kostacFit('megdan-kostac')});}
  else{const lie=rig?.['marko-knockdown'];if(lie)rigDraw('marko-knockdown',lie.frames.length-1,p.x-f*20+sh,p.y,-f,{});

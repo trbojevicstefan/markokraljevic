@@ -121,7 +121,9 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
  until(()=>boss.stage==='duel',120*4);ok(boss.stage==='duel'&&!S().horseMounted&&!boss.mounted,'musa: the lances broken, both fight on foot');
  boss.mode='open';boss.timer=3;boss.hp=20;Object.assign(S().p,{x:boss.x-90,face:1,y:590,grounded:true,attack:0,cooldown:0});safe();tap('KeyK');step(60);
  ok(boss.alive&&boss.stage==='kostac','musa: his last heart broken, he does not fall: he grapples');
- until(()=>boss.mode==='pin',120*4);ok(S().p.pinned,'musa: he throws Marko down and holds him');
+ until(()=>boss.mode==='stoji',120*4);ok(boss.mode==='stoji'&&S().p.pinned,'musa: they lock in a standing grapple first');
+ {const hp=S().p.hp;until(()=>S().p.hvat,120);tap(S().p.hvat);ok(boss.holds===1&&S().p.hp===hp,'musa: standing, a hold taken holds him off and costs nothing');}
+ until(()=>boss.mode==='pin',120*8);ok(S().p.pinned&&boss.holds===0,'musa: he throws Marko down and holds him');
  ok(S().p.rage===0&&S().p.energy===0,'musa: Marko\'s strength leaves him');
  until(()=>S().p.hvat,120);{const h0=boss.holds||0,k=S().p.hvat;tap(k);ok(boss.holds===h0+1,'musa: the hold that is shown is the one that counts');until(()=>S().p.hvat,120);const bad=['KeyJ','KeyK','Space','ShiftLeft'].find(q=>q!==S().p.hvat);tap(bad);ok(boss.holds===h0+1,'musa: a wrong hold does not');}
  const hp0=S().p.hp;step(120*3);ok(S().p.hp<hp0&&S().p.hp>=1,'musa: held down, Marko weakens but does not die');
