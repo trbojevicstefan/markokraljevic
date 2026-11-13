@@ -46,4 +46,4 @@
 - Pogledano svih devet listova na tamnoj podlozi i `moc-krilo` u igri nad oltarom (Noćna močvara): **svih devet prihvaćeno** (`moc-krilo`, `moc-lanac` v2, `moc-oko`, `moc-trag`, `moc-potres`, `moc-nalet`, `moc-kombo`, `moc-gaz`, `moc-zidotrk`). Crtao GPT-5.6-Luna (medium), bez jačeg modela.
 - `moc-lanac` u prvoj turi nije izvezen zbog mog pravila „jedan povezan predmet po kadru”, koje za lanac ne važi; pravilo je za njega ukinuto i druga tura je prošla.
 - Predmeti su nacrtani manji nego što je brief tražio (oko 150 px u ćeliji 512): u rigu im je mera 0.44 (`build-sprite-rig.py`, blok noc-poliranje). `moc-gaz` ima žućkasto-zelen sjaj umesto belo-zlatnog; ostavljeno.
-- Tri manifesta su imala slova sa kvačicama u opisu, na čemu `build-sprite-rig.py` pada bez UTF-8 režima: prepisani su kao čist ASCII. U sledećim briefovima tražiti opis bez naših slova.
+- Tri manifesta su imala slova sa kvačicama u opisu, na čemu `build-sprite-rig.py` pada bez UTF-8 režima: prepisani su kao čist ASCII. Od commita faf809c `build-sprite-rig.py` čita manifeste kao UTF-8, pa to više nije potrebno.
