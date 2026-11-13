@@ -479,6 +479,11 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
 for n_ in ['kostac-akindzija', 'kostac-akindzija-kraj', 'kostac-kopljanik', 'kostac-kopljanik-kraj']:
     if _have(n_) and 'kostac-janicar' in SCALES:
         SCALES[n_] = (SCALES['kostac-janicar'][0], 'feet')
+# Marko lifts plough and oxen (1024 cell): Marko stands about 300 px here against 309 in marko-ore (0.345 would keep
+# him), the team is about 668 px wide against volovi-ralo's 261 world px (0.391 would keep the oxen); the scale splits
+# the difference, and the anchor goes on Marko's feet (cell x 270, below) so he stays where he ploughed.
+if _have('marko-dize-ralo'):
+    SCALES['marko-dize-ralo'] = (float(np.sqrt(.345 * .391)), 'feet')
 
 
 # ===== noc-poliranje: the other session's own clips go only between these two lines (helpers such as _cells, _road
@@ -517,6 +522,8 @@ for name, (scale, mode) in SCALES.items():
 
 # A champion's grapple ending keeps the anchor of its loop: Marko stays where he stood while he throws the man
 # (the feet of the man lying on the ground would otherwise pull the anchor aside and the pair would jump).
+if 'marko-dize-ralo' in rig:  # Marko's feet, not the middle of the team
+    rig['marko-dize-ralo']['anchor'] = 270.0
 for kit in list(KOSTAC_LIK) + ['ledja', 'akindzija', 'kopljanik']:
     loop, end = f'kostac-{kit}', f'kostac-{kit}-kraj'
     if loop in rig and end in rig:

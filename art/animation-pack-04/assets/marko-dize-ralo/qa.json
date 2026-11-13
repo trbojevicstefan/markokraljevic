@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "cell": [
+    1024,
+    1024
+  ],
+  "frames": [
+    {
+      "frame": 0,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        182,
+        725,
+        842,
+        999
+      ]
+    },
+    {
+      "frame": 1,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        187,
+        681,
+        836,
+        999
+      ]
+    },
+    {
+      "frame": 2,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        183,
+        627,
+        840,
+        999
+      ]
+    },
+    {
+      "frame": 3,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        190,
+        388,
+        833,
+        999
+      ]
+    },
+    {
+      "frame": 4,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        172,
+        433,
+        851,
+        999
+      ]
+    },
+    {
+      "frame": 5,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        168,
+        553,
+        855,
+        999
+      ]
+    },
+    {
+      "frame": 6,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        168,
+        669,
+        855,
+        999
+      ]
+    },
+    {
+      "frame": 7,
+      "size": [
+        1024,
+        1024
+      ],
+      "bbox": [
+        172,
+        686,
+        851,
+        999
+      ]
+    }
+  ],
+  "bboxBottoms": [
+    999,
+    999,
+    999,
+    999,
+    999,
+    999,
+    999,
+    999
+  ],
+  "bboxWidths": [
+    660,
+    649,
+    657,
+    643,
+    679,
+    687,
+    687,
+    679
+  ],
+  "bboxHeights": [
+    274,
+    318,
+    372,
+    611,
+    566,
+    446,
+    330,
+    313
+  ],
+  "identityReferences": [
+    "volovi-ralo/frames/motion/frame-0.png",
+    "marko-ore/frames/motion/frame-0.png"
+  ],
+  "measurements": {
+    "teamWidthApproxPx": "643-687 across poses",
+    "markoBriefTargetPx": 300,
+    "footY": 999
+  },
+  "notes": "8-frame one-shot, transparent cutout, generated 4x2 sheet, painted matte."
+}

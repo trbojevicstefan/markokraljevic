@@ -1,0 +1,16 @@
+{
+  "clip": "marko-dize-ralo",
+  "generator": "imagegen",
+  "source_sheet": "C:/Users/PC/.codex/generated_images/01a1bfb7-c1bf-7370-80b1-d1fc0457eead/exec-b8221928-fad1-45a2-8dbc-af158d3b0670.png",
+  "references": [
+    "art/animation-pack-04/assets/volovi-ralo/frames/motion/frame-0.png",
+    "art/animation-pack-04/assets/marko-ore/frames/motion/frame-0.png"
+  ],
+  "grid": {"columns": 4, "rows": 2, "cell": [1024, 1024]},
+  "fps": 10,
+  "loop": false,
+  "holdLastFrame": true,
+  "footY": 999,
+  "briefTargets": {"markoHeightPx": 300, "oxenYokeHeightPx": 240, "teamWidthPx": 610},
+  "notes": "Frames 0-3 lift the same oxen, yoke and plough overhead; frames 4-7 lower the team forward and end with Marko holding the handles."
+}
