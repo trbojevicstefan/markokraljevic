@@ -10,7 +10,7 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
         atlas, manifest = os.path.join(clip, 'atlas.png'), os.path.join(clip, 'manifest.json')
         if not (os.path.exists(atlas) and os.path.exists(manifest)):
             continue
-        if 'frame_layout' not in json.load(open(manifest, encoding='utf8')):
+        if 'frame_layout' not in json.load(open(manifest, encoding='utf-8-sig')):
             print('preskačem (nema frame_layout):', name); continue
         if name == 'pauza-logor-16':  # the same 16-frame camp ships from art/world-pack-03/pauza-logor.png (sync-world.py)
             continue
@@ -23,7 +23,11 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
         dst = os.path.join(OUT, name + '.png')
         if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(atlas):
             continue
-        shutil.copyfile(atlas, dst); shutil.copyfile(manifest, os.path.join(OUT, name + '.json')); n += 1
+        shutil.copyfile(atlas, dst); n += 1
+        with open(manifest, 'rb') as f:  # the artist sometimes writes a BOM, which json.load in the rig builder chokes on
+            raw = f.read()
+        with open(os.path.join(OUT, name + '.json'), 'wb') as f:
+            f.write(raw[3:] if raw.startswith(b'\xef\xbb\xbf') else raw)
         if name.startswith(('vila-', 'magija-')):  # a faint haze over the whole cell would show as a pale square in the game
             from PIL import Image
             import numpy as np
