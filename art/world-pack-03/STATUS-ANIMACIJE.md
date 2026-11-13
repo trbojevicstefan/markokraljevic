@@ -973,3 +973,9 @@ DOPUNA-44 deo 6: beg-attack — GOTOVO; 6 kadrova, jednom, identitet iz beg-moun
 DOPUNA-44 deo 6: beg-hurt — GOTOVO; 4 kadrova, jednom, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-hurt/grid.png.
 
 DOPUNA-44 deo 6: beg-death — GOTOVO; 6 kadrova, jednom, identitet iz beg-mounted/frame-0.png, zum kao hasan-aga-idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-beg/beg-death/grid.png.
+
+DOPUNA-44 deo 3: basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/basa-idle/frames/motion/frame-0.png, zum kao idle (471px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/basa-hvata/grid.png.
+
+DOPUNA-44 deo 3: kopljanik-basa-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png, zum kao idle (410px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/kopljanik-basa-hvata/grid.png.
+
+DOPUNA-44 deo 3: beg-hvata — GOTOVO; 6 kadrova, jednom, identitet iz art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png, zum kao idle (463px), oslonac y=487; preklopi identiteta/velicine, atlas/GIF/manifest/QA provereni; source art/animation-pack-04/sources/dopuna44-deo3-basahvat/beg-hvata/grid.png.

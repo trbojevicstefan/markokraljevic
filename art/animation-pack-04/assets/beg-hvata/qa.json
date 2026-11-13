@@ -1,0 +1,63 @@
+{
+  "clip": "beg-hvata",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        131,
+        25,
+        381,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        96,
+        25,
+        415,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        46,
+        25,
+        466,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        26,
+        25,
+        486,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        20,
+        41,
+        492,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        28,
+        25,
+        483,
+        488
+      ]
+    }
+  ],
+  "identityReference": "art/animation-pack-04/assets/beg-idle/frames/motion/frame-0.png",
+  "identityIdleAlphaHeight": 463,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}

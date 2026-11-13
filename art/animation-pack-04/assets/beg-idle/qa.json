@@ -1,0 +1,63 @@
+{
+  "clip": "beg-idle",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        118,
+        25,
+        394,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        118,
+        25,
+        394,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        116,
+        25,
+        396,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        116,
+        25,
+        395,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        115,
+        25,
+        396,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        117,
+        25,
+        395,
+        488
+      ]
+    }
+  ],
+  "identityReference": "art/animation-pack-04/assets/beg-mounted/frames/motion/frame-0.png",
+  "hasanIdleAlphaHeight": 463,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}

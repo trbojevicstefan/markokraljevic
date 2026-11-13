@@ -1,0 +1,63 @@
+{
+  "clip": "kopljanik-basa-hvata",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        138,
+        78,
+        374,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        122,
+        78,
+        389,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        91,
+        78,
+        420,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        63,
+        78,
+        449,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        26,
+        78,
+        485,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        49,
+        78,
+        463,
+        488
+      ]
+    }
+  ],
+  "identityReference": "art/animation-pack-04/assets/kopljanik-basa-idle/frames/motion/frame-0.png",
+  "identityIdleAlphaHeight": 410,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}

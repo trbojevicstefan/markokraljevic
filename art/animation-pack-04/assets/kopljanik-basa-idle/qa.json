@@ -1,0 +1,66 @@
+{
+  "clip": "kopljanik-basa-idle",
+  "frames": [
+    {
+      "frame": 0,
+      "bounds": [
+        55,
+        78,
+        456,
+        488
+      ]
+    },
+    {
+      "frame": 1,
+      "bounds": [
+        60,
+        78,
+        452,
+        488
+      ]
+    },
+    {
+      "frame": 2,
+      "bounds": [
+        65,
+        78,
+        447,
+        488
+      ]
+    },
+    {
+      "frame": 3,
+      "bounds": [
+        65,
+        78,
+        447,
+        488
+      ]
+    },
+    {
+      "frame": 4,
+      "bounds": [
+        60,
+        78,
+        452,
+        488
+      ]
+    },
+    {
+      "frame": 5,
+      "bounds": [
+        55,
+        78,
+        457,
+        488
+      ]
+    }
+  ],
+  "loop": true,
+  "identityReference": "art/animation-pack-04/assets/kopljanik-idle/frames/motion/frame-0.png",
+  "hasanReference": "art/animation-pack-04/assets/hasan-aga-idle/frames/motion/frame-0.png",
+  "identityAlphaHeight": 410,
+  "hasanAlphaHeight": 463,
+  "markoIdleAlphaHeight": 383,
+  "atlasMatchesFrames": true
+}
