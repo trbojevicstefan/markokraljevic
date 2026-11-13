@@ -480,11 +480,11 @@ for name, ref in [('sword-drugi', 'sword-attack'), ('shield-drugi', 'shield-atta
 for n_ in ['kostac-akindzija', 'kostac-akindzija-kraj', 'kostac-kopljanik', 'kostac-kopljanik-kraj']:
     if _have(n_) and 'kostac-janicar' in SCALES:
         SCALES[n_] = (SCALES['kostac-janicar'][0], 'feet')
-# Marko lifts plough and oxen (1024 cell): Marko stands about 300 px here against 309 in marko-ore (0.345 would keep
-# him), the team is about 668 px wide against volovi-ralo's 261 world px (0.391 would keep the oxen); the scale splits
-# the difference, and the anchor goes on Marko's feet (cell x 270, below) so he stays where he ploughed.
+# Marko lifts plough and oxen (1024 cell). Marko is drawn broader here than in marko-ore (his head 15% wider at the
+# old 0.367, seen in the game too), so the scale keeps Marko: 0.32. The oxen come out smaller than volovi-ralo while
+# they are in his hands. The anchor goes on Marko's feet (cell x 270, below) so he stays where he ploughed.
 if _have('marko-dize-ralo'):
-    SCALES['marko-dize-ralo'] = (float(np.sqrt(.345 * .391)), 'feet')
+    SCALES['marko-dize-ralo'] = (.32, 'feet')
 
 
 # ===== noc-poliranje: the other session's own clips go only between these two lines (helpers such as _cells, _road
