@@ -3,6 +3,8 @@
 // a finish (the head flies), blood on planks, bones.
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
+// the game rolls dice; the tests play the same game every time (SEED=<n> plays another)
+{let s=(+process.env.SEED||1)>>>0;Math.random=()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^s>>>15,1|s);t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};}
 import * as physics from './dist/world.js';
 const any=()=>new Proxy(function(){},{get:(t,k)=>k===Symbol.toPrimitive?()=>0:k==='data'?new Uint8ClampedArray(64):k==='width'||k==='height'?64:k==='canvas'?{width:1280,height:720}:any(),apply:()=>any(),set:()=>true});
 const canvas=()=>({width:1280,height:720,style:{},getContext:()=>any(),addEventListener(){},getBoundingClientRect:()=>({left:0,top:0,width:1280,height:720})});

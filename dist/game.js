@@ -3178,8 +3178,9 @@ const test=(x,y,h,min)=>{const dx=p.x-x;if(Math.abs(dx)>=min||p.y<y-h+18||p.y>y+
  return push;}
 function champOpen(e,mul){const k=p.attackKind;return mul>1||e.stun>0||e.guardBroken>0||e.kitOpen>0||e.mode==='recover'||(e.air&&!e.grounded)||e.burn>0||k==='super'||k==='counter';}
 // called from hitEnemy with the kit's own answer: what is left of the blow against a champion's guard
-function champGuard(e,heavy,mul){e.guarded=false;if(!e.champion||!e.engaged||mul===0||NO_GUARD[e.kit]||(e.kit==='beg'&&e.mounted))return mul;
+function champGuard(e,heavy,mul){e.guarded=false;if(!e.champion||!e.engaged||mul===0)return mul;
  if(e.invT>0){label('NE DA SE',e.x,e.y-190,'#c4dbd2');sfx('shield',{gain:.5,x:e.x});return 0;}
+ if(NO_GUARD[e.kit]||(e.kit==='beg'&&e.mounted))return mul;
  if(e.type==='oklopnik'&&(e.armor??5)>0)return mul; // his armour is his guard
  if(champOpen(e,mul)){e.gHits=0;return mul;}
  const k=p.attackKind,drain=k==='light'?5:k==='heavy'?(p.chargeFull?70:(p.charge||0)>.35?48:30):42;
