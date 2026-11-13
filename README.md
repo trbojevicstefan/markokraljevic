@@ -377,6 +377,17 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 
 - Na jahanju pred Musom (megdan, deo IV) **rupe više ne postoje unapred**. Drum je ceo kad Marko uzjaše; svaku provaliju zatvara ploča istog druma, i tek kad Šarac priđe ona napukne (pukotine, prašina, kamenje iskače), pa se raspadne na komade koji padaju jedan za drugim, i ostane rupa koju treba preskočiti (`setupPuca`, `updatePuca`, `drawPuca` u `dist/game.js`). Ko stoji na ploči kad padne, pada sa njom.
 
+## 13. novembar (7): sablja je svoje oružje
+
+Stefan: „sablja treba da ima drugačije poteze od topuza, a ne identične”. Do sada je sablja bila topuz nacrtan drugačije. Sada (G je vadi i vraća, kao i pre):
+
+- **Rezovi su brži i lakši** (`SABLJA_BRZ`, `SABLJA_HIT`), a svaki ostavlja **ranu koja krvari** (do tri rane, četiri sekunde). Ljude bez oklopa (strelac, akindžija, palikuća, tufekdžija) seče dublje.
+- **Treći rez je ubod** dugog dometa, umesto topuzovog udarca koji obara.
+- **K je prolet**: Marko prođe kroz dušmane pred sobom, zaseče svakog u prolazu i izađe im za leđa. Nema lomilac ni zamah koji se drži.
+- **Štit spreda i oklop je zaustavljaju**, i rez i prolet (oklopnik pod oklopom ne krvari): za njih se vraća topuz. Zato se oružja menjaju usred boja.
+- Sa sabljom u ruci trenutak za odbijanje (L) traje duže.
+- Trk sa sabljom je bio nacrtan 28 px iza mesta na kom Marko stoji, pa je lik trzao unazad kad potrči: pomak je ispravljen (`SABLJA_TRK_DX`). Druge greške u crtežima nisam našao merenjem; u igri uživo nisam gledao.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

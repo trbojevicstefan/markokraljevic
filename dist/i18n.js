@@ -9,6 +9,8 @@ const EN_PAIRS=[
 ["Junački pohodi","Heroic Quests"],["Tajne sobe","Secret rooms"],["Ostani i traži tajne","Stay and look for secrets"],["BOS JE PAO","THE BOSS HAS FALLEN"],["Megdan je dobijen","The duel is won"],
 ["DUGI NIVOI SA SOBAMA I TAJNAMA","LONG LEVELS WITH ROOMS AND SECRETS"],["Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.","Long levels with rooms, secrets and powers. Each gives Marko a new power."],
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["KRVARI", "BLEEDING"],
+["Očeva sablja nije topuz. Seče brže (J J J), rane krvare, a treći rez je ubod dugog dometa. K je prolet: prođeš kroz dušmane i izađeš im za leđa. Štit i oklop je zaustavljaju: za njih vrati topuz (G).", "Your father's sabre is not the mace. It cuts faster (J J J), the wounds bleed, and the third cut is a thrust with a long reach. K is the pass: you go through the foes and come out behind them. A shield and an armour stop it: for those take the mace back (G)."],
 ["ZEMLJA PUCA!", "THE GROUND IS BREAKING!"],
 ["ZAJEDNO!", "TOGETHER!"],
 ["OSVETA!", "REVENGE!"],

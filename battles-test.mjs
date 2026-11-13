@@ -454,4 +454,21 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  ok(behind,'tandem: while one blade holds Marko from the front the other runs round to his back');
  h.mode='windup';h.timer=.5;f.timer=0;step(2);ok(f.timer>=.25&&f.mode==='idle','tandem: he does not strike together with the holder');
  h.mode='recover';h.timer=.6;f.timer=5;f.dvaput=false;step(2);ok(f.timer<.2,'tandem: he strikes as the holder\'s blow ends');others([]);}
+// ---- the father's sabre is its own weapon: quicker cuts that bleed, a long thrust, the prolet through the foes; shield and armour stop it ----
+{const w=await land('manastir'),p=S().p,gy=p.y;Object.assign(p,{x:p.x+600,vx:0,vy:0,grounded:true});step(30);safe();const x0=p.x;
+ const free=type=>w.enemies.find(e=>e.type===type&&!e.perch&&!e.champion&&!e.kit&&!e.gunner&&!e.sabUsed);
+ const put=(type,dx,face=-1)=>{const e=free(type)||free('sword');e.sabUsed=true;Object.assign(e,{type,alive:true,hp:400,maxHp:400,x:p.x+dx,y:gy,home:p.x+dx,vx:0,vy:0,grounded:true,mode:'idle',timer:99,stun:0,climb:null,lunge:null,pendingHit:null,inChain:false,chainLeft:0,moveCool:99,spava:false,patrola:false,skriven:false,elite:false,enter:null,alert:true,par:null,tan:null,face,krv:0,armor:type==='oklopnik'?3:undefined,guardBroken:0});return e;};
+ const only=keep=>{for(const o of w.enemies)if(!keep.includes(o))o.alive=false;};
+ const rest=(n=90)=>{for(let i=0;i<n;i++){safe();for(const o of w.enemies)if(o.alive){o.timer=99;o.mode='idle';}step();}};
+ const home=()=>{Object.assign(p,{x:x0,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,comboWindow:0,combo:0,jurisT:0});};
+ const e=put('sword',80);only([e]);p.sablja=false;home();tap('KeyJ');const tm=p.attack;rest();const dm=400-e.hp;
+ e.hp=400;p.sablja=true;home();tap('KeyJ');const ts=p.attack;rest(50);const ds=400-e.hp;
+ ok(ts<tm*.85&&ds>0&&dm>0,`sabre: a cut is quicker than a blow of the mace (${ts.toFixed(2)}s against ${tm.toFixed(2)}s)`);
+ ok(e.krv>=1,'sabre: the cut leaves a wound that bleeds');const h1=e.hp;rest(120);ok(e.hp<h1-3,`sabre: the wound keeps taking health with no blow struck (${Math.round(h1-e.hp)})`);
+ rest(500);ok(!e.krv,'sabre: the bleeding stops after a while');
+ e.hp=400;e.x=x0+120;home();tap('KeyK');ok(S().p.attackKind==='prolet','sabre: K is the prolet, not the heavy blow');rest(70);ok(p.x>e.x+20&&e.hp<400,`sabre: Marko goes through the janissary, cutting him, and comes out behind him (${Math.round(p.x-e.x)}px past)`);
+ e.alive=false;home();const sh=put('shield',120,-1);only([sh]);tap('KeyK');rest(70);ok(sh.hp===400&&p.x>sh.x,'sabre: the shield stops the prolet from the front, and Marko ends at the shield-bearer\'s back');
+ sh.face=-1;p.face=-1;p.cooldown=0;p.attack=0;tap('KeyJ');rest(50);ok(sh.hp<400,'sabre: from behind the cut goes in');
+ sh.alive=false;home();const ok2=put('oklopnik',110,-1);only([ok2]);tap('KeyK');rest(70);home();tap('KeyJ');rest(50);ok(ok2.hp===400&&!ok2.krv,'sabre: an armour stops both the prolet and the cut, and does not bleed');
+ p.sablja=false;home();p.x=ok2.x-90;tap('KeyK');rest(80);ok(ok2.hp<400,'sabre: the armour is the mace\'s work');p.sablja=false;only([]);}
 console.log(`${checks} battle checks passed.`);
