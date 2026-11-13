@@ -583,13 +583,13 @@ const KOSTAC_KIT={hasan:'kostac-hasan',djemo:'kostac-djemo',dzelat:'kostac-dzela
 const KOSTAC_FIT={'kostac-janicar':.76,'kostac-oklopnik':.76,'kostac-pas':.82,'megdan-kostac':.84,'megdan-noz':.84},kostacFit=n=>KOSTAC_FIT[n]??KOSTAC_FIT[n.replace(/-kraj$/,'')]??1;
 function grappleClip(G){const e=G.e;if(G.champ){const c=KOSTAC_KIT[e.kit];return c&&rig?.[c]?c:rig?.['marko-push']?null:'kostac-stoji';}
  if(G.kind==='ledja'&&rig?.['kostac-ledja'])return'kostac-ledja';if(G.kind==='janicar'&&rig?.['kostac-'+e.type])return'kostac-'+e.type;return GRAPPLE[G.kind].clip;}
-function grappleText(kind){return kind==='ledja'&&!rig?.['kostac-ledja']?'OBORIO TE S LEĐA':GRAPPLE[kind].text;}
+function grappleText(kind,e){if(kind==='janicar'&&e&&e.type!=='sword'&&rig?.['kostac-'+e.type])return'DAVI TE';return kind==='ledja'&&!rig?.['kostac-ledja']?'OBORIO TE S LEĐA':GRAPPLE[kind].text;}
 function drawKostacSklop(G,x,y){const e=G.e,s=G.s,M=rig['marko-push'],k=G.end>0?1-G.end/.6:0,ox=e.x,of=e.face,ok=e.knock,os=e.stun;
  e.grappling=false;e.x=x+s*(44+k*52)+(G.end>0?0:Math.sin(time*9)*2);e.face=-s;e.knock=0;e.stun=0;e.uKostacu=G.end>0?k:-1;drawSoldier(e);e.uKostacu=null;e.grappling=true;e.x=ox;e.face=of;e.knock=ok;e.stun=os;
  rigDraw('marko-push',G.end>0?Math.min(M.frames.length-1,2+k*4):loopF(time*(G.shake>0?14:7),M.frames.length),x-s*(24-k*10),y,s,{});}
 function startGrapple(e,kind){if(grapple||grappleCool>0||level===undefined||horseMounted||p.pinned||!e.alive||e.champion||(!level&&zone===5))return false;
  grapple={e,kind,t:0,m:.22,end:0,s:Math.sign(e.x-p.x)||1};e.grappling=true;e.vx=0;e.lunge=null;e.pendingHit=null;Object.assign(p,{pinned:true,vx:0,vy:0,attack:0,spin:0,blocking:false,down:0,dash:0});
- e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(grappleText(kind),p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});return true;}
+ e.x=p.x;sfx('fall',{gain:1});sfx('cloth',{gain:.9});dust(p.x,p.y,20,2);shake=settings.reduced?0:8;rumble(.8,250);label(grappleText(kind,e),p.x,p.y-236,'#ff9a8a');say('hurt',{priority:3});return true;}
 function updateGrapple(dt){grappleCool=Math.max(0,grappleCool-dt);
  // knocked down near a janissary: he may jump on Marko with his knife
  if(!grapple&&p.down>0&&!p.downRolled){p.downRolled=true;const e=world.enemies.filter(e=>e.alive&&e.zone===zone&&!e.champion&&(e.type==='sword'||((e.type==='akindzija'||e.type==='kopljanik')&&rig?.['kostac-'+e.type]))&&Math.abs(e.x-p.x)<150&&Math.abs(e.y-p.y)<40).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];if(e&&Math.random()<.65)startGrapple(e,'janicar');}
@@ -2062,7 +2062,7 @@ function plowSpoils(pl){if(pl.phase==='gotovo')return;pl.phase='gotovo';plowDrop
 function plowLift(pl){pl.liftT=PLOW_LIFT;p.dizeT=PLOW_LIFT;pl.lifted=true;plowDrop(pl);label('DIŽE RALO I VOLOVE!',p.x,p.y-200,'#ffe6a0');sfx('whoosh_heavy',{gain:1});sfx('boom',{gain:.8,delay:.3,x:pl.x});sfx('hoof',{gain:.7,delay:.45,x:pl.x});shake=settings.reduced?0:10;rumble(.8,240);hitstop=Math.max(hitstop,.08);
  for(const e of world.enemies){if(!e.alive||e.zone!==zone||e.champion||Math.abs(e.y-pl.y)>100||e.x<p.x-90||e.x>p.x+420)continue;const dmg=Math.round(150*(p.power||1));e.hp-=dmg;e.flash=.2;e.stun=Math.max(e.stun,1.4);e.mode='stun';e.lunge={v:240,t:.3,total:.3,hop:42};label(dmg,e.x,e.y-130,'#ffe39a');if(e.hp<=0)slay(e,1);}
  dust(pl.x+120,pl.y,24,2.6);}
-function updatePlows(dt){const T=world.plowTeams||[];p.dizeT=Math.max(0,(p.dizeT||0)-dt);for(const pl of T){pl.flash=Math.max(0,pl.flash-dt);pl.moveT=Math.max(0,pl.moveT-dt);pl.liftT=Math.max(0,pl.liftT-dt);
+function updatePlows(dt){const T=world.plowTeams||[];p.dizeT=Math.max(0,(p.dizeT||0)-dt);if(p.dizeT>0&&rig?.['marko-dize-ralo']){const pl=T.find(q=>q.liftT>0);if(pl){p.x=pl.x-plowHX();p.vx=0;p.face=1;}}for(const pl of T){pl.flash=Math.max(0,pl.flash-dt);pl.moveT=Math.max(0,pl.moveT-dt);pl.liftT=Math.max(0,pl.liftT-dt);
   if(pl.held){const axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);
    if(tap('KeyK')&&plowFree(pl)&&plowTurks(pl).some(e=>Math.abs(e.x-p.x)<440)){plowLift(pl);}
    else if(p.ore!==pl||!p.grounded||p.attack>0||p.dash>0||axis<0||p.hp<pl.php||p.hp<=0||mode!=='play'||!plowFree(pl))plowDrop(pl);

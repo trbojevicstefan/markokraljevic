@@ -1,6 +1,9 @@
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import * as physics from './dist/world.js';
+// The game rolls dice (foes' second blows, their nerve, the holds of a grapple), so the run is seeded: the same game every time.
+// SEED=<n> plays another one; the balance should let the bot win any of them.
+{let s=(+process.env.SEED||1)>>>0;Math.random=()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^s>>>15,1|s);t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};}
 const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,value:'normal',checked:false,style:{},firstElementChild:{style:{}},classList:{add(){},remove(){}},setAttribute(){},getContext(){return{};},addEventListener(){}});return nodes.get(id);};
 const document={getElementById:node,querySelectorAll:()=>[],addEventListener(){},activeElement:{tagName:'BODY'}};
 const storage=new Map();const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
