@@ -32,3 +32,17 @@ No separately invokable Imagen 2 endpoint or credential is exposed in this works
 - jobs.json: all 24 briefs, exact references, frame counts, fps and gameplay event markers.
 - tools/build-animation-pack05.py: deterministic sheet/frame processing and quality reporting.
 - qa/validation.json: per-run generated status of rendered, missing or rejected jobs.
+
+
+## Optional current-model generator (when authenticated)
+
+Imagen 2 on Google Vertex was retired (Google's 2025–2026 lifecycle notices), so a working Imagen 2 call cannot be promised. This pack has a real source generator adapter for the current Google Gen AI image family. It requires your own authorized API key and all canonical references:
+
+    python -m pip install google-genai Pillow numpy
+    python tools/generate-animation-pack05.py --dry-run
+    GEMINI_API_KEY=... python tools/generate-animation-pack05.py --only vila-hover --limit 1
+    python tools/build-animation-pack05.py --input-dir art/animation-pack-05/incoming --output-dir /tmp/marko-pack05 --allow-incomplete
+
+By default the adapter selects gemini-3.1-flash-image (override with --model). The converter still rejects wrong grids and static pose sets; manually inspect subject identity before integration.
+
+The generation code is source-controlled, but the API key is not available in the current runtime. Do not mistake 24 authored job prompts for 24 resulting PNG/GIF clips.
