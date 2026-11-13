@@ -30,7 +30,7 @@ let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',
  {const order=api.LEVELS.map(L=>L.id),learn=id=>order.indexOf(api.SKILLS.find(k=>k.id===id).land),need=order.filter(id=>(physics.RECIPES[id]||'').split(' ').includes('chimney^'));ok(need.length>=3&&need.every(id=>learn('zid')<order.indexOf(id)),'journey: every pohod whose road climbs wall to wall ('+need.join(', ')+') comes after the wall jump is learned');
   ok(api.SKILLS.every((k,i)=>i===0||learn(k.id)>learn(api.SKILLS[i-1].id)),'journey: the skills are learned in the order they are listed');}
  const w=await start('manastir');quiet(w);ok(!api.has('zid'),'journey: the wall jump is still locked');
- const a=w.platforms.find(q=>q.hang),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
+ const a=w.platforms.find(q=>q.hang&&!q.bedem),gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+30,gy);tap('Space');api.keys.add('KeyA');let grabbed=false;for(let i=0;i<120;i++){step();if(S().p.wall)grabbed=true;}api.keys.clear();ok(!grabbed,'journey: without the skill Marko cannot cling to a wall');
  await start('selo');api.completeLevel();ok(api.has('niz')&&api.levelOpen(1),'journey: finishing the village teaches the combo and opens the monastery');}
 // ---- story chapters start where the map says: the horse in IV, Musa in VI ----
 {api.startChapter(3);ok(S().mode==='play'&&api.state().zone===3,'story: chapter IV starts at Šarac');step(10);
@@ -46,7 +46,7 @@ storage.set('marko-skills',JSON.stringify(api.SKILLS.map(k=>k.id)));
  ok(Math.abs(S().p.y-t.top)<2&&S().p.grounded,'watchtower: the ladder ends on the deck');
  S().p.x=t.x+40;step(10);press('KeyS');step(2);tap('Space');step(40);release('KeyS');step(60);ok(S().p.y>t.top+100,'watchtower: S+Space drops through the deck');}
 // ---- a shaft above the road: jump in and climb it wall to wall ----
-async function climbShaft(id,mandatory){const w=await start(id);quiet(w);const a=w.platforms.find(q=>q.hang),b=w.platforms.filter(q=>q.solid&&q.x>a.x+a.w&&q.x-(a.x+a.w)<200).sort((u,v)=>u.x-v.x)[0];
+async function climbShaft(id,mandatory){const w=await start(id);quiet(w);const a=w.platforms.find(q=>q.hang&&!q.bedem),b=w.platforms.filter(q=>q.solid&&q.x>a.x+a.w&&q.x-(a.x+a.w)<200).sort((u,v)=>u.x-v.x)[0];
  const gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+(b.x-a.x-a.w)/2,gy);let dir=1,jumps=0,best=gy;
  for(let i=0;i<120*9;i++){const {p}=S();api.keys.delete(dir>0?'KeyA':'KeyD');api.keys.add(dir>0?'KeyD':'KeyA');
   if(p.grounded&&p.y>b.y+20){tap('Space');continue;}
@@ -212,7 +212,7 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  stand(q.x-260,gy);api.keys.add('KeyD');step(40);tap('KeyS');step(120*4);api.keys.clear();step(30);ok(S().p.x>q.x+q.w&&!(S().p.y<gy-2),'low wall: a slide carries him under it');}
 {const w=await start('selo');const t=w.traps.find(t=>t.kind==='spikes'&&!t.bed);const e=w.enemies.find(e=>!e.perch&&!e.champion);quiet(w,[e]);Object.assign(e,{type:'sword',x:t.x-45,y:t.y,hp:600,maxHp:600,stun:0,mode:'idle',timer:9,face:-1,keyHolder:false,grounded:true});
  stand(t.x-125,t.y);S().p.face=1;api.keys.add('KeyS');tap('KeyJ');api.keys.clear();let hit=false;for(let i=0;i<120;i++){step();if(e.hp<=600-60)hit=true;}ok(hit,'stakes: a kicked janissary lands on the stakes and bleeds');}
-{const R=physics.RECIPES,haz=new Set(['spikes','crumble','logs','rocks','barrels','lever','chase','spikebed','greda','zid','sator','top']),rest=new Set(['flat','crates','cellar','kljuc','plate','arena','watch','ledges','zvona','ogledala','teg','kolo','barut','svatovi','guslar','gnezdo']);let worst='';
+{const R=physics.RECIPES,haz=new Set(['spikes','crumble','logs','rocks','barrels','lever','chase','spikebed','greda','zid','sator','top']),rest=new Set(['flat','crates','cellar','kljuc','plate','arena','watch','ledges','zvona','ogledala','teg','kolo','barut','svatovi','guslar','gnezdo','bedem','jaruga']);let worst='';
  for(const [land,rec] of Object.entries(R)){const rooms=rec.split(' ').map(r=>r.split(':')[0]);let run=0,since=0;for(const r of rooms){run=haz.has(r)?run+1:0;since=rest.has(r)?0:since+1;if(run>2)worst+=`${land}: three hazards in a row; `;if(since>5)worst+=`${land}: six rooms without rest; `;}}
  ok(!worst,'pacing: never three hazards in a row, a rest or reward at least every six rooms'+(worst?' — '+worst:''));}
 // ---- polish: landings and labels ----
@@ -240,7 +240,7 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  ok(n>20&&p.grounded&&p.vy===0,`jump buffer: a Space pressed ${n} steps before landing is forgotten, Marko does not jump again on landing`);
  ok(!p.kriloUsed,'sokolovo krilo: the ground gives the wing back');
  tap('Space');step(30);tap('Space');ok(p.kriloUsed&&p.vy<-400,'sokolovo krilo: and the next flight has it again');api.keys.clear();step(200);}
-{const w=await start('manastir');quiet(w);const a=w.platforms.find(q=>q.hang),b=w.platforms.filter(q=>q.solid&&q.x>a.x+a.w&&q.x-(a.x+a.w)<200).sort((u,v)=>u.x-v.x)[0];
+{const w=await start('manastir');quiet(w);const a=w.platforms.find(q=>q.hang&&!q.bedem),b=w.platforms.filter(q=>q.solid&&q.x>a.x+a.w&&q.x-(a.x+a.w)<200).sort((u,v)=>u.x-v.x)[0];
  const gy=floorAt(w,a.x+a.w+20).y;stand(a.x+a.w+(b.x-a.x-a.w)/2,gy);const p=S().p;p.face=1;tap('Space');step(24);tap('Space');step(4);tap('ShiftLeft');const used=p.kriloUsed&&p.naletUsed;
  api.keys.add('KeyD');let clung=false;for(let i=0;i<180&&!clung;i++){step();clung=!!p.wall;}step();
  ok(used&&clung&&!p.kriloUsed&&!p.naletUsed,'sokolovo krilo, juriš: catching a wall gives back the wing and the dash');api.keys.clear();step(120);}
@@ -268,7 +268,7 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
 {const q=await flat();const p=S().p;step(10);const hp=p.hp,x=p.x;p.invuln=0;p.y=(S().world.pitY||850)+5;p.grounded=false;step();
  ok(p.hp<hp&&Math.abs(p.x-x)<1,'sigurno tlo: the abyss costs health and Marko comes back where he last stood (as before)');step(120);}
 {const id=api.LEVELS.map(L=>L.id).find(id=>(physics.RECIPES[id]||'').split(' ').includes('crumble'));const w=await start(id);quiet(w);
- const c=w.platforms.filter(q=>q.crumble).sort((a,b)=>a.x-b.x)[0],g=floorAt(w,c.x-60);stand(c.x-60,g.y);const p=S().p;step(10);const safe=S().lastSafe;
+ const c=w.platforms.filter(q=>q.crumble&&!q.bridge).sort((a,b)=>a.x-b.x)[0],g=floorAt(w,c.x-60);stand(c.x-60,g.y);const p=S().p;step(10);const safe=S().lastSafe;
  stand(c.x+c.w/2,c.y);p.invuln=0;let fell=false;for(let i=0;i<120*4&&!fell;i++){step();fell=p.y<c.y-100;}step(240);
  ok(Math.abs(safe-(c.x-60))<2&&fell&&p.grounded&&!p.on?.crumble&&p.x<c.x,`sigurno tlo (${id}): a plank that gave way is not firm ground; Ravijojla sets Marko down before it`);}
 // none of the three waits for a pohod: in the first pohod, with no skill learned, they work while the ground roll still waits
@@ -284,4 +284,15 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  hold(13,true);hold(7,true);ok(pressed.has('KeyV')&&!pressed.has('KeyE'),'gamepad: ↓ + RT leaves the fairy\'s trace and does not call the fairy');
  hold(7,false);hold(13,false);fresh();hold(7,true);ok(pressed.has('KeyE')&&!keys.has('KeyV'),'gamepad: RT alone still calls the fairy');
  hold(7,false);fresh();hold(0,true);ok(pressed.has('Space'),'gamepad: A jumps, in the air the falcon\'s wing');hold(0,false);fresh();hold(1,true);ok(pressed.has('ShiftLeft'),'gamepad: B rolls, in the air the dash');hold(1,false);}
+// ---- two roads: every pohod forks somewhere; over the rampart or through its gallery, over the rotten bridge or along the ravine ----
+{for(const L of api.LEVELS){if(L.id==='san')continue;const w=await start(L.id);ok(w.platforms.some(q=>q.bedem||q.jaruga),`fork: ${L.id} has a place where the road forks`);}
+ const w=await start('selo');quiet(w);const b=w.platforms.find(q=>q.bedem),lad=w.ladders.find(l=>Math.abs(l.x-(b.x-22))<3),gy=lad.bottom;
+ stand(b.x-120,gy);press('KeyD');for(let i=0;i<120*12&&S().p.x<b.x+b.w+60;i++)step();release('KeyD');ok(S().p.x>=b.x+b.w+60&&Math.abs(S().p.y-gy)<3,'rampart: the low road goes through the gallery under the wall');
+ stand(lad.x,gy);press('KeyW');for(let i=0;i<120*6&&(S().p.y>b.y+1||S().p.climb);i++)step();release('KeyW');ok(Math.abs(S().p.y-b.y)<3&&S().p.x>b.x,'rampart: the ladder leads up onto the wall');
+ press('KeyD');for(let i=0;i<120*14&&S().p.x<b.x+b.w+60;i++)step();for(let i=0;i<240&&!S().p.grounded;i++)step();release('KeyD');ok(S().p.x>b.x+b.w&&Math.abs(S().p.y-gy)<3,'rampart: the high road runs the length of the wall and comes down at its far end');
+ const j=w.platforms.find(q=>q.jaruga),planks=w.platforms.filter(q=>q.kind==='plank'&&q.bridge&&q.y===j.y&&q.x>=j.x&&q.x<j.x+800),out=w.ladders.filter(l=>l.top===j.y&&l.x>j.x&&l.x<j.x+800).sort((u,v)=>v.x-u.x)[0],floor=out.bottom;
+ ok(planks.length===5&&planks.filter(q=>q.crumble).length===2&&floor<=800,'ravine: five planks, two of them rotten, and a bottom the camera can reach');
+ stand(planks[1].x+planks[1].w/2,j.y);for(let i=0;i<120*5&&S().p.y<floor-2;i++)step();ok(Math.abs(S().p.y-floor)<3&&S().mode==='play','ravine: a rotten plank drops Marko to the bottom, not into a pit');
+ press('KeyD');for(let i=0;i<120*8&&S().p.x<out.x-6;i++)step();release('KeyD');press('KeyW');for(let i=0;i<120*6&&(S().p.y>j.y+1||S().p.climb);i++)step();release('KeyW');
+ ok(Math.abs(S().p.y-j.y)<3&&S().p.x>out.x,'ravine: the ladder on the far side leads back up to the road');}
 console.log(`${checks} pohod mechanics checks passed.`);

@@ -6,6 +6,8 @@ const KEY='marko-jezik';
 
 const EN_PAIRS=[
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["Put se račva. Lestvama preko bedema, gde vrebaju strelci, ili kroz prolaz ispod njega, gde čeka straža.", "The road forks. Up the ladder and over the rampart, where archers lie in wait, or through the passage beneath it, where a guard stands."],
+["Most je truo. Pretrči ga, ili siđi lestvama i prođi dnom jaruge, tamo leži kovčeg.", "The bridge is rotten. Run across it, or climb down the ladder and go along the bottom of the ravine, where a chest lies."],
 ["IZMAKAO SE", "HE LEAPT BACK"],
 ["Zaori carski drum i odbrani brazdu", "Plow the tsar's road and defend the furrow"],
 ["Zaori careve drumove i uzmi tri tovara blaga", "Plow the tsar's roads and take three loads of treasure"],

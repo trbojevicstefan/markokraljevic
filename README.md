@@ -344,6 +344,14 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Borba** (`FOE_TOUGH`, `chainRoll`, `chainGo`, `foeTricks`): običan protivnik ima 1,4 puta više zdravlja, a na drumu ih je manje (razmak mesta 450 umesto 330 u `makeLevel`). Janičar, štitonoša, akindžija, kopljanik i oklopnik mogu posle udarca odmah da zadaju drugi (zlatan znak se pokaže ponovo), Oklopnikov malj šalje potres po tlu koji se preskače, strelac na zemlji posle svakog trećeg hica odapne još dve strele, a akindžija odskoči unazad kad vidi težak udarac. `makeElites` je imao grešku (svi u prvom i osmom pohodu su bili elitni, drugde niko); sada je elitni svaki četvrti u svakom pohodu.
 - Naručeni crteži se hvataju po imenu čim uđu u rig: `volovi-ralo`, `marko-ore`, `marko-dize-ralo`, `<tip>-drugi`, `archer-rafal`, `fx-potres`. Akindžijin odskok pred teškim udarcem koristi postojeći `akindzija-backstep`.
 
+## 13. novembar (2): pohodi sa dva puta, svetlije kule
+
+- **Dva puta** (`bedem` i `jaruga` u `room` u `dist/world.js`): pohod više nije jedna linija. Bedem je dug zid sa prolazom kroz njega: gore lestvama preko zida (dva strelca, bolja nagrada), ili dole kroz prolaz (straža i kovčeg). Jaruga je uvala pod trulim mostom: preko dasaka, od kojih svaka druga popušta, ili lestvama na dno (kovčeg i nagrada) pa lestvama napolje. Ko propadne kroz most, padne na dno, ne u ponor. Svaki pohod osim Sna ima bar jedno račvanje, većina dva, Tvrđava tri.
+- Račvanja se **dodaju** u recept, ne stavljaju se umesto postojećih soba, i veličine vuku iz svoje kocke (`R2`, `fr`), pa ostale sobe pohoda ostaju iste kakve su bile, samo pomerene.
+- Dno jaruge ne ide ispod y=800, a kamera u pohodu silazi još 70 px kad je Marko ispod druma (`camLow` u `levelCameraY`), pa se vide i podrumi i dno jaruge.
+- **Kule i zidovi** (`shadeBlock`, `drawBlock`, `drawTop`, `wallPattern`): crtež zida je svetao i topao, a kule su bile crne od senki preko njega. Sada su senke smeđe i tanke, šara za sirovu stenu je na zidanom jedva vidljiva, zidovi imaju ugaono kamenje, venac i zupce celom dužinom, svod od tesanog kamena, toplu unutrašnjost prolaza sa bakljama i puškarnice koje svetle.
+- Saveti „bedem" i „jaruga" se pokažu jednom, kad Marko prvi put naiđe (`updateHints`).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија
