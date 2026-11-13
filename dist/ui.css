@@ -752,4 +752,4 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .megdan-delovi button:disabled{filter:grayscale(1) brightness(.6);cursor:default}
 #gb-menu-open,#menu .menu-links i:has(+ #gb-menu-open){display:none}
 /* before the forest of the vila her label and her meter are not in the HUD */
-.bez-vile .fairy-label,.bez-vile .fairy-meter,.bez-vile .divider{display:none}
+.bez-vile .fairy-label,.bez-vile .fairy-meter,.bez-vile .divider{display:none!important}

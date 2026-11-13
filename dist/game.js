@@ -186,7 +186,7 @@ function updatePlayer(dt){
  if(p.grounded&&p.on?.kind!=='crate'&&safeFooting()){lastSafe=p.x;lastSafeY=p.y;}if(p.y>(world.pitY||850)){damage(20);if(mode==='play'){p.x=Math.max(chapters[zone].start+80,lastSafe-(level?0:80));p.y=level?lastSafeY-160:420;p.climb=null;p.vy=0;p.vx=0;p.invuln=1.2;if(vilaTu())say('pit',{priority:3});toast(vilaTu()?'Ravijojla te izvukla iz ponora · −20 zdravlja':'Izvukao si se iz ponora · −20 zdravlja',2);}}
  if(horseMounted){for(const b of world.barriers){if(Math.abs(p.x-b.x)<38&&p.y>b.y-b.h+10){damage(12,-1);dust(b.x,b.y,14,2);b.x=-1000;}}}
  for(const i of world.items){if(!i.taken&&Math.abs(p.x-i.x)<40&&Math.abs(p.y-38-i.y)<75){i.taken=true;if(i.type==='cudo'){collectCudo(i);continue;}if(i.type==='slovo'){collectLetter(i);continue;}if(i.type==='moc'){takePower(i);continue;}if(i.type==='srce'){takeHeart(i);continue;}if(i.type==='zapis'){takeZapis(i);continue;}if(i.type==='kljuc'){takeKey(i);continue;}if(i.type==='tovar'){i.plow.treasureTaken=true;sfx('coins',{gain:1});addCoins(20,i.x,i.y);label('TOVAR BLAGA',i.x,i.y-30,'#ffe6a0');continue;}if(i.type==='wine'){p.wine=Math.min(5,p.wine+1);label('+ VINO',i.x,i.y);}else if(i.type==='herb'){{const h=Math.round(25*D().heal);p.hp=Math.min(p.maxHp,p.hp+h);label('+'+h,i.x,i.y,'#c0edb0');}}else{relics++;p.maxHp+=10;p.hp=Math.min(p.maxHp,p.hp+25);label('ZAPIS LEGENDE',i.x,i.y);say('relic',{priority:2});sfx('coins');toast('Pronađen zapis · maksimalno zdravlje +10');}sound('wine');burst(i.x,i.y,'#e7c982',12);}}
- if(level){strikeCrates();updatePlows(dt);updateOltari();updateTraps(dt);updateArena();updatePuzzles(dt);pogo();}updateSpecial(dt);updateHints(dt);updateStreak(dt);updateCooldowns(dt);sabljaTick(dt);champTick(dt);updateFoeStates(dt);abilityBar(dt);updatePowers(dt);updateThrow(dt);updateCoins(dt);updateChunks(dt);
+ if(level){strikeCrates();updatePlows(dt);updateOltari(dt);updateTraps(dt);updateArena();updatePuzzles(dt);pogo();}updateSpecial(dt);updateHints(dt);updateStreak(dt);updateCooldowns(dt);sabljaTick(dt);champTick(dt);updateFoeStates(dt);abilityBar(dt);updatePowers(dt);updateThrow(dt);updateCoins(dt);updateChunks(dt);
  const z=chapters[zone];if(world.vezbaliste)p.x=clamp(p.x,-560,z.end-25);else if(p.x>z.end-130&&zone<5){const remaining=world.enemies.filter(e=>e.zone===zone&&e.alive&&!e.road).length;const locked=(defenses[zone]&&!defenses[zone].done)||remaining>0||(zone===2&&zoneRunes().some(r=>!r.active))||(zone===3&&!horseMounted);if(locked){p.x=Math.min(p.x,z.end-95);if(tap('KeyE')||time%3<dt)toast(remaining?`Preostalo čuvara: ${remaining}. Oslobodi drum.`:zone===2?'Probudi sva tri vilinska kamena.':zone===3?'Za ovaj prolaz potreban je Šarac.':'Zaštiti putnike dok prolaze kroz kapiju.',2);}else enterChapter(zone+1);}
  if(zone===5){p.x=clamp(p.x,28060,29830);}if(level){p.x=Math.min(p.x,level.width-30);updateGoals(dt);if(p.x>=level.goal.x-50){if(!pendingGoal())completeLevel();else{p.x=level.goal.x-52;goalHint(`Još nije kraj: ${goalText()}.`);}}}
  // visual only: footstep dust and dash afterimages
@@ -1471,10 +1471,16 @@ function setupOltari(){world.oltari=[];const id=mocOvde();if(!id||mociImam().has
  // its place is kept clear: no prop is dressed over it and no camp of sleepers is pitched beside it
  if(best){world.oltari.push({x:best.x,y:best.y,moc:id,taken:false});(world.busy??=[]).push([best.x-210,best.x+210]);}}
 function uzmiMoc(id,x,y){if(!mocDaj(id))return false;const M=mocOpis(id),c=mocBoja(id);burst(x,y-70,c,40,240);fx('pillar',x,y);sfx('magic_big',{gain:.9});label(M.name.toUpperCase(),x,y-170,c);speak(`${M.name} (${M.key}). ${M.text}`,9);abBuilt=false;return true;}
-function updateOltari(){for(const o of world.oltari||[]){if(o.taken||!p.grounded||Math.abs(p.x-o.x)>64||Math.abs(p.y-o.y)>90)continue;o.taken=true;uzmiMoc(o.moc,o.x,o.y);}}
+const OLTAR_FLY=.7;
+function updateOltari(dt=0){for(const o of world.oltari||[]){if(o.fly>0){o.fly-=dt;if(o.fly<=0){burst(p.x,p.y-74,mocBoja(o.moc),26,200);sfx('magic',{gain:.6,rate:1.2});}}if(o.taken||!p.grounded||Math.abs(p.x-o.x)>64||Math.abs(p.y-o.y)>90)continue;o.taken=true;o.fly=OLTAR_FLY;uzmiMoc(o.moc,o.x,o.y);}}
 function drawOltari(){for(const o of world.oltari||[]){if(o.x<camera-200||o.x>camera+VIEW_W+200)continue;const im=worldImg('../greybox/oltar'),c=mocBoja(o.moc);
   if(im)drawImgOn(im,o.x,o.y+5,74);else{ctx.fillStyle='#8d8676';ctx.fillRect(o.x-52,o.y-70,104,70);ctx.fillStyle='#b9b09a';ctx.fillRect(o.x-56,o.y-74,112,8);}
-  if(!o.taken){const y=o.y-118+Math.sin(time*2.5)*6;halo(o.x,y,64,c,.34+.1*Math.sin(time*3));halo(o.x,y,24,c,.85);ellipse(o.x,y,7,7,'#ffffff');for(let k=0;k<3;k++){const a=time*1.6+k*2.09;ellipse(o.x+Math.cos(a)*26,y+Math.sin(a)*11,2.4,2.4,c);}textLabel(mocOpis(o.moc).name.toUpperCase(),o.x,o.y-160,{font:'bold 13px Georgia',color:c});emitters.push({id:'oltar',kind:'fairy',x:o.x,y:y,rate:14});}}}
+  // over it floats the sign of the power, drawn and animated (moc-<id>, DOPUNA-47); taken, it flies into Marko
+  if(o.taken&&!(o.fly>0))continue;const R=rig?.['moc-'+o.moc],k=o.taken?1-o.fly/OLTAR_FLY:0,e=k*k*(3-2*k),y0=o.y-132+Math.sin(time*2.5)*6,ex=o.x+(p.x-o.x)*e,ey=y0+(p.y-74-y0)*e,sc=1-.65*e;
+  halo(ex,ey,(R?78:64)*sc,c,.26+.1*Math.sin(time*3));
+  if(R)rigDrawC('moc-'+o.moc,(time*9)%R.frames.length,ex,ey,1,{scale:sc});else{halo(ex,ey,24*sc,c,.85);ellipse(ex,ey,7*sc,7*sc,'#ffffff');}
+  for(let n=0;n<3;n++){const a=time*1.6+n*2.09;ellipse(ex+Math.cos(a)*(R?58:26)*sc,ey+Math.sin(a)*(R?20:11)*sc,2.4,2.4,c);}
+  if(!o.taken){textLabel(mocOpis(o.moc).name.toUpperCase(),o.x,o.y-(R?212:160),{font:'bold 13px Georgia',color:c});emitters.push({id:'oltar',kind:'fairy',x:o.x,y:y0,rate:14});}}}
 // ?greybox hands the three out one by one, each in its own room; in the story they are found on the road (above)
 const moc=id=>level?.greybox?!!world.gb?.moci[id]:mocPrica(id);
 function airMovesReset(){if(p.grounded||p.wall||p.ledgeT>0||p.climb){p.kriloUsed=false;p.naletUsed=false;p.naletN=0;}}
@@ -3847,22 +3853,11 @@ const GATE_STYLE={rudnik:'rudnik',pecina:'rudnik',san:'rudnik',podrum:'podrum',s
 const gateStyle=()=>GATE_STYLE[level?.id]||'kamen';
 const gateOpenK=new Map();
 function drawSideGate(key,x,y,open,style=gateStyle()){const k0=gateOpenK.get(key)??(open?1:0),k=k0+((open?1:0)-k0)*.12;gateOpenK.set(key,k);if(x<camera-260||x>camera+VIEW_W+260)return;
- const art=levelArt[`prolaz-${style}-otvoren`]||levelArt['prolaz-kamen-otvoren'];
- if(art){gateBack(x,y);gateFronts.push({art,x,y,k});return;}
- const W2=150,top=y-330,pass=y-176,x0=x-W2/2,wood=style==='drvo',mine=style==='rudnik';
- // the passage: the far wall of the tunnel, dark
- fillWall(x0,pass,W2,176,true);const d=ctx.createLinearGradient(0,pass,0,y);d.addColorStop(0,'rgba(0,0,0,.65)');d.addColorStop(1,'rgba(0,0,0,.3)');ctx.fillStyle=d;ctx.fillRect(x0,pass,W2,176);
- if(mine){for(const px of[x0+6,x0+W2-22])line(px+8,pass,px+8,y,'#4a3020',16);line(x0,pass+6,x0+W2,pass+6,'#4a3020',14);line(x0,pass+3,x0+W2,pass+3,'#8a6238',3);}
- else{// the gatehouse above the passage
-  if(wood){for(let lx=x0;lx<x0+W2;lx+=19){const g=ctx.createLinearGradient(lx,0,lx+19,0);g.addColorStop(0,'#5a3c20');g.addColorStop(.5,'#9a6c3a');g.addColorStop(1,'#4a3018');ctx.fillStyle=g;ctx.fillRect(lx,top,19,pass-top);poly([[lx,top],[lx+9.5,top-14],[lx+19,top]],'#8a6238','#3a2412');}line(x0,pass-10,x0+W2,pass-10,'#3a2412',10);line(x0,top+30,x0+W2,top+30,'#3a2412',8);}
-  else{fillWall(x0,top,W2,pass-top);shadeBlock(x0,top,W2,pass-top);for(let mx=x0;mx<x0+W2;mx+=30){fillWall(mx,top-18,18,18);}line(x0,pass,x0+W2,pass,'rgba(255,236,196,.35)',3);ctx.fillStyle='rgba(8,8,10,.8)';ctx.fillRect(x-4,top+40,8,30);}}
- // the grate: a narrow lattice of bars with spikes, lifting into the wall
- const gh=176,lift=k*(gh-14),gy0=pass-lift,iron=!wood;ctx.save();ctx.beginPath();ctx.rect(x-20,pass-4,40,gh+8);ctx.clip();
- for(const bx of[-12,0,12]){line(x+bx,gy0-20,x+bx,gy0+gh-6,iron?'#2a2c30':'#3a2412',iron?5:7);line(x+bx-1,gy0-20,x+bx-1,gy0+gh-6,iron?'#8a8e96':'#9a6c3a',1.5);poly([[x+bx-4,gy0+gh-8],[x+bx,gy0+gh+2],[x+bx+4,gy0+gh-8]],iron?'#8a8e96':'#9a6c3a');}
- for(let yy=gy0+18;yy<gy0+gh-10;yy+=34)line(x-16,yy,x+16,yy,iron?'#2a2c30':'#3a2412',iron?4:6);ctx.restore();
- // the posts at either end of the passage, in front of the tunnel
- if(!mine)for(const px of[x0,x0+W2-14]){fillWall(px,pass,14,176);ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(px,pass,14,176);}
- plantFoot(x0,W2,y);}
+ // behind Marko: the far wall of the passage, lit from the road, darker under the vault
+ const x0=x-SEC_W/2,pt=y-GATE_PASS;ctx.save();ctx.beginPath();secVoid(x0,y);ctx.clip();fillWall(x0,pt-4,SEC_W,GATE_PASS+8,style==='rudnik');
+ const d=ctx.createLinearGradient(0,pt,0,y);d.addColorStop(0,'rgba(10,7,5,.78)');d.addColorStop(.55,'rgba(14,10,8,.5)');d.addColorStop(1,'rgba(24,16,10,.3)');ctx.fillStyle=d;ctx.fillRect(x0,pt-4,SEC_W,GATE_PASS+8);
+ const sd=ctx.createLinearGradient(x0,0,x0+SEC_W,0);sd.addColorStop(0,'rgba(0,0,0,.4)');sd.addColorStop(.2,'rgba(0,0,0,0)');sd.addColorStop(.8,'rgba(0,0,0,0)');sd.addColorStop(1,'rgba(0,0,0,.4)');ctx.fillStyle=sd;ctx.fillRect(x0,pt-4,SEC_W,GATE_PASS+8);ctx.restore();
+ ctx.save();ctx.globalAlpha=.3;ellipse(x,y+3,SEC_W*.6,7,'#000');ctx.restore();gateFronts.push({x,y,k,style});}
 // the vault: a stone facade facing us, with a heavy door — here one really goes in
 function drawVaultDoor(t){const x=t.gate.x,y=t.gate.y;if(x<camera-260||x>camera+VIEW_W+260)return;{const UA=levelArt['ulaz-riznica'];if(UA){drawRiznicaFacade(t,UA);return;}}const W2=210,H2=250,x0=x-W2/2,top=y-H2,open=t.open>0;
  fillWall(x0,top,W2,H2+4);shadeBlock(x0,top,W2,H2+4,y);for(let mx=x0-6;mx<x0+W2;mx+=30){fillWall(mx,top-20,20,20);}line(x0-6,top,x0+W2+6,top,'rgba(255,236,196,.35)',3);
@@ -4041,11 +4036,43 @@ const gateScale=()=>GATE_PASS/(GATE_ART.img-GATE_ART.arch);
 // Codex's gatehouses are open arches you see through, so the passage gets no dark fill (it read as a black box);
 // only a soft shadow on the road under the arch
 function gateBack(x,y){const s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s;ctx.save();ctx.globalAlpha=.32;ellipse(x,y+3,w*.62,7,'#000');ctx.restore();}
-function drawGateFronts(){for(const G of gateFronts){const {art,x,y,k}=G,b=propBounds(art),s=gateScale(),w=(GATE_ART.x1-GATE_ART.x0)*s,left=x-((GATE_ART.x0+GATE_ART.x1)/2-b.x)*s,top=y-(GATE_ART.img-b.y)*s+4;
-  const grate=levelArt['resetka'];if(k<.98){ctx.save();ctx.beginPath();ctx.rect(x-w/2,y-GATE_PASS-4,w,GATE_PASS+8);ctx.clip();const lift=k*GATE_PASS*.98;
-   if(grate){const gb=propBounds(grate),gh=GATE_PASS+24;ctx.drawImage(grate,gb.x,gb.y,gb.w,gb.h,x-w/2-4,y-gh+4-lift,w+8,gh);}
-   else for(let bx=x-w/2+8;bx<x+w/2;bx+=14)line(bx,y-GATE_PASS-lift,bx,y-lift,'#2a2c30',5);ctx.restore();}
-  ctx.drawImage(art,b.x,b.y,b.w,b.h,left,top,b.w*s,b.h*s);}
+// ================= gates in section =================
+// Stefan (13. 11. 2026, with a picture from The Lost Crown): every gate in the game is drawn as a section. The wall the road
+// goes through is cut by the plane of the picture and seen from the side: a thick dark mass over the whole height of the
+// screen, the passage a vaulted void at its foot. In front of Marko there is only the cut mass above the vault, with the
+// slot the grate slides up into; no gatehouse seen from the front, no roof and no church on top.
+const SEC_W=156,SEC_ARCH=24,SEC_LOOK={kamen:['#4b4034','#211b15','rgba(255,216,164,.42)'],drvo:['#4c3521','#21160d','rgba(255,204,138,.36)'],rudnik:['#3d3c40','#19181b','rgba(210,222,240,.28)'],podrum:['#51322a','#23140f','rgba(255,194,148,.36)']};
+const secHash=(a,b)=>{const v=Math.sin(a*12.9898+b*78.233)*43758.5453;return v-Math.floor(v);};
+// the void of the passage: a shallow vault over the road
+function secVoid(x0,y){const pt=y-GATE_PASS;ctx.moveTo(x0,y+4);ctx.lineTo(x0,pt+SEC_ARCH);ctx.quadraticCurveTo(x0+SEC_W/2,pt-SEC_ARCH*.55,x0+SEC_W,pt+SEC_ARCH);ctx.lineTo(x0+SEC_W,y+4);ctx.closePath();}
+function drawSection(x,y,k,style){const [lit,dark,rim]=SEC_LOOK[style]||SEC_LOOK.kamen,x0=x-SEC_W/2,pt=y-GATE_PASS,top=(level?camY:CAM_Y0)-80,H=pt+SEC_ARCH-top;if(H<=0)return;
+ // the cut mass: everything above the vault, up past the top of the picture
+ ctx.save();ctx.beginPath();ctx.rect(x0,top,SEC_W,H);secVoid(x0,y);ctx.clip('evenodd');
+ const g=ctx.createLinearGradient(0,pt-520,0,pt+SEC_ARCH);g.addColorStop(0,dark);g.addColorStop(1,lit);ctx.fillStyle=g;ctx.fillRect(x0,top,SEC_W,H);
+ if(style==='drvo'){ // a palisade tower: upright logs, iron bands
+  for(let lx=x0,n=0;lx<x0+SEC_W;lx+=26,n++){const lg=ctx.createLinearGradient(lx,0,lx+26,0);lg.addColorStop(0,'rgba(0,0,0,.5)');lg.addColorStop(.42,'rgba(255,214,150,.13)');lg.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=lg;ctx.fillRect(lx,top,26,H);}
+  for(let by=pt-70;by>top;by-=150){ctx.fillStyle='rgba(12,10,10,.6)';ctx.fillRect(x0,by,SEC_W,9);ctx.fillStyle='rgba(255,226,180,.12)';ctx.fillRect(x0,by,SEC_W,1.5);}}
+ else if(style==='rudnik'){ // living rock: cracks, and the timbers that hold the roof of the adit
+  ctx.strokeStyle='rgba(0,0,0,.38)';ctx.lineWidth=2;for(let n=0;n<14;n++){const cy=pt-20-n*52,cx=x0+secHash(n,x)*SEC_W;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(secHash(n,7)-.5)*70,cy-30-secHash(n,3)*40);ctx.lineTo(cx+(secHash(n,9)-.5)*90,cy-70-secHash(n,5)*30);ctx.stroke();}
+  ctx.fillStyle='rgba(74,48,30,.9)';ctx.fillRect(x0,pt+SEC_ARCH-14,SEC_W,14);ctx.fillStyle='rgba(255,214,150,.18)';ctx.fillRect(x0,pt+SEC_ARCH-14,SEC_W,2);}
+ else{ // stone (or the brick of the cellar): the masonry of the level itself, in the shade of the cut
+  fillWall(x0,top,SEC_W,H,true);const ov=ctx.createLinearGradient(0,pt-560,0,pt+SEC_ARCH);ov.addColorStop(0,'rgba(10,8,7,.62)');ov.addColorStop(1,style==='podrum'?'rgba(40,14,8,.34)':'rgba(16,12,9,.3)');ctx.fillStyle=ov;ctx.fillRect(x0,top,SEC_W,H);}
+ // the slot of the grate, cut into the mass above the vault, and the chain that lifts it
+ const sw=22,sh=GATE_PASS+26,sy=pt-SEC_ARCH*.5-sh;ctx.fillStyle='rgba(6,5,5,.72)';ctx.fillRect(x-sw/2,sy,sw,sh+SEC_ARCH);ctx.fillStyle=rim;ctx.globalAlpha=.5;ctx.fillRect(x-sw/2-1.5,sy,1.5,sh+SEC_ARCH);ctx.fillRect(x+sw/2,sy,1.5,sh+SEC_ARCH);ctx.globalAlpha=1;
+ for(let cy2=sy-6;cy2>sy-120;cy2-=9)ellipse(x,cy2,2.2,3.6,'rgba(150,152,160,.55)');ctx.strokeStyle='rgba(150,152,160,.6)';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,sy-132,13,0,Math.PI*2);ctx.stroke();ellipse(x,sy-132,3,3,'rgba(190,192,200,.7)');
+ // light from the road climbs a little way up the cut face; the faces of the wall catch it on both sides
+ const up=ctx.createLinearGradient(0,pt+SEC_ARCH,0,pt-150);up.addColorStop(0,'rgba(255,206,140,.16)');up.addColorStop(1,'rgba(255,206,140,0)');ctx.fillStyle=up;ctx.fillRect(x0,pt-150,SEC_W,150+SEC_ARCH);
+ const sh2=ctx.createLinearGradient(x0,0,x0+SEC_W,0);sh2.addColorStop(0,'rgba(0,0,0,.3)');sh2.addColorStop(.14,'rgba(0,0,0,0)');sh2.addColorStop(.86,'rgba(0,0,0,0)');sh2.addColorStop(1,'rgba(0,0,0,.3)');ctx.fillStyle=sh2;ctx.fillRect(x0,top,SEC_W,H);ctx.restore();
+ ctx.fillStyle=rim;ctx.fillRect(x0,top,2,H-SEC_ARCH+2);ctx.fillRect(x0+SEC_W-2,top,2,H-SEC_ARCH+2);
+ // the stones of the vault, on the edge of the void
+ ctx.save();ctx.strokeStyle=rim;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x0+1,pt+SEC_ARCH);ctx.quadraticCurveTo(x,pt-SEC_ARCH*.55,x0+SEC_W-1,pt+SEC_ARCH);ctx.stroke();ctx.strokeStyle='rgba(0,0,0,.45)';ctx.lineWidth=1.5;
+ for(let i=1;i<9;i++){const t=i/9,ax=x0+SEC_W*t,ay=(1-t)*(1-t)*(pt+SEC_ARCH)+2*(1-t)*t*(pt-SEC_ARCH*.55)+t*t*(pt+SEC_ARCH);ctx.beginPath();ctx.moveTo(ax,ay-3);ctx.lineTo(ax+(t-.5)*8,ay-13);ctx.stroke();}ctx.restore();
+ // the grate, seen edge-on: an iron leaf with spikes, hanging in its slot; raised, it stands inside the wall
+ const lift=k*(GATE_PASS+6),gt=pt-SEC_ARCH*.5-lift,gb=y+2-lift;ctx.save();ctx.beginPath();ctx.rect(x-sw/2,sy,sw,y+6-sy);ctx.clip();
+ const ig=ctx.createLinearGradient(x-7,0,x+7,0);ig.addColorStop(0,'#17181b');ig.addColorStop(.5,'#6d7178');ig.addColorStop(1,'#1d1e22');ctx.fillStyle=ig;ctx.fillRect(x-6,gt,12,gb-gt-10);
+ for(let by=gt+16;by<gb-14;by+=30){ctx.fillStyle='#101114';ctx.fillRect(x-9,by,18,6);ctx.fillStyle='rgba(200,204,212,.5)';ctx.fillRect(x-9,by,18,1.5);}
+ poly([[x-6,gb-11],[x,gb],[x+6,gb-11]],'#8a8e96','#17181b');ctx.restore();}
+function drawGateFronts(){for(const G of gateFronts)drawSection(G.x,G.y,G.k,G.style);
  gateFronts.length=0;}
 
 // labels drawn in the same frame never print over each other: a later one steps up above the earlier
