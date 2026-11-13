@@ -413,4 +413,12 @@ async function walkWith(keysDown){const q=await flat();const x0=S().p.x;for(cons
  api.completeLevel();ok(JSON.parse(storage.get('marko-moci')).includes('lanac'),'shrine: a chapter finished without its shrine still gives its power');storage.delete('marko-levels');
  for(const [k,id] of Object.entries(api.MOC_GDE)){storage.set('marko-moci','[]');api.mociReset();const w4=await start(id);ok(w4.oltari.length===1&&w4.oltari[0].moc===k,`shrine: ${id} has a place for ${k}`);}
  storage.set('marko-moci',saved);storage.delete('marko-levels');api.mociReset();}
+// ---- Šarac's road: no hole is there beforehand; the ground cracks and falls as he comes ----
+{api.setLevel(null);api.startChapter(3);const {world:w,p}=S(),fills=w.platforms.filter(q=>q.puca).sort((a,b)=>a.x-b.x),q=fills[0];
+ const whole=x=>w.platforms.some(o=>!o.off&&o.y===590&&x>=o.x&&x<=o.x+o.w);
+ ok(fills.length>=8&&fills.every(f=>f.puca.s===0&&!f.off)&&[...Array(60)].every((_,i)=>whole(11000+i*200)),`ride: the road to Musa is whole when Marko mounts (${fills.length} places where it will break)`);
+ Object.assign(p,{x:q.x-900,y:590,vx:0,vy:0,grounded:true,invuln:99});step(10);ok(q.puca.s===0,'ride: far ahead of him the ground still holds');
+ p.x=q.x-500;step(6);ok(q.puca.s===1&&!q.off,'ride: as Šarac comes near, the ground cracks, and still bears');
+ step(70);ok(q.off&&q.puca.s===2&&!whole(q.x+q.w/2),'ride: then it breaks and falls, and there is a hole to jump');
+ step(160);ok(q.puca.s===3&&fills[1].puca.s===0,'ride: the pieces are gone; the next place is whole until he reaches it');}
 console.log(`${checks} pohod mechanics checks passed.`);

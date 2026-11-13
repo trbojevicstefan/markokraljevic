@@ -9,6 +9,7 @@ const EN_PAIRS=[
 ["Junački pohodi","Heroic Quests"],["Tajne sobe","Secret rooms"],["Ostani i traži tajne","Stay and look for secrets"],["BOS JE PAO","THE BOSS HAS FALLEN"],["Megdan je dobijen","The duel is won"],
 ["DUGI NIVOI SA SOBAMA I TAJNAMA","LONG LEVELS WITH ROOMS AND SECRETS"],["Dugi nivoi sa sobama, tajnama i moćima. Svaki daje Marku novu moć.","Long levels with rooms, secrets and powers. Each gives Marko a new power."],
 // ---- noc-poliranje: megdan, priča, trgovci, novi nivoi ----
+["ZEMLJA PUCA!", "THE GROUND IS BREAKING!"],
 ["ZAJEDNO!", "TOGETHER!"],
 ["OSVETA!", "REVENGE!"],
 ["ZALAZI TI ZA LEĐA!", "HE IS GOING ROUND YOUR BACK!"],

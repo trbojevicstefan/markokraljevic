@@ -373,6 +373,10 @@ Obrada listova koristila je `sprite-gen slice-sheet --chroma-key none --alpha-fl
 - **Tandemi.** Dva protivnika koji stoje jedan do drugog rade zajedno (`makeTandems`, `tandemStep` u `dist/game.js`), a nad glavama im stoje dve spojene karike. Štitonoša ili sabljaš sa strelcem: prvi stane između Marka i strelca i tu ostaje, udara samo ono što mu priđe, a strele lete preko njegovog ramena. Dva sabljaša: jedan drži Marka spreda, drugi trkom zalazi za leđa, i udaraju jedan za drugim, nikad zajedno. Kad jedan iz para padne, drugi podivlja na nekoliko sekundi („OSVETA!”). Drugi čovek koga dodaje težina igre sada je uvek onaj koji dopunjuje prvog (štit strelcu, strelac štitu, sablja sablji).
 - **Animirani znakovi moći.** Nad oltarom više nije svetla loptica nego nacrtan znak koji se kreće: sokolovo krilo maše, lanac sa kukom kruži, vilinsko oko trepće, potkova sevne, kamen puca po zlatnoj pukotini, topuz se vrti u vihoru, opanak maše krilom, pero strele vijori, vilin otisak pulsira (`moc-*`, devet klipova po 8 kadrova, `art/world-pack-03/DOPUNA-47.md`). Uzeti znak uleti u Marka.
 
+## 13. novembar (6): zemlja puca pod Šarcem
+
+- Na jahanju pred Musom (megdan, deo IV) **rupe više ne postoje unapred**. Drum je ceo kad Marko uzjaše; svaku provaliju zatvara ploča istog druma, i tek kad Šarac priđe ona napukne (pukotine, prašina, kamenje iskače), pa se raspadne na komade koji padaju jedan za drugim, i ostane rupa koju treba preskočiti (`setupPuca`, `updatePuca`, `drawPuca` u `dist/game.js`). Ko stoji na ploči kad padne, pada sa njom.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија
