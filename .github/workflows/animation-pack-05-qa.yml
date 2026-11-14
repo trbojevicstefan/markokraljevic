@@ -26,3 +26,4 @@ jobs:
           python -m py_compile tools/build-animation-pack05.py tools/generate-animation-pack05.py
           python tools/generate-animation-pack05.py --dry-run --limit 2
           python tests/animation-pack05-tests.py
+          node --check dist/animation-pack05-player.js
