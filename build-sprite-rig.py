@@ -506,6 +506,18 @@ if _have('fx-potres') and 'oklopnik-slam' in SCALES:
 for _m in ('krilo', 'lanac', 'oko', 'trag', 'potres', 'nalet', 'kombo', 'gaz', 'zidotrk'):
     if _have('moc-' + _m):
         SCALES['moc-' + _m] = (.44, 'center')
+# DOPUNA-48 („Marko Kraljević i vila”): Miloš on foot at Marko's zoom (his body 380 px against Marko's 383 in marko-idle-2);
+# Ravijojla's new clips at the zoom and anchor of vila-let; riders (Marko asleep on Šarac, Miloš on his bay) as long as
+# Šarac in mounted-run, like marko-mounted-attack; Marko over the vila at Marko's zoom.
+for _n in ('milos-idle', 'milos-run', 'milos-jump', 'milos-attack', 'milos-hurt', 'milos-ranjen', 'milos-ustaje', 'marko-nad-vilom'):
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0], 'feet')
+for _n in ('vila-strela', 'vila-pada', 'vila-bere'):
+    if _have(_n) and 'vila-let' in SCALES:
+        SCALES[_n] = SCALES['vila-let']
+for _n in ('marko-dremlje', 'milos-jase', 'milos-galop', 'milos-strela'):
+    if _have(_n) and 'marko-mounted-attack' in SCALES:
+        SCALES[_n] = (RIDE_W / float(np.median([_width(c) for c in _cells(_n)])), 'center')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

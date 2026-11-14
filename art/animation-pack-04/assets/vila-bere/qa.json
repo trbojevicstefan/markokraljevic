@@ -1,0 +1,201 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        126,
+        198,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "componentAreas": [
+        46988,
+        89,
+        7,
+        6,
+        4,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        118,
+        209,
+        394,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "componentAreas": [
+        44818,
+        423,
+        95,
+        59,
+        13,
+        12,
+        10,
+        6,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        110,
+        222,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "componentAreas": [
+        43245,
+        281,
+        69,
+        61,
+        56,
+        26,
+        6,
+        5,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        115,
+        227,
+        396,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "componentAreas": [
+        41284,
+        390,
+        55,
+        14,
+        13
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        117,
+        220,
+        395,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "componentAreas": [
+        41699,
+        572,
+        60,
+        41,
+        5,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        116,
+        211,
+        396,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "componentAreas": [
+        42542,
+        402,
+        152,
+        63,
+        49,
+        43,
+        36,
+        13,
+        7,
+        7
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        112,
+        209,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "componentAreas": [
+        45340,
+        340,
+        63,
+        59,
+        58,
+        32,
+        16,
+        13,
+        5,
+        3,
+        2
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        126,
+        197,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "componentAreas": [
+        47236,
+        84,
+        68,
+        11,
+        11,
+        4,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.7988980716253443,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "visualReview": "Same Ravijojla profile, braid, flowers, embroidered costume and wings. Kneeling content290px, same anatomical proportions as flight reference. Eight reach-pluck-transfer-return poses inspected; small herbs immediately beneath, knees feet y487.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

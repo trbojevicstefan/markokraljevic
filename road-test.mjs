@@ -43,6 +43,8 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[]){const lv=tr.lever;if(lv&&Math.abs(lv.x-p.x)<90&&Math.abs(lv.y-p.y)<100&&!(tr.open>0)&&t%1<.01)press('KeyE');}
   for(const g of w.goals||[])if(!g.done&&g.kind==='use'&&Math.abs(g.x-p.x)<100&&t%1<.01)press('KeyE');
   // the defence of the guslar is a fight the bot does not fight (battles-test does): it counts as a set piece passed by
+  // the song of Marko and the vila (the ride, Miloš's song, the arrows) is played by pesma-vila-test: the bot rides past it
+  for(const tr of w.traps||[])if(tr.kind==='jahanje'&&tr.ph==='jase'&&!tr.bot){tr.bot=true;p.x=tr.x1+200;p.y=tr.y;stuck.push({at:'pesma o vili',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='guslar'&&tr.state==='odbrana'){tr.state='peva';for(const e of w.enemies)if(e.prey===tr)e.alive=false;stuck.push({at:'odbrana guslara',known:true});}
   jumpCd-=1/120;if(p.grounded&&!lintel&&jumpCd<=0&&!p.climb&&(p.wallHit===1||(Math.abs(p.vx)<20&&t-bestT>.6)||!ahead(p.x+46))){press('Space');jumpCd=.35;}
   if(p.wall&&jumpCd<=0){press('Space');jumpCd=.25;}

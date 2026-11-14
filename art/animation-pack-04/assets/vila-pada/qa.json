@@ -1,0 +1,116 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        128,
+        34,
+        384,
+        410
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46312
+      ],
+      "greenPixels": 0,
+      "supportY": 409,
+      "safeMargin": 34
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        127,
+        58,
+        384,
+        420
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        42108
+      ],
+      "greenPixels": 0,
+      "supportY": 419,
+      "safeMargin": 58
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        106,
+        146,
+        406,
+        440
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        39888,
+        9,
+        8
+      ],
+      "greenPixels": 0,
+      "supportY": 439,
+      "safeMargin": 72
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        103,
+        184,
+        408,
+        460
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        40119,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 459,
+      "safeMargin": 52
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        76,
+        297,
+        435,
+        480
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        41001
+      ],
+      "greenPixels": 0,
+      "supportY": 479,
+      "safeMargin": 32
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        66,
+        350,
+        445,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        36622,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8034188034188035,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "visualReview": "Same Ravijojla identity and costume compared at 1:1 scale. Recoil arch, tucked collapse, forward tumble and side-lying final pose inspected. Constant anatomical scale; intended vertical descent, final body on y487. No blood.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,152 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        79,
+        201,
+        433,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60768
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        79,
+        202,
+        432,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59581
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        80,
+        203,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59924
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        80,
+        204,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59189
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        79,
+        203,
+        433,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        59998,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        80,
+        201,
+        432,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        59953,
+        5,
+        2
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        80,
+        200,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        60038,
+        10
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        80,
+        202,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        58987,
+        6,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8940809968847352,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "visualReview": "Same Marko black moustache dark hair embroidered ivory sleeves red gold cloak cuirass, same chestnut-white Sarac gold mane red embroidered saddlecloth. Horse scale matched to mounted attack reference; lowered sleeping silhouette287px. Eight grounded walking poses, nodding head and hanging mace inspected.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

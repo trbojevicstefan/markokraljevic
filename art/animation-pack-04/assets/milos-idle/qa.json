@@ -1,0 +1,147 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        126,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44692
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        112,
+        108,
+        338,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45670
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        98,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46905
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        82,
+        108,
+        338,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48830
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        90,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        47872,
+        5
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        118,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45342
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        124,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44639
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        126,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44833
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.95,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "visualReview": "New Milos approved against brief: fair hair and beard, navy silver-trim cloak, chainmail, leather vest, straight sword, slimmer body. Height 380px versus Marko 383px. Eight idle phases and loop endpoint visually inspected.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

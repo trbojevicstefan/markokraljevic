@@ -119,7 +119,7 @@ export const CUDA=[
 export const RECIPES={
  selo:'flat breg crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tower flat trgovac flat boss:kopljanik',
  klisura:'flat uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
- suma:'flat potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
+ suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
  prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks flat crumble watch logs crates trgovac flat boss:akindzija',
@@ -233,6 +233,8 @@ export function buildLayout(L,variant='day'){
    traps.push({kind:'melodija',title:'GUSLE JAVOROVE',objs:[0,1,2,3].map(i=>({x:x0+470+i*170,y:gy})),seq,gusle:{x:x0+290,y:gy},tablet:{x:x0+130,y:gy},gate:{x:x0+len-50,y:gy},
     clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // "Marko Kraljević i vila": Šarac waits, then a long clear run after Ravijojla with fallen trunks to leap
+  // „Marko Kraljević i vila”: the two sworn brothers ride over Miroč side by side; the song, the arrows and the dismount (game.js)
+  jahanje(){const x0=x,len=5200;ground(len);traps.push({kind:'jahanje',x0,x1:x0+len,y:gy,logs:[x0+560,x0+1260]});busy.push([x0-40,x0+len]);},
   potera(){const x0=x,len=4300;ground(len);const bars=[];for(let bx=x0+950;bx<x0+len-950;bx+=ri(440,580))bars.push(bx);traps.push({kind:'potera',x0,x1:x0+len,y:gy,sx:x0+280,bars,gate:{x:x0+len-50,y:gy}});busy.push([x0,x0+len]);},
   // the top of Urvina: two firs and the well, Šarac, the stone where the sabre breaks, and the cliff over the sea
   vrh(){const x0=x,len=1900;ground(len);traps.push({kind:'vrh',x0,x1:x0+len+520,y:gy,bunar:x0+520,sarac:x0+1020,sablja:x0+1480,more:x0+len+240});busy.push([x0,x0+len+520]);},

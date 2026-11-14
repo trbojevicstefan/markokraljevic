@@ -1,0 +1,170 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        111,
+        112,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46729
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        102,
+        113,
+        410,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        46590,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        94,
+        112,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "componentAreas": [
+        46746,
+        8,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        78,
+        113,
+        433,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        45959,
+        95
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        78,
+        113,
+        433,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46579
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        89,
+        113,
+        422,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 20,
+      "componentAreas": [
+        46089,
+        15,
+        10,
+        9,
+        8,
+        8,
+        7,
+        6,
+        6,
+        5,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        103,
+        113,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45854
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        112,
+        113,
+        399,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46383
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9690721649484536,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "visualReview": "Same Ravijojla face, braid, flowers, embroidered white dress, red sash, bare feet and gold leaf-veined wings. Size 376px. Bow draw and release inspected; frame5 arrow gone, vibrating string; frame7 near flight pose.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}
