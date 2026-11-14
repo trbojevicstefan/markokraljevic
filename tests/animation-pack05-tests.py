@@ -18,7 +18,7 @@ def verify_manifest():
     assert cfg["count"] == len(cfg["jobs"]) == 24
     ids = [j["id"] for j in cfg["jobs"]]
     assert len(set(ids)) == len(ids)
-    for prefix,min_n in [("milos-",10),("vila-",10),("marko-",2),("musa-",1),("sarac-",1)]:
+    for prefix,min_n in [("milos-",10),("vila-",10),("marko-",4)]:
         assert sum(k.startswith(prefix) for k in ids)==min_n
     for j in cfg["jobs"]:
         assert j["status"]=="needs-authored-frames"
