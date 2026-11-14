@@ -32,9 +32,9 @@ ok(f2.maxHp>f1.maxHp*1.4,`chapters: the same sabre-man is tougher by the river t
 
 // ---- the light foes slip the heavy blow ----
 {const w=await start('selo');const {p}=api.state();for(const o of w.enemies)o.alive=false;
- const gy=p.y,e={id:7777,x:p.x+120,y:gy,vx:0,vy:0,w:36,h:75,hp:300,maxHp:300,type:'akindzija',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+120,attackId:0,grounded:true};w.enemies.push(e);
+ const gy=p.y,e={id:7777,x:p.x+120,y:gy,vx:0,vy:0,w:36,h:75,hp:300,maxHp:300,type:'archer',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+120,attackId:0,grounded:true};w.enemies.push(e);
  let slipped=0;for(let k=0;k<12&&!slipped;k++){Object.assign(e,{x:p.x+120,mode:'idle',timer:9,stun:0,izmakCd:0,lunge:null,hp:300});p.face=1;p.attack=.3;p.attackKind='heavy';p.attackId=(p.attackId||0)+1000+k;step(1);if(e.lunge&&e.lunge.v>0)slipped++;p.attack=0;step(40);}
- ok(slipped>0,'izmiče: the raider steps back from a heavy blow');
+ ok(slipped>0,'izmiče: the archer steps back from a heavy blow');
  const s={...e,id:7778,type:'shield',x:p.x+120,izmakCd:0,lunge:null};w.enemies.push(s);e.alive=false;let shieldSlip=0;
  for(let k=0;k<8;k++){Object.assign(s,{x:p.x+120,mode:'idle',lunge:null});p.attack=.3;p.attackKind='heavy';p.attackId=(p.attackId||0)+2000+k;step(1);if(s.lunge)shieldSlip++;p.attack=0;step(10);}
  ok(shieldSlip===0,'izmiče: the shield-bearer stands his ground (the heavy blow is how his guard is broken)');}
