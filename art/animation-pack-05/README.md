@@ -1,48 +1,46 @@
-# Animation pack 05 — Miloš Obilić, Ravijojla i glavni likovi
+# Animation Pack 05 — Marko Kraljević, Miloš Obilić i vila Ravijojla
 
-**Status: authoring pack, NOT 24 completed animations.** There are 24 independent frame-by-frame animation jobs. Every job stays at *needs-authored-frames* until generated artwork passes automated and visual QA. No gameplay logic is automatically changed.
+**Draft PR, not a completed art release.** This branch contains 24 precisely specified frame-by-frame animation jobs, a real source-image converter and atlas importer, automated anti-static-frames checks, and a standalone renderer at `dist/animation-pack05-player.js`.
 
-## Scope
+## Correct cast
+- **Marko Kraljević:** four animation jobs, including front-facing expressions for his menu portrait.
+- **Miloš Obilić:** ten body animation jobs (new hero, red cape, silver armor and sword).
+- **Vila Ravijojla:** ten wing, flight and spell animation jobs (female fairy, long golden braid, white embroidered dress and translucent wings). She is **NOT** Bajazit/Bayezid, and must never be rendered as a male character.
 
-Miloš Obilić (10): idle, alert, walk, run, jump, land, sword-draw, sword-slash, sword-thrust, parry. Miloš is a **new character** absent from the original game's sprites.
+## Assets produced outside GitHub, with QA
+Seven 8-frame animated source clips were rendered and checked in this chat and packaged in a downloadable ZIP. The ZIP contains 512×512 per frame, 8×1 transparent atlases, JSON, frames, GIF and WebP previews, and a fully offline visual gallery:
 
-Vila Ravijojla (10): hover, fly-forward, fly-rise, fly-descend, turn, cast-light, cast-heal, cast-shield, chain, land. Must match existing fairy-cast identity. The four existing vila-* animations are not overwritten.
+- `vila-hover-nova` — actual wings opening and closing
+- `milos-idle-nova` — body idle and cape
+- `milos-cape-wind` — red cape moving in wind
+- `marko-menu-laugh` — genuine face/lips changes
+- `marko-menu-stern-blink` — stern eyes blink
+- `marko-menu-patient-blink` — slow blink
+- `marko-menu-neutral` — neutral/serious portrait
 
-Others (4): Marko laugh / taunt, Musa taunt, Šarac rear.
+**The binary assets are in the user's conversation ZIP, not committed to this repository.** The GitHub connector currently accepts UTF-8 text or inline base64 for writes and cannot ingest those 60+ MB of local files directly. Do not treat the filenames above as shipped or loadable from the PR branch.
 
-The original game uses eight motion frames, 512x512 pixels per cell, 8x1 sprite atlases and component-row JSON manifests.
+Current release QA: 7/7 exported locally, each with 8 unique source frames; 24 storyboard jobs remain `needs-authored-frames` in `jobs.json` until actual image sources are uploaded into this branch and manually approved. The user's goal of at least 20 newly drawn gameplay clips is **not yet complete**, and this PR remains a draft.
 
-## Production steps
+## Renderer / import
 
-1. Generate each scene independently using a model capable of image reference conditioning (Imagen or equivalent). Open the full prompt and references in jobs.json. All eight frames must show truly different *joint poses*, not a translated still or an effect-only overlay.
-2. Export either an 8-frame animated GIF/APNG/WebP of square full-body frames or one 4x2 PNG with eight equal square cells. Use chroma green #00ff00 or genuine transparency. Place at incoming/JOB_ID.gif (or .png).
-3. Install dependencies: python -m pip install Pillow numpy
-4. Convert: python tools/build-animation-pack05.py --input-dir incoming --output-dir /tmp/marko-pack05 --allow-incomplete
-5. Review every preview GIF and PNG atlas at game size. Inspect anatomy, weapon geometry, feet baseline, wing poses, true frame variation and loop continuity. Chroma QA and static-frame checks alone cannot guarantee art quality.
-6. After manual approval, copy accepted asset directories and dist/assets outputs into the repo, rebuild the game sprite rig, test the game, and wire collision/events manually.
+Once binary atlases are copied into `dist/assets/`, use `dist/animation-pack05-player.js` to draw a clip from its JSON and PNG. Existing game/menu UI and physics remain unchanged. Some Marko clips are **face portraits only**, not in-game attack animations.
 
-The converter NEVER synthesizes missing character poses. It crops and keys only genuine authored image frames. It rejects nearly static clips instead of counting translated posters as animations.
+## Source-frame authoring and converter
 
-## Model limitation
+For each individual clip in `jobs.json`, render eight actual chronologically ordered poses with a consistent character and equipment, not a moving still. Export either eight GIF/APNG/WebP frames or a 4×2 sheet with flat green chroma or alpha. Use:
 
-No separately invokable Imagen 2 endpoint or credential is exposed in this workspace. Repeated image-generator calls for Ravijojla produced Marko instead; those invalid files are excluded. The 24 jobs are a precise and runnable production queue, **not 24 generated clip images**. Do not merge or represent them as complete art.
+```bash
+python -m pip install Pillow numpy
+python tools/build-animation-pack05.py --input-dir incoming --output-dir /tmp/marko-pack05 --allow-incomplete
+```
 
-## Content
+The converter makes 512×512 transparent frames, an 8×1 `atlas.png`, matching JSON, and GIF previews. It rejects static/near-duplicate sources; a human must also inspect identity, pose continuity, weapon grip and root/pivot alignment.
 
-- jobs.json: all 24 briefs, exact references, frame counts, fps and gameplay event markers.
-- tools/build-animation-pack05.py: deterministic sheet/frame processing and quality reporting.
-- qa/validation.json: per-run generated status of rendered, missing or rejected jobs.
+`tools/generate-animation-pack05.py` contains an optional external Google Gen AI adapter, but no Google API credential is installed here. In this conversation original image outputs were made using OpenAI's available image model; **do not label them Imagen 2**. The image model repeatedly returned incorrect characters/posters for some prompts, and those attempts were excluded.
 
-
-## Optional current-model generator (when authenticated)
-
-Imagen 2 on Google Vertex was retired (Google's 2025–2026 lifecycle notices), so a working Imagen 2 call cannot be promised. This pack has a real source generator adapter for the current Google Gen AI image family. It requires your own authorized API key and all canonical references:
-
-    python -m pip install google-genai Pillow numpy
-    python tools/generate-animation-pack05.py --dry-run
-    GEMINI_API_KEY=... python tools/generate-animation-pack05.py --only vila-hover --limit 1
-    python tools/build-animation-pack05.py --input-dir art/animation-pack-05/incoming --output-dir /tmp/marko-pack05 --allow-incomplete
-
-By default the adapter selects gemini-3.1-flash-image (override with --model). The converter still rejects wrong grids and static pose sets; manually inspect subject identity before integration.
-
-The generation code is source-controlled, but the API key is not available in the current runtime. Do not mistake 24 authored job prompts for 24 resulting PNG/GIF clips.
+## Completion requirements before merge
+1. Commit actual sprite binaries for all required clips.
+2. Run CI and gameplay-scale visual QA of every GIF/PNG atlas.
+3. Retune combat events, pivots and state-machine references for new characters.
+4. Confirm number of genuinely finished, non-duplicate new clips is at least 20.
