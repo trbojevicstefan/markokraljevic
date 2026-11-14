@@ -1,0 +1,34 @@
+name: Miroc 5-minute level QA
+on:
+  push:
+    branches: [feat-miroc-5min-playable]
+  pull_request:
+    paths:
+      - dist/miroc-episode.js
+      - dist/miroc-episode-data.js
+      - dist/miroc-episode.html
+      - dist/miroc-episode.css
+      - tests/miroc-episode-tests.mjs
+      - dist/index.html
+      - .github/workflows/miroc-episode-qa.yml
+permissions:
+  contents: read
+jobs:
+  test-episode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax verification
+        run: |
+          node --check dist/miroc-episode.js
+          node --check dist/miroc-episode-data.js
+          node --check dist/game.js
+      - name: Episode gameplay / sprite assets
+        run: node tests/miroc-episode-tests.mjs
+      - name: Original game regressions
+        run: |
+          node animation-tests.mjs
+          node levels-test.mjs
