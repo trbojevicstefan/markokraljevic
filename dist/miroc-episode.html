@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101c19">
+<meta name="description" content="Igrivo petominutno poglavlje epskog platformera Marko Kraljević i vila Ravijojla.">
+<title>Marko Kraljević i vila Ravijojla · Miroč · Igrivi nivo</title>
+<link rel="icon" href="assets/eagle.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Ruslan+Display&display=swap">
+<link rel="stylesheet" href="miroc-episode.css">
+</head>
+<body>
+<main id="miroc-shell">
+  <canvas id="game" width="1280" height="720" role="img" aria-label="Igrivi nivo: Marko Kraljević, Miloš Obilić i vila Ravijojla"></canvas>
+  <div id="miroc-vignette" aria-hidden="true"></div>
+  <div id="miroc-hud">
+    <div class="miroc-name"><img src="assets/eagle.svg" width="36" height="44" alt=""><div><small>MIROČ · JUNAČKA PESMA</small><b id="miroc-chapter">I · DVA POBRATIMA</b></div></div>
+    <div class="miroc-center"><strong id="miroc-objective">Jaši kroz Miroč</strong><div class="miroc-progress"><i id="miroc-progress"></i></div><span id="miroc-phase">Poglavlje 1/7</span></div>
+    <div class="miroc-time"><b id="miroc-time">5:00</b><button id="miroc-mute" aria-label="Uključi ili isključi zvuk">♫</button><button id="miroc-pause" aria-label="Pauza">Ⅱ</button></div>
+  </div>
+  <div id="miroc-lyric" aria-live="polite"></div>
+  <div id="miroc-hint">D / → jaši · SPACE preskoči · J napad · E bilje / lečenje · P pauza</div>
+  <div id="miroc-health"><span id="miroc-health-fill"></span></div>
+  <div id="miroc-touch" aria-label="Dodirne kontrole">
+    <div><button data-key="KeyA" aria-label="Levo">◀</button><button data-key="KeyD" aria-label="Desno">▶</button><button data-key="KeyW" aria-label="Gore">▲</button><button data-key="KeyS" aria-label="Dole">▼</button></div>
+    <div><button data-key="Space" aria-label="Skok">SKOK</button><button data-key="KeyJ" aria-label="Topuz">TOPUZ</button><button data-key="KeyK" aria-label="Teški udarac">TEŠKI</button><button data-key="KeyE" aria-label="Interakcija">E</button></div>
+  </div>
+  <section id="miroc-intro" class="miroc-modal">
+    <div class="miroc-card">
+      <small class="miroc-eyebrow">POSEBNO POGLAVLJE · MIROČ PLANINA</small>
+      <h1>Marko Kraljević<br><em>i vila Ravijojla</em></h1>
+      <p>Dva pobratima jašu Miročem. Miloš započne pesmu, a Marko zaspi na Šarcu. Vila, ljubomorna na lepši glas, gađa Miloša dvema strelama. Marko mora da ga spase.</p>
+      <div class="miroc-mission"><span>05:00</span><span>7 činova</span><span>Interaktivna priča</span></div>
+      <button id="miroc-start" class="miroc-primary">Započni pesmu i nivo <span>▶</span></button>
+      <a href="./index.html">Nazad na glavni meni</a>
+      <small class="miroc-disclaimer">Zvučna podloga koristi postojeći snimak gusala iz igre. Originalni petominutni vokalni snimak nije dodat.</small>
+    </div>
+  </section>
+  <section id="miroc-end" class="miroc-modal" hidden>
+    <div class="miroc-card"><small class="miroc-eyebrow">KRAJ PESME</small><h2 id="miroc-result-title"></h2><p id="miroc-result"></p><p id="miroc-score"></p><button id="miroc-again" class="miroc-primary">Ponovi petominutni nivo</button><a href="./index.html">Glavni meni</a></div>
+  </section>
+  <div id="miroc-toast" role="status" aria-live="polite"></div>
+</main>
+<script type="module" src="miroc-episode.js"></script>
+</body>
+</html>
