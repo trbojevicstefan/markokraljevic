@@ -1,0 +1,650 @@
+{
+  "schema_version": 1,
+  "pack": "animation-pack-05",
+  "source_model": "external-imagegen-required",
+  "notes": "24 original production jobs strictly for Marko Kraljevic, Milos Obilic and VILA Ravijojla (female fairy, NOT Bayezid). All remain needs-authored-frames until source binaries are committed and visually approved. Seven separate real clip binaries were produced externally and packaged in chat, but are not stored on this branch.",
+  "cell": {
+    "width": 512,
+    "height": 512
+  },
+  "count": 24,
+  "characters": {
+    "milos": {
+      "identity": "Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.",
+      "reference_files": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ]
+    },
+    "vila": {
+      "identity": "Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.",
+      "reference_files": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ]
+    },
+    "marko": {
+      "identity": "Existing game Marko Kraljević: very dark flowing hair, black thick beard, distinctive swept moustache, ornate gold circlet and red cloak, heavy segmented armor, spiked mace; match repo sprite-id",
+      "reference_files": [
+        "art/marko-attack/base-source.png",
+        "dist/assets/cast/marko.png"
+      ]
+    },
+    "musa": {
+      "identity": "Musa Kesedžija existing game's towering heavy armored enemy warrior with giant mace, compare existing Musa cast and rig. Keep identity and proportions consistent.",
+      "reference_files": [
+        "dist/assets/cast/musa.png"
+      ]
+    },
+    "sarac": {
+      "identity": "Šarac legendary dappled white and gray stallion with medieval riding saddle and red blankets, match existing game mounted animations.",
+      "reference_files": [
+        "dist/assets/cast/sarac.png"
+      ]
+    }
+  },
+  "jobs": [
+    {
+      "id": "milos-idle",
+      "character": "milos",
+      "clip": "idle",
+      "description": "Breathing in grounded guard, loose leather and red cape settle, right hand on single-edged sword hilt",
+      "frames": 8,
+      "fps": 8,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-idle): Breathing in grounded guard, loose leather and red cape settle, right hand on single-edged sword hilt. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-alert",
+      "character": "milos",
+      "clip": "alert",
+      "description": "Hears danger, lifts chin, narrows eyes and raises guard while feet remain planted",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-alert): Hears danger, lifts chin, narrows eyes and raises guard while feet remain planted. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-walk",
+      "character": "milos",
+      "clip": "walk",
+      "description": "Full two-step walk with planted feet, articulated knee and cape follow-through",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 0,
+          "name": "footstep_left"
+        },
+        {
+          "frame": 4,
+          "name": "footstep_right"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-walk): Full two-step walk with planted feet, articulated knee and cape follow-through. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-run",
+      "character": "milos",
+      "clip": "run",
+      "description": "Athletic run with two alternating contacts and flying phases; realistic sword carry",
+      "frames": 8,
+      "fps": 14,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 0,
+          "name": "footstep_left"
+        },
+        {
+          "frame": 4,
+          "name": "footstep_right"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-run): Athletic run with two alternating contacts and flying phases; realistic sword carry. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-jump",
+      "character": "milos",
+      "clip": "jump",
+      "description": "Anticipation crouch, toe-off, rising and airborne apex; no ground shadow",
+      "frames": 8,
+      "fps": 14,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 2,
+          "name": "jump_impulse"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-jump): Anticipation crouch, toe-off, rising and airborne apex; no ground shadow. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-land",
+      "character": "milos",
+      "clip": "land",
+      "description": "Airborne landing, impact compression, settle and return to guarded pose",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 2,
+          "name": "land"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-land): Airborne landing, impact compression, settle and return to guarded pose. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-sword-draw",
+      "character": "milos",
+      "clip": "sword-draw",
+      "description": "Grips hilt, unsheathes steel blade while shifting weight, finishes in stable guard",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 4,
+          "name": "weapon_drawn"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-sword-draw): Grips hilt, unsheathes steel blade while shifting weight, finishes in stable guard. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-sword-slash",
+      "character": "milos",
+      "clip": "sword-slash",
+      "description": "Single committed horizontal sword slash: anticipation, peak contact, follow through, recovery",
+      "frames": 8,
+      "fps": 14,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 3,
+          "name": "attack_active"
+        },
+        {
+          "frame": 5,
+          "name": "attack_inactive"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-sword-slash): Single committed horizontal sword slash: anticipation, peak contact, follow through, recovery. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-sword-thrust",
+      "character": "milos",
+      "clip": "sword-thrust",
+      "description": "Draw sword in line and thrust forward, planted lead leg, linear weapon tip, quick recovery",
+      "frames": 8,
+      "fps": 14,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 3,
+          "name": "attack_active"
+        },
+        {
+          "frame": 5,
+          "name": "attack_inactive"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-sword-thrust): Draw sword in line and thrust forward, planted lead leg, linear weapon tip, quick recovery. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "milos-parry",
+      "character": "milos",
+      "clip": "parry",
+      "description": "Raises blade, brief contact deflection, redirects sword, returns to guard",
+      "frames": 8,
+      "fps": 14,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 3,
+          "name": "parry_active"
+        },
+        {
+          "frame": 5,
+          "name": "parry_inactive"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Original new hero Miloš Obilić. Human Serbian medieval knight, dark shoulder-length hair and short beard, silver scale/chain armor, engraved vambraces and leather boots, RED CAPE, red white-double-headed-eagle heraldic breastplate, single straight steel sword held in right hand. Unlike Marko he wears NO red-capped crown, must not resemble Marko's face. Same painterly high-detail semi-realistic rendering as original game cast/marko.png.\nMOTION (milos-parry): Raises blade, brief contact deflection, redirects sword, returns to guard. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/animation-pack-05/references/milos-canonical.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-hover",
+      "character": "vila",
+      "clip": "hover",
+      "description": "Ravijojla fairy hovering in place, wings beat smoothly from fully extended to folded and back, braid and dress lag behind",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-hover): Ravijojla fairy hovering in place, wings beat smoothly from fully extended to folded and back, braid and dress lag behind. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-fly-forward",
+      "character": "vila",
+      "clip": "fly-forward",
+      "description": "Accelerates forward side-view, leaning into wind; wings extend asymmetrically across true flap cycle",
+      "frames": 8,
+      "fps": 14,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-fly-forward): Accelerates forward side-view, leaning into wind; wings extend asymmetrically across true flap cycle. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-fly-rise",
+      "character": "vila",
+      "clip": "fly-rise",
+      "description": "Rises upward, changes wingbeat thrust, legs trail elegantly, hair and skirt follow physics",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-fly-rise): Rises upward, changes wingbeat thrust, legs trail elegantly, hair and skirt follow physics. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-fly-descend",
+      "character": "vila",
+      "clip": "fly-descend",
+      "description": "Slows wings into descending glide, legs lower, natural skirt drag",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-fly-descend): Slows wings into descending glide, legs lower, natural skirt drag. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-turn",
+      "character": "vila",
+      "clip": "turn",
+      "description": "Smooth mid-air pivot toward camera then opposite side, all body and wing forms consistent",
+      "frames": 8,
+      "fps": 10,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-turn): Smooth mid-air pivot toward camera then opposite side, all body and wing forms consistent. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-cast-light",
+      "character": "vila",
+      "clip": "cast-light",
+      "description": "Raises open hands, gathers turquoise light between palms, pushes a concentrated spell forward",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 5,
+          "name": "spell_release"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-cast-light): Raises open hands, gathers turquoise light between palms, pushes a concentrated spell forward. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-cast-heal",
+      "character": "vila",
+      "clip": "cast-heal",
+      "description": "Gather healing energy in both hands, open wings wide, release to ally, recover",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 5,
+          "name": "heal_release"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-cast-heal): Gather healing energy in both hands, open wings wide, release to ally, recover. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-cast-shield",
+      "character": "vila",
+      "clip": "cast-shield",
+      "description": "Draw protective arc with arms; translucent effect separate from body; settle into stance",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 5,
+          "name": "shield_active"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-cast-shield): Draw protective arc with arms; translucent effect separate from body; settle into stance. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-chain",
+      "character": "vila",
+      "clip": "chain",
+      "description": "Whips magical chain from wrist toward enemy and braces while keeping wing/arm joint consistent",
+      "frames": 8,
+      "fps": 14,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 4,
+          "name": "chain_release"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-chain): Whips magical chain from wrist toward enemy and braces while keeping wing/arm joint consistent. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "vila-land",
+      "character": "vila",
+      "clip": "land",
+      "description": "Hover lowers through wing braking, toes land lightly, skirt settles",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [
+        {
+          "frame": 5,
+          "name": "land"
+        }
+      ],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Vila Ravijojla of Marko epic: young woman with long GOLDEN BRAID and floral circlet, embroidered ivory-white and RED folk dress, delicate GOLDEN translucent butterfly-like wings and bare feet, matching repo art/fairy-cast/base-source.png. Side profile flies toward right. No sword or human knight armor.\nMOTION (vila-land): Hover lowers through wing braking, toes land lightly, skirt settles. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/fairy-cast/base-source.png",
+        "dist/assets/cast/fairy.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "marko-laugh",
+      "character": "marko",
+      "clip": "laugh",
+      "description": "Heroic deep laugh: changes genuine mouth/eyes/cheeks, shoulders bounce, not translation of static body",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Existing game Marko Kraljević: very dark flowing hair, black thick beard, distinctive swept moustache, ornate gold circlet and red cloak, heavy segmented armor, spiked mace; match repo sprite-id\nMOTION (marko-laugh): Heroic deep laugh: changes genuine mouth/eyes/cheeks, shoulders bounce, not translation of static body. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly for looping. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/marko-attack/base-source.png",
+        "dist/assets/cast/marko.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "marko-taunt",
+      "character": "marko",
+      "clip": "taunt",
+      "description": "Points mace forward and challenges an opponent, weapon arcs stay attached to hand",
+      "frames": 8,
+      "fps": 12,
+      "loop": false,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT: sprite animation sheet for existing 2D action platformer MARKO KRALJEVIĆ. Exactly 8 distinct hand-authored full-body frames, chronological 4 columns x 2 rows, 512x512 px per cell. Existing game Marko Kraljević: very dark flowing hair, black thick beard, distinctive swept moustache, ornate gold circlet and red cloak, heavy segmented armor, spiked mace; match repo sprite-id\nMOTION (marko-taunt): Points mace forward and challenges an opponent, weapon arcs stay attached to hand. Every frame must show a genuinely NEW articulated pose (hands, feet, legs, face, wings or weapon) forming coherent anticipation/action/recovery. Start/end link cleanly. Keep character face, outfit, material textures, lighting, scale and side camera identical in every cell. Character fully within padding of every cell, with consistent root, feet baseline, alpha/transparency capable, on UNIFORM flat RGB green #00ff00 chroma in every cell. NO poster, NO writing, NO captions, NO duplicate poses, NO grid lines, NO scenery, NO lens effects, NO character cloning, NO other characters, NO interpolation smears. Use the attached canonical reference to lock identity. 2D hand-painted high-quality game animation, not motion of static card.",
+      "references": [
+        "art/marko-attack/base-source.png",
+        "dist/assets/cast/marko.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "marko-menu-wink",
+      "character": "marko",
+      "clip": "menu-wink",
+      "description": "High-resolution frontal close-up of Marko looking at viewer, raising one eyebrow, deliberate one-eye wink, returning to exact same smile. Genuine eye/eyebrow/cheek changes, shoulders and hair remain stable.",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT ONLY one real 8-frame cinematic frontal facial expression animation of Marko Kraljevic. 4 columns x 2 rows, transparent/chroma background, stable exact same Marko identity and fixed framing. Motion: High-resolution frontal close-up of Marko looking at viewer, raising one eyebrow, deliberate one-eye wink, returning to exact same smile. Genuine eye/eyebrow/cheek changes, shoulders and hair remain stable.. Eight artistically distinct sequential facial poses. Do not generate poster or titles. Canonical reference from repo art/marko-attack/base-source.png.",
+      "references": [
+        "art/marko-attack/base-source.png",
+        "dist/assets/cast/marko.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    },
+    {
+      "id": "marko-menu-crazy",
+      "character": "marko",
+      "clip": "menu-crazy",
+      "description": "High-resolution frontal Marko portrait makes playful mad-eyed grin, eyes visibly widen, pupils dart sideways and mouth opens then closes; no translated static portrait.",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "events": [],
+      "status": "needs-authored-frames",
+      "prompt": "OUTPUT ONLY one real 8-frame cinematic frontal facial expression animation of Marko Kraljevic. 4 columns x 2 rows, transparent/chroma background, stable exact same Marko identity and fixed framing. Motion: High-resolution frontal Marko portrait makes playful mad-eyed grin, eyes visibly widen, pupils dart sideways and mouth opens then closes; no translated static portrait.. Eight artistically distinct sequential facial poses. Do not generate poster or titles. Canonical reference from repo art/marko-attack/base-source.png.",
+      "references": [
+        "art/marko-attack/base-source.png",
+        "dist/assets/cast/marko.png"
+      ],
+      "direction": "right",
+      "requires_manual_qa": true
+    }
+  ]
+}
