@@ -108,10 +108,14 @@ export async function mountBanner(el) {
   el.addEventListener('focus', () => hover = 1); el.addEventListener('blur', () => hover = 0);
   el.addEventListener('pointerdown', () => uni.uSnap.value = 1);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // While the game is played the menu is hidden: one cheap check and out, no layout read (offsetParent made the browser
+  // lay out the page every frame, because the HUD changes between frames), no style written.
+  const menu = document.getElementById('menu');
+  let wasShown = null;
   function frame(now) {
     requestAnimationFrame(frame);
-    const shown = el.classList.contains('primary') && el.offsetParent !== null && !document.getElementById('menu')?.hidden;
-    canvas.style.visibility = shown ? 'visible' : 'hidden'; el.classList.toggle('flag-on', shown);
+    const shown = !menu?.hidden && el.classList.contains('primary') && el.offsetParent !== null;
+    if (shown !== wasShown) { wasShown = shown; canvas.style.visibility = shown ? 'visible' : 'hidden'; el.classList.toggle('flag-on', shown); }
     if (!shown) { last = now; return; }
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     if (want) redraw();

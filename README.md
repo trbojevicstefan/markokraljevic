@@ -242,7 +242,7 @@ Crteži su iz `art/world-pack-03/DOPUNA-11.md`.
 
 ## Noć 10/11. novembar: megdan, priča po pesmama, novi nivoi (grana `noc-poliranje`)
 
-Ceo spisak sa onim što nije provereno je u `JUTARNJI-IZVESTAJ-2.md`; pesme i beleške po pesmama su u `pesme/`.
+Ceo spisak sa onim što nije provereno je u `docs/JUTARNJI-IZVESTAJ-2.md`; pesme i beleške po pesmama su u `pesme/`.
 
 - **Megdan:** telo neprijatelja se ne prolazi; bosovi imaju gard (lome ga teški udarci), kontru na tri laka udarca, tri čina sa novim potezima i koštac.
 - **Redosled:** pohodi idu po Markovom životu, megdan sa Musom je posle devetog pohoda, Đemo Brđanin dolazi posle Muse.
