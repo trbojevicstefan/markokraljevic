@@ -509,9 +509,12 @@ for _m in ('krilo', 'lanac', 'oko', 'trag', 'potres', 'nalet', 'kombo', 'gaz', '
 # DOPUNA-48 („Marko Kraljević i vila”): Miloš on foot at Marko's zoom (his body 380 px against Marko's 383 in marko-idle-2);
 # Ravijojla's new clips at the zoom and anchor of vila-let; riders (Marko asleep on Šarac, Miloš on his bay) as long as
 # Šarac in mounted-run, like marko-mounted-attack; Marko over the vila at Marko's zoom.
-for _n in ('milos-idle', 'milos-run', 'milos-jump', 'milos-attack', 'milos-hurt', 'milos-ranjen', 'milos-ustaje', 'marko-nad-vilom'):
+for _n in ('milos-idle', 'milos-attack', 'milos-hurt', 'milos-ranjen', 'milos-ustaje', 'marko-nad-vilom'):
     if _have(_n) and 'marko-idle-2' in SCALES:
         SCALES[_n] = (SCALES['marko-idle-2'][0], 'feet')
+for _n in ('milos-run', 'milos-jump'):   # in the air or between strides the body holds still and the feet move, as marko-run and marko-jump
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0], 'torso')
 for _n in ('vila-strela', 'vila-pada', 'vila-bere'):
     if _have(_n) and 'vila-let' in SCALES:
         SCALES[_n] = SCALES['vila-let']

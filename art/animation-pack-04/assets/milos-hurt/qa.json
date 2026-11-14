@@ -1,0 +1,79 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        108,
+        340,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45436
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        108,
+        116,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49431
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        122,
+        132,
+        341,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45214
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        124,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45122
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.692167577413479,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "motionApproved": true,
+  "visualReview": "Milos recoils from frontal hit, lowers head, returns to idle.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 4
+}

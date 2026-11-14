@@ -1,0 +1,86 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    45,
+    94,
+    466,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    51,
+    99,
+    461,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    58,
+    63,
+    453,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    61,
+    99,
+    451,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    64,
+    99,
+    448,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    54,
+    99,
+    457,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 6,
+   "bbox": [
+    84,
+    63,
+    427,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 7,
+   "bbox": [
+    61,
+    99,
+    450,
+    488
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/marko-nad-vilom/attempt-3"
+}

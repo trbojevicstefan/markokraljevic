@@ -1,0 +1,86 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    75,
+    108,
+    437,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    108,
+    116,
+    404,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    113,
+    104,
+    398,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    70,
+    116,
+    441,
+    472
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    80,
+    111,
+    431,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    107,
+    119,
+    405,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 6,
+   "bbox": [
+    113,
+    105,
+    399,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 7,
+   "bbox": [
+    67,
+    115,
+    445,
+    472
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/milos-run/attempt-3"
+}

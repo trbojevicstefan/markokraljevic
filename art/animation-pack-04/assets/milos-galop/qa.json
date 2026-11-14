@@ -1,0 +1,177 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        63,
+        118,
+        448,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "componentAreas": [
+        54663,
+        4,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        46,
+        165,
+        465,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        52698,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        56,
+        132,
+        455,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "componentAreas": [
+        52459,
+        4,
+        2,
+        2
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        63,
+        133,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "componentAreas": [
+        50078,
+        1,
+        1,
+        1,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        63,
+        162,
+        448,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        50518,
+        2
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        56,
+        132,
+        455,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "componentAreas": [
+        53473,
+        4,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        64,
+        114,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "componentAreas": [
+        54327,
+        7,
+        1,
+        1,
+        1,
+        1
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        64,
+        110,
+        448,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "componentAreas": [
+        54039,
+        5,
+        4,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 1.008174386920981,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "motionApproved": true,
+  "visualReview": "Milos leans forward with raised sword on his galloping bay horse.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

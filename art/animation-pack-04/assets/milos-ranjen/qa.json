@@ -1,0 +1,125 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        64,
+        328,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        33184,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        64,
+        328,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        34472,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        64,
+        328,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        34793,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        64,
+        329,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        34963,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        64,
+        329,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        34367,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        64,
+        329,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        33164,
+        4,
+        4
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8080808080808081,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "motionApproved": true,
+  "visualReview": "Wounded Milos lies on his back, breathes and lifts hand toward throat; two white arrows and sword beside him.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

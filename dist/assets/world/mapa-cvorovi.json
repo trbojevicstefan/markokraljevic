@@ -1,0 +1,211 @@
+{
+ "selo": {
+  "mesto": "Kosovo polje",
+  "tacka": [
+   47.0,
+   50.3
+  ],
+  "cvor": [
+   38,
+   48
+  ]
+ },
+ "suma": {
+  "mesto": "Miroč",
+  "tacka": [
+   63.5,
+   10.8
+  ],
+  "cvor": [
+   63,
+   16
+  ]
+ },
+ "manastir": {
+  "mesto": "Samodreža",
+  "tacka": [
+   45.5,
+   46.9
+  ],
+  "cvor": [
+   45,
+   31
+  ]
+ },
+ "oranje": {
+  "mesto": "Babuna",
+  "tacka": [
+   53.0,
+   74.2
+  ],
+  "cvor": [
+   60,
+   79
+  ]
+ },
+ "tvrdjava": {
+  "mesto": "Skoplje",
+  "tacka": [
+   51.8,
+   64.5
+  ],
+  "cvor": [
+   59,
+   68
+  ]
+ },
+ "podrum": {
+  "mesto": "Prilep",
+  "tacka": [
+   53.4,
+   78.5
+  ],
+  "cvor": [
+   52,
+   85
+  ]
+ },
+ "mocvara": {
+  "mesto": "Skadarsko blato",
+  "tacka": [
+   23.4,
+   60.9
+  ],
+  "cvor": [
+   24,
+   55
+  ]
+ },
+ "pecina": {
+  "mesto": "Ohrid",
+  "tacka": [
+   43.2,
+   83.4
+  ],
+  "cvor": [
+   40,
+   81
+  ]
+ },
+ "prevoj": {
+  "mesto": "Šar-planina",
+  "tacka": [
+   43.9,
+   62.4
+  ],
+  "cvor": [
+   36.5,
+   62
+  ]
+ },
+ "kacanik-1": {
+  "mesto": "Kačanik",
+  "tacka": [
+   50.5,
+   61.5
+  ],
+  "cvor": [
+   44.5,
+   57
+  ]
+ },
+ "kacanik-2": {
+  "mesto": "Kačanik",
+  "tacka": [
+   49.6,
+   59.8
+  ],
+  "cvor": [
+   51.5,
+   56
+  ]
+ },
+ "kacanik-3": {
+  "mesto": "Kačanik",
+  "tacka": [
+   48.6,
+   58.1
+  ],
+  "cvor": [
+   58.5,
+   57
+  ]
+ },
+ "klisura": {
+  "mesto": "Zvečan",
+  "tacka": [
+   43.8,
+   44.9
+  ],
+  "cvor": [
+   36,
+   35
+  ]
+ },
+ "rusevine": {
+  "mesto": "Drač",
+  "tacka": [
+   25.0,
+   79.1
+  ],
+  "cvor": [
+   29.5,
+   75
+  ]
+ },
+ "rudnik": {
+  "mesto": "Novo Brdo",
+  "tacka": [
+   51.6,
+   51.4
+  ],
+  "cvor": [
+   61,
+   44
+  ]
+ },
+ "reka": {
+  "mesto": "Solunski zaliv",
+  "tacka": [
+   75.7,
+   95.7
+  ],
+  "cvor": [
+   75,
+   84
+  ]
+ },
+ "urvina": {
+  "mesto": "Urvina",
+  "tacka": [
+   91.9,
+   88.2
+  ],
+  "cvor": [
+   88,
+   79
+  ]
+ },
+ "san": {
+  "mesto": "Markov manastir",
+  "tacka": [
+   51.4,
+   65.6
+  ],
+  "cvor": [
+   46.5,
+   70
+  ]
+ },
+ "azak": {
+  "mesto": "Azak",
+  "tacka": [
+   95.9,
+   6.5
+  ],
+  "cvor": [
+   90,
+   14
+  ]
+ }
+}

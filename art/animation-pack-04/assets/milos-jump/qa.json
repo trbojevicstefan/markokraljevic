@@ -1,0 +1,117 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        144,
+        207,
+        374,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        38142,
+        8,
+        3
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        131,
+        94,
+        353,
+        448
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        40434
+      ],
+      "greenPixels": 0,
+      "supportY": 447,
+      "safeMargin": 64
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        138,
+        72,
+        381,
+        408
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        39249
+      ],
+      "greenPixels": 0,
+      "supportY": 407,
+      "safeMargin": 72
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        100,
+        118,
+        352,
+        378
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        34927,
+        12
+      ],
+      "greenPixels": 0,
+      "supportY": 377,
+      "safeMargin": 100
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        108,
+        106,
+        337,
+        438
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        38673,
+        11
+      ],
+      "greenPixels": 0,
+      "supportY": 437,
+      "safeMargin": 74
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        122,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45561
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8656036446469249,
+  "identityApproved": true,
+  "notes": "Staged only; requires visual identity and motion review.",
+  "motionApproved": true,
+  "visualReview": "Milos jump, crouch through tucked apex to idle landing; holds final frame.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

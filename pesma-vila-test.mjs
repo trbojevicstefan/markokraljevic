@@ -15,7 +15,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,vilaTu,state:()=>({p,world,mode,level,horseMounted}),pesma:()=>pesma,jahanje:jahanjeTrap,potera:poteraTrap,draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,vilaTu,state:()=>({p,world,mode,level,horseMounted}),pesma:()=>pesma,jahanje:jahanjeTrap,potera:poteraTrap,draw:()=>{try{draw(1/60);}catch(e){return e;}return null;},hero:()=>hero,heroPose,playerPose};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);
 const tap=k=>{press(k);step();release(k);};
@@ -103,6 +103,12 @@ ok(J.ph==='pesice'&&!api.state().horseMounted&&J.milos.st==='pesice','forest: th
  J.milos.cd=0;step(3);ok(foe.hp<200,'companion: Miloš cuts at a foe beside him');foe.alive=false;
  p.x+=2000;step(4);ok(Math.abs(J.milos.x-p.x)<200,'companion: left far behind, he comes up behind Marko');}
 ok(!api.state().world.barriers.some(b=>b.x>T.x0&&b.x<T.x1&&!b.horse),'forest: nothing blocks the road after the song');
+// ---- Miloš is playable: H swaps the hero while the two walk the forest ----
+{const {p}=api.state();p.attack=0;p.climb=null;p.grounded=true;tap('KeyH');ok(api.hero()==='milos'&&p.sablja,'hero: H and the player is Miloš, with his sword');
+ const pose=api.heroPose(api.playerPose());ok(/^milos-/.test(pose.name),`hero: Marko's pose is drawn as Miloš's clip (${pose.name})`);
+ ok(/^milos-attack$/.test(api.heroPose({name:'marko-sablja-udarac-1',frame:2}).name)&&api.heroPose({name:'marko-run',frame:1}).name==='milos-run','hero: his cut and his run are his own');
+ ok(api.draw()===null,'hero: Marko walks beside Miloš and both draw');
+ step(2);tap('KeyH');ok(api.hero()==='marko','hero: H again and the player is Marko');}
 // every phase draws without an error
 ok(api.draw()===null,'drawing: the forest after the song draws without an error');
 console.log(`\n${checks} checks passed.`);
