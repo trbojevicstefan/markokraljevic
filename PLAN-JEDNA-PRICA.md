@@ -20,6 +20,6 @@ Stanje se upisuje ovde posle svake faze (✔ gotovo i objavljeno, ◐ u toku, �
 
 ## Pravila rada
 
-- Radi se u `marko-noc`, objavljuje `git push origin noc-poliranje:main` posle testova; u `marko-game` se ne piše.
+- Od 14. 11. postoji samo jedna kopija igre: repo je direktno u `D:\projects\Marko Kraljevic` (grana `main`, bez worktree-ova); objavljuje se `git push origin main` posle testova.
 - Posle svake faze: ceo skup testova, snimci iz igre, README, pa objava.
 - Crteže koji fale naručujem sam (vidi `art/world-pack-03/DOPUNA-46.md` i dalje): najslabiji model za jedan lik sa pravim uzorom, jači samo gde najslabiji dvaput ne uspe.

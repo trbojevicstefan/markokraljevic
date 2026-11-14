@@ -141,27 +141,24 @@ if(!ONLY||ONLY>3){let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-p
   for(const s of G().shrines){const before=!!G().moci[s.moc];place(s.x-60,s.y,1);walk(s.x+20,300);step(10);(s.taken&&G().moci[s.moc]===true&&!before?given:wrong).push(`${n}:${s.moc}`);}}
  ok(given.length>0&&wrong.length===0,`pohodi: every shrine gives its power (${given.length}: ${given.join(' ')})${wrong.length?' — not: '+wrong.join(' '):''}`);}
 // ---- the props of the three levels, each set by hand: on firm ground (no hole under any part of it), clear of shrines, checkpoints,
-// switches, levers and doorways; only pictures the biome has ----
-{const m=JSON.parse(await fs.readFile('dist/assets/realisticno/manifest.json','utf8'));const bad=[];let count=0;
- for(const n of [1,2,3]){if(ONLY&&ONLY!==n)continue;const L=GB.gbLevel(n),w=GB.makeGreybox(n),S=w.gb,B=m.biomes[L.biom],ids=new Set(B.props.map(o=>o.id));
+// switches, levers and doorways; only names that have a painted picture ----
+{const {propStandIn}=await import('./dist/greybox-svet.js');const bad=[];let count=0;
+ for(const n of [1,2,3]){if(ONLY&&ONLY!==n)continue;const L=GB.gbLevel(n),w=GB.makeGreybox(n),S=w.gb;
   const keep=[...S.shrines.map(s=>[s.x,s.y,'oltar']),...S.ckpts.map(c=>[c.x,c.y,'ckpt']),...S.doors.filter(d=>d.sw).map(d=>[d.sw.x,d.sw.y,'prekidac']),...S.gates.filter(g=>g.lever).map(g=>[g.lever.x,g.lever.y,'poluga'])];
-  for(const p of S.props){count++;const o=B.props.find(o=>o.id===p.id),half=(o?.w||80)/2,tag=`${n}:${p.id}@${p.x}`;if(!ids.has(p.id)){bad.push(tag+' (not in '+L.biom+')');continue;}
+  for(const p of S.props){count++;const half=({baklja:34,mangal:60}[p.id]||80)/2,tag=`${n}:${p.id}@${p.x}`;if(!propStandIn(p.id)){bad.push(tag+' (no painted picture)');continue;}
    const R=L.rooms.find(R=>p.x>=R.x0&&p.x<R.x1&&p.y>R.y0&&p.y<=R.y1);if(!R){bad.push(tag+' (in no room)');continue;}
    if(p.x-half<R.x0+40||p.x+half>R.x1-40)bad.push(tag+' (at a doorway)');
    if(!p.fg){const firm=x=>w.platforms.some(q=>!q.off&&q.solid!==false&&x>=q.x&&x<=q.x+q.w&&Math.abs((q.surf?physics.topAt(q,x):q.y)-p.y)<100);if(!firm(p.x-half+6)||!firm(p.x)||!firm(p.x+half-6))bad.push(tag+' (over a hole)');}
    else if(!w.platforms.some(q=>!q.off&&p.x>=q.x&&p.x<=q.x+q.w&&Math.abs(q.y-p.y)<100))bad.push(tag+' (foreground over a hole)');
    for(const [x,y,k] of keep)if(!p.fg&&Math.abs(x-p.x)<half+50&&Math.abs(y-p.y)<60)bad.push(tag+` (on the ${k})`);}}
  ok(bad.length===0,`props: ${count} set by hand in the three levels, each on firm ground and clear of shrines, checkpoints, switches and doorways${bad.length?' — '+bad.join(', '):''}`);}
-// ---- the dressing: every picture each level (1–19) asks for is on disk; each pohod with a vista wears its own ----
-{const {artFiles}=await import('./dist/greybox-svet.js');const m=JSON.parse(await fs.readFile('dist/assets/realisticno/manifest.json','utf8'));
+// ---- the dressing: every painted picture each level (1–19) asks for is on disk; each pohod wears the set it wants ----
+{const {artFiles}=await import('./dist/greybox-svet.js');
  let pohodi={};try{pohodi=(await import('./dist/greybox-nivoi-pohodi.js')).GB_POHODI||{};}catch{}GB.gbRegister(pohodi);
- const missing=[],own=[],noVista=[];let n0=0;for(const n of Object.keys(GB.GB_LEVELS)){const L=GB.gbLevel(n),files=artFiles(L,m);n0+=files.length;
+ const missing=[],own=[];let n0=0;for(const n of Object.keys(GB.GB_LEVELS)){const L=GB.gbLevel(n),files=artFiles(L);n0+=files.length;
   for(const f of files)if(!(await fs.stat('dist/assets/'+f).then(()=>true,()=>false)))missing.push(`${n}:${f}`);
-  if(+n>3){const v=Object.entries(m.biomes).find(([k,o])=>k===`svet-${L.zeljeniBiom}`||k.startsWith('svet-')&&o.vista===L.zeljeniBiom);
-   // its own vista, or (when every outdoor room picks a set, like the river and the forest) the vistas of its rooms
-   const used=[...new Set(files.filter(f=>f.startsWith('realisticno/svet-')).map(f=>f.split('/')[1]))];
-   if(v)(used.length?own:missing).push(`${n}:${used.includes(v[0])?v[0]:used.join('+')}`);else noVista.push(`${n}:${L.zeljeniBiom}`);}}
- ok(missing.length===0&&own.length>0,`dressing: ${n0} pictures for ${Object.keys(GB.GB_LEVELS).length} levels, none missing; pohodi in their own vista (${own.join(' ')})${noVista.length?', with their biome: '+noVista.join(' '):''}${missing.length?' — MISSING '+missing.slice(0,8).join(' '):''}`);}
+  if(+n>3&&L.zeljeniBiom&&files.some(f=>f.startsWith(`world/${L.zeljeniBiom}-`)))own.push(`${n}:${L.zeljeniBiom}`);}
+ ok(missing.length===0&&own.length>0,`dressing: ${n0} painted pictures for ${Object.keys(GB.GB_LEVELS).length} levels, none missing; pohodi in their own set (${own.join(' ')})${missing.length?' — MISSING '+missing.slice(0,8).join(' '):''}`);}
 // ---- hills and hollows: Marko walks along the slope ----
 if(!ONLY||ONLY===1){const L=GB.gbLevel(1);api.startGreybox(1);quiet();const R=GB.gbRoom(L,'varos'),qs=W().platforms.filter(q=>q.surf&&q.x<R.x1&&q.x+q.w>R.x0),under=x=>qs.find(q=>x>=q.x&&x<=q.x+q.w);
  place(R.x0+450,R.floor,1);api.keys.add('KeyD');let off=0,air=0,lo=1e9,hi=-1e9;for(let f=0;f<900&&P().x<R.x0+1000;f++){step();const p=P();if(!p.grounded)air++;else{const q=under(p.x);off=Math.max(off,Math.abs(p.y-(q?physics.topAt(q,p.x):R.floor)));}lo=Math.min(lo,p.y);hi=Math.max(hi,p.y);}api.keys.clear();

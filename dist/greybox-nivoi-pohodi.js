@@ -5,7 +5,7 @@
 // zid, prečica sa polugom. Svaki pomoćnik postavi blokove i u istom potezu zapiše vezu, pa soba, test i mapa uvek pričaju isto.
 // Nivoi idu redom priče (JOURNEY u game.js), posle tri nivoa iz greybox-nivoi.js: ?greybox=4 je Kosovsko selo.
 // Od igre Lost Crown je uzeta samo ideja strukture; sobe, imena i priča su iz pesama o Marku (pesme/) i iz pohoda ove igre.
-// Biom (`biom`) je iz manifesta realističnih slika (podgradje, urvina, klisura); `zeljeniBiom` kaže koji bi crtež tu išao.
+// Biom (`biom`) bira naslikane zamene (podgradje, urvina, klisura); `zeljeniBiom` kaže koji naslikani komplet tu ide.
 // Kuka dok greybox.js nema registar: ovaj fajl sam doda svoje nivoe u GB_NIVOI (world.js ga uvozi samo u pregledaču).
 import{GB_NIVOI}from'./greybox-nivoi.js';
 import{GB_MOCI}from'./greybox.js';

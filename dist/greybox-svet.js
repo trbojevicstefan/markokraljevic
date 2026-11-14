@@ -1,21 +1,17 @@
-// ================= Dressing the greybox levels: realistic pictures over the grey rooms =================
-// The contract with the "realisticne-pozadine" work is dist/assets/realisticno/manifest.json:
-//   {version:1, biomes:{<biome>:{layers:[{id,file,speed,w,h}], interior:{layers:[...]},
-//     materials:{ground,wall,platform,beam,ceiling}, props:[{id,file,w,h,anchor:'bottom',solid}]}}}
-// with file paths relative to dist/assets/. The biomes are podgradje, urvina and klisura.
-// Until the manifest (or one of its files) is there, the pictures the artist already painted for the game stand in
-// (dist/assets/world: the backdrops of the pohodi, ground strips, masonry and rock, platforms and props); until those
-// load too, the room stays grey. Rooms with `interior` use the biome's interior set (cellars, caves, the inside of a
+// ================= Dressing the greybox levels: the painted pictures over the grey rooms =================
+// The pictures the artist painted for the game dress every room (dist/assets/world: the backdrops of the pohodi, ground
+// strips, masonry and rock, platforms and props); until they load, the room stays grey. The realistic set and its manifest
+// (dist/assets/realisticno) are gone (Stefan, 14. 11. 2026); the code below still takes a manifest of the same shape
+//   {version:1, biomes:{<biome>:{layers:[{id,file,speed,w,h}], interior:{layers:[...]}, materials:{...}, props:[...]}}}
+// if one is ever handed to it, but nothing loads one now. Rooms with `interior` use the biome's interior set (cellars, caves, the inside of a
 // tower); a room's `set` picks another backdrop of the same level (a forest inside the mountain level, say).
 // Backdrops are drawn with parallax inside the room; the ground strip is cut into narrow columns that follow every slope;
 // walls, ledges and beams are filled with their materials exactly where their blocks stand, so what Marko stands on is what
 // is painted. Gameplay marks (the wing's ledges, the dash's lips, doors, gates, switches) are drawn over it by greybox.js.
 // v2 wears the painted art (Stefan, 12. 11. 2026: the old assets for the backdrops and the rest, not the realistic ones):
-// the manifest is not read, so every level gets the stand-ins below, with the hand-made layers (<set>-<layer>-rucno) where
-// v1 uses them too. index.html?greybox=N&realisticno=1 still shows the realistic set, to compare.
+// every level gets the stand-ins below, with the hand-made layers (<set>-<layer>-rucno) where v1 uses them too.
 
 const BASE='assets/';
-const REAL=typeof location!=='undefined'&&/[?&]realisticno=1(&|$)/.test(location.search||'');
 // the stand-ins from dist/assets/world, per biome and per backdrop set
 const W=id=>`world/${id}.webp`,LAY=(set,sp=[.04,.16,.38,.72])=>['sky','far','mid','near'].map((k,i)=>({id:`${set}-${k}`,file:W(`${set}-${k}`),speed:sp[i]}));
 const FALLBACK={
@@ -42,10 +38,8 @@ const ALIAS={tezga:'kolica',kamen:'kameni-blok',bure:'bacva',luk:'rusevni-luk',b
 // a manifest material is one seamless 512×512 picture (repeated both ways), not a painted strip or a platform with caps
 const isTex=f=>typeof f==='string'&&f.startsWith('realisticno/');
 
-// ---------- loading: the manifest once, each picture once ----------
-let manifest,manifestAsked=false;const pics={};
-function askManifest(){if(!REAL||manifestAsked||typeof fetch!=='function')return;manifestAsked=true;
- fetch(BASE+'realisticno/manifest.json').then(r=>r.ok?r.json():null).then(m=>{manifest=m&&m.version?m:null;}).catch(()=>{manifest=null;});}
+// ---------- loading: each picture once (a manifest only when the test hands one in) ----------
+let manifest=null;const pics={};
 // the hand-made layers: <set>-<layer>-rucno.webp stands in for <set>-<layer>.webp when dist/assets/world has it (as in game.js)
 let worldFiles=null,worldAsked=false;
 function askWorld(){if(worldAsked)return;worldAsked=true;if(typeof fetch!=='function'){worldFiles=new Set();return;}
@@ -67,7 +61,7 @@ function standIn(L){const fb=FALLBACK[L.biom]||FALLBACK.podgradje,z=L.zeljeniBio
 // a vista is found by its "vista" field (the painted set it stands for), or by its name svet-<vista>
 function vistaOf(z){if(!z||!manifest?.biomes)return null;const B=manifest.biomes,v=B[`svet-${z}`]||Object.entries(B).find(([k,o])=>k.startsWith('svet-')&&o.vista===z)?.[1];return v&&v.layers?.length&&!v.layers.some(l=>failed(l.file))?v:null;}
 function vista(L){return vistaOf(L.zeljeniBiom);}
-function biome(L){askManifest();const fb=standIn(L),mb0=manifest?.biomes?.[L.biom],vb=vista(L);
+function biome(L){const fb=standIn(L),mb0=manifest?.biomes?.[L.biom],vb=vista(L);
  // a vista lends the outside, the ground strips and the foreground; the biome keeps the inside (vistas have none)
  const mb=vb?{...(mb0||{}),layers:vb.layers,interior:mb0?.interior,materials:{...(mb0?.materials||{}),...Object.fromEntries(Object.entries(vb.materials||{}).filter(([k])=>k.startsWith('ground')))},props:(vb.props||[]).some(o=>o.layer==='foreground')?[...(mb0?.props||[]).filter(o=>o.layer!=='foreground'),...vb.props.filter(o=>o.layer==='foreground')]:mb0?.props||[]}:mb0;if(!mb)return fb;
  const pickLayers=(m,f)=>m?.length&&!m.some(l=>failed(l.file))?m:f;
@@ -199,15 +193,14 @@ function surfaceAt(platforms,x,y){let best=y,d=1e9;for(const q of platforms){if(
 const OWN={oltar:'greybox/oltar.webp',prekidac:'greybox/prekidac.webp',poluga:'greybox/poluga.webp'};
 // with the painted art: Ravijojla's stone for the altar (grey with a green mark, it stands out on any floor), the pressure
 // plate for the switch, the painted lever (both its states)
-export function artPedestal(G,L,x,y){if(!G.hasDom)return false;if(!REAL){const f=W('cilj-vilinski-kamen-budan');if(!pic(f))return false;prop(G.ctx,f,x,y+4,54);return true;}
- if(pic(OWN.oltar)){prop(G.ctx,OWN.oltar,x,y+4,58);return true;}const m=propOf(biome(L),'kameni-blok');if(!m||!pic(m.file))return false;prop(G.ctx,m.file,x,y+6,46);return true;}
-export function artSwitch(G,x,y,down){if(!G.hasDom)return false;if(!REAL){const f=W(down?'ploca-pritisak-stisnuta':'ploca-pritisak');if(!pic(f))return false;prop(G.ctx,f,x,y+4,down?13:17);return true;}
- if(!pic(OWN.prekidac))return false;prop(G.ctx,OWN.prekidac,x,y+(down?7:3),down?18:24);return true;}
-export function artLever(G,x,y,open){if(!G.hasDom)return false;if(!REAL){const f=W(open?'cilj-poluga-povucena':'cilj-poluga');if(!pic(f))return false;prop(G.ctx,f,x,y+3,64);return true;}
- if(!pic(OWN.poluga))return false;prop(G.ctx,OWN.poluga,x,y+3,80,!open);return true;}
+export function artPedestal(G,L,x,y){if(!G.hasDom)return false;const f=W('cilj-vilinski-kamen-budan');if(!pic(f))return false;prop(G.ctx,f,x,y+4,54);return true;}
+export function artSwitch(G,x,y,down){if(!G.hasDom)return false;const f=W(down?'ploca-pritisak-stisnuta':'ploca-pritisak');if(!pic(f))return false;prop(G.ctx,f,x,y+4,down?13:17);return true;}
+export function artLever(G,x,y,open){if(!G.hasDom)return false;const f=W(open?'cilj-poluga-povucena':'cilj-poluga');if(!pic(f))return false;prop(G.ctx,f,x,y+3,64);return true;}
+// for the test: the painted picture a level's prop name stands for
+export const propStandIn=id=>PROPS[id]||null;
 
-// ---------- for the test: every picture a level would ask for, with a given manifest ----------
-export function artFiles(L,m){manifest=m;manifestAsked=true;delete L._standIn;const out=new Set(),b=biome(L);
+// ---------- for the test: every picture a level would ask for (with a manifest when one is given) ----------
+export function artFiles(L,m=null){manifest=m;delete L._standIn;const out=new Set(),b=biome(L);
  for(const R of L.rooms)for(const l of layersFor(L,R))out.add(l.file);
  for(const v of Object.values(b.materials||{}))if(typeof v==='string'&&v.includes('/'))out.add(v);
  for(const o of b.props||[])out.add(o.file);return[...out];}
