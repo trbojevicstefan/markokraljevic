@@ -1,0 +1,49 @@
+*{box-sizing:border-box}
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#f4ebd3;background:#0b1417}
+body{margin:0;overflow:hidden;background:#0b1417}
+#miroc-shell{position:relative;width:100vw;height:100dvh;overflow:hidden;display:grid;place-items:center}
+#game{display:block;width:min(100vw,177.7778dvh);height:auto;max-height:100dvh;aspect-ratio:16/9;background:#152927;touch-action:none}
+#miroc-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 51% 44%,transparent 42%,#0812136a 97%)}
+#miroc-hud{position:absolute;top:0;left:0;right:0;z-index:4;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:17px clamp(12px,3vw,46px);background:linear-gradient(#081512d9,transparent);text-shadow:0 2px 8px #000}
+.miroc-name{display:flex;align-items:center;gap:11px;min-width:210px}
+.miroc-name img{filter:sepia(.55) saturate(.6);opacity:.85}
+.miroc-name small,.miroc-center span{display:block;color:#b5bba9;font-size:10px;letter-spacing:1.8px;font-weight:700}
+.miroc-name b{display:block;font:700 clamp(12px,1.3vw,19px)/1.18 'Cormorant Garamond',Georgia,serif;letter-spacing:.7px;color:#f0deb6}
+.miroc-center{width:min(440px,39vw);text-align:center;margin-top:2px}
+.miroc-center strong{font:700 clamp(12px,1.4vw,20px)/1.2 'Cormorant Garamond',serif;display:block}
+.miroc-progress{height:4px;background:#d5c5a73f;border-radius:999px;margin:8px auto 5px;overflow:hidden}
+.miroc-progress i{height:100%;display:block;background:#e0b76a;transform-origin:left center;transform:scaleX(0);transition:transform .25s linear}
+.miroc-time{display:flex;gap:9px;align-items:center;justify-content:flex-end;min-width:160px}
+.miroc-time b{font:700 clamp(17px,2.1vw,25px)/1 Georgia,serif;min-width:62px;text-align:right;letter-spacing:1px}
+button{font:inherit;cursor:pointer}
+.miroc-time button{background:#203329a9;border:1px solid #ad977669;color:#ecdbb5;border-radius:8px;min-width:33px;min-height:32px}
+.miroc-time button:hover{background:#425139}
+#miroc-lyric{position:absolute;z-index:4;bottom:15%;left:50%;transform:translateX(-50%);max-width:min(94vw,880px);width:max-content;padding:12px 24px;text-align:center;background:#10191cc5;border:1px solid #d0b77f68;border-radius:9px;font:italic 600 clamp(15px,2.1vw,26px)/1.25 'Cormorant Garamond',Georgia,serif;color:#fff0cd;box-shadow:0 9px 30px #0005;text-shadow:0 2px 5px #000}
+#miroc-hint{position:absolute;z-index:3;bottom:7%;left:50%;transform:translateX(-50%);padding:7px 13px;background:#061315ac;color:#d4d7cb;font-size:11px;letter-spacing:.1px;border:1px solid #d9c69537;border-radius:100px;text-align:center;white-space:nowrap;max-width:96vw}
+#miroc-health{position:absolute;z-index:3;left:3%;top:86px;width:175px;height:6px;border-radius:6px;border:1px solid #a39d6b70;background:#1a2425;overflow:hidden}
+#miroc-health-fill{display:block;width:100%;height:100%;background:#b92e29;transition:width .15s linear}
+.miroc-modal{position:absolute;z-index:12;inset:0;display:grid;place-items:center;padding:18px;background:radial-gradient(ellipse at 50% 55%,#1b292aa9,#061316ec);backdrop-filter:blur(7px)}
+.miroc-modal[hidden]{display:none}
+.miroc-card{max-width:620px;width:min(100%,620px);padding:clamp(22px,4vw,42px);background:#132322f2;border:1px solid #d4ac7782;border-radius:14px;box-shadow:0 18px 80px #000b;display:flex;flex-direction:column;gap:14px;text-align:center}
+.miroc-eyebrow{font-size:10px;letter-spacing:3px;color:#d4b67a;font-weight:750}
+.miroc-card h1{font:700 clamp(37px,7vw,70px)/1.0 'Ruslan Display',Georgia,serif;color:#f4deb2;margin:1px 0 0;filter:drop-shadow(0 3px 3px #0007)}
+.miroc-card h1 em{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:.77em}
+.miroc-card h2{font:700 clamp(28px,5vw,48px)/1.1 'Ruslan Display',Georgia,serif;color:#f4deb2;margin:1px 0}
+.miroc-card p{font:500 clamp(15px,1.8vw,19px)/1.48 'Cormorant Garamond',Georgia,serif;margin:2px 0;color:#d2d9c7}
+.miroc-mission{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.miroc-mission span{border:1px solid #dfbc7940;padding:7px 12px;color:#e2cca8;border-radius:8px;font-size:11px;letter-spacing:.5px}
+.miroc-primary{background:#a74732;color:#fff6df;border:1px solid #e4be6f;padding:14px 24px;min-height:50px;border-radius:6px;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:700;box-shadow:0 8px 18px #0005}
+.miroc-primary:hover{background:#c05c37}
+.miroc-card a{color:#d9c69c;text-decoration:none;font-size:12px}
+.miroc-card a:hover{text-decoration:underline}
+.miroc-card .miroc-disclaimer{color:#9aa79f;font-size:10px;line-height:1.4}
+#miroc-toast{position:absolute;top:24%;left:50%;transform:translateX(-50%);color:#f8e4ba;text-shadow:0 3px 15px #000;background:#121c1bdc;border:1px solid #e2c28769;border-radius:9px;padding:10px 16px;z-index:5;pointer-events:none;opacity:0;transition:opacity .2s;font:700 clamp(15px,2vw,24px) 'Cormorant Garamond',Georgia,serif}
+#miroc-toast.visible{opacity:1}
+#miroc-touch{position:absolute;z-index:7;left:10px;right:10px;bottom:max(7px,env(safe-area-inset-bottom));display:none;justify-content:space-between;gap:12px;pointer-events:none}
+#miroc-touch>div{display:flex;gap:5px;align-items:end}
+#miroc-touch button{pointer-events:auto;touch-action:none;min-width:46px;min-height:44px;background:#172f2cd4;color:#fff3d4;border:1px solid #e2c0837d;border-radius:10px;font-size:13px;font-weight:700;user-select:none}
+#miroc-touch button:active,#miroc-touch button.pressed{background:#a74732}
+@media (hover:none),(pointer:coarse){#miroc-touch{display:flex}#miroc-hint{display:none}#miroc-lyric{bottom:21%;width:min(95vw,700px)}}
+@media(max-width:700px){#miroc-hud{padding:9px 10px;gap:6px}.miroc-name{min-width:100px;gap:5px}.miroc-name img{width:22px;height:27px}.miroc-name small{font-size:7px;letter-spacing:.6px}.miroc-name b{font-size:11px}.miroc-center{width:35%;max-width:260px}.miroc-center strong{font-size:12px}.miroc-time{gap:3px;min-width:100px}.miroc-time b{font-size:16px;min-width:43px}.miroc-time button{min-width:26px;min-height:28px;font-size:11px}#miroc-health{top:57px;width:94px}#miroc-lyric{font-size:16px;padding:7px 10px}#miroc-touch button{min-width:34px;min-height:38px;font-size:11px}.miroc-card{padding:18px;gap:10px}.miroc-card p{font-size:15px}}
+@media(max-height:500px){#miroc-touch button{min-height:31px;min-width:34px}#miroc-lyric{bottom:18%;font-size:15px;padding:4px 9px}#miroc-hint{bottom:2%}.miroc-card{max-width:650px;max-height:96dvh;overflow:auto;padding:10px 20px;gap:4px}.miroc-card h1{font-size:36px}.miroc-card p{font-size:13px}.miroc-primary{min-height:36px;padding:5px 16px;font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:0s!important;animation-duration:0s!important}}
