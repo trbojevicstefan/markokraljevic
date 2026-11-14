@@ -1,13 +1,13 @@
 /* Marko — interface in the manner of a medieval Serbian charter: crimson and gold, interlace corners, carved plaques. */
-:root{--gold:#d9b56a;--gold2:#f3dca0;--gold3:#8a6a2c;--crimson:#7a1f27;--crimson2:#a3323c;--ink:#0a1718;--teal:#10292a;--display:'Cormorant Garamond',Georgia,serif}
+:root{--gold:#d9b56a;--gold2:#f3dca0;--gold3:#8a6a2c;--crimson:#7a1f27;--crimson2:#a3323c;--ink:#1a0609;--teal:#2d0b0f;--display:'Cormorant Garamond',Georgia,serif}
 
 /* ---------- buttons: carved plaques with clipped corners ---------- */
 .primary,.secondary{position:relative;font-family:var(--display);clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);transition:filter .2s,transform .2s,box-shadow .2s}
 .primary{background:linear-gradient(180deg,#a3323c 0%,#7a1f27 55%,#5c151c 100%);color:var(--gold2);border:0;box-shadow:inset 0 0 0 1px #f3dca0aa,inset 0 0 0 4px #5c151c,inset 0 0 0 5px #d9b56a77;font-size:19px;font-weight:700;letter-spacing:1.5px;padding:16px 28px;text-shadow:0 2px 0 #3a0c10}
 .primary span{color:var(--gold2)}
 .primary:hover,.primary.pad-focus,.primary:focus-visible{filter:brightness(1.18);transform:translateX(4px);box-shadow:inset 0 0 0 1px #f3dca0,inset 0 0 0 4px #5c151c,inset 0 0 0 5px #f3dca0}
-.secondary{background:linear-gradient(180deg,#183a39,#0f2526);border:0;box-shadow:inset 0 0 0 1px #d9b56a88,inset 0 0 0 4px #0f2526,inset 0 0 0 5px #d9b56a33;color:#f1e3c0;font-size:16px;font-weight:600;letter-spacing:.6px;padding:13px 22px}
-.secondary:hover,.secondary.pad-focus,.secondary:focus-visible{background:linear-gradient(180deg,#24504c,#143433);transform:translateX(4px);box-shadow:inset 0 0 0 1px var(--gold2),inset 0 0 0 4px #143433,inset 0 0 0 5px #d9b56a88}
+.secondary{background:linear-gradient(180deg,#400f16,#290a0e);border:0;box-shadow:inset 0 0 0 1px #d9b56a88,inset 0 0 0 4px #290a0e,inset 0 0 0 5px #d9b56a33;color:#f1e3c0;font-size:16px;font-weight:600;letter-spacing:.6px;padding:13px 22px}
+.secondary:hover,.secondary.pad-focus,.secondary:focus-visible{background:linear-gradient(180deg,#581820,#380d13);transform:translateX(4px);box-shadow:inset 0 0 0 1px var(--gold2),inset 0 0 0 4px #380d13,inset 0 0 0 5px #d9b56a88}
 .text-button{font-family:var(--display);font-size:16px!important;color:#e9d7ad!important;letter-spacing:.5px}
 .text-button:hover{color:var(--gold2)!important;text-shadow:none}
 
@@ -25,7 +25,7 @@
 #menu .menu-links button{font-family:var(--display);font-size:15px;color:#e8d7ad}
 #menu .menu-links button:hover{color:var(--gold2);text-shadow:none}
 #menu .menu-decoration span:last-child{font-family:var(--display);font-size:13px;letter-spacing:5px}
-.menu-marko{animation:breathe 6s ease-in-out infinite;filter:drop-shadow(0 12px 25px #0b252bb0) drop-shadow(0 0 30px #ffb45a22)!important}
+.menu-marko{animation:breathe 6s ease-in-out infinite;filter:drop-shadow(0 12px 25px #2a0a0eb0) drop-shadow(0 0 30px #ffb45a22)!important}
 @keyframes breathe{50%{transform:translateY(-6px) scale(1.01)}}
 #menu-ledger{display:flex;gap:10px;margin:16px 0 4px}
 #menu-ledger div{flex:1;text-align:center;padding:8px 4px;background:#08151688;box-shadow:inset 0 0 0 1px #d9b56a33}
@@ -38,8 +38,8 @@
 #menu .quote small{display:block;font:10px Arial;letter-spacing:3px;color:#c9a96a;margin-top:6px;font-style:normal}
 
 /* ---------- modal cards: a charter with interlace corners ---------- */
-.modal{background:radial-gradient(ellipse at center,#0a1c1fcc,#030b0cf0)}
-.modal-card{position:relative;background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),linear-gradient(165deg,#1a3a39,#0f2426 60%,#0b1c1e);background-repeat:no-repeat;background-position:8px 8px,calc(100% - 8px) 8px,8px calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),0 0;background-size:48px,48px,48px,48px,auto;
+.modal{background:radial-gradient(ellipse at center,#20070bcc,#0c0304f0)}
+.modal-card{position:relative;background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-tr.svg),url(assets/ui/corner-bl.svg),url(assets/ui/corner-br.svg),linear-gradient(165deg,#401117,#290a0e 60%,#20070b);background-repeat:no-repeat;background-position:8px 8px,calc(100% - 8px) 8px,8px calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),0 0;background-size:48px,48px,48px,48px,auto;
  border:1px solid #d9b56a66;outline:1px solid #d9b56a22;outline-offset:-10px;box-shadow:0 40px 120px #000c,inset 0 0 60px #0007;animation:cardIn .35s cubic-bezier(.2,.9,.3,1.2)}
 @keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.97)}}
 .modal-card h2{font-family:var(--display);font-weight:700;font-size:40px;color:var(--gold2);text-shadow:0 2px 0 #3a2a10;margin:8px 0 6px}
@@ -49,13 +49,13 @@
 .modal-card h3{font-family:var(--display)}
 
 /* ---------- toasts and Ravijojla's words ---------- */
-#toast{font-family:var(--display);font-size:20px;font-weight:600;background:linear-gradient(180deg,#132b2bf2,#0b1c1ef2);border:0;box-shadow:inset 0 1px 0 #d9b56a99,inset 0 -1px 0 #d9b56a99,0 10px 30px #0008;padding:12px 30px 13px;color:#f6e7c4}
+#toast{font-family:var(--display);font-size:20px;font-weight:600;background:linear-gradient(180deg,#2f0c11f2,#20070bf2);border:0;box-shadow:inset 0 1px 0 #d9b56a99,inset 0 -1px 0 #d9b56a99,0 10px 30px #0008;padding:12px 30px 13px;color:#f6e7c4}
 #toast::before,#toast::after{content:'✦';color:var(--gold);margin:0 12px;font-size:12px;vertical-align:middle}
-#dialogue{background:linear-gradient(90deg,#14403ce8,#0e2427ee);border:0;box-shadow:inset 0 0 0 1px #8fe0c766,0 12px 40px #0009}
+#dialogue{background:linear-gradient(90deg,#410f16e8,#290a0eee);border:0;box-shadow:inset 0 0 0 1px #8fe0c766,0 12px 40px #0009}
 #dialogue p{font-family:var(--display);font-size:19px;font-weight:600}
 
 /* ---------- HUD ---------- */
-.hero-card{background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-br.svg),linear-gradient(90deg,#102322f2,#10232299);background-repeat:no-repeat;background-position:3px 3px,calc(100% - 3px) calc(100% - 3px),0 0;background-size:30px,30px,auto;border:1px solid #d7bb7155}
+.hero-card{background-image:url(assets/ui/corner-tl.svg),url(assets/ui/corner-br.svg),linear-gradient(90deg,#260b0ef2,#260b0e99);background-repeat:no-repeat;background-position:3px 3px,calc(100% - 3px) calc(100% - 3px),0 0;background-size:30px,30px,auto;border:1px solid #d7bb7155}
 .hero-label{font-family:var(--display);font-size:13px!important;letter-spacing:3px!important;color:var(--gold2)}
 .meter{border-color:#d9b56a99!important}
 .quest strong{font-family:var(--display);font-size:24px;font-weight:600;color:#f6e7c4}
@@ -63,7 +63,7 @@
 #boss-hud h2{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold2)}
 #boss-hud small{font-family:var(--display);font-weight:700;letter-spacing:6px}
 .boss-meter{border-color:#d9b56aaa!important;box-shadow:0 0 18px #a3323c55}
-.boss-guard{height:5px;margin:4px auto 0;width:62%;background:#0b1413cc;border:1px solid #9fb4c466;border-radius:3px;overflow:hidden}.boss-guard i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#8fa6b8,#e6eef5);transition:width .12s linear}.boss-guard.broken i{background:#ffcf6a}
+.boss-guard{height:5px;margin:4px auto 0;width:62%;background:#16080acc;border:1px solid #9fb4c466;border-radius:3px;overflow:hidden}.boss-guard i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#8fa6b8,#e6eef5);transition:width .12s linear}.boss-guard.broken i{background:#ffcf6a}
 
 /* ---------- the opening title of a pohod ---------- */
 #title-card{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:5}
@@ -90,8 +90,8 @@
 @keyframes nodePulse{50%{box-shadow:0 0 0 4px #f3dca0,0 0 30px #ff9a3a,0 6px 14px #0009}}
 .map-node:disabled{filter:grayscale(1) brightness(.55);cursor:default;transform:none}
 .map-node:disabled::after{content:'';position:absolute;inset:18px;background:url(assets/ui/lock.svg) center/contain no-repeat}
-.map-detail{border:1px solid #d9b56a55;background:#0b1c1ecc;display:flex;flex-direction:column}
-.map-detail .vista{height:150px;background:#132 center/cover no-repeat;box-shadow:inset 0 -40px 40px #0b1c1e}
+.map-detail{border:1px solid #d9b56a55;background:#20070bcc;display:flex;flex-direction:column}
+.map-detail .vista{height:150px;background:#350c12 center/cover no-repeat;box-shadow:inset 0 -40px 40px #20070b}
 .map-detail .info{padding:12px 16px 14px;flex:1;display:flex;flex-direction:column}
 .map-detail h3{font:700 26px var(--display);color:var(--gold2);margin:2px 0 4px}
 .map-detail .stars{font-size:22px;color:#ffd98a;letter-spacing:4px;margin:2px 0}
@@ -130,7 +130,7 @@
 #controls.faded{opacity:0}
 /* ---------- the two parts of the journey ---------- */
 #level-variants{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
-#level-variants [data-tab]{flex:1;min-width:220px;padding:10px 14px;font:700 17px var(--display);color:#e9d7ad;background:#0e2425;border:1px solid #d9b56a55;text-align:left}
+#level-variants [data-tab]{flex:1;min-width:220px;padding:10px 14px;font:700 17px var(--display);color:#e9d7ad;background:#28090d;border:1px solid #d9b56a55;text-align:left}
 #level-variants [data-tab] small{display:block;font:11px Arial;letter-spacing:1px;color:#a9b9ad;margin-top:2px}
 #level-variants [data-tab].on{background:linear-gradient(180deg,#a3323c,#6a1c23);color:var(--gold2);border-color:var(--gold)}
 #level-variants .variants{display:flex;gap:6px;width:100%}
@@ -141,14 +141,14 @@
 .map-node.chapter{background-color:#5c151c;background-size:118%;background-position:center 20%;border-color:#a3323c}
 .map-node.chapter.done{border-color:#d9b56a}
 .map-node.chapter span{font-size:13px;letter-spacing:1px}
-.map-detail .vista.portrait{background-size:contain;background-color:#132a2a;background-position:center bottom}
+.map-detail .vista.portrait{background-size:contain;background-color:#2e0c11;background-position:center bottom}
 /* ---------- the ability bar: icons with a draining cooldown ---------- */
-#abilities{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;pointer-events:none;z-index:3;padding:9px 14px 18px;border-radius:14px;background:linear-gradient(#0b1414e6,#081010ee);box-shadow:inset 0 0 0 1px #8a744877,0 6px 18px #0009}
-#abilities .ab{position:relative;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#24302d,#0d1514);box-shadow:inset 0 0 0 2px #6a5a3a,0 3px 8px #000a;display:grid;place-items:center;color:#e8d4a2}
+#abilities{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;pointer-events:none;z-index:3;padding:9px 14px 18px;border-radius:14px;background:linear-gradient(#16080ae6,#120507ee);box-shadow:inset 0 0 0 1px #8a744877,0 6px 18px #0009}
+#abilities .ab{position:relative;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#351c1f,#170a0b);box-shadow:inset 0 0 0 2px #6a5a3a,0 3px 8px #000a;display:grid;place-items:center;color:#e8d4a2}
 #abilities .ab[hidden]{display:none}
 #abilities .ab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 #abilities .ab img{position:absolute;inset:1px;width:56px;height:56px;border-radius:50%;object-fit:cover}
-#abilities .ab .cd{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(4,8,9,.8) calc(var(--p,0)*1turn),transparent 0)}
+#abilities .ab .cd{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(10,3,4,.8) calc(var(--p,0)*1turn),transparent 0)}
 #abilities .ab .ring{position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#d9b56a calc(var(--r,1)*1turn),#2a2a24 0);-webkit-mask:radial-gradient(circle,transparent 30px,#000 31px);mask:radial-gradient(circle,transparent 30px,#000 31px);opacity:0}
 #abilities .ab.res .ring{opacity:1}
 #abilities .ab.res:not(.ready) img,#abilities .ab.res:not(.ready) svg{filter:saturate(.35) brightness(.7)}
@@ -163,7 +163,7 @@
 #abilities .ab-sep{width:1px;height:44px;background:#8a744877;margin:0 2px}
 @keyframes abNo{30%{transform:translateX(-4px);box-shadow:inset 0 0 0 2px #ff6a4a}70%{transform:translateX(4px)}}
 .kombinacije{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:10px 0}
-.kombinacije div{padding:8px 12px;background:#0c2224aa;border:1px solid #c8ab6f33}
+.kombinacije div{padding:8px 12px;background:#25090daa;border:1px solid #c8ab6f33}
 .kombinacije kbd{margin-right:8px}.kombinacije b{font:600 15px var(--display);color:#f1dfb8}.kombinacije small{display:block;font:11px Arial;color:#a9b9ad;margin-top:3px}
 @media(max-width:600px){#abilities{bottom:120px;transform:translateX(-50%) scale(.82)}}
 #abilities{left:22px;bottom:46px;transform:none;display:grid;grid-template-columns:repeat(4,58px);gap:26px 14px;padding:12px 14px 26px}
@@ -171,7 +171,7 @@
 @media(max-width:600px){#abilities{bottom:150px;transform:scale(.8);transform-origin:left bottom}}
 
 /* ---------- language: SR | EN ---------- */
-.lang-pick{position:absolute;top:24px;right:30px;z-index:6;display:flex;background:#081516b0;box-shadow:inset 0 0 0 1px #d9b56a88;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)}
+.lang-pick{position:absolute;top:24px;right:30px;z-index:6;display:flex;background:#170508b0;box-shadow:inset 0 0 0 1px #d9b56a88;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)}
 .lang-pick button{background:none;border:0;padding:8px 15px;font:700 14px var(--display);letter-spacing:2.5px;color:#cdbf9c;transition:color .2s,background .2s}
 .lang-pick button:hover{color:var(--gold2)}
 .lang-pick button.on{background:linear-gradient(180deg,#a3323c,#6a1c23);color:var(--gold2);text-shadow:0 1px 0 #3a0c10}
@@ -212,7 +212,7 @@
 .dusmani-row .secondary{width:100%}
 
 /* ---------- the book of foes ---------- */
-#knjiga{background:radial-gradient(ellipse at 50% 45%,#1d1410d9,#050a0bf2 75%)}
+#knjiga{background:radial-gradient(ellipse at 50% 45%,#1d1410d9,#0c0304f2 75%)}
 .book-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;width:min(1060px,100%)}
 .book{--ink:#2b1c10;--rubric:#7a1f1f;position:relative;display:grid;grid-template-columns:1fr 1fr;width:100%;height:min(580px,calc(100vh - 150px));padding:14px;perspective:2600px;
  background:linear-gradient(135deg,#5e1b1d,#3a0e12 60%,#2a090c);border-radius:12px;box-shadow:0 40px 90px #000d,inset 0 0 0 2px #d9b56a55,inset 0 0 0 7px #3a0e12,inset 0 0 0 8px #d9b56a33}
@@ -524,7 +524,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #menu .menu-copy{top:max(78px,calc(50% - 300px))!important;transform:none!important;max-height:calc(100vh - 96px);overflow-y:auto;scrollbar-width:thin}
 #menu .menu-links{flex-wrap:nowrap;gap:12px}
 #menu .menu-links button{font-size:15px;white-space:nowrap}
-.fs-btn{position:absolute;top:24px;right:212px;z-index:6;width:36px;height:36px;border:0;border-radius:4px;background:#081516b0;box-shadow:inset 0 0 0 1px #d9b56a88;color:#e8d7ad;font-size:18px;line-height:1}
+.fs-btn{position:absolute;top:24px;right:212px;z-index:6;width:36px;height:36px;border:0;border-radius:4px;background:#170508b0;box-shadow:inset 0 0 0 1px #d9b56a88;color:#e8d7ad;font-size:18px;line-height:1}
 .fs-btn:hover,.fs-btn:focus-visible{color:var(--gold2);box-shadow:inset 0 0 0 1px var(--gold2)}
 /* the backdrop: the Kačanik gorge, slowly drifting; Marko stands on a ledge in his own scale */
 #menu{--ground-h:34vh;--ground-top:calc(var(--ground-h) * .82 - 2vh);--marko:min(84vh,780px)}
@@ -552,8 +552,8 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .kontrole-card{width:min(1040px,95vw);max-height:92vh;overflow:auto}
 .kontrole-note{opacity:.75;margin:.2em 0 .6em}
 .pad-svg{display:block;width:100%;max-width:880px;margin:0 auto}
-.pad-body{fill:#1d2423;stroke:#8a7448;stroke-width:2}
-.pad-well{fill:#121716;stroke:#3a4241}
+.pad-body{fill:#271719;stroke:#8a7448;stroke-width:2}
+.pad-well{fill:#190e10;stroke:#3a4241}
 .pad-btn{fill:#2b302e;stroke:#a88c55;stroke-width:1.5;transition:fill .08s}
 .pad-btn.face.fA{stroke:#5fae6a}.pad-btn.face.fB{stroke:#c8564a}.pad-btn.face.fX{stroke:#5a86c8}.pad-btn.face.fY{stroke:#d6b448}
 .pad-btn.on{fill:#d9b56a}
@@ -562,7 +562,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .pad-act{fill:#eadbb4;font:15px Georgia,serif}
 .pad-line{stroke:#8a7448;stroke-width:1;stroke-dasharray:3 3;opacity:.7}
 .kontrole-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
-.kontrole-box{background:#0f1515cc;border:1px solid #8a744866;border-radius:6px;padding:10px 12px}
+.kontrole-box{background:#170c0dcc;border:1px solid #8a744866;border-radius:6px;padding:10px 12px}
 .kontrole-box h3{margin:0;font:600 17px Georgia,serif;color:#e8cf95}
 .kontrole-box small{display:block;opacity:.65;margin-bottom:6px}
 .kontrole-box p,.kontrole-keys p{display:flex;gap:10px;align-items:center;margin:5px 0}
@@ -573,17 +573,17 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 /* the treasury: tabs, skill cards, key chips */
 .riznica-card{width:min(1080px,95vw);height:min(86vh,860px);display:flex;flex-direction:column}
 .riz-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px;border-bottom:1px solid #8a744866;padding-bottom:8px}
-.riz-tabs button{background:#0f1515;border:1px solid #8a744866;color:#eadbb4;font:600 16px Georgia,serif;padding:7px 14px;border-radius:5px;cursor:pointer}
+.riz-tabs button{background:#170c0d;border:1px solid #8a744866;color:#eadbb4;font:600 16px Georgia,serif;padding:7px 14px;border-radius:5px;cursor:pointer}
 .riz-tabs button small{opacity:.7;font-weight:400;margin-left:4px}
 .riz-tabs button.on{background:#d9b56a;color:#1a1410;border-color:#d9b56a}
 .riz-panel{overflow:auto;flex:1;padding-right:6px}
 .riz-lead{opacity:.8;margin:0 0 10px}
-.riz-bar{height:6px;background:#0f1515;border-radius:3px;margin:0 0 12px;overflow:hidden}.riz-bar i{display:block;height:100%;background:#d9b56a}
+.riz-bar{height:6px;background:#170c0d;border-radius:3px;margin:0 0 12px;overflow:hidden}.riz-bar i{display:block;height:100%;background:#d9b56a}
 .riz-skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.riz-skill{display:flex;gap:12px;align-items:flex-start;background:#0f1515cc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
+.riz-skill{display:flex;gap:12px;align-items:flex-start;background:#170c0dcc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
 .riz-skill.have{border-color:#d9b56a;box-shadow:inset 3px 0 0 #d9b56a}
 .riz-skill.locked{opacity:.72}
-.riz-num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1d2423;border:1px solid #8a7448;font:600 15px Georgia,serif;color:#e8cf95}
+.riz-num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#271719;border:1px solid #8a7448;font:600 15px Georgia,serif;color:#e8cf95}
 .riz-skill.have .riz-num{background:#d9b56a;color:#1a1410}
 .riz-skill b{font:600 17px Georgia,serif;color:#f1e3bd}
 .riz-skill small{display:block;margin:4px 0;font-size:14px;line-height:1.4;opacity:.9}
@@ -593,7 +593,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .riz-keys kbd{font-size:13px;padding:2px 8px;min-width:24px;text-align:center}
 .riz-keys i{font-style:normal;opacity:.7}.riz-keys span{font-size:13px;opacity:.85}
 .riz-combos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.riz-combo{background:#0f1515cc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
+.riz-combo{background:#170c0dcc;border:1px solid #8a744855;border-radius:6px;padding:10px 12px}
 .riz-combo b{display:block;font:600 16px Georgia,serif;color:#f1e3bd}.riz-combo small{opacity:.85;font-size:14px}
 
 /* Ravijojla flying at the viewer */
@@ -610,7 +610,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 @keyframes krvEkran{0%{opacity:0;transform:scale(.55)}5%{opacity:.9;transform:scale(1)}65%{opacity:.75;transform:translateY(14px)}100%{opacity:0;transform:translateY(46px)}}
 
 /* ---------- the pause: a campfire scene beside Codex's carved frame ---------- */
-#pause-menu.pauza{background:radial-gradient(ellipse at 50% 60%,#0a0f0ec4,#030505f0);backdrop-filter:blur(4px)}
+#pause-menu.pauza{background:radial-gradient(ellipse at 50% 60%,#100809c4,#050203f0);backdrop-filter:blur(4px)}
 .pauza-wrap{display:flex;align-items:center;justify-content:center;gap:36px;max-width:96vw}
 .pauza-scena{margin:0;position:relative;width:min(580px,46vw);aspect-ratio:3/2;border-radius:6px;overflow:hidden;box-shadow:0 0 0 2px #7a5c34,0 0 0 7px #1e150d,0 0 0 9px #6a5230,0 22px 46px #000d;animation:pauzaScena .6s cubic-bezier(.2,.8,.2,1) both}
 .pauza-logor{position:absolute;inset:0;background:url(assets/world/pauza-logor.webp) 0 0/1600% 100% no-repeat;animation:pauzaVatra 1.6s steps(16) infinite}
@@ -620,7 +620,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .pauza-iskre i:nth-child(4){left:46%;animation-delay:1.2s;animation-duration:3s}.pauza-iskre i:nth-child(5){left:50%;animation-delay:1.6s}
 .pauza-iskre i:nth-child(6){left:48%;animation-delay:2s;animation-duration:2.4s}.pauza-iskre i:nth-child(7){left:52%;animation-delay:.6s;animation-duration:3.2s}
 @keyframes pauzaIskra{0%{opacity:0;transform:translate(0,0)}12%{opacity:.95}70%{opacity:.6}100%{opacity:0;transform:translate(18px,-170px)}}
-.pauza-scena figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;background:linear-gradient(transparent,#050807e6);text-align:left}
+.pauza-scena figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;background:linear-gradient(transparent,#090404e6);text-align:left}
 .pauza-scena figcaption b{display:block;font:600 19px Georgia,serif;color:#f1e3bd;letter-spacing:.5px}
 .pauza-scena figcaption small{color:#c9b98f;font-size:14px}
 .pauza-ram{position:relative;height:min(90vh,690px);width:auto;max-width:46vw;aspect-ratio:900/1180;background:url(assets/world/pauza-ram.webp) center/100% 100% no-repeat;padding:15% 13% 11%;display:flex;flex-direction:column;padding-bottom:15.5%;filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .6s cubic-bezier(.2,.8,.2,1) both}
@@ -649,7 +649,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 /* ---------- Controls and Settings in Codex's carved frames (DOPUNA-31) ----------
    Both frames keep their own proportions: one scale factor --s (screen px per source px) sizes the frame and its borders,
    so nothing stretches. The text scrolls inside the green felt, never over the wood. */
-#kontrole.modal,#settings.modal{background:radial-gradient(ellipse at 50% 60%,#0a0f0ec4,#030505f0);backdrop-filter:blur(4px)}
+#kontrole.modal,#settings.modal{background:radial-gradient(ellipse at 50% 60%,#100809c4,#050203f0);backdrop-filter:blur(4px)}
 .ram-kontrole{--s:min(92vh / 1000,96vw / 1500,1.1px);position:relative;width:calc(var(--s) * 1500);height:calc(var(--s) * 1000);
  background:url(assets/world/ram-kontrole.webp) center/100% 100% no-repeat;filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .5s cubic-bezier(.2,.8,.2,1) both}
 .ram-tablica{position:absolute;left:37.1%;width:25.7%;top:2.6%;height:9.3%;display:flex;align-items:center;justify-content:center;margin:0;
@@ -694,7 +694,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 /* ---------- the hero card, clearer: a thick health bar with its number, flasks for wine, icons by the meters ---------- */
 #hud .hero-card{padding:12px 20px 13px 12px;border-radius:8px;box-shadow:inset 0 0 0 1px #8a744899,0 8px 20px #0008;min-width:360px}
 #hud .hero-label{font:700 12px Georgia,serif;letter-spacing:3px;margin-bottom:7px;color:#f1e3bd}
-#hud .meter{position:relative;width:230px;height:16px;padding:2px;border-radius:4px;background:#070f0e;border:1px solid #a88c55}
+#hud .meter{position:relative;width:230px;height:16px;padding:2px;border-radius:4px;background:#100506;border:1px solid #a88c55}
 #hud .meter i{border-radius:2px;background:linear-gradient(180deg,#e2614c,#a02a26 60%,#7a1c1e)}
 #hud #hp-text{position:absolute;inset:0;display:grid;place-items:center;font:700 11px Georgia,serif;color:#fff1d6;text-shadow:0 1px 2px #000,0 0 3px #000}
 #hud .resources{gap:12px;margin-top:9px;font-size:12px}
@@ -704,7 +704,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #hud #coins{font:700 13px Georgia,serif}
 #hud .hud-ico{width:18px;height:18px;vertical-align:middle;margin-right:5px}
 #hud .fairy-label{display:flex;align-items:center;font-size:10px;letter-spacing:1px}
-#hud .fairy-meter{width:64px;height:6px;border-radius:3px;background:#173d38;overflow:hidden}
+#hud .fairy-meter{width:64px;height:6px;border-radius:3px;background:#410f16;overflow:hidden}
 #hud .combat-meters{gap:16px;margin-top:9px;font-size:10px;align-items:center}
 #hud .combat-meters>div{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 #hud .mini-meter{width:86px;height:5px;border-radius:3px;overflow:hidden}
@@ -738,7 +738,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .map-node.megdan span{background:#7a1a1a;color:#ffe2a8;border-color:#3a0a0a}
 .pohod-map.grana .map-title{left:auto;right:16px;top:auto;bottom:8px;font-size:16px;opacity:.75}
 @media(min-width:901px) and (max-width:1180px){.pohod-map.grana{grid-template-columns:1fr}.pohod-map.grana .map-detail{flex-direction:row;min-height:150px}
- .pohod-map.grana .map-detail .vista{width:250px;height:auto;min-height:150px;flex:none;box-shadow:inset -40px 0 40px #0b1c1e}
+ .pohod-map.grana .map-detail .vista{width:250px;height:auto;min-height:150px;flex:none;box-shadow:inset -40px 0 40px #20070b}
  .pohod-map.grana .map-detail .info{display:grid;grid-template-columns:1fr auto;column-gap:18px;align-content:start}
  .pohod-map.grana .map-detail .info>*{grid-column:1}
  .pohod-map.grana .map-detail .primary{grid-column:2;grid-row:1/span 7;align-self:center;width:auto;min-width:200px;margin:0}}
@@ -841,3 +841,11 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .karta-map .map-detail .vista.portrait{height:110px}
 .karta-map .map-detail h3{font-size:23px}
 .karta-map .map-detail p{font-size:15px;line-height:1.35}
+
+/* Marko on Šarac gallops by the next chapter (mounted-run: six frames of 384 px), and the map breathes a little */
+.karta-marko{position:absolute;width:70px;height:70px;margin:-78px 0 0 -6px;background:url(assets/mounted-run.png) 0 0/600% 100% no-repeat;animation:kartaGalop .6s steps(6) infinite,kartaSkok .3s ease-in-out infinite alternate;pointer-events:none;z-index:3;filter:drop-shadow(0 3px 2px #3a241066)}
+@keyframes kartaGalop{to{background-position:-420px 0}}
+@keyframes kartaSkok{to{transform:translateY(-3px)}}
+.karta::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,#0000 55%,#3a1a0a38 100%);animation:kartaDah 7s ease-in-out infinite alternate}
+@keyframes kartaDah{from{opacity:.65}to{opacity:1}}
+.karta-map .map-node.next{box-shadow:0 0 0 3px #ffe39a,0 0 18px 6px #ffcf6a99}
