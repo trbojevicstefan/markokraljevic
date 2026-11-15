@@ -5,6 +5,7 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+["DRUM JE ČIST","THE ROAD IS CLEAR"],
 ["Palac te vodi drumom, a dugme SKOK je skok. TOPUZ udara, TEŠKI je težak udarac, a ŠTIT diže štit.","The thumbstick moves you along the road and JUMP jumps. MACE strikes, HEAVY is the heavy blow and SHIELD raises the shield."],
 ["Levi štapić te vodi drumom, a A je skok. X udara topuzom, Y je teški udarac, a LB diže štit.","The left stick moves you along the road and A jumps. X strikes with the mace, Y is the heavy blow and LB raises the shield."],
 ["levi štapić","left stick"],["palac","thumbstick"],

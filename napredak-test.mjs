@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -60,4 +60,8 @@ await api.startLevel(lv('manastir'));{const {p,world}=S(),T=world.traps.find(t=>
  for(const e of world.enemies)e.alive=false;Object.assign(p,{x:T.x0+200,y:T.y,vx:0,vy:0,grounded:true});step(10);ok(T.state==='odbrana','stepping in starts the defence');
  let bands=0;for(let i=0;i<120*80&&T.state==='odbrana';i++){p.hp=p.maxHp;p.invuln=1;api.update(1/120);if(i%60===0){for(const e of world.enemies)if(e.alive&&e.prey===T)api.slay(e);bands=Math.max(bands,T.wave);}}
  ok(bands===4&&T.state==='spaseni','four bands, and the monks are saved');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač i branik`);
+// ---- F1: kill-cam za poslednjeg dušmanina bitke ----
+await api.startLevel(lv('selo'));{const {p,world}=S(),near=world.enemies.filter(e=>e.alive&&!e.champion).slice(0,4);for(const e of world.enemies)if(!near.includes(e))e.alive=false;
+ near.forEach((e,i)=>Object.assign(e,{x:p.x+150+i*60,y:p.y}));step(120);for(const e of near.slice(0,3)){api.slay(e);step(30);}
+ ok(api.film().slowMo<=0,'a foe falls, others still stand: no slow motion yet');api.slay(near[3]);ok(api.film().slowMo>0&&api.film().kinoT>0,'the last of the fight falls slowly, the camera leans in');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik i kill-cam`);

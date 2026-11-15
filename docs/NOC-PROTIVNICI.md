@@ -35,7 +35,7 @@ Urađeno pre noći:
 
 ## Filmski spisak (naizmenično sa protivnicima: jedan sat film, jedan sat protivnik)
 
-F1. ☐ **Kill-cam:** poslednji dušmanin čete, odbrane ili zemlje pada usporeno, uz zum i kratak zvuk zvona.
+F1. ✔ **Kill-cam:** poslednji dušmanin čete, odbrane ili zemlje pada usporeno, uz zum i kratak zvuk zvona.
 F2. ☐ **Uvod megdana:** kamera pređe sa bosa na Marka, a preko ekrana se ispiše ime bosa velikim slovima i podnaslov (kao u Sekiro i Hollow Knight).
 F3. ☐ **Tiho obaranje:** zum, a boje izblede za trenutak.
 F4. ☐ **Junački udar (R):** kratko zamrznut kadar, zum i crvena crta preko ekrana pre udara.
@@ -66,3 +66,4 @@ F8. ☐ **Kontra (savršeno odbijanje):** trenutno usporenje i bljesak, a kamera
 ## Dnevnik noći
 
 (svaki sat jedan red: vreme, stavka, commit, šta je provereno)
+- 00:40 · F1 kill-cam: poslednji dušmanin prave bitke (3 pala za 12 s, niko živ u blizini) pada usporeno, kamera priđe, zvono, „DRUM JE ČIST” (`killCam` u `slay`). Provereno: `napredak-test.mjs` (prva tri pada bez usporenja, poslednji sa usporenjem i zumom) i ceo lanac.
