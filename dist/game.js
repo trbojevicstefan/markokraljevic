@@ -4916,7 +4916,11 @@ function fanRedom(T){const small=innerHeight<=430,main=small?58:66,g=small?6:8,p
  const q=k=>{const b=T.querySelector(`.fan [data-key="${k}"]`);return b&&!b.hidden?b:null;};
  const sp=small?50:56,hv=small?48:52,bl=small?42:46,ro=small?46:50;
  if(q('Space'))put(q('Space'),main+g,0,sp);if(q('KeyK'))put(q('KeyK'),(main-hv)/2,main+g,hv);if(q('KeyL'))put(q('KeyL'),main+g*.6,main+g*.6,bl);if(q('ShiftLeft'))put(q('ShiftLeft'),main+g+sp+g,0,ro);
- const s=small?38:42,red=FAN_RED.map(q).filter(Boolean),y=main+g+hv+g*2;red.forEach((b,i)=>put(b,i*(s+g),y,s));}
+ // the small skill buttons: a tidy grid against the right edge, from under the round buttons at the top down to the cluster
+ // (Stefan, 16. 11.: „ta mala dugmad neka budu poređana skroz desno ispod ovih većih”), never across the middle of the screen
+ const s=small?34:38,red=FAN_RED.map(q).filter(Boolean),cell=s+(small?13:15),top=58,bottomTop=main+g+hv+16,H=innerHeight-8,avail=Math.max(cell,H-bottomTop-top),
+  rows=Math.max(1,Math.floor(avail/cell)),cols=Math.ceil(red.length/rows);
+ red.forEach((b,i)=>{const c=Math.floor(i/rows),r=i%rows;put(b,c*(s+g),H-top-r*cell-s,s);});T.dataset.kolone=String(cols);}
 function abilityBar(dt){const el=$('abilities');if(!el||!p)return;if(mode!=='play'){el.hidden=true;return;}el.hidden=false;
  if(abTick-dt<=0)fanStanje();if(LITE&&$('touch')&&!$('touch').hidden){abTick-=dt;if(abTick<=0)abTick=.12;return;}
  if(!abBuilt&&hasDom){abBuilt=true;el.innerHTML=ABILITIES.map(a=>`${a.grp>1?'<i class="ab-sep"></i>':''}<div class="ab" data-ab="${a.id}" title="${tr(a.name)}"><svg viewBox="0 0 24 24">${AB_ICON[a.icon]||TOUCH_ICONS[a.icon]||''}</svg><img src="assets/world/ikona-${a.img||a.id}.webp" alt="" onerror="this.remove()"><i class="cd"></i><i class="ring"></i><span class="left"></span><b class="key"></b></div>`).join('');}

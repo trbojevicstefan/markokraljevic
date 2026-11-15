@@ -236,3 +236,14 @@
  #boss-hud{transform:translateX(-50%) scale(.72)!important;transform-origin:top center!important;top:6px!important}
  .stik-zona{width:38vw}
 }
+
+/* ================= telefon (16. 11.): zadatak gore u sredini (desno su sada mala dugmad), meniji se pomeraju prstom ================= */
+@media(max-width:900px),(pointer:coarse){
+ #hud .quest{right:auto!important;left:50%!important;top:2px!important;width:250px!important;transform:translateX(-50%) scale(.82)!important;transform-origin:top center!important;
+  text-align:center!important;border-right:0!important;border-bottom:2px solid var(--hud-gold);background:linear-gradient(180deg,#1a0709cc,#1a070900)!important;padding:4px 10px 6px!important}
+ #hud #slova{justify-content:center}
+ #menu,.modal,.overlay{overflow-y:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain}
+ .modal{place-items:start center!important;padding:10px!important}
+ .modal-card,.nap-wrap,.pauza-wrap,.riznica-card,.book-wrap,.ram-kontrole{max-height:none!important}
+ .nap-glavno{overflow:visible!important}
+}
