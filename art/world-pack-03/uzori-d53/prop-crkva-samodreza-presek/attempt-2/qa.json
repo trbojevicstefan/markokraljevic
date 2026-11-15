@@ -1,0 +1,39 @@
+{
+  "size": [
+    1024,
+    1024
+  ],
+  "bbox": [
+    141,
+    131,
+    882,
+    1001
+  ],
+  "facadeBBox": [
+    141,
+    131,
+    882,
+    1001
+  ],
+  "bboxDelta": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "boundsMatch": true,
+  "alphaRange": [
+    0,
+    255
+  ],
+  "touchesEdge": false,
+  "components": 1,
+  "sourceCrop": [
+    171,
+    158,
+    1081,
+    1227
+  ],
+  "removedDisconnectedPixels": 26096,
+  "visualApproved": true
+}
