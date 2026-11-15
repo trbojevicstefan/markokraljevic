@@ -1,0 +1,116 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        112,
+        108,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50867
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        112,
+        105,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50930
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        114,
+        106,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50630
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        96,
+        105,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        52003
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        112,
+        106,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50933
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        112,
+        106,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50817
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8501118568232662,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d57\\vukasin-udara-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 380,
+  "targetHeight": 380,
+  "visualReview": "D58: Same crowned silver-haired king, red gold-embroidered cloak, chainmail and handzar. Reference crown-to-sole height retained. Six proud idle poses with breathing, hand at hilt, cloak sway and small head turn; seamless right-facing loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

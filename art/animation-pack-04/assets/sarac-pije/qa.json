@@ -1,0 +1,106 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        61,
+        197,
+        451,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66509
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        32,
+        197,
+        455,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66138,
+        10
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        52,
+        197,
+        457,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        65879
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        61,
+        197,
+        450,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66515
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        197,
+        455,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        65847
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        61,
+        197,
+        450,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66436
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-pije/attempt-2",
+  "review": {
+    "approved": true,
+    "description": "D57 Sarac drinks with muzzle near y470, small sipping head lifts and tail swishes; reference-edited six-frame loop.",
+    "identity": "Same chestnut-white pinto, saddle, embroidered red cloth, gold mane edges and tack; all six poses visually inspected.",
+    "size": "Saddlecloth width about 125 px versus reference about 120 px, within 5 percent; torso and grounded legs comparable at native 512 scale.",
+    "motion": "Muzzle lowest about y466, hooves y488; frame 5 returns near frame 0. Tail and all legs complete.",
+    "attempt": 2
+  }
+}

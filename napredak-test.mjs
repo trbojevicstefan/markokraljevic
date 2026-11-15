@@ -1,0 +1,58 @@
+// Stefan, 15. 11. 2026: ekonomija, odmor jakih udaraca, meni Napredak (stepeni veština) i Crni vrač. node napredak-test.mjs
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+{let s=(+process.env.SEED||1)>>>0;Math.random=()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^s>>>15,1|s);t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};}
+import * as physics from './dist/world.js';
+const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,value:'normal',checked:false,style:{},textContent:'',innerHTML:'',firstElementChild:{style:{}},classList:{add(){},remove(){},toggle(){}},setAttribute(){},getContext(){return{};},addEventListener(){}});return nodes.get(id);};
+const document={getElementById:node,querySelectorAll:()=>[],addEventListener(){},activeElement:{tagName:'BODY'}};
+const storage=new Map();const localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v)),removeItem:k=>storage.delete(k)};
+storage.set('marko-moci',JSON.stringify(['trag','kombo','potres','oko','krilo','lanac','nalet','gaz','zidotrk']));
+const window={addEventListener(){}};
+class Image{set src(v){queueMicrotask(()=>this.onload());}}
+const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
+let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
+const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
+ '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
+ 'kupiKovac,smithLevels,slay,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
+const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
+
+// ---- ekonomija: plen upola, ponovljeno poglavlje trećina, slova 20 ----
+ok(api.lootCoins(20)===10&&api.lootCoins(1)===1,'loot: a chest of 20 gives 10, never less than one');
+ok(api.killCoins(false)===2&&api.killCoins(true)===5,'a foe gives 2 ducats, an elite 5');
+ok(api.EKON.slova===20,'the five letters give 20 ducats');
+
+// ---- odmor jakih udaraca: K drugi put odmah ne prolazi ----
+await api.startLevel(lv('selo'));{const {p,world}=S();for(const e of world.enemies)e.alive=false;Object.assign(p,{cooldown:0,attack:0,grounded:true});
+ api.strike(true);ok(p.attackKind==='heavy'&&p.cd?.tezak>1.5,'the heavy blow starts its own rest (1.6 s)');
+ Object.assign(p,{attack:0,cooldown:0});const id=p.attackId;api.strike(true);ok(p.attackId===id,'a second heavy blow at once is refused while it rests');
+ step(120*1.8);Object.assign(p,{attack:0,cooldown:0});api.strike(true);ok(p.attackId!==id,'after the rest K strikes again');}
+
+// ---- Napredak: stepen veštine za dukate skraćuje odmor ----
+storage.set('marko-skills',JSON.stringify(['niz','zamah']));api.ownedSkills().add('niz');api.ownedSkills().add('zamah');
+api.setBank(500);const cd1=api.cdFull('tezak');ok(api.rankUp('zamah')&&api.bank()===500-api.RANK_COST[0],'rank II of the full swing costs 120 ducats');
+ok(api.skillRank('zamah')===2&&Math.abs(api.cdFull('tezak')-cd1*.85)<1e-9,'rank II: the heavy blow rests 15 % less');
+ok(api.rankUp('zamah')&&api.skillRank('zamah')===3&&!api.rankUp('zamah'),'rank III is the highest');
+api.setBank(50);ok(!api.rankUp('niz'),'no rank without the ducats');
+api.setBank(100);ok(api.kupiKovac('hp')&&api.smithLevels().hp===1&&api.bank()===30,'the smith sells mail for 70 ducats');
+
+// ---- Crni vrač: novi nivo i bos ----
+ok(api.JOURNEY.includes('vracara')&&api.JOURNEY.indexOf('vracara')===api.JOURNEY.indexOf('reka')+1,'Vračeva jaruga comes after the river, before Urvina');
+await api.startLevel(lv('vracara'));{const {p,world}=S(),c=world.enemies.find(e=>e.champion);
+ ok(c&&c.kit==='vrac'&&c.look==='vrac','the champion of Vračeva jaruga is the Black Sorcerer');
+ Object.assign(p,{x:c.arena.x0+160,y:c.y,vx:0,vy:0,grounded:true});const seen=new Set();let cini=0;
+ for(let i=0;i<120*16;i++){p.hp=p.maxHp;p.invuln=1;api.update(1/120);if(c.vk)seen.add(c.vk.s);cini=Math.max(cini,api.arrows().filter(a=>a.cini).length);}
+ ok(c.engaged,'the sorcerer takes up the duel');
+ ok(seen.has('carolija')&&cini>0,'he casts charms that fly at Marko');
+ ok(seen.has('nestaje')&&seen.has('skriven')&&seen.has('pojavljuje'),'he vanishes in smoke and appears elsewhere');
+ c.hp=c.maxHp*.45;let klon=0;for(let i=0;i<120*14;i++){p.hp=p.maxHp;p.invuln=1;api.update(1/120);klon=Math.max(klon,c.vk.klon.length);}
+ ok(klon>=2,'below half he splits into shadows');
+ c.vk.s='stoji';c.vk.t=5;c.vk.nevidljiv=false;c.stun=0;const h=c.hp;api.arrows().push({cini:true,x:c.x,y:c.y-80,vx:0,vy:0,life:1,enemy:false});api.update(1/120);
+ ok(c.hp<=h-100,'his own charm, sent back with the shield, hurts him');
+ c.vk.s='skriven';c.vk.t=5;c.vk.nevidljiv=true;const h2=c.hp;api.arrows().push({cini:true,x:c.x,y:c.y-80,vx:0,vy:0,life:1,enemy:false});api.update(1/120);
+ ok(c.hp===h2,'in the smoke nothing reaches him');
+ ok(api.draw()===null,'the duel draws');
+ api.slay(c);ok(!c.alive&&S().corpses.some(k=>k.type==='vrac'),'he falls in his own clip');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori i Crni vrač`);

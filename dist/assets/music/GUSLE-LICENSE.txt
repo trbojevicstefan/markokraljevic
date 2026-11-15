@@ -1,0 +1,27 @@
+Gusle u igri (preuzeto 15. 11. 2026. sa Wikimedia Commons, slobodne licence)
+
+gusle-musa.ogg
+  Izvor: "Marko Kraljević i Musa Kesedžija (dio).ogg"
+  https://commons.wikimedia.org/wiki/File:Marko_Kraljevi%C4%87_i_Musa_Kesed%C5%BEija_(dio).ogg
+  Autor: VVVladimir (2010). Licenca: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/
+  Isti obrađen snimak kao assets/sfx/guslar_pesma_duga.ogg (vidi GUSLAR-PESMA-LICENSE.txt).
+
+gusle-dojcin.ogg
+  Izvor: "Bolani Dojcin.ogg" (početak pesme „Bolani Dojčin” uz gusle)
+  https://commons.wikimedia.org/wiki/File:Bolani_Dojcin.ogg
+  Autor: VVVladimir. Licenca: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/
+
+gusle-vujadin.ogg
+  Izvor: "Стари Вујадин.ogg" (tradicionalna epska narodna pesma)
+  https://commons.wikimedia.org/wiki/File:%D0%A1%D1%82%D0%B0%D1%80%D0%B8_%D0%92%D1%83%D1%98%D0%B0%D0%B4%D0%B8%D0%BD.ogg
+  Autor: Милован Добриловић. Licenca: CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/
+
+gusle-svirka.ogg
+  Izvor: "Gusle0001.ogg"
+  https://commons.wikimedia.org/wiki/File:Gusle0001.ogg
+  Licenca: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/ (autor nije naveden na stranici fajla)
+
+Izmene (dojcin, vujadin, svirka): ujednačena jačina (loudnorm -20 LUFS), utišavanje na početku (1,2 s) i kraju (2,5 s),
+mono 22 kHz, ponovo kodirano u Ogg Vorbis. Obrađeni snimci se dele pod istom licencom kao izvor.
+
+Drugih snimaka pesama o Marku sa slobodnom licencom na Wikimedia Commons i Internet Archive-u 15. 11. 2026. nije bilo.

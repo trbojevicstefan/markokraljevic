@@ -594,6 +594,28 @@ if _have('milos-konj') and 'milos-jase' in SCALES:
 # marko-uzjase is drawn wider (Marko beside the horse), so the centre of its picture is not the horse's: the anchor is moved so
 # its front hoof stands where mounted-idle's does (measured: 48.1 against 41.9 world px), applied after ANCHOR_FIX below.
 NOC_ANCHOR_FIX = {'marko-uzjase': 17.7}
+# DOPUNA-57/58 (15. 11.): each clip was drawn as an edit of its model's frame 0 at that frame's size and place in the cell
+# (Šarac from sarac-stoji, the sorcerer from vrac-idle, Kosovka from kosovka-idle, Đemo from djemo-idle, Vukašin from
+# vukasin-udara), so it shares that clip's zoom. Where the figure leaves its standing outline (the horse rears, lies down,
+# the maiden kneels, the old man falls) the median centre of the clip would move him aside, so those take the anchor of
+# the clip they were drawn from (NOC_ANCHOR_SAME, applied after the anchors are measured).
+for _n in ('sarac-pije', 'sarac-lupa', 'sarac-propinje', 'sarac-boli', 'sarac-pada', 'sarac-hod'):
+    if _have(_n) and 'sarac-stoji' in SCALES:
+        SCALES[_n] = SCALES['sarac-stoji']
+for _n, _m in (('vrac-stap', 'feet'), ('vrac-smrt', 'center')):   # vrac-idle is set below (DOPUNA-45) at the sword-bearer's zoom
+    if _have(_n) and 'sword-idle' in SCALES:
+        SCALES[_n] = (SCALES['sword-idle'][0], _m)
+if _have('vukasin-stoji') and 'marko-idle-2' in SCALES:
+    SCALES['vukasin-stoji'] = (SCALES['marko-idle-2'][0], 'feet')
+if _have('kosovka-poji') and 'kosovka-idle' in SCALES:
+    SCALES['kosovka-poji'] = (SCALES['kosovka-idle'][0], 'feet')
+if _have('djemo-omamljen') and 'djemo-idle' in SCALES:
+    SCALES['djemo-omamljen'] = (SCALES['djemo-idle'][0], 'feet')
+if _have('milos-pada-s-konja') and 'milos-jase' in SCALES:   # drawn from milos-jase frame 0, the bay standing where it stood
+    SCALES['milos-pada-s-konja'] = SCALES['milos-jase']
+NOC_ANCHOR_SAME = {'sarac-pije': 'sarac-stoji', 'sarac-lupa': 'sarac-stoji', 'sarac-propinje': 'sarac-stoji', 'sarac-boli': 'sarac-stoji',
+                   'sarac-pada': 'sarac-stoji', 'sarac-hod': 'sarac-stoji', 'vrac-stap': 'vrac-idle', 'vrac-smrt': 'vrac-idle',
+                   'kosovka-poji': 'kosovka-idle', 'milos-pada-s-konja': 'milos-jase'}
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
@@ -669,6 +691,9 @@ for name, d in ANCHOR_FIX.items():
 for name, d in NOC_ANCHOR_FIX.items():   # the noc-poliranje block's own (see there)
     if name in rig:
         rig[name]['anchor'] = round(rig[name]['anchor'] + d, 1)
+for name, src in NOC_ANCHOR_SAME.items():   # the noc-poliranje block's own (see there)
+    if name in rig and src in rig:
+        rig[name]['anchor'] = rig[src]['anchor']
 # The launcher (Lost Crown, W+K) has no drawing of its own yet: it is the cut upward, the same sheet and frames.
 for alias, src in {'marko-launcher': 'marko-uppercut'}.items():
     if alias not in rig and src in rig:

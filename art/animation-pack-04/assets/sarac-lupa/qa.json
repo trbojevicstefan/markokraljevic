@@ -1,0 +1,182 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        71,
+        109,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        74942,
+        8,
+        8,
+        10,
+        8,
+        10,
+        8,
+        13,
+        9,
+        13,
+        13,
+        13,
+        9
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        69,
+        109,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        74236,
+        8,
+        10,
+        12,
+        9,
+        11,
+        8,
+        13,
+        8,
+        8,
+        14,
+        11,
+        9,
+        12,
+        8,
+        9,
+        9,
+        12,
+        8,
+        8
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        63,
+        110,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        76111,
+        8,
+        9,
+        13,
+        8,
+        10,
+        8,
+        8,
+        8,
+        12,
+        8,
+        10,
+        11,
+        12,
+        25
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        71,
+        99,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        76506,
+        9,
+        9,
+        9,
+        19,
+        12,
+        11,
+        13,
+        13,
+        9
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        64,
+        114,
+        470,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        75711,
+        8,
+        18,
+        17,
+        8,
+        10,
+        8,
+        8,
+        9,
+        10
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        72,
+        109,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        74639,
+        10,
+        8,
+        9,
+        17,
+        12,
+        9,
+        8,
+        8,
+        11,
+        10,
+        16,
+        14,
+        9,
+        11
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-lupa/attempt-2",
+  "review": {
+    "approved": true,
+    "attempt": 2,
+    "description": "D57 Sarac paws with right forehoof, strikes the ground and raises his head to snort; six-frame reference-edited loop.",
+    "identity": "Exact pinto coloring, gold-edged mane, saddle and embroidered red tack retained. All six frames visually reviewed, whole tail and four anatomical legs.",
+    "size": "Standing height about 380px versus reference 382px (under 1 percent); common 0.98 scale and +15px x registration applied to all frames.",
+    "motion": "Right foreleg raised in1, extended down in2, planted in3 with raised head;5 returns to0. Ground baseline y488."
+  }
+}

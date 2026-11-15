@@ -326,7 +326,7 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
 // ---- the merchant by the road: wine, salve, a whetted mace and the amulet, paid in ducats ----
 {const w=await land('selo');const t=w.traps.find(t=>t.kind==='trgovac'),c=w.enemies.find(e=>e.champion),p=S().p;ok(t&&t.x<c.arena.x0&&t.x>c.arena.x0-1400,'merchant: a merchant waits by the road before the champion');
  for(const e of w.enemies)e.alive=false;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);api.pressed.add('KeyE');step(1);ok(S().mode==='shop','merchant: E opens his stall and the road waits');
- api.setBank(100);p.wine=1;p.wineMax=3;ok(api.buyDucan('vino')&&p.wine===2&&api.bank()===88,'merchant: twelve ducats buy a flask of wine');
+ api.setBank(200);p.wine=1;p.wineMax=3;ok(api.buyDucan('vino')&&p.wine===2&&api.bank()===180,'merchant: twenty ducats buy a flask of wine');
  p.hp=10;ok(api.buyDucan('melem')&&p.hp===p.maxHp,'merchant: the salve heals every wound');ok(!api.buyDucan('melem'),'merchant: he sells no salve to a whole man');
  const pw=p.power||1;ok(api.buyDucan('brus')&&p.power>pw&&!api.buyDucan('brus'),'merchant: the mace is whetted once for the quest');
  ok(api.buyDucan('amajlija')&&p.amajlija,'merchant: the amulet of Saint George');api.setBank(3);ok(!api.buyDucan('vino'),'merchant: no ducats, no wine');
@@ -461,7 +461,7 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
  const put=(type,dx,face=-1)=>{const e=free(type)||free('sword');e.sabUsed=true;Object.assign(e,{type,alive:true,hp:400,maxHp:400,x:p.x+dx,y:gy,home:p.x+dx,vx:0,vy:0,grounded:true,mode:'idle',timer:99,stun:0,climb:null,lunge:null,pendingHit:null,inChain:false,chainLeft:0,moveCool:99,spava:false,patrola:false,skriven:false,elite:false,enter:null,alert:true,par:null,tan:null,face,krv:0,armor:type==='oklopnik'?3:undefined,guardBroken:0});return e;};
  const only=keep=>{for(const o of w.enemies)if(!keep.includes(o))o.alive=false;};
  const rest=(n=90)=>{for(let i=0;i<n;i++){safe();for(const o of w.enemies)if(o.alive){o.timer=99;o.mode='idle';}step();}};
- const home=()=>{Object.assign(p,{x:x0,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,comboWindow:0,combo:0,jurisT:0});};
+ const home=()=>{Object.assign(p,{x:x0,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,cd:{},comboWindow:0,combo:0,jurisT:0});};   // cd: the rests of the strong blows (15. 11.)
  const e=put('sword',80);only([e]);p.sablja=false;home();tap('KeyJ');const tm=p.attack;rest();const dm=400-e.hp;
  e.hp=400;p.sablja=true;home();tap('KeyJ');const ts=p.attack;rest(50);const ds=400-e.hp;
  ok(ts<tm*.85&&ds>0&&dm>0,`sabre: a cut is quicker than a blow of the mace (${ts.toFixed(2)}s against ${tm.toFixed(2)}s)`);

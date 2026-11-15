@@ -1,0 +1,118 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        162,
+        124,
+        348,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        41382
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        149,
+        163,
+        362,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        40556
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        134,
+        187,
+        377,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        37233
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        75,
+        246,
+        436,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        33753,
+        2513
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        68,
+        319,
+        443,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        29717,
+        2578
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        56,
+        222,
+        456,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        31159
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8666666666666667,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d57\\vrac-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 364,
+  "targetHeight": 364,
+  "visualReview": "D58: Same wizard, robe, necklace and bone staff at reference scale. Startle, buckling knees, kneeling supported by staff, staff falling, forward collapse, prone body with visible grey smoke. No blood. Hold final frame.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,133 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        71,
+        103,
+        475,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        75718,
+        8,
+        11,
+        9,
+        10,
+        8,
+        12,
+        8,
+        8,
+        12,
+        9,
+        12,
+        11,
+        12,
+        27,
+        22
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        71,
+        93,
+        449,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        77317,
+        8,
+        20,
+        9,
+        13,
+        11,
+        10,
+        9,
+        9,
+        12,
+        9,
+        11,
+        10,
+        10,
+        28,
+        21
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        72,
+        196,
+        476,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        70884,
+        8,
+        8,
+        9,
+        9,
+        12,
+        9,
+        9,
+        8,
+        11,
+        10,
+        11,
+        10,
+        12,
+        14
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        72,
+        176,
+        479,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        17,
+        71785,
+        11,
+        8,
+        13,
+        12,
+        9,
+        9,
+        10,
+        11,
+        9,
+        9,
+        10,
+        26,
+        13
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-boli/attempt-1",
+  "review": {
+    "approved": true,
+    "attempt": 1,
+    "description": "D57 Sarac reacts to a blow: stands, jerks his head back, hunches and lowers his head, then stands bowed; four frames, no blood or wounds.",
+    "identity": "Same pinto horse, golden chestnut mane and tail, ornate red saddlecloth and tack. All four complete poses inspected.",
+    "size": "Native comparison: standing height about385px versus reference382px; body length comparable within5 percent. Common scale0.94 and dx9 for all frames.",
+    "motion": "Clear head recoil in1, bent knees and hunched body in2, bowed standing head in3. Four planted hoof baseline y488; whole tail and mane."
+  }
+}

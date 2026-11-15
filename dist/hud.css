@@ -1,0 +1,150 @@
+/* ================= HUD u duhu WoW-a (Stefan, 15. 11. 2026: „previše je nabacano, nema karakter igrice; napravi nešto
+   slično WoW-u; bolje sredi health bar") =================
+   Okvir junaka gore levo (portret u zlatnom krugu sa nivoom, ime, debela traka zdravlja koja zaostaje kad primiš udarac,
+   traka besa, tanak gard), zadatak desno kao spisak zadataka, traka veština dole u sredini sa kvadratnim poljima,
+   tasterom u uglu i odmorom koji se prazni. Učitava se posle ui.css i nadjačava ga. */
+:root{--hud-gold:#e3c27e;--hud-gold2:#f6e2ae;--hud-dark:#170708;--hud-plate:linear-gradient(180deg,#3a1418f2,#200a0cf2 60%,#170708f2)}
+
+/* ---------- okvir junaka ---------- */
+#hud{top:14px!important;left:16px!important;right:16px!important}
+#hud .hero-card.unit{position:relative;display:flex;align-items:center;gap:0;padding:0!important;min-width:0!important;background:none!important;border:0!important;box-shadow:none!important;clip-path:none}
+#hud .unit-portret{position:relative;z-index:2;flex:none;width:92px;height:92px;border-radius:50%;
+ background:radial-gradient(circle at 50% 35%,#5a2a22,#1d0b0a 70%);box-shadow:0 0 0 3px #1a0a08,0 0 0 5px var(--hud-gold),0 0 0 7px #3a220c,0 6px 16px #000c}
+#hud .unit-lice{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+#hud .unit-lice img{position:absolute;left:50%;top:-6px;width:210%;transform:translateX(-47%);pointer-events:none}
+#hud .unit-nivo{position:absolute;z-index:3;left:-4px;bottom:-4px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+ font:700 14px var(--display);color:var(--hud-gold2);background:radial-gradient(circle at 40% 35%,#6a1e22,#2a0a0c);box-shadow:0 0 0 2px var(--hud-gold),0 2px 6px #000}
+#hud .unit-telo{position:relative;margin-left:-22px;padding:9px 16px 9px 32px;width:318px;background:var(--hud-plate);
+ clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);
+ box-shadow:inset 0 0 0 1px #e3c27e88,inset 0 0 0 3px #170708,inset 0 0 0 4px #e3c27e33}
+#hud .hero-label{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 5px!important;font:700 14px var(--display)!important;letter-spacing:2.5px!important;color:var(--hud-gold2);text-shadow:0 1px 2px #000}
+#hud .hero-label #buff{font:700 11px Georgia,serif;letter-spacing:.5px;color:#ffd27a}
+/* zdravlje: debela traka, zlatan ram, broj u sredini, svetao trag udarca koji se posle isprazni */
+#hud .meter{position:relative;width:auto!important;border:0!important;padding:0!important;border-radius:3px;background:#0d0405;box-shadow:inset 0 0 0 1px #000,0 0 0 1px #e3c27e99}
+#hud .hp-meter{height:20px}
+#hud .hp-meter i{position:absolute;left:0;top:0;bottom:0;border-radius:2px}
+#hud .hp-meter #health{z-index:1;background:linear-gradient(180deg,#f27a62 0%,#c8352c 40%,#8e1a1c 75%,#6a1214 100%);box-shadow:inset 0 1px 0 #ffb4a088,inset -1px 0 0 #ffd0b0aa;transition:width .14s ease-out}
+#hud .hp-meter #health::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),#0006 calc(10% - 1px) 10%);border-radius:2px}
+#hud .hp-meter .trag{z-index:0;background:linear-gradient(180deg,#fff2c8,#e8c47a);transition:width .55s cubic-bezier(.4,0,.6,1) .45s}
+#hud #hp-text{position:absolute;inset:0;z-index:2;display:grid;place-items:center;font:700 13px Georgia,serif!important;color:#fff4dc;text-shadow:0 1px 2px #000,0 0 4px #000}
+/* bes: vatrena traka sa natpisom; kad je pun, svetli */
+#hud .bes-meter{height:12px;margin-top:5px}
+#hud .bes-meter #rage-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:linear-gradient(180deg,#ffb04a,#e0601e 55%,#a8340e);transition:width .2s}
+#hud #rage-label{position:absolute;inset:0;z-index:2;display:grid;place-items:center;font:700 9px Arial;letter-spacing:1.5px;color:#fff1d8;text-shadow:0 1px 2px #000}
+#hud #rage-label.ready{color:#fff;animation:hudBes 1s ease-in-out infinite}
+#hud:has(#rage-label.ready) .bes-meter{box-shadow:inset 0 0 0 1px #000,0 0 0 1px #ffd27a,0 0 12px #ff8a3a}
+/* gard: tanka čelična traka */
+#hud .mini-meter.guard{display:block;width:auto!important;height:4px!important;margin-top:4px;border-radius:2px;overflow:hidden;background:#0d0405;box-shadow:0 0 0 1px #9fb4c455}
+#hud .mini-meter.guard i{display:block;height:100%;background:linear-gradient(90deg,#7f98ab,#e6eef5);transition:width .12s}
+/* vino, dukati, vila */
+#hud .resources{display:flex;align-items:center;gap:10px!important;margin-top:7px!important;font-size:11px}
+#hud #wine{display:flex;gap:2px}
+#hud #wine .cutura{width:20px!important;height:20px!important}
+#hud #coins{font:700 13px Georgia,serif;color:#ffd96a;text-shadow:0 1px 2px #000}
+#hud .fairy-label{margin-left:auto;font:700 9px Arial!important;letter-spacing:1px;color:#bfeee0}
+#hud .fairy-meter{width:56px!important;height:5px!important;border-radius:3px;background:#0d2a26!important;box-shadow:0 0 0 1px #8fffe055}
+#hud .fairy-meter i{display:block;height:100%;background:linear-gradient(90deg,#5fd8c0,#d8fff4)}
+#hud .resources.bez-vile .fairy-label,#hud .resources.bez-vile .fairy-meter{display:none}
+#hud .crest,#hud .combat-meters,#hud .divider{display:none}
+/* malo zdravlja: portret i traka pulsiraju crveno; udarac: traka zadrhti */
+#hud.nisko .unit-portret{animation:hudNisko 1.1s ease-in-out infinite}
+#hud.nisko .hp-meter{box-shadow:inset 0 0 0 1px #000,0 0 0 1px #ff5a4a,0 0 10px #ff3a2a99}
+#hud.udaren .hp-meter{animation:hudUdar .28s}
+@keyframes hudNisko{50%{box-shadow:0 0 0 3px #1a0a08,0 0 0 5px #ff5a4a,0 0 0 7px #3a0c0c,0 0 18px #ff2a1a}}
+@keyframes hudUdar{25%{transform:translateX(-3px)}50%{transform:translateX(3px)}75%{transform:translateX(-1px)}}
+@keyframes hudBes{50%{text-shadow:0 0 8px #ffd27a,0 1px 2px #000}}
+
+/* ---------- zadatak: desno, kao spisak zadataka ---------- */
+#hud .quest{position:absolute!important;top:58px!important;right:0!important;left:auto!important;width:300px!important;transform:none!important;margin:0!important;padding:8px 12px 10px!important;text-align:right!important;
+ background:linear-gradient(270deg,#1a0709cc,#1a070900);border-right:2px solid var(--hud-gold)}
+#hud .quest small{display:block;font:700 11px var(--display)!important;letter-spacing:2.5px;color:var(--hud-gold)}
+#hud .quest strong{display:block;margin-top:3px;font:600 17px/1.25 var(--display)!important;color:#fbf0d6!important}
+#hud #progress{width:100%!important;height:3px!important;margin:7px 0 0!important;background:#ffffff1c!important;border-radius:2px;overflow:hidden}
+#hud #progress i{display:block;height:100%;background:linear-gradient(90deg,#b88a3e,var(--hud-gold2))}
+#hud #slova{justify-content:flex-end}
+#hud .hud-tools{position:absolute;top:0;right:0}
+#hud .hud-tools button{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#4a181c,#1c0809);color:var(--hud-gold2);border:0;box-shadow:0 0 0 1px var(--hud-gold),0 3px 8px #000a;font-size:15px}
+
+/* ---------- traka veština: dole u sredini, kvadratna polja kao u WoW-u ---------- */
+#abilities{left:50%!important;right:auto!important;bottom:14px!important;top:auto!important;transform:translateX(-50%)!important;display:flex!important;flex-wrap:nowrap;gap:6px!important;
+ grid-template-columns:none!important;padding:9px 16px!important;border-radius:4px!important;background:var(--hud-plate)!important;
+ box-shadow:inset 0 0 0 1px #e3c27e99,inset 0 0 0 3px #170708,inset 0 0 0 4px #e3c27e33,0 6px 18px #000b!important}
+#abilities::before,#abilities::after{content:'';position:absolute;bottom:-4px;width:44px;height:58px;background:url(assets/eagle.svg) center/contain no-repeat;filter:drop-shadow(0 2px 3px #000);opacity:.95}
+#abilities::before{left:-36px;transform:scaleX(-1)}#abilities::after{right:-36px}
+#abilities .ab{width:50px!important;height:50px!important;border-radius:6px!important;background:linear-gradient(180deg,#2c1214,#140708)!important;box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c!important}
+#abilities .ab img{inset:2px!important;width:46px!important;height:46px!important;border-radius:4px!important}
+#abilities .ab svg{width:24px!important;height:24px!important}
+#abilities .ab .cd{border-radius:6px!important}
+#abilities .ab .ring{inset:-3px!important;border-radius:8px!important;-webkit-mask:none!important;mask:none!important;background:none!important;box-shadow:inset 0 0 0 2px #2a2a24;opacity:1}
+#abilities .ab.res .ring{background:conic-gradient(from -90deg,#e3c27e calc(var(--r,1)*1turn),transparent 0)!important;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0)!important;-webkit-mask-composite:xor!important;mask-composite:exclude!important;padding:2px}
+#abilities .ab .key{top:2px!important;right:3px!important;left:auto!important;bottom:auto!important;transform:none!important;padding:0 3px!important;font:700 10px Arial!important;background:#0009!important;border:0!important;border-radius:3px!important;color:#f6e2ae!important;z-index:2}
+#abilities .ab .left{font:700 16px Georgia,serif!important;z-index:2}
+#abilities .ab.res .left{font-size:11px!important;bottom:3px!important}
+#abilities .ab.ready{box-shadow:inset 0 0 0 1px #000,0 0 0 1px var(--hud-gold),0 0 8px #e3c27e66!important}
+#abilities .ab-sep{display:block!important;width:2px!important;height:40px!important;margin:0 4px!important;background:linear-gradient(#e3c27e00,#e3c27e88,#e3c27e00)!important}
+/* razgovor i znak megdana staju iznad trake */
+#dialogue{bottom:96px!important}
+/* spisak tastera na dnu: tasteri su sada na ikonama trake, a ceo spisak je u meniju Kontrole */
+#controls{display:none!important}
+
+/* ---------- megdan: okvir bosa gore u sredini ---------- */
+#boss-hud{top:16px!important;bottom:auto!important;padding:8px 18px 10px;background:var(--hud-plate);clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);
+ box-shadow:inset 0 0 0 1px #e3c27e99,inset 0 0 0 3px #170708,inset 0 0 0 4px #e3c27e33}
+#boss-hud h2{margin:2px 0 6px!important;font-size:24px!important}
+#boss-hud .boss-meter{height:16px!important;padding:0!important;border:0!important;border-radius:3px;background:#0d0405!important;box-shadow:inset 0 0 0 1px #000,0 0 0 1px #e3c27e99,0 0 14px #a3323c55!important;overflow:hidden}
+#boss-hud .boss-meter i{background:linear-gradient(180deg,#f27a62,#c8352c 40%,#8e1a1c 75%,#6a1214)!important;box-shadow:inset 0 1px 0 #ffb4a088}
+#game-shell:has(#boss-hud:not([hidden])) #toast{top:150px!important}
+
+/* ---------- telefon i dodir: manji okvir, traka veština uz levu ivicu ispod okvira ---------- */
+@media(max-width:900px),(pointer:coarse){
+ #hud .hero-card.unit{transform:scale(.78);transform-origin:top left}
+ #hud .quest{top:48px!important;width:230px!important}#hud .quest strong{font-size:14px!important}
+ #abilities{left:56%!important;bottom:auto!important;top:6px!important;transform:translateX(-50%) scale(.56)!important;transform-origin:top center;flex-wrap:wrap!important;justify-content:center;width:470px;padding:6px 8px!important}
+ #abilities .ab-sep{display:none!important}
+ #abilities::before,#abilities::after{display:none}
+ #dialogue{bottom:auto!important}
+ #boss-hud{top:96px!important}
+}
+
+/* ================= Napredak: veštine, udari, amajlije, kovač (naslikana riznica u pozadini) ================= */
+.napredak{background:linear-gradient(#0d0405cc,#0d0405e6),url(assets/world/riznica-unutra.webp) center/cover no-repeat}
+.nap-wrap{position:relative;display:grid;grid-template-columns:270px 1fr;width:min(1180px,96vw);max-height:92vh;background:var(--hud-plate);
+ box-shadow:inset 0 0 0 1px #e3c27eaa,inset 0 0 0 4px #170708,inset 0 0 0 5px #e3c27e44,0 20px 60px #000d;
+ clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px),0 16px)}
+.nap-lik{padding:26px 20px;text-align:center;border-right:1px solid #e3c27e44;background:radial-gradient(ellipse at 50% 20%,#4a1a1c66,transparent 70%)}
+.nap-portret{width:150px;height:150px;margin:0 auto 12px;border-radius:50%;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 35%,#5a2a22,#1d0b0a 70%);box-shadow:0 0 0 3px #1a0a08,0 0 0 6px var(--hud-gold),0 0 0 8px #3a220c,0 8px 22px #000c}
+.nap-portret img{position:absolute;left:50%;top:-10px;width:210%;transform:translateX(-47%)}
+.nap-lik h2{margin:2px 0 2px;font:700 26px var(--display);color:var(--hud-gold2)}
+.nap-titula{margin:0 0 14px;font:italic 600 16px var(--display);color:#e8c98c}
+.nap-stat{display:grid;grid-template-columns:1fr auto;gap:6px 10px;margin:0 0 16px;text-align:left;font:13px Georgia,serif}
+.nap-stat dt{color:#cdbb92}.nap-stat dd{margin:0;font-weight:700;color:#fbefd2}
+.nap-kesa{margin:0;padding:10px;font:700 18px Georgia,serif;color:#ffd96a;background:#0006;box-shadow:inset 0 0 0 1px #e3c27e55}
+.nap-glavno{padding:20px 24px 14px;overflow:auto;scrollbar-width:thin;scrollbar-color:#a8864f #0000}
+.nap-tabs{display:flex;gap:4px;border-bottom:1px solid #e3c27e55;margin-bottom:10px}
+.nap-tabs button{background:none;border:0;padding:10px 16px;font:700 16px var(--display);letter-spacing:1px;color:#cdbb92;border-bottom:3px solid transparent}
+.nap-tabs button.on,.nap-tabs button:hover,.nap-tabs button:focus-visible{color:var(--hud-gold2);border-bottom-color:var(--hud-gold)}
+.nap-napomena{margin:0 0 12px;font:italic 14px var(--display);color:#e0cfa6}
+.nap-stablo{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.nap-vest{display:flex;gap:12px;padding:10px 12px;background:#1a0809b3;box-shadow:inset 0 0 0 1px #e3c27e33}
+.nap-vest.have{box-shadow:inset 0 0 0 1px #e3c27e77}
+.nap-vest.locked{opacity:.55;filter:saturate(.4)}
+.nap-vest.r3{box-shadow:inset 0 0 0 1px var(--hud-gold),0 0 12px #e3c27e33}
+.nap-ikona{position:relative;flex:none;width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#2c1214,#140708);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c}
+.nap-ikona img{position:absolute;inset:2px;width:52px;height:52px;border-radius:4px;object-fit:cover}
+.nap-ikona span{position:absolute;right:-6px;bottom:-6px;min-width:24px;height:20px;padding:0 4px;border-radius:10px;display:grid;place-items:center;font:700 11px var(--display);color:var(--hud-gold2);background:#3a0c10;box-shadow:0 0 0 1px var(--hud-gold)}
+.nap-ikona span:empty{display:none}
+.nap-opis{flex:1;min-width:0}
+.nap-opis b{font:700 17px var(--display);color:#fbefd2}
+.nap-opis small{display:block;font:12px/1.35 Arial;color:#c8bba0;margin-top:2px}
+.nap-opis small.fx{color:#9fd8b8}
+.nap-opis .riz-keys{margin:3px 0}
+.nap-pips{display:flex;gap:4px;margin:6px 0}
+.nap-pips i{width:22px;height:6px;border-radius:3px;background:#3a2a1a;box-shadow:inset 0 0 0 1px #00000088}
+.nap-pips i.on{background:linear-gradient(90deg,#c89a4a,var(--hud-gold2))}
+.nap-opis button{margin-top:2px;padding:6px 12px;font:700 13px var(--display);letter-spacing:.5px;color:var(--hud-gold2);background:linear-gradient(180deg,#6a1e24,#3a0c10);border:0;box-shadow:inset 0 0 0 1px var(--hud-gold)}
+.nap-opis button:hover:not(:disabled){filter:brightness(1.2)}
+.nap-opis button:disabled{opacity:.45;cursor:default}
+.nap-opis em{display:block;margin-top:4px;font:italic 12px Georgia,serif;color:#b8a882}.nap-opis em.max{color:var(--hud-gold)}
+#napredak .smith button.on{box-shadow:inset 0 0 0 1px var(--hud-gold),0 0 10px #e3c27e44}
+#napredak-close{margin-top:12px}
+@media(max-width:800px){.nap-wrap{grid-template-columns:1fr}.nap-lik{display:none}}

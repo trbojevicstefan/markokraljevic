@@ -1,0 +1,134 @@
+[
+  {
+    "name": "niz",
+    "source_cell_bbox": [
+      18,
+      15,
+      494,
+      497
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  },
+  {
+    "name": "zid",
+    "source_cell_bbox": [
+      18,
+      15,
+      494,
+      497
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  },
+  {
+    "name": "kontra",
+    "source_cell_bbox": [
+      17,
+      15,
+      492,
+      497
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  },
+  {
+    "name": "zamah",
+    "source_cell_bbox": [
+      18,
+      14,
+      494,
+      496
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  },
+  {
+    "name": "uzlet",
+    "source_cell_bbox": [
+      18,
+      14,
+      493,
+      496
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  },
+  {
+    "name": "tresak",
+    "source_cell_bbox": [
+      17,
+      14,
+      492,
+      496
+    ],
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      10,
+      10,
+      246,
+      246
+    ],
+    "alpha_identical_to_reference": true,
+    "lossless_roundtrip": true
+  }
+]

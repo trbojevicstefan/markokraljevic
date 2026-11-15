@@ -1,0 +1,116 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        174,
+        257,
+        330,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        19775
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        175,
+        257,
+        330,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        20602
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        175,
+        259,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        20986
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        176,
+        258,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        20705
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        175,
+        256,
+        330,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        19903
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        174,
+        257,
+        330,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        19786
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.5191011235955055,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d57\\kosovka-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 330,
+  "targetHeight": 230.99999999999997,
+  "visualReview": "D58: Same white-braided Kosovka and embroidered costume. One-knee kneeling height 231px, 70 percent of 330px standing reference, with preserved head and hand scale. Both hands hold earthenware bardak, extend and tilt it right, pour visible water, return upright; no wounded man drawn. Seamless loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

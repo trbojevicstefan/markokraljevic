@@ -50,6 +50,23 @@ Ostaje za posle:
 - `marko-sjase` (sjahivanje i dalje nema svoj klip);
 - `milos-pada-s-konja`.
 
+## Naručeno i ugrađeno 15. 11. uveče (Codex D57–D60, „naruči nedostajuće animacije”)
+
+Ceo izveštaj je u [IZVESTAJ-NAPREDAK.md](IZVESTAJ-NAPREDAK.md).
+
+- **Šarac, D57 (6/6):** `sarac-pije`, `sarac-lupa`, `sarac-propinje`, `sarac-boli`, `sarac-pada`, `sarac-hod`. Ugrađeni su u Varadin, mehanu i vrh Urvine, a na vrhu ostaje humka (D59).
+- **Likovi, D58 (6/6):**
+  - `vrac-stap` i `vrac-smrt`: novi bos Crni vrač;
+  - `vukasin-stoji`;
+  - `kosovka-poji`: Kosovka posle boja poji Marka;
+  - `djemo-omamljen`;
+  - `milos-pada-s-konja`: izvezao ga je Claude, sa spuštenim kadrovima 4–5.
+- **Riznica i humka, D59.** **Šest ikona veština, D60.**
+- **I dalje fali:**
+  - `tufekdzija-drugi`: moderacija;
+  - sjahivanje: igra nema tu radnju, scene počinju sa Markom na zemlji;
+  - `sarac-hod`: postoji, ali u igri još nema mesta gde Šarac hoda bez jahača.
+
 ## 1. Šarac (najvidljivije)
 
 Šarac ima samo `sarac-galop`. U svim ostalim prizorima je nepomična slika (`cast/sarac`) koja se trese ili naginje:

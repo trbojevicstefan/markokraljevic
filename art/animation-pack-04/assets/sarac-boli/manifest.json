@@ -1,0 +1,84 @@
+{
+  "characterId": "sarac-boli",
+  "engine": "component-row",
+  "game_input": "atlas.png",
+  "degraded_static_fallback": false,
+  "curation_applied": false,
+  "frame_variant": "painted",
+  "sprite_sheet_alpha": "atlas.png",
+  "sprite_sheet_alpha_report": null,
+  "base_image": "frames/motion/frame-0.png",
+  "cell": {
+    "shape": "square",
+    "width": 512,
+    "height": 512,
+    "safe_margin_x": 24,
+    "safe_margin_y": 24,
+    "size": 512,
+    "safe_margin": 24
+  },
+  "chroma_key": null,
+  "animation": {
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "columns": 4,
+    "rows": {
+      "motion": {
+        "row": 0,
+        "frames": 4,
+        "fps": 6,
+        "durations_ms": [
+          170,
+          170,
+          170,
+          170
+        ],
+        "loop": false,
+        "frame_variant": "painted",
+        "holdLastFrame": false
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 2048,
+    "sheetHeight": 512,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  },
+  "assetType": "character-animation",
+  "renderAnchor": {
+    "x": 256,
+    "y": 488
+  },
+  "noFootAlignment": false,
+  "holdLastFrame": false,
+  "description": "D57 Sarac reacts to a blow: stands, jerks his head back, hunches and lowers his head, then stands bowed; four frames, no blood or wounds."
+}

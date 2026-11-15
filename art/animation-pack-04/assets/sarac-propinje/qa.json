@@ -1,0 +1,107 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        72,
+        117,
+        457,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        68387
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        42,
+        178,
+        463,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        71761
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        48,
+        61,
+        401,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66348
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        82,
+        26,
+        406,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        63044
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        40,
+        130,
+        462,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        71677
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        12,
+        170,
+        482,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        66197,
+        12
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-propinje/attempt-2",
+  "review": {
+    "approved": true,
+    "attempt": 2,
+    "description": "D57 Sarac blocks a doorway: stands, lowers head, rears twice, lands and kicks both hind legs back; nonloop, no last-frame hold.",
+    "identity": "Pinto markings, saddlecloth, saddle, golden chestnut mane and tack retained; six complete poses visually checked.",
+    "size": "Standing frame about371px versus reference382px, about3 percent difference; no per-pose scaling. Rear poses preserve anatomical and saddlecloth size.",
+    "motion": "Frames2-3 both front legs airborne and hind hooves grounded; frame5 both hind legs kick left, front hooves grounded. Whole limbs remain inside cell. Reduced left margin in frame5 permitted by clip instruction.",
+    "baseline": 488
+  }
+}

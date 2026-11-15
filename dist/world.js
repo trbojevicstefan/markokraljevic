@@ -131,6 +131,8 @@ export const RECIPES={
  reka:'flat crates pogled bridge breg flat jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs flat mehana spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
+ // Vračeva jaruga (Stefan, 15. 11. 2026: „koristi Vrača za novog bosa i novi nivo"): noćna gora puna senki, na kraju Crni vrač
+ vracara:'flat breg watch crates uvala terrace+ ledges cellar spikes jaruga kuke crumble greda chimney flat bedem kljuc zid vreme stairs+ tower crates spikebed crates logs rocks guslar:mir ledges crates trgovac flat boss:vrac',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator uvala flat guslar:mir spikes crates trgovac flat boss:trio',
  // "Marko Kraljević u Azačkoj tamnici": out of the dungeon and up the tower, where the falcon takes his letter to Solun.
  // The climb is the challenge as much as the fight: a shaft, pillars over the abyss, arrow slits, crumbling planks and
@@ -141,7 +143,7 @@ export const RECIPES={
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
  arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
- trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},kopljanik:{name:'Kopljanik-baša',hp:1560,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
+ trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:1560,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
 
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
@@ -429,7 +431,13 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
  layers:[{id:'tvrdjava-sky',speed:.04},{id:'tvrdjava-far',speed:.16},{id:'tvrdjava-mid',speed:.38},{id:'tvrdjava-near',speed:.72}],
  nightLayers:[{id:'tvrdjava-sky-night',speed:.04},{id:'tvrdjava-far-night',speed:.16},{id:'tvrdjava-mid-night',speed:.38},{id:'tvrdjava-near-night',speed:.72}],stormLayers:[{id:'tvrdjava-sky-storm',speed:.04},{id:'tvrdjava-far-storm',speed:.16},{id:'tvrdjava-mid-storm',speed:.38},{id:'tvrdjava-near-storm',speed:.72}],
  ground:'tvrdjava',props:[{id:'prop-baklja-drzac',x:420,y:590,height:120},{id:'prop-sanduci',x:560,y:590,height:120},{id:'prop-strassarnica',x:7300,y:590,height:180},{id:'prop-baklja-drzac',x:7700,y:590,height:120},{id:'prop-sanduci',x:8350,y:590,height:120}],
- design:{goal:'Iz tamnice uz kulu, od zida do zida i od ivice do ivice. Na vrhu čeka soko da odnese knjigu Dojčilu u Solun.'}}];
+ design:{goal:'Iz tamnice uz kulu, od zida do zida i od ivice do ivice. Na vrhu čeka soko da odnese knjigu Dojčilu u Solun.'}},{id:'vracara',name:'Vračeva jaruga',width:9400,spawn:{x:80,y:590},goal:{x:9200,y:590},palette:'noć u Skopskoj Crnoj Gori, magla i senke',
+ layers:[{id:'suma-sky-night',speed:.04},{id:'suma-far-night',speed:.16},{id:'suma-mid-night',speed:.38},{id:'suma-near-night',speed:.72}],
+ nightLayers:[{id:'suma-sky-night',speed:.04},{id:'suma-far-night',speed:.16},{id:'suma-mid-night',speed:.38},{id:'suma-near-night',speed:.72}],
+ stormLayers:[{id:'suma-sky-storm',speed:.04},{id:'suma-far-storm',speed:.16},{id:'suma-mid-storm',speed:.38},{id:'suma-near-storm',speed:.72}],
+ fallbackLayers:[{id:'suma-sky',speed:.04},{id:'suma-far',speed:.16},{id:'suma-mid',speed:.38},{id:'suma-near',speed:.72}],ground:'suma',
+ props:[{id:'prop-krst-raskrsce',x:600,y:590,height:190}],
+ design:{goal:'Pređi Vračevu jarugu i pobedi Crnog vrača'}}];
 export function makeLevel(L,index,variant='day',opts={}){
  const zone=LEVEL_ZONE+index,B=buildLayout(L,variant),enemies=[],items=[],platforms=B.platforms;
  const mix=L.design?.enemyMix,base=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer','akindzija']);

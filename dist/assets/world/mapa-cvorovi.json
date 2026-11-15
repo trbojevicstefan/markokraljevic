@@ -175,6 +175,17 @@
    84
   ]
  },
+ "vracara": {
+  "mesto": "Skopska Crna Gora",
+  "tacka": [
+   67.5,
+   60.0
+  ],
+  "cvor": [
+   74,
+   64
+  ]
+ },
  "urvina": {
   "mesto": "Urvina",
   "tacka": [

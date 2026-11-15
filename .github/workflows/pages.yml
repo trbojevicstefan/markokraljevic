@@ -27,6 +27,13 @@ jobs:
           python-version: '3.12'
       - run: pip install numpy pillow
       - run: npm run check && npm test && node animation-tests.mjs && node simulation-test.mjs
+      # lakša igra: listovi animacija idu na sajt kao WebP (~4x manji); u repou i na računaru ostaju PNG
+      - uses: actions/cache@v4
+        with:
+          path: .webp-cache
+          key: webp-${{ hashFiles('dist/assets/*.png', 'dist/assets/**/*.png') }}
+          restore-keys: webp-
+      - run: python tools/webp-dist.py dist --cache .webp-cache
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

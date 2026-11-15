@@ -1,0 +1,70 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    80,
+    123,
+    433,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    79,
+    137,
+    432,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    81,
+    159,
+    433,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    81,
+    196,
+    433,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    79,
+    204,
+    432,
+    500
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    57,
+    204,
+    433,
+    501
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/milos-pada-s-konja/attempt-3",
+ "shift": {
+  "4": 12,
+  "5": 13
+ }
+}

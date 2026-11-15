@@ -1,0 +1,173 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        64,
+        106,
+        483,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        77849,
+        8,
+        8,
+        8,
+        10,
+        9,
+        9,
+        8,
+        17
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        59,
+        107,
+        473,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        77549,
+        11,
+        8,
+        10,
+        9,
+        10,
+        9,
+        10,
+        10,
+        12,
+        11,
+        13,
+        8,
+        12,
+        31
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        57,
+        109,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        78283,
+        8,
+        9,
+        9,
+        10,
+        15,
+        9,
+        12,
+        8,
+        11,
+        8,
+        10,
+        12,
+        12,
+        10
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        69,
+        106,
+        482,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        78030,
+        15,
+        9,
+        13,
+        14,
+        9,
+        12,
+        12,
+        12,
+        11,
+        10,
+        11,
+        13,
+        11,
+        11
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        61,
+        104,
+        474,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        77750,
+        8,
+        9,
+        8,
+        10,
+        8,
+        9,
+        11,
+        12,
+        11,
+        27,
+        8
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        58,
+        106,
+        475,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        76804,
+        10,
+        9,
+        10,
+        11,
+        12,
+        12,
+        33
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-hod/attempt-3",
+  "review": {
+    "approved": true,
+    "attempt": 3,
+    "description": "D57 Sarac walks slowly in place toward the right without rider: staggered hind and foreleg swings, three supporting feet and subtle head bob; six-frame loop.",
+    "identity": "Same pinto horse, saddle, embroidered red-and-gold cloth, golden chestnut mane and complete tail; all six frames inspected.",
+    "size": "Standing-equivalent height about382px versus reference382px; common scale0.92 and dx10 applied to entire clip. Body and saddle dimensions within5 percent of reference.",
+    "motion": "Near hind swing0, far fore extended low1, four supports2, opposite hind swing3, near fore bent swing4, return to near hind5. Front swings now visibly distinct and separated; supporting feet remain y488. Frame5 near0 for loop."
+  }
+}

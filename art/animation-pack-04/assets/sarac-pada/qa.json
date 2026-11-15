@@ -1,0 +1,204 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        50,
+        163,
+        471,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        74195,
+        13,
+        8,
+        8,
+        11,
+        11,
+        9,
+        12,
+        14,
+        8,
+        12,
+        12,
+        14,
+        9,
+        11,
+        10,
+        14,
+        11,
+        8,
+        9,
+        21,
+        18
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        44,
+        202,
+        487,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        76748,
+        9,
+        11,
+        10,
+        9,
+        10,
+        11,
+        8,
+        8,
+        11,
+        17,
+        27
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        44,
+        222,
+        479,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        77187,
+        11,
+        8,
+        8,
+        13,
+        8,
+        8,
+        16,
+        15,
+        9,
+        9,
+        13,
+        24,
+        9,
+        9,
+        11,
+        18,
+        13,
+        12
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        42,
+        271,
+        478,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        68729,
+        16,
+        8,
+        9,
+        10,
+        13,
+        13,
+        8,
+        11,
+        29,
+        11,
+        24,
+        13,
+        18,
+        30,
+        16,
+        12,
+        8,
+        11
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        24,
+        327,
+        472,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        49981,
+        18,
+        13,
+        11,
+        11,
+        13,
+        8,
+        8,
+        8,
+        16,
+        9,
+        20,
+        8,
+        22,
+        13,
+        10
+      ],
+      "baseline": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        24,
+        327,
+        470,
+        489
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "components": [
+        49730,
+        21,
+        10,
+        10,
+        11,
+        17,
+        8,
+        18,
+        8,
+        18,
+        18,
+        10,
+        22,
+        8,
+        14,
+        10,
+        10
+      ],
+      "baseline": 488
+    }
+  ],
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "source": "sources/sarac-pada/attempt-2",
+  "review": {
+    "approved": true,
+    "attempt": 2,
+    "description": "D57 Sarac peacefully collapses: bowed standing, buckling forelegs, kneeling, lowering hindquarters, then resting on his side; no blood or wounds, holds last frame.",
+    "identity": "Same chestnut-white horse and complete saddle, ornate red cloth and golden mane/tail; six poses visually inspected.",
+    "size": "Uniform0.96 scale and dx4 applied to all six, no per-frame resizing; frame0 rump near y222 versus reference y220 and same saddle/body scale within5 percent.",
+    "motion": "Distinct buckling and front kneeling, rear lowering, final two lateral poses with four relaxed legs to foreground and cheek resting low. Final5 still. Contact contour y488, complete silhouette and 24px horizontal margin."
+  }
+}
