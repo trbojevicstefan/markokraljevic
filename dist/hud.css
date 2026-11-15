@@ -247,3 +247,11 @@
  .modal-card,.nap-wrap,.pauza-wrap,.riznica-card,.book-wrap,.ram-kontrole{max-height:none!important}
  .nap-glavno{overflow:visible!important}
 }
+
+/* ================= telefon (16. 11.): okvir bosa uzan i desno od okvira junaka, bez saveta preko ekrana ================= */
+@media(max-width:900px),(pointer:coarse){
+ #boss-hud{left:58%!important;width:min(300px,36vw)!important;transform:translateX(-50%)!important;top:4px!important;padding:4px 10px 6px!important}
+ #boss-hud small,#boss-hint{display:none!important}
+ #boss-hud h2{font-size:15px!important;margin:0 0 3px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #boss-hud .boss-meter{height:9px!important}
+}

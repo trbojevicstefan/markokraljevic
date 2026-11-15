@@ -592,7 +592,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     if (saved && saved.gpu === gpuName) autoTier = Math.max(autoTier, Math.min(2, saved.tier | 0));
   } catch {}
   const currentTier = () => settings.quality === 'low' ? Math.max(2, deviceTier) : settings.quality === 'high' ? 0 : autoTier;
-  let lastTier = null, lastLow = null;
+  let lastTier = null, lastLow = null, glowFrame = 0;
   function applyQuality() {
     const tier = currentTier();
     if (tier === lastTier) return;
@@ -863,7 +863,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       bloom.strength = reduced() ? .3 : .48;
 
       layerTex.needsUpdate = true;
-      glowTex.needsUpdate = true;
+      if (lastTier < 3 || (glowFrame++ & 1) === 0) glowTex.needsUpdate = true;   // a phone sends the glow every second frame
       composer.render(dt);
     },
   };

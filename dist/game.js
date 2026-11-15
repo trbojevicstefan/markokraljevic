@@ -59,7 +59,7 @@ function loadStage(){if(!RIG_LAZY)return;
  if(!loadMarks.first){loadMarks.first=1;performance.mark?.('marko-prvi-kadar');setTimeout(posleStartaNow,6000);}
  if(!loadMarks.play&&mode==='play'){loadMarks.play=1;performance.mark?.('marko-prva-igra');setTimeout(posleStartaNow,1200);}
  rigScan();}
-function posleStartaNow(){if(loadMarks.posle)return;loadMarks.posle=1;posleGo();setTimeout(()=>{tweenOn=true;},LITE?3000:0);
+function posleStartaNow(){if(loadMarks.posle)return;loadMarks.posle=1;posleGo();setTimeout(()=>{tweenOn=!LITE;},0);
  // the rest in the background, but not the foes of other chapters: rigScan brings them when their chapter starts
  if(rig){const tu=new Set((world.enemies||[]).flatMap(e=>[e.type,e.look]).filter(Boolean)),tudj=[...new Set([...Object.keys(FOES),...Object.keys(FOE_BOOK)])].filter(t=>!tu.has(t));
   for(const k in rig){if(k.startsWith('marko-'))rigWant(rig[k].image,1);else if(!LITE&&!tudj.some(t=>k.startsWith(t+'-')))rigWant(rig[k].image,2);}}}
@@ -692,10 +692,10 @@ function drawGrapple(){const G=grapple;if(!G)return;const e=G.e,I=GRAPPLE[G.kind
  else{const lie=rig?.['marko-knockdown'];if(lie)rigDraw('marko-knockdown',lie.frames.length-1,x-G.s*10,y,-G.s,{});const atk=rig?.[e.type+'-attack']?e.type+'-attack':rig?.[e.type+'-idle']?e.type+'-idle':'cast/'+e.type;rigDraw(atk,1,x+G.s*14,y,-G.s,{dy:10,rot:-G.s*.25,scale:e.scale||1});}
  if(G.end<=0){const bx=x-50,by=y-138;ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(bx-2,by-2,104,12);ctx.fillStyle=G.m>.6?'#8dffa8':'#ffcf6a';ctx.fillRect(bx,by,100*Math.min(1,G.m),8);drawHvat(G,x,by);}}
 function drawHvat(G,x,by){if(!G.key){textLabel('OTMI SE',x,by-14,{font:'bold 13px Georgia',color:'#fff3e0',glow:'#c0301a'});return;}
- const nm=HVAT_NAME[G.key][padIndex!=null?1:0],left=clamp(1-G.kt/hvatTime(),0,1),cy=by-46,r=nm.length>1?31:25,bad=G.miss>0||G.lock>0;
+ const ur=uredjaj(),nm=ur==='pad'?HVAT_NAME[G.key][1]:ur==='dodir'?tr(DODIR_IME[G.key]||HVAT_NAME[G.key][0]):kljucOznaka(HVAT_NAME[G.key][0]),left=clamp(1-G.kt/hvatTime(),0,1),cy=by-46,r=nm.length>5?36:nm.length>1?31:25,bad=G.miss>0||G.lock>0;
  ctx.save();ctx.beginPath();ctx.arc(x,cy,r,0,Math.PI*2);ctx.fillStyle=bad?'rgba(120,20,14,.92)':'rgba(24,18,12,.92)';ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#5a4a34';ctx.stroke();
  ctx.beginPath();ctx.arc(x,cy,r+6,-Math.PI/2,-Math.PI/2+Math.PI*2*left);ctx.lineWidth=5;ctx.strokeStyle=left<.3?'#ff6a4a':'#ffe39a';ctx.stroke();
- ctx.fillStyle='#fff3e0';ctx.font=`bold ${nm.length>1?15:27}px Georgia`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(nm,x,cy+1);ctx.restore();}
+ ctx.fillStyle='#fff3e0';ctx.font=`bold ${nm.length>5?11:nm.length>1?15:27}px Georgia`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(nm,x,cy+1);ctx.restore();}
 // ================= the training room (…/trening.html): foes keep coming, every one of them can be finished =================
 const TRENING=hasDom&&/[?&]trening\b/.test(location.search);
 const TRAIN_FOES=['sword','shield','archer','akindzija','oklopnik','palikuca','kopljanik','tufekdzija','pas'];
@@ -3225,9 +3225,13 @@ function drawVasar(t){if(t.x1<camera-300||t.x0>camera+VIEW_W+300)return;const S=
  rigDraw('putnik-starac-idle',loopF(time*4,rig?.['putnik-starac-idle']?.frames.length||1),t.cuvar,t.y,1);if(Math.abs(p.x-t.cuvar)<500)textLabel('KONJUŠAR',t.cuvar,t.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});
  t.konji.forEach((x,i)=>{const K=S[i],V=VASAR_KONJI[i],away=i%2?1:-1;
   if(K.odbacen&&!V.sarac){shadow(x+away*230,t.y,52,.35);saracDraw(x+away*230,t.y,away,{scale:.82,filter:V.f});return;}
-  let dx=0,dy=0,rot=0;if(K.leti>0){const k=1-K.leti;dx=k*away*230;dy=-Math.sin(k*Math.PI)*240;rot=k*Math.PI*2*away;}
+  // held by the tail a horse kicks back with both hind legs; let go, it rears where it stands and walks off to the side
+  // (Stefan, 16. 11.: „umesto da se ritaju, oni kao da ih je neko bacio”): the moves of sarac-propinje and sarac-hod
+  let dx=0,klip='sarac-stoji',fr,face=i===2?1:-1;
+  if(K.leti>0){const k=1-K.leti;if(k<.45){klip='sarac-propinje';fr=k/.45*4;}else{klip='sarac-hod';dx=(k-.45)/.55*away*230;face=away;}}
+  else if(K.drzi>0&&!V.sarac){klip='sarac-propinje';fr=4+Math.floor(time*7)%2;}
   const zdrav=V.sarac&&t.zdrav&&time-t.zdrav>.6,sc=V.sarac?(zdrav?1:.78):.88;shadow(x+dx,t.y,60*sc,.4);
-  saracDraw(x+dx+(K.drzi>0?Math.sin(time*60)*3:0),t.y+dy,i===2?1:-1,{scale:sc,rot,filter:zdrav?undefined:V.f,sy:1+Math.sin(time*2+i)*.01});
+  saracDraw(x+dx+(K.drzi>0&&V.sarac?Math.sin(time*60)*3:0),t.y,face,{scale:sc,filter:zdrav?undefined:V.f},klip,fr);
   if(V.sarac&&t.zdrav&&time-t.zdrav<2)halo(x,t.y-80,110,'rgba(255,230,150,.4)',1-(time-t.zdrav)/2);
   if(!t.done&&Math.abs(p.x-x)<90&&!K.leti&&!K.odbacen)textLabel('E · ZA REP',x,t.y-150,{font:'bold 13px Georgia',color:'#fff3c0'});
   else if(Math.abs(p.x-x)<300&&!K.odbacen&&!K.leti)textLabel(V.ime.toUpperCase(),x,t.y-130,{font:'bold 11px Georgia',color:'#e8dcc0'});});}
