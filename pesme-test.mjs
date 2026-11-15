@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,state:()=>({p,world,mode}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,state:()=>({p,world,mode}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);const tap=k=>{press(k);step();release(k);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
@@ -43,4 +43,15 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>T.state==='kraj',120*30,'the doorpost, the repentance and the voice');ok(T.done&&p.blagoslov&&T.handzar,'crkva: the dagger in the doorpost, the curse, and the tsar’s blessing');
  Object.assign(p,{x:T.gate.x-120,vx:0});press('KeyD');step(120);release('KeyD');ok(api.state().p.x>T.gate.x+30,'crkva: then the way up the hill is open');
  ok(api.draw()===null,'crkva: the church and the king draw without an error');}
+// ---- Opsednuta tvrđava: the father's sabre ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='tvrdjava'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();
+ const e=w.enemies.find(e=>e.sablja);for(const o of w.enemies)if(o!==e)o.alive=false;const {p}=api.state();
+ ok(e&&e.alive,'sablja: the young Turk with the bound sabre stands by the tent');
+ Object.assign(p,{x:e.x-420,y:e.y,vx:0,vy:0,grounded:true});step(3);ok(e.pesma&&e.razgovor>0,'sablja: Marko asks him where he got the sabre');
+ const hp0=p.hp;step(120*20);ok(e.pesma.i>=3&&e.mode==='idle'&&e.alive,'sablja: he tells of the Marica, and does not strike while they talk');
+ step(120*18);ok(e.pesma.i===5&&!(e.razgovor>0),'sablja: „daj amo sablju okovanu” — then the duel');
+ api.slay(e);step(2);const it=w.items.find(i=>i.cudo==='oceva-sablja');ok(!!it,'sablja: the sabre falls where he falls');
+ Object.assign(p,{x:it.x,y:it.y+38+40,vx:0,vy:0,grounded:true});step(3);ok(api.slova(),'sablja: it draws itself in Marko’s hand: the three letters');
+ step(120*18);const S=api.slova();ok(S&&S.car&&S.dukati,'sablja: the fur cloak inside out, the sultan driven to the wall, a hundred ducats for wine');
+ ok(api.draw()===null,'sablja: the letters draw without an error');}
 console.log(`\n${checks} checks passed.`);
