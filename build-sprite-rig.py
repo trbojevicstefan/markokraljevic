@@ -527,6 +527,13 @@ if _have('vukasin-udara') and 'marko-idle-2' in SCALES:
     SCALES['vukasin-udara'] = (SCALES['marko-idle-2'][0], 'feet')
 if _have('vukasin-trci') and 'marko-idle-2' in SCALES:
     SCALES['vukasin-trci'] = (SCALES['marko-idle-2'][0], 'torso')
+# DOPUNA-51 („Marko Kraljević i Filip Madžarin”): Filip a little shorter than Marko (his body ~370 px against Marko's 383), at
+# Marko's zoom; he stands on his feet, and in the run the body holds and the feet move, as marko-run.
+for _n in ('filip-idle', 'filip-attack', 'filip-hurt', 'filip-death'):   # lying dead, held by his middle (as mladi-turcin-death)
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0], 'center' if _n == 'filip-death' else 'feet')
+if _have('filip-run') and 'marko-idle-2' in SCALES:
+    SCALES['filip-run'] = (SCALES['marko-idle-2'][0], 'torso')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
