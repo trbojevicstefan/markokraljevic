@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,state:()=>({p,world,mode}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);const tap=k=>{press(k);step();release(k);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
@@ -80,4 +80,17 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  const x1=p.x;step(80);press('KeyA');step(60);release('KeyA');ok(p.x<x1-30,'mehana: in the duel Marko moves freely');
  api.slay(f);step(2);ok(T.done&&T.ph==='kraj','mehana: „Dobra gvožđa u loša junaka!” — the tavern is done');
  ok(api.draw()===null,'mehana: the tavern, Šarac and Filip draw without an error');}
+// ---- Zimski prevoj: under Varadin (Marko Kraljević i Vuča dženeral) ----
+{const w=await start('prevoj');const T=w.traps.find(t=>t.kind==='varadin');const {p}=api.state();
+ ok(T&&T.logor>T.x0&&T.logor<T.x1,'varadin: the camp in the field under Varadin');
+ Object.assign(p,{x:T.x0+400,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='logor','varadin: Miloš’s letter sealed in blood; Marko comes under Varadin');
+ until(()=>T.ph==='pije',120*10,'the spear in the meadow');step(120);ok(T.koplje&&p.sedi>0,'varadin: the spear in the meadow, Šarac tied to it, Marko sits down to drink');
+ until(()=>T.v2,120*25,'Vuča sends the katane');ok(w.enemies.filter(e=>e.alive&&e.katana===1).length===5,'varadin: Velimirovica sees him from the walls; Vuča sends Velimir with the katane');
+ until(()=>T.ph==='opkole',120*6,'they surround him');step(120*3);const near=w.enemies.filter(e=>e.alive&&e.katana===1);ok(near.every(e=>e.x>p.x+200),'varadin: they close in and Šarac stamps his hooves, but no one strikes the seated Marko');
+ tap('KeyE');step(2);ok(T.ph==='boj1'&&api.state().horseMounted,'varadin: E — Marko throws the ledjen in the grass and leaps on Šarac');
+ for(const e of near)api.slay(e);step(3);ok(T.ph==='boj2pre','varadin: „kako soko među golubove” — Velimir is bound');
+ until(()=>T.ph==='boj2',120*8,'Vuča’s cannons');const wave=w.enemies.filter(e=>e.alive&&e.katana===2);ok(wave.length===7,'varadin: Vuča shakes the cannons and sends more katane');
+ for(const e of wave)api.slay(e);step(3);ok(T.ph==='vojvode','varadin: Vuča flees on his mare, the thrown mace brings him down');
+ until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted,'varadin: the general’s wife opens the dungeon: Miloš and the voivodes are free');
+ ok(api.draw()===null,'varadin: the camp, Šarac and Miloš draw without an error');}
 console.log(`\n${checks} checks passed.`);
