@@ -2658,7 +2658,7 @@ function varadinKatana(T,k,type){const hp=FOE_HP_G[type]||90,x=T.logor+620+k*85,
  const e={id:43000+(T.n=(T.n||0)+1),x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.8+k*.15,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,katana:T.talas};
  hardenFoes([e]);world.enemies.push(e);return e;}
 function updateVaradin(dt){varadinScena=false;const T=varadinTrap();if(!T||!level)return false;
- if(!T.ph){if(p.x>T.x0+380&&p.x<T.x1&&Math.abs(p.y-T.y)<140&&p.grounded){T.ph='logor';T.pt=0;keys.clear();horseMounted=false;
+ if(!T.ph){if(p.x>T.x0+380&&p.x<T.x1&&Math.abs(p.y-T.y)<140&&p.grounded){T.ph='logor';T.pt=0;scenaPocinje(T.y);
    speak('Iz tamnice Varadina piše Miloš od Pocerja, krvlju knjigu zapečati: „Izbavljaj me, pobratime Marko, jal’ za blago, jali na junaštvo!” Marko okrenu Šarca od Prilipa, a za Dunavom skela ne dočeka: naćera Šarca na Dunavo, ode pravo pod Varadin.',10);}
   else if(p.x>T.x1+150)T.ph='kraj';
   return false;}
@@ -2723,7 +2723,7 @@ function mehanaTrap(){return(world.traps||[]).find(t=>t.kind==='mehana')||null;}
 function filipLook(){return rig?.['filip-idle']?'filip':'mladi-turcin';}
 let mehanaScena=false;
 function updateMehana(dt){mehanaScena=false;if(p.ustaje>0)p.ustaje=Math.max(0,p.ustaje-dt);const T=mehanaTrap();if(!T||!level)return false;
- if(!T.ph){if(p.x>T.x0+700&&p.x<T.x1&&Math.abs(p.y-T.y)<140&&p.grounded&&!horseMounted){T.ph='dolazi';T.pt=0;keys.clear();T.F={x:T.x1+260,face:-1,anim:'run',at:0};
+ if(!T.ph){if(p.x>T.x0+700&&p.x<T.x1&&Math.abs(p.y-T.y)<140&&p.grounded&&!horseMounted){T.ph='dolazi';T.pt=0;scenaPocinje(T.y);T.F={x:T.x1+260,face:-1,anim:'run',at:0};
    speak('Zmaj-Despot Vuk ču Filipa Madžarina gde se hvali da će kulu na ćupriji okititi rusom glavom Kraljevića Marka, pa napisa Marku knjigu: „Čuvaj se, Bogom pobratime, od Filipa kake prevare.” A Marko ode pravo Karlovcu gradu.',9);}
   else if(p.x>T.x1+150)T.ph='kraj';
   return false;}
@@ -2784,8 +2784,10 @@ function drawMehana(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y
 const OKOVI_STANICE=[['Orid','GOSPODA OHRIDSKA'],['Vučitrn','GOSPODA VUČITRNSKA'],['Zvečan','GOSPODA ZVEČANSKA']];
 function okoviTrap(){return(world.traps||[]).find(t=>t.kind==='okovi')||null;}
 let okoviScena=false;
+// a scene that takes the controls starts clean: on foot, on the ground, no blow, drink or dash left hanging
+function scenaPocinje(y){horseMounted=false;Object.assign(p,{attack:0,dash:0,drink:0,charge:0,vy:0,vx:0,grounded:true,climb:null});if(y!=null)p.y=y;keys.clear();}
 function updateOkovi(dt){okoviScena=false;const T=okoviTrap();if(!T||!level)return false;T.t=(T.t||0)+dt;const D=T.djemo??={x:T.x0+260,face:1,gait:0,st:'ceka'};
- if(!T.ph){if(p.x>T.x0+80&&p.x<T.x1&&Math.abs(p.y-T.y)<140){T.ph='pad';T.pt=0;p.vx=0;keys.clear();
+ if(!T.ph){if(p.x>T.x0+80&&p.x<T.x1&&Math.abs(p.y-T.y)<140&&p.grounded){T.ph='pad';T.pt=0;scenaPocinje(T.y);
    speak('Slavi Marko svetoga Đorđija, a fali mu ribe od Orida. Po majčinoj reči ode bez oružja. Na ćupriji ga srete Đemo Brđanine, topuzinu baca u oblake: „Bogami ću Marka objesiti baš o vratim’ bijela Prilipa!”',8);}
   else if(p.x>T.x1+150){T.ph='kraj';}
   return false;}

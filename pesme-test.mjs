@@ -101,4 +101,10 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>T.dukati,120*40,'thirty ducats');ok(T.i===4,'kosovka: the Arab’s wedding tax, her turn tonight, and Marko’s thirty ducats');
  until(()=>T.done,120*30,'the silk banner');ok(T.i===6&&T.odlazi!=null,'kosovka: she shows him the silk banner over the Arab’s tent and goes home');
  ok(api.draw()===null,'kosovka: the maiden draws without an error');}
+// ---- a scene that takes the controls starts clean: no blow left hanging, on the ground ----
+{const w=await start('reka');const T=w.traps.find(t=>t.kind==='mehana');const {p}=api.state();
+ Object.assign(p,{x:T.x0+720,y:T.y,vx:0,vy:0,grounded:true,attack:.3,drink:.4});step(2);ok(T.ph==='dolazi'&&!(p.attack>0)&&!(p.drink>0)&&p.grounded,'scene: a blow or a drink in hand when the tavern scene starts is let go');}
+{const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
+ Object.assign(p,{x:T.x0+120,y:T.y-90,vx:0,vy:-200,grounded:false});step(2);ok(!T.ph,'scene: Marko in the air does not start the chains');
+ Object.assign(p,{y:T.y,vy:0,grounded:true});step(2);ok(T.ph==='pad'&&p.y===T.y,'scene: on the ground the chains begin, and he stays on the ground');}
 console.log(`\n${checks} checks passed.`);
