@@ -1,0 +1,112 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        190,
+        158,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27076
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        190,
+        152,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27440
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        190,
+        149,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27498
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        190,
+        147,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27610
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        190,
+        153,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27297
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        190,
+        156,
+        315,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        27126
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.7838479809976246,
+  "identityApproved": true,
+  "notes": "Exported after visual identity, size and motion approval.",
+  "visualReview": "Young Kosovka with silver-white twin braids, red wool waistcoat, embroidered linen and woven apron. Six quiet breathing poses, raises then bows her head, hands folded on apron. Right-facing seamless idle loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

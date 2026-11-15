@@ -534,6 +534,12 @@ for _n in ('filip-idle', 'filip-attack', 'filip-hurt', 'filip-death'):   # lying
         SCALES[_n] = (SCALES['marko-idle-2'][0], 'center' if _n == 'filip-death' else 'feet')
 if _have('filip-run') and 'marko-idle-2' in SCALES:
     SCALES['filip-run'] = (SCALES['marko-idle-2'][0], 'torso')
+# DOPUNA-52 („Marko Kraljević ukida svadbarinu”): the Kosovo maiden, smaller than Marko (her body ~330 px against his 383),
+# at Marko's zoom; she stands on her feet, and walking the body holds and the feet move.
+if _have('kosovka-idle') and 'marko-idle-2' in SCALES:
+    SCALES['kosovka-idle'] = (SCALES['marko-idle-2'][0], 'feet')
+if _have('kosovka-hoda') and 'marko-idle-2' in SCALES:
+    SCALES['kosovka-hoda'] = (SCALES['marko-idle-2'][0], 'torso')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
