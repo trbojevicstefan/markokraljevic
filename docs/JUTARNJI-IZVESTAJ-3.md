@@ -36,6 +36,7 @@ Sa `?dev` su otvoreni svi nivoi; sa `?dev&novo=<deo>` igra odmah skače na novu 
 - **Kosovsko selo** — vašar konja: Marko hvata konje za rep i prebacuje ih preko glave, šugavo ždrebe se ne pomeri: Šarac.
 - **Manastirski vis** („Uroš i Mrnjavčevići") — posle presude kralj Vukašin goni Marka triput oko bele crkve
   Samodreže, glas iz crkve, handžar u direku, kajanje. Novo noćas: **naslikana crkva i pravi kralj Vukašin** (Codex).
+  Ujutru dodato (Codex D53): kad Marko uđe u crkvu, vidi se **unutrašnjost kao presek** (freske, polijelej, ikonostas).
 - **Opsednuta tvrđava** („Poznaje očinu sablju") — razgovor sa Mustaf-agom, sablja sama iskoči, tri slova, car do duvara.
 - **Klisura Ibra** („Đemo Brđanin") — Marko bez oružja po majčinoj reči, Đemov topuz, **Marko u okovima** (bukagije,
   belenzuke, sindžir; hoda okovan, bez udarca), vešala pod Oridom, Vučitrnom i Zvečanom, gospoda plaća po tri tovara
@@ -50,6 +51,7 @@ Sa `?dev` su otvoreni svi nivoi; sa `?dev&novo=<deo>` igra odmah skače na novu 
 - **Ruševine** („Marko Kraljević ukida svadbarinu") — na samom početku Kosovka devojka, mlada a seda od čekanja:
   Arap je zakupio Kosovo (trideset dukata za udaju), noćas je red na nju; Marko joj da trideset dukata, ona pokaže
   svilen barjak nad Arapovim šatorom, a Marko: „Danas ću vas, braćo, osvetiti, ili poginuti".
+  U megdanu Marko baci Arapu tri dukata, na prvi udarac se nasmeje: „il' se šališ, il' od zbilje biješ?".
 - **Kačanik, kraj megdana sa Musom** — posle pobede četiri minijature po kraju pesme: vila iz oblaka, tri srca
   junačka i guja na trećem („od tebe bi trista jada bilo"), Markove suze: „đe pogubih od sebe boljega!", pa "Posle megdana".
 

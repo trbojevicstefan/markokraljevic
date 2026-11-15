@@ -213,7 +213,7 @@ let coinChain=0,coinAt=-9;
 function strah(e){if(mode!=='play'||training||!(p.attackKind!=='light'||p.combo===2||finisher||e.elite))return;let cried=false;
  for(const o of world.enemies){if(o===e||!o.alive||o.zone!==e.zone||o.champion||o.elite||o.kit||o.type==='oklopnik'||o.type==='pas'||o.spava||o.patrola||o.perch||o.climb||o.held||o.grappling||o.grounded===false||o.mode!=='idle'||o.stun>0||o.lunge?.t>0||Math.abs(o.x-e.x)>240||Math.abs(o.y-e.y)>60||Math.random()>.65)continue;
   const s=Math.sign(o.x-p.x)||1;o.face=-s;o.lunge={v:s*320,t:.24,total:.24,hop:16};o.timer=Math.max(o.timer||0,.9);if(!cried){cried=true;foeSay(o,'fear',{chance:.8});label('USTUKNUO',o.x,o.y-140,'#d9f6c0');}}}
-function slay(e,launch=0){if(!e.alive)return;if(e.keyHolder)dropKey(e);bookKill(e);blood(e.x,e.y-60,p.x<e.x?1:-1,22);e.alive=false;kills++;plen(e);strah(e);if(level){addCoins((e.champion?0:e.elite?6:2)+(!e.champion&&am('hajducka-kesa')?2:0),e.x,e.y-60);if(e.filip)filipPao(e);if(e.champion){slowMo=1;hitstop=Math.max(hitstop,.12);fx('flash','#fff2d0',.12);p.celebrate=CELEBRATE_TIME;if(e.kit==='djemo'&&okoviTrap()?.done)speak('„Bogom brate, Kraljeviću Marko, evo tebe tri tovara blaga.” Marko neće da uzima blaga, već on njima tri tovara vrati, što su dali Đemu Brđaninu. Pa uze ribe od Orida i ode bijelu Prilipu, te on slavi svoga svetitelja.',10);}}if(!e.kit&&!e.tiho)foeSay(e,'death',{chance:.6});sfx('fall',{gain:.7,delay:.45,x:e.x});sfx('leather',{gain:.4,delay:.5,x:e.x});say('kill',{chance:.8,delay:.35});corpses.push(launchCorpse(makeCorpse(e.type,e.x,e.y,e.face),launch,e.x));fx('kill',e.x,e.y);if(e.look&&rig?.[e.look+'-death'])corpses[corpses.length-1].type=e.look;if(e.sablja)dropSablja(e);}
+function slay(e,launch=0){if(!e.alive)return;if(e.keyHolder)dropKey(e);bookKill(e);blood(e.x,e.y-60,p.x<e.x?1:-1,22);e.alive=false;kills++;plen(e);strah(e);if(level){addCoins((e.champion?0:e.elite?6:2)+(!e.champion&&am('hajducka-kesa')?2:0),e.x,e.y-60);if(e.filip)filipPao(e);if(e.champion&&e.kit==='arapin'&&level?.id==='rusevine'){const K=kosovkaTrap();if(K)K.pobeda=true;speak('„Bože mili, na svem tebi hvala, kad brž’ ode sa junaka glava!” Četiri sluge Marko ostavi za pravdu, da kazuju kako j’ bilo Arapu i Marku. Svadbarine na Kosovu više nema.',9);}if(e.champion){slowMo=1;hitstop=Math.max(hitstop,.12);fx('flash','#fff2d0',.12);p.celebrate=CELEBRATE_TIME;if(e.kit==='djemo'&&okoviTrap()?.done)speak('„Bogom brate, Kraljeviću Marko, evo tebe tri tovara blaga.” Marko neće da uzima blaga, već on njima tri tovara vrati, što su dali Đemu Brđaninu. Pa uze ribe od Orida i ode bijelu Prilipu, te on slavi svoga svetitelja.',10);}}if(!e.kit&&!e.tiho)foeSay(e,'death',{chance:.6});sfx('fall',{gain:.7,delay:.45,x:e.x});sfx('leather',{gain:.4,delay:.5,x:e.x});say('kill',{chance:.8,delay:.35});corpses.push(launchCorpse(makeCorpse(e.type,e.x,e.y,e.face),launch,e.x));fx('kill',e.x,e.y);if(e.look&&rig?.[e.look+'-death'])corpses[corpses.length-1].type=e.look;if(e.sablja)dropSablja(e);}
 // the song: Marko knows his father's sabre by its three golden hilts, and takes it back
 function dropSablja(e){const have=ownedCuda().has('oceva-sablja');if(!have&&!world.items.some(i=>i.cudo==='oceva-sablja'))world.items.push({id:7049,x:e.x,y:e.y-50,type:'cudo',cudo:'oceva-sablja',taken:false});else addCoins(30,e.x,e.y-60);
  speak('Pozna Marko očinu sablju: tri balčaka, tri zlatna. Ne nosi je Turčin više.',5);label('OČEVA SABLJA',e.x,e.y-170,'#ffe2a8');}
@@ -2636,12 +2636,19 @@ const KOSOVKA_RAZGOVOR=[[0,'MARKO','„Božja pomoć, Kosovko devojko! Lepa ti s
  [35,'KOSOVKA DEVOJKA','„Nisu dvori, već šatori pusti. Gdi se onaj svilen barjak vije, onde j’ šator crnog Arapina, sva avlija glavam’ nakićena. Arap ima četrdeset slugu što čuvaju stražu oko njega.”',9],
  [44,'MARKO','„Oj davori, ti Kosovo ravno! Što si danas dočekalo, tužno, posle našeg kneza čestitoga, da Arapi sad po tebi sude! Danas ću vas, braćo, osvetiti, osvetiti, ili poginuti.”',9]];
 function kosovkaTrap(){return(world.traps||[]).find(t=>t.kind==='kosovka')||null;}
-function updateKosovka(dt){const T=kosovkaTrap();if(!T||!level)return;
+// the duel with the Arab (only in the ruins, not in Azak): three ducats, the blow Marko laughs at
+function kosovkaArap(T,dt){
+ const A=arena?.boss;if(A&&A.alive&&A.kit==='arapin'&&level.id==='rusevine'){T.arapT=(T.arapT||0)+dt;
+  if(T.arapT>9&&!T.dukati3){T.dukati3=true;burst(A.x,A.y-60,'#ffd76a',8,90);speak('Marko s’ maši rukom u džepove, pred Arapa tri dukata baci: „Veruj mene, više nemam blaga!” Ciknu Arap kao zmija ljuta: „U mene, kujo, veresije nema!”',8);}
+  if(T.dukati3&&!T.salis&&p.hp<(T.hp0??p.hp)){T.salis=true;speak('Nasmeja se Kraljeviću Marko: „O junače, Arapine crni, il’ se šališ, il’ od zbilje biješ? Koliko si mene udario, toliko ću tebe udariti!”',8,'MARKO');}}
+ T.hp0=p.hp;}
+function updateKosovka(dt){const T=kosovkaTrap();if(!T||!level)return;kosovkaArap(T,dt);
  if(!T.ph){if(p.x>T.dev-420&&p.x<T.x1&&Math.abs(p.y-T.y)<160){T.ph='govor';T.t=0;T.i=0;}return;}
  if(T.ph==='govor'){T.t+=dt;while(T.i<KOSOVKA_RAZGOVOR.length&&T.t>=KOSOVKA_RAZGOVOR[T.i][0]){const [,who,txt,d]=KOSOVKA_RAZGOVOR[T.i++];speak(txt,d,who);if(T.i===4){T.dukati=true;burst(T.dev,T.y-80,'#ffd76a',16,130);label('TRIDESET DUKATA',T.dev,T.y-190,'#ffe39a');sfx('coins',{gain:.5})||sfx('ring',{gain:.4});}}
   if(p.x>T.x1+700&&T.i<KOSOVKA_RAZGOVOR.length){T.ph='kraj';T.done=true;}
   if(T.i>=KOSOVKA_RAZGOVOR.length&&T.t>KOSOVKA_RAZGOVOR.at(-1)[0]+6){T.ph='kraj';T.done=true;T.odlazi=T.dev;toast('Kraj ruševina, gde se vije svilen barjak, čeka Arapin šator. Oslobodi svatove!',4);}}
- if(T.odlazi!=null)T.odlazi+=(rig?.['kosovka-hoda']?70:150)*dt;}
+ if(T.odlazi!=null)T.odlazi+=(rig?.['kosovka-hoda']?70:150)*dt;
+}
 function drawKosovka(T){if(T.x1<camera-400||T.x0>camera+VIEW_W+400)return;const y=T.y,x=T.odlazi??T.dev;if(x<camera-200)return;
  // her own clips (Codex D52) when they are there; until then the maiden of the wedding party
  const walk=T.odlazi!=null,own=rig?.['kosovka-idle'],n=own?(walk&&rig?.['kosovka-hoda']?'kosovka-hoda':'kosovka-idle'):'mlada-trci',R=rig?.[n],face=walk?1:(p.x<x?-1:1);

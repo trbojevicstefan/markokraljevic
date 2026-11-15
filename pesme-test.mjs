@@ -101,6 +101,13 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>T.dukati,120*40,'thirty ducats');ok(T.i===4,'kosovka: the Arab’s wedding tax, her turn tonight, and Marko’s thirty ducats');
  until(()=>T.done,120*30,'the silk banner');ok(T.i===6&&T.odlazi!=null,'kosovka: she shows him the silk banner over the Arab’s tent and goes home');
  ok(api.draw()===null,'kosovka: the maiden draws without an error');}
+// ---- Ruševine: the duel with the Arab (Marko Kraljević ukida svadbarinu) ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='rusevine'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();
+ const K=w.traps.find(t=>t.kind==='kosovka'),A=w.enemies.find(e=>e.champion&&e.kit==='arapin');for(const e of w.enemies)if(e!==A)e.alive=false;const {p}=api.state();
+ ok(K&&A&&A.arena,'arapin: the Arab’s tent at the end of the ruins');
+ Object.assign(p,{x:A.arena.x0+160,y:A.arena.y,vx:0,vy:0,grounded:true});step(3);step(120*10);ok(K.dukati3,'arapin: Marko throws him three ducats — „više nemam blaga”');
+ p.hp=p.maxHp-20;api.update(1/120);ok(K.salis,'arapin: the first blow, and Marko laughs: „il’ se šališ, il’ od zbilje biješ?”');
+ api.slay(A);step(2);ok(K.pobeda,'arapin: four servants left to tell the truth; no more wedding tax on Kosovo');}
 // ---- a scene that takes the controls starts clean: no blow left hanging, on the ground ----
 {const w=await start('reka');const T=w.traps.find(t=>t.kind==='mehana');const {p}=api.state();
  Object.assign(p,{x:T.x0+720,y:T.y,vx:0,vy:0,grounded:true,attack:.3,drink:.4});step(2);ok(T.ph==='dolazi'&&!(p.attack>0)&&!(p.drink>0)&&p.grounded,'scene: a blow or a drink in hand when the tavern scene starts is let go');}
