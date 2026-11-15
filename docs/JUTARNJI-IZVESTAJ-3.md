@@ -68,3 +68,23 @@ Reci koje od ovoga hoćeš.
 ## Prečice za pregled (`?dev&novo=…`)
 `pesma`, `peva`, `strele`, `bilje`, `pesice`, `milos`, `vasar`, `crkva`, `crkva-direk`, `okovi`, `okovi-vodi`,
 `okovi-mehana`, `ramazan`, `mehana`, `varadin`, `kosovka`.
+
+## Ispravke mehanike usput
+- Scena koja preuzme kontrole počinje čisto: Marko na zemlji i peške, bez zaostalog udarca, pića ili zaleta;
+  okovi ne počinju dok je Marko u skoku.
+- Dok traje scena iz pesme: nema štete, saveti ne seku stihove, ne pada čekpoint barjak usred scene, ukrasi ne stoje
+  ispred crkve, vešala i mehane, a kamera drži oba lika (traka veština dole levo ih više ne pokriva).
+- Pod Varadinom Marko na Šarcu ne može da odjaše u penjačke sobe dok traje boj.
+
+## Testovi (sve prolazi, poslednji put pre poslednjeg push-a)
+- `npm run check`, `npm test`: 10 igrivih, 1909 prevoda, 290 mehanika pohoda, 354 bitke, 4722 iscrtana kadra,
+  240 greybox, 31 megdan, 39 „Marko i vila", 6 protivnika, 64 scene iz pesama (vašar, crkva, sablja, okovi, mehana,
+  Varadin, Kosovka, čist početak scene) i ostali.
+- `node animation-tests.mjs` i `node simulation-test.mjs` (isto što GitHub pušta pre objave): prolaze; simulacija
+  prelazi igru do pobede.
+- Objava na GitHub Pages posle push-a: uspešna.
+
+## Šta čeka tebe
+1. Muzika: da li preuzimam snimak gusala sa Vikimedije i/ili praviš nove numere preko ElevenLabs (vidi gore).
+2. Pogledaj nove scene: najbrže preko `?dev&novo=okovi`, `ramazan`, `mehana`, `varadin`, `kosovka`, `crkva`.
+
