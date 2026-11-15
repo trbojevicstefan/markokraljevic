@@ -572,6 +572,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     {dpr: 2, maxW: 2560, layerW: 1920},
     {dpr: 1.5, maxW: 1600, layerW: 1280},
     {dpr: 1.25, maxW: 1280, layerW: 1152},
+    {dpr: 1, maxW: 1024, layerW: 896},   // 3: a phone (15. 11. 2026: the game was slow on phones), the fast tier and a smaller picture
   ];
   // 'auto' starts from the device: phones, weak CPUs and software rendering get the fast tier, integrated graphics the lighter one.
   const gpuName = (() => {
@@ -582,7 +583,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
   })();
   const softwareGpu = /swiftshader|llvmpipe|softpipe|basic render|software/i.test(gpuName);
   const integratedGpu = /intel|radeon\(tm\) graphics|radeon graphics|vega \d+ graphics|mali|adreno|powervr|videocore/i.test(gpuName) && !/arc\(tm\) [ab]\d/i.test(gpuName);
-  const deviceTier = softwareGpu || matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4 ? 2 : integratedGpu ? 1 : 0;
+  const deviceTier = matchMedia('(pointer:coarse)').matches ? 3 : softwareGpu || (navigator.hardwareConcurrency || 8) <= 4 ? 2 : integratedGpu ? 1 : 0;
   // A step down measured on this GPU in an earlier session is kept, so the game does not stutter again before it adapts.
   const PERF_KEY = 'marko-perf-v1';
   let autoTier = deviceTier;
@@ -590,13 +591,13 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
     const saved = JSON.parse(localStorage.getItem(PERF_KEY) || 'null');
     if (saved && saved.gpu === gpuName) autoTier = Math.max(autoTier, Math.min(2, saved.tier | 0));
   } catch {}
-  const currentTier = () => settings.quality === 'low' ? 2 : settings.quality === 'high' ? 0 : autoTier;
+  const currentTier = () => settings.quality === 'low' ? Math.max(2, deviceTier) : settings.quality === 'high' ? 0 : autoTier;
   let lastTier = null, lastLow = null;
   function applyQuality() {
     const tier = currentTier();
     if (tier === lastTier) return;
     lastTier = tier;
-    const low = tier === 2;
+    const low = tier >= 2;
     if (low !== lastLow) {
       lastLow = low;
       for (const m of [bgMat, valleyMat, hazeMat]) { m.defines = {...(m.defines || {}), OCTAVES: low ? 3 : 5}; m.needsUpdate = true; }

@@ -5,6 +5,12 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+["Palac te vodi drumom, a dugme SKOK je skok. TOPUZ udara, TEŠKI je težak udarac, a ŠTIT diže štit.","The thumbstick moves you along the road and JUMP jumps. MACE strikes, HEAVY is the heavy blow and SHIELD raises the shield."],
+["Levi štapić te vodi drumom, a A je skok. X udara topuzom, Y je teški udarac, a LB diže štit.","The left stick moves you along the road and A jumps. X strikes with the mace, Y is the heavy blow and LB raises the shield."],
+["levi štapić","left stick"],["palac","thumbstick"],
+// ---- 16. 11.: imena dugmadi na telefonu ----
+["TOPUZ","MACE"],["TEŠKI","HEAVY"],["ŠTIT","SHIELD"],["SKOK","JUMP"],["KOLUT","ROLL"],["RUKA","HAND"],["VINO","WINE"],["BACI","THROW"],["UDAR 1","BLOW 1"],["UDAR 2","BLOW 2"],
+["TRAG","TRACE"],["LANAC","CHAIN"],["OKO","EYE"],["MAPA","MAP"],["ZNAK","MARK"],["SABLJA","SABRE"],["PALAC ↑","STICK ↑"],["PALAC ↓","STICK ↓"],["PALAC ←","STICK ←"],["PALAC →","STICK →"],
 ["VETAR →","WIND →"],["← VETAR","← WIND"],
 // ---- 15. 11.: rasporedi tastera ----
 ["Raspored tastera","Key layout"],["Klasični: WASD i J K L","Classic: WASD and J K L"],["Strelice i A S D W, veštine na 1–6 (kao Dead Cells)","Arrows and A S D W, skills on 1–6 (like Dead Cells)"],
