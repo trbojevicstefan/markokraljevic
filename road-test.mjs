@@ -46,6 +46,7 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   // the song of Marko and the vila (the ride, Miloš's song, the arrows) is played by pesma-vila-test: the bot rides past it
   for(const tr of w.traps||[])if(tr.kind==='jahanje'&&tr.ph==='jase'&&!tr.bot){tr.bot=true;p.x=tr.x1+200;p.y=tr.y;stuck.push({at:'pesma o vili',known:true});}
   // the chase round the church of Samodreža is played by pesme-test: here the books are taken and the song counts as sung
+  for(const tr of w.traps||[])if(tr.kind==='mehana'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;tr.F=null;p.sedi=0;for(const e of w.enemies)if(e.filip)e.alive=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'nova mehana',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='okovi'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.okovan=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'Marko u okovima',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='samodreza'&&!tr.done&&p.x>tr.x0-100&&p.x<tr.x1){tr.done=true;for(const g of w.goals||[])if(g.kind==='take')g.done=true;stuck.push({at:'crkva Samodreža',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='guslar'&&tr.state==='odbrana'){tr.state='peva';for(const e of w.enemies)if(e.prey===tr)e.alive=false;stuck.push({at:'odbrana guslara',known:true});}
@@ -53,7 +54,7 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   if(p.wall&&jumpCd<=0){press('Space');jumpCd=.25;}
   step();if(S().mode==='shop')api.presuda(3);if(p.x>best+15){best=p.x;bestT=t;}
   if(t-bestT>5){const near=[...(w.traps||[]).filter(tr=>Math.abs((tr.x??tr.gate?.x??tr.gap?.x0??tr.pulley?.x??0)-p.x)<500).map(tr=>tr.kind),...(w.ladders||[]).filter(l=>Math.abs(l.x-p.x)<250).map(()=>'ladder')];
-   const known=['lift','bells','mirrors','scale','kolo','powder','red','dren','melodija','potera','pogled','vasar','samodreza','okovi'].some(k=>near.includes(k))||(w.goals||[]).some(g=>g.kind==='gate'&&!g.done&&Math.abs(g.x-p.x)<300)||(w.traps||[]).some(tr=>tr.vreme&&p.x>tr.lever.x-200&&p.x<tr.gate.x+100)||(w.plows||[]).some(pl=>Math.abs(pl.x-p.x)<700)||w.platforms.some(q=>!q.ground&&q.solid&&q.x<p.x+300&&q.x+q.w>p.x-250&&q.y+q.h<p.y-60);
+   const known=['lift','bells','mirrors','scale','kolo','powder','red','dren','melodija','potera','pogled','vasar','samodreza','okovi','mehana'].some(k=>near.includes(k))||(w.goals||[]).some(g=>g.kind==='gate'&&!g.done&&Math.abs(g.x-p.x)<300)||(w.traps||[]).some(tr=>tr.vreme&&p.x>tr.lever.x-200&&p.x<tr.gate.x+100)||(w.plows||[]).some(pl=>Math.abs(pl.x-p.x)<700)||w.platforms.some(q=>!q.ground&&q.solid&&q.x<p.x+300&&q.x+q.w>p.x-250&&q.y+q.h<p.y-60);
    stuck.push({at:`${Math.round(p.x)},${Math.round(p.y)} [${[...new Set(near)].join(' ')}]`,known});
    const nxt=w.platforms.filter(q=>q.ground&&q.x>p.x+120).sort((a,b)=>a.x-b.x)[0],here=w.platforms.find(q=>q.ground&&Math.abs(q.y-p.y)<4&&p.x+400<q.x+q.w);
    if(here&&(!nxt||nxt.x>p.x+900))p.x+=400;else if(nxt){p.x=nxt.x+40;p.y=nxt.y;}else break;p.vx=0;p.vy=0;p.climb=null;p.wall=0;best=p.x;bestT=t;}}

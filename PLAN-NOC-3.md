@@ -12,7 +12,7 @@ Stanje se upisuje ovde (✔ gotovo, ◐ u toku, ☐ nije počelo, ✖ odustato u
 
 ## Faze
 
-### 1. Codex: animacije koje fale (DOPUNA-48, GPT-6.1-Sol, medium) ◐
+### 1. Codex: animacije koje fale (DOPUNA-48, GPT-6.1-Sol, medium) ✔ (D48–D51)
 Jedna Codex sesija, redom, najviše 3 pokušaja po klipu, bez izvoza ako lik nije isti. Prvo `milos-idle` koji ja pregledam i odobrim kao uzor lika, pa ostalo sa njegovim kadrom 0 kao ulazom.
 - Miloš peške (igriv): `milos-idle`, `milos-run`, `milos-jump`, `milos-attack` (sabljom), `milos-hurt`, `milos-pada` (pogođen, padne), `milos-ranjen` (leži, drži grlo i grudi), `milos-ustaje` (izlečen ustaje).
 - Miloš na svom konju: `milos-jase` (kas, peva, petlja), `milos-galop` (petlja).
@@ -20,7 +20,7 @@ Jedna Codex sesija, redom, najviše 3 pokušaja po klipu, bez izvoza ako lik nij
 - Vila: `vila-strela` (zape luk, pusti belu strelu), `vila-pada` (pogođena buzdovanom među pleći, pada s neba), `vila-bere` (bere bilje, petlja).
 - Slika: nova Mapa putovanja (DOPUNA-49, jedna slika).
 
-### 2. Nivo „Marko i vila” po pesmi ☐ (najvažnije, maksimalno detaljno)
+### 2. Nivo „Marko i vila” po pesmi ✔ (najvažnije, maksimalno detaljno)
 Ravijojlina šuma postaje pesma od početka do kraja, stih po stih:
 1. Dva pobratima jašu preko Miroča uporedo (Marko na Šarcu, Miloš na doratu), razgovor iz pesme.
 2. Marko drema i traži pesmu; Miloš odbija (sinoć pio vino sa vilom, zapretila mu); Marko: „Pevaj, ne boj se vile dok je mene, Šarca i šestopera”.
@@ -33,22 +33,22 @@ Ravijojlina šuma postaje pesma od početka do kraja, stih po stih:
 9. Jašu dalje na dva konja (Marko na Šarcu, Miloš na svom): Poreč, gaz preko Timoka kod Bregova, ka Vidinu; vila drugaricama: „Ne streljajte junake dok je Marka i Šarca”.
 - Mehanika mora da bude bez bagova: test za svaki korak (prelazi igra, ne može da se zaglavi, padne, ostane bez cilja).
 
-### 3. Miloš igriv ☐
+### 3. Miloš igriv ✔
 Igrač može da igra Milošem: klipovi `milos-*` u Markovom telu (crtanje igrača bira lik), sopstveni potezi sabljom, bez Markovog buzdovana i vina. Prvo u nivou „Marko i vila”, posle u izboru junaka gde ima smisla.
 
-### 4. Mapa putovanja ☐
+### 4. Mapa putovanja ✔
 - Detalj pesme sa stalnim rasporedom: slika, naslov, opis u okviru fiksne visine (skrol ako je dug), dugmad uvek na istom mestu.
 - Nova naslikana mapa srednjovekovnih srpskih zemalja (Prilep, Skoplje, Kačanik, Kosovo, Šar-planina, Ibar, Zvečan, Miroč, Timok, Vidin, Ohrid, Morava, Dunav); čvorovi po stvarnim mestima iz pesama.
 - Megdan na Kačaniku više nije jedan čvor sa šest dugmića: tri prava nivoa na mapi (Zatvoreni drum sa putnicima, Vilinski trag i Šarčev zalet, Megdan sa Musom).
 - Raspored nivoa po redu pesama i Markovog života.
 
-### 5. Meni, srpski izgled ☐
+### 5. Meni, srpski izgled ✔
 Zelenu boju panela zameniti srpskom paletom (tamnocrvena, zlato, pergament, vez i šara pirotskog ćilima), živiji meni (pokret, vatra, barjak), sve na ćirilici kao podrazumevano.
 
-### 6. Protivnici i nivoi ☐
+### 6. Protivnici i nivoi ◐ (nivo po nivo, u toku)
 Nivo po nivo: jači i zanimljiviji protivnici (novi potezi, čitljiv znak napada, kombinacije), duži i smisleniji nivoi sa detaljima iz pesama (svakog sata po jedan nivo: pesma, likovi, mesta, stihovi).
 
-### 7. Muzika ☐
+### 7. Muzika ◐ (čeka Stefanovu odluku)
 Bolja muzika bez kvarenja postojeće: tražim slobodne snimke gusala i narodnih instrumenata (Wikimedia, archive.org); preuzimanje tek uz Stefanovo odobrenje (ime fajla, izvor, veličina).
 
 ### 8. Kraj ☐
@@ -61,3 +61,5 @@ Traži se snimak „Marko Kraljević i vila” na guslama sa slobodnom licencom.
 - **22:15–00:00** — Plan napisan. Codex DOPUNA-48 tura A (GPT-6.1-Sol, 7 poziva): prihvaćeni `milos-idle`, `vila-strela`, `vila-pada`, `vila-bere`, `marko-dremlje`; `marko-bije-vilu` odbila moderacija (tuča), u turi B je blaži `marko-nad-vilom`. Tura B (Miloš: trk, skok, mač, rana, ustajanje, jahanje, galop, strela) radi. Nivo „Marko i vila” ugrađen i igra se od prvog do poslednjeg stiha (commit fd15e14): jahanje uporedo, pevanje uz gusle (J/K), dve strele, potera po pesmi (vila se ne vidi pa je Šarac sagleda, Šarčev skok), buzdovan, Marko nad vilom, vila bere bilje sa odzivom, isceljenje, jahanje na dva konja, Miloš peške kao drug. `pesma-vila-test.mjs` (34 provere) i ceo skup testova prolaze. Test je našao bag (vila je odmah ponovo brala ispušteno bilje), ispravljen. Nije provereno: kako se igra na pravom ekranu sa mišem/tastaturom, glasovi (pesma za sada nema snimljen glas, samo tekst).
 - **00:00–00:40** — Tura B (Codex): prihvaćeno 7 klipova Miloša, a dva odbijena pokušaja sam izvezao bez novog kredita (`milos-run`, `marko-nad-vilom`); `milos-strela` odbila moderacija. Miloš je igriv (H). Nova naslikana mapa (Codex DOPUNA-49, jedan pokušaj): pohodi kraj mesta svojih pesama, Kačanik kao tri poglavlja, panel stalne visine, Marko na Šarcu kod sledećeg poglavlja. Paneli u srpskoj tamnocrvenoj umesto zelene, ram pauze kao crveni somot. Jači protivnici (snaga po poglavljima, BESAN, IZMAČE SE). Commitovi 7678682, cbcdffe, 25fbfde; svi testovi prolaze. Gusle: slobodnog snimka „Marko i vila” nema; na Wikimedia Commons je „Marko Kraljević i Musa Kesedžija (dio).ogg” (CC BY-SA 3.0, 2,47 MB) — čeka Stefanovu potvrdu za preuzimanje. Muzika: slobodni „srednjovekovni” komadi na OpenGameArt nisu srpski; predlog čeka jutro.
 - **00:40–01:20** — Nivo po nivo, scene iz pesama: Kosovsko selo (vašar konja, Marko bira Šarca, Novak potkuje), Manastirski vis („Bježi Marko oko b’jele crkve”: triput oko Samodreže, „Bjež’ u crkvu”, handžar u direku, kajanje, glas, kletva i blagoslov), Opsednuta tvrđava (Mustaf-aga i priča sa Marice, sablja sama iskoči, tri slova, car do duvara i sto dukata). Commitovi 3ec6644, 49429d2 i sledeći; `pesme-test.mjs` 25 provera. Codex DOPUNA-50 (Vukašin, crkva, bilje) radi.
+- **01:20–01:45** — Klisura Ibra po pesmi „Marko Kraljević i Đemo Brđanin”: Marko po majčinoj reči ide bez oružja, Đemo baca topuz u oblake i obara ga, okiva u bukagije, belenzuke i sindžir (Marko hoda okovan, bez udarca i skoka; ko zaostane, Đemo ga vuče). Vešala pod Oridom, Vučitrnom i Zvečanom, gospoda plaćaju po tri tovara blaga („tu nam nemoj objesiti Marka, neće rodit vino ni šenica”). Janjina mehana: vino od sedam godina sa biljem, „pade Đemo glavom bez uzglavlja”, Janja raskiva Marka, Đemo beži na megdan; posle megdana Marko vraća blago i nosi ribu od Orida na slavu. Codex D50 (Sol, 7 poziva) gotov: kralj Vukašin (udarac u direk; trk od četiri dobra kadra trećeg pokušaja), naslikana crkva Samodreža i pet biljaka sa Miroča, sve ugrađeno. Popravke: kamera drži oba lika, nema čekpoint barjaka, saveta ni ukrasa usred scene. Svi testovi prolaze. Commit `9c683c1`.
+- **01:45–02:50** — Podrum po pesmi „Marko pije uz ramazan vino”: na prvoj bačvi čauš čita carev jasak (četiri zabrane: vino, zelena dolama, okovana sablja, kolo uz kadune), posle prve čaše pesma kaže šta Marko radi; kod poslednje bačve dva mlada čauša zovu na divan, Marko ih dočeka kupom od dvanaest oka, a divan je minijatura iz pesme (kalpak na oči, „čelo gori, s carem se govori”, „teško onom tko j’ najbliže Marka”, car do duvara, sto dukata). Commit `dc22794`. Reka po pesmi „Marko Kraljević i Filip Madžarin”: pismo Zmaj-Despota Vuka, nova mehana u Karlovcu, Marko sedne da pije, Šarac ne pušta Filipa na vrata i zakuka kad ga Filip bije, E: „Propusti ga u mehanu, Šarče!”, Filip udara a Marko „ni habera nema” („ne budi mi po kožuhu buha”), razbijena čaša i prosuto vino, Marko skoči i počinje megdan; posle „Dobra gvožđa u loša junaka!”. Codex D51 (Sol) crta Filipa: idle, trk (treći pokušaj) i udarac gotovi, rana i smrt u radu.

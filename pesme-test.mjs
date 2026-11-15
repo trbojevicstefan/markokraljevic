@@ -68,4 +68,16 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  ok(T.done&&T.raskovan&&!p.okovan&&T.djemo.bezi,'okovi: Janja’s herbs put Đemo to sleep, she unchains Marko, and Đemo flees to the duel');
  const x1=p.x;press('KeyD');step(120);release('KeyD');ok(p.x>x1+150,'okovi: Marko walks free again');
  ok(api.draw()===null,'okovi: the gallows, the tavern and Đemo draw without an error');}
+// ---- Reka: the new tavern in Karlovac (Marko Kraljević i Filip Madžarin) ----
+{const w=await start('reka');const T=w.traps.find(t=>t.kind==='mehana');const {p}=api.state();
+ ok(T&&T.sarac>T.sto&&T.sto>T.kuca,'mehana: the new tavern, the table, and Šarac tied at the door, in that order');
+ Object.assign(p,{x:T.x0+720,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='dolazi','mehana: Marko comes to Karlovac and goes to the tavern');
+ until(()=>T.ph==='pije',120*10,'he sits down to drink');step(120);ok(p.sedi>0,'mehana: he ties Šarac and sits down to drink');
+ until(()=>T.ph==='sarac',120*15,'Filip comes');until(()=>T.zakuka,120*6,'Šarac cries out');ok(T.F&&T.F.x>T.sarac,'mehana: Šarac does not let Filip through, Filip beats him, Šarac cries out');
+ step(120*5);tap('KeyE');step(2);ok(T.ph==='ulazi','mehana: E — „Propusti ga u mehanu, Šarče!”');
+ const hp=p.hp;until(()=>T.h1,120*12,'the first blow');ok(p.hp===hp&&p.sedi>0,'mehana: Filip strikes him on the shoulders, and Marko ni habera nema');
+ until(()=>T.ph==='megdan',120*20,'the cup');const f=w.enemies.find(e=>e.filip);ok(T.razbijena&&f&&f.alive&&!(p.sedi>0),'mehana: the golden cup is broken, the wine spilled: Marko leaps up and the duel begins');
+ const x1=p.x;step(80);press('KeyA');step(60);release('KeyA');ok(p.x<x1-30,'mehana: in the duel Marko moves freely');
+ api.slay(f);step(2);ok(T.done&&T.ph==='kraj','mehana: „Dobra gvožđa u loša junaka!” — the tavern is done');
+ ok(api.draw()===null,'mehana: the tavern, Šarac and Filip draw without an error');}
 console.log(`\n${checks} checks passed.`);
