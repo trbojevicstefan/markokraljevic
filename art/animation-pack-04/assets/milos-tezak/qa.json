@@ -1,0 +1,114 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44885
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        31,
+        94,
+        323,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51353
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        29,
+        95,
+        365,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58774
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        44,
+        159,
+        441,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55542
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        98,
+        125,
+        438,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        52042
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        124,
+        108,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44892
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9718670076726342,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "visualReview": "Two overhead windup poses at frames 1-2, deep knee bend and sword tip at ground in frame 3, recovery to reference idle. Identity, body scale and connected full sword verified.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

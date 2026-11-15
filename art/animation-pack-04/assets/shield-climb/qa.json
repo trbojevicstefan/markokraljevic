@@ -1,0 +1,93 @@
+{
+  "clip": "shield-climb",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.7136842105263158,
+  "referenceHeight": 339,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        173,
+        149,
+        338,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        175,
+        158,
+        336,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        177,
+        148,
+        334,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        177,
+        150,
+        334,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        177,
+        155,
+        335,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        176,
+        140,
+        335,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six climbing phases matched to sword; shield strapped to back, sabre at belt; fixed support and source anatomy.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

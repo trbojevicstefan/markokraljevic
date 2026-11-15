@@ -1,0 +1,80 @@
+{
+  "clip": "oklopnik-budi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.9280898876404494,
+  "referenceHeight": 413,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        65,
+        147,
+        446,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        70,
+        131,
+        441,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        74,
+        119,
+        438,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 16,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        87,
+        99,
+        425,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 17,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        127,
+        75,
+        384,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Second attempt correct green; five waking phases, final idle stance and 413px height; complete hammer and shield.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

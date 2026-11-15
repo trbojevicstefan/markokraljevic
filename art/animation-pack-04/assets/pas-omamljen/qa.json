@@ -1,0 +1,93 @@
+{
+  "clip": "pas-omamljen",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.553314121037464,
+  "referenceHeight": 192,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        152,
+        296,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        153,
+        311,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        151,
+        336,
+        361,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        152,
+        320,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        161,
+        297,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        157,
+        295,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six dazed swaying poses; splayed paws, drooping/shaking head, tucked tail; original brindle dog size192px.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

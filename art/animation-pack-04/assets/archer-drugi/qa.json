@@ -1,0 +1,93 @@
+{
+  "clip": "archer-drugi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.9238578680203046,
+  "referenceHeight": 364,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        124,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        114,
+        57,
+        397,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        112,
+        48,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        71,
+        130,
+        440,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        63,
+        140,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        124,
+        124,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six bow-club overhead-to-downward attack phases; intact bow/string held throughout; final braced stance matches archer-kick ending.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

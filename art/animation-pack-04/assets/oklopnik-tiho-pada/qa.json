@@ -1,0 +1,93 @@
+{
+  "clip": "oklopnik-tiho-pada",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.9177777777777778,
+  "referenceHeight": 413,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        125,
+        75,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        122,
+        82,
+        390,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        121,
+        103,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        99,
+        191,
+        412,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        46,
+        263,
+        465,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 17,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        28,
+        356,
+        483,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 14,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six heavy collapse poses; square hammer and round shield settle beside fully prone body; standing height413px.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

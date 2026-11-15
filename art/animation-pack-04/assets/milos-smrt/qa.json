@@ -1,0 +1,66 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    123,
+    108,
+    339,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    118,
+    127,
+    353,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    116,
+    170,
+    395,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    67,
+    253,
+    445,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    59,
+    312,
+    453,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    50,
+    366,
+    462,
+    488
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/milos-smrt/attempt-3"
+}

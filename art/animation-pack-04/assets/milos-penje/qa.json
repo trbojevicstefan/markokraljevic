@@ -1,0 +1,86 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    151,
+    68,
+    360,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    154,
+    110,
+    358,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    152,
+    59,
+    360,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    154,
+    43,
+    357,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    158,
+    54,
+    354,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    154,
+    110,
+    358,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 6,
+   "bbox": [
+    151,
+    68,
+    360,
+    488
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 7,
+   "bbox": [
+    151,
+    68,
+    361,
+    488
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/milos-penje/attempt-3"
+}

@@ -1,0 +1,93 @@
+{
+  "clip": "palikuca-tiho-pada",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.8187633262260128,
+  "referenceHeight": 384,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        175,
+        104,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        164,
+        109,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        171,
+        164,
+        341,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        149,
+        250,
+        363,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        99,
+        305,
+        412,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 19,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        69,
+        379,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 24,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six collapse phases; torch falls and is extinguished in4-5; final face down, whole body and torch inside; standing height384px.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

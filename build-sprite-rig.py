@@ -540,6 +540,60 @@ if _have('kosovka-idle') and 'marko-idle-2' in SCALES:
     SCALES['kosovka-idle'] = (SCALES['marko-idle-2'][0], 'feet')
 if _have('kosovka-hoda') and 'marko-idle-2' in SCALES:
     SCALES['kosovka-hoda'] = (SCALES['marko-idle-2'][0], 'torso')
+# DOPUNA-54 (Miloš as the playable hero): drawn at Marko's zoom like his D48 clips (his body 380 px against Marko's 383).
+# Standing blows, block, crouch and drink stand on the feet; the cut in the air holds the torso (as milos-jump); rolling,
+# climbing and lying dead are held by the middle (as marko-roll, marko-climb and filip-death).
+for _n, _m in [('milos-niz-2', 'feet'), ('milos-niz-3', 'feet'), ('milos-tezak', 'feet'), ('milos-blok', 'feet'), ('milos-cuci', 'feet'),
+               ('milos-pije', 'feet'), ('milos-vazduh', 'torso'), ('milos-kotrlja', 'center'), ('milos-penje', 'center'), ('milos-smrt', 'center')]:
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0], _m)
+# DOPUNA-55: the sword-bearer's moves for the other foot soldiers. Codex drew each one at the size of the man's frame it was
+# given (art/world-pack-03/prepare-dopuna54.py): for the six men of pack 3 that frame was cut from the game at 383/128 px per
+# world px (Marko 383 px in a 512 cell), for the others it is their own idle frame 0, so the new clip shares that zoom. Measured:
+# every -budi ends as tall as the man's idle within 3 %. (Measuring by height made the climbers, with an arm up, 15-20 % big.)
+_UZOR_3D = 128 / 383
+def _uzor_zoom(name, who):
+    if _have(name) and f'{who}-idle' in SCALES:
+        SCALES[name] = (_UZOR_3D if who in ('sword', 'shield', 'archer', 'akindzija', 'oklopnik', 'palikuca') else SCALES[f'{who}-idle'][0], 'feet')
+for _who in ['kopljanik', 'akindzija', 'palikuca', 'oklopnik']:
+    _uzor_zoom(f'{_who}-spava', _who)
+    _uzor_zoom(f'{_who}-budi', _who)
+for _who in ['shield', 'kopljanik', 'akindzija', 'palikuca']:
+    _uzor_zoom(f'{_who}-climb', _who)
+for _who in ['shield', 'kopljanik', 'akindzija', 'palikuca', 'oklopnik']:
+    _uzor_zoom(f'{_who}-tiho-pada', _who)
+for _n in ['pas-jump', 'pas-omamljen', 'djemo-jump']:
+    _ref = _n.split('-')[0] + '-idle'
+    if _have(_n) and _ref in SCALES:
+        SCALES[_n] = (SCALES[_ref][0], 'feet')
+if _have('arapin-omamljen') and 'arapin-idle' in SCALES:   # staggering bent over: his idle less the stoop, as the others' -omamljen
+    SCALES['arapin-omamljen'] = (_road('arapin-idle') * .95 / float(np.median([body_height(c) for c in _cells('arapin-omamljen')])), 'feet')
+for _n, _ref in [('pas-drugi', 'pas-attack'), ('archer-drugi', 'archer-kick'), ('palikuca-drugi', 'palikuca-torch'), ('tufekdzija-drugi', 'tufekdzija-butt')]:
+    if _have(_n) and _ref in SCALES:   # the second blow ends in the stance the first one ends in (the rule of the other -drugi clips)
+        SCALES[_n] = (SCALES[_ref][0] * body_height(_cells(_ref)[-1]) / body_height(_cells(_n)[-1]), 'feet')
+# DOPUNA-56: a standing horse is measured by height, hooves to ears or to the rider's head (a galloping horse is longer, so the
+# width of mounted-run would make him too big). Šarac standing: his first, neutral frame as tall as the still Šarac (cast/sarac).
+# Marko on Šarac standing still as tall as in the standing frame of mounted-jump; mounting ends in that same seat.
+# Miloš's bay (no rider) as long as the horse under Miloš in milos-jase.
+# The whole picture is measured, ears or rider's head to hooves (body_height skips the narrow top rows, which here are the
+# rider's head and differ from drawing to drawing).
+def _full_h(cell):
+    r_ = np.where((cell[:, :, 3] > SOLID).any(1))[0]
+    return int(r_[-1] + 1 - r_[0])
+if _have('sarac-stoji') and 'cast/sarac' in SCALES:
+    _h = _full_h(np.array(Image.open(os.path.join(ROOT, 'cast/sarac.png')).convert('RGBA'))) * SCALES['cast/sarac'][0]
+    SCALES['sarac-stoji'] = (_h / _full_h(_cells('sarac-stoji')[0]), 'center')
+_SEAT = _full_h(_cells('mounted-jump')[0]) * SCALES['mounted-jump'][0] if 'mounted-jump' in SCALES else None
+if _have('mounted-idle') and _SEAT:
+    SCALES['mounted-idle'] = (_SEAT / float(np.median([_full_h(c) for c in _cells('mounted-idle')])), 'center')
+if _have('marko-uzjase') and _SEAT:
+    SCALES['marko-uzjase'] = (_SEAT / _full_h(_cells('marko-uzjase')[-1]), 'center')
+if _have('milos-konj') and 'milos-jase' in SCALES:
+    _w = float(np.median([_width(c) for c in _cells('milos-jase')])) * SCALES['milos-jase'][0]
+    SCALES['milos-konj'] = (_w / float(np.median([_width(c) for c in _cells('milos-konj')])), 'center')
+# marko-uzjase is drawn wider (Marko beside the horse), so the centre of its picture is not the horse's: the anchor is moved so
+# its front hoof stands where mounted-idle's does (measured: 48.1 against 41.9 world px), applied after ANCHOR_FIX below.
+NOC_ANCHOR_FIX = {'marko-uzjase': 17.7}
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
@@ -610,6 +664,9 @@ for kit in list(KOSTAC_LIK) + ['ledja', 'akindzija', 'kopljanik']:
 # aside by a cloak spread like wings or a leg slid far forward), measured on the frames where one clip hands over to the next.
 ANCHOR_FIX = {"marko-krilo": 36.1, "marko-air-3": -68.6, "marko-klizanje": -163.5, "marko-nalet-kraj": 21.1, "marko-trag-ostavi": 9.1, "marko-kuka-baci": -14.5, "marko-kuka-let": 28.8, "marko-zid-trk": 18.7, "marko-odmor": 10.5, "marko-odmor-ustaje": 18.7, "marko-potres": -6.4, "marko-lanac-trgne": -9.4, "marko-zvizduk": 14.0, "marko-oko": -6.6, "marko-zid-trk-vodoravno": -24.1, "marko-launcher": 25.3}
 for name, d in ANCHOR_FIX.items():
+    if name in rig:
+        rig[name]['anchor'] = round(rig[name]['anchor'] + d, 1)
+for name, d in NOC_ANCHOR_FIX.items():   # the noc-poliranje block's own (see there)
     if name in rig:
         rig[name]['anchor'] = round(rig[name]['anchor'] + d, 1)
 # The launcher (Lost Crown, W+K) has no drawing of its own yet: it is the cut upward, the same sheet and frames.

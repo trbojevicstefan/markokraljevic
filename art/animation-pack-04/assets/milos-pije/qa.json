@@ -1,0 +1,114 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45296
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        124,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45967
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        124,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46376
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        124,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47030
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        124,
+        109,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46345
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        124,
+        109,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45273
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.867579908675799,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "visualReview": "Left hand takes wooden flask from belt, drinks in frames 2-3, wipes moustache with back of hand in 4, returns flask in 5. Right hand holds full downward sword throughout; identity, 380px standing height and stable feet match reference.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

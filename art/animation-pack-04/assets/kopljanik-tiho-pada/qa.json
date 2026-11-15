@@ -1,0 +1,93 @@
+{
+  "clip": "kopljanik-tiho-pada",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.9411764705882353,
+  "referenceHeight": 410,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        45,
+        85,
+        467,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 19,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        68,
+        86,
+        443,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 14,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        66,
+        119,
+        445,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        55,
+        183,
+        456,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        51,
+        251,
+        460,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 20,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        24,
+        350,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 30,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Second attempt removes extra scabbard. Six collapse phases, spear lands beside body, final prone pose complete; standing height403px within5percent.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

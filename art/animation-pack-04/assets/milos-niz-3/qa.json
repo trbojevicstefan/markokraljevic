@@ -1,0 +1,114 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        108,
+        336,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44563
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        126,
+        107,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46340
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        106,
+        121,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        50615
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        55,
+        124,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55423
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        114,
+        107,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48959
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        122,
+        106,
+        336,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45568
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9476309226932669,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "visualReview": "Two-handed straight finishing thrust at chest height in frame 3, right-foot lunge, idle endpoints. Full blade inside cell; identity and standing height match reference.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,93 @@
+{
+  "clip": "palikuca-drugi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.90625,
+  "referenceHeight": 384,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        102,
+        142,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        95,
+        166,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        108,
+        140,
+        403,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        80,
+        127,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 31,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        78,
+        68,
+        433,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 38,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        114,
+        140,
+        397,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six low-to-high burning torch swing phases with sparks; final body stance matches torch ending. Body scaled348px excluding idle flame.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

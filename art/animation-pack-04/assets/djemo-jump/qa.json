@@ -1,0 +1,93 @@
+{
+  "clip": "djemo-jump",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.963302752293578,
+  "referenceHeight": 420,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        118,
+        173,
+        394,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        121,
+        90,
+        390,
+        470
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 469
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        130,
+        94,
+        381,
+        440
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 439
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        118,
+        30,
+        394,
+        415
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 414
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        116,
+        41,
+        396,
+        450
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 449
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        116,
+        186,
+        395,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six jump phases; frames1-4 airborne, mace raised at apex; crouch endpoints, full connected mace and exact fur coat identity.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

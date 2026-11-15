@@ -1,0 +1,93 @@
+{
+  "clip": "akindzija-climb",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.7360824742268042,
+  "referenceHeight": 357,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        155,
+        131,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        155,
+        138,
+        356,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        161,
+        138,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        160,
+        132,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        158,
+        135,
+        353,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        156,
+        131,
+        356,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six reference climb phases; both sabres sheathed at belt; original red turban, green tunic and cream trousers.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

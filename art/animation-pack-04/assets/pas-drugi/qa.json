@@ -1,0 +1,93 @@
+{
+  "clip": "pas-drugi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.6575342465753424,
+  "referenceHeight": 192,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        150,
+        339,
+        362,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        143,
+        320,
+        369,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        128,
+        305,
+        384,
+        465
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 464
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        134,
+        321,
+        378,
+        465
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 464
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        133,
+        335,
+        378,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        146,
+        296,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six short-hop low-bite phases; last alert standing pose matches pas-attack ending; same dog anatomy and collar.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

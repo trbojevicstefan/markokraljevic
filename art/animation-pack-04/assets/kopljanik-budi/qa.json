@@ -1,0 +1,80 @@
+{
+  "clip": "kopljanik-budi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.9785202863961814,
+  "referenceHeight": 410,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        104,
+        114,
+        407,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        104,
+        121,
+        407,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        64,
+        152,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        56,
+        117,
+        455,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 23,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        40,
+        78,
+        472,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 14,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Five waking phases; final stance matches actual idle and standing height 410px; spear fully visible. Hold last frame.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

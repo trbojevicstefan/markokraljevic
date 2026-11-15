@@ -1,0 +1,93 @@
+{
+  "clip": "palikuca-climb",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.7885010266940452,
+  "referenceHeight": 384,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        157,
+        104,
+        354,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        164,
+        130,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        164,
+        130,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        156,
+        102,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        168,
+        127,
+        344,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        158,
+        102,
+        354,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six climb phases, flaming torch securely at belt, hands free; original patched vest and body scale.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

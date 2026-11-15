@@ -1,0 +1,95 @@
+{
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "attempt": 1,
+  "uniformScale": 1.0108932461873639,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        71,
+        26,
+        464,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        54,
+        26,
+        466,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        44,
+        26,
+        468,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        52,
+        25,
+        468,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        24,
+        467,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        76,
+        24,
+        468,
+        489
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "largeComponents": 1,
+      "greenPixels": 0,
+      "hoofY": 488
+    }
+  ],
+  "loop": true,
+  "holdLastFrame": false,
+  "gifFrames": 6
+}

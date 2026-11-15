@@ -1118,7 +1118,7 @@ function basePose(){
  if(p.ustaje>0&&rig?.['marko-odmor-ustaje']){const n=rig['marko-odmor-ustaje'].frames.length;return{name:'marko-odmor-ustaje',frame:Math.min(n-1,Math.floor((1-p.ustaje/.6)*n))};}
  if(p.sedi>0&&rig?.['marko-odmor']){const n=rig['marko-odmor'].frames.length;return{name:'marko-odmor',frame:Math.min(n-1,Math.floor(p.sedi*(n-1)+1e-6))};}
  if(p.okovan&&rig?.['marko-okovan']){const n=rig['marko-okovan'].frames.length;return Math.abs(p.vx)>10?{name:'marko-okovan',...loopAt(p.gait||0,n)}:{name:'marko-okovan',frame:0};}
- if(horseMounted){if(p.dremlje)return rig?.['marko-dremlje']?{name:'marko-dremlje',...loopAt(time*7,rig['marko-dremlje'].frames.length)}:{name:'mounted-jump',frame:0,rot:.05*Math.sin(time*1.3),sy:1+Math.sin(time*1.4)*.01};if(!p.grounded||p.landing>0)return{name:'mounted-jump',frame:p.grounded?3:p.vy< -350?1:p.vy<250?2:3};if(Math.abs(p.vx)>35)return{name:'mounted-run',...loopAt(p.gait,6)};return{name:'mounted-jump',frame:0,sy:1+Math.sin(time*2.2)*.008};}
+ if(horseMounted){if(p.dremlje)return rig?.['marko-dremlje']?{name:'marko-dremlje',...loopAt(time*7,rig['marko-dremlje'].frames.length)}:{name:'mounted-jump',frame:0,rot:.05*Math.sin(time*1.3),sy:1+Math.sin(time*1.4)*.01};if(!p.grounded||p.landing>0)return{name:'mounted-jump',frame:p.grounded?3:p.vy< -350?1:p.vy<250?2:3};if(Math.abs(p.vx)>35)return{name:'mounted-run',...loopAt(p.gait,6)};return rig?.['mounted-idle']?{name:'mounted-idle',...loopAt(time*6,rig['mounted-idle'].frames.length)}:{name:'mounted-jump',frame:0,sy:1+Math.sin(time*2.2)*.008};}
  if(p.climb)return climbPose();if(p.throwT>0)return throwPose();
  {const x=pack3Pose();if(x)return x;}
  if(p.spin>0){if(rig?.['marko-vihor'])return{name:'marko-vihor',...loopAt(p.spin*20,8)};const k=Math.floor(p.spin/.09);return{name:'marko-attack',frame:[2,3,4,3][k%4],faceFlip:Math.floor(p.spin/.18)%2===1,sy:1-.03*Math.abs(Math.sin(p.spin*18))};}
@@ -1192,7 +1192,8 @@ function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying||p.bijeVilu||p.uCr
  for(const g of ghosts)rigDraw(g.name,g.frame,g.x,g.y,g.faceAs??g.face,{...g,glow:true,color:'#7fffe0',alpha:g.life*1.1,outline:1.5});
  drawTrag();drawKrilo();drawNaletStreak();shadow(p.x,p.y,horseMounted?84:38,.55);
  if(p.buff>0){halo(p.x,p.y-64,90,'rgba(255,170,60,.22)',.7+.3*Math.sin(time*6));emitters.push({id:'buff',kind:'buff',x:p.x,y:p.y,rate:38});}
- if(horseMounted&&p.mountTime>0){const a=1-p.mountTime/.55;rigDraw('cast/sarac',0,p.x,p.y,p.face,{alpha:1-a});rigDraw('cast/marko',0,p.x-p.face*(65*(1-a)),p.y-55*Math.sin(a*Math.PI),p.face,{alpha:1-a,rot:-.15*Math.sin(a*Math.PI)*p.face});rigDraw('mounted-jump',0,p.x,p.y,p.face,{alpha:a});}
+ if(horseMounted&&p.mountTime>0&&rig?.['marko-uzjase']){const U=rig['marko-uzjase'],a=clamp(1-p.mountTime/.55,0,.999);rigDraw('marko-uzjase',Math.floor(a*U.frames.length),p.x,p.y,p.face,{alpha});}
+ else if(horseMounted&&p.mountTime>0){const a=1-p.mountTime/.55;rigDraw('cast/sarac',0,p.x,p.y,p.face,{alpha:1-a});rigDraw('cast/marko',0,p.x-p.face*(65*(1-a)),p.y-55*Math.sin(a*Math.PI),p.face,{alpha:1-a,rot:-.15*Math.sin(a*Math.PI)*p.face});rigDraw('mounted-jump',0,p.x,p.y,p.face,{alpha:a});}
  else{pose=heroPose(playerPose());const face=pose.faceAs??(pose.faceFlip?-p.face:p.face),fd0=animTrack(p,pose,face,p.hurt>.02||p.down>0),fd=bodyPose(pose)?null:fd0;drawFade(fd,p.x,p.y,alpha);if(p.buff>0)rimGlow(pose,p.x,p.y,p.face,'#ffb44a',.3+.15*Math.sin(time*8),1.6);if(p.parry>0)rimGlow(pose,p.x,p.y,p.face,'#8fffe0',.3,1.6);rigDraw(pose.name,pose.frame,p.x,p.y,face,{...pose,alpha,flash:p.hurt>.1?(p.hurt-.1)/.12*.6:0,flashColor:'#ffb8a8'});if(p.dizzy>0)drawDizzy();}
  maceSmear(pose);drawSpinFx();drawChargeMeter();
  if(p.parry>0){const a=(p.face<0?Math.PI:0);for(const [g,al] of [[gctx,.45],[ctx,.3]]){g.beginPath();g.arc(p.x,p.y-64,62,a-1.25,a+1.25);g.strokeStyle=`rgba(200,255,232,${al})`;g.lineWidth=4;g.stroke();}}
@@ -1251,6 +1252,8 @@ function drawBoss(){if(zone!==5||!boss.alive)return;if(boss.stage==='kostac'&&(b
  drawMusaWindow();drawMaceDrop();}
 function advanceFairy(dt){const active=fairy.age<fairy.duration;const approach=active&&fairy.age<1.65;const targetX=approach?clamp(fairy.targetX-p.face*75,p.x-220,p.x+280):p.x-p.face*60;const targetY=approach?Math.min(p.y-100,fairy.targetY-10):p.y-125;const rate=active?7:4;fairy.x+=(targetX-fairy.x)*Math.min(1,dt*rate);fairy.y+=(targetY-fairy.y)*Math.min(1,dt*rate);}
 // Codex's Ravijojla: flying in a loop, then casting (or healing), a ribbon of light to the target and a ring of runes there
+// Šarac standing (D56): tail, head, a hoof; the still picture only while the clip is missing
+function saracDraw(x,y,face,o={}){const R=rig?.['sarac-stoji'];return R?rigDraw('sarac-stoji',loopF(time*5+x*.003,R.frames.length),x,y,face,o):rigDraw('cast/sarac',0,x,y,face,o);}
 function rigDrawC(name,frame,x,y,face,o={}){const r=rig?.[name];if(!r)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)];return rigDraw(name,frame,x,y,face,{...o,dy:(o.dy||0)+(f[4]-f[3]/2)*r.scale*(o.scale||1)});}
 function drawVila(face,a,enter,fx,fy){const cast0=.28,cast1=1.15,heal=fairy.kind==='heal'&&rig?.['vila-isceljenje'],nm=heal?'vila-isceljenje':rig?.['vila-carolija']?'vila-carolija':'vila-let',k=(fairy.age-cast0)/(cast1-cast0);
  const name=k>=0&&k<1?nm:'vila-let',n=rig[name].frames.length,frame=name==='vila-let'?loopF(time*12,n):Math.min(n-1,k*n),sc=.85+.15*enter,y=fy-44;
@@ -1284,7 +1287,7 @@ function draw(dt=1/60){
  world.runes.forEach(drawRune);
  world.items.forEach(drawItem);
  world.barriers.forEach(drawBarrier);
- if(!horseMounted&&Math.abs(horseX-camera-VIEW_W/2)<VIEW_W){shadow(horseX,590,62,.5);rigDraw('cast/sarac',0,horseX,591,1,{sy:1+Math.sin(time*1.8)*.008});if(zone===3)textLabel('E · UZJAŠI ŠARCA',horseX,430,{font:'bold 15px Georgia',color:'#fff0bd',glow:'#ffd27a'});}
+ if(!horseMounted&&Math.abs(horseX-camera-VIEW_W/2)<VIEW_W){shadow(horseX,590,62,.5);saracDraw(horseX,591,1,rig?.['sarac-stoji']?{}:{sy:1+Math.sin(time*1.8)*.008});if(zone===3)textLabel('E · UZJAŠI ŠARCA',horseX,430,{font:'bold 15px Georgia',color:'#fff0bd',glow:'#ffd27a'});}
  if(mode!=='menu'){drawMoci2Back();drawCannons();drawGuns();drawDecals();drawBones();for(const f of fires)drawFire(f);for(const c of corpses)drawCorpse(c);drawHeads();drawLimbs();drawGibs();drawSabljaTag();const nabijen=impaled();for(const e of world.enemies)if(e.alive&&e!==nabijen)drawSoldier(e);drawKits();drawFinishPrompt();drawStealth();drawGrapple();drawTravelers();drawBoss();if(p)drawPlayer();if(nabijen)drawSoldier(nabijen);drawCoins();drawThrown();drawCannonBalls();drawBurning();if(level)drawTrapsFront();drawPowers();drawMoci2Front();if(level){drawOrao();drawSoko();}if(vaultFade>0){vaultFade=Math.max(0,vaultFade-dt);ctx.fillStyle=`rgba(0,0,0,${Math.min(1,vaultFade*3)})`;ctx.fillRect(camera-20,camY-20,VIEW_W+40,VIEW_H+40);}}
  for(const a of arrows){if(a.torch){ctx.save();ctx.translate(a.x,a.y);ctx.rotate(a.rot||0);ctx.fillStyle='#5a3a22';ctx.fillRect(-16,-2.5,26,5);ctx.restore();drawFlame(a.x+Math.cos(a.rot||0)*12,a.y+Math.sin(a.rot||0)*12+6,16,26,a.x);emitters.push({id:'torch'+Math.round(a.x/40),kind:'fire',x:a.x,y:a.y,w:10,rate:30});continue;}if(a.wave){halo(a.x,a.y-4,40,'rgba(255,120,80,.8)');ellipse(a.x,a.y,11,19,'#ffc29a');emitters.push({id:'wave',kind:'boss',color:'#ff7a5a',x:a.x,y:a.y+60,rate:50});}else drawArrow(a);}
  for(const a of particles){const k=clamp(a.life/(a.max||1),0,1);if(a.kind==='blood'){if(a.delay>0)continue;ctx.globalAlpha=Math.min(1,k*1.6);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x-a.vx*.022,a.y-a.vy*.022);ctx.strokeStyle=a.color;ctx.lineWidth=a.r;ctx.lineCap='round';ctx.stroke();}else if(a.kind==='dust'){ctx.globalAlpha=k*.38;ellipse(a.x,a.y,a.r*(1.6-k*.6),a.r*(1.2-k*.4),a.color);}else{gctx.globalAlpha=k;ellipse(a.x,a.y,a.r,a.r,a.color,gctx);}}ctx.globalAlpha=1;gctx.globalAlpha=1;
@@ -2572,7 +2575,7 @@ function updateUrvina(dt){const t=vrhTrap();if(!t)return;const k=p.x/Math.max(1,
 function drawVrh(t){if(t.x1<camera-600||t.x0>camera+VIEW_W+600)return;const jela=levelArt['prop-drvo-jela'],bunar=levelArt['prop-bunar'],krst=levelArt['prop-krst-raskrsce'],step=t.step||0;
  if(jela){drawImgOn(jela,t.bunar-190,t.y+6,470);drawImgOn(jela,t.bunar+170,t.y+6,440,true);}
  if(bunar)drawImgOn(bunar,t.bunar,t.y+4,120);else{ctx.fillStyle='#6f6a62';ctx.fillRect(t.bunar-40,t.y-50,80,50);}
- if(step<2)rigDraw('cast/sarac',0,t.sarac,t.y,-1,{});else{ellipse(t.sarac,t.y-6,110,22,'#5a4632');ellipse(t.sarac,t.y-16,86,18,'#6b543c');if(krst)drawImgOn(krst,t.sarac+96,t.y+2,150);}
+ if(step<2)saracDraw(t.sarac,t.y,-1,{});else{ellipse(t.sarac,t.y-6,110,22,'#5a4632');ellipse(t.sarac,t.y-16,86,18,'#6b543c');if(krst)drawImgOn(krst,t.sarac+96,t.y+2,150);}
  if(step>=3){for(const [dx,r,l] of[[-46,.3,26],[-16,-.5,22],[12,.8,24],[40,-.2,20]]){ctx.save();ctx.translate(t.sablja+dx,t.y-5);ctx.rotate(r);line(-l/2,0,l/2,0,'#c8ccd2',4);ctx.restore();}for(let i=0;i<7;i++)line(t.sablja+80+i*17,t.y-3,t.sablja+92+i*17,t.y-9,'#5a3c22',4);}
  if(t.mace){const im=levelArt['predmet-topuz'],M=t.mace;ctx.save();ctx.translate(M.x,M.y);ctx.rotate(M.rot);if(im)ctx.drawImage(im,-34,-34,68,68);else{line(-30,0,6,0,'#4a3420',6);ellipse(16,0,14,14,'#5a5a60');}ctx.restore();}
  if(p.lying){const P=rig?.['marko-pocinak'],R=rig?.['marko-death'];if(P)rigDraw('marko-pocinak',Math.min(P.frames.length-1,(t.lie||0)*2.2),p.x,p.y,1,{});else{ctx.save();ctx.globalAlpha=.9;ellipse(p.x,p.y-3,74,9,'#2f5a3a');ctx.restore();if(R)rigDraw('marko-death',R.frames.length-1,p.x,p.y,1,{});}}
@@ -2712,7 +2715,7 @@ function drawVaradin(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500||!T.ph)return
  // the spear in the meadow, Šarac tied to it (until Marko mounts), the wineskin and the ledjen
  if(T.koplje||T.ph==='logor'&&T.pt>1.5){line(T.logor+60,y+4,T.logor+52,y-210,'#6b4426',5);poly([[T.logor+48,y-206],[T.logor+56,y-206],[T.logor+52,y-236]],'#cfcfd6','#6a6a70');}
  if(!horseMounted&&T.ph!=='kraj'&&T.ph!=='boj1'&&T.ph!=='boj2'&&T.ph!=='boj2pre'&&T.ph!=='vojvode'){const st=T.lupa&&time-T.lupa<.3,dr=T.saracPije&&time-T.saracPije<1.2;shadow(T.logor+130,y,60,.4);
-  rigDraw('cast/sarac',0,T.logor+130+(st?Math.sin(time*50)*3:0),y-(st?Math.abs(Math.sin(time*18))*6:0),-1,{scale:.86,rot:dr?.08:0});
+  saracDraw(T.logor+130+(st?Math.sin(time*50)*3:0),y-(st?Math.abs(Math.sin(time*18))*6:0),-1,{scale:.86,rot:dr?.08:0});
   if(T.koplje)line(T.logor+60,y-120,T.logor+100,y-96,'#9a7a4a',2);}
  if(T.ph==='pije'||T.ph==='opkole'){ellipse(seat2(T)+50,y-8,16,10,'#6a3a1a');ellipse(seat2(T)+50,y-16,6,4,'#4a2a10');}
  if(T.ph==='opkole'&&T.pt>2.5)textLabel('E · NA ŠARCA',p.x,y-200,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
@@ -2775,7 +2778,7 @@ function drawMehana(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y
  else{poly([[T.sto+20,y-56],[T.sto+30,y-56],[T.sto+26,y-60]],'#c8a040','#8a6418');ellipse(T.sto-6,y-56,26,4,'rgba(110,14,26,.85)');}
  line(T.sarac-70,y,T.sarac-70,y-120,'#5e3c1e',8);line(T.sarac-70,y-96,T.sarac-30,y-80,'#9a7a4a',2);
  const hit=T.saracHit&&time-T.saracHit<.5,kick=T.ritne&&time-T.ritne<.6;shadow(T.sarac,y,60,.4);
- rigDraw('cast/sarac',0,T.sarac+(hit?Math.sin(time*70)*4:0),y,1,{scale:.86,rot:kick?-.12*Math.sin((time-T.ritne)/.6*Math.PI):0});
+ saracDraw(T.sarac+(hit?Math.sin(time*70)*4:0),y,1,{scale:.86,rot:kick?-.12*Math.sin((time-T.ritne)/.6*Math.PI):0});
  if(T.ph==='sarac'&&T.zakuka&&T.pt>4.5)textLabel('E · „PROPUSTI GA, ŠARČE!”',p.x,y-200,{font:'bold 14px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
  // Filip in the scene (before the duel he is a figure of the song, not yet a foe)
  const F=T.F;if(F&&T.ph&&T.ph!=='kraj'){const L=filipLook(),n=L+'-'+(F.anim==='attack'?'attack':F.anim==='run'?'run':'idle'),R=rig?.[n]||rig?.[L+'-idle'];
@@ -2983,10 +2986,10 @@ function updateVasar(dt){const t=vasarTrap();if(!t)return;const S=vasarStanje(t)
 function drawVasar(t){if(t.x1<camera-300||t.x0>camera+VIEW_W+300)return;const S=vasarStanje(t);
  rigDraw('putnik-starac-idle',loopF(time*4,rig?.['putnik-starac-idle']?.frames.length||1),t.cuvar,t.y,1);if(Math.abs(p.x-t.cuvar)<500)textLabel('KONJUŠAR',t.cuvar,t.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});
  t.konji.forEach((x,i)=>{const K=S[i],V=VASAR_KONJI[i],away=i%2?1:-1;
-  if(K.odbacen&&!V.sarac){shadow(x+away*230,t.y,52,.35);rigDraw('cast/sarac',0,x+away*230,t.y,away,{scale:.82,filter:V.f});return;}
+  if(K.odbacen&&!V.sarac){shadow(x+away*230,t.y,52,.35);saracDraw(x+away*230,t.y,away,{scale:.82,filter:V.f});return;}
   let dx=0,dy=0,rot=0;if(K.leti>0){const k=1-K.leti;dx=k*away*230;dy=-Math.sin(k*Math.PI)*240;rot=k*Math.PI*2*away;}
   const zdrav=V.sarac&&t.zdrav&&time-t.zdrav>.6,sc=V.sarac?(zdrav?1:.78):.88;shadow(x+dx,t.y,60*sc,.4);
-  rigDraw('cast/sarac',0,x+dx+(K.drzi>0?Math.sin(time*60)*3:0),t.y+dy,i===2?1:-1,{scale:sc,rot,filter:zdrav?undefined:V.f,sy:1+Math.sin(time*2+i)*.01});
+  saracDraw(x+dx+(K.drzi>0?Math.sin(time*60)*3:0),t.y+dy,i===2?1:-1,{scale:sc,rot,filter:zdrav?undefined:V.f,sy:1+Math.sin(time*2+i)*.01});
   if(V.sarac&&t.zdrav&&time-t.zdrav<2)halo(x,t.y-80,110,'rgba(255,230,150,.4)',1-(time-t.zdrav)/2);
   if(!t.done&&Math.abs(p.x-x)<90&&!K.leti&&!K.odbacen)textLabel('E · ZA REP',x,t.y-150,{font:'bold 13px Georgia',color:'#fff3c0'});
   else if(Math.abs(p.x-x)<300&&!K.odbacen&&!K.leti)textLabel(V.ime.toUpperCase(),x,t.y-130,{font:'bold 11px Georgia',color:'#e8dcc0'});});}
@@ -3019,7 +3022,7 @@ function updatePotera(dt){const t=poteraTrap();if(!t)return;
  else if(t.state==='bije')pvBije(t,dt);
  puzzleGate(t,t.done,t.state?'Stigni vilu i baci topuz (I).':'Uzjaši Šarca (E) i stigni vilu.');}
 function drawPotera(t){if(t.x1<camera-400||t.x0>camera+VIEW_W+400)return;if(drawPoteraVila(t))return;
- if(!t.state){if(jahanjeTrap()&&jahanjeTrap().ph!=='potera')return;rigDraw('cast/sarac',0,t.sx,t.y,1,{});if(Math.abs(p.x-t.sx)<460)textLabel(Math.abs(p.x-t.sx)<150?'E · UZJAŠI ŠARCA':'ŠARAC ČEKA',t.sx,t.y-200,{font:'bold 13px Georgia',color:'#ffe9a8'});return;}
+ if(!t.state){if(jahanjeTrap()&&jahanjeTrap().ph!=='potera')return;saracDraw(t.sx,t.y,1,{});if(Math.abs(p.x-t.sx)<460)textLabel(Math.abs(p.x-t.sx)<150?'E · UZJAŠI ŠARCA':'ŠARAC ČEKA',t.sx,t.y-200,{font:'bold 13px Georgia',color:'#ffe9a8'});return;}
  const V=t.vila;if(V&&t.state!=='kraj'){const n=rig?.['vila-let']?.frames.length||0;if(n)rigDraw('vila-let',loopF(time*12,n),V.x,V.y+70,t.state==='pala'?-1:1,{rot:t.state==='pala'?.9:0,alpha:V.vid??1});halo(V.x,V.y,70,'rgba(170,255,225,.45)',.6+.2*Math.sin(time*5));
   if(t.state==='trka'&&t.canLeap&&!t.reach)textLabel('SPACE · ŠARČEV SKOK',p.x,p.y-250,{font:'bold 18px Georgia',color:'#fff3c0',glow:'#3a6a2a'});
   if(t.state==='trka'&&t.reach)textLabel('I · BACI TOPUZ',p.x,p.y-250,{font:'bold 18px Georgia',color:'#fff3c0',glow:'#ff6a3a'});}
@@ -3096,8 +3099,15 @@ function heroSwap(J){const M=J.milos;if(!M||p.attack>0||p.climb||!p.grounded)ret
  dust(p.x,p.y,8,1);dust(M.x,M.y,8,1);sfx('ring',{gain:.5,rate:hero==='milos'?1.3:.9});label(hero==='milos'?'VOJVODA MILOŠ':'KRALJEVIĆ MARKO',p.x,p.y-170,hero==='milos'?'#cfe4ff':'#ffe39a');heroHud();}
 function heroHud(){if(!hasDom)return;const el=document.querySelector?.('.hero-label');const t=el?.firstChild;if(t&&t.nodeType===3)t.textContent=hero==='milos'?'VOJVODA MILOŠ ':'KRALJEVIĆ MARKO ';}
 // Marko's poses drawn as Miloš: each move of the sabre has its clip of Miloš (stand, run, leap, cut, hurt)
+// D54: his own blows in a row, the heavy blow, the cut in the air, block, crouch, roll, climb, drink and death; a held pose
+// (walking in block or crouched, holding the charge) keeps one frame. Checked in order, before the general groups below.
+const MILOS_OWN=[[/death/,'milos-smrt'],[/combo-2|udarac-2|launcher|uppercut|uvis/,'milos-niz-2'],[/combo-3|combo-4|udarac-3|finisher|brutal|glava|proburazi|preseci/,'milos-niz-3'],
+ [/charge-hold|charge-walk/,'milos-tezak',.3],[/charged|super|potres|smash|stomp|tezak/,'milos-tezak'],[/air-|plunge/,'milos-vazduh'],
+ [/block-walk|block-hit/,'milos-blok',.99],[/block/,'milos-blok'],[/crouch-walk/,'milos-cuci',.99],[/crouch/,'milos-cuci'],
+ [/roll|-slide$|klizanje|dash$/,'milos-kotrlja'],[/climb|hang|ledge/,'milos-penje'],[/drink/,'milos-pije']];
 function heroPose(P){if(hero!=='milos'||!P||!rig?.['milos-idle'])return P;const n=P.name||'',has=k=>!!rig?.[k];
  const prog=()=>P.ph!=null?clamp(P.ph,0,.999):clamp(((P.frame||0)+.5)/(rig?.[n]?.frames.length||1),0,.999),at=(k,t)=>{const m=rig[k].frames.length;return{name:k,frame:Math.min(m-1,Math.floor(t*m))};};
+ for(const [re,k,t] of MILOS_OWN)if(re.test(n)&&has(k))return at(k,t??prog());
  if(/hurt|blasted|knockdown|dizzy|getup|wounded|death/.test(n)&&has('milos-hurt'))return at('milos-hurt',/death/.test(n)?.99:prog());
  if(/attack|combo|udarac|ubod|tezak|uvis|vihor|preseci|proburazi|glava|charge|super|kick|uppercut|launcher|dash-strike|counter|throw|finisher|brutal|potres|smash|stomp|tiho/.test(n)&&has('milos-attack'))return at('milos-attack',prog());
  if(/jump|fall|air|skok|krilo|nalet|plunge|wall|hang|ledge|climb|zid-trk|kuka|lanac/.test(n)&&has('milos-jump')){const m=rig['milos-jump'].frames.length;return{name:'milos-jump',frame:Math.min(m-1,p.grounded?m-1:p.vy< -250?1:p.vy<150?2:3)};}
@@ -3271,7 +3281,7 @@ function drawPesma(){const P=pesma;if(!P)return;
  if(P.ph==='leci'){const V=P.V;pvVila(V,'vila-isceljenje',loopF(time*10,rig?.['vila-isceljenje']?.frames.length||1),{});halo(V.x,V.y,80,'rgba(160,255,220,.45)',.7+.2*Math.sin(time*6));}}
 function drawPoteraVila(T){const V=T.vila;if(!V)return false;
  if(T.state==='pala'){const n=rig?.['vila-pada'];const k=clamp(T.t/1.2,0,1);if(n){rigDraw('vila-pada',Math.min(n.frames.length-1,k*n.frames.length),V.x,V.y+70,-1,{});return true;}return false;}
- if(T.saracX!=null&&T.state!=='kraj'){shadow(T.saracX,T.y,62,.45);rigDraw('cast/sarac',0,T.saracX,T.y,1,{});}
+ if(T.saracX!=null&&T.state!=='kraj'){shadow(T.saracX,T.y,62,.45);saracDraw(T.saracX,T.y,1,{});}
  if(T.state==='bilje')return true;
  if(T.state==='bije'){const B=T.bije;if(rig?.['marko-nad-vilom']&&T.state==='bije'&&B.hits<3){rigDraw('marko-nad-vilom',loopF(B.t*8,rig['marko-nad-vilom'].frames.length),V.x-40,T.y,1,{});return true;}
   const n=rig?.['vila-pada'];if(n)rigDraw('vila-pada',n.frames.length-1,V.x,T.y,V.face||-1,{flash:B?.flash>0?B.flash*3:0});else rigDraw('vila-let',0,V.x,T.y-30,V.face||-1,{rot:1.3});if(B)B.flash=Math.max(0,(B.flash||0)-1/60);return true;}
@@ -4926,16 +4936,16 @@ const BOOK_PAGES=[
  {t:'kopljanik',role:'Kopljanik iz prve linije',about:'Koplje mu je duže od tvog topuza; drži te tamo gde on hoće.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
  {t:'pas',role:'Zver',about:'Pušten sa lanca ispred odreda. Laje, pa skače pravo za grlo.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
  {t:'tufekdzija',role:'Puškar',about:'Nosi dugi tufek; pucanj čuješ pre nego što ga osetiš.',poses:[['U miru','idle'],['U pokretu','run'],['Gađa','shoot'],['Pogođen','hurt'],['U vazduhu','launch'],['Pada','death']]},
- {t:'hasan-aga',kit:'hasan',boss:true,name:'Hasan-aga Oklopnik',role:'Megdandžija · Opsednuta tvrđava',about:'Zapoveda opsadom. Oklop mu ne probija nijedan topuz dok se sam ne zabije u stub.',strong:'Juriša spuštene glave; u poslednjem činu zove strele sa bedema.',weak:'Navuci ga na stub i udri dok je ošamućen. Gard mu lome teški udarci (K).',poses:[['U miru','aga-idle'],['U pokretu','aga-run'],['Napad','aga-attack'],['Zalet','aga-zalet'],['Zabio se','aga-zaglavljen'],['Pogođen','aga-hurt'],['Pada','aga-death']]},
- {t:'ognjeni-aga',kit:'ognjeni',boss:true,name:'Ognjeni aga',role:'Megdandžija · Zaboravljeni podrum',about:'Carev čauš koji tuđe vino proliva, a podrume pali.',strong:'Razlije ulje i zapali ceo pod; u drugom činu baca ognjene lonce.',weak:'Na grede dok gori. Posle požara je zadihan: tada udri.',poses:[['U miru','aga-idle'],['U pokretu','aga-run'],['Napad','aga-attack'],['Ulje','aga-ulje'],['Zadihan','aga-zadihan'],['Pogođen','aga-hurt'],['Pada','aga-death']]},
- {t:'lovac-aga',kit:'lovac',boss:true,name:'Lovac-aga',role:'Megdandžija · Ravijojlina šuma',about:'Lovi po vilinoj šumi i pali bukve sa orlovskim gnezdima.',strong:'Rogom zove čopor pasa sa obe strane; u poslednjem činu stižu i strele iz šume.',weak:'Pobij pse, pa njega. Kad posegne da te uhvati, otkotrljaj se.',poses:[['U miru','aga-idle'],['U pokretu','aga-run'],['Napad','aga-attack'],['Rog','aga-rog'],['Pogođen','aga-hurt'],['Pada','aga-death']]},
+ {t:'hasan-aga',kit:'hasan',boss:true,name:'Hasan-aga Oklopnik',role:'Megdandžija · Opsednuta tvrđava',about:'Zapoveda opsadom. Oklop mu ne probija nijedan topuz dok se sam ne zabije u stub.',strong:'Juriša spuštene glave; u poslednjem činu zove strele sa bedema.',weak:'Navuci ga na stub i udri dok je ošamućen. Gard mu lome teški udarci (K).',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Zalet','zalet'],['Zabio se','zaglavljen'],['Pogođen','hurt'],['Pada','death']]},
+ {t:'ognjeni-aga',kit:'ognjeni',boss:true,name:'Ognjeni aga',role:'Megdandžija · Zaboravljeni podrum',about:'Carev čauš koji tuđe vino proliva, a podrume pali.',strong:'Razlije ulje i zapali ceo pod; u drugom činu baca ognjene lonce.',weak:'Na grede dok gori. Posle požara je zadihan: tada udri.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Ulje','ulje'],['Zadihan','zadihan'],['Pogođen','hurt'],['Pada','death']]},
+ {t:'lovac-aga',kit:'lovac',boss:true,name:'Lovac-aga',role:'Megdandžija · Ravijojlina šuma',about:'Lovi po vilinoj šumi i pali bukve sa orlovskim gnezdima.',strong:'Rogom zove čopor pasa sa obe strane; u poslednjem činu stižu i strele iz šume.',weak:'Pobij pse, pa njega. Kad posegne da te uhvati, otkotrljaj se.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Rog','rog'],['Pogođen','hurt'],['Pada','death']]},
  {t:'dzelat',kit:'dzelat',boss:true,name:'Dželat',role:'Megdandžija · Manastirski vis',about:'Čuva prilaz manastiru. Sekirom cepa grede pod tobom.',strong:'Sekira lomi i gard i grede; skače sa sekirom, a na kraju zamahuje triput zaredom.',weak:'Kad mu se sekira zabije u zemlju, udri. Ne ostani bez greda.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['Pada','death']]},
  {t:'azdaja',kit:'azdaja',boss:true,name:'Aždaja',role:'Zver · Vilinska pećina',about:'Zavukla se u vilinu pećinu. Krljušt joj odbija topuz svuda osim na glavi.',strong:'Bljuje vatru niz zemlju i ujeda; kad zariče, kamenje pada sa svoda.',weak:'Zakloni se od vatre iza kamena ili čučni. Kad posle ujeda zarije glavu u zemlju, udri.',poses:[['U miru','idle'],['Vatra','fire'],['Ujed','bite'],['Pogođena','hurt'],['Pada','death']]},
  {t:'beg',kit:'beg',boss:true,name:'Akindžijski beg',role:'Megdandžija · Zimski prevoj',about:'Vodi poslednji odred pred Kačanikom. Bori se s konja, kao što se bore akindžije.',strong:'Juriša na konju s kraja na kraj megdana; peške nasrće triput zaredom.',weak:'Odbij (L) kad prolazi, da se konj propne. Obori ga, pa se bori sa njim peške.',poses:[['Na konju','mounted'],['Udarac s konja','mounted-strike'],['Oboren','unhorsed']]},
  {t:'djemo',kit:'djemo',boss:true,name:'Đemo Brđanin',role:'Musin brat · Klisura Ibra',about:'Došao je da osveti brata Musu. Jaše dorata i, kao i brat, baca topuz u oblake. U pesmi je Marka okovao i vodio od grada do grada da ga obesi.',strong:'Buzdovan leti preko polja i vraća mu se u ruku; skače sa njim i nasrće triput zaredom.',weak:'Preskoči buzdovan: dok je bez njega, Đemo je otvoren. Kad te stegne, otimaj se.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Baca buzdovan','throw'],['Pogođen','hurt'],['Pada','death']]},
  {t:'arapin',kit:'arapin',boss:true,name:'Arapin',role:'Megdandžija · Ruševine kraj mora',about:'Kraj mora je podigao kulu i ne pušta svatove dok ne plate.',strong:'Baca koplja sa vrha kule; skače dole uz talas, a na kraju koplja padaju s neba.',weak:'Odbij koplje (L) nazad u njega, pa se popni na kulu.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Baca koplje','throw'],['Pogođen','hurt'],['Pada','death']]},
  {t:'bajraktar',kit:'bajraktar',boss:true,name:'Bajraktar',role:'Megdandžija · Stari rudnik',about:'Nosi carski barjak. Dok barjak stoji na steni, nijedan udarac ga ne dotiče.',strong:'Zove janičare; barjakom udara o zemlju, a u poslednjem činu ga ponovo podiže.',weak:'Popni se na stenu i obori barjak sa tri udarca.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Poziv','poziv'],['Pogođen','hurt'],['Pada','death']]},
- {t:'janicarski-aga',kit:'janicar',boss:true,name:'Janičarski aga',role:'Megdandžija · Obala pred zoru',about:'Starešina janičara koji gaze reku pred Urvinom.',strong:'Skače sa grede na gredu i seče odozgo; vrtlog sabalja u tri naleta.',weak:'Dočekaj ga u vazduhu. Posle tri naleta je zadihan.',poses:[['U miru','aga-idle'],['U pokretu','aga-run'],['Napad','aga-attack'],['Skok','aga-skok'],['Pogođen','aga-hurt'],['Pada','aga-death']]},
+ {t:'janicarski-aga',kit:'janicar',boss:true,name:'Janičarski aga',role:'Megdandžija · Obala pred zoru',about:'Starešina janičara koji gaze reku pred Urvinom.',strong:'Skače sa grede na gredu i seče odozgo; vrtlog sabalja u tri naleta.',weak:'Dočekaj ga u vazduhu. Posle tri naleta je zadihan.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Skok','skok'],['Pogođen','hurt'],['Pada','death']]},
  {t:'musa',boss:true,name:'Musa Kesedžija',role:'Gospodar prolaza',about:'Odmetnik koji je zatvorio drumove i primorje. U grudima mu kucaju tri srca.',strong:'Težak udarac, skok i juriš; svaki treći napad je poseban.',weak:'Posle napada ostaje otvoren. Odbij (L) i udri nizom; Ravijojlin bljesak (E) otvara gard.',poses:[['U miru','idle'],['U pokretu','run'],['Napad','attack'],['Pogođen','hurt'],['Pada','death']]},
 ].map(pg=>({...pg,poses:pg.poses.filter(([,c])=>rig?.[`${pg.t}-${c}`])})).filter(pg=>pg.poses.length);
 const BOOK_ONCE=new Set(['death','launch','armorbreak','guardbreak','backstep','hurt']),BOOK_POSE_TIME=2.8;

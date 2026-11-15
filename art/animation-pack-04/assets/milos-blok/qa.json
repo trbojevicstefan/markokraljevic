@@ -1,0 +1,114 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        125,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44909
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        110,
+        113,
+        380,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51880
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        104,
+        123,
+        416,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54587
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        105,
+        118,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55917
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        102,
+        120,
+        416,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55838
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        103,
+        118,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56205
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8735632183908046,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "visualReview": "Raise horizontal sword guard in frames 0-2; hold and breathe in 3-5. Right hand grips hilt, left supports blade near tip, knees flexed. Identity and 380px idle height match; complete connected sword in all frames.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

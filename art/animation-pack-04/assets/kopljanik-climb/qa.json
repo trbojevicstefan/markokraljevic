@@ -1,0 +1,93 @@
+{
+  "clip": "kopljanik-climb",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.8401639344262295,
+  "referenceHeight": 410,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        135,
+        78,
+        376,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        139,
+        78,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        142,
+        78,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        147,
+        79,
+        365,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        138,
+        79,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        135,
+        79,
+        376,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Third attempt removes invented sword; spear and small shield on back, six climb phases, fixed support and original anatomy.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

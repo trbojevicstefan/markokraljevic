@@ -1,0 +1,93 @@
+{
+  "clip": "shield-tiho-pada",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.8110047846889952,
+  "referenceHeight": 339,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        150,
+        149,
+        361,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        154,
+        151,
+        358,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        156,
+        181,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        137,
+        232,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        106,
+        301,
+        405,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 18,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        68,
+        382,
+        444,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 19,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six silent collapse phases, hand to neck then knees then face down; final entire body and equipment in cell; standing height339px.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

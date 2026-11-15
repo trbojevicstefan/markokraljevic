@@ -1,0 +1,80 @@
+{
+  "clip": "palikuca-budi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.8187633262260128,
+  "referenceHeight": 384,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        125,
+        233,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        124,
+        228,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        142,
+        232,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        130,
+        175,
+        381,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        171,
+        104,
+        340,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Five waking poses; flame absent in frames0-2 and present only3-4; final idle stance height384px.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

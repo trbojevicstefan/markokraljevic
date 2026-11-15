@@ -1,0 +1,114 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        121,
+        108,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45219
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        105,
+        226,
+        407,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47779
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        141,
+        242,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        41927
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        115,
+        303,
+        397,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        38504
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        98,
+        246,
+        413,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44125
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        120,
+        105,
+        339,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45635
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8837209302325582,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "visualReview": "Forward shoulder roll: idle, tuck, fully inverted, roll across back, kneel, return to idle. Wrapped cloak and sword retained against body; ground support y487 throughout. Removed isolated 18px chroma-edge hair speck, no weapon edits. Identity and standing size match reference.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

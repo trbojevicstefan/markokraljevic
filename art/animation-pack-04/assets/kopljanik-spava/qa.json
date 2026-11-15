@@ -1,0 +1,67 @@
+{
+  "clip": "kopljanik-spava",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.6214736842105263,
+  "referenceHeight": 410,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        126,
+        193,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        126,
+        200,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        126,
+        208,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        126,
+        199,
+        386,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Four seated breathing phases; same cream turban, armor, crimson coat and spear. Seated anatomy compared at game scale; standing-height criterion not applicable.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

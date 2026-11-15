@@ -1,0 +1,67 @@
+{
+  "clip": "akindzija-spava",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.5624507658643325,
+  "referenceHeight": 357,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        137,
+        231,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        137,
+        225,
+        374,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        137,
+        225,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        137,
+        234,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Two sabres across knees; four breathing poses, source facial identity and costume retained; seated proportions checked.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

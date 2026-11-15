@@ -1,0 +1,97 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        103,
+        118,
+        355,
+        418
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        39771
+      ],
+      "greenPixels": 0,
+      "supportY": 417,
+      "safeMargin": 94
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        93,
+        95,
+        329,
+        418
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        43357
+      ],
+      "greenPixels": 0,
+      "supportY": 417,
+      "safeMargin": 93
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        83,
+        108,
+        404,
+        418
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        40822
+      ],
+      "greenPixels": 0,
+      "supportY": 417,
+      "safeMargin": 83
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        74,
+        130,
+        419,
+        418
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        40752
+      ],
+      "greenPixels": 0,
+      "supportY": 417,
+      "safeMargin": 74
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        103,
+        119,
+        355,
+        418
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        39752
+      ],
+      "greenPixels": 0,
+      "supportY": 417,
+      "safeMargin": 94
+    }
+  ],
+  "scale": 0.7957559681697612,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d54\\milos-idle-kadar0.png",
+  "targetSupportY": 418,
+  "visualReview": "Five airborne tucked-knee poses with overhead-to-downward sword cut. Boots remain y417; fixed source horizontal anchor prevents sword-induced drift. Same face and head/torso/limb scale as reference; shorter 300px silhouette is due to tucked legs, not shrinking. Full connected sword in every frame.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 5
+}

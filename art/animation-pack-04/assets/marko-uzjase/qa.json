@@ -1,0 +1,66 @@
+{
+ "frames": [
+  {
+   "frame": 0,
+   "bbox": [
+    25,
+    97,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 1,
+   "bbox": [
+    25,
+    97,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 2,
+   "bbox": [
+    25,
+    91,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 3,
+   "bbox": [
+    25,
+    56,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 4,
+   "bbox": [
+    25,
+    60,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  },
+  {
+   "frame": 5,
+   "bbox": [
+    25,
+    51,
+    487,
+    489
+   ],
+   "touchesEdge": false
+  }
+ ],
+ "acceptedBy": "Claude review 2026-11-15",
+ "source": "sources/marko-uzjase/attempt-3"
+}

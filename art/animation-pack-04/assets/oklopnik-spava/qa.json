@@ -1,0 +1,67 @@
+{
+  "clip": "oklopnik-spava",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.6007272727272728,
+  "referenceHeight": 413,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        97,
+        191,
+        415,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        97,
+        188,
+        415,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        96,
+        198,
+        415,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        97,
+        191,
+        415,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Four seated breathing phases; square hammer leaning and shield beside boots; exact armor and helmet retained.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

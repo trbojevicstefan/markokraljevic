@@ -1,0 +1,93 @@
+{
+  "clip": "pas-jump",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.7783783783783784,
+  "referenceHeight": 192,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        143,
+        344,
+        368,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        132,
+        241,
+        380,
+        450
+      ],
+      "touchesEdge": false,
+      "components": 7,
+      "greenPixels": 0,
+      "supportY": 449
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        125,
+        178,
+        386,
+        395
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 394
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        105,
+        158,
+        407,
+        365
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 364
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        107,
+        257,
+        404,
+        425
+      ],
+      "touchesEdge": false,
+      "components": 8,
+      "greenPixels": 0,
+      "supportY": 424
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        133,
+        324,
+        378,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Six jump phases; crouch and four-paw landing grounded, frames1-4 airborne; exact brindle dog and red collar.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}

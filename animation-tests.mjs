@@ -43,4 +43,9 @@ for(const name of ['marko-crouch','marko-block','marko-super']){
   const upright=r.frames[5];assert(Math.abs((upright[4]-upright[5])*r.scale-128)<.1,'new actions retain hero scale');
 }
 const cr=rig['marko-crouch'];assert((cr.frames[2][4]-cr.frames[2][5])*cr.scale<90,'crouch is visibly lower');
+// the book of foes: every pose a page names must be a clip in the rig, or the pose (and a page with none left) silently vanishes
+{const at=source.indexOf('const BOOK_PAGES=['),end=source.indexOf('].map(pg=>({...pg,poses:pg.poses.filter',at);assert(at>=0&&end>at,'book pages found');
+ const pages=new Function('return '+source.slice(source.indexOf('[',at),end+1))();
+ for(const pg of pages)for(const [label,clip] of pg.poses)assert(rig[`${pg.t}-${clip}`],`book page ${pg.t}: pose „${label}" needs clip ${pg.t}-${clip}`);
+ console.log(`PASS ${pages.length} book pages, every pose drawn from its own clip`);}
 console.log('PASS 24 locomotion, 30 death and 18 combat frames; grounded soles and preserved character scales');

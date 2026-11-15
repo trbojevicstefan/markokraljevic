@@ -1,0 +1,80 @@
+{
+  "clip": "akindzija-budi",
+  "identityApproved": true,
+  "atlasMatchesFrames": true,
+  "scale": 0.8771498771498771,
+  "referenceHeight": 357,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        115,
+        207,
+        396,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 9,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        125,
+        188,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 12,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        95,
+        181,
+        416,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        118,
+        164,
+        394,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        94,
+        131,
+        418,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 487
+    }
+  ],
+  "weaponApproved": true,
+  "motionApproved": true,
+  "review": "Five waking poses; two sabres retained; final source stance and height 357px; hold last.",
+  "safeMarginPixels": 24,
+  "groundSupportY": 487,
+  "baselineTolerancePixels": 6
+}
