@@ -50,6 +50,8 @@ Sa `?dev` su otvoreni svi nivoi; sa `?dev&novo=<deo>` igra odmah skače na novu 
 - **Ruševine** („Marko Kraljević ukida svadbarinu") — na samom početku Kosovka devojka, mlada a seda od čekanja:
   Arap je zakupio Kosovo (trideset dukata za udaju), noćas je red na nju; Marko joj da trideset dukata, ona pokaže
   svilen barjak nad Arapovim šatorom, a Marko: „Danas ću vas, braćo, osvetiti, ili poginuti".
+- **Kačanik, kraj megdana sa Musom** — posle pobede četiri minijature po kraju pesme: vila iz oblaka, tri srca
+  junačka i guja na trećem („od tebe bi trista jada bilo"), Markove suze: „đe pogubih od sebe boljega!", pa "Posle megdana".
 
 ## Codex (GPT-6.1-Sol)
 Naručeno samo što je falilo: D48 (Miloš i vila), D49 (mapa), D50 (Vukašin, crkva, bilje), D51 (Filip Madžarin), D52 (Kosovka devojka).
