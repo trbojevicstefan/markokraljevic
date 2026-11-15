@@ -118,7 +118,7 @@ export const CUDA=[
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
  selo:'flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tower flat trgovac flat boss:kopljanik',
- klisura:'flat uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
+ klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
@@ -233,8 +233,10 @@ export function buildLayout(L,variant='day'){
    traps.push({kind:'melodija',title:'GUSLE JAVOROVE',objs:[0,1,2,3].map(i=>({x:x0+470+i*170,y:gy})),seq,gusle:{x:x0+290,y:gy},tablet:{x:x0+130,y:gy},gate:{x:x0+len-50,y:gy},
     clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // "Marko Kraljević i vila": Šarac waits, then a long clear run after Ravijojla with fallen trunks to leap
+  // „Marko Kraljević i Đemo Brđanin”: Marko led in chains past three gallows (Orid, Vučitrn, Zvečan) to Janja's tavern (game.js: okovi)
+  okovi(){const x0=x,len=4200;ground(len);traps.push({kind:'okovi',x0,x1:x0+len,y:gy,stanice:[x0+1100,x0+1950,x0+2800],mehana:x0+3750,nodecor:[[x0+940,x0+1440],[x0+1790,x0+2290],[x0+2640,x0+3140],[x0+3450,x0+4100]]});busy.push([x0-40,x0+len]);},
   // the white church of Samodreža: the books of old before it, and the yard around which the king chases his son (game.js)
-  samodreza(){const x0=x,len=2100;ground(len);traps.push({kind:'samodreza',x0,x1:x0+len,y:gy,crkva:x0+1150,knjiga:x0+520,gate:{x:x0+len-40,y:gy}});busy.push([x0-40,x0+len]);},
+  samodreza(){const x0=x,len=2100;ground(len);traps.push({kind:'samodreza',x0,x1:x0+len,y:gy,crkva:x0+1150,knjiga:x0+520,gate:{x:x0+len-40,y:gy},nodecor:[[x0+840,x0+1460]]});busy.push([x0-40,x0+len]);},
   // the horse fair in Kosovsko selo: four horses, one of them the scabby piebald foal that will be Šarac (game.js: vašar)
   vasar(){const x0=x,len=1500;ground(len);traps.push({kind:'vasar',x0,x1:x0+len,y:gy,cuvar:x0+190,konji:[x0+420,x0+660,x0+900,x0+1140],gate:{x:x0+len-40,y:gy}});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i vila”: the two sworn brothers ride over Miroč side by side; the song, the arrows and the dismount (game.js)

@@ -1,0 +1,19 @@
+{
+  "size": [
+    1024,
+    1024
+  ],
+  "bbox": [
+    141,
+    131,
+    882,
+    1001
+  ],
+  "alphaRange": [
+    0,
+    255
+  ],
+  "touchesEdge": false,
+  "components": 1,
+  "visualApproved": true
+}

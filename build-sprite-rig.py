@@ -521,6 +521,12 @@ for _n in ('vila-strela', 'vila-pada', 'vila-bere'):
 for _n in ('marko-dremlje', 'milos-jase', 'milos-galop', 'milos-strela'):
     if _have(_n) and 'marko-mounted-attack' in SCALES:
         SCALES[_n] = (RIDE_W / float(np.median([_width(c) for c in _cells(_n)])), 'center')
+# DOPUNA-50 („Uroš i Mrnjavčevići”): King Vukašin is as tall as Marko (his body 380 px against Marko's 383); the strike stands
+# on its feet, the run holds the body and moves the feet, as marko-run.
+if _have('vukasin-udara') and 'marko-idle-2' in SCALES:
+    SCALES['vukasin-udara'] = (SCALES['marko-idle-2'][0], 'feet')
+if _have('vukasin-trci') and 'marko-idle-2' in SCALES:
+    SCALES['vukasin-trci'] = (SCALES['marko-idle-2'][0], 'torso')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

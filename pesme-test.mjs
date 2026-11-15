@@ -54,4 +54,18 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  Object.assign(p,{x:it.x,y:it.y+38+40,vx:0,vy:0,grounded:true});step(3);ok(api.slova(),'sablja: it draws itself in Marko’s hand: the three letters');
  step(120*18);const S=api.slova();ok(S&&S.car&&S.dukati,'sablja: the fur cloak inside out, the sultan driven to the wall, a hundred ducats for wine');
  ok(api.draw()===null,'sablja: the letters draw without an error');}
+// ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----
+{const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
+ ok(T&&T.stanice.length===3&&T.mehana>T.stanice[2],'okovi: three gallows (Orid, Vučitrn, Zvečan) and Janja’s tavern in the gorge');
+ Object.assign(p,{x:T.x0+120,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='pad'&&!p.okovan,'okovi: on the bridge Marko meets Đemo, unarmed');
+ step(120*13);ok(p.okovan&&T.pao,'okovi: the mace between the shoulders, then the irons: bukagije, belenzuke, sindžir');
+ until(()=>T.ph==='vodi',120*10,'led away in chains');
+ tap('KeyJ');tap('Space');step(30);ok(!(p.attack>0)&&p.grounded&&p.y===T.y,'okovi: in chains there is no strike and no jump');
+ const x0=p.x;step(120*6);ok(p.x>x0+60,'okovi: lag behind and Đemo drags him by the chain');
+ press('KeyD');until(()=>T.ph==='mehana',120*120,'past the three gallows');
+ ok(T.molba?.length===3&&T.molba.every(Boolean),'okovi: at each gallows the lords pay three loads of treasure');
+ until(()=>T.ph==='kraj',120*60,'Janja’s tavern');release('KeyD');
+ ok(T.done&&T.raskovan&&!p.okovan&&T.djemo.bezi,'okovi: Janja’s herbs put Đemo to sleep, she unchains Marko, and Đemo flees to the duel');
+ const x1=p.x;press('KeyD');step(120);release('KeyD');ok(p.x>x1+150,'okovi: Marko walks free again');
+ ok(api.draw()===null,'okovi: the gallows, the tavern and Đemo draw without an error');}
 console.log(`\n${checks} checks passed.`);
