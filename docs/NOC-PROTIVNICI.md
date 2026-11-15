@@ -27,7 +27,24 @@ Postojeći potezi (pre noći):
 - oklopnik: tresak i zalet;
 - palikuća: baklja i vatra.
 
-## Spisak (po redu; ✔ kad je gotovo, sa commit-om)
+Stefan, isto veče: „Možemo da radimo zoom in kad radimo fatality, brutality i finishing moves. Unesi raznolikosti u igru, pogotovo kod sinematik događaja; toga nam fali. Radi preko noći, ne pitaj ništa, i objavljuj ture kako ih radiš.” Zato posle svakog commit-a ide i `git push origin main`.
+
+Urađeno pre noći:
+- more na Urvini i kamera koja prati topuz;
+- zum sa filmskim trakama kod završnog udarca, brutalnosti i pada bosa.
+
+## Filmski spisak (naizmenično sa protivnicima: jedan sat film, jedan sat protivnik)
+
+F1. ☐ **Kill-cam:** poslednji dušmanin čete, odbrane ili zemlje pada usporeno, uz zum i kratak zvuk zvona.
+F2. ☐ **Uvod megdana:** kamera pređe sa bosa na Marka, a preko ekrana se ispiše ime bosa velikim slovima i podnaslov (kao u Sekiro i Hollow Knight).
+F3. ☐ **Tiho obaranje:** zum, a boje izblede za trenutak.
+F4. ☐ **Junački udar (R):** kratko zamrznut kadar, zum i crvena crta preko ekrana pre udara.
+F5. ☐ **Kad Marko padne:** usporenje, zum i sepija pre ekrana „Ustani, junače”.
+F6. ☐ **Ulazak u novu zemlju:** naslovna kartica preko ekrana (ime pohoda i stih iz pesme), uz trake.
+F7. ☐ **Faze bosa:** kod druge i treće faze kamera se trgne na bosa, sa kratkim zumom i natpisom faze.
+F8. ☐ **Kontra (savršeno odbijanje):** trenutno usporenje i bljesak, a kamera priđe za tren.
+
+## Spisak protivnika (po redu; ✔ kad je gotovo, sa commit-om)
 
 1. ☐ **Sabljaš: varka i dvostruki rez.** Ponekad zamahne pa stane (lažni zamah, bez štete). Kad Marko odbije u prazno, odmah udari pravi rez iz dva poteza. Brži korak unazad posle udarca.
 2. ☐ **Strelac: drži razdaljinu.** Kad mu Marko priđe, odskoči unazad (salto) i zapne luk. Povremeno ispali kišu strela uvis, koja pada na mesto gde je Marko stajao (senke na zemlji upozore).
