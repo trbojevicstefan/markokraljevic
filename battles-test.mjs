@@ -16,7 +16,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,presuda,levelOpen,forgetSkills:()=>{skillCache=null;},lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {start,startChapter,startLevel,startTraining,update,keys,pressed,LEVELS,slay,retry,die,presuda,levelOpen,forgetSkills:()=>{skillCache=null;},lovStart,lov:()=>lov,buyDucan,closeDucan,bank,setBank,ckptState:()=>({ckpt,ckptFlags}),setCkpt:(x,y)=>{ckpt={x,y};},state:()=>({p,world,mode,level,zone,boss,arrows,fires,horseMounted,camera,finisher,heads,limbs,corpses,bones,particles,decals,coins})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>{},fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 const S=()=>api.state();
 const tap=k=>{api.keys.add(k);api.pressed.add(k);step();api.keys.delete(k);};
@@ -252,7 +252,9 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'),p=S().p;Object.assign(p,{x:t.x0+90,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);for(const e of w.enemies)if(e.alive)e.alive=false;step(2);ok(t.state==='puna','wine: the heralds cut down, the wine is saved');
  Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0});safe();Object.assign(p,{wine:0,rage:0,hp:40});api.pressed.add('KeyE');step(2);ok(t.state==='popijeno'&&p.rage>=100&&p.wine===p.wineMax&&p.hp>=80,'wine: Marko drinks: fury full, flask filled, health back');}
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
- api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='cita';},120*15);ok(t.glasnik?.state==='cita','wine: a herald brings the Sultan\'s hundred ducats');}
+ api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='zove';},120*15);ok(t.glasnik?.state==='zove','wine: two young heralds summon Marko to the divan');
+ const G=t.glasnik,n0=S().coins.length;Object.assign(p,{x:G.x-120,face:1});safe();step(120*2);api.pressed.add('KeyJ');api.keys.add('KeyJ');step(3);api.keys.delete('KeyJ');step(2);ok(G.state==='kupa','wine: he strikes the herald with the cup of twelve oka');
+ until(()=>{safe();return G.state==='dukati';},120*20);ok(S().coins.length>=n0+100,'wine: after the divan the Sultan gives him a hundred ducats');}
 // ---- pack 08, the rules of the megdan: bodies, the guard, the acts and the grapple ----
 {const c=armed(await arena('klisura'));const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the gorge');
  // a body: Marko cannot walk into him
