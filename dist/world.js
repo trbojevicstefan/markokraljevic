@@ -120,19 +120,19 @@ export const RECIPES={
  selo:'flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tower flat trgovac flat boss:kopljanik',
  klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
- manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
+ manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
  prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks flat varadin crumble watch logs crates trgovac flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks flat spikebed ledges crumble crates trgovac flat boss:azdaja',
  podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
- mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
- rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates guslar:mir crumble flat bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
+ mocvara:'flat bridge watch soko crumble ferry branik:putnici bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
+ rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates branik:rudari guslar:mir crumble flat bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
  rusevine:'kosovka stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
- reka:'flat crates pogled bridge breg flat jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs flat mehana spikes crates tower flat trgovac flat boss:sword',
+ reka:'flat crates pogled bridge breg flat branik:selo jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs flat mehana spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  // Vračeva jaruga (Stefan, 15. 11. 2026: „koristi Vrača za novog bosa i novi nivo"): noćna gora puna senki, na kraju Crni vrač
- vracara:'flat breg watch crates uvala terrace+ ledges cellar spikes jaruga kuke crumble greda chimney flat bedem kljuc zid vreme stairs+ tower crates spikebed crates logs rocks guslar:mir ledges crates trgovac flat boss:vrac',
+ vracara:'flat breg watch crates uvala terrace+ ledges cellar spikes jaruga kuke crumble greda chimney flat branik:hodocasnici bedem kljuc zid vreme stairs+ tower crates spikebed crates logs rocks guslar:mir ledges crates trgovac flat boss:vrac',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator uvala flat guslar:mir spikes crates trgovac flat boss:trio',
  // "Marko Kraljević u Azačkoj tamnici": out of the dungeon and up the tower, where the falcon takes his letter to Solun.
  // The climb is the challenge as much as the fight: a shaft, pillars over the abyss, arrow slits, crumbling planks and
@@ -215,6 +215,8 @@ export function buildLayout(L,variant='day'){
   topnica(){const x0=x,len=1560;ground(len);traps.push({kind:'topnica',x:x0+190,y:gy,id:traps.length+1,face:1});busy.push([x0,x0+len]);},
   top(){const x0=x,len=ri(1040,1120);ground(len);traps.push({kind:'top',x:x0+len-130,y:gy,face:-1});platforms.push({x:Math.round(x0+len*.4),y:gy-58,w:58,h:58,kind:'teret',solid:true});busy.push([x0+len-300,x0+len]);},
   // a land with its own verse (L.stih) gives it to its quiet guslar; the others sing what game.js knows of their land
+  // branik (15. 11.): a wide flat field where Marko defends a group of people against four bands (game.js, updateBranik)
+  branik(arg){const x0=x,len=ri(1500,1560);ground(len);traps.push({kind:'branik',who:arg||'putnici',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   guslar(arg){const big=arg==='odbrana',x0=x,len=big?ri(1500,1560):ri(1100,1180);ground(len);const g={kind:'guslar',x:x0+Math.round(len*(big?.5:.4)),y:gy,x0,x1:x0+len,mir:arg==='mir',odbrana:big};
    if(L.stih&&g.mir)Object.assign(g,{state:'ceka',hp:100,stih:L.stih});traps.push(g);busy.push([x0,x0+len]);},
   gnezdo(){const x0=x,len=ri(920,980);ground(len);traps.push({kind:'gnezdo',x:x0+Math.round(len*.5),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},

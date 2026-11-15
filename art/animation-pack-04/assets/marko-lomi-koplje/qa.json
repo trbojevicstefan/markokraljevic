@@ -1,0 +1,126 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        137,
+        54,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56670
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        84,
+        110,
+        429,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55794
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        96,
+        110,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55531
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        119,
+        111,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55368
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        63,
+        51,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 11,
+      "componentAreas": [
+        57906,
+        611,
+        443,
+        386,
+        328,
+        58,
+        46,
+        40,
+        35,
+        34,
+        33
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        140,
+        100,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53350
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9117647058823529,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d61\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 383,
+  "targetHeight": 434,
+  "visualReview": "D61: Marko holds upright war spear, lowers it over raised knee, snaps shaft in two, breaks short segments and tosses them up-right. Final hands empty with upward gaze. Identity, full spear tip, broken ends and airborne pieces visually checked. Scale uses 434px full spear silhouette, approximately 383px standing body.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

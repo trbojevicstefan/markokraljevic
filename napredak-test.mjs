@@ -55,4 +55,9 @@ await api.startLevel(lv('vracara'));{const {p,world}=S(),c=world.enemies.find(e=
  ok(c.hp===h2,'in the smoke nothing reaches him');
  ok(api.draw()===null,'the duel draws');
  api.slay(c);ok(!c.alive&&S().corpses.some(k=>k.type==='vrac'),'he falls in his own clip');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori i Crni vrač`);
+// ---- branik: odbrana ljudi u četiri čete ----
+await api.startLevel(lv('manastir'));{const {p,world}=S(),T=world.traps.find(t=>t.kind==='branik');ok(T&&T.who==='kaluderi','the monastery has its defence of the monks');
+ for(const e of world.enemies)e.alive=false;Object.assign(p,{x:T.x0+200,y:T.y,vx:0,vy:0,grounded:true});step(10);ok(T.state==='odbrana','stepping in starts the defence');
+ let bands=0;for(let i=0;i<120*80&&T.state==='odbrana';i++){p.hp=p.maxHp;p.invuln=1;api.update(1/120);if(i%60===0){for(const e of world.enemies)if(e.alive&&e.prey===T)api.slay(e);bands=Math.max(bands,T.wave);}}
+ ok(bands===4&&T.state==='spaseni','four bands, and the monks are saved');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač i branik`);

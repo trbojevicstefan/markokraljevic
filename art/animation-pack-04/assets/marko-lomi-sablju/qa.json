@@ -1,0 +1,120 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        114,
+        105,
+        399,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56312
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        120,
+        105,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54402
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        128,
+        119,
+        383,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53376
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        120,
+        105,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56549
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        128,
+        105,
+        383,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56882
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        130,
+        110,
+        382,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "componentAreas": [
+        54237,
+        346,
+        330,
+        325,
+        287
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8183760683760684,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d61\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 383,
+  "targetHeight": 383,
+  "visualReview": "D61: Marko grips curved saber in both hands, raises knee, bends blade across it, separates two broken halves, reduces them to short fragments and releases four falling pieces with empty hands and bowed head. Every frame visually checked against identity and saber references.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

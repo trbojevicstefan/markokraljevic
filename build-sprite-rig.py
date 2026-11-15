@@ -611,11 +611,17 @@ if _have('kosovka-poji') and 'kosovka-idle' in SCALES:
     SCALES['kosovka-poji'] = (SCALES['kosovka-idle'][0], 'feet')
 if _have('djemo-omamljen') and 'djemo-idle' in SCALES:
     SCALES['djemo-omamljen'] = (SCALES['djemo-idle'][0], 'feet')
+# DOPUNA-61 (15. 11.): Marko on the summit of Urvina, each clip an edit of marko-idle-2 frame 0 at its size and place in the cell,
+# so at Marko's zoom and with the anchor of marko-idle-2 (he kneels, digs, lies down, and stays where he stood).
+for _n in ('marko-nad-bunarom', 'marko-oprasta', 'marko-kopa', 'marko-lomi-sablju', 'marko-lomi-koplje', 'marko-baca-topuz', 'marko-lezi'):
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0], 'feet')
 if _have('milos-pada-s-konja') and 'milos-jase' in SCALES:   # drawn from milos-jase frame 0, the bay standing where it stood
     SCALES['milos-pada-s-konja'] = SCALES['milos-jase']
 NOC_ANCHOR_SAME = {'sarac-pije': 'sarac-stoji', 'sarac-lupa': 'sarac-stoji', 'sarac-propinje': 'sarac-stoji', 'sarac-boli': 'sarac-stoji',
                    'sarac-pada': 'sarac-stoji', 'sarac-hod': 'sarac-stoji', 'vrac-stap': 'vrac-idle', 'vrac-smrt': 'vrac-idle',
-                   'kosovka-poji': 'kosovka-idle', 'milos-pada-s-konja': 'milos-jase'}
+                   'kosovka-poji': 'kosovka-idle', 'milos-pada-s-konja': 'milos-jase',
+                   **{_n: 'marko-idle-2' for _n in ('marko-nad-bunarom', 'marko-oprasta', 'marko-kopa', 'marko-lomi-sablju', 'marko-lomi-koplje', 'marko-baca-topuz', 'marko-lezi')}}
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

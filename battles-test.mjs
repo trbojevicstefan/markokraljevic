@@ -66,7 +66,7 @@ async function finishWith(key){api.startChapter(0);const w=S().world,e=w.enemies
 {const r=await finishWith('ShiftLeft');ok(r.started&&!r.e.alive&&S().corpses.some(c=>c.legless)&&S().limbs.length===1,'finish: B / Shift takes his legs, he falls without them');step(120*3);ok(S().limbs[0]?.rest,'finish: the legs come to rest on the ground');}
 {const r=await finishWith('Space');ok(r.started&&!r.e.alive&&S().corpses.some(c=>!c.headless&&!c.launched),'finish: A / Space knocks him down and lands on him');}
 {let opens=0,tries=0;for(let n=0;n<12;n++){api.startChapter(0);const w=S().world,e=w.enemies.find(e=>e.type==='sword');w.enemies.forEach(o=>{if(o!==e)o.alive=false;});Object.assign(S().p,{x:e.x-90,grounded:true});safe();Object.assign(e,{stun:9,mode:'stun',hp:e.maxHp*.2});step(3);tries++;if(e.finT>0)opens++;}
- ok(opens<tries,'finish: the chance does not come every time ('+opens+' of '+tries+')');}
+ ok(opens===tries,'finish: the chance comes every time a foe can be finished (Stefan 15. 11.: easier) ('+opens+' of '+tries+')');}
 {const r=await finishWith('KeyJ');step(120*4);ok(S().heads.length===1&&S().heads[0].rest,'finish: the head comes to rest on the ground');}
 
 // ---- the training room: foes keep coming, every one of them can be finished at once ----
@@ -334,13 +334,13 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
 // ---- Urvina, the last pohod: no foes, a long climb, and on the top the song step by step ----
 {const w=await land('urvina');const p=S().p,t=w.traps.find(t=>t.kind==='vrh');ok(levelOf('urvina')===api.LEVELS.filter(L=>!L.secret&&!L.izazov).length-1,'urvina: Urvina is the last pohod on the road (a challenge pohod stands apart from it)');
  ok(w.enemies.length===0,'urvina: no one stands against Marko on Urvina');ok(t&&t.y<200,'urvina: the road climbs a mountain (the top is '+Math.round(590-t.y)+' above the start)');
- const at=x=>{Object.assign(p,{x,y:t.y,vx:0,vy:0,grounded:true});step(2);},E=()=>{api.pressed.add('KeyE');step(2);};
+ const at=x=>{Object.assign(p,{x,y:t.y,vx:0,vy:0,grounded:true,castLock:0,scena:null});step(2);},E=()=>{api.pressed.add('KeyE');step(2);};   // the scenes of D61 hold Marko a few seconds; the test goes on at once
  at(S().level.goal.x-60);step(3);ok(S().mode==='play','urvina: the road does not end before the well');
  at(t.sarac);E();ok(!t.step,'urvina: Šarac waits until Marko has looked into the well');step(120*3);S().p.castLock=0;
  at(t.bunar);E();ok(t.step===1,'urvina: between the two firs Marko leans over the well');
  at(t.sarac);E();ok(t.step===2,'urvina: he takes leave of Šarac');
  at(t.sablja);E();ok(t.step===3&&!p.sablja,'urvina: he breaks the sabre and the spear');
- at(t.more);api.pressed.add('KeyI');step(2);ok(t.step===4&&p.noMace&&t.mace,'urvina: from the cliff he throws the mace into the sea');
+ at(t.more);api.pressed.add('KeyI');step(120);ok(t.step===4&&p.noMace&&t.mace,'urvina: from the cliff he throws the mace into the sea');
  const a0=p.attackId;api.pressed.add('KeyJ');step(4);ok(p.attackId===a0&&!(p.attack>0),'urvina: without the mace he strikes no more');
  at(t.bunar);E();ok(t.step===5&&p.lying,'urvina: he lies down under the fir');step(120*6);ok(S().mode==='levelDone','urvina: and the song is ended');}
 // ---- the falcon's flight over the marsh: three ducks, the vizier's falcon, the broken wing ----

@@ -1,5 +1,7 @@
 # Marko — Tri srca Kačanika
 
+**Autor: Trbojević Stefan** (ideja, priča, dizajn igre i nivoa, likovi, animacije, muzika, programiranje).
+
 Igriv prvi nivo 2D epskog platformera na srpskom. Vanilla JavaScript; svet se crta u Canvas 2D sloj, a Three.js (lokalna kopija u `dist/vendor/three/`, bez CDN-a) ga sklapa u scenu sa dubinom, svetlom i post-efektima. Bez WebGL-a igra automatski prelazi na čist 2D prikaz. Grafika je generisana ugrađenim Imagegen alatom i obrađena lokalnim sprite-gen 4.0.0.
 
 ## Pokretanje

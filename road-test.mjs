@@ -51,6 +51,8 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[])if(tr.kind==='okovi'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.okovan=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'Marko u okovima',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='samodreza'&&!tr.done&&p.x>tr.x0-100&&p.x<tr.x1){tr.done=true;for(const g of w.goals||[])if(g.kind==='take')g.done=true;stuck.push({at:'crkva Samodreža',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='guslar'&&tr.state==='odbrana'){tr.state='peva';for(const e of w.enemies)if(e.prey===tr)e.alive=false;stuck.push({at:'odbrana guslara',known:true});}
+  // so is the defence of the people (branik, 15. 11.): a fight of four bands, set piece passed
+  for(const tr of w.traps||[])if(tr.kind==='branik'&&tr.state==='odbrana'){tr.state='spaseni';tr.done=true;for(const e of w.enemies)if(e.prey===tr)e.alive=false;stuck.push({at:'branik',known:true});}
   jumpCd-=1/120;if(p.grounded&&!lintel&&jumpCd<=0&&!p.climb&&(p.wallHit===1||(Math.abs(p.vx)<20&&t-bestT>.6)||!ahead(p.x+46))){press('Space');jumpCd=.35;}
   if(p.wall&&jumpCd<=0){press('Space');jumpCd=.25;}
   step();if(S().mode==='shop')api.presuda(3);if(p.x>best+15){best=p.x;bestT=t;}

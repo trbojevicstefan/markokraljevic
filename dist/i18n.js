@@ -5,6 +5,36 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+["VETAR →","WIND →"],["← VETAR","← WIND"],
+// ---- 15. 11.: rasporedi tastera ----
+["Raspored tastera","Key layout"],["Klasični: WASD i J K L","Classic: WASD and J K L"],["Strelice i A S D W, veštine na 1–6 (kao Dead Cells)","Arrows and A S D W, skills on 1–6 (like Dead Cells)"],
+["Strelice i Z X C (kao Hollow Knight)","Arrows and Z X C (like Hollow Knight)"],["drugi završeci","other endings"],
+// ---- 15. 11.: branik, odbrana ljudi u talasima ----
+["Seljani","Villagers"],["Kaluđeri","Monks"],["Putnici","Travellers"],["Hodočasnici","Pilgrims"],["Rudari","Miners"],["ODBRANA","DEFENCE"],["ČETA","BAND"],["Četa","Band"],["od","of"],
+["sa obe strane","from both sides"],["su spaseni!","are saved!"],["pali su. Pesma se vraća na barjak.","have fallen. The song goes back to the banner."],
+["Turci idu na selo, a žene i starci nisu stigli do crkve. Ne daj im do njih, Marko: četiri čete, sa obe strane.","The Turks march on the village, and the women and old men have not reached the church. Do not let them through, Marko: four bands, from both sides."],
+["Selo je odbranjeno. „Bog ti dao zdravlje, Kraljeviću!”","The village is saved. “God give you health, Prince!”"],
+["Kaluđeri nose knjige starostavne iz Samodreže, a Turci hoće da ih otmu. Odbrani ih od četiri čete.","The monks carry the ancient books from Samodreža, and the Turks want to seize them. Defend them from four bands."],
+["Kaluđeri su sačuvali knjige. „Bog da prosti tvoje grehe, Marko.”","The monks saved the books. “May God forgive your sins, Marko.”"],
+["Putnici čekaju skelu, a iz trske izlaze Turci. Čuvaj ih dok skela ne dođe: četiri čete.","The travellers wait for the ferry, and Turks come out of the reeds. Guard them until the ferry comes: four bands."],
+["Skela je stigla i putnici su prešli. Trgovac ti daruje dukate.","The ferry came and the travellers crossed. The merchant gives you ducats."],
+["Hodočasnici idu u Markov manastir, a vrač je na njih poslao senke i janičare. Odbrani ih: četiri čete.","Pilgrims are on their way to Marko's monastery, and the sorcerer has sent shadows and janissaries at them. Defend them: four bands."],
+["Hodočasnici su prošli kroz jarugu. „Hvala ti, Marko, u Prilepu ćemo paliti sveću za tebe.”","The pilgrims crossed the ravine. “Thank you, Marko, we will light a candle for you in Prilep.”"],
+["Rudari Novog Brda izašli su iz okna, a Turci hoće srebro. Čuvaj ih od četiri čete.","The miners of Novo Brdo came out of the shaft, and the Turks want the silver. Guard them from four bands."],
+["Srebro je ostalo rudarima. Daruju ti kesu dukata.","The silver stayed with the miners. They give you a purse of ducats."],
+["Y · B · A: drugi završeci","Y · B · A: other endings"],["K · SHIFT · SPACE: drugi završeci","K · SHIFT · SPACE: other endings"],
+// ---- 15. 11.: igra uči nove veštine ----
+["NOVA VEŠTINA","NEW SKILL"],["NOVA MOĆ","NEW POWER"],["Probaj sada","Try it now"],["NAUČENO","LEARNED"],
+// ---- 15. 11.: kraj pesme i odjavna špica ----
+["„Dolje leže, gore ne ustade.”","“He lay down, and never rose again.”"],["Na Urvini, pod dvije tanke jele, zaspao je Kraljević Marko.","On Urvina, beneath two slender firs, Prince Marko fell asleep."],
+["Kraj njega je humka Šarčeva. Sablja je prebijena, koplje u granama, topuz u moru.","Beside him is Šarac's mound. The sabre is broken, the spear in the branches, the mace in the sea."],
+["A narod kaže da Marko nije umro. Kad mu sablja sama ispadne iz kora, probudiće se i opet izaći na drum.","But the people say Marko did not die. When his sabre slips out of its sheath by itself, he will wake and ride the road again."],
+["od Prilepa do Urvine","from Prilep to Urvina"],["Autor","Author"],["Ideja, priča i režija","Idea, story and direction"],["Dizajn igre i nivoa","Game and level design"],
+["Likovi, animacije i slike","Characters, animation and art"],["Muzika i zvuk","Music and sound"],["Programiranje","Programming"],
+["Po srpskim narodnim pesmama iz zbirke Vuka Stefanovića Karadžića","After the Serbian folk songs collected by Vuk Stefanović Karadžić"],
+["Gusle: snimci sa Wikimedia Commons, CC BY-SA (VVVladimir, Milovan Dobrilović)","Gusle: recordings from Wikimedia Commons, CC BY-SA (VVVladimir, Milovan Dobrilović)"],
+["Hvala ti što si pevao sa nama.","Thank you for singing with us."],["Dok se gusle čuju, Marko je živ.","As long as the gusle are heard, Marko lives."],
+["Trbojević Stefan","Trbojević Stefan"],["Kraj pesme.","The end of the song."],
 // ---- 15. 11.: meni Napredak, novi HUD, ekonomija, odmori, Crni vrač i Vračeva jaruga, Kosovka poji Marka ----
 ["Napredak","Progress"],["NAPREDAK","PROGRESS"],["Napredak · P","Progress · P"],["Nazad · P / Esc","Back · P / Esc"],["Nivo junaka","Hero level"],["Gard (L)","Guard (L)"],
 ["Veštine","Skills"],["Kovač i zadužbine","Smith and endowments"],

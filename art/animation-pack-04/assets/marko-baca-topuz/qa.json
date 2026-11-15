@@ -1,0 +1,117 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        110,
+        105,
+        403,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56767
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        134,
+        72,
+        378,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        62085
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        103,
+        80,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        69474
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        51,
+        61,
+        461,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        59570,
+        2114
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        103,
+        110,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58084
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        138,
+        98,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56164
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9011764705882352,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d61\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 383,
+  "targetHeight": 383,
+  "visualReview": "D61: Marko holds mace in both hands, lifts complete mace high behind head, steps, releases up-right, follows through empty handed and lowers arm. Frames 4 and 5 fully weaponless. All six frames checked for complete anatomy, mace visibility, scale and identity.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

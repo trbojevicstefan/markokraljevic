@@ -36,9 +36,20 @@ def convert(job):
     with Image.open(png) as a, Image.open(out) as b:
         if a.size != b.size:
             raise SystemExit(f'{png}: WebP {b.size} != PNG {a.size}')
+    # the phone (LITE) asks for a half-size copy in assets/pola/; clips drawn after it was made had none (404, then the full sheet)
+    assets = os.path.dirname(png)
+    rel = os.path.relpath(png, assets)
+    half = os.path.join(assets, 'pola', rel[:-4] + '.webp')
+    made_half = False
+    if os.path.isdir(os.path.join(assets, 'pola')) and not os.path.exists(half):
+        os.makedirs(os.path.dirname(half), exist_ok=True)
+        with Image.open(png) as im:
+            im = im.convert('RGBA')
+            im.resize((max(1, im.width // 2), max(1, im.height // 2)), Image.LANCZOS).save(half, 'WEBP', quality=85, alpha_quality=100, method=4)
+        made_half = True
     before, after = len(data), os.path.getsize(out)
     os.remove(png)
-    return before, after, made
+    return before, after, made, made_half
 
 
 def main():
@@ -73,7 +84,7 @@ def main():
     json.dump(rig, open(rig_path, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     b, w = sum(x[0] for x in res), sum(x[1] for x in res)
     print(f'WebP: {len(res)} listova, {b / 1e6:.0f} MB -> {w / 1e6:.0f} MB, novo pretvoreno {sum(x[2] for x in res)}, '
-          f'ostaju PNG (zovu se direktno): {len(direct)}')
+          f'ostaju PNG (zovu se direktno): {len(direct)}, nove lake kopije za telefon: {sum(x[3] for x in res)}')
 
 
 if __name__ == '__main__':
