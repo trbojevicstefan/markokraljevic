@@ -392,7 +392,7 @@ for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pot
 {const w=await land('manastir');const g=w.goals.find(g=>g.kind==='take'),p=S().p;ok(g,'judgment: the imperial book lies in the monastery');
  Object.assign(p,{x:g.x,y:g.y,vx:0,vy:0,grounded:true,rage:0});safe();step(3);ok(g.done&&S().mode==='shop','judgment: taking the book puts the question: whose is the empire');
  const pw=p.power||1;ok(!api.presuda(0)&&S().mode==='shop','judgment: for his father is false, and the question stands');ok(!api.presuda(1)&&!api.presuda(2),'judgment: for his uncles is false too');
- ok(api.presuda(3)&&S().mode==='play'&&p.power>pw&&p.rage===100,'judgment: the empire is Uroš\'s: the tsar\'s blessing stays on Marko');}
+ ok(api.presuda(3)&&S().mode==='play'&&w.traps.find(t=>t.kind==='samodreza')?.state==='beg','judgment: the empire is Uroš\'s: the king draws his dagger and Marko runs round the church (pesme-test plays the rest; the blessing comes after)');}
 // ---- the archery match with Alil-aga on the sultan's road ----
 {const w=await land('oranje');const t=w.traps.find(t=>t.kind==='strela'),p=S().p;ok(t,'archery: Alil-aga stands in the road in Oranje');
  Object.assign(p,{x:t.x+40,y:t.y,vx:0,vy:0,grounded:true});safe();step(3);api.pressed.add('KeyE');step(2);ok(t.state==='aga'&&p.noMace,'archery: E accepts the match; the mace waits');

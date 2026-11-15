@@ -70,7 +70,7 @@ const GOAL_PLAN={
  selo:{goals:[{kind:'gate',at:.5,art:GATE,h:290,label:'Oslobodi seosku kapiju',guarded:true},{kind:'finish',art:['cilj-bunar-svetli'],h:170,dx:-210}],finish:'Pronađi put do bunara'},
  klisura:{goals:[{kind:'use',at:.4,art:LEVER,h:120,label:'Povuci polugu uz reku',done:'Lanac je popustio. Prolaz uz reku je otvoren.'},{kind:'gate',at:.62,art:GATE,h:290,label:'Otvori prolaz uz reku'}],finish:'Pređi do kraja klisure'},
  suma:{goals:[.25,.5,.75].map(at=>({kind:'use',at,art:['cilj-vilinski-kamen','cilj-vilinski-kamen-budan'],h:150,label:'Probudi vilinske kamenove',glow:'#9fffe0',gy:.5,done:'Kamen se probudio.'})),finish:'Otkrij skriveno svetilište'},
- manastir:{goals:[{kind:'take',at:.58,art:['cilj-relikvija'],h:110,label:'Pronađi carsku knjigu i presudi',glow:'#ffe39a',gy:.8,done:'Knjige starostavne su u tvojim rukama.'}],finish:'Podigni manastirski barjak'},
+ manastir:{goals:[{kind:'take',at:.58,trap:'samodreza',art:['cilj-relikvija'],h:110,label:'Pronađi carsku knjigu i presudi',glow:'#ffe39a',gy:.8,done:'Knjige starostavne su u tvojim rukama.'}],finish:'Podigni manastirski barjak'},
  tvrdjava:{goals:[{kind:'use',at:.4,art:['cilj-opsadna-sprava','cilj-opsadna-sprava-srusena'],h:160,label:'Onesposobi opsadnu spravu',done:'Sprava je slomljena.',smash:true},{kind:'gate',at:.66,art:GATE,h:290,label:'Otvori tvrđavsku kapiju'}],finish:'Prođi kroz tvrđavu'},
  prevoj:{goals:[],finish:'Prati barjake do kule na prevoju'},
  pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje Ravijojla',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao prolaz.'}],finish:'Prođi kristalnim prolazom'},
@@ -85,9 +85,9 @@ const GOAL_PLAN={
 };
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
-function makeGoals(L,floorAt){
+function makeGoals(L,floorAt,traps=[]){
  const near=x=>{for(let d=0;d<2600;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
- return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
+ return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const T=g.trap&&traps.find(t=>t.kind===g.trap),want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=T?[T.knjiga,T.y]:g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
   return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
 }
 // ================= pohod layout: rooms read left to right =================
@@ -120,7 +120,7 @@ export const RECIPES={
  selo:'flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tower flat trgovac flat boss:kopljanik',
  klisura:'flat uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ flat greda crates bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
- manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
+ manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
  prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks flat crumble watch logs crates trgovac flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks flat spikebed ledges crumble crates trgovac flat boss:azdaja',
@@ -233,6 +233,8 @@ export function buildLayout(L,variant='day'){
    traps.push({kind:'melodija',title:'GUSLE JAVOROVE',objs:[0,1,2,3].map(i=>({x:x0+470+i*170,y:gy})),seq,gusle:{x:x0+290,y:gy},tablet:{x:x0+130,y:gy},gate:{x:x0+len-50,y:gy},
     clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // "Marko Kraljević i vila": Šarac waits, then a long clear run after Ravijojla with fallen trunks to leap
+  // the white church of Samodreža: the books of old before it, and the yard around which the king chases his son (game.js)
+  samodreza(){const x0=x,len=2100;ground(len);traps.push({kind:'samodreza',x0,x1:x0+len,y:gy,crkva:x0+1150,knjiga:x0+520,gate:{x:x0+len-40,y:gy}});busy.push([x0-40,x0+len]);},
   // the horse fair in Kosovsko selo: four horses, one of them the scabby piebald foal that will be Šarac (game.js: vašar)
   vasar(){const x0=x,len=1500;ground(len);traps.push({kind:'vasar',x0,x1:x0+len,y:gy,cuvar:x0+190,konji:[x0+420,x0+660,x0+900,x0+1140],gate:{x:x0+len-40,y:gy}});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i vila”: the two sworn brothers ride over Miroč side by side; the song, the arrows and the dismount (game.js)
@@ -460,7 +462,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  props.push({id:'prop-barjak-srpski',x:B.spawn.x+90,y:B.spawn.y,height:175},{id:'prop-barjak-srpski',x:B.goal.x,y:B.goal.y,height:175});
  const L2={...L,width:B.width,spawn:B.spawn,goal:B.goal,props};
  chapters[zone]={name:`POHOD ${index+1} · ${L.name.toUpperCase()}${variant==='night'?' · NOĆ':variant==='storm'?' · OLUJA':''}`,start:0,end:B.width,goal:goalFinish(L),message:''};
- const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x));
+ const goals=makeGoals(L2,x=>B.busy.some(([a,b])=>x>a-80&&x<b+80)?null:floorAt(x),B.traps);
  // the artist's props give way to what the pohod is about: no shrine drawn across a fairy stone
  for(const g of goals)for(let i=props.length-1;i>=0;i--)if(!props[i].id.startsWith('prop-barjak')&&Math.abs(props[i].x-g.x)<(g.kind==='gate'?300:190))props.splice(i,1);
  // nothing breakable stands inside a gate's passage

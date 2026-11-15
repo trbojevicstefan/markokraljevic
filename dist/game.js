@@ -846,7 +846,7 @@ function updateVisuals(dt){for(const f of floating){f.y-=30*dt;f.life-=dt;}float
   if(a>=(won&&rig?.['marko-wounded-walk']?9:1.55)&&body?.grounded){if(won&&!endSequence.story){endSequence.story=true;playStory('end',()=>{$('victory').hidden=false;});}else if(!won||endSequence.storyDone)$(endSequence.kind).hidden=false;}}for(const g of ghosts)g.life-=dt;ghosts=ghosts.filter(g=>g.life>0);}
 function updateCamera(dt){if(level?.greybox&&greybox.gbCamera(GBX,dt))return;if(lov){camera=lov.cam;camY+=(lov.camY-camY)*Math.min(1,dt*3);return;}if(pesmaCam(dt))return;const lead=gunner?.1:horseMounted?.3:.4;const desired=clamp(p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);pressed.clear();return;}elapsed+=dt;music(dt);updateDefense(dt);if(hitstop>0){hitstop-=dt;return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!SCOUT&&!storySeen.has('lov'))lovStart();if(!updateScout(dt)&&!updateLov(dt)&&!updatePesma(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){if(level.greybox)greybox.gbTick(GBX,dt);updateUrvina(dt);updateVasar(dt);updateJahanje(dt);updatePotera(dt);updateStrela(dt);updatePogled(dt);pobratimTick(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
+ if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!SCOUT&&!storySeen.has('lov'))lovStart();if(!updateScout(dt)&&!updateLov(dt)&&!updatePesma(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){if(level.greybox)greybox.gbTick(GBX,dt);updateUrvina(dt);updateVasar(dt);updateCrkva(dt);updateJahanje(dt);updatePotera(dt);updateStrela(dt);updatePogled(dt);pobratimTick(dt);updateKavezi(dt);updateGuslari(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}updateHud();pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -1185,7 +1185,7 @@ function maceSmear(P){if(p.attack<=0)return;const d=attackDuration(),src=P?.swin
  head=a0+(a1-a0)*ease,tail=head-dir*Math.min(Math.abs(a1-a0)*ease,heavy?1.15:.95),c1=p.sablja?'205,232,255':heavy?'255,190,100':'255,236,200';
  for(const g of settings.reduced?[ctx]:[gctx,ctx]){g.save();g.translate(p.x+p.face*6,p.y-66);g.scale(p.face,1);g.beginPath();g.arc(0,0,R,tail,head,dir<0);g.arc(Math.cos(head)*6,Math.sin(head)*6,inner,head,tail,dir>0);g.closePath();
   const gr=g.createLinearGradient(Math.cos(tail)*R,Math.sin(tail)*R,Math.cos(head)*R,Math.sin(head)*R);gr.addColorStop(0,`rgba(${c1},0)`);gr.addColorStop(1,`rgba(${c1},${(g===gctx?(heavy?.42:.34):settings.reduced?.14:.2)*fade})`);g.fillStyle=gr;g.fill();g.restore();}}
-function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying||p.bijeVilu)return;let pose=null;const alpha=p.invuln>0&&!finisher&&!p.stare&&!(training&&p.invuln<.6)&&Math.floor(time*14)%2?.55:1;
+function drawPlayer(){if(!p||mode==='dead'||p.pinned||p.lying||p.bijeVilu||p.uCrkvi)return;let pose=null;const alpha=p.invuln>0&&!finisher&&!p.stare&&!(training&&p.invuln<.6)&&Math.floor(time*14)%2?.55:1;
  for(const g of ghosts)rigDraw(g.name,g.frame,g.x,g.y,g.faceAs??g.face,{...g,glow:true,color:'#7fffe0',alpha:g.life*1.1,outline:1.5});
  drawTrag();drawKrilo();drawNaletStreak();shadow(p.x,p.y,horseMounted?84:38,.55);
  if(p.buff>0){halo(p.x,p.y-64,90,'rgba(255,170,60,.22)',.7+.3*Math.sin(time*6));emitters.push({id:'buff',kind:'buff',x:p.x,y:p.y,rate:38});}
@@ -2622,6 +2622,69 @@ function drawSan(t){const run=levelArt['prop-run-kamen'],stub=levelArt['prop-stu
   ctx.save();ctx.translate(G.x,G.y-70);ctx.rotate(-.5);ellipse(0,26,22,30,'#8a5a2a');line(0,0,0,-74,'#6a4420',8);line(-4,-70,10,-82,'#6a4420',6);line(2,-64,2,40,'#e8dcc0',1.5);ctx.restore();
   if(t.play)halo(G.x,G.y-70,80,'rgba(255,225,150,.5)',.6+.3*Math.sin(time*10));
   textLabel(t.done?'GUSLE ĆUTE':t.play?'SLUŠAJ…':t.listen?`PONOVI · ${t.prog||0}/${n}`:'E · NEK GUSLE ZAGUDE',G.x,G.y-170,{font:'bold 13px Georgia',color:'#ffe9a8'});}}
+// ================= „Bježi Marko oko b’jele crkve” (Uroš i Mrnjavčevići, Manastirski vis) =================
+// Pesma (Vuk II): kad Marko presudi da je carstvo Uroševo, kralj Vukašin „potrže zlaćena handžara da ubode svoga sina
+// Marka”. Marko beži, jer „se njemu ne pristoji sa svojim se biti roditeljem”: triput oko bele Samodreže crkve, pa glas iz
+// crkve: „Bjež’ u crkvu, Kraljeviću Marko!” Vrata se otvore i zatvore za njim; kralj „po direku udari handžarom, iz direka
+// krvca pokapala”. Kralj se pokaje, glas mu kaže da je posekao božjeg anđela; tek onda kletva i carev blagoslov.
+const CRKVA_KRUGOVA=3;
+function crkvaTrap(){return(world.traps||[]).find(t=>t.kind==='samodreza')||null;}
+function crkvaLoop(T){return{a:T.x0+150,b:T.x1-160};}
+// the judgment's right answer, in the churchyard: the father's dagger instead of the blessing at once
+function crkvaBeg(){const T=crkvaTrap();if(!T||T.state||p.x<T.x0-200||p.x>T.x1+200)return false;const L=crkvaLoop(T);
+ T.state='beg';T.t=0;T.m=clamp(p.x,L.a,L.b)-L.a;T.f=T.m-260;T.krug=0;T.vuk={x:p.x-260,face:1,gait:0,udar:0};
+ speak('„Knjiga kaže: na Urošu carstvo!” Kad to začu Vukašine kralju, skoči kralju od zemlje na noge, pa potrže zlaćena handžara da ubode svoga sina Marka. Bježi Marko ispred roditelja, jer se njemu ne pristoji sa svojim se biti roditeljem.',9);
+ toast('Beži oko crkve (A, D). Na oca se ruka ne diže.',4);sfx('ring',{gain:.6,rate:.7});return true;}
+function updateCrkva(dt){const T=crkvaTrap();if(!T)return;const L=crkvaLoop(T),len=L.b-L.a;
+ if(T.state==='beg'){T.t+=dt;
+  // around the church: past one end of the yard Marko goes behind the church and comes out at the other
+  if(p.x>L.b){p.x=L.a+(p.x-L.b);dust(p.x,p.y,6,1);}else if(p.x<L.a){p.x=L.b-(L.a-p.x);dust(p.x,p.y,6,1);}
+  const prev=T.m,here=p.x-L.a;let dm=here-(((prev%len)+len)%len);if(dm>len/2)dm-=len;if(dm< -len/2)dm+=len;T.m+=dm;
+  const lap=Math.floor(T.m/len);if(lap>T.krug){T.krug=lap;if(lap<CRKVA_KRUGOVA){label(lap===1?'PRVI KRUG':'DRUGI KRUG',p.x,p.y-170,'#ffe9a8');sfx('ring',{gain:.4,rate:1.2});}}
+  // the king runs a little slower than his son, but never gives up; if he catches him, the dagger glances off the armour
+  const V=T.vuk,sp=T.m-T.f>420?320:[230,258,300][Math.min(2,T.krug)];   // in the third lap he is faster than Marko: „gotovo ga bješe sustigao”
+ T.f+=Math.sign(T.m-T.f)*Math.min(Math.abs(T.m-T.f),sp*dt);V.gait+=sp*dt/90*6;V.face=T.m>=T.f?1:-1;V.x=L.a+(((T.f%len)+len)%len);V.udar=Math.max(0,V.udar-dt);
+  if(T.m-T.f<46&&V.udar<=0){V.udar=1;T.f=T.m-240;p.hp=Math.max(1,p.hp-10);p.hurt=.22;shake=settings.reduced?0:5;burst(p.x,p.y-80,'#ff8a7a',10,160);label('HANDŽAR!',p.x,p.y-170,'#ff9a8a');sfx('hit_body',{gain:.6});}
+  if(p.attack>0&&Math.abs(p.x-V.x)<140&&!T.ruka){T.ruka=true;label('NA OCA SE RUKA NE DIŽE',p.x,p.y-190,'#ffe39a');}if(p.attack<=0)T.ruka=false;
+  if(T.krug>=CRKVA_KRUGOVA){T.state='glas';T.t=0;speak('Dok su triput kolo sastavili oko b’jele Samodreže crkve, gotovo ga bješe sustigao, al’ iz crkve nešto progovara: „Bjež’ u crkvu, Kraljeviću Marko! Vidiš đe ćeš danas poginuti, poginuti od svog roditelja, a za pravdu Boga istinoga.”',11,'GLAS IZ CRKVE');sfx('magic',{gain:.7,rate:.8});}}
+ else if(T.state==='glas'){T.t+=dt;T.vrata=Math.min(1,(T.vrata||0)+dt*1.5);const V=T.vuk;
+  V.x+=(p.x-V.x>0?1:-1)*Math.min(Math.abs(p.x-V.x)-120>0?Math.abs(p.x-V.x)-120:0,210*dt);V.face=p.x>V.x?1:-1;V.gait+=150*dt/90*6;
+  if(Math.abs(p.x-T.crkva)<70&&(tap('KeyW')||tap('KeyE'))){T.state='direk';T.t=0;p.uCrkvi=true;p.vx=0;sfx('door',{gain:.7})||sfx('wood',{gain:.6});}}
+ else if(T.state==='direk'){T.t+=dt;const V=T.vuk;T.vrata=Math.max(0,(T.vrata||0)-dt*2);p.x=T.crkva;p.vx=0;p.invuln=Math.max(p.invuln,.3);
+  if(T.t<1.2){V.x+=(T.crkva-90-V.x)*Math.min(1,dt*3);V.face=1;V.gait+=200*dt/90*6;}
+  if(T.t>1.2&&!T.s1){T.s1=true;V.udar=.6;T.handzar=true;sfx('hit_heavy',{gain:.8});shake=settings.reduced?0:6;hitstop=.08;speak('Kralj dopade na crkvena vrata, po direku udari handžarom, iz direka krvca pokapala.',7);}
+  if(T.handzar&&Math.random()<dt*9)particles.push({kind:'blood',x:T.crkva-74,y:T.y-150+Math.random()*10,vx:0,vy:60,life:1.2,max:1.2,r:2.2,color:'#a01818'});
+  if(T.t>7.5&&!T.s2){T.s2=true;speak('Tad se kralje bio pokajao: „Lele mene, do Boga jednoga, đe pogubih svoga sina Marka!”',7,'KRALJ VUKAŠIN');}
+  if(T.t>14.5&&!T.s3){T.s3=true;speak('Al’ iz crkve nešto progovara: „A čuješ li, Vukašine kralju, ti nisi posjekao Marka, već posječe božjega anđela.”',8,'GLAS IZ CRKVE');}
+  if(T.t>22.5){T.state='kraj';T.done=true;p.uCrkvi=false;T.vuk.ode=true;presudaBlagoslov(true);}}
+ if(T.vuk?.ode)T.vuk.x-=160*dt;
+ puzzleGate(T,T.done||!T.state&&!crkvaTrebaBeg(),T.state==='beg'?'Beži oko crkve.':T.state==='glas'?'U crkvu! (W)':'Pronađi carsku knjigu i presudi.');}
+// the gate of the churchyard is shut only while the song is under way (or before the judgment is given)
+function crkvaTrebaBeg(){return!!(world.goals||[]).some(g=>g.kind==='take'&&!g.done);}
+function drawCrkva(T){if(T.x1<camera-400||T.x0>camera+VIEW_W+400)return;const c=T.crkva,y=T.y;
+ // the white church of Samodreža: white walls, a red roof, a dome on its drum, the cross; the door between two oak posts
+ ctx.save();{const gr=ctx.createLinearGradient(c-230,0,c+230,0);gr.addColorStop(0,'#f6eedd');gr.addColorStop(.62,'#ece0c6');gr.addColorStop(1,'#d8c6a2');poly([[c-230,y],[c-230,y-250],[c+230,y-250],[c+230,y]],gr,'#c2ad86');}
+ // stone and brick in bands, as on the churches of the Morava school; blind arches under the eaves
+ ctx.save();ctx.beginPath();ctx.rect(c-230,y-250,460,250);ctx.clip();for(let by=y-18;by>y-250;by-=30){ctx.fillStyle='#b8664288';ctx.fillRect(c-230,by,460,5);ctx.fillStyle='#e4d4b4';for(let bx=c-230+((by/30)%2?0:22);bx<c+230;bx+=44)ctx.fillRect(bx,by-25,1.5,25);}
+ for(let ax=c-210;ax<c+210;ax+=42){ctx.beginPath();ctx.moveTo(ax,y-226);ctx.lineTo(ax,y-214);ctx.arc(ax+18,y-226,18,Math.PI,0);ctx.lineTo(ax+36,y-214);ctx.strokeStyle='#a8583a';ctx.lineWidth=3;ctx.stroke();}ctx.restore();
+ poly([[c-250,y-250],[c,y-330],[c+250,y-250]],'#b04a2c','#7a3018');
+ poly([[c-70,y-300],[c-70,y-380],[c+70,y-380],[c+70,y-300]],'#efe6d2','#cdbb98');for(let dx=-48;dx<=48;dx+=32){ctx.beginPath();ctx.ellipse(c+dx,y-342,8,16,0,0,Math.PI*2);ctx.fillStyle='#7a5a40';ctx.fill();}ctx.beginPath();ctx.ellipse(c,y-380,72,58,0,Math.PI,0);ctx.fillStyle='#b8572e';ctx.fill();ctx.strokeStyle='#7a3018';ctx.lineWidth=2;ctx.stroke();
+ line(c,y-438,c,y-490,'#d9b24a',5);line(c-16,y-474,c+16,y-474,'#d9b24a',5);
+ for(const wx of[c-150,c+150]){ctx.beginPath();ctx.ellipse(wx,y-175,16,26,0,0,Math.PI*2);ctx.fillStyle='#6a5a48';ctx.fill();}
+ const v=T.vrata||0;poly([[c-62,y],[c-62,y-150],[c+62,y-150],[c+62,y]],'#3a2414');poly([[c-62,y],[c-62,y-150],[c-62+124*(1-v)*.5,y-150],[c-62+124*(1-v)*.5,y]],'#7a5230','#4a3018');poly([[c+62-124*(1-v)*.5,y],[c+62-124*(1-v)*.5,y-150],[c+62,y-150],[c+62,y]],'#7a5230','#4a3018');
+ for(const dx of[-74,74])poly([[c+dx-10,y],[c+dx-10,y-162],[c+dx+10,y-162],[c+dx+10,y]],'#6b4426','#3e2612');
+ if(T.handzar){ctx.save();ctx.translate(c-74,y-150);ctx.rotate(-.5);line(0,0,-34,-6,'#d8d8dc',4);poly([[-34,-10],[-48,-6],[-34,-2]],'#e8e8ec');line(0,0,12,2,'#b8862a',6);ctx.restore();halo(c-74,y-140,30,'rgba(160,20,20,.35)');}
+ ctx.restore();
+ // the book table before the church, the books of old
+ if(!T.state){poly([[T.knjiga-40,y],[T.knjiga-40,y-46],[T.knjiga+40,y-46],[T.knjiga+40,y]],'#6b4a2a','#3e2612');}
+ if(T.state==='glas'&&Math.abs(p.x-c)<240)textLabel(Math.abs(p.x-c)<70?'W · U CRKVU':'U CRKVU!',c,y-200,{font:'bold 16px Georgia',color:'#fff3c0',glow:'#7a1c1c'});
+ if(T.state==='beg'&&T.krug<CRKVA_KRUGOVA)textLabel(tr('KRUG')+' '+(T.krug+1)+'/'+CRKVA_KRUGOVA,camera+VIEW_W*.5,camY+130,{font:'bold 16px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
+ const V=T.vuk;if(V&&V.x>camera-200&&V.x<camera+VIEW_W+200){const n=V.udar>.3&&rig?.['marko-sablja-udarac-1']?'marko-sablja-udarac-1':T.state==='kraj'||T.state==='direk'&&T.t>1.2?'marko-sablja-idle':'marko-sablja-trci',R=rig?.[n];
+  if(R){const f=n==='marko-sablja-trci'?loopF(V.gait,R.frames.length):n==='marko-sablja-idle'?loopF(time*5,R.frames.length):Math.min(R.frames.length-1,(1-V.udar)*R.frames.length);shadow(V.x,y,40,.45);
+   rigDraw(n,f,V.x,y,V.ode?-1:V.face,{filter:'sepia(.45) saturate(.75) hue-rotate(-12deg) brightness(.9)'});
+   // the king's crown
+   const hx=V.x+(V.ode?-1:V.face)*4,hy=y-134;poly([[hx-13,hy],[hx-13,hy-12],[hx-7,hy-6],[hx,hy-15],[hx+7,hy-6],[hx+13,hy-12],[hx+13,hy]],'#e8c050','#8a6418');
+   if(Math.abs(p.x-V.x)<600&&T.state!=='kraj')textLabel('KRALJ VUKAŠIN',V.x,y-160,{font:'bold 12px Georgia',color:'#ffd0b0'});}}}
 // ================= the horse fair (Kosovsko selo): Marko chooses Šarac =================
 // Po predanju (a pesme ga pamte: „šaren kao goveče”, „pola pije, pola Šarcu daje”): Marko je tražio konja koji će ga nositi.
 // Hvatao je konje za rep i prebacivao ih preko glave, a jedno šugavo šareno ždrebe se nije pomaklo. Uzeo ga je i pojio vinom,
@@ -2965,8 +3028,10 @@ let presudaOpen=false;
 function openPresuda(){if(mode!=='play'||presudaOpen)return;presudaOpen=true;mode='shop';keys.clear();pressed.clear();sfx('ring',{gain:.7,rate:.8});if(hasDom){renderPresuda();$('presuda').hidden=false;}}
 function renderPresuda(note){if(!hasDom)return;$('presuda-note').textContent=note||'';$('presuda-list').innerHTML=PRESUDA.map((a,i)=>`<button data-sud="${i}"><span>${a[0]}</span><b>${i+1}</b></button>`).join('');$('presuda-list').querySelectorAll?.('[data-sud]').forEach(b=>b.onclick=()=>presuda(+b.dataset.sud));}
 function presuda(i){if(!presudaOpen||!PRESUDA[i])return false;if(PRESUDA[i][1]){sfx('horn_call',{gain:.4,rate:.8});renderPresuda(PRESUDA[i][1]);return false;}
- presudaOpen=false;mode='play';keys.clear();pressed.clear();if(hasDom)$('presuda').hidden=true;p.blagoslov=true;p.power=(p.power||1)*1.12;p.rage=100;p.hp=p.maxHp;fx('flash','#fff2c8',.18);sfx('magic_big',{gain:1});label('CAREV BLAGOSLOV',p.x,p.y-180,'#ffe9a8');
- speak('„Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”',11);toast('Carev blagoslov: udarci su ti jači do kraja pohoda.',4);return true;}
+ presudaOpen=false;mode='play';keys.clear();pressed.clear();if(hasDom)$('presuda').hidden=true;if(crkvaBeg())return true;presudaBlagoslov();return true;}
+function presudaBlagoslov(posle=false){p.blagoslov=true;p.power=(p.power||1)*1.12;p.rage=100;p.hp=p.maxHp;fx('flash','#fff2c8',.18);sfx('magic_big',{gain:1});label('CAREV BLAGOSLOV',p.x,p.y-180,'#ffe9a8');
+ if(posle)speak('Na Marka je vrlo žao kralju, te ga ljuto kune i proklinje: „Ti nemao groba ni poroda! I da bi ti duša ne ispala dok turskoga cara ne dvorio!” Kralj ga kune, car ga blagosilja: „Kume Marko, Bog ti pomogao! Tvoje lice svjetlo na divanu, tvoja sablja sjekla na mejdanu!” Što su rekli, tako mu se steklo.',13);
+ else speak('„Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”',11);toast('Carev blagoslov: udarci su ti jači do kraja pohoda.',4);return true;}
 if(hasDom)document.addEventListener('keydown',e=>{if(!/^[1-7]$/.test(e.key))return;if(presudaOpen){if(+e.key<=4)presuda(+e.key-1);}else if(mode==='shop'&&buyDucan(ducanList()[+e.key-1]?.id))renderDucan();});
 // ================= scouting (…/index.html?scout): walk the land with no one in it =================
 // For looking at a pohod as scenery: every pohod is open, no enemy lives, Marko cannot be hurt and does not fall.
@@ -3413,7 +3478,7 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
  const G=t.glasnik;if(G){const k=G.state==='cita'?'caus-ferman':'caus-walk',alt=G.state==='cita'?'putnik-trgovac-idle':'putnik-trgovac-walk',n=rig?.[k]?k:alt,R=rig?.[n];
   if(R){const f=G.state==='cita'?Math.min(R.frames.length-1,G.t*5):loopF(time*9,R.frames.length);rigDraw(n,f,G.x,t.y,G.state==='odlazi'?1:-1);}
   if(G.state==='cita')textLabel('STO DUKATA OD CARA',G.x,t.y-176,{font:'bold 13px Georgia',color:'#ffe39a'});}}
-function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='jahanje')drawJahanje(t);else if(t.kind==='vasar')drawVasar(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
+function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='jahanje')drawJahanje(t);else if(t.kind==='vasar')drawVasar(t);else if(t.kind==='samodreza')drawCrkva(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
  if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',loopF(time*9,rig['svatovi-kolo'].frames.length),level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
 function drawTrapsFront(){if(level?.greybox)greybox.gbDrawFront(GBX);for(const t of world.traps||[])if(t.draw)t.draw({ctx,gctx,time,rig,rigDraw});else if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}
@@ -4895,6 +4960,7 @@ async function novoGo(n){const lv=id=>LEVELS.findIndex(L=>L.id===id),trap=k=>(wo
  if(n==='urvina'){await go('urvina');return;}
  if(n==='vrh'){await go('urvina');const t=trap('vrh');at(t.bunar-360,t.y);speak('Vrh Urvine. Redom: bunar među jelama (E), Šarac, kamen za sablju, pa topuz u more sa litice (I), i natrag pod jelu.',9);return;}
  if(n==='san'){await go('san');return;}
+ if(n==='crkva'){await go('manastir');const T=crkvaTrap(),g=(world.goals||[]).find(g=>g.kind==='take');if(T){at(T.knjiga+60,T.y);if(g)g.done=true;crkvaBeg();}return;}
  if(n==='vasar'){await go('selo');const t=vasarTrap();if(t)at(t.konji[0]-160,t.y);return;}
  if(['pesma','peva','strele','bilje','pesice','milos'].includes(n)){await go('suma');if(n!=='pesma')pvSkok(n);return;}
  if(lv(n)>=0){await go(n);return;}
