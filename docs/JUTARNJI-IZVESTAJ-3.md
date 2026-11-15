@@ -47,9 +47,13 @@ Sa `?dev` su otvoreni svi nivoi; sa `?dev&novo=<deo>` igra odmah skače na novu 
 - **Zimski prevoj** („Vuča dženeral") — Miloš krvlju zapečati knjigu iz Vučine tamnice; Marko pod Varadinom zabode
   koplje u ledinu, veže Šarca i pije ("pola pije, pola Šarcu daje"), Velimirovica ga gleda sa bedema, Šarac kopitom
   upozori na katane, **E i Marko na Šarcu** juriša u dva talasa; Velimir i Vuča svezani, Miloš i vojvode slobodni.
+- **Ruševine** („Marko Kraljević ukida svadbarinu") — na samom početku Kosovka devojka, mlada a seda od čekanja:
+  Arap je zakupio Kosovo (trideset dukata za udaju), noćas je red na nju; Marko joj da trideset dukata, ona pokaže
+  svilen barjak nad Arapovim šatorom, a Marko: „Danas ću vas, braćo, osvetiti, ili poginuti".
 
 ## Codex (GPT-6.1-Sol)
-Naručeno samo što je falilo: D48 (Miloš i vila), D49 (mapa), D50 (Vukašin, crkva, bilje), D51 (Filip Madžarin).
+Naručeno samo što je falilo: D48 (Miloš i vila), D49 (mapa), D50 (Vukašin, crkva, bilje), D51 (Filip Madžarin), D52 (Kosovka devojka).
+Kraljev trk (D50) nije prošao Codexovu proveru; uzeo sam četiri dobra kadra trećeg pokušaja kao petlju.
 Sve je pregledano pored Marka u meri igre pre ugradnje; odbijeni pokušaji nisu ugrađeni.
 
 ## Muzika — treba tvoja odluka
@@ -61,4 +65,4 @@ Reci koje od ovoga hoćeš.
 
 ## Prečice za pregled (`?dev&novo=…`)
 `pesma`, `peva`, `strele`, `bilje`, `pesice`, `milos`, `vasar`, `crkva`, `crkva-direk`, `okovi`, `okovi-vodi`,
-`okovi-mehana`, `ramazan`, `mehana`, `varadin`.
+`okovi-mehana`, `ramazan`, `mehana`, `varadin`, `kosovka`.

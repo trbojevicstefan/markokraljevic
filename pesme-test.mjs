@@ -93,4 +93,12 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  for(const e of wave)api.slay(e);step(3);ok(T.ph==='vojvode','varadin: Vuča flees on his mare, the thrown mace brings him down');
  until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted,'varadin: the general’s wife opens the dungeon: Miloš and the voivodes are free');
  ok(api.draw()===null,'varadin: the camp, Šarac and Miloš draw without an error');}
+// ---- Ruševine: the Kosovo maiden (Marko Kraljević ukida svadbarinu) ----
+{const w=await start('rusevine');const T=w.traps.find(t=>t.kind==='kosovka');const {p}=api.state();
+ ok(T&&T.dev>T.x0&&T.dev<T.x1,'kosovka: the Kosovo maiden waits by the water at the start of the ruins');
+ Object.assign(p,{x:T.dev-380,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='govor'&&T.i===1,'kosovka: „Božja pomoć, Kosovko devojko!” — Marko asks why she is grey');
+ const x0=p.x;press('KeyD');step(40);release('KeyD');ok(p.x>x0+20,'kosovka: Marko keeps his feet while they talk');
+ until(()=>T.dukati,120*40,'thirty ducats');ok(T.i===4,'kosovka: the Arab’s wedding tax, her turn tonight, and Marko’s thirty ducats');
+ until(()=>T.done,120*30,'the silk banner');ok(T.i===6&&T.odlazi!=null,'kosovka: she shows him the silk banner over the Arab’s tent and goes home');
+ ok(api.draw()===null,'kosovka: the maiden draws without an error');}
 console.log(`\n${checks} checks passed.`);

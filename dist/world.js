@@ -127,7 +127,7 @@ export const RECIPES={
  podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
  mocvara:'flat bridge watch soko crumble ferry bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
  rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates guslar:mir crumble flat bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
- rusevine:'flat stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
+ rusevine:'kosovka stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks crates trgovac flat boss:arapin',
  reka:'flat crates pogled bridge breg flat jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs flat mehana spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
@@ -233,6 +233,8 @@ export function buildLayout(L,variant='day'){
    traps.push({kind:'melodija',title:'GUSLE JAVOROVE',objs:[0,1,2,3].map(i=>({x:x0+470+i*170,y:gy})),seq,gusle:{x:x0+290,y:gy},tablet:{x:x0+130,y:gy},gate:{x:x0+len-50,y:gy},
     clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // "Marko Kraljević i vila": Šarac waits, then a long clear run after Ravijojla with fallen trunks to leap
+  // „Marko Kraljević ukida svadbarinu”: the Kosovo maiden, grey with waiting, by the water at the start (game.js: kosovka)
+  kosovka(){const x0=x,len=1100;ground(len);traps.push({kind:'kosovka',x0,x1:x0+len,y:gy,dev:x0+760,nodecor:[[x0+520,x0+960]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Vuča dženeral”: the camp under Varadin, the katane in two waves, Miloš out of the dungeon (game.js: varadin)
   varadin(){const x0=x,len=3400;ground(len);traps.push({kind:'varadin',x0,x1:x0+len,y:gy,logor:x0+900,nodecor:[[x0+500,x0+1500],[x0+len-600,x0+len]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
