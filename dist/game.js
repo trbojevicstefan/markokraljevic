@@ -902,8 +902,13 @@ function killCam(e){if(!level||training||e.champion)return;kcLog=kcLog.filter(t=
  sfx('ring',{gain:.55,rate:.62})||sfx('magic',{gain:.4,rate:.7});label('DRUM JE ČIST',e.x,e.y-190,'#ffe39a');}
 
 function kino(z,t,x,y){if(z>=kinoZel||kinoT<=0){kinoZel=z;kinoT=Math.max(kinoT,t);kinoTacka={x,y};}}
-function kinoTick(dt){if(!hasDom)return;const el=$('game');if(!el?.style)return;
- if(finisher&&finisher.e){const e=finisher.e,brut=finisher.kind==='oderi';kino(brut?1.42:1.3,.25,(p.x+e.x)/2,Math.min(p.y,e.y)-80);}
+// noć 15./16. 11., F3: a silent takedown: the picture leans in closer and its colours drain for the moment of it (bledo 0..1),
+// the edges darken; on a phone (LITE) only the edges, a filter over the whole picture costs too much there
+let bledo=0,bledoKey='';
+function bledoTick(dt){const tiho=!!(finisher&&finisher.e&&(finisher.kind==='tiho'||finisher.kind==='tihoS'));bledo+=((tiho?1:0)-bledo)*Math.min(1,dt*(tiho?7:2.5));if(!tiho&&bledo<.01)bledo=0;return tiho;}
+function kinoTick(dt){const tiho=bledoTick(dt);if(!hasDom)return;const el=$('game');if(!el?.style)return;
+ if(finisher&&finisher.e){const e=finisher.e,brut=finisher.kind==='oderi';kino(brut?1.42:tiho?1.4:1.3,.25,(p.x+e.x)/2,Math.min(p.y,e.y)-80);}
+ {const fk=bledo>0&&!LITE?`saturate(${(1-.82*bledo).toFixed(2)}) brightness(${(1-.12*bledo).toFixed(2)})`:'';if(fk!==bledoKey){bledoKey=fk;el.style.filter=fk;}$('game-shell')?.classList?.toggle?.('tiho',bledo>.15);}
  if(kamCilj)kino(1.08,.2,kamCilj.x,kamCilj.y);
  kinoT=Math.max(0,kinoT-dt);const cilj=kinoT>0&&!settings.reduced?kinoZel:1;kinoZ+=(cilj-kinoZ)*Math.min(1,dt*(cilj>kinoZ?7:3.5));if(kinoT<=0)kinoZel=1;
  const on=kinoZ>1.004,T=kinoTacka||{x:p?.x||0,y:(p?.y||0)-80},ox=clamp((T.x-camera)/VIEW_W*100,15,85),oy=clamp((T.y-camY)/VIEW_H*100,20,80);

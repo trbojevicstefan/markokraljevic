@@ -263,3 +263,6 @@
 #title-card.megdan p{font-size:22px;color:#f4d6b8;letter-spacing:1px}
 #title-card.megdan.show{animation:megdanIn 3.3s ease forwards}
 @keyframes megdanIn{0%{opacity:0;transform:translate(-50%,-50%) scale(1.25);filter:blur(6px)}12%{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.98)}}
+/* tiho obaranje (noć 16. 11., F3): ivice slike potamne dok boje izblede */
+#game-shell .vignette{transition:box-shadow .35s ease}
+#game-shell.tiho .vignette{box-shadow:inset 0 0 260px #000000d0}
