@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop}),superStrike,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -118,4 +118,10 @@ await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.
  api.superStrike();ok(p.attackKind==='super'&&!p.superFreeze,'junački udar: Marko raises the mace');const h=e.hp;let fr=0;
  for(let i=0;i<120&&!p.superFreeze;i++){step(1);fr++;}ok(p.superFreeze&&api.film().hitstop>.2&&api.film().kinoT>0,'junački udar: at the height of the swing the picture stands still and leans in');
  ok(e.hp===h,'junački udar: the stillness comes before the blow');for(let i=0;i<200&&e.hp===h;i++)step(1);ok(e.hp<h,'junački udar: then the blow falls');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje i junački udar`);
+// ---- noć, F5: kad Marko padne: usporenje, zum i sepija pre „Ustani, junače” ----
+await api.startLevel(lv('selo'));{const {p,world}=S();for(const o of world.enemies)o.alive=false;step(10);api.die();
+ ok(S().mode==='dead'&&api.film().kinoT>0,'pad: Marko falls, the picture leans in on him');
+ step(120);const F=api.film();ok(F.endSequence?.age<.6,'pad: the moment slows (a second goes by as less than half of one)');ok(F.sepija>.6,'pad: the colours go to sepia');
+ step(120*4);ok(S().mode==='dead'&&api.film().sepija>.95,'pad: sepia holds under „Ustani, junače”');
+ await api.startLevel(lv('selo'));step(120);ok(api.film().sepija===0,'pad: back on the road, the colours come back');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar i pad Marka`);

@@ -45,7 +45,8 @@ for(let i=0;i<100;i++)api.update(1/120);
 assert.equal(api.state().p.x,deathX,'no movement after death');
 assert.equal(api.state().p.attack,0,'no attacks after death');
 assert.equal(node('death').hidden,true,'overlay does not cover final settling pose');
-for(let i=0;i<110;i++)api.update(1/120);
+// the fall is slowed a little (F5, noć 16. 11.: the first .8 s at half speed), so the overlay comes about .8 s later
+for(let i=0;i<200;i++)api.update(1/120);
 assert.equal(node('death').hidden,false);assert(api.state().corpses[0].grounded,'airborne defeat settles to terrain');
 assert.equal(api.deathPose(api.state().corpses[0]).frame,5);
 api.start();assert.equal(api.state().corpses.length,0,'retry clears corpses');
