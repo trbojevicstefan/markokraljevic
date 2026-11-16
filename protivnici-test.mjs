@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,pohodSnaga,hardenFoes,ownedSkills,startWindup,state:()=>({p,world})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,pohodSnaga,hardenFoes,ownedSkills,startWindup,kise:()=>kise,state:()=>({p,world})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 const start=async id=>{await api.startLevel(api.LEVELS.findIndex(L=>L.id===id),'day');api.keys.clear();api.pressed.clear();return api.state().world;};
@@ -50,4 +50,17 @@ ok(f2.maxHp>f1.maxHp*1.4,`chapters: the same sabre-man is tougher by the river t
   const hp=p.hp;let h1=0;for(let i=0;i<120;i++){step(1);if(!h1&&p.hp<hp)h1=p.hp;p.invuln=0;}ok(h1&&p.hp<h1,'dvostruki rez: two cuts, one after the other');}
  {const {p,e}=await sab();e.mode='windup';e.timer=.02;e.windupDuration=.7;e.varka=false;e.chainLeft=0;e.inChain=true;const x0=e.x;step(60);
   ok(e.x>x0+30,'after his blow the sabljaš steps back quickly');}}
+// ---- noć 16. 11., protivnik 2: strelac drži razdaljinu (salto) i pušta kišu strela ----
+{const strelac=async dx=>{const w=await start('selo');const {p}=api.state();for(const o of w.enemies)o.alive=false;p.invuln=0;p.hp=p.maxHp;p.face=1;
+  const e={id:7790,x:p.x+dx,y:p.y,vx:0,vy:0,w:36,h:75,hp:300,maxHp:300,type:'archer',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+dx,attackId:0,grounded:true,alert:true};w.enemies.push(e);return{p,e,w};};
+ {const {p,e}=await strelac(110);step(2);ok(e.salto>0&&e.lunge?.v>0,'strelac: Marko comes close, he flips back (salto)');
+  step(60);ok(e.x>p.x+220,'strelac: the flip takes him out of reach');for(let i=0;i<40&&e.mode!=='windup';i++)step();ok(e.mode==='windup'&&e.windupDuration<.7,'strelac: he lands and draws his bow at once');
+  e.x=p.x+110;e.mode='idle';e.timer=9;step(2);ok(!(e.salto>0),'strelac: not again at once (a rest between flips)');}
+ {let n=0;for(let i=0;i<300;i++){const e={type:'archer',mode:'idle',grounded:true};api.startWindup(e,null,400);if(e.kisa)n++;}ok(n>60&&n<200,`kiša strela: now and then (${n} of 300 shots from afar)`);
+  let c=0;for(let i=0;i<100;i++){const e={type:'archer',mode:'idle',grounded:true};api.startWindup(e,null,120);if(e.kisa)c++;}ok(c===0,'kiša strela: never from close by');}
+ {const {p,e}=await strelac(420);e.mode='windup';e.timer=.01;e.windupDuration=1;e.kisa=true;step(2);const K=api.kise()[0];
+  ok(K&&K.xs.length===5&&K.xs.some(s=>Math.abs(s.x-p.x)<20),'kiša strela: shot upward, five arrows will fall where Marko stood');
+  const hp=p.hp;for(let i=0;i<300;i++){step();p.invuln=0;}ok(p.hp<hp,'kiša strela: a Marko who stands still is hit');ok(api.kise().length===0,'kiša strela: the rain is over');}
+ {const {p,e}=await strelac(420);e.mode='windup';e.timer=.01;e.windupDuration=1;e.kisa=true;step(2);e.alive=false;const hp=p.hp;api.keys.add('KeyD');step(110);api.keys.delete('KeyD');for(let i=0;i<120;i++){step();p.invuln=0;}
+  ok(p.hp===hp,'kiša strela: a Marko who gets clear of the shadows is not hit');}}
 console.log(`\n${checks} checks passed.`);
