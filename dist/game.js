@@ -1288,7 +1288,7 @@ function drawPlayer(){if(!p||mode==='dead'||p.pinned||(p.lying&&!p.scena)||p.bij
  for(const g of ghosts)rigDraw(g.name,g.frame,g.x,g.y,g.faceAs??g.face,{...g,glow:true,color:'#7fffe0',alpha:g.life*1.1,outline:1.5});
  drawTrag();drawKrilo();drawNaletStreak();shadow(p.x,p.y,horseMounted?84:38,.55);
  if(p.buff>0){halo(p.x,p.y-64,90,'rgba(255,170,60,.22)',.7+.3*Math.sin(time*6));emitters.push({id:'buff',kind:'buff',x:p.x,y:p.y,rate:38});}
- if(horseMounted&&p.mountTime>0&&rig?.['marko-uzjase']){const U=rig['marko-uzjase'],a=clamp(1-p.mountTime/.55,0,.999);rigDraw('marko-uzjase',Math.floor(a*U.frames.length),p.x,p.y,p.face,{alpha});}
+ if(horseMounted&&p.mountTime>0&&rig?.['marko-uzjase']){const U=rig['marko-uzjase'],a=clamp(1-p.mountTime/.55,0,.999);rigDraw('marko-uzjase',a*U.frames.length,p.x,p.y,p.face,{alpha});}
  else if(horseMounted&&p.mountTime>0){const a=1-p.mountTime/.55;rigDraw('cast/sarac',0,p.x,p.y,p.face,{alpha:1-a});rigDraw('cast/marko',0,p.x-p.face*(65*(1-a)),p.y-55*Math.sin(a*Math.PI),p.face,{alpha:1-a,rot:-.15*Math.sin(a*Math.PI)*p.face});rigDraw('mounted-jump',0,p.x,p.y,p.face,{alpha:a});}
  else{pose=heroPose(playerPose());const face=pose.faceAs??(pose.faceFlip?-p.face:p.face),fd0=animTrack(p,pose,face,p.hurt>.02||p.down>0),fd=bodyPose(pose)?null:fd0;drawFade(fd,p.x,p.y,alpha);if(p.buff>0)rimGlow(pose,p.x,p.y,p.face,'#ffb44a',.3+.15*Math.sin(time*8),1.6);if(p.parry>0)rimGlow(pose,p.x,p.y,p.face,'#8fffe0',.3,1.6);rigDraw(pose.name,pose.frame,p.x,p.y,face,{...pose,alpha,flash:p.hurt>.1?(p.hurt-.1)/.12*.6:0,flashColor:'#ffb8a8'});if(p.dizzy>0)drawDizzy();}
  maceSmear(pose);drawSpinFx();drawChargeMeter();
@@ -1373,7 +1373,7 @@ function advanceFairy(dt){const active=fairy.age<fairy.duration;const approach=a
 // Šarac without a rider: standing by default; the scenes of the songs pass his own clip (D57: drinks, paws the ground, rears,
 // flinches, lies down, walks) and, for a clip played once, the frame
 function saracDraw(x,y,face,o={},clip='sarac-stoji',fr){const k=rig?.[clip]?clip:'sarac-stoji',R=rig?.[k];if(!R)return rigDraw('cast/sarac',0,x,y,face,o);
- return rigDraw(k,fr==null?loopF(time*(k==='sarac-hod'?8:5)+x*.003,R.frames.length):Math.min(R.frames.length-1,Math.floor(fr)),x,y,face,o);}
+ return rigDraw(k,fr==null?loopF(time*(k==='sarac-hod'?8:5)+x*.003,R.frames.length):Math.min(R.frames.length-1,Math.max(0,fr)),x,y,face,o);}
 function rigDrawC(name,frame,x,y,face,o={}){const r=rig?.[name];if(!r)return false;const f=r.frames[clamp(Math.floor(frame),0,r.frames.length-1)];return rigDraw(name,frame,x,y,face,{...o,dy:(o.dy||0)+(f[4]-f[3]/2)*r.scale*(o.scale||1)});}
 function drawVila(face,a,enter,fx,fy){const cast0=.28,cast1=1.15,heal=fairy.kind==='heal'&&rig?.['vila-isceljenje'],nm=heal?'vila-isceljenje':rig?.['vila-carolija']?'vila-carolija':'vila-let',k=(fairy.age-cast0)/(cast1-cast0);
  const name=k>=0&&k<1?nm:'vila-let',n=rig[name].frames.length,frame=name==='vila-let'?loopF(time*12,n):Math.min(n-1,k*n),sc=.85+.15*enter,y=fy-44;
@@ -3113,7 +3113,7 @@ function drawVaradin(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500||!T.ph)return
  if(T.ph==='pije'||T.ph==='opkole'){ellipse(seat2(T)+50,y-8,16,10,'#6a3a1a');ellipse(seat2(T)+50,y-16,6,4,'#4a2a10');}
  if(T.ph==='opkole'&&T.pt>2.5)textLabel('E · NA ŠARCA',p.x,y-200,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
  // Miloš, out of Vuča's dungeon, at the end
- if(T.milos&&rig?.['milos-idle']){const R=rig['milos-idle'];shadow(T.milos.x,y,36,.4);rigDraw('milos-idle',Math.floor(loopF(time*6,R.frames.length)),T.milos.x,y,-1);
+ if(T.milos&&rig?.['milos-idle']){const R=rig['milos-idle'];shadow(T.milos.x,y,36,.4);rigDraw('milos-idle',loopF(time*6,R.frames.length),T.milos.x,y,-1);
   if(Math.abs(p.x-T.milos.x)<800)textLabel('MILOŠ OD POCERJA',T.milos.x,y-176,{font:'bold 12px Georgia',color:'#d8ecff'});}}
 function seat2(T){return T.logor-70;}
 // ================= „Marko Kraljević i Filip Madžarin” (Reka): nova mehana u Karlovcu =================
@@ -3240,7 +3240,7 @@ function okoviVesala(x,y){const wood='#5e3c1e',dark='#2e1c0c';
 function drawOkovi(T){if(T.x1<camera-400||T.x0>camera+VIEW_W+400)return;const y=T.y,D=T.djemo;
  // the three gallows; before each, two of the Christian lords with three loads of treasure
  (T.stanice||[]).forEach((x,i)=>{if(x<camera-400||x>camera+VIEW_W+400)return;okoviVesala(x,y);
-  const paid=T.molba?.[i];OKOVI_GOSPODA[i].forEach((n,k)=>{const R=rig?.[n];if(R)rigDraw(n,Math.floor(loopF(time*5+k*2+i,R.frames.length)),x+190+k*80,y,-1);});
+  const paid=T.molba?.[i];OKOVI_GOSPODA[i].forEach((n,k)=>{const R=rig?.[n];if(R)rigDraw(n,loopF(time*5+k*2+i,R.frames.length),x+190+k*80,y,-1);});
   for(let k=0;k<3;k++){const bx=paid?x+70+k*40:x+170+k*48;if(!slikaNa('cilj-tovar-blaga',bx,y+4,50))ellipse(bx,y-18,16,20,'#8a6a3a');if(!paid)halo(bx,y-26,20,'rgba(255,215,110,.32)',.6+.3*Math.sin(time*5+k));}
   if(Math.abs(p.x-x)<560)textLabel(OKOVI_STANICE[i][0].toUpperCase(),x,y-272,{font:'bold 15px Georgia',color:'#ffe2a8',glow:'#3a0a04'});});
  // Janja's white tavern: a painted house, a table, a barrel and the jug
@@ -3248,7 +3248,7 @@ function drawOkovi(T){if(T.x1<camera-400||T.x0>camera+VIEW_W+400)return;const y=
    if(!slikaNa('prop-kuca',m+40,y+8,380))poly([[m-150,y],[m-150,y-190],[m+150,y-190],[m+150,y]],'#efe4cc','#c2ad86');
    slikaNa('prop-bure',m+230,y+4,74);slikaNa('prop-stol',m-60,y+6,62);slikaNa('prop-krcag',m-60,y-44,34);
    textLabel('MEHANA',m+150,y-205,{font:'bold 14px Georgia',color:'#ffe2a8',glow:'#3a0a04'});
-   if(T.janja){const n=T.toci&&!T.spava&&rig?.['janja-toci']?'janja-toci':'janja-idle',R=rig?.[n];if(R)rigDraw(n,Math.floor(loopF(time*6,R.frames.length)),m-150,y,1);}}}
+   if(T.janja){const n=T.toci&&!T.spava&&rig?.['janja-toci']?'janja-toci':'janja-idle',R=rig?.[n];if(R)rigDraw(n,loopF(time*6,R.frames.length),m-150,y,1);}}}
  // Đemo, leading Marko by the chain; then asleep at the table; then gone
  if(D&&!D.bezi&&T.ph&&T.ph!=='kraj'){const sleep=T.spava,moving=Math.abs((D.prevX??D.x)-D.x)>.3,n=sleep?'djemo-death':moving?'djemo-run':'djemo-idle',R=rig?.[n];D.prevX=D.x;
   if(R){shadow(D.x,y,40,.45);rigDraw(n,sleep?R.frames.length-1:Math.floor(loopF(moving?D.gait:time*5,R.frames.length)),D.x,y,sleep?-1:D.face);}
@@ -4256,10 +4256,10 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
  if(t.state==='puna'&&Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<100?'E · PIJ VINO':'VINO',t.x,t.y-H-14,{font:'bold 13px Georgia',color:'#ffd6a8'});
  if(t.state==='napad')textLabel('BAČVA',t.x,t.y-H-14,{font:'bold 12px Georgia',color:'#ead9b0'});
  const G=t.glasnik;if(G&&rig?.['caus-walk']&&rig?.['caus-ferman']){const W=rig['caus-walk'],F=rig['caus-ferman'];
-  if(G.state==='ide'){for(const dx of[0,70])rigDraw('caus-walk',Math.floor(loopF(time*9+dx,W.frames.length)),G.x+dx,t.y,-1);}
-  else if(G.state==='zove'){rigDraw('caus-ferman',Math.min(F.frames.length-1,Math.floor(G.t*5)),G.x,t.y,-1);rigDraw('caus-idle',Math.floor(loopF(time*5,rig['caus-idle']?.frames.length||1)),G.x+70,t.y,-1);
+  if(G.state==='ide'){for(const dx of[0,70])rigDraw('caus-walk',loopF(time*9+dx,W.frames.length),G.x+dx,t.y,-1);}
+  else if(G.state==='zove'){rigDraw('caus-ferman',Math.min(F.frames.length-1,G.t*5),G.x,t.y,-1);rigDraw('caus-idle',loopF(time*5,rig['caus-idle']?.frames.length||1),G.x+70,t.y,-1);
    if(Math.abs(p.x-G.x)<260&&G.t>1.2)textLabel('J · KUPOM OD DVANAEST OKA',G.x-40,t.y-180,{font:'bold 13px Georgia',color:'#ffcf9a',glow:'#3a0a04'});}
-  else if(G.state==='kupa'&&G.drugi<camera+VIEW_W+120)rigDraw('caus-walk',Math.floor(loopF(time*12,W.frames.length)),G.drugi,t.y,1);}}
+  else if(G.state==='kupa'&&G.drugi<camera+VIEW_W+120)rigDraw('caus-walk',loopF(time*12,W.frames.length),G.drugi,t.y,1);}}
 function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='jahanje')drawJahanje(t);else if(t.kind==='vasar')drawVasar(t);else if(t.kind==='samodreza')drawCrkva(t);else if(t.kind==='okovi')drawOkovi(t);else if(t.kind==='mehana')drawMehana(t);else if(t.kind==='varadin')drawVaradin(t);else if(t.kind==='kosovka')drawKosovka(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);else if(t.kind==='branik')drawBranik(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
  if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',loopF(time*9,rig['svatovi-kolo'].frames.length),level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
