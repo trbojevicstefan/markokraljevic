@@ -2684,7 +2684,7 @@ const RANK_FX={niz:'+15 % snage niza i Lomioca, Lomilac se brže vraća',nadole:
  tresak:'+15 % snage treska, 15 % kraći odmor',juris:'+15 % snage juriša, 15 % kraći odmor',junacki:'+15 % snage junačkog udara'};
 const RANK_KIND={light:'niz',lomilac:'niz',obarac:'niz',tresakNiza:'niz',zanjim:'niz',zakucaj:'niz',heavy:'zamah',counter:'kontra',tresak:'tresak',juris:'juris',super:'junacki'};
 const RIMSKI=['','I','II','III'];
-let rankCache=null,napTab='vestine',napFrom='play';
+let rankCache=null,napTab='junak',napFrom='play';
 function rankState(){if(rankCache)return rankCache;try{rankCache=JSON.parse(localStorage.getItem('marko-stepeni')||'{}')||{};}catch{rankCache={};}return rankCache;}
 function skillRank(id){if(!id||!SKILLS.some(k=>k.id===id)||!has(id))return 0;return clamp(rankState()[id]||1,1,3);}
 function rankDmg(kind){return 1+.15*Math.max(0,skillRank(RANK_KIND[kind])-1);}
@@ -2700,46 +2700,179 @@ function kupiKovac(id){const s=smithLevels(),u=SMITH.find(u=>u.id===id),lv=s[id]
  sfx('magic',{gain:.6})||sound('magic');return true;}
 function napTitula(){const n=Object.values(rankState()).reduce((a,r)=>a+Math.max(0,r-1),0)+Object.values(smithLevels()).reduce((a,b)=>a+b,0);
  return n>=24?'Kraljević nad junacima':n>=14?'Gospodar Prilepa':n>=6?'Junak od Prilepa':'Mladi junak';}
-// Stefan, 16. 11.: „da se doda slika za sve što imamo u progres screenu”. The four blows have their icons; an amulet shows the
-// skill or thing it strengthens; the smith's work its own thing (a mace, a flask, a chapel for the zadužbina)
+// ================= Napredak kao u WoW-u (Stefan, 16. 11.: „da inventory i skilovi budu nešto slično kao u WoW-u, da bude lakše za
+// videti i koristiti; trenutno ima puno skrolovanja; treba neki talent tree koji je lakši za korišćenje, pa onda oni dodatni atributi”) =================
+// One window, four tabs and nothing to scroll: Junak (Marko with his gear: the amulets on his left, mace, mail, flask and sabre on his
+// right, the two hero's blows under him, his attributes beside), Veštine (three branches of icons, the rank in the corner as in a
+// talent tree), Torba (squares: amulets, marvels, things) and Kovač (the smith's wares). The box on the right tells about whatever is
+// chosen. The first press chooses, a second press (or a button in the box) uses: learn the next rank, put on or take off, take a
+// blow, buy. A right click uses at once; the mouse over a square shows its tooltip.
 const NAP_SLIKA={vihor:'ikona-vihor',super:'ikona-junacki',potres:'ikona-potres',gaz:'ikona-gaz',
  'gvozdeni-prsten':'ikona-kontra','zmajev-zub':'ikona-kontra','lozov-list':'ikona-vino','cup-meda':'ikona-vino','sokolova-kandza':'cudo-sokolovo-pero','kamen-srcanik':'predmet-srce-deo',
  'hajducka-kesa':'cudo-tri-kese-dukata','vilin-pramen':'ikona-trag','vranino-pero':'ikona-oko','medvedja-sapa':'ikona-zamah','srebrna-karika':'ikona-lanac','ratni-rog':'ikona-junacki',
- hp:'predmet-srce-deo',mace:'predmet-topuz',flask:'predmet-cutura',zaduzbina:'prop-kamen-izlaz',sofra:'cudo-pehar-vina'};
+ hp:'predmet-srce-deo',mace:'predmet-topuz',flask:'predmet-cutura',zaduzbina:'prop-kamen-izlaz',sofra:'cudo-pehar-vina',
+ krilo:'cudo-sokolovo-pero',nalet:'ikona-juris',trag:'ikona-trag',kombo:'ikona-uvis',lanac:'ikona-lanac',oko:'ikona-oko',zidotrk:'ikona-zid',klizanje:'ikona-kolut',
+ srce:'predmet-srce-deo',zapisi:'predmet-zapis',slova:'predmet-slovo-m',vino:'predmet-cutura',dukati:'predmet-dukat'};
 const napSlika=f=>f?`<img class="nap-sl" src="assets/world/${f}.webp" alt="" onerror="this.remove()">`:'';
-// the menu by pad or arrows: left and right change the tab, up and down go through the tab's own items (Stefan: „popravimo
-// ulazak u submenije”), from the tab row down into its list and back (up and down come through padMenu, also from the keyboard)
-function napPadNav(box,dx,dy){const tabs=[...box.querySelectorAll('.nap-tabs [data-nt]')];if(!tabs.length)return;const ti=Math.max(0,tabs.findIndex(t=>t.dataset.nt===napTab));
- const mark=el=>{el.focus?.();document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));el.classList.add('pad-focus');el.scrollIntoView?.({block:'nearest'});sfx('cloth',{gain:.25,rate:1.6});};
- if(dx){const t=tabs[(ti+dx+tabs.length)%tabs.length];t.click();mark(t);return;}
- const panel=box.querySelector(`.nap-panel[data-np="${napTab}"]`),list=[tabs[ti],...[...(panel?.querySelectorAll('button')||[])].filter(el=>!el.disabled),$('napredak-close')].filter(Boolean);
- let cur=list.indexOf(document.activeElement);if(cur<0&&tabs.includes(document.activeElement))cur=0;cur=clamp(cur+dy,0,list.length-1);mark(list[cur]);}
-if(hasDom)document.addEventListener('keydown',e=>{const N=$('napredak');if(!N||N.hidden)return;const m={ArrowLeft:-1,ArrowRight:1,KeyA:-1,KeyD:1}[e.code];if(m){e.preventDefault();napPadNav(N,m,0);}});
+// the three branches of the tree; in each the moves stand in the order Marko learns them on his road
+const JN_GRANE=[{id:'topuz',name:'Topuz',ikona:'ikona-niz',cv:['niz','nadole','bacanje','zamah','kombo','vihor','tresak','junacki','potres']},
+ {id:'okretnost',name:'Okretnost',ikona:'ikona-kolut',cv:['klizanje','kontra','kolut','zid','krilo','nalet','zidotrk','juris']},
+ {id:'vila',name:'Ravijojla i Šarac',ikona:'ikona-vila',cv:['trag','uzlet','lanac','oko','gaz']}];
+const JN_UDAR={vihor:'vihor',junacki:'super',potres:'potres',gaz:'gaz'},JN_TABS=['junak','vestine','torba','kovac'];
+const jnRed=id=>{const l=SKILLS.find(k=>k.id===id)?.land||MOC_GDE[id];return l?JOURNEY.indexOf(l):-1;};
+const jnEsc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const jnDec=x=>{const v=String(Math.round(x*10)/10);return globalThis.markoI18n?.getLang?.()==='en'?v:v.replace('.',',');};
+const jnZemlja=id=>tr(LEVELS.find(L=>L.id===id)?.name||id);
+let napSel={},napKey=false,napArm=null;
+function jnCvor(id){const k=SKILLS.find(k=>k.id===id);
+ if(k){const have=ownedSkills().has(id),r=have?clamp(rankState()[id]||1,1,3):0,fx=RANK_FX[id];return{id,k:'v',name:k.name,key:k.key,text:k.text,have,r,max:fx?3:1,fx,cost:fx&&have&&r<3?RANK_COST[r-1]:null,land:k.land};}
+ const M=mocOpis(id);if(!M)return null;const have=!(id in MOC_GDE)||mociImam().has(id);return{id,k:'m',name:M.name,key:M.key,text:M.text,have,r:have?1:0,max:1,fx:null,cost:null,land:MOC_GDE[id]||null};}
+// a hero's blow put on F (slot 0) or R (slot 1); the one already on the other key changes places
+// Stefan, 16. 11.: „dodaj opciju za reset talenata i tako dalje”. Every rank goes back to I and every ducat paid for the ranks back into
+// the purse (nothing is lost, so the ducats can be spent another way); the amulets all come off; the blows go back to Vihor and Junački udar
+const stepeniVracaju=()=>Object.entries(rankState()).reduce((n,[id,r])=>n+(RANK_FX[id]?RANK_COST.slice(0,Math.max(0,clamp(r,1,3)-1)).reduce((a,b)=>a+b,0):0),0);
+function stepeniReset(){const n=stepeniVracaju();if(!n)return false;rankCache={};try{localStorage.setItem('marko-stepeni','{}');}catch{}setBank(bank()+n);abBuilt=false;sfx('coins',{gain:.8})||sound('magic');return true;}
+function amajlijeReset(){const on=[...amState().on];for(const id of on)amToggle(id);return on.length>0;}
+function udariReset(){const v=udari();if(v[0]==='vihor'&&v[1]==='super')return false;udarCache=['vihor','super'];try{localStorage.setItem('marko-udari',JSON.stringify(udarCache));}catch{}abBuilt=false;sfx('ring',{gain:.45,rate:1.1});return true;}
+function udarNa(id,slot){if(!udarOtvoren(id))return false;const v=[...udari()];if(v[slot]===id)return false;if(v[1-slot]===id)v.reverse();else v[slot]=id;
+ udarCache=v;try{localStorage.setItem('marko-udari',JSON.stringify(v));}catch{}sfx('ring',{gain:.45,rate:1.1});abBuilt=false;return true;}
+// the attributes, counted the way the fight counts them (hitEnemy, the parry, the wine, the rage), from what Marko has now
+function jnOsobine(){const s=smithLevels(),c=ownedCuda(),igra=!!(p&&napFrom==='play'),d=D(),hs=storedSet('marko-srca'),R=Math.round;
+ const snaga=igra?(p.power||1):1+(s.mace||0)*.08,hp=igra?p.maxHp:120+(s.hp||0)*10+(s.zaduzbina||0)*12+(c.has('carska-knjiga')?15:0)+(am('kamen-srcanik')?AM_HP:0)+Math.floor(hs.size/4)*20;
+ const vina=igra?(p.wineMax||3):3+(s.flask||0)+(c.has('pehar-vina')?1:0);
+ const laki=29*snaga*(c.has('oceva-sablja')?1.12:1)*rankDmg('light'),tezak=48*snaga*(am('medvedja-sapa')?1.2:1)*(c.has('zlatno-ralo')?1.12:1)*rankDmg('heavy');
+ const bes=(c.has('gusle')?1.25:1)*(am('ratni-rog')?1.33:1)*(1+(s.sofra||0)*.12);
+ return[['Osnovno',[['Zdravlje',hp,'Pancirna košulja, zadužbine, cela srca, Carska knjiga i Kamen srčanik.'],['Snaga udaraca',R(snaga*100)+' %','Okovan topuz: +8 % po stepenu.'],
+   ['Brzina trka',(c.has('sarceva-potkova')?107:100)+' %','Šarčeva potkova: +7 %.'],['Vino u čuturi',vina,'Veća čutura i Pehar rujnog vina.']]],
+  ['Napad',[['Topuz · J',`${R(laki)} · ${R(laki*1.8)}`,'Prva dva udarca niza, pa treći. Očeva sablja i stepeni niza ih jačaju.'],['Teški udarac · K',`${R(tezak)} · ${R(tezak*3.2)}`,'Brz udarac, pa pun zamah. Zlatno ralo, Medveđa šapa i stepeni zamaha ga jačaju.'],
+   ['Kontra',R(44*snaga*(am('zmajev-zub')?1.5:1)*rankDmg('counter')),'Udarac posle savršenog odbijanja. Zmajev zub: +50 %.'],['Bačeni topuz',R(34*snaga*(c.has('buzdovan')?1.25:1)),'Buzdovan: +25 %.'],
+   ['Junački udar',R(200*snaga*rankDmg('super')),'Pri punom besu. Stepeni junačkog udara ga jačaju.']]],
+  ['Odbrana',[['Primljena šteta',R(d.dmg*(c.has('musina-sablja')?.9:1)*100)+' %','Koliko boli udarac dušmana: zavisi od težine igre. Musina sablja: −10 %.'],['Blok · L','−80 %','Dok traje gard, blok upija veći deo udarca.'],
+   ['Trenutak odbijanja',R(d.parry*(am('gvozdeni-prsten')?1.6:1)*1000)+' ms','Koliko dugo L odbija udarac. Gvozdeni prsten: +60 %.'],['Vino leči',R(18*d.heal*(am('lozov-list')?2:1)),'Zdravlje od jednog gutljaja. Lozov list: duplo.']]],
+  ['Bes i vila',[['Bes po udarcu',`${R(12*bes)} · ${R(18*bes)}`,'Za J i za K. Gusle, Ratni rog i Sofra ga ubrzavaju.'],['Snaga vina',`${am('cup-meda')?20:12} s`,'Posle vina udarci +30 %, a šteta −20 %. Ćup meda: 20 sekundi.'],
+   ['Vila se puni',jnDec(c.has('vilino-pero')?7.5:5.5)+' / s','Vilinska energija za uzlet i trag. Vilino pero: brže.']]],
+  ['Plen',[['Dukati',(c.has('tri-kese-dukata')?125:100)+' %','Tri kese dukata: +25 %.'],['Od dušmanina',`+${am('hajducka-kesa')?2:0}`,'Hajdučka kesa: svaki oboren dušmanin ostavi još 2 dukata.'],['Kovčezi',c.has('kljuc-kule')?'×2':'×1','Ključ arapske kule: duplo iz kovčega.']]]];}
+const jnSlot=(k,img,o={})=>`<button class="jn-slot ${o.cls||''}" data-k="${k}" aria-label="${jnEsc(tr(o.title||''))}">${img?`<img src="assets/world/${img}.webp" alt="" onerror="this.remove()">`:''}${o.badge?`<b class="jn-br">${o.badge}</b>`:''}${o.key?`<kbd class="jn-kl">${o.key}</kbd>`:''}</button>`;
+function jnJunak(){const A=amState(),izb=udari(),c=ownedCuda(),s=smithLevels(),imaAm=moc2('amajlije');let am='',zauzeto=0;
+ if(imaAm){for(const id of A.on){const a=AMAJLIJE.find(x=>x.id===id);if(!a)continue;am+=jnSlot('am:'+id,NAP_SLIKA[id],{cls:'on w'+a.w,title:a.name,badge:'●'.repeat(a.w)});zauzeto+=a.w;}
+  for(let i=zauzeto;i<A.slots;i++)am+=jnSlot('prazno:'+i,null,{cls:'prazno',title:'Prazno mesto za amajliju'});}
+ for(let i=imaAm?Math.max(A.slots,zauzeto):0;i<AM_MAX;i++)am+=jnSlot('zatvoreno:'+i,null,{cls:'zatvoreno',title:'Zatvoreno mesto'});
+ const oprema=[['kov:mace','Okovan topuz',s.mace||0],['kov:hp','Pancirna košulja',s.hp||0],['kov:flask','Veća čutura',s.flask||0],['cudo:oceva-sablja','Očeva sablja',c.has('oceva-sablja')?1:0]]
+  .map(([k,n,lv])=>jnSlot(k,k==='cudo:oceva-sablja'?'cudo-oceva-sablja':NAP_SLIKA[k.slice(4)],{cls:lv?'ima':'nema',badge:k.startsWith('kov:')&&lv?'+'+lv:'',title:n})).join('');
+ const udar=sl=>jnSlot('udar:'+sl,NAP_SLIKA[izb[sl]],{cls:'on udar',key:kontrola(['F','R'][sl]),title:UDARI.find(u=>u.id===izb[sl])?.name});
+ const os=jnOsobine().map(([g,rows])=>`<div class="jn-os-grupa"><h4>${tr(g)}</h4>${rows.map(([l,v,t])=>`<div class="jn-os-red" data-tip="${jnEsc(tr(t))}" data-tip-n="${jnEsc(tr(l))}"><span>${tr(l)}</span><b data-notr>${v}</b></div>`).join('')}</div>`).join('');
+ return`<div class="jn-junak"><div class="jn-kol"><p class="jn-nas">${tr('Amajlije')} <small data-notr>${imaAm?amUsed()+'/'+A.slots:'—'}</small></p><div class="jn-am">${am}</div></div>
+  <div class="jn-figura"><img src="assets/cast/marko.png" alt=""><p class="jn-nas">${tr('Junački udari')}</p><div class="jn-udari">${udar(0)}${udar(1)}</div></div>
+  <div class="jn-kol"><p class="jn-nas">${tr('Oprema')}</p><div class="jn-am">${oprema}</div></div><div class="jn-osobine">${os}<div class="jn-vrati"><button class="jn-slot jn-dugme" data-k="reset:amajlije"><i>↺</i>${tr('Skini sve amajlije')}</button><button class="jn-slot jn-dugme" data-k="reset:udari"><i>↺</i>${tr('Udari kao na početku')}</button></div></div></div>`;}
+function jnVestine(){const boj=uBoju(),ks=bank();return JN_GRANE.map(g=>{const cv=g.cv.map(jnCvor).filter(Boolean).sort((a,b)=>jnRed(a.id)-jnRed(b.id));
+ const nauc=cv.filter(n=>n.have).length,st=cv.reduce((a,n)=>a+(n.have&&n.fx?n.r-1:0),0),mog=cv.filter(n=>n.fx&&n.have).length*2;
+ const cells=cv.map((n,i)=>{const gore=i>=3?cv[i-3]:null,moze=n.cost!=null&&ks>=n.cost&&!boj;
+  return jnSlot('cv:'+n.id,NAP_SLIKA[n.id]||'ikona-'+n.id,{cls:`${n.have?'ima':'nema'}${n.have&&n.max>1&&n.r>=n.max?' puno':''}${moze?' moze':''}${gore?' veza'+(gore.have&&n.have?' veza-on':''):''}`,badge:n.have?(n.max>1?`${n.r}/${n.max}`:'✓'):'',title:n.name});}).join('');
+ return`<section class="jn-grana g-${g.id}"><header><img src="assets/world/${g.ikona}.webp" alt="" onerror="this.remove()"><div><b>${tr(g.name)}</b><small data-notr>${nauc}/${cv.length}${mog?` · ${tr('stepeni')} ${st}/${mog}`:''}</small></div></header><div class="jn-cvorovi">${cells}</div></section>`;}).join('');}
+function jnTorba(){const A=amState(),c=ownedCuda(),imaAm=moc2('amajlije'),hs=storedSet('marko-srca'),zs=storedSet('marko-zapisi'),sl=storedSet('marko-slova');
+ const am=AMAJLIJE.map(a=>{const have=imaAm&&A.have.includes(a.id),on=have&&A.on.includes(a.id);return jnSlot('am:'+a.id,have?NAP_SLIKA[a.id]:null,{cls:on?'on':have?'ima':'nema',badge:have?'●'.repeat(a.w):'',title:have?a.name:'Nepoznata amajlija'});}).join('');
+ const cu=CUDA.map(q=>jnSlot('cudo:'+q.id,c.has(q.id)?'cudo-'+q.id:null,{cls:c.has(q.id)?'ima':'nema',title:c.has(q.id)?q.name:'Skriveno čudo'})).join('');
+ const vina=p&&napFrom==='play'?(p.wineMax||3):3+(smithLevels().flask||0)+(c.has('pehar-vina')?1:0);
+ const st=[['srce',hs.size,'Delovi srca'],['zapisi',zs.size,'Zapisi'],['slova',sl.size,'Slova МАРКО'],['vino',vina,'Čutura'],['dukati',bank(),'Dukati']].map(([id,n,t])=>jnSlot('pred:'+id,NAP_SLIKA[id],{cls:n?'ima':'nema',badge:String(n),title:t})).join('');
+ return`<div class="jn-torba"><section><p class="jn-nas">${tr('Amajlije')} <small data-notr>${imaAm?`${A.have.length}/${AMAJLIJE.length} · ${tr('nosiš')} ${amUsed()}/${A.slots}`:'—'}</small></p><div class="jn-polja">${am}</div></section>
+  <section><p class="jn-nas">${tr('Čuda iz pesama')} <small data-notr>${CUDA.filter(q=>c.has(q.id)).length}/${CUDA.length}</small></p><div class="jn-polja">${cu}</div></section>
+  <section><p class="jn-nas">${tr('Stvari')}</p><div class="jn-polja">${st}</div></section></div>`;}
+function jnKovac(){const s=smithLevels(),ks=bank(),boj=uBoju();return SMITH.map(u=>{const lv=s[u.id]||0,cost=u.cost[lv];
+ return`<button class="jn-slot jn-roba ${cost!==undefined&&ks>=cost&&!boj?'moze':''} ${cost===undefined?'puno':''}" data-k="kov:${u.id}">${napSlika(NAP_SLIKA[u.id])}<span><b>${tr(u.name)}</b><small>${tr(u.text)}</small><i data-notr>${'■'.repeat(lv)}${'□'.repeat(u.cost.length-lv)}</i></span><em data-notr>${cost===undefined?tr('NAJBOLJE'):cost+' ⛁'}</em></button>`;}).join('');}
+// what the box on the right says about a square, and what can be done with it (the first that can be done is the second press)
+function jnInfo(k){const t=k.slice(0,k.indexOf(':')),id=k.slice(k.indexOf(':')+1),boj=uBoju(),ks=bank(),A=amState(),s=smithLevels(),c=ownedCuda();
+ const I={img:null,name:'',sub:'',key:'',text:'',lines:[],acts:[],cls:'',prim:null};
+ if(t==='cv'){const n=jnCvor(id);if(!n)return I;Object.assign(I,{img:NAP_SLIKA[id]||'ikona-'+id,name:n.name,key:n.key,text:n.text,cls:n.have?'ima':'nema',sub:`${tr(n.k==='v'?'Veština':'Moć')} · ${tr(JN_GRANE.find(g=>g.cv.includes(id))?.name||'')}`});
+  if(!n.have)I.lines.push({t:n.land?`🔒 ${tr(n.k==='v'?'Dobija se u poglavlju':'Čeka na oltaru u poglavlju')} „${jnZemlja(n.land)}”`:tr('Od početka'),c:'lock'});
+  else if(n.max>1){I.lines.push({t:`${tr('Stepen')} ${n.r} / ${n.max}`,c:'rang'});if(n.fx)I.lines.push({t:`${tr('Svaki stepen')}: ${tr(n.fx)}`,c:'fx'});
+   if(n.r<n.max)I.acts.push({l:`${tr('Uči stepen')} ${RIMSKI[n.r+1]} · ${n.cost} ⛁`,dis:boj||ks<n.cost,f:()=>rankUp(id)});else I.lines.push({t:tr('Najviši stepen'),c:'max'});}
+  else I.lines.push({t:tr(n.k==='v'?'Pokret: nema stepene':'Moć je tvoja'),c:'ok'});
+  const u=JN_UDAR[id];if(u&&n.have&&udarOtvoren(u)){const v=udari();I.lines.push({t:tr('Junački udar: nosiš dva, na F i R.'),c:''});
+   for(const sl of[0,1])I.acts.push({l:v[sl]===u?`✓ ${tr('Na')} ${kontrola(['F','R'][sl])}`:`${tr('Stavi na')} ${kontrola(['F','R'][sl])}`,dis:boj||v[sl]===u,f:()=>udarNa(u,sl)});}
+  return I;}
+ if(t==='am'){const a=AMAJLIJE.find(x=>x.id===id);if(!a)return I;const have=moc2('amajlije')&&A.have.includes(id),on=have&&A.on.includes(id);
+  Object.assign(I,{img:have?NAP_SLIKA[id]:null,name:have?a.name:'Nepoznata amajlija',sub:`${tr('Amajlija')} · ${'●'.repeat(a.w)} ${tr(a.w>1?'dva mesta':'jedno mesto')}`,text:have?a.text:'Još je nisi našao: tajne sobe, trgovac.',cls:on?'on':have?'ima':'nema'});
+  if(have){I.lines.push({t:`${tr('Mesta')}: ${amUsed()} / ${A.slots}`,c:''});if(on)I.acts.push({l:tr('Skini'),dis:boj,f:()=>amToggle(id)});
+   else{const nema=amUsed()+a.w>A.slots;I.acts.push({l:tr('Stavi'),dis:boj||nema,f:()=>amToggle(id)});if(nema)I.lines.push({t:tr('Nema mesta: skini neku drugu.'),c:'lock'});}}
+  return I;}
+ if(t==='prazno'){Object.assign(I,{name:'Prazno mesto',sub:tr('Amajlija'),text:'Izaberi amajliju koju nosiš u ovo mesto.',cls:'prazno',prim:'lista'});
+  for(const a of AMAJLIJE)if(A.have.includes(a.id)&&!A.on.includes(a.id))I.acts.push({l:`${tr(a.name)} ${'●'.repeat(a.w)}`,dis:boj||amUsed()+a.w>A.slots,f:()=>amToggle(a.id),img:NAP_SLIKA[a.id]});
+  if(!I.acts.length)I.lines.push({t:tr('Nemaš slobodnu amajliju: nalaze se u tajnim sobama i kod trgovca.'),c:'lock'});return I;}
+ if(t==='zatvoreno'){Object.assign(I,{name:'Zatvoreno mesto',sub:tr('Amajlija'),text:moc2('amajlije')?'Ravijojlin pojas otvara još jedno mesto za amajliju.':'Amajlije još nisu tvoje.',cls:'nema'});return I;}
+ if(t==='udar'){const sl=+id,v=udari(),u=UDARI.find(x=>x.id===v[sl]);if(!u)return I;Object.assign(I,{img:NAP_SLIKA[u.id],name:u.name,sub:`${tr('Junački udar')} · ${kontrola(['F','R'][sl])}`,text:u.text,cls:'on',prim:'lista'});
+  for(const x of UDARI){const ot=udarOtvoren(x.id);I.acts.push({l:`${x.id===v[sl]?'✓ ':''}${tr(x.name)}${ot?'':' 🔒'}`,dis:boj||!ot||x.id===v[sl],f:()=>udarNa(x.id,sl),img:NAP_SLIKA[x.id]});}return I;}
+ if(t==='cudo'){const q=CUDA.find(x=>x.id===id);if(!q)return I;const have=c.has(id);
+  Object.assign(I,{img:have?'cudo-'+id:null,name:have?q.name:'Skriveno čudo',sub:have?`${tr('Čudo iz pesme')} „${tr(q.song)}”`:tr('Čudo iz pesme'),cls:have?'ima':'nema',
+   text:have?q.perk:q.land==='kacanik'?'Pobedi Musu Kesedžiju.':`${tr('Skriveno u pohodu')} „${jnZemlja(q.land)}”, ${tr('najčešće visoko')}.`});
+  if(have)I.lines.push({t:tr('Trajno jača Marka.'),c:'ok'});return I;}
+ if(t==='kov'){const u=SMITH.find(x=>x.id===id);if(!u)return I;const l=s[id]||0,cost=u.cost[l];
+  Object.assign(I,{img:NAP_SLIKA[id],name:u.name,sub:`${tr('Kovač')} · ${tr('stepen')} ${l} / ${u.cost.length}`,text:u.text,cls:l?'ima':'nema'});I.lines.push({t:'■'.repeat(l)+'□'.repeat(u.cost.length-l),c:'rang'});
+  if(cost===undefined)I.lines.push({t:tr('Najbolje što Novak kuje.'),c:'max'});else I.acts.push({l:`${tr('Kupi')} · ${cost} ⛁`,dis:boj||ks<cost,f:()=>kupiKovac(id)});
+  I.lines.push({t:tr('Trajno, za svaki naredni pohod.'),c:''});return I;}
+ if(t==='reset'){I.img=null;I.cls='ima';
+  if(id==='stepeni'){const n=stepeniVracaju();Object.assign(I,{name:'Vrati stepene veština',sub:tr('Veštine'),text:'Svi stepeni se vraćaju na I, a svi dukati plaćeni za njih vraćaju se u kesu. Tako ih možeš rasporediti drugačije.'});
+   I.lines.push({t:n?`${tr('Dobijaš nazad')}: ${n} ⛁`:tr('Još nisi kupio nijedan stepen.'),c:n?'rang':''});I.acts.push({l:`↺ ${tr('Vrati stepene')} · +${n} ⛁`,dis:boj||!n,f:stepeniReset});}
+  else if(id==='amajlije'){const n=amState().on.length;Object.assign(I,{name:'Skini sve amajlije',sub:tr('Amajlije'),text:'Sve amajlije idu nazad u torbu, a mesta ostaju prazna. Stavljaju se ponovo iz torbe ili sa praznog mesta.'});
+   I.acts.push({l:`↺ ${tr('Skini sve')} · ${n}`,dis:boj||!n,f:amajlijeReset});}
+  else if(id==='udari'){const v=udari();Object.assign(I,{name:'Udari kao na početku',sub:tr('Junački udari'),text:'Vihor na F, Junački udar na R, kao kad je Marko krenuo.'});
+   I.acts.push({l:`↺ ${tr('Vrati')}`,dis:boj||v[0]==='vihor'&&v[1]==='super',f:udariReset});}
+  return I;}
+ if(t==='pred'){const hs=storedSet('marko-srca'),n=Object.keys(ZAPISI).length;I.img=NAP_SLIKA[id];I.sub=tr('Stvar');I.cls='ima';
+  if(id==='srce')Object.assign(I,{name:'Delovi srca',text:'Četiri dela čine celo srce: +20 zdravlja u pohodima.',lines:[{t:`${hs.size} / ${n} · ${tr('cela srca')}: ${Math.floor(hs.size/4)}`,c:'rang'}]});
+  else if(id==='zapisi')Object.assign(I,{name:'Zapisi',text:'Stari zapisi o Marku, skriveni po pohodima. Čitaju se u Riznici.',lines:[{t:`${storedSet('marko-zapisi').size} / ${n}`,c:'rang'}]});
+  else if(id==='slova')Object.assign(I,{name:'Slova МАРКО',text:'Sakupi svih pet slova u pohodu: puno zdravlje i dukati.',lines:[{t:`${tr('Pohoda sa svih pet slova')}: ${storedSet('marko-slova').size}`,c:'rang'}]});
+  else if(id==='vino')Object.assign(I,{name:'Čutura',text:'Q pije vino: leči i jača udarce na kratko.'});
+  else if(id==='dukati')Object.assign(I,{name:'Dukati',text:'Plaćaju stepene veština, kovača i trgovca.',lines:[{t:`${bank()} ⛁`,c:'rang'}]});
+  return I;}
+ return I;}
+function jnOpisHtml(I,kratko){const ik=I.img?`<img src="assets/world/${I.img}.webp" alt="" onerror="this.remove()">`:`<i>${I.sub&&I.cls==='ima'?'↺':'?'}</i>`;
+ return`<div class="jn-op-glava ${I.cls}"><span class="jn-op-ik">${ik}</span><div><b>${tr(I.name)}</b>${I.sub?`<small>${I.sub}</small>`:''}</div></div>${I.key?`<p class="riz-keys">${keyChips(I.key)}</p>`:''}${I.text?`<p class="jn-op-tekst">${tr(I.text)}</p>`:''}${I.lines.map(l=>`<p class="jn-op-red ${l.c||''}">${l.t}</p>`).join('')}`+
+  (kratko?'':`<div class="jn-op-dugmad">${I.acts.map((a,i)=>`<button data-act="${i}" ${a.dis?'disabled':''}>${a.img?`<img src="assets/world/${a.img}.webp" alt="" onerror="this.remove()">`:''}<span>${a.l}</span></button>`).join('')}</div>`);}
+const jnPanel=()=>$('napredak')?.querySelector(`.nap-panel[data-np="${napTab}"]`);
+function jnOpis(){const el=$('jn-opis');if(!el)return;const k=napSel[napTab];if(!k){el.innerHTML='';return;}const I=jnInfo(k);el.innerHTML=jnOpisHtml(I);el.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>jnRadi(I,+b.dataset.act));}
+function jnIzaberi(el,arm=false){if(!el?.dataset?.k)return;napSel[napTab]=el.dataset.k;napArm=arm?el.dataset.k:null;jnPanel()?.querySelectorAll('.jn-slot.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');jnOpis();}
+function jnFocus(el,ring=napKey){if(!el)return;el.focus?.({preventScroll:true});document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));if(ring)el.classList.add('pad-focus');el.scrollIntoView?.({block:'nearest'});if(el.classList.contains('jn-slot'))jnIzaberi(el);}
+function jnRadi(I,i){const a=I.acts[i];if(!a||a.dis||uBoju())return;const P=jnPanel(),old=[...(P?.querySelectorAll('.jn-slot')||[])],k=napSel[napTab],at=old.findIndex(x=>x.dataset.k===k);
+ a.f();renderNapredak();const P2=jnPanel(),now=[...(P2?.querySelectorAll('.jn-slot')||[])],el=now.find(x=>x.dataset.k===k)||now[clamp(at,0,now.length-1)];jnFocus(el);if(!napKey&&el)napArm=el.dataset.k;}
+function jnPrimarno(el){const I=jnInfo(el.dataset.k);if(I.prim==='lista'){const b=$('jn-opis')?.querySelector('button:not(:disabled)');if(b){jnFocus(b);sfx('cloth',{gain:.25,rate:1.6});}return;}
+ const i=I.acts.findIndex(a=>!a.dis);if(i>=0)jnRadi(I,i);else sfx('cloth',{gain:.2,rate:.8});}
+function jnTab(t,fokus){if(!JN_TABS.includes(t))t='junak';napTab=t;const box=$('napredak');if(!box)return;for(const b of box.querySelectorAll('.jn-tabs [data-nt]'))b.classList.toggle('on',b.dataset.nt===t);
+ for(const x of box.querySelectorAll('.nap-panel'))x.hidden=x.dataset.np!==t;const P=jnPanel(),k=napSel[t],el=(k&&P?.querySelector(`[data-k="${k}"]`))||P?.querySelector('.jn-slot');
+ if(el){if(fokus)jnFocus(el);else jnIzaberi(el);}else{napSel[t]=null;jnOpis();}}
+function jnTabKorak(d){jnTab(JN_TABS[(JN_TABS.indexOf(napTab)+d+JN_TABS.length)%JN_TABS.length],true);sfx('cloth',{gain:.3,rate:1.4});}
+// arrows, the stick and the d-pad go to the nearest square that way (and on into the buttons of the box), not down a list
+function napPadNav(box,dx,dy){napKey=true;const P=jnPanel();if(!P)return;const items=[...P.querySelectorAll('.jn-slot'),...box.querySelectorAll('.jn-opis button:not(:disabled)')].filter(el=>el.offsetParent!==null);if(!items.length)return;
+ const cur=document.activeElement;if(!items.includes(cur)){jnFocus(P.querySelector('.jn-slot.sel')||items[0]);return;}
+ const r=cur.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;let best=null,bs=1e9;
+ for(const el of items){if(el===cur)continue;const q=el.getBoundingClientRect(),x=q.left+q.width/2-cx,y=q.top+q.height/2-cy,along=dx?x*dx:y*dy,side=dx?Math.abs(y):Math.abs(x);if(along<=4)continue;const sc=along+side*2.2;if(sc<bs){bs=sc;best=el;}}
+ if(best){jnFocus(best,true);sfx('cloth',{gain:.22,rate:1.7});}}
+if(hasDom)document.addEventListener('keydown',e=>{const N=$('napredak');if(!N||N.hidden)return;const m={ArrowLeft:-1,ArrowRight:1,KeyA:-1,KeyD:1}[e.code];if(m){e.preventDefault();napPadNav(N,m,0);return;}
+ const t={KeyQ:-1,KeyE:1,BracketLeft:-1,BracketRight:1,PageUp:-1,PageDown:1}[e.code];if(t){e.preventDefault();napKey=true;jnTabKorak(t);return;}
+ const d={Digit1:'junak',Digit2:'vestine',Digit3:'torba',Digit4:'kovac'}[e.code];if(d){e.preventDefault();napKey=true;jnTab(d,true);return;}
+ if((e.code==='Enter'||e.code==='Space'||e.code==='NumpadEnter')&&document.activeElement?.classList?.contains('jn-slot')){e.preventDefault();napKey=true;jnIzaberi(document.activeElement);jnPrimarno(document.activeElement);}});
+// the tooltip that follows the mouse (on a phone the box on the right is enough)
+function jnTip(box){const tip=$('jn-tip');if(!tip||!matchMedia?.('(pointer:fine)').matches)return;
+ const place=e=>{const w=tip.offsetWidth,h=tip.offsetHeight;tip.style.left=Math.max(6,Math.min(e.clientX+18,innerWidth-w-8))+'px';tip.style.top=Math.max(6,Math.min(e.clientY+16,innerHeight-h-8))+'px';};
+ box.onmouseover=e=>{const el=e.target.closest?.('.jn-slot,[data-tip]');if(!el||el.closest('.jn-opis')){tip.hidden=true;return;}
+  if(el.dataset.k){const I=jnInfo(el.dataset.k),a=I.acts.find(x=>!x.dis);tip.innerHTML=jnOpisHtml(I,true)+(I.prim==='lista'&&I.acts.length?`<p class="jn-op-red hint">${tr('Klikni dvaput da biraš')}</p>`:a?`<p class="jn-op-red hint">${tr('Dvoklik ili desni klik')}: ${a.l}</p>`:'');}
+  else tip.innerHTML=`<div class="jn-op-glava"><div><b>${el.dataset.tipN||''}</b></div></div><p class="jn-op-tekst">${el.dataset.tip}</p>`;tip.hidden=false;place(e);};
+ box.onmousemove=e=>{if(!tip.hidden)place(e);};box.onmouseleave=()=>{tip.hidden=true;};box.onmousedown=()=>{napKey=false;document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));};}
 function openNapredak(from){if(!hasDom||!$('napredak'))return;napFrom=from||(mode==='play'?'play':'menu');if(napFrom==='play'){if(mode!=='play')return;mode='napredak';keys.clear();pressed.clear();if(p)p.vx=0;}
- sfx('cloth',{gain:.45,rate:1.2});renderNapredak();$('napredak').hidden=false;setTimeout(()=>$('napredak')?.querySelector?.('.nap-tabs .on')?.focus?.(),60);}
-function closeNapredak(){if(!hasDom||!$('napredak')||$('napredak').hidden)return;$('napredak').hidden=true;if(mode==='napredak'){mode='play';keys.clear();pressed.clear();}updateHud();}
-function renderNapredak(){const own=ownedSkills(),boj=uBoju(),ks=bank(),s=smithLevels(),A=amState();
- $('nap-kesa').innerHTML=`⛁ <b data-notr>${ks}</b> ${tr('dukata')}`;$('nap-titula').textContent=tr(napTitula());
- const hp=p&&napFrom==='play'?p.maxHp:100+(s.hp||0)*10+(s.zaduzbina||0)*12,snaga=Math.round((p&&napFrom==='play'?p.power||1:1+(s.mace||0)*.08)*100);
+ sfx('cloth',{gain:.45,rate:1.2});napKey=uredjaj()!=='dodir';renderNapredak();$('napredak').hidden=false;setTimeout(()=>jnTab(napTab,true),60);}
+function closeNapredak(){if(!hasDom||!$('napredak')||$('napredak').hidden)return;$('napredak').hidden=true;if($('jn-tip'))$('jn-tip').hidden=true;if(mode==='napredak'){mode='play';keys.clear();pressed.clear();}updateHud();}
+function renderNapredak(){const box=$('napredak');if(!box||!$('jn-p-junak'))return;const own=ownedSkills(),boj=uBoju(),ks=bank(),c=ownedCuda(),A=amState();
+ $('nap-kesa').innerHTML=`<img src="assets/world/predmet-dukat.webp" alt="" onerror="this.remove()"><b data-notr>${ks}</b> ${tr('dukata')}`;$('nap-titula').textContent=tr(napTitula());
  const nauceno=SKILLS.filter(k=>own.has(k.id)).length,stepeni=SKILLS.reduce((a,k)=>a+(own.has(k.id)&&RANK_FX[k.id]?Math.max(0,(rankState()[k.id]||1)-1):0),0);
- $('nap-stat').innerHTML=[['Zdravlje',hp],['Snaga udarca',snaga+' %'],['Vino na polasku',3+(s.flask||0)],['Veštine',`${nauceno}/${SKILLS.length}`],['Stepeni veština',`${stepeni}/${Object.keys(RANK_FX).length*2}`],['Amajlije',`${amUsed()}/${A.slots}`]].map(([k,v])=>`<dt>${tr(k)}</dt><dd data-notr>${v}</dd>`).join('');
- $('nap-napomena').textContent=boj?tr('Usred boja se ništa ne menja: odmakni se od dušmana.'):tr('Stepeni i kovač se plaćaju dukatima. Sve se kupuje u svako doba, osim usred boja.');
- $('nap-vestine').innerHTML=SKILLS.map(k=>{const have=own.has(k.id),r=have?(rankState()[k.id]||1):0,fx=RANK_FX[k.id],cost=fx&&r>0&&r<3?RANK_COST[r-1]:null;
-  const pips=fx?[1,2,3].map(i=>`<i class="${i<=r?'on':''}"></i>`).join(''):'';
-  const btn=!have?`<em>🔒 ${tr('Dobija se u poglavlju')} „${tr(LEVELS.find(L=>L.id===k.land)?.name||k.land)}”</em>`:!fx?`<em>${tr('Pokret: nema stepene')}</em>`:r>=3?`<em class="max">${tr('Najviši stepen')}</em>`:
-   `<button data-rank="${k.id}" ${boj||ks<cost?'disabled':''}>${tr('Stepen')} ${RIMSKI[r+1]} · ${cost} ⛁</button>`;
-  return`<div class="nap-vest ${have?'have':'locked'} r${r}"><div class="nap-ikona"><img src="assets/world/ikona-${k.id}.webp" alt="" onerror="this.remove()"><span data-notr>${have?RIMSKI[r]:''}</span></div><div class="nap-opis"><b>${tr(k.name)}</b><p class="riz-keys">${keyChips(k.key)}</p><small>${tr(k.text)}</small>${fx?`<small class="fx">${tr('Svaki stepen')}: ${tr(fx)}</small>`:''}<div class="nap-pips">${pips}</div>${btn}</div></div>`;}).join('');
- const izb=udari();$('nap-udari').innerHTML=UDARI.map(u=>{const i=izb.indexOf(u.id),ot=udarOtvoren(u.id);return`<button data-udar="${u.id}" class="${i>=0?'on':''}" ${ot&&!boj?'':'disabled'}>${napSlika(NAP_SLIKA[u.id])}<span>${tr(u.name)}<small>${tr(u.text)}</small></span><b>${i>=0?(i===0?'F':'R'):ot?tr('uzmi'):'🔒'}</b></button>`;}).join('');
- $('nap-mesta').textContent=moc2('amajlije')?`${tr('Mesta za amajlije')}: ${amUsed()}/${A.slots} · ${tr('najviše')} ${AM_MAX}`:tr('Amajlije još nisu tvoje.');
- $('nap-amajlije').innerHTML=moc2('amajlije')?AMAJLIJE.map(a=>{const have=A.have.includes(a.id),on=A.on.includes(a.id);return`<button data-am="${a.id}" class="${on?'on':''}" ${have&&!boj?'':'disabled'}>${napSlika(NAP_SLIKA[a.id])}<span>${on?'◆':'◇'} ${tr(a.name)} <i>${'●'.repeat(a.w)}</i><small>${have?tr(a.text):tr('Još je nisi našao: tajne sobe, trgovac.')}</small></span><b>${on?tr('nosiš'):have?tr('stavi'):'🔒'}</b></button>`;}).join(''):'';
- $('nap-kovac').innerHTML=SMITH.map(u=>{const lv=s[u.id]||0,cost=u.cost[lv];return`<button data-up="${u.id}" ${cost===undefined||ks<cost||boj?'disabled':''}>${napSlika(NAP_SLIKA[u.id])}<span>${tr(u.name)} · ${tr(u.text)}<small>${'■'.repeat(lv)}${'□'.repeat(u.cost.length-lv)}</small></span><b>${cost===undefined?tr('NAJBOLJE'):cost+' ⛁'}</b></button>`;}).join('');
- const el=$('napredak'),again=()=>renderNapredak();
- el.querySelectorAll?.('[data-rank]').forEach(b=>b.onclick=()=>{if(!uBoju()&&rankUp(b.dataset.rank)){abBuilt=false;again();}});
- el.querySelectorAll?.('[data-udar]').forEach(b=>b.onclick=()=>{if(!uBoju()&&izaberiUdar(b.dataset.udar))again();});
- el.querySelectorAll?.('[data-am]').forEach(b=>b.onclick=()=>{if(!uBoju()){amToggle(b.dataset.am);again();}});
- el.querySelectorAll?.('[data-up]').forEach(b=>b.onclick=()=>{if(!uBoju()&&kupiKovac(b.dataset.up))again();});
- const tabs=[...el.querySelectorAll('.nap-tabs [data-nt]')],show=t=>{napTab=t;for(const b of tabs)b.classList.toggle('on',b.dataset.nt===t);for(const x of el.querySelectorAll('.nap-panel'))x.hidden=x.dataset.np!==t;};
- for(const b of tabs)b.onclick=()=>{show(b.dataset.nt);sfx('cloth',{gain:.3,rate:1.4});};show(napTab);$('napredak-close').onclick=closeNapredak;}
+ $('jn-sazetak').innerHTML=[['Veštine',`${nauceno}/${SKILLS.length}`],['Stepeni',`${stepeni}/${Object.keys(RANK_FX).length*2}`],['Čuda',`${CUDA.filter(q=>c.has(q.id)).length}/${CUDA.length}`],['Amajlije',moc2('amajlije')?`${amUsed()}/${A.slots}`:'—']]
+  .map(([k,v])=>`<span>${tr(k)} <b data-notr>${v}</b></span>`).join('');
+ $('nap-napomena').textContent=boj?tr('Usred boja se ništa ne menja: odmakni se od dušmana.'):'';$('nap-napomena').hidden=!boj;
+ const u=uredjaj();$('jn-pomoc').textContent=tr(u==='pad'?'Strelice biraju · A uzima · LB i RB menjaju karticu · B zatvara':u==='dodir'?'Dodirni da izabereš, dodirni ponovo da uzmeš':'Klik bira, drugi klik uzima · desni klik odmah · strelice i Enter · Q i E ili 1–4 menjaju karticu · P zatvara');
+ $('jn-p-junak').innerHTML=jnJunak();$('jn-p-vestine').innerHTML=`<div class="jn-stablo">${jnVestine()}</div><div class="jn-dole"><p class="jn-lead">${tr('Stepen II košta 120 dukata, stepen III 260. Svaki stepen jača veštinu za 15 %.')}</p><button class="jn-slot jn-dugme" data-k="reset:stepeni"><i>↺</i>${tr('Vrati stepene')}</button></div>`;
+ $('jn-p-torba').innerHTML=jnTorba();$('jn-p-kovac').innerHTML=`<p class="jn-lead">${tr('Novak kovač i zadužbine: trajno, za svaki naredni pohod.')}</p><div class="jn-kovac">${jnKovac()}</div>`;
+ box.querySelectorAll('.nap-panel .jn-slot').forEach(el=>{el.onclick=()=>{if(napArm===el.dataset.k&&el.classList.contains('sel'))jnPrimarno(el);else{jnIzaberi(el,true);sfx('cloth',{gain:.22,rate:1.7});}};
+  el.oncontextmenu=e=>{e.preventDefault();jnIzaberi(el);jnPrimarno(el);};});
+ box.querySelectorAll('.jn-tabs [data-nt]').forEach(b=>b.onclick=()=>{jnTab(b.dataset.nt);sfx('cloth',{gain:.3,rate:1.4});});
+ $('napredak-close').onclick=closeNapredak;jnTip(box);jnTab(napTab,false);}
 // the greybox (?greybox) knows every move but the fairy's lift, which would climb its gates
 function has(id){if(level?.greybox)return id!=='uzlet';return !level||DEV||level.id==='san'||level.izazov||ownedSkills().has(id);} // the test build knows every move; so does a challenge pohod (izazov, world.js)
 function grantSkill(id){const s=ownedSkills();if(s.has(id))return null;s.add(id);try{localStorage.setItem('marko-skills',JSON.stringify([...s]));}catch{}return SKILLS.find(k=>k.id===id);}
@@ -4639,11 +4772,11 @@ function padGone(){padIndex=null;for(const c of[...padHeld])padSet(c,false);cons
 if(hasDom){window.addEventListener('gamepadconnected',e=>padConnected(e.gamepad));window.addEventListener('gamepaddisconnected',e=>{if(e.gamepad.index===padIndex)padGone();});}
 // menus: the stick or the cross moves between buttons, A presses, B goes back
 function padMenu(dirX,dirY,a,b){const open=[...document.querySelectorAll('.modal:not([hidden]),#menu:not([hidden])')];const box=open[open.length-1];if(!box)return;
- if(box.id==='napredak'&&(dirX||dirY)){napPadNav(box,dirX,dirY);dirX=dirY=0;}
+ if(box.id==='napredak'){if(dirX||dirY){napPadNav(box,dirX,dirY);dirX=dirY=0;}if(a&&!box.contains(document.activeElement)){a=false;napKey=true;jnTab(napTab,true);}else if(a&&document.activeElement?.classList?.contains('jn-slot')){a=false;napKey=true;jnIzaberi(document.activeElement);jnPrimarno(document.activeElement);}}
  const items=[...box.querySelectorAll('button,select,input')].filter(el=>!el.disabled&&el.offsetParent!==null);if(!items.length)return;let cur=items.indexOf(document.activeElement);
  if(dirX||dirY){cur=cur<0?0:(cur+(dirY||dirX)+items.length)%items.length;items[cur].focus();document.querySelectorAll('.pad-focus').forEach(el=>el.classList.remove('pad-focus'));items[cur].classList.add('pad-focus');items[cur].scrollIntoView?.({block:'nearest'});sfx('cloth',{gain:.25,rate:1.6});}
  if(a){const el=cur>=0?items[cur]:items[0];el.click();sfx('ring',{gain:.3,rate:1.5});}
- if(b){if(!$('settings').hidden){closeSettings();return;}if(!$('kontrole').hidden){$('kontrole').hidden=true;return;}const back=box.querySelector('#levels-close,#riznica-close,#resume,#lore-close,.text-button');if(back)back.click();}}
+ if(b){if(!$('settings').hidden){closeSettings();return;}if(!$('kontrole').hidden){$('kontrole').hidden=true;return;}const back=box.querySelector('#levels-close,#riznica-close,#napredak-close,#resume,#lore-close,.text-button');if(back)back.click();}}
 // ================= the controls screen: a drawn gamepad whose buttons light up as they are pressed =================
 // [button index, glyph, x, y, shape, label side, action]
 const PAD_PARTS=[[6,'LT',118,40,'trig','l','Vino · ↑ Vilinsko oko'],[4,'LB',132,70,'shoulder','l','Blok / odbij'],[7,'RT',402,40,'trig','r','Vila · Šarac · poluga · top'],[5,'RB',388,70,'shoulder','r','Baci topuz · ↑ lanac'],
@@ -4698,6 +4831,7 @@ function pollPads(){if(!hasDom||!navigator.getGamepads)return;const pads=navigat
  const t=performance.now(),rep=k=>{const v=k==='u'?up:k==='d'?down:k==='l'?left:right;if(!v){padNav[k]=0;return false;}if(!padNav[k]||t>padNav[k]){padNav[k]=t+(padNav[k]?140:380);return true;}return false;};
  const dy=rep('d')?1:rep('u')?-1:0,dx=rep('r')?1:rep('l')?-1:0,a=edge('a',btn(0)),b=edge('b',btn(1));
  if(start&&mode==='pause'){pause();return;}if(start&&mode==='menu'&&$('menu')&&!$('menu').hidden){$('start').click();return;}
+ if($('napredak')&&!$('napredak').hidden){const lb=edge('lb',btn(4)),rb=edge('rb',btn(5));if(lb||rb){napKey=true;jnTabKorak(rb?1:-1);return;}}
  if(b&&mode==='gbDone'){greybox.gbStay(GBX);return;}padMenu(dx,dy,a,b);}
 
 // ================= pack 06: juice and reasons to come back — hit streaks, elites, stars, slow motion, Ravijojla's hints =================

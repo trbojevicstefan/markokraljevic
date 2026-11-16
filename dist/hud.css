@@ -106,49 +106,6 @@
  #boss-hud{top:96px!important}
 }
 
-/* ================= Napredak: veštine, udari, amajlije, kovač (naslikana riznica u pozadini) ================= */
-.napredak{background:linear-gradient(#0d0405cc,#0d0405e6),url(assets/world/riznica-unutra.webp) center/cover no-repeat}
-.nap-wrap{position:relative;display:grid;grid-template-columns:270px 1fr;width:min(1180px,96vw);max-height:92vh;background:var(--hud-plate);
- box-shadow:inset 0 0 0 1px #e3c27eaa,inset 0 0 0 4px #170708,inset 0 0 0 5px #e3c27e44,0 20px 60px #000d;
- clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px),0 16px)}
-.nap-lik{padding:26px 20px;text-align:center;border-right:1px solid #e3c27e44;background:radial-gradient(ellipse at 50% 20%,#4a1a1c66,transparent 70%)}
-.nap-portret{width:150px;height:150px;margin:0 auto 12px;border-radius:50%;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 35%,#5a2a22,#1d0b0a 70%);box-shadow:0 0 0 3px #1a0a08,0 0 0 6px var(--hud-gold),0 0 0 8px #3a220c,0 8px 22px #000c}
-.nap-portret img{position:absolute;left:50%;top:-10px;width:210%;transform:translateX(-47%)}
-.nap-lik h2{margin:2px 0 2px;font:700 26px var(--display);color:var(--hud-gold2)}
-.nap-titula{margin:0 0 14px;font:italic 600 16px var(--display);color:#e8c98c}
-.nap-stat{display:grid;grid-template-columns:1fr auto;gap:6px 10px;margin:0 0 16px;text-align:left;font:13px Georgia,serif}
-.nap-stat dt{color:#cdbb92}.nap-stat dd{margin:0;font-weight:700;color:#fbefd2}
-.nap-kesa{margin:0;padding:10px;font:700 18px Georgia,serif;color:#ffd96a;background:#0006;box-shadow:inset 0 0 0 1px #e3c27e55}
-.nap-glavno{padding:20px 24px 14px;overflow:auto;scrollbar-width:thin;scrollbar-color:#a8864f #0000}
-.nap-tabs{display:flex;gap:4px;border-bottom:1px solid #e3c27e55;margin-bottom:10px}
-.nap-tabs button{background:none;border:0;padding:10px 16px;font:700 16px var(--display);letter-spacing:1px;color:#cdbb92;border-bottom:3px solid transparent}
-.nap-tabs button.on,.nap-tabs button:hover,.nap-tabs button:focus-visible{color:var(--hud-gold2);border-bottom-color:var(--hud-gold)}
-.nap-napomena{margin:0 0 12px;font:italic 14px var(--display);color:#e0cfa6}
-.nap-stablo{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.nap-vest{display:flex;gap:12px;padding:10px 12px;background:#1a0809b3;box-shadow:inset 0 0 0 1px #e3c27e33}
-.nap-vest.have{box-shadow:inset 0 0 0 1px #e3c27e77}
-.nap-vest.locked{opacity:.55;filter:saturate(.4)}
-.nap-vest.r3{box-shadow:inset 0 0 0 1px var(--hud-gold),0 0 12px #e3c27e33}
-.nap-ikona{position:relative;flex:none;width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#2c1214,#140708);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c}
-.nap-ikona img{position:absolute;inset:2px;width:52px;height:52px;border-radius:4px;object-fit:cover}
-.nap-ikona span{position:absolute;right:-6px;bottom:-6px;min-width:24px;height:20px;padding:0 4px;border-radius:10px;display:grid;place-items:center;font:700 11px var(--display);color:var(--hud-gold2);background:#3a0c10;box-shadow:0 0 0 1px var(--hud-gold)}
-.nap-ikona span:empty{display:none}
-.nap-opis{flex:1;min-width:0}
-.nap-opis b{font:700 17px var(--display);color:#fbefd2}
-.nap-opis small{display:block;font:12px/1.35 Arial;color:#c8bba0;margin-top:2px}
-.nap-opis small.fx{color:#9fd8b8}
-.nap-opis .riz-keys{margin:3px 0}
-.nap-pips{display:flex;gap:4px;margin:6px 0}
-.nap-pips i{width:22px;height:6px;border-radius:3px;background:#3a2a1a;box-shadow:inset 0 0 0 1px #00000088}
-.nap-pips i.on{background:linear-gradient(90deg,#c89a4a,var(--hud-gold2))}
-.nap-opis button{margin-top:2px;padding:6px 12px;font:700 13px var(--display);letter-spacing:.5px;color:var(--hud-gold2);background:linear-gradient(180deg,#6a1e24,#3a0c10);border:0;box-shadow:inset 0 0 0 1px var(--hud-gold)}
-.nap-opis button:hover:not(:disabled){filter:brightness(1.2)}
-.nap-opis button:disabled{opacity:.45;cursor:default}
-.nap-opis em{display:block;margin-top:4px;font:italic 12px Georgia,serif;color:#b8a882}.nap-opis em.max{color:var(--hud-gold)}
-#napredak .smith button.on{box-shadow:inset 0 0 0 1px var(--hud-gold),0 0 10px #e3c27e44}
-#napredak-close{margin-top:12px}
-@media(max-width:800px){.nap-wrap{grid-template-columns:1fr}.nap-lik{display:none}}
-
 /* ================= kraj pesme: slika Urvine, stihovi jedan po jedan, pa odjavna špica (Stefan, 15. 11. 2026) ================= */
 .kraj{position:fixed;inset:0;z-index:40;overflow:hidden;background:#0b0505;color:#f6e8c8;font-family:var(--display)}
 .kraj-slika{position:absolute;inset:-4%;background:#1a0d0a center/cover no-repeat;opacity:0;transform:scale(1.02);transition:opacity 3s ease,filter 4s ease}
@@ -244,8 +201,7 @@
  #hud #slova{justify-content:center}
  #menu,.modal,.overlay{overflow-y:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain}
  .modal{place-items:start center!important;padding:10px!important}
- .modal-card,.nap-wrap,.pauza-wrap,.riznica-card,.book-wrap,.ram-kontrole{max-height:none!important}
- .nap-glavno{overflow:visible!important}
+ .modal-card,.pauza-wrap,.riznica-card,.book-wrap,.ram-kontrole{max-height:none!important}
 }
 
 /* ================= telefon (16. 11.): okvir bosa uzan i desno od okvira junaka, bez saveta preko ekrana ================= */
@@ -286,8 +242,163 @@
  #game-shell:has(#boss-hud:not([hidden])):has(.uci:not(.ab):not([hidden])) #dialogue{top:256px!important}
 }
 @keyframes uciOdozgo{from{opacity:0;transform:translate(-50%,-12px)}}
-/* Napredak (Stefan, 16. 11.): slika uz svaku stavku; na računaru deo sa stavkama se sam pomera (okvir je sekao sve ispod 92 % ekrana) */
-#napredak .smith button span{flex:1}
-#napredak .smith button .nap-sl{flex:none;width:44px;height:44px;margin-right:12px;object-fit:contain;border-radius:6px;background:linear-gradient(180deg,#2c1214,#140708);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c}
-#napredak .smith button:disabled .nap-sl{filter:grayscale(1) brightness(.6)}
-@media (min-width:901px) and (pointer:fine){.nap-glavno{max-height:92vh;min-height:0}}
+/* ================= Napredak kao u WoW-u (Stefan, 16. 11.): Junak, Veštine, Torba, Kovač u jednom prozoru bez skrolovanja =================
+   Kvadratna polja sa ikonom (stepen u uglu), drvo veština u tri grane, oprema oko Marka, osobine sa strane, opis izabranog desno. */
+.napredak{background:linear-gradient(#0d0405cc,#0d0405e6),url(assets/world/riznica-unutra.webp) center/cover no-repeat}
+#napredak.modal{padding:12px}
+/* Stefan, 16. 11.: „napravi neki bolji okvir za te prozore, ne sviđaju mi se uglovi”: rezbareni drveni ram sa pleterom (isti kao
+   Kontrole), složen iz uglova i ivica koje se ponavljaju (ram-prozor.webp), pa staje na svaku veličinu prozora bez krivljenja šare */
+.jn-okvir{--slot:58px;--k:.34;position:relative;display:flex;flex-direction:column;width:min(1210px,98vw);height:min(700px,97vh);
+ background:linear-gradient(180deg,#2c0e11,#170708 55%,#110405) padding-box;border-style:solid;border-color:transparent;border-width:calc(150px * var(--k)) calc(108px * var(--k));
+ border-image-source:url(assets/world/ram-prozor.webp);border-image-slice:343 230;border-image-width:calc(343px * var(--k)) calc(230px * var(--k));border-image-repeat:round;
+ filter:drop-shadow(0 18px 30px #000c)}
+.jn-glava{display:flex;align-items:center;gap:16px;padding:6px 18px 8px;border-bottom:1px solid #e3c27e44;background:linear-gradient(180deg,#4a1a1c55,transparent)}
+.jn-medalja{flex:none;width:64px;height:64px;border-radius:50%;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 35%,#5a2a22,#1d0b0a 70%);box-shadow:0 0 0 2px #1a0a08,0 0 0 4px var(--hud-gold),0 4px 12px #000c}
+.jn-medalja img{position:absolute;left:50%;top:-5px;width:210%;transform:translateX(-47%)}
+.jn-ime .eyebrow{margin:0;font-size:10px;letter-spacing:3px}
+.jn-ime h2{margin:0;font:700 24px var(--display);color:var(--hud-gold2);line-height:1.05}
+.jn-titula{margin:0;font:italic 600 14px var(--display);color:#e8c98c}
+.jn-sazetak{display:flex;flex-wrap:wrap;gap:6px 14px;margin-left:auto;font:13px Georgia,serif;color:#cdbb92}
+.jn-sazetak b{color:#fbefd2}
+.jn-kesa{display:flex;align-items:center;gap:6px;margin:0;padding:6px 12px;font:700 17px Georgia,serif;color:#ffd96a;background:#0006;box-shadow:inset 0 0 0 1px #e3c27e55}
+.jn-kesa img{width:22px;height:22px;object-fit:contain}
+#napredak-close.jn-x{width:34px;height:34px;padding:0;border:0;border-radius:4px;font:700 18px Georgia,serif!important;color:#f6e2ae!important;background:linear-gradient(180deg,#6a1e24,#3a0c10);box-shadow:inset 0 0 0 1px var(--hud-gold)}
+#napredak-close.jn-x:hover,#napredak-close.jn-x.pad-focus{filter:brightness(1.3)}
+.jn-tabs{display:flex;gap:4px;padding:8px 22px 0;border-bottom:1px solid #e3c27e66}
+.jn-tabs button{position:relative;top:1px;padding:8px 22px 7px;border:0;border-radius:6px 6px 0 0;font:700 16px var(--display);letter-spacing:1px;color:#cdbb92;background:linear-gradient(180deg,#2a0d10,#160607);box-shadow:inset 0 1px 0 #e3c27e44,inset 1px 0 0 #e3c27e22,inset -1px 0 0 #e3c27e22}
+.jn-tabs button.on{color:var(--hud-gold2);background:linear-gradient(180deg,#5a1a20,#2a0b0e);box-shadow:inset 0 2px 0 var(--hud-gold),inset 1px 0 0 #e3c27e66,inset -1px 0 0 #e3c27e66}
+.jn-tabs button:hover{color:var(--hud-gold2)}
+.jn-napomena{margin:6px 22px 0;padding:5px 10px;font:italic 14px var(--display);color:#ffb4a0;background:#5a101833;box-shadow:inset 0 0 0 1px #ff8a7a44}
+.jn-telo{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;padding:14px 22px 8px;min-height:0}
+.jn-sadrzaj{min-width:0;min-height:0;overflow:hidden}
+.jn-sadrzaj>.nap-panel{height:100%}
+.jn-lead{margin:10px 0 0;font:italic 14px var(--display);color:#cdbb92}
+.jn-nas{margin:0 0 6px;font:700 14px var(--display);letter-spacing:1.5px;color:var(--hud-gold);text-transform:uppercase}
+.jn-nas small{font:12px Georgia,serif;letter-spacing:0;color:#cdbb92;text-transform:none;margin-left:6px}
+
+/* polje sa ikonom */
+.jn-slot{position:relative;flex:none;width:var(--slot);height:var(--slot);padding:0;border:0;border-radius:6px;background:linear-gradient(180deg,#2c1214,#120607);
+ box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c,0 3px 6px #0008;transition:transform .08s,box-shadow .12s}
+.jn-slot img{position:absolute;inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);border-radius:4px;object-fit:cover;pointer-events:none}
+.jn-slot.nema img{filter:grayscale(1) brightness(.45)}
+.jn-slot.nema:not(:has(img))::after,.jn-slot.prazno::after,.jn-slot.zatvoreno::after{content:'?';position:absolute;inset:0;display:grid;place-items:center;font:700 22px var(--display);color:#6a5a40}
+.jn-slot.prazno{background:repeating-linear-gradient(45deg,#1a0a0b 0 6px,#140708 6px 12px)}
+.jn-slot.prazno::after{content:'+';color:#a8864f}
+.jn-slot.zatvoreno{background:#0c0405;box-shadow:inset 0 0 0 1px #000,0 0 0 1px #3a2a1a}
+.jn-slot.zatvoreno::after{content:'🔒';font-size:16px;opacity:.55}
+.jn-slot.ima{box-shadow:inset 0 0 0 1px #000,0 0 0 1px #c89a4a,0 3px 6px #0008}
+.jn-slot.on{box-shadow:inset 0 0 0 1px #000,0 0 0 2px var(--hud-gold),0 0 12px #e3c27e66}
+.jn-slot.puno{box-shadow:inset 0 0 0 1px #000,0 0 0 2px #ffd96a,0 0 14px #ffd96a55}
+.jn-slot:hover{transform:translateY(-1px);filter:brightness(1.12)}
+.jn-slot.sel{box-shadow:inset 0 0 0 1px #000,0 0 0 2px #fff3c8,0 0 0 4px #e3c27e88,0 0 18px #ffd27a88!important}
+.jn-slot.pad-focus{outline:2px solid #f7d88f!important;outline-offset:3px}
+.jn-br{position:absolute;right:-5px;bottom:-5px;min-width:22px;height:18px;padding:0 4px;border-radius:9px;display:grid;place-items:center;font:700 11px Georgia,serif;color:#fbefd2;background:#2a0b0e;box-shadow:0 0 0 1px #c89a4a;pointer-events:none}
+.jn-slot.moze .jn-br{color:#d8ffd8;background:#14361c;box-shadow:0 0 0 1px #6fdc8c,0 0 8px #6fdc8c88}
+.jn-slot.puno .jn-br{color:#2a1a06;background:#ffd96a;box-shadow:0 0 0 1px #fff3c8}
+.jn-kl{position:absolute;left:-6px;top:-6px;min-width:22px;margin:0;padding:2px 4px;font:700 11px Georgia,serif;color:#2a1a06;background:var(--hud-gold2);border:0;box-shadow:0 0 0 1px #6a4a1a}
+
+/* Junak: amajlije | Marko sa udarima | oprema | osobine */
+.jn-junak{display:grid;grid-template-columns:calc(var(--slot) + 12px) 210px calc(var(--slot) + 12px) minmax(0,1fr);gap:0 14px;height:100%}
+.jn-kol{display:flex;flex-direction:column;align-items:center}
+.jn-kol .jn-nas{font-size:11px;letter-spacing:1px;text-align:center}
+.jn-am{display:grid;grid-auto-rows:var(--slot);gap:8px}
+.jn-am .w2{grid-row:span 2;height:auto}
+.jn-am .w2 img{top:50%;bottom:auto;height:calc(var(--slot) - 6px);transform:translateY(-50%)}
+.jn-figura{display:flex;flex-direction:column;align-items:center;min-height:0;background:radial-gradient(ellipse at 50% 45%,#5a2a2255,transparent 70%)}
+.jn-figura img{flex:1;min-height:0;width:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 8px 10px #000a)}
+.jn-figura .jn-nas{margin-top:6px;font-size:11px}
+.jn-udari{display:flex;gap:20px}
+.jn-udari .jn-slot{--slot:68px}
+.jn-osobine{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;align-content:start;min-width:0}
+.jn-os-grupa h4{margin:0 0 4px;padding-bottom:3px;font:700 13px var(--display);letter-spacing:1.5px;color:var(--hud-gold);text-transform:uppercase;border-bottom:1px solid #e3c27e44}
+.jn-os-red{display:flex;justify-content:space-between;gap:8px;padding:2px 4px;font:13px/1.35 Georgia,serif;color:#cdbb92;border-radius:3px}
+.jn-os-red:hover{background:#e3c27e18;color:#fbefd2}
+.jn-os-red b{color:#fbefd2;white-space:nowrap}
+
+/* Veštine: tri grane, u svakoj tri reda po tri polja, linija gore do polja iznad */
+.jn-stablo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.jn-grana{padding:10px 12px 14px;background:linear-gradient(180deg,#1a0809cc,#0e0405cc);box-shadow:inset 0 0 0 1px #e3c27e33}
+.jn-grana header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e3c27e33}
+.jn-grana header img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--hud-gold)}
+.jn-grana header b{display:block;font:700 17px var(--display);color:var(--hud-gold2)}
+.jn-grana header small{font:12px Georgia,serif;color:#cdbb92}
+.jn-cvorovi{display:grid;grid-template-columns:repeat(3,var(--slot));justify-content:space-evenly;row-gap:26px}
+.jn-slot.veza::before{content:'';position:absolute;left:50%;top:-27px;width:4px;height:26px;margin-left:-2px;background:#3a2a1a;box-shadow:0 0 0 1px #0008}
+.jn-slot.veza-on::before{background:linear-gradient(180deg,#c89a4a,var(--hud-gold2))}
+/* Torba */
+.jn-torba{display:flex;flex-direction:column;gap:14px}
+.jn-polja{display:grid;grid-template-columns:repeat(7,var(--slot));gap:8px}
+/* Kovač: roba u dve kolone */
+.jn-kovac{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.jn-slot.jn-roba{width:auto;height:auto;display:flex;align-items:center;gap:12px;padding:8px 12px 8px 8px;text-align:left;border-radius:4px;background:#1a0809cc}
+.jn-slot.jn-roba img.nap-sl{position:static;inset:auto;flex:none;width:52px;height:52px;object-fit:contain;border-radius:6px;background:linear-gradient(180deg,#2c1214,#140708);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c}
+.jn-roba span{flex:1;min-width:0}
+.jn-roba b{display:block;font:700 16px var(--display);color:#fbefd2}
+.jn-roba small{display:block;font:12px/1.3 Arial;color:#c8bba0}
+.jn-roba i{font-style:normal;font-size:12px;color:var(--hud-gold);letter-spacing:2px}
+.jn-roba em{font:700 15px Georgia,serif;font-style:normal;color:#ffd96a;white-space:nowrap}
+.jn-roba.moze em{color:#9ff0b0}
+.jn-roba.puno em{color:var(--hud-gold)}
+
+/* opis izabranog (desno) i oblačić uz miša */
+.jn-opis{min-height:0;overflow:auto;padding:14px 14px 12px;background:linear-gradient(180deg,#120607ee,#0a0304ee);box-shadow:inset 0 0 0 1px #e3c27e55,inset 0 0 0 3px #0a0304,inset 0 0 0 4px #e3c27e22;scrollbar-width:thin;scrollbar-color:#a8864f #0000}
+.jn-op-glava{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.jn-op-ik{position:relative;flex:none;width:58px;height:58px;border-radius:6px;overflow:hidden;background:linear-gradient(180deg,#2c1214,#120607);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #c89a4a}
+.jn-op-ik img{position:absolute;inset:3px;width:52px;height:52px;border-radius:4px;object-fit:cover}
+.jn-op-ik i{position:absolute;inset:0;display:grid;place-items:center;font:700 26px var(--display);font-style:normal;color:#6a5a40}
+.jn-op-glava.nema .jn-op-ik img{filter:grayscale(1) brightness(.5)}
+.jn-op-glava b{display:block;font:700 19px var(--display);color:#fbefd2;line-height:1.1}
+.jn-op-glava.on b,.jn-op-glava.ima b{color:var(--hud-gold2)}
+.jn-op-glava.nema b{color:#a89a80}
+.jn-op-glava small{display:block;margin-top:2px;font:12px Georgia,serif;color:#cdbb92}
+.jn-op-tekst{margin:6px 0;font:13px/1.45 Arial;color:#e6dcc4}
+.jn-op-red{margin:4px 0;font:13px/1.4 Georgia,serif;color:#cdbb92}
+.jn-op-red.fx,.jn-op-red.ok{color:#9fe8b8}
+.jn-op-red.lock{color:#d8a890}
+.jn-op-red.max,.jn-op-red.rang{color:var(--hud-gold2);letter-spacing:.5px}
+.jn-op-red.hint{margin-top:8px;font-size:12px;color:#9fd0ff}
+.jn-op-dugmad{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.jn-op-dugmad button{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;border:0;text-align:left;font:700 14px var(--display);letter-spacing:.5px;color:var(--hud-gold2);background:linear-gradient(180deg,#6a1e24,#3a0c10);box-shadow:inset 0 0 0 1px var(--hud-gold)}
+.jn-op-dugmad button img{width:30px;height:30px;border-radius:4px;object-fit:cover;box-shadow:0 0 0 1px #8a6a3c}
+.jn-op-dugmad button:hover:not(:disabled),.jn-op-dugmad button.pad-focus{filter:brightness(1.25)}
+.jn-op-dugmad button:disabled{opacity:.42;cursor:default}
+.jn-dno{padding:6px 22px 10px;border-top:1px solid #e3c27e33}
+.jn-dno p{margin:0;font:12px Georgia,serif;color:#a8987a;text-align:center}
+.jn-tip{position:fixed;z-index:60;width:290px;padding:10px 12px;pointer-events:none;background:#0b0608f4;box-shadow:inset 0 0 0 1px #c8b07a,0 6px 20px #000c;border-radius:4px}
+.jn-tip .jn-op-ik{width:40px;height:40px}.jn-tip .jn-op-ik img{width:34px;height:34px}
+.jn-tip .jn-op-glava b{font-size:17px}
+
+/* veći ekran: ceo prozor malo veći */
+@media (min-width:1600px) and (min-height:900px){.jn-okvir{zoom:1.22}}
+/* telefon: ceo ekran, manja polja; ako ne stane, pomera se samo levi deo */
+@media(max-width:900px),(pointer:coarse){
+ #napredak.modal{padding:0!important;place-items:stretch!important;overflow:hidden!important}
+ .jn-okvir{--slot:42px;--k:.2;width:100vw;height:100dvh}
+ .jn-glava{gap:8px;padding:0 8px 3px}
+ .jn-medalja{width:28px;height:28px}.jn-ime .eyebrow,.jn-titula,.jn-sazetak{display:none}
+ .jn-ime h2{font-size:15px}.jn-kesa{margin-left:auto;font-size:13px;padding:2px 8px}.jn-kesa img{width:16px;height:16px}
+ #napredak-close.jn-x{width:26px;height:26px;font-size:14px!important}
+ .jn-tabs{padding:4px 12px 0}.jn-tabs button{padding:5px 12px 4px;font-size:14px}
+ .jn-telo{grid-template-columns:minmax(0,1fr) 36%;gap:8px;padding:8px 10px 4px}
+ .jn-sadrzaj{overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+ .jn-junak{grid-template-columns:calc(var(--slot) + 8px) calc(var(--slot) + 8px) minmax(0,1fr);gap:0 8px}
+ .jn-figura{grid-column:1/3;grid-row:2;flex-direction:row;gap:8px;margin-top:8px;background:none}.jn-figura img{display:none}.jn-figura .jn-nas{display:none}
+ .jn-udari{gap:8px}.jn-udari .jn-slot{--slot:42px}
+ .jn-am{gap:5px}
+ .jn-osobine{grid-template-columns:1fr;grid-row:1/3;gap:6px}
+ .jn-os-red{font-size:11px;padding:0 2px}.jn-os-grupa h4{font-size:11px}
+ .jn-stablo{gap:6px}.jn-grana{padding:6px}.jn-grana header{margin-bottom:10px;padding-bottom:4px;gap:6px}.jn-grana header img{width:24px;height:24px}.jn-grana header b{font-size:13px}.jn-grana header small{font-size:10px}
+ .jn-cvorovi{row-gap:20px}.jn-slot.veza::before{top:-21px;height:20px}
+ .jn-kovac{grid-template-columns:1fr}.jn-slot.jn-roba img.nap-sl{width:38px;height:38px}.jn-roba b{font-size:13px}.jn-roba small{display:none}
+ .jn-polja{gap:5px;grid-template-columns:repeat(6,var(--slot))}.jn-torba{gap:8px}
+ .jn-opis{padding:8px}.jn-op-ik{width:44px;height:44px}.jn-op-ik img{width:38px;height:38px}.jn-op-glava b{font-size:15px}.jn-op-tekst,.jn-op-red{font-size:11px}
+ .jn-op-dugmad button{padding:6px 8px;font-size:12px}
+ .jn-dno{padding:3px 10px 5px}.jn-dno p{font-size:10px}
+ .jn-lead{font-size:11px;margin-top:6px}
+}
+/* vraćanje (Stefan, 16. 11.: „dodaj opciju za reset talenata i tako dalje”): dugmad u redu, biraju se kao i polja */
+.jn-slot.jn-dugme{width:auto;height:auto;display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:4px;font:700 14px var(--display);letter-spacing:.5px;color:#e8d6a8;background:linear-gradient(180deg,#3a1216,#1e080a)}
+.jn-slot.jn-dugme i{font-style:normal;font-size:17px;color:var(--hud-gold)}
+.jn-dole{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:10px}.jn-dole .jn-lead{margin:0}
+.jn-vrati{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+@media(max-width:900px),(pointer:coarse){.jn-slot.jn-dugme{padding:4px 8px;font-size:11px}.jn-dole{flex-direction:column;align-items:flex-start;gap:4px}}

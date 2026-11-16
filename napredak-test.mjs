@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,canKrilo,canNalet,koloTisina,uBoju,izaberiUdar,udari,UK,addPartners,setDiff:d=>{settings.difficulty=d;},arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,canKrilo,canNalet,koloTisina,uBoju,izaberiUdar,udari,UK,addPartners,udarNa,udariReset,stepeniReset,stepeniVracaju,rankState,jnOsobine,jnInfo,setDiff:d=>{settings.difficulty=d;},arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -140,5 +140,13 @@ await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.
  e.x=p.x+250;ok(api.uBoju(),'napredak: an awake foe near Marko is a fight');e.alive=false;
  ok(api.izaberiUdar('potres')&&api.udari().includes('potres')&&['KeyF','KeyR'].includes(api.UK('potres')),'napredak: Potres, once found, is taken and gets F or R (L3 or R3 on the pad)');
  api.izaberiUdar('potres');ok(api.udari().indexOf('potres')!==-1,'napredak: taking a carried blow again swaps F and R');}
+// ---- Stefan, 16. 11.: Napredak kao u WoW-u, vraćanje stepena („reset talenata”) ----
+{api.ownedSkills().add('bacanje');api.rankState().niz=3;api.rankState().bacanje=2;const n=api.stepeniVracaju(),b0=api.bank();
+ ok(n===api.RANK_COST[0]*2+api.RANK_COST[1]+(api.rankState().zamah===3?api.RANK_COST[0]+api.RANK_COST[1]:0),`napredak: resetting the ranks gives back every ducat paid (${n})`);
+ ok(api.stepeniReset()&&api.bank()===b0+n&&api.skillRank('niz')===1&&api.skillRank('bacanje')===1&&!api.stepeniReset(),'napredak: after the reset every rank is I and a second reset gives nothing');
+ api.udariReset();ok(api.udarNa('potres',1)&&api.udari()[1]==='potres'&&api.udarNa('potres',0)&&api.udari()[0]==='potres','napredak: a blow is put on R or F, and moving it to the other key swaps them');
+ ok(api.udariReset()&&api.udari()[0]==='vihor'&&api.udari()[1]==='super','napredak: the blows go back to Vihor on F and Junački udar on R');
+ const os=api.jnOsobine();ok(os.length===5&&os.every(([g,rows])=>rows.every(r=>r[1]!==undefined&&!String(r[1]).includes('NaN'))),'napredak: every attribute has a number');
+ const I=api.jnInfo('cv:bacanje');ok(I.name&&I.acts.length===1&&/stepen/i.test(I.acts[0].l),'napredak: a learned skill offers its next rank');}
 api.setDiff('epic');await api.startLevel(lv('tvrdjava'));{const n=S().world.enemies.filter(e=>e.sablja).length;ok(n===1,`očeva sablja: only one young Turk carries it (${n})`);}api.setDiff('normal');
 console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar, pad Marka, vilinsko kolo, junački udari u meniju i očeva sablja`);
