@@ -274,3 +274,15 @@
 #junak-crta.go::before{animation:junakObod .9s ease-out forwards}
 @keyframes junakCrta{0%{transform:rotate(-7deg) scaleX(0);opacity:1;height:7px}22%{transform:rotate(-7deg) scaleX(1);opacity:1;height:7px}60%{opacity:1;height:3px}100%{transform:rotate(-7deg) scaleX(1);opacity:0;height:1px}}
 @keyframes junakObod{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+/* ================= računar (Stefan, 16. 11. ujutru): „ovaj tekst smeta, šta god da prikazujemo tu neka se prikaže skroz gore
+   na vrh ekrana, ovde se dešava cela igra”: kartica nove veštine i razgovor idu gore u sredinu, između Markovog okvira i zadatka;
+   ispod okvira bosa kad je megdan. Telefon ostaje kako je Stefan tražio 16. 11. (tekstovi mali i dole). ================= */
+@media (min-width:901px) and (pointer:fine){
+ #dialogue{top:12px!important;bottom:auto!important;width:clamp(380px,calc(100vw - 860px),600px)!important}
+ .uci:not(.ab){top:12px;bottom:auto;max-width:clamp(380px,calc(100vw - 860px),600px);animation:uciOdozgo .45s ease}
+ #game-shell:has(.uci:not(.ab):not([hidden])) #dialogue{top:118px!important}
+ #game-shell:has(#boss-hud:not([hidden])) .uci:not(.ab){top:150px}
+ #game-shell:has(#boss-hud:not([hidden])) #dialogue{top:150px!important}
+ #game-shell:has(#boss-hud:not([hidden])):has(.uci:not(.ab):not([hidden])) #dialogue{top:256px!important}
+}
+@keyframes uciOdozgo{from{opacity:0;transform:translate(-50%,-12px)}}

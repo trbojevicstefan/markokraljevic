@@ -124,4 +124,10 @@ await api.startLevel(lv('selo'));{const {p,world}=S();for(const o of world.enemi
  step(120);const F=api.film();ok(F.endSequence?.age<.6,'pad: the moment slows (a second goes by as less than half of one)');ok(F.sepija>.6,'pad: the colours go to sepia');
  step(120*4);ok(S().mode==='dead'&&api.film().sepija>.95,'pad: sepia holds under „Ustani, junače”');
  await api.startLevel(lv('selo'));step(120);ok(api.film().sepija===0,'pad: back on the road, the colours come back');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar i pad Marka`);
+// ---- Stefan, 16. 11. ujutru: vilinsko kolo se vidi (pogođen kamen ostaje upaljen, greške se broje) ----
+await api.startLevel(lv('suma'));{const {p,world}=S(),t=world.traps.find(q=>q.kind==='kolo');for(const o of world.enemies)o.alive=false;
+ Object.assign(p,{x:t.stones[0].x-200,y:t.stones[0].y,grounded:true,invuln:99});step(3);ok(t.show>0,'kolo: the fireflies start to show the order');
+ for(let i=0;i<120*8&&t.show>0;i++)step(1);const stand=i=>{Object.assign(p,{x:t.stones[i].x,y:t.stones[i].y,vx:0,vy:0,grounded:true});step(6);Object.assign(p,{x:t.stones[i].x+70});step(3);};
+ stand(t.order[0]);step(120*3);ok(t.prog===1&&t.stones[t.order[0]].lit>.9,'kolo: a stone stepped on in the right order stays lit');
+ const bad=[0,1,2,3,4].find(i=>i!==t.order[1]&&i!==t.order[0]);stand(bad);ok(t.wrong===1&&t.prog===0&&t.show>0,'kolo: a wrong stone counts, and the fireflies show it again');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar, pad Marka i vilinsko kolo`);
