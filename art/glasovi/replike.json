@@ -1,0 +1,4540 @@
+{
+ "napravljeno": "2026-11-16",
+ "replike": [
+  {
+   "id": "d8da638d829",
+   "who": "GUSLAR",
+   "text": "Kažu da Kraljević Marko nije umro. Spava u pećini, Šarac kraj njega jede mahovinu, a sablja mu se malo-pomalo izvlači iz stene.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 1 · Kaže pesma…"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "de4a95b1c14",
+   "who": "GUSLAR",
+   "text": "U to vreme Musa Kesedžija zatvori drumove i primorje. Topuz baca u oblake i dočekuje ga u bele ruke, a klisurom niko ne sme da prođe.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 2 · Klisura Kačanika"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "d1686082ae1",
+   "who": "GUSLAR",
+   "text": "Na obali podiže kulu sa gvozdenim čengelama. Otima carevo blago, a putnike drži u ropstvu.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 3 · Kula kraj mora"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "d90c11e2551",
+   "who": "GUSLAR",
+   "text": "Kad caru dodijaše tužbe, iz tamnice izvede jedinog junaka koga se Musa ne bi uplašio — Kraljevića Marka.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 4 · Pred sultanom"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "d4ea4781fbf",
+   "who": "GUSLAR",
+   "text": "Tri godine tamnice slomile su mu snagu. Vraćala mu se polako, kao ranjeniku pod sokolovim krilom.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 5 · Tri godine tamnice"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "d81c66e8f50",
+   "who": "GUSLAR",
+   "text": "Car mu nudi vojsku i blago. Marko uzima samo Šarca, topuz i očevu sablju.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 6 · Bez vojske"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "da695e26cc1",
+   "who": "GUSLAR",
+   "text": "Na izvoru pod planinom javi mu se posestrima, vila Ravijojla: „Idi, brate. Ja ću biti uz tebe.” Tako počinje pesma o tri srca Kačanika.",
+   "kat": "uvod igre",
+   "izvor": "INTRO",
+   "mesta": [
+    "INTRO 7 · Vila Ravijojla"
+   ],
+   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "nivo": "musa",
+   "scena": "Uvod igre"
+  },
+  {
+   "id": "d202708c063",
+   "who": "GUSLAR",
+   "text": "Poranio Marko u nedelju, pre jarkog sunca, pokraj mora, Urvinom planinom. Šarac mu poče posrtati i suze roniti. „Davor, Šaro, sto i šezdeset ljeta još mi nigda posrnuo nisi. Neka Bog zna, dobro biti neće.”",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "urvina 1 · Smrt Marka Kraljevića"
+   ],
+   "nivo": "urvina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d8647d91cca",
+   "who": "GUSLAR",
+   "text": "Kliče vila sa Urvine: „Kad budeš navrh planine, opazićeš dve tanke jele, a među njima bunar. Nad vodom ćeš lice ogledati, pak ćeš videti kad ćeš umreti.”",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "urvina 2 · Vila sa Urvine"
+   ],
+   "nivo": "urvina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "db98530f689",
+   "who": "GUSLAR",
+   "text": "Posluša Marko vilu, pa okrenu Šarca uz Urvinu. Pokraj mora, pre jarkog sunca, jaše navrh planine, do dve tanke jele.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "urvina 3 · Uz Urvinu"
+   ],
+   "nivo": "urvina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d42c16c689f",
+   "who": "GUSLAR",
+   "text": "U kosovskom selu kovač potkiva Šarca. Jedna potkova ostade na nakovnju, i po njoj se selo i danas pamti.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "selo 1 · Kosovsko selo"
+   ],
+   "nivo": "selo",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d0ca4f71ff1",
+   "who": "GUSLAR",
+   "text": "Ali turski odred opkoli selo. Žene sklanjaju decu, a Marko izjahuje kroz kapiju sa topuzom u ruci.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "selo 2 · Opsada"
+   ],
+   "nivo": "selo",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d1050298bd9",
+   "who": "GUSLAR",
+   "text": "Šarac korača drumom u zoru. Iza Marka se vije barjak, a pred njim je selo koje treba osloboditi.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "selo 3 · Na drumu"
+   ],
+   "nivo": "selo",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "df92aaf519e",
+   "who": "GUSLAR",
+   "text": "Niz Ibar, pod starim hrastom, sede guslari i pevaju o Kraljeviću Marku. Narod sluša i ne diše.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "klisura 1 · Klisura Ibra"
+   ],
+   "nivo": "klisura",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dacc8ccd7cb",
+   "who": "GUSLAR",
+   "text": "Turci dođoše da polome gusle i ućutkaju pesmu. Stari guslar ih zakloni svojim telom.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "klisura 2 · Polomljene gusle"
+   ],
+   "nivo": "klisura",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dece8109527",
+   "who": "GUSLAR",
+   "text": "Dok se gusle čuju, pesma živi. Marko ide da je odbrani.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "klisura 3 · Pesma"
+   ],
+   "nivo": "klisura",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d66cce03485",
+   "who": "GUSLAR",
+   "text": "Jahali su Marko i pobratim Miloš preko Miroča. Miloš zapeva, a peva lepše od vile. Ravijojla ga zato ustreli u grlo i u srce.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "suma 1 · Miroč-planina"
+   ],
+   "nivo": "suma",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d6b30ab6834",
+   "who": "GUSLAR",
+   "text": "„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Koga Marko stigne, taj mu postaje ili mrtav dušmanin ili pobratim.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "suma 2 · Potera"
+   ],
+   "nivo": "suma",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d2f12e04245",
+   "who": "GUSLAR",
+   "text": "Palikuće potpališe bukvu na kojoj orlušina ima gnezdo. Orlići pište, a plamen se penje uz stablo.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "suma 3 · Palikuće"
+   ],
+   "nivo": "suma",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d31672ed419",
+   "who": "GUSLAR",
+   "text": "Orlušina kruži nad šumom i čeka junaka koji će joj spasti decu.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "suma 4 · Orlušina"
+   ],
+   "nivo": "suma",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d932c3ba533",
+   "who": "GUSLAR",
+   "text": "Pred manastirom se svađaju carevići čije je carstvo. Niko ne sme da presudi, sem Marka.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "manastir 1 · Manastirski vis"
+   ],
+   "nivo": "manastir",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d83deb3006a",
+   "who": "GUSLAR",
+   "text": "Marko pred carskom knjigom presudi po pravdi: carstvo je Uroševo. Ni ocu za ljubav ne reče krivo.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "manastir 2 · Pravda"
+   ],
+   "nivo": "manastir",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "de74369a674",
+   "who": "GUSLAR",
+   "text": "Zazvoniše zvona manastirska. Oklopnici čuvaju prilaz, a Marko se penje stazom.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "manastir 3 · Zvona"
+   ],
+   "nivo": "manastir",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d2861bbad40",
+   "who": "GUSLAR",
+   "text": "Tvrđava gori pod turskom opsadom, a katapulti bacaju vatru preko bedema.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "tvrdjava 1 · Opsednuta tvrđava"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d787fd435e2",
+   "who": "GUSLAR",
+   "text": "U turskom taboru mladi Turčin nosi sablju sa tri zlatna balčaka. To je sablja kralja Vukašina, Markovog oca.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "tvrdjava 2 · Očeva sablja"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d4f7fee59b3",
+   "who": "GUSLAR",
+   "text": "Marko sa brda gleda kako tvrđava gori. Sablju će uzeti natrag.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "tvrdjava 3 · Pred bedemima"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "db53c8b193e",
+   "who": "GUSLAR",
+   "text": "Musa Kesedžija baca topuz u oblake i dočekuje ga u bele ruke. Drumove i primorje zatvorio je.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "prevoj 1 · Musa Kesedžija"
+   ],
+   "nivo": "prevoj",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "deff959f585",
+   "who": "GUSLAR",
+   "text": "Prevoj je zaleđen, a na vrhu, kraj kule, čeka Musin poslednji odred.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "prevoj 2 · Zimski prevoj"
+   ],
+   "nivo": "prevoj",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d1b9bad6884",
+   "who": "GUSLAR",
+   "text": "Marko vodi Šarca kroz mećavu. Sneg veje, ali junak ne staje.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "prevoj 3 · Mećava"
+   ],
+   "nivo": "prevoj",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d4d31d3299a",
+   "who": "GUSLAR",
+   "text": "Ravijojla vodi Marka u pećinu, gde kristali svetle plavim plamenom.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "pecina 1 · Vilinska pećina"
+   ],
+   "nivo": "pecina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d3a48cf4a5d",
+   "who": "GUSLAR",
+   "text": "I tu su se zavukli Turci, sa bakljama, da pljačkaju vilinsko blago.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "pecina 2 · Uljezi"
+   ],
+   "nivo": "pecina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d93991b8da9",
+   "who": "GUSLAR",
+   "text": "Kristali trepere, a kapi padaju u jezerce. Prolaz pokazuje vila.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "pecina 3 · Kristali"
+   ],
+   "nivo": "pecina",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d110df1c85b",
+   "who": "GUSLAR",
+   "text": "Car zabrani vino uz ramazan, a Marko ga pije javno, pred carevim čaušima.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "podrum 1 · Ramazan"
+   ],
+   "nivo": "podrum",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "da382e84790",
+   "who": "GUSLAR",
+   "text": "Car pozva Marka na odgovor. Marko dođe pred cara sa topuzom, a car mu umesto kazne dade sto dukata da se napije vina.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "podrum 2 · Pred carem"
+   ],
+   "nivo": "podrum",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dd39747644c",
+   "who": "GUSLAR",
+   "text": "U podrumu baklje trepere, a bačve su pune rujnog vina.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "podrum 3 · Podrum"
+   ],
+   "nivo": "podrum",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dcaaf257f45",
+   "who": "GUSLAR",
+   "text": "Turci strelama gađaju sokola nad trskom i slomiše mu krilo.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "mocvara 1 · Ranjeni soko"
+   ],
+   "nivo": "mocvara",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "ddb7576418d",
+   "who": "GUSLAR",
+   "text": "Marko pronađe sokola i previ mu krilo. Soko ne zaboravlja dobro.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "mocvara 2 · Dobro se pamti"
+   ],
+   "nivo": "mocvara",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dc45ff863c3",
+   "who": "GUSLAR",
+   "text": "Soko leti nad močvarom pod mesecom, a strelci vrebaju iz trske.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "mocvara 3 · Noćna močvara"
+   ],
+   "nivo": "mocvara",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d53e30c3bfe",
+   "who": "GUSLAR",
+   "text": "Pred smrt, kaže pesma, Marko ostavi tri kese dukata: jednu crkvi, drugu sirotinji, a treću onome ko ga sahrani.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rudnik 1 · Tri kese dukata"
+   ],
+   "nivo": "rudnik",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d3f43576bbd",
+   "who": "GUSLAR",
+   "text": "Jedna kesa je, kažu, zakopana u starom rudniku. Oklopnici čuvaju izlaz.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rudnik 2 · Stari rudnik"
+   ],
+   "nivo": "rudnik",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "de552b839fc",
+   "who": "GUSLAR",
+   "text": "U rudniku se ljuljaju fenjeri, a kolica škripe po šinama.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rudnik 3 · Okna"
+   ],
+   "nivo": "rudnik",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d5895046787",
+   "who": "GUSLAR",
+   "text": "Arapin je kraj mora podigao kulu i uzima svadbarinu: nijedni svatovi ne prođu dok ne plate.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rusevine 1 · Svadbarina"
+   ],
+   "nivo": "rusevine",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d6d1b458cef",
+   "who": "GUSLAR",
+   "text": "Zarobljene svatove drži u kavezima na ruševinama. Mlada plače, a mladoženja ćuti.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rusevine 2 · Svatovi u kavezima"
+   ],
+   "nivo": "rusevine",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "df5b6c76ed4",
+   "who": "GUSLAR",
+   "text": "Kad Marko razbije kaveze, svatovi će zaigrati kolo.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "rusevine 3 · Kolo"
+   ],
+   "nivo": "rusevine",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dbeeb9d81a0",
+   "who": "GUSLAR",
+   "text": "Marko i Šarac stoje pred rekom u zoru. Preko vode se vidi Urvina planina.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "reka 1 · Obala pred zoru"
+   ],
+   "nivo": "reka",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "de52d30d02e",
+   "who": "GUSLAR",
+   "text": "Turski odred gazi reku. Treba stići do vodenice pre njih.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "reka 2 · Odred na gazu"
+   ],
+   "nivo": "reka",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "ddaa0878103",
+   "who": "GUSLAR",
+   "text": "Vodenica se okreće, a reka teče pod zorom.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "reka 3 · Vodenica"
+   ],
+   "nivo": "reka",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d7888ee4ae7",
+   "who": "GUSLAR",
+   "text": "Majka moli Marka da ostavi četovanje i da ore, jer je dosta krvi prolio.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "oranje 1 · Oranje Markovo"
+   ],
+   "nivo": "oranje",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "df18ddd3359",
+   "who": "GUSLAR",
+   "text": "Marko posluša majku, ali ne ore ni brda ni doline, nego ore careve drumove.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "oranje 2 · Ore drumove"
+   ],
+   "nivo": "oranje",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d4458e77798",
+   "who": "GUSLAR",
+   "text": "Volovi vuku plug, a ptice slede brazdu po drumu.",
+   "kat": "prelaz između pesama",
+   "izvor": "PRELAZ",
+   "mesta": [
+    "oranje 3 · Brazda"
+   ],
+   "nivo": "oranje",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d0d72a327e9",
+   "who": "GUSLAR",
+   "text": "Pod jelom na Urvini Marko sanja vilinsku pećinu. Šarac kraj njega grize mahovinu, a pred njim vila drži gusle javorove: same gude, same udaraju.",
+   "kat": "prelaz između pesama",
+   "izvor": "prelazPages",
+   "mesta": [
+    "san 1 · San Kraljevića Marka"
+   ],
+   "nivo": "san",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "dbd1323b2b8",
+   "who": "GUSLAR",
+   "text": "U pećini su četiri odaje i u svakoj po jedna pesma. Nema tu megdana ni dušmana. Ko pamti pesme, proći će; ko ne pamti, neka pročita zapis na ulazu.",
+   "kat": "prelaz između pesama",
+   "izvor": "prelazPages",
+   "mesta": [
+    "san 2 · Četiri odaje"
+   ],
+   "nivo": "san",
+   "scena": "Prelaz pred pesmu"
+  },
+  {
+   "id": "d96543876bd",
+   "who": "GUSLAR",
+   "text": "Musa Kesedžija zatvorio je drum kroz Kačanik. Tri godine niko ne prođe: ni kaluđer, ni trgovac, ni majka sa detetom. Marko ide da ga otvori.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "0 1 · Klisura Kačanika"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "dcb04815a96",
+   "who": "GUSLAR",
+   "text": "Na kapiji Musini ljudi drže putnike kao roblje. Hrastova vrata čekaju Markov topuz.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "1 1 · Zatočena kapija"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "dc86243c3ea",
+   "who": "GUSLAR",
+   "text": "Gde drum propade u provaliju, Ravijojla budi stare kamenove. Preko ponora niče most od svetlosti.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "2 1 · Vilinski trag"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "d0743210aeb",
+   "who": "GUSLAR",
+   "text": "Šarac je čekao svog gospodara. Gde drum pukne pod nogama, šareni konj ga preskače u jednom skoku.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "3 1 · Šarčev zalet"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "dd5def571bd",
+   "who": "GUSLAR",
+   "text": "Pod zidinama juriša turska horda, a s bedema grmi top. Još jedan barjak deli Marka od Muse.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "4 1 · Poslednji barjak"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "d0573966db5",
+   "who": "GUSLAR",
+   "text": "U klisuri čeka Musa, div sa tri srca. Na trećem mu spava zmija. Megdan se bije dok jedan ne padne.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "5 1 · Tri srca Kačanika"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: poglavlja"
+  },
+  {
+   "id": "d8c6ac42269",
+   "who": "GUSLAR",
+   "text": "Ode Marko caru na divana, sede caru do desna kolena, samur-kalpak na oči namiče, a buzdovan uza se privlači, britku sablju na krilo namiče.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "podrum-divan 1 · Na carevom divanu"
+   ],
+   "nivo": "podrum",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d101a8f3074",
+   "who": "GUSLAR",
+   "text": "„Moj posinko, Kraljeviću Marko! Dobri ljudi o zlu govoriše. Za što kalpak na oči namičeš? Što l’ buzdovan uza se privlačiš? Što li sablju na krilo namičeš?”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "podrum-divan 2 · Car Sulejman"
+   ],
+   "nivo": "podrum",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d073c2ab8b5",
+   "who": "GUSLAR",
+   "text": "„Ako pijem uz ramazan vino, vera mi donosi; ako nosim zelenu dolamu, mlad sam junak i dolikuje mi; ako kalpak na oči namičem, čelo gori, s carem se govori.”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "podrum-divan 3 · Kraljević Marko"
+   ],
+   "nivo": "podrum",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d4de3f0fb16",
+   "who": "GUSLAR",
+   "text": "„Ja se bojim da ne bude kavge; ako bi se zametnula kavga, teško onom tko j’ najbliže Marka!” Gledi care na četiri strane: najbliže je care Sulejmane. Car s’ odmiče, Marko se primiče, dok dotera cara do duvara.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "podrum-divan 4 · Teško onom ko j’ najbliže Marka"
+   ],
+   "nivo": "podrum",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d62d0d1d2fd",
+   "who": "GUSLAR",
+   "text": "Kažu: kad sablja sama ispadne iz kora, Marko će se probuditi i ponovo izaći na drum. U tvom snu ispala je. Sedlaj Šarca.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "san-kraj 1 · Sablja je ispala"
+   ],
+   "nivo": "san",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "dbbfbe87341",
+   "who": "GUSLAR",
+   "text": "Nedelju dana ležao je Marko kraj bunara. Ko god prođe drumom, misli da Marko spava, pa ga daleko obilazi, da ga ne probudi.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "urvina-kraj 1 · Urvina planina"
+   ],
+   "nivo": "urvina",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d7fb7638c2e",
+   "who": "GUSLAR",
+   "text": "Na jelovoj grani ostavi knjigu: jedan ćemer onome ko ga ukopa, drugi da se crkve krase, a treći kljastu i slijepu: „Nek slijepi po svijetu hode, nek pjevaju i spominju Marka.”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "urvina-kraj 2 · Tri ćemera blaga"
+   ],
+   "nivo": "urvina",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "ddccb7fe8a6",
+   "who": "GUSLAR",
+   "text": "Iguman Vaso odveze ga galijom u Svetu Goru i ukopa nasred bele crkve Hilandara. Belege mu nikakve ne stavi, da mu se dušmani ne svete.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "urvina-kraj 3 · Hilandar"
+   ],
+   "nivo": "urvina",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d1e8f42b195",
+   "who": "GUSLAR",
+   "text": "A narod kaže da Marko nije umro. Spava u pećini, Šarac kraj njega grize mahovinu, vila mu drži gusle javorove, a sablja mu se malo-pomalo izvlači iz kora. Kad sama ispadne, Marko će se probuditi.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "urvina-kraj 4 · Kaže pesma…"
+   ],
+   "nivo": "urvina",
+   "scena": "Priča posle scene"
+  },
+  {
+   "id": "d6d1c93a94f",
+   "who": "GUSLAR",
+   "text": "Sedi, brate, da ti pevam o Kraljeviću Marku: kako je Šarca potkovao, kako je po pravdi presudio, kako je careve drumove orao i kako je s Musom megdan delio.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "pocetak 1 · Kaže guslar…"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: početak"
+  },
+  {
+   "id": "daa34c0365f",
+   "who": "GUSLAR",
+   "text": "Beše sin kralja Vukašina i majke Jevrosime. Majka ga je učila: „Nemoj, sine, govoriti krivo, ni po babu, ni po stričevima, već po pravdi Boga istinoga.”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "pocetak 2 · Prilep"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: početak"
+  },
+  {
+   "id": "de17a143b32",
+   "who": "GUSLAR",
+   "text": "Konje je birao tako što ih je hvatao za rep i okretao oko sebe. Samo jedno šareno, bolesno ždrebe nije mogao da pomeri. Njega je vinom othranio, i s njim počinje pesma.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "pocetak 3 · Šarac"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: početak"
+  },
+  {
+   "id": "d0f9c33ba88",
+   "who": "GUSLAR",
+   "text": "Nosiše se letnji dan do podne, i Musa obori Marka u zelenu travu. Ali procvile Kraljeviću Marko: „Đe si danas, posestrimo vilo?” Javi mu se iz oblaka vila, a dok Musa gleda brdu i oblaku, Marko mače nože iz potaje.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "end 1 · Vila iz oblaka"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "dbcc3f1b6bc",
+   "who": "GUSLAR",
+   "text": "A kad stade Marko premetati, al’ u Musi tri srca junačka: jedno mu se srce umorilo, a drugo se jako razigralo, na trećemu ljuta guja spava.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "end 2 · Tri srca junačka"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "d0c284362e7",
+   "who": "GUSLAR",
+   "text": "Kad se guja probudila, još je Marku govorila: „Moli Boga, Kraljeviću Marko, đe se nisam probudila bila dok je Musa u životu bio: od tebe bi trista jada bilo.”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "end 3 · Guja progovara"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "db319e36849",
+   "who": "GUSLAR",
+   "text": "Kad to viđe Kraljeviću Marko, proli suze niz bijelo lice: „Jaoh mene do Boga miloga, đe pogubih od sebe boljega!”",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "end 4 · Od sebe boljega"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "d349666f4c2",
+   "who": "GUSLAR",
+   "text": "Ranjen, ali živ, Marko ide niz klisuru. Šarac korača pored njega, a drum kroz Kačanik ponovo je slobodan. Tako se peva i danas.",
+   "kat": "priča u sceni",
+   "izvor": "STORY_PANELS",
+   "mesta": [
+    "end 5 · Posle megdana"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "d569f638089",
+   "who": "GUSLAR",
+   "text": "U Skopskoj Crnoj Gori, kažu, živi Crni vrač: magli drumove, truje bunare i od senki pravi ljude. Pređi njegovu jarugu i oslobodi put ka Urvini.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "vracara"
+   ],
+   "nivo": "vracara",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d6b64c7cf32",
+   "who": "GUSLAR",
+   "text": "Kažu da je ovde potkovan Šarac i da je jedna potkova ostala u selu. Selo je pod opsadom: oteraj odred i stigni do barjaka na kraju puta.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "selo"
+   ],
+   "nivo": "selo",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d7181b0e650",
+   "who": "GUSLAR",
+   "text": "Niz Ibar sede guslari i pevaju kako si pogubio Musu, Marko. Turci hoće da im polome gusle i ućutkaju pesmu, a na kraju klisure čeka Musin brat, Đemo Brđanin. Odbrani guslare: dok se peva, bes ti raste.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "klisura"
+   ],
+   "nivo": "klisura",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d391f56272c",
+   "who": "GUSLAR",
+   "text": "Miroč-planina. Pobratim Miloš je zapevao lepše od vile, a vila Ravijojla to ne prašta. Stigni je na Šarcu, pa spasi orliće sa bukve koju pale palikuće.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "suma"
+   ],
+   "nivo": "suma",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d6a769dd58c",
+   "who": "GUSLAR",
+   "text": "Kraljevi se svađaju čije je carstvo, a carska knjiga čuva se u manastiru. Oklopnici čuvaju prilaz. Probij se, Marko, pa presudi po pravdi.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "manastir"
+   ],
+   "nivo": "manastir",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "dcf9a89df2a",
+   "who": "GUSLAR",
+   "text": "Tvrđava gori pod opsadom. U turskom taboru, kažu, mladi Turčin za pojasom nosi sablju sa tri zlatna balčaka: sablju Markovog oca. Probij se kroz opsadu i uzmi je natrag.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "tvrdjava"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "de27c3964ef",
+   "who": "GUSLAR",
+   "text": "Musa Kesedžija je zatvorio drumove i primorje. Prevoj je zaleđen, a njegov poslednji odred čeka na vrhu.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "prevoj"
+   ],
+   "nivo": "prevoj",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "dc8b8780ff5",
+   "who": "GUSLAR",
+   "text": "Ovo je moja pećina, Marko. Kristali pokazuju prolaz, a Turci su se zavukli i ovde.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "pecina"
+   ],
+   "nivo": "pecina",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d4fed90d502",
+   "who": "GUSLAR",
+   "text": "Car je zabranio vino uz ramazan, a ti ga piješ javno, Marko. Carevi čauši idu da ti proliju bačve. Stigni ih pre nego što izbiju slavine, pa pij.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "podrum"
+   ],
+   "nivo": "podrum",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "dca8a0ff4b5",
+   "who": "GUSLAR",
+   "text": "Kroz ovu trsku Turci su jurili sokola i slomili mu krilo. Nađi ga i previj mu krilo: soko ne zaboravlja dobro. Strelci vrebaju iz trske.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "mocvara"
+   ],
+   "nivo": "mocvara",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "ddbb2503f54",
+   "who": "GUSLAR",
+   "text": "Pred smrt, kažu, Marko je ostavio tri kese dukata, a jedna je zakopana u ovom rudniku. Oklopnici čuvaju izlaz, pazi na grede.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "rudnik"
+   ],
+   "nivo": "rudnik",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d20ff9e3428",
+   "who": "GUSLAR",
+   "text": "Arapin je kraj mora podigao kulu i uzima svadbarinu: ni jedni svatovi ne prođu dok ne plate. Zarobljene svatove drži u kavezima. Razbij kaveze, Marko, pa ukini svadbarinu.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "rusevine"
+   ],
+   "nivo": "rusevine",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d13ad068104",
+   "who": "GUSLAR",
+   "text": "Zora je blizu, a preko reke se vidi Urvina planina. Stigni do vodenice pre nego što odred pređe reku.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "reka"
+   ],
+   "nivo": "reka",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "ded0319ce35",
+   "who": "GUSLAR",
+   "text": "Ovo je san, Marko, i u njemu moja pećina. Četiri odaje, četiri pesme. Topuz ti ovde služi samo da kucneš u kamen: pročitaj zapis pred svakom odajom, pa pogodi šta pesma traži.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "san"
+   ],
+   "nivo": "san",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d4db99650b5",
+   "who": "GUSLAR",
+   "text": "Nedelja je, pre jarkog sunca. Šarac posrće i suze roni, a vila s planine zove. Niko ti ovde ne stoji na putu, Marko: popni se do vrha, do dve tanke jele i bunara među njima.",
+   "kat": "uvod nivoa",
+   "izvor": "LEVEL_INTRO",
+   "mesta": [
+    "urvina"
+   ],
+   "nivo": "urvina",
+   "scena": "Uvod nivoa"
+  },
+  {
+   "id": "d2b7254aa31",
+   "who": "GUSLAR",
+   "text": "Noć je pala.",
+   "kat": "uvod nivoa",
+   "izvor": "VARIANTS",
+   "mesta": [
+    "night"
+   ],
+   "napomena": "deo koji se dodaje uvodu nivoa",
+   "nivo": "sve",
+   "scena": "Uvod nivoa (noć, oluja)"
+  },
+  {
+   "id": "d9dfa92cca9",
+   "who": "GUSLAR",
+   "text": "Oluja bije, više ih je.",
+   "kat": "uvod nivoa",
+   "izvor": "VARIANTS",
+   "mesta": [
+    "storm"
+   ],
+   "napomena": "deo koji se dodaje uvodu nivoa",
+   "nivo": "sve",
+   "scena": "Uvod nivoa (noć, oluja)"
+  },
+  {
+   "id": "dbd819c4a4d",
+   "who": "MARKO",
+   "text": "„Božja pomoć, Kosovko devojko! Lepa ti si, seko, mlađa bila, krasna ti si stasa i uzrasta; al’ te, seko, kosa pokvarila: jer si tako, seko, osedila?”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 1"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "daca586fbf8",
+   "who": "KOSOVKA DEVOJKA",
+   "text": "„Evo ima devet godin’ dana kako dođe Arap prekomorac, pa od cara Kosovo zakupi: ko s’ udaje, trideset dukata; ko se ženi, trideset i četiri. A u mene braća siromašna, nema blaga da Arapu daju.”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 2"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "d5feee9164f",
+   "who": "KOSOVKA DEVOJKA",
+   "text": "„Ovo meni tužnoj reda dođe da dovečer odem Arapinu. Volim, brate, izgubiti glavu nego ljubiti svoj zemlji dušmana!”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 3"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "d7777c9009e",
+   "who": "MARKO",
+   "text": "„Ne šali se, u vodu ne skači, nemoj, seko, duše ogrešiti! Na ti, seko, trideset dukata, pak ti idi svome belom dvoru; samo kaži Arapove dvore, ja ću platit svadbarinu za te.”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 4"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "d6f4e6e45fa",
+   "who": "KOSOVKA DEVOJKA",
+   "text": "„Nisu dvori, već šatori pusti. Gdi se onaj svilen barjak vije, onde j’ šator crnog Arapina, sva avlija glavam’ nakićena. Arap ima četrdeset slugu što čuvaju stražu oko njega.”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 5"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "d3c890150ae",
+   "who": "MARKO",
+   "text": "„Oj davori, ti Kosovo ravno! Što si danas dočekalo, tužno, posle našeg kneza čestitoga, da Arapi sad po tebi sude! Danas ću vas, braćo, osvetiti, osvetiti, ili poginuti.”",
+   "kat": "razgovor u sceni",
+   "izvor": "KOSOVKA_RAZGOVOR",
+   "mesta": [
+    "KOSOVKA_RAZGOVOR 6"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "dbaa066eda6",
+   "who": "GUSLAR",
+   "text": "Dođe ferman od cara turskoga Mustaf-agi da ide na vojsku. Ode Mujo na carevu vojsku, pripasao sablju okovanu; gleda sablju malo i veliko, nikome se izvaditi ne da.",
+   "kat": "razgovor u sceni",
+   "izvor": "SABLJA_RAZGOVOR",
+   "mesta": [
+    "SABLJA_RAZGOVOR 1"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d8566d65e6c",
+   "who": "MARKO",
+   "text": "„Oj Boga ti, tursko momče mlado! Otkud tebe ova britka sablja? Ili si je za blago kupio? Ili si je u boju dobio? Ili ti je od baba ostala?”",
+   "kat": "razgovor u sceni",
+   "izvor": "SABLJA_RAZGOVOR",
+   "mesta": [
+    "SABLJA_RAZGOVOR 2"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d9090986abb",
+   "who": "MUSTAF-AGA",
+   "text": "„Kad me pitaš, pravo ću ti kazat’: na Marici, na vodi studenoj, sestra mi je izvadila ranjena junaka. Na junaku rana sedamnaest, o bedri mu sablja okovana. Ja mu manuh, odsjekoh mu glavu.”",
+   "kat": "razgovor u sceni",
+   "izvor": "SABLJA_RAZGOVOR",
+   "mesta": [
+    "SABLJA_RAZGOVOR 3"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d852b8c5274",
+   "who": "MARKO",
+   "text": "„Zašto, Ture, da od Boga nađeš! Nisi mu rane izvidao? Danas bih ti dao agaluke kod našega cara čestitoga.”",
+   "kat": "razgovor u sceni",
+   "izvor": "SABLJA_RAZGOVOR",
+   "mesta": [
+    "SABLJA_RAZGOVOR 4"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d138e9ed752",
+   "who": "MUSTAF-AGA",
+   "text": "„Be ne luduj, kaurine Marko! Već daj amo sablju okovanu.”",
+   "kat": "razgovor u sceni",
+   "izvor": "SABLJA_RAZGOVOR",
+   "mesta": [
+    "SABLJA_RAZGOVOR 5"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d5354a00567",
+   "who": "GUSLAR",
+   "text": "Pojezdiše do dva pobratima preko krasna Miroča planine: jedno je Kraljeviću Marko, a drugo je vojvoda Milošu.",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_STIH",
+   "mesta": [
+    "PV_STIH 1"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d11a1152f6b",
+   "who": "GUSLAR",
+   "text": "Napoporedo jezde dobre konje, napoporedo nose koplja bojna, jedan drugom belo lice ljubi, od miloste do dva pobratima.",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_STIH",
+   "mesta": [
+    "PV_STIH 2"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d7a69f9dd74",
+   "who": "MARKO",
+   "text": "„A moj brate, vojvoda Milošu, teško me je sanak obrvao. Pevaj, brate, te me razgovaraj!”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_STIH",
+   "mesta": [
+    "PV_STIH 3"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d8b01daa2d6",
+   "who": "MILOŠ",
+   "text": "„Ja bih tebe, brate, popevao, al’ sam sinoć mnogo pio vino u planini s vilom Ravijojlom, pak je mene zapretila vila: ako mene čuje da popevam, hoće mene ona ustreliti i u grlo i u srce živo.”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_STIH",
+   "mesta": [
+    "PV_STIH 4"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d8c224c6375",
+   "who": "MARKO",
+   "text": "„Pevaj, brate, ti se ne boj vile dok je mene, Kraljevića Marka, i mojega vidovita Šarca, i mojega šestopera zlatna!”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_STIH",
+   "mesta": [
+    "PV_STIH 5"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "df2351529dd",
+   "who": "GUSLAR",
+   "text": "Turci idu na selo, a žene i starci nisu stigli do crkve. Ne daj im do njih, Marko: četiri čete, sa obe strane.",
+   "kat": "odbrana: uvod",
+   "izvor": "BRANIK",
+   "mesta": [
+    "selo (Seljani)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "d0a17431412",
+   "who": "GUSLAR",
+   "text": "Selo je odbranjeno. „Bog ti dao zdravlje, Kraljeviću!”",
+   "kat": "odbrana: kraj",
+   "izvor": "BRANIK",
+   "mesta": [
+    "selo (Seljani)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "de8bf5fa363",
+   "who": "GUSLAR",
+   "text": "Kaluđeri nose knjige starostavne iz Samodreže, a Turci hoće da ih otmu. Odbrani ih od četiri čete.",
+   "kat": "odbrana: uvod",
+   "izvor": "BRANIK",
+   "mesta": [
+    "kaluderi (Kaluđeri)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "d2db9fb7a83",
+   "who": "GUSLAR",
+   "text": "Kaluđeri su sačuvali knjige. „Bog da prosti tvoje grehe, Marko.”",
+   "kat": "odbrana: kraj",
+   "izvor": "BRANIK",
+   "mesta": [
+    "kaluderi (Kaluđeri)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "d212f78ff83",
+   "who": "GUSLAR",
+   "text": "Putnici čekaju skelu, a iz trske izlaze Turci. Čuvaj ih dok skela ne dođe: četiri čete.",
+   "kat": "odbrana: uvod",
+   "izvor": "BRANIK",
+   "mesta": [
+    "putnici (Putnici)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "d644959cfdf",
+   "who": "GUSLAR",
+   "text": "Skela je stigla i putnici su prešli. Trgovac ti daruje dukate.",
+   "kat": "odbrana: kraj",
+   "izvor": "BRANIK",
+   "mesta": [
+    "putnici (Putnici)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "da41cdb6581",
+   "who": "GUSLAR",
+   "text": "Hodočasnici idu u Markov manastir, a vrač je na njih poslao senke i janičare. Odbrani ih: četiri čete.",
+   "kat": "odbrana: uvod",
+   "izvor": "BRANIK",
+   "mesta": [
+    "hodocasnici (Hodočasnici)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "dacb3745662",
+   "who": "GUSLAR",
+   "text": "Hodočasnici su prošli kroz jarugu. „Hvala ti, Marko, u Prilepu ćemo paliti sveću za tebe.”",
+   "kat": "odbrana: kraj",
+   "izvor": "BRANIK",
+   "mesta": [
+    "hodocasnici (Hodočasnici)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "dbbc6188772",
+   "who": "GUSLAR",
+   "text": "Rudari Novog Brda izašli su iz okna, a Turci hoće srebro. Čuvaj ih od četiri čete.",
+   "kat": "odbrana: uvod",
+   "izvor": "BRANIK",
+   "mesta": [
+    "rudari (Rudari)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "dc90fafe839",
+   "who": "GUSLAR",
+   "text": "Srebro je ostalo rudarima. Daruju ti kesu dukata.",
+   "kat": "odbrana: kraj",
+   "izvor": "BRANIK",
+   "mesta": [
+    "rudari (Rudari)"
+   ],
+   "nivo": "sve",
+   "scena": "Odbrana (branik)"
+  },
+  {
+   "id": "d9c9d4936e4",
+   "who": "RAVIJOJLA",
+   "text": "Musina straža zove pojačanje! Tri talasa dolaze, a putnici čekaju iza tebe.",
+   "kat": "vodič",
+   "izvor": "DEF_TEXT",
+   "mesta": [
+    "DEF_TEXT.0"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: odbrana kapije"
+  },
+  {
+   "id": "da85d22f841",
+   "who": "RAVIJOJLA",
+   "text": "Putnici beže kroz kapiju! Zadrži pojačanje dok svi ne pređu. Tri talasa dolaze sa obe strane.",
+   "kat": "vodič",
+   "izvor": "DEF_TEXT",
+   "mesta": [
+    "DEF_TEXT.1"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: odbrana kapije"
+  },
+  {
+   "id": "d2a302d0315",
+   "who": "RAVIJOJLA",
+   "text": "Obruč se steže oko poslednjeg barjaka! Odbij tri talasa.",
+   "kat": "vodič",
+   "izvor": "DEF_TEXT",
+   "mesta": [
+    "DEF_TEXT.4"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: odbrana kapije"
+  },
+  {
+   "id": "de980763dda",
+   "who": "RAVIJOJLA",
+   "text": "A i D te vode drumom, a Space je skok. Topuz je na J, teški udarac na K, a štit dižeš na L.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.osnove"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d3c8aa15f3a",
+   "who": "RAVIJOJLA",
+   "text": "Udri ga topuzom (J). Kad on zamahne, podigni štit (L) ili odskoči, pa uzvrati.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.osnove2"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d104e9574a0",
+   "who": "RAVIJOJLA",
+   "text": "Vino iz čuture (Q) vida rane i daje snagu. Popij ga kad zdravlje padne.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.osnove3"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dbe7157f1e0",
+   "who": "RAVIJOJLA",
+   "text": "Od danas ti je vila Ravijojla posestrima. Kad zatreba, pozovi je: E. Omamiće dušmane oko tebe ili će ti zalečiti rane.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.vila"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d1d9979941e",
+   "who": "RAVIJOJLA",
+   "text": "Lestve! Priđi i drži W (ili gore na džojstiku).",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.ladder"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dd1f42f817a",
+   "who": "RAVIJOJLA",
+   "text": "Kolje! Preskoči ga — a Turčina možeš baciti na njega.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.spikes"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d167a7fedfe",
+   "who": "RAVIJOJLA",
+   "text": "Ove daske popuštaju. Ne zastaj na njima!",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.crumble"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d0691331eac",
+   "who": "RAVIJOJLA",
+   "text": "Ova kapija se zatvori pre nego što do nje dotrčiš. Ostavi Vilin trag kraj kapije (V), vrati se do poluge i povuci je (E), pa se tragom vrati (V) dok je otvorena.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.vreme"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d57086af6fa",
+   "who": "RAVIJOJLA",
+   "text": "Nad jarugom vise srebrne kuke. Baci Ravijojlin lanac na prvu (C), pa iz leta na drugu. Ko lanac nema, silazi lestvama i ide dnom.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.kuke"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d05572da3e5",
+   "who": "RAVIJOJLA",
+   "text": "Očeva sablja nije topuz. Seče brže (J J J), rane krvare, a treći rez je ubod dugog dometa. K je prolet: prođeš kroz dušmane i izađeš im za leđa. Štit i oklop je zaustavljaju: za njih vrati topuz (G).",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.sablja"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d02764e34c2",
+   "who": "RAVIJOJLA",
+   "text": "Štitonoša zaklanja strelca: stoji pred njim i ne da ti da priđeš. Preskoči ga, slomi mu gard teškim udarcem (K), ili vrati strelu odbijanjem (L).",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.tandem1"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d31cb32910f",
+   "who": "RAVIJOJLA",
+   "text": "Ova dvojica rade zajedno: jedan te drži spreda, a drugi ti zalazi za leđa. Ne daj da te uklešte: obori prvo onoga koji trči.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.tandem2"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d29219438e5",
+   "who": "RAVIJOJLA",
+   "text": "Put se račva. Lestvama preko bedema, gde vrebaju strelci, ili kroz prolaz ispod njega, gde čeka straža.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.bedem"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d55fcbf7b87",
+   "who": "RAVIJOJLA",
+   "text": "Most je truo. Pretrči ga, ili siđi lestvama i prođi dnom jaruge, tamo leži kovčeg.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.jaruga"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dd45fc5b048",
+   "who": "RAVIJOJLA",
+   "text": "Balvan se njiše. Sačekaj da prođe, pa protrči ispod.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.log"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d928ad1a0ba",
+   "who": "RAVIJOJLA",
+   "text": "Kamenje pada sa litice. Prati senke na zemlji!",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.rocks"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "de9b7a219d6",
+   "who": "RAVIJOJLA",
+   "text": "Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.barrels"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "def054ce4fa",
+   "who": "RAVIJOJLA",
+   "text": "Povuci polugu, pa trči — kapija se brzo zatvara.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.timed"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d121a69972a",
+   "who": "RAVIJOJLA",
+   "text": "Iza ove kapije je riznica. Ploča u zemlji otvara kapiju dok je nešto pritiska: dogurni teški sanduk na ploču (samo hodaj u njega), pa uđi sa W.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.plate"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d44f3ce034f",
+   "who": "RAVIJOJLA",
+   "text": "Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.slovo"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dc44568134f",
+   "who": "RAVIJOJLA",
+   "text": "Vilinska moć! Uzmi je i topuz će ti zasijati.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.moc"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dd1ef6bdd9e",
+   "who": "RAVIJOJLA",
+   "text": "Kovčeg! Udari ga topuzom da ga otvoriš.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.chest"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d75f2e14636",
+   "who": "RAVIJOJLA",
+   "text": "Između ova dva zida možeš da se penješ odskakanjem.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.shaft"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "da88568815e",
+   "who": "RAVIJOJLA",
+   "text": "Megdan! Pazi na svaki njegov treći napad.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.boss"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dff0d1c0df6",
+   "who": "RAVIJOJLA",
+   "text": "Sa daske ili poda kule siđeš sa S + Space (na džojstiku dole + A).",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.drop"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d1af03a1186",
+   "who": "RAVIJOJLA",
+   "text": "S + K je aperkat: diže Turčina u vazduh! Odmah Space za njim, pa J J J u skoku — treći udarac ga zakuca o zemlju.",
+   "kat": "uputstvo",
+   "izvor": "HINTS",
+   "mesta": [
+    "HINTS.launch"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d6a58a96c24",
+   "who": "RAVIJOJLA",
+   "text": "Crni vrač ne hoda: nestaje u dimu i pojavljuje se drugde. Čini mu odbij (L) pravo u njega, štap mu odbij pa udri dok je iscrpljen. Kad se podeli u senke, Vilinsko oko (O) pokazuje pravog.",
+   "kat": "uputstvo",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.vrac"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d7e4f7f9ffb",
+   "who": "RAVIJOJLA",
+   "text": "Hasan-aga: nijedan topuz ne probija njegov oklop. Navuci ga da se zaleti u stub, pa udri dok je ošamućen.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.hasan"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d10588b56fe",
+   "who": "RAVIJOJLA",
+   "text": "Akindžijski beg juriša na konju. Skoči na gredu ili odbij (L) kad prolazi, udri dok okreće konja i obori ga na zemlju.",
+   "kat": "uputstvo",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.beg"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d5d1be20c2b",
+   "who": "RAVIJOJLA",
+   "text": "Ognjeni aga pali ulje po podu. Kad vikne „ulje“, skači na grede, pa ga udri dok je zadihan.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.ognjeni"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "df32bd52412",
+   "who": "RAVIJOJLA",
+   "text": "Dok barjak stoji na steni, bajraktar ne prima udarce i zove pojačanje. Popni se i obori barjak.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.bajraktar"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dca6a73471c",
+   "who": "RAVIJOJLA",
+   "text": "Janičarski aga skače sa grede na gredu i napada sabljom odozgo. Dočekaj ga u vazduhu.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.janicar"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "daddb80e4a8",
+   "who": "RAVIJOJLA",
+   "text": "Arapin baca koplja sa vrha kule. Odbij koplje (L) nazad u njega, pa se popni na kulu.",
+   "kat": "uputstvo",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.arapin"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dcebb652247",
+   "who": "RAVIJOJLA",
+   "text": "Tufekdžija-baša gađa sa kule. Kad vidiš crvenu liniju, skloni se iza kamena ili čučni, pa se popni lestvama.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.basa"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d0ada2c9689",
+   "who": "RAVIJOJLA",
+   "text": "Lovac-aga pušta pse na tebe. Pobij čopor, pa njega.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.lovac"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d683f18d7df",
+   "who": "RAVIJOJLA",
+   "text": "Aždaja iz pećine. Krljušt ne puca: kad bljune vatru, sakrij se iza kamena ili čučni, a kad posle ujeda zarije glavu u zemlju, udri.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.azdaja"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d5639302205",
+   "who": "RAVIJOJLA",
+   "text": "Dželat seče sekirom i cepa grede pod tobom. Kad mu se sekira zabije, udri, ali ne ostani bez greda.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.dzelat"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d42acdf7d98",
+   "who": "RAVIJOJLA",
+   "text": "Đemo Brđanin, Musin brat, došao je da osveti brata. Baca buzdovan preko polja. Preskoči ga dok leti i dok se vraća. Bez buzdovana Đemo je ranjiv.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.djemo"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d5030120699",
+   "who": "RAVIJOJLA",
+   "text": "Tri janičara sa carskim blagom. Ne daj im da te opkole: razdvoji ih.",
+   "kat": "savet",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.trio"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d90a4b4e776",
+   "who": "RAVIJOJLA",
+   "text": "Kopljanik-baša drži selo pod opsadom. Gađa kopljem izdaleka i preskoči te kad mu priđeš. Odbij koplje (L) i ne daj mu mesta.",
+   "kat": "uputstvo",
+   "izvor": "KIT_INTRO",
+   "mesta": [
+    "KIT_INTRO.kopljanik"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dfb1959e8ab",
+   "who": "GUSLAR",
+   "text": "Pod Prilepom pričaju: mladi Marko napojio je vilu u žegi, a vila mu za uzvrat dade snagu kakvu niko nema.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.selo"
+   ],
+   "nivo": "selo",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d11a3c2782a",
+   "who": "GUSLAR",
+   "text": "Šarac je pio vino iz istog kabla s Markom; zato ga, kažu, nijedan konj nije stizao kroz klisuru.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.klisura"
+   ],
+   "nivo": "klisura",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "dafedc256d0",
+   "who": "GUSLAR",
+   "text": "Orao je Marku čuvao san u gori, raširenih krila nad njim, jer ga je Marko nekad spasao od žeđi.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.suma"
+   ],
+   "nivo": "suma",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d84444afd67",
+   "who": "GUSLAR",
+   "text": "Marko je krunu presudio Urošu po pravdi, iako je znao da će se otac Vukašin razgneviti.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.manastir"
+   ],
+   "nivo": "manastir",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "de8ec7e51a7",
+   "who": "GUSLAR",
+   "text": "Po zlatnim balčacima Marko je prepoznao očevu sablju na tuđem pojasu i tražio račun za oca.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.tvrdjava"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d3e7c68cb5e",
+   "who": "GUSLAR",
+   "text": "Musa Kesedžija je zatvorio drumove i primorje; samo je Marko smeo da izađe pred njega.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.prevoj"
+   ],
+   "nivo": "prevoj",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "df1c6e1bd83",
+   "who": "GUSLAR",
+   "text": "Vila Ravijojla bila je Markova posestrima; kad ga savlada muka, dozove je i ona doleti.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.pecina"
+   ],
+   "nivo": "pecina",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d10c7a9a722",
+   "who": "GUSLAR",
+   "text": "Marko je za ramazan pio vino javno; kad su ga tužili caru, reče da mu stare rane traže vina.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.podrum"
+   ],
+   "nivo": "podrum",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d8b6888f562",
+   "who": "GUSLAR",
+   "text": "Dok je Marko ležao ranjen kraj druma, soko mu je doneo vode u kljunu i krilom mu pravio hlad.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.mocvara"
+   ],
+   "nivo": "mocvara",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "dae1975d15d",
+   "who": "GUSLAR",
+   "text": "Pred smrt Marko ostavi tri kese dukata: za onoga ko ga sahrani, za crkve i za sirotinju.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.rudnik"
+   ],
+   "nivo": "rudnik",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d2cf74df7d6",
+   "who": "GUSLAR",
+   "text": "Arapin je od svake svadbe uzimao danak, dok nije došao Marko i ukinuo svadbarinu.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.rusevine"
+   ],
+   "nivo": "rusevine",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d134bfc804a",
+   "who": "GUSLAR",
+   "text": "Na Urvini, kažu, Marko prelomi koplje na sedam komada, da ne padne u turske ruke.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.reka"
+   ],
+   "nivo": "reka",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d5a48372e00",
+   "who": "GUSLAR",
+   "text": "Majka reče Marku da ostavi boj i ore; Marko zaora careve drumove, a janičarima što mu pogaziše oranje uze tri tovara blaga.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.oranje"
+   ],
+   "nivo": "oranje",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d49aadc5443",
+   "who": "GUSLAR",
+   "text": "Iz Azačke tamnice Marko je poslao knjigu po sivom sokolu. Dojčilo ju je pročitao u Solunu, obojio lice kao Arapin i dojahao po pobratima.",
+   "kat": "zapis",
+   "izvor": "ZAPISI",
+   "mesta": [
+    "ZAPISI.azak"
+   ],
+   "nivo": "azak",
+   "scena": "Zapis legende"
+  },
+  {
+   "id": "d9de26c94d9",
+   "who": "RAVIJOJLA",
+   "text": "Klizanje. U trku kliziš po zemlji: ispod niskih otvora i ispod udaraca.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć klizanje"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "de4d2085fa5",
+   "who": "RAVIJOJLA",
+   "text": "Trk po zidu. Na zidu sa Ravijojlinim šarama Marko pretrči nekoliko koraka vodoravno, pa skoči sa njega (SPACE).",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć zidotrk"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dfa7a9d2254",
+   "who": "RAVIJOJLA",
+   "text": "Vazdušni kombo. W + K diže dušmanina, SPACE skače za njim, J J ga drži gore, treći udarac ga zakuca.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć kombo"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dbab0bb0e9e",
+   "who": "RAVIJOJLA",
+   "text": "Ravijojlin lanac. Lanac te privuče do srebrne kuke, laka dušmanina privuče k tebi, a štitonoši otme štit.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć lanac"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d085c7d6d6b",
+   "who": "RAVIJOJLA",
+   "text": "Vilinsko oko. Dok držiš O, par sekundi vidiš skrivene platforme, zidove koji su varka i tajne prolaze.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć oko"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d390f233366",
+   "who": "RAVIJOJLA",
+   "text": "Amajlije. Tri mesta za amajlije, posle i pet. Menjaju se samo na Ravijojlinom izvoru.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć amajlije"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d9086e457c5",
+   "who": "RAVIJOJLA",
+   "text": "Odmor i putovanje. Na izvoru se odmoriš (zdravlje, vino, vila), pa putuješ do svakog izvora koji si već našao.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć putovanje"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d5904bda21d",
+   "who": "RAVIJOJLA",
+   "text": "Oznake na mapi. B ostavlja oznaku sa sličicom ovog mesta na mapi (M), da se vratiš kad dobiješ moć.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć oznake"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d19ffcd3c4f",
+   "who": "RAVIJOJLA",
+   "text": "Potres. Junački udar: topuz u zemlju, talas ide na obe strane i diže sve na putu. 50 besa.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć potres"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d64428e94ae",
+   "who": "RAVIJOJLA",
+   "text": "Šarčev gaz. Junački udar: Marko zazviždi, Šarac proleti i pregazi ceo red dušmana. 100 besa.",
+   "kat": "uputstvo",
+   "izvor": "MOCI2",
+   "mesta": [
+    "moć gaz"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dead0852122",
+   "who": "RAVIJOJLA",
+   "text": "Janičar: Savršeno odbijanje (L): kontra mu nanosi dvostruku štetu.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana sword"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d85c9958681",
+   "who": "RAVIJOJLA",
+   "text": "Štitonoša: Sporo se okreće: kolutom iza leđa pa udri. Teški udarac, uvis, juriš i Lomilac izbijaju štit.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana shield"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "df224c82da6",
+   "who": "RAVIJOJLA",
+   "text": "Strelac: Odbij strelu (L): sopstvena strela ga obara odmah. Izbliza je slab.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana archer"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "df8e2f27d1d",
+   "who": "RAVIJOJLA",
+   "text": "Akindžija: Posle skoka je zanet: tada su udarci jači za pola. Udar nadole ga obara.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana akindzija"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "df43aef32d8",
+   "who": "RAVIJOJLA",
+   "text": "Oklopnik: Teški udarci lome oklop (tri puta). Pun zamah, udar nadole i Lomilac ga skidaju odjednom.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana oklopnik"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d639a657508",
+   "who": "RAVIJOJLA",
+   "text": "Palikuća: Udari ga dok podiže baklju: ispusti je i zapali sebe.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana palikuca"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dd507da5fda",
+   "who": "RAVIJOJLA",
+   "text": "Kopljanik: Uđi mu pod koplje ili ga napadni odozgo — izbliza je spor.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana kopljanik"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d25778d8cbd",
+   "who": "RAVIJOJLA",
+   "text": "Ratni pas: Malo izdrži: aperkat (S+K) ga baca u vazduh.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana pas"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d4aa3222df8",
+   "who": "RAVIJOJLA",
+   "text": "Tufekdžija: Posle pucnja dugo puni pušku: tada je bez odbrane.",
+   "kat": "uputstvo",
+   "izvor": "FOE_BOOK",
+   "mesta": [
+    "knjiga dušmana tufekdzija"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d90f6620833",
+   "who": "GUSLAR",
+   "text": "„Laživ svijete, moj lijepi cvijete! Lijep ti bješe, ja za malo hodah: ta za malo, tri stotin godina. Zeman dođe da svijetom promijenim.”",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_REC",
+   "mesta": [
+    "VRH_REC 1"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "d7b96fdfa1d",
+   "who": "GUSLAR",
+   "text": "Sto i šezdeset ljeta bili su zajedno. Da mu Šarac Turcima ne dopadne, da ne nosi vode ni đuguma, Marko ga posiječe, pa ga ukopa bolje nego brata Andriju.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_REC",
+   "mesta": [
+    "VRH_REC 2"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "d48fa5fd6db",
+   "who": "GUSLAR",
+   "text": "Britku sablju prebi na četvoro, a bojno koplje slomi na sedmoro i baci ga u jelove grane: da se Turci njima ne ponose.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_REC",
+   "mesta": [
+    "VRH_REC 3"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "de04ef0f76c",
+   "who": "GUSLAR",
+   "text": "„Kad moj topuz iz mora izišao, onda ovaki đetić postanuo!”",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_REC",
+   "mesta": [
+    "VRH_REC 4"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "dce6aaf5a31",
+   "who": "GUSLAR",
+   "text": "Zelenu dolamu prostrije pod jelom, prekrsti se, samur-kalpak na oči namače. Dolje leže, gore ne ustade.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_REC",
+   "mesta": [
+    "VRH_REC 5"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "df52e9645c4",
+   "who": "RAVIJOJLA",
+   "text": "Pobratime, Kraljeviću Marko, znadeš li što ti konj posrće? Žali Šarac tebe, gospodara, jer ćete se brzo rastanuti.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_VILA",
+   "mesta": [
+    "VRH_VILA 1"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "d71a8be973a",
+   "who": "RAVIJOJLA",
+   "text": "Ti ne možeš umrijeti, Marko, od junaka ni od oštre sablje, od topuza ni od bojna koplja. Umrijećeš od Boga, od starog krvnika.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_VILA",
+   "mesta": [
+    "VRH_VILA 2"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "d246dfe2bae",
+   "who": "RAVIJOJLA",
+   "text": "Kada budeš visu na planinu, opazićeš dvije tanke jele: svu su goru vrhom nadvisile. Među njima bunar voda ima. Nadnesi se, pa ćeš vidjeti.",
+   "kat": "razgovor u sceni",
+   "izvor": "VRH_VILA",
+   "mesta": [
+    "VRH_VILA 3"
+   ],
+   "nivo": "urvina",
+   "scena": "Smrt Marka Kraljevića"
+  },
+  {
+   "id": "d1e96925820",
+   "who": "RAVIJOJLA",
+   "text": "„Ne pevaj mi, Milošu, kroz goru, gora moja, i pesma je moja!”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_VILA",
+   "mesta": [
+    "PV_VILA 1"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d37afba0313",
+   "who": "RAVIJOJLA",
+   "text": "„Lepše grlo u vile planinke, nego u svih junaka carevih!”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_VILA",
+   "mesta": [
+    "PV_VILA 2"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "ddde937a74a",
+   "who": "RAVIJOJLA",
+   "text": "„Kad ne ćutiš, ja ću te ućutati, i u grlo i u srce živo!”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_VILA",
+   "mesta": [
+    "PV_VILA 3"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d70122f8ef0",
+   "who": "MILOŠ",
+   "text": "„Pevam, braćo, od starih kraljeva, kako j’ koji držô kraljevinu po čestitoj po Maćedoniji.”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_MILOS",
+   "mesta": [
+    "PV_MILOS 1"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d35691cd959",
+   "who": "MILOŠ",
+   "text": "„Kralj Milutin Nagoričino zida, a Vukašin Markov manastir gradi, zadužbinu za dušu i za spomen.”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_MILOS",
+   "mesta": [
+    "PV_MILOS 2"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d56c6340476",
+   "who": "MILOŠ",
+   "text": "„Car Dušan je Svete Arhanđele, što ih vide i gora i voda; svaki sebe ima zadužbinu.”",
+   "kat": "razgovor u sceni",
+   "izvor": "PV_MILOS",
+   "mesta": [
+    "PV_MILOS 3"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d41f5aefd94",
+   "who": "GUSLAR",
+   "text": "„Bože mili, na svem tebi hvala, kad brž’ ode sa junaka glava!” Četiri sluge Marko ostavi za pravdu, da kazuju kako j’ bilo Arapu i Marku. Svadbarine na Kosovu više nema.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "slay · game.js:256"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "d7bfe97e465",
+   "who": "GUSLAR",
+   "text": "„Bogom brate, Kraljeviću Marko, evo tebe tri tovara blaga.” Marko neće da uzima blaga, već on njima tri tovara vrati, što su dali Đemu Brđaninu. Pa uze ribe od Orida i ode bijelu Prilipu, te on slavi svoga svetitelja.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "slay · game.js:256"
+   ],
+   "nivo": "musa",
+   "scena": "Megdan sa Musom"
+  },
+  {
+   "id": "df4413a1360",
+   "who": "GUSLAR",
+   "text": "Pozna Marko očinu sablju: tri balčaka, tri zlatna. Ne nosi je Turčin više.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "dropSablja · game.js:259"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d83512a99cf",
+   "who": "STARAC",
+   "text": "Tri godine niko ne prođe ovim drumom. Musa Kesedžija zatvorio je drumove i primorje.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateTravelers · game.js:336"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: putnici"
+  },
+  {
+   "id": "d5b2fef5a90",
+   "who": "RAVIJOJLA",
+   "text": "Putnici ne mogu preko provalije. Probudi vilinski kamen kraj nje (E) i podići će kameni most.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "updateTravelers · game.js:346"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: putnici"
+  },
+  {
+   "id": "d59f062a5e5",
+   "who": "GUSLAR",
+   "text": "Dve tasove drži jedan konopac. Šta je teže, to tone.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMindPuzzles · game.js:610"
+   ],
+   "nivo": "sve",
+   "scena": "Zagonetke (vaga, vilinsko kolo)"
+  },
+  {
+   "id": "db517ee789e",
+   "who": "GUSLAR",
+   "text": "Vilinsko kolo ima svoj red. Nađi ga sam: kamen koji je na redu zasvetli, pogrešan gasi sve.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMindPuzzles · game.js:611"
+   ],
+   "nivo": "sve",
+   "scena": "Zagonetke (vaga, vilinsko kolo)"
+  },
+  {
+   "id": "d011520686b",
+   "who": "RAVIJOJLA",
+   "text": "Turci pucaju iz topa! Đule koje se kotrlja preskoči, pred visokim se sagni.",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "updateCannons · game.js:752"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d1376308683",
+   "who": "RAVIJOJLA",
+   "text": "Turska horda ide preko polja! W i S dižu i spuštaju cev, A i D daju manje ili više baruta, J ili Space puca. E ostavlja top.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "updateGunner · game.js:844"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dfa8f173294",
+   "who": "RAVIJOJLA",
+   "text": "Zlatan znak nad glavom znači: odbij ga (L) i uzvrati. Crven krst se ne odbija: izmakni se kolutom (Shift).",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "drawSoldier · game.js:1350"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dfc35d6e1de",
+   "who": "GUSLAR",
+   "text": "Sama mu se sablja izvadila. Kad je Marko sablju zagledao, al’ na sablji tri slova hrišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "collectCudo · game.js:2193"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "db9e21e3301",
+   "who": "JANIČARI",
+   "text": "„More Marko, ne ori drumova!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updatePlows · game.js:2361"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "d48c31b6f93",
+   "who": "MARKO",
+   "text": "„More Turci, ne gaz’te oranja!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updatePlows · game.js:2362"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "dd3f03c7df2",
+   "who": "MARKO",
+   "text": "„To sam tebe danas izorao.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updatePlows · game.js:2364"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "df068eb220d",
+   "who": "RAVIJOJLA",
+   "text": "Akindžija projuri kroz tebe i udari s leđa. Kad vidiš crven krst, otkotrljaj se.",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "akindzijaTick · game.js:2441"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "de23a856f29",
+   "who": "RAVIJOJLA",
+   "text": "Ranjeni kopljanik drži koplje napred: spreda ga ne probiješ. Preskoči ga, udri odozgo ili s leđa.",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "kopljanikTick · game.js:2450"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dc5a6bab68b",
+   "who": "RAVIJOJLA",
+   "text": "Strelac puca uvis: senke na zemlji pokazuju gde će pasti strele. Skloni se ili se otkotrljaj.",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "kisaStrela · game.js:2461"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "db13c5e73da",
+   "who": "RAVIJOJLA",
+   "text": "Sabljaš vara: zamahne pa stane. Ko odbije u prazno, dočeka ga dvostruki rez; tada se izmakni kolutom.",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "varkaKraj · game.js:2473"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "da0801d77e9",
+   "who": "RAVIJOJLA",
+   "text": "Lavina! Trči, Marko, ne zastaj!",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "updateTraps · game.js:2927"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d6730ed4c77",
+   "who": "RAVIJOJLA",
+   "text": "Odron! Trči, Marko, ne zastaj!",
+   "kat": "savet",
+   "izvor": "speak",
+   "mesta": [
+    "updateTraps · game.js:2927"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d3f9f9e36f5",
+   "who": "GUSLAR",
+   "text": "„Bogme, care, jošte nije vreme.” Drvo prsnu nadvoje, natroje, ali iz njega voda ne udari.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateSan · game.js:3137"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d358c20c0ab",
+   "who": "GUSLAR",
+   "text": "Marko s’ maši rukom u džepove, pred Arapa tri dukata baci: „Veruj mene, više nemam blaga!” Ciknu Arap kao zmija ljuta: „U mene, kujo, veresije nema!”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "kosovkaArap · game.js:3174"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "df4c9000b0f",
+   "who": "MARKO",
+   "text": "Nasmeja se Kraljeviću Marko: „O junače, Arapine crni, il’ se šališ, il’ od zbilje biješ? Koliko si mene udario, toliko ću tebe udariti!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "kosovkaArap · game.js:3175"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "dd851e36d10",
+   "who": "GUSLAR",
+   "text": "„Pa ga pere vodom studenovom, pričešćuje vinom crvenijem.” Kosovka devojka poji Marka.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateKosovka · game.js:3187"
+   ],
+   "nivo": "rusevine",
+   "scena": "Kosovka devojka i svadbarina"
+  },
+  {
+   "id": "dae5bf53c7b",
+   "who": "GUSLAR",
+   "text": "Iz tamnice Varadina piše Miloš od Pocerja, krvlju knjigu zapečati: „Izbavljaj me, pobratime Marko, jal’ za blago, jali na junaštvo!” Marko okrenu Šarca od Prilipa, a za Dunavom skela ne dočeka: naćera Šarca na Dunavo, ode pravo pod Varadin.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3210"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d21a50f67e7",
+   "who": "GUSLAR",
+   "text": "Tu ustavi Šarca od megdana, pa udari koplje u ledinu, za koplje je privezao Šarina, pa on sjede piti mrko vino: ne pije ga čim se vino pije, već leđenom od dvanaest oka; pola pije, pola Šarcu daje.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3222"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d71052598e6",
+   "who": "VELIMIROVICA",
+   "text": "Pošetala Velimirovica po bedemu grada Varadina, u polju je opazila Marka: „Sjedi junak u polju širokom, konj mu nije kakvino su konji, veće šaren kako i goveče; nešto crno drži u zubima, kolik’ jagnje od pola godine.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3226"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "ddd8aecdac0",
+   "who": "VUČA DŽENERAL",
+   "text": "„Velimire, moje čedo drago! Uzmi, sine, za trista katana, idi dole u polje široko, dovedi mi onoga junaka.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3227"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "dca345274cb",
+   "who": "GUSLAR",
+   "text": "Marko sjedi, pije mrko vino, al’ katane Šarac opazio: poče nogam’ o zemljicu tući, primiče se svome gospodaru.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3233"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d4e824444de",
+   "who": "GUSLAR",
+   "text": "Popi Marko leđenicu vina, baci leđen u zelenu travu, pa se turi na ramena Šarcu. Da je kome pogledati bilo: kad udari u katane Marko, kako soko među golubove!",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3235"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d58e8714510",
+   "who": "GUSLAR",
+   "text": "Pobježe mu Velimir dijete, ćera njega na Šarinu Marko, dostiže ga, dovati ga malo topuzinom: pade dite u zelenu travu. Marko mu savezao i noge i ruke, pa g’ objesi Šarcu o unkašu.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3238"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d52e52243d6",
+   "who": "VUČA DŽENERAL",
+   "text": "„Sad ćeš viđet’, dok se starac krene!” Vuča drmnu na gradu topove, sastavi katane, opkoliše Marka sa četiri strane. Sablja mu je u desnici ruci, u zubima dizgen od Šarina!",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3241"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d68d901d1e4",
+   "who": "GUSLAR",
+   "text": "Pobježe mu Vuča dženerale na tankoj bedeviji. Ljuljnu Marko tešku topuzinu, pa je pušta za njim preko polja: udari ga sapom od topuza, pade Vuča u zelenu travu. Sveza Vuči ruke naopako, pa odvede obojicu u Prilip.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3245"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "d0050895fed",
+   "who": "GUSLAR",
+   "text": "Knjigu piše dženeralovica: „Ne gubi mi Vuče dženerala i mojega sina Velimira!” Marko joj piše: „Pusti mene do tri pobratima, i podaj im tri tovara blaga.” Ona otvori prokletu tavnicu i izvadi tri vojvode mlade.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3247"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "db311e856c1",
+   "who": "MILOŠ OD POCERJA",
+   "text": "„Bog ti platio, pobratime Marko, kad nas izbavi iz Vučine tavnice!” I u b’jelo izljubiše lice, svaki Marka u bijelu ruku.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateVaradin · game.js:3248"
+   ],
+   "nivo": "prevoj",
+   "scena": "Marko i Vuča dženeral (Varadin)"
+  },
+  {
+   "id": "dc0ab17f723",
+   "who": "GUSLAR",
+   "text": "Zmaj-Despot Vuk ču Filipa Madžarina gde se hvali da će kulu na ćupriji okititi rusom glavom Kraljevića Marka, pa napisa Marku knjigu: „Čuvaj se, Bogom pobratime, od Filipa kake prevare.” A Marko ode pravo Karlovcu gradu.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3276"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "d5859031cc2",
+   "who": "GUSLAR",
+   "text": "Odja Šarca, sveza pred mehanu, a on sjede piti rujno vino. Malo bilo, za dugo ne bilo, eto ti Filipa Madžarina.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3284"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "dc36407e525",
+   "who": "GUSLAR",
+   "text": "Filip nagna da uđe u novu mehanu, ali ne da Šarac od megdana, već ga bije kopitama po rebrima.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3288"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "d4ba5cc6749",
+   "who": "ŠARAC",
+   "text": "Naljuti se Filip, pa potrže perna buzdovana, ode biti pred mehanom Šarca. Al’ propišta Šarac: „Avaj mene do Boga miloga! Đe pogiboh jutros pred mehanom od silnoga Filip-Madžarina, a kod moga slavna gospodara!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3291"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "d18b9ad2a8a",
+   "who": "MARKO",
+   "text": "„Propusti ga u mehanu, Šarče!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3292"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "d46bd540af8",
+   "who": "GUSLAR",
+   "text": "A kad Filip uđe u mehanu, a on Marku Boga ne naziva, već potrže tešku topuzinu.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3295"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "db6270ebe7f",
+   "who": "MARKO",
+   "text": "Udari ga u pleći junačke, ali Marko ni habera nema: „Sjedi s mirom, Madžarsko kopile! Ne budi mi po kožuhu buha, već odjaši da pijemo vino, pa još ima dana za megdana.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3299"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "dcff2b7136a",
+   "who": "GUSLAR",
+   "text": "Al’ to Filip ne slušaše Marka, već ga udri u desnicu ruku, te mu razbi čašu pozlaćenu, a prosu mu crveniku vino. Kad to viđe Kraljeviću Marko, on skoči od zemlje na noge!",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateMehana · game.js:3303"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "dc1eb38c85f",
+   "who": "GUSLAR",
+   "text": "Pa je oštru sablju zagledao: „Mili Bože, čuda velikoga! Dobra gvožđa u loša junaka!” Ode Marko Filipovu dvoru, obi mu bijelu riznicu, pa otide drumom pjevajući.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "filipPao · game.js:3310"
+   ],
+   "nivo": "reka",
+   "scena": "Marko i Filip Madžarin"
+  },
+  {
+   "id": "dbabff3d9c9",
+   "who": "GUSLAR",
+   "text": "Slavi Marko svetoga Đorđija, a fali mu ribe od Orida. Po majčinoj reči ode bez oružja. Na ćupriji ga srete Đemo Brđanine, topuzinu baca u oblake: „Bogami ću Marka objesiti baš o vratim’ bijela Prilipa!”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3341"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d84b9fb74c8",
+   "who": "MARKO",
+   "text": "„Kud ćeš tamo, Đemo Brđanine? Evo, more, Kraljevića Marka!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3348"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "da321a5b4e9",
+   "who": "GUSLAR",
+   "text": "Potegne Đemo topuzinu, jadna Marka među pleći žive: pade Marko u zelenu travu. Đemo dopade, okova ga sve u gvožđe ljuto: a na noge dvoje bukagije, a na ruke dvoje belenzuke, a na grlo sindžir, gvožđe teško.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3351"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d1f0f3477b4",
+   "who": "GUSLAR",
+   "text": "Ode pravo bijelu Oridu, pod Oridom vješala ogradi da objesi Kraljevića Marka.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3361"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "ddcd8e2b96b",
+   "who": "GUSLAR",
+   "text": "Uze Đemo tri tovara blaga, vodi Marka gradu Vučitrnu, pa pod gradom vješala ogradi.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3361"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d044a915ae3",
+   "who": "GUSLAR",
+   "text": "Uze Đemo tri tovara blaga, goni Marka bijelu Zvečanu, i tu Đemo vješala ogradi.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3361"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "ddabd391525",
+   "who": "GOSPODA (Orid, Vučitrn, Zvečan)",
+   "text": "„Bogom brate, Đemo Brđanine, tu nam nemoj objesiti Marka, neće rodit vino ni šenica, evo tebe tri tovara blaga.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3363"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d91073220ea",
+   "who": "GUSLAR",
+   "text": "Uze Đemo tri tovara blaga. Odatle se Đemo podigao kroz nekakvu Janjinu planinu. Teško Đemo ožednjeo bješe: „Znaš li, Marko, vode il’ mehane? Teško me je osvojila žeđa.”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3365"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "df277425e06",
+   "who": "MARKO",
+   "text": "„Ima, Đemo, bijela mehana i prokleta krčmarica Janja: sad će mi se osvetiti Janja, dosta sam joj vina potrošio, a nisam dao ni dinara.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3368"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "de31129af40",
+   "who": "KRČMARICA JANJA",
+   "text": "Kad sagleda savezana Marka, nasmeja se krčmarica Janja: „Pojiću te, Brđanine Đemo, bez bijele pare i dinara, baš ako ćeš tri bijela dana.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3369"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d6691a7c4c8",
+   "who": "GUSLAR",
+   "text": "Kad se Đemo nakitio vina, donese mu krčmarica Janja rujna vina od sedam godina, meće u njeg bilje svakojako. Pade Đemo glavom bez uzglavlja.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3370"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "d9c2fce0761",
+   "who": "GUSLAR",
+   "text": "Skoči Janja na noge lagane, na svom pobru gvožđe otvaraše. Marko uze topuz natrag. A Đemo se trže iz sna, pokida se i uteče kroz klisuru, na megdan.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateOkovi · game.js:3373"
+   ],
+   "nivo": "klisura",
+   "scena": "Marko i Đemo Brđanin: okovi i mehana"
+  },
+  {
+   "id": "daba26cc649",
+   "who": "GUSLAR",
+   "text": "Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora. Car s’ odmiče, a Marko primiče, dok doćera cara do duvara.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateSabljaPesma · game.js:3419"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "d5362512a11",
+   "who": "GUSLAR",
+   "text": "Car se maši u džepove rukom, te izvadi stotinu dukata: „Idi, Marko, napij mi se vina!” A Marko: „Ne pitaj me, care poočime! Poznao sam sablju baba mog.”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateSabljaPesma · game.js:3420"
+   ],
+   "nivo": "tvrdjava",
+   "scena": "Marko poznaje očinu sablju"
+  },
+  {
+   "id": "dc609e949ea",
+   "who": "GUSLAR",
+   "text": "„Knjiga kaže: na Urošu carstvo!” Kad to začu Vukašine kralju, skoči kralju od zemlje na noge, pa potrže zlaćena handžara da ubode svoga sina Marka. Bježi Marko ispred roditelja, jer se njemu ne pristoji sa svojim se biti roditeljem.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "crkvaBeg · game.js:3436"
+   ],
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "d5336ae74df",
+   "who": "GLAS IZ CRKVE",
+   "text": "Dok su triput kolo sastavili oko b’jele Samodreže crkve, gotovo ga bješe sustigao, al’ iz crkve nešto progovara: „Bjež’ u crkvu, Kraljeviću Marko! Vidiš đe ćeš danas poginuti, poginuti od svog roditelja, a za pravdu Boga istinoga.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateCrkva · game.js:3449"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "d643396e893",
+   "who": "GUSLAR",
+   "text": "Kralj dopade na crkvena vrata, po direku udari handžarom, iz direka krvca pokapala.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateCrkva · game.js:3455"
+   ],
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "d3b953eb8d7",
+   "who": "KRALJ VUKAŠIN",
+   "text": "Tad se kralje bio pokajao: „Lele mene, do Boga jednoga, đe pogubih svoga sina Marka!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateCrkva · game.js:3457"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "d40ec573579",
+   "who": "GLAS IZ CRKVE",
+   "text": "Al’ iz crkve nešto progovara: „A čuješ li, Vukašine kralju, ti nisi posjekao Marka, već posječe božjega anđela.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateCrkva · game.js:3458"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "df0c4e29f11",
+   "who": "MARKO",
+   "text": "Uhvati Marko šareno ždrebe za rep, zamahnu njime, a ždrebe se ni s mesta ne pomače. „Ovo je, brate, moj konj!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "useVasar · game.js:3518"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "selo",
+   "scena": "Vašar konja"
+  },
+  {
+   "id": "dafe0efd698",
+   "who": "KONJUŠAR",
+   "text": "„E, nije taj, Marko!” smeju se ljudi na vašaru. Konja koji će tebe nositi ni junak ne može da pomeri.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "useVasar · game.js:3520"
+   ],
+   "nivo": "selo",
+   "scena": "Vašar konja"
+  },
+  {
+   "id": "d7ae1b800a3",
+   "who": "KONJUŠAR",
+   "text": "Vašar konja u Kosovskom selu. „Biraj, Marko, konja koji će te nositi: uhvati ga za rep (E) i zamahni. Koji se ne pomakne, taj je tvoj.”",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "updateVasar · game.js:3523"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "selo",
+   "scena": "Vašar konja"
+  },
+  {
+   "id": "d1e4708269c",
+   "who": "GUSLAR",
+   "text": "„Taj je šugav, Marko, sirotinjsko ždrebe!” A Marko mu da vina: pola pije, pola Šarcu daje. Spade šuga, a ždrebe se razigra, šareno kao goveče, a hitro kao vihor.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVasar · game.js:3526"
+   ],
+   "nivo": "selo",
+   "scena": "Vašar konja"
+  },
+  {
+   "id": "d232113ed55",
+   "who": "GUSLAR",
+   "text": "Novak kovač potkova Šarca, a jedna potkova osta u selu, da se pamti. Šarac te čeka; ti oteraj odred iz sela.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateVasar · game.js:3527"
+   ],
+   "nivo": "selo",
+   "scena": "Vašar konja"
+  },
+  {
+   "id": "d991b171f32",
+   "who": "RAVIJOJLA",
+   "text": "„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Drži D za galop, Space preskače balvane. Kad je stigneš, baci topuz: I.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "usePotera · game.js:3552"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d6632c9974e",
+   "who": "GUSLAR",
+   "text": "Miloš je kroz Miroč zapevao lepše od vile, pa ga je Ravijojla ustrelila u grlo i u srce. Eno ti Šarca, Marko: uzjaši i stigni je!",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updatePotera · game.js:3556"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "de9cc382ec8",
+   "who": "GUSLAR",
+   "text": "„Bogom brate, Kraljeviću Marko! Pusti me u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.” Marko je pusti, i od tada mu je vila posestrima.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updatePotera · game.js:3564"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d08ca526805",
+   "who": "MILOŠ",
+   "text": "„Gusta je gora, pobratime: konje ćemo voditi, a sablje u ruke.” Miloš ide peške uz tebe i bije se sabljom.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateJahanje · game.js:3644"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "dea279b062c",
+   "who": "RAVIJOJLA",
+   "text": "Onda Miloš poče da popeva, a krasnu je pesmu započeo od svih naših boljih i starijih. Marko se nasloni sedlu na oblučje: Marko spava, Miloš popeva. Pevaj u taktu gusala: J i K.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "pesmaPeva · game.js:3672"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "de9d5323fc9",
+   "who": "GUSLAR",
+   "text": "Rasrdi se vila Ravijojla, pak odskoči u Miroč planinu, zape luka i dve bele strele.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvStreleTick · game.js:3696"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d985e4aae5e",
+   "who": "MILOŠ",
+   "text": "„Jao moja majko! Jao Marko, Bogom pobratime! Jao brate, vila me ustreli! A nisam li tebe besedio da ne pevam kroz Miroč planinu?”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvStreleTick · game.js:3703"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "da9530c913c",
+   "who": "MARKO",
+   "text": "„Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu! Čistim ću te srebrom potkovati, čistim srebrom i žeženim zlatom; pokriću te svilom do kolena, od kolena kite do kopita; grivu ću ti izmešati zlatom.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvStreleTick · game.js:3707"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "df9ea67e36c",
+   "who": "MARKO",
+   "text": "„Ako li mi ne dostigneš vile, oba ću ti oka izvaditi, sve četiri noge podlomiti, pa ću t’ ovde tako ostaviti, te se tuci od jele do jele, k’o ja, Marko, bez mog pobratima.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvStreleTick · game.js:3708"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "ddf1e9ab852",
+   "who": "MARKO",
+   "text": "„Zašto, vilo, da te Bog ubije! Zašt’ ustreli pobratima moga?”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBije · game.js:3716"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d8c0aa4d23f",
+   "who": "GUSLAR",
+   "text": "Pak je stade biti buzdovanom, prevrće je s desne na lijevu, pak je bije šestoperom zlatnim.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBije · game.js:3716"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d11690063ef",
+   "who": "MARKO",
+   "text": "„Daj ti bilje onome junaku, jer se nećeš nanositi glave.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBije · game.js:3716"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "da0d730d279",
+   "who": "RAVIJOJLA",
+   "text": "„Bogom brate, Kraljeviću Marko, višnjim Bogom i Svetim Jovanom! Daj me puštaj u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBije · game.js:3719"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d2b746ac825",
+   "who": "GUSLAR",
+   "text": "Al’ je Marko milostiv na Boga, a žalostiv na srcu junačkom: pusti vilu u planinu živu. Sada si ti vila: naberi bilje po Miroču.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvBije · game.js:3720"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d763d6aaefe",
+   "who": "GUSLAR",
+   "text": "Bilje bere po Miroču vila, bilje bere, često se odziva: „Sad ću doći, Bogom pobratime!”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvBiljeTick · game.js:3734"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d962e320021",
+   "who": "MARKO",
+   "text": "„Vilo! Gde si, vilo? Odzovi se!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBiljeTick · game.js:3736"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "db73b50afe9",
+   "who": "MARKO",
+   "text": "„Rekoh ti, vilo, da se odzivaš! Natrag, dok ti glavu nisam uzeo!”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "pvBiljeTick · game.js:3738"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d2678555b07",
+   "who": "RAVIJOJLA",
+   "text": "Nabra vila po Miroču bilja. Leti do Miloša i zagasi mu rane (E).",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "pvBiljeTick · game.js:3753"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d94f7950afb",
+   "who": "GUSLAR",
+   "text": "I zagasi rane na junaku: lepše grlo u Miloša carsko, jeste lepše nego što je bilo, a zdravije srce u junaku, baš zdravije nego što je bilo.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvLeciTick · game.js:3764"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d278f8f5cf5",
+   "who": "GUSLAR",
+   "text": "Ode vila u Miroč planinu, ode Marko s pobratimom svojim. Jašite dalje, a Turci lovci čekaju na drumu.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvLeciTick · game.js:3769"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "de206f7eb32",
+   "who": "GUSLAR",
+   "text": "Vila leti po vrhu planine, Šarac jezdi po sredi planine: nigde vile čuti ni videti.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "pvTrka · game.js:3850"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d8806c0ceaa",
+   "who": "RAVIJOJLA",
+   "text": "Kad je Šarac sagledao vilu, po s tri koplja u visinu skače, po s četiri dobre u napredak. Space · Šarčev skok!",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "pvTrka · game.js:3851"
+   ],
+   "nivo": "suma",
+   "scena": "Marko i vila (Miroč)"
+  },
+  {
+   "id": "d832ecc90f0",
+   "who": "GUSLAR",
+   "text": "Na Marka je vrlo žao kralju, te ga ljuto kune i proklinje: „Ti nemao groba ni poroda! I da bi ti duša ne ispala dok turskoga cara ne dvorio!” Kralj ga kune, car ga blagosilja: „Kume Marko, Bog ti pomogao! Tvoje lice svjetlo na divanu, tvoja sablja sjekla na mejdanu!” Što su rekli, tako mu se steklo.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "presudaBlagoslov · game.js:3870"
+   ],
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "d2cce3e3496",
+   "who": "GUSLAR",
+   "text": "„Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "presudaBlagoslov · game.js:3871"
+   ],
+   "nivo": "manastir",
+   "scena": "Uroš i Mrnjavčevići (Samodreža)"
+  },
+  {
+   "id": "dd8f119deb7",
+   "who": "RAVIJOJLA",
+   "text": "„Hajd’ na megdan, da se nadstreljujemo!” Tri strele svakome. Luk se zateže sam: pusti strelu (J) kad je tetiva najzategnutija.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "useStrela · game.js:3889"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "d1fc8ecb37f",
+   "who": "GUSLAR",
+   "text": "Carev Alil-aga sa trideset janičara stoji nasred druma i hvata te za skut dolame. Neće te pustiti bez megdana.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateStrela · game.js:3892"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "dce37290cce",
+   "who": "GUSLAR",
+   "text": "„Bogom brate, Kraljeviću Marko! Na čast tebi moji beli dvori, tek me nemoj, brate, obesiti!” A Marko: „Sve bih ti, brate, oprostio, ali si mi izdr’o dolamu: već daj mene tri tovara blaga.” Od tada krajinu brane zajedno.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateStrela · game.js:3902"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "d8519899d46",
+   "who": "GUSLAR",
+   "text": "Stiže ti strela Tataranka, sa devet belih sokolovih pera. Zategni do kraja!",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateStrela · game.js:3903"
+   ],
+   "nivo": "oranje",
+   "scena": "Oranje Markovo i strela"
+  },
+  {
+   "id": "d8c75d5d867",
+   "who": "GUSLAR",
+   "text": "Navuci samur-kalpak na obrve i pogledaj ga popreko. Ne posež i za čim, Marko: ko prvi trepne, izgubio je.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "usePogled · game.js:3938"
+   ],
+   "nivo": "reka",
+   "scena": "Pogled popreko"
+  },
+  {
+   "id": "d278539444c",
+   "who": "GUSLAR",
+   "text": "Vinograd je Ljutice Bogdana. Pred njim si jednom već bežao uz krševito primorje, i sapom od topuza te je dohvatio. Eno ga, preči ti put.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updatePogled · game.js:3940"
+   ],
+   "nivo": "reka",
+   "scena": "Pogled popreko"
+  },
+  {
+   "id": "d44a0bd7485",
+   "who": "GUSLAR",
+   "text": "„Već te moje oči ne viđele!” Bogdan se smeje. Hajde opet, i ovog puta ne miči ni prstom.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updatePogled · game.js:3946"
+   ],
+   "nivo": "reka",
+   "scena": "Pogled popreko"
+  },
+  {
+   "id": "d57f9799621",
+   "who": "GUSLAR",
+   "text": "Pod Bogdanom noge obumreše. „Hodi, Marko, da se pomirimo.” Skide Marko mješinu sa Šarca, pa sjedoše piti rujno vino i mezetiti ga grozdom iz vinograda.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updatePogled · game.js:3948"
+   ],
+   "nivo": "reka",
+   "scena": "Pogled popreko"
+  },
+  {
+   "id": "d5d8e4853f1",
+   "who": "GUSLAR",
+   "text": "Stari guslar peva pesmu o Musi, a Turci idu da ga ućutkaju. Ne daj im do njega, Marko: dok pesma traje, bes ti ne opada.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "guslarOdbrana · game.js:4062"
+   ],
+   "nivo": "klisura",
+   "scena": "Guslari u klisuri"
+  },
+  {
+   "id": "d2255483415",
+   "who": "RAVIJOJLA",
+   "text": "Lov lovi vezir Murat sa dvanaest delija, a s njima trinaesti, Kraljević Marko. Po zelenom jezeru plove utve zlatokrile. Ti si Markov soko: leti na A D W S, a obruši se na Space.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "lovStart · game.js:4274"
+   ],
+   "nivo": "mocvara",
+   "scena": "Ranjeni soko"
+  },
+  {
+   "id": "d536f9779ef",
+   "who": "GUSLAR",
+   "text": "Vezirev soko ima lošu navadu: da otima lov od drugoga. Izmakni mu se kad nasrne, pa se obruši na njega dok je umoran. Markov soko je joguna, kao i gospodar.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateLov · game.js:4295"
+   ],
+   "nivo": "mocvara",
+   "scena": "Ranjeni soko"
+  },
+  {
+   "id": "d528965a674",
+   "who": "GUSLAR",
+   "text": "„Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateLov · game.js:4309"
+   ],
+   "nivo": "mocvara",
+   "scena": "Ranjeni soko"
+  },
+  {
+   "id": "d0d91511f0e",
+   "who": "GUSLAR",
+   "text": "Marko igra kolom uz kadune, Marko paše sablju okovanu, Marko nosi zelenu dolamu, Marko pije uz ramazan vino, još nagoni odže i adžije da i oni s njime piju vino.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "useBacva · game.js:4381"
+   ],
+   "nivo": "podrum",
+   "scena": "Marko pije uz ramazan vino"
+  },
+  {
+   "id": "dfc5ceddbbe",
+   "who": "ČAUŠ",
+   "text": "Car Sulejman jasak učinio: da s’ ne pije uz ramazan vino, da s’ ne nose zelene dolame, da s’ ne pašu sablje okovane, da s’ ne igra kolom uz kadune.",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateBacve · game.js:4387"
+   ],
+   "nivo": "podrum",
+   "scena": "Marko pije uz ramazan vino"
+  },
+  {
+   "id": "d41a69f41cd",
+   "who": "DVA MLADA ČAUŠA",
+   "text": "Kad je care razumeo reči, on pošilje dva svoja čauša. Kad dođoše Kraljeviću Marku, ali Marko pod šatorom pije, pred njim kupa od dvanaest oka: „Da čuješ li, Kraljeviću Marko! Tebe care na divan zaziva.”",
+   "kat": "dijalog",
+   "izvor": "speak",
+   "mesta": [
+    "updateBacve · game.js:4391"
+   ],
+   "napomena": "mešovito: priča + citat",
+   "nivo": "podrum",
+   "scena": "Marko pije uz ramazan vino"
+  },
+  {
+   "id": "d282c048b71",
+   "who": "GUSLAR",
+   "text": "Rasrdi se Kraljeviću Marko, pak dovati onu kupu s vinom, pa udara careva čauša: pršte kupa, a pršte i glava, i proli se i krvca i vino.",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateBacve · game.js:4395"
+   ],
+   "nivo": "podrum",
+   "scena": "Marko pije uz ramazan vino"
+  },
+  {
+   "id": "d2e37243bdd",
+   "who": "GUSLAR",
+   "text": "Car se maša rukom u džepove, on izvadi stotinu dukata, pa i daje Kraljeviću Marku: „Idi, Marko, te se napij vina.”",
+   "kat": "pripovedanje",
+   "izvor": "speak",
+   "mesta": [
+    "updateBacve · game.js:4397"
+   ],
+   "nivo": "podrum",
+   "scena": "Marko pije uz ramazan vino"
+  },
+  {
+   "id": "df3bc2b7c08",
+   "who": "RAVIJOJLA",
+   "text": "Đemo te je, kao u pesmi, zatekao bez oružja: buzdovanom ti je izbio topuz iz ruke. Izmiči se, kotrljaj i odbijaj (L), Marko, dok ga ne dohvatiš na drugom kraju megdana.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "throwSpear · game.js:4586"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "d088320913a",
+   "who": "RAVIJOJLA",
+   "text": "Njegov gard ne puca od lakih udaraca, Marko. Drži K za teški udarac, odbij (L) njegov napad, ili ga udri dok se oporavlja od svog zamaha.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "megdanHint · game.js:4698"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dc81e5bf49c",
+   "who": "RAVIJOJLA",
+   "text": "Kapija riznice je otvorena! Stani u nju i pritisni W (gore) da uđeš.",
+   "kat": "uputstvo",
+   "izvor": "speak",
+   "mesta": [
+    "updatePuzzles · game.js:5306"
+   ],
+   "nivo": "sve",
+   "scena": "Saveti i uputstva"
+  },
+  {
+   "id": "dee310084fb",
+   "who": "RAVIJOJLA",
+   "text": "Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6080"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "deb468cb95c",
+   "who": "GUSLAR",
+   "text": "Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili u koštacu uzimaj hvat koji se pokaže, pre nego što mu prsten istekne.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6081"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d9f76f8d748",
+   "who": "RAVIJOJLA",
+   "text": "Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6082"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d28730644ec",
+   "who": "GUSLAR",
+   "text": "Uzmi carsku knjigu ispred sebe. Onda presudi, kao u pesmi: na kome je carstvo?",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6083"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d85996c4f38",
+   "who": "RAVIJOJLA",
+   "text": "Alil-aga stoji na drumu. Priđi, pritisni E i nadstreli ga: J kad je tetiva najzategnutija.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6084"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "de2985c3cc0",
+   "who": "RAVIJOJLA",
+   "text": "Šarac čeka ispred tebe. E da uzjašeš, D galop, Space preskače balvane, I baca topuz kad stigneš vilu.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6086"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d073957c1f0",
+   "who": "RAVIJOJLA",
+   "text": "Vrh Urvine. Redom: bunar među jelama (E), Šarac, kamen za sablju, pa topuz u more sa litice (I), i natrag pod jelu.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6090"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d2693f7fc53",
+   "who": "RAVIJOJLA",
+   "text": "Ovaj protivnik je već ranjen: udari ga još jednom i pobesneće (BESAN!). Strelci i palikuće se izmiču teškom udarcu (K).",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6099"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d267f011cb8",
+   "who": "GUSLAR",
+   "text": "Guslar svakog kraja peva stihove svoje pesme. Stani kraj njega: bes ti raste dok peva.",
+   "kat": "samo za razvoj",
+   "izvor": "speak",
+   "mesta": [
+    "novoGo · game.js:6104"
+   ],
+   "nivo": "razvoj",
+   "scena": "prečice ?novo="
+  },
+  {
+   "id": "d4a97636a3a",
+   "who": "RAVIJOJLA",
+   "text": "Marko, Musini ljudi su zatvorili drum, a putnici čekaju da ih provedeš. Prati naše crvene barjake.",
+   "kat": "vodič",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:4"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "d8117748b73",
+   "who": "RAVIJOJLA",
+   "text": "Štit ne popušta pred lakim udarcem. K razbija gard. L odbija napad u pravom trenutku.",
+   "kat": "uputstvo",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:5"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "d5fbfe6b08f",
+   "who": "RAVIJOJLA",
+   "text": "Priđi svetlećim kamenovima i pritisni E. Otvoriću ti put. U vazduhu te mogu podići još jednom.",
+   "kat": "uputstvo",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:6"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "dabdf91ee17",
+   "who": "RAVIJOJLA",
+   "text": "Šarac te čeka! Priđi mu i pritisni E. Drži D za galop, Space za skok. Musini ljudi stoje na drumu: Šarac ih gazi, a štitonošu obori topuzom sa sedla (J).",
+   "kat": "uputstvo",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:7"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "d70f6286fae",
+   "who": "RAVIJOJLA",
+   "text": "Još jedan odred čuva prilaz Musi. Vino daje snagu — Q. Sačuvaj gutljaj za završni megdan.",
+   "kat": "vodič",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:8"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "dc347f59123",
+   "who": "RAVIJOJLA",
+   "text": "Musa ima tri srca. Posle njegovog napada gard se otvara. L za odbijanje, E za moj bljesak.",
+   "kat": "vodič",
+   "izvor": "world.js message",
+   "mesta": [
+    "world.js:9"
+   ],
+   "nivo": "musa",
+   "scena": "Kačanik: Ravijojla vodi"
+  },
+  {
+   "id": "d0a2812da86",
+   "who": "GUSLAR",
+   "text": "„Na sablji su tri slova rišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.” Kucni topuzom u kamenove onim redom kojim je sablja išla iz ruke u ruku.",
+   "kat": "zagonetka",
+   "izvor": "world.js clue",
+   "mesta": [
+    "world.js:228"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d9a1a0d9391",
+   "who": "GUSLAR",
+   "text": "Tri slova: kovač, kralj, pa sin.",
+   "kat": "zagonetka",
+   "izvor": "world.js hint",
+   "mesta": [
+    "world.js:228"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "dd93ba3bd98",
+   "who": "GUSLAR",
+   "text": "SABLJA NIJE TAKO IŠLA",
+   "kat": "zagonetka",
+   "izvor": "world.js wrong",
+   "mesta": [
+    "world.js:228"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d3495513a23",
+   "who": "GUSLAR",
+   "text": "Novak je skova, Vukašin je nosi, Marko je poznade. Odaja se otvara.",
+   "kat": "zagonetka",
+   "izvor": "world.js win",
+   "mesta": [
+    "world.js:228"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d04d5e33f18",
+   "who": "GUSLAR",
+   "text": "„Isprosi je Kraljeviću Marko, a preprosi vojevoda Janko, prsten dao Ustupčiću Pavle.” Tri prosca položiše tri zlatne jabuke i tri zlatna prstena, a sirota devojka reče: „Jabuka je dečina zabava, a prsten je junačka belega.” Kucni u ono za čim bi mudra devojka pošla.",
+   "kat": "zagonetka",
+   "izvor": "world.js clue",
+   "mesta": [
+    "world.js:232"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d5075cda984",
+   "who": "GUSLAR",
+   "text": "Ni jabuka ni prsten. Za kim je pošla?",
+   "kat": "zagonetka",
+   "izvor": "world.js hint",
+   "mesta": [
+    "world.js:232"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d4287330f22",
+   "who": "GUSLAR",
+   "text": "OBE BIH TI ODSEKAO RUKE",
+   "kat": "zagonetka",
+   "izvor": "world.js wrong",
+   "mesta": [
+    "world.js:232"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "df01509fc3b",
+   "who": "GUSLAR",
+   "text": "„Ja ću poći za Ustupčić-Pavla.” Nije se mašila ni jabuke ni prstena. Odaja se otvara.",
+   "kat": "zagonetka",
+   "izvor": "world.js win",
+   "mesta": [
+    "world.js:232"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d8d9171f04d",
+   "who": "GUSLAR",
+   "text": "„Donesi mi suve drenovine sa tavana od devet godina, da ogledam može li što biti.” Tri godine tamnice slomile su mu snagu. „Sjede Marko tri mjeseca dana, dok je život malo povratio”, uz vino i ovnujsko meso. Tek tada iz stegnutog drveta dve kaplje vode iskočiše.",
+   "kat": "zagonetka",
+   "izvor": "world.js clue",
+   "mesta": [
+    "world.js:235"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "dfe3aea45ff",
+   "who": "GUSLAR",
+   "text": "Stegni suvu drenovinu (drži K). Ako voda ne udari, snaga se još nije vratila.",
+   "kat": "zagonetka",
+   "izvor": "world.js hint",
+   "mesta": [
+    "world.js:235"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d6217032500",
+   "who": "GUSLAR",
+   "text": "„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.",
+   "kat": "zagonetka",
+   "izvor": "world.js clue",
+   "mesta": [
+    "world.js:238"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "da6cd33cca1",
+   "who": "GUSLAR",
+   "text": "Ponovi melodiju gusala na četiri kamena.",
+   "kat": "zagonetka",
+   "izvor": "world.js hint",
+   "mesta": [
+    "world.js:238"
+   ],
+   "nivo": "san",
+   "scena": "Četiri odaje sna"
+  },
+  {
+   "id": "d6d3c063e39",
+   "who": "GUSLAR",
+   "text": "Prilep. Marko je pod svojim kulama bez Sokolovog krila. Krilo čeka u Sokolovoj ćeliji, na dnu bunara ispod grada; do bunara se iz kovačnice ide niskim prolazom, a klizanje je u podrumu. Mapa je gore desno.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi.js",
+   "mesta": [
+    "greybox-nivoi.js:22"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d6f8d2df018",
+   "who": "GUSLAR",
+   "text": "Urvina planina. Marko ima Sokolovo krilo. Juriš u vazduhu čeka u Orlovom gnezdu, visoko na litici iznad vodopada; pred gnezdom je ponor koji se prelazi samo trkom po zidu sa Ravijojlinim šarama (u starom kamenolomu). Bez juriša se klanac ka Ravijojlinoj šumi ne prelazi.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi.js",
+   "mesta": [
+    "greybox-nivoi.js:146"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d23ee8c5173",
+   "who": "GUSLAR",
+   "text": "Kačanička klisura. Marko ima krilo i juriš. Musina kula je zaključana vratima koja daleki prekidač otvara na tren; Vilin trag ostavlja Ravijojla u isposnici gore na zidu kanjona. Na vrh kule se ide Ravijojlinim lancem, a on čeka u oružani.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi.js",
+   "mesta": [
+    "greybox-nivoi.js:258"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "db17be8bf61",
+   "who": "GUSLAR",
+   "text": "Kosovsko selo. Kapija je zatvorena iznutra, a na kuli nad bunarom sedi Kopljanik-baša. Sokolovo krilo čeka u Šarčevoj štali; uđi preko osmatračnice.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:168"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "dc0551115e4",
+   "who": "GUSLAR",
+   "text": "Manastirski vis. Četiri tabora stoje oko crkve Samodreže, a manastirska kapija je zaključana iznutra. Juriš u vazduhu čeka u kripti; bez njega se provalija do gubilišta ne prelazi.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:242"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d99408a9e26",
+   "who": "GUSLAR",
+   "text": "Oranje drumova. Majka kaže: ostavi četovanje, uzmi plug i volove. Ali drum gaze janičari, a zadnja vrata hana otvara daleki prekidač. Vilin trag je u podrumu hana.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:307"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d35304034e6",
+   "who": "GUSLAR",
+   "text": "Opsednuta tvrđava na Marici. Kapija je zatvorena iznutra. Lagumi idu ispod reke do cisterne; tamo čeka Sokolovo krilo, a sa njim bedem i kula Hasan-age.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:368"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d6486ccbd38",
+   "who": "GUSLAR",
+   "text": "Zaboravljeni podrum. Car je zabranio vino uz ramazan, a Ognjeni aga hoće da zapali zalihe. Gvozdena vrata su zatvorena iznutra; juriš u vazduhu čeka dole, kraj podzemnog vrela.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:432"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d458906d78d",
+   "who": "GUSLAR",
+   "text": "Noćna močvara. Vezir je slomio krilo Markovom sokolu. Vezirov čardak ima zadnja vrata na daleki prekidač; Vilin trag svetli na ostrvu ispod vode.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:492"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "da117444716",
+   "who": "GUSLAR",
+   "text": "Ravijojlina šuma na Miroču. Tri vilinska kamena spavaju, a Lovac-aga goni po gori. Sokolovo krilo čeka kraj vilinskog izvora, pod korenjem.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:550"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "dcdbcf7c3e4",
+   "who": "GUSLAR",
+   "text": "Vilinska pećina. Gusle javorove same gude negde duboko. Kristalna dvorana je presečena ponorom; juriš u vazduhu daje Ravijojla u svojoj odaji, kraj podzemne reke.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:609"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d2472c4f326",
+   "who": "GUSLAR",
+   "text": "Zimski prevoj. Barjaci vode do kule na prevoju, ali karaula na sedlu otvara vrata samo na daleki prekidač. Vilin trag čeka kraj ledenog izvora, ispod snega.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:664"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d112537ef27",
+   "who": "GUSLAR",
+   "text": "Klisura Ibra. Đemo vodi okovanog Marka od vešala do vešala. Mostovi su srušeni; krčmarica Janja čuva Sokolovo krilo u svom podrumu.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:721"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d03ba68870f",
+   "who": "GUSLAR",
+   "text": "Ruševine na brdu. Arap prekomorac uzima svadbarinu od svake svadbe na Kosovu. Do poslednjeg barjaka na vrhu vodi greben koji se prelazi samo jurišem; juriš čeka u kripti pod ruševinama.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:784"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "d29444389a5",
+   "who": "GUSLAR",
+   "text": "Stari rudnik. U tamnici je voda do kolena, a stari izlaz otvara prekidač koji je predaleko od vrata. Vilin trag čeka u staroj kapeli rudara, duboko dole.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:840"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "dfa1f23cc7f",
+   "who": "GUSLAR",
+   "text": "Obala pred zoru. Pristanište i svetionik su u turskim rukama. Sokolovo krilo čeka u Vilinom viru, ispod obale; bez njega se na bedem nad morem ne stiže.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:899"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "de6fc865c89",
+   "who": "GUSLAR",
+   "text": "San Kraljevića Marka. Četiri odaje: slova, jabuke, drenovina i gusle. Hodnik senki se prelazi samo jurišem, a juriš je na dnu sna, kraj vilinog jezera.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:955"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "df53f3836ae",
+   "who": "GUSLAR",
+   "text": "Azačka tamnica. Voda do kolena, kosti do pojasa. Vrata kule otvara prekidač u stražari, predaleko od vrata; Vilin trag čeka u cisterni ispod avlije.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:1011"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  },
+  {
+   "id": "dda9318d7fd",
+   "who": "GUSLAR",
+   "text": "Tri srca Kačanika. Musini ljudi su zatvorili drum i kapiju hana, a putnici čekaju. Tri vilinska kamena spavaju pod drumom; treći daje Sokolovo krilo, a bez njega se na srušeni drum ne penje.",
+   "kat": "greybox (probni nivoi)",
+   "izvor": "greybox-nivoi-pohodi.js",
+   "mesta": [
+    "greybox-nivoi-pohodi.js:1065"
+   ],
+   "nivo": "greybox",
+   "scena": "Probni nivoi"
+  }
+ ],
+ "dinamicki": [
+  {
+   "src": "chapters[zone].message",
+   "who": null,
+   "mesto": "start · game.js:161"
+  },
+  {
+   "src": "chapters[zone].message",
+   "who": null,
+   "mesto": "enterChapter · game.js:239"
+  },
+  {
+   "src": "DEF_TEXT[zone]",
+   "who": null,
+   "mesto": "updateDefense · game.js:901"
+  },
+  {
+   "src": "`${M.name} (${M.key}). ${M.text}`",
+   "who": null,
+   "mesto": "uzmiMoc · game.js:1702"
+  },
+  {
+   "src": "`${L.name}. ${VARIANTS[v].intro}${LEVEL_INTRO[L.id]||L.design?.goal||'Prati put do barjaka.'}`",
+   "who": null,
+   "mesto": "startLevel · game.js:2159"
+  },
+  {
+   "src": "`${c.name} — iz pesme „${c.song}”. ${c.perk}.`",
+   "who": null,
+   "mesto": "collectCudo · game.js:2197"
+  },
+  {
+   "src": "VRH_REC[i]",
+   "who": null,
+   "mesto": "useVrh · game.js:3046"
+  },
+  {
+   "src": "VRH_VILA[t.said]",
+   "who": null,
+   "mesto": "updateUrvina · game.js:3059"
+  },
+  {
+   "src": "t.clue",
+   "who": null,
+   "mesto": "sanClue · game.js:3124"
+  },
+  {
+   "src": "txt",
+   "who": "(who)",
+   "mesto": "updateKosovka · game.js:3179"
+  },
+  {
+   "src": "txt",
+   "who": "(who)",
+   "mesto": "updateSabljaPesma · game.js:3417"
+  },
+  {
+   "src": "HINTS.vila",
+   "who": null,
+   "mesto": "updatePotera · game.js:3554"
+  },
+  {
+   "src": "txt",
+   "who": "(who)",
+   "mesto": "updateJahanje · game.js:3637"
+  },
+  {
+   "src": "PV_VILA[P.round]",
+   "who": "VILA",
+   "mesto": "pvTick · game.js:3684"
+  },
+  {
+   "src": "PV_MILOS[P.round]",
+   "who": "MILOŠ",
+   "mesto": "pvTick · game.js:3685"
+  },
+  {
+   "src": "PV_MILOS[0]",
+   "who": "MILOŠ",
+   "mesto": "pvTick · game.js:3687"
+  },
+  {
+   "src": "`Miloš peva, vila mu otpeva; lepše grlo u Miloša carsko, jeste lepše nego je u vile.${k>.75?' Gusle su te slušale kao nikog.':''}`",
+   "who": null,
+   "mesto": "pvPesmaKraj · game.js:3690"
+  },
+  {
+   "src": "tr(B.uvod)",
+   "who": null,
+   "mesto": "updateBranik · game.js:4139"
+  },
+  {
+   "src": "tr(B.kraj)",
+   "who": null,
+   "mesto": "updateBranik · game.js:4145"
+  },
+  {
+   "src": "KIT_INTRO[c.kit]||`${c.name} ti preči put. Pazi na njegov poseban napad, Marko!`",
+   "who": null,
+   "mesto": "updateArena · game.js:4427"
+  },
+  {
+   "src": "HINTS[key]",
+   "who": null,
+   "mesto": "hintOnce · game.js:4864"
+  },
+  {
+   "src": "`${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}`",
+   "who": null,
+   "mesto": "bookSee · game.js:5286"
+  },
+  {
+   "src": "t",
+   "who": null,
+   "mesto": "takeZapis · game.js:5513"
+  },
+  {
+   "src": "world.gb.L.uvod",
+   "who": null,
+   "mesto": "startGreybox · game.js:6021"
+  }
+ ]
+}
