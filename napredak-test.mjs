@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -98,4 +98,14 @@ await api.startLevel(lv('selo'));{const {p,world}=S();for(const e of world.enemi
  api.keys.add('KeyD');step(120*2);api.keys.delete('KeyD');Object.assign(p,{face:1,vx:0,dashCooldown:0});step(60);let x0=p.x;api.pressed.add('ShiftLeft');step(1);
  ok(p.dash>0&&p.backstep&&p.face===1,'Shift alone: a hop back, still facing forward');step(40);ok(p.x<x0-80&&p.face===1&&p.grounded,'he lands behind where he stood');
  step(120);x0=p.x;api.keys.add('KeyD');api.pressed.add('ShiftLeft');step(1);ok(p.dash>0&&!p.backstep,'Shift with a direction: the roll');step(40);api.keys.delete('KeyD');ok(p.x>x0+80,'the roll goes forward');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije i odskok`);
+// ---- noć, F2: uvod megdana: kamera na bosa i nazad, ime velikim slovima, bos sačeka ----
+await api.startLevel(lv('vracara'));{const {p,world}=S(),c=world.enemies.find(e=>e.champion);
+ Object.assign(p,{x:c.arena.x0+160,y:c.y,vx:0,vy:0,grounded:true,invuln:9});step(1);
+ ok(c.engaged&&api.uvod().uvodMeg&&c.uvodT>0,'megdan: the duel opens with its introduction');
+ ok(api.uvod().kamCilj&&Math.abs(api.uvod().kamCilj.x-c.x)<1,'megdan: the camera goes to the champion');
+ const N=api.uvod().uvodMeg.naslov;ok(N[0]===c.name&&N[1]==='senka iz jaruge','megdan: his name in great letters and who he is');
+ const s0=c.vk?.s,t0=c.vk?.t;step(120);ok(c.uvodT>0||c.vk?.s===s0,'megdan: the champion holds a breath before he starts');
+ step(30);ok(api.uvod().kamCilj===null,'megdan: the camera comes back to Marko');step(120*3);ok(api.uvod().uvodMeg===null,'megdan: the introduction ends');
+ const st=S();await api.startLevel(lv('vracara'));{const c2=S().world.enemies.find(e=>e.champion);Object.assign(S().p,{x:c2.arena.x0+160,y:c2.y,vx:0,vy:0,grounded:true,invuln:9});step(1);
+  await api.startLevel(lv('selo'));step(2);ok(api.uvod().kamCilj===null&&api.uvod().uvodMeg===null,'megdan: a new start never leaves the camera on the champion');}}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok i uvod megdana`);

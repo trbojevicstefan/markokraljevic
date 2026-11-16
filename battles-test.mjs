@@ -141,7 +141,7 @@ const groundY=(w,x,y)=>{let best=null;for(const q of w.platforms){if(x<q.x||x>q.
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
 const armed=c=>{step(3);S().p.noMace=false;c.topuz=null;return c;};
 async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear();api.pressed.clear();const w=S().world,c=w.enemies.find(e=>e.champion);for(const e of w.enemies)if(e!==c)e.alive=false;
- const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(S().p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true,climb:null});safe();step(3);return c;}
+ const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(S().p,{x:c.arena.x0+150,y:q.y,vx:0,vy:0,grounded:true,climb:null});safe();step(3);if(c.uvodT>0){for(let i=0;i<240&&c.uvodT>0;i++)step();step(3);}return c;}
 {const c=await arena('tvrdjava');ok(c.kit==='hasan'&&c.engaged,'hasan: Hasan-aga waits in the fortress');ok(S().world.platforms.filter(q=>q.pillar&&q.x>c.arena.x0&&q.x<c.arena.x1).length===2,'hasan: two pillars stand in his arena');
  c.kc=0;until(()=>c.ks==='ram',120*6);ok(c.ks==='ram','hasan: he lowers his head and charges');until(()=>c.stun>0,120*5);ok(c.stun>0&&c.kitOpen>0,'hasan: he slams into a pillar or the wall and reels');}
 {const c=await arena('prevoj');ok(c.kit==='beg'&&c.mounted,'beg: the akindži beg rides');step(60);ok(c.ks==='ride'&&Math.abs(c.vx)>300,'beg: he gallops at Marko');

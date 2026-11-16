@@ -255,3 +255,11 @@
  #boss-hud h2{font-size:15px!important;margin:0 0 3px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
  #boss-hud .boss-meter{height:9px!important}
 }
+/* uvod megdana (noć 16. 11., F2): ime bosa velikim slovima preko ekrana, crveni ton, kao Sekiro i Hollow Knight */
+#title-card.megdan{top:36%}
+#title-card.megdan small{letter-spacing:14px;color:#ff9a7a;font-size:13px}
+#title-card.megdan h1{font-size:60px;letter-spacing:5px;white-space:nowrap;text-transform:uppercase;color:#fff1d8;text-shadow:0 3px 0 #3a0e08,0 0 36px rgba(200,30,20,.75),0 0 80px #000}
+#title-card.megdan i{filter:hue-rotate(-35deg) saturate(1.6)}
+#title-card.megdan p{font-size:22px;color:#f4d6b8;letter-spacing:1px}
+#title-card.megdan.show{animation:megdanIn 3.3s ease forwards}
+@keyframes megdanIn{0%{opacity:0;transform:translate(-50%,-50%) scale(1.25);filter:blur(6px)}12%{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.98)}}

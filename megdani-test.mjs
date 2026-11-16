@@ -70,7 +70,7 @@ function fight(c,seconds,tag,o={}){const [x0,x1]=ring(c),bad=[],seen=new Set(),b
  monitor=null;fight.seen=seen;fight.blk=blk;return bad;}
 const levelOf=id=>api.LEVELS.findIndex(L=>L.id===id);
 async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear();api.pressed.clear();const w=S().world,c=w.enemies.find(e=>e.champion);if(!c)return null;for(const e of w.enemies)if(e!==c&&!e.trioMate)e.alive=false;
- const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(P(),{x:c.arena.x0+150,y:q?q.y:c.arena.y,vx:0,vy:0,grounded:true,climb:null});step(3);P().noMace=false;c.topuz=null;return c;}
+ const q=w.platforms.filter(q=>q.ground&&c.arena.x0+150>q.x&&c.arena.x0+150<q.x+q.w).sort((a,b)=>a.y-b.y)[0];Object.assign(P(),{x:c.arena.x0+150,y:q?q.y:c.arena.y,vx:0,vy:0,grounded:true,climb:null});step(3);if(c.uvodT>0){for(let i=0;i<240&&c.uvodT>0;i++){P().hp=P().maxHp;step();}step(3);}P().noMace=false;c.topuz=null;return c;}
 // a champion brought down: the last blows are the mace's, and the fight ends as it always does
 function finish(c,tag){for(let i=0;i<120*12&&c.alive;i++){const P0=P();P0.hp=P0.maxHp;if(S().finisher||S().grapple){if(i%8===0)tap(P0.hvat||'KeyJ');else step();continue;}
   if(i%30)  {step();continue;}

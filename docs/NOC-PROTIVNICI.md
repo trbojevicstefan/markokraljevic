@@ -36,7 +36,7 @@ Urađeno pre noći:
 ## Filmski spisak (naizmenično sa protivnicima: jedan sat film, jedan sat protivnik)
 
 F1. ✔ **Kill-cam:** poslednji dušmanin čete, odbrane ili zemlje pada usporeno, uz zum i kratak zvuk zvona.
-F2. ☐ **Uvod megdana:** kamera pređe sa bosa na Marka, a preko ekrana se ispiše ime bosa velikim slovima i podnaslov (kao u Sekiro i Hollow Knight).
+F2. ✔ **Uvod megdana:** kamera pređe sa bosa na Marka, a preko ekrana se ispiše ime bosa velikim slovima i podnaslov (kao u Sekiro i Hollow Knight).
 F3. ☐ **Tiho obaranje:** zum, a boje izblede za trenutak.
 F4. ☐ **Junački udar (R):** kratko zamrznut kadar, zum i crvena crta preko ekrana pre udara.
 F5. ☐ **Kad Marko padne:** usporenje, zum i sepija pre ekrana „Ustani, junače”.
@@ -68,3 +68,4 @@ F8. ☐ **Kontra (savršeno odbijanje):** trenutno usporenje i bljesak, a kamera
 (svaki sat jedan red: vreme, stavka, commit, šta je provereno)
 - 00:40 · F1 kill-cam: poslednji dušmanin prave bitke (3 pala za 12 s, niko živ u blizini) pada usporeno, kamera priđe, zvono, „DRUM JE ČIST” (`killCam` u `slay`). Provereno: `napredak-test.mjs` (prva tri pada bez usporenja, poslednji sa usporenjem i zumom) i ceo lanac.
 - 02:10 · Protivnik 1, sabljaš: u otprilike četvrtini zamaha varka (zamahne, zastane, spusti sablju, „VARKA!”). Ko odbije u prazno, odmah dva reza sa crvenim krstom; prvi čeka da Markovo odbijanje istekne. Posle običnog udarca brz korak unazad (`varkaKraj`, `sabljasTick`, `p.parryAt`). Provereno: 7 novih provera u `protivnici-test.mjs`, ceo lanac i slika iz igre (drugi rez, crven krst).
+- 03:15 · F2 uvod megdana: pri ulasku u borilište kamera pređe na bosa i posle sekunde se vrati na Marka, uz blagi zum. Preko ekrana ide ime bosa velikim slovima u jednom redu i podnaslov za svakog od 14 megdana (npr. Crni vrač, „senka iz jaruge”), u crvenom tonu (`megdanUvod`, `uvodTick`, `#title-card.megdan`). Bos sačeka 1,3 s pre prvog poteza. Kamera se oslobađa i kad bos nestane ili počne nov nivo. Provereno: 7 provera u `napredak-test.mjs`; `battles-test` i `megdani-test` sačekaju kraj uvoda pre provera ponašanja bosa; ceo lanac i slika iz igre.
