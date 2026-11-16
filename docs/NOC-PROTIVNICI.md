@@ -46,7 +46,7 @@ F8. ☐ **Kontra (savršeno odbijanje):** trenutno usporenje i bljesak, a kamera
 
 ## Spisak protivnika (po redu; ✔ kad je gotovo, sa commit-om)
 
-1. ☐ **Sabljaš: varka i dvostruki rez.** Ponekad zamahne pa stane (lažni zamah, bez štete). Kad Marko odbije u prazno, odmah udari pravi rez iz dva poteza. Brži korak unazad posle udarca.
+1. ✔ **Sabljaš: varka i dvostruki rez.** Ponekad zamahne pa stane (lažni zamah, bez štete). Kad Marko odbije u prazno, odmah udari pravi rez iz dva poteza. Brži korak unazad posle udarca.
 2. ☐ **Strelac: drži razdaljinu.** Kad mu Marko priđe, odskoči unazad (salto) i zapne luk. Povremeno ispali kišu strela uvis, koja pada na mesto gde je Marko stajao (senke na zemlji upozore).
 3. ☐ **Kopljanik: dugi ubod i zid koplja.** Dugi ubod napred preko pola ekrana (zlatni znak, odbija se). Kad je ranjen, stane u gard sa kopljem napred: s prednje strane ga ne probiješ, treba skok preko ili udar nadole.
 4. ☐ **Akindžija: munja.** Kratki trzaj u stranu (izmicanje) kad Marko zamahne. Brz zalet kroz Marka na drugu stranu, pa udarac s leđa (crven krst: izmakni).
@@ -67,3 +67,4 @@ F8. ☐ **Kontra (savršeno odbijanje):** trenutno usporenje i bljesak, a kamera
 
 (svaki sat jedan red: vreme, stavka, commit, šta je provereno)
 - 00:40 · F1 kill-cam: poslednji dušmanin prave bitke (3 pala za 12 s, niko živ u blizini) pada usporeno, kamera priđe, zvono, „DRUM JE ČIST” (`killCam` u `slay`). Provereno: `napredak-test.mjs` (prva tri pada bez usporenja, poslednji sa usporenjem i zumom) i ceo lanac.
+- 02:10 · Protivnik 1, sabljaš: u otprilike četvrtini zamaha varka (zamahne, zastane, spusti sablju, „VARKA!”). Ko odbije u prazno, odmah dva reza sa crvenim krstom; prvi čeka da Markovo odbijanje istekne. Posle običnog udarca brz korak unazad (`varkaKraj`, `sabljasTick`, `p.parryAt`). Provereno: 7 novih provera u `protivnici-test.mjs`, ceo lanac i slika iz igre (drugi rez, crven krst).

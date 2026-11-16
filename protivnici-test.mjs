@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,pohodSnaga,hardenFoes,state:()=>({p,world})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,pohodSnaga,hardenFoes,ownedSkills,startWindup,state:()=>({p,world})};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++)api.update(1/120);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
 const start=async id=>{await api.startLevel(api.LEVELS.findIndex(L=>L.id===id),'day');api.keys.clear();api.pressed.clear();return api.state().world;};
@@ -38,4 +38,16 @@ ok(f2.maxHp>f1.maxHp*1.4,`chapters: the same sabre-man is tougher by the river t
  const s={...e,id:7778,type:'shield',x:p.x+120,izmakCd:0,lunge:null};w.enemies.push(s);e.alive=false;let shieldSlip=0;
  for(let k=0;k<8;k++){Object.assign(s,{x:p.x+120,mode:'idle',lunge:null});p.attack=.3;p.attackKind='heavy';p.attackId=(p.attackId||0)+2000+k;step(1);if(s.lunge)shieldSlip++;p.attack=0;step(10);}
  ok(shieldSlip===0,'izmiče: the shield-bearer stands his ground (the heavy blow is how his guard is broken)');}
+// ---- noć 16. 11., protivnik 1: sabljaš, varka i dvostruki rez, korak unazad ----
+{const sab=async()=>{const w=await start('selo');const {p}=api.state();api.ownedSkills().add('kontra');const e=w.enemies.find(e=>!e.champion&&!e.perch&&!e.look&&e.type==='sword');
+  for(const o of w.enemies)if(o!==e)o.alive=false;Object.assign(e,{x:p.x+90,y:p.y,stun:0,mode:'idle',timer:9,hp:999,maxHp:999,lunge:null,grounded:true,spava:false,patrola:false,alert:true});p.face=1;p.invuln=0;p.hp=p.maxHp;return{p,e};};
+ let n=0;for(let i=0;i<400;i++){const e={type:'sword',mode:'idle'};api.startWindup(e,null,80);if(e.varka)n++;}
+ ok(n>60&&n<180,`varka: now and then (${n} of 400 swings), not every time`);
+ {const {p,e}=await sab();e.mode='windup';e.timer=.02;e.windupDuration=.7;e.varka=true;const hp=p.hp;step(4);
+  ok(e.mode==='recover'&&e.varkaT>0&&!e.varka,'varka: he swings and stops');step(120);ok(p.hp===hp&&!e.dvaRez,'varka: no blow falls on a Marko who waited');}
+ {const {p,e}=await sab();e.mode='windup';e.timer=.06;e.windupDuration=.7;e.varka=true;api.pressed.add('KeyL');step(1);ok(p.parry>0,'Marko parries the golden sign');
+  for(let i=0;i<30&&!e.dvaRez;i++)step(1);ok(e.dvaRez,'varka: parried into thin air, the double cut comes');
+  const hp=p.hp;let h1=0;for(let i=0;i<120;i++){step(1);if(!h1&&p.hp<hp)h1=p.hp;p.invuln=0;}ok(h1&&p.hp<h1,'dvostruki rez: two cuts, one after the other');}
+ {const {p,e}=await sab();e.mode='windup';e.timer=.02;e.windupDuration=.7;e.varka=false;e.chainLeft=0;e.inChain=true;const x0=e.x;step(60);
+  ok(e.x>x0+30,'after his blow the sabljaš steps back quickly');}}
 console.log(`\n${checks} checks passed.`);
