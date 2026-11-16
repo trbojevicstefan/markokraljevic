@@ -402,3 +402,14 @@
 .jn-dole{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:10px}.jn-dole .jn-lead{margin:0}
 .jn-vrati{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
 @media(max-width:900px),(pointer:coarse){.jn-slot.jn-dugme{padding:4px 8px;font-size:11px}.jn-dole{flex-direction:column;align-items:flex-start;gap:4px}}
+/* Kombinacije i Zapisi (Riznica je sada ovaj prozor) */
+.jn-kombo-mreza{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jn-slot.jn-kombo{width:auto;height:auto;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:6px 10px;text-align:left;border-radius:4px;background:#1a0809cc}
+.jn-kombo .riz-keys{margin:0;gap:3px}.jn-kombo .riz-keys kbd{font-size:11px;padding:1px 6px;min-width:18px;margin:0}.jn-kombo .riz-keys span{font-size:11px}
+.jn-kombo b{font:700 14px var(--display);color:#fbefd2}
+.jn-zapisi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jn-zapisi .jn-roba{padding:5px 10px 5px 5px}.jn-zapisi .jn-roba img.nap-sl{width:40px;height:40px}.jn-zapisi .jn-roba b{font-size:14px}
+.jn-zapisi .jn-roba.nema{opacity:.55}.jn-zapisi .jn-roba.nema img{filter:grayscale(1)}
+.jn-gore{margin:0 0 10px}.jn-knjige{display:flex;gap:8px}
+.jn-tabs button{padding-left:18px;padding-right:18px}
+@media(max-width:900px),(pointer:coarse){.jn-kombo-mreza,.jn-zapisi{grid-template-columns:1fr 1fr}.jn-tabs button{padding:5px 8px 4px;font-size:12px}.jn-zapisi .jn-roba small{display:none}}
