@@ -78,4 +78,19 @@ await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.
  api.strike(false);Object.assign(p,{cooldown:0,attack:0});api.strike(false);Object.assign(p,{cooldown:0,attack:0});api.strike(false);ok(p.combo===2,'J J J: the third blow');
  Object.assign(p,{cooldown:0,attack:0});api.strike(true);ok(p.attackKind==='tresakNiza','J J J K: Tresak niza');
  for(let i=0;i<90&&!(e.obT>0);i++)api.update(1/120);ok(e.obT>0,'Tresak niza fells a foe behind Marko too');}
+// ---- Stefan, 16. 11.: držanje J ne ponavlja udarac; kombinacije sa šutom ----
+{const press=(cs,n=1)=>{for(const c of cs){api.pressed.add(c);api.keys.add(c);}step(n);for(const c of cs)api.keys.delete(c);};
+ const setup=async()=>{await api.startLevel(lv('selo'));const {p,world}=S(),f=world.enemies.filter(o=>o.alive&&!o.champion&&o.type!=='oklopnik'&&o.type!=='shield').slice(0,2);
+  for(const o of world.enemies)if(!f.includes(o))o.alive=false;Object.assign(p,{cooldown:0,attack:0,grounded:true,face:1,cd:{},kickCd:0,vx:0});
+  f.forEach((o,i)=>Object.assign(o,{x:p.x+(i?270:85),y:p.y,hp:999,maxHp:999,stun:0,obT:0,prone:0,vx:0,vy:0,grounded:true,air:false,enter:false,spava:false,razgovor:0}));return{p,f};};
+ {const {p,f}=await setup();for(const o of f)o.x+=600;const ids=new Set();api.pressed.add('KeyJ');api.keys.add('KeyJ');
+  for(let i=0;i<240;i++){api.update(1/120);if(p.attack>0)ids.add(p.attackId);}api.keys.delete('KeyJ');
+  ok(ids.size===1,'holding J strikes once, not over and over');step(60);press(['KeyJ']);ok(p.attack>0&&!ids.has(p.attackId),'a new press of J strikes again');}
+ {const {p,f}=await setup();press(['KeyS','KeyJ'],2);ok(p.kick>0,'S+J: the kick');api.keys.add('KeyS');step(46);ok(p.kickWin>0,'a kick that lands opens the window');
+  press(['KeyJ']);api.keys.delete('KeyS');ok(p.attackKind==='zanjim','S+J then J: Za njim! (S may still be held)');}
+ {const {p,f}=await setup();const e=f[0];press(['KeyS','KeyJ'],2);step(46);press(['KeyK']);ok(p.attackKind==='zakucaj','S+J then K: Zakucaj');
+  for(let i=0;i<90&&!(e.obT>0);i++)api.update(1/120);ok(e.obT>0,'Zakucaj drives the kicked foe into the ground');}
+ {const {p,f}=await setup();const [e,o]=f;press(['KeyJ']);step(50);press(['KeyJ']);step(50);ok(p.combo===1&&p.comboWindow>0,'J J, the window still open');
+  press(['KeyS','KeyJ'],2);ok(p.kickJunak,'J J S+J: Junački šut');const h=o.hp;for(let i=0;i<150&&!(o.obT>0);i++)api.update(1/120);
+  ok(o.obT>0&&o.hp<h,'the kicked foe flies and fells the one behind him');}}
 console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam i kombinacije`);
