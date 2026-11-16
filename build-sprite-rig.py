@@ -622,6 +622,14 @@ NOC_ANCHOR_SAME = {'sarac-pije': 'sarac-stoji', 'sarac-lupa': 'sarac-stoji', 'sa
                    'sarac-pada': 'sarac-stoji', 'sarac-hod': 'sarac-stoji', 'vrac-stap': 'vrac-idle', 'vrac-smrt': 'vrac-idle',
                    'kosovka-poji': 'kosovka-idle', 'milos-pada-s-konja': 'milos-jase',
                    **{_n: 'marko-idle-2' for _n in ('marko-nad-bunarom', 'marko-oprasta', 'marko-kopa', 'marko-lomi-sablju', 'marko-lomi-koplje', 'marko-baca-topuz', 'marko-lezi')}}
+# DOPUNA-63 (16. 11.): Marko without his mace after he throws it into the sea, each an edit of the clip it replaces (marko-walk and
+# marko-idle-2, frame 0), so at that clip's zoom and anchor: he walks and stands exactly where the clip with the mace had him
+if _have('marko-hod-bez-topuza') and 'marko-walk' in SCALES:
+    SCALES['marko-hod-bez-topuza'] = (SCALES['marko-walk'][0], 'feet')
+    NOC_ANCHOR_SAME['marko-hod-bez-topuza'] = 'marko-walk'
+if _have('marko-stoji-bez-topuza') and 'marko-idle-2' in SCALES:
+    SCALES['marko-stoji-bez-topuza'] = (SCALES['marko-idle-2'][0], 'feet')
+    NOC_ANCHOR_SAME['marko-stoji-bez-topuza'] = 'marko-idle-2'
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
