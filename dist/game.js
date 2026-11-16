@@ -1198,7 +1198,15 @@ function celebrateFrame(t){if(t<.55)return Math.min(4,Math.floor(t/.11));t-=.55;
 function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.celebrate>CELEBRATE_TIME-.02)say('victory',{priority:3});p.celebrate-=dt;
  // the world goes on (the arena opens, the aga drops his mace); only Marko's keys rest, and come back held as they were
  const held=[...keys];keys.clear();pressed.clear();p.vx=0;updatePlayer(dt);for(const k of held)keys.add(k);p.vx=0;p.attack=0;p.idleT=0;return true;}
-function playerPose(){return sabljaPose(basePose());}
+function playerPose(){return bezTopuza(sabljaPose(basePose()));}
+// Stefan, 16. 11.: „treba nam animacija Marka bez topuza kada ga baci u more”. With no mace in hand (thrown into the sea on Urvina,
+// knocked away in a duel) he stands with empty hands: the last drawing of marko-baca-topuz, until marko-stoji-bez-topuza is drawn;
+// and walks with marko-hod-bez-topuza once it exists (DOPUNA-63)
+const BEZ_STOJI=new Set(['marko-idle','marko-idle-2','marko-idle-3','marko-idle-4','marko-teeter']),BEZ_HODA=new Set(['marko-walk','marko-run','marko-run-start','marko-run-stop']);
+function bezTopuza(P){if(!p?.noMace||!P||p.sablja)return P;
+ if(BEZ_STOJI.has(P.name)){const S=rig?.['marko-stoji-bez-topuza'];if(S)return{name:'marko-stoji-bez-topuza',...loopAt(time*6,S.frames.length)};const B=rig?.['marko-baca-topuz'];if(B)return{name:'marko-baca-topuz',frame:B.frames.length-1,sy:1+Math.sin(time*2.2)*.005};}
+ if(BEZ_HODA.has(P.name)){const W=rig?.['marko-hod-bez-topuza'];if(W)return{name:'marko-hod-bez-topuza',...loopAt(p.gait*(P.name==='marko-walk'?2:2.6),W.frames.length)};}
+ return P;}
 function basePose(){
  if(finisher?.kind==='oderi'&&rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.floor(k);return{name:'marko-brutal',frame:i>=4?6:ODERI_FRAMES[i%2][Math.min(3,Math.floor((k-i)*4))]};}
  if(finisher?.kind==='oderi'&&!rig?.['marko-brutal']){const k=finisher.t/ODERI_STEP,i=Math.min(3,Math.floor(k)),nm=ODERI_CLIPS[i],n=rig?.[nm]?.frames.length||6;return{name:nm,...onceAt(Math.min(n-1,Math.min(1,k-i)*n))};}
@@ -2998,21 +3006,33 @@ const VRH_VILA=['Pobratime, Kraljeviću Marko, znadeš li što ti konj posrće? 
  'Ti ne možeš umrijeti, Marko, od junaka ni od oštre sablje, od topuza ni od bojna koplja. Umrijećeš od Boga, od starog krvnika.',
  'Kada budeš visu na planinu, opazićeš dvije tanke jele: svu su goru vrhom nadvisile. Među njima bunar voda ima. Nadnesi se, pa ćeš vidjeti.'];
 function vrhTrap(){return(world.traps||[]).find(t=>t.kind==='vrh')||null;}
-// the sea under Urvina (Stefan, 15. 11.: „mora more da se vidi na Urvini”): from the summit the land falls away and the sea
-// lies at the horizon, gold under the low sun, drawn behind the ground; the mace drops into it and the rings spread
-function drawUrvinaMore(){const t=vrhTrap();if(!t)return;const x0=t.sablja-200,x1=(level.width||t.x1+2000)+400,hy=t.y-150,by=t.y+260;
- if(x1<camera||x0>camera+VIEW_W)return;ctx.save();
- const g=ctx.createLinearGradient(0,hy,0,by);g.addColorStop(0,'#f6d6b0');g.addColorStop(.05,'#a9bfd6');g.addColorStop(.3,'#5f84b4');g.addColorStop(1,'#2f4c7c');
- const f=ctx.createLinearGradient(x0,0,x0+420,0);ctx.fillStyle=g;ctx.globalAlpha=1;ctx.beginPath();ctx.rect(x0,hy,x1-x0,by-hy);ctx.save();ctx.clip();ctx.fillRect(x0,hy,x1-x0,by-hy);
- // the sun low over the water and its road of light
- const sx=Math.max(t.more+500,camera+VIEW_W*.72);halo(sx,hy-6,140,'rgba(255,214,150,.75)');ellipse(sx,hy-4,26,26,'#fff1c8');
- for(let i=0;i<26;i++){const yy=hy+6+i*9,w=60-i*1.6+12*Math.sin(time*2+i*1.7);ctx.globalAlpha=.55-i*.018;line(sx-w/2+8*Math.sin(time*1.3+i),yy,sx+w/2+8*Math.sin(time*1.3+i),yy,'#fff2cc',2);}
- ctx.globalAlpha=.38;for(let i=0;i<12;i++){const yy=hy+10+i*20;ctx.beginPath();for(let x=Math.max(x0,camera-40);x<Math.min(x1,camera+VIEW_W+40);x+=24)ctx.lineTo(x,yy+Math.sin(x*.02+time*(1+i*.15)+i)*2.5);ctx.strokeStyle='#e8eeff';ctx.lineWidth=1.2;ctx.stroke();}
- if(t.krug){const K=t.krug;for(let r=0;r<3;r++){const k=K.t-r*.45;if(k<=0)continue;ctx.globalAlpha=Math.max(0,.8-k*.22);ctx.beginPath();ctx.ellipse(K.x,K.y,18+k*38,4+k*7,0,0,Math.PI*2);ctx.strokeStyle='#fff6dc';ctx.lineWidth=2;ctx.stroke();}
-  if(K.t<.5){ctx.globalAlpha=1-K.t*2;for(let i=0;i<8;i++){const a=-Math.PI*(.15+.7*i/7);ellipse(K.x+Math.cos(a)*K.t*60,K.y+Math.sin(a)*K.t*90,3,3,'#ffffff');}}}
- ctx.restore();
- // the land falls away: a soft edge where the sea begins
- const e=ctx.createLinearGradient(x0,0,x0+260,0);e.addColorStop(0,'rgba(120,96,110,1)');e.addColorStop(1,'rgba(120,96,110,0)');ctx.globalAlpha=.55;ctx.fillStyle=e;ctx.fillRect(x0,hy,260,by-hy);ctx.restore();}
+// the sea under Urvina (Stefan, 15. 11.: „mora more da se vidi na Urvini”; 16. 11.: „popravi more, previše je kockasto, i dodaj
+// planine u pozadini i zalazak sunca kao na end screenu”). The summit's backdrop is the painted sunset of the ending (kraj-urvina):
+// purple mountains across the sea, the sun low over the water and its road of gold. It is cut out once into a canvas with soft
+// edges, drawn behind the ground with a slow drift and faded in as the summit comes into view; glints play on the road of light,
+// and the mace drops into this water and the rings spread on it
+let urvinaPoz=null;
+function urvinaPozadina(){if(urvinaPoz)return urvinaPoz;const im=worldImg('kraj-urvina');if(!im||typeof document.createElement!=='function')return null;
+ const k=im.naturalWidth/1920,sx=1040,sy=300,sw=880,sh=430,c=document.createElement('canvas');c.width=sw;c.height=sh;const g=c.getContext('2d');
+ g.drawImage(im,sx*k,sy*k,sw*k,sh*k,0,0,sw,sh);g.globalCompositeOperation='destination-in';
+ const v=g.createLinearGradient(0,0,0,sh);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(.24,'#000');v.addColorStop(1,'#000');g.fillStyle=v;g.fillRect(0,0,sw,sh);
+ const h=g.createLinearGradient(0,0,sw,0);h.addColorStop(0,'rgba(0,0,0,0)');h.addColorStop(.1,'#000');h.addColorStop(.94,'#000');h.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=h;g.fillRect(0,0,sw,sh);
+ return urvinaPoz={c,sw,sh,hor:560-sy,sun:[1735-sx,452-sy]};}
+function drawUrvinaMore(){const t=vrhTrap();if(!t)return;const P=urvinaPozadina();if(!P)return;const od=Math.min(t.x0??t.bunar-700,t.bunar-700),hy=t.y-150;
+ const a=clamp((camera+VIEW_W-od)/900,0,1);if(a<=0)return;
+ const sc=VIEW_W*1.12/P.sw,w=P.sw*sc,h=P.sh*sc,top=hy-P.hor*sc,drift=(camera-(t.more-VIEW_W*.5))*.1,left=clamp(camera-VIEW_W*.1-drift,camera-(w-VIEW_W),camera);
+ ctx.save();
+ // the sky over it warms into the sunset of the ending, from rose above to gold at the sea
+ const sky=ctx.createLinearGradient(0,top-40,0,hy);sky.addColorStop(0,'#c98d9e');sky.addColorStop(.55,'#f0a88c');sky.addColorStop(1,'#ffd7a6');ctx.globalAlpha=a*.8;ctx.fillStyle=sky;ctx.fillRect(camera-20,Math.min(camY,top)-20,VIEW_W+40,hy-Math.min(camY,top)+20);
+ ctx.globalAlpha=a;ctx.drawImage(P.c,left,top,w,h);
+ // the road of light lives: small glints come and go on it, wider and fewer toward the shore
+ const sx=left+P.sun[0]*sc;ctx.globalCompositeOperation='lighter';
+ for(let i=0;i<22;i++){const ph=time*(.6+(i%5)*.13)+i*2.39,k=(i*.61803)%1,yy=hy+8+k*k*170,spread=14+k*90,x=sx+Math.sin(ph*1.7+i)*spread*.5,fl=Math.max(0,Math.sin(ph*2.3));
+  if(fl<.2)continue;ctx.globalAlpha=a*fl*(.5-.3*k);ellipse(x,yy,4+k*10,1+k*1.6,'#fff0c0');}
+ ctx.globalCompositeOperation='source-over';
+ if(t.krug){const K=t.krug;for(let r=0;r<3;r++){const k=K.t-r*.45;if(k<=0)continue;ctx.globalAlpha=Math.max(0,.8-k*.22)*a;ctx.beginPath();ctx.ellipse(K.x,K.y,18+k*38,4+k*7,0,0,Math.PI*2);ctx.strokeStyle='#fff6dc';ctx.lineWidth=2;ctx.stroke();}
+  if(K.t<.5){ctx.globalAlpha=(1-K.t*2)*a;for(let i=0;i<8;i++){const q=-Math.PI*(.15+.7*i/7);ellipse(K.x+Math.cos(q)*K.t*60,K.y+Math.sin(q)*K.t*90,3,3,'#ffffff');}}}
+ ctx.restore();}
 // a scripted pose: Marko plays the clips of a scene one after another (Codex D61 on Urvina), each once (and held) or looped
 function scenaPoza(){const S=p.scena;if(!S)return false;let k=time-S.t0,last=null;
  for(const g of S.seg){const len=g.d+(g.hold||0);last=g;if(k<len)break;k-=len;}
