@@ -617,6 +617,7 @@ const EN_PAIRS=[
 ["Visok kvalitet","High quality"],
 ["Brže (telefon, slabiji računar)","Faster (phone, slower computer)"],
 ["Krv","Blood"],
+["Psovke (Marko psuje)","Swearing (Marko curses)"],
 ["Smanjeno podrhtavanje i efekti","Reduced shake and effects"],
 ["Pripovedač smanjuje primljenu štetu i produžava vreme za odbijanje. Kontrole: WASD / strelice, Space, J, K, L, E, Q, Shift. S / dole: čučanj i izbegavanje strela. Drži L za blok; početak garda odbija udarac. Gard se troši i obnavlja kad ga spustiš. R: super udarac pri 100 besa, koji puniš borbom. Esc pauzira igru.","Storyteller lowers the damage you take and gives you longer to parry. Controls: WASD / arrows, Space, J, K, L, E, Q, Shift. S / down: crouch and duck arrows. Hold L to block; raising your guard at the right moment parries. The guard wears down and recovers when you lower it. R: a super strike at 100 rage, which you build by fighting. Esc pauses the game. Voices stay in Serbian."],
 ["Sačuvaj i vrati se","Save and go back"],

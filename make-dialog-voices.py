@@ -24,7 +24,7 @@ OUT = os.path.join(ROOT, 'dist', 'assets', 'voice', 'd')
 MANIFEST = os.path.join(ROOT, 'dist', 'assets', 'voice', 'dijalog.json')
 CACHE = os.path.join(ROOT, '.glasovi-uzorci', 'kes')
 MODEL = 'eleven_v4'
-SKIP_KAT = {'uputstvo', 'greybox (probni nivoi)', 'samo za razvoj', 'uvod igre'}
+SKIP_KAT = {'uputstvo', 'greybox (probni nivoi)', 'samo za razvoj'}
 PAUSE = 0.35  # seconds of silence between the parts of one line
 
 load = lambda p: json.load(open(os.path.join(ROOT, p), encoding='utf-8'))

@@ -103,7 +103,7 @@ const NAR = 'GUSLAR';
 const NORM = { VILA: 'RAVIJOJLA', 'PRIPOVEDAČ': 'GUSLAR' };
 const isHint = t => /\((?:E|J|K|L|U|Q|R|F|I|P|O|H|Shift|Space|W|S|A|D)\)|\b(?:pritisni|Shift|Space|J i K|W i S|A i D)\b|\b[JKLEU] (?:razbija|odbija|ostavlja|puca)/.test(t);
 
-if (tables.INTRO) tables.INTRO.val.forEach((p, i) => add({ who: NAR, text: p.text, kat: 'uvod igre', izvor: 'INTRO', mesto: `INTRO ${i + 1} · ${p.eyebrow}`, napomena: 'već ima glas lokalnog modela (uvod-sr-*)' }));
+if (tables.INTRO) tables.INTRO.val.forEach((p, i) => add({ who: NAR, text: p.text, kat: 'uvod igre', izvor: 'INTRO', mesto: `INTRO ${i + 1} · ${p.eyebrow}`, napomena: 'na srpskom ga čita narator (ranije lokalni model)' }));
 if (tables.PRELAZ) for (const [id, pages] of Object.entries(tables.PRELAZ.val)) pages.forEach((p, i) => add({ who: NAR, text: p.text, kat: 'prelaz između pesama', izvor: 'PRELAZ', mesto: `${id} ${i + 1} · ${p.eyebrow || ''}` }));
 { // prelazPages('san') has its pages written inline
   const m = /function prelazPages\(id\)\{if\(id==='san'\)return/.exec(GAME);
@@ -238,7 +238,7 @@ if (process.argv.includes('--md')) {
   const LINES_SRC = read('make-voice-lines.py');
   const existing = [...LINES_SRC.matchAll(/'([a-z0-9_]+)': \('([a-z]+)', ['"](.+?)['"], '(sr|tr)'\)/g)];
   const RATE = 11, TAG = 12; // characters per second of ElevenLabs Serbian speech (measured on our files), tag characters per line
-  const SKIP = new Set(['uputstvo', 'greybox (probni nivoi)', 'samo za razvoj', 'uvod igre']);
+  const SKIP = new Set(['uputstvo', 'greybox (probni nivoi)', 'samo za razvoj']);
   const voice = out.filter(r => !SKIP.has(r.kat));
   const min = z => (z / RATE / 60).toFixed(0);
   const fmt = n => n.toLocaleString('sr-RS');
@@ -250,7 +250,7 @@ if (process.argv.includes('--md')) {
   L.push('## Ukratko', '');
   L.push(`- U igri ima **${out.length} tekstova** koji se pojavljuju u okviru za razgovor ili na pričama između pesama: **${fmt(sum(out, r => r.text.length))} znakova**.`);
   L.push(`- Za ozvučavanje predlažem **${voice.length} replika, ${fmt(sum(voice, r => r.text.length))} znakova**: oko **${min(sum(voice, r => r.text.length))} minuta** govora. Sa oznakama za ton ([tiho], [ljutito]…) to je oko **${fmt(sum(voice, r => r.text.length + TAG))} kredita** (eleven_v4 = 1 kredit po znaku).`);
-  L.push(`- Ne predlažem ozvučavanje: uputstava sa tasterima (${groupBy(out, 'kat').uputstvo?.n || 0}; na džojstiku tasteri imaju druga imena), greybox probnih nivoa, prečica za razvoj i uvoda igre (već ga čita lokalni model).`);
+  L.push(`- Ne predlažem ozvučavanje: uputstava sa tasterima (${groupBy(out, 'kat').uputstvo?.n || 0}; na džojstiku tasteri imaju druga imena), greybox probnih nivoa i prečica za razvoj.`);
   L.push(`- Već postoji ${existing.length} kratkih replika u borbi (\`make-voice-lines.py\`, \`dist/assets/voice/\`): Marko, Musa, Ravijojla, age, Turci, putnici. One ostaju.`);
   L.push(`- Novi nalog ima 40.000 kredita mesečno (vraćaju se 16. 12.). Stari nalog dobija 121.215 kredita 27. 11.`, '');
   const A = sum(voice, r => r.text.length + TAG), NEW_N = 17 * 10, NEW_Z = NEW_N * (45 + TAG);

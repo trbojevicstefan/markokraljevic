@@ -5,7 +5,7 @@ Needs the ELEVENLABS_API_KEY environment variable. Edit LINES and run:
     python make-voice-lines.py --force    # regenerate everything
     python make-voice-lines.py super_1    # regenerate selected ids
 """
-import json, os, sys, urllib.request, urllib.error
+import json, os, re, sys, urllib.request, urllib.error
 
 VOICES = {
     'marko': 'RT8C6NHfIVrYtoL1RlrB',   # Tuco: the same clone made again in the new account on 16 Nov 2026 (old one: pb4oiB4KzXBEHjmRgsdK)
@@ -201,7 +201,45 @@ LINES = {
     'musa_pin': ('musa', '[triumphant] Sad si moj, Kraljeviću! Gde ti je sad vila?', 'sr'),
     'musa_look': ('musa', '[startled] Ko to... ko to zove iz oblaka?!', 'sr'),
     'vila_kostac': ('vila', '[urgent] Zar ti nisam govorila, brate, da ne biješ megdan u nedelju? A gde su ti ljute guje u nedrima?!', 'sr'),
+    # Marko without swearing (settings: "Psovke" off). A line ending in _c<n> is heard only then;
+    # with swearing on, the original lines play. Every group Marko swears in has a clean answer here.
+    'super_c1': ('marko', '[shouting] [furious] Marš sa mog druma, Turci!', 'sr'),
+    'super_c2': ('marko', '[shouting] Bež\'te, Turci, Marko je došao!', 'sr'),
+    'super_c3': ('marko', '[furious] [shouting] Marš!!! Nosite se odavde!', 'sr'),
+    'atk_c1': ('marko', '[shouting] Evo ti, Turčine!', 'sr'),
+    'atk_c2': ('marko', '[effort] Na! Pa nosi!', 'sr'),
+    'atk_c3': ('marko', '[shouting] Uzmi, kad si tražio!', 'sr'),
+    'kill_c1': ('marko', '[laughs] Ajde, sledeći!', 'sr'),
+    'kill_c2': ('marko', "[mocking] Je l' to sve što imate, junaci turski?", 'sr'),
+    'kill_c3': ('marko', '[shouting] Ode jedan! Ko je sledeći?', 'sr'),
+    'kill_c4': ('marko', '[spits] Ptu! Lezi tu, Turčine!', 'sr'),
+    'kill_c5': ('marko', '[mocking] Pozdravi sultana od Marka!', 'sr'),
+    'hurt_c1': ('marko', '[pained] Aah, bolan ne bio!', 'sr'),
+    'hurt_c2': ('marko', '[angry] [pained] Aah! Platićeš mi to!', 'sr'),
+    'hurt_c3': ('marko', '[pained] Uh! Zakači me, Turčin!', 'sr'),
+    'hurt_c4': ('marko', "[growls] Boli, al' neće Marko pasti!", 'sr'),
+    'block_c1': ('marko', '[laughs] Nećeš, bre, Turčine!', 'sr'),
+    'block_c2': ('marko', '[mocking] Promašio si, junačino!', 'sr'),
+    'rage_c1': ('marko', '[growling] Uzavrela mi krv! Sad ste nadrljali!', 'sr'),
+    'wine_c1': ('marko', '[laughs] Ah, vino! Sad ću vas redom, jednog po jednog!', 'sr'),
+    'horse_c1': ('marko', '[shouting] Ajde, Šarac! Gazi ih, sokole!', 'sr'),
+    'chapter_c1': ('marko', '[determined] Napred! Drum je naš!', 'sr'),
+    'low_c1': ('marko', '[strained] Neće Marko ovde pasti! Ne dam se!', 'sr'),
+    'boss_c1': ('marko', '[shouting] Muso! Izlazi na megdan, ako si junak!', 'sr'),
+    'phase_c1': ('marko', '[mocking] Još dva srca, Muso? Izvadiću ti i njih!', 'sr'),
+    'death_c1': ('marko', '[weak] Pao sam... ali ustaću ja.', 'sr'),
+    'spin_c1': ('marko', '[shouting] Vihor, Turci! Vihor!', 'sr'),
+    'spin_c2': ('marko', '[laughs] U krug, junaci turski!', 'sr'),
+    'taunt_c1': ('marko', '[shouting] Ajde, priđite, ako smete!', 'sr'),
+    'taunt_c2': ('marko', '[mocking] Šta stojite? Ajde, bre!', 'sr'),
+    'guard_c1': ('marko', '[annoyed] Ma skloni taj štit!', 'sr'),
+    'pit_c1': ('marko', '[shouting] Uh, klisura! Zamalo!', 'sr'),
+    'mounted_c1': ('marko', '[shouting] S konja ću te, Turčine!', 'sr'),
 }
+
+# lines that swear, or answer swearing (the fairy scolding Marko's tongue): silent when "Psovke" is off
+SWEAR = re.compile(r'pičk|jeb|kurv|kopil|mater', re.I)
+SWEAR_ANSWER = {'vila_super', 'vila_heal_3'}
 
 
 def generate(line_id, speaker, text, lang):
@@ -243,3 +281,5 @@ if __name__ == '__main__':
             print(line_id, 'GREŠKA', e.code, e.read()[:300].decode(errors='replace'), flush=True)
     with open(os.path.join(OUT, 'lines.json'), 'w', encoding='utf-8') as f:
         json.dump(sorted(i for i in LINES if os.path.exists(os.path.join(OUT, i + '.mp3'))), f)
+    with open(os.path.join(OUT, 'psovke.json'), 'w', encoding='utf-8') as f:
+        json.dump(sorted(i for i, (_, text, _) in LINES.items() if SWEAR.search(text) or i in SWEAR_ANSWER), f)

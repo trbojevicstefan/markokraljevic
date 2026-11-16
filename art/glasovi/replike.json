@@ -10,7 +10,7 @@
    "mesta": [
     "INTRO 1 · Kaže pesma…"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -23,7 +23,7 @@
    "mesta": [
     "INTRO 2 · Klisura Kačanika"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -36,7 +36,7 @@
    "mesta": [
     "INTRO 3 · Kula kraj mora"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -49,7 +49,7 @@
    "mesta": [
     "INTRO 4 · Pred sultanom"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -62,7 +62,7 @@
    "mesta": [
     "INTRO 5 · Tri godine tamnice"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -75,7 +75,7 @@
    "mesta": [
     "INTRO 6 · Bez vojske"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -88,7 +88,7 @@
    "mesta": [
     "INTRO 7 · Vila Ravijojla"
    ],
-   "napomena": "već ima glas lokalnog modela (uvod-sr-*)",
+   "napomena": "na srpskom ga čita narator (ranije lokalni model)",
    "nivo": "musa",
    "scena": "Uvod igre"
   },
@@ -2514,7 +2514,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "slay · game.js:268"
+    "slay · game.js:272"
    ],
    "nivo": "musa",
    "scena": "Megdan sa Musom"
@@ -2526,7 +2526,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "slay · game.js:268"
+    "slay · game.js:272"
    ],
    "nivo": "musa",
    "scena": "Megdan sa Musom"
@@ -2538,7 +2538,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "dropSablja · game.js:271"
+    "dropSablja · game.js:275"
    ],
    "nivo": "tvrdjava",
    "scena": "Marko poznaje očinu sablju"
@@ -2550,7 +2550,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateTravelers · game.js:348"
+    "updateTravelers · game.js:352"
    ],
    "nivo": "musa",
    "scena": "Kačanik: putnici"
@@ -2562,7 +2562,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "updateTravelers · game.js:358"
+    "updateTravelers · game.js:362"
    ],
    "nivo": "musa",
    "scena": "Kačanik: putnici"
@@ -2574,7 +2574,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMindPuzzles · game.js:622"
+    "updateMindPuzzles · game.js:626"
    ],
    "nivo": "sve",
    "scena": "Zagonetke (vaga, vilinsko kolo)"
@@ -2586,7 +2586,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMindPuzzles · game.js:623"
+    "updateMindPuzzles · game.js:627"
    ],
    "nivo": "sve",
    "scena": "Zagonetke (vaga, vilinsko kolo)"
@@ -2598,7 +2598,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "updateCannons · game.js:764"
+    "updateCannons · game.js:768"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2610,7 +2610,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "updateGunner · game.js:856"
+    "updateGunner · game.js:860"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2622,7 +2622,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "drawSoldier · game.js:1362"
+    "drawSoldier · game.js:1366"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2634,7 +2634,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "collectCudo · game.js:2205"
+    "collectCudo · game.js:2209"
    ],
    "nivo": "tvrdjava",
    "scena": "Marko poznaje očinu sablju"
@@ -2646,7 +2646,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updatePlows · game.js:2373"
+    "updatePlows · game.js:2377"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -2658,7 +2658,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updatePlows · game.js:2374"
+    "updatePlows · game.js:2378"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -2670,7 +2670,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updatePlows · game.js:2376"
+    "updatePlows · game.js:2380"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -2682,7 +2682,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "akindzijaTick · game.js:2453"
+    "akindzijaTick · game.js:2457"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2694,7 +2694,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "kopljanikTick · game.js:2462"
+    "kopljanikTick · game.js:2466"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2706,7 +2706,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "kisaStrela · game.js:2473"
+    "kisaStrela · game.js:2477"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2718,7 +2718,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "varkaKraj · game.js:2485"
+    "varkaKraj · game.js:2489"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2730,7 +2730,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "updateTraps · game.js:2939"
+    "updateTraps · game.js:2943"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2742,7 +2742,7 @@
    "kat": "savet",
    "izvor": "speak",
    "mesta": [
-    "updateTraps · game.js:2939"
+    "updateTraps · game.js:2943"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -2754,7 +2754,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateSan · game.js:3149"
+    "updateSan · game.js:3153"
    ],
    "nivo": "san",
    "scena": "Četiri odaje sna"
@@ -2766,7 +2766,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "kosovkaArap · game.js:3186"
+    "kosovkaArap · game.js:3190"
    ],
    "nivo": "rusevine",
    "scena": "Kosovka devojka i svadbarina"
@@ -2778,7 +2778,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "kosovkaArap · game.js:3187"
+    "kosovkaArap · game.js:3191"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "rusevine",
@@ -2791,7 +2791,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateKosovka · game.js:3199"
+    "updateKosovka · game.js:3203"
    ],
    "nivo": "rusevine",
    "scena": "Kosovka devojka i svadbarina"
@@ -2803,7 +2803,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3222"
+    "updateVaradin · game.js:3226"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2815,7 +2815,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3234"
+    "updateVaradin · game.js:3238"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2827,7 +2827,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3238"
+    "updateVaradin · game.js:3242"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "prevoj",
@@ -2840,7 +2840,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3239"
+    "updateVaradin · game.js:3243"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2852,7 +2852,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3245"
+    "updateVaradin · game.js:3249"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2864,7 +2864,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3247"
+    "updateVaradin · game.js:3251"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2876,7 +2876,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3250"
+    "updateVaradin · game.js:3254"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2888,7 +2888,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3253"
+    "updateVaradin · game.js:3257"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2900,7 +2900,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3257"
+    "updateVaradin · game.js:3261"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2912,7 +2912,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3259"
+    "updateVaradin · game.js:3263"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2924,7 +2924,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateVaradin · game.js:3260"
+    "updateVaradin · game.js:3264"
    ],
    "nivo": "prevoj",
    "scena": "Marko i Vuča dženeral (Varadin)"
@@ -2936,7 +2936,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3288"
+    "updateMehana · game.js:3292"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -2948,7 +2948,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3296"
+    "updateMehana · game.js:3300"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -2960,7 +2960,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3300"
+    "updateMehana · game.js:3304"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -2972,7 +2972,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3303"
+    "updateMehana · game.js:3307"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "reka",
@@ -2985,7 +2985,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3304"
+    "updateMehana · game.js:3308"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -2997,7 +2997,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3307"
+    "updateMehana · game.js:3311"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -3009,7 +3009,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3311"
+    "updateMehana · game.js:3315"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "reka",
@@ -3022,7 +3022,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateMehana · game.js:3315"
+    "updateMehana · game.js:3319"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -3034,7 +3034,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "filipPao · game.js:3322"
+    "filipPao · game.js:3326"
    ],
    "nivo": "reka",
    "scena": "Marko i Filip Madžarin"
@@ -3046,7 +3046,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3353"
+    "updateOkovi · game.js:3357"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3058,7 +3058,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3360"
+    "updateOkovi · game.js:3364"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3070,7 +3070,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3363"
+    "updateOkovi · game.js:3367"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3082,7 +3082,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3373"
+    "updateOkovi · game.js:3377"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3094,7 +3094,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3373"
+    "updateOkovi · game.js:3377"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3106,7 +3106,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3373"
+    "updateOkovi · game.js:3377"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3118,7 +3118,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3375"
+    "updateOkovi · game.js:3379"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3130,7 +3130,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3377"
+    "updateOkovi · game.js:3381"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3142,7 +3142,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3380"
+    "updateOkovi · game.js:3384"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3154,7 +3154,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3381"
+    "updateOkovi · game.js:3385"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "klisura",
@@ -3167,7 +3167,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3382"
+    "updateOkovi · game.js:3386"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3179,7 +3179,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateOkovi · game.js:3385"
+    "updateOkovi · game.js:3389"
    ],
    "nivo": "klisura",
    "scena": "Marko i Đemo Brđanin: okovi i mehana"
@@ -3191,7 +3191,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateSabljaPesma · game.js:3431"
+    "updateSabljaPesma · game.js:3435"
    ],
    "nivo": "tvrdjava",
    "scena": "Marko poznaje očinu sablju"
@@ -3203,7 +3203,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateSabljaPesma · game.js:3432"
+    "updateSabljaPesma · game.js:3436"
    ],
    "nivo": "tvrdjava",
    "scena": "Marko poznaje očinu sablju"
@@ -3215,7 +3215,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "crkvaBeg · game.js:3448"
+    "crkvaBeg · game.js:3452"
    ],
    "nivo": "manastir",
    "scena": "Uroš i Mrnjavčevići (Samodreža)"
@@ -3227,7 +3227,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateCrkva · game.js:3461"
+    "updateCrkva · game.js:3465"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "manastir",
@@ -3240,7 +3240,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateCrkva · game.js:3467"
+    "updateCrkva · game.js:3471"
    ],
    "nivo": "manastir",
    "scena": "Uroš i Mrnjavčevići (Samodreža)"
@@ -3252,7 +3252,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateCrkva · game.js:3469"
+    "updateCrkva · game.js:3473"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "manastir",
@@ -3265,7 +3265,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateCrkva · game.js:3470"
+    "updateCrkva · game.js:3474"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "manastir",
@@ -3278,7 +3278,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "useVasar · game.js:3530"
+    "useVasar · game.js:3534"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "selo",
@@ -3291,7 +3291,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "useVasar · game.js:3532"
+    "useVasar · game.js:3536"
    ],
    "nivo": "selo",
    "scena": "Vašar konja"
@@ -3303,7 +3303,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "updateVasar · game.js:3535"
+    "updateVasar · game.js:3539"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "selo",
@@ -3316,7 +3316,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVasar · game.js:3538"
+    "updateVasar · game.js:3542"
    ],
    "nivo": "selo",
    "scena": "Vašar konja"
@@ -3328,7 +3328,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateVasar · game.js:3539"
+    "updateVasar · game.js:3543"
    ],
    "nivo": "selo",
    "scena": "Vašar konja"
@@ -3340,7 +3340,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "usePotera · game.js:3564"
+    "usePotera · game.js:3568"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3352,7 +3352,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updatePotera · game.js:3568"
+    "updatePotera · game.js:3572"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3364,7 +3364,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updatePotera · game.js:3576"
+    "updatePotera · game.js:3580"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3376,7 +3376,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateJahanje · game.js:3656"
+    "updateJahanje · game.js:3660"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3388,7 +3388,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "pesmaPeva · game.js:3684"
+    "pesmaPeva · game.js:3688"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3400,7 +3400,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvStreleTick · game.js:3708"
+    "pvStreleTick · game.js:3712"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3412,7 +3412,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvStreleTick · game.js:3715"
+    "pvStreleTick · game.js:3719"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3424,7 +3424,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvStreleTick · game.js:3719"
+    "pvStreleTick · game.js:3723"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3436,7 +3436,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvStreleTick · game.js:3720"
+    "pvStreleTick · game.js:3724"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3448,7 +3448,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBije · game.js:3728"
+    "pvBije · game.js:3732"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3460,7 +3460,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBije · game.js:3728"
+    "pvBije · game.js:3732"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3472,7 +3472,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBije · game.js:3728"
+    "pvBije · game.js:3732"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3484,7 +3484,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBije · game.js:3731"
+    "pvBije · game.js:3735"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3496,7 +3496,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvBije · game.js:3732"
+    "pvBije · game.js:3736"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3508,7 +3508,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvBiljeTick · game.js:3746"
+    "pvBiljeTick · game.js:3750"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3520,7 +3520,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBiljeTick · game.js:3748"
+    "pvBiljeTick · game.js:3752"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3532,7 +3532,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "pvBiljeTick · game.js:3750"
+    "pvBiljeTick · game.js:3754"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3544,7 +3544,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "pvBiljeTick · game.js:3765"
+    "pvBiljeTick · game.js:3769"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3556,7 +3556,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvLeciTick · game.js:3776"
+    "pvLeciTick · game.js:3780"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3568,7 +3568,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvLeciTick · game.js:3781"
+    "pvLeciTick · game.js:3785"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3580,7 +3580,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "pvTrka · game.js:3862"
+    "pvTrka · game.js:3866"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3592,7 +3592,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "pvTrka · game.js:3863"
+    "pvTrka · game.js:3867"
    ],
    "nivo": "suma",
    "scena": "Marko i vila (Miroč)"
@@ -3604,7 +3604,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "presudaBlagoslov · game.js:3882"
+    "presudaBlagoslov · game.js:3886"
    ],
    "nivo": "manastir",
    "scena": "Uroš i Mrnjavčevići (Samodreža)"
@@ -3616,7 +3616,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "presudaBlagoslov · game.js:3883"
+    "presudaBlagoslov · game.js:3887"
    ],
    "nivo": "manastir",
    "scena": "Uroš i Mrnjavčevići (Samodreža)"
@@ -3628,7 +3628,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "useStrela · game.js:3901"
+    "useStrela · game.js:3905"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -3640,7 +3640,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateStrela · game.js:3904"
+    "updateStrela · game.js:3908"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -3652,7 +3652,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateStrela · game.js:3914"
+    "updateStrela · game.js:3918"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -3664,7 +3664,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateStrela · game.js:3915"
+    "updateStrela · game.js:3919"
    ],
    "nivo": "oranje",
    "scena": "Oranje Markovo i strela"
@@ -3676,7 +3676,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "usePogled · game.js:3950"
+    "usePogled · game.js:3954"
    ],
    "nivo": "reka",
    "scena": "Pogled popreko"
@@ -3688,7 +3688,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updatePogled · game.js:3952"
+    "updatePogled · game.js:3956"
    ],
    "nivo": "reka",
    "scena": "Pogled popreko"
@@ -3700,7 +3700,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updatePogled · game.js:3958"
+    "updatePogled · game.js:3962"
    ],
    "nivo": "reka",
    "scena": "Pogled popreko"
@@ -3712,7 +3712,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updatePogled · game.js:3960"
+    "updatePogled · game.js:3964"
    ],
    "nivo": "reka",
    "scena": "Pogled popreko"
@@ -3724,7 +3724,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "guslarOdbrana · game.js:4074"
+    "guslarOdbrana · game.js:4078"
    ],
    "nivo": "klisura",
    "scena": "Guslari u klisuri"
@@ -3736,7 +3736,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "lovStart · game.js:4286"
+    "lovStart · game.js:4290"
    ],
    "nivo": "mocvara",
    "scena": "Ranjeni soko"
@@ -3748,7 +3748,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateLov · game.js:4307"
+    "updateLov · game.js:4311"
    ],
    "nivo": "mocvara",
    "scena": "Ranjeni soko"
@@ -3760,7 +3760,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateLov · game.js:4321"
+    "updateLov · game.js:4325"
    ],
    "nivo": "mocvara",
    "scena": "Ranjeni soko"
@@ -3772,7 +3772,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "useBacva · game.js:4393"
+    "useBacva · game.js:4397"
    ],
    "nivo": "podrum",
    "scena": "Marko pije uz ramazan vino"
@@ -3784,7 +3784,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateBacve · game.js:4399"
+    "updateBacve · game.js:4403"
    ],
    "nivo": "podrum",
    "scena": "Marko pije uz ramazan vino"
@@ -3796,7 +3796,7 @@
    "kat": "dijalog",
    "izvor": "speak",
    "mesta": [
-    "updateBacve · game.js:4403"
+    "updateBacve · game.js:4407"
    ],
    "napomena": "mešovito: priča + citat",
    "nivo": "podrum",
@@ -3809,7 +3809,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateBacve · game.js:4407"
+    "updateBacve · game.js:4411"
    ],
    "nivo": "podrum",
    "scena": "Marko pije uz ramazan vino"
@@ -3821,7 +3821,7 @@
    "kat": "pripovedanje",
    "izvor": "speak",
    "mesta": [
-    "updateBacve · game.js:4409"
+    "updateBacve · game.js:4413"
    ],
    "nivo": "podrum",
    "scena": "Marko pije uz ramazan vino"
@@ -3833,7 +3833,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "throwSpear · game.js:4598"
+    "throwSpear · game.js:4602"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -3845,7 +3845,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "megdanHint · game.js:4710"
+    "megdanHint · game.js:4714"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -3857,7 +3857,7 @@
    "kat": "uputstvo",
    "izvor": "speak",
    "mesta": [
-    "updatePuzzles · game.js:5318"
+    "updatePuzzles · game.js:5322"
    ],
    "nivo": "sve",
    "scena": "Saveti i uputstva"
@@ -3869,7 +3869,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6092"
+    "novoGo · game.js:6096"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3881,7 +3881,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6093"
+    "novoGo · game.js:6097"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3893,7 +3893,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6094"
+    "novoGo · game.js:6098"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3905,7 +3905,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6095"
+    "novoGo · game.js:6099"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3917,7 +3917,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6096"
+    "novoGo · game.js:6100"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3929,7 +3929,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6098"
+    "novoGo · game.js:6102"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3941,7 +3941,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6102"
+    "novoGo · game.js:6106"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3953,7 +3953,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6111"
+    "novoGo · game.js:6115"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -3965,7 +3965,7 @@
    "kat": "samo za razvoj",
    "izvor": "speak",
    "mesta": [
-    "novoGo · game.js:6116"
+    "novoGo · game.js:6120"
    ],
    "nivo": "razvoj",
    "scena": "prečice ?novo="
@@ -4419,122 +4419,122 @@
   {
    "src": "chapters[zone].message",
    "who": null,
-   "mesto": "start · game.js:173"
+   "mesto": "start · game.js:177"
   },
   {
    "src": "chapters[zone].message",
    "who": null,
-   "mesto": "enterChapter · game.js:251"
+   "mesto": "enterChapter · game.js:255"
   },
   {
    "src": "DEF_TEXT[zone]",
    "who": null,
-   "mesto": "updateDefense · game.js:913"
+   "mesto": "updateDefense · game.js:917"
   },
   {
    "src": "`${M.name} (${M.key}). ${M.text}`",
    "who": null,
-   "mesto": "uzmiMoc · game.js:1714"
+   "mesto": "uzmiMoc · game.js:1718"
   },
   {
    "src": "`${L.name}. ${VARIANTS[v].intro}${LEVEL_INTRO[L.id]||L.design?.goal||'Prati put do barjaka.'}`",
    "who": null,
-   "mesto": "startLevel · game.js:2171"
+   "mesto": "startLevel · game.js:2175"
   },
   {
    "src": "`${c.name} — iz pesme „${c.song}”. ${c.perk}.`",
    "who": null,
-   "mesto": "collectCudo · game.js:2209"
+   "mesto": "collectCudo · game.js:2213"
   },
   {
    "src": "VRH_REC[i]",
    "who": null,
-   "mesto": "useVrh · game.js:3058"
+   "mesto": "useVrh · game.js:3062"
   },
   {
    "src": "VRH_VILA[t.said]",
    "who": null,
-   "mesto": "updateUrvina · game.js:3071"
+   "mesto": "updateUrvina · game.js:3075"
   },
   {
    "src": "t.clue",
    "who": null,
-   "mesto": "sanClue · game.js:3136"
+   "mesto": "sanClue · game.js:3140"
   },
   {
    "src": "txt",
    "who": "(who)",
-   "mesto": "updateKosovka · game.js:3191"
+   "mesto": "updateKosovka · game.js:3195"
   },
   {
    "src": "txt",
    "who": "(who)",
-   "mesto": "updateSabljaPesma · game.js:3429"
+   "mesto": "updateSabljaPesma · game.js:3433"
   },
   {
    "src": "HINTS.vila",
    "who": null,
-   "mesto": "updatePotera · game.js:3566"
+   "mesto": "updatePotera · game.js:3570"
   },
   {
    "src": "txt",
    "who": "(who)",
-   "mesto": "updateJahanje · game.js:3649"
+   "mesto": "updateJahanje · game.js:3653"
   },
   {
    "src": "PV_VILA[P.round]",
    "who": "VILA",
-   "mesto": "pvTick · game.js:3696"
+   "mesto": "pvTick · game.js:3700"
   },
   {
    "src": "PV_MILOS[P.round]",
    "who": "MILOŠ",
-   "mesto": "pvTick · game.js:3697"
+   "mesto": "pvTick · game.js:3701"
   },
   {
    "src": "PV_MILOS[0]",
    "who": "MILOŠ",
-   "mesto": "pvTick · game.js:3699"
+   "mesto": "pvTick · game.js:3703"
   },
   {
    "src": "`Miloš peva, vila mu otpeva; lepše grlo u Miloša carsko, jeste lepše nego je u vile.${k>.75?' Gusle su te slušale kao nikog.':''}`",
    "who": null,
-   "mesto": "pvPesmaKraj · game.js:3702"
+   "mesto": "pvPesmaKraj · game.js:3706"
   },
   {
    "src": "tr(B.uvod)",
    "who": null,
-   "mesto": "updateBranik · game.js:4151"
+   "mesto": "updateBranik · game.js:4155"
   },
   {
    "src": "tr(B.kraj)",
    "who": null,
-   "mesto": "updateBranik · game.js:4157"
+   "mesto": "updateBranik · game.js:4161"
   },
   {
    "src": "KIT_INTRO[c.kit]||`${c.name} ti preči put. Pazi na njegov poseban napad, Marko!`",
    "who": null,
-   "mesto": "updateArena · game.js:4439"
+   "mesto": "updateArena · game.js:4443"
   },
   {
    "src": "HINTS[key]",
    "who": null,
-   "mesto": "hintOnce · game.js:4876"
+   "mesto": "hintOnce · game.js:4880"
   },
   {
    "src": "`${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}`",
    "who": null,
-   "mesto": "bookSee · game.js:5298"
+   "mesto": "bookSee · game.js:5302"
   },
   {
    "src": "t",
    "who": null,
-   "mesto": "takeZapis · game.js:5525"
+   "mesto": "takeZapis · game.js:5529"
   },
   {
    "src": "world.gb.L.uvod",
    "who": null,
-   "mesto": "startGreybox · game.js:6033"
+   "mesto": "startGreybox · game.js:6037"
   }
  ]
 }
