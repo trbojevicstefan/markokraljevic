@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,canKrilo,canNalet,koloTisina,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -126,8 +126,11 @@ await api.startLevel(lv('selo'));{const {p,world}=S();for(const o of world.enemi
  await api.startLevel(lv('selo'));step(120);ok(api.film().sepija===0,'pad: back on the road, the colours come back');}
 // ---- Stefan, 16. 11. ujutru: vilinsko kolo se vidi (pogođen kamen ostaje upaljen, greške se broje) ----
 await api.startLevel(lv('suma'));{const {p,world}=S(),t=world.traps.find(q=>q.kind==='kolo');for(const o of world.enemies)o.alive=false;
- Object.assign(p,{x:t.stones[0].x-200,y:t.stones[0].y,grounded:true,invuln:99});step(3);ok(t.show>0,'kolo: the fireflies start to show the order');
+ Object.assign(p,{x:t.stones[0].x-200,y:t.stones[0].y,grounded:true,invuln:99});step(3);ok(t.shown&&!(t.show>0),'kolo: no fireflies show the order: Marko finds it himself');
  for(let i=0;i<120*8&&t.show>0;i++)step(1);const stand=i=>{Object.assign(p,{x:t.stones[i].x,y:t.stones[i].y,vx:0,vy:0,grounded:true});step(6);Object.assign(p,{x:t.stones[i].x+70});step(3);};
  stand(t.order[0]);step(120*3);ok(t.prog===1&&t.stones[t.order[0]].lit>.9,'kolo: a stone stepped on in the right order stays lit');
- const bad=[0,1,2,3,4].find(i=>i!==t.order[1]&&i!==t.order[0]);stand(bad);ok(t.wrong===1&&t.prog===0&&t.show>0,'kolo: a wrong stone counts, and the fireflies show it again');}
+ const bad=[0,1,2,3,4].find(i=>i!==t.order[1]&&i!==t.order[0]);stand(bad);ok(t.wrong===1&&t.prog===0&&!(t.show>0),'kolo: a wrong stone puts them all out, and nothing shows the way');
+ Object.assign(p,{x:(t.gap.x0+t.gap.x1)/2,y:t.stones[0].y-120,vy:0,grounded:false,naletUsed:false,kriloUsed:false,coyote:0});ok(t.gap.x1-t.gap.x0>=600,'kolo: the chasm is wider than any jump without the wing and the dash');
+ ok(api.koloTisina()&&!api.canKrilo()&&!api.canNalet(),'kolo: over the chasm no wing and no air dash carry Marko');
+ t.done=true;ok(!api.koloTisina(),'kolo: once the ring is closed the air is free again');}
 console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar, pad Marka i vilinsko kolo`);

@@ -47,9 +47,10 @@ Ovo ide u poseban commit, posle ovog izveštaja.
 - **Miloš na konju:** stoji na zemlji kao i Marko. Bio je postavljen 12 px iznad tla.
 - **Vilinsko kolo u šumi** (ploče pred velikom jamom):
   - **Uzrok:** kolo se uopšte nije crtalo. Igra je tražila njegovu poziciju preko kapije ili koturače, a kolo nema ni jedno ni drugo. Zato se nisu videli ni kamenovi, ni svici, ni most, a „POGREŠNO · GLEDAJ SVICE” je iskakalo kad se slučajno stane na nevidljivu ploču.
-  - **Prikaz sada:** kolo se crta. Dok svici pokazuju redosled, kamera gleda celo kolo i jamu. Iznad kamenova piše „GLEDAJ SVICE” i pale se brojevi 1, 2, 3, 4, a veliko jato svitaca leti od kamena do kamena.
-  - **Kamenje:** tamne ploče koje su izgledale kao da lebde zamenjene su gomilama kamena sa runama, koje leže u travi. Upaljeno kamenje sija, uz zeleni krug na zemlji.
-  - **Igranje sada:** posle prikaza piše „STANI NA KAMENOVE ISTIM REDOM · 0 / 4”, a pogođen kamen ostaje upaljen. Posle dve greške brojevi ostaju bledo kao pomoć. Preko jame stoji bleda isprekidana senka mosta, dok se most ne pojavi.
+  - **Prikaz sada:** kolo se crta. Kad mu Marko priđe, kamera na trenutak pokaže celo kolo i jamu.
+  - **Kamenje:** kamene ploče koje je Stefan izabrao (`ploca-pritisak`). Kad se pravilno stane na ploču, ona se spusti i zasvetli, uz zeleni krug na zemlji.
+  - **Igranje sada:** Stefan: „nemoj vile da nam pomažu, treba sami da ukapiramo kombinaciju”. Zato nema svitaca koji pokazuju redosled, nema brojeva i nema pomoći. Piše „NAĐI RED KAMENOVA · 0 / 4”. Ploča koja je na redu zasvetli i ostaje upaljena, a pogrešna gasi sve. Preko jame stoji bleda isprekidana senka mosta, dok se most ne pojavi.
+  - **Jama:** Stefan: „povećaj razmak jame, preskačemo je sa perom”. Jama je sada 640 px umesto 300. Iznad nerešene jame ne rade krilo, nalet, Orlovo pero ni vilin uzlet, pa se može preći samo mostom. Izmereni najduži skokovi: običan 201 px, sa krilom 327, sa krilom i naletom 557, a sa perom 816 px.
 - **Kamenje i poluge na E:** sijaju, imaju stub svetlosti, strelicu i krug na zemlji („STANI U KRUG (E)”). Kad su van ekrana, na ivici stoji strelica u njihovom pravcu.
 - **Brzina:** dušmani daleko van ekrana, mirni i neuzbunjeni, više se ne računaju svaki kadar. Računanje dušmana je oko 3× jeftinije. Izmereno je:
 

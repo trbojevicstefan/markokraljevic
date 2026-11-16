@@ -292,8 +292,8 @@ export function buildLayout(L,variant='day'){
    const t=block(x,260,gy-305,{tower:true,ground:true});traps.push({kind:'scale',pans:[L,P2],pulley:{x:x0+395,y:gy-420}});busy.push([x0,x+260]);x+=260;gy=t.y;run=null;},
   // the fairy ring: fireflies light the stones in an order; step on them the same way and a bridge of light crosses the chasm
   kolo(){const x0=x,len=760;ground(len);const S=[0,1,2,3,4].map(i=>({x:x0+130+i*120,y:gy}));const order=[];while(order.length<4){const k=Math.floor(R()*5);if(k!==order[order.length-1])order.push(k);}
-   const gx=x;x+=300;run=null;const bridge={x:gx-10,y:gy,w:320,h:18,kind:'plank',off:true,kolo:true};platforms.push(bridge);ground(ri(300,360));
-   traps.push({kind:'kolo',stones:S,order,bridge,gap:{x0:gx,x1:gx+300}});busy.push([x0,gx+300]);},
+   const gx=x;x+=640;run=null;const bridge={x:gx-10,y:gy,w:660,h:18,kind:'plank',off:true,kolo:true};platforms.push(bridge);ground(ri(300,360));
+   traps.push({kind:'kolo',stones:S,order,bridge,gap:{x0:gx,x1:gx+640}});busy.push([x0,gx+640]);},
   // an iron door no blow can break, a keg of powder, a brazier on the beam above: push, climb, knock it down — and stand clear
   barut(){const x0=x,len=900;ground(len);platforms.push({x:x0+560,y:gy-150,w:150,h:18,kind:'plank'},{x:x0+130,y:gy-62,w:56,h:62,kind:'teret',solid:true,push:true,keg:true});
    traps.push({kind:'powder',brazier:{x:x0+690,y:gy-150},gate:{x:x0+len-90,y:gy}});busy.push([x0,x0+len]);},
