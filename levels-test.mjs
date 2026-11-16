@@ -94,7 +94,7 @@ console.log(`PASS all ${api.LEVELS.length} campaigns, ${total} goals`);
  const [hi,lo]=w.traps.filter(t=>t.kind==='strelnica').sort((u,v)=>u.y-v.y),wall=w.platforms.find(q=>q.tower&&!q.ground&&q.x===hi.x);
  {const shot=(slit,how)=>{const other=slit===hi?lo:hi;api.keys.clear();step();S().arrows.length=0;put(slit.x-200,slit.gy,{invuln:0});other.clock=99;slit.clock=.01;slit.armed=true;const hp=S().p.hp;
    if(how==='crouch')api.keys.add('KeyS');
-   for(let k=0;k<144;k++){const a=S().arrows.find(a=>a.enemy),p=S().p;if(how==='roll'&&a&&a.x-p.x<90&&!(p.dash>0)&&p.dashCooldown<=0)tap('ShiftLeft');else if(how==='jump'&&a&&a.x-p.x<120&&p.grounded)tap('Space');else step();}
+   for(let k=0;k<144;k++){const a=S().arrows.find(a=>a.enemy),p=S().p;if(how==='roll'&&a&&a.x-p.x<90&&!(p.dash>0)&&p.dashCooldown<=0){api.keys.add(a.vx<0?'KeyD':'KeyA');tap('ShiftLeft');api.keys.delete('KeyD');api.keys.delete('KeyA');}else if(how==='jump'&&a&&a.x-p.x<120&&p.grounded)tap('Space');else step();}
    api.keys.clear();return S().p.hp<hp;};
   ok(shot(hi,'stand')&&!shot(hi,'crouch')&&!shot(hi,'roll'),'the high arrow hits a standing Marko; crouching (S) or a roll (Shift) gets under it');
   ok(shot(lo,'stand')&&shot(lo,'crouch')&&!shot(lo,'jump')&&!shot(lo,'roll'),'the low arrow hits standing or crouching; a jump or a roll gets over it');

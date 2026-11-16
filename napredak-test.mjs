@@ -93,4 +93,9 @@ await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.
  {const {p,f}=await setup();const [e,o]=f;press(['KeyJ']);step(50);press(['KeyJ']);step(50);ok(p.combo===1&&p.comboWindow>0,'J J, the window still open');
   press(['KeyS','KeyJ'],2);ok(p.kickJunak,'J J S+J: Junački šut');const h=o.hp;for(let i=0;i<150&&!(o.obT>0);i++)api.update(1/120);
   ok(o.obT>0&&o.hp<h,'the kicked foe flies and fells the one behind him');}}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam i kombinacije`);
+// ---- Stefan, 16. 11.: Shift bez pravca je odskok unazad, sa pravcem kolut ----
+await api.startLevel(lv('selo'));{const {p,world}=S();for(const e of world.enemies)e.alive=false;storage.set('marko-skills',JSON.stringify(['niz','zamah','kolut']));api.ownedSkills().add('kolut');
+ api.keys.add('KeyD');step(120*2);api.keys.delete('KeyD');Object.assign(p,{face:1,vx:0,dashCooldown:0});step(60);let x0=p.x;api.pressed.add('ShiftLeft');step(1);
+ ok(p.dash>0&&p.backstep&&p.face===1,'Shift alone: a hop back, still facing forward');step(40);ok(p.x<x0-80&&p.face===1&&p.grounded,'he lands behind where he stood');
+ step(120);x0=p.x;api.keys.add('KeyD');api.pressed.add('ShiftLeft');step(1);ok(p.dash>0&&!p.backstep,'Shift with a direction: the roll');step(40);api.keys.delete('KeyD');ok(p.x>x0+80,'the roll goes forward');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije i odskok`);

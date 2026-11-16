@@ -112,7 +112,7 @@ await climbShaft('rusevine',true);
 // ---- new blows ----
 {const w=await start('selo');const e=w.enemies.find(e=>!e.perch);quiet(w,[e]);const gy=floorAt(w,e.x).y;e.y=gy;e.type='sword';e.stun=5;e.hp=e.maxHp=300;stand(e.x-70,gy);S().p.face=1;
  api.keys.add('KeyW');tap('KeyJ');api.keys.delete('KeyW');step(30);ok(e.vy<0||e.y<gy-20,'blows: W+J throws a janissary into the air');
- step(200);stand(e.x-260,floorAt(w,e.x).y);e.stun=5;S().p.face=1;const hp=e.hp;tap('ShiftLeft');step(10);tap('KeyJ');step(50);ok(e.hp<hp,'blows: Shift then J charges through a foe');}
+ step(200);stand(e.x-260,floorAt(w,e.x).y);e.stun=5;S().p.face=1;const hp=e.hp;api.keys.add('KeyD');tap('ShiftLeft');api.keys.delete('KeyD');step(10);tap('KeyJ');step(50);ok(e.hp<hp,'blows: Shift then J charges through a foe');}
 // ---- traps ----
 {const w=await start('selo');quiet(w);const t=w.traps.find(t=>t.kind==='spikes');stand(t.x+t.w/2,t.y);S().p.invuln=0;const hp=S().p.hp;step(3);ok(S().p.hp<hp&&S().p.vy<0,'traps: the stakes hurt and throw Marko up');}
 {const w=await start('pecina');quiet(w);const q=w.platforms.find(q=>q.crumble);stand(q.x+q.w/2,q.y);step(30);ok(!q.off,'traps: a crumbling plank holds for a moment');step(60);ok(q.off&&S().p.y>q.y+20,'traps: then it gives way');}
