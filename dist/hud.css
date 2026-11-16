@@ -266,3 +266,11 @@
 /* tiho obaranje (noć 16. 11., F3): ivice slike potamne dok boje izblede */
 #game-shell .vignette{transition:box-shadow .35s ease}
 #game-shell.tiho .vignette{box-shadow:inset 0 0 260px #000000d0}
+/* junački udar (noć 16. 11., F4): crvena crta preko celog ekrana i tamnocrven obod u zamrznutom kadru pred udar */
+#junak-crta{position:absolute;inset:0;pointer-events:none;z-index:6;overflow:hidden}
+#junak-crta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 38%,rgba(70,0,0,.6));opacity:0}
+#junak-crta i{position:absolute;left:-10%;width:120%;top:46%;height:6px;background:linear-gradient(90deg,transparent,#ff2a1a 14%,#ffe0c8 50%,#ff2a1a 86%,transparent);box-shadow:0 0 18px 4px rgba(255,40,20,.8);transform:rotate(-7deg) scaleX(0);opacity:0}
+#junak-crta.go i{animation:junakCrta .75s cubic-bezier(.2,.8,.3,1) forwards}
+#junak-crta.go::before{animation:junakObod .9s ease-out forwards}
+@keyframes junakCrta{0%{transform:rotate(-7deg) scaleX(0);opacity:1;height:7px}22%{transform:rotate(-7deg) scaleX(1);opacity:1;height:7px}60%{opacity:1;height:3px}100%{transform:rotate(-7deg) scaleX(1);opacity:0;height:1px}}
+@keyframes junakObod{0%{opacity:0}20%{opacity:1}100%{opacity:0}}

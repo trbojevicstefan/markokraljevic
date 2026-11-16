@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop}),superStrike,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -112,4 +112,10 @@ await api.startLevel(lv('vracara'));{const {p,world}=S(),c=world.enemies.find(e=
 {const e={x:S().p.x+60,y:S().p.y};api.setFin({kind:'tiho',e,t:0,dur:1.3});for(let i=0;i<20;i++)api.kinoTick(1/60);ok(api.bledo()>.85,'tiho: the colours drain while Marko takes him silently');
  api.setFin(null);for(let i=0;i<120;i++)api.kinoTick(1/60);ok(api.bledo()===0,'tiho: and come back after');
  api.setFin({kind:'gazi',e,t:0,dur:1.2});for(let i=0;i<20;i++)api.kinoTick(1/60);ok(api.bledo()===0,'tiho: a loud finisher keeps its colours');api.setFin(null);}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana i tiho obaranje`);
+// ---- noć, F4: junački udar: zamrznut kadar, zum i crvena crta pre udara ----
+await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.alive&&!o.champion&&o.type!=='oklopnik');for(const o of world.enemies)if(o!==e)o.alive=false;
+ api.ownedSkills().add('junacki');Object.assign(p,{rage:100,cooldown:0,attack:0,grounded:true,face:1,dash:0,drink:0});Object.assign(e,{x:p.x+120,y:p.y,hp:9999,maxHp:9999,stun:5});
+ api.superStrike();ok(p.attackKind==='super'&&!p.superFreeze,'junački udar: Marko raises the mace');const h=e.hp;let fr=0;
+ for(let i=0;i<120&&!p.superFreeze;i++){step(1);fr++;}ok(p.superFreeze&&api.film().hitstop>.2&&api.film().kinoT>0,'junački udar: at the height of the swing the picture stands still and leans in');
+ ok(e.hp===h,'junački udar: the stillness comes before the blow');for(let i=0;i<200&&e.hp===h;i++)step(1);ok(e.hp<h,'junački udar: then the blow falls');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje i junački udar`);
