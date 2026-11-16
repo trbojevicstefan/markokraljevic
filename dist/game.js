@@ -126,7 +126,19 @@ function musicWant(){if(mode==='menu')return'drum';
  if(arena&&arena.boss?.alive)return arena.boss.kit==='vrac'?'megdan':trackOr('boss-'+(arena.boss.kit||''),'megdan');return level?.id==='tvrdjava'?'megdan':'drum';}
 function trackOr(name,fallback){const k='music/'+name;if(SND.buf[k])return name;if(SND.buf[k]===undefined&&audio){SND.buf[k]=null;fetch(`assets/music/${name}.ogg`).then(r=>r.ok?r.arrayBuffer():null).then(a=>a&&audio.decodeAudioData(a)).then(b=>{SND.buf[k]=b||null;}).catch(()=>{});}return fallback;}
 function toast(text,duration=3){$('toast').textContent=kontrolaTekst(tr(text));$('toast').classList.add('visible');toastTime=duration;}
-function speak(text,duration=7,who=null){if(!who&&!vilaTu())who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;dialogueTime=duration;}
+// recorded dialogue (make-dialog-voices.py): game text -> [file id, seconds, speaker]; heard only when the game speaks Serbian
+const DIJALOG=new Map();
+if(hasDom&&typeof fetch==='function')fetch('assets/voice/dijalog.json').then(r=>r.ok?r.json():{}).then(d=>{for(const k in d)DIJALOG.set(k,d[k]);}).catch(()=>{});
+let govorA=null,govorTekst='';
+// the recording of a line; a line put together in code (chapter name + night + intro) is played from the recorded pieces it contains
+function glasZa(text){if(!text||uiLang()==='en'||!DIJALOG.size)return null;const g=DIJALOG.get(text);if(g)return[g];if(text.length<14)return null;const hits=[];for(const[k,v]of DIJALOG)if(k.length>=12){const i=text.indexOf(k);if(i>=0)hits.push([i,v]);}return hits.length?hits.sort((a,b)=>a[0]-b[0]).map(h=>h[1]):null;}
+function govorStop(){if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}govorTekst='';}
+// a line without a recording leaves the voice that is speaking alone; a recorded one takes over.
+// plays the pieces one after another; Marko's and the fairy's battle cries keep quiet meanwhile, the music ducks
+function govor(list,text){if(!list?.length||!hasDom||typeof Audio!=='function'||govorA&&text===govorTekst)return 0;govorStop();govorTekst=text;let i=0;const total=list.reduce((t,g)=>t+(g[1]||0)+.3,0);
+ const next=()=>{if(i>=list.length){govorA=null;govorTekst='';return;}const g=list[i++],a=new Audio(`assets/voice/d/${g[0]}.mp3`);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;NARR.add(a);govorA=a;a.onended=()=>{NARR.delete(a);if(govorA===a)next();};a.play().catch(()=>{});if(audio&&SND)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+(g[1]||3)+.3);};
+ next();if(audio&&SND?.speaking){const until=audio.currentTime+total;for(const k of['marko','vila'])SND.speaking[k]={src:{stop(){}},until,priority:3};}return total;}
+function speak(text,duration=7,who=null){const g=glasZa(text),main=g?.every(x=>x[2]===g[0][2])?g[0][2]:null;if(!who&&main==='GUSLAR')who='GUSLAR';if(!who&&!vilaTu()&&main!=='RAVIJOJLA')who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;const t=govor(g,text);dialogueTime=Math.max(duration,t?t+.8:0);}
 // kind 'dust' stays in the painted layer; everything else becomes glowing 3D sparks.
 function burst(x,y,color,count=14,speed=150,kind='glow'){if(kind!=='dust'&&stage){stage.burst(x,y,color,count,speed);return;}for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=Math.random()*speed;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(kind==='dust'?speed*.35:0),life:.4+Math.random()*.5,max:1,color,r:(kind==='dust'?3:1)+Math.random()*3,kind});}}
 function dust(x,y,count=6,spread=1){for(let i=0;i<count;i++)particles.push({x:x+(Math.random()-.5)*20*spread,y:y-2,vx:(Math.random()-.5)*90*spread,vy:-20-Math.random()*45,life:.45+Math.random()*.4,max:.85,color:'#cdb68a',r:4+Math.random()*6,kind:'dust'});}
@@ -5975,8 +5987,8 @@ function introNext(){stopIntroVoices();introAt++;if(introAt>=introPages.length){
  const stage=el.querySelector('.intro-stage');stage.classList.remove('show');void stage.offsetWidth;stage.classList.add('show');
  if(introAt)sfx('cloth',{gain:.4,rate:1.4});
  // with a recorded line the picture waits for it; otherwise it waits as long as reading takes
- const lang=uiLang()==='en'?'en':'sr',wait=Math.max(6,s.text.split(/\s+/).length*.42);introVoice=null;if(introQuiet){introTimer=setTimeout(introNext,wait*1000+1500);return;}
- const a=new Audio(`assets/voice/uvod-${lang}-${introAt+1}.mp3`);NARR.add(a);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;
+ const lang=uiLang()==='en'?'en':'sr',rec=lang==='sr'?DIJALOG.get(s.text):null,wait=Math.max(6,s.text.split(/\s+/).length*.42,rec?rec[1]+1.2:0);introVoice=null;if(introQuiet&&!rec){introTimer=setTimeout(introNext,wait*1000+1500);return;}
+ const a=new Audio(rec?`assets/voice/d/${rec[0]}.mp3`:`assets/voice/uvod-${lang}-${introAt+1}.mp3`);NARR.add(a);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;
  a.addEventListener('canplaythrough',()=>{if(introVoice!==a||!NARR.has(a))return;clearTimeout(introTimer);a.play().catch(()=>{});a.onended=()=>{if(introVoice===a)introTimer=setTimeout(introNext,1300);};},{once:true});
  a.addEventListener('error',()=>{},{once:true});introVoice=a;a.load();
  introTimer=setTimeout(()=>{if(introVoice===a&&!a.paused)return;introNext();},wait*1000+(a.readyState?0:600));}

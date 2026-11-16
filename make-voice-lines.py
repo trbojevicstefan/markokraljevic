@@ -8,7 +8,7 @@ Needs the ELEVENLABS_API_KEY environment variable. Edit LINES and run:
 import json, os, sys, urllib.request, urllib.error
 
 VOICES = {
-    'marko': 'pb4oiB4KzXBEHjmRgsdK',   # Tuco (cloned voice in the account)
+    'marko': 'RT8C6NHfIVrYtoL1RlrB',   # Tuco: the same clone made again in the new account on 16 Nov 2026 (old one: pb4oiB4KzXBEHjmRgsdK)
     'musa': 'adxhr4Ei7ASJ3Cz7fxwX',    # Slobodan
     'vila': 'd3l4f3HgkE3P6Fo91lYA',    # Ida, Serbian
     'turk': 'SOYHLrjzK2X1ezoPC6cr',    # Harry, fierce warrior (speaks Turkish here)
@@ -208,6 +208,10 @@ def generate(line_id, speaker, text, lang):
     key = os.environ.get('ELEVENLABS_API_KEY')
     if not key:
         sys.exit('ELEVENLABS_API_KEY nije postavljen.')
+    if lang == 'sr':
+        # Serbian goes in Cyrillic: in Latin the Tuco clone reads j as English "dž" ("Ravidžojla")
+        from importlib import import_module
+        text = import_module('make-dialog-voices').cyr(text)
     body = json.dumps({
         'text': text,
         'model_id': 'eleven_v4',
