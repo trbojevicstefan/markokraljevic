@@ -7,7 +7,7 @@ Napravljeno 2026-11-16 alatom `node tools/popis-replika.mjs --md`, iz `dist/game
 - U igri ima **366 tekstova** koji se pojavljuju u okviru za razgovor ili na pričama između pesama: **41.967 znakova**.
 - Za ozvučavanje predlažem **273 replika, 31.329 znakova**: oko **47 minuta** govora. Sa oznakama za ton ([tiho], [ljutito]…) to je oko **34.605 kredita** (eleven_v4 = 1 kredit po znaku).
 - Ne predlažem ozvučavanje: uputstava sa tasterima (65; na džojstiku tasteri imaju druga imena), greybox probnih nivoa i prečica za razvoj.
-- Već postoji 187 kratkih replika u borbi (`make-voice-lines.py`, `dist/assets/voice/`): Marko, Musa, Ravijojla, age, Turci, putnici. One ostaju.
+- Već postoji 209 kratkih replika u borbi (`make-voice-lines.py`, `dist/assets/voice/`): Marko, Musa, Ravijojla, age, Turci, putnici. One ostaju.
 - Novi nalog ima 40.000 kredita mesečno (vraćaju se 16. 12.). Stari nalog dobija 121.215 kredita 27. 11.
 
 ## Plan i cena
@@ -74,7 +74,7 @@ Samo replike predložene za ozvučavanje. „Predlog“ znači da glas još nije
 |---|---:|---:|---:|---|---|
 | GUSLAR | 196 | 22.919 | 34.7 | David – Movie Trailer Narrator | predlog: epski trejler narator (Stefan 16. 11.: ne Vuk, nego glas iz filmskih trejlera); zamena Helmut – German Epic Trailer (g1jpii0iyvtRs8fqXsd1) |
 | RAVIJOJLA | 30 | 2.688 | 4.1 | Ida – Clear, Confident Serbian | isti glas kao do sada |
-| MARKO | 21 | 2.231 | 3.4 | Tuco (klon) | napravljen 16. 11. iz istog uzorka kao stari Tuco (pb4oiB4KzXBEHjmRgsdK) |
+| MARKO | 21 | 2.231 | 3.4 | Tuco (klon) | Tuco klon iz novog naloga; latinica i jedna jednostavna oznaka + [gruff] (16. 11.: ćirilica i duge oznake su mu davale čudan naglasak) |
 | MILOŠ | 6 | 697 | 1.1 | Adnan – Energetic | predlog |
 | KOSOVKA DEVOJKA | 3 | 483 | 0.7 | Maja – Engaging, Narrative | predlog |
 | GLAS IZ CRKVE | 2 | 343 | 0.5 | Dylan – Profesional, Warm | predlog |
@@ -178,9 +178,9 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **GUSLAR** · 127 · Ranjen, ali živ, Marko ide niz klisuru. Šarac korača pored njega, a drum kroz Kačanik ponovo je slobodan. Tako se peva i danas.  
   <sub>`d349666f4c2` · priča u sceni · end 5 · Posle megdana</sub>
 - **GUSLAR** · 169 · „Bože mili, na svem tebi hvala, kad brž’ ode sa junaka glava!” Četiri sluge Marko ostavi za pravdu, da kazuju kako j’ bilo Arapu i Marku. Svadbarine na Kosovu više nema.  
-  <sub>`d41f5aefd94` · pripovedanje · slay · game.js:272</sub>
+  <sub>`d41f5aefd94` · pripovedanje · slay · game.js:279</sub>
 - **GUSLAR** · 217 · „Bogom brate, Kraljeviću Marko, evo tebe tri tovara blaga.” Marko neće da uzima blaga, već on njima tri tovara vrati, što su dali Đemu Brđaninu. Pa uze ribe od Orida i ode bijelu Prilipu, te on slavi svoga svetitelja.  
-  <sub>`d7bfe97e465` · pripovedanje · slay · game.js:272</sub>
+  <sub>`d7bfe97e465` · pripovedanje · slay · game.js:279</sub>
 
 **Kačanik: odbrana kapije** · 3 replika · 224 znakova
 
@@ -194,7 +194,7 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Kačanik: putnici** · 1 replika · 84 znakova
 
 - **STARAC** · 84 · Tri godine niko ne prođe ovim drumom. Musa Kesedžija zatvorio je drumove i primorje.  
-  <sub>`d83512a99cf` · dijalog · updateTravelers · game.js:352</sub>
+  <sub>`d83512a99cf` · dijalog · updateTravelers · game.js:359</sub>
 
 **Kačanik: Ravijojla vodi** · 3 replika · 277 znakova
 
@@ -229,13 +229,13 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Vašar konja** · 4 replika · 480 znakova
 
 - **MARKO** · 110 · Uhvati Marko šareno ždrebe za rep, zamahnu njime, a ždrebe se ni s mesta ne pomače. „Ovo je, brate, moj konj!”  
-  <sub>`df0c4e29f11` · dijalog · useVasar · game.js:3534 · mešovito: priča + citat</sub>
+  <sub>`df0c4e29f11` · dijalog · useVasar · game.js:3541 · mešovito: priča + citat</sub>
 - **KONJUŠAR** · 101 · „E, nije taj, Marko!” smeju se ljudi na vašaru. Konja koji će tebe nositi ni junak ne može da pomeri.  
-  <sub>`dafe0efd698` · dijalog · useVasar · game.js:3536</sub>
+  <sub>`dafe0efd698` · dijalog · useVasar · game.js:3543</sub>
 - **GUSLAR** · 161 · „Taj je šugav, Marko, sirotinjsko ždrebe!” A Marko mu da vina: pola pije, pola Šarcu daje. Spade šuga, a ždrebe se razigra, šareno kao goveče, a hitro kao vihor.  
-  <sub>`d1e4708269c` · pripovedanje · updateVasar · game.js:3542</sub>
+  <sub>`d1e4708269c` · pripovedanje · updateVasar · game.js:3549</sub>
 - **GUSLAR** · 108 · Novak kovač potkova Šarca, a jedna potkova osta u selu, da se pamti. Šarac te čeka; ti oteraj odred iz sela.  
-  <sub>`d232113ed55` · pripovedanje · updateVasar · game.js:3543</sub>
+  <sub>`d232113ed55` · pripovedanje · updateVasar · game.js:3550</sub>
 
 ### suma · Miroč-planina
 
@@ -280,41 +280,41 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **MILOŠ** · 84 · „Car Dušan je Svete Arhanđele, što ih vide i gora i voda; svaki sebe ima zadužbinu.”  
   <sub>`d56c6340476` · razgovor u sceni · PV_MILOS 3</sub>
 - **GUSLAR** · 129 · Miloš je kroz Miroč zapevao lepše od vile, pa ga je Ravijojla ustrelila u grlo i u srce. Eno ti Šarca, Marko: uzjaši i stigni je!  
-  <sub>`d6632c9974e` · pripovedanje · updatePotera · game.js:3572</sub>
+  <sub>`d6632c9974e` · pripovedanje · updatePotera · game.js:3579</sub>
 - **GUSLAR** · 161 · „Bogom brate, Kraljeviću Marko! Pusti me u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.” Marko je pusti, i od tada mu je vila posestrima.  
-  <sub>`de9cc382ec8` · pripovedanje · updatePotera · game.js:3580</sub>
+  <sub>`de9cc382ec8` · pripovedanje · updatePotera · game.js:3587</sub>
 - **MILOŠ** · 106 · „Gusta je gora, pobratime: konje ćemo voditi, a sablje u ruke.” Miloš ide peške uz tebe i bije se sabljom.  
-  <sub>`d08ca526805` · dijalog · updateJahanje · game.js:3660</sub>
+  <sub>`d08ca526805` · dijalog · updateJahanje · game.js:3667</sub>
 - **GUSLAR** · 83 · Rasrdi se vila Ravijojla, pak odskoči u Miroč planinu, zape luka i dve bele strele.  
-  <sub>`de9d5323fc9` · pripovedanje · pvStreleTick · game.js:3712</sub>
+  <sub>`de9d5323fc9` · pripovedanje · pvStreleTick · game.js:3719</sub>
 - **MILOŠ** · 129 · „Jao moja majko! Jao Marko, Bogom pobratime! Jao brate, vila me ustreli! A nisam li tebe besedio da ne pevam kroz Miroč planinu?”  
-  <sub>`d985e4aae5e` · dijalog · pvStreleTick · game.js:3719</sub>
+  <sub>`d985e4aae5e` · dijalog · pvStreleTick · game.js:3726</sub>
 - **MARKO** · 206 · „Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu! Čistim ću te srebrom potkovati, čistim srebrom i žeženim zlatom; pokriću te svilom do kolena, od kolena kite do kopita; grivu ću ti izmešati zlatom.”  
-  <sub>`da9530c913c` · dijalog · pvStreleTick · game.js:3723</sub>
+  <sub>`da9530c913c` · dijalog · pvStreleTick · game.js:3730</sub>
 - **MARKO** · 172 · „Ako li mi ne dostigneš vile, oba ću ti oka izvaditi, sve četiri noge podlomiti, pa ću t’ ovde tako ostaviti, te se tuci od jele do jele, k’o ja, Marko, bez mog pobratima.”  
-  <sub>`df9ea67e36c` · dijalog · pvStreleTick · game.js:3724</sub>
+  <sub>`df9ea67e36c` · dijalog · pvStreleTick · game.js:3731</sub>
 - **MARKO** · 61 · „Zašto, vilo, da te Bog ubije! Zašt’ ustreli pobratima moga?”  
-  <sub>`ddf1e9ab852` · dijalog · pvBije · game.js:3732</sub>
+  <sub>`ddf1e9ab852` · dijalog · pvBije · game.js:3739</sub>
 - **GUSLAR** · 91 · Pak je stade biti buzdovanom, prevrće je s desne na lijevu, pak je bije šestoperom zlatnim.  
-  <sub>`d8c0aa4d23f` · dijalog · pvBije · game.js:3732</sub>
+  <sub>`d8c0aa4d23f` · dijalog · pvBije · game.js:3739</sub>
 - **MARKO** · 57 · „Daj ti bilje onome junaku, jer se nećeš nanositi glave.”  
-  <sub>`d11690063ef` · dijalog · pvBije · game.js:3732</sub>
+  <sub>`d11690063ef` · dijalog · pvBije · game.js:3739</sub>
 - **RAVIJOJLA** · 149 · „Bogom brate, Kraljeviću Marko, višnjim Bogom i Svetim Jovanom! Daj me puštaj u planinu živu, da naberem po Miroču bilja, da zagasim rane na junaku.”  
-  <sub>`da0d730d279` · dijalog · pvBije · game.js:3735</sub>
+  <sub>`da0d730d279` · dijalog · pvBije · game.js:3742</sub>
 - **GUSLAR** · 127 · Al’ je Marko milostiv na Boga, a žalostiv na srcu junačkom: pusti vilu u planinu živu. Sada si ti vila: naberi bilje po Miroču.  
-  <sub>`d2b746ac825` · pripovedanje · pvBije · game.js:3736</sub>
+  <sub>`d2b746ac825` · pripovedanje · pvBije · game.js:3743</sub>
 - **GUSLAR** · 87 · Bilje bere po Miroču vila, bilje bere, često se odziva: „Sad ću doći, Bogom pobratime!”  
-  <sub>`d763d6aaefe` · pripovedanje · pvBiljeTick · game.js:3750</sub>
+  <sub>`d763d6aaefe` · pripovedanje · pvBiljeTick · game.js:3757</sub>
 - **MARKO** · 32 · „Vilo! Gde si, vilo? Odzovi se!”  
-  <sub>`d962e320021` · dijalog · pvBiljeTick · game.js:3752</sub>
+  <sub>`d962e320021` · dijalog · pvBiljeTick · game.js:3759</sub>
 - **MARKO** · 65 · „Rekoh ti, vilo, da se odzivaš! Natrag, dok ti glavu nisam uzeo!”  
-  <sub>`db73b50afe9` · dijalog · pvBiljeTick · game.js:3754</sub>
+  <sub>`db73b50afe9` · dijalog · pvBiljeTick · game.js:3761</sub>
 - **GUSLAR** · 139 · I zagasi rane na junaku: lepše grlo u Miloša carsko, jeste lepše nego što je bilo, a zdravije srce u junaku, baš zdravije nego što je bilo.  
-  <sub>`d94f7950afb` · pripovedanje · pvLeciTick · game.js:3780</sub>
+  <sub>`d94f7950afb` · pripovedanje · pvLeciTick · game.js:3787</sub>
 - **GUSLAR** · 101 · Ode vila u Miroč planinu, ode Marko s pobratimom svojim. Jašite dalje, a Turci lovci čekaju na drumu.  
-  <sub>`d278f8f5cf5` · pripovedanje · pvLeciTick · game.js:3785</sub>
+  <sub>`d278f8f5cf5` · pripovedanje · pvLeciTick · game.js:3792</sub>
 - **GUSLAR** · 83 · Vila leti po vrhu planine, Šarac jezdi po sredi planine: nigde vile čuti ni videti.  
-  <sub>`de206f7eb32` · pripovedanje · pvTrka · game.js:3866</sub>
+  <sub>`de206f7eb32` · pripovedanje · pvTrka · game.js:3873</sub>
 
 **Zapis legende** · 1 replika · 95 znakova
 
@@ -345,19 +345,19 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Uroš i Mrnjavčevići (Samodreža)** · 7 replika · 1.259 znakova
 
 - **GUSLAR** · 232 · „Knjiga kaže: na Urošu carstvo!” Kad to začu Vukašine kralju, skoči kralju od zemlje na noge, pa potrže zlaćena handžara da ubode svoga sina Marka. Bježi Marko ispred roditelja, jer se njemu ne pristoji sa svojim se biti roditeljem.  
-  <sub>`dc609e949ea` · pripovedanje · crkvaBeg · game.js:3452</sub>
+  <sub>`dc609e949ea` · pripovedanje · crkvaBeg · game.js:3459</sub>
 - **GLAS IZ CRKVE** · 231 · Dok su triput kolo sastavili oko b’jele Samodreže crkve, gotovo ga bješe sustigao, al’ iz crkve nešto progovara: „Bjež’ u crkvu, Kraljeviću Marko! Vidiš đe ćeš danas poginuti, poginuti od svog roditelja, a za pravdu Boga istinoga.”  
-  <sub>`d5336ae74df` · dijalog · updateCrkva · game.js:3465 · mešovito: priča + citat</sub>
+  <sub>`d5336ae74df` · dijalog · updateCrkva · game.js:3472 · mešovito: priča + citat</sub>
 - **GUSLAR** · 83 · Kralj dopade na crkvena vrata, po direku udari handžarom, iz direka krvca pokapala.  
-  <sub>`d643396e893` · pripovedanje · updateCrkva · game.js:3471</sub>
+  <sub>`d643396e893` · pripovedanje · updateCrkva · game.js:3478</sub>
 - **KRALJ VUKAŠIN** · 85 · Tad se kralje bio pokajao: „Lele mene, do Boga jednoga, đe pogubih svoga sina Marka!”  
-  <sub>`d3b953eb8d7` · dijalog · updateCrkva · game.js:3473 · mešovito: priča + citat</sub>
+  <sub>`d3b953eb8d7` · dijalog · updateCrkva · game.js:3480 · mešovito: priča + citat</sub>
 - **GLAS IZ CRKVE** · 112 · Al’ iz crkve nešto progovara: „A čuješ li, Vukašine kralju, ti nisi posjekao Marka, već posječe božjega anđela.”  
-  <sub>`d40ec573579` · dijalog · updateCrkva · game.js:3474 · mešovito: priča + citat</sub>
+  <sub>`d40ec573579` · dijalog · updateCrkva · game.js:3481 · mešovito: priča + citat</sub>
 - **GUSLAR** · 300 · Na Marka je vrlo žao kralju, te ga ljuto kune i proklinje: „Ti nemao groba ni poroda! I da bi ti duša ne ispala dok turskoga cara ne dvorio!” Kralj ga kune, car ga blagosilja: „Kume Marko, Bog ti pomogao! Tvoje lice svjetlo na divanu, tvoja sablja sjekla na mejdanu!” Što su rekli, tako mu se steklo.  
-  <sub>`d832ecc90f0` · pripovedanje · presudaBlagoslov · game.js:3886</sub>
+  <sub>`d832ecc90f0` · pripovedanje · presudaBlagoslov · game.js:3893</sub>
 - **GUSLAR** · 216 · „Knjiga kaže: na Urošu carstvo!” Kralj ga kune: „Ti nemao groba ni poroda, i da bi ti duša ne ispala dok turskoga cara ne dvorio!” A car ga blagosilja: „Tvoje lice svijetlo na divanu, tvoja sablja sjekla na mejdanu!”  
-  <sub>`d2cce3e3496` · pripovedanje · presudaBlagoslov · game.js:3887</sub>
+  <sub>`d2cce3e3496` · pripovedanje · presudaBlagoslov · game.js:3894</sub>
 
 ### oranje · Oranje drumova · Oranje Markovo
 
@@ -378,17 +378,17 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Oranje Markovo i strela** · 6 replika · 491 znakova
 
 - **JANIČARI** · 29 · „More Marko, ne ori drumova!”  
-  <sub>`db9e21e3301` · dijalog · updatePlows · game.js:2377</sub>
+  <sub>`db9e21e3301` · dijalog · updatePlows · game.js:2384</sub>
 - **MARKO** · 31 · „More Turci, ne gaz’te oranja!”  
-  <sub>`d48c31b6f93` · dijalog · updatePlows · game.js:2378</sub>
+  <sub>`d48c31b6f93` · dijalog · updatePlows · game.js:2385</sub>
 - **MARKO** · 27 · „To sam tebe danas izorao.”  
-  <sub>`dd3f03c7df2` · dijalog · updatePlows · game.js:2380</sub>
+  <sub>`dd3f03c7df2` · dijalog · updatePlows · game.js:2387</sub>
 - **GUSLAR** · 110 · Carev Alil-aga sa trideset janičara stoji nasred druma i hvata te za skut dolame. Neće te pustiti bez megdana.  
-  <sub>`d1fc8ecb37f` · pripovedanje · updateStrela · game.js:3908</sub>
+  <sub>`d1fc8ecb37f` · pripovedanje · updateStrela · game.js:3915</sub>
 - **GUSLAR** · 219 · „Bogom brate, Kraljeviću Marko! Na čast tebi moji beli dvori, tek me nemoj, brate, obesiti!” A Marko: „Sve bih ti, brate, oprostio, ali si mi izdr’o dolamu: već daj mene tri tovara blaga.” Od tada krajinu brane zajedno.  
-  <sub>`dce37290cce` · pripovedanje · updateStrela · game.js:3918</sub>
+  <sub>`dce37290cce` · pripovedanje · updateStrela · game.js:3925</sub>
 - **GUSLAR** · 75 · Stiže ti strela Tataranka, sa devet belih sokolovih pera. Zategni do kraja!  
-  <sub>`d8519899d46` · pripovedanje · updateStrela · game.js:3919</sub>
+  <sub>`d8519899d46` · pripovedanje · updateStrela · game.js:3926</sub>
 
 ### tvrdjava · Opsednuta tvrđava
 
@@ -419,13 +419,13 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **MUSTAF-AGA** · 57 · „Be ne luduj, kaurine Marko! Već daj amo sablju okovanu.”  
   <sub>`d138e9ed752` · razgovor u sceni · SABLJA_RAZGOVOR 5</sub>
 - **GUSLAR** · 74 · Pozna Marko očinu sablju: tri balčaka, tri zlatna. Ne nosi je Turčin više.  
-  <sub>`df4413a1360` · pripovedanje · dropSablja · game.js:275</sub>
+  <sub>`df4413a1360` · pripovedanje · dropSablja · game.js:282</sub>
 - **GUSLAR** · 179 · Sama mu se sablja izvadila. Kad je Marko sablju zagledao, al’ na sablji tri slova hrišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.  
-  <sub>`dfc35d6e1de` · pripovedanje · collectCudo · game.js:2209</sub>
+  <sub>`dfc35d6e1de` · pripovedanje · collectCudo · game.js:2216</sub>
 - **GUSLAR** · 162 · Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora. Car s’ odmiče, a Marko primiče, dok doćera cara do duvara.  
-  <sub>`daba26cc649` · pripovedanje · updateSabljaPesma · game.js:3435</sub>
+  <sub>`daba26cc649` · pripovedanje · updateSabljaPesma · game.js:3442</sub>
 - **GUSLAR** · 152 · Car se maši u džepove rukom, te izvadi stotinu dukata: „Idi, Marko, napij mi se vina!” A Marko: „Ne pitaj me, care poočime! Poznao sam sablju baba mog.”  
-  <sub>`d5362512a11` · pripovedanje · updateSabljaPesma · game.js:3436</sub>
+  <sub>`d5362512a11` · pripovedanje · updateSabljaPesma · game.js:3443</sub>
 
 **Zapis legende** · 1 replika · 91 znakova
 
@@ -467,15 +467,15 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Marko pije uz ramazan vino** · 5 replika · 759 znakova
 
 - **GUSLAR** · 161 · Marko igra kolom uz kadune, Marko paše sablju okovanu, Marko nosi zelenu dolamu, Marko pije uz ramazan vino, još nagoni odže i adžije da i oni s njime piju vino.  
-  <sub>`d0d91511f0e` · pripovedanje · useBacva · game.js:4397</sub>
+  <sub>`d0d91511f0e` · pripovedanje · useBacva · game.js:4408</sub>
 - **ČAUŠ** · 147 · Car Sulejman jasak učinio: da s’ ne pije uz ramazan vino, da s’ ne nose zelene dolame, da s’ ne pašu sablje okovane, da s’ ne igra kolom uz kadune.  
-  <sub>`dfc5ceddbbe` · dijalog · updateBacve · game.js:4403</sub>
+  <sub>`dfc5ceddbbe` · dijalog · updateBacve · game.js:4414</sub>
 - **DVA MLADA ČAUŠA** · 202 · Kad je care razumeo reči, on pošilje dva svoja čauša. Kad dođoše Kraljeviću Marku, ali Marko pod šatorom pije, pred njim kupa od dvanaest oka: „Da čuješ li, Kraljeviću Marko! Tebe care na divan zaziva.”  
-  <sub>`d41a69f41cd` · dijalog · updateBacve · game.js:4407 · mešovito: priča + citat</sub>
+  <sub>`d41a69f41cd` · dijalog · updateBacve · game.js:4418 · mešovito: priča + citat</sub>
 - **GUSLAR** · 135 · Rasrdi se Kraljeviću Marko, pak dovati onu kupu s vinom, pa udara careva čauša: pršte kupa, a pršte i glava, i proli se i krvca i vino.  
-  <sub>`d282c048b71` · pripovedanje · updateBacve · game.js:4411</sub>
+  <sub>`d282c048b71` · pripovedanje · updateBacve · game.js:4422</sub>
 - **GUSLAR** · 114 · Car se maša rukom u džepove, on izvadi stotinu dukata, pa i daje Kraljeviću Marku: „Idi, Marko, te se napij vina.”  
-  <sub>`d2e37243bdd` · pripovedanje · updateBacve · game.js:4413</sub>
+  <sub>`d2e37243bdd` · pripovedanje · updateBacve · game.js:4424</sub>
 
 ### mocvara · Ranjeni soko
 
@@ -501,9 +501,9 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Ranjeni soko** · 2 replika · 285 znakova
 
 - **GUSLAR** · 156 · Vezirev soko ima lošu navadu: da otima lov od drugoga. Izmakni mu se kad nasrne, pa se obruši na njega dok je umoran. Markov soko je joguna, kao i gospodar.  
-  <sub>`d536f9779ef` · pripovedanje · updateLov · game.js:4311</sub>
+  <sub>`d536f9779ef` · pripovedanje · updateLov · game.js:4322</sub>
 - **GUSLAR** · 129 · „Teško mene i tebe, sokole, lov loveći s Turci bez Srbalja!” Soko je pao u trsku. Nađi ga, Marko, oteraj Turke i previj mu krilo.  
-  <sub>`d528965a674` · pripovedanje · updateLov · game.js:4325</sub>
+  <sub>`d528965a674` · pripovedanje · updateLov · game.js:4336</sub>
 
 ### pecina · Vilinska pećina
 
@@ -550,27 +550,27 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Marko i Vuča dženeral (Varadin)** · 11 replika · 1.923 znakova
 
 - **GUSLAR** · 240 · Iz tamnice Varadina piše Miloš od Pocerja, krvlju knjigu zapečati: „Izbavljaj me, pobratime Marko, jal’ za blago, jali na junaštvo!” Marko okrenu Šarca od Prilipa, a za Dunavom skela ne dočeka: naćera Šarca na Dunavo, ode pravo pod Varadin.  
-  <sub>`dae5bf53c7b` · pripovedanje · updateVaradin · game.js:3226</sub>
+  <sub>`dae5bf53c7b` · pripovedanje · updateVaradin · game.js:3233</sub>
 - **GUSLAR** · 197 · Tu ustavi Šarca od megdana, pa udari koplje u ledinu, za koplje je privezao Šarina, pa on sjede piti mrko vino: ne pije ga čim se vino pije, već leđenom od dvanaest oka; pola pije, pola Šarcu daje.  
-  <sub>`d21a50f67e7` · pripovedanje · updateVaradin · game.js:3238</sub>
+  <sub>`d21a50f67e7` · pripovedanje · updateVaradin · game.js:3245</sub>
 - **VELIMIROVICA** · 217 · Pošetala Velimirovica po bedemu grada Varadina, u polju je opazila Marka: „Sjedi junak u polju širokom, konj mu nije kakvino su konji, veće šaren kako i goveče; nešto crno drži u zubima, kolik’ jagnje od pola godine.”  
-  <sub>`d71052598e6` · dijalog · updateVaradin · game.js:3242 · mešovito: priča + citat</sub>
+  <sub>`d71052598e6` · dijalog · updateVaradin · game.js:3249 · mešovito: priča + citat</sub>
 - **VUČA DŽENERAL** · 107 · „Velimire, moje čedo drago! Uzmi, sine, za trista katana, idi dole u polje široko, dovedi mi onoga junaka.”  
-  <sub>`ddd8aecdac0` · dijalog · updateVaradin · game.js:3243</sub>
+  <sub>`ddd8aecdac0` · dijalog · updateVaradin · game.js:3250</sub>
 - **GUSLAR** · 110 · Marko sjedi, pije mrko vino, al’ katane Šarac opazio: poče nogam’ o zemljicu tući, primiče se svome gospodaru.  
-  <sub>`dca345274cb` · pripovedanje · updateVaradin · game.js:3249</sub>
+  <sub>`dca345274cb` · pripovedanje · updateVaradin · game.js:3256</sub>
 - **GUSLAR** · 158 · Popi Marko leđenicu vina, baci leđen u zelenu travu, pa se turi na ramena Šarcu. Da je kome pogledati bilo: kad udari u katane Marko, kako soko među golubove!  
-  <sub>`d4e824444de` · pripovedanje · updateVaradin · game.js:3251</sub>
+  <sub>`d4e824444de` · pripovedanje · updateVaradin · game.js:3258</sub>
 - **GUSLAR** · 179 · Pobježe mu Velimir dijete, ćera njega na Šarinu Marko, dostiže ga, dovati ga malo topuzinom: pade dite u zelenu travu. Marko mu savezao i noge i ruke, pa g’ objesi Šarcu o unkašu.  
-  <sub>`d58e8714510` · pripovedanje · updateVaradin · game.js:3254</sub>
+  <sub>`d58e8714510` · pripovedanje · updateVaradin · game.js:3261</sub>
 - **VUČA DŽENERAL** · 171 · „Sad ćeš viđet’, dok se starac krene!” Vuča drmnu na gradu topove, sastavi katane, opkoliše Marka sa četiri strane. Sablja mu je u desnici ruci, u zubima dizgen od Šarina!  
-  <sub>`d52e52243d6` · dijalog · updateVaradin · game.js:3257</sub>
+  <sub>`d52e52243d6` · dijalog · updateVaradin · game.js:3264</sub>
 - **GUSLAR** · 213 · Pobježe mu Vuča dženerale na tankoj bedeviji. Ljuljnu Marko tešku topuzinu, pa je pušta za njim preko polja: udari ga sapom od topuza, pade Vuča u zelenu travu. Sveza Vuči ruke naopako, pa odvede obojicu u Prilip.  
-  <sub>`d68d901d1e4` · pripovedanje · updateVaradin · game.js:3261</sub>
+  <sub>`d68d901d1e4` · pripovedanje · updateVaradin · game.js:3268</sub>
 - **GUSLAR** · 210 · Knjigu piše dženeralovica: „Ne gubi mi Vuče dženerala i mojega sina Velimira!” Marko joj piše: „Pusti mene do tri pobratima, i podaj im tri tovara blaga.” Ona otvori prokletu tavnicu i izvadi tri vojvode mlade.  
-  <sub>`d0050895fed` · pripovedanje · updateVaradin · game.js:3263</sub>
+  <sub>`d0050895fed` · pripovedanje · updateVaradin · game.js:3270</sub>
 - **MILOŠ OD POCERJA** · 121 · „Bog ti platio, pobratime Marko, kad nas izbavi iz Vučine tavnice!” I u b’jelo izljubiše lice, svaki Marka u bijelu ruku.  
-  <sub>`db311e856c1` · dijalog · updateVaradin · game.js:3264</sub>
+  <sub>`db311e856c1` · dijalog · updateVaradin · game.js:3271</sub>
 
 ### klisura · Klisura Ibra
 
@@ -596,34 +596,34 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Marko i Đemo Brđanin: okovi i mehana** · 12 replika · 1.547 znakova
 
 - **GUSLAR** · 202 · Slavi Marko svetoga Đorđija, a fali mu ribe od Orida. Po majčinoj reči ode bez oružja. Na ćupriji ga srete Đemo Brđanine, topuzinu baca u oblake: „Bogami ću Marka objesiti baš o vratim’ bijela Prilipa!”  
-  <sub>`dbabff3d9c9` · pripovedanje · updateOkovi · game.js:3357</sub>
+  <sub>`dbabff3d9c9` · pripovedanje · updateOkovi · game.js:3364</sub>
 - **MARKO** · 59 · „Kud ćeš tamo, Đemo Brđanine? Evo, more, Kraljevića Marka!”  
-  <sub>`d84b9fb74c8` · dijalog · updateOkovi · game.js:3364</sub>
+  <sub>`d84b9fb74c8` · dijalog · updateOkovi · game.js:3371</sub>
 - **GUSLAR** · 206 · Potegne Đemo topuzinu, jadna Marka među pleći žive: pade Marko u zelenu travu. Đemo dopade, okova ga sve u gvožđe ljuto: a na noge dvoje bukagije, a na ruke dvoje belenzuke, a na grlo sindžir, gvožđe teško.  
-  <sub>`da321a5b4e9` · pripovedanje · updateOkovi · game.js:3367</sub>
+  <sub>`da321a5b4e9` · pripovedanje · updateOkovi · game.js:3374</sub>
 - **GUSLAR** · 77 · Ode pravo bijelu Oridu, pod Oridom vješala ogradi da objesi Kraljevića Marka.  
-  <sub>`d1f0f3477b4` · pripovedanje · updateOkovi · game.js:3377</sub>
+  <sub>`d1f0f3477b4` · pripovedanje · updateOkovi · game.js:3384</sub>
 - **GUSLAR** · 83 · Uze Đemo tri tovara blaga, vodi Marka gradu Vučitrnu, pa pod gradom vješala ogradi.  
-  <sub>`ddcd8e2b96b` · pripovedanje · updateOkovi · game.js:3377</sub>
+  <sub>`ddcd8e2b96b` · pripovedanje · updateOkovi · game.js:3384</sub>
 - **GUSLAR** · 79 · Uze Đemo tri tovara blaga, goni Marka bijelu Zvečanu, i tu Đemo vješala ogradi.  
-  <sub>`d044a915ae3` · pripovedanje · updateOkovi · game.js:3377</sub>
+  <sub>`d044a915ae3` · pripovedanje · updateOkovi · game.js:3384</sub>
 - **GOSPODA (Orid, Vučitrn, Zvečan)** · 112 · „Bogom brate, Đemo Brđanine, tu nam nemoj objesiti Marka, neće rodit vino ni šenica, evo tebe tri tovara blaga.”  
-  <sub>`ddabd391525` · dijalog · updateOkovi · game.js:3379</sub>
+  <sub>`ddabd391525` · dijalog · updateOkovi · game.js:3386</sub>
 - **GUSLAR** · 168 · Uze Đemo tri tovara blaga. Odatle se Đemo podigao kroz nekakvu Janjinu planinu. Teško Đemo ožednjeo bješe: „Znaš li, Marko, vode il’ mehane? Teško me je osvojila žeđa.”  
-  <sub>`d91073220ea` · pripovedanje · updateOkovi · game.js:3381</sub>
+  <sub>`d91073220ea` · pripovedanje · updateOkovi · game.js:3388</sub>
 - **MARKO** · 135 · „Ima, Đemo, bijela mehana i prokleta krčmarica Janja: sad će mi se osvetiti Janja, dosta sam joj vina potrošio, a nisam dao ni dinara.”  
-  <sub>`df277425e06` · dijalog · updateOkovi · game.js:3384</sub>
+  <sub>`df277425e06` · dijalog · updateOkovi · game.js:3391</sub>
 - **KRČMARICA JANJA** · 138 · Kad sagleda savezana Marka, nasmeja se krčmarica Janja: „Pojiću te, Brđanine Đemo, bez bijele pare i dinara, baš ako ćeš tri bijela dana.”  
-  <sub>`de31129af40` · dijalog · updateOkovi · game.js:3385 · mešovito: priča + citat</sub>
+  <sub>`de31129af40` · dijalog · updateOkovi · game.js:3392 · mešovito: priča + citat</sub>
 - **GUSLAR** · 140 · Kad se Đemo nakitio vina, donese mu krčmarica Janja rujna vina od sedam godina, meće u njeg bilje svakojako. Pade Đemo glavom bez uzglavlja.  
-  <sub>`d6691a7c4c8` · pripovedanje · updateOkovi · game.js:3386</sub>
+  <sub>`d6691a7c4c8` · pripovedanje · updateOkovi · game.js:3393</sub>
 - **GUSLAR** · 148 · Skoči Janja na noge lagane, na svom pobru gvožđe otvaraše. Marko uze topuz natrag. A Đemo se trže iz sna, pokida se i uteče kroz klisuru, na megdan.  
-  <sub>`d9c2fce0761` · pripovedanje · updateOkovi · game.js:3389</sub>
+  <sub>`d9c2fce0761` · pripovedanje · updateOkovi · game.js:3396</sub>
 
 **Guslari u klisuri** · 1 replika · 120 znakova
 
 - **GUSLAR** · 120 · Stari guslar peva pesmu o Musi, a Turci idu da ga ućutkaju. Ne daj im do njega, Marko: dok pesma traje, bes ti ne opada.  
-  <sub>`d5d8e4853f1` · pripovedanje · guslarOdbrana · game.js:4078</sub>
+  <sub>`d5d8e4853f1` · pripovedanje · guslarOdbrana · game.js:4089</sub>
 
 ### rusevine · Svadbarina
 
@@ -656,11 +656,11 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **MARKO** · 170 · „Oj davori, ti Kosovo ravno! Što si danas dočekalo, tužno, posle našeg kneza čestitoga, da Arapi sad po tebi sude! Danas ću vas, braćo, osvetiti, osvetiti, ili poginuti.”  
   <sub>`d3c890150ae` · razgovor u sceni · KOSOVKA_RAZGOVOR 6</sub>
 - **GUSLAR** · 149 · Marko s’ maši rukom u džepove, pred Arapa tri dukata baci: „Veruj mene, više nemam blaga!” Ciknu Arap kao zmija ljuta: „U mene, kujo, veresije nema!”  
-  <sub>`d358c20c0ab` · pripovedanje · kosovkaArap · game.js:3190</sub>
+  <sub>`d358c20c0ab` · pripovedanje · kosovkaArap · game.js:3197</sub>
 - **MARKO** · 136 · Nasmeja se Kraljeviću Marko: „O junače, Arapine crni, il’ se šališ, il’ od zbilje biješ? Koliko si mene udario, toliko ću tebe udariti!”  
-  <sub>`df4c9000b0f` · dijalog · kosovkaArap · game.js:3191 · mešovito: priča + citat</sub>
+  <sub>`df4c9000b0f` · dijalog · kosovkaArap · game.js:3198 · mešovito: priča + citat</sub>
 - **GUSLAR** · 86 · „Pa ga pere vodom studenovom, pričešćuje vinom crvenijem.” Kosovka devojka poji Marka.  
-  <sub>`dd851e36d10` · pripovedanje · updateKosovka · game.js:3203</sub>
+  <sub>`dd851e36d10` · pripovedanje · updateKosovka · game.js:3210</sub>
 
 **Zapis legende** · 1 replika · 81 znakova
 
@@ -712,34 +712,34 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Marko i Filip Madžarin** · 9 replika · 1.241 znakova
 
 - **GUSLAR** · 220 · Zmaj-Despot Vuk ču Filipa Madžarina gde se hvali da će kulu na ćupriji okititi rusom glavom Kraljevića Marka, pa napisa Marku knjigu: „Čuvaj se, Bogom pobratime, od Filipa kake prevare.” A Marko ode pravo Karlovcu gradu.  
-  <sub>`dc0ab17f723` · pripovedanje · updateMehana · game.js:3292</sub>
+  <sub>`dc0ab17f723` · pripovedanje · updateMehana · game.js:3299</sub>
 - **GUSLAR** · 111 · Odja Šarca, sveza pred mehanu, a on sjede piti rujno vino. Malo bilo, za dugo ne bilo, eto ti Filipa Madžarina.  
-  <sub>`d5859031cc2` · pripovedanje · updateMehana · game.js:3300</sub>
+  <sub>`d5859031cc2` · pripovedanje · updateMehana · game.js:3307</sub>
 - **GUSLAR** · 94 · Filip nagna da uđe u novu mehanu, ali ne da Šarac od megdana, već ga bije kopitama po rebrima.  
-  <sub>`dc36407e525` · pripovedanje · updateMehana · game.js:3304</sub>
+  <sub>`dc36407e525` · pripovedanje · updateMehana · game.js:3311</sub>
 - **ŠARAC** · 209 · Naljuti se Filip, pa potrže perna buzdovana, ode biti pred mehanom Šarca. Al’ propišta Šarac: „Avaj mene do Boga miloga! Đe pogiboh jutros pred mehanom od silnoga Filip-Madžarina, a kod moga slavna gospodara!”  
-  <sub>`d4ba5cc6749` · dijalog · updateMehana · game.js:3307 · mešovito: priča + citat</sub>
+  <sub>`d4ba5cc6749` · dijalog · updateMehana · game.js:3314 · mešovito: priča + citat</sub>
 - **MARKO** · 30 · „Propusti ga u mehanu, Šarče!”  
-  <sub>`d18b9ad2a8a` · dijalog · updateMehana · game.js:3308</sub>
+  <sub>`d18b9ad2a8a` · dijalog · updateMehana · game.js:3315</sub>
 - **GUSLAR** · 79 · A kad Filip uđe u mehanu, a on Marku Boga ne naziva, već potrže tešku topuzinu.  
-  <sub>`d46bd540af8` · pripovedanje · updateMehana · game.js:3311</sub>
+  <sub>`d46bd540af8` · pripovedanje · updateMehana · game.js:3318</sub>
 - **MARKO** · 168 · Udari ga u pleći junačke, ali Marko ni habera nema: „Sjedi s mirom, Madžarsko kopile! Ne budi mi po kožuhu buha, već odjaši da pijemo vino, pa još ima dana za megdana.”  
-  <sub>`db6270ebe7f` · dijalog · updateMehana · game.js:3315 · mešovito: priča + citat</sub>
+  <sub>`db6270ebe7f` · dijalog · updateMehana · game.js:3322 · mešovito: priča + citat</sub>
 - **GUSLAR** · 170 · Al’ to Filip ne slušaše Marka, već ga udri u desnicu ruku, te mu razbi čašu pozlaćenu, a prosu mu crveniku vino. Kad to viđe Kraljeviću Marko, on skoči od zemlje na noge!  
-  <sub>`dcff2b7136a` · pripovedanje · updateMehana · game.js:3319</sub>
+  <sub>`dcff2b7136a` · pripovedanje · updateMehana · game.js:3326</sub>
 - **GUSLAR** · 160 · Pa je oštru sablju zagledao: „Mili Bože, čuda velikoga! Dobra gvožđa u loša junaka!” Ode Marko Filipovu dvoru, obi mu bijelu riznicu, pa otide drumom pjevajući.  
-  <sub>`dc1eb38c85f` · pripovedanje · filipPao · game.js:3326</sub>
+  <sub>`dc1eb38c85f` · pripovedanje · filipPao · game.js:3333</sub>
 
 **Pogled popreko** · 4 replika · 480 znakova
 
 - **GUSLAR** · 105 · Navuci samur-kalpak na obrve i pogledaj ga popreko. Ne posež i za čim, Marko: ko prvi trepne, izgubio je.  
-  <sub>`d8c75d5d867` · pripovedanje · usePogled · game.js:3954</sub>
+  <sub>`d8c75d5d867` · pripovedanje · usePogled · game.js:3961</sub>
 - **GUSLAR** · 136 · Vinograd je Ljutice Bogdana. Pred njim si jednom već bežao uz krševito primorje, i sapom od topuza te je dohvatio. Eno ga, preči ti put.  
-  <sub>`d278539444c` · pripovedanje · updatePogled · game.js:3956</sub>
+  <sub>`d278539444c` · pripovedanje · updatePogled · game.js:3963</sub>
 - **GUSLAR** · 88 · „Već te moje oči ne viđele!” Bogdan se smeje. Hajde opet, i ovog puta ne miči ni prstom.  
-  <sub>`d44a0bd7485` · pripovedanje · updatePogled · game.js:3962</sub>
+  <sub>`d44a0bd7485` · pripovedanje · updatePogled · game.js:3969</sub>
 - **GUSLAR** · 151 · Pod Bogdanom noge obumreše. „Hodi, Marko, da se pomirimo.” Skide Marko mješinu sa Šarca, pa sjedoše piti rujno vino i mezetiti ga grozdom iz vinograda.  
-  <sub>`d57f9799621` · pripovedanje · updatePogled · game.js:3964</sub>
+  <sub>`d57f9799621` · pripovedanje · updatePogled · game.js:3971</sub>
 
 ### vracara · Vračeva jaruga
 
@@ -816,7 +816,7 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **Četiri odaje sna** · 13 replika · 1.375 znakova
 
 - **GUSLAR** · 89 · „Bogme, care, jošte nije vreme.” Drvo prsnu nadvoje, natroje, ali iz njega voda ne udari.  
-  <sub>`d3f9f9e36f5` · pripovedanje · updateSan · game.js:3153</sub>
+  <sub>`d3f9f9e36f5` · pripovedanje · updateSan · game.js:3160</sub>
 - **GUSLAR** · 194 · „Na sablji su tri slova rišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.” Kucni topuzom u kamenove onim redom kojim je sablja išla iz ruke u ruku.  
   <sub>`d0a2812da86` · zagonetka · world.js:228</sub>
 - **GUSLAR** · 32 · Tri slova: kovač, kralj, pa sin.  
@@ -904,26 +904,26 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **RAVIJOJLA** · 68 · Tri janičara sa carskim blagom. Ne daj im da te opkole: razdvoji ih.  
   <sub>`d5030120699` · savet · KIT_INTRO.trio</sub>
 - **RAVIJOJLA** · 75 · Turci pucaju iz topa! Đule koje se kotrlja preskoči, pred visokim se sagni.  
-  <sub>`d011520686b` · savet · updateCannons · game.js:768</sub>
+  <sub>`d011520686b` · savet · updateCannons · game.js:775</sub>
 - **RAVIJOJLA** · 80 · Akindžija projuri kroz tebe i udari s leđa. Kad vidiš crven krst, otkotrljaj se.  
-  <sub>`df068eb220d` · savet · akindzijaTick · game.js:2457</sub>
+  <sub>`df068eb220d` · savet · akindzijaTick · game.js:2464</sub>
 - **RAVIJOJLA** · 97 · Ranjeni kopljanik drži koplje napred: spreda ga ne probiješ. Preskoči ga, udri odozgo ili s leđa.  
-  <sub>`de23a856f29` · savet · kopljanikTick · game.js:2466</sub>
+  <sub>`de23a856f29` · savet · kopljanikTick · game.js:2473</sub>
 - **RAVIJOJLA** · 93 · Strelac puca uvis: senke na zemlji pokazuju gde će pasti strele. Skloni se ili se otkotrljaj.  
-  <sub>`dc5a6bab68b` · savet · kisaStrela · game.js:2477</sub>
+  <sub>`dc5a6bab68b` · savet · kisaStrela · game.js:2484</sub>
 - **RAVIJOJLA** · 101 · Sabljaš vara: zamahne pa stane. Ko odbije u prazno, dočeka ga dvostruki rez; tada se izmakni kolutom.  
-  <sub>`db13c5e73da` · savet · varkaKraj · game.js:2489</sub>
+  <sub>`db13c5e73da` · savet · varkaKraj · game.js:2496</sub>
 - **RAVIJOJLA** · 31 · Lavina! Trči, Marko, ne zastaj!  
-  <sub>`da0801d77e9` · savet · updateTraps · game.js:2943</sub>
+  <sub>`da0801d77e9` · savet · updateTraps · game.js:2950</sub>
 - **RAVIJOJLA** · 30 · Odron! Trči, Marko, ne zastaj!  
-  <sub>`d6730ed4c77` · savet · updateTraps · game.js:2943</sub>
+  <sub>`d6730ed4c77` · savet · updateTraps · game.js:2950</sub>
 
 **Zagonetke (vaga, vilinsko kolo)** · 2 replika · 143 znakova
 
 - **GUSLAR** · 52 · Dve tasove drži jedan konopac. Šta je teže, to tone.  
-  <sub>`d59f062a5e5` · pripovedanje · updateMindPuzzles · game.js:626</sub>
+  <sub>`d59f062a5e5` · pripovedanje · updateMindPuzzles · game.js:633</sub>
 - **GUSLAR** · 91 · Vilinsko kolo ima svoj red. Nađi ga sam: kamen koji je na redu zasvetli, pogrešan gasi sve.  
-  <sub>`db517ee789e` · pripovedanje · updateMindPuzzles · game.js:627</sub>
+  <sub>`db517ee789e` · pripovedanje · updateMindPuzzles · game.js:634</sub>
 
 ## Ne ozvučava se (predlog)
 
@@ -1028,31 +1028,31 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 - **RAVIJOJLA** · Tufekdžija: Posle pucnja dugo puni pušku: tada je bez odbrane.  
   <sub>`d4aa3222df8` · knjiga dušmana tufekdzija</sub>
 - **RAVIJOJLA** · Putnici ne mogu preko provalije. Probudi vilinski kamen kraj nje (E) i podići će kameni most.  
-  <sub>`d5b2fef5a90` · updateTravelers · game.js:362</sub>
+  <sub>`d5b2fef5a90` · updateTravelers · game.js:369</sub>
 - **RAVIJOJLA** · Turska horda ide preko polja! W i S dižu i spuštaju cev, A i D daju manje ili više baruta, J ili Space puca. E ostavlja top.  
-  <sub>`d1376308683` · updateGunner · game.js:860</sub>
+  <sub>`d1376308683` · updateGunner · game.js:867</sub>
 - **RAVIJOJLA** · Zlatan znak nad glavom znači: odbij ga (L) i uzvrati. Crven krst se ne odbija: izmakni se kolutom (Shift).  
-  <sub>`dfa8f173294` · drawSoldier · game.js:1366</sub>
+  <sub>`dfa8f173294` · drawSoldier · game.js:1373</sub>
 - **KONJUŠAR** · Vašar konja u Kosovskom selu. „Biraj, Marko, konja koji će te nositi: uhvati ga za rep (E) i zamahni. Koji se ne pomakne, taj je tvoj.”  
-  <sub>`d7ae1b800a3` · updateVasar · game.js:3539</sub>
+  <sub>`d7ae1b800a3` · updateVasar · game.js:3546</sub>
 - **RAVIJOJLA** · „Jao Šaro, moje desno krilo, dostigni mi vilu Ravijojlu!” Drži D za galop, Space preskače balvane. Kad je stigneš, baci topuz: I.  
-  <sub>`d991b171f32` · usePotera · game.js:3568</sub>
+  <sub>`d991b171f32` · usePotera · game.js:3575</sub>
 - **RAVIJOJLA** · Onda Miloš poče da popeva, a krasnu je pesmu započeo od svih naših boljih i starijih. Marko se nasloni sedlu na oblučje: Marko spava, Miloš popeva. Pevaj u taktu gusala: J i K.  
-  <sub>`dea279b062c` · pesmaPeva · game.js:3688</sub>
+  <sub>`dea279b062c` · pesmaPeva · game.js:3695</sub>
 - **RAVIJOJLA** · Nabra vila po Miroču bilja. Leti do Miloša i zagasi mu rane (E).  
-  <sub>`d2678555b07` · pvBiljeTick · game.js:3769</sub>
+  <sub>`d2678555b07` · pvBiljeTick · game.js:3776</sub>
 - **RAVIJOJLA** · Kad je Šarac sagledao vilu, po s tri koplja u visinu skače, po s četiri dobre u napredak. Space · Šarčev skok!  
-  <sub>`d8806c0ceaa` · pvTrka · game.js:3867</sub>
+  <sub>`d8806c0ceaa` · pvTrka · game.js:3874</sub>
 - **RAVIJOJLA** · „Hajd’ na megdan, da se nadstreljujemo!” Tri strele svakome. Luk se zateže sam: pusti strelu (J) kad je tetiva najzategnutija.  
-  <sub>`dd8f119deb7` · useStrela · game.js:3905</sub>
+  <sub>`dd8f119deb7` · useStrela · game.js:3912</sub>
 - **RAVIJOJLA** · Lov lovi vezir Murat sa dvanaest delija, a s njima trinaesti, Kraljević Marko. Po zelenom jezeru plove utve zlatokrile. Ti si Markov soko: leti na A D W S, a obruši se na Space.  
-  <sub>`d2255483415` · lovStart · game.js:4290</sub>
+  <sub>`d2255483415` · lovStart · game.js:4301</sub>
 - **RAVIJOJLA** · Đemo te je, kao u pesmi, zatekao bez oružja: buzdovanom ti je izbio topuz iz ruke. Izmiči se, kotrljaj i odbijaj (L), Marko, dok ga ne dohvatiš na drugom kraju megdana.  
-  <sub>`df3bc2b7c08` · throwSpear · game.js:4602</sub>
+  <sub>`df3bc2b7c08` · throwSpear · game.js:4613</sub>
 - **RAVIJOJLA** · Njegov gard ne puca od lakih udaraca, Marko. Drži K za teški udarac, odbij (L) njegov napad, ili ga udri dok se oporavlja od svog zamaha.  
-  <sub>`d088320913a` · megdanHint · game.js:4714</sub>
+  <sub>`d088320913a` · megdanHint · game.js:4725</sub>
 - **RAVIJOJLA** · Kapija riznice je otvorena! Stani u nju i pritisni W (gore) da uđeš.  
-  <sub>`dc81e5bf49c` · updatePuzzles · game.js:5322</sub>
+  <sub>`dc81e5bf49c` · updatePuzzles · game.js:5333</sub>
 - **RAVIJOJLA** · Štit ne popušta pred lakim udarcem. K razbija gard. L odbija napad u pravom trenutku.  
   <sub>`d8117748b73` · world.js:5</sub>
 - **RAVIJOJLA** · Priđi svetlećim kamenovima i pritisni E. Otvoriću ti put. U vazduhu te mogu podići još jednom.  
@@ -1063,23 +1063,23 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 **samo za razvoj** · 9 · 1.081 znakova
 
 - **RAVIJOJLA** · Megdan po novim pravilima. Laki udarci (J) klize niz gard, a treći zaredom donosi odgurivanje. Drži K da slomiš gard, ili ga udri kad promaši. Rombovi pod imenom su činovi.  
-  <sub>`dee310084fb` · novoGo · game.js:6096</sub>
+  <sub>`dee310084fb` · novoGo · game.js:6107</sub>
 - **GUSLAR** · Još koji udarac i počinje drugi čin: megdandžija će te odbaciti, pa nasrnuti da te uhvati. Izmakni se, ili u koštacu uzimaj hvat koji se pokaže, pre nego što mu prsten istekne.  
-  <sub>`deb468cb95c` · novoGo · game.js:6097</sub>
+  <sub>`deb468cb95c` · novoGo · game.js:6108</sub>
 - **RAVIJOJLA** · Trgovac stoji pred megdanom: priđi i pritisni E. Dobio si sto dukata za probu. Levo iza tebe podići će se barjak: ako padneš, odatle nastavljaš.  
-  <sub>`d9f76f8d748` · novoGo · game.js:6098</sub>
+  <sub>`d9f76f8d748` · novoGo · game.js:6109</sub>
 - **GUSLAR** · Uzmi carsku knjigu ispred sebe. Onda presudi, kao u pesmi: na kome je carstvo?  
-  <sub>`d28730644ec` · novoGo · game.js:6099</sub>
+  <sub>`d28730644ec` · novoGo · game.js:6110</sub>
 - **RAVIJOJLA** · Alil-aga stoji na drumu. Priđi, pritisni E i nadstreli ga: J kad je tetiva najzategnutija.  
-  <sub>`d85996c4f38` · novoGo · game.js:6100</sub>
+  <sub>`d85996c4f38` · novoGo · game.js:6111</sub>
 - **RAVIJOJLA** · Šarac čeka ispred tebe. E da uzjašeš, D galop, Space preskače balvane, I baca topuz kad stigneš vilu.  
-  <sub>`de2985c3cc0` · novoGo · game.js:6102</sub>
+  <sub>`de2985c3cc0` · novoGo · game.js:6113</sub>
 - **RAVIJOJLA** · Vrh Urvine. Redom: bunar među jelama (E), Šarac, kamen za sablju, pa topuz u more sa litice (I), i natrag pod jelu.  
-  <sub>`d073957c1f0` · novoGo · game.js:6106</sub>
+  <sub>`d073957c1f0` · novoGo · game.js:6117</sub>
 - **RAVIJOJLA** · Ovaj protivnik je već ranjen: udari ga još jednom i pobesneće (BESAN!). Strelci i palikuće se izmiču teškom udarcu (K).  
-  <sub>`d2693f7fc53` · novoGo · game.js:6115</sub>
+  <sub>`d2693f7fc53` · novoGo · game.js:6126</sub>
 - **GUSLAR** · Guslar svakog kraja peva stihove svoje pesme. Stani kraj njega: bes ti raste dok peva.  
-  <sub>`d267f011cb8` · novoGo · game.js:6120</sub>
+  <sub>`d267f011cb8` · novoGo · game.js:6131</sub>
 
 **greybox (probni nivoi)** · 19 · 3.245 znakova
 
@@ -1126,27 +1126,27 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 
 Ovi `speak(...)` pozivi sklapaju rečenicu od delova (ime nivoa + uvod, ime moći + opis…). Delovi su gore u popisu; ovde je samo mesto.
 
-- start · game.js:177 · `chapters[zone].message`
-- enterChapter · game.js:255 · `chapters[zone].message`
-- updateDefense · game.js:917 · `DEF_TEXT[zone]`
-- uzmiMoc · game.js:1718 · `'${M.name} (${M.key}). ${M.text}'`
-- startLevel · game.js:2175 · `'${L.name}. ${VARIANTS[v].intro}${LEVEL_INTRO[L.id]||L.design?.goal||'Prati put do barjaka.'}'`
-- collectCudo · game.js:2213 · `'${c.name} — iz pesme „${c.song}”. ${c.perk}.'`
-- useVrh · game.js:3062 · `VRH_REC[i]`
-- updateUrvina · game.js:3075 · `VRH_VILA[t.said]`
-- sanClue · game.js:3140 · `t.clue`
-- updateKosovka · game.js:3195 · `txt`
-- updateSabljaPesma · game.js:3433 · `txt`
-- updatePotera · game.js:3570 · `HINTS.vila`
-- updateJahanje · game.js:3653 · `txt`
-- pvTick · game.js:3700 · `PV_VILA[P.round]`
-- pvTick · game.js:3701 · `PV_MILOS[P.round]`
-- pvTick · game.js:3703 · `PV_MILOS[0]`
-- pvPesmaKraj · game.js:3706 · `'Miloš peva, vila mu otpeva; lepše grlo u Miloša carsko, jeste lepše nego je u vile.${k>.75?' Gusle su te slušale kao ni`
-- updateBranik · game.js:4155 · `tr(B.uvod)`
-- updateBranik · game.js:4161 · `tr(B.kraj)`
-- updateArena · game.js:4443 · `KIT_INTRO[c.kit]||'${c.name} ti preči put. Pazi na njegov poseban napad, Marko!'`
-- hintOnce · game.js:4880 · `HINTS[key]`
-- bookSee · game.js:5302 · `'${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}'`
-- takeZapis · game.js:5529 · `t`
-- startGreybox · game.js:6037 · `world.gb.L.uvod`
+- start · game.js:184 · `chapters[zone].message`
+- enterChapter · game.js:262 · `chapters[zone].message`
+- updateDefense · game.js:924 · `DEF_TEXT[zone]`
+- uzmiMoc · game.js:1725 · `'${M.name} (${M.key}). ${M.text}'`
+- startLevel · game.js:2182 · `'${L.name}. ${VARIANTS[v].intro}${LEVEL_INTRO[L.id]||L.design?.goal||'Prati put do barjaka.'}'`
+- collectCudo · game.js:2220 · `'${c.name} — iz pesme „${c.song}”. ${c.perk}.'`
+- useVrh · game.js:3069 · `VRH_REC[i]`
+- updateUrvina · game.js:3082 · `VRH_VILA[t.said]`
+- sanClue · game.js:3147 · `t.clue`
+- updateKosovka · game.js:3202 · `txt`
+- updateSabljaPesma · game.js:3440 · `txt`
+- updatePotera · game.js:3577 · `HINTS.vila`
+- updateJahanje · game.js:3660 · `txt`
+- pvTick · game.js:3707 · `PV_VILA[P.round]`
+- pvTick · game.js:3708 · `PV_MILOS[P.round]`
+- pvTick · game.js:3710 · `PV_MILOS[0]`
+- pvPesmaKraj · game.js:3713 · `'Miloš peva, vila mu otpeva; lepše grlo u Miloša carsko, jeste lepše nego je u vile.${k>.75?' Gusle su te slušale kao ni`
+- updateBranik · game.js:4166 · `tr(B.uvod)`
+- updateBranik · game.js:4172 · `tr(B.kraj)`
+- updateArena · game.js:4454 · `KIT_INTRO[c.kit]||'${c.name} ti preči put. Pazi na njegov poseban napad, Marko!'`
+- hintOnce · game.js:4891 · `HINTS[key]`
+- bookSee · game.js:5313 · `'${FOE_BOOK[t].name}: ${FOE_BOOK[t].weak}'`
+- takeZapis · game.js:5540 · `t`
+- startGreybox · game.js:6048 · `world.gb.L.uvod`

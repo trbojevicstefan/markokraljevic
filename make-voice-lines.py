@@ -204,7 +204,7 @@ LINES = {
     # Marko without swearing (settings: "Psovke" off). A line ending in _c<n> is heard only then;
     # with swearing on, the original lines play. Every group Marko swears in has a clean answer here.
     'super_c1': ('marko', '[shouting] [furious] Marš sa mog druma, Turci!', 'sr'),
-    'super_c2': ('marko', '[shouting] Bež\'te, Turci, Marko je došao!', 'sr'),
+    'super_c2': ('marko', "[shouting] Bež'te, Turci, Marko je došao!", 'sr'),
     'super_c3': ('marko', '[furious] [shouting] Marš!!! Nosite se odavde!', 'sr'),
     'atk_c1': ('marko', '[shouting] Evo ti, Turčine!', 'sr'),
     'atk_c2': ('marko', '[effort] Na! Pa nosi!', 'sr'),
@@ -214,10 +214,10 @@ LINES = {
     'kill_c3': ('marko', '[shouting] Ode jedan! Ko je sledeći?', 'sr'),
     'kill_c4': ('marko', '[spits] Ptu! Lezi tu, Turčine!', 'sr'),
     'kill_c5': ('marko', '[mocking] Pozdravi sultana od Marka!', 'sr'),
-    'hurt_c1': ('marko', '[pained] Aah, bolan ne bio!', 'sr'),
-    'hurt_c2': ('marko', '[angry] [pained] Aah! Platićeš mi to!', 'sr'),
-    'hurt_c3': ('marko', '[pained] Uh! Zakači me, Turčin!', 'sr'),
-    'hurt_c4': ('marko', "[growls] Boli, al' neće Marko pasti!", 'sr'),
+    'hurt_c1': ('marko', '[angry] Aah! Platićeš mi to, Turčine!', 'sr'),
+    'hurt_c2': ('marko', "[growls] Hrr! Boli... al' ne pada Marko!", 'sr'),
+    'hurt_c3': ('marko', '[shouting] E, sad si me naljutio!', 'sr'),
+    'hurt_c4': ('marko', '[growls] Jače udri, ako umeš!', 'sr'),
     'block_c1': ('marko', '[laughs] Nećeš, bre, Turčine!', 'sr'),
     'block_c2': ('marko', '[mocking] Promašio si, junačino!', 'sr'),
     'rage_c1': ('marko', '[growling] Uzavrela mi krv! Sad ste nadrljali!', 'sr'),
@@ -227,14 +227,39 @@ LINES = {
     'low_c1': ('marko', '[strained] Neće Marko ovde pasti! Ne dam se!', 'sr'),
     'boss_c1': ('marko', '[shouting] Muso! Izlazi na megdan, ako si junak!', 'sr'),
     'phase_c1': ('marko', '[mocking] Još dva srca, Muso? Izvadiću ti i njih!', 'sr'),
-    'death_c1': ('marko', '[weak] Pao sam... ali ustaću ja.', 'sr'),
+    'death_c1': ('marko', '[tired] Pao sam... ali ustaću ja.', 'sr'),
     'spin_c1': ('marko', '[shouting] Vihor, Turci! Vihor!', 'sr'),
     'spin_c2': ('marko', '[laughs] U krug, junaci turski!', 'sr'),
     'taunt_c1': ('marko', '[shouting] Ajde, priđite, ako smete!', 'sr'),
     'taunt_c2': ('marko', '[mocking] Šta stojite? Ajde, bre!', 'sr'),
     'guard_c1': ('marko', '[annoyed] Ma skloni taj štit!', 'sr'),
-    'pit_c1': ('marko', '[shouting] Uh, klisura! Zamalo!', 'sr'),
+    'pit_c1': ('marko', '[shouting] Hop! Neće mene klisura!', 'sr'),
     'mounted_c1': ('marko', '[shouting] S konja ću te, Turčine!', 'sr'),
+    # more swearing, heard only with "Psovke" on
+    'super_4': ('marko', '[shouting] [furious] Marš, jebem vam sultana!', 'sr'),
+    'atk_4': ('marko', '[shouting] Na, pa jebi se!', 'sr'),
+    'atk_5': ('marko', '[effort] Evo ti, pičko jedna!', 'sr'),
+    'kill_12': ('marko', '[shouting] Jebem ti turban, crkni!', 'sr'),
+    'kill_13': ('marko', '[spits] Ptu! Lezi tu, pičko turska!', 'sr'),
+    'kill_14': ('marko', '[laughs] Još jedan! Majku vam jebem!', 'sr'),
+    'kill_15': ('marko', '[mocking] Šta je, kopile, boli?', 'sr'),
+    'hurt_5': ('marko', '[angry] Jebem ti mater tursku!', 'sr'),
+    'hurt_6': ('marko', '[growls] Jebote, Turčine, platićeš!', 'sr'),
+    'block_4': ('marko', '[laughs] Jebi ga, Turčine, promašio si!', 'sr'),
+    'taunt_4': ('marko', '[shouting] Dođi, pičko, da te upoznam s topuzom!', 'sr'),
+    # effort grunts for the swing
+    'grunt_5': ('marko', '[effort] Hm!', 'sr'),
+    'grunt_6': ('marko', '[grunts] Hej!', 'sr'),
+    'grunt_7': ('marko', '[effort] Haa!', 'sr'),
+    'grunt_8': ('marko', '[grunts] Hrr!', 'sr'),
+    'gruntheavy_4': ('marko', '[roars] Raaaah!', 'sr'),
+    'gruntheavy_5': ('marko', '[shouting] Haaaaj!', 'sr'),
+    'gruntheavy_6': ('marko', '[effort] Hooo-rah!', 'sr'),
+    # the breath after a cup of wine
+    'ah_1': ('marko', '[satisfied exhale] Aaaah!', 'sr'),
+    'ah_2': ('marko', '[sighs with pleasure] Aaah... e, to je vino.', 'sr'),
+    'ah_3': ('marko', '[laughs] Haaa! Rujno, bogami!', 'sr'),
+    'ah_4': ('marko', '[smacks lips] Mmm... aaah!', 'sr'),
 }
 
 # lines that swear, or answer swearing (the fairy scolding Marko's tongue): silent when "Psovke" is off
@@ -246,8 +271,14 @@ def generate(line_id, speaker, text, lang):
     key = os.environ.get('ELEVENLABS_API_KEY')
     if not key:
         sys.exit('ELEVENLABS_API_KEY nije postavljen.')
-    if lang == 'sr':
-        # Serbian goes in Cyrillic: in Latin the Tuco clone reads j as English "dž" ("Ravidžojla")
+    if speaker == 'marko':
+        # Marko stays in Latin, as the original lines were (Cyrillic gave him a strange accent); only the fairy's
+        # name goes in Cyrillic, or he says "Ravidžojla". The new clone gets a gruff tone, except plain grunts.
+        text = text.replace('Ravijojl', 'Равијојл')
+        if not line_id.startswith(('grunt', 'ah_')):
+            text = '[gruff] ' + text
+    elif lang == 'sr':
+        # the other Serbian voices take Cyrillic well
         from importlib import import_module
         text = import_module('make-dialog-voices').cyr(text)
     body = json.dumps({
@@ -261,8 +292,14 @@ def generate(line_id, speaker, text, lang):
         data=body, headers={'xi-api-key': key, 'Content-Type': 'application/json', 'Accept': 'audio/mpeg'})
     with urllib.request.urlopen(req, timeout=120) as r:
         audio = r.read()
-    with open(os.path.join(OUT, line_id + '.mp3'), 'wb') as f:
+    dest = os.path.join(OUT, line_id + '.mp3')
+    with open(dest + '.tmp.mp3', 'wb') as f:
         f.write(audio)
+    # as loud as the original lines (about -23 LUFS); the new clone comes out 3-6 dB quieter
+    import subprocess
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', dest + '.tmp.mp3', '-af', 'loudnorm=I=-23:TP=-1.5:LRA=11',
+                    '-ar', '44100', '-c:a', 'libmp3lame', '-b:a', '128k', dest], check=True)
+    os.remove(dest + '.tmp.mp3')
     print(f'{line_id:12s} {len(audio) // 1024:4d} KB  {text}', flush=True)
 
 

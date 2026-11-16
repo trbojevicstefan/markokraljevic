@@ -133,16 +133,23 @@ function toast(text,duration=3){$('toast').textContent=kontrolaTekst(tr(text));$
 // recorded dialogue (make-dialog-voices.py): game text -> [file id, seconds, speaker]; heard only when the game speaks Serbian
 const DIJALOG=new Map();
 if(hasDom&&typeof fetch==='function')fetch('assets/voice/dijalog.json').then(r=>r.ok?r.json():{}).then(d=>{for(const k in d)DIJALOG.set(k,d[k]);}).catch(()=>{});
-let govorA=null,govorTekst='';
+let govorA=null,govorTekst='',govorRed=[],govorRok=0;
+// a recorded line is being said, or waits its turn: scenes with talk stand still meanwhile
+function govorTraje(){return!!govorA||govorRed.length>0;}
+// a scene clock that stands while someone speaks, then catches up quickly (at most five times faster), so the next
+// line or step of the scene comes only after the words are out, without a long empty pause
+function scenaKorak(o,k,dt){const z='_z'+k;if(govorTraje()){o[z]=(o[z]||0)+dt;return;}const c=Math.min(o[z]||0,dt*5);if(c)o[z]-=c;o[k]=(o[k]||0)+dt+c;}
 // the recording of a line; a line put together in code (chapter name + night + intro) is played from the recorded pieces it contains
 function glasZa(text){if(!text||uiLang()==='en'||!DIJALOG.size)return null;const g=DIJALOG.get(text);if(g)return[g];if(text.length<14)return null;const hits=[];for(const[k,v]of DIJALOG)if(k.length>=12){const i=text.indexOf(k);if(i>=0)hits.push([i,v]);}return hits.length?hits.sort((a,b)=>a[0]-b[0]).map(h=>h[1]):null;}
-function govorStop(){if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}govorTekst='';}
+function govorStop(){if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}govorTekst='';govorRed=[];clearTimeout(govorRok);}
 // a line without a recording leaves the voice that is speaking alone; a recorded one takes over.
 // plays the pieces one after another; Marko's and the fairy's battle cries keep quiet meanwhile, the music ducks
-function govor(list,text){if(!list?.length||!hasDom||typeof Audio!=='function'||govorA&&text===govorTekst)return 0;govorStop();govorTekst=text;let i=0;const total=list.reduce((t,g)=>t+(g[1]||0)+.3,0);
- const next=()=>{if(i>=list.length){govorA=null;govorTekst='';return;}const g=list[i++],a=new Audio(`assets/voice/d/${g[0]}.mp3`);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;NARR.add(a);govorA=a;a.onended=()=>{NARR.delete(a);if(govorA===a)next();};a.play().catch(()=>{});if(audio&&SND)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+(g[1]||3)+.3);};
+function govor(list,text){if(!list?.length||!hasDom||typeof Audio!=='function'||govorA&&text===govorTekst)return 0;if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}clearTimeout(govorRok);govorTekst=text;let i=0;const total=list.reduce((t,g)=>t+(g[1]||0)+.3,0);
+ const next=()=>{clearTimeout(govorRok);if(i>=list.length){govorA=null;govorTekst='';const q=govorRed.shift();if(q)speakSada(...q);return;}const g=list[i++],a=new Audio(`assets/voice/d/${g[0]}.mp3`);a.volume=audioEnabled?Math.min(1,(settings.voice??.9)*1.05):0;NARR.add(a);govorA=a;const dalje=()=>{NARR.delete(a);if(govorA===a)next();};a.onended=dalje;a.onerror=dalje;govorRok=setTimeout(dalje,((g[1]||4)+2)*1000);a.play().catch(()=>{});if(audio&&SND)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+(g[1]||3)+.3);};
  next();if(audio&&SND?.speaking){const until=audio.currentTime+total;for(const k of['marko','vila'])SND.speaking[k]={src:{stop(){}},until,priority:3};}return total;}
-function speak(text,duration=7,who=null){const g=glasZa(text),main=g?.every(x=>x[2]===g[0][2])?g[0][2]:null;if(!who&&main==='GUSLAR')who='GUSLAR';if(!who&&!vilaTu()&&main!=='RAVIJOJLA')who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;const t=govor(g,text);dialogueTime=Math.max(duration,t?t+.8:0);}
+// a recorded line that comes while another is still being said waits for it; one without a recording shows at once
+function speak(text,duration=7,who=null){const g=glasZa(text);if(g&&govorTraje()&&text!==govorTekst){if(!govorRed.some(q=>q[0]===text))govorRed.push([text,duration,who,g]);return;}speakSada(text,duration,who,g);}
+function speakSada(text,duration=7,who=null,g=glasZa(text)){const main=g?.every(x=>x[2]===g[0][2])?g[0][2]:null;if(!who&&main==='GUSLAR')who='GUSLAR';if(!who&&!vilaTu()&&main!=='RAVIJOJLA')who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;const t=govor(g,text);dialogueTime=Math.max(duration,t?t+.8:0);}
 // kind 'dust' stays in the painted layer; everything else becomes glowing 3D sparks.
 function burst(x,y,color,count=14,speed=150,kind='glow'){if(kind!=='dust'&&stage){stage.burst(x,y,color,count,speed);return;}for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=Math.random()*speed;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(kind==='dust'?speed*.35:0),life:.4+Math.random()*.5,max:1,color,r:(kind==='dust'?3:1)+Math.random()*3,kind});}}
 function dust(x,y,count=6,spread=1){for(let i=0;i<count;i++)particles.push({x:x+(Math.random()-.5)*20*spread,y:y-2,vx:(Math.random()-.5)*90*spread,vy:-20-Math.random()*45,life:.45+Math.random()*.4,max:.85,color:'#cdb68a',r:4+Math.random()*6,kind:'dust'});}
@@ -217,7 +224,7 @@ function useFairy(){
 }
 function updatePlayer(dt){
  if(p.pinned){p.vx=0;p.vy=0;p.attack=0;p.blocking=false;p.spin=0;p.dash=0;p.parry=0;return;}
- for(const key of ['invuln','attack','cooldown','parry','parryCooldown','dash','dashCooldown','buff','landing','mountTime','hurt','drink','vida','castLock','guardBreak','down','comboWindow','wallJumpT','plungeT','hurtLock','drop'])p[key]=Math.max(0,p[key]-dt);if(p.attackKind==='heavy'&&p.attack>0&&p.chargeable){const ph=1-p.attack/attackDuration();if(ph>=.36&&isDown('KeyK')&&!p.chargeReleased){p.attack+=dt;p.cooldown+=dt;p.charge=Math.min(1.1,p.charge+dt);if(p.charge>=1.1&&!p.chargeFull){p.chargeFull=true;fx('flash','#ffd27a',.06);sfx('ring',{gain:.6});label('PUN ZAMAH',p.x,p.y-150,'#ffd890');}}else if(ph>=.36&&p.charge>.15&&!p.chargeReleased){p.chargeReleased=true;sayGrunt(true);}}p.energy=Math.min(100,p.energy+dt*(perks.has('vilino-pero')?7.5:5.5));if(p.drink>0&&p.drink<.38&&!p.drinkApplied){p.drinkApplied=true;p.buff=am('cup-meda')?20:12;p.hp=Math.min(p.maxHp,p.hp+Math.round(18*D().heal*(am('lozov-list')?2:1)));sound("wine");say('wine',{priority:2,delay:.5});say('vila_wine',{chance:.5,delay:3.4});toast(am('cup-meda')?"Junačko vino · +30% snage · 20 sekundi":"Junačko vino · +30% snage · 12 sekundi",3);burst(p.x,p.y-65,"#e0a95a",20);fx('flash','#ffb040',.08);}p.anim+=dt;p.gait+=Math.abs(p.vx)*dt/(horseMounted?42:25);fairy.age+=dt;if(pendingMagic){pendingMagic.delay-=dt;if(pendingMagic.delay<=0){const effect=pendingMagic;pendingMagic=null;effect.apply();}}
+ for(const key of ['invuln','attack','cooldown','parry','parryCooldown','dash','dashCooldown','buff','landing','mountTime','hurt','drink','vida','castLock','guardBreak','down','comboWindow','wallJumpT','plungeT','hurtLock','drop'])p[key]=Math.max(0,p[key]-dt);if(p.attackKind==='heavy'&&p.attack>0&&p.chargeable){const ph=1-p.attack/attackDuration();if(ph>=.36&&isDown('KeyK')&&!p.chargeReleased){p.attack+=dt;p.cooldown+=dt;p.charge=Math.min(1.1,p.charge+dt);if(p.charge>=1.1&&!p.chargeFull){p.chargeFull=true;fx('flash','#ffd27a',.06);sfx('ring',{gain:.6});label('PUN ZAMAH',p.x,p.y-150,'#ffd890');}}else if(ph>=.36&&p.charge>.15&&!p.chargeReleased){p.chargeReleased=true;sayGrunt(true);}}p.energy=Math.min(100,p.energy+dt*(perks.has('vilino-pero')?7.5:5.5));if(p.drink>0&&p.drink<.38&&!p.drinkApplied){p.drinkApplied=true;p.buff=am('cup-meda')?20:12;p.hp=Math.min(p.maxHp,p.hp+Math.round(18*D().heal*(am('lozov-list')?2:1)));sound("wine");say('ah',{priority:2,delay:.9});say('wine',{chance:.7,priority:2,delay:3.1});say('vila_wine',{chance:.5,delay:5.6});toast(am('cup-meda')?"Junačko vino · +30% snage · 20 sekundi":"Junačko vino · +30% snage · 12 sekundi",3);burst(p.x,p.y-65,"#e0a95a",20);fx('flash','#ffb040',.08);}p.anim+=dt;p.gait+=Math.abs(p.vx)*dt/(horseMounted?42:25);fairy.age+=dt;if(pendingMagic){pendingMagic.delay-=dt;if(pendingMagic.delay<=0){const effect=pendingMagic;pendingMagic=null;effect.apply();}}
  if(p.grounded){p.coyote=.12;p.airLift=false;}else p.coyote-=dt;airMovesReset();
  // Space alone jumps: up (W, ↑) is for the blows upward, ladders and doors
  if(climbInput())p.jumpBuffer=0;else if(tap('Space')&&!p.climb)p.jumpBuffer=.14;else p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
@@ -2165,7 +2172,7 @@ function drawLevelDecor(solid){
  for(const pr of level.props){const im=levelArt[pr.id];if(!im)continue;const b=propBounds(im),h=pr.height,w=b.w*h/b.h;if(pr.x+w<camera-60||pr.x-w>camera+VIEW_W+60)continue;if(pr.id.startsWith('prop-barjak')&&drawPropBanner(pr,im,b,h))continue;ctx.drawImage(im,b.x,b.y,b.w,b.h,pr.x-w/2,pr.y-h+6,w,h);}
  drawGoals();
  const banner=x=>level.props.some(pr=>pr.id.startsWith('prop-barjak')&&Math.abs(pr.x-x)<140);if(!banner(level.spawn.x+80))flag(level.spawn.x+80,level.spawn.y);if(!banner(level.goal.x))flag(level.goal.x,level.goal.y);}
-async function startLevel(i,v=levelVariant){if(hero!=='marko'){hero='marko';if(p){const [a,b]=p.heroSablja||[false,false];p.sablja=a;p.sabljaOut=b;}heroHud();}const L=LEVELS[i];if(!L)return;if(!VARIANTS[v])v='day';ekonPonovo=!!levelStars(L).done;if(p)p.scena=null;levelVariant=v;initAudio();$('loading').hidden=false;await loadLevelArt(L,v);$('loading').hidden=true;
+async function startLevel(i,v=levelVariant){govorStop();if(hero!=='marko'){hero='marko';if(p){const [a,b]=p.heroSablja||[false,false];p.sablja=a;p.sabljaOut=b;}heroHud();}const L=LEVELS[i];if(!L)return;if(!VARIANTS[v])v='day';ekonPonovo=!!levelStars(L).done;if(p)p.scena=null;levelVariant=v;initAudio();$('loading').hidden=false;await loadLevelArt(L,v);$('loading').hidden=true;
  world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;ckpt=null;ckptFlags=[];lov=null;presudaOpen=false;if(i===MUSA_AFTER)say('weak',{priority:3,delay:1.5});for(const e of world.enemies){const need=e.kit==='azdaja'?['-idle','-death']:['-idle','-attack','-death'];if(e.champion&&!rig?.['cast/'+e.type]&&need.some(s=>!rig?.[e.type+s])){e.type='sword';e.scale=1.6;}}defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();applyHearts();setupBreakables();setupTowers();setupPlows();setupOltari();sizeProps();clearProps();decorate();setupKolci();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;mociCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;addPartners();hardenFoes(world.enemies);makeElites();makeTandems();stealthSetup();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
  particles=[];arrows=[];floating=[];corpses=[];bones=[];heads=[];limbs=[];gibs=[];booms=[];fountains=[];finisher=null;grapple=null;finGlobal=0;grappleCool=0;training=null;ghosts=[];fires=[];decals=[];endSequence=null;camera=0;camY=CAM_Y0;lastSafe=p.x;elapsed=0;kills=0;relics=0;
  hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;keys.clear();pressed.clear();pendingMagic=null;
@@ -2373,7 +2380,7 @@ function updatePlows(dt){const T=world.plowTeams||[];p.dizeT=Math.max(0,(p.dizeT
    else{pl.php=p.hp;if(axis>0&&pl.phase==='ore'){const nx=Math.min(pl.x1,pl.x+PLOW_V*dt);if(supportAt(nx+200,pl.y,STEP_UP)){pl.walk+=nx-pl.x;pl.x=nx;pl.moveT=.12;if(!pl.furrow.length||pl.x-88-pl.furrow[pl.furrow.length-1]>26){pl.furrow.push(pl.x-88);if(pl.furrow.length>170)pl.furrow.shift();}if(Math.random()<.2)dust(pl.x-90,pl.y,1,.6);}
      if(pl.x>=pl.x1)plowQuarrel(pl);}
     p.x=pl.x-plowHX();p.vx=0;p.face=1;}}
-  if(pl.phase==='boj'){const t0=pl.t;pl.t+=dt;const lead=plowTurks(pl)[0];
+  if(pl.phase==='boj'){const t0=pl.t;scenaKorak(pl,'t',dt);const lead=plowTurks(pl)[0];
    if(t0<.5&&pl.t>=.5&&lead){speak('„More Marko, ne ori drumova!”',2.6,'JANIČARI');foeSay(lead,'attack',{chance:1});}
    if(t0<2.9&&pl.t>=2.9&&lead)speak('„More Turci, ne gaz’te oranja!”',2.8,'MARKO');
    if(!lead)plowSpoils(pl);}}
@@ -3192,7 +3199,7 @@ function kosovkaArap(T,dt){
  T.hp0=p.hp;}
 function updateKosovka(dt){const T=kosovkaTrap();if(!T||!level)return;kosovkaArap(T,dt);
  if(!T.ph){if(p.x>T.dev-420&&p.x<T.x1&&Math.abs(p.y-T.y)<160){T.ph='govor';T.t=0;T.i=0;}return;}
- if(T.ph==='govor'){T.t+=dt;while(T.i<KOSOVKA_RAZGOVOR.length&&T.t>=KOSOVKA_RAZGOVOR[T.i][0]){const [,who,txt,d]=KOSOVKA_RAZGOVOR[T.i++];speak(txt,d,who);if(T.i===4){T.dukati=true;burst(T.dev,T.y-80,'#ffd76a',16,130);label('TRIDESET DUKATA',T.dev,T.y-190,'#ffe39a');sfx('coins',{gain:.5})||sfx('ring',{gain:.4});}}
+ if(T.ph==='govor'){scenaKorak(T,'t',dt);while(T.i<KOSOVKA_RAZGOVOR.length&&T.t>=KOSOVKA_RAZGOVOR[T.i][0]){const [,who,txt,d]=KOSOVKA_RAZGOVOR[T.i++];speak(txt,d,who);if(T.i===4){T.dukati=true;burst(T.dev,T.y-80,'#ffd76a',16,130);label('TRIDESET DUKATA',T.dev,T.y-190,'#ffe39a');sfx('coins',{gain:.5})||sfx('ring',{gain:.4});}}
   if(p.x>T.x1+700&&T.i<KOSOVKA_RAZGOVOR.length){T.ph='kraj';T.done=true;}
   if(T.i>=KOSOVKA_RAZGOVOR.length&&T.t>KOSOVKA_RAZGOVOR.at(-1)[0]+6){T.ph='kraj';T.done=true;T.odlazi=T.dev;toast('Kraj ruševina, gde se vije svilen barjak, čeka Arapin šator. Oslobodi svatove!',4);}}
  // after the Arab falls she comes to Marko, kneels and gives him water, as the Kosovo maiden does for the wounded
@@ -3227,7 +3234,7 @@ function updateVaradin(dt){varadinScena=false;const T=varadinTrap();if(!T||!leve
   else if(p.x>T.x1+150)T.ph='kraj';
   return false;}
  if(T.ph==='kraj')return false;
- T.pt+=dt;
+ scenaKorak(T,'pt',dt);
  const seat=T.logor-70;
  // on Šarac the fight stays in the field under Varadin: no riding off into the climbing rooms before the voivodes are free
  if(horseMounted&&(T.ph==='boj1'||T.ph==='boj2pre'||T.ph==='boj2'||T.ph==='vojvode')){const a=T.x0+120,b=T.x1-90;if(p.x<a||p.x>b){p.x=clamp(p.x,a,b);p.vx=0;}}
@@ -3293,7 +3300,7 @@ function updateMehana(dt){mehanaScena=false;if(p.ustaje>0)p.ustaje=Math.max(0,p.
   else if(p.x>T.x1+150)T.ph='kraj';
   return false;}
  if(T.ph==='kraj'||T.ph==='megdan')return false;
- T.pt+=dt;mehanaScena=true;p.invuln=0;const F=T.F,seat=T.sto-80;
+ scenaKorak(T,'pt',dt);mehanaScena=true;p.invuln=0;const F=T.F,seat=T.sto-80;
  if(F&&F.anim==='attack'){F.at+=dt;if(F.at>.62)F.anim='idle';}
  for(const e of world.enemies)if(e.alive&&!e.champion&&!e.kit&&!e.filip&&Math.abs(e.x-T.sto)<1300)e.razgovor=Math.max(e.razgovor||0,.2);
  if(T.ph==='dolazi'){const dx=seat-p.x;p.vx=Math.sign(dx)*Math.min(150,Math.abs(dx)*4);p.x+=p.vx*dt;p.face=1;p.gait=(p.gait||0)+Math.abs(p.vx)*dt/90*6;p.y=T.y;p.grounded=true;
@@ -3358,7 +3365,7 @@ function updateOkovi(dt){okoviScena=false;const T=okoviTrap();if(!T||!level)retu
   else if(p.x>T.x1+150){T.ph='kraj';}
   return false;}
  if(T.ph==='kraj')return false;
- T.pt+=dt;okoviScena=true;p.invuln=0;
+ scenaKorak(T,'pt',dt);okoviScena=true;p.invuln=0;
  for(const e of world.enemies){if(!e.alive||e.champion||e.kit||e.x<T.x0-1200||e.x>T.x1+600)continue;if(e.x>T.x0-60&&e.x<T.x1+60){e.alive=false;dust(e.x,e.y,8,1);}else{e.razgovor=Math.max(e.razgovor||0,.2);}}
  if(T.ph==='pad'){const want=p.x+(T.pt<11.9?430:150);D.x+=clamp(want-D.x,-200*dt,200*dt);D.face=-1;D.gait+=Math.abs(want-D.x)>4?130*dt/90*6:0;p.vx=0;p.face=1;
   if(T.pt>7&&!T.vika){T.vika=true;speak('„Kud ćeš tamo, Đemo Brđanine? Evo, more, Kraljevića Marka!”',3.5,'MARKO');}
@@ -3430,8 +3437,8 @@ const SABLJA_RAZGOVOR=[[0,'GUSLAR','Dođe ferman od cara turskoga Mustaf-agi da 
 let sabljaSlova=null;   // the three letters on the sabre, and what follows them
 function updateSabljaPesma(dt){if(!level||level.id!=='tvrdjava')return;const e=world.enemies.find(e=>e.alive&&e.sablja);
  if(e&&!e.pesma&&Math.abs(p.x-e.x)<540&&Math.abs(p.y-e.y)<160){e.pesma={t:0,i:0};e.razgovor=37;}
- if(e?.pesma&&e.razgovor>0){if(e.hp<e.maxHp)e.razgovor=0;else{const P=e.pesma;P.t+=dt;while(P.i<SABLJA_RAZGOVOR.length&&P.t>=SABLJA_RAZGOVOR[P.i][0]){const [,who,txt,d]=SABLJA_RAZGOVOR[P.i++];speak(txt,d,who);}}}
- const S=sabljaSlova;if(!S)return;S.t+=dt;
+ if(e?.pesma&&e.razgovor>0){if(e.hp<e.maxHp)e.razgovor=0;else{const P=e.pesma;scenaKorak(P,'t',dt);while(P.i<SABLJA_RAZGOVOR.length&&P.t>=SABLJA_RAZGOVOR[P.i][0]){const [,who,txt,d]=SABLJA_RAZGOVOR[P.i++];speak(txt,d,who);}}}
+ const S=sabljaSlova;if(!S)return;scenaKorak(S,'t',dt);
  if(S.t>8&&!S.car){S.car=true;speak('Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora. Car s’ odmiče, a Marko primiče, dok doćera cara do duvara.',9);}
  if(S.t>17&&!S.dukati){S.dukati=true;addCoins(100,p.x,p.y-90);p.wine=p.wineMax??p.wine;sfx('coins',{gain:.7})||sfx('ring',{gain:.5});speak('Car se maši u džepove rukom, te izvadi stotinu dukata: „Idi, Marko, napij mi se vina!” A Marko: „Ne pitaj me, care poočime! Poznao sam sablju baba mog.”',9);}
  if(S.t>27)sabljaSlova=null;}
@@ -3463,10 +3470,10 @@ function updateCrkva(dt){const T=crkvaTrap();if(!T)return;T.presek=clamp((T.pres
   if(T.m-T.f<46&&V.udar<=0){V.udar=1;T.f=T.m-240;p.hp=Math.max(1,p.hp-10);p.hurt=.22;shake=settings.reduced?0:5;burst(p.x,p.y-80,'#ff8a7a',10,160);label('HANDŽAR!',p.x,p.y-170,'#ff9a8a');sfx('hit_body',{gain:.6});}
   if(p.attack>0&&Math.abs(p.x-V.x)<140&&!T.ruka){T.ruka=true;label('NA OCA SE RUKA NE DIŽE',p.x,p.y-190,'#ffe39a');}if(p.attack<=0)T.ruka=false;
   if(T.krug>=CRKVA_KRUGOVA){T.state='glas';T.t=0;speak('Dok su triput kolo sastavili oko b’jele Samodreže crkve, gotovo ga bješe sustigao, al’ iz crkve nešto progovara: „Bjež’ u crkvu, Kraljeviću Marko! Vidiš đe ćeš danas poginuti, poginuti od svog roditelja, a za pravdu Boga istinoga.”',11,'GLAS IZ CRKVE');sfx('magic',{gain:.7,rate:.8});}}
- else if(T.state==='glas'){T.t+=dt;T.vrata=Math.min(1,(T.vrata||0)+dt*1.5);const V=T.vuk;
+ else if(T.state==='glas'){scenaKorak(T,'t',dt);T.vrata=Math.min(1,(T.vrata||0)+dt*1.5);const V=T.vuk;
   V.x+=(p.x-V.x>0?1:-1)*Math.min(Math.abs(p.x-V.x)-120>0?Math.abs(p.x-V.x)-120:0,210*dt);V.face=p.x>V.x?1:-1;V.gait+=150*dt/90*6;
   if(Math.abs(p.x-T.crkva)<70&&(tap('KeyW')||tap('KeyE'))){T.state='direk';T.t=0;p.uCrkvi=true;p.vx=0;sfx('door',{gain:.7})||sfx('wood',{gain:.6});}}
- else if(T.state==='direk'){T.t+=dt;const V=T.vuk;T.vrata=Math.max(0,(T.vrata||0)-dt*2);p.x=T.crkva;p.vx=0;p.face=1;
+ else if(T.state==='direk'){scenaKorak(T,'t',dt);const V=T.vuk;T.vrata=Math.max(0,(T.vrata||0)-dt*2);p.x=T.crkva;p.vx=0;p.face=1;
   if(T.t<1.2){V.x+=(T.crkva+CRKVA_DIREK.x-66-V.x)*Math.min(1,dt*3);V.face=1;V.gait+=200*dt/90*6;}
   if(T.t>1.2&&!T.s1){T.s1=true;V.udar=.6;T.handzar=true;sfx('hit_heavy',{gain:.8});shake=settings.reduced?0:6;hitstop=.08;speak('Kralj dopade na crkvena vrata, po direku udari handžarom, iz direka krvca pokapala.',7);}
   if(T.handzar&&Math.random()<dt*9)particles.push({kind:'blood',x:T.crkva+CRKVA_DIREK.x,y:T.y+CRKVA_DIREK.y+Math.random()*10,vx:0,vy:60,life:1.2,max:1.2,r:2.2,color:'#a01818'});
@@ -4012,7 +4019,7 @@ function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar'
 function guslarPeva(g,quiet){g.state='peva';g.t=0;g.healed=0;if(quiet){g.second=true;if(PESMA.g!==g)guslarSong(g);return;}if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;guslarSong(g)||sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
 // a real guslar sings: 28 s of "Marko Kraljević i Musa Kesedžija" (Wikimedia Commons, VVVladimir, CC BY-SA 3.0).
 // The music steps back while he sings, and his voice fades as Marko walks away from him.
-function guslarSong(g){if(level?.id!=='klisura')return false;if(pesmaStart(g))return true;const b=SND.buf['sfx/guslar_pesma_0'];if(!audio||!b||!SND.bus.sfx)return false;for(const o of world.traps||[])if(o.song){try{o.song.s.stop();}catch{}o.song=null;}
+function guslarSong(g){if(!level)return false;if(pesmaStart(g))return true;if(level.id!=='klisura')return false;const b=SND.buf['sfx/guslar_pesma_0'];if(!audio||!b||!SND.bus.sfx)return false;for(const o of world.traps||[])if(o.song){try{o.song.s.stop();}catch{}o.song=null;}
  const s=audio.createBufferSource();s.buffer=b;const gn=audio.createGain();gn.gain.value=0;gn.gain.setTargetAtTime(1,audio.currentTime,.25);s.connect(gn);gn.connect(SND.bus.sfx);s.start();g.song={s,gn};songWatch.on.add(g);s.onended=()=>{if(g.song?.s===s)g.song=null;};return true;}
 // the song ends with its guslar's world: a new pohod, the main menu or Marko's death
 function songWatch(){for(const o of songWatch.on){if((mode==='play'||mode==='pause')&&o.song&&(world.traps||[]).includes(o))continue;if(o.song){try{o.song.gn.gain.setTargetAtTime(0,audio.currentTime,.15);o.song.s.stop(audio.currentTime+.6);}catch{}o.song=null;}songWatch.on.delete(o);}}songWatch.on=new Set();
@@ -4064,7 +4071,11 @@ function ckptRespawn(){mode='play';horseMounted=false;p.sedi=0;p.ustaje=0;p.okov
 function drawCkpt(){for(const f of ckptFlags)if(f.x>camera-200&&f.x<camera+VIEW_W+200)flag(f.x,f.y,true);}
 // ---------- the long song: all five minutes of the guslar's recording, streamed; it goes on from guslar to guslar ----------
 const PESMA={el:null,g:null};
-function pesmaStart(g){if(!hasDom||typeof Audio==='undefined')return false;try{if(!PESMA.el){PESMA.el=new Audio('assets/sfx/guslar_pesma_duga.ogg');PESMA.el.loop=true;PESMA.el.preload='auto';PESMA.el.volume=0;}PESMA.g=g;PESMA.el.play()?.catch?.(()=>{});return true;}catch{return false;}}
+// every guslar sings a real recorded song (Wikimedia Commons, see assets/music/GUSLE-LICENSE.txt): in the Ibar gorge the song
+// of Musa, elsewhere „Bolani Dojčin”, „Stari Vujadin” and Musa again, one after another along the journey
+const PESME_GUSLARA=['assets/music/gusle-dojcin.ogg','assets/music/gusle-vujadin.ogg','assets/sfx/guslar_pesma_duga.ogg'];
+function pesmaSrc(){const id=level?.id;if(id==='klisura')return'assets/sfx/guslar_pesma_duga.ogg';const i=Math.max(0,JOURNEY.indexOf(id));return PESME_GUSLARA[i%PESME_GUSLARA.length];}
+function pesmaStart(g){if(!hasDom||typeof Audio==='undefined')return false;try{const src=pesmaSrc();if(!PESMA.el){PESMA.el=new Audio(src);PESMA.el.loop=true;PESMA.el.preload='auto';PESMA.el.volume=0;}else if(PESMA.src!==src){PESMA.el.src=src;PESMA.el.load();PESMA.el.volume=0;}PESMA.src=src;PESMA.g=g;PESMA.el.play()?.catch?.(()=>{});return true;}catch{return false;}}
 function pesmaTick(){const el=PESMA.el;if(!el)return;const g=PESMA.g,on=g&&p&&(mode==='play'||mode==='story')&&(world.traps||[]).includes(g)&&(g.state==='peva'||g.state==='odbrana');
  let v=0;if(on){const d=Math.abs(p.x-g.x)+Math.max(0,Math.abs(p.y-g.y)-150);v=clamp(1-(d-500)/1000,0,1)*(audioEnabled?clamp(settings.volume*settings.sfx*2.2,0,1):0);}
  el.volume=clamp(el.volume+(v-el.volume)*.08,0,1);if(v>.12&&audio)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+.4);
@@ -5960,7 +5971,7 @@ let introAt=-1,introDone=null,introTimer=0,introVoice=null,introPages=INTRO,intr
 // every narrating voice that was started is remembered, so none can go on reading after the story is skipped or left:
 // the pages of the intro, the song read aloud in the book, and the spoken lines still waiting their turn in the game
 const NARR=new Set();
-function stopIntroVoices(){clearTimeout(introTimer);for(const a of NARR){try{a.pause();a.removeAttribute('src');a.load();}catch{}}NARR.clear();introVoice=null;}
+function stopIntroVoices(){govorStop();clearTimeout(introTimer);for(const a of NARR){try{a.pause();a.removeAttribute('src');a.load();}catch{}}NARR.clear();introVoice=null;}
 function stopNarration(){stopIntroVoices();stopReading();for(const k of Object.keys(SND.speaking||{})){try{SND.speaking[k].src.stop();}catch{}delete SND.speaking[k];}}
 // ================= story panels: at the first entry into each chapter, and after the duel; the intro's stage shows them =================
 const STORY_PANELS={'podrum-divan':[

@@ -85,9 +85,26 @@ def segments(r, rez, cfg):
     return merged
 
 
-def tagged(spk, text, tone, cfg):
+def simple_tone(tone):
+    """Marko (Tuco clone) gets one plain tag: long mixed directions gave him a strange accent."""
+    t = (tone or '').lower()
+    for keys, tag in [(('shout', 'furious', 'calling'), '[shouting]'), (('laugh', 'delight'), '[laughs]'),
+                      (('mock', 'contempt', 'sly', 'amused', 'dry'), '[mocking]'), (('sad', 'griev', 'cry', 'remorse', 'farewell', 'bitter', 'tender'), '[sad]'),
+                      (('weak', 'tired', 'strain', 'hoarse', 'sleepy', 'dying'), '[tired]'), (('desperate', 'plead'), '[pleading]'),
+                      (('angry', 'threat', 'menac', 'cold', 'grim'), '[angry]'), (('warm', 'gentle', 'kind', 'calm', 'proud', 'confident'), '[calm]')]:
+        if any(k in t for k in keys):
+            return tag
+    return '[firm]'
+
+
+def tagged(spk, text, tone, cfg, cast=None):
     pre = cfg.get('osnova', {}).get(spk, '')
-    t = cyr(text)
+    if (cast or {}).get(spk, {}).get('pismo') == 'latinica':
+        # in Latin, as the original lines were; only the fairy's name in Cyrillic, or he says "Ravidžojla"
+        t = text.replace('Ravijojl', 'Равијојл')
+        tone = simple_tone(tone)
+    else:
+        t = cyr(text)
     # pronunciation fixes, for everyone or for one speaker: {"Кесеџиј": "…"} or {"GUSLAR": {"…": "…"}}
     for k, v in cfg.get('izgovor', {}).items():
         if isinstance(v, dict):
@@ -204,7 +221,7 @@ def main():
     for r, segs in jobs:
         for s in segs:
             c = cast[s[0]]
-            text = tagged(s[0], s[1], s[2], cfg)
+            text = tagged(s[0], s[1], s[2], cfg, cast)
             h = hashlib.sha1(json.dumps([c['voice_id'], c.get('stabilnost', 0.5), MODEL, text], ensure_ascii=False).encode()).hexdigest()[:16]
             s.append(os.path.join(CACHE, h + '.mp3'))
             parts[s[3]] = (c['voice_id'], c.get('stabilnost', 0.5), text, r['id'])
