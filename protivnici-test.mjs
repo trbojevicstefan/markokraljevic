@@ -75,4 +75,15 @@ ok(f2.maxHp>f1.maxHp*1.4,`chapters: the same sabre-man is tougher by the river t
   udri(p,e,1,true);ok(e.hp<h0,'zid koplja: a blow from above does');
   Object.assign(e,{x:p.x-70,y:p.y,face:-1,vx:0,vy:0,grounded:true,air:false,juggle:0,stun:0,gardT:1.5,lunge:null});const h1=e.hp;udri(p,e,-1);ok(e.hp<h1&&!(e.gardT>0),'zid koplja: a blow from behind breaks his wall');}
  {const {p,e}=await koplje(110,140);step(2);const hp=p.hp;for(let i=0;i<150;i++){step();p.invuln=0;}ok(p.hp<hp,'zid koplja: who stands before the spear is jabbed');}}
+// ---- noć 16. 11., protivnik 4: akindžija, munja i prolaz kroz Marka ----
+{const akin=async(dx,extra={})=>{const w=await start('selo');const {p}=api.state();for(const o of w.enemies)o.alive=false;p.invuln=0;p.hp=p.maxHp;p.face=1;p.attack=0;
+  const e={id:7799,x:p.x+dx,y:p.y,vx:0,vy:0,w:36,h:75,hp:300,maxHp:300,type:'akindzija',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+dx,attackId:0,grounded:true,alert:true,dodgeReady:false,...extra};w.enemies.push(e);return{p,e};};
+ {let n=0;for(let k=0;k<14&&!n;k++){const {p,e}=await akin(110,{prolazCd:99,munjaCd:0});Object.assign(p,{face:1,attack:.3,attackKind:'light',combo:0,attackId:(p.attackId||0)+500+k});step(1);if(e.lunge?.v>0&&e.munjaTrag>0)n++;}
+  ok(n>0,'akindžija: when Marko swings he jerks aside like lightning (munja)');}
+ {const {p,e}=await akin(240,{prolazCd:0,munjaCd:99});for(let i=0;i<240&&!e.prolazW;i++)step(1);ok(e.prolazW&&e.mode==='windup','akindžija: he readies the rush (red cross)');
+  for(let i=0;i<120&&!e.prolaz;i++)step(1);ok(!!e.prolaz,'akindžija: he rushes at Marko');const hp0=p.hp;let past=false;
+  for(let i=0;i<120&&e.prolaz;i++){step(1);if(e.x<p.x-40)past=true;}ok(past&&p.hp===hp0,'akindžija: straight through Marko to the other side');
+  ok(e.ledja&&e.face===1,'akindžija: he turns to strike from behind');for(let i=0;i<120&&p.hp===hp0;i++){step(1);p.invuln=0;}ok(p.hp<hp0,'akindžija: the blow from behind lands on a Marko who stood');}
+ {const {p,e}=await akin(240,{prolazCd:0,munjaCd:99});for(let i=0;i<360&&!e.ledja;i++)step(1);step(18);const hp0=p.hp;p.dashCooldown=0;api.ownedSkills().add('kolut');api.keys.add('KeyD');api.pressed.add('ShiftLeft');step(1);api.keys.delete('KeyD');
+  for(let i=0;i<120;i++)step(1);ok(p.hp===hp0,'akindžija: a roll gets away from the blow from behind');}}
 console.log(`\n${checks} checks passed.`);
