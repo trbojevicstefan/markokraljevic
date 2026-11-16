@@ -5,6 +5,7 @@
 const KEY='marko-jezik';
 
 const EN_PAIRS=[
+["OBARAČ!","FELLER!"],["Tri udarca zaredom; treći obara protivnika. K posle prvog, drugog ili trećeg: Obarač, Lomilac, Tresak niza.","Three blows in a row; the third knocks the foe down. K after the first, second or third: Feller, Breaker, Chain slam."],["TRESAK NIZA!","CHAIN SLAM!"],["OBOREN!","KNOCKED DOWN!"],["Obarač","Feller"],["obori dušmanina na zemlju","knocks the foe to the ground"],["Tresak niza","Chain slam"],["udarni talas obara sve oko Marka, i iza njega","the shock wave fells everyone around Marko, behind him too"],
 ["DRUM JE ČIST","THE ROAD IS CLEAR"],
 ["Palac te vodi drumom, a dugme SKOK je skok. TOPUZ udara, TEŠKI je težak udarac, a ŠTIT diže štit.","The thumbstick moves you along the road and JUMP jumps. MACE strikes, HEAVY is the heavy blow and SHIELD raises the shield."],
 ["Levi štapić te vodi drumom, a A je skok. X udara topuzom, Y je teški udarac, a LB diže štit.","The left stick moves you along the road and A jumps. X strikes with the mace, Y is the heavy blow and LB raises the shield."],

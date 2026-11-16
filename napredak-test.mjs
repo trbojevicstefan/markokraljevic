@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,film:()=>({slowMo,kinoT}),arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -64,4 +64,18 @@ await api.startLevel(lv('manastir'));{const {p,world}=S(),T=world.traps.find(t=>
 await api.startLevel(lv('selo'));{const {p,world}=S(),near=world.enemies.filter(e=>e.alive&&!e.champion).slice(0,4);for(const e of world.enemies)if(!near.includes(e))e.alive=false;
  near.forEach((e,i)=>Object.assign(e,{x:p.x+150+i*60,y:p.y}));step(120);for(const e of near.slice(0,3)){api.slay(e);step(30);}
  ok(api.film().slowMo<=0,'a foe falls, others still stand: no slow motion yet');api.slay(near[3]);ok(api.film().slowMo>0&&api.film().kinoT>0,'the last of the fight falls slowly, the camera leans in');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik i kill-cam`);
+// ---- Stefan, 16. 11.: završni udarac vraća 5 zdravlja; tri različita laka udarca; nove kombinacije ----
+await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.alive&&!o.champion);for(const o of world.enemies)if(o!==e)o.alive=false;
+ p.hp=40;const F={e,kind:'gazi',t:0,dur:1};try{api.finishBlow(F);}catch(err){}ok(p.hp===45,'a finishing blow gives back 5 health');
+ try{api.finishBlow(F);}catch(err){}ok(p.hp===45,'once per finished foe, not twice');
+ ok(new Set([0,1,2].map(api.lakiKlip)).size===3,'J, J J and J J J are three different blows');}
+await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.alive&&!o.champion&&o.type!=='oklopnik');for(const o of world.enemies)if(o!==e)o.alive=false;
+ Object.assign(p,{cooldown:0,attack:0,grounded:true,face:1,cd:{}});Object.assign(e,{x:p.x+90,y:p.y,hp:999,maxHp:999,stun:0});
+ api.strike(false);ok(p.attackKind==='light'&&p.combo===0,'J: the first light blow');Object.assign(p,{cooldown:0,attack:0});
+ api.strike(true);ok(p.attackKind==='obarac','J K: Obarač');for(let i=0;i<60&&!(e.obT>0);i++)api.update(1/120);
+ ok(e.obT>0&&e.prone===1,'Obarač knocks the foe to the ground');step(240);ok(!(e.obT>0)&&!e.prone,'and he gets up after a while');
+ Object.assign(p,{cooldown:0,attack:0,comboWindow:0,cd:{}});e.x=p.x-120;e.stun=0;
+ api.strike(false);Object.assign(p,{cooldown:0,attack:0});api.strike(false);Object.assign(p,{cooldown:0,attack:0});api.strike(false);ok(p.combo===2,'J J J: the third blow');
+ Object.assign(p,{cooldown:0,attack:0});api.strike(true);ok(p.attackKind==='tresakNiza','J J J K: Tresak niza');
+ for(let i=0;i<90&&!(e.obT>0);i++)api.update(1/120);ok(e.obT>0,'Tresak niza fells a foe behind Marko too');}
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam i kombinacije`);
