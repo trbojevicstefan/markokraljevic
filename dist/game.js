@@ -2691,13 +2691,30 @@ function rankDmg(kind){return 1+.15*Math.max(0,skillRank(RANK_KIND[kind])-1);}
 function rankUp(id){if(!RANK_FX[id]||!ownedSkills().has(id))return false;const r=rankState()[id]||1;if(r>=3)return false;const cost=RANK_COST[r-1];if(bank()<cost)return false;
  setBank(bank()-cost);rankState()[id]=r+1;try{localStorage.setItem('marko-stepeni',JSON.stringify(rankCache));}catch{}sfx('magic',{gain:.6})||sound('magic');return true;}
 // usred boja: živ dušmanin blizu, megdan ili bos
-function uBoju(){if(!p||napFrom==='menu')return false;return!!(arena||boss?.alive&&zone===5&&!level||(world.enemies||[]).some(e=>e.alive&&!e.razgovor&&Math.abs(e.x-p.x)<700&&Math.abs(e.y-p.y)<400));}
+// Stefan, 16. 11.: „ne mogu da uzmem Potres iako ga imam otključanog” — every foe within 700 px counted, a sleeping guard
+// too, so the blows could almost never be changed. Now only an awake foe near Marko (or a duel) is a fight.
+function uBoju(){if(!p||napFrom==='menu')return false;return!!(arena||boss?.alive&&zone===5&&!level||(world.enemies||[]).some(e=>e.alive&&!e.razgovor&&!e.spava&&!e.patrola&&!e.perch&&!e.skriven&&(e.zone==null||e.zone===zone)&&Math.abs(e.x-p.x)<450&&Math.abs(e.y-p.y)<260));}
 function kupiKovac(id){const s=smithLevels(),u=SMITH.find(u=>u.id===id),lv=s[id]||0,cost=u?.cost[lv];if(cost===undefined||bank()<cost)return false;setBank(bank()-cost);s[id]=lv+1;
  try{localStorage.setItem('marko-kovac',JSON.stringify(s));}catch{}
  if(p&&napFrom==='play'){if(id==='hp'){p.maxHp+=10;p.hp+=10;}else if(id==='zaduzbina'){p.maxHp+=12;p.hp+=12;p.zaduzbina=(p.zaduzbina||0)+1;}else if(id==='mace')p.power=(p.power||1)+.08;else if(id==='flask')p.wineMax=(p.wineMax||3)+1;else if(id==='sofra')p.sofra=(p.sofra||0)+1;}
  sfx('magic',{gain:.6})||sound('magic');return true;}
 function napTitula(){const n=Object.values(rankState()).reduce((a,r)=>a+Math.max(0,r-1),0)+Object.values(smithLevels()).reduce((a,b)=>a+b,0);
  return n>=24?'Kraljević nad junacima':n>=14?'Gospodar Prilepa':n>=6?'Junak od Prilepa':'Mladi junak';}
+// Stefan, 16. 11.: „da se doda slika za sve što imamo u progres screenu”. The four blows have their icons; an amulet shows the
+// skill or thing it strengthens; the smith's work its own thing (a mace, a flask, a chapel for the zadužbina)
+const NAP_SLIKA={vihor:'ikona-vihor',super:'ikona-junacki',potres:'ikona-potres',gaz:'ikona-gaz',
+ 'gvozdeni-prsten':'ikona-kontra','zmajev-zub':'ikona-kontra','lozov-list':'ikona-vino','cup-meda':'ikona-vino','sokolova-kandza':'cudo-sokolovo-pero','kamen-srcanik':'predmet-srce-deo',
+ 'hajducka-kesa':'cudo-tri-kese-dukata','vilin-pramen':'ikona-trag','vranino-pero':'ikona-oko','medvedja-sapa':'ikona-zamah','srebrna-karika':'ikona-lanac','ratni-rog':'ikona-junacki',
+ hp:'predmet-srce-deo',mace:'predmet-topuz',flask:'predmet-cutura',zaduzbina:'prop-kamen-izlaz',sofra:'cudo-pehar-vina'};
+const napSlika=f=>f?`<img class="nap-sl" src="assets/world/${f}.webp" alt="" onerror="this.remove()">`:'';
+// the menu by pad or arrows: left and right change the tab, up and down go through the tab's own items (Stefan: „popravimo
+// ulazak u submenije”), from the tab row down into its list and back (up and down come through padMenu, also from the keyboard)
+function napPadNav(box,dx,dy){const tabs=[...box.querySelectorAll('.nap-tabs [data-nt]')];if(!tabs.length)return;const ti=Math.max(0,tabs.findIndex(t=>t.dataset.nt===napTab));
+ const mark=el=>{el.focus?.();document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));el.classList.add('pad-focus');el.scrollIntoView?.({block:'nearest'});sfx('cloth',{gain:.25,rate:1.6});};
+ if(dx){const t=tabs[(ti+dx+tabs.length)%tabs.length];t.click();mark(t);return;}
+ const panel=box.querySelector(`.nap-panel[data-np="${napTab}"]`),list=[tabs[ti],...[...(panel?.querySelectorAll('button')||[])].filter(el=>!el.disabled),$('napredak-close')].filter(Boolean);
+ let cur=list.indexOf(document.activeElement);if(cur<0&&tabs.includes(document.activeElement))cur=0;cur=clamp(cur+dy,0,list.length-1);mark(list[cur]);}
+if(hasDom)document.addEventListener('keydown',e=>{const N=$('napredak');if(!N||N.hidden)return;const m={ArrowLeft:-1,ArrowRight:1,KeyA:-1,KeyD:1}[e.code];if(m){e.preventDefault();napPadNav(N,m,0);}});
 function openNapredak(from){if(!hasDom||!$('napredak'))return;napFrom=from||(mode==='play'?'play':'menu');if(napFrom==='play'){if(mode!=='play')return;mode='napredak';keys.clear();pressed.clear();if(p)p.vx=0;}
  sfx('cloth',{gain:.45,rate:1.2});renderNapredak();$('napredak').hidden=false;setTimeout(()=>$('napredak')?.querySelector?.('.nap-tabs .on')?.focus?.(),60);}
 function closeNapredak(){if(!hasDom||!$('napredak')||$('napredak').hidden)return;$('napredak').hidden=true;if(mode==='napredak'){mode='play';keys.clear();pressed.clear();}updateHud();}
@@ -2712,10 +2729,10 @@ function renderNapredak(){const own=ownedSkills(),boj=uBoju(),ks=bank(),s=smithL
   const btn=!have?`<em>🔒 ${tr('Dobija se u poglavlju')} „${tr(LEVELS.find(L=>L.id===k.land)?.name||k.land)}”</em>`:!fx?`<em>${tr('Pokret: nema stepene')}</em>`:r>=3?`<em class="max">${tr('Najviši stepen')}</em>`:
    `<button data-rank="${k.id}" ${boj||ks<cost?'disabled':''}>${tr('Stepen')} ${RIMSKI[r+1]} · ${cost} ⛁</button>`;
   return`<div class="nap-vest ${have?'have':'locked'} r${r}"><div class="nap-ikona"><img src="assets/world/ikona-${k.id}.webp" alt="" onerror="this.remove()"><span data-notr>${have?RIMSKI[r]:''}</span></div><div class="nap-opis"><b>${tr(k.name)}</b><p class="riz-keys">${keyChips(k.key)}</p><small>${tr(k.text)}</small>${fx?`<small class="fx">${tr('Svaki stepen')}: ${tr(fx)}</small>`:''}<div class="nap-pips">${pips}</div>${btn}</div></div>`;}).join('');
- const izb=udari();$('nap-udari').innerHTML=UDARI.map(u=>{const i=izb.indexOf(u.id),ot=udarOtvoren(u.id);return`<button data-udar="${u.id}" class="${i>=0?'on':''}" ${ot&&!boj?'':'disabled'}><span>${tr(u.name)}<small>${tr(u.text)}</small></span><b>${i>=0?(i===0?'F':'R'):ot?tr('uzmi'):'🔒'}</b></button>`;}).join('');
+ const izb=udari();$('nap-udari').innerHTML=UDARI.map(u=>{const i=izb.indexOf(u.id),ot=udarOtvoren(u.id);return`<button data-udar="${u.id}" class="${i>=0?'on':''}" ${ot&&!boj?'':'disabled'}>${napSlika(NAP_SLIKA[u.id])}<span>${tr(u.name)}<small>${tr(u.text)}</small></span><b>${i>=0?(i===0?'F':'R'):ot?tr('uzmi'):'🔒'}</b></button>`;}).join('');
  $('nap-mesta').textContent=moc2('amajlije')?`${tr('Mesta za amajlije')}: ${amUsed()}/${A.slots} · ${tr('najviše')} ${AM_MAX}`:tr('Amajlije još nisu tvoje.');
- $('nap-amajlije').innerHTML=moc2('amajlije')?AMAJLIJE.map(a=>{const have=A.have.includes(a.id),on=A.on.includes(a.id);return`<button data-am="${a.id}" class="${on?'on':''}" ${have&&!boj?'':'disabled'}><span>${on?'◆':'◇'} ${tr(a.name)} <i>${'●'.repeat(a.w)}</i><small>${have?tr(a.text):tr('Još je nisi našao: tajne sobe, trgovac.')}</small></span><b>${on?tr('nosiš'):have?tr('stavi'):'🔒'}</b></button>`;}).join(''):'';
- $('nap-kovac').innerHTML=SMITH.map(u=>{const lv=s[u.id]||0,cost=u.cost[lv];return`<button data-up="${u.id}" ${cost===undefined||ks<cost||boj?'disabled':''}><span>${tr(u.name)} · ${tr(u.text)}<small>${'■'.repeat(lv)}${'□'.repeat(u.cost.length-lv)}</small></span><b>${cost===undefined?tr('NAJBOLJE'):cost+' ⛁'}</b></button>`;}).join('');
+ $('nap-amajlije').innerHTML=moc2('amajlije')?AMAJLIJE.map(a=>{const have=A.have.includes(a.id),on=A.on.includes(a.id);return`<button data-am="${a.id}" class="${on?'on':''}" ${have&&!boj?'':'disabled'}>${napSlika(NAP_SLIKA[a.id])}<span>${on?'◆':'◇'} ${tr(a.name)} <i>${'●'.repeat(a.w)}</i><small>${have?tr(a.text):tr('Još je nisi našao: tajne sobe, trgovac.')}</small></span><b>${on?tr('nosiš'):have?tr('stavi'):'🔒'}</b></button>`;}).join(''):'';
+ $('nap-kovac').innerHTML=SMITH.map(u=>{const lv=s[u.id]||0,cost=u.cost[lv];return`<button data-up="${u.id}" ${cost===undefined||ks<cost||boj?'disabled':''}>${napSlika(NAP_SLIKA[u.id])}<span>${tr(u.name)} · ${tr(u.text)}<small>${'■'.repeat(lv)}${'□'.repeat(u.cost.length-lv)}</small></span><b>${cost===undefined?tr('NAJBOLJE'):cost+' ⛁'}</b></button>`;}).join('');
  const el=$('napredak'),again=()=>renderNapredak();
  el.querySelectorAll?.('[data-rank]').forEach(b=>b.onclick=()=>{if(!uBoju()&&rankUp(b.dataset.rank)){abBuilt=false;again();}});
  el.querySelectorAll?.('[data-udar]').forEach(b=>b.onclick=()=>{if(!uBoju()&&izaberiUdar(b.dataset.udar))again();});
@@ -4622,6 +4639,7 @@ function padGone(){padIndex=null;for(const c of[...padHeld])padSet(c,false);cons
 if(hasDom){window.addEventListener('gamepadconnected',e=>padConnected(e.gamepad));window.addEventListener('gamepaddisconnected',e=>{if(e.gamepad.index===padIndex)padGone();});}
 // menus: the stick or the cross moves between buttons, A presses, B goes back
 function padMenu(dirX,dirY,a,b){const open=[...document.querySelectorAll('.modal:not([hidden]),#menu:not([hidden])')];const box=open[open.length-1];if(!box)return;
+ if(box.id==='napredak'&&(dirX||dirY)){napPadNav(box,dirX,dirY);dirX=dirY=0;}
  const items=[...box.querySelectorAll('button,select,input')].filter(el=>!el.disabled&&el.offsetParent!==null);if(!items.length)return;let cur=items.indexOf(document.activeElement);
  if(dirX||dirY){cur=cur<0?0:(cur+(dirY||dirX)+items.length)%items.length;items[cur].focus();document.querySelectorAll('.pad-focus').forEach(el=>el.classList.remove('pad-focus'));items[cur].classList.add('pad-focus');items[cur].scrollIntoView?.({block:'nearest'});sfx('cloth',{gain:.25,rate:1.6});}
  if(a){const el=cur>=0?items[cur]:items[0];el.click();sfx('ring',{gain:.3,rate:1.5});}
@@ -5309,7 +5327,7 @@ function drawVaultDoor(t){const x=t.gate.x,y=t.gate.y;if(x<camera-260||x>camera+
 if(hasDom)for(const id of['zid-kamen','vrata-zakljucana','vrata-otkljucana'])if(!levelArt[id])loadImage(`assets/world/${id}.webp`).then(im=>{if(im&&!levelArt[id])levelArt[id]=im;});
 
 // on Junak and Epski a share of the janissaries come in pairs
-function addPartners(){const ex=D().extra;if(!ex)return;const add=[];for(const e of world.enemies){if(e.perch||e.champion||e.partner||e.trioMate)continue;if(((e.id*37)%100)/100<ex){const t=RANGED_T.has(e.type)?'shield':e.type==='shield'||e.type==='oklopnik'?'archer':e.id%2?'akindzija':'sword',hp=({shield:125,archer:65,akindzija:80})[t]||90;add.push({...e,id:e.id+30000,type:t,x:e.x+(e.id%2?95:-95),hp,maxHp:hp,partner:true,timer:e.timer+.5,hardened:false,elite:false});}}world.enemies.push(...add);}
+function addPartners(){const ex=D().extra;if(!ex)return;const add=[];for(const e of world.enemies){if(e.perch||e.champion||e.partner||e.trioMate)continue;if(((e.id*37)%100)/100<ex){const t=RANGED_T.has(e.type)?'shield':e.type==='shield'||e.type==='oklopnik'?'archer':e.id%2?'akindzija':'sword',hp=({shield:125,archer:65,akindzija:80})[t]||90;add.push({...e,id:e.id+30000,type:t,x:e.x+(e.id%2?95:-95),hp,maxHp:hp,partner:true,timer:e.timer+.5,hardened:false,elite:false,...(e.sablja?{sablja:false,look:undefined,scale:1}:{})});}}world.enemies.push(...add);}
 
 // a powder keg goes up: it hurts everyone near, Marko too
 function blowKeg(b){sfx('boom',{gain:1,rate:.8,x:b.x});shake=settings.reduced?0:12;rumble(.9,300);fx('flash','#ffcf8a',.12);burst(b.x,b.y-30,'#ff9a3a',50,320);addFire(b.x,b.y,2,120);

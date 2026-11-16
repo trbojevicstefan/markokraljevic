@@ -286,3 +286,8 @@
  #game-shell:has(#boss-hud:not([hidden])):has(.uci:not(.ab):not([hidden])) #dialogue{top:256px!important}
 }
 @keyframes uciOdozgo{from{opacity:0;transform:translate(-50%,-12px)}}
+/* Napredak (Stefan, 16. 11.): slika uz svaku stavku; na računaru deo sa stavkama se sam pomera (okvir je sekao sve ispod 92 % ekrana) */
+#napredak .smith button span{flex:1}
+#napredak .smith button .nap-sl{flex:none;width:44px;height:44px;margin-right:12px;object-fit:contain;border-radius:6px;background:linear-gradient(180deg,#2c1214,#140708);box-shadow:inset 0 0 0 1px #000,0 0 0 1px #8a6a3c}
+#napredak .smith button:disabled .nap-sl{filter:grayscale(1) brightness(.6)}
+@media (min-width:901px) and (pointer:fine){.nap-glavno{max-height:92vh;min-height:0}}

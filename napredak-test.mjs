@@ -14,7 +14,7 @@ let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^impo
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+
  '\nreturn {startLevel,update,keys,pressed,LEVELS,JOURNEY,EKON,lootCoins,killCoins,RANK_COST,rankUp,skillRank,cdFull,cdReady,strike,bank,setBank,ownedSkills,'+
- 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,canKrilo,canNalet,koloTisina,arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
+ 'kupiKovac,smithLevels,slay,finishBlow,lakiKlip,uvod:()=>({uvodMeg,kamCilj}),bledo:()=>bledo,setFin:f=>{finisher=f;},kinoTick,film:()=>({slowMo,kinoT,hitstop,sepija,endSequence}),superStrike,die,canKrilo,canNalet,koloTisina,uBoju,izaberiUdar,udari,UK,addPartners,setDiff:d=>{settings.difficulty=d;},arrows:()=>arrows,state:()=>({p,world,mode,corpses}),setMode:m=>{mode=m;},draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')
  (physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 let checks=0;const ok=(c,m)=>{checks++;assert.ok(c,m);};
 const S=api.state,lv=id=>api.LEVELS.findIndex(L=>L.id===id),step=n=>{for(let i=0;i<n;i++)api.update(1/120);};
@@ -133,4 +133,12 @@ await api.startLevel(lv('suma'));{const {p,world}=S(),t=world.traps.find(q=>q.ki
  Object.assign(p,{x:(t.gap.x0+t.gap.x1)/2,y:t.stones[0].y-120,vy:0,grounded:false,naletUsed:false,kriloUsed:false,coyote:0});ok(t.gap.x1-t.gap.x0>=600,'kolo: the chasm is wider than any jump without the wing and the dash');
  ok(api.koloTisina()&&!api.canKrilo()&&!api.canNalet(),'kolo: over the chasm no wing and no air dash carry Marko');
  t.done=true;ok(!api.koloTisina(),'kolo: once the ring is closed the air is free again');}
-console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar, pad Marka i vilinsko kolo`);
+// ---- Stefan, 16. 11.: Potres se uzima i van boja (uspavan stražar ili daleki dušmanin nije boj), mladi Turčin sa sabljom je jedan ----
+await api.startLevel(lv('selo'));{const {p,world}=S(),e=world.enemies.find(o=>o.alive&&!o.champion&&!o.perch);for(const o of world.enemies)if(o!==e)o.alive=false;
+ Object.assign(e,{x:p.x+220,y:p.y,spava:true,patrola:false});ok(!api.uBoju(),'napredak: a sleeping guard nearby is not a fight');
+ Object.assign(e,{spava:false,x:p.x+600});ok(!api.uBoju(),'napredak: an awake foe far off is not a fight');
+ e.x=p.x+250;ok(api.uBoju(),'napredak: an awake foe near Marko is a fight');e.alive=false;
+ ok(api.izaberiUdar('potres')&&api.udari().includes('potres')&&['KeyF','KeyR'].includes(api.UK('potres')),'napredak: Potres, once found, is taken and gets F or R (L3 or R3 on the pad)');
+ api.izaberiUdar('potres');ok(api.udari().indexOf('potres')!==-1,'napredak: taking a carried blow again swaps F and R');}
+api.setDiff('epic');await api.startLevel(lv('tvrdjava'));{const n=S().world.enemies.filter(e=>e.sablja).length;ok(n===1,`očeva sablja: only one young Turk carries it (${n})`);}api.setDiff('normal');
+console.log(`PASS ${checks} napredak, ekonomija, odmori, Crni vrač, branik, kill-cam, kombinacije, odskok, uvod megdana, tiho obaranje, junački udar, pad Marka, vilinsko kolo, junački udari u meniju i očeva sablja`);
