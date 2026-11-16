@@ -63,4 +63,16 @@ ok(f2.maxHp>f1.maxHp*1.4,`chapters: the same sabre-man is tougher by the river t
   const hp=p.hp;for(let i=0;i<300;i++){step();p.invuln=0;}ok(p.hp<hp,'kiša strela: a Marko who stands still is hit');ok(api.kise().length===0,'kiša strela: the rain is over');}
  {const {p,e}=await strelac(420);e.mode='windup';e.timer=.01;e.windupDuration=1;e.kisa=true;step(2);e.alive=false;const hp=p.hp;api.keys.add('KeyD');step(110);api.keys.delete('KeyD');for(let i=0;i<120;i++){step();p.invuln=0;}
   ok(p.hp===hp,'kiša strela: a Marko who gets clear of the shadows is not hit');}}
+// ---- noć 16. 11., protivnik 3: kopljanik, dugi ubod i zid koplja ----
+{const koplje=async(dx,hp=300)=>{const w=await start('selo');const {p}=api.state();for(const o of w.enemies)o.alive=false;p.invuln=0;p.hp=p.maxHp;p.face=1;p.parry=0;
+  const e={id:7795,x:p.x+dx,y:p.y,vx:0,vy:0,w:36,h:75,hp,maxHp:100,type:'kopljanik',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:p.x+dx,attackId:0,grounded:true,alert:true,ubodCd:0};e.maxHp=300;w.enemies.push(e);return{p,e};};
+ const udri=(p,e,face,air=false)=>{const y0=p.y;Object.assign(p,{face,attack:.2,attackKind:'light',combo:0,airAtk:false,attackId:(p.attackId||0)+100,grounded:!air});for(let i=0;i<12&&e.hitId!==p.attackId;i++){if(air){p.y=y0-40;p.vy=-60;p.grounded=false;}p.attack=.2;p.face=face;step(1);}p.attack=0;if(air){p.y=y0;p.vy=0;p.grounded=true;}};
+ {const {p,e}=await koplje(450);step(2);ok(e.ubod&&e.mode==='windup','kopljanik: from afar he readies the long thrust (golden sign)');
+  const hp=p.hp;for(let i=0;i<150&&p.hp===hp;i++)step();ok(p.hp<hp&&Math.abs(e.x-p.x)<220,'kopljanik: the thrust crosses half the screen and strikes');}
+ {const {p,e}=await koplje(450);step(2);for(let i=0;i<150&&!(e.pendingHit&&e.pendingHit.t<.1);i++)step();p.parry=.3;p.face=1;const hp=p.hp;for(let i=0;i<40&&!(e.stun>0);i++)step();ok(e.stun>0&&p.hp===hp,'kopljanik: the long thrust can be parried');}
+ {const {p,e}=await koplje(110,140);step(2);ok(e.gardT>0,'kopljanik: wounded, he sets his spear before him (zid koplja)');
+  const h0=e.hp;udri(p,e,1);ok(e.hp===h0,'zid koplja: from the front nothing gets through');
+  udri(p,e,1,true);ok(e.hp<h0,'zid koplja: a blow from above does');
+  Object.assign(e,{x:p.x-70,y:p.y,face:-1,vx:0,vy:0,grounded:true,air:false,juggle:0,stun:0,gardT:1.5,lunge:null});const h1=e.hp;udri(p,e,-1);ok(e.hp<h1&&!(e.gardT>0),'zid koplja: a blow from behind breaks his wall');}
+ {const {p,e}=await koplje(110,140);step(2);const hp=p.hp;for(let i=0;i<150;i++){step();p.invuln=0;}ok(p.hp<hp,'zid koplja: who stands before the spear is jabbed');}}
 console.log(`\n${checks} checks passed.`);
