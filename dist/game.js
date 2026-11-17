@@ -2862,7 +2862,11 @@ function jnVidenoSave(){try{localStorage.setItem(JN_VIDENO,JSON.stringify([...jn
 function jnNovoTabs(box){for(const b of box.querySelectorAll('.jn-tabs [data-nt]'))b.classList.toggle('novo',!!box.querySelector(`.nap-panel[data-np="${b.dataset.nt}"] .jn-slot.novo`));}
 function jnNovo(){const box=$('napredak');if(!box?.querySelectorAll)return;const slots=[...box.querySelectorAll('.nap-panel .jn-slot.ima,.nap-panel .jn-slot.on')];
  if(!jnVidenoSet()){jnVideno=new Set(slots.map(el=>el.dataset.k));jnVidenoSave();}
- for(const el of slots)el.classList.toggle('novo',!jnVideno.has(el.dataset.k));jnNovoTabs(box);}
+ for(const el of slots)el.classList.toggle('novo',!jnVideno.has(el.dataset.k));jnNovoTabs(box);
+ // what the ducats in the purse can buy right now (a step of a skill, the smith's work) glows green, as WoW lights the talents
+ // a point can go to; its tab carries a small green arrow
+ for(const el of box.querySelectorAll('.nap-panel .jn-slot[data-k^="cv:"],.nap-panel .jn-slot[data-k^="kov:"]')){let m=false;try{m=!!jnInfo(el.dataset.k)?.acts?.some(a=>!a.dis&&String(a.l).includes('⛁'));}catch{}el.classList.toggle('moze',m);}
+ for(const b of box.querySelectorAll('.jn-tabs [data-nt]'))b.classList.toggle('moze',!!box.querySelector(`.nap-panel[data-np="${b.dataset.nt}"] .jn-slot.moze`));}
 function jnIzaberi(el,arm=false){if(!el?.dataset?.k)return;if(el.classList?.contains('novo')){el.classList.remove('novo');jnVidenoSet()?.add(el.dataset.k);if(jnVideno)jnVidenoSave();const box=$('napredak');if(box?.querySelectorAll)jnNovoTabs(box);}napSel[napTab]=el.dataset.k;napArm=arm?el.dataset.k:null;jnPanel()?.querySelectorAll('.jn-slot.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');jnOpis();}
 function jnFocus(el,ring=napKey){if(!el)return;el.focus?.({preventScroll:true});document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));if(ring)el.classList.add('pad-focus');el.scrollIntoView?.({block:'nearest'});if(el.classList.contains('jn-slot'))jnIzaberi(el);}
 function jnRadi(I,i){const a=I.acts[i];if(!a||a.dis||uBoju())return;const P=jnPanel(),old=[...(P?.querySelectorAll('.jn-slot')||[])],k=napSel[napTab],at=old.findIndex(x=>x.dataset.k===k);
