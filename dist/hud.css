@@ -268,6 +268,11 @@
 .jn-tabs button{position:relative;top:1px;padding:8px 22px 7px;border:0;border-radius:6px 6px 0 0;font:700 16px var(--display);letter-spacing:1px;color:#cdbb92;background:linear-gradient(180deg,#2a0d10,#160607);box-shadow:inset 0 1px 0 #e3c27e44,inset 1px 0 0 #e3c27e22,inset -1px 0 0 #e3c27e22}
 .jn-tabs button.on{color:var(--hud-gold2);background:linear-gradient(180deg,#5a1a20,#2a0b0e);box-shadow:inset 0 2px 0 var(--hud-gold),inset 1px 0 0 #e3c27e66,inset -1px 0 0 #e3c27e66}
 .jn-tabs button:hover{color:var(--hud-gold2)}
+/* the mark of the new: a gold dot on a slot and on its tab until it is chosen once */
+.jn-slot.novo::after,.jn-tabs button.novo::after{content:'';position:absolute;top:4px;right:4px;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff6cf,#f2c75a 55%,#a8781f);box-shadow:0 0 6px #ffd76acc,0 0 0 1px #3a1a08;animation:jn-novo 1.6s ease-in-out infinite;pointer-events:none;z-index:2}
+.jn-tabs button.novo::after{top:5px;right:6px}
+@keyframes jn-novo{50%{transform:scale(.72);opacity:.75}}
+@media (prefers-reduced-motion:reduce){.jn-slot.novo::after,.jn-tabs button.novo::after{animation:none}}
 .jn-napomena{margin:6px 22px 0;padding:5px 10px;font:italic 14px var(--display);color:#ffb4a0;background:#5a101833;box-shadow:inset 0 0 0 1px #ff8a7a44}
 .jn-telo{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;padding:14px 22px 8px;min-height:0}
 .jn-sadrzaj{min-width:0;min-height:0;overflow:hidden}

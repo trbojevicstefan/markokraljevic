@@ -2851,7 +2851,17 @@ function jnOpisHtml(I,kratko){const ik=I.img?`<img src="assets/world/${I.img}.we
   (kratko?'':`<div class="jn-op-dugmad">${I.acts.map((a,i)=>`<button data-act="${i}" ${a.dis?'disabled':''}>${a.img?`<img src="assets/world/${a.img}.webp" alt="" onerror="this.remove()">`:''}<span>${a.l}</span></button>`).join('')}</div>`);}
 const jnPanel=()=>$('napredak')?.querySelector(`.nap-panel[data-np="${napTab}"]`);
 function jnOpis(){const el=$('jn-opis');if(!el)return;const k=napSel[napTab];if(!k){el.innerHTML='';return;}const I=jnInfo(k);el.innerHTML=jnOpisHtml(I);el.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>jnRadi(I,+b.dataset.act));}
-function jnIzaberi(el,arm=false){if(!el?.dataset?.k)return;napSel[napTab]=el.dataset.k;napArm=arm?el.dataset.k:null;jnPanel()?.querySelectorAll('.jn-slot.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');jnOpis();}
+// The mark of the new, as in the big games: whatever Marko has gained since he last looked (an amulet, a scroll, a strike,
+// a step) carries a small gold dot on its slot and on its tab until it is chosen once. The first time the window is opened
+// everything already owned counts as seen, so the dots never flood an old save.
+const JN_VIDENO='marko-jn-videno';let jnVideno=null;
+function jnVidenoSet(){if(jnVideno)return jnVideno;try{const a=JSON.parse(localStorage.getItem(JN_VIDENO)||'null');jnVideno=Array.isArray(a)?new Set(a):null;}catch{jnVideno=null;}return jnVideno;}
+function jnVidenoSave(){try{localStorage.setItem(JN_VIDENO,JSON.stringify([...jnVideno]));}catch{}}
+function jnNovoTabs(box){for(const b of box.querySelectorAll('.jn-tabs [data-nt]'))b.classList.toggle('novo',!!box.querySelector(`.nap-panel[data-np="${b.dataset.nt}"] .jn-slot.novo`));}
+function jnNovo(){const box=$('napredak');if(!box?.querySelectorAll)return;const slots=[...box.querySelectorAll('.nap-panel .jn-slot.ima,.nap-panel .jn-slot.on')];
+ if(!jnVidenoSet()){jnVideno=new Set(slots.map(el=>el.dataset.k));jnVidenoSave();}
+ for(const el of slots)el.classList.toggle('novo',!jnVideno.has(el.dataset.k));jnNovoTabs(box);}
+function jnIzaberi(el,arm=false){if(!el?.dataset?.k)return;if(el.classList?.contains('novo')){el.classList.remove('novo');jnVidenoSet()?.add(el.dataset.k);if(jnVideno)jnVidenoSave();const box=$('napredak');if(box?.querySelectorAll)jnNovoTabs(box);}napSel[napTab]=el.dataset.k;napArm=arm?el.dataset.k:null;jnPanel()?.querySelectorAll('.jn-slot.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');jnOpis();}
 function jnFocus(el,ring=napKey){if(!el)return;el.focus?.({preventScroll:true});document.querySelectorAll('.pad-focus').forEach(x=>x.classList.remove('pad-focus'));if(ring)el.classList.add('pad-focus');el.scrollIntoView?.({block:'nearest'});if(el.classList.contains('jn-slot'))jnIzaberi(el);}
 function jnRadi(I,i){const a=I.acts[i];if(!a||a.dis||uBoju())return;const P=jnPanel(),old=[...(P?.querySelectorAll('.jn-slot')||[])],k=napSel[napTab],at=old.findIndex(x=>x.dataset.k===k);
  a.f();if(a.ostavi)return;renderNapredak();const P2=jnPanel(),now=[...(P2?.querySelectorAll('.jn-slot')||[])],el=now.find(x=>x.dataset.k===k)||now[clamp(at,0,now.length-1)];jnFocus(el);if(!napKey&&el)napArm=el.dataset.k;}
@@ -2892,7 +2902,7 @@ function renderNapredak(){const box=$('napredak');if(!box||!$('jn-p-junak'))retu
  $('jn-p-torba').innerHTML=jnTorba();$('jn-p-kombinacije').innerHTML=`${jnKombinacije()}<p class="jn-lead">${tr('Nizovi tastera, s leva na desno. Izaberi jedan da vidiš šta radi.')}</p>`;$('jn-p-zapisi').innerHTML=jnZapisi();$('jn-p-kovac').innerHTML=`<p class="jn-lead">${tr('Novak kovač i zadužbine: trajno, za svaki naredni pohod.')}</p><div class="jn-kovac">${jnKovac()}</div>`;
  box.querySelectorAll('.nap-panel .jn-slot').forEach(el=>{el.onclick=()=>{if(napArm===el.dataset.k&&el.classList.contains('sel'))jnPrimarno(el);else{jnIzaberi(el,true);sfx('cloth',{gain:.22,rate:1.7});}};
   el.oncontextmenu=e=>{e.preventDefault();jnIzaberi(el);jnPrimarno(el);};});
- box.querySelectorAll('.jn-tabs [data-nt]').forEach(b=>b.onclick=()=>{jnTab(b.dataset.nt);sfx('cloth',{gain:.3,rate:1.4});});
+ jnNovo();box.querySelectorAll('.jn-tabs [data-nt]').forEach(b=>b.onclick=()=>{jnTab(b.dataset.nt);sfx('cloth',{gain:.3,rate:1.4});});
  $('napredak-close').onclick=closeNapredak;jnTip(box);jnTab(napTab,false);}
 // the greybox (?greybox) knows every move but the fairy's lift, which would climb its gates
 function has(id){if(level?.greybox)return id!=='uzlet';return !level||DEV||level.id==='san'||level.izazov||ownedSkills().has(id);} // the test build knows every move; so does a challenge pohod (izazov, world.js)

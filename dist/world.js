@@ -120,7 +120,7 @@ export const RECIPES={
  selo:'flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tajna tower flat trgovac flat boss:kopljanik',
  klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
- manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
+ manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
  prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks flat varadin crumble watch logs crates trgovac flat boss:akindzija',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks flat spikebed ledges crumble crates trgovac flat boss:azdaja',
@@ -133,7 +133,7 @@ export const RECIPES={
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  // Vračeva jaruga (Stefan, 15. 11. 2026: „koristi Vrača za novog bosa i novi nivo"): noćna gora puna senki, na kraju Crni vrač
  vracara:'flat breg watch crates uvala terrace+ ledges cellar spikes jaruga kuke crumble greda chimney flat branik:hodocasnici bedem kljuc zid vreme stairs+ tower crates spikebed crates logs rocks guslar:mir ledges crates trgovac flat boss:vrac',
- oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator uvala flat guslar:mir spikes crates trgovac flat boss:trio',
+ oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator uvala tajna flat guslar:mir spikes crates watch trgovac flat boss:trio',
  // "Marko Kraljević u Azačkoj tamnici": out of the dungeon and up the tower, where the falcon takes his letter to Solun.
  // The climb is the challenge as much as the fight: a shaft, pillars over the abyss, arrow slits, crumbling planks and
  // moving beams, then a guard post, a hidden cellar and the Arab on top of his tower.
