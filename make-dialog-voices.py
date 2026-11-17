@@ -26,6 +26,8 @@ CACHE = os.path.join(ROOT, '.glasovi-uzorci', 'kes')
 MODEL = 'eleven_v4'
 SKIP_KAT = {'uputstvo', 'greybox (probni nivoi)', 'samo za razvoj'}
 PAUSE = 0.35  # seconds of silence between the parts of one line
+LEVEL = -17.0  # LUFS every part is brought to before the parts are joined
+SPOJ = 'v2'  # how the parts are joined; a new value makes every line be joined again (no new recording)
 
 load = lambda p: json.load(open(os.path.join(ROOT, p), encoding='utf-8'))
 
@@ -161,13 +163,27 @@ def duration(path):
     return round(float(out.strip() or 0), 2)
 
 
+def lufs(path):
+    """Integrated loudness of one part (EBU R128)."""
+    err = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', path, '-af', 'ebur128=framelog=quiet', '-f', 'null', '-'],
+                         capture_output=True, text=True).stderr
+    m = re.findall(r'I:\s+(-?[\d.]+) LUFS', err)
+    return float(m[-1]) if m else None
+
+
 def assemble(parts, dest):
-    """Join the parts with short pauses, even out the loudness, write a mono 96 kb/s mp3."""
+    """Join the parts with short pauses, even out the loudness, write a mono 96 kb/s mp3.
+
+    Each part is first brought to the same loudness: the Tuco clone (Marko) and Ida (Ravijojla) come out about
+    12 and 7 dB quieter than the narrator, so in a line where the guslar tells and Marko speaks, Marko was barely heard."""
     args, filt = [], []
     for i, p in enumerate(parts):
         args += ['-i', p]
-        filt.append(f'[{i}:a]aresample=44100,aformat=channel_layouts=mono,'
-                    f'silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse'
+        l = lufs(p)
+        gain = max(-12.0, min(20.0, LEVEL - l)) if l is not None and l > -70 else 0.0
+        filt.append(f'[{i}:a]aresample=44100,aformat=sample_fmts=flt:channel_layouts=mono,'
+                    f'silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse,'
+                    f'volume={gain:.2f}dB'
                     + (f',apad=pad_dur={PAUSE}' if i < len(parts) - 1 else '') + f'[a{i}]')
     filt.append(''.join(f'[a{i}]' for i in range(len(parts))) + f'concat=n={len(parts)}:v=0:a=1,'
                 'loudnorm=I=-17:TP=-1.5:LRA=11,aresample=44100[out]')
@@ -187,6 +203,7 @@ def main():
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--ponovi', action='store_true', help='novi snimak mimo keša (uz --ids)')
     ap.add_argument('--niti', type=int, default=3)
+    ap.add_argument('--samo-spoji', action='store_true', help='ništa ne šalje, samo ponovo spaja delove koji su već u kešu')
     a = ap.parse_args()
 
     rep = load('art/glasovi/replike.json')['replike']
@@ -230,6 +247,8 @@ def main():
             if os.path.exists(p):
                 os.remove(p)
     todo = {p: v for p, v in parts.items() if not os.path.exists(p)}
+    if a.samo_spoji:
+        todo = {}  # nothing is sent: lines whose parts are missing are left as they are
     chars = sum(len(v[2]) for v in todo.values())
     print(f'replika {len(jobs)}, delova {len(parts)}, za slanje {len(todo)} delova / {chars} znakova')
     if a.plan:
@@ -263,7 +282,7 @@ def main():
             continue
         dest = os.path.join(OUT, r['id'] + '.mp3')
         stamp = os.path.join(CACHE, r['id'] + '.delovi')
-        sig = json.dumps(files)
+        sig = json.dumps(files) + SPOJ
         if not os.path.exists(dest) or not os.path.exists(stamp) or open(stamp).read() != sig:
             assemble(files, dest)
             open(stamp, 'w').write(sig)

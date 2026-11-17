@@ -4094,7 +4094,8 @@ const PESME_GUSLARA=['assets/music/gusle-dojcin.ogg','assets/music/gusle-vujadin
 function pesmaSrc(){const id=level?.id;if(id==='klisura')return'assets/sfx/guslar_pesma_duga.ogg';const i=Math.max(0,JOURNEY.indexOf(id));return PESME_GUSLARA[i%PESME_GUSLARA.length];}
 function pesmaStart(g){if(!hasDom||typeof Audio==='undefined')return false;try{const src=pesmaSrc();if(!PESMA.el){PESMA.el=new Audio(src);PESMA.el.loop=true;PESMA.el.preload='auto';PESMA.el.volume=0;}else if(PESMA.src!==src){PESMA.el.src=src;PESMA.el.load();PESMA.el.volume=0;}PESMA.src=src;PESMA.g=g;PESMA.el.play()?.catch?.(()=>{});return true;}catch{return false;}}
 function pesmaTick(){const el=PESMA.el;if(!el)return;const g=PESMA.g,on=g&&p&&(mode==='play'||mode==='story')&&(world.traps||[]).includes(g)&&(g.state==='peva'||g.state==='odbrana');
- let v=0;if(on){const d=Math.abs(p.x-g.x)+Math.max(0,Math.abs(p.y-g.y)-150);v=clamp(1-(d-500)/1000,0,1)*(audioEnabled?clamp(settings.volume*settings.sfx*2.2,0,1):0);}
+ // the song steps back while a recorded line is being said (as the big games lower the music under dialogue), or it covers Marko's words
+ let v=0;if(on){const d=Math.abs(p.x-g.x)+Math.max(0,Math.abs(p.y-g.y)-150);v=clamp(1-(d-500)/1000,0,1)*(audioEnabled?clamp(settings.volume*settings.sfx*2.2,0,1):0)*(govorTraje()?.32:1);}
  el.volume=clamp(el.volume+(v-el.volume)*.08,0,1);if(v>.12&&audio)SND.duckUntil=Math.max(SND.duckUntil||0,audio.currentTime+.4);
  if(el.volume<.012&&v===0){if(!el.paused)el.pause();}else if(el.paused&&mode==='play')el.play()?.catch?.(()=>{});}
 // ---------- the defence of the guslar: he sings the song of Musa through, and the Turks come in five bands to silence him ----------
