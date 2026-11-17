@@ -273,6 +273,10 @@
 .jn-tabs button.novo::after{top:5px;right:6px}
 /* what the purse can buy right now: a green rim on the slot, a small green arrow on its tab */
 .jn-slot.moze:not(.sel){outline:2px solid #8fdc7aaa;outline-offset:1px}
+/* a purchase flashes gold on its slot and on the purse */
+.jn-slot.kupljeno,#nap-kesa.kupljeno{animation:jn-kupljeno .9s ease-out}
+@keyframes jn-kupljeno{0%{filter:brightness(2.2) saturate(1.4);transform:scale(1.08)}100%{filter:none;transform:none}}
+@media (prefers-reduced-motion:reduce){.jn-slot.kupljeno,#nap-kesa.kupljeno{animation:none}}
 .jn-tabs button.moze::before{content:'▲';position:absolute;left:6px;top:3px;font-size:9px;line-height:1;color:#9be58a;text-shadow:0 0 4px #000;pointer-events:none}
 @keyframes jn-novo{50%{transform:scale(.72);opacity:.75}}
 @media (prefers-reduced-motion:reduce){.jn-slot.novo::after,.jn-tabs button.novo::after{animation:none}}
