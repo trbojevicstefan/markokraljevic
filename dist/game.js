@@ -2894,7 +2894,7 @@ function closeNapredak(){if(!hasDom||!$('napredak')||$('napredak').hidden)return
 function renderNapredak(){const box=$('napredak');if(!box||!$('jn-p-junak'))return;const own=ownedSkills(),boj=uBoju(),ks=bank(),c=ownedCuda(),A=amState();
  $('nap-kesa').innerHTML=`<img src="assets/world/predmet-dukat.webp" alt="" onerror="this.remove()"><b data-notr>${ks}</b> ${tr('dukata')}`;$('nap-titula').textContent=tr(napTitula());
  const nauceno=SKILLS.filter(k=>own.has(k.id)).length,stepeni=SKILLS.reduce((a,k)=>a+(own.has(k.id)&&RANK_FX[k.id]?Math.max(0,(rankState()[k.id]||1)-1):0),0);
- $('jn-sazetak').innerHTML=[['Veštine',`${nauceno}/${SKILLS.length}`],['Stepeni',`${stepeni}/${Object.keys(RANK_FX).length*2}`],['Čuda',`${CUDA.filter(q=>c.has(q.id)).length}/${CUDA.length}`],['Amajlije',moc2('amajlije')?`${amUsed()}/${A.slots}`:'—']]
+ $('jn-sazetak').innerHTML=[['Završeno',`${zavrsenost()} %`],['Veštine',`${nauceno}/${SKILLS.length}`],['Stepeni',`${stepeni}/${Object.keys(RANK_FX).length*2}`],['Čuda',`${CUDA.filter(q=>c.has(q.id)).length}/${CUDA.length}`],['Amajlije',moc2('amajlije')?`${amUsed()}/${A.slots}`:'—']]
   .map(([k,v])=>`<span>${tr(k)} <b data-notr>${v}</b></span>`).join('');
  $('nap-napomena').textContent=boj?tr('Usred boja se ništa ne menja: odmakni se od dušmana.'):'';$('nap-napomena').hidden=!boj;
  const u=uredjaj();$('jn-pomoc').textContent=tr(u==='pad'?'Strelice biraju · A uzima · LB i RB menjaju karticu · B zatvara':u==='dodir'?'Dodirni da izabereš, dodirni ponovo da uzmeš':'Klik bira, drugi klik uzima · desni klik odmah · strelice i Enter · Q i E ili 1–6 menjaju karticu · P zatvara');
@@ -5092,6 +5092,13 @@ const vistaFile=L=>`assets/world/${L.vista||L.id}-vista.webp`; // a pohod withou
 // the lore scroll and the hidden rooms under cracked slabs (how many from the land's recipe; how many found, kept per land).
 function odajeUkupno(id){return((RECIPES?.[id]||'').match(/\b(?:cellar|tajna)\b/g)||[]).length;}
 function odajeNadjene(){try{return JSON.parse(localStorage.getItem('marko-odaje')||'{}')||{};}catch{return{};}}
+// How much of the whole song is done, as Hollow Knight shows it on a save: the pohodi won, the letters МАРКО, the heart pieces,
+// the scrolls and the hidden rooms of every land, the marvels and the skills, each counting the same
+function zavrsenost(){const P=LEVELS.filter(L=>!L.secret&&RECIPES?.[L.id]),ids=P.map(L=>L.id),done=new Set(levelsDone().map(k=>k.split('@')[0])),sl=storedSet('marko-slova'),hs=storedSet('marko-srca'),zs=storedSet('marko-zapisi'),o=odajeNadjene(),own=ownedSkills();
+ let ima=0,sve=0;const add=(a,b)=>{ima+=Math.min(a,b);sve+=b;};
+ add(ids.filter(i=>done.has(i)).length,ids.length);add(ids.filter(i=>sl.has(i)).length,ids.length);add(ids.filter(i=>hs.has(i)).length,ids.length);add(ids.filter(i=>zs.has(i)).length,ids.length);
+ for(const i of ids)add(o[i]||0,odajeUkupno(i));add(ownedCuda().size,CUDA.length);add(SKILLS.filter(k=>own.has(k.id)).length,SKILLS.length);
+ return sve?Math.floor(ima/sve*100):0;}
 function tajneZemlje(id){const ok=b=>b?'✓':'○',n=odajeUkupno(id),parts=[`${tr('Slova')} ${ok(storedSet('marko-slova').has(id))}`,`${tr('Delić srca')} ${ok(storedSet('marko-srca').has(id))}`,`${tr('Zapis')} ${ok(storedSet('marko-zapisi').has(id))}`];
  if(n)parts.push(`${tr(n>1?'Skrivene odaje':'Skrivena odaja')} ${Math.min(n,odajeNadjene()[id]||0)}/${n}`);return `${tr('Tajne')}: ${parts.join(' · ')}`;}
 function mapDetail(i){const L=LEVELS[i];if(!L||!$('map-detail'))return;const k=SKILLS.find(k=>k.land===L.id),open=levelOpen(i);

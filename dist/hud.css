@@ -389,6 +389,7 @@
  .jn-junak{grid-template-columns:calc(var(--slot) + 8px) calc(var(--slot) + 8px) minmax(0,1fr);gap:0 8px}
  .jn-figura{grid-column:1/3;grid-row:2;flex-direction:row;gap:8px;margin-top:8px;background:none}.jn-figura img{display:none}.jn-figura .jn-nas{display:none}
  .jn-udari{gap:8px}.jn-udari .jn-slot{--slot:42px}
+ .jn-slot.novo::after,.jn-tabs button.novo::after{width:6px;height:6px;top:2px;right:2px}
  .jn-am{gap:5px}
  .jn-osobine{grid-template-columns:1fr;grid-row:1/3;gap:6px}
  .jn-os-red{font-size:11px;padding:0 2px}.jn-os-grupa h4{font-size:11px}
