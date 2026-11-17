@@ -623,6 +623,7 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 .pauza-scena figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;background:linear-gradient(transparent,#090404e6);text-align:left}
 .pauza-scena figcaption b{display:block;font:600 19px Georgia,serif;color:#f1e3bd;letter-spacing:.5px}
 .pauza-scena figcaption small{color:#c9b98f;font-size:14px}
+.map-detail .tajne-zemlje{margin:2px 0 8px;font-size:13px;letter-spacing:.3px;color:#e6d394}
 .pauza-scena figcaption small.pauza-tajne{display:block;margin-top:4px;color:#e6d394;font-size:13px;letter-spacing:.3px}
 .pauza-ram{position:relative;height:min(90vh,690px);width:auto;max-width:46vw;aspect-ratio:900/1180;background:url(assets/world/pauza-ram.webp) center/100% 100% no-repeat;padding:15% 13% 11%;display:flex;flex-direction:column;padding-bottom:15.5%;filter:drop-shadow(0 22px 34px #000c);animation:pauzaRam .6s cubic-bezier(.2,.8,.2,1) both}
 .pauza-ram .eyebrow{margin:0;text-align:center;color:#d9b56a;font-size:11px;letter-spacing:4px}
