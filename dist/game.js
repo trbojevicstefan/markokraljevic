@@ -2146,7 +2146,7 @@ function drawUseCilj(g){const c=g.glow||'#ffd27a',pulse=.5+.5*Math.sin(time*3+g.
  textLabel('▼',g.x,top-26-8*pulse,{font:'bold 22px Georgia',color:'#fff6d8',glow:c});
  if(d<480)textLabel(tu?`E · ${useVerb(g)}`:'STANI U KRUG (E)',g.x,top-58,{font:'bold 15px Georgia',color:'#fff0c8',glow:c});}
 function drawUsePokazivac(){if(!level||!world.goals)return;let best=null;for(const g of world.goals)if(!g.done&&g.kind==='use'&&(!best||Math.abs(g.x-p.x)<Math.abs(best.x-p.x)))best=g;if(!best)return;
- const L=camera+30,R=camera+VIEW_W-30;if(best.x>L+40&&best.x<R-40)return;const s=best.x>p.x?1:-1,k=.5+.5*Math.sin(time*4),x=(s>0?R-80:L+80)+s*6*k,y=camY+VIEW_H*.42;
+ const L=camera+30,R=camera+VIEW_W-30;if(best.x>L+40&&best.x<R-40||Math.abs(best.x-p.x)>2600)return;const s=best.x>p.x?1:-1,k=.5+.5*Math.sin(time*4),x=(s>0?R-80:L+80)+s*6*k,y=camY+VIEW_H*.42;
  textLabel(s>0?`${useVerb(best)} →`:`← ${useVerb(best)}`,x,y,{font:'bold 16px Georgia',color:'#fff0c8',glow:best.glow||'#ffd27a'});}
 // simple stand-ins until the artist's drawing for a goal arrives
 function drawGoalFallback(g){const x=g.x,y=g.y;if(g.kind==='gate'){if(g.done){line(x-70,y,x-70,y-g.h,'#5a4330',10);line(x+70,y,x+70,y-g.h,'#5a4330',10);return;}for(let j=0;j<7;j++)line(x-66+j*22,y-g.h+30,x-66+j*22,y,'#5a4330',9);line(x-80,y-g.h*.6,x+80,y-g.h*.6,'#3e2d20',8);line(x-90,y-g.h+30,x+90,y-g.h+30,'#3e2d20',10);return;}
@@ -4856,7 +4856,14 @@ function markPad(g){const box=$('kontrole');if(!box||box.hidden)return;for(const
 if(hasDom){$('kontrole-open')&&($('kontrole-open').onclick=openKontrole);$('pause-kontrole')&&($('pause-kontrole').onclick=openKontrole);}
 // the pause screen says where Marko is and how the road has gone so far
 function pauseInfo(){const gde=$('pauza-gde'),st=$('pauza-stanje');if(!gde||!st)return;
- gde.textContent=level?tr(level.name):tr(chapters[zone]?.name||'');st.textContent=`${tr('Na putu')} ${formatTime(elapsed)} · ${tr('savladano')} ${kills}`;}
+ gde.textContent=level?tr(level.name):tr(chapters[zone]?.name||'');st.textContent=`${tr('Na putu')} ${formatTime(elapsed)} · ${tr('savladano')} ${kills}`;
+ const T=tajneNivoa();let el=$('pauza-tajne');if(!el&&T&&st.parentNode&&document.createElement){el=document.createElement('small');el.id='pauza-tajne';el.className='pauza-tajne';st.parentNode.insertBefore(el,st.nextSibling);}if(el){el.hidden=!T;el.textContent=T;}}
+function tajneNivoa(){if(!level||level.greybox||!world.items)return'';const I=world.items,parts=[],ok=b=>b?'✓':'○';
+ const sl=I.filter(i=>i.type==='slovo');if(sl.length)parts.push(`${tr('Slova')} ${sl.filter(i=>i.taken).length}/${sl.length}`);
+ for(const [type,ime] of [['srce','Delić srca'],['zapis','Zapis'],['cudo','Čudo']]){const it=I.filter(i=>i.type===type);if(it.length)parts.push(`${tr(ime)} ${ok(it.every(i=>i.taken))}`);}
+ const kd=(world.traps||[]).filter(t=>t.kind==='keydoor');if(kd.length)parts.push(`${tr('Riznica')} ${ok(kd.every(t=>t.open>0))}`);
+ const cr=world.platforms.filter(q=>q.kind==='cracked').length,nad=world.tajneNadjene||0;if(cr+nad===1)parts.push(`${tr('Skrivena odaja')} ${ok(!cr)}`);else if(cr+nad)parts.push(`${tr('Skrivene odaje')} ${nad}/${cr+nad}`);
+ return parts.length?`${tr('Tajne')}: ${parts.join(' · ')}`:'';}
 function pollPads(){if(!hasDom||!navigator.getGamepads)return;const pads=navigator.getGamepads();const g=pads&&(pads[padIndex??-1]||[...pads].find(Boolean));if(!g){return;}if(padIndex===null)padConnected(g);markPad(g);
  const raw=i=>!!g.buttons[i]&&(g.buttons[i].pressed||g.buttons[i].value>.5),btn=i=>{const v=raw(i);if(padRest.has(i)){if(!v)padRest.delete(i);return false;}return v;},ax=g.axes[0]||0,ay=g.axes[1]||0;
  stickMag=btn(14)||btn(15)?1:Math.abs(ax);const left=btn(14)||ax<-.22,right=btn(15)||ax>.22,up=btn(12)||ay<-.55,down=btn(13)||ay>.55;
@@ -5341,7 +5348,7 @@ function updatePuzzles(dt){updateKeyDoors();updateTents(dt);updateMindPuzzles(dt
  for(const q of world.platforms){if(q.kind!=='raft')continue;q.t+=dt;const k=(1-Math.cos(q.t*Math.PI*2/9))/2,nx=q.a+(q.b-q.a)*k,dx=nx-q.x;q.x=nx;if(p.on===q&&p.grounded)p.x+=dx;for(const e of world.enemies)if(e.on===q&&e.grounded)e.x+=dx;}}
 function pullLift(){for(const t of world.traps||[]){if(t.kind!=='lift'||!t.q||Math.abs(p.x-t.lever.x)>110||Math.abs(p.y-t.lever.y)>120)continue;const q=t.q;if(q.state==='down'||q.state==='down-idle'){q.state='wait';q.t=0;t.pulled=.6;p.castLock=.4;p.leverT=.5;sfx('ring',{gain:.6});toast('Lift kreće za trenutak — stani na njega!',2);return true;}}return false;}
 // the cracked slab gives way under a blow from above
-function breakCracked(){const q=p.on;if(!q||q.kind!=='cracked'||q.off)return false;q.off=true;world.platforms=world.platforms.filter(o=>o!==q);sfx('rock',{gain:1,rate:.8});sfx('boom',{gain:.6,rate:1.2});dust(q.x+q.w/2,q.y,24,2.4);burst(q.x+q.w/2,q.y,'#a59a80',30,260,'dust');shake=settings.reduced?0:8;toast('Pod se probio! Ispod je skriven podrum.',2.4);return true;}
+function breakCracked(){const q=p.on;if(!q||q.kind!=='cracked'||q.off)return false;q.off=true;world.tajneNadjene=(world.tajneNadjene||0)+1;world.platforms=world.platforms.filter(o=>o!==q);sfx('rock',{gain:1,rate:.8});sfx('boom',{gain:.6,rate:1.2});dust(q.x+q.w/2,q.y,24,2.4);burst(q.x+q.w/2,q.y,'#a59a80',30,260,'dust');shake=settings.reduced?0:8;toast('Pod se probio! Ispod je skriven podrum.',2.4);return true;}
 // pogo: a blow from above bounces off stakes and off foes
 function pogo(){if(p.plunge!==1)return;
  for(const t of world.traps||[]){if(t.kind!=='spikes')continue;if(p.x+10>t.x&&p.x-10<t.x+t.w&&p.y>=t.y-38&&p.y<=t.y+6&&p.vy>0){bounce(t.x+t.w/2>p.x?p.x:p.x,t.y-30,'#ffe6b0');return;}}
