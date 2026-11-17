@@ -130,7 +130,7 @@ export const RECIPES={
  rusevine:'kosovka stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks tajna crates trgovac flat boss:arapin',
  reka:'flat crates pogled bridge breg flat branik:selo jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs tajna flat mehana spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
- urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
+ urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat tajna jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
  // Vračeva jaruga (Stefan, 15. 11. 2026: „koristi Vrača za novog bosa i novi nivo"): noćna gora puna senki, na kraju Crni vrač
  vracara:'flat breg watch crates uvala terrace+ ledges cellar spikes jaruga kuke crumble greda chimney flat branik:hodocasnici bedem kljuc zid vreme stairs+ tower crates spikebed crates logs rocks tajna guslar:mir ledges crates trgovac flat boss:vrac',
  oranje:'flat plow crates strela sator plow watch plate stairs+ flat stairs- plow crates jaruga ledges stairs+ sator uvala tajna flat guslar:mir spikes crates watch trgovac flat boss:trio',
