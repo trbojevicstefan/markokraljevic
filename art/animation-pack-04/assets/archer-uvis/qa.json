@@ -1,0 +1,117 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        94,
+        124,
+        307,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        43484
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        75,
+        64,
+        325,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46143
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        63,
+        45,
+        337,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48229
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        66,
+        45,
+        334,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49092
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        76,
+        122,
+        325,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48839
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        94,
+        124,
+        307,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        43465
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.9528795811518325,
+  "aimDeg": 60.0,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "<PIL.Image.Image image mode=RGBA size=512x512 at 0x1FDFBAB6570>",
+  "targetSupportY": 488,
+  "referenceHeight": 364,
+  "targetHeight": 364,
+  "visualReview": "Six-frame upward-firing archer sequence with preserved identity and size; frames 2 and 3 aim steeply at approximately 60 degrees, with raised draw elbow and upward gaze, followed by recovery and return.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

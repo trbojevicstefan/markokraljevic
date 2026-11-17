@@ -1,0 +1,151 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        40,
+        156,
+        408,
+        356
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60870
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        40,
+        156,
+        409,
+        362
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61167
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        40,
+        156,
+        408,
+        374
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61063
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        40,
+        156,
+        409,
+        385
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60344
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        40,
+        156,
+        408,
+        377
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60727
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        40,
+        156,
+        409,
+        356
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60545
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        40,
+        156,
+        408,
+        356
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61137
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        40,
+        156,
+        409,
+        356
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61060
+      ],
+      "greenPixels": 0,
+      "supportY": 355,
+      "safeMargin": 40
+    }
+  ],
+  "scale": 0.9216589861751152,
+  "aimDeg": null,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "<PIL.Image.Image image mode=RGBA size=600x400 at 0x26CA94B6690>",
+  "targetSupportY": 356,
+  "referenceHeight": 400,
+  "targetHeight": 200,
+  "visualReview": "Eight-frame loop of the menu-style crimson silk swallowtail banner with woven gold upper and lower bands, repeated crosses, gold pole trim, complete shield and pale double-headed eagle; two tail lobes remain visible in every frame.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

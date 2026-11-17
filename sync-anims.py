@@ -16,6 +16,13 @@ for pack in sorted(glob.glob(os.path.join(ROOT, 'art', 'animation-pack-0[4-9]'))
             continue
         if name == 'pauza-logor-16':  # the same 16-frame camp ships from art/world-pack-03/pauza-logor.png (sync-world.py)
             continue
+        if name.startswith('zastava-'):  # DOPUNA-64: the banner of Marko's men, 8 cells of 512 kept at half (256): a light WebP strip of world art
+            from PIL import Image
+            dst = os.path.join(OUT, 'world', name + '.webp')
+            if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(atlas):
+                im = Image.open(atlas).convert('RGBA')
+                im.resize((im.width // 2, im.height // 2), Image.LANCZOS).save(dst, 'WEBP', quality=88, method=6, alpha_quality=100); n += 1; print('zastava', name)
+            continue
         if name.startswith(('barjak-', 'pauza-', 'prelaz-')):  # banner loops, the pause scene and the scenes between pohodi are world art: a light WebP strip, not part of the sprite rig
             from PIL import Image
             dst = os.path.join(OUT, 'world', name + '.webp')

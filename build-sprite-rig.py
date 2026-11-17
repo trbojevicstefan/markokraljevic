@@ -630,6 +630,10 @@ if _have('marko-hod-bez-topuza') and 'marko-walk' in SCALES:
 if _have('marko-stoji-bez-topuza') and 'marko-idle-2' in SCALES:
     SCALES['marko-stoji-bez-topuza'] = (SCALES['marko-idle-2'][0], 'feet')
     NOC_ANCHOR_SAME['marko-stoji-bez-topuza'] = 'marko-idle-2'
+# DOPUNA-64 (17. 11.): the archer who looses his rain of arrows upward, an edit of archer-idle at its size in the game; frame 0
+# stands like archer-idle frame 0, so the body is measured against it
+if _have('archer-uvis') and 'archer-idle' in SCALES:
+    SCALES['archer-uvis'] = (SCALES['archer-idle'][0] * body_height(_cells('archer-idle')[0]) / body_height(_cells('archer-uvis')[0]), 'feet')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
