@@ -2824,6 +2824,8 @@ function jnInfo(k){const t=k.slice(0,k.indexOf(':')),id=k.slice(k.indexOf(':')+1
   if(have)I.lines.push({t:tr('Trajno jača Marka.'),c:'ok'});return I;}
  if(t==='kov'){const u=SMITH.find(x=>x.id===id);if(!u)return I;const l=s[id]||0,cost=u.cost[l];
   Object.assign(I,{img:NAP_SLIKA[id],name:u.name,sub:`${tr('Kovač')} · ${tr('stepen')} ${l} / ${u.cost.length}`,text:u.text,cls:l?'ima':'nema'});I.lines.push({t:'■'.repeat(l)+'□'.repeat(u.cost.length-l),c:'rang'});
+  // before → after, as the big games show an upgrade: what Marko has now and what the next step gives
+  {const R={hp:k=>`+${10*k} ${tr('zdravlja')}`,zaduzbina:k=>`+${12*k} ${tr('zdravlja')}`,mace:k=>`+${8*k} % ${tr('snage udaraca')}`,flask:k=>`+${k} ${tr('vina na polasku')}`}[id];if(R&&cost!==undefined)I.lines.push({t:`${tr('Sada')} ${R(l)} → ${R(l+1)}`,c:'razlika'});}
   if(cost===undefined)I.lines.push({t:tr('Najbolje što Novak kuje.'),c:'max'});else I.acts.push({l:`${tr('Kupi')} · ${cost} ⛁`,dis:boj||ks<cost,f:()=>kupiKovac(id)});
   I.lines.push({t:tr('Trajno, za svaki naredni pohod.'),c:''});return I;}
  if(t==='kombo'){const q=KOMBINACIJE[+id];if(!q)return I;Object.assign(I,{name:q[1],sub:tr('Kombinacija'),key:q[0],text:q[2],cls:'ima',znak:'✦'});return I;}
