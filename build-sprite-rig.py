@@ -767,7 +767,9 @@ for _n, _m in D91_MODEL.items():
 # Velimirovica, old Toplica, Kosančić Ivan and the post-carrier. Each is an edit of its model's frame 0.
 D94_MODEL = {f"vuca-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hvata', 'hurt', 'death']}
 D94_MODEL.update({f"katana-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'lunge', 'hurt', 'death', 'jump', 'omamljen']})
-D94_MODEL.update({"mounted-ritne": "mounted-idle"})   # D98: Šarac kicks with his hind legs (drawn at 0.90, given back below)
+D94_MODEL.update({"mounted-ritne": "mounted-idle"})
+D94_MODEL.update({c: "milos-idle" for c in ['posmatrac-seljanka', 'posmatrac-decak', 'posmatrac-starica', 'posmatrac-ribar', 'posmatrac-gradjanin']})   # D102 onlookers
+D94_MODEL.update({c: "sword-idle" for c in ['katana-gard', 'katana-gard-slomljen']})   # D102 the katana's guard   # D98: Šarac kicks with his hind legs (drawn at 0.90, given back below)
 D94_MODEL.update({c: "milos-idle" for c in ['velimirovica-idle', 'velimirovica-bezi', 'toplica-idle', 'kosancic-idle', 'knjigonosa-idle', 'knjigonosa-poklon']})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:

@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        164,
+        138,
+        300,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 350
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        146,
+        138,
+        317,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 350
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        152,
+        138,
+        311,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 350
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        145,
+        139,
+        318,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 349
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        141,
+        139,
+        322,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 349
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        146,
+        139,
+        317,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 349
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d102\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 350,
+  "measuredHeights": [
+    350,
+    350,
+    350,
+    349,
+    349,
+    349
+  ],
+  "scale": 0.7446808510638298,
+  "visualReview": "Peasant woman watches and shades her eyes, holding a basket of grapes.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

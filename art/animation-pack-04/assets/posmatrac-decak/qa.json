@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        168,
+        238,
+        295,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 250
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        158,
+        233,
+        305,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 255
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        158,
+        237,
+        304,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 251
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        152,
+        225,
+        312,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 263
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        162,
+        235,
+        300,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 253
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        158,
+        242,
+        304,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 246
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d102\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 250,
+  "measuredHeights": [
+    250,
+    255,
+    251,
+    263,
+    253,
+    246
+  ],
+  "scale": 0.5813953488372093,
+  "visualReview": "Barefoot boy hops and waves overhead.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

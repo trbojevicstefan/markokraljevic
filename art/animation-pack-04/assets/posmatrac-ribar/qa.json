@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        157,
+        118,
+        306,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        144,
+        118,
+        318,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        144,
+        118,
+        319,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        142,
+        118,
+        320,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        141,
+        118,
+        322,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        144,
+        118,
+        318,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d102\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 370,
+  "measuredHeights": [
+    370,
+    370,
+    370,
+    370,
+    370,
+    370
+  ],
+  "scale": 0.7789473684210526,
+  "visualReview": "Fisherman with net raises a hand in greeting.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

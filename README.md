@@ -510,6 +510,18 @@ Stefan: „popravi zimski prevoj: pesma priča o zelenoj travi a mi na zimskom t
 - **Strelac:** `archer-rafal` je bio nacrtan zdepasto; sužen na 0,8 širine i malo viši.
 - Glasovi za nove replike nisu snimljeni.
 
+## 18. novembar (8): iza zubaca, gard katane, topuz obara Vuču, posmatrači i prave merdevine
+
+Stefan: „kada smo na ovim zidinama neka budemo iza vrhova, ne ispred”, „da nema razmaka između zida i kule”, „neku zanimljivu mehaniku borbe … da moramo da uradimo određeni potez, kombo”, „napravi još posmatrača običnih ljudi, rekvizita”, „nove merdevine, ove su baš jadne”, „napravi inventar svega što treba da naručimo Codexu i naruči”.
+
+- **Iza zubaca:** ko stoji na naslikanim bedemima (Marko, Velimirovica, strelci) stoji malo ispod procepa među zupcima, a gornji pojas bedema (zupci i grudobran) crta se ponovo preko njega (`drawBedemiNapred`, pre prednjeg sloja).
+- **Kula uz zid:** kula prekriva kraj zida, pa nema razmaka; hod po zidu ide do kule, na kulu se skače.
+- **Gard katane:** kad je udariš spreda sa J, katana ponekad uhvati gard: nad glavom joj stoje tri tastera (npr. J K J). Spreda prolazi samo taj kombo, taster po taster (pogođen taster pozlati); pogrešan vraća na početak i odbija Marka. S leđa, kontrom ili Šarčevim kopitama gard puca odmah. Slomljen gard: katana ošamućena, spremna za završni udarac.
+- **Vuča pada od topuza, kao u pesmi:** bačen topuz (I) koji ga stigne dok juri na bedeviji obara ga s konja („udari ga sapom od topuza, pade Vuča u zelenu travu”).
+- **Posmatrači (D102):** seljanka sa korpom grožđa, dečak koji maše, starica koja se krsti, ribar sa mrežom, građanin Varadina stoje duž puta pod Varadinom i svako kaže reč o Marku i Vuči. Katana u gardu i katana kojoj je gard slomljen imaju svoje klipove.
+- **Prave merdevine (D103):** sve merdevine u igri su sada naslikane hrastove, prečke vezane konopcem (`merdevine-telo` se ponavlja u visinu, `merdevine-vrh` na vrhu; prečke ostaju na 28 px). Rekviziti Varadina: top iza zubaca na bedemu, žuto-crni barjak na kuli, korpe grožđa, ribarska mreža i mešina sa leđenom među ukrasima pohoda.
+- **Inventar za Codex:** `docs/INVENTAR-CODEX.md`, šta je nacrtano, šta je naručeno ove ture (D102 posmatrači i gard katane, D103 merdevine i rekviziti Varadina) i šta čeka nova sredstva.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

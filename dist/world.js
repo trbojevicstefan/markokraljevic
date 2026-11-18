@@ -242,9 +242,11 @@ export function buildLayout(L,variant='day'){
   // „Marko Kraljević i Vuča dženeral”: the camp under Varadin, the katane in two waves, Miloš out of the dungeon (game.js: varadin)
   varadin(){const x0=x,len=3400;ground(len);const T={kind:'varadin',x0,x1:x0+len,y:gy,logor:x0+900,nodecor:[[x0+500,x0+1500],[x0+len-1000,x0+len]]};traps.push(T);busy.push([x0-40,x0+len]);
    // the walls of Varadin at the end of the field (D99 prop-bedem-stepenice, mirrored, 330 high; prop-bedem-kula 430 high): solid, under the painting
-   const ZH=330,zw=Math.round(1307*ZH/780),L=x0+len-650-zw/2,top=gy-Math.round(ZH*655/780),n=12,rise=(gy-top)/n,a=L+zw*.10,b=L+zw*.64;
-   for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,L+zw*.95-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
-   const KH=430,kw=Math.round(604*KH/936),kx=L+zw+40,ktop=gy-Math.round(KH*830/936);block(kx+14,kw-28,ktop,{kind:'step',slika:true});
+   // whoever walks the top stands 24 px below the gap between the merlons: the merlons are drawn again over him (drawBedemiNapred)
+   const ZH=330,zw=Math.round(1307*ZH/780),L=x0+len-650-zw/2,top=gy-Math.round(ZH*655/780)+24,n=12,rise=(gy-top)/n,a=L+zw*.10,b=L+zw*.64;
+   const KH=430,kw=Math.round(604*KH/936),kx=L+zw-26,ktop=gy-Math.round(KH*830/936)+24;   // the tower overlaps the wall: no gap
+   for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
+   block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
   mehana(){const x0=x,len=2400;ground(len);traps.push({kind:'mehana',x0,x1:x0+len,y:gy,kuca:x0+1150,sto:x0+1430,sarac:x0+1700,nodecor:[[x0+700,x0+1950]]});busy.push([x0-40,x0+len]);},
