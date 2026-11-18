@@ -1,0 +1,131 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        106,
+        62,
+        398,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        62183
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        103,
+        58,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        62831
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 430
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        62,
+        58,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        59532,
+        3868
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 430
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        114,
+        38,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        57873
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 450
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        122,
+        56,
+        381,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59534
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 432
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        76,
+        40,
+        426,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56984
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 448
+    }
+  ],
+  "scale": 0.988399071925754,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\sword-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 426,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    430,
+    430,
+    450,
+    432,
+    448
+  ],
+  "visualReview": "Sword warrior panics, throws the sword, raises both open hands, then turns to flee right; bulging eyes and open screaming mouth; same identity and clothing.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

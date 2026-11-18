@@ -1,0 +1,75 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        153,
+        296,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        171,
+        298,
+        343,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 190
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        153,
+        296,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        156,
+        330,
+        351,
+        481
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 31,
+      "supportY": 480,
+      "height": 151
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d68\\pas-idle-kadar0.png",
+  "targetHeight": 192,
+  "targetSupportY": 488,
+  "measuredHeights": [
+    192,
+    190,
+    192,
+    151
+  ],
+  "sourceMode": "D68 idle/run reference fallback after image_gen identity rejection",
+  "atlasMatchesFrames": true,
+  "visualReview": "pas fear/flight animation D68; reference identity and measured height 192px.",
+  "gifFrames": 4
+}

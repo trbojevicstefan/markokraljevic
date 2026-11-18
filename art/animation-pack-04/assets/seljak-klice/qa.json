@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        196,
+        169,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 319
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        188,
+        138,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 350
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        182,
+        162,
+        365,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 326
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        187,
+        148,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        190,
+        159,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 329
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        196,
+        169,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 319
+    }
+  ],
+  "scale": 0.7675438596491229,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\animation-pack-04\\sources\\seljak-idle\\attempt-1\\frame-0.png",
+  "targetSupportY": 488,
+  "targetHeight": 350,
+  "measuredHeights": [
+    319,
+    350,
+    326,
+    340,
+    329,
+    319
+  ],
+  "visualReview": "The same peasant cheers with an open mouth, waving his wool cap overhead and raising a clenched fist, with small jumps in frames 2 and 3.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

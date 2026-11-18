@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        138,
+        98,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        104,
+        98,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        116,
+        98,
+        377,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        136,
+        99,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 389
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        136,
+        99,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 389
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        138,
+        99,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 389
+    }
+  ],
+  "scale": 0.8333333333333334,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d74\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 390,
+  "measuredHeights": [
+    390,
+    390,
+    390,
+    389,
+    389,
+    389
+  ],
+  "visualReview": "Marko takes a round pogaca from the stall and puts it into his belt pouch.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

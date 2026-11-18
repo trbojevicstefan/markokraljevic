@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        106,
+        146,
+        406,
+        366
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 365,
+      "safeMargin": 106,
+      "height": 220
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        106,
+        146,
+        406,
+        366
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 365,
+      "safeMargin": 106,
+      "height": 220
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        113,
+        146,
+        400,
+        366
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 365,
+      "safeMargin": 112,
+      "height": 220
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        112,
+        146,
+        400,
+        366
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 365,
+      "safeMargin": 112,
+      "height": 220
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        109,
+        146,
+        403,
+        366
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 365,
+      "safeMargin": 109,
+      "height": 220
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        106,
+        149,
+        406,
+        364
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 363,
+      "safeMargin": 106,
+      "height": 215
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": null,
+  "targetSupportY": 488,
+  "targetHeight": null,
+  "measuredHeights": [
+    220,
+    220,
+    220,
+    220,
+    220,
+    215
+  ],
+  "visualReview": "A looping swarm of about thirty tiny yellow-black bees with white wings in a lively transparent cloud.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

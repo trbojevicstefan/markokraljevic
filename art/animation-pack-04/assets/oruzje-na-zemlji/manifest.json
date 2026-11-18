@@ -1,0 +1,73 @@
+{
+  "characterId": "oruzje-na-zemlji",
+  "description": "oruzje D72 image_gen edit animation; measured frame heights [109, 168, 170, 206, 148, 95, 55].",
+  "holdLastFrame": false,
+  "animation": {
+    "columns": 7,
+    "rows": {
+      "motion": {
+        "frames": 7,
+        "loop": false,
+        "holdLastFrame": false,
+        "durations_ms": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 3584,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  }
+}

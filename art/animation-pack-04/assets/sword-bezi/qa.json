@@ -1,0 +1,168 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        91,
+        62,
+        412,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53013
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        118,
+        63,
+        385,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48057
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 425
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        119,
+        56,
+        384,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47518
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 432
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        112,
+        59,
+        392,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48120
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 429
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        104,
+        57,
+        398,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48855
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 431
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        128,
+        60,
+        376,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45421
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 428
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        109,
+        62,
+        394,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49833
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        90,
+        62,
+        412,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53043
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "scale": 1.0492610837438423,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\sword-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 426,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    425,
+    432,
+    429,
+    431,
+    428,
+    426,
+    426
+  ],
+  "visualReview": "Sword warrior flees right in a looping run with both open hands overhead, looking back in panic; no weapon in hands; same identity and clothing.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

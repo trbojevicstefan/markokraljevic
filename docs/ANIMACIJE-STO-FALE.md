@@ -80,9 +80,12 @@ Veličina je merena tablom u meri igre pored uzora (Marko 129 prema 130, seljank
 
 Druga tura istog dana (Codex D66, `STATUS-D66.md`): `marko-daje` (dukati sirotinji) i `kokoska-kljuca`, oba iz prvog pokušaja, i pet rekvizita sela. Vino ždrebetu i potkivanje sada se igraju postojećim crtežima (`marko-drink`, `sarac-pije`, `sarac-propinje`, `sarac-hod`, `sarac-lupa`, `novak-kuje`).
 
-I dalje bez svog crteža u prvom nivou:
+Treća tura istog dana (Codex D67–D74): strah i beg za sedam vrsta vojnika (po dva klipa) i psa, bačeno oružje, pet novih poteza Kopljanik-baše i roj pčela, Marko kod bunara i tezge, seljak koji kliče. Svih 26 klipova je u igri; međukadrovi i lake kopije su napravljeni.
+
+I dalje bez svog crteža:
 - konjušar je isti starac kao putnik;
-- seljani koji kliču posle megdana koriste pozdrav i naklon sa ulaza.
+- `pas-uplasen` iz D68 nije ugrađen (kadrovi su različite veličine);
+- megdandžije ostalih pohoda nemaju poteze koji koriste arenu, kao što ih sada ima baša u selu.
 
 ## 1. Šarac (najvidljivije)
 

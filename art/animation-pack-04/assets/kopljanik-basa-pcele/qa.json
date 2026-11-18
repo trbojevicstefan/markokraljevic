@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        76,
+        93,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 395
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        82,
+        81,
+        429,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        92,
+        78,
+        419,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        84,
+        129,
+        427,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 359
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        78,
+        92,
+        434,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 396
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        76,
+        90,
+        436,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 398
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d69\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 410,
+  "measuredHeights": [
+    395,
+    407,
+    410,
+    359,
+    396,
+    398
+  ],
+  "visualReview": "Kopljanik-basa recoils and swats at unseen bees, shield raised, crouched and eyes squeezed shut, spear held low.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

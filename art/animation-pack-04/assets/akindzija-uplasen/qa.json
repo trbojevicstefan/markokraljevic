@@ -1,0 +1,132 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        111,
+        118,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54592
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        116,
+        86,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55023
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 402
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        78,
+        90,
+        480,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        55343,
+        2326,
+        1658
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 398
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        113,
+        67,
+        445,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59430
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        129,
+        93,
+        429,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58075
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 395
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        101,
+        66,
+        457,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59030
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 422
+    }
+  ],
+  "scale": 0.9068627450980392,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\akindzija-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 370,
+  "targetHeight": 370,
+  "measuredHeights": [
+    370,
+    402,
+    398,
+    421,
+    395,
+    422
+  ],
+  "visualReview": "Akindzija panics, throws both sabres, raises both open hands, then turns to flee right; same identity and clothing.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -438,6 +438,18 @@ Stefan: „dodaj svih ovih 6 tačaka što si predložio”.
 
 Provere su u `pesme-test.mjs` (vašar korak po korak, seljani, kokoška, slavlje, prva borba).
 
+## 18. novembar (3): strah i beg, megdan sela, reč nad svakim megdandžijom, kapije
+
+Stefan: „neka neki beže od nas kada se uplaše, treba da imamo taj momenat kroz celu igru”, „za boss fight smisli da bude bolji u prvom nivou… neka bude nešto interaktivno”, „Marko za svakog bosa treba da ima neku rečenicu na kraju”, „naruči lepše kapije”.
+
+- **Strah i beg** (`uplasi`, `begFoe` u `dist/game.js`), u svim pohodima. Vojnik se trgne, baci oružje (ostaje na zemlji, `oruzje-na-zemlji`), digne ruke i beži izbečenih očiju; van vidika nestaje i ne broji se u pobijene, a sateran u ćošak se preda. Šta ih lomi: pad megdandžije (beže svi njegovi), drug smrvljen teškim udarcem ili dokrajčen (neki samo ustuknu, kao pre), roj pčela. Ne beže oklopnik, elite, megdandžije i njihovi. Crteži: `<tip>-uplasen` i `<tip>-bezi` za sabljaša, strelca, akindžiju, kopljanika, štitonošu, palikuću i tufekdžiju (Codex D71/D72; prvi pokušaj D67/D68 je zamenjen po Stefanovoj ispravci: „moraju da bace oružje i da dignu ruke uvis… pomalo karikaturistično”), `pas-bezi`.
+- **Megdan Kosovskog sela** (`KITS.kopljanik`, `setupMegdanSela`): na krajevima polja stoje kola sa senom, na gredama košnice. Baša juriša oborenim kopljem; ko se skloni pred kolima, koplje mu se zabije u seno i baša stoji otvoren. Razbijena košnica šalje pčele na njega. Na pola snage duva u rog i dotrče dva janjičara; kad baša padne, oni beže. Crteži D69: `kopljanik-basa-juris`, `-zaglavljen`, `-pcele`, `-poziv`, `-omamljen`, `fx-pcele`.
+- **Pčele** iz svake razbijene košnice (i u šumi) idu na najbližeg protivnika: vojnik beži, megdandžija je ošamućen.
+- **Markova reč nad svakim megdandžijom** (`MARKO_REC`): četrnaest rečenica, po jedna za svakog, umesto jedne za Musu. Bez snimka dok se krediti ne vrate (27. 11.).
+- **Bunar i tezga**: E kraj bunara sa đermom (Marko pije iz vedra, `marko-pije-vodu`), E kraj tezge (pogača, `marko-uzima`), po jednom. Seljak (`seljak-idle`, `seljak-klice`) stoji pred brvnarom i kliče posle megdana.
+- **Kapije** su naslikane umesto nacrtane kodom (`gateArt`, `drawSection2`): širi prolaz, rešetka široka kao prolaz koja se diže u ležište iznad svoda i tamo se vidi (Codex D70, pa D73 po Stefanovom crtežu). Stefan je posle toga tražio kapiju gledanu pod uglom, kao trodimenzionalan predmet: to je DOPUNA-75.
+- Provere u `pesme-test.mjs`: strah (trgne se, baci sablju, beži, nestane; oklopnik ne beži; pad megdandžije), megdan (juriš u kola, košnica i pčele), Markova reč, bunar.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

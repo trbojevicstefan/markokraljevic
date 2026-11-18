@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        58,
+        78,
+        454,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        56,
+        85,
+        455,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 403
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        51,
+        99,
+        460,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 389
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        55,
+        86,
+        456,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 402
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        56,
+        85,
+        455,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 403
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        54,
+        80,
+        458,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d69\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 410,
+  "measuredHeights": [
+    410,
+    403,
+    389,
+    402,
+    403,
+    408
+  ],
+  "visualReview": "Kopljanik-basa strains against a spear stuck offscreen to the right; spear stays fixed while he pulls back and forward.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

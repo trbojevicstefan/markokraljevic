@@ -1,0 +1,8 @@
+- D71 sword-uplasen: PASS, pokusaj 2/3, 6 kadrova; visine 426/430/430/450/432/448 px; margina >=24 px; izvezeno iz attempt-2, staro sacuvano u sources/sword-uplasen/d67-staro/.
+- D71 sword-bezi: PASS, pokusaj 1/3, 8 kadrova; visine 426/425/432/429/431/428/426/426 px; margina >=24 px; petlja ukljucena; izvezeno, staro sacuvano u sources/sword-bezi/d67-staro/.
+- D71 archer-uplasen: PASS, pokusaj 2/3, 6 kadrova; visine 437/437/429/456/449/454 px (osnovno telo -4.2% od 456); margina >=24 px; izvezeno, staro sacuvano u sources/archer-uplasen/d67-staro/.
+- D71 archer-bezi: PASS, pokusaj 1/3, 8 kadrova; visine 454/455/447/456/456/446/454/456 px; margina >=24 px; petlja ukljucena; izvezeno, staro sacuvano u sources/archer-bezi/d67-staro/.
+- D71 akindzija-uplasen: PASS, pokusaj 1/3, 6 kadrova; visine 370/402/398/421/395/422 px (osnovno telo 370 od cilja); margina >=24 px; izvezeno, staro sacuvano u sources/akindzija-uplasen/d67-staro/.
+- D71 akindzija-bezi: PASS, pokusaj 1/3, 8 kadrova; visine 370/369/373/376/375/375/370/369 px; margina >=24 px; petlja ukljucena; izvezeno, staro sacuvano u sources/akindzija-bezi/d67-staro/.
+- D71 kopljanik-uplasen: PASS, pokusaj 1/3, 6 kadrova; visine 397/397/396/410/396/405 px (osnovno telo -3.2% od 410); margina >=24 px; izvezeno, staro sacuvano u sources/kopljanik-uplasen/d67-staro/.
+- D71 kopljanik-bezi: PASS, pokusaj 1/3, 8 kadrova; visine 403/410/408/409/401/406/409/403 px; margina >=24 px; petlja ukljucena; izvezeno, staro sacuvano u sources/kopljanik-bezi/d67-staro/.

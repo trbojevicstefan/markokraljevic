@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        112,
+        78,
+        398,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        118,
+        80,
+        392,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        109,
+        82,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 406
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        103,
+        81,
+        408,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        107,
+        84,
+        404,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 404
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        110,
+        78,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d69\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 410,
+  "measuredHeights": [
+    410,
+    408,
+    406,
+    407,
+    404,
+    410
+  ],
+  "visualReview": "Kopljanik-basa staggers in place leaning on his spear, head lolling, knees soft and shield hanging.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,133 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        50,
+        71,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 11,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        121,
+        71,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 7,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        135,
+        71,
+        378,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 14,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        65,
+        71,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 17,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        49,
+        71,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 12,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        131,
+        71,
+        382,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 8,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        132,
+        71,
+        381,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 17,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        50,
+        71,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 7,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 417
+    }
+  ],
+  "targetHeight": 417,
+  "targetSupportY": 488,
+  "measuredHeights": [
+    417,
+    417,
+    417,
+    417,
+    417,
+    417,
+    417,
+    417
+  ],
+  "sourceMode": "image_gen edit grid",
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

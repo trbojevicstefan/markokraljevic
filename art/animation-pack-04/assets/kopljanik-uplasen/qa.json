@@ -1,0 +1,133 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        68,
+        91,
+        445,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55355
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 397
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        48,
+        91,
+        464,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "componentAreas": [
+        57663,
+        83
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 397
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        42,
+        92,
+        470,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "componentAreas": [
+        50206,
+        5785,
+        3621
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 396
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        126,
+        78,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51265
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        125,
+        92,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53361
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 396
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        88,
+        83,
+        425,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51018
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 405
+    }
+  ],
+  "scale": 0.8779443254817987,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\kopljanik-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 410,
+  "targetHeight": 410,
+  "measuredHeights": [
+    397,
+    397,
+    396,
+    410,
+    396,
+    405
+  ],
+  "visualReview": "Spear bearer panics, throws spear and shield, raises both open hands, then turns to flee right; same identity and clothing.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

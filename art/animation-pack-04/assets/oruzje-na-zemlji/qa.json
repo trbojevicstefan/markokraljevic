@@ -1,0 +1,118 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        26,
+        379,
+        487,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 109
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        24,
+        320,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 3,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 168
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        49,
+        318,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 170
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        29,
+        282,
+        484,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 206
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        24,
+        340,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 148
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        24,
+        393,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 7,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 95
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        24,
+        433,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 55
+    }
+  ],
+  "targetHeight": null,
+  "targetSupportY": 488,
+  "measuredHeights": [
+    109,
+    168,
+    170,
+    206,
+    148,
+    95,
+    55
+  ],
+  "sourceMode": "image_gen edit grid",
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 7
+}

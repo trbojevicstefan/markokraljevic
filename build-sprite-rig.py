@@ -650,6 +650,38 @@ for _n, _m in (('marko-slusa', 'marko-idle-2'), ('marko-hvata-rep', 'marko-idle-
 # DOPUNA-66 (18. 11.): a village hen, drawn large (about 240 px) for its detail; in the game it stands 24 units high, a fifth of Marko
 if _have('kokoska-kljuca'):
     SCALES['kokoska-kljuca'] = (24 / _full_h(_cells('kokoska-kljuca')[0]), 'feet')
+# DOPUNA-67/68 (18. 11., the third round): fear and flight. Each soldier starts back (<type>-uplasen) and runs looking over his
+# shoulder (<type>-bezi), edits of his idle frame 0 as it lies on the sheet: his idle's zoom and anchor.
+for _t in ('sword', 'archer', 'akindzija', 'kopljanik', 'shield', 'palikuca', 'tufekdzija', 'pas'):
+    for _c in ('uplasen', 'bezi'):
+        _n = f'{_t}-{_c}'
+        if _have(_n) and f'{_t}-idle' in SCALES:
+            SCALES[_n] = (SCALES[f'{_t}-idle'][0], 'feet')
+            NOC_ANCHOR_SAME[_n] = f'{_t}-idle'
+# DOPUNA-69: the duel of Kosovsko selo. The bashi charges, tugs at his spear stuck in the hay, beats off the bees, blows his
+# horn, stands dazed: edits of kopljanik-basa-idle frame 0, at its zoom and anchor. The swarm of bees is about 70 units high.
+for _c in ('juris', 'zaglavljen', 'pcele', 'poziv', 'omamljen'):
+    _n = 'kopljanik-basa-' + _c
+    if _have(_n) and 'kopljanik-basa-idle' in SCALES:
+        SCALES[_n] = (SCALES['kopljanik-basa-idle'][0], 'feet')
+        NOC_ANCHOR_SAME[_n] = 'kopljanik-basa-idle'
+if _have('fx-pcele'):
+    SCALES['fx-pcele'] = (0.33, 'center')
+# DOPUNA-72: the weapons a frightened man throws down, seven different things in one strip, at the size the soldiers carry them.
+if _have('oruzje-na-zemlji') and 'sword-idle' in SCALES:
+    SCALES['oruzje-na-zemlji'] = (SCALES['sword-idle'][0], 'feet')
+    NOC_ANCHOR_AT['oruzje-na-zemlji'] = 256   # each thing lies in the middle of its cell
+# DOPUNA-74: Marko drinks from the bucket at the well and takes a loaf from the stall (edits of marko-idle-2 at its size in
+# the game, like marko-daje); the villager who cheers is a new figure drawn at the size of the game (350 px for 117 units).
+for _n in ('marko-pije-vodu', 'marko-uzima'):
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0] * body_height(_cells('marko-idle-2')[0]) / body_height(_cells(_n)[0]), 'feet')
+        NOC_ANCHOR_AT[_n] = 256
+for _n in ('seljak-idle', 'seljak-klice'):
+    if _have(_n):
+        SCALES[_n] = (128 / 383, 'feet')
+if _have('seljak-klice') and _have('seljak-idle'):
+    NOC_ANCHOR_SAME['seljak-klice'] = 'seljak-idle'
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

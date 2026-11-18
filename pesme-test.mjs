@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,slusa:()=>slusa,speak,slusaProbaj:v=>{slusaProba=v;},state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,slusa:()=>slusa,speak,uplasi,hitCrate,seloStvari,KITS,slusaProbaj:v=>{slusaProba=v;},state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);const tap=k=>{press(k);step();release(k);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
@@ -33,7 +33,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  stand(t.konji[2]-92);step(130);tap('KeyE');ok(t.korak===2&&p.drink>0,'vašar: E by the foal: half the wine Marko drinks, half he gives to Šarac');
  step(120*6);ok(t.zdrav&&t.korak===3,'vašar: the mange falls away');
  stand(t.konji[2]+250);step(120*3);ok(t.sx>t.konji[2]+100&&t.sx<p.x,'vašar: Šarac walks after Marko ('+Math.round(t.sx-t.konji[2])+' px from where he stood)');
- stand(t.x1-190-100);step(120*3);ok(t.korak===4,'vašar: by the smith he goes to the anvil and Novak shoes him');
+ stand(t.x1-250-100);step(120*3);ok(t.korak===4,'vašar: by the smith he goes to the anvil and Novak shoes him');
  stand(t.gate.x-10);step(3);ok(api.state().p.x<t.gate.x-20,'vašar: the way stays shut while Novak hammers');step(120*4);ok(t.korak===5,'vašar: shod');
  stand(t.gate.x-120);press('KeyD');step(120);release('KeyD');ok(api.state().p.x>t.gate.x+30,'vašar: then the road through the village is open');
  ok(api.draw()===null,'vašar: the fair draws without an error');}
@@ -121,7 +121,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  Object.assign(p,{y:T.y,vy:0,grounded:true});step(2);ok(T.ph==='pad'&&p.y===T.y,'scene: on the ground the chains begin, and he stays on the ground');}
 // ---- listening (18. 11.): Marko walks while a line is said or the guslar sings, and the road ahead waits ----
 {const w=await start('selo');const {p}=api.state();const S=w.traps.find(t=>t.kind==='seljani'),G=w.traps.find(t=>t.kind==='guslar');
- ok(S&&S.ljudi.filter(s=>!s.slavi&&s.gleda==null).length===2&&api.state().world.level.spawn.x<S.x0,'village: a quiet road with a mother and an old man opens Kosovsko selo');
+ ok(S&&S.ljudi.filter(s=>!s.slavi&&s.gleda==null&&s.k!=='seljak').length===2&&api.state().world.level.spawn.x<S.x0,'village: a quiet road with a mother and an old man opens Kosovsko selo');
  ok(S.ljudi.filter(s=>s.gleda===G.x).length===2&&S.kokoske.length>=4,'village: two of its people listen to the guslar, hens peck about the yards');
  {const h=S.kokoske[0],hx=h.x;Object.assign(p,{x:h.x-90,y:h.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(100);api.keys.clear();ok(h.x>hx+40,'village: a hen scatters when Marko runs through ('+Math.round(h.x-hx)+' px)');}
  Object.assign(p,{x:S.x0+60,y:S.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(120);const run=p.vx;ok(run>240&&!api.slusa(),'listening: with nothing being said Marko runs ('+Math.round(run)+' px/s)');
@@ -147,4 +147,28 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
 {await api.startLevel(api.LEVELS.findIndex(L=>L.id==='selo'),'day');const w=api.state().world,L=w.enemies.filter(e=>!e.champion&&!e.perch&&!e.kit).sort((a,b)=>a.x-b.x),[a,b]=L,S=w.traps.find(t=>t.kind==='seljani');
  ok(a.type==='sword'&&!a.elite&&a.par==null&&a.x>S.x1,'first fight: one plain janissary past the quiet road ('+Math.round(a.hp)+' hp)');
  const m=w.enemies.find(e=>e.id===b.par);ok(b.x-a.x>=500&&!b.elite&&(!m||m.type==='archer'),'first fight: the second swordsman waits '+Math.round(b.x-a.x)+' px on'+(m?', a shield before the first archer':''));}
+// ---- fear and flight (18. 11.): a man who has seen enough turns and runs; out of sight he is gone ----
+{const w=await start('selo');const {p}=api.state();const S=w.traps.find(t=>t.kind==='seljani'),[a,b]=w.enemies.filter(e=>!e.champion&&!e.perch&&!e.kit);
+ Object.assign(p,{x:S.x0+200,y:S.y,vx:0,vy:0,grounded:true});Object.assign(a,{alive:true,type:'sword',x:p.x+260,y:p.y,hp:a.maxHp,mode:'idle',spava:false,patrola:null,elite:false,par:null,grounded:true,vx:0});
+ ok(api.uplasi(a)&&a.bezi,'fear: a janissary can be frightened');const ax=a.x;step(60);ok(Math.abs(a.x-ax)<4,'fear: first he starts back where he stands');step(40);ok(w.baceno?.length===1&&w.baceno[0].k===0,'fear: and throws his sabre down');
+ step(120*2);ok(a.x>ax+200&&a.face===1,'fear: then he runs from Marko ('+Math.round(a.x-ax)+' px in two seconds)');
+ until(()=>!a.alive,120*12,'he runs out of sight');ok(a.pobegao&&w.pobeglo===1,'fear: out of sight he is gone, and not among the slain');
+ Object.assign(b,{alive:true,type:'oklopnik',x:p.x+200,y:p.y,hp:b.maxHp,mode:'idle',spava:false,patrola:null,elite:false,par:null,grounded:true});ok(!api.uplasi(b),'fear: the armoured one does not run');b.alive=false;
+ // the champion falls and his men run; Marko has a word for him
+ const C=w.enemies.find(e=>e.champion);Object.assign(b,{alive:true,type:'sword',x:C.x-200,y:C.y});C.alive=true;step(2);api.slay(C);ok(b.bezi,'fear: when the champion falls his men run');
+ ok(w.markoRec?.text.includes('Šarca i topuza'),'megdan: Marko has his own word for the fallen bashi');step(120*4);ok(!w.markoRec,'megdan: and says it when the blow has settled');}
+// ---- the duel of Kosovsko selo: the charge into the hay cart, the beehives ----
+{const w=await start('selo');const {p}=api.state();const C=w.enemies.find(e=>e.champion),A=C.arena,K=api.KITS.kopljanik;C.alive=true;
+ ok(w.megdanKola.length===2&&w.breakables.filter(b=>b.megdan&&b.kind==='kosnica').length===2,'megdan: two hay carts at the ends of the field, a beehive on each plank');
+ Object.assign(C,{x:A.x0+520,y:A.y,vx:0,grounded:true,mode:'idle',ks:'prep',kt:.05,face:-1,stun:0});Object.assign(p,{x:A.x0+330,y:A.y,vx:0,vy:0,grounded:true});
+ const run=n=>{for(let i=0;i<n;i++){C.kt-=1/120;K.step(C,1/120,p.x-C.x,Math.abs(p.x-C.x));C.x+=C.vx/120;}};
+ run(10);ok(C.ks==='juris'&&C.vx<-500,'megdan: the bashi charges with his spear couched');
+ run(120);ok(C.ks==='zabio'&&C.kitOpen>3&&Math.abs(C.x-(w.megdanKola[0]+118))<2,'megdan: past Marko the spear drives into the hay cart and he stands open');
+ run(120*4);ok(C.ks==null,'megdan: after a while he pulls it free');
+ const h=w.breakables.find(b=>b.megdan);api.hitCrate(h,9);ok(h.broken&&w.rojevi?.length===1&&w.rojevi[0].cilj===C,'megdan: a broken hive sends its bees at the bashi');
+ step(120*3);ok(C.pceleT>0&&C.kitOpen>0,'megdan: stung, he stands open');
+ // the well and the stall
+ const V=api.seloStvari().find(s=>s.daje==='voda'),T=api.seloStvari().find(s=>s.daje==='pogaca');ok(V&&T,'village: a well with a sweep by the guslar, a stall at the fair');
+ api.slay(C);step(120*4);Object.assign(p,{x:V.x-40,y:V.y,vx:0,vy:0,grounded:true,castLock:0});step(2);tap('KeyE');ok(V.uzeto&&(p.drink>0||p.vodaT>0),'village: E by the well and Marko drinks');
+ step(120);Object.assign(p,{x:V.x-40,castLock:0});tap('KeyE');ok(!(p.drink>.8)&&!(p.vodaT>1.4),'village: once from each well');}
 console.log(`\n${checks} checks passed.`);

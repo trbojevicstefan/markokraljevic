@@ -1,0 +1,168 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        77,
+        85,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49758
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 403
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        121,
+        78,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45828
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        123,
+        80,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44799
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        126,
+        79,
+        385,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48096
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 409
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        78,
+        87,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51588
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        108,
+        82,
+        405,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        46908
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 406
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        123,
+        79,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44217
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 409
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        77,
+        85,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49252
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 403
+    }
+  ],
+  "scale": 1.0098522167487685,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\kopljanik-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 410,
+  "targetHeight": 410,
+  "measuredHeights": [
+    403,
+    410,
+    408,
+    409,
+    401,
+    406,
+    409,
+    403
+  ],
+  "visualReview": "Spear bearer flees right in a seamless loop with both open hands overhead and head turned back in panic; spear and shield are absent.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

@@ -1,0 +1,168 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        90,
+        34,
+        441,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        69015
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 454
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        107,
+        33,
+        423,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        64272
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 455
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        100,
+        41,
+        429,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        64422
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 447
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        112,
+        32,
+        418,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        63183
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        110,
+        32,
+        419,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        62561
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        94,
+        42,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        63591
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 446
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        90,
+        34,
+        440,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        68769
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 454
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        107,
+        32,
+        423,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        64024
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    }
+  ],
+  "scale": 1.1203931203931203,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\archer-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 456,
+  "targetHeight": 456,
+  "measuredHeights": [
+    454,
+    455,
+    447,
+    456,
+    456,
+    446,
+    454,
+    456
+  ],
+  "visualReview": "Archer flees right in a seamless loop with both open hands overhead and head turned back in panic; quiver remains and bow is absent.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

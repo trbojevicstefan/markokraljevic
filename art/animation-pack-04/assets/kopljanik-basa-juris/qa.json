@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        26,
+        79,
+        485,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 409
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        42,
+        78,
+        468,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        35,
+        82,
+        476,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 406
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        34,
+        113,
+        476,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 375
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        36,
+        80,
+        476,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        34,
+        80,
+        476,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        34,
+        80,
+        476,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        26,
+        80,
+        486,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 408
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d69\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 410,
+  "measuredHeights": [
+    409,
+    410,
+    406,
+    375,
+    408,
+    408,
+    408,
+    408
+  ],
+  "visualReview": "Kopljanik-basa charges right with lowered horizontal spear, shield forward, body leaning forward, pennant trailing.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

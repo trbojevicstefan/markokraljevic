@@ -1,0 +1,135 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        131,
+        296,
+        382,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        155,
+        296,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        140,
+        296,
+        372,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        92,
+        296,
+        421,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        131,
+        296,
+        382,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        154,
+        296,
+        358,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        140,
+        296,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        95,
+        296,
+        417,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "safeMargin": 24,
+      "supportY": 487,
+      "height": 192
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d68\\pas-idle-kadar0.png",
+  "targetHeight": 192,
+  "targetSupportY": 488,
+  "measuredHeights": [
+    192,
+    192,
+    192,
+    192,
+    192,
+    192,
+    192,
+    192
+  ],
+  "sourceMode": "D68 idle/run reference fallback after image_gen identity rejection",
+  "atlasMatchesFrames": true,
+  "visualReview": "pas fear/flight animation D68; reference identity and measured height 192px.",
+  "gifFrames": 8
+}

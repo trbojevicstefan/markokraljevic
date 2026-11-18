@@ -1,0 +1,168 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        115,
+        118,
+        443,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49164
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        132,
+        119,
+        426,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47044
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 369
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        134,
+        115,
+        424,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44671
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 373
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        135,
+        112,
+        423,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        42061
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 376
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        118,
+        113,
+        439,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47007
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 375
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        120,
+        113,
+        437,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47752
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 375
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        126,
+        118,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45161
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        115,
+        119,
+        443,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49187
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 369
+    }
+  ],
+  "scale": 0.891566265060241,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d71\\akindzija-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 370,
+  "targetHeight": 370,
+  "measuredHeights": [
+    370,
+    369,
+    373,
+    376,
+    375,
+    375,
+    370,
+    369
+  ],
+  "visualReview": "Akindzija flees right in a seamless loop with both open hands overhead and head turned back in panic; sabres are absent.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}
