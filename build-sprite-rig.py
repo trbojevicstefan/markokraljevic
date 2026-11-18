@@ -493,7 +493,7 @@ if _have('marko-dize-ralo'):
 # in both, so the frame where he has just loosed is measured against the loosing frame of archer-shoot; the new drawing stands
 # lower and broader (legs wide, body leaning), and seen beside an archer on the road its head matched at 0.78 of that.
 if _have('archer-rafal') and 'archer-shoot' in SCALES:
-    SCALES['archer-rafal'] = (SCALES['archer-shoot'][0] * body_height(_cells('archer-shoot')[3]) / body_height(_cells('archer-rafal')[1]) * .78, 'feet')
+    SCALES['archer-rafal'] = (SCALES['archer-shoot'][0] * body_height(_cells('archer-shoot')[3]) / body_height(_cells('archer-rafal')[1]) * .92, 'feet')   # 18. 11.: the drawing was squat; squeezed to 0.8 of its width, and a little taller (was .78)
 # oklopnik-drugi (DOPUNA-46 v3): the low sweep after the hammer from above. He ends in the stance oklopnik-slam ends in,
 # so the last frames are made the same height (the rule of the other -drugi clips).
 if _have('oklopnik-drugi') and 'oklopnik-slam' in SCALES:
@@ -762,6 +762,18 @@ for _n, _m in D91_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0], 'feet')
         NOC_ANCHOR_SAME[_n] = _m
+# DOPUNA-94..96 (18. 11., Pod Varadinom, „Marko Kraljević i Vuča dženeral”): Vuča dženeral on his bedevija (the akindžija beg's
+# moves, look 'vuca'), the katane (the sabre-man's moves, look 'katana'), and the people of the song drawn at Miloš's measure:
+# Velimirovica, old Toplica, Kosančić Ivan and the post-carrier. Each is an edit of its model's frame 0.
+D94_MODEL = {f"vuca-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hvata', 'hurt', 'death']}
+D94_MODEL.update({f"katana-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'lunge', 'hurt', 'death', 'jump', 'omamljen']})
+D94_MODEL.update({"mounted-ritne": "mounted-idle"})   # D98: Šarac kicks with his hind legs (drawn at 0.90, given back below)
+D94_MODEL.update({c: "milos-idle" for c in ['velimirovica-idle', 'velimirovica-bezi', 'toplica-idle', 'kosancic-idle', 'knjigonosa-idle', 'knjigonosa-poklon']})
+for _n, _m in D94_MODEL.items():
+    if _have(_n) and _m in SCALES:
+        SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')
+        if _n != 'mounted-ritne':
+            NOC_ANCHOR_SAME[_n] = _m
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
@@ -773,6 +785,22 @@ for name in ['marko-trag-ostavi', 'marko-trag-povratak', 'marko-kuka-baci', 'mar
              'marko-lanac-vuce', 'marko-lanac-trgne', 'marko-potres', 'marko-zvizduk', 'marko-oko']:   # DOPUNA-46 too
     if _have(name) and 'marko-idle-2' in SCALES:
         SCALES[name] = (SCALES['marko-idle-2'][0], 'feet')
+# DOPUNA-100: Šarac held by the tail at the fair (bracing) and a riderless kick; drawn smaller than sarac-stoji: as tall as he is
+if _have('sarac-stoji') and 'sarac-stoji' in SCALES:
+    _h_sarac = body_height(_cells('sarac-stoji')[0]) * SCALES['sarac-stoji'][0]
+    for _n in ['sarac-rep-upire', 'sarac-ritne']:
+        if _have(_n):
+            SCALES[_n] = (_h_sarac / body_height(_cells(_n)[0]), 'feet')
+# DOPUNA-101: Šarac turns round under Marko (cut from Terra's third attempt): as tall as mounted-idle
+if _have('mounted-okret') and 'mounted-idle' in SCALES:
+    SCALES['mounted-okret'] = (SCALES['mounted-idle'][0] * body_height(_cells('mounted-idle')[0]) / body_height(_cells('mounted-okret')[0]), 'feet')
+# DOPUNA-97: Marko on the ground gives Šarac wine, then drinks (cut from Terra's grids at a size of their own): as tall in the
+# game as the seated Marko of marko-odmor's last frame
+if _have('marko-odmor') and 'marko-odmor' in SCALES:
+    _h_sedi = body_height(_cells('marko-odmor')[-1]) * SCALES['marko-odmor'][0]
+    for _n in ['marko-sedi-poji', 'marko-sedi-pije']:
+        if _have(_n):
+            SCALES[_n] = (_h_sedi / body_height(_cells(_n)[0]), 'feet')
 if _have('sarac-galop') and 'mounted-run' in SCALES:   # DOPUNA-46: Šarac alone, the horse of mounted-run
     SCALES['sarac-galop'] = (SCALES['mounted-run'][0], 'center')
 for name in ['soko-pogodjen', 'soko-pad']:

@@ -656,12 +656,12 @@ export const GB_POHODI={
   K.borba('jezero',[['sword',600],['shield',900]]);K.crack('jezero','kristalni',{row:1});K.cudo('kristalni',600,'Kristal',1);
   K.drop('jezero',300,500,'kosti');K.chimney('kosti',800,{upper:'jezero'});K.lik('kosti',400,'kostur-stoji','Kostur junaka: I ja sam tražio kristalni prolaz. Ponor me je stigao pre juriša.',2);K.heart('kosti',1000,2);}}),
 // ---------------------------------------------------------------------------------------------------------------------
-// 12 · Zimski prevoj (stih o Đemu: „topuzinu baca u oblake“): Marko prati barjake preko snežnog prevoja. Karavan je zapeo
+// 12 · Pod Varadinom („Marko Kraljević i Vuča dženeral”): Marko prati barjake preko zelenih brda do polja pod Varadinom. Karavan je zapeo
 // u konačištu, snežni most je pukao (juriš), a karaula na sedlu prevoja ima vrata na daleki prekidač. Vilin trag čeka kraj
 // ledenog izvora pod prevojem; na kuli iza karaule je Akindžijski beg.
-12:pohod({id:'prevoj',ime:'Zimski prevoj',biom:'urvina',zeljeniBiom:'prevoj',daje:'trag',daje2:'klizanje',pocetne:['krilo','nalet'],
+12:pohod({id:'prevoj',ime:'Pod Varadinom',biom:'urvina',zeljeniBiom:'prevoj',daje:'trag',daje2:'klizanje',pocetne:['krilo','nalet'],
  cilj:'Prati barjake preko prevoja, nađi Vilin trag kraj ledenog izvora i prođi karaulu do kule',start:'podnozje',spawnDx:240,
- uvod:'Zimski prevoj. Barjaci vode do kule na prevoju, ali karaula na sedlu otvara vrata samo na daleki prekidač. Vilin trag čeka kraj ledenog izvora, ispod snega.',
+ uvod:'Pod Varadinom. Barjaci vode preko zelenih brda do polja pod Varadinom, ali karaula na brdu otvara vrata samo na daleki prekidač. Vilin trag čeka kraj izvora, u travi.',
  sobe:[
   ['vskrov','Zaleđeni grob',-5,0,1,1,{secret:true,interior:true,lore:'Zaleđeni grob. Ovde je sahranjen barjaktar koji je prvi poneo barjak preko prevoja.'}],
   ['vstaza','Ledeni tunel',-4,0,3,1,{interior:true}],

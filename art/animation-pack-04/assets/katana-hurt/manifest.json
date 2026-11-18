@@ -1,0 +1,52 @@
+{
+  "characterId": "katana-hurt",
+  "description": "Hungarian hussar hurt",
+  "holdLastFrame": false,
+  "animation": {
+    "columns": 4,
+    "rows": {
+      "motion": {
+        "frames": 4,
+        "loop": false,
+        "holdLastFrame": false,
+        "durations_ms": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    }
+  },
+  "frame_layout": {
+    "sheetWidth": 2048,
+    "rows": {
+      "motion": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        },
+        {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      ]
+    }
+  }
+}

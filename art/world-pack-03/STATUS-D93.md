@@ -1,0 +1,22 @@
+﻿# STATUS D93
+
+- D93 | varadin-near | 2172×724 px; pokušaj 2/3 | šav: pregledan na dve kopije, prelaz u travi; | roze odsjaj: pregled na belom i plavom, ostali ružičasti tragovi u krošnjama; potrebno doraditi pre prihvatanja. Najviša neprovidna tačka y=204 px, visina 520 px. PNG i probe su radna verzija.
+- D93 | tlo-varadin | 1024×384 px; pokušaj 1/3 | šav: urađena proba s dve kopije, potrebno detaljno pregledati | roze odsjaj: nije korišćen ljubičasti ključ; nije pregledano na beloj podlozi | travnati pojas približno 35 px posle izvoza, umesto traženih ~70 px; radna verzija, potrebna dorada.
+- D93 | tlo-varadin-kraj | 192×384 px; pokušaj 1/3 | šav s tlom: nije pregledan, potrebna dorada poravnanja | roze odsjaj: providnost iz generatora, nije proveren na beloj i plavoj podlozi; radna verzija.
+- D93 | tlo-varadin | 1024×384 px; pokušaj 2/3 | šav: proba sa dve kopije sačuvana, nije vizuelno potvrđen | roze odsjaj: ljubičasti ključ nije korišćen; providnost preuzeta iz uzora | trava i oker stena ponovo generisane; potreban pregled.
+- D93 | tlo-varadin-kraj | 192×384 px; pokušaj 2/3 | šav s tlom: nije vizuelno potvrđen | roze odsjaj: nije korišćen ljubičasti ključ; providnost iz generatora, potreban pregled na podlogama.
+- D93 | varadin-sky | 1774×887 px; pokušaj 2/3 | šav: nije proveravan za punu sliku neba | roze odsjaj: nema ključanja, ružičasta je namerna boja jutarnjeg neba.
+- D93 | varadin-far | 2172×724 px; pokušaj 1/3 | šav: proba sa dve kopije sačuvana, vizuelna potvrda predstoji | roze odsjaj: ključ uklonjen i boja korigovana; probe belo/plavo sačuvane, pregled predstoji.
+- D93 | varadin-mid | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, pregled predstoji | roze odsjaj: ključ uklonjen i boja korigovana; probe belo/plavo sačuvane, pregled predstoji.
+- D93 | varadin-mid-b | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, pregled predstoji | roze odsjaj: ključ uklonjen i boja korigovana; dim zahteva pregled na belom i plavom.
+- D93 | varadin-near-b | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, vrba presečena levo, potrebna dorada | roze odsjaj: ključ uklonjen i boja korigovana, pregled proba predstoji.
+- D93 | varadin-near-c | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, pregled predstoji | roze odsjaj: ključ uklonjen i boja korigovana, pregled proba predstoji | generisane i zgrade iz uzora, potrebna provera motiva.
+- D93 | varadin-prednji | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, pregled predstoji | roze odsjaj: ključ uklonjen i boja korigovana, pregled proba predstoji.
+- D93 | varadin-vista | 2172×724 px; pokušaj 1/3 | šav: proba sačuvana, pregled predstoji | roze odsjaj: nema ključanja; puna slika sa nebom.
+- D93 | prelaz-varadin-1 | 1024×1024 px; pokušaj 1/3 | šav: nije primenljiv | roze odsjaj: nema ključanja; tri zatočenika i pismo prikazani.
+- D93 | prelaz-varadin-2 | 1024×1024 px; pokušaj 1/3 | šav: nije primenljiv | roze odsjaj: nema ključanja; Marko, Šarac, skela i tvrđava prikazani.
+- D93 | prelaz-varadin-anim | 9216×512 px; pokušaj 1/3 | šav: nije primenljiv za traku kadrova | roze odsjaj: nema ključanja | generator je nacrtao 12 kadrova sa dimom, proveriti poravnanje i kvalitet uvećanja; zastava i odsjaj nisu potvrđeni kao animirani.
+- D93 | varadin-near-b | pokušaj 2/3 odbačen: uklonio je obe vrbe; ostaje pokušaj 1 sa vidljivim šavom.
+- D93 | tlo-varadin | 1024×384 px; pokušaj 3/3 | trava zadebljana i vlati vise preko ivice, kamen braon-oker; šav: nova proba sačuvana, potrebna provera; roze odsjaj: bez ključanja.
+- D93 | varadin-near | prihvaćen po Stefanovoj odluci; ružičaste tragove u krošnjama skida Claude.
+- D93 | naknadni pregled | tlo-varadin: šav je vidljiv u steni, trava je deblja ali vrh maske odseca deo vlati; varadin-far: proba šava pregledana, prelaz u ravnici relativno miran; varadin-mid-b: na belom dim ostaje ružičast; varadin-near-c: šav pregledan, u slici su crkva i kuća umesto traženog podnožja bedema; varadin-prednji: na plavom pregledan, ponegde crvenkast rub. Ostale probe i poravnanje kraja tla ostaju za pregled.

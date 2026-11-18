@@ -1,0 +1,70 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        201,
+        61,
+        471,
+        488
+      ],
+      "height": 427,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 55367,
+      "referenceArea": 61173,
+      "areaRatio": 0.9051
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        152,
+        83,
+        462,
+        488
+      ],
+      "height": 405,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 49488,
+      "referenceArea": 59324,
+      "areaRatio": 0.8342
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        210,
+        129,
+        477,
+        488
+      ],
+      "height": 359,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 45906,
+      "referenceArea": 63299,
+      "areaRatio": 0.7252
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        201,
+        67,
+        478,
+        488
+      ],
+      "height": 421,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 54451,
+      "referenceArea": 61085,
+      "areaRatio": 0.8914
+    }
+  ],
+  "commonScale": 0.78,
+  "reference": "pokret-sword-hurt.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

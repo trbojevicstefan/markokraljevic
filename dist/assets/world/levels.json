@@ -1743,7 +1743,7 @@
   },
   {
     "id": "prevoj",
-    "name": "Zimski prevoj",
+    "name": "Pod Varadinom",
     "width": 6240,
     "spawn": {
       "x": 80,
@@ -1753,7 +1753,7 @@
       "x": 6100,
       "y": 590
     },
-    "palette": "hladna plava i bledo zlato",
+    "palette": "letnje jutro: zelena trava, Dunav i topli kamen Varadina",
     "layers": [
       {
         "id": "prevoj-sky",
@@ -1914,13 +1914,13 @@
         "height": 175
       },
       {
-        "id": "prop-drvo-sneg",
+        "id": "prop-drvo-hrast",
         "x": 300,
         "y": 590,
         "height": 140
       },
       {
-        "id": "prop-platforma-sneg",
+        "id": "prop-kruska",
         "x": 620,
         "y": 590,
         "height": 240
@@ -1932,19 +1932,19 @@
         "height": 180
       },
       {
-        "id": "prop-balvan",
+        "id": "prop-bure",
         "x": 1260,
         "y": 590,
         "height": 125
       },
       {
-        "id": "prop-drvo-sneg",
+        "id": "prop-drvo-hrast",
         "x": 1580,
         "y": 590,
         "height": 140
       },
       {
-        "id": "prop-platforma-sneg",
+        "id": "prop-kruska",
         "x": 1900,
         "y": 590,
         "height": 240
@@ -1956,19 +1956,19 @@
         "height": 180
       },
       {
-        "id": "prop-balvan",
+        "id": "prop-bure",
         "x": 2290.0,
         "y": 590,
         "height": 125
       },
       {
-        "id": "prop-drvo-sneg",
+        "id": "prop-drvo-hrast",
         "x": 2860,
         "y": 590,
         "height": 140
       },
       {
-        "id": "prop-platforma-sneg",
+        "id": "prop-kruska",
         "x": 3180,
         "y": 590,
         "height": 240
@@ -1980,19 +1980,19 @@
         "height": 180
       },
       {
-        "id": "prop-balvan",
+        "id": "prop-bure",
         "x": 3820,
         "y": 590,
         "height": 125
       },
       {
-        "id": "prop-drvo-sneg",
+        "id": "prop-drvo-hrast",
         "x": 4370.0,
         "y": 590,
         "height": 140
       },
       {
-        "id": "prop-platforma-sneg",
+        "id": "prop-kruska",
         "x": 4460,
         "y": 590,
         "height": 240
@@ -2004,61 +2004,25 @@
         "height": 180
       },
       {
-        "id": "prop-balvan",
+        "id": "prop-bure",
         "x": 5100,
         "y": 590,
         "height": 125
       },
       {
-        "id": "prop-drvo-sneg",
+        "id": "prop-drvo-hrast",
         "x": 5420,
         "y": 590,
         "height": 140
       },
       {
-        "id": "prop-platforma-sneg",
+        "id": "prop-kruska",
         "x": 5740,
         "y": 590,
         "height": 240
       }
     ],
     "status": "environment layout, not integrated into campaign",
-    "nightLayers": [
-      {
-        "id": "prevoj-sky-night",
-        "speed": 0.04
-      },
-      {
-        "id": "prevoj-far-night",
-        "speed": 0.16
-      },
-      {
-        "id": "prevoj-mid-night",
-        "speed": 0.38
-      },
-      {
-        "id": "prevoj-near-night",
-        "speed": 0.72
-      }
-    ],
-    "stormLayers": [
-      {
-        "id": "prevoj-sky-storm",
-        "speed": 0.04
-      },
-      {
-        "id": "prevoj-far-storm",
-        "speed": 0.16
-      },
-      {
-        "id": "prevoj-mid-storm",
-        "speed": 0.38
-      },
-      {
-        "id": "prevoj-near-storm",
-        "speed": 0.72
-      }
-    ],
     "design": {
       "goal": "Prati barjake do kule na prevoju.",
       "movement": "Duge deonice za Šarca, snežne police i kratki prolazi kroz stene.",

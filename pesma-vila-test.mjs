@@ -66,8 +66,8 @@ until(()=>T.state==='bije',120*6,'the vila falling');
 ok(!api.state().horseMounted&&T.saracX!=null,'mace: she falls, Marko comes down from the saddle and Šarac stands by');
 
 // ---- Marko over the vila: J three times, then her oath ----
-for(let i=0;i<3;i++){step(90);tap('KeyJ');}
-ok(T.bije.hits===3,'vila: three blows with the mace, three verses');
+for(let i=0;i<60;i++){step(9);tap('KeyJ');}
+ok(T.bije.hits===40&&T.bije.stih===3,'vila: forty blows, mashed, and the three verses come as the meter fills');
 until(()=>api.pesma()?.ph==='bilje',120*14,'the vila\'s oath');
 ok(T.state==='bilje'&&J.ph==='bilje','vila: she swears by God and Saint John, and Marko lets her go into the mountain');
 

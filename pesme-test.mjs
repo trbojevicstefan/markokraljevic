@@ -86,7 +86,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  api.slay(f);step(2);ok(T.done&&T.ph==='kraj','mehana: „Dobra gvožđa u loša junaka!” — the tavern is done');
  ok(api.draw()===null,'mehana: the tavern, Šarac and Filip draw without an error');}
 // ---- Zimski prevoj: under Varadin (Marko Kraljević i Vuča dženeral) ----
-{const w=await start('prevoj');const T=w.traps.find(t=>t.kind==='varadin');const {p}=api.state();
+{const w=await start('prevoj');const T=w.traps.find(t=>t.kind==='varadin');const {p}=api.state();for(const e of w.enemies)if(e.champion)e.alive=true;
  ok(T&&T.logor>T.x0&&T.logor<T.x1,'varadin: the camp in the field under Varadin');
  Object.assign(p,{x:T.x0+400,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='logor','varadin: Miloš’s letter sealed in blood; Marko comes under Varadin');
  until(()=>T.ph==='pije',120*10,'the spear in the meadow');step(120);ok(T.koplje&&p.sedi>0,'varadin: the spear in the meadow, Šarac tied to it, Marko sits down to drink');
@@ -95,7 +95,8 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  tap('KeyE');step(2);ok(T.ph==='boj1'&&api.state().horseMounted,'varadin: E — Marko throws the ledjen in the grass and leaps on Šarac');
  for(const e of near)api.slay(e);step(3);ok(T.ph==='boj2pre','varadin: „kako soko među golubove” — Velimir is bound');
  until(()=>T.ph==='boj2',120*8,'Vuča’s cannons');const wave=w.enemies.filter(e=>e.alive&&e.katana===2);ok(wave.length===7,'varadin: Vuča shakes the cannons and sends more katane');
- for(const e of wave)api.slay(e);step(3);ok(T.ph==='vojvode','varadin: Vuča flees on his mare, the thrown mace brings him down');
+ for(const e of wave)api.slay(e);step(3);ok(T.ph==='potera','varadin: the katane are cut down, Vuča flees on his mare');
+ const V=w.enemies.find(e=>e.champion&&e.look==='vuca');ok(V&&V.kit==='beg'&&V.name==='Vuča dženeral','varadin: Vuča dženeral is the champion of the pohod, on the beg’s moves');V.alive=false;step(3);ok(T.ph==='vojvode'&&T.posle,'varadin: the thrown mace brings him down „u zelenu travu”, Vuča is bound');
  until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted,'varadin: the general’s wife opens the dungeon: Miloš and the voivodes are free');
  ok(api.draw()===null,'varadin: the camp, Šarac and Miloš draw without an error');}
 // ---- Ruševine: the Kosovo maiden (Marko Kraljević ukida svadbarinu) ----

@@ -1,0 +1,96 @@
+{
+  "targetHeight": 385,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        174,
+        103,
+        289,
+        488
+      ],
+      "height": 385,
+      "supportY": 487,
+      "area": 29832,
+      "margin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        162,
+        107,
+        302,
+        488
+      ],
+      "height": 381,
+      "supportY": 487,
+      "area": 31483,
+      "margin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        162,
+        111,
+        302,
+        488
+      ],
+      "height": 377,
+      "supportY": 487,
+      "area": 32282,
+      "margin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        159,
+        111,
+        304,
+        488
+      ],
+      "height": 377,
+      "supportY": 487,
+      "area": 32382,
+      "margin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        160,
+        104,
+        303,
+        488
+      ],
+      "height": 384,
+      "supportY": 487,
+      "area": 32492,
+      "margin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        164,
+        96,
+        299,
+        488
+      ],
+      "height": 392,
+      "supportY": 487,
+      "area": 33181,
+      "margin": 24
+    }
+  ],
+  "areaRatios": [
+    1.0,
+    1.055,
+    1.082,
+    1.085,
+    1.089,
+    1.112
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "greenPixels": 0
+}

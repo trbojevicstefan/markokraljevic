@@ -1,0 +1,100 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        226,
+        59,
+        484,
+        488
+      ],
+      "height": 429,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 55949,
+      "referenceArea": 57264,
+      "areaRatio": 0.977
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        200,
+        116,
+        475,
+        488
+      ],
+      "height": 372,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 53496,
+      "referenceArea": 66248,
+      "areaRatio": 0.8075
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        130,
+        148,
+        426,
+        488
+      ],
+      "height": 340,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 54077,
+      "referenceArea": 94602,
+      "areaRatio": 0.5716
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        35,
+        197,
+        477,
+        488
+      ],
+      "height": 291,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 57194,
+      "referenceArea": 101271,
+      "areaRatio": 0.5648
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        43,
+        241,
+        470,
+        488
+      ],
+      "height": 247,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 54649,
+      "referenceArea": 113440,
+      "areaRatio": 0.4817
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        31,
+        266,
+        482,
+        488
+      ],
+      "height": 222,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 53550,
+      "referenceArea": 127161,
+      "areaRatio": 0.4211
+    }
+  ],
+  "commonScale": 0.95,
+  "reference": "pokret-sword-death.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

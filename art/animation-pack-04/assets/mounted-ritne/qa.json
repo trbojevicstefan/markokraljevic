@@ -1,0 +1,116 @@
+{
+  "k": 0.9,
+  "sourceScale": 1.1053050397877984,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        81,
+        72,
+        434,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 146848,
+      "bboxAreaRatio": 1.0
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        58,
+        83,
+        443,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 155925,
+      "bboxAreaRatio": 1.062
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        47,
+        102,
+        446,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 154014,
+      "bboxAreaRatio": 1.049
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        58,
+        110,
+        470,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 155736,
+      "bboxAreaRatio": 1.061
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        46,
+        111,
+        478,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 162864,
+      "bboxAreaRatio": 1.109
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        50,
+        107,
+        480,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 163830,
+      "bboxAreaRatio": 1.116
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        51,
+        95,
+        475,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 166632,
+      "bboxAreaRatio": 1.135
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        82,
+        74,
+        432,
+        488
+      ],
+      "frontHoofAnchorX": 350,
+      "supportY": 487,
+      "bboxArea": 144900,
+      "bboxAreaRatio": 0.987
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "attempt": 1,
+  "note": "Front hoof anchors aligned approximately; original drawings have different hoof shapes."
+}

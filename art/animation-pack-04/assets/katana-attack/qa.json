@@ -1,0 +1,100 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        228,
+        62,
+        486,
+        488
+      ],
+      "height": 426,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 52764,
+      "referenceArea": 53873,
+      "areaRatio": 0.9794
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        195,
+        64,
+        488,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 53381,
+      "referenceArea": 52278,
+      "areaRatio": 1.0211
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        222,
+        59,
+        488,
+        488
+      ],
+      "height": 429,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 51943,
+      "referenceArea": 46131,
+      "areaRatio": 1.126
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        102,
+        69,
+        477,
+        488
+      ],
+      "height": 419,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 52354,
+      "referenceArea": 55021,
+      "areaRatio": 0.9515
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        51,
+        77,
+        476,
+        488
+      ],
+      "height": 411,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 54404,
+      "referenceArea": 64052,
+      "areaRatio": 0.8494
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        228,
+        62,
+        484,
+        488
+      ],
+      "height": 426,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 53875,
+      "referenceArea": 55969,
+      "areaRatio": 0.9626
+    }
+  ],
+  "commonScale": 0.95,
+  "reference": "pokret-sword-attack.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

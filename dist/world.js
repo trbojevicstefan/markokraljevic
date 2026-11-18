@@ -61,7 +61,7 @@ export function integrate(body,dt,platforms,runes=[]){
 }
 
 // ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
-const THEME_FOES={azak:['sword','shield','akindzija'],selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['akindzija','oklopnik','sword','archer','shield','palikuca']};
+const THEME_FOES={azak:['sword','shield','akindzija'],selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['sword','kopljanik','sword','archer','sword','shield']};
 export const LEVEL_ZONE=6;
 // What each campaign asks before its end banner counts. use: press E beside it; take: walk over it;
 // gate: blocks the road until everything before it is done (guarded gates also wait for nearby foes); finish: art by the banner.
@@ -72,7 +72,7 @@ const GOAL_PLAN={
  suma:{goals:[.25,.5,.75].map(at=>({kind:'use',at,art:['cilj-vilinski-kamen','cilj-vilinski-kamen-budan'],h:150,label:'Probudi vilinske kamenove',glow:'#9fffe0',gy:.5,done:'Kamen se probudio.'})),finish:'Otkrij skriveno svetilište'},
  manastir:{goals:[{kind:'take',at:.58,trap:'samodreza',art:['cilj-relikvija'],h:110,label:'Pronađi carsku knjigu i presudi',glow:'#ffe39a',gy:.8,done:'Knjige starostavne su u tvojim rukama.'}],finish:'Podigni manastirski barjak'},
  tvrdjava:{goals:[{kind:'use',at:.4,art:['cilj-opsadna-sprava','cilj-opsadna-sprava-srusena'],h:160,label:'Onesposobi opsadnu spravu',done:'Sprava je slomljena.',smash:true},{kind:'gate',at:.66,art:GATE,h:290,label:'Otvori tvrđavsku kapiju'}],finish:'Prođi kroz tvrđavu'},
- prevoj:{goals:[],finish:'Prati barjake do kule na prevoju'},
+ prevoj:{goals:[],finish:'Prati barjake do Varadina'},
  pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje Ravijojla',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao prolaz.'}],finish:'Prođi kristalnim prolazom'},
  podrum:{goals:[],finish:'Nađi izlaz iz podruma'},
  mocvara:{goals:[.2,.4,.6,.8].map(at=>({kind:'use',at,art:['cilj-svetiljka','cilj-svetiljka-upaljena'],h:190,label:'Upali svetiljke preko močvare',glow:'#ffcf7a',gx:.3,gy:.66,done:'Svetiljka gori.'})),finish:'Prati svetiljke do kraja močvare'},
@@ -96,7 +96,7 @@ function makeGoals(L,floorAt,traps=[]){
 const RISE=24,RUN=46,LOW=660;
 export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true},zid:{w:74,h:205,hp:4,solid:true}};
 // each land breaks its own things
-export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['santa','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast'],urvina:['stena','panj']};
+export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['plast','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast'],urvina:['stena','panj']};
 // Marvels from the songs about Marko, one hidden in each land; each one strengthens him for good.
 export const CUDA=[
  {id:'sarceva-potkova',name:'Šarčeva potkova',song:'Šarac, Markov verni konj',perk:'Brži trk',land:'selo'},
@@ -122,7 +122,7 @@ export const RECIPES={
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates tajna guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
- prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks tajna flat varadin crumble watch logs crates trgovac flat boss:akindzija',
+ prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks tajna flat varadin crumble watch logs crates trgovac flat boss:vuca',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks tajna flat spikebed ledges crumble crates trgovac flat boss:azdaja',
  podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates tajna ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
  mocvara:'flat bridge watch soko crumble ferry branik:putnici bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat tajna trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
@@ -140,7 +140,7 @@ export const RECIPES={
  azak:'guslar:mir uspon ivice predah:300 strelnice krunjenje predah straza tajna boss:arapin',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
-export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
+export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},vuca:{type:'akindzija',name:'Vuča dženeral',hp:1460,kit:'beg',look:'vuca'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
  arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
  trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15,look:'zlatni-janicar'},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:2000,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
@@ -204,7 +204,7 @@ export function buildLayout(L,variant='day'){
   // pull the lever, then run: the gate stays open only a few heartbeats
   lever(){const x0=x,len=ri(760,840);ground(len);traps.push({kind:'timed',lever:{x:x0+90,y:gy},gate:{x:x0+len-90,y:gy},time:5.2});block(x0+len*.38,80,gy-80,{pillar:true});traps.push({kind:'spikes',x:Math.round(x0+len*.6),w:90,y:gy});busy.push([x0,x0+len]);},
   // a boulder (or an avalanche in the snow) rolls after Marko down a course that ends at a ravine
-  chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:L.id==='prevoj'});},
+  chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:!!L.zimski});},
   // a heavy iron-bound crate and a stone plate: the gate stays open only while something weighs the plate down
   plate(){const x0=x,len=ri(760,840);ground(len);const bx=x0+150,px=x0+Math.round(len*.52),gx=x0+len-110;platforms.push({x:bx,y:gy-76,w:76,h:76,kind:'teret',solid:true,push:true});traps.push({kind:'plate',x:px,w:84,y:gy,gate:{x:gx,y:gy},vault:vaults.length});vaults.push({door:{x:gx,y:gy}});busy.push([x0,x0+len]);},
   // a cracked wall closes the road: too tall to jump, only heavy blows (K) bring it down; a chest waits behind it
@@ -240,7 +240,12 @@ export function buildLayout(L,variant='day'){
   // „Marko Kraljević ukida svadbarinu”: the Kosovo maiden, grey with waiting, by the water at the start (game.js: kosovka)
   kosovka(){const x0=x,len=1100;ground(len);traps.push({kind:'kosovka',x0,x1:x0+len,y:gy,dev:x0+760,nodecor:[[x0+520,x0+960]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Vuča dženeral”: the camp under Varadin, the katane in two waves, Miloš out of the dungeon (game.js: varadin)
-  varadin(){const x0=x,len=3400;ground(len);traps.push({kind:'varadin',x0,x1:x0+len,y:gy,logor:x0+900,nodecor:[[x0+500,x0+1500],[x0+len-600,x0+len]]});busy.push([x0-40,x0+len]);},
+  varadin(){const x0=x,len=3400;ground(len);const T={kind:'varadin',x0,x1:x0+len,y:gy,logor:x0+900,nodecor:[[x0+500,x0+1500],[x0+len-1000,x0+len]]};traps.push(T);busy.push([x0-40,x0+len]);
+   // the walls of Varadin at the end of the field (D99 prop-bedem-stepenice, mirrored, 330 high; prop-bedem-kula 430 high): solid, under the painting
+   const ZH=330,zw=Math.round(1307*ZH/780),L=x0+len-650-zw/2,top=gy-Math.round(ZH*655/780),n=12,rise=(gy-top)/n,a=L+zw*.10,b=L+zw*.64;
+   for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,L+zw*.95-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
+   const KH=430,kw=Math.round(604*KH/936),kx=L+zw+40,ktop=gy-Math.round(KH*830/936);block(kx+14,kw-28,ktop,{kind:'step',slika:true});
+   T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
   mehana(){const x0=x,len=2400;ground(len);traps.push({kind:'mehana',x0,x1:x0+len,y:gy,kuca:x0+1150,sto:x0+1430,sarac:x0+1700,nodecor:[[x0+700,x0+1950]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Đemo Brđanin”: Marko led in chains past three gallows (Orid, Vučitrn, Zvečan) to Janja's tavern (game.js: okovi)

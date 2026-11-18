@@ -1,0 +1,61 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        130,
+        24,
+        383,
+        487
+      ],
+      "height": 463,
+      "supportY": 486,
+      "areaRatio": 1.019,
+      "margin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        101,
+        33,
+        411,
+        487
+      ],
+      "height": 454,
+      "supportY": 486,
+      "areaRatio": 1.03,
+      "margin": 25
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        93,
+        49,
+        419,
+        487
+      ],
+      "height": 438,
+      "supportY": 486,
+      "areaRatio": 1.065,
+      "margin": 25
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        130,
+        24,
+        383,
+        487
+      ],
+      "height": 463,
+      "supportY": 486,
+      "areaRatio": 1.019,
+      "margin": 24
+    }
+  ],
+  "scale": 0.8151408450704225,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 4
+}

@@ -1,0 +1,100 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        244,
+        76,
+        475,
+        488
+      ],
+      "height": 412,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 48953,
+      "referenceArea": 54107,
+      "areaRatio": 0.9047
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        194,
+        96,
+        488,
+        488
+      ],
+      "height": 392,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 47353,
+      "referenceArea": 54706,
+      "areaRatio": 0.8656
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        122,
+        103,
+        466,
+        488
+      ],
+      "height": 385,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 49684,
+      "referenceArea": 62691,
+      "areaRatio": 0.7925
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        52,
+        117,
+        467,
+        488
+      ],
+      "height": 371,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 52141,
+      "referenceArea": 67410,
+      "areaRatio": 0.7735
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        153,
+        105,
+        460,
+        488
+      ],
+      "height": 383,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 48760,
+      "referenceArea": 60739,
+      "areaRatio": 0.8028
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        235,
+        87,
+        481,
+        488
+      ],
+      "height": 401,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 49918,
+      "referenceArea": 56345,
+      "areaRatio": 0.8859
+    }
+  ],
+  "commonScale": 0.95,
+  "reference": "pokret-sword-lunge.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

@@ -541,7 +541,11 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
 #menu .menu-copy::-webkit-scrollbar{display:none}
 @media(max-height:820px){#menu .intro{display:none}#menu .menu-copy h1{--hs:74px;font-size:74px}#menu .subtitle{margin-bottom:8px}}
 @media(max-height:640px){#menu .ms-item small{display:none}#menu .menu-copy h1{--hs:62px;font-size:62px}}
-#menu .menu-fairy{right:2.5%!important;top:5%!important;width:120px!important;height:120px!important;z-index:3}
+#menu .menu-fairy{right:2.5%!important;top:5%!important;width:110px!important;height:148px!important;z-index:3}
+/* the fairy flies: the 8 frames of vila-let (wings beat, legs and sash move), Stefan 18. 11. */
+#menu .menu-fairy .vila-krila{position:absolute;inset:0;background:url(assets/ui/vila-meni.webp) 0 0/800% 100% no-repeat;animation:vilaKrila .8s steps(8) infinite}
+@keyframes vilaKrila{to{background-position-x:114.2857%}}
+@media(prefers-reduced-motion:reduce){#menu .menu-fairy .vila-krila{animation:none}}
 #menu .fairy-dust{right:2%;top:12%}
 /* Codex's ledge keeps its proportions; Marko's feet sit on its flat top (28% down the picture) */
 #menu{--gw:max(62vw,110vh);--gh:calc(var(--gw) / 3.214);--ground-top:calc(var(--gh) * .72 - 2vh)}

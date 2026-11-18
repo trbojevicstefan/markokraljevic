@@ -1,0 +1,100 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        198,
+        43,
+        488,
+        488
+      ],
+      "height": 445,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 51445,
+      "referenceArea": 51507,
+      "areaRatio": 0.9988
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        205,
+        56,
+        488,
+        488
+      ],
+      "height": 432,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 49327,
+      "referenceArea": 50988,
+      "areaRatio": 0.9674
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        191,
+        103,
+        477,
+        488
+      ],
+      "height": 385,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 49548,
+      "referenceArea": 60716,
+      "areaRatio": 0.8161
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        193,
+        70,
+        486,
+        488
+      ],
+      "height": 418,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 51246,
+      "referenceArea": 58045,
+      "areaRatio": 0.8829
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        197,
+        43,
+        488,
+        488
+      ],
+      "height": 445,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 52290,
+      "referenceArea": 53645,
+      "areaRatio": 0.9747
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        183,
+        35,
+        488,
+        488
+      ],
+      "height": 453,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 54106,
+      "referenceArea": 52210,
+      "areaRatio": 1.0363
+    }
+  ],
+  "commonScale": 0.95,
+  "reference": "pokret-sword-omamljen.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

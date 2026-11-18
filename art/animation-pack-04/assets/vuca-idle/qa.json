@@ -1,0 +1,75 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        126,
+        26,
+        385,
+        489
+      ],
+      "height": 463,
+      "supportY": 488
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        126,
+        25,
+        387,
+        489
+      ],
+      "height": 464,
+      "supportY": 488
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        126,
+        26,
+        385,
+        489
+      ],
+      "height": 463,
+      "supportY": 488
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        124,
+        27,
+        389,
+        489
+      ],
+      "height": 462,
+      "supportY": 488
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        126,
+        27,
+        386,
+        489
+      ],
+      "height": 462,
+      "supportY": 488
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        126,
+        27,
+        385,
+        489
+      ],
+      "height": 462,
+      "supportY": 488
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "approval": "User reports Claude accepted attempt 2 including moustache smoothing",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

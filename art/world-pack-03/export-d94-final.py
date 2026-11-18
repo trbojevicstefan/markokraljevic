@@ -1,0 +1,7 @@
+﻿from pathlib import Path
+import sys,json,shutil
+from PIL import Image
+root=Path('art/animation-pack-04'); name=sys.argv[1]; attempt=sys.argv[2]; run=root/'sources'/name/f'attempt-{attempt}'; qa=json.loads((run/'qa.json').read_text()); n=len(qa['frames']); loop=name in ['vuca-mounted','vuca-run']; out=root/'assets'/name; (out/'frames/motion').mkdir(parents=True,exist_ok=True); atlas=Image.new('RGBA',(n*512,512)); gifs=[]
+for i in range(n):
+ im=Image.open(run/f'frame-{i}.png').convert('RGBA'); im.save(out/f'frames/motion/frame-{i}.png'); atlas.alpha_composite(im,(512*i,0)); bg=Image.new('RGBA',(512,512),(35,42,49,255)); bg.alpha_composite(im); gifs.append(bg.convert('RGB'))
+atlas.save(out/'atlas.png'); gifs[0].save(out/'preview.gif',save_all=True,append_images=gifs[1:],duration=100,loop=0,disposal=2); board=Image.open(run/'comparison.png'); board.crop((0,0,512,1024)).save(out/'identity-size-comparison.png'); qa.update(identityApproved=True,motionApproved=True,atlasMatchesFrames=True,gifFrames=n); (out/'qa.json').write_text(json.dumps(qa,indent=2)+'\n',encoding='utf-8'); m={'characterId':name,'description':name+' animation','holdLastFrame':not loop,'animation':{'columns':n,'rows':{'motion':{'frames':n,'loop':loop,'holdLastFrame':not loop,'durations_ms':[100]*n}}},'frame_layout':{'sheetWidth':n*512,'rows':{'motion':[{'x':512*i,'y':0,'w':512,'h':512} for i in range(n)]}}}; (out/'manifest.json').write_text(json.dumps(m,indent=2)+'\n',encoding='utf-8')

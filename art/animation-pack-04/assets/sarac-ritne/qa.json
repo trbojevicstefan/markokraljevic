@@ -1,0 +1,103 @@
+{
+  "scale_grid": 1.1073170731707318,
+  "reference_height": 382,
+  "reference_width": 398,
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        88,
+        131,
+        466,
+        486
+      ],
+      "height": 355,
+      "area": 63646
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        70,
+        202,
+        484,
+        486
+      ],
+      "height": 284,
+      "area": 62976
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        30,
+        218,
+        481,
+        486
+      ],
+      "height": 268,
+      "area": 62556
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        28,
+        156,
+        476,
+        486
+      ],
+      "height": 330,
+      "area": 65802
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        30,
+        140,
+        473,
+        486
+      ],
+      "height": 346,
+      "area": 60062
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        33,
+        131,
+        466,
+        486
+      ],
+      "height": 355,
+      "area": 62692
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        33,
+        131,
+        466,
+        486
+      ],
+      "height": 355,
+      "area": 64596
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        90,
+        131,
+        466,
+        486
+      ],
+      "height": 355,
+      "area": 63190
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "reference_height_px": 382,
+  "frame_zero_height_px": 355,
+  "relative_height_approx": 0.929,
+  "support_line_y": 488,
+  "note": "Support line is the exclusive lower image bounding coordinate; opaque pixels end at y=487."
+}

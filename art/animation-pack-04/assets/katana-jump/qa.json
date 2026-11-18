@@ -1,0 +1,100 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        171,
+        97,
+        456,
+        488
+      ],
+      "height": 391,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 57851,
+      "referenceArea": 82124,
+      "areaRatio": 0.7044
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        169,
+        26,
+        461,
+        450
+      ],
+      "height": 424,
+      "supportY": 449,
+      "safeMargin": 26,
+      "area": 52065,
+      "referenceArea": 67258,
+      "areaRatio": 0.7741
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        194,
+        76,
+        459,
+        450
+      ],
+      "height": 374,
+      "supportY": 449,
+      "safeMargin": 53,
+      "area": 48683,
+      "referenceArea": 68472,
+      "areaRatio": 0.711
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        190,
+        95,
+        455,
+        450
+      ],
+      "height": 355,
+      "supportY": 449,
+      "safeMargin": 57,
+      "area": 45224,
+      "referenceArea": 69908,
+      "areaRatio": 0.6469
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        189,
+        53,
+        471,
+        450
+      ],
+      "height": 397,
+      "supportY": 449,
+      "safeMargin": 41,
+      "area": 50119,
+      "referenceArea": 63588,
+      "areaRatio": 0.7882
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        174,
+        112,
+        458,
+        488
+      ],
+      "height": 376,
+      "supportY": 487,
+      "safeMargin": 24,
+      "area": 55895,
+      "referenceArea": 80814,
+      "areaRatio": 0.6916
+    }
+  ],
+  "commonScale": 0.95,
+  "reference": "pokret-sword-jump.png",
+  "targetHeight": 426,
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true
+}

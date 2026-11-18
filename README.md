@@ -492,6 +492,24 @@ Stefan: „kada otključam L3 i R3 skillove oni ne rade … automatski ih stavi 
 - **Zlatni janičari (D92):** trojica sa carevim blagom na kraju Oranja imaju svoj izgled (`look:'zlatni-janicar'`, osam klipova).
 - Kapije nisu dirane.
 
+## 18. novembar (7): Pod Varadinom, vila koja maše krilima, Šarac koji se rita, Marko koji poji Šarca
+
+Stefan: „popravi zimski prevoj: pesma priča o zelenoj travi a mi na zimskom tlu, i ne vidi se dosta stvari koje su ispevane”, „koristi 6.1 Terra za teren i osmisli likove”, „animiraj vilu u glavnom meniju”, „animacija kako Marko pije vino u donjem položaju i kako poji Šarca”, „ritanje Šarcem kad ga jašemo … okrene se Šarac i odvali glavu”, „vilu da udaramo jedno 40 puta i krv da leti”, „kad jašemo moramo da možemo polako”, „Šarčev hod za Markom u prvom nivou”, „strelac ima jednu debelu animaciju”. Crteži ove ture: Codex **GPT-6.1-Terra** (`.tmp-edge/codex-run-terra.sh`).
+
+- **Pod Varadinom (deveti pohod, id `prevoj`).** Pesma je „Marko Kraljević i Vuča dženeral”, a u njoj nema zime: Marko pregazi Dunav i dođe „pod Varadin, u polje zeleno”. Ime, uvod, tri slike pre pohoda (tamnica Varadina, Marko gazi Dunav, šenluk topova na Varadinu), cilj i engleski parovi su po pesmi. Sneg u vetru, ledene ploče, lavina, snežno tlo i snežni ukrasi su isključeni (`level.zimski`). Novi teren (D93): nebo, ravnica uz Dunav, vinogradi sa skelom, Varadin na steni sa dimom topova, polje sa hrastovima i bulkama, obala sa čamcem, podnožje bedema, prednji sloj, tlo sa travom. Zimski fajlovi su u `.tmp-edge/stari-prevoj`.
+- **Ljudi iz pesme (D96):** knjigonoša na početku skine kapu, pokloni se i da Marku Miloševu knjigu (stihovi iz pesme); Velimirovica gleda sa bedema dok Marko pije i beži kad ga prepozna; na kraju pored Miloša stoje stari Toplica i Kosančić Ivan. Duž puta kosci, žetelice, trgovac, putnica, starac i seljak koji kliče, svako sa rečju o Vuči i tamnici.
+- **Katane (D95)** umesto janičara pod Varadinom: ugarski husari (zelena dolama, crvena kapa), osam klipova, `look:'katana'`.
+- **Vuča dženeral (D94)** je megdandžija pohoda: stari velikaš na sivoj bedeviji, sa pokretima akindžijskog bega (`BOSSES.vuca`, klipovi kita se crtaju pod `look`). Kao u pesmi: kad mu katane izginu, beži na bedeviji (`T.ph='potera'`), a tek kad padne „u zelenu travu” Marko ga veže i vojvode izlaze iz tamnice.
+- **Bedemi i kule (D99)** u rukopisu zida koji se Stefanu svideo: deo bedema, okrugla i četvrtasta kula, kapija, srušen bedem, bedem sa stepenicama. Pod Varadinom: iza logora niski bedem sa kulom (pozadina, na njemu Velimirovica), a na kraju polja bedem sa kamenim stepenicama i kula, **po kojima se ide i skače** (nevidljivi stepenici `kind:'step', slika:true` ispod slike), na kuli novac. Markovo koplje u ledini sa uzdom je naslikano.
+- **Marko poji Šarca, pa pije (D97):** dva klipa u položaju u kome Marko sedi (`marko-sedi-poji`, `marko-sedi-pije`), iste veličine kao `marko-odmor`. Pod Varadinom se smenjuju „pola Šarcu daje” / „pola pije”, a gde god sedi (mehana) otpije na svakih nekoliko sekundi. Terra ih je nacrtao dobro, ali ih nije izvezao zbog sopstvene mere; isečeni su iz njegove mreže (`.tmp-edge/izvoz-d97.py`).
+- **Šarac se rita (D98, D101):** na Šarcu S+SPACE. Ako je protivnik ispred, Šarac se prvo okrene u mestu (`mounted-okret`, kadar spreda), pa se ritne zadnjim kopitama (`mounted-ritne`): običnom protivniku odleti glava (`behead`), megdandžija dobije jak udarac.
+- **Hod na Šarcu:** drži SHIFT (ili palicu do pola) i Šarac ide hodom (`mounted-hod`), ne samo trkom.
+- **Vašar u selu (D100):** konj držan za rep se ritne (`sarac-ritne`), a šareno ždrebe se upire i ne da se pomaći (`sarac-rep-upire`). Šarac posle pojenja prati Marka hodom ili kasom prema brzini, noge prate pređeni put (ranije je klizio).
+- **Vila u šumi:** J (X) što brže, oko 40 udaraca: svaki je zamah topuzom, krv leti na sve strane, metar se puni; tri stiha dolaze redom dok se bije, a vila se preda tek kad je metar pun i pesma otpevana.
+- **Vila u glavnom meniju** maše krilima (osam kadrova `vila-let`, `assets/ui/vila-meni.webp`).
+- **Strelac:** `archer-rafal` je bio nacrtan zdepasto; sužen na 0,8 širine i malo viši.
+- Glasovi za nove replike nisu snimljeni.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија
