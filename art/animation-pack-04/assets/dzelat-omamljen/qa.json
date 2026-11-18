@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        74,
+        67,
+        438,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        60,
+        67,
+        453,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        49,
+        67,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        66,
+        67,
+        446,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        74,
+        67,
+        439,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        76,
+        67,
+        437,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d82\\dzelat-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 421,
+  "measuredHeights": [
+    421,
+    421,
+    421,
+    421,
+    421,
+    421
+  ],
+  "visualReview": "Dzelat staggers in place with head drooping, one hand on his head, and the axe dragging along the ground; six-frame loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

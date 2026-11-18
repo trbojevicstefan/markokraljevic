@@ -1,0 +1,109 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        158,
+        62,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        118,
+        62,
+        394,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        114,
+        62,
+        397,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        35,
+        62,
+        477,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        37,
+        62,
+        475,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        124,
+        62,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d84\\mladi-turcin-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "uprightHeightComparison": {
+    "reference": 426,
+    "tolerancePercent": 5,
+    "generatedTarget": 426
+  },
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "visualReview": "Young Turkish warrior draws his sword and lunges forward with the blade held horizontally right."
+}

@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        84,
+        25,
+        428,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        51,
+        25,
+        460,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        24,
+        25,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        24,
+        25,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        62,
+        25,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        81,
+        25,
+        430,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d83\\hasan-aga-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 463,
+  "measuredHeights": [
+    463,
+    463,
+    463,
+    463,
+    463,
+    463
+  ],
+  "visualReview": "Hasan-aga lunge: shield forward, mace swing, return to stance; same identity and 463 px measured height.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

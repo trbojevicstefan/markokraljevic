@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        30,
+        25,
+        480,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        24,
+        25,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        34,
+        24,
+        476,
+        487
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 486,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        46,
+        24,
+        464,
+        487
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 486,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        24,
+        25,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        68,
+        25,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d83\\hasan-aga-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 463,
+  "measuredHeights": [
+    463,
+    463,
+    463,
+    463,
+    463,
+    463
+  ],
+  "visualReview": "Hasan-aga heavy forward jump: crouch, takeoff, airborne shield and mace, landing crouch, recovery; same identity and 463 px measured height.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        73,
+        67,
+        439,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        67,
+        67,
+        445,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        62,
+        67,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        72,
+        67,
+        439,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        63,
+        67,
+        449,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        70,
+        67,
+        441,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d82\\dzelat-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 421,
+  "measuredHeights": [
+    421,
+    421,
+    421,
+    421,
+    421,
+    421
+  ],
+  "visualReview": "Dzelat yanks a deeply planted axe while the axe stays fixed; six-frame looping tug motion.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -464,6 +464,20 @@ Stefan: „naruči bosa za prvi nivo da ima više animacija i faza, da ne bude l
 - Bez snimka su do 27. 11.: nova uvodna rečenica šume i dva nova teksta slika šume.
 - Provere u `pesme-test.mjs` i `pesma-vila-test.mjs`.
 
+## 18. novembar (5): megdandžije narednih pohoda, mladi Turčin, trnje Miroča
+
+Stefan: „naručuj od Codexa sve što ti treba za naredna tri nivoa, potrebne su nam sve animacije”, „zašto ne uradiš klip ispada”. Naredna tri pohoda po redu priče su Manastirski vis, Oranje i Opsednuta tvrđava.
+
+- **Dželat** (Manastirski vis, `KITS.dzelat`) se bije u tri čina kao Kopljanik-baša: sekira mu se zabije u zemlju i čupa je (`dzelat-zabio`); od pola snage skače sa sekirom odozgo i vitla njome kad mu Marko stoji uz bok (posle mu se zavrti u glavi); na trećini snage strgne kapuljaču (`dzelat-bes`). Crteži D82: `dzelat-zabio`, `-vitla`, `-skok`, `-bes`, `-omamljen`.
+- **Hasan-aga** (Opsednuta tvrđava, `KITS.hasan`): od pola snage tresne buzdovanom o zemlju kad mu Marko priđe (talas ide po zemlji: preskoči ga), na trećini se razjari. D83: `hasan-aga-lunge`, `-jump`, `-tresak`, `-bes`, `-omamljen`.
+- **Lovac-aga** (Ravijojlina šuma) dobija ispad (sada nacrtan, ranije zamena), skok, ošamućenost i bes na trećini snage, kad odmah zove pse. D81.
+- **Mladi Turčin sa očevom sabljom** (tvrđava): spava, budi se, ispad, skok (D84; buđenje iz D84 je bilo isečeno pa je naručeno ponovo, D86). Sedeći je bio naslikan visok kao uspravan; smanjen u rigu na 0,69, kao uspavani janičar.
+- **Strelac se penje uz lestve** (`archer-climb`), **oklopnik ima vodoravan udarac čekićem** (`oklopnik-attack`), D85.
+- **Trnje Miroča** (`prop-trnje`, D85): u berbi bilja vila leti preko naslikanog trnja umesto štapova crtanih kodom.
+- Svaki megdandžija sa nacrtanim ošamućenjem (`<lik>-omamljen`) i besom (`<lik>-bes`) sada ih pokazuje.
+- Oranje nije tražilo nove crteže: tri janičara su obični sabljaši, a koštac sa sabljašem igra već crta postojećim `kostac-janicar`.
+- Provere u `pesme-test.mjs` (dželat i Hasan-aga u tri čina).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

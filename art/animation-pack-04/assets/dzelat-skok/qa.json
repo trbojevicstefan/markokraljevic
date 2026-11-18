@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        98,
+        67,
+        413,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        116,
+        67,
+        395,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        121,
+        24,
+        391,
+        445
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 444,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        114,
+        24,
+        398,
+        445
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 444,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        49,
+        67,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        36,
+        67,
+        477,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d82\\dzelat-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 421,
+  "measuredHeights": [
+    421,
+    421,
+    421,
+    421,
+    421,
+    421
+  ],
+  "visualReview": "Dzelat crouches, jumps with axe overhead, descends, plants the axe, and hunches over it; six-frame non-looping attack.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

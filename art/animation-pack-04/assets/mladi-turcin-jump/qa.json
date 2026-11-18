@@ -1,0 +1,109 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        108,
+        62,
+        405,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        98,
+        62,
+        414,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        89,
+        24,
+        423,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        79,
+        24,
+        433,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        85,
+        62,
+        427,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        155,
+        62,
+        357,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d84\\mladi-turcin-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "uprightHeightComparison": {
+    "reference": 426,
+    "tolerancePercent": 5,
+    "generatedTarget": 426
+  },
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "visualReview": "Young Turkish warrior crouches, jumps forward with sword overhead, lands, and straightens."
+}

@@ -1,0 +1,4 @@
+- D81 | `lovac-aga-lunge` | završeno | pokušaj 2/3; 6 kadrova, ne-petlja; izmereno 464 px u uspravnim kadrovima prema uzoru 466 px (−0,4%), sigurna margina 24 px, bez zelene/ivica; izvezeno i provereno.
+- D81 | `lovac-aga-jump` | završeno | pokušaj 1/3; 6 kadrova, ne-petlja; uspravni kadrovi 464 px prema uzoru 466 px (−0,4%), vazdušni kadrovi 380 px sa stopalima na y=448 (40 px iznad y=488), sigurna margina najmanje 24 px; izvezeno i provereno.
+- D81 | `lovac-aga-omamljen` | završeno | pokušaj 1/3; 6 kadrova, petlja; izmereno 464 px prema uzoru 466 px (−0,4%) u svim kadrovima, stopala y=488, sigurna margina 24 px; izvezeno i provereno.
+- D81 | `lovac-aga-bes` | završeno | pokušaj 1/3; 6 kadrova, ne-petlja; uspravni kadar 464 px prema uzoru 466 px (−0,4%), ostali izmereni 435/464/449/428/414 px zbog poza, stopala y=488, sigurna margina 24 px; izvezeno i provereno.

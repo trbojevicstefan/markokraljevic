@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        112,
+        24,
+        400,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        24,
+        53,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 435
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        80,
+        24,
+        432,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        24,
+        39,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 449
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        24,
+        60,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 428
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        24,
+        74,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 414
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d81\\lovac-aga-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 464,
+  "measuredHeights": [
+    464,
+    435,
+    464,
+    449,
+    428,
+    414
+  ],
+  "visualReview": "Lovac-aga builds rage across six poses: removes his cap, blows the horn, roars with arms spread, then crouches ready with sabre forward.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        80,
+        25,
+        430,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        60,
+        25,
+        452,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        34,
+        25,
+        478,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        48,
+        25,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        64,
+        25,
+        446,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        78,
+        25,
+        434,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 463
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d83\\hasan-aga-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 463,
+  "measuredHeights": [
+    463,
+    463,
+    463,
+    463,
+    463,
+    463
+  ],
+  "visualReview": "Hasan-aga dazed loop: tilted helmet, drooping swaying head, lowered shield and dangling mace; same identity and 463 px measured height.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -183,6 +183,20 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  p.x=C.x+70;run(2);ok(!(C.invT>0),'megdan: but his back is open');
  put(400,0);C.p3=true;K.phase3(C);ok(C.ks==='bes'&&C.invT>0,'megdan: at a third of his strength he rages');run(120*2);ok(C.ks==null,'megdan: and comes on again');
  ok(api.draw()===null,'megdan: the three acts draw without an error');}
+// ---- the Executioner and Hasan-aga in three acts (18. 11., D82/D83) ----
+{const w=await start('manastir');const {p}=api.state();const C=w.enemies.find(e=>e.champion&&e.kit==='dzelat'),A=C.arena,K=api.KITS.dzelat;C.alive=true;C.p2=true;
+ const put=(dist,kn)=>{Object.assign(C,{x:A.x0+700,y:A.y,vx:0,vy:0,grounded:true,mode:'idle',ks:null,kt:0,kc:0,kn,stun:0,face:-1,kitOpen:0,zabio:false});Object.assign(p,{x:C.x-dist,y:A.y,vx:0,vy:0,grounded:true});};
+ const run=n=>{for(let i=0;i<n;i++){C.kt-=1/120;K.step(C,1/120,p.x-C.x,Math.abs(p.x-C.x));C.x+=C.vx/120;}};
+ put(100,0);run(2);ok(C.ks==='vitloPrep','dželat: with Marko at his side he winds up the whirl of the axe');run(120);ok(C.ks==='vitlo','dželat: and whirls it');
+ p.x-=300;run(120*2);ok(C.ks==null&&C.mode==='stun'&&C.kitOpen>0,'dželat: after the whirl his head spins');
+ put(330,1);run(2);ok(C.ks==='skok'&&!C.grounded,'dželat: from half his strength he leaps with the axe from above');p.x-=300;run(80);C.grounded=true;C.y=A.y;run(2);
+ ok(C.zabio&&C.kitOpen>1.5&&C.mode==='stun','dželat: missed, the axe is buried and he stands open');
+ put(400,0);C.p3=true;K.phase3(C);ok(C.ks==='bes','dželat: at a third he tears off his hood');run(120*2);ok(C.ks==null,'dželat: and comes on');ok(api.draw()===null,'dželat: draws without an error');}
+{const w=await start('tvrdjava');const {p}=api.state();const C=w.enemies.find(e=>e.champion&&e.kit==='hasan'),A=C.arena,K=api.KITS.hasan;C.alive=true;C.p2=true;
+ Object.assign(C,{x:A.x0+600,y:A.y,vx:0,grounded:true,mode:'idle',ks:null,kt:0,kc:0,kn:0,stun:0,face:-1});Object.assign(p,{x:C.x-150,y:A.y,vx:0,vy:0,grounded:true,invuln:0,hp:p.maxHp});
+ const run=n=>{for(let i=0;i<n;i++){C.kt-=1/120;K.step(C,1/120,p.x-C.x,Math.abs(p.x-C.x));C.x+=C.vx/120;}};
+ run(2);ok(C.ks==='tresak','hasan: from the second act, with Marko near, the mace goes up for the ground');const hp=p.hp;run(120);ok(p.hp<hp&&C.ks==null&&C.kitOpen>0,'hasan: the crash runs along the ground and hurts him who stands on it; then the aga is open');
+ C.p3=true;K.phase3(C);ok(C.ks==='bes','hasan: at a third he rages');ok(api.draw()===null,'hasan: draws without an error');}
 // ---- K then J: the backhand blow ----
 {storage.set('marko-skills',JSON.stringify(['niz','zamah']));const w=await start('selo');const {p}=api.state();step(5);
  const foe={id:9998,x:p.x+92,y:p.y,vx:0,vy:0,w:36,h:75,hp:900,maxHp:900,type:'sword',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:99,stun:0,flash:0,alive:true,home:p.x+92,attackId:0,grounded:true};w.enemies.push(foe);p.face=1;

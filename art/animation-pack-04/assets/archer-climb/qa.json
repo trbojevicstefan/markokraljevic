@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        156,
+        32,
+        374,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        157,
+        32,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        160,
+        32,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        164,
+        32,
+        367,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        164,
+        32,
+        367,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        160,
+        32,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        156,
+        32,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        157,
+        32,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 456
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d85\\archer-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 456,
+  "measuredHeights": [
+    456,
+    456,
+    456,
+    456,
+    456,
+    456,
+    456,
+    456
+  ],
+  "visualReview": "D85 archer climb: same archer identity and bow/quiver, back-facing alternating climbing poses, all eight measured heights 456 px, support y=487, safe margin 24 px.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

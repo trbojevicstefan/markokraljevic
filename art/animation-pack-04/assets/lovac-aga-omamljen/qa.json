@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        88,
+        24,
+        425,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        88,
+        24,
+        423,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        98,
+        24,
+        414,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        85,
+        24,
+        427,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        98,
+        24,
+        413,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        88,
+        24,
+        424,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 464
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d81\\lovac-aga-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 464,
+  "measuredHeights": [
+    464,
+    464,
+    464,
+    464,
+    464,
+    464
+  ],
+  "visualReview": "Lovac-aga loops through six stunned swaying poses with drooping head, tilted cap, loose sabre and a seamless return to frame 0.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -706,6 +706,40 @@ for _n, _i in (('marko-povratni', -1), ('marko-odmerava', 0), ('marko-raduje', 0
 for _n in ('srna-pase', 'srna-bezi'):
     if _have(_n):
         SCALES[_n] = (0.27, 'feet')
+# DOPUNA-81..85 (18. 11., the fifth round): the next pohodi. Each clip is an edit of its model's frame 0 as it lies on the
+# sheet, so it takes that model's zoom and anchor: the Hunter (lunge, jump, daze, rage), the Executioner (the axe buried, the
+# whirl, the leap, the rage, the daze), Hasan-aga (lunge, jump, the mace to the ground, rage, daze), the young Turk with the
+# father's sabre (asleep, waking, lunge, jump), the archer on a ladder, the armoured man's level blow.
+D81_MODEL = {
+  "lovac-aga-lunge": "lovac-aga-idle",
+  "lovac-aga-jump": "lovac-aga-idle",
+  "lovac-aga-omamljen": "lovac-aga-idle",
+  "lovac-aga-bes": "lovac-aga-idle",
+  "dzelat-zabio": "dzelat-idle",
+  "dzelat-vitla": "dzelat-idle",
+  "dzelat-skok": "dzelat-idle",
+  "dzelat-bes": "dzelat-idle",
+  "dzelat-omamljen": "dzelat-idle",
+  "hasan-aga-lunge": "hasan-aga-idle",
+  "hasan-aga-jump": "hasan-aga-idle",
+  "hasan-aga-tresak": "hasan-aga-idle",
+  "hasan-aga-bes": "hasan-aga-idle",
+  "hasan-aga-omamljen": "hasan-aga-idle",
+  "mladi-turcin-spava": "mladi-turcin-idle",
+  "mladi-turcin-budi": "mladi-turcin-idle",
+  "mladi-turcin-lunge": "mladi-turcin-idle",
+  "mladi-turcin-jump": "mladi-turcin-idle",
+  "archer-climb": "archer-idle",
+  "oklopnik-attack": "oklopnik-idle"
+ }
+for _n, _m in D81_MODEL.items():
+    if _have(_n) and _m in SCALES:
+        SCALES[_n] = (SCALES[_m][0], 'feet')
+        NOC_ANCHOR_SAME[_n] = _m
+# the young Turk asleep was painted sitting as tall as he stands: a sitting soldier is 0.69 of his standing height (sword-spava)
+# waking (D86, ordered again: the D84 one was cut off) starts sitting at that size and stands at his own
+if 'mladi-turcin-spava' in SCALES:
+    SCALES['mladi-turcin-spava'] = (SCALES['mladi-turcin-spava'][0] * .69, 'feet')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

@@ -147,6 +147,11 @@ Dodato (Codex D76–D80): pet poteza Kopljanik-baše, pet klipova vile Ravijojle
 
 Ostalo, viđeno u prolazu kroz Ravijojlinu šumu:
 
-- `lovac-aga-lunge`: megdandžija šume nema ispad; crta se zamena. Najbliži sledeći crtež za drugi nivo.
-- Trnje u berbi bilja crta se kodom (tamni štapovi). Može jedna naslikana kupina.
+- ~~`lovac-aga-lunge`~~ i ~~trnje~~: urađeno 18. 11. (5), D81 i D85.
 - Posle šume: Đemo, Arapin i ostali megdandžije nemaju svoje faze kao baša (vidi tabelu gore).
+
+## 18. 11. (5): Manastirski vis, Oranje, Opsednuta tvrđava
+
+Urađeno (D81–D86): faze dželata i Hasan-age, ispad i skok Lovac-age, Hasan-age i mladog Turčina, mladi Turčin spava i budi se, strelac na lestvama, udarac oklopnika.
+
+Ostalo: Oranje (tri janičara) koristi obične sabljaše; nemaju svoj izgled ni faze.

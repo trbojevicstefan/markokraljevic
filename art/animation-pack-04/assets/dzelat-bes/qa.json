@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        106,
+        67,
+        405,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        68,
+        67,
+        443,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        64,
+        67,
+        447,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        77,
+        67,
+        435,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        75,
+        67,
+        437,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        46,
+        67,
+        465,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 421
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d82\\dzelat-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 421,
+  "measuredHeights": [
+    421,
+    421,
+    421,
+    421,
+    421,
+    421
+  ],
+  "visualReview": "Dzelat plants the axe, tears off his hood to reveal a shaved head and moustache, roars, then grabs the axe; six-frame non-looping rage.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}
