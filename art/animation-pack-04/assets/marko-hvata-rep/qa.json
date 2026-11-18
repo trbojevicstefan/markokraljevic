@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        103,
+        98,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56091
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        128,
+        98,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53593
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        108,
+        118,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58168
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        92,
+        118,
+        403,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        64458
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        64,
+        128,
+        431,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        66617
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 360
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        107,
+        96,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56733
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 392
+    }
+  ],
+  "scale": 0.8441558441558441,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d65\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 390,
+  "targetHeight": 390,
+  "measuredHeights": [
+    390,
+    390,
+    370,
+    370,
+    360,
+    392
+  ],
+  "visualReview": "D65 Marko catches tail: six-frame non-loop pull and release with empty hands, no topuz, no horse or tail; feet fixed.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

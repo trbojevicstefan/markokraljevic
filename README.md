@@ -412,6 +412,19 @@ Dve prostorije iz V2 sada su u poglavljima priče (`vreme` i `kuke` u `dist/worl
 - Drum više nije samo ravan sa stepenicama: prostorije **breg** (uz padinu, preko zaravni, niz padinu) i **uvala** (niz padinu u udolinu i nazad) koriste kose ploče iz V2 (`ramp` u `dist/world.js`, `surf`). Tlo padine se crta trakom tla tog poglavlja u uskim kriškama, pa trava prati nagib (`drawPadina` u `dist/game.js`); posebni crteži nisu bili potrebni. U selu, šumi, kod manastira, na oranju, u tvrđavi, močvari, na prevoju, u klisuri i na obali.
 - Probni programi su dobili `topAt` (visina kose ploče), koji im je falio dok u poglavljima nije bilo padina.
 
+## 18. novembar: prvi nivo, slušanje guslara, miran ulaz u selo
+
+Stefan: „da Marko hoda dok ide pesma i dok slušamo guslara, to jest naratora, da ne može da se ide dalje… blok da nastavimo dalje dok se ne završi dijalog, monolog, replika”.
+
+- **Slušanje** (`slusa` u `dist/game.js`), po uzoru na hod uz razgovor iz *God of War* i *The Lost Crown*. Dok traje snimljena replika (narator, lik iz pesme) ili dok guslar peva stihove, Marko po otvorenom tlu ide hodom (111 umesto 265 px/s), a niz drum stoji **veo pesme**: zlatna svetlost sa notama, najviše 520 px ispred mesta gde je replika počela. Veo se diže sa poslednjom rečju. Replika bez snimka (i cela igra na engleskom) drži Marka onoliko koliko treba da se pročita.
+- Slušanje ne važi: u borbi (protivnik koji je video Marka odmah ga oslobađa), na megdanu, na konju, u scenama koje same drže kontrole i kraj zamki koje traže trk (kolje, balvan, kapija na vreme, potera…). U vazduhu Marko ima punu brzinu, a veo nikad ne stoji iza rupe, pa nijedan skok ne propada zbog replike.
+- Dok Marko sluša, protivnik koji ga još nije video primeti ga tek sa 330 px (inače 760), a veo staje pre njega: reči se ne prekidaju jurišem sa pola ekrana.
+- Saveti (`HINTS`) ne drže Marka i čekaju da narator završi, pa više ne seku uvodnu repliku nivoa.
+- Kod guslara koji peva u miru stihovi sada traju koliko je i zamišljeno (2,6 s po stihu; sat `g.pev`): veo stoji 520 px iza guslara dok se tri stiha ne otpevaju.
+- **Miran ulaz u Kosovsko selo** (`uvod` u `dist/world.js`): 900 px druma bez protivnika pre prve borbe. Seljanka sa detetom maše Marku, starac skida šubaru i klanja se (`seljani` u `dist/game.js`).
+- **Pet novih pokreta** (Codex DOPUNA-65, GPT-5.6-Luna): `kopljanik-basa-jump` (megdandžija sela je skakao bez svog crteža), `marko-slusa` (obe šake na topuzu dok sluša), `marko-hvata-rep` (vašar), `putnica-pozdrav`, `putnik-starac-klanja`. Na vašaru konj sada stoji repom ka Marku kad ga Marko uhvati, a pušten odlazi od njega.
+- Provere: `pesme-test.mjs` (hod, veo, skok ga ne prolazi, oslobađanje u borbi, guslar 10,3 s). Bot u `road-test.mjs` ne staje da sluša guslara.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

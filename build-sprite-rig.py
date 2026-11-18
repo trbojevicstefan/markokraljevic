@@ -634,6 +634,18 @@ if _have('marko-stoji-bez-topuza') and 'marko-idle-2' in SCALES:
 # stands like archer-idle frame 0, so the body is measured against it
 if _have('archer-uvis') and 'archer-idle' in SCALES:
     SCALES['archer-uvis'] = (SCALES['archer-idle'][0] * body_height(_cells('archer-idle')[0]) / body_height(_cells('archer-uvis')[0]), 'feet')
+NOC_ANCHOR_AT = {}
+# DOPUNA-65 (18. 11.): the first pohod, Kosovsko selo. The bashi's leap is an edit of kopljanik-basa-idle frame 0 as it lies on
+# the sheet, so at that clip's zoom and anchor. Marko listening (both hands on the mace, its head on the ground), Marko taking a
+# horse by the tail, the mother with her child who waves and the old man who bows are edits of their model's frame 0 at its size
+# in the game: frame 0 stands like the model's frame 0, so the body is measured against it, and they stay where the model stands.
+if _have('kopljanik-basa-jump') and 'kopljanik-basa-idle' in SCALES:
+    SCALES['kopljanik-basa-jump'] = (SCALES['kopljanik-basa-idle'][0], 'feet')
+    NOC_ANCHOR_SAME['kopljanik-basa-jump'] = 'kopljanik-basa-idle'
+for _n, _m in (('marko-slusa', 'marko-idle-2'), ('marko-hvata-rep', 'marko-idle-2'), ('putnica-pozdrav', 'putnica-idle'), ('putnik-starac-klanja', 'putnik-starac-idle')):
+    if _have(_n) and _m in SCALES:
+        SCALES[_n] = (SCALES[_m][0] * body_height(_cells(_m)[0]) / body_height(_cells(_n)[0]), 'feet')
+        NOC_ANCHOR_AT[_n] = 256   # the model was set into the cell with its anchor at the middle (prepare-dopuna57.rig_frame)
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
@@ -712,6 +724,9 @@ for name, d in NOC_ANCHOR_FIX.items():   # the noc-poliranje block's own (see th
 for name, src in NOC_ANCHOR_SAME.items():   # the noc-poliranje block's own (see there)
     if name in rig and src in rig:
         rig[name]['anchor'] = rig[src]['anchor']
+for name, x in NOC_ANCHOR_AT.items():   # the noc-poliranje block's own (see there)
+    if name in rig:
+        rig[name]['anchor'] = x
 # The launcher (Lost Crown, W+K) has no drawing of its own yet: it is the cut upward, the same sheet and frames.
 for alias, src in {'marko-launcher': 'marko-uppercut'}.items():
     if alias not in rig and src in rig:

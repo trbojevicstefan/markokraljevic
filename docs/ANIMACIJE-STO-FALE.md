@@ -67,6 +67,22 @@ Ceo izveštaj je u [IZVESTAJ-NAPREDAK.md](IZVESTAJ-NAPREDAK.md).
   - sjahivanje: igra nema tu radnju, scene počinju sa Markom na zemlji;
   - `sarac-hod`: postoji, ali u igri još nema mesta gde Šarac hoda bez jahača.
 
+## Prvi nivo, 18. 11. (Codex D65)
+
+Provera Kosovskog sela u igri (Proxy na rig, ceo nivo sa borbom) našla je jedan crtež koji fali: `kopljanik-basa-jump`. Uz njega su naručeni pokreti za ono što je do sada bilo bez svog crteža. Svih pet je u igri iz prvog ili drugog pokušaja (`art/world-pack-03/DOPUNA-65.md`, `STATUS-D65.md`):
+
+- `kopljanik-basa-jump`: skok megdandžije sela;
+- `marko-slusa`: Marko stoji i sluša, obe šake na topuzu (dok narator govori ili guslar peva);
+- `marko-hvata-rep`: Marko hvata konja za rep na vašaru;
+- `putnica-pozdrav` i `putnik-starac-klanja`: seljani na ulazu u selo.
+
+Veličina je merena tablom u meri igre pored uzora (Marko 129 prema 130, seljanka 113 prema 114, starac 104 prema 105). Četiri klipa crtana u meri igre imaju sidro na sredini ćelije (`NOC_ANCHOR_AT` u `build-sprite-rig.py`).
+
+I dalje bez svog crteža u prvom nivou:
+- Marko daje vino ždrebetu i Novak potkiva Šarca (samo ih narator kaže);
+- Marko daje dukate sirotinji (koristi pokret otvaranja kovčega);
+- konjušar je isti starac kao putnik.
+
 ## 1. Šarac (najvidljivije)
 
 Šarac ima samo `sarac-galop`. U svim ostalim prizorima je nepomična slika (`cast/sarac`) koja se trese ili naginje:

@@ -117,7 +117,7 @@ export const CUDA=[
 // Each land: a string of rooms. Traps (spikes, crumbling planks, swinging logs, falling rocks, rolling barrels, a lever
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
- selo:'flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tajna tower flat trgovac flat boss:kopljanik',
+ selo:'uvod flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tajna tower flat trgovac flat boss:kopljanik',
  klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges tajna terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
@@ -248,6 +248,9 @@ export function buildLayout(L,variant='day'){
   // the white church of Samodreža: the books of old before it, and the yard around which the king chases his son (game.js)
   samodreza(){const x0=x,len=2100;ground(len);traps.push({kind:'samodreza',x0,x1:x0+len,y:gy,crkva:x0+1150,knjiga:x0+520,gate:{x:x0+len-40,y:gy},nodecor:[[x0+840,x0+1460]]});busy.push([x0-40,x0+len]);},
   // the horse fair in Kosovsko selo: four horses, one of them the scabby piebald foal that will be Šarac (game.js: vašar)
+  // the quiet road into Kosovsko selo (18. 11.): no foe; a mother with her child and an old man greet Marko while the guslar
+  // tells where he is (game.js: seljani). No random draw here, so the land after it is laid out as it was, 900 further on.
+  uvod(){const x0=x,len=900;ground(len);traps.push({kind:'seljani',x0,x1:x0+len,y:gy,ljudi:[{x:x0-170,k:'putnica'},{x:x0+440,k:'starac'}]});},
   vasar(){const x0=x,len=1500;ground(len);traps.push({kind:'vasar',x0,x1:x0+len,y:gy,cuvar:x0+190,konji:[x0+420,x0+660,x0+900,x0+1140],gate:{x:x0+len-40,y:gy}});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i vila”: the two sworn brothers ride over Miroč side by side; the song, the arrows and the dismount (game.js)
   jahanje(){const x0=x,len=5200;ground(len);traps.push({kind:'jahanje',x0,x1:x0+len,y:gy,logs:[x0+560,x0+1260]});busy.push([x0-40,x0+len]);},

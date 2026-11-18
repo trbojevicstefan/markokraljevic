@@ -1,0 +1,168 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        127,
+        98,
+        367,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53892
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        121,
+        102,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54472
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 386
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        119,
+        105,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        55392
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 383
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        119,
+        109,
+        375,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54770
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 379
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        122,
+        106,
+        371,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54482
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 382
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        126,
+        101,
+        368,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54395
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 387
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        124,
+        100,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53947
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 388
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        128,
+        100,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53620
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 388
+    }
+  ],
+  "scale": 0.9873417721518988,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d65\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 390,
+  "targetHeight": 390,
+  "measuredHeights": [
+    390,
+    386,
+    383,
+    379,
+    382,
+    387,
+    388,
+    388
+  ],
+  "visualReview": "D65 Marko listens: eight-frame calm looping listen pose with planted mace and both hands on its top; cloak and head subtly move.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

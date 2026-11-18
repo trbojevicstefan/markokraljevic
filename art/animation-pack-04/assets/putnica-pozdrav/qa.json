@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        156,
+        146,
+        407,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48217
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 342
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        173,
+        106,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        47484
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 382
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        152,
+        130,
+        412,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48016
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 358
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        174,
+        111,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        49692
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        158,
+        143,
+        406,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48678
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 345
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        162,
+        144,
+        403,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        48373
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 344
+    }
+  ],
+  "scale": 0.8423645320197044,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d65\\putnica-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 342,
+  "targetHeight": 342,
+  "measuredHeights": [
+    342,
+    382,
+    358,
+    377,
+    345,
+    344
+  ],
+  "visualReview": "D65 woman and child greet: six-frame looping wave, child waves and hops in middle frames; same pair and village costume.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

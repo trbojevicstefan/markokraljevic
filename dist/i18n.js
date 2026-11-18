@@ -941,7 +941,7 @@ const EN_PAIRS=[
 ["Četiri udara, nosiš dva: prvi na F (L3), drugi na R (R3). Biraju se na izvoru.","Four strikes, you carry two: the first on F (L3), the second on R (R3). They are chosen at a spring."],
 // ---- marvels, bosses, powers ----
 ["Šarčeva potkova","Šarac's Horseshoe"],["Šarac, Markov verni konj","Šarac, Marko's Faithful Horse"],["Brži trk","Faster run"],
-["Gusle","Gusle"],["Guslar peva o Marku","The Gusle Player Sings of Marko"],["Bes se puni brže","Rage builds faster"],
+["Gusle","Gusle"],["Guslar peva o Marku","The Gusle Player Sings of Marko"],["SASLUŠAJ PESMU","HEAR THE SONG OUT"],["Pomoz’ Bog, Kraljeviću!","God help you, Prince!"],["Bog ti pomogao, Marko!","God be with you, Marko!"],["SASLUŠAJ DO KRAJA","HEAR IT OUT"],["Bes se puni brže","Rage builds faster"],
 ["Orlovo pero","Eagle Feather"],["Marko Kraljević i orao","Prince Marko and the Eagle"],["Drži skok da lebdiš pri padu","Hold jump to glide as you fall"],
 ["Carska knjiga","Imperial Charter"],["Uroš i Mrnjavčevići","Uroš and the Mrnjavčević Brothers"],
 ["Očeva sablja","Father's Sabre"],["Marko Kraljević poznaje očinu sablju","Prince Marko Knows His Father's Sabre"],["Laki udarci jači","Stronger light blows"],

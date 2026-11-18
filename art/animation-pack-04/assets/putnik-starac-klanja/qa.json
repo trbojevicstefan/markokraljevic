@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        182,
+        174,
+        364,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        33556
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 314
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        185,
+        151,
+        362,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        35914
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 337
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        178,
+        194,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        32947
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 294
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        170,
+        217,
+        376,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        31868
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 271
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        180,
+        184,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        33202
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 304
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        182,
+        171,
+        365,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        34315
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 317
+    }
+  ],
+  "scale": 0.7476190476190476,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d65\\putnik-starac-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 314,
+  "targetHeight": 314,
+  "measuredHeights": [
+    314,
+    337,
+    294,
+    271,
+    304,
+    317
+  ],
+  "visualReview": "D65 old man bows: six-frame looping greeting with hat removal, deep bow holding hat at chest, rise and hat replacement; cane retained.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

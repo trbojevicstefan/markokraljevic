@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        51,
+        137,
+        460,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        59800
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 351
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        50,
+        93,
+        462,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61817
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 395
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        52,
+        80,
+        458,
+        458
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        57174
+      ],
+      "greenPixels": 0,
+      "supportY": 457,
+      "safeMargin": 52,
+      "height": 378
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        54,
+        54,
+        457,
+        433
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        56360
+      ],
+      "greenPixels": 0,
+      "supportY": 432,
+      "safeMargin": 54,
+      "height": 379
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        48,
+        457,
+        458
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60024
+      ],
+      "greenPixels": 0,
+      "supportY": 457,
+      "safeMargin": 48,
+      "height": 410
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        50,
+        123,
+        460,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        61542
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 365
+    }
+  ],
+  "scale": 1.0301507537688441,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d65\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 410,
+  "targetHeight": 410,
+  "measuredHeights": [
+    351,
+    395,
+    378,
+    379,
+    410,
+    365
+  ],
+  "visualReview": "D65 Kopljanik-basa jump attempt 2: six-frame in-place jump with crouch, takeoff, tucked airborne apex, fall, landing crouch; complete spear, shield and pennant; safe margins verified.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

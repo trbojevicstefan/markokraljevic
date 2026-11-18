@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,slusa:()=>slusa,speak,slusaProbaj:v=>{slusaProba=v;},state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);const tap=k=>{press(k);step();release(k);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
@@ -114,4 +114,22 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
 {const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
  Object.assign(p,{x:T.x0+120,y:T.y-90,vx:0,vy:-200,grounded:false});step(2);ok(!T.ph,'scene: Marko in the air does not start the chains');
  Object.assign(p,{y:T.y,vy:0,grounded:true});step(2);ok(T.ph==='pad'&&p.y===T.y,'scene: on the ground the chains begin, and he stays on the ground');}
+// ---- listening (18. 11.): Marko walks while a line is said or the guslar sings, and the road ahead waits ----
+{const w=await start('selo');const {p}=api.state();const S=w.traps.find(t=>t.kind==='seljani'),G=w.traps.find(t=>t.kind==='guslar');
+ ok(S&&S.ljudi.length===2&&api.state().world.level.spawn.x<S.x0,'village: a quiet road with a mother and an old man opens Kosovsko selo');
+ Object.assign(p,{x:S.x0+60,y:S.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(120);const run=p.vx;ok(run>240&&!api.slusa(),'listening: with nothing being said Marko runs ('+Math.round(run)+' px/s)');
+ api.slusaProbaj(true);const x0=p.x;api.speak('Kažu da je ovde potkovan Šarac i da je jedna potkova ostala u selu. Selo je pod opsadom: oteraj odred i stigni do barjaka.',7);step(90);const B=api.slusa()?.B;
+ ok(api.slusa()&&p.vx<125&&p.vx>90,'listening: while the line is said he goes at a walk ('+Math.round(p.vx)+' px/s)');
+ ok(B>x0+200&&B<=x0+560,'listening: the veil stands down the road ('+Math.round(B-x0)+' px ahead of where the line began)');
+ p.x=B-20;step(120);ok(p.x===B&&p.vx===0,'listening: at the veil he stands, the road ahead waits');
+ press('Space');step(40);ok(p.x<=B,'listening: a jump does not carry him through it');
+ until(()=>!api.slusa(),120*9,'the line ends');step(120);ok(p.x>B+60&&p.vx>240,'listening: with the last word the veil lifts and he runs on');
+ // a foe who has seen him frees him at once; one who has not is not woken from afar while he listens
+ const e=w.enemies[0];Object.assign(e,{alive:true,alert:false,spava:false,x:p.x+600,y:p.y,hp:e.maxHp,mode:'idle'});api.speak('Novak kovač potkova Šarca, a jedna potkova osta u selu, da se pamti. Šarac te čeka; ti oteraj odred iz sela.',8);step(60);
+ ok(api.slusa()&&!e.alert&&api.slusa().B<e.x-330,'listening: a foe who has not seen him stays unaware, and the veil stands short of him');
+ e.alert=true;step(3);ok(!api.slusa(),'listening: a foe who has seen him frees him: no walk and no veil in a fight');e.alive=false;api.slusaProbaj(false);api.keys.clear();step(120*9);
+ // the guslar: the verses are sung for 10.3 s; Marko walks past him and waits at the veil behind him
+ Object.assign(p,{x:G.x-420,y:G.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');until(()=>G.state==='peva',120*4,'the guslar begins');step(120);
+ ok(api.slusa()?.g===G&&p.vx<125,'guslar: while he sings Marko walks');const GB=Math.min(G.x+520,G.x1-60);step(120*8);ok(p.x===GB,'guslar: the veil stands behind the guslar until the verses are sung ('+Math.round(GB-G.x)+' px past him)');
+ const k=(120*9+until(()=>!api.slusa(),120*4,'the verses end'))/120;ok(k>10&&k<11.5,'guslar: the three verses take their ten seconds ('+k.toFixed(1)+' s)');step(120);ok(p.x>GB+60,'guslar: then the road is open');api.keys.clear();}
 console.log(`\n${checks} checks passed.`);

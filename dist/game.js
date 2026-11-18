@@ -146,7 +146,7 @@ function govorPrekini(){const out=[];if(govorTrenutni)out.push(govorTrenutni);fo
  if(audio&&SND?.speaking)for(const k of Object.keys(SND.speaking)){if(ENEMY_VOICE.has(k))continue;const c=SND.speaking[k];if(c.group&&c.start>audio.currentTime+.05&&c.priority>=3&&!govorPosle.some(q=>q[0]===c.group))govorPosle.push([c.group,{priority:c.priority,gap:.6}]);try{c.src.stop();}catch{}delete SND.speaking[k];}
  return out;}
 function govorPosleDalje(){if(!audio)return;const q=govorPosle.splice(0);let d=.4;for(const[g,o]of q){if(say(g,{...o,delay:d})){const sp=SND.speaking[VOICE_SPEAKER[g.split('_')[0]]||'marko'];if(sp)d=Math.max(d,sp.until-audio.currentTime+.15);}else if((o.tries||0)<300)govorPosle.push([g,{...o,tries:(o.tries||0)+1}]);}}
-function govorStop(){if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}govorTekst='';govorRed=[];clearTimeout(govorRok);}
+function govorStop(){slusa=null;slusaKraj=null;slusaT=0;if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}govorTekst='';govorRed=[];clearTimeout(govorRok);}
 // a line without a recording leaves the voice that is speaking alone; a recorded one takes over.
 // plays the pieces one after another; Marko's and the fairy's battle cries keep quiet meanwhile, the music ducks
 function govor(list,text){if(!list?.length||!hasDom||typeof Audio!=='function'||govorA&&text===govorTekst)return 0;if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}clearTimeout(govorRok);govorTekst=text;let i=0;const total=list.reduce((t,g)=>t+(g[1]||0)+.3,0);
@@ -154,7 +154,7 @@ function govor(list,text){if(!list?.length||!hasDom||typeof Audio!=='function'||
  next();if(audio&&SND?.speaking){const until=audio.currentTime+total;for(const k of['marko','vila'])SND.speaking[k]={src:{stop(){}},until,priority:3};}return total;}
 // a recorded line that comes while another is still being said waits for it; one without a recording shows at once
 function speak(text,duration=7,who=null){const g=glasZa(text);if(g&&govorTraje()&&text!==govorTekst){if(!govorRed.some(q=>q[0]===text))govorRed.push([text,duration,who,g]);return;}speakSada(text,duration,who,g);}
-function speakSada(text,duration=7,who=null,g=glasZa(text)){const main=g?.every(x=>x[2]===g[0][2])?g[0][2]:null;if(!who&&main==='GUSLAR')who='GUSLAR';if(!who&&!vilaTu()&&main!=='RAVIJOJLA')who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;const t=govor(g,text);if(t)govorTrenutni=[text,duration,who];dialogueTime=Math.max(duration,t?t+.8:0);}
+function speakSada(text,duration=7,who=null,g=glasZa(text)){const main=g?.every(x=>x[2]===g[0][2])?g[0][2]:null;if(!who&&main==='GUSLAR')who='GUSLAR';if(!who&&!vilaTu()&&main!=='RAVIJOJLA')who='GUSLAR';$('dialogue-text').textContent=kontrolaTekst(tr(text));{const box=$('dialogue'),n=box.querySelector?.('small'),im=box.querySelector?.('img');if(n)n.textContent=tr(who||'RAVIJOJLA');if(im)im.style.visibility=who?'hidden':'visible';}$('dialogue').hidden=false;const t=govor(g,text);slusaLinija(text,duration,t);if(t)govorTrenutni=[text,duration,who];dialogueTime=Math.max(duration,t?t+.8:0);}
 // kind 'dust' stays in the painted layer; everything else becomes glowing 3D sparks.
 function burst(x,y,color,count=14,speed=150,kind='glow'){if(kind!=='dust'&&stage){stage.burst(x,y,color,count,speed);return;}for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=Math.random()*speed;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(kind==='dust'?speed*.35:0),life:.4+Math.random()*.5,max:1,color,r:(kind==='dust'?3:1)+Math.random()*3,kind});}}
 function dust(x,y,count=6,spread=1){for(let i=0;i<count;i++)particles.push({x:x+(Math.random()-.5)*20*spread,y:y-2,vx:(Math.random()-.5)*90*spread,vy:-20-Math.random()*45,life:.45+Math.random()*.4,max:.85,color:'#cdb68a',r:4+Math.random()*6,kind:'dust'});}
@@ -241,7 +241,7 @@ function updatePlayer(dt){
  if(tap(UK('super')))superStrike();updateCounter();if(p.plunge===1){p.vy=Math.max(p.vy,950);p.vx*=.9;}if(p.plunge===2&&p.plungeT<=0)p.plunge=0;updateSpin(dt);ambientVoices();
  if(p.attackKind==='super'&&p.attack>0&&p.attack<.45&&!p.superImpact){p.superImpact=true;sfx('boom',{gain:1});sfx('rock',{gain:.8});fx('hit',p.x+p.face*70,p.y-12,true);burst(p.x+p.face*70,p.y-12,'#ffcc72',24,240);dust(p.x,p.y,20,2.5);shake=settings.reduced?0:9;sound('hit');}
  const axis=(isDown('KeyD','ArrowRight')?1:0)-(isDown('KeyA','ArrowLeft')?1:0);if(axis)p.face=axis;
- const speed=horseMounted?480:265*(perks.has('sarceva-potkova')?1.07:1)*(stickMag<.7?.42:1);const target=p.wallJumpT>.12?p.vx:axis*speed*(p.spin>0?.5:p.attackKind==='super'&&p.attack>0?.12:p.blocking?.22:p.crouching?.3:p.attack>0?(p.runAtk&&p.attackKind==='light'?.85:.5):p.drink>0?.45:1);p.vx+= (target-p.vx)*Math.min(1,dt*(p.grounded?20:9));
+ const speed=horseMounted?480:265*(perks.has('sarceva-potkova')?1.07:1)*(stickMag<.7||slusaHoda()?.42:1);const target=p.wallJumpT>.12?p.vx:axis*speed*(p.spin>0?.5:p.attackKind==='super'&&p.attack>0?.12:p.blocking?.22:p.crouching?.3:p.attack>0?(p.runAtk&&p.attackKind==='light'?.85:.5):p.drink>0?.45:1);p.vx+= (target-p.vx)*Math.min(1,dt*(p.grounded?20:9));
  if(p.jumpBuffer>0&&p.wall&&!p.grounded){p.vy=-650;p.vx=-p.wall*440;p.wallSide=p.wall;p.face=-p.wall;p.wall=0;p.wallJumpT=.32;p.jumpBuffer=0;p.runJump=false;sound('jump');sayGrunt(false);dust(p.x+p.wallSide*16,p.y-40,6,1);}if(p.jumpBuffer>0&&p.coyote>0&&!p.climb){p.vy=horseMounted?-780:p.launchT>0?-820:-665;if(p.launchT>0&&!horseMounted){p.launchT=0;label('ZA NJIM!',p.x,p.y-150,'#ffe39a');}p.grounded=false;p.coyote=0;p.jumpBuffer=0;p.crouching=false;p.crouch=0;p.h=112;p.blocking=false;p.runJump=!horseMounted&&Math.abs(p.vx)>240;sound('jump');dust(p.x,p.y,horseMounted?10:6);}if(p.jumpBuffer>0&&canKrilo())sokolovoKrilo();
  if(!p.grounded&&!p.climb&&!horseMounted&&tap('ShiftLeft','ShiftRight')){if(canNalet())startNalet();}else if(tap('ShiftLeft','ShiftRight')&&slideShift()){}else if(tap('ShiftLeft','ShiftRight')&&p.dashCooldown<=0&&!horseMounted&&(has('kolut')||(locked('kolut'),false))){
  // Stefan, 16. 11.: Shift with no direction held is a hop back (odskok), face still to the foe; with a direction, the roll
@@ -458,7 +458,7 @@ function stealthSetup(){world.logori=[];if(!level||!hasDom)return;let n=0;const 
   const r=(e.id*13+levelIndex*7)%9;if(r<2&&sleeps(e.type)){e.spava=true;e.face=e.id%2?1:-1;}else if(r<4&&q.w>380){e.patrola={x0:Math.max(q.x+40,e.x-210),x1:Math.min(q.x+q.w-40,e.x+210),wait:0};e.face=e.id%2?1:-1;}}
  // two camps of sleepers by a fire, on quiet ground away from the start, the goal, traps and other foes
  const camper=o=>!o.champion&&!o.elite&&!o.perch&&!o.kit&&TIHO_TYPES.includes(o.type)&&o.type!=='oklopnik',tpl=world.enemies.find(o=>camper(o)&&o.type==='sword')||world.enemies.find(o=>camper(o)&&sleeps(o.type))||world.enemies.find(camper);if(!tpl)return;
- const span=level.goal.x-level.spawn.x,busy=x=>Math.abs(x-level.spawn.x)<700||Math.abs(x-level.goal.x)<500||(world.traps||[]).some(t=>Math.abs((t.x??t.gate?.x??t.lever?.x??0)-x)<240)||(world.busy||[]).some(([a,b])=>x>a-90&&x<b+90)||world.enemies.some(o=>Math.abs(o.x-x)<200)||(world.goals||[]).some(g=>Math.abs(g.x-x)<260)||(world.ladders||[]).some(l=>Math.abs(l.x-x)<140);
+ const span=level.goal.x-level.spawn.x,busy=x=>Math.abs(x-level.spawn.x)<700||Math.abs(x-level.goal.x)<500||(world.traps||[]).some(t=>Math.abs((t.x??t.gate?.x??t.lever?.x??0)-x)<240)||(world.busy||[]).some(([a,b])=>x>a-90&&x<b+90)||(world.traps||[]).some(t=>t.kind==='seljani'&&x>t.x0-200&&x<t.x1+200)||world.enemies.some(o=>Math.abs(o.x-x)<200)||(world.goals||[]).some(g=>Math.abs(g.x-x)<260)||(world.ladders||[]).some(l=>Math.abs(l.x-x)<140);
  for(const f of[.33,.68]){const want=level.spawn.x+span*f;let best=null;
   for(const q of world.platforms){if(!q.ground||q.tower||q.w<380)continue;for(let x=q.x+150;x<=q.x+q.w-150;x+=50){const d=Math.abs(x-want);if(d>2600||busy(x)||world.logori.some(L=>Math.abs(L.x-x)<1200)||(best&&d>=best.d))continue;best={x,y:q.y,d};}}
   if(!best)continue;world.logori.push({x:best.x,y:best.y});
@@ -971,7 +971,7 @@ function kinoTick(dt){junakTick();const tiho=bledoTick(dt);if(!hasDom)return;con
 function updateCamera(dt){kinoTick(dt);if(uvodMeg&&!level){uvodMeg=null;kamCilj=null;}
  if(kamCilj){camera+=(clamp(kamCilj.x-VIEW_W*.5,0,(level?.width||99999)-VIEW_W)-camera)*Math.min(1,dt*4);camY+=(kamCilj.y-VIEW_H*.5-camY)*Math.min(1,dt*3);return;}if(level?.greybox&&greybox.gbCamera(GBX,dt))return;if(lov){camera=lov.cam;camY+=(lov.camY-camY)*Math.min(1,dt*3);return;}if(pesmaCam(dt))return;const lead=gunner?.1:horseMounted?.3:.4,fok=scenaFokus();const desired=clamp(fok!=null?fok-VIEW_W*.58:p.x-VIEW_W*lead,chapters[zone].start,Math.max(chapters[zone].start,chapters[zone].end-VIEW_W));camera+=(desired-camera)*Math.min(1,dt*5);const wantY=level?levelCameraY(dt):CAM_Y0+Math.min(0,p.y-470)*.55;camY+=(wantY-camY)*Math.min(1,dt*(level?4:3));}
 function update(dt){if(slowMo>0&&mode==='play'){slowMo-=dt;dt*=.35;}else if(mode==='dead'&&endSequence?.kind==='death'&&endSequence.age<.8)dt*=.5;if(mode!=='play')music(dt);if(mode==='pause'){pressed.clear();return;}if(mode==="play"||mode==="menu")time+=dt;if(mode!=='play'){if(mode==='menu'){camera=650+Math.sin(time*.045)*560;camY=CAM_Y0;}updateVisuals(dt);if(mode==='dead')kinoTick(dt);pressed.clear();return;}elapsed+=dt;music(dt);if(govorPosle.length&&mode==='play'&&SND.ready&&!govorTraje())govorPosleDalje();updateDefense(dt);if(hitstop>0){hitstop-=dt;kinoTick(dt);return;}if(!level&&!training&&!storySeen.has(String(zone))&&elapsed>1.2&&!endSequence){playStory(String(zone));if(mode!=='play')return;}
- if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!SCOUT&&!storySeen.has('lov'))lovStart();if(!updateScout(dt)&&!updateLov(dt)&&!updatePesma(dt)&&!updateOkovi(dt)&&!updateMehana(dt)&&!updateVaradin(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){if(level.greybox)greybox.gbTick(GBX,dt);updateUrvina(dt);updateVasar(dt);updateCrkva(dt);updateSabljaPesma(dt);updateKosovka(dt);updateJahanje(dt);updatePotera(dt);updateStrela(dt);updatePogled(dt);pobratimTick(dt);updateKavezi(dt);updateGuslari(dt);updateBranik(dt);atmTick(dt);oboreniTick(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}if((hudT-=dt)<=0){hudT=LITE?.1:.066;updateHud();}pressed.clear();}
+ if(training)updateTraining(dt);if(level&&level.id==='mocvara'&&!lov&&!world.lovDone&&hasDom&&!GO&&!SCOUT&&!storySeen.has('lov'))lovStart();if(!updateScout(dt)&&!updateLov(dt)&&!updatePesma(dt)&&!updateOkovi(dt)&&!updateMehana(dt)&&!updateVaradin(dt)&&!updateFinisher(dt)&&!updateGrapple(dt)&&!updateGunner(dt)&&!updateCelebrate(dt))updatePlayer(dt);updateSlusa(dt);updateCannons(dt);updateGuns(dt);updateBurning(dt);updateGibs(dt);if(level){if(level.greybox)greybox.gbTick(GBX,dt);updateUrvina(dt);updateVasar(dt);updateSeljani(dt);updateCrkva(dt);updateSabljaPesma(dt);updateKosovka(dt);updateJahanje(dt);updatePotera(dt);updateStrela(dt);updatePogled(dt);pobratimTick(dt);updateKavezi(dt);updateGuslari(dt);updateBranik(dt);atmTick(dt);oboreniTick(dt);updateGnezda(dt);updateOrao(dt);updateSokoli(dt);updateSoko(dt);updateBacve(dt);}if(mode==='play'){updateEnemies(dt);if(!level){updateTravelers(dt);updateGallop();}if(mode==='play')updateBoss(dt);if(mode==='play')updateArrows(dt);}updateVisuals(dt);shake=Math.max(0,shake-dt*18);updateCamera(dt);if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('visible');}if(dialogueTime>0){dialogueTime-=dt;if(dialogueTime<=0)$('dialogue').hidden=true;}if((hudT-=dt)<=0){hudT=LITE?.1:.066;updateHud();}pressed.clear();}
 
 // ======================= drawing =======================
 // how hard: Pripovedač (story) forgives, Junak (normal) bites, Epski (epic) is merciless
@@ -1259,6 +1259,7 @@ function basePose(){
  if(p.landing>0){if(rig?.['marko-land']&&Math.abs(p.vx)<60){const n=rig['marko-land'].frames.length;return{name:'marko-land',...onceAt(Math.min(n-1,(1-p.landing/.2)*n))};}const s=Math.sin(p.landing/.2*Math.PI)*.08;return{name:'marko-jump',frame:5,sx:1+s,sy:1-s};}
  if(Math.abs(p.vx)>35){if(Math.abs(p.vx)<170&&rig?.['marko-walk'])return{name:'marko-walk',...loopAt(p.gait*2,8)};return{name:'marko-run',...loopAt(p.gait,6)};}
  if(rig?.['marko-teeter']&&p.grounded&&!horseMounted&&Math.abs(p.vx)<12&&!supportAt(p.x+p.face*24,p.y,60)&&supportAt(p.x-p.face*4,p.y,6))return{name:'marko-teeter',...loopAt(time*8,rig['marko-teeter'].frames.length)};
+ if(slusa&&slusa.t>.7&&p.grounded&&!p.sablja&&!p.noMace&&rig?.['marko-slusa'])return{name:'marko-slusa',...loopAt(time*5,rig['marko-slusa'].frames.length)};
  if(p.idleT>IDLE3_AT&&rig?.['marko-idle-3']){const nm=(p.idleN||0)%2&&rig?.['marko-idle-4']?'marko-idle-4':'marko-idle-3',n=rig[nm].frames.length,t=p.idleT-IDLE3_AT,k=nm==='marko-idle-3'&&n>=12?shoulderFrame(t):t*6<n?Math.floor(t*6):-1;if(k>=0)return{name:nm,frame:k};p.idleT=0;p.idleN=(p.idleN||0)+1;}
  if(rig?.['marko-idle-2'])return{name:'marko-idle-2',...loopAt(time*6,rig['marko-idle-2'].frames.length),sy:1+Math.sin(time*2.2)*.004};if(rig?.['marko-idle'])return{name:'marko-idle',...seqAt(IDLE_SEQ,time*IDLE_FPS),sy:1+Math.sin(time*2.2)*.006,sx:1-Math.sin(time*2.2)*.003};return{name:'cast/marko',frame:0,sy:1+Math.sin(time*2.4)*.012,sx:1-Math.sin(time*2.4)*.005,rot:p.hurt>0?-.1:0};
 }
@@ -1433,7 +1434,7 @@ function draw(dt=1/60){
  if(!level&&(zone===1||zone===4||zone===5)){for(let x=Math.floor(camera/780)*780;x<camera+VIEW_W+780;x+=780){if(solid(x+430))sprite('arch',x+430,594,280,1);}}
  if(!level)for(let x=150;x<29900;x+=1450){if(x>camera-100&&x<camera+VIEW_W+100&&open(x)&&Math.abs(x-chapters[zone].start-90)>160)flag(x,590,true);}if(!level&&open(chapters[zone].start+90))flag(chapters[zone].start+90,590);
  // inside a treasury only its own chests: the ladders, decor and set pieces of the land below would cut across the painting
- if(level){if(p?.vault)drawBreakables();else{drawPuzzles();drawLadders();drawBreakables();drawPlows();drawOltari();drawTraps();}}else world.platforms.forEach(q=>{if(q.kind==='stone'&&!isFloor(q))drawFloor(q);else if(q.kind==='magic')drawBridge(q);});
+ if(level){if(p?.vault)drawBreakables();else{drawPuzzles();drawLadders();drawBreakables();drawPlows();drawOltari();drawTraps();drawSlusa();}}else world.platforms.forEach(q=>{if(q.kind==='stone'&&!isFloor(q))drawFloor(q);else if(q.kind==='magic')drawBridge(q);});
  drawGate();
  world.runes.forEach(drawRune);
  world.items.forEach(drawItem);
@@ -2506,7 +2507,7 @@ function sabljasTick(e,dt){if(e.type!=='sword')return;
 // a pohod foe: archers on towers keep shooting, the rest close in by walking, jumping and climbing
 function levelFoe(e,F,dx,d,dt){if(e.caus)return causStep(e,d,dt);if(time-(e.budiAt??-9)<BUDI_T){e.vx=0;return false;}if((e.spava||e.patrola)&&stealthFoe(e,d,dt))return false;if(e.skriven&&zaseda(e,d))return false;if(e.prey&&preyFoe(e,F,d,dt))return false;const dy=p.y-e.y,ranged=e.type==='archer'||e.type==='tufekdzija',reach=(F?.reach??(ranged?480:84))*(e.champion?1.3:1),speed=F?.speed??(e.type==='shield'?65:95);
  if(e.perch){if(d<820&&Math.abs(dy)<600&&e.timer<=0)startWindup(e,F,d);return false;}
- if(d>760&&!e.alert&&e.plow==null)return false;e.alert=d<760;
+ if(d>(slusa?SLUSA_VID:760)&&!e.alert&&e.plow==null)return false;e.alert=d<760;
  if(e.par!=null&&tandemStep(e,F,dx,d,dt,speed))return false;
  if(ranged?(d<=reach&&Math.abs(dy)<320):(d<=reach&&Math.abs(dy)<80)){if(e.timer<=0&&!e.climb&&e.grounded)startWindup(e,F,d);return false;}
  if(tryMove(e,d))return false;foeWalk(e,dx>0?1:-1,speed,dt);return false;}
@@ -3553,7 +3554,8 @@ const VASAR_KONJI=[{ime:'Dorat',f:'sepia(1) saturate(2.6) hue-rotate(-20deg) bri
 function vasarTrap(){return(world.traps||[]).find(t=>t.kind==='vasar')||null;}
 function vasarStanje(t){return t.stanje??=t.konji.map(()=>({leti:0,odbacen:false,drzi:0}));}
 function useVasar(){const t=vasarTrap();if(!t||t.done||!p.grounded)return false;const i=t.konji.findIndex(x=>Math.abs(p.x-x)<90);if(i<0)return false;const K=vasarStanje(t)[i];if(K.leti>0||K.odbacen)return false;
- p.face=t.konji[i]>p.x?1:-1;p.castLock=.5;
+ p.face=t.konji[i]>p.x?1:-1;p.castLock=.5;if(rig?.['marko-hvata-rep']){p.repT=REP_TIME;p.castLock=REP_TIME;p.vx=0;}
+ K.face=p.face;p.x=t.konji[i]-p.face*(VASAR_KONJI[i].sarac?92:104);   // by the tail: the horse turns its back to him and he steps up to it
  if(VASAR_KONJI[i].sarac){t.done=true;K.drzi=1.2;t.korak=1;t.korakT=time;label('NE POMAČE SE!',t.konji[i],t.y-170,'#ffe39a');sfx('horse',{gain:.6})||sfx('hoof',{gain:.6});shake=settings.reduced?0:3;
   speak('Uhvati Marko šareno ždrebe za rep, zamahnu njime, a ždrebe se ni s mesta ne pomače. „Ovo je, brate, moj konj!”',7,'MARKO');}
  else{K.leti=1;label(VASAR_KONJI[i].ime==='Dorat'?'DORAT PRELETE PREKO GLAVE':VASAR_KONJI[i].ime==='Vranac'?'VRANAC PRELETE PREKO GLAVE':'ZELENKO PRELETE PREKO GLAVE',t.konji[i],t.y-170,'#e9ffe0');sfx('whoosh_heavy',{gain:.7});sfx('horse',{gain:.4,rate:1.3});
@@ -3568,11 +3570,11 @@ function updateVasar(dt){const t=vasarTrap();if(!t)return;const S=vasarStanje(t)
  puzzleGate(t,t.done,'Izaberi konja na vašaru: E kraj konja.');}
 function drawVasar(t){if(t.x1<camera-300||t.x0>camera+VIEW_W+300)return;const S=vasarStanje(t);
  rigDraw('putnik-starac-idle',loopF(time*4,rig?.['putnik-starac-idle']?.frames.length||1),t.cuvar,t.y,1);if(Math.abs(p.x-t.cuvar)<500)textLabel('KONJUŠAR',t.cuvar,t.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});
- t.konji.forEach((x,i)=>{const K=S[i],V=VASAR_KONJI[i],away=i%2?1:-1;
+ t.konji.forEach((x,i)=>{const K=S[i],V=VASAR_KONJI[i],away=K.face??(i%2?1:-1);   // let go, it walks off the way it faces: away from Marko
   if(K.odbacen&&!V.sarac){shadow(x+away*230,t.y,52,.35);saracDraw(x+away*230,t.y,away,{scale:.82,filter:V.f});return;}
   // held by the tail a horse kicks back with both hind legs; let go, it rears where it stands and walks off to the side
   // (Stefan, 16. 11.: „umesto da se ritaju, oni kao da ih je neko bacio”): the moves of sarac-propinje and sarac-hod
-  let dx=0,klip='sarac-stoji',fr,face=i===2?1:-1;
+  let dx=0,klip='sarac-stoji',fr,face=K.face??(i===2?1:-1);
   if(K.leti>0){const k=1-K.leti;if(k<.45){klip='sarac-propinje';fr=k/.45*4;}else{klip='sarac-hod';dx=(k-.45)/.55*away*230;face=away;}}
   else if(K.drzi>0&&!V.sarac){klip='sarac-propinje';fr=4+Math.floor(time*7)%2;}
   const zdrav=V.sarac&&t.zdrav&&time-t.zdrav>.6,sc=V.sarac?(zdrav?1:.78):.88;shadow(x+dx,t.y,60*sc,.4);
@@ -4016,7 +4018,7 @@ function preyFoe(e,F,d,dt){const g=e.prey;if(g.state!=='napad'&&g.state!=='odbra
 function guslarFoe(g,type,side,k=0){const hp=FOE_HP_G[type]||90,x=(side>0?g.x1+60:g.x0-60)+side*k*75,y=groundAt(x,g.y-60)??g.y;
  world.enemies.push({id:40000+(++guslarN),x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-side,mode:'idle',timer:.6,stun:0,flash:0,alive:true,home:g.x,attackId:0,grounded:true,prey:g,enter:{tx:g.x+side*70,t:-4,v:125+Math.random()*45}});}
 function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar');if(!G.length)return;
- G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.shake=Math.max(0,(g.shake||0)-dt);guslarSongTick(g);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=LAND_STIH[level?.id]||STIHOVI[Math.min(i,STIHOVI.length-1)];}
+ G.forEach((g,i)=>{g.t=(g.t||0)+dt;g.pev=g.state==='peva'?(g.pev||0)+dt:0;g.shake=Math.max(0,(g.shake||0)-dt);guslarSongTick(g);if(!g.state){g.state='ceka';g.hp=GUSLE_HP;g.stih=LAND_STIH[level?.id]||STIHOVI[Math.min(i,STIHOVI.length-1)];}
   const near=Math.abs(p.y-g.y)<320;
   if(g.odbrana&&(g.state==='ceka'||g.state==='odbrana')){guslarOdbrana(g,dt,near);return;}
   if(g.state==='ceka'){
@@ -4032,7 +4034,7 @@ function updateGuslari(dt){const G=(world.traps||[]).filter(t=>t.kind==='guslar'
    if(g.state==='napad'&&!g.wave&&foes.length<=1&&g.t>4){g.wave=1;guslarFoe(g,'akindzija',-1);guslarFoe(g,'akindzija',-1,1);toast('Iza tebe! Akindžije jure na guslara.',2.5);sfx('horn_call',{gain:.6,rate:1.1});}
    else if(g.state==='napad'&&g.wave&&!foes.length)guslarPeva(g);}
   if(g.state==='peva'){if(Math.abs(p.x-g.x)<620&&near){p.rage=Math.min(100,(p.rage||0)+(g.t<12?34:7)*dt);const h=Math.min(12*dt,40-(g.healed||0),p.maxHp-p.hp);if(h>0){p.hp+=h;g.healed=(g.healed||0)+h;}}
-   if(!g.second&&!g.song&&g.t>5.4){g.second=true;sfx('gusle',{gain:.8,x:g.x});}if(g.t>g.stih.length*STIH_T+2.5&&PESMA.g!==g)g.state='gotov';}});}
+   if(!g.second&&!g.song&&g.t>5.4){g.second=true;sfx('gusle',{gain:.8,x:g.x});}if((g.pev||0)>g.stih.length*STIH_T+2.5&&PESMA.g!==g)g.state='gotov';}});}
 function guslarPeva(g,quiet){g.state='peva';g.t=0;g.healed=0;if(quiet){g.second=true;if(PESMA.g!==g)guslarSong(g);return;}if(!g.mir){addCoins(12,g.x,g.y-90);toast('Guslar je odbranjen. Sluša se pesma!',2.5);}else toast('Guslar peva o Marku',2);g.second=false;guslarSong(g)||sfx('gusle',{gain:.9,x:g.x})||sfx('ring',{gain:.5,rate:.8,x:g.x});}
 // a real guslar sings: 28 s of "Marko Kraljević i Musa Kesedžija" (Wikimedia Commons, VVVladimir, CC BY-SA 3.0).
 // The music steps back while he sings, and his voice fades as Marko walks away from him.
@@ -4059,11 +4061,59 @@ function drawNote(g,face,amt){const n=Math.round(7*amt);ctx.save();ctx.textAlign
   ctx.globalAlpha=a;ctx.font=`bold ${sz}px 'Segoe UI Symbol','Noto Music',Georgia,serif`;ctx.lineWidth=5;ctx.strokeStyle='rgba(30,16,4,.85)';ctx.strokeText(NOTE_GLYPHS[i%4],x,y);ctx.fillStyle=i%2?'#ffe9a8':'#ffc94a';ctx.fillText(NOTE_GLYPHS[i%4],x,y);}
  ctx.restore();}
 // the verse hangs above the guslar like a line of a songbook, one line at a time
-function drawStih(g){const T=g.t-(g.t0||0),n=Math.min(g.stih.length,Math.floor(T/STIH_T)+1),out=clamp((g.stih.length*STIH_T+2.5-T)/.8,0,1);if(out<=0)return;
+function drawStih(g){const T=g.state==='peva'&&!g.t0?g.pev||0:g.t-(g.t0||0),   // sung in peace the verses keep the wall clock (2.6 s a line), so they last as long as Marko listens
+ n=Math.min(g.stih.length,Math.floor(T/STIH_T)+1),out=clamp((g.stih.length*STIH_T+2.5-T)/.8,0,1);if(out<=0)return;
  ctx.save();ctx.font='italic 19px Georgia';const lines=g.stih.map(s=>tr(s)),w=Math.max(...lines.map(s=>ctx.measureText?ctx.measureText(s).width:s.length*9))+44,h=lines.length*27+20,x=g.x-w/2,y=g.y-300-h/2;
  ctx.globalAlpha=.85*out;ctx.fillStyle='#160f09';ctx.fillRect(x,y,w,h);ctx.strokeStyle='#8a7448';ctx.lineWidth=2;ctx.strokeRect(x+3,y+3,w-6,h-6);
  ctx.textAlign='center';ctx.textBaseline='middle';for(let i=0;i<n;i++){const a=clamp((T-i*STIH_T)/.6,0,1);ctx.globalAlpha=a*out;ctx.fillStyle='#ead9b0';ctx.fillText(lines[i],g.x,y+22+i*27);}
  ctx.restore();}
+// ================= the village (18. 11.): on the quiet road into Kosovsko selo its people greet Marko =================
+// No foe stands here: the guslar tells where Marko is, Marko walks and listens, a mother with her child and an old man
+// greet him as he passes (putnica-pozdrav and putnik-starac-klanja, DOPUNA-65; until those are in, they stand as before).
+const SELJANI={putnica:{idle:'putnica-idle',poz:'putnica-pozdrav',rec:'Pomoz’ Bog, Kraljeviću!'},starac:{idle:'putnik-starac-idle',poz:'putnik-starac-klanja',rec:'Bog ti pomogao, Marko!'}},SELJANI_T=2.4;
+function updateSeljani(dt){for(const t of world.traps||[])if(t.kind==='seljani')for(const s of t.ljudi)if(!s.rekao&&Math.abs(p.x-s.x)<230&&Math.abs(p.y-t.y)<120){s.rekao=true;s.pozT=time;label(SELJANI[s.k].rec,s.x,t.y-150,'#ffe9b0');}}
+function drawSeljani(t){if(t.x1<camera-300||t.x0-700>camera+VIEW_W)return;for(const s of t.ljudi){const S=SELJANI[s.k],poz=s.pozT!=null&&time-s.pozT<SELJANI_T&&rig?.[S.poz],nm=poz?S.poz:S.idle,R=rig?.[nm];if(!R)continue;
+  shadow(s.x,t.y,34,.35);rigDraw(nm,poz?Math.min(R.frames.length-1,(time-s.pozT)/SELJANI_T*R.frames.length):loopF(time*4,R.frames.length),s.x,t.y,p.x<s.x?-1:1);}}
+// ================= listening: Marko walks while a line is said or a guslar sings, and the road ahead waits =================
+// (Stefan, 18. 11. 2026: „da Marko hoda dok ide pesma i dok slušamo guslara, to jest naratora, da ne može da se ide dalje…
+// blok da nastavimo dalje dok se ne završi dijalog, monolog, replika”.) The walk-and-talk of God of War and The Lost Crown:
+// while the words last Marko goes at a walk over open ground, and a veil of the song stands a little way down the road; it
+// lifts with the last word. Never in a fight (a foe that has seen him frees him), in a duel, on horseback, in a scene that
+// holds the controls or by a trap that needs his legs; in the air he keeps his full speed, and the veil never stands past
+// a gap, so no jump is lost to a line. A foe that has not seen him yet notices him only from close by while he listens,
+// so the words are not cut short by a charge from across the screen.
+// A line without a recording (a hint, the English game) holds him for as long as it takes to read.
+const SLUSA_DALJ=520,SLUSA_VID=330,SLUSA_OPASNO=new Set(['spikes','timed','red','water','log','lift','rocks','boulder','barrels','powder','tent','top','topnica','potera','jahanje','strela','branik','okovi','mehana','varadin','samodreza','vrh','trska','kolo','kavez']);
+let slusa=null,slusaKraj=null,slusaT=0,slusaNova=false,slusaProba=false;
+function slusaLinija(text,duration,t){slusaNova=true;slusaT=t||!(hasDom||slusaProba)?0:clamp(String(text||'').length*.055,2.5,Math.min(duration,7));}
+// the guslar whose verses are being sung now, if Marko is by him
+function slusaGuslar(){for(const g of world.traps||[])if(g.kind==='guslar'&&g.state==='peva'&&!g.t0&&g.stih&&(g.pev||0)<g.stih.length*STIH_T+2.5&&p.x>g.x0-240&&p.x<g.x+550&&Math.abs(p.y-g.y)<320)return g;return null;}
+function slusaOpasno(x,m){for(const t of world.traps||[])if(SLUSA_OPASNO.has(t.kind)){const a=t.x0??t.x,b=t.x1??t.x;if(x>a-m&&x<b+m)return true;}return false;}
+function slusaMoze(){if(!level||level.greybox||mode!=='play'||SCOUT||arena||training||lov||pesma||okoviScena||mehanaScena||varadinScena||horseMounted||finisher||grapple||gunner||endSequence||p.uCrkvi||p.pinned||p.vault||p.climb)return false;
+ for(const e of world.enemies)if(e.alive&&!e.spava&&!e.razgovor&&(e.alert||e.prey||e.perch)&&Math.abs(e.x-p.x)<820&&Math.abs(e.y-p.y)<600)return false;
+ return !slusaOpasno(p.x,380);}
+const slusaTlo=q=>!!q&&!q.off&&(q.ground||q.kind==='step'||!!q.surf);
+// where the veil stands: as far as the open ground runs unbroken ahead of Marko, at most SLUSA_DALJ, and short of any trap
+function slusaBlok(){let y=p.y,B=p.x,lim=Infinity;for(const e of world.enemies)if(e.alive&&!e.alert&&!e.spava&&!e.razgovor&&e.x>p.x&&Math.abs(e.y-p.y)<300)lim=Math.min(lim,e.x-SLUSA_VID-40);
+ for(let x=p.x+40;x<=Math.min(p.x+SLUSA_DALJ,lim);x+=40){const q=supportAt(x,y,90);if(!slusaTlo(q)||slusaOpasno(x,160))break;y=q.y;B=x;}return{B:B>p.x?B-20:p.x,y};}
+function slusaHoda(){return !!slusa?.hod;}
+function updateSlusa(dt){slusaT=Math.max(0,slusaT-dt);if(slusaKraj&&(slusaKraj.t-=dt)<=0)slusaKraj=null;
+ const g=slusaGuslar(),on=(g||govorTraje()||slusaT>0)&&slusaMoze();
+ if(!on){if(slusa){if(slusa.B!=null)slusaKraj={B:slusa.B,y:slusa.y,t:.6};slusa=null;}slusaNova=false;return;}
+ const tlo=p.grounded&&slusaTlo(supportAt(p.x,p.y,8));
+ if(!slusa){if(!tlo)return;slusa={B:null,y:p.y,t:0,hod:false,g:null};slusaNova=true;}
+ slusa.t+=dt;slusa.hod=tlo;slusa.g=g;
+ if(g){slusa.B=Math.min(g.x+520,g.x1-60);slusa.y=g.y;slusaNova=false;}
+ else if(tlo&&(slusaNova||slusa.B==null||p.x>slusa.B+50)){const N=slusaBlok();if(slusa.B==null||N.B>slusa.B||p.x>slusa.B+50){slusa.B=N.B;slusa.y=N.y;}slusaNova=false;}
+ if(slusa.B!=null&&p.x>slusa.B){p.x=slusa.B;if(p.vx>0)p.vx=0;slusa.kod=1;}else slusa.kod=Math.max(0,(slusa.kod||0)-dt*2);}
+// the veil of the song: a soft golden light across the road with notes rising in it; it brightens as Marko comes up to it
+function drawSlusa(){const S=slusa||slusaKraj;if(!S||S.B==null||S.B<camera-80||S.B>camera+VIEW_W+80)return;
+ const live=S===slusa,d=S.B-p.x,a=live?clamp(1-(d-140)/380,.3,1)*Math.min(1,S.t*2.5):clamp(S.t/.6,0,1),x=S.B+26,y=S.y,H=330,w=live?30+6*Math.sin(time*2.2):30+60*(1-S.t/.6);
+ ctx.save();if(ctx.createLinearGradient){const G=ctx.createLinearGradient(x-w,0,x+w,0);G.addColorStop(0,'rgba(255,214,120,0)');G.addColorStop(.5,'rgba(255,226,150,'+(.34*a).toFixed(3)+')');G.addColorStop(1,'rgba(255,214,120,0)');ctx.fillStyle=G;ctx.fillRect(x-w,y-H,w*2,H);}
+ ctx.textAlign='center';for(let i=0;i<7;i++){const ph=(time*.3+i/7+(i*.37)%.13)%1,nx=x+Math.sin(ph*6+i*1.7)*13,ny=y-12-ph*(H-40),na=Math.min(1,Math.sin(ph*Math.PI)*1.5)*a;
+  ctx.globalAlpha=na;ctx.font='bold '+(19+(i%3)*4)+'px \'Segoe UI Symbol\',\'Noto Music\',Georgia,serif';ctx.lineWidth=4;ctx.strokeStyle='rgba(60,34,8,.7)';ctx.strokeText(NOTE_GLYPHS[i%4],nx,ny);ctx.fillStyle=i%2?'#fff0b8':'#ffd25a';ctx.fillText(NOTE_GLYPHS[i%4],nx,ny);}
+ ctx.restore();if(live)halo(x,y-150,150,'rgba(255,220,140,.5)',.35*a+.4*(S.kod||0));
+ if(live&&d<170)textLabel(S.g?'SASLUŠAJ PESMU':'SASLUŠAJ DO KRAJA',x,y-H-14,{font:'bold 13px Georgia',color:'#ffe9b0',alpha:clamp(1-(d-60)/110,0,1)});}
 // ================= pack 09: banners inside a pohod, and the guslar who sings the whole song =================
 // A pohod is long. Where the road is quiet Marko's men raise a banner behind him, and a fallen Marko comes back there with
 // the land as he left it: the dead stay dead, the solved stays solved. A champion he fell to gets his strength back.
@@ -4453,7 +4503,7 @@ function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;
   else if(G.state==='zove'){rigDraw('caus-ferman',Math.min(F.frames.length-1,G.t*5),G.x,t.y,-1);rigDraw('caus-idle',loopF(time*5,rig['caus-idle']?.frames.length||1),G.x+70,t.y,-1);
    if(Math.abs(p.x-G.x)<260&&G.t>1.2)textLabel('J · KUPOM OD DVANAEST OKA',G.x-40,t.y-180,{font:'bold 13px Georgia',color:'#ffcf9a',glow:'#3a0a04'});}
   else if(G.state==='kupa'&&G.drugi<camera+VIEW_W+120)rigDraw('caus-walk',loopF(time*12,W.frames.length),G.drugi,t.y,1);}}
-function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='jahanje')drawJahanje(t);else if(t.kind==='vasar')drawVasar(t);else if(t.kind==='samodreza')drawCrkva(t);else if(t.kind==='okovi')drawOkovi(t);else if(t.kind==='mehana')drawMehana(t);else if(t.kind==='varadin')drawVaradin(t);else if(t.kind==='kosovka')drawKosovka(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);else if(t.kind==='branik')drawBranik(t);
+function drawTraps(){for(const t of world.traps||[])if(t.kind==='gnezdo')drawGnezdo(t);else if(t.kind==='sirotinja')drawSirotinja(t);else if(t.kind==='vrh')drawVrh(t);else if(t.kind==='potera')drawPotera(t);else if(t.kind==='jahanje')drawJahanje(t);else if(t.kind==='vasar')drawVasar(t);else if(t.kind==='samodreza')drawCrkva(t);else if(t.kind==='okovi')drawOkovi(t);else if(t.kind==='mehana')drawMehana(t);else if(t.kind==='varadin')drawVaradin(t);else if(t.kind==='kosovka')drawKosovka(t);else if(t.kind==='strela')drawStrela(t);else if(t.kind==='pogled')drawPogled(t);else if(t.kind==='trgovac')drawTrgovac(t);else if(t.kind==='seljani')drawSeljani(t);else if(t.kind==='trska')drawTrska(t,false);else if(t.kind==='soko')drawSokoTrap(t);else if(t.kind==='bacva')drawBacva(t);for(const t of world.traps||[])if(t.kind==='kavez')drawKavez(t);else if(t.kind==='guslar')drawGuslar(t);else if(t.kind==='branik')drawBranik(t);
  // every cage broken: the whole wedding dances the kolo by the banner at the end
  if(world.svatoviAll&&world.svatoviFreed===world.svatoviAll&&level?.goal&&rig?.['svatovi-kolo']&&Math.abs(level.goal.x-camera-VIEW_W/2)<VIEW_W)rigDraw('svatovi-kolo',loopF(time*9,rig['svatovi-kolo'].frames.length),level.goal.x-230,level.goal.y,1,{});let firstLog=null;for(const t of world.traps||[]){if(t.kind==='log'){t.first=!firstLog||firstLog.beam?.[0]!==t.beam?.[0];if(t.first)firstLog=t;}if(t.kind==='spikes')drawSpikes(t);else if(t.kind==='log')drawLog(t);else if(t.kind==='rocks')drawRocks(t);else if(t.kind==='barrels')drawBarrels(t);else if(t.kind==='timed')drawTimed(t);}}
 function drawTrapsFront(){if(level?.greybox)greybox.gbDrawFront(GBX);for(const t of world.traps||[])if(t.draw)t.draw({ctx,gctx,time,rig,rigDraw});else if(t.kind==='boulder')drawBoulder(t);else if(t.kind==='trska')drawTrska(t,true);drawGateFronts();}
@@ -4914,8 +4964,8 @@ function starText(L){const s=levelStars(L);return(s.done?'★':'☆')+(s.slova?'
 // ---------- Ravijojla explains each new danger the first time Marko meets it ----------
 const HINTS={osnove:'A i D te vode drumom, a Space je skok. Topuz je na J, teški udarac na K, a štit dižeš na L.',osnove2:'Udri ga topuzom (J). Kad on zamahne, podigni štit (L) ili odskoči, pa uzvrati.',osnove3:'Vino iz čuture (Q) vida rane i daje snagu. Popij ga kad zdravlje padne.',vila:'Od danas ti je vila Ravijojla posestrima. Kad zatreba, pozovi je: E. Omamiće dušmane oko tebe ili će ti zalečiti rane.',ladder:'Lestve! Priđi i drži W (ili gore na džojstiku).',spikes:'Kolje! Preskoči ga — a Turčina možeš baciti na njega.',crumble:'Ove daske popuštaju. Ne zastaj na njima!',vreme:'Ova kapija se zatvori pre nego što do nje dotrčiš. Ostavi Vilin trag kraj kapije (V), vrati se do poluge i povuci je (E), pa se tragom vrati (V) dok je otvorena.',kuke:'Nad jarugom vise srebrne kuke. Baci Ravijojlin lanac na prvu (C), pa iz leta na drugu. Ko lanac nema, silazi lestvama i ide dnom.',sablja:'Očeva sablja nije topuz. Seče brže (J J J), rane krvare, a treći rez je ubod dugog dometa. K je prolet: prođeš kroz dušmane i izađeš im za leđa. Štit i oklop je zaustavljaju: za njih vrati topuz (G).',tandem1:'Štitonoša zaklanja strelca: stoji pred njim i ne da ti da priđeš. Preskoči ga, slomi mu gard teškim udarcem (K), ili vrati strelu odbijanjem (L).',tandem2:'Ova dvojica rade zajedno: jedan te drži spreda, a drugi ti zalazi za leđa. Ne daj da te uklešte: obori prvo onoga koji trči.',bedem:'Put se račva. Lestvama preko bedema, gde vrebaju strelci, ili kroz prolaz ispod njega, gde čeka straža.',jaruga:'Most je truo. Pretrči ga, ili siđi lestvama i prođi dnom jaruge, tamo leži kovčeg.',log:'Balvan se njiše. Sačekaj da prođe, pa protrči ispod.',rocks:'Kamenje pada sa litice. Prati senke na zemlji!',barrels:'Burad se kotrljaju niz stepenice! Preskoči ih ili razbij teškim udarcem.',timed:'Povuci polugu, pa trči — kapija se brzo zatvara.',plate:'Iza ove kapije je riznica. Ploča u zemlji otvara kapiju dok je nešto pritiska: dogurni teški sanduk na ploču (samo hodaj u njega), pa uđi sa W.',slovo:'Zlatno slovo! Skupi sva slova М-А-Р-К-О u ovom pohodu.',moc:'Vilinska moć! Uzmi je i topuz će ti zasijati.',chest:'Kovčeg! Udari ga topuzom da ga otvoriš.',shaft:'Između ova dva zida možeš da se penješ odskakanjem.',boss:'Megdan! Pazi na svaki njegov treći napad.',drop:'Sa daske ili poda kule siđeš sa S + Space (na džojstiku dole + A).',launch:'S + K je aperkat: diže Turčina u vazduh! Odmah Space za njim, pa J J J u skoku — treći udarac ga zakuca o zemlju.'};
 let hintsSeen=null,hintT=0;
-function hintOnce(key,any=false){if(!level&&!any)return;if(okoviScena||mehanaScena||varadinScena||pesma||p?.uCrkvi)return;   // the song's verses are not cut by a hint; it comes later
-hintsSeen??=(()=>{try{return new Set(JSON.parse(localStorage.getItem('marko-hints')||'[]'));}catch{return new Set();}})();if(hintsSeen.has(key)||hintT>0)return;hintsSeen.add(key);hintT=6;try{localStorage.setItem('marko-hints',JSON.stringify([...hintsSeen]));}catch{}speak(HINTS[key],5);}
+function hintOnce(key,any=false){if(!level&&!any)return;if(okoviScena||mehanaScena||varadinScena||pesma||p?.uCrkvi||govorTraje())return;   // the song's verses and the narrator's words are not cut by a hint; it comes later
+hintsSeen??=(()=>{try{return new Set(JSON.parse(localStorage.getItem('marko-hints')||'[]'));}catch{return new Set();}})();if(hintsSeen.has(key)||hintT>0)return;hintsSeen.add(key);hintT=6;try{localStorage.setItem('marko-hints',JSON.stringify([...hintsSeen]));}catch{}speak(HINTS[key],5);slusaT=0;}   // a hint is advice, not a line to hear out: it does not hold Marko
 function updateHints(dt){hintT=Math.max(0,hintT-dt);if(level&&levelIndex===0&&hintT<=0&&!arena){if(elapsed>1.5&&!hintsSeen?.has('osnove'))return hintOnce('osnove');if(world.enemies.some(e=>e.alive&&Math.abs(e.x-p.x)<520&&Math.abs(e.y-p.y)<120)&&!hintsSeen?.has('osnove2'))return hintOnce('osnove2');if(elapsed>40&&!hintsSeen?.has('osnove3'))return hintOnce('osnove3');}if(hintT<=0&&world.enemies.some(e=>e.alive&&!e.perch&&Math.abs(e.x-p.x)<240&&Math.abs(e.y-p.y)<60))hintOnce('launch',true);if(!level||hintT>0)return;const near=(x,y,r=420)=>Math.abs(x-p.x)<r&&Math.abs(y-p.y)<260;
  for(const k of world.kuke||[])if(near(k.x,k.y+250,460))return hintOnce('kuke');
  for(const l of world.ladders||[])if(!ladderShut(l)&&near(l.x,l.bottom,300))return hintOnce('ladder');
@@ -5677,7 +5727,7 @@ function attackKeyAt(){return p.attackKind==='super'?.5:p.attackKind==='light'?M
 const CLIP_KEY={'marko-air-3':3.5/5,'marko-potres':4.5/8,'marko-launcher':3.5/6};
 function attackFrame(phase,o){const n=rig?.[o.name]?.frames.length||6;Object.assign(o,onceAt(Math.min(n-1,phase*n)));o.keyAt=CLIP_KEY[o.name]??attackKeyAt();o.swing=o.name;o.ph=phase;return o;}
 // dev only: open the game with ?dev to reach the pohodi from the console
-if(DEV)window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},get fires(){return fires;},get pesma(){return pesma;},addFire,step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};
+if(DEV)window.markoDev={startLevel,LEVELS,layoutAudit,startChapter,enterChapter,keys,pressed,get p(){return p;},get world(){return world;},get boss(){return boss;},get zone(){return zone;},get mode(){return mode;},get camera(){return camera;},get finisher(){return finisher;},get layer(){return layer;},get corpses(){return corpses;},get arrows(){return arrows;},get fires(){return fires;},get pesma(){return pesma;},get slusa(){return slusa;},addFire,step(n=1){for(let i=0;i<n;i++)update(1/120);draw(1/60);}};
 
 // ---------- idle, dizziness, voice ----------
 const IDLE_SEQ=[0,6,5,7,5,6,0,1],IDLE_FPS=4,DIZZY_TIME=.9;
@@ -5975,8 +6025,8 @@ function drawMenuMarko(name,fi,t){if(!rigImages[rig[name]?.image]){rigWant(rig[n
 menuLedger();
 
 // ---------- Marko's in-between clips (Codex, DOPUNA-8): walk, braking, rise and fall, a longer rest, recovery, rolls ----------
-const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42,PICK_TIME=.6,CALL_TIME=.75,BLAST_TIME=.85;
-function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT','pickT','callT','blastT'])if(p[k]>0)p[k]-=dt;if(p.grounded)p.runJump=false;
+const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42,REP_TIME=.9,PICK_TIME=.6,CALL_TIME=.75,BLAST_TIME=.85;
+function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT','repT','pickT','callT','blastT'])if(p[k]>0)p[k]-=dt;if(p.grounded)p.runJump=false;
  p.airT=p.grounded?0:(p.airT||0)+dt;
  // letting go of the arrows at full run: he digs his heels in
  const held=keys.has('KeyA')||keys.has('KeyD')||keys.has('ArrowLeft')||keys.has('ArrowRight');
@@ -5993,6 +6043,7 @@ function flowPose(){const once=(name,t,T)=>{const n=rig[name].frames.length;retu
  if(p.pickT>0&&p.attack<=0&&rig?.['marko-pickup'])return once('marko-pickup',p.pickT,PICK_TIME);
   if(p.callT>0&&p.attack<=0&&p.grounded){const mv=Math.abs(p.vx)>35;if(mv&&Math.abs(p.vx)<200&&rig?.['marko-call-walk'])return{name:'marko-call-walk',...loopAt(p.gait*2,rig['marko-call-walk'].frames.length)};if(!mv&&rig?.['marko-call'])return once('marko-call',p.callT,CALL_TIME);}
   if(p.openT>0&&rig?.['marko-open'])return once('marko-open',p.openT,OPEN_TIME);
+  if(p.repT>0&&rig?.['marko-hvata-rep'])return once('marko-hvata-rep',p.repT,REP_TIME);
  if(p.recoverT>0&&Math.abs(p.vx)<80&&rig?.['marko-combo-recover'])return once('marko-combo-recover',p.recoverT,RECOVER_TIME);
  if(p.stopT>0&&Math.abs(p.vx)<150&&!p.blocking&&!p.crouching&&rig?.['marko-run-stop'])return once('marko-run-stop',p.stopT,STOP_TIME);
  return null;}
