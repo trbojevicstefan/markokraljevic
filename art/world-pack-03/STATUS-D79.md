@@ -1,0 +1,3 @@
+- D79 | marko-povratni | pokušaj 1/3 | IZVEZENO i vizuelno/tehnički provereno | visine kadrova 272, 302, 327, 390, 368, 347 px; stopala y=487; 6/6 kadrova; petlja ne.
+- D79 | marko-odmerava | pokušaj 1/3 | IZVEZENO i vizuelno/tehnički provereno | visine kadrova 386, 386, 386, 383, 390, 388 px; stopala y=487; 6/6 kadrova; petlja da.
+- D79 | marko-raduje | pokušaj 1/3 | IZVEZENO i vizuelno/tehnički provereno | visine kadrova 330, 383, 386, 390, 390, 319 px; stopala y=487; 6/6 kadrova; petlja ne.

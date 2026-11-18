@@ -427,3 +427,29 @@
 .jn-gore{margin:0 0 10px}.jn-knjige{display:flex;gap:8px}
 .jn-tabs button{padding-left:18px;padding-right:18px}
 @media(max-width:900px),(pointer:coarse){.jn-kombo-mreza,.jn-zapisi{grid-template-columns:1fr 1fr}.jn-tabs button{padding:5px 8px 4px;font-size:12px}.jn-zapisi .jn-roba small{display:none}}
+/* ---- the upgrade window moves (18. 11.): it opens with a motion, a tab slides in, the squares pop in one after another, the
+   chosen square breathes, what can be bought glows, the description fades in; #jn-fig, #jn-pregled and #jn-slavi are small
+   canvases drawn from the game's sprite sheets (game.js, jnAnimTick) ---- */
+.jn-okvir.otvara{animation:jn-otvara .3s cubic-bezier(.2,.9,.3,1.12)}
+@keyframes jn-otvara{0%{transform:scale(.94) translateY(16px);opacity:0}100%{transform:none;opacity:1}}
+.jn-sadrzaj>.nap-panel:not([hidden]){animation:jn-panel .22s ease-out}
+@keyframes jn-panel{0%{transform:translateX(18px);opacity:0}100%{transform:none;opacity:1}}
+.jn-okvir.otvara .nap-panel .jn-slot{animation:jn-slot-ulaz .36s ease-out backwards}
+.jn-okvir.otvara .nap-panel .jn-slot:nth-child(2n){animation-delay:.06s}
+.jn-okvir.otvara .nap-panel .jn-slot:nth-child(3n){animation-delay:.12s}
+.jn-okvir.otvara .nap-panel .jn-slot:nth-child(5n){animation-delay:.18s}
+@keyframes jn-slot-ulaz{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:none;opacity:1}}
+.jn-slot.sel{animation:jn-sel 1.7s ease-in-out infinite}
+@keyframes jn-sel{50%{filter:brightness(1.2)}}
+.jn-slot.moze:not(.sel){animation:jn-moze 1.9s ease-in-out infinite}
+@keyframes jn-moze{50%{outline-color:#c4ffb4;filter:brightness(1.12)}}
+.jn-slot.kupljeno.kupljeno{animation:jn-kupljeno .9s ease-out}
+.jn-opis>*{animation:jn-opis-ulaz .2s ease-out}
+@keyframes jn-opis-ulaz{0%{opacity:0;transform:translateY(6px)}}
+.jn-figura canvas{background:none;border:0;box-shadow:none;flex:1;min-height:0;width:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 8px 10px #000a)}
+.jn-pregled{display:block;width:100%;height:auto;border:0;margin:8px 0 4px;background:radial-gradient(ellipse at 50% 96%,#6a34286e,transparent 60%),linear-gradient(180deg,#1c090a,#0c0405);box-shadow:inset 0 0 0 1px #e3c27e44}
+#jn-slavi{position:absolute;right:46px;bottom:26px;width:250px;height:250px;pointer-events:none;opacity:0;z-index:5;background:none;border:0;box-shadow:none;filter:drop-shadow(0 0 14px #ffd76a99)}
+#jn-slavi.ide{animation:jn-slavi 1.5s ease-out}
+@keyframes jn-slavi{0%{opacity:0;transform:translateY(22px) scale(.85)}14%{opacity:1;transform:none}78%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+.jn-dukat{position:fixed;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff6cf,#f2c75a 55%,#a8781f);box-shadow:0 0 8px #ffd76acc;z-index:99;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.jn-okvir.otvara,.jn-sadrzaj>.nap-panel:not([hidden]),.jn-okvir.otvara .nap-panel .jn-slot,.jn-slot.sel,.jn-slot.moze:not(.sel),.jn-opis>*,#jn-slavi.ide{animation:none}#jn-slavi.ide{opacity:1}}

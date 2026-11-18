@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        121,
+        158,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        42243
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 330
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        116,
+        105,
+        378,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        44103
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 383
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        122,
+        102,
+        373,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        43385
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 386
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        126,
+        98,
+        367,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        42978
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        125,
+        98,
+        369,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        45260
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        143,
+        169,
+        351,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        42654
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 319
+    }
+  ],
+  "scale": 0.8823529411764706,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d79\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 390,
+  "targetHeight": 390,
+  "measuredHeights": [
+    330,
+    383,
+    386,
+    390,
+    390,
+    319
+  ],
+  "visualReview": "Marko celebrates a purchase: calm stance, mace raised overhead, proud hold, fist to chest, broad triumphant smile, and mace lowered onto his shoulder.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,5 @@
+D78 | mounted-hod | gotovo | attempt-1 | 8 kadrova, petlja; izmerene visine 458, 457, 457, 452, 456, 453, 452, 457 px; kopita/support y=487; cilj 463 px (svi u ±5%); sigurna margina i QA PASS.
+D78 | sarac-hod-2 | gotovo | attempt-2 | 8 kadrova, petlja; izmerene visine 382, 388, 392, 391, 383, 378, 364, 384 px; kopita/support y=487; cilj 382 px (svi u ±5%); sigurna margina i QA PASS; attempt-1 odbijen zbog visina 354–357 px.
+D78 | milos-peva | gotovo | attempt-1 | 8 kadrova, petlja; izmerene visine 365, 361, 360, 359, 360, 360, 360, 365 px; kopita/support y=487; cilj 365 px (svi u ±5%); sigurna margina i QA PASS.
+D78 | milos-pogodjen | gotovo | attempt-1 | 4 kadra, nepetljajuca animacija; izmerene visine 365, 362, 323, 321 px; konj i kadar 0 su na cilju 365 px, support y=487; kadrovi 2–3 imaju prirodno manji bbox zbog savijanja/klizanja; sigurna margina i QA PASS; attempt-2 odbijen jer je bbox 299–306 px.
+D78 | milos-hod | gotovo | attempt-1 | 8 kadrova, petlja; izmerene visine 380, 379, 377, 377, 376, 376, 374, 377 px; stopala/support y=487; cilj 380 px (svi u ±5%); sigurna margina i QA PASS.

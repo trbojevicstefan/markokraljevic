@@ -1,0 +1,136 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        68,
+        106,
+        484,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 382
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        58,
+        100,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 388
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        49,
+        96,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 392
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        45,
+        97,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 391
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        45,
+        105,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 383
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        47,
+        110,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 378
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        56,
+        124,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 364
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        67,
+        104,
+        485,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 384
+    }
+  ],
+  "scale": 1.0700280112044818,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d78\\sarac-stoji-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 382,
+  "targetHeight": 382,
+  "measuredHeights": [
+    382,
+    388,
+    392,
+    391,
+    383,
+    378,
+    364,
+    384
+  ],
+  "visualReview": "Sarc bez jahaca hoda punim cetvorotaktnim korakom; glava klima, griva i rep se njisu, a rese na pokrovcu se ljuljaju.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

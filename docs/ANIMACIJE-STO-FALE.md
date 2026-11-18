@@ -140,3 +140,13 @@ Uz to:
 - Nijedan nivo i nijedna scena nisu pukli tokom prolaza.
 - Nepomične slike pešaka, štitonoše i strelca se pojave samo na trenutak, dok se crtež prvi put učitava; to nije praznina u animacijama.
 - Crteži vrača (4 klipa) postoje, ali ih igra nigde ne koristi.
+
+## 18. 11. (4): šta je dodato i šta je ostalo posle drugog nivoa
+
+Dodato (Codex D76–D80): pet poteza Kopljanik-baše, pet klipova vile Ravijojle (pogođena, udarena, moli, ustaje, peva), hod jahača i Šarca, Miloš peva, pogođen i hoda, Markov povratni udarac i dva klipa za meni, srne.
+
+Ostalo, viđeno u prolazu kroz Ravijojlinu šumu:
+
+- `lovac-aga-lunge`: megdandžija šume nema ispad; crta se zamena. Najbliži sledeći crtež za drugi nivo.
+- Trnje u berbi bilja crta se kodom (tamni štapovi). Može jedna naslikana kupina.
+- Posle šume: Đemo, Arapin i ostali megdandžije nemaju svoje faze kao baša (vidi tabelu gore).

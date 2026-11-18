@@ -15,7 +15,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,vilaTu,state:()=>({p,world,mode,level,horseMounted}),pesma:()=>pesma,jahanje:jahanjeTrap,potera:poteraTrap,draw:()=>{try{draw(1/60);}catch(e){return e;}return null;},hero:()=>hero,heroPose,playerPose};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,vilaTu,state:()=>({p,world,mode,level,horseMounted}),pesma:()=>pesma,jahanje:jahanjeTrap,potera:poteraTrap,sumaStvari,draw:()=>{try{draw(1/60);}catch(e){return e;}return null;},hero:()=>hero,heroPose,playerPose};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);
 const tap=k=>{press(k);step();release(k);};
@@ -28,12 +28,15 @@ const J=api.jahanje(),T=api.potera();
 ok(J&&T&&J.x1<=T.x0&&J.x0<T.x0,'forest: the song opens the land, the ride comes before the chase');
 step(10);
 ok(api.state().horseMounted&&J.milos&&J.milos.st==='jase','ride: Marko is on Šarac and Miloš rides beside him');
+ok(api.sumaStvari().filter(s=>s.id==='prop-zapis-hrast').length===2&&api.sumaStvari().some(s=>s.id==='prop-koliba')&&api.sumaStvari().some(s=>s.daje==='voda'),'Miroč: a zapis and a hut by the road, another zapis over the guslar and a spring by him');
+ok(world.srne.length===7&&world.srne.every(s=>s.st==='pase'),'Miroč: seven does graze along the road of the ride');
 
 // ---- the ride: D, Space over the two logs; the verses come by the road ----
 press('KeyD');
 until(()=>{const {p,world}=api.state();const b=world.barriers.find(b=>b.horse&&b.x>p.x&&b.x-p.x<150);if(b&&p.grounded)tap('Space');return api.pesma()?.ph==='peva';},120*60,'the ride to the song');
 release('KeyD');
 ok(J.said===5,'ride: the five verses of the ride were sung (the brothers, side by side, sleep, the vila\'s threat, Marko\'s answer)');
+{const px=api.state().p.x,near=world.srne.filter(s=>s.st==='nema'||s.st==='bezi');ok(near.length>=1&&world.srne.every(s=>s.st!=='pase'||s.x>px+500),`Miroč: the does the horses came to lifted their heads and ran (${near.length} of ${world.srne.length} on this stretch)`);}
 ok(Math.abs(J.milos.x-(api.state().p.x+130))<120,'ride: Miloš kept beside Marko, a length ahead');
 ok(api.state().p.dremlje,'song: Marko sleeps in the saddle while Miloš sings');
 
@@ -109,6 +112,10 @@ ok(!api.state().world.barriers.some(b=>b.x>T.x0&&b.x<T.x1&&!b.horse),'forest: no
  ok(/^milos-attack$/.test(api.heroPose({name:'marko-sablja-udarac-1',frame:2}).name)&&api.heroPose({name:'marko-run',frame:1}).name==='milos-run','hero: his cut and his run are his own');
  ok(api.draw()===null,'hero: Marko walks beside Miloš and both draw');
  step(2);tap('KeyH');ok(api.hero()==='marko','hero: H again and the player is Marko');}
+// ---- a slow verse must not skip the song: at the end of the road the horses stand ----
+{await api.startLevel(api.LEVELS.findIndex(L=>L.id==='suma'),'day');api.keys.clear();api.pressed.clear();const {world:w2,p}=api.state();for(const e of w2.enemies)e.alive=false;const J2=api.jahanje();step(10);
+ p.x=J2.x1-600;step(120);ok(p.hodStoj&&Math.abs(p.vx)<20&&J2.ph==='jase'&&J2.said<5,'ride: at the end of the road the horses stand until the last verse is out');
+ until(()=>api.pesma()?.ph==='peva',120*60,'the verses');ok(J2.said===5&&p.x<J2.x1,'ride: then Miloš sings, and the song is not skipped');}
 // every phase draws without an error
 ok(api.draw()===null,'drawing: the forest after the song draws without an error');
 console.log(`\n${checks} checks passed.`);

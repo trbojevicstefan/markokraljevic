@@ -1,0 +1,112 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        90,
+        129,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 359
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        88,
+        127,
+        444,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 361
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        69,
+        118,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 5,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 370
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        58,
+        115,
+        473,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 373
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        111,
+        478,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        69,
+        117,
+        463,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 6,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 371
+    }
+  ],
+  "scale": 0.9331683168316832,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d77\\vila-let-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 377,
+  "targetHeight": 377,
+  "measuredHeights": [
+    359,
+    361,
+    370,
+    373,
+    377,
+    371
+  ],
+  "visualReview": "Vila Ravijojla kneels and pleads with clasped then extended hands, raised head, tears, and lowered trembling wings; looping transition is supported.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

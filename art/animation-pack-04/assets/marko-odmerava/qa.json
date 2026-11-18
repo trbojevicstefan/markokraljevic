@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        102,
+        102,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58336
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 386
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        105,
+        102,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58313
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 386
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        106,
+        102,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58662
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 386
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        106,
+        105,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58755
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 383
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        106,
+        98,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58780
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        104,
+        100,
+        391,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        58455
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 388
+    }
+  ],
+  "scale": 0.9176470588235294,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d79\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 390,
+  "targetHeight": 390,
+  "measuredHeights": [
+    386,
+    386,
+    386,
+    383,
+    390,
+    388
+  ],
+  "visualReview": "Marko calmly weighs a new mace in both hands, rotates it, looks down the shaft, nods with satisfaction, and returns to the examining pose for a seamless loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

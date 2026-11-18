@@ -1,0 +1,80 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        92,
+        111,
+        441,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        41,
+        139,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 349
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        24,
+        232,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 256
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        92,
+        139,
+        439,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 349
+    }
+  ],
+  "scale": 0.834070796460177,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d77\\vila-let-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 377,
+  "targetHeight": 377,
+  "measuredHeights": [
+    377,
+    349,
+    256,
+    349
+  ],
+  "visualReview": "Vila Ravijojla kneels shielding herself, is knocked sideways, recovers on one elbow, and kneels hunched again; no attacker or weapon shown.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 4
+}

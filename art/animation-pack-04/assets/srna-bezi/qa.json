@@ -1,0 +1,132 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        115,
+        250,
+        398,
+        488
+      ],
+      "height": 238,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        100,
+        207,
+        413,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        109,
+        243,
+        404,
+        488
+      ],
+      "height": 245,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        46,
+        258,
+        467,
+        488
+      ],
+      "height": 230,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        79,
+        210,
+        434,
+        488
+      ],
+      "height": 278,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        112,
+        207,
+        401,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        115,
+        207,
+        397,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        58,
+        207,
+        454,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    }
+  ],
+  "measuredHeights": [
+    238,
+    281,
+    245,
+    230,
+    278,
+    281,
+    281,
+    281
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 8,
+  "targetSupportY": 488,
+  "targetHeight": 280
+}

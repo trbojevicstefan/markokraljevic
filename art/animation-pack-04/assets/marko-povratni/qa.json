@@ -1,0 +1,130 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        70,
+        216,
+        425,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51323
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 272
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        82,
+        186,
+        413,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        51236
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 302
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        70,
+        161,
+        424,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        53632
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 327
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        85,
+        98,
+        409,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        54796
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 390
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        106,
+        120,
+        387,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        60838
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 368
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        98,
+        141,
+        395,
+        488
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "componentAreas": [
+        52875
+      ],
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 347
+    }
+  ],
+  "scale": 0.9198113207547169,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d79\\marko-idle-2-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 390,
+  "targetHeight": 390,
+  "measuredHeights": [
+    272,
+    302,
+    327,
+    390,
+    368,
+    347
+  ],
+  "visualReview": "Marko reverse upward mace strike: crouched recovery, rising backswing, waist lift, high diagonal impact, follow-through behind the head, and settled stance.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

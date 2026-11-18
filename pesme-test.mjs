@@ -13,7 +13,7 @@ class Image{set src(v){queueMicrotask(()=>this.onload());}}
 const fetchFile=async url=>{const text=await fs.readFile('dist/'+url,'utf8');return{ok:true,json:async()=>JSON.parse(text)};};
 let source=await fs.readFile('dist/game.js','utf8');source=source.replace(/^import[^\n]+\n/,'const {W,H,chapters,chapterAt,clamp,makeWorld,integrate,makeLevel,LEVEL_ZONE,goalArt,CUDA,EXTRA_LEVELS,STEP_UP,BOSSES,POWERS,topAt,greybox}=physics;\n');
 const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
-const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,slusa:()=>slusa,speak,uplasi,hitCrate,seloStvari,KITS,slusaProbaj:v=>{slusaProba=v;},state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
+const api=await new AsyncFunction('physics','document','window','localStorage','Image','matchMedia','requestAnimationFrame','fetch',source+'\nreturn {startLevel,update,keys,pressed,LEVELS,presuda,slay,slova:()=>sabljaSlova,slusa:()=>slusa,speak,uplasi,hitCrate,seloStvari,KITS,PRELAZ_RED,slusaProbaj:v=>{slusaProba=v;},state:()=>({p,world,mode,horseMounted}),draw:()=>{try{draw(1/60);}catch(e){return e;}return null;}};')(physics,document,window,localStorage,Image,()=>({matches:false}),()=>0,fetchFile);
 const step=(n=1)=>{for(let i=0;i<n;i++){const {p}=api.state();p.invuln=99;p.hp=p.maxHp;api.update(1/120);}};
 const press=k=>{api.keys.add(k);api.pressed.add(k);};const release=k=>api.keys.delete(k);const tap=k=>{press(k);step();release(k);};
 let checks=0;const ok=(cond,msg)=>{assert(cond,msg);checks++;console.log('PASS',msg);};
@@ -171,4 +171,25 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  const V=api.seloStvari().find(s=>s.daje==='voda'),T=api.seloStvari().find(s=>s.daje==='pogaca');ok(V&&T,'village: a well with a sweep by the guslar, a stall at the fair');
  api.slay(C);step(120*4);Object.assign(p,{x:V.x-40,y:V.y,vx:0,vy:0,grounded:true,castLock:0});step(2);tap('KeyE');ok(V.uzeto&&(p.drink>0||p.vodaT>0),'village: E by the well and Marko drinks');
  step(120);Object.assign(p,{x:V.x-40,castLock:0});tap('KeyE');ok(!(p.drink>.8)&&!(p.vodaT>1.4),'village: once from each well');}
+// ---- the duel in three acts (18. 11.): the whirl, the thrust from above, the shield, the rage ----
+{const w=await start('selo');const {p}=api.state();const C=w.enemies.find(e=>e.champion),A=C.arena,K=api.KITS.kopljanik;C.alive=true;C.p2=true;
+ const put=(dist,kn)=>{Object.assign(C,{x:A.x0+700,y:A.y,vx:0,vy:0,grounded:true,mode:'idle',ks:null,kt:0,kc:0,kn,stun:0,face:-1,kitOpen:0});Object.assign(p,{x:C.x-dist,y:A.y,vx:0,vy:0,grounded:true});};
+ const run=n=>{for(let i=0;i<n;i++){C.kt-=1/120;K.step(C,1/120,p.x-C.x,Math.abs(p.x-C.x));C.x+=C.vx/120;}};
+ put(100,0);run(2);ok(C.ks==='vitloPrep','megdan: with Marko at his side the bashi winds up the whirl of the spear');
+ run(120);ok(C.ks==='vitlo','megdan: and whirls it');p.x-=300;run(120*2);ok(C.ks==null&&C.mode==='stun'&&C.kitOpen>0,'megdan: after the whirl his head spins and he stands open');
+ put(330,2);run(2);ok(C.ks==='ubod'&&!C.grounded,'megdan: from half his strength he leaps with the thrust from above');
+ p.x-=300;run(80);C.grounded=true;C.y=A.y;run(2);ok(C.ks==='uzemlji'&&C.kitOpen>2,'megdan: missed, the spear stays in the ground and he stands open');
+ put(250,0);run(2);ok(C.ks==='stit','megdan: he advances behind his shield');run(30);ok(C.vx<0&&C.invT>0,'megdan: from the front the shield takes every blow');
+ p.x=C.x+70;run(2);ok(!(C.invT>0),'megdan: but his back is open');
+ put(400,0);C.p3=true;K.phase3(C);ok(C.ks==='bes'&&C.invT>0,'megdan: at a third of his strength he rages');run(120*2);ok(C.ks==null,'megdan: and comes on again');
+ ok(api.draw()===null,'megdan: the three acts draw without an error');}
+// ---- K then J: the backhand blow ----
+{storage.set('marko-skills',JSON.stringify(['niz','zamah']));const w=await start('selo');const {p}=api.state();step(5);
+ const foe={id:9998,x:p.x+92,y:p.y,vx:0,vy:0,w:36,h:75,hp:900,maxHp:900,type:'sword',zone:w.enemies[0]?.zone??0,face:-1,mode:'idle',timer:99,stun:0,flash:0,alive:true,home:p.x+92,attackId:0,grounded:true};w.enemies.push(foe);p.face=1;
+ press('KeyK');step(2);release('KeyK');ok(p.attackKind==='heavy','combo: K, the heavy swing');
+ until(()=>p.attack<.19,120,'the heavy swing');foe.timer=99;foe.stun=0;tap('KeyJ');until(()=>p.attackKind==='povratni',60,'the backhand');ok(true,'combo: J at the end of the heavy swing and the mace comes back up (K J)');
+ until(()=>foe.air||!foe.alive,120,'the launch');ok(foe.air&&foe.vy<0,'combo: the backhand throws the foe into the air');storage.delete('marko-skills');}
+// ---- the pictures between the pohodi give nothing away ----
+{const R=api.PRELAZ_RED;ok(R.suma.filter(e=>!e.kad).every(e=>!/ustrel|strel|poter/i.test(e.text||''))&&R.suma.some(e=>e.kad==='ustreljen')&&R.suma.some(e=>e.kad==='trap:gnezdo'),'pictures: before the forest nothing of the arrows or the chase; the vila and the burning beech are shown when they happen');
+ ok(R.manastir.some(e=>e.kad==='kraj'&&e.i===1)&&R.mocvara.some(e=>e.kad==='soko')&&R.rusevine.some(e=>e.kad==='kavezi'),'pictures: the judgment, the bound wing and the kolo wait for their moment');}
 console.log(`\n${checks} checks passed.`);

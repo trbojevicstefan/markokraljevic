@@ -1,0 +1,136 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        130,
+        108,
+        333,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 380
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        119,
+        109,
+        344,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 379
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        109,
+        111,
+        354,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        96,
+        111,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        102,
+        112,
+        362,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 376
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        106,
+        112,
+        356,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 376
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        118,
+        114,
+        345,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 374
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        126,
+        111,
+        336,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 377
+    }
+  ],
+  "scale": 1.0026385224274406,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d78\\milos-idle-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 380,
+  "targetHeight": 380,
+  "measuredHeights": [
+    380,
+    379,
+    377,
+    377,
+    376,
+    376,
+    374,
+    377
+  ],
+  "visualReview": "Milos peske hoda mirnim korakom; noge se jasno smenjuju, ruka je uz balcak, a dugi plast se njise bez trcanja.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

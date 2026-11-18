@@ -1,0 +1,102 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        41,
+        207,
+        471,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        43,
+        207,
+        470,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        43,
+        207,
+        470,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        108,
+        207,
+        404,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        135,
+        207,
+        378,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        109,
+        207,
+        404,
+        488
+      ],
+      "height": 281,
+      "supportY": 487,
+      "touchesEdge": false,
+      "magentaPixels": 0,
+      "safeMargin": 24
+    }
+  ],
+  "measuredHeights": [
+    281,
+    281,
+    281,
+    281,
+    281,
+    281
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "atlasMatchesFrames": true,
+  "gifFrames": 6,
+  "targetSupportY": 488,
+  "targetHeight": 280
+}

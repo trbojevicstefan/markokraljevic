@@ -252,7 +252,7 @@ Svaka stavka: **lik** · broj znakova · tekst. Iza teksta je mesto u kodu. Repl
 
 **Uvod nivoa** · 1 replika · 151 znakova
 
-- **GUSLAR** · 151 · Miroč-planina. Pobratim Miloš je zapevao lepše od vile, a vila Ravijojla to ne prašta. Stigni je na Šarcu, pa spasi orliće sa bukve koju pale palikuće.  
+- **GUSLAR** · 151 · Miroč-planina. Jašeš uz pobratima Miloša, sve konj do konja. Ovo je vilina gora, Marko: pazi šta se u njoj peva. *(18. 11.: nov tekst, bez snimka; stari je odavao pesmu)*  
   <sub>`d391f56272c` · uvod nivoa · suma</sub>
 
 **Marko i vila (Miroč)** · 29 replika · 3.046 znakova

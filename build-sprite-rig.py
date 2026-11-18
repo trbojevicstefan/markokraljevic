@@ -682,6 +682,30 @@ for _n in ('seljak-idle', 'seljak-klice'):
         SCALES[_n] = (128 / 383, 'feet')
 if _have('seljak-klice') and _have('seljak-idle'):
     NOC_ANCHOR_SAME['seljak-klice'] = 'seljak-idle'
+# DOPUNA-76..80 (18. 11., the fourth round). Each clip is an edit of its model's frame 0 as it lies on the sheet, so it takes
+# that clip's zoom and anchor: the bashi's new moves (the whirl, the thrust from above, the spear in the ground, the shield, the
+# rage), the vila struck, beaten, begging, rising and singing, Marko awake in the saddle at a walk, Šarac's new step, Miloš
+# singing, struck, and walking.
+for _n, _m in [('kopljanik-basa-' + _c, 'kopljanik-basa-idle') for _c in ('vitlo', 'ubod-odozgo', 'u-zemlji', 'stit', 'bes')] + \
+        [('vila-' + _c, 'vila-let') for _c in ('pogodjena', 'udarena', 'moli', 'ustaje', 'peva')] + \
+        [('mounted-hod', 'mounted-idle'), ('sarac-hod-2', 'sarac-stoji'), ('milos-peva', 'milos-jase'), ('milos-pogodjen', 'milos-jase'), ('milos-hod', 'milos-idle')]:
+    if _have(_n) and _m in SCALES:
+        SCALES[_n] = (SCALES[_m][0], 'feet')
+        NOC_ANCHOR_SAME[_n] = _m
+# on her knees the vila was painted a fifth larger than in flight (measured on the board against vila-ustaje, whose first
+# frames kneel at the flying size)
+for _n in ('vila-udarena', 'vila-moli'):
+    if _n in SCALES:
+        SCALES[_n] = (SCALES[_n][0] * .8, 'feet')
+# Marko's backhand (K J) and his two poses for the menu, at his size in the game: measured on a frame in which he stands
+for _n, _i in (('marko-povratni', -1), ('marko-odmerava', 0), ('marko-raduje', 0)):
+    if _have(_n) and 'marko-idle-2' in SCALES:
+        SCALES[_n] = (SCALES['marko-idle-2'][0] * body_height(_cells('marko-idle-2')[0]) / body_height(_cells(_n)[_i]), 'feet')
+        NOC_ANCHOR_AT[_n] = 256
+# the doe of Miroč, about 75 units to the ears (the five herbs the vila gathers are a world picture: assets/world/bilje-miroc.webp)
+for _n in ('srna-pase', 'srna-bezi'):
+    if _have(_n):
+        SCALES[_n] = (0.27, 'feet')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

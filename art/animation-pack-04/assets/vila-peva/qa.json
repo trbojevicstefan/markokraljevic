@@ -1,0 +1,112 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        109,
+        63,
+        423,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 63,
+      "height": 374
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        94,
+        81,
+        437,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 75,
+      "height": 356
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        95,
+        85,
+        437,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 4,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 75,
+      "height": 352
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        92,
+        68,
+        439,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 68,
+      "height": 369
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        101,
+        60,
+        431,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 60,
+      "height": 377
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        106,
+        60,
+        426,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 2,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 60,
+      "height": 377
+    }
+  ],
+  "scale": 0.868663594470046,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d77\\vila-let-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 377,
+  "targetHeight": 377,
+  "measuredHeights": [
+    374,
+    356,
+    352,
+    369,
+    377,
+    377
+  ],
+  "visualReview": "Vila Ravijojla levitates and sings defiantly with head back, open mouth, one hand on her chest, one extended right, flowing hair and sash, and fluttering wings; looping transition is supported.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

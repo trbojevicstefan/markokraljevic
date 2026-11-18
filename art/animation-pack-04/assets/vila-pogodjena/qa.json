@@ -1,0 +1,80 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        139,
+        74,
+        393,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 74,
+      "height": 363
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        97,
+        60,
+        435,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 3,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 60,
+      "height": 377
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        114,
+        109,
+        419,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 1,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 75,
+      "height": 328
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        100,
+        110,
+        431,
+        437
+      ],
+      "touchesEdge": false,
+      "components": 10,
+      "greenPixels": 0,
+      "supportY": 436,
+      "safeMargin": 75,
+      "height": 327
+    }
+  ],
+  "scale": 0.7306201550387597,
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d77\\vila-let-kadar0.png",
+  "targetSupportY": 488,
+  "referenceHeight": 377,
+  "targetHeight": 377,
+  "measuredHeights": [
+    363,
+    377,
+    328,
+    327
+  ],
+  "visualReview": "Vila Ravijojla recoils from a blow in flight, loses lift, and tumbles downward; no attacker or weapon shown.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 4
+}

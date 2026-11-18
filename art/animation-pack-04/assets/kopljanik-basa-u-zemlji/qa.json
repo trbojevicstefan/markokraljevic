@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        124,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        123,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        124,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        124,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        123,
+        78,
+        388,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 410
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d76\\kopljanik-basa-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 410,
+  "measuredHeights": [
+    410,
+    410,
+    410,
+    410,
+    410,
+    410
+  ],
+  "visualReview": "Six-frame angry tug on a fixed upright planted spear; identity and baseline preserved.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}
