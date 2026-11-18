@@ -2173,7 +2173,7 @@ function drawLevelDecor(solid){
  drawGoals();
  const banner=x=>level.props.some(pr=>pr.id.startsWith('prop-barjak')&&Math.abs(pr.x-x)<140);if(!banner(level.spawn.x+80))flag(level.spawn.x+80,level.spawn.y);if(!banner(level.goal.x))flag(level.goal.x,level.goal.y);}
 async function startLevel(i,v=levelVariant){govorStop();govorPosle=[];if(hero!=='marko'){hero='marko';if(p){const [a,b]=p.heroSablja||[false,false];p.sablja=a;p.sabljaOut=b;}heroHud();}const L=LEVELS[i];if(!L)return;if(!VARIANTS[v])v='day';ekonPonovo=!!levelStars(L).done;if(p)p.scena=null;levelVariant=v;initAudio();$('loading').hidden=false;await loadLevelArt(L,v);$('loading').hidden=true;
- world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;ckpt=null;ckptFlags=[];lov=null;presudaOpen=false;if(i===MUSA_AFTER)say('weak',{priority:3,delay:1.5});for(const e of world.enemies){const need=e.kit==='azdaja'?['-idle','-death']:['-idle','-attack','-death'];if(e.champion&&!rig?.['cast/'+e.type]&&need.some(s=>!rig?.[e.type+s])){e.type='sword';e.scale=1.6;}}defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();applyHearts();setupBreakables();setupTowers();setupPlows();setupOltari();sizeProps();clearProps();decorate();setupKolci();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;mociCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;addPartners();hardenFoes(world.enemies);makeElites();makeTandems();stealthSetup();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
+ world=makeLevel(L,i,v,{extraFoes:['kopljanik','pas','tufekdzija'].filter(t=>rig?.[t+'-run']&&FOES[t])});level=world.level;levelIndex=i;zone=LEVEL_ZONE+i;checkpoint=zone;ckpt=null;ckptFlags=[];lov=null;presudaOpen=false;if(i===MUSA_AFTER)say('weak',{priority:3,delay:1.5});for(const e of world.enemies){const need=e.kit==='azdaja'?['-idle','-death']:['-idle','-attack','-death'];if(e.champion&&!rig?.['cast/'+e.type]&&need.some(s=>!rig?.[e.type+s])){e.type='sword';e.scale=1.6;}}defenses={};p=newPlayer(level.spawn.x);p.y=level.spawn.y;applyPerks();applyHearts();setupBreakables();setupTowers();setupPlows();setupOltari();sizeProps();clearProps();seloRekviziti();decorate();setupKolci();setupTraps();arena=null;bolts=[];p.vault=null;p.letters=0;p.pow=null;skillCache=null;mociCache=null;streak={n:0,t:0,best:0};slowMo=0;hitstop=0;addPartners();hardenFoes(world.enemies);makeElites();makeTandems();stealthSetup();prviSusret();setupSeljani();coins=[];chunks=[];thrown=null;camFocus=p.y;lastSafeY=p.y;boss=newBoss();boss.alive=false;horseMounted=false;horseCompleted=true;horseX=-99999;
  particles=[];arrows=[];floating=[];corpses=[];bones=[];heads=[];limbs=[];gibs=[];booms=[];fountains=[];finisher=null;grapple=null;finGlobal=0;grappleCool=0;training=null;ghosts=[];fires=[];decals=[];endSequence=null;camera=0;camY=CAM_Y0;lastSafe=p.x;elapsed=0;kills=0;relics=0;
  hideModals();mode='play';$('hud').hidden=false;$('controls').hidden=false;$('touch').hidden=!matchMedia('(pointer:coarse)').matches;$('boss-hud').hidden=true;keys.clear();pressed.clear();pendingMagic=null;
  fairy={x:p.x-55,y:p.y-125,age:99,duration:3.2,targetX:p.x,targetY:p.y-80,kind:'hover'};
@@ -3553,7 +3553,15 @@ const VASAR_KONJI=[{ime:'Dorat',f:'sepia(1) saturate(2.6) hue-rotate(-20deg) bri
  {ime:'Šarac',f:'grayscale(.55) brightness(.8) contrast(.9)',sarac:true},{ime:'Zelenko',f:'grayscale(1) brightness(.85)'}];
 function vasarTrap(){return(world.traps||[]).find(t=>t.kind==='vasar')||null;}
 function vasarStanje(t){return t.stanje??=t.konji.map(()=>({leti:0,odbacen:false,drzi:0}));}
-function useVasar(){const t=vasarTrap();if(!t||t.done||!p.grounded)return false;const i=t.konji.findIndex(x=>Math.abs(p.x-x)<90);if(i<0)return false;const K=vasarStanje(t)[i];if(K.leti>0||K.odbacen)return false;
+// 18. 11., the second round: the wine and the shoeing are deeds, not only words. Marko gives the foal wine (E by it): half he
+// drinks, half he gives to Šarac, the mange falls away. Then Šarac walks after him to Novak the smith at the end of the
+// fair, Novak shoes him, and only then is the road through the village open.
+const vasarSx=t=>t.sx??t.konji[2],vasarNovak=t=>t.x1-190;
+function useVasar(){const t=vasarTrap();if(!t||!p.grounded)return false;
+ if(t.done){if(t.korak!==1||time-t.korakT<1||Math.abs(p.x-vasarSx(t))>130||Math.abs(p.y-t.y)>90)return false;
+  t.korak=2;t.korakT=time;p.face=vasarSx(t)>p.x?1:-1;p.vx=0;p.attack=0;p.drink=.85;p.drinkApplied=true;p.castLock=.9;sound('wine');
+  speak('„Taj je šugav, Marko, sirotinjsko ždrebe!” A Marko mu da vina: pola pije, pola Šarcu daje. Spade šuga, a ždrebe se razigra, šareno kao goveče, a hitro kao vihor.',9);return true;}
+ const i=t.konji.findIndex(x=>Math.abs(p.x-x)<90);if(i<0)return false;const K=vasarStanje(t)[i];if(K.leti>0||K.odbacen)return false;
  p.face=t.konji[i]>p.x?1:-1;p.castLock=.5;if(rig?.['marko-hvata-rep']){p.repT=REP_TIME;p.castLock=REP_TIME;p.vx=0;}
  K.face=p.face;p.x=t.konji[i]-p.face*(VASAR_KONJI[i].sarac?92:104);   // by the tail: the horse turns its back to him and he steps up to it
  if(VASAR_KONJI[i].sarac){t.done=true;K.drzi=1.2;t.korak=1;t.korakT=time;label('NE POMAČE SE!',t.konji[i],t.y-170,'#ffe39a');sfx('horse',{gain:.6})||sfx('hoof',{gain:.6});shake=settings.reduced?0:3;
@@ -3564,23 +3572,33 @@ function useVasar(){const t=vasarTrap();if(!t||t.done||!p.grounded)return false;
 function updateVasar(dt){const t=vasarTrap();if(!t)return;const S=vasarStanje(t);
  if(!t.told&&Math.abs(p.x-t.cuvar)<520){t.told=true;speak('Vašar konja u Kosovskom selu. „Biraj, Marko, konja koji će te nositi: uhvati ga za rep (E) i zamahni. Koji se ne pomakne, taj je tvoj.”',8,'KONJUŠAR');}
  for(const K of S){if(K.leti>0){K.leti=Math.max(0,K.leti-dt*1.4);if(K.leti===0)K.odbacen=true;}K.drzi=Math.max(0,K.drzi-dt);}
- if(t.korak===1&&time-t.korakT>7.5){t.korak=2;t.zdrav=time;sfx('magic_big',{gain:.6});
-  speak('„Taj je šugav, Marko, sirotinjsko ždrebe!” A Marko mu da vina: pola pije, pola Šarcu daje. Spade šuga, a ždrebe se razigra, šareno kao goveče, a hitro kao vihor.',9);}
- if(t.korak===2&&time-t.korakT>16.5){t.korak=3;speak('Novak kovač potkova Šarca, a jedna potkova osta u selu, da se pamti. Šarac te čeka; ti oteraj odred iz sela.',8);}
- puzzleGate(t,t.done,'Izaberi konja na vašaru: E kraj konja.');}
+ const sx=vasarSx(t),nx=vasarNovak(t);
+ if(t.korak===2){if(!t.zdrav&&time-t.korakT>3.6){t.zdrav=time;sfx('magic_big',{gain:.6});label('SPADE ŠUGA!',sx,t.y-170,'#ffe39a');}if(t.zdrav&&time-t.zdrav>1.5){t.korak=3;t.sx=sx;}}
+ if(t.korak===3){   // Šarac walks after Marko, as far as the smith; by the smith he goes to the anvil himself
+  const cilj=Math.abs(p.x-nx)<140?nx-170:clamp(p.x-110,t.konji[2],nx-170),d=cilj-t.sx;t.shod=Math.abs(d)>24;if(t.shod){t.sx+=Math.sign(d)*Math.min(Math.abs(d),170*dt);t.sf=Math.sign(d);}
+  if(t.sx>=nx-200&&Math.abs(p.x-nx)<320){t.korak=4;t.korakT=time;t.shod=false;t.sf=1;speak('Novak kovač potkova Šarca, a jedna potkova osta u selu, da se pamti. Šarac te čeka; ti oteraj odred iz sela.',8);}}
+ if(t.korak===4&&time-t.korakT>3.4){t.korak=5;label('POTKOVAN!',t.sx,t.y-170,'#ffe39a');sfx('ring',{gain:.6,rate:.9,x:nx});sfx('horse',{gain:.5,x:t.sx})||sfx('hoof',{gain:.5,x:t.sx});}
+ puzzleGate(t,t.korak>=5,!t.done?'Izaberi konja na vašaru: E kraj konja.':t.korak<=2?'Daj ždrebetu vina: E kraj Šarca.':'Odvedi Šarca kovaču Novaku na kraju vašara.');}
 function drawVasar(t){if(t.x1<camera-300||t.x0>camera+VIEW_W+300)return;const S=vasarStanje(t);
  rigDraw('putnik-starac-idle',loopF(time*4,rig?.['putnik-starac-idle']?.frames.length||1),t.cuvar,t.y,1);if(Math.abs(p.x-t.cuvar)<500)textLabel('KONJUŠAR',t.cuvar,t.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});
- t.konji.forEach((x,i)=>{const K=S[i],V=VASAR_KONJI[i],away=K.face??(i%2?1:-1);   // let go, it walks off the way it faces: away from Marko
+ {const nx=vasarNovak(t),kuje=t.korak===4&&rig?.['novak-kuje'],n=kuje?'novak-kuje':rig?.['novak-idle']?'novak-idle':null;   // Novak the smith at the end of the fair
+  if(n){const R=rig[n],f=loopF(time*(kuje?9:4),R.frames.length),fk=Math.floor(f);rigDraw(n,f,nx,t.y,-1);if(kuje&&(fk===2||fk===6)&&t.kf!==fk)sfx('clang',{gain:.3,rate:1.35,x:nx});t.kf=fk;
+   if(Math.abs(p.x-nx)<420)textLabel('NOVAK KOVAČ',nx,t.y-168,{font:'bold 12px Georgia',color:'#ffe2a8'});}}
+ t.konji.forEach((x0,i)=>{const K=S[i],V=VASAR_KONJI[i],away=K.face??(i%2?1:-1),x=V.sarac?vasarSx(t):x0;   // let go, it walks off the way it faces: away from Marko
   if(K.odbacen&&!V.sarac){shadow(x+away*230,t.y,52,.35);saracDraw(x+away*230,t.y,away,{scale:.82,filter:V.f});return;}
   // held by the tail a horse kicks back with both hind legs; let go, it rears where it stands and walks off to the side
   // (Stefan, 16. 11.: „umesto da se ritaju, oni kao da ih je neko bacio”): the moves of sarac-propinje and sarac-hod
   let dx=0,klip='sarac-stoji',fr,face=K.face??(i===2?1:-1);
   if(K.leti>0){const k=1-K.leti;if(k<.45){klip='sarac-propinje';fr=k/.45*4;}else{klip='sarac-hod';dx=(k-.45)/.55*away*230;face=away;}}
   else if(K.drzi>0&&!V.sarac){klip='sarac-propinje';fr=4+Math.floor(time*7)%2;}
+  else if(V.sarac&&t.korak>=2){const k=time-t.korakT;   // he drinks, the mange falls and he rears for joy, walks after Marko, stamps while he is shod
+   if(t.korak===2){if(t.zdrav){klip='sarac-propinje';fr=Math.min(5,(time-t.zdrav)/1.5*6);}else if(k>.8)klip='sarac-pije';}
+   else if(t.korak===3){face=t.sf||1;if(t.shod)klip='sarac-hod';}else if(t.korak===4){face=1;klip='sarac-lupa';}else face=1;}
   const zdrav=V.sarac&&t.zdrav&&time-t.zdrav>.6,sc=V.sarac?(zdrav?1:.78):.88;shadow(x+dx,t.y,60*sc,.4);
   saracDraw(x+dx+(K.drzi>0&&V.sarac?Math.sin(time*60)*3:0),t.y,face,{scale:sc,filter:zdrav?undefined:V.f},klip,fr);
   if(V.sarac&&t.zdrav&&time-t.zdrav<2)halo(x,t.y-80,110,'rgba(255,230,150,.4)',1-(time-t.zdrav)/2);
-  if(!t.done&&Math.abs(p.x-x)<90&&!K.leti&&!K.odbacen)textLabel('E · ZA REP',x,t.y-150,{font:'bold 13px Georgia',color:'#fff3c0'});
+  if(V.sarac&&t.korak===1&&time-t.korakT>1&&Math.abs(p.x-x)<130)textLabel('E · DAJ MU VINA',x,t.y-150,{font:'bold 13px Georgia',color:'#fff3c0'});
+  else if(!t.done&&Math.abs(p.x-x)<90&&!K.leti&&!K.odbacen)textLabel('E · ZA REP',x,t.y-150,{font:'bold 13px Georgia',color:'#fff3c0'});
   else if(Math.abs(p.x-x)<300&&!K.odbacen&&!K.leti)textLabel(V.ime.toUpperCase(),x,t.y-130,{font:'bold 11px Georgia',color:'#e8dcc0'});});}
 // ================= the chase ("Marko Kraljević i vila") =================
 // Ravijojla's forest opens as the song does: Miloš sang better than the vila and she shot him in the throat and the
@@ -4070,10 +4088,36 @@ function drawStih(g){const T=g.state==='peva'&&!g.t0?g.pev||0:g.t-(g.t0||0),   /
 // ================= the village (18. 11.): on the quiet road into Kosovsko selo its people greet Marko =================
 // No foe stands here: the guslar tells where Marko is, Marko walks and listens, a mother with her child and an old man
 // greet him as he passes (putnica-pozdrav and putnik-starac-klanja, DOPUNA-65; until those are in, they stand as before).
-const SELJANI={putnica:{idle:'putnica-idle',poz:'putnica-pozdrav',rec:'Pomoz’ Bog, Kraljeviću!'},starac:{idle:'putnik-starac-idle',poz:'putnik-starac-klanja',rec:'Bog ti pomogao, Marko!'}},SELJANI_T=2.4;
-function updateSeljani(dt){for(const t of world.traps||[])if(t.kind==='seljani')for(const s of t.ljudi)if(!s.rekao&&Math.abs(p.x-s.x)<230&&Math.abs(p.y-t.y)<120){s.rekao=true;s.pozT=time;label(SELJANI[s.k].rec,s.x,t.y-150,'#ffe9b0');}}
-function drawSeljani(t){if(t.x1<camera-300||t.x0-700>camera+VIEW_W)return;for(const s of t.ljudi){const S=SELJANI[s.k],poz=s.pozT!=null&&time-s.pozT<SELJANI_T&&rig?.[S.poz],nm=poz?S.poz:S.idle,R=rig?.[nm];if(!R)continue;
-  shadow(s.x,t.y,34,.35);rigDraw(nm,poz?Math.min(R.frames.length-1,(time-s.pozT)/SELJANI_T*R.frames.length):loopF(time*4,R.frames.length),s.x,t.y,p.x<s.x?-1:1);}}
+const SELJANI={putnica:{idle:'putnica-idle',poz:'putnica-pozdrav',rec:'Pomoz’ Bog, Kraljeviću!',slavi:'Živeo Kraljević Marko!'},starac:{idle:'putnik-starac-idle',poz:'putnik-starac-klanja',rec:'Bog ti pomogao, Marko!',slavi:'Selo je slobodno!'}},SELJANI_T=2.4;
+// Further in (18. 11., the second round): two of them stand by the guslar and listen with Marko, and when the champion of the
+// village has fallen the people come out to the well at the end of the road and cheer. Hens peck about the yards and
+// scatter when Marko runs through them (kokoska-kljuca, DOPUNA-66).
+function setupSeljani(){const t=(world.traps||[]).find(t=>t.kind==='seljani');if(!t)return;const y=q=>q?.y,tlo=x=>world.platforms.find(q=>q.ground&&!q.tower&&x>q.x+30&&x<q.x+q.w-30);
+ const add=(x,k,o={})=>{const q=tlo(x);if(q)t.ljudi.push({x,k,y:q.y,...o});};
+ const g=(world.traps||[]).find(g=>g.kind==='guslar'&&g.mir);if(g){add(g.x-185,'putnica',{gleda:g.x});add(g.x+200,'starac',{gleda:g.x});}
+ if(level?.goal&&world.enemies.some(e=>e.champion)){const gx=level.goal.x;add(gx-330,'starac',{slavi:true});add(gx-250,'putnica',{slavi:true});add(gx+90,'starac',{slavi:true});add(gx+170,'putnica',{slavi:true});}
+ t.kokoske=[];const hen=x=>{const q=tlo(x);if(q)t.kokoske.push({x,y:q.y,x0:x,face:x%2?1:-1,ph:(x*.37)%1,bezi:0});};
+ for(const x of[t.x0+150,t.x0+215,t.x0+690,t.x0+760])hen(x);if(g)for(const x of[g.x-330,g.x-290])hen(x);}
+function seljaniSlave(){return !!world.seljaniSlave;}
+function updateSeljani(dt){for(const t of world.traps||[]){if(t.kind!=='seljani')continue;
+  if(!world.seljaniSlave&&world.seljaniMegdan&&!world.enemies.some(e=>e.champion&&e.alive)){world.seljaniSlave=time;}world.seljaniMegdan||=world.enemies.some(e=>e.champion&&e.alive);
+  for(const s of t.ljudi){if(s.slavi&&!world.seljaniSlave)continue;const sy=s.y??t.y;
+   if(!s.rekao&&Math.abs(p.x-s.x)<(s.slavi?420:230)&&Math.abs(p.y-sy)<120){s.rekao=true;s.pozT=time;label(s.slavi?SELJANI[s.k].slavi:SELJANI[s.k].rec,s.x,sy-150,'#ffe9b0');}
+   if(s.slavi&&s.rekao&&time-s.pozT>SELJANI_T+.6&&Math.abs(p.x-s.x)<520)s.pozT=time;}   // they keep waving while he is among them
+  for(const h of t.kokoske||[]){h.bezi=Math.max(0,h.bezi-dt);if(h.bezi<=0&&Math.abs(p.x-h.x)<64&&Math.abs(p.y-h.y)<60&&Math.abs(p.vx)>150){h.bezi=.9;h.face=p.vx>0?1:-1;sfx('cloth',{gain:.25,rate:1.6,x:h.x});}
+   if(h.bezi>0)h.x+=h.face*170*dt*Math.min(1,h.bezi/.3);else if(Math.abs(h.x-h.x0)>260){h.face=h.x0>h.x?1:-1;h.x+=h.face*26*dt;}}}}
+function drawSeljani(t){for(const s of t.ljudi){if(s.x<camera-200||s.x>camera+VIEW_W+200||s.slavi&&!world.seljaniSlave)continue;const S=SELJANI[s.k],sy=s.y??t.y,poz=s.pozT!=null&&time-s.pozT<SELJANI_T&&rig?.[S.poz],nm=poz?S.poz:S.idle,R=rig?.[nm];if(!R)continue;
+  const a=s.slavi?clamp((time-world.seljaniSlave)/1.2,0,1):1,face=s.gleda!=null&&!poz?(s.gleda<s.x?-1:1):p.x<s.x?-1:1;
+  shadow(s.x,sy,34,.35*a);rigDraw(nm,poz?Math.min(R.frames.length-1,(time-s.pozT)/SELJANI_T*R.frames.length):loopF(time*4,R.frames.length),s.x,sy,face,{alpha:a});}
+ const K=rig?.['kokoska-kljuca'];if(K)for(const h of t.kokoske||[]){if(h.x<camera-80||h.x>camera+VIEW_W+80)continue;shadow(h.x,h.y,13,.3);
+  rigDraw('kokoska-kljuca',h.bezi>0?loopF(time*16,K.frames.length):loopF(time*5+h.ph*K.frames.length,K.frames.length),h.x,h.y+(h.bezi>0?-Math.abs(Math.sin(time*22))*7:0),h.face);}}
+// ================= the first fight (18. 11.): Kosovsko selo opens with one plain janissary; the second swordsman goes on to
+// stand before the first archer (shield and shooter, the first tandem), so the pair is the second lesson, not the first =================
+function prviSusret(){if(!level||level.id!=='selo')return;const L=world.enemies.filter(e=>e.alive&&!e.champion&&!e.perch&&!e.kit&&!e.prey&&!e.skriven).sort((a,b)=>a.x-b.x),[a,b,c]=L;if(!a||!b)return;
+ const obican=e=>{if(e.elite){e.elite=false;e.hp=e.maxHp=Math.round(e.maxHp/1.7);}const m=tanMate(e);if(m){m.par=null;m.tan=null;}e.par=null;e.tan=null;e.spava=false;e.patrola=null;};
+ obican(a);if(b.x-a.x>400)return;obican(b);
+ const tlo=x=>world.platforms.find(o=>o.ground&&!o.tower&&x>o.x+40&&x<o.x+o.w-40&&Math.abs(o.y-b.y)<4);
+ if(c&&RANGED_T.has(c.type)&&tanOk(c)&&Math.abs(c.y-b.y)<6&&tlo(c.x-130)){b.x=b.home=c.x-130;tanPair(b,c);}else if(tlo(a.x+620))b.x=b.home=a.x+620;}
 // ================= listening: Marko walks while a line is said or a guslar sings, and the road ahead waits =================
 // (Stefan, 18. 11. 2026: „da Marko hoda dok ide pesma i dok slušamo guslara, to jest naratora, da ne može da se ide dalje…
 // blok da nastavimo dalje dok se ne završi dijalog, monolog, replika”.) The walk-and-talk of God of War and The Lost Crown:
@@ -4418,7 +4462,7 @@ function drawLov(){const L=lov;if(!L)return;
 // by the road; give them ducats (E) and they bless him: his wounds close and his strength rises for a while.
 const SIROTINJA_DAR=10;
 function useSirotinja(){const t=(world.traps||[]).find(t=>t.kind==='sirotinja'&&!t.dato&&Math.abs(p.x-t.x)<150&&Math.abs(p.y-t.y)<90);if(!t||!p.grounded)return false;
- const dar=Math.min(SIROTINJA_DAR,p.coins||0);p.coins=(p.coins||0)-dar;t.dato=true;t.datoAt=time;p.vx=0;p.face=t.x>p.x?1:-1;p.castLock=.5;if(rig?.['marko-open'])p.openT=OPEN_TIME;
+ const dar=Math.min(SIROTINJA_DAR,p.coins||0);p.coins=(p.coins||0)-dar;t.dato=true;t.datoAt=time;p.vx=0;p.face=t.x>p.x?1:-1;p.castLock=.5;if(rig?.['marko-daje']){p.dajeT=DAJE_TIME;p.castLock=DAJE_TIME;}else if(rig?.['marko-open'])p.openT=OPEN_TIME;
  for(let i=0;i<Math.max(3,dar);i++)particles.push({kind:'dust',x:p.x+p.face*20,y:p.y-80,vx:(t.x-p.x)*(1.1+Math.random()*.5),vy:-200-Math.random()*120,life:.9,max:.9,r:3,color:'#ffd36a',delay:i*.04});
  p.hp=p.maxHp;p.buff=Math.max(p.buff||0,15);p.rage=Math.min(100,(p.rage||0)+30);sfx('coins',{gain:.6})||sfx('ring',{gain:.5,rate:1.3});sfx('ring',{gain:.45,rate:.8,delay:.6});
  label(dar?`-${dar} DUKATA`:'BLAGOSLOV',p.x,p.y-170,'#ffd36a');toast('„Bog ti dao zdravlje, Kraljeviću Marko!” Sirotinja te blagoslovi: rane zarastu, a snaga ti raste.',4);updateHud();return true;}
@@ -5496,7 +5540,8 @@ function foeSlam(e){e.spiked=false;if(e.zakucan)zakucanTalas(e);const dmg=(e.tre
  else if(e.hp>0){e.vy=-260;e.grounded=false;e.air=true;e.juggle=.6;}
  if(e.hp<=0)slay(e,.5);}
 // ---------- a fuller land: the artist's props spread along the road, dense like the first six pohodi ----------
-const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','prop-ambar','prop-cvece','prop-bunar','prop-snopovi','prop-drvo-hrast','prop-ograda-pleter','prop-kola','prop-zbun','prop-susara','prop-taraba-slomljena','prop-bure','prop-dzakovi'],
+// the village has more than one house (DOPUNA-66, 18. 11.): a log house, a vajat, a market stall, washing on a line, a well with a sweep
+const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','prop-kuca-brvnara','prop-ambar','prop-cvece','prop-ves','prop-bunar','prop-snopovi','prop-vajat','prop-drvo-hrast','prop-ograda-pleter','prop-kola','prop-tezga','prop-zbun','prop-susara','prop-djeram','prop-taraba-slomljena','prop-bure','prop-dzakovi'],
  klisura:['prop-stena-visoka','prop-trska','prop-stena-luk','prop-zbun','prop-drvo-bukva','prop-stena-mala','prop-paprat','prop-kamen-putokaz','prop-trava'],
  suma:['prop-drvo-hrast','prop-panj','prop-paprat','prop-run-kamen','prop-drvo-bukva','prop-cvece','prop-pecurke','prop-svetiliste','prop-korenje','prop-zbun','prop-drvo-jela'],
  manastir:['prop-ograda-manastir','prop-barjak-manastir','prop-krcag','prop-stub-kameni','prop-cvece','prop-luk-kameni','prop-klupa','prop-svetiljka','prop-zbun'],
@@ -5509,7 +5554,7 @@ const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','pro
  rusevine:['prop-luk-kameni','prop-ograda-kamen-rusevina','prop-stub-kameni','prop-zbun','prop-vrata-slomljena','prop-paprat'],
  reka:['prop-mlin','prop-trska','prop-dzakovi','prop-tocak-vodeni','prop-cvece','prop-balvan','prop-zbun','prop-kola'],
  oranje:['prop-plast-sena','prop-snopovi','prop-seno','prop-kola-seno','prop-taraba-ravna','prop-kola','prop-zbun','prop-susara']};
-const DECOR_H={'prop-most-drveni':330,'prop-most-uzad':340,'prop-dok':240,'prop-platforma-sneg':240,'prop-lanac':140,'prop-loza':130,'prop-medjas':70,'prop-kruska':300,'prop-krst-raskrsce':190,'prop-turski-sator':240,'prop-kuca':430,'prop-ambar':230,'prop-bunar':170,'prop-kola':120,'prop-taraba-ravna':110,'prop-taraba-slomljena':100,'prop-ograda-pleter':90,'prop-seno':120,'prop-snopovi':90,'prop-krcag':55,'prop-bure':70,'prop-sanduci':80,'prop-dzakovi':60,'prop-drvo-hrast':330,'prop-drvo-bukva':340,'prop-drvo-jela':330,'prop-drvo-sneg':300,'prop-panj':60,'prop-svetiliste':200,'prop-run-kamen':120,'prop-cvece':50,'prop-paprat':60,'prop-pecurke':40,'prop-korenje':130,'prop-zbun':70,'prop-stena-visoka':260,'prop-stena-luk':260,'prop-stena-mala':70,'prop-trska':110,'prop-trava':40,'prop-kamen-putokaz':110,'prop-stub-kameni':220,'prop-luk-kameni':240,'prop-svetiljka':150,'prop-klupa':50,'prop-stol':60,'prop-palisada':150,'prop-sator':240,'prop-strassarnica':340,'prop-kapija-tvrdjava':300,'prop-katapult':150,'prop-nakovanj':50,'prop-baklja-drzac':110,'prop-ognjiste':60,'prop-led':90,'prop-kristal':90,'prop-potpora-rudnik':220,'prop-vagon':90,'prop-sine':40,'prop-mlin':440,'prop-tocak-vodeni':220,'prop-susara':140,'prop-ograda-manastir':110,'prop-barjak-manastir':175,'prop-ograda-kamen-rusevina':110,'prop-vrata-slomljena':170,'prop-balvan':60,'prop-plast-sena':150,'prop-kola-seno':170};
+const DECOR_H={'prop-kuca-brvnara':370,'prop-vajat':290,'prop-tezga':190,'prop-ves':150,'prop-djeram':300,'prop-most-drveni':330,'prop-most-uzad':340,'prop-dok':240,'prop-platforma-sneg':240,'prop-lanac':140,'prop-loza':130,'prop-medjas':70,'prop-kruska':300,'prop-krst-raskrsce':190,'prop-turski-sator':240,'prop-kuca':430,'prop-ambar':230,'prop-bunar':170,'prop-kola':120,'prop-taraba-ravna':110,'prop-taraba-slomljena':100,'prop-ograda-pleter':90,'prop-seno':120,'prop-snopovi':90,'prop-krcag':55,'prop-bure':70,'prop-sanduci':80,'prop-dzakovi':60,'prop-drvo-hrast':330,'prop-drvo-bukva':340,'prop-drvo-jela':330,'prop-drvo-sneg':300,'prop-panj':60,'prop-svetiliste':200,'prop-run-kamen':120,'prop-cvece':50,'prop-paprat':60,'prop-pecurke':40,'prop-korenje':130,'prop-zbun':70,'prop-stena-visoka':260,'prop-stena-luk':260,'prop-stena-mala':70,'prop-trska':110,'prop-trava':40,'prop-kamen-putokaz':110,'prop-stub-kameni':220,'prop-luk-kameni':240,'prop-svetiljka':150,'prop-klupa':50,'prop-stol':60,'prop-palisada':150,'prop-sator':240,'prop-strassarnica':340,'prop-kapija-tvrdjava':300,'prop-katapult':150,'prop-nakovanj':50,'prop-baklja-drzac':110,'prop-ognjiste':60,'prop-led':90,'prop-kristal':90,'prop-potpora-rudnik':220,'prop-vagon':90,'prop-sine':40,'prop-mlin':440,'prop-tocak-vodeni':220,'prop-susara':140,'prop-ograda-manastir':110,'prop-barjak-manastir':175,'prop-ograda-kamen-rusevina':110,'prop-vrata-slomljena':170,'prop-balvan':60,'prop-plast-sena':150,'prop-kola-seno':170};
 const decorIds=L=>DECOR[L.id]||[];
 // ---------- stakes on the hill behind the road (DOPUNA-34): Serbian knights the Ottoman army left as a warning ----------
 // They are drawn behind the road and drift slower than it, so they stand on a hill further back. The bottom of their own hill
@@ -5533,6 +5578,15 @@ function drawKolci(){if(!world.kolci?.length||settings.gore===false)return;
  for(const k of world.kolci){const s=kolciStrip(k);if(!s)continue;const x=k.x+(camera+VIEW_W/2-k.x)*(1-KOLCI_PAR);if(x+s.w/2<camera-40||x-s.w/2>camera+VIEW_W+40)continue;
   ctx.drawImage(s.c,x-s.w/2,k.y+k.h*.12-k.h,s.w,k.h);}}
 
+// Kosovsko selo is set by hand (Stefan: „svaki nivo mora da bude ručno napravljen”): the log house and the washing on the quiet
+// road in, the dealer's stall at the fair, the vajat and the well with a sweep where the guslar sings, washing by the last well.
+// They go in before decorate(), which then fills the rest around them.
+function seloRekviziti(){if(!level||level.id!=='selo'||!hasDom)return;const T=k=>(world.traps||[]).find(t=>t.kind===k),u=T('seljani'),v=T('vasar'),g=(world.traps||[]).find(t=>t.kind==='guslar'&&t.mir);
+ const put=(id,x,y)=>{if(levelArt[id]&&world.platforms.some(q=>q.ground&&Math.abs(q.y-y)<3&&x>q.x+20&&x<q.x+q.w-20))level.props.push({id,x:Math.round(x),y,height:DECOR_H[id]||150});};
+ if(u){put('prop-kuca-brvnara',u.x0+572,u.y);put('prop-ves',u.x0+857,u.y);}
+ if(v)put('prop-tezga',v.x0+56,v.y);
+ if(g){put('prop-vajat',g.x-330,g.y);put('prop-djeram',g.x+400,g.y);}
+ if(level.goal)put('prop-ves',level.goal.x-410,level.goal.y);}
 function decorate(){if(!level||!hasDom)return;const pal=decorIds(level).filter(id=>levelArt[id]);if(!pal.length)return;
  const spans=(world.busy||[]).map(([a,b])=>[a-40,b+40]),trapAt=([a,b])=>(world.traps||[]).some(t=>{const tx=t.x??t.gate?.x??t.lever?.x??0;return tx>=a&&tx<=b;}),rooms=spans.filter(r=>!trapAt(r)),blocked=[...spans.filter(trapAt),...(world.breakables||[]).map(b=>[b.x-b.w,b.x+b.w]),...(world.ladders||[]).map(l=>[l.x-50,l.x+50]),...(world.goals||[]).map(g=>[g.x-130,g.x+130]),...(world.traps||[]).map(t=>{const tx=t.x??t.gate?.x??t.lever?.x??0;return[tx-90,tx+(t.w||0)+90];}),...(world.towers||[]).map(t=>[t.x-130,t.x+130]),[level.goal.x-120,level.goal.x+120],[level.spawn.x-40,level.spawn.x+140],...(world.traps||[]).flatMap(t=>t.nodecor||[])];
  const free=(a,b,h=999)=>!blocked.some(([c,d])=>b>c&&a<d)&&(h<=120||!rooms.some(([c,d])=>b>c&&a<d))&&!placed.some(([c,d])=>b>c-18&&a<d+18);
@@ -6025,8 +6079,8 @@ function drawMenuMarko(name,fi,t){if(!rigImages[rig[name]?.image]){rigWant(rig[n
 menuLedger();
 
 // ---------- Marko's in-between clips (Codex, DOPUNA-8): walk, braking, rise and fall, a longer rest, recovery, rolls ----------
-const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42,REP_TIME=.9,PICK_TIME=.6,CALL_TIME=.75,BLAST_TIME=.85;
-function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT','repT','pickT','callT','blastT'])if(p[k]>0)p[k]-=dt;if(p.grounded)p.runJump=false;
+const IDLE3_AT=9,STOP_TIME=.26,RECOVER_TIME=.24,ROLL_LAND_TIME=.42,OPEN_TIME=.42,REP_TIME=.9,DAJE_TIME=1.1,PICK_TIME=.6,CALL_TIME=.75,BLAST_TIME=.85;
+function markoFlow(dt){for(const k of['stopT','recoverT','rollLandT','openT','repT','dajeT','pickT','callT','blastT'])if(p[k]>0)p[k]-=dt;if(p.grounded)p.runJump=false;
  p.airT=p.grounded?0:(p.airT||0)+dt;
  // letting go of the arrows at full run: he digs his heels in
  const held=keys.has('KeyA')||keys.has('KeyD')||keys.has('ArrowLeft')||keys.has('ArrowRight');
@@ -6044,6 +6098,7 @@ function flowPose(){const once=(name,t,T)=>{const n=rig[name].frames.length;retu
   if(p.callT>0&&p.attack<=0&&p.grounded){const mv=Math.abs(p.vx)>35;if(mv&&Math.abs(p.vx)<200&&rig?.['marko-call-walk'])return{name:'marko-call-walk',...loopAt(p.gait*2,rig['marko-call-walk'].frames.length)};if(!mv&&rig?.['marko-call'])return once('marko-call',p.callT,CALL_TIME);}
   if(p.openT>0&&rig?.['marko-open'])return once('marko-open',p.openT,OPEN_TIME);
   if(p.repT>0&&rig?.['marko-hvata-rep'])return once('marko-hvata-rep',p.repT,REP_TIME);
+  if(p.dajeT>0&&rig?.['marko-daje'])return once('marko-daje',p.dajeT,DAJE_TIME);
  if(p.recoverT>0&&Math.abs(p.vx)<80&&rig?.['marko-combo-recover'])return once('marko-combo-recover',p.recoverT,RECOVER_TIME);
  if(p.stopT>0&&Math.abs(p.vx)<150&&!p.blocking&&!p.crouching&&rig?.['marko-run-stop'])return once('marko-run-stop',p.stopT,STOP_TIME);
  return null;}

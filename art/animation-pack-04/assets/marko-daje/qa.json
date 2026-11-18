@@ -1,0 +1,90 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        139,
+        98,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 390
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        141,
+        98,
+        353,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 390
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        140,
+        98,
+        353,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 390
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        102,
+        98,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 390
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        102,
+        101,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 387
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        138,
+        98,
+        355,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 390
+    }
+  ],
+  "measuredHeights": [
+    390,
+    390,
+    390,
+    390,
+    387,
+    390
+  ],
+  "targetHeight": 390,
+  "identityApproved": true,
+  "motionApproved": true,
+  "visualReview": "Marko gently gives gold coins: reaches to pouch, draws coins, extends left palm, inclines head, then returns upright; mace stays lowered in right hand.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

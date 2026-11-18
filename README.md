@@ -425,6 +425,19 @@ Stefan: „da Marko hoda dok ide pesma i dok slušamo guslara, to jest naratora,
 - **Pet novih pokreta** (Codex DOPUNA-65, GPT-5.6-Luna): `kopljanik-basa-jump` (megdandžija sela je skakao bez svog crteža), `marko-slusa` (obe šake na topuzu dok sluša), `marko-hvata-rep` (vašar), `putnica-pozdrav`, `putnik-starac-klanja`. Na vašaru konj sada stoji repom ka Marku kad ga Marko uhvati, a pušten odlazi od njega.
 - Provere: `pesme-test.mjs` (hod, veo, skok ga ne prolazi, oslobađanje u borbi, guslar 10,3 s). Bot u `road-test.mjs` ne staje da sluša guslara.
 
+## 18. novembar (2): prvi nivo, šest dopuna
+
+Stefan: „dodaj svih ovih 6 tačaka što si predložio”.
+
+1. **Prva borba je jedan običan janjičar** (`prviSusret` u `dist/game.js`). Do sada su prva dva protivnika bila elitni sabljaši u tandemu. Drugi sabljaš sada čeka 620 px dalje, ili stane pred prvog strelca kad su na istom tlu.
+2. **Vašar se igra, ne samo sluša.** Posle izbora Šarca: E kraj ždrebeta daje mu vino (Marko pije, pa pije Šarac, spadne šuga i ždrebe se propne), Šarac ide za Markom do Novaka kovača na kraju vašara, Novak ga potkuje, i tek tada se otvara put. Konji su pomereni da kraj nakovnja ima mesta.
+3. **Glas.** Nije snimano ništa: stari ElevenLabs nalog je prazan do 27. 11. Od replika prvog nivoa bez snimka je samo konjušareva prva („Vašar konja u Kosovskom selu…”, vodi se kao uputstvo): `python make-dialog-voices.py --ids d7ae1b800a3`. Saveti (`uputstvo`, `savet`) se po ranijoj odluci ne snimaju. `art/glasovi/replike.json` i `docs/GLASOVI-POPIS.md` su osveženi.
+4. **Selo ima više od jedne kuće** (Codex DOPUNA-66): brvnara, vajat, tezga, veš na konopcu i bunar sa đermom. Postavljeni su rukom (`seloRekviziti`): brvnara i veš na ulazu, tezga kod konjušara, vajat i đeram kod guslara, veš kod poslednjeg bunara. Na tri slike je izvoz ostavio tamnu naslikanu pozadinu; skinuta je lokalno, bez novog crtanja.
+5. **Seljani i dalje od ulaza** (`setupSeljani`): dvoje sluša guslara sa Markom, a kad megdandžija padne, seljani izađu kod bunara na kraju i kliču. Kokoške (`kokoska-kljuca`) kljucaju po dvorištu i razbeže se kad Marko protrči.
+6. **Marko daje dukate** (`marko-daje`): sirotinji pruža šaku zlatnika umesto pokreta otvaranja kovčega.
+
+Provere su u `pesme-test.mjs` (vašar korak po korak, seljani, kokoška, slavlje, prva borba).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

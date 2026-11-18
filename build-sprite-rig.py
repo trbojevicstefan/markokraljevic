@@ -642,10 +642,14 @@ NOC_ANCHOR_AT = {}
 if _have('kopljanik-basa-jump') and 'kopljanik-basa-idle' in SCALES:
     SCALES['kopljanik-basa-jump'] = (SCALES['kopljanik-basa-idle'][0], 'feet')
     NOC_ANCHOR_SAME['kopljanik-basa-jump'] = 'kopljanik-basa-idle'
-for _n, _m in (('marko-slusa', 'marko-idle-2'), ('marko-hvata-rep', 'marko-idle-2'), ('putnica-pozdrav', 'putnica-idle'), ('putnik-starac-klanja', 'putnik-starac-idle')):
+for _n, _m in (('marko-slusa', 'marko-idle-2'), ('marko-hvata-rep', 'marko-idle-2'), ('putnica-pozdrav', 'putnica-idle'), ('putnik-starac-klanja', 'putnik-starac-idle'),
+               ('marko-daje', 'marko-idle-2')):   # DOPUNA-66: Marko holds out a handful of ducats
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] * body_height(_cells(_m)[0]) / body_height(_cells(_n)[0]), 'feet')
         NOC_ANCHOR_AT[_n] = 256   # the model was set into the cell with its anchor at the middle (prepare-dopuna57.rig_frame)
+# DOPUNA-66 (18. 11.): a village hen, drawn large (about 240 px) for its detail; in the game it stands 24 units high, a fifth of Marko
+if _have('kokoska-kljuca'):
+    SCALES['kokoska-kljuca'] = (24 / _full_h(_cells('kokoska-kljuca')[0]), 'feet')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

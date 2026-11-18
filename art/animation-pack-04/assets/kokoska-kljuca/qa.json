@@ -1,0 +1,90 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        186,
+        259,
+        379,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 229
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        171,
+        306,
+        393,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 182
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        182,
+        298,
+        382,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 190
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        178,
+        279,
+        385,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 209
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        184,
+        248,
+        381,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 240
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        186,
+        259,
+        379,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "height": 229
+    }
+  ],
+  "measuredHeights": [
+    229,
+    182,
+    190,
+    209,
+    240,
+    229
+  ],
+  "targetHeight": 240,
+  "identityApproved": true,
+  "motionApproved": true,
+  "visualReview": "Russet village hen pecks: standing, lowers head, pecks, raises head, steps in place with a head jerk, then returns to the standing pose for a clean loop.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

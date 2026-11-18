@@ -1,0 +1,16 @@
+{
+  "size": [
+    1536,
+    1024
+  ],
+  "bbox": [
+    48,
+    20,
+    1488,
+    1024
+  ],
+  "alphaMin": 0,
+  "alphaMax": 255,
+  "touchesEdge": true,
+  "greenPixels": 0
+}

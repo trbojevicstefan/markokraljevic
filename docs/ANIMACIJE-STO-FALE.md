@@ -78,10 +78,11 @@ Provera Kosovskog sela u igri (Proxy na rig, ceo nivo sa borbom) našla je jedan
 
 Veličina je merena tablom u meri igre pored uzora (Marko 129 prema 130, seljanka 113 prema 114, starac 104 prema 105). Četiri klipa crtana u meri igre imaju sidro na sredini ćelije (`NOC_ANCHOR_AT` u `build-sprite-rig.py`).
 
+Druga tura istog dana (Codex D66, `STATUS-D66.md`): `marko-daje` (dukati sirotinji) i `kokoska-kljuca`, oba iz prvog pokušaja, i pet rekvizita sela. Vino ždrebetu i potkivanje sada se igraju postojećim crtežima (`marko-drink`, `sarac-pije`, `sarac-propinje`, `sarac-hod`, `sarac-lupa`, `novak-kuje`).
+
 I dalje bez svog crteža u prvom nivou:
-- Marko daje vino ždrebetu i Novak potkiva Šarca (samo ih narator kaže);
-- Marko daje dukate sirotinji (koristi pokret otvaranja kovčega);
-- konjušar je isti starac kao putnik.
+- konjušar je isti starac kao putnik;
+- seljani koji kliču posle megdana koriste pozdrav i naklon sa ulaza.
 
 ## 1. Šarac (najvidljivije)
 

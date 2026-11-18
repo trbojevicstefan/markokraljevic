@@ -29,7 +29,12 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  step(120);ok(t.stanje[0].odbacen,'vašar: and lands past the fence');
  stand(t.gate.x-10);step(3);ok(api.state().p.x<t.gate.x-20,'vašar: the way on stays shut until a horse is chosen');
  stand(t.konji[2]);step(2);tap('KeyE');ok(t.done&&!t.stanje[2].odbacen,'vašar: the scabby piebald foal does not budge: Šarac');
- step(120*17);ok(t.korak===3&&t.zdrav,'vašar: wine, the mange falls away, Novak shoes him');
+ stand(t.gate.x-10);step(3);ok(api.state().p.x<t.gate.x-20&&t.korak===1,'vašar: the way on stays shut while the foal is scabby and unshod');
+ stand(t.konji[2]-92);step(130);tap('KeyE');ok(t.korak===2&&p.drink>0,'vašar: E by the foal: half the wine Marko drinks, half he gives to Šarac');
+ step(120*6);ok(t.zdrav&&t.korak===3,'vašar: the mange falls away');
+ stand(t.konji[2]+250);step(120*3);ok(t.sx>t.konji[2]+100&&t.sx<p.x,'vašar: Šarac walks after Marko ('+Math.round(t.sx-t.konji[2])+' px from where he stood)');
+ stand(t.x1-190-100);step(120*3);ok(t.korak===4,'vašar: by the smith he goes to the anvil and Novak shoes him');
+ stand(t.gate.x-10);step(3);ok(api.state().p.x<t.gate.x-20,'vašar: the way stays shut while Novak hammers');step(120*4);ok(t.korak===5,'vašar: shod');
  stand(t.gate.x-120);press('KeyD');step(120);release('KeyD');ok(api.state().p.x>t.gate.x+30,'vašar: then the road through the village is open');
  ok(api.draw()===null,'vašar: the fair draws without an error');}
 // ---- Manastirski vis: thrice round the white church ----
@@ -116,7 +121,9 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  Object.assign(p,{y:T.y,vy:0,grounded:true});step(2);ok(T.ph==='pad'&&p.y===T.y,'scene: on the ground the chains begin, and he stays on the ground');}
 // ---- listening (18. 11.): Marko walks while a line is said or the guslar sings, and the road ahead waits ----
 {const w=await start('selo');const {p}=api.state();const S=w.traps.find(t=>t.kind==='seljani'),G=w.traps.find(t=>t.kind==='guslar');
- ok(S&&S.ljudi.length===2&&api.state().world.level.spawn.x<S.x0,'village: a quiet road with a mother and an old man opens Kosovsko selo');
+ ok(S&&S.ljudi.filter(s=>!s.slavi&&s.gleda==null).length===2&&api.state().world.level.spawn.x<S.x0,'village: a quiet road with a mother and an old man opens Kosovsko selo');
+ ok(S.ljudi.filter(s=>s.gleda===G.x).length===2&&S.kokoske.length>=4,'village: two of its people listen to the guslar, hens peck about the yards');
+ {const h=S.kokoske[0],hx=h.x;Object.assign(p,{x:h.x-90,y:h.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(100);api.keys.clear();ok(h.x>hx+40,'village: a hen scatters when Marko runs through ('+Math.round(h.x-hx)+' px)');}
  Object.assign(p,{x:S.x0+60,y:S.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');step(120);const run=p.vx;ok(run>240&&!api.slusa(),'listening: with nothing being said Marko runs ('+Math.round(run)+' px/s)');
  api.slusaProbaj(true);const x0=p.x;api.speak('Kažu da je ovde potkovan Šarac i da je jedna potkova ostala u selu. Selo je pod opsadom: oteraj odred i stigni do barjaka.',7);step(90);const B=api.slusa()?.B;
  ok(api.slusa()&&p.vx<125&&p.vx>90,'listening: while the line is said he goes at a walk ('+Math.round(p.vx)+' px/s)');
@@ -131,5 +138,13 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  // the guslar: the verses are sung for 10.3 s; Marko walks past him and waits at the veil behind him
  Object.assign(p,{x:G.x-420,y:G.y,vx:0,vy:0,grounded:true});api.keys.add('KeyD');until(()=>G.state==='peva',120*4,'the guslar begins');step(120);
  ok(api.slusa()?.g===G&&p.vx<125,'guslar: while he sings Marko walks');const GB=Math.min(G.x+520,G.x1-60);step(120*8);ok(p.x===GB,'guslar: the veil stands behind the guslar until the verses are sung ('+Math.round(GB-G.x)+' px past him)');
- const k=(120*9+until(()=>!api.slusa(),120*4,'the verses end'))/120;ok(k>10&&k<11.5,'guslar: the three verses take their ten seconds ('+k.toFixed(1)+' s)');step(120);ok(p.x>GB+60,'guslar: then the road is open');api.keys.clear();}
+ const k=(120*9+until(()=>!api.slusa(),120*4,'the verses end'))/120;ok(k>10&&k<11.5,'guslar: the three verses take their ten seconds ('+k.toFixed(1)+' s)');step(120);ok(p.x>GB+60,'guslar: then the road is open');api.keys.clear();
+ // the people come out and cheer by the well when the champion of the village has fallen
+ const C=w.enemies.find(e=>e.champion),W2=api.state().world,gx=W2.level.goal.x;C.alive=true;step(3);ok(!W2.seljaniSlave&&S.ljudi.some(s=>s.slavi),'village: while the bashi holds the village its people stay in their houses');
+ api.slay(C);step(120*3);Object.assign(p,{x:gx-300,y:W2.level.goal.y,vx:0,vy:0,grounded:true});step(120);ok(W2.seljaniSlave&&S.ljudi.filter(s=>s.slavi&&s.rekao).length>=2,'village: the bashi fallen, they come out to the well and cheer');
+ ok(api.draw()===null,'village: its people and hens draw without an error');}
+// ---- the first fight of the first pohod: one plain janissary, and the second swordsman stands before the first archer ----
+{await api.startLevel(api.LEVELS.findIndex(L=>L.id==='selo'),'day');const w=api.state().world,L=w.enemies.filter(e=>!e.champion&&!e.perch&&!e.kit).sort((a,b)=>a.x-b.x),[a,b]=L,S=w.traps.find(t=>t.kind==='seljani');
+ ok(a.type==='sword'&&!a.elite&&a.par==null&&a.x>S.x1,'first fight: one plain janissary past the quiet road ('+Math.round(a.hp)+' hp)');
+ const m=w.enemies.find(e=>e.id===b.par);ok(b.x-a.x>=500&&!b.elite&&(!m||m.type==='archer'),'first fight: the second swordsman waits '+Math.round(b.x-a.x)+' px on'+(m?', a shield before the first archer':''));}
 console.log(`\n${checks} checks passed.`);
