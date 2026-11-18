@@ -1,0 +1,5 @@
+# STATUS D87
+
+- D87 | `naslovna-krcma-a.png` + `naslovna-krcma-a-mala.jpg` | završeno, uzet je 1. pokušaj: Marko i Šarac su prepoznatljivi prema `lik-prelaz-selo-1.jpg`, Šarac pije iz posude dok Marko deli vino, krčma je u desnoj polovini, a leva trećina ostaje tamna i prazna za meni. Izmereno: glavna slika 1536×864 (16:9), umanjena 640×360; brief: 1536×864 / 640 px širina — ispunjeno.
+- D87 | `naslovna-krcma-b.png` + `naslovna-krcma-b-mala.jpg` | završeno, uzet je 1. pokušaj: širi kadar jasno prikazuje celu krčmu desno, Marka i Šarca pred njom i drum ka brdima u levoj trećini; lice, plašt i pegavi uzorak Šarca ostaju usklađeni sa uzorom. Izmereno: glavna slika 1536×864 (16:9), umanjena 640×360; brief: 1536×864 / 640 px širina — ispunjeno.
+- D87 | `naslovna-krcma-c.png` + `naslovna-krcma-c-mala.jpg` | završeno, uzet je 1. pokušaj: noćni kadar ima plavo-ljubičasto nebo, zvezde i jasno zlatno svetlo krčme/fenjera na Marku i Šarcu; identiteti, odeća i pege su usklađeni sa uzorom. Izmereno: glavna slika 1536×864 (16:9), umanjena 640×360; brief: 1536×864 / 640 px širina — ispunjeno.

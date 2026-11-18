@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        166,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        229,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        216,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        189,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        204,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        197,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d92\\pokret-sword-run.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "visualReview": "Golden imperial janissary run follows the six-frame sword-run motion with preserved identity, aligned placement, and ceremonial red-gold equipment.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        113,
+        62,
+        390,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        114,
+        62,
+        389,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        112,
+        62,
+        392,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        112,
+        62,
+        390,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        114,
+        62,
+        390,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        112,
+        62,
+        390,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d92\\sword-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "visualReview": "Golden imperial janissary idle: six aligned frames with subtle breathing, weight shift, and a thumb brushing the golden hilt; identity, size, and placement match the sword reference.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

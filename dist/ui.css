@@ -891,3 +891,38 @@ html[lang="sr-Cyrl"] :is(.foe-name,#menu .ms-item .lbl,.intro-eyebrow+.intro-tex
  #levels .modal-card.lore:has(.pohod-map.karta-map) .karta .map-title{font-size:clamp(14px,1.2vw,20px)}
 }
 @media (min-width:700px) and (min-height:460px) and (max-height:820px){#levels .modal-card.lore:has(.pohod-map.karta-map) #levels-order{display:none}}
+
+/* ---- the title scene (Stefan, 18. 11.: „neka Marko i Šarac dele vino ispred neke krčme”, Codex D87): Marko at the krčma
+   pours half his wine into the copper pot Šarac drinks from. The picture keeps 16:9 and leans right, so the two of them stay
+   in view and the menu stands over the evening road; the lantern breathes, smoke leaves the chimney, the sun glows. After
+   eight in the evening the same scene is shown by night. ---- */
+#menu .bd-ground,#menu img.menu-marko,#menu .menu-marko,#menu .menu-marko.live{display:none!important}
+#menu .bd-far.bd-krcma{inset:auto;top:50%;right:-3vw;left:auto;width:max(106vw,calc(106vh * 16 / 9));height:auto;aspect-ratio:16/9;background:url(assets/ui/naslovna-krcma.webp) center/100% 100% no-repeat;transform:translateY(-50%);transform-origin:72% 55%;animation:krDrift 60s ease-in-out infinite alternate}
+#menu.noc .bd-far.bd-krcma{background-image:url(assets/ui/naslovna-krcma-noc.webp)}
+@keyframes krDrift{from{transform:translateY(-50%) scale(1)}to{transform:translateY(-50%) scale(1.045) translate(-.8%,.4%)}}
+#menu .menu-backdrop::after{background:linear-gradient(90deg,#0c0503e8 0%,#120804c0 20%,#1a0c0660 34%,#0000 48%),linear-gradient(0deg,#080302b0 0%,#0000 24%,#0000 86%,#08030270 100%)!important}
+#menu .bd-krcma i{position:absolute;display:block;pointer-events:none}
+#menu .kr-sunce{left:11.5%;top:33%;width:22%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#ffd89a55 0%,#ff9a4a22 40%,#0000 70%);mix-blend-mode:screen;animation:krSunce 9s ease-in-out infinite alternate}
+#menu .kr-fenjer{left:90.4%;top:28%;width:10%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#ffe2a0a0 0%,#ffb44a50 30%,#0000 68%);mix-blend-mode:screen;animation:krTreperi 3.1s ease-in-out infinite}
+#menu .kr-prozor{left:84%;top:12%;width:26%;height:40%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,#ffc46a38 0%,#0000 65%);mix-blend-mode:screen;animation:krTreperi 4.3s ease-in-out infinite reverse}
+#menu .kr-dim{left:55.3%;top:5%;width:3.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#e9e0d6aa 0%,#cfc6bc55 45%,#0000 72%);filter:blur(3px);opacity:0;animation:krDim 8s linear infinite}
+#menu .kr-dim:nth-of-type(5){animation-delay:2s}#menu .kr-dim:nth-of-type(6){animation-delay:4s}#menu .kr-dim:nth-of-type(7){animation-delay:6s}
+#menu.noc .kr-sunce{display:none}
+#menu.noc .kr-fenjer{left:61.8%;top:25%}
+#menu.noc .kr-prozor{left:49%;top:10%;width:40%}
+#menu.noc .kr-dim{left:32%;top:6%}
+@keyframes krSunce{from{opacity:.65;transform:translate(-50%,-50%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes krTreperi{0%,100%{opacity:.75}18%{opacity:1}31%{opacity:.82}47%{opacity:.96}63%{opacity:.7}80%{opacity:.92}}
+@keyframes krDim{0%{opacity:0;transform:translate(-50%,0) scale(.6)}12%{opacity:.55}100%{opacity:0;transform:translate(60%,-260%) scale(2.6)}}
+@media(prefers-reduced-motion:reduce){#menu .bd-krcma,#menu .bd-krcma i{animation:none!important}#menu .kr-dim{display:none}}
+
+/* the sharp picture stands bottom right at full size of its own and melts into a blurred, darkened copy of itself on the left,
+   so the menu has a quiet place and Marko and Šarac are never under it */
+#menu .bd-krcma-mut{position:absolute;inset:-6%;background:url(assets/ui/naslovna-krcma.webp) 30% 40%/cover no-repeat;filter:blur(22px) brightness(.5) saturate(1.15)}
+#menu.noc .bd-krcma-mut{background-image:url(assets/ui/naslovna-krcma-noc.webp)}
+@media(min-width:901px){
+ #menu .bd-far.bd-krcma{top:auto;bottom:0;right:0;width:min(80vw,calc(100vh * 16 / 9 * .98));transform:none;transform-origin:80% 80%;animation:krDrift2 60s ease-in-out infinite alternate;
+  -webkit-mask-image:linear-gradient(90deg,#0000 0%,#000 24%),linear-gradient(0deg,#000 78%,#0000 100%);mask-image:linear-gradient(90deg,#0000 0%,#000 24%),linear-gradient(0deg,#000 78%,#0000 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
+ @keyframes krDrift2{from{transform:scale(1)}to{transform:scale(1.035)}}
+ #menu .menu-backdrop::after{background:linear-gradient(90deg,#0c0503d0 0%,#120804a0 22%,#1a0c0640 36%,#0000 46%),linear-gradient(0deg,#080302a0 0%,#0000 20%)!important}
+}

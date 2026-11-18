@@ -143,7 +143,7 @@ export const RECIPES={
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
  arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
- trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:2000,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
+ trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15,look:'zlatni-janicar'},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:2000,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
 
 function seeded(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=h||1;return()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return(h>>>0)/4294967296;};}
@@ -476,7 +476,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the keeper of each treasury key: the nearest foe, a little tougher
  for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
   if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
- if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90});}
+ if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90,look:S.look});}
  // a land may soften its champion (bossHp): in a climbing pohod the climb is half the fight
  if(B.boss){const S=BOSSES[B.boss.type],A=B.boss,hp=Math.round(S.hp*(.62+.38*Math.min(1,index/9))*(L.bossHp??1));foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp,maxHp:hp,name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}
  // the artist's props stand on the new road; props that would sit on stairs, towers or shafts are left out

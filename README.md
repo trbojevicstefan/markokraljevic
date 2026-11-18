@@ -478,6 +478,20 @@ Stefan: „naručuj od Codexa sve što ti treba za naredna tri nivoa, potrebne s
 - Oranje nije tražilo nove crteže: tri janičara su obični sabljaši, a koštac sa sabljašem igra već crta postojećim `kostac-janicar`.
 - Provere u `pesme-test.mjs` (dželat i Hasan-aga u tri čina).
 
+## 18. novembar (6): junački udari na F/R, muzika svakog pohoda, krčma na početnom ekranu, Manastir i Oranje
+
+Stefan: „kada otključam L3 i R3 skillove oni ne rade … automatski ih stavi dole u Action bar”, „kreni na sledeća 2 nivoa i pojačaj animacije, sredi pozadine, paralaks, stepenice, neprijatelje, ljude”, „napiši nove muzike za skoro svaki nivo”, „početni ekran: neka Marko i Šarac dele vino ispred neke krčme”.
+
+- **Junački udari (F / R, na džojstiku L3 / R3).** Potres se nađe posle Oranja, ali je tražio Vihor (Prevoj) ili Junački udar (Reka), pa pet pohoda nije radio i nije bio u traci; isto Šarčev gaz. Sada radi čim se nađe. Svaki udar koji tek postane dostupan sam ide na taster i u traku (`udariNovi`, `udarMoze`): prvo na taster čiji udar još ne radi, inače na svoj (Vihor i Potres F, Junački udar i Gaz R); poruka kaže gde je i da se menja u Napretku (P). Stari save sa nađenim Potresom ga dobija na F.
+- **Muzika.** `make-level-music.py` sklapa temu za 14 pohoda (sve osim Urvine i Sna, gde ostaje guslar): svaki svoj lad, tempo, takt (selo kolo 7/8, Oranje 9/8) i svoje instrumente (frula, kaval, gajde, tambura, zvona, gusle, hor, trube), oblik uvod–A–A'–B–A'' koji se vrti bez šava. Novi instrumenti: frula/kaval, tambura (Karplus-Strong, tremolo), crkvena zvona, gajde, def, kapi u pećini. Svaki pohod učita samo svoju temu (`trackOr('nivo-<id>')`), do tada svira stara. Megdani zadržavaju svoje teme.
+- **Početni ekran (D87).** Codex je naslikao krčmu u predvečerje: Marko na klupi preliva pola vina u bakrač iz kog pije Šarac. Slika stoji dole desno i preliva se u zamućenu kopiju sebe, pa meni stoji nad mirnim drumom. Fenjer treperi, iz dimnjaka ide dim, sunce sija; od 20 do 6 časova ista scena noću (`#menu.noc`). Marko na litici se više ne crta.
+- **Pozadine (D89, D90).** Bliži i srednji slojevi Manastirskog visa i Oranja dobili su druge verzije: konak sa česmom, groblje sa paraklisom, isposnica u steni; vodenica, gumno sa đermom, selo na brdu. Crtač pozadine (`stage3d.js`) smenjuje pločice A B A C (`<sloj>-b`, `-c`), pa se isti zvonik ne ponavlja. Ljubičasti odsjaj sa ključa je skinut (`.tmp-edge/p96.py`).
+- **Prednji sloj** (`<nivo>-prednji`, `drawPrednji`): jesenje grmlje i klasje dole na ekranu, tamnije i malo zamućeno, ide brže od puta (1,3) kao u The Lost Crown; prati tlo, ne skokove.
+- **Stepenice (D88)** su naslikane na Manastiru (krečnjak), Oranju (zemlja sa gredom) i u tvrđavi (peščar): gazište + telo kao tapet (`drawStairsPainted`), crtaju se odozdo naviše pa viši stepenik pokriva niži (ranije su preko stepenika išle pruge). Codex je telo pravio preslikavanjem (rombovi kao u kaleidoskopu); pločice su ponovo složene od njegovih prvih slika (`.tmp-edge/p97.py`).
+- **Ljudi na poslu (D91, `setupRadnici`):** na Manastirskom visu dva kaluđera se mole i jedan zvoni na drvenoj zvonari (zvono se čuje kad je Marko blizu), u Oranju žetelice žanju i nose snopove, kosac kosi. Svako jednom pozdravi Marka. Codex je pognute kadrove razvukao na visinu uspravnih; smanjeni su po površini lika.
+- **Zlatni janičari (D92):** trojica sa carevim blagom na kraju Oranja imaju svoj izgled (`look:'zlatni-janicar'`, osam klipova).
+- Kapije nisu dirane.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

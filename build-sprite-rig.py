@@ -740,6 +740,28 @@ for _n, _m in D81_MODEL.items():
 # waking (D86, ordered again: the D84 one was cut off) starts sitting at that size and stands at his own
 if 'mladi-turcin-spava' in SCALES:
     SCALES['mladi-turcin-spava'] = (SCALES['mladi-turcin-spava'][0] * .69, 'feet')
+# DOPUNA-91..92 (18. 11., the sixth round): the golden janissaries of Oranje (the trio, look 'zlatni-janicar') and the people at
+# work on Manastirski vis and in the fields of Oranje (a monk praying, a monk at the bell rope, a reaper, a reaper carrying a
+# sheaf, a mower). Each is an edit of its model's frame 0, so it takes that model's zoom and anchor.
+D91_MODEL = {
+  "zlatni-janicar-idle": "sword-idle",
+  "zlatni-janicar-run": "sword-idle",
+  "zlatni-janicar-attack": "sword-idle",
+  "zlatni-janicar-lunge": "sword-idle",
+  "zlatni-janicar-hurt": "sword-idle",
+  "zlatni-janicar-death": "sword-idle",
+  "zlatni-janicar-jump": "sword-idle",
+  "zlatni-janicar-omamljen": "sword-idle",
+  "putnik-kaluder-moli": "putnik-kaluder-idle",
+  "putnik-kaluder-zvoni": "putnik-kaluder-idle",
+  "zetelica-zanje": "putnica-idle",
+  "zetelica-nosi": "putnica-idle",
+  "kosac-kosi": "seljak-idle"
+ }
+for _n, _m in D91_MODEL.items():
+    if _have(_n) and _m in SCALES:
+        SCALES[_n] = (SCALES[_m][0], 'feet')
+        NOC_ANCHOR_SAME[_n] = _m
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the

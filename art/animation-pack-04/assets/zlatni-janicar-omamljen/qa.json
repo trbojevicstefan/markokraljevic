@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        211,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        211,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        180,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        191,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        206,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        215,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d92\\pokret-sword-omamljen.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "visualReview": "Golden imperial janissary omamljen follows the six reference poses with a dazed posture, no effects, preserved identity, and safe margins.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

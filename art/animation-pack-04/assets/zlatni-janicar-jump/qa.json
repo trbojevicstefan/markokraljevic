@@ -1,0 +1,104 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        140,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        141,
+        24,
+        488,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        166,
+        24,
+        488,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        158,
+        24,
+        488,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        172,
+        24,
+        488,
+        450
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 449,
+      "safeMargin": 24,
+      "height": 426
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        143,
+        62,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 426
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d92\\pokret-sword-jump.png",
+  "targetSupportY": 488,
+  "targetHeight": 426,
+  "measuredHeights": [
+    426,
+    426,
+    426,
+    426,
+    426,
+    426
+  ],
+  "visualReview": "Golden imperial janissary jump follows the six reference poses; upright frames measure 426 px and airborne frames are placed above the baseline with safe margins.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 6
+}

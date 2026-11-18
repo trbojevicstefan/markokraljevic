@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        152,
+        81,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        154,
+        81,
+        356,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        149,
+        81,
+        362,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        140,
+        81,
+        370,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        152,
+        81,
+        358,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        152,
+        81,
+        359,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        146,
+        81,
+        366,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        151,
+        81,
+        360,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\animation-pack-04\\sources\\zetelica-zanje\\attempt-1\\frame-0.png",
+  "targetSupportY": 488,
+  "targetHeight": 407,
+  "measuredHeights": [
+    407,
+    407,
+    407,
+    407,
+    407,
+    407,
+    407,
+    407
+  ],
+  "visualReview": "D91 approved: eight complete right-facing walk poses for the same field worker as zetelica-zanje, bundle fully visible, identity and 407 px height match frame 0; feet align at y=488 with no edge crop or green spill.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

@@ -686,19 +686,24 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
   const SEAM = .12;
   let levelLayers = [];
   function setLevel(layers) {
-    for (const l of levelLayers) { scene.remove(l.mesh); l.mat.dispose(); l.tex.dispose(); }
+    for (const l of levelLayers) { scene.remove(l.mesh); l.mat.dispose(); l.tex.dispose(); for (const t of l.alts) t.dispose(); }
     levelLayers = [];
     bg.visible = !(layers && layers.length);
     (layers || []).forEach((L, i) => {
-      const tex = new THREE.Texture(L.image);
-      tex.colorSpace = THREE.SRGBColorSpace; tex.wrapS = THREE.RepeatWrapping; tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false; tex.needsUpdate = true;
+      const mk = im => { const t = new THREE.Texture(im); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; t.needsUpdate = true; return t; };
+      const tex = mk(L.image);
+      // Stefan, 18. 11.: one bell tower kept coming back every few steps. A layer may bring other paintings of the same size
+      // (<layer>-b, -c); its tiles then go A B A C … and the seam crossfade blends each tile into the one before it.
+      const alts = (L.alts || []).filter(im => im && im.width === L.image.width && im.height === L.image.height).slice(0, 2).map(mk);
       const w = L.image.width, h = L.image.height, k = Math.max(H / h, i === 0 ? W / w : 0);
       const mat = new THREE.ShaderMaterial({
-        uniforms: {uTex: {value: tex}, uOff: {value: 0}, uOffY: {value: 0}, uK: {value: k}, uSize: {value: new THREE.Vector2(w, h)}, uFog: {value: (1 - L.speed) * .26}, uHaze: bgMat.uniforms.uHaze, uDusk: bgMat.uniforms.uDusk, uLightning: bgMat.uniforms.uLightning},
+        uniforms: {uTex: {value: tex}, uTex1: {value: alts[0] || tex}, uTex2: {value: alts[1] || tex}, uNalt: {value: alts.length}, uOff: {value: 0}, uOffY: {value: 0}, uK: {value: k}, uSize: {value: new THREE.Vector2(w, h)}, uFog: {value: (1 - L.speed) * .26}, uHaze: bgMat.uniforms.uHaze, uDusk: bgMat.uniforms.uDusk, uLightning: bgMat.uniforms.uLightning},
         vertexShader: SCREEN_VERT,
-        fragmentShader: `uniform sampler2D uTex;uniform float uOff,uOffY,uK,uFog,uDusk,uLightning;uniform vec2 uSize;uniform vec3 uHaze;varying vec2 vUv;
+        fragmentShader: `uniform sampler2D uTex,uTex1,uTex2;uniform float uNalt,uOff,uOffY,uK,uFog,uDusk,uLightning;uniform vec2 uSize;uniform vec3 uHaze;varying vec2 vUv;
+          vec4 pick(float k,vec2 uv){float m=uNalt<.5?0.:uNalt<1.5?mod(k,2.):mod(k,4.);float id=uNalt<1.5?m:(m>2.5?2.:m>.5&&m<1.5?1.:0.);
+            if(id>1.5)return texture2D(uTex2,uv);if(id>.5)return texture2D(uTex1,uv);return texture2D(uTex,uv);}
           void main(){vec2 s=vec2(vUv.x,1.-vUv.y)*vec2(${W.toFixed(1)},${H.toFixed(1)});float th=uSize.y*uK;float ty=(s.y-(${H.toFixed(1)}-th)+uOffY)/th;
-            ${i === 0 ? 'ty=min(abs(ty),1.);' : 'if(ty<0.||ty>1.){gl_FragColor=vec4(0.);return;}'}float raw=(s.x/uK+uOff)/uSize.x,P=${(1-SEAM).toFixed(3)},u=fract(raw/P)*P;vec4 c=texture2D(uTex,vec2(u,1.-ty));if(u<${SEAM.toFixed(3)}){vec4 c2=texture2D(uTex,vec2(u+P,1.-ty));c=mix(c2,c,smoothstep(0.,${SEAM.toFixed(3)},u));}
+            ${i === 0 ? 'ty=min(abs(ty),1.);' : 'if(ty<0.||ty>1.){gl_FragColor=vec4(0.);return;}'}float raw=(s.x/uK+uOff)/uSize.x,P=${(1-SEAM).toFixed(3)},kt=floor(raw/P),u=fract(raw/P)*P;vec4 c=pick(kt,vec2(u,1.-ty));if(u<${SEAM.toFixed(3)}){vec4 c2=pick(kt-1.,vec2(u+P,1.-ty));c=mix(c2,c,smoothstep(0.,${SEAM.toFixed(3)},u));}
             vec3 col=mix(c.rgb,uHaze,uFog);col=mix(col,col*vec3(1.05,.62,.58),uDusk*.55);col+=vec3(.6,.7,1.)*uLightning*.6;
             gl_FragColor=vec4(col*${ART.toFixed(2)},c.a*mix(1.,smoothstep(0.,.16,ty),clamp(-uOffY/(th*.16),0.,1.)));}`,
         transparent: i > 0, depthTest: false, depthWrite: false,
@@ -706,7 +711,7 @@ export async function createStage({canvas, layer, glow, gorge, W, H, zoom, setti
       const mesh = new THREE.Mesh(fullQuad, mat);
       mesh.frustumCulled = false; mesh.renderOrder = -100 + i * .5;
       scene.add(mesh);
-      levelLayers.push({mesh, mat, tex, speed: L.speed, k});
+      levelLayers.push({mesh, mat, tex, alts, speed: L.speed, k});
     });
   }
 

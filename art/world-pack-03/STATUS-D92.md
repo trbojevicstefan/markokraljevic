@@ -1,0 +1,8 @@
+D92 | zlatni-janicar-idle | završeno | pokušaj 1/3 | 6 kadrova | izmerene visine 426,426,426,426,426,426 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS
+D92 | zlatni-janicar-run | završeno | pokušaj 1/3 | 6 kadrova | izmerene visine 426,426,426,426,426,426 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS
+D92 | zlatni-janicar-attack | završeno | pokušaj 3/3 | 6 kadrova | izmerene visine 410,410,410,410,410,410 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS; pokušaj 1 odbijen zbog margine 20 px, pokušaj 2 zbog dodira ivice
+D92 | zlatni-janicar-lunge | završeno | pokušaj 3/3 | 6 kadrova | izmerene visine 410,410,410,410,410,410 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS; pokušaj 1 i 2 odbijeni zbog dodira ivice
+D92 | zlatni-janicar-hurt | završeno | pokušaj 1/3 | 4 kadra | izmerene visine 426,426,426,426 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS
+D92 | zlatni-janicar-death | završeno | pokušaj 3/3 | 6 kadrova | izmerene visine 410,410,410,410,410,410 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS; treći pokušaj obrađen fit-safeguard-om za široki pad
+D92 | zlatni-janicar-jump | završeno | pokušaj 1/3 | 6 kadrova | izmerene visine 426,426,426,426,426,426 px (cilj 426 ±5%) | uspravni oslonac y=487/488, vazdušni kadrovi y=449, margina 24 px, zelena 0 | export + QA PASS
+D92 | zlatni-janicar-omamljen | završeno | pokušaj 1/3 | 6 kadrova | izmerene visine 426,426,426,426,426,426 px (cilj 426 ±5%) | oslonac y=487/488, margina 24 px, zelena 0 | export + QA PASS

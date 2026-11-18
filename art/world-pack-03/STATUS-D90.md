@@ -1,0 +1,6 @@
+# STATUS D90
+
+- D90 | `oranje-near-b.png` | završeno | uzet image_gen pokušaj 2/3; 2172×724; vodenica, potok, drveni most, vrbe i plastovi prisutni; provereno na plavoj i beloj podlozi, bez magenta pozadine/ruba; donji pojas upoređen sa `sloj-oranje-near-rucno` i zadržan u istoj visini i zlatnoj boji.
+- D90 | `oranje-near-c.png` | završeno | uzet image_gen pokušaj 1/3; 2172×724; gumno sa stožerom i snopljem, bunar sa đermom, ambarina na direcima, šljivik i pleter-ograda prisutni; provereno na plavoj i beloj podlozi; donji pojas upoređen sa `sloj-oranje-near-rucno` i zadržan u istoj visini i zlatnoj boji.
+- D90 | `oranje-mid-b.png` | završeno | uzet image_gen pokušaj 1/3; 2172×724; selo sa crkvicom i kućama pod ćeramidom, trakasta polja, drvoredi i vijugav put prisutni u bleđoj srednjoj skali; provereno na plavoj i beloj podlozi, bez magenta pozadine/ruba; donji pojas upoređen sa `sloj-oranje-mid` i zadržan u istoj visini i boji.
+- D90 | `oranje-prednji.png` | završeno | uzet image_gen pokušaj 2/3; 2172×724; tamniji/blago zamućen sloj sa klasjem, bulkama, razlićkom, čičkom, kamenjem i kolcima pletera; visoki elementi ograničeni na najviše trećinu širine, ostatak nizak; provereno na plavoj i beloj podlozi, bez magenta pozadine/ruba.

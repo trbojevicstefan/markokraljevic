@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        164,
+        81,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        109,
+        81,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        67,
+        81,
+        444,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        44,
+        81,
+        466,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        96,
+        81,
+        414,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        157,
+        81,
+        354,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        108,
+        81,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        160,
+        81,
+        352,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 407
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d91\\putnica-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 407,
+  "measuredHeights": [
+    407,
+    407,
+    407,
+    407,
+    407,
+    407,
+    407,
+    407
+  ],
+  "visualReview": "D91 approved: eight complete right-facing harvesting poses, adult field-worker identity and 407 px height match the reference; sickle and gathered grain stay inside cells, feet align at y=488, no edge crop or green spill.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

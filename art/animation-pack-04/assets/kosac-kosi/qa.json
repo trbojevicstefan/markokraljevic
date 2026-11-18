@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        146,
+        148,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        104,
+        148,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        60,
+        148,
+        488,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        116,
+        148,
+        430,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        145,
+        148,
+        402,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        104,
+        148,
+        442,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        60,
+        148,
+        487,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        116,
+        148,
+        430,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 340
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d91\\seljak-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 340,
+  "measuredHeights": [
+    340,
+    340,
+    340,
+    340,
+    340,
+    340,
+    340,
+    340
+  ],
+  "visualReview": "D91 approved: eight complete right-facing mowing poses, peasant identity and 340 px height match the reference; full wooden snath and curved blade remain inside each cell, feet align at y=488 with no edge crop or green spill.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}

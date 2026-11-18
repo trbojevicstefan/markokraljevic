@@ -1,0 +1,134 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        170,
+        87,
+        341,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        166,
+        87,
+        346,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        162,
+        87,
+        350,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        164,
+        87,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        164,
+        87,
+        347,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        168,
+        87,
+        342,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        166,
+        87,
+        344,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        170,
+        87,
+        341,
+        488
+      ],
+      "touchesEdge": false,
+      "greenPixels": 0,
+      "supportY": 487,
+      "safeMargin": 24,
+      "height": 401
+    }
+  ],
+  "identityApproved": true,
+  "motionApproved": true,
+  "reference": "D:\\projects\\Marko Kraljevic\\art\\world-pack-03\\uzori-d91\\putnik-kaluder-idle-kadar0.png",
+  "targetSupportY": 488,
+  "targetHeight": 401,
+  "measuredHeights": [
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    401
+  ],
+  "visualReview": "D91 approved: eight complete right-facing monk bell-rope poses, entire rope visible, identity and 401 px height match; feet align at y=488 with no edge crop or green spill.",
+  "atlasMatchesFrames": true,
+  "gifFrames": 8
+}
