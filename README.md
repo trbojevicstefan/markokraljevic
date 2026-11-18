@@ -447,7 +447,7 @@ Stefan: „neka neki beže od nas kada se uplaše, treba da imamo taj momenat kr
 - **Pčele** iz svake razbijene košnice (i u šumi) idu na najbližeg protivnika: vojnik beži, megdandžija je ošamućen.
 - **Markova reč nad svakim megdandžijom** (`MARKO_REC`): četrnaest rečenica, po jedna za svakog, umesto jedne za Musu. Bez snimka dok se krediti ne vrate (27. 11.).
 - **Bunar i tezga**: E kraj bunara sa đermom (Marko pije iz vedra, `marko-pije-vodu`), E kraj tezge (pogača, `marko-uzima`), po jednom. Seljak (`seljak-idle`, `seljak-klice`) stoji pred brvnarom i kliče posle megdana.
-- **Kapije** su naslikane umesto nacrtane kodom (`gateArt`, `drawSection2`): širi prolaz, rešetka široka kao prolaz koja se diže u ležište iznad svoda i tamo se vidi (Codex D70, pa D73 po Stefanovom crtežu). Stefan je posle toga tražio kapiju gledanu pod uglom, kao trodimenzionalan predmet: to je DOPUNA-75.
+- **Kapije: bez izmene.** Tri pokušaja naslikane kapije (Codex D70, D73, D75) Stefan je odbio („kapija je užasna, nemoj da je radiš uopšte, vrati na originalnu kapiju”). Kapija se crta kodom kao pre 18. 11.; naslikane slike su sklonjene iz igre i iz repoa.
 - Provere u `pesme-test.mjs`: strah (trgne se, baci sablju, beži, nestane; oklopnik ne beži; pad megdandžije), megdan (juriš u kola, košnica i pčele), Markova reč, bunar.
 
 ## Izvori
