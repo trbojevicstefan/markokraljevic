@@ -555,6 +555,27 @@ Stefan: „Naslikaj tamnicu i sve što ti treba iz inventara”, „ugasi vetar,
 - **Vetar** na devetom pohodu se vidi i čuje, ali ne gura Marka i ne najavljuje se natpisom.
 - Slike soba devetog pohoda traže se čim pohod počne (`PREVOJ_SLIKE`), da nijedna ne iskoči tek kad Marko priđe.
 
+## 19. novembar (4): nova kapija svuda, peti pohod po pesmi o očevoj sablji, replike koje se ne preklapaju
+
+Stefan: „da, stavi tu kapiju, kreni na nivo 5 sve do najsitnijeg detalja i produženog gameplaya, i boljeg boss fighta, pazi da se zvukovi ne preklapaju”.
+
+**Kapija.** Kapija-kula u tri četvrtine sada stoji na svim kapijama kroz koje drum prolazi (ciljevi, kapije na polugu i na vreme, zagonetke), u četiri materijala: kamen (D104), a brvna, stena i cigla su nacrtani po njoj (D108, `kapija-34-drvo`, `-rudnik`, `-podrum`, svaka sa svojom rešetkom; otvor luka je na istom mestu). Kapija je dublja od starog preseka, pa svaka soba koja se završava kapijom dobija 380 px ravnog druma iza nje (`KAPIJA_DUB` u `world.js`), a kapija-cilj se postavlja samo gde je drum ravan. Zid se proredi i kad je iza njega dušman, da niko ne napada nevidljiv. Megdan na Kačaniku (bez pohoda) i dalje ima stari presek.
+
+**Replike.** Replika bez snimka je do sada odmah pregazila prethodnu: tekst se menjao dok je glas prethodne još išao. Sada i takve replike čekaju red (`speak`, `govorTik`): svaka ima svoje vreme čitanja, najviše četiri čekaju, a dok se govori Marko ne uzvikuje.
+
+**Peti pohod, „Marko Kraljević poznaje očinu sablju”** (`RECIPES.tvrdjava`, oko 37.500 px umesto 30.000):
+
+- **Marica u zoru** (`marica`, bez dušmana): Turkinja devojka kleči i beli platno; kad Marko priđe, ustane i priča (voda mutna i krvava, ranjeni junak, sablja sa tri zlatna balčaka), prokune brata i daje prvi ćemer blaga. Reka je gaz sa mutnom crvenom vodom koja nosi kalpake; na drugoj obali je grob neznanog junaka i zapis.
+- **Mustaf-agina bijela kula** (`belakula`): naslikana kula sa balkonom do kog vode merdevine; na balkonu je drugi ćemer, a pred kulom agini ljudi.
+- **Carev tabor** (`tabor`): sablja ide „od ruke do ruke”, trojica je redom vuku i „ne da se”. E: sablja se sama izvadi u Markovoj ruci, izađu tri slova, pa Markovo pitanje, agina priča i megdan sa Mustaf-agom. Kad padne, sa njim padne treći ćemer i očeva sablja, a ostali „otidoše caru kazivati”.
+- **Megdan sa Hasan-agom** (carev čauš-baša): dva bureta baruta u areni (zalet u bure ga diže u vazduh), od druge trećine skače na Marka koji stoji daleko ili na gredi, a gde padne zemljom idu talasi; na trećini snage silaze dva careva čauša.
+- **Carev čador** (`cador`), posle megdana: Marko „u čizmama sjede na serdžadu”, car uzmiče do duvara i pruža kesu, sto dukata.
+- **Tri ćemera blaga** se broje (`cemer`), za sva tri ide još trideset dukata.
+
+Narudžbine (GPT-6.1-Terra, sve iz prvog pokušaja): D107 slike (bijela kula, platno na Marici, grob, carev čador), D108 kapije, D109 likovi (Turkinja devojka: stoji, beli platno, kune; car: sedi, uzmiče, daje; janičar koji vuče sablju).
+
+Provera: `pesme-test.mjs` igra Maricu, kulu, tabor, megdan i čador (178 provera).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

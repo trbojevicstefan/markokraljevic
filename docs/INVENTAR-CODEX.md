@@ -34,12 +34,21 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Velimir: peške (5 klipova), na vrancu, svezan | D105 ✔ |
 | Dženeralovica sa ključevima (stoji, otključava) | D106 ✔ |
 
+## Naručeno 19. 11. (D107–D109), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Peti pohod: Mustaf-agina bijela kula, platno na Marici, grob neznanog junaka, carev čador | D107 ✔ |
+| Kapija u brvnima, steni i cigli (sa rešetkama) | D108 ✔, sve kapije u igri |
+| Turkinja devojka (3 klipa), car (3 klipa), janičar koji vuče sablju | D109 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
 |---|---|---|
 | Noćna i olujna verzija slojeva Varadina | varijante noć/oluja | sada se daje dan sa zatamnjenjem |
-| Nova kapija za ostale stilove (drvo, rudnik, podrum), ako proba u Prilepu prođe | svi pohodi sa kapijom | po uzoru na `kapija-34-kamen` |
+| Ranjeni junak koga voda nosi i Mustaf-agina majka | peti pohod, Marica i kula | sada se o njima samo priča |
+| Noćni i olujni slojevi nisu problem petog pohoda; fale mu ljudi u taboru (kuvar, bubnjar, derviš) | peti pohod | po 1 klip, kao D102 |
 | Naslikani stari zidovi sa lukom (soba `bedem` po celoj igri) | svi pohodi sa sobom `bedem` | po uzoru na D99 |
 | Posmatrači za ostale pohode (Manastir, Oranje, Tvrđava) | | po 3 lika, kao D102 |
 | `vrac-death` | Crni vrač | jedini klip koji igra traži, a nema ga |

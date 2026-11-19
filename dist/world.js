@@ -86,14 +86,14 @@ const GOAL_PLAN={
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
 function makeGoals(L,floorAt,traps=[]){
- const near=x=>{for(let d=0;d<2600;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q)return[x+s*d,q.y];}return null;};
- return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const T=g.trap&&traps.find(t=>t.kind===g.trap),want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=T?[T.knjiga,T.y]:g.kind==='finish'?[want,L.goal.y]:near(want);if(!spot)return null;
+ const near=(x,gate)=>{for(let d=0;d<2600;d+=40)for(const s of[1,-1]){const q=floorAt(x+s*d);if(q&&(!gate||[-100,120,240,360,460].every(o=>floorAt(x+s*d+o)===q)))return[x+s*d,q.y];}return gate?near(x):null;};
+ return(GOAL_PLAN[L.id]?.goals||[]).map((g,i)=>{const T=g.trap&&traps.find(t=>t.kind===g.trap),want=g.kind==='finish'?L.goal.x+g.dx:g.at==='end'?L.goal.x-190:L.width*g.at,spot=T?[T.knjiga,T.y]:g.kind==='finish'?[want,L.goal.y]:near(want,g.kind==='gate');if(!spot)return null;
   return{id:i,kind:g.kind,x:spot[0],y:spot[1],off:g.art[0],on:g.art[1]||null,h:g.h,label:g.label||'',doneText:g.done||'',glow:g.glow||null,gx:g.gx||0,gy:g.gy||.55,guarded:!!g.guarded,smash:!!g.smash,done:g.kind==='finish',t:9};}).filter(Boolean);
 }
 // ================= pohod layout: rooms read left to right =================
 // Ground is solid and rises and falls by stairs and cliffs. Archers wait on towers and watchtowers that Marko has to
 // climb (ladders, ledge grabs); chimneys are climbed by jumping wall to wall. Pits are rare and short.
-const RISE=24,RUN=46,LOW=660;
+const RISE=24,RUN=46,LOW=660,KAPIJA_DUB=380;
 export const BREAK={sanduk:{w:62,h:60,hp:2,solid:true},bure:{w:50,h:68,hp:2,solid:true},cup:{w:40,h:56,hp:1},korpa:{w:54,h:42,hp:1},kovceg:{w:72,h:52,hp:1},kosnica:{w:46,h:58,hp:1},plast:{w:70,h:62,hp:2},tikve:{w:64,h:40,hp:1},stena:{w:66,h:56,hp:3,solid:true},panj:{w:58,h:46,hp:2},crkva:{w:66,h:54,hp:2,solid:true},barut:{w:48,h:62,hp:1},tobolac:{w:40,h:56,hp:1},santa:{w:62,h:58,hp:2,solid:true},vagon:{w:84,h:64,hp:3,solid:true},zid:{w:74,h:205,hp:4,solid:true}};
 // each land breaks its own things
 export const LAND_CRATES={selo:['kosnica','plast','tikve'],klisura:['stena'],suma:['kosnica','panj'],manastir:['crkva'],tvrdjava:['barut','tobolac'],prevoj:['plast','stena'],pecina:['santa'],podrum:['barut'],mocvara:['panj'],rudnik:['vagon','stena'],oranje:['plast'],urvina:['stena','panj']};
@@ -121,7 +121,9 @@ export const RECIPES={
  klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges tajna terrace+ logs flat trgovac guslar:mir boss:djemo',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
- tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates tajna guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
+ // Opsednuta tvrđava, by the song (19. 11.): the Marica, the white tower, the long way through the Sultan's siege camp, the sabre
+ // in the camp, the Sultan's guard Hasan-aga, the Sultan's tent
+ tvrdjava:'marica breg topnica crates belakula tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates tajna guslar:mir tabor logs bedem flat spikes watch trgovac flat boss:oklopnik cador',
  // Pod Varadinom, by the song (19. 11.): Prilep, the road north through the summer fields, Beograd and the Danube, the field
  // under Varadin, the chase of Vuča to his gate, the dungeon and the three loads of treasure. The first break in the road is a
  // ditch a foe can leap (mechanics-test).
@@ -205,7 +207,7 @@ export function buildLayout(L,variant='day'){
   // barrels roll down from above: jump them or smash them with a heavy blow
   barrels(){steps(-1);const x0=x;ground(420);traps.push({kind:'barrels',x:x0+380,y:gy,every:2.3});spots.push({x:x0+300,y:gy});},
   // pull the lever, then run: the gate stays open only a few heartbeats
-  lever(){const x0=x,len=ri(760,840);ground(len);traps.push({kind:'timed',lever:{x:x0+90,y:gy},gate:{x:x0+len-90,y:gy},time:5.2});block(x0+len*.38,80,gy-80,{pillar:true});traps.push({kind:'spikes',x:Math.round(x0+len*.6),w:90,y:gy});busy.push([x0,x0+len]);},
+  lever(){const x0=x,len=ri(760,840);ground(len);traps.push({kind:'timed',lever:{x:x0+90,y:gy},gate:{x:x0+len-90,y:gy},time:5.2});block(x0+len*.38,80,gy-80,{pillar:true});traps.push({kind:'spikes',x:Math.round(x0+len*.6),w:90,y:gy});ground(KAPIJA_DUB);busy.push([x0,x0+len+KAPIJA_DUB]);},
   // a boulder (or an avalanche in the snow) rolls after Marko down a course that ends at a ravine
   chase(){const x0=x;ground(360);block(x,80,gy-70,{pillar:true});ground(380);const sx=x;traps.push({kind:'spikes',x:sx+120,w:100,y:gy});ground(420);block(x+60,80,gy-80,{pillar:true});ground(380);const rx=x;busy.push([x0,rx+200]);x+=ri(150,165);run=null;ground(360);traps.push({kind:'boulder',trigger:x0+80,x0,end:rx,y:gy,snow:!!L.zimski});},
   // a heavy iron-bound crate and a stone plate: the gate stays open only while something weighs the plate down
@@ -251,6 +253,22 @@ export function buildLayout(L,variant='day'){
    for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
    block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
+  // ===== „Marko Kraljević poznaje očinu sablju” (Opsednuta tvrđava): the rooms of the song, in its order (19. 11.) =====
+  // The Marica at dawn: the Turkish girl whitens linen, the water runs muddy and bloody. A ford (a hollow full of water, drawn in
+  // front of whoever wades it) and on the far bank the grave of the wounded hero her brother killed for his sabre. No foe here.
+  marica(){const x0=x,y=gy,D=46,rl=Math.round(D*3.6/10)*10;ground(820);const r0=x;ramp(D);ground(520);const r1=x;ramp(-D);ground(900);
+   traps.push({kind:'marica',x0,x1:x,y,devojka:x0+250,platno:x0+470,voda:[r0+Math.round(rl*.3),r1+rl-Math.round(rl*.3)],dno:y+D,grob:r1+rl+330,nodecor:[[x0,x]]});
+   pismo={x:r1+rl+520,y:y-44};busy.push([x0-40,x]);},
+  // Mustaf-aga's white tower („pa on ode dvoru bijelome”): painted, with a balcony two men high and a ladder leaning on it; the
+  // dead hero's belt of ducats lies up there, and the aga's men keep the door
+  belakula(){const x0=x,len=1500,cx=x0+760,by=gy-282;ground(len);platforms.push({x:cx-94,y:by,w:188,h:16,kind:'balkon'});ladders.push({x:cx-124,top:by,bottom:gy,side:1});
+   crate(cx+34,'kovceg',{y:by,loot:{coins:30}});Object.assign(breakables[breakables.length-1],{cemer:true});
+   traps.push({kind:'belakula',x0,x1:x0+len,y:gy,cx,by,nodecor:[[x0+320,x0+len-280]]});spots.push({x:x0+330,y:gy},{x:x0+len-230,y:gy});busy.push([x0+220,x0+len-160]);},
+  // the Sultan's camp: the sabre goes from hand to hand and will not leave its scabbard; in Marko's hand it draws itself, and
+  // Mustaf-aga asks for it back (game.js: tabor). The three who tried it and the aga himself are set there by makeLevel.
+  tabor(){const x0=x,len=2700;ground(len);traps.push({kind:'tabor',x0,x1:x0+len,y:gy,krug:x0+1180,mujo:x0+1500,nodecor:[[x0+420,x0+2300]]});busy.push([x0-40,x0+len]);},
+  // the Sultan's tent, past the megdan: „u čizmama sjede na serdžadu … dok doćera cara do duvara” (game.js: cador)
+  cador(){const x0=x,len=1800;ground(len);traps.push({kind:'cador',x0,x1:x0+len,y:gy,c:x0+880,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
   // ===== „Marko Kraljević i Vuča dženeral” (Pod Varadinom): the rooms of the song, in its order (19. 11.) =====
   // Prilep on a Sunday: the white church and its bell, the knjigonoša with Miloš's letter (the land's scroll lies by him),
   // then Marko's tower and four stones to strike in the order he armed himself; the gate of Prilep opens. No foe here.
@@ -320,11 +338,11 @@ export function buildLayout(L,variant='day'){
   zvona(){const x0=x,len=900;ground(len);const B=[[x0+215,gy-140],[x0+450,gy-280],[x0+665,gy-140]];
    platforms.push({x:x0+150,y:gy-140,w:130,h:18,kind:'plank'},{x:x0+315,y:gy-210,w:100,h:18,kind:'plank'},{x:x0+395,y:gy-280,w:120,h:18,kind:'plank'},{x:x0+600,y:gy-140,w:130,h:18,kind:'plank'});
    const order=[0,1,2];for(let i=2;i>0;i--){const j=Math.floor(R()*(i+1));[order[i],order[j]]=[order[j],order[i]];}if(order.join()==='0,1,2')order.reverse();
-   traps.push({kind:'bells',bells:B.map(([bx,by])=>({x:bx,y:by})),order,tablet:{x:x0+70,y:gy},gate:{x:x0+len-50,y:gy}});busy.push([x0,x0+len]);},
+   traps.push({kind:'bells',bells:B.map(([bx,by])=>({x:bx,y:by})),order,tablet:{x:x0+70,y:gy},gate:{x:x0+len-50,y:gy}});ground(KAPIJA_DUB);busy.push([x0,x0+len+KAPIJA_DUB]);},
   // a shaft of sunlight and three bronze mirrors; strike a mirror to turn it; the beam must reach the crystal
   ogledala(){const x0=x,len=900;ground(len);const lo=gy-60,hi=gy-300;
    platforms.push({x:x0+300,y:gy-130,w:120,h:18,kind:'plank'},{x:x0+290,y:gy-245,w:150,h:18,kind:'plank'},{x:x0+590,y:gy-245,w:150,h:18,kind:'plank'},{x:x0+445,y:gy-190,w:90,h:18,kind:'plank'});
-   traps.push({kind:'mirrors',src:{x:x0+30,y:lo},m:[{x:x0+260,y:lo,s:0},{x:x0+260,y:hi,s:0},{x:x0+560,y:hi,s:1}],target:{x:x0+560,y:gy},gate:{x:x0+len-50,y:gy}});busy.push([x0,x0+len]);},
+   traps.push({kind:'mirrors',src:{x:x0+30,y:lo},m:[{x:x0+260,y:lo,s:0},{x:x0+260,y:hi,s:0},{x:x0+560,y:hi,s:1}],target:{x:x0+560,y:gy},gate:{x:x0+len-50,y:gy}});ground(KAPIJA_DUB);busy.push([x0,x0+len+KAPIJA_DUB]);},
   // two pans on one rope: weigh the left one down with the iron crate and the right one lifts Marko to the ledge
   teg(){const x0=x,base=gy-100;ground(600);block(x0+50,160,base,{});platforms.push({x:x0+90,y:base-76,w:76,h:76,kind:'teret',solid:true,push:true});
    const L={x:x0+215,y:base,w:120,h:18,kind:'pan',base,side:-1},P2={x:x0+455,y:base,w:120,h:18,kind:'pan',base,side:1};platforms.push(L,P2);
@@ -335,7 +353,7 @@ export function buildLayout(L,variant='day'){
    traps.push({kind:'kolo',stones:S,order,bridge,gap:{x0:gx,x1:gx+640}});busy.push([x0,gx+640]);},
   // an iron door no blow can break, a keg of powder, a brazier on the beam above: push, climb, knock it down — and stand clear
   barut(){const x0=x,len=900;ground(len);platforms.push({x:x0+560,y:gy-150,w:150,h:18,kind:'plank'},{x:x0+130,y:gy-62,w:56,h:62,kind:'teret',solid:true,push:true,keg:true});
-   traps.push({kind:'powder',brazier:{x:x0+690,y:gy-150},gate:{x:x0+len-90,y:gy}});busy.push([x0,x0+len]);},
+   traps.push({kind:'powder',brazier:{x:x0+690,y:gy-150},gate:{x:x0+len-90,y:gy}});ground(KAPIJA_DUB);busy.push([x0,x0+len+KAPIJA_DUB]);},
   // ===== two roads: places where the road forks and joins again, so a pohod is not one line =====
   // a long wall with a gallery through it: the low road goes through the dark under the arch, where a guard and a chest wait;
   // the high road climbs the ladder and runs over the rampart, past the archers, to the better reward
@@ -354,7 +372,7 @@ export function buildLayout(L,variant='day'){
   uvala(){const d=Math.min(fr(84,110),LOW-gy);ground(fr(120,160));if(d<50){ground(fr(300,400));return;}ramp(d);const len=fr(320,440),x0=x;ground(len);spots.push({x:x0+len*.5,y:gy});ramp(-d);ground(fr(140,200));},
   // a gate on a clock, too far from its lever to reach at a run: it is passed with the vila's trace (V by the gate, back to
   // the lever, pull it, V again). The same timed gate as `lever`, with a longer road and a shorter clock. Its own dice (fr).
-  vreme(){const x0=x,len=fr(1160,1240);ground(len);traps.push({kind:'timed',vreme:true,lever:{x:x0+110,y:gy},gate:{x:x0+len-120,y:gy},time:2.6});busy.push([x0,x0+len]);spots.push({x:x0+len*.32,y:gy});},
+  vreme(){const x0=x,len=fr(1160,1240);ground(len);traps.push({kind:'timed',vreme:true,lever:{x:x0+110,y:gy},gate:{x:x0+len-120,y:gy},time:2.6});ground(KAPIJA_DUB);busy.push([x0,x0+len+KAPIJA_DUB]);spots.push({x:x0+len*.32,y:gy});},
   // a ravine with no bridge: two silver hooks hang over it for Ravijojla's chain (C); or down the ladder, along the bottom
   // past its guard and up the ladder on the far side. Nobody falls into a pit here.
   kuke(){const w=fr(720,780),deep=Math.max(150,Math.min(fr(205,230),800-gy)),x0=x;busy.push([x0-60,x0+w+60]);
@@ -409,7 +427,7 @@ export function buildLayout(L,variant='day'){
    crate(cx+190,'kovceg',{y:gy+deep,loot:{coins:ri(36,44)}});cellars.push({x:cx+w/2,y:gy+deep});tajne.push({x:cx+132,y:gy+deep-44});busy.push([cx-60,cx+w+60]);},
   boss(type){const x0=x,len=ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
    const plank=(k,dy,w=150)=>platforms.push({x:Math.round(x0+len*k-w/2),y:g0-dy,w,h:18,kind:'plank',arena:true});
-   ({oklopnik(){for(const k of[.13,.87])block(x0+len*k-35,70,g0-95,{pillar:true});plank(.5,175);},   // he rams the pillars
+   ({oklopnik(){for(const k of[.13,.87])block(x0+len*k-35,70,g0-95,{pillar:true});plank(.5,175);for(const k of[.33,.67])platforms.push({x:Math.round(x0+len*k-28),y:g0-62,w:56,h:62,kind:'teret',solid:true,push:true,megdanBure:true});},   // he rams the pillars
      akindzija(){plank(.3,140);plank(.7,140);},                                                    // jump up as the rider passes
      palikuca(){plank(.2,120);plank(.5,195);plank(.8,120);},                                       // the floor burns, the planks do not
      shield(){const b=block(x0+len-250,250,g0-100,{});boss.flag={x:Math.round(b.x+150),y:b.y};plank(.45,150,130);},
@@ -503,7 +521,9 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the eagle's and the falcon's feathers are theirs to give: each waits in its hiding place only if the bird is not saved
  for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}const soko=r.cudo==='sokolovo-pero'&&B.traps.find(t=>t.kind==='soko');if(soko){soko.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
  // "Marko Kraljević poznaje očinu sablju": in the Turkish camp a young Turk wears Marko's father's sabre
- if(L.id==='tvrdjava'){const t=B.traps.find(t=>t.kind==='tent')||{x:B.width*.55,y:590};const q=floorAt(t.x+150);if(q)foe('sword',t.x+150,q.y,{look:'mladi-turcin',hp:560,maxHp:560,sablja:true,scale:1.06});}
+ if(L.id==='tvrdjava'){const tb=B.traps.find(t=>t.kind==='tabor');
+  if(tb){foe('sword',tb.mujo,tb.y,{look:'mladi-turcin',hp:820,maxHp:820,sablja:true,scale:1.06});for(const dx of[-150,0,150])foe('sword',tb.krug+dx,tb.y,{tabor:true});}
+  else{const t=B.traps.find(t=>t.kind==='tent')||{x:B.width*.55,y:590};const q=floorAt(t.x+150);if(q)foe('sword',t.x+150,q.y,{look:'mladi-turcin',hp:560,maxHp:560,sablja:true,scale:1.06});}}
  for(const c of B.letters)items.push({id:7060+index*10+c.i,x:Math.round(c.x),y:Math.round(c.y),type:'slovo',i:c.i,taken:false});
  const powerIds=Object.keys(POWERS);if(B.power)items.push({id:7055+index,x:Math.round(B.power.x),y:Math.round(B.power.y),type:'moc',power:powerIds[index%3],taken:false});
  if(B.heart)items.push({id:7600+index*2,x:Math.round(B.heart.x),y:Math.round(B.heart.y),type:'srce',land:L.id,taken:false});
@@ -523,7 +543,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the artist's props give way to what the pohod is about: no shrine drawn across a fairy stone
  for(const g of goals)for(let i=props.length-1;i>=0;i--)if(!props[i].id.startsWith('prop-barjak')&&Math.abs(props[i].x-g.x)<(g.kind==='gate'?300:190))props.splice(i,1);
  // nothing breakable stands inside a gate's passage
- for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
+ for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(B.breakables[i].x>g.x-140&&B.breakables[i].x<g.x+470&&Math.abs(B.breakables[i].y-g.y)<90)B.breakables.splice(i,1);
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
  return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,kuke:B.kuke,narod:B.narod,y0:B.y0,pitY:B.pitY,busy:B.busy};

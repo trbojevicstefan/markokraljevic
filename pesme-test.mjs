@@ -50,15 +50,36 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  ok(api.draw()===null,'crkva: the church and the king draw without an error');}
 // ---- Opsednuta tvrđava: the father's sabre ----
 {const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='tvrdjava'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();
- const e=w.enemies.find(e=>e.sablja);for(const o of w.enemies)if(o!==e)o.alive=false;const {p}=api.state();
- ok(e&&e.alive,'sablja: the young Turk with the bound sabre stands by the tent');
- Object.assign(p,{x:e.x-420,y:e.y,vx:0,vy:0,grounded:true});step(3);ok(e.pesma&&e.razgovor>0,'sablja: Marko asks him where he got the sabre');
- const hp0=p.hp;step(120*20);ok(e.pesma.i>=3&&e.mode==='idle'&&e.alive,'sablja: he tells of the Marica, and does not strike while they talk');
- step(120*18);ok(e.pesma.i===5&&!(e.razgovor>0),'sablja: „daj amo sablju okovanu” — then the duel');
- api.slay(e);step(2);const it=w.items.find(i=>i.cudo==='oceva-sablja');ok(!!it,'sablja: the sabre falls where he falls');
- Object.assign(p,{x:it.x,y:it.y+38+40,vx:0,vy:0,grounded:true});step(3);ok(api.slova(),'sablja: it draws itself in Marko’s hand: the three letters');
- step(120*18);const S=api.slova();ok(S&&S.car&&S.dukati,'sablja: the fur cloak inside out, the sultan driven to the wall, a hundred ducats for wine');
- ok(api.draw()===null,'sablja: the letters draw without an error');}
+ const e=w.enemies.find(e=>e.sablja),T=w.traps.find(t=>t.kind==='tabor'),M=w.traps.find(t=>t.kind==='marica'),K=w.traps.find(t=>t.kind==='belakula'),C=w.traps.find(t=>t.kind==='cador');
+ for(const o of w.enemies)if(o!==e&&!o.tabor&&!o.champion)o.alive=false;const {p}=api.state();const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});step(3);};
+ // the Marica at dawn
+ ok(M&&M.voda[0]>M.devojka&&M.grob>M.voda[1]&&w.items.some(i=>i.type==='zapis'&&i.x>M.voda[1]&&i.x<M.x1),'marica: the girl and her linen on this bank, the ford, the grave and the scroll on the far one');
+ at(M.devojka-200,M.y);ok(M.ph==='prica','marica: the Turkish girl tells of the muddy and bloody water');step(120*6);ok(w.cemeri===1&&M.kune,'marica: she curses her brother and gives Marko the first belt of ducats');
+ at((M.voda[0]+M.voda[1])/2,M.dno);ok(p.uVodi,'marica: Marko wades the ford');at(M.grob,M.y);ok(M.grobRec,'marica: the grave of the unknown hero on the far bank');
+ // the white tower
+ const B=w.breakables.find(b=>b.cemer);ok(K&&B&&Math.abs(B.y-K.by)<2&&w.ladders.some(l=>Math.abs(l.top-K.by)<2&&Math.abs(l.x-K.cx)<200),'bela kula: a ladder to the balcony of Mustaf-aga’s white tower, the second belt on it');
+ at(B.x-60,K.by);api.hitCrate(B,9);step(2);ok(w.cemeri===2,'bela kula: the second belt of ducats');
+ // the camp: the sabre from hand to hand
+ ok(e&&e.alive&&T&&w.enemies.filter(o=>o.tabor).length>=3,'tabor: Mustaf-aga with the sabre and three of the camp who try to draw it');
+ at(T.x0+420,T.y);ok(T.ph==='ruke'&&!e.pesma,'tabor: the sabre goes from hand to hand');step(120*5);ok(w.enemies.some(o=>o.tabor&&o.vuce)&&e.hp===e.maxHp,'tabor: one after another they tug at it; nobody strikes');
+ at(T.krug-60,T.y);tap('KeyE');step(2);ok(T.ph==='slova'&&api.slova(),'tabor: E — it draws itself in Marko’s hand: the three letters');
+ step(120*10);ok(T.ph==='razgovor'&&e.pesma&&e.razgovor>0,'tabor: Marko asks him where he got the sabre');
+ step(120*18);ok(e.pesma.i>=4&&e.alive&&e.hp===e.maxHp,'tabor: he tells of the Marica, and does not strike while they talk');
+ step(120*16);ok(T.ph==='boj'&&!(e.razgovor>0),'tabor: „daj amo sablju okovanu” — then the duel');
+ api.slay(e);step(4);const it=w.items.find(i=>i.cudo==='oceva-sablja');ok(!!it&&T.ph==='kraj'&&w.cemeri===3,'tabor: the sabre falls where he falls, and the third belt with him');
+ ok(w.enemies.filter(o=>o.tabor&&o.alive).some(o=>o.bezi),'tabor: „otidoše caru kazivati” — the three run off');
+ Object.assign(p,{x:it.x,y:it.y+38+40,vx:0,vy:0,grounded:true});step(3);ok(it.taken,'tabor: his father’s sabre is Marko’s again');
+ // the megdan: a keg of powder, the leap, the Sultan’s čauši
+ const H=w.enemies.find(o=>o.champion&&o.kit==='hasan'),A=H.arena,KH=api.KITS.hasan,bure=w.platforms.filter(q=>q.megdanBure);ok(bure.length===2,'hasan: two kegs of powder stand in his arena');
+ Object.assign(H,{alive:true,x:bure[0].x-200,y:A.y,vx:0,grounded:true,mode:'idle',ks:'ram',rdir:1,rammed:true,kt:0,kc:0,stun:0,face:1,wallHit:1,wallQ:bure[0]});const hp=H.hp;
+ Object.assign(p,{x:A.x1-120,y:A.y});KH.step(H,1/120,p.x-H.x,Math.abs(p.x-H.x));ok(bure[0].off&&H.hp<hp&&H.stun>0,'hasan: his charge into a keg of powder blows it up under him');
+ Object.assign(H,{p2:true,mode:'idle',ks:null,kc:0,stun:0,wallHit:0,x:A.x0+120});Object.assign(p,{x:A.x1-120,y:A.y});KH.step(H,1/120,p.x-H.x,Math.abs(p.x-H.x));ok(H.ks==='skok'&&H.vy<0,'hasan: from the second act he leaps at Marko who stands far off');
+ const n0=w.enemies.length;H.causi=false;KH.phase3(H);ok(H.ks==='bes'&&w.enemies.length===n0+2,'hasan: at a third he rages and two of the Sultan’s čauši come down');
+ // the Sultan’s tent
+ for(const o of w.enemies)o.alive=false;Object.assign(p,{hp:p.maxHp});at(C.c-380,C.y);ok(C.ph==='ulazi','cador: past the megdan Marko goes in under the Sultan’s tent');
+ until(()=>C.ph==='uzmice',120*20,'the prayer rug');ok(p.sedi>0,'cador: „u čizmama sjede na serdžadu”');const cx=C.car;until(()=>C.dukati,120*20,'the ducats');ok(C.car>cx+100,'cador: „car s’ odmiče, a Marko primiče, dok doćera cara do duvara”');
+ until(()=>C.ph==='kraj',120*10,'out of the tent');ok(C.done&&!p.sedi,'cador: a hundred ducats for wine, and Marko rises');
+ ok(api.draw()===null,'sablja: the Marica, the tower, the camp and the tent draw without an error');}
 // ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----
 {const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
  ok(T&&T.stanice.length===3&&T.mehana>T.stanice[2],'okovi: three gallows (Orid, Vučitrn, Zvečan) and Janja’s tavern in the gorge');
