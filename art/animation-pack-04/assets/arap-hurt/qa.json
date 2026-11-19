@@ -1,0 +1,55 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        137,
+        64,
+        375,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        82,
+        99,
+        430,
+        488
+      ],
+      "height": 389,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        123,
+        91,
+        388,
+        488
+      ],
+      "height": 397,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        137,
+        64,
+        375,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 0.8185328185328186,
+  "targetHeight": 424,
+  "visualReview": "see STATUS-D131.md"
+}

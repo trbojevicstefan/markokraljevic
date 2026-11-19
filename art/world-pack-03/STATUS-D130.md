@@ -1,0 +1,4 @@
+﻿D130 | arap-vitla | izvezeno, 8 kadrova, petlja; k=1.13067; visine 424, 424, 425, 424, 424, 424, 426, 424 px; dno y=487; margina najmanje 24 px. Vizuelno: buzdovan se okreće; mogući sitni zeleni rubovi.
+D130 | arap-skok | izvezeno, 6 kadrova, bez petlje; k=1.08159; visine 407, 464, 433, 382, 360, 409 px; dno y=487, 483, 452, 423, 487, 487; margina najmanje 20 px. Kadar 1 je samo 4 px iznad oslonca zbog podignutog oružja; moguće sitne zelene ivice.
+D130 | arap-bes | izvezeno, 6 kadrova, bez petlje; k=0.92375; visine 424, 418, 423, 426, 426, 406 px; dno y=487; margina najmanje 24 px. Vrisak i pesnica na grudima vidljivi; moguće sitne zelene ivice.
+D130 | arap-omamljen | izvezeno, 6 kadrova, petlja; k=0.94222; visine 424, 410, 385, 390, 417, 428 px; dno y=487; margina najmanje 24 px. Pokret kolena je suptilan; moguće sitne zelene ivice.

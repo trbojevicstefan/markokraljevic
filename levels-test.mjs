@@ -46,6 +46,8 @@ for(let i=0;i<api.LEVELS.length;i++){
  for(const e of world.enemies)e.alive=false;
  if(api.state().mode==='shop')api.presuda(3); // the monastery asks whose the empire is: Uroš's
  stand(L.goal.x-40,L.goal.y);step();
+ // the ruins end at the crossroads where the four heralds are sent off (pesme-test walks the song step by step)
+ {const T=world.traps.find(t=>t.kind==='telali');if(T){assert.equal(api.state().mode,'play',`${L.id}: the road does not end before the heralds are sent`);T.done=true;stand(L.goal.x-200,L.goal.y);step();stand(L.goal.x-40,L.goal.y);step();}}
  // Urvina ends at the well on the top, not at a banner (battles-test walks the song step by step)
  if(world.traps.some(t=>t.kind==='vrh')){assert.equal(api.state().mode,'play',`${L.id}: the road does not end before the well`);console.log(`PASS ${L.id}: ends at the well`);continue;}
  if(api.state().mode!=='levelDone')console.log('DEBUG',L.id,'p',Math.round(api.state().p.x),api.state().p.y,'goal',L.goal,'pending',JSON.stringify(api.state().world.goals.filter(g=>!g.done).map(g=>[g.kind,g.label,Math.round(g.x)])));

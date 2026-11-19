@@ -1,0 +1,103 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        82,
+        64,
+        429,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        117,
+        64,
+        394,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        117,
+        63,
+        394,
+        488
+      ],
+      "height": 425,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        109,
+        64,
+        402,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        99,
+        64,
+        412,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        112,
+        64,
+        400,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        105,
+        62,
+        406,
+        488
+      ],
+      "height": 426,
+      "supportY": 487,
+      "safeMargin": 24
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        82,
+        64,
+        429,
+        488
+      ],
+      "height": 424,
+      "supportY": 487,
+      "safeMargin": 24
+    }
+  ],
+  "scale": 1.1306666666666667,
+  "targetHeight": 424,
+  "visualReview": "see STATUS-D130.md"
+}

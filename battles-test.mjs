@@ -155,7 +155,11 @@ async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear(
 {const c=await arena('tvrdjava');ok(c.maxHp>=1900,'champions: a fight lasts minutes now (Hasan-aga has '+c.maxHp+')');}
 {const c=await arena('reka');ok(c.kit==='janicar','janicar: the janissary aga by the river');const plank=S().world.platforms.find(q=>q.arena&&q.y<c.y-200);
  Object.assign(S().p,{x:plank.x+plank.w/2,y:plank.y,vx:0,vy:0,grounded:true});safe();c.kc=0;c.mode='idle';until(()=>c.ks==='leap',120*4);ok(c.ks==='leap','janicar: Marko on a high plank, he leaps after him');}
-{const c=await arena('rusevine');ok(c.kit==='arapin'&&c.type==='arapin','arapin: the Arab in the ruins, in his own picture');ok(Math.abs(c.y-c.arena.top)<2,'arapin: he stands on top of his tower');
+{const c=await arena('rusevine');const w=S().world;ok(c.kit==='dzelat'&&c.look==='arap'&&c.engaged&&w.enemies.includes(c),'arap: the Arab of the wedding tax fights before his tent, mace in hand');
+ ok(w.traps.filter(t=>t.kind==='kolci'&&t.arena).length===2&&c.arena.x1-c.arena.x0>=1400,'arap: the megdan is under the stakes of his courtyard, on a wide field');
+ S().p.x=c.x-210;safe();c.kc=0;c.mode='idle';c.stun=0;until(()=>c.ks==='chop'||c.ks==='skok'||c.ks==='vitloPrep'||c.ks==='vitlo',120*8);ok(!!c.ks,'arap: he swings the heavy mace');
+ api.slay(c);until(()=>S().world.slugeW?.svi.some(e=>e.talas),120*14);ok(S().world.slugeW.svi.some(e=>e.talas&&e.look==='arap-sluga'),'arap: when he falls his servants come out from under the tent, sabres drawn');}
+{const c=await arena('azak');ok(c.kit==='arapin'&&c.type==='arapin','arapin: the Arab of Azak, in his own picture');ok(Math.abs(c.y-c.arena.top)<2,'arapin: he stands on top of his tower');
  c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*5);ok(S().arrows.some(a=>a.spear),'arapin: he throws spears down');}
 {const c=await arena('mocvara');const w=S().world,p=S().p;ok(c.kit==='beg'&&c.look==='vezir'&&c.arena.x1-c.arena.x0>=1400,'vezir: Murat the vezir waits in a wide field at the end of the marsh');
  step(4);const D=()=>w.delijeW;ok(c.engaged&&D()&&D().svi.length===4,'vezir: four of his twelve delije are with him when Marko comes');
@@ -285,7 +289,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  ok(!S().p.pinned&&c.hp<hp2&&c.guardBroken>0,'megdan: he breaks free, throws the champion off and leaves him open');}
 const clamp=physics.clamp;
 // ---- the acts: every champion brings something new in his last act, and none of it breaks the fight ----
-for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['rusevine','arapin','rain'],['mocvara','beg','combo'],['azdaja','azdaja','rain'],['pecina','beg','combo'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
+for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['azak','arapin','rain'],['rusevine','dzelat','combo'],['mocvara','beg','combo'],['azdaja','azdaja','rain'],['pecina','beg','combo'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
  const c=armed(await arena(id));const p=S().p,w=S().world;ok(c.kit===kit,'acts: '+kit+' stands in '+id);
  c.hp=c.maxHp*.28;c.armor=0;step(3);ok(c.p3&&c.act===3,'acts: '+kit+' enters his last act below a third of his strength');
  // bring him down to the ground, idle and free, and let the act move come

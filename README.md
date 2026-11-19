@@ -701,6 +701,27 @@ Narudžbine (GPT-6.1-Terra, sve iz prvog pokušaja): D126 gosti slave (patrijarh
 
 Provera: `pesme-test.mjs` (244: slava, okovi, okovan Đemo, tri vraćanja, vešala, riba), megdan u `battles-test.mjs` kao i do sada.
 
+## 20. novembar: jedanaesti pohod po celoj pesmi „Marko Kraljević ukida svadbarinu”
+
+Stefan: „Može, sredi sledeći.” Ruševine na brdu su od pesme imale samo razgovor sa Kosovkom devojkom i megdan na kraju; između su stajali kavezi sa svatovima (kojih u pesmi nema), a Arapin je bacao koplja sa kule, iako pesma kaže „nisu dvori, već šatori pusti” i „pa potrže teška buzdovana”. Sada pohod (`RECIPES.rusevine`) ide celom pesmom, a megdan je odmah posle šatora, kao u pesmi:
+
+- **Voda Servana** (`kosovka`, dopunjeno): gaz preko vode, Šarac pije na obali. Kosovka devojka se „do zemlje poklanja”, „proli suze” i na kraju pokaže niz polje (novi klipovi); dve nove replike iz pesme („A što pitaš Arapove dvore…”, „Zašto bi me Arap pogubio…”). Šarac sam pređe gaz; peške se niz Kosovo ne može (E: posedni Šarca).
+- **Niz Kosovo** (`jezdi`): „iz kopita živa vatra seva, iz nozdrva modar plamen liže”, Marko „roni suze”; konj ide hodom dok traju stihovi. Arapova straža ga ugleda i pobegne da javi; Arapov odgovor („neću blaga, uzeću mu glavu”).
+- **Arapova avlija i šator** (`avlija`): šest slugu iziđe da mu primi konja, pa pobegne pod šator i čučne iza Arapa, sablje pod japundžetima. Marko odsedne, „hodaj, Šaro, i sam po avliji”. Pod šatorom Arap sedi i pije, služe ga mlada i devojka. E: tri dukata; Arap cikne i udari ga buzdovanom četiri puta (Marko gubi po malo zdravlja, ne ispod 1); Marko se nasmeje; J: „da te kucnem”, Arap izleti na polje sa tri četvrtine snage, ošamućen.
+- **Megdan pred šatorom** (`boss:prekomorac`): novi lik `arap` (isti čovek, težak buzdovan u rukama, sablja o pojasu) na dželatovom načinu borbe; natpisi o sekiri se za njega čitaju kao o buzdovanu (`ARAP_REC`). Koštac i hvat su stari Arapinovi crteži. Megdan sa kulom i kopljima ostaje u Azačkoj kuli.
+- **Četrdeset slugu**: svi dušmani pohoda su Arapove sluge (lik `arap-sluga`, samo sablje, bez strelaca i bez parova po težini): 24 na putu i 12 koji izlaze ispod šatora kad Arap padne, po pet. Kad Arap padne, Marko sam potegne sablju. Brojač: „Glave s kolaca · n/77 · Arapove sluge · n/36”.
+- **Glave sa kolaca** (`kolci`, sedam mesta po jedanaest: dva u polju megdana, pet uz ruševine): E skida glave; dok se ne skinu, put dalje je zatvoren. **Arapovo blago** (`arapblago`, E, 120 dukata).
+- **Groblje** (`groblje`): Marko kopa, sedam humki sa krstovima; ograda se „nakiti arapskim glavama”.
+- **Raskršće** (`telali`): četiri sluge na kolenima, E ih šalje na četiri strane; narod kliče, Kosovka devojka priđe i pokloni se; kolo kod ciljnog barjaka. Pohod se ne završava dok telali nisu poslati (`svadbaGoal`).
+
+Izbačeno: sobe `svatovi` (kavezi), strelci na kulama, dodatni parovi dušmana po težini. Pohod je skoro dvostruko duži (42.159 px prema 23.705).
+
+Slike: uvodna (stara, sa rečima pesme o zulumu), nova pod šatorom (pre scene), živa slika kola na kraju.
+
+Narudžbine (GPT-6.1-Terra, 20. 11., sve iz prvog pokušaja osim pada sluge, koji je alat prvo odbio pa je naručen blažim rečima): D129–D131 Arap sa buzdovanom (11 klipova), D132–D133 Arapov sluga (9 klipova), D134 Kosovka devojka (3), mlada i devojka koje služe (2), D136 šator u preseku, ograda sa kolcima u tri stanja, groblje, D137 slika pod šatorom.
+
+Provera: `pesme-test.mjs` (274: ceo tok pesme), `battles-test.mjs` (megdan sa buzdovanom; Arapin sa kulom se sada proverava u Azaku), `levels-test.mjs` (pohod se ne završava pre telala), `road-test.mjs` (bot preskače scene pesme i prelazi ruševine).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

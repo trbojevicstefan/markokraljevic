@@ -795,11 +795,19 @@ D94_MODEL.update({f"guja-{k}": "pas-idle" for k in ['idle', 'run', 'attack', 'de
 # D126, D127: the tenth pohod (Marko Kraljević i Đemo Brđanin): the guests of the slava, the servant, the mother; Đemo on his bay, drinking, asleep, in chains
 D94_MODEL.update({c: "milos-idle" for c in ['gost-patrijarh', 'gost-vladika', 'gost-pop', 'sluga-bogosav', 'majka-jevrosima']})
 D94_MODEL.update({"djemo-na-doratu": "beg-mounted", "djemo-jase": "beg-mounted", "djemo-pije": "djemo-idle", "djemo-spava": "djemo-idle", "djemo-okovan": "djemo-idle"})
+# D129-D134: the eleventh pohod (Marko Kraljević ukida svadbarinu): the Arab with his heavy mace (the size of the old Arab), his
+# forty servants at the janissary's zoom, the Kosovo maiden's bow, tears and pointing hand, the bride and the maiden who serve him
+D94_MODEL.update({f"arap-{k}": "arapin-idle" for k in ['idle', 'run', 'attack', 'zabio', 'vitla', 'skok', 'bes', 'omamljen', 'hurt', 'death', 'sedi-pije']})
+D94_MODEL.update({f"arap-sluga-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'hurt', 'death', 'krije', 'kleci', 'telal', 'bezi']})
+D94_MODEL.update({c: "kosovka-idle" for c in ['kosovka-klanja', 'kosovka-place', 'kosovka-pokazuje', 'mlada-sluzi', 'devojka-sluzi']})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')
         if _n != 'mounted-ritne':
             NOC_ANCHOR_SAME[_n] = _m
+# D133: the servant who falls was drawn smaller in his cells (358 px standing against 422): as tall as the others again
+if _have('arap-sluga-death') and _have('arap-sluga-idle') and 'arap-sluga-death' in SCALES:
+    SCALES['arap-sluga-death'] = (SCALES['arap-sluga-death'][0] * body_height(_cells('arap-sluga-idle')[0]) / body_height(_cells('arap-sluga-death')[0]), 'feet')
 # ===== end of the noc-poliranje block =====
 
 # DOPUNA-45: Marko's powers at the zoom of marko-idle-2 (in the air anchored at the torso, like marko-jump); the new foes at the
@@ -911,6 +919,9 @@ for alias, src in {'marko-launcher': 'marko-uppercut'}.items():
     if alias not in rig and src in rig:
         rig[alias] = rig[src]
 
+# the Arab with the mace reaches for a hold with empty hands, as the old Arab does: the same drawing under his own name
+if 'arapin-hvata' in rig and 'arap-idle' in rig:
+    rig['arap-hvata'] = dict(rig['arapin-hvata'])
 with open(os.path.join(ROOT, 'sprite-rig.json'), 'w') as f:
     json.dump(rig, f, separators=(',', ':'))
 print('wrote', os.path.join(ROOT, 'sprite-rig.json'))

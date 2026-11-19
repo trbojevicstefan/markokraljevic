@@ -25,12 +25,12 @@ Stefan, 19. 11. 2026: „Dosta pesama po nivoima nema veze sa nivoima, ponavljam
 | 8 Vilinska pećina | Marko Kraljević i vila brodarica | sređen 19. 11. (10); sve replike su nove i nemaju snimak |
 | 9 Pod Varadinom | (dole) | sređen ranije |
 | 10 Klisura Ibra | Marko Kraljević i Đemo Brđanin | sređen 19. 11. (11): cela pesma; replike slave, ćuprije, okova i povratka su nove i nemaju snimak (okovi i kraj imaju stare snimke) |
-| 11 Ruševine | (dole) | **sledeći** |
+| 11 Ruševine | Marko Kraljević ukida svadbarinu | sređen 20. 11.: cela pesma; snimljeno je šest starih replika (razgovor na Servani, tri dukata, smeh, kraj megdana), nove replike (dve Kosovkine, jahanje, straža, Arap, šator, sluge, glave, groblje, telali, narod) nemaju snimak |
+| 12 Stari rudnik | (dole) | **sledeći** |
 | 7 (isto) | Marko Kraljević i soko / Lov Markov s Turcima | nije pregledan |
 | 8 Vilinska pećina | (vila Ravijojla) | nije pregledan |
 | 9 Pod Varadinom | Marko Kraljević i Vuča dženeral | sređen 19. 11.; uvod, slika i zapis pominju Miloševu knjigu (tri puta): skratiti kad se bude snimalo |
 | 10 Klisura Ibra | Marko Kraljević i Đemo Brđanin | guslari pevaju Musu (namerno: Đemo sveti brata) |
-| 11 Ruševine | Marko Kraljević ukida svadbarinu | nije pregledan |
 | 12 Stari rudnik | (tri kese dukata) | nije pregledan; nema svoju pesmu |
 | 13 Obala pred zoru | meša Ljuticu Bogdana, Filipa Madžarina i Urvinu | nije pregledan; najviše mešanja |
 | 14 Vračeva jaruga | (izmišljen) | nije pregledan |

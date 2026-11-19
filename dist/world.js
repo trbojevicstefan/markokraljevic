@@ -61,7 +61,7 @@ export function integrate(body,dt,platforms,runes=[]){
 }
 
 // ---------- campaigns ("pohodi") built from art/world-pack-*/levels.json ----------
-const THEME_FOES={azak:['sword','shield','akindzija'],selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['sword','kopljanik','sword','archer','sword','shield']};
+const THEME_FOES={azak:['sword','shield','akindzija'],rusevine:['sword'],selo:['sword','archer','sword','akindzija'],klisura:['sword','archer','akindzija','palikuca','shield'],suma:['archer','akindzija','sword','palikuca'],manastir:['shield','sword','oklopnik','archer'],tvrdjava:['oklopnik','palikuca','shield','archer','akindzija'],prevoj:['sword','kopljanik','sword','archer','sword','shield']};
 export const LEVEL_ZONE=6;
 // What each campaign asks before its end banner counts. use: press E beside it; take: walk over it;
 // gate: blocks the road until everything before it is done (guarded gates also wait for nearby foes); finish: art by the banner.
@@ -77,7 +77,7 @@ const GOAL_PLAN={
  podrum:{goals:[],finish:'Nađi izlaz iz podruma'},
  mocvara:{goals:[.2,.4,.6,.8].map(at=>({kind:'use',at,art:['cilj-svetiljka','cilj-svetiljka-upaljena'],h:190,label:'Osvetli trag vezirovih konja',glow:'#ffcf7a',gx:.3,gy:.66,done:'Svetiljka gori: trag vodi dalje kroz goru čarnu.'})),finish:'Stigni vezira nakraj gore čarne'},
  rudnik:{goals:[{kind:'use',at:.45,art:LEVER,h:120,label:'Pronađi polugu starog okna',done:'Negde napred zaškripala je rešetka.'},{kind:'gate',at:'end',art:['cilj-rudarski-izlaz-zatvoren','cilj-rudarski-izlaz-otvoren'],h:260,label:'Otvori rudarski izlaz'}],finish:'Izađi iz rudnika'},
- rusevine:{goals:[],finish:'Popni se do poslednjeg barjaka'},
+ rusevine:{goals:[],finish:'Ukini svadbarinu na Kosovu'},
  reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'},
  urvina:{goals:[],finish:'Popni se do dve jele i bunara'},
  san:{goals:[],finish:'Prođi četiri odaje i probudi se'},
@@ -108,7 +108,7 @@ export const CUDA=[
  {id:'vilino-pero',name:'Vilino pero',song:'Marko Kraljević i vila brodarica',perk:'Ravijojla se brže vraća',land:'pecina'},
  {id:'pehar-vina',name:'Pehar rujnog vina',song:'Marko pije uz ramazan vino',perk:'Čutura prima još jedno vino',land:'podrum'},
  {id:'tri-kese-dukata',name:'Tri kese dukata',song:'Smrt Marka Kraljevića',perk:'Više dukata',land:'rudnik'},
- {id:'kljuc-kule',name:'Ključ arapske kule',song:'Marko Kraljević ukida svadbarinu',perk:'Kovčezi daju duplo',land:'rusevine'},
+ {id:'kljuc-kule',name:'Ključ Arapovog blaga',song:'Marko Kraljević ukida svadbarinu',perk:'Kovčezi daju duplo',land:'rusevine'},
  {id:'zlatno-ralo',name:'Zlatno ralo',song:'Oranje Marka Kraljevića',perk:'Teški udarci jači',land:'oranje'},
  {id:'sokolovo-pero',name:'Sokolovo pero',song:'Lov Markov s Turcima',perk:'Vazdušni udarci te duže drže u vazduhu',land:'mocvara'},
  {id:'prelomljeno-koplje',name:'Prelomljeno koplje',song:'Smrt Marka Kraljevića',perk:'Juriš se brže hladi',land:'reka'},
@@ -141,7 +141,11 @@ export const RECIPES={
  // twelve delije in the field
  mocvara:'jezero bridge watch crumble ferry trska bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat tajna trska bridge pillars ferry watch crates chimney trska guslar:mir vreme bridge spikes crates jaruga ledges logs crumble watch pillars trska spikebed flat trgovac hajka boss:vezir',
  rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates branik:rudari guslar:mir crumble flat tajna bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
- rusevine:'kosovka stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks tajna crates trgovac flat boss:arapin',
+ // Ruševine na brdu, by the song „Marko Kraljević ukida svadbarinu” (19. 11.): the water Servana, the angry ride down Kosovo, the
+ // Arab's courtyard and tent, the megdan before the tent; then up through the ruins after his forty servants, taking the heads
+ // of the Kosovo bridegrooms down from the stakes (two groups in the arena, five on the way), the Arab's treasure, the burial,
+ // and the four spared servants sent to the four sides as heralds. Longer and harder than before; no cages (not in the song).
+ rusevine:'kosovka jezdi avlija boss:prekomorac flat stairs+ ladder+ chimney^ crates kolci crumble greda stairs+ tower flat bedem spikebed zid kolci jaruga kuke ladder+ crates chimney^ logs kljuc kolci terrace+ ladder+ watch trgovac stairs+ guslar:mir rocks kolci tajna crates lift spikebed chimney^ ledges kolci crumble arapblago flat groblje telali',
  reka:'flat crates pogled bridge breg flat branik:selo jaruga watch ferry sator top stairs+ logs bedem kljuc stairs- plate kuke bridge vreme crumble crates ledges watch guslar:mir logs tajna flat mehana spikes crates tower flat trgovac flat boss:sword',
  san:'flat slova flat jabuke flat drenovina flat gusle flat',
  urvina:'flat stairs+ terrace+ ladder+ flat chimney^ ledges stairs+ crumble terrace+ flat tajna jaruga rocks ladder+ gap stairs+ ledges chimney^ flat bridge terrace+ ladder+ crates rocks stairs+ crumble flat chimney^ terrace+ ladder+ ledges stairs+ flat vrh',
@@ -156,7 +160,7 @@ export const RECIPES={
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},vuca:{type:'akindzija',name:'Vuča dženeral',hp:1460,kit:'beg',look:'vuca'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
- arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},vezir:{type:'akindzija',name:'Murat vezir',hp:1750,kit:'beg',look:'vezir'},brodarica:{type:'akindzija',name:'Vila brodarica',hp:1650,kit:'beg',look:'brodarica'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
+ arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},prekomorac:{type:'dzelat',name:'Arap prekomorac',hp:2300,kit:'dzelat',look:'arap',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},vezir:{type:'akindzija',name:'Murat vezir',hp:1750,kit:'beg',look:'vezir'},brodarica:{type:'akindzija',name:'Vila brodarica',hp:1650,kit:'beg',look:'brodarica'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
  trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15,look:'zlatni-janicar'},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:2000,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
@@ -253,7 +257,20 @@ export function buildLayout(L,variant='day'){
     clue:'„A pred Markom vila Ravijojla, u ruke joj gusli javorove: same gude, same udaraju.” Slušaj šta gusle sviraju, pa istim redom kucni u četiri kamena. Triput će zagusti, svaki put duže.',hint:'Ponovi melodiju gusala na četiri kamena.'});busy.push([x0,x0+len]);},
   // "Marko Kraljević i vila": Šarac waits, then a long clear run after Ravijojla with fallen trunks to leap
   // „Marko Kraljević ukida svadbarinu”: the Kosovo maiden, grey with waiting, by the water at the start (game.js: kosovka)
-  kosovka(){const x0=x,len=1100;ground(len);traps.push({kind:'kosovka',x0,x1:x0+len,y:gy,dev:x0+760,nodecor:[[x0+520,x0+960]]});busy.push([x0-40,x0+len]);},
+  kosovka(){const x0=x,y=gy,D=34,rl=Math.round(D*3.6/10)*10;ground(560);const r0=x;ramp(D);ground(240);const r1=x;ramp(-D);ground(1250);
+   traps.push({kind:'kosovka',x0,x1:x,y,sarac0:r0-130,dev:r1+rl+330,voda:[r0+Math.round(rl*.3),r1+rl-Math.round(rl*.3)],dno:y+D,nodecor:[[x0+300,x]]});busy.push([x0-40,x]);},
+  // „krenu Šarca, ode niz Kosovo”: the long angry ride, the guard who sees him coming (game.js: jezdi)
+  jezdi(){const x0=x,len=4200;ground(len);traps.push({kind:'jezdi',x0,x1:x0+len,y:gy,straza:x0+len-380});busy.push([x0+len-700,x0+len]);},
+  // the green courtyard round the Arab's tent: the gate the servants come out of, where Marko dismounts, the tent (game.js: avlija)
+  avlija(){const x0=x,len=2500;ground(len);traps.push({kind:'avlija',x0,x1:x0+len,y:gy,kapija:x0+520,sjahi:x0+1180,c:x0+1820,nodecor:[[x0+300,x0+len]]});busy.push([x0+260,x0+len]);},
+  // a stretch of the courtyard fence with the heads of the Kosovo bridegrooms on the stakes („sva avlija glavam’ nakićena”)
+  kolci(){const x0=x,len=ri(600,660);ground(len);traps.push({kind:'kolci',x:x0+Math.round(len*.5),x0,x1:x0+len,y:gy,nodecor:[[x0+40,x0+len-40]]});busy.push([x0+40,x0+len-40]);},
+  // „Arapovo blago pokupio”
+  arapblago(){const x0=x,len=760;ground(len);traps.push({kind:'arapblago',x:x0+400,x0,x1:x0+len,y:gy,nodecor:[[x0+150,x0+len-100]]});busy.push([x0+150,x0+len-100]);},
+  // „pa je glave sahranio lepo, da j’ ne kljuju orli i gavrani”
+  groblje(){const x0=x,len=1700;ground(len);traps.push({kind:'groblje',x0,x1:x0+len,y:gy,c:x0+700,ograda:x0+1330,nodecor:[[x0+100,x0+len]]});busy.push([x0+60,x0+len]);},
+  // the crossroads: the four spared servants go to the four sides, and all Kosovo comes out, great and small
+  telali(){const x0=x,len=2300;ground(len);traps.push({kind:'telali',x0,x1:x0+len,y:gy,c:x0+820,nodecor:[[x0+100,x0+len]]});busy.push([x0+60,x0+len]);},
   // „Marko Kraljević i Vuča dženeral”: the camp under Varadin, the katane in two waves, Miloš out of the dungeon (game.js: varadin)
   varadin(){const x0=x,len=3400;ground(len);const T={kind:'varadin',x0,x1:x0+len,y:gy,logor:x0+900,nodecor:[[x0+500,x0+1500],[x0+len-1000,x0+len]]};traps.push(T);busy.push([x0-40,x0+len]);
    // the walls of Varadin at the end of the field (D99 prop-bedem-stepenice, mirrored, 330 high; prop-bedem-kula 430 high): solid, under the painting
@@ -468,7 +485,7 @@ export function buildLayout(L,variant='day'){
   tajna(){const x0=x,len=680,w=230,deep=180,cx=x0+250;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+26,top:gy,bottom:gy+deep,side:-1,skriven:true});
    crate(cx+190,'kovceg',{y:gy+deep,loot:{coins:ri(36,44)}});cellars.push({x:cx+w/2,y:gy+deep});tajne.push({x:cx+132,y:gy+deep-44});busy.push([cx-60,cx+w+60]);},
-  boss(type){const x0=x,len=type==='vezir'?1500:type==='brodarica'?1300:ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
+  boss(type){const x0=x,len=type==='vezir'||type==='prekomorac'?1500:type==='brodarica'?1300:ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
    const plank=(k,dy,w=150)=>platforms.push({x:Math.round(x0+len*k-w/2),y:g0-dy,w,h:18,kind:'plank',arena:true});
    ({oklopnik(){for(const k of[.13,.87])block(x0+len*k-35,70,g0-95,{pillar:true});plank(.5,175);for(const k of[.33,.67])platforms.push({x:Math.round(x0+len*k-28),y:g0-62,w:56,h:62,kind:'teret',solid:true,push:true,megdanBure:true});},   // he rams the pillars
      akindzija(){plank(.3,140);plank(.7,140);},vezir(){plank(.22,140);plank(.5,180);plank(.78,140);},brodarica(){plank(.25,140);plank(.5,175);plank(.75,140);},                                                    // jump up as the rider passes
@@ -481,6 +498,7 @@ export function buildLayout(L,variant='day'){
      azdaja(){block(x0+len*.2,70,g0-110,{pillar:true});block(x0+len*.45,70,g0-110,{pillar:true});plank(.32,170,130);plank(.68,175,170);boss.x=Math.round(x0+len*.8);},   // stones for cover, planks up to her head
      dzelat(){plank(.25,140);plank(.5,140);plank(.75,140);plank(.38,260,120);plank(.62,260,120);},   // he splits the planks with his axe
      djemo(){plank(.3,150);plank(.7,150);},
+     prekomorac(){plank(.34,150);plank(.66,150);for(const k of[.17,.83])traps.push({kind:'kolci',x:Math.round(x0+len*k),x0,x1:x0+len,y:g0,arena:true});},   // the megdan before the tent, under the stakes
      trio(){plank(.5,160,170);},
      kopljanik(){plank(.35,150);plank(.65,150);}})[type]?.();},
  };
@@ -546,14 +564,14 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
 export function makeLevel(L,index,variant='day',opts={}){
  const zone=LEVEL_ZONE+index,B=buildLayout(L,variant),enemies=[],items=[],platforms=B.platforms;
  const mix=L.design?.enemyMix,base=THEME_FOES[L.id]||(mix?.length?(mix.includes('sword')?mix:[...mix,'sword']):['sword','archer','akindzija']);
- const pool=[...base,...(opts.extraFoes||[]).filter(t=>!base.includes(t)&&t!=='tufekdzija')];
+ const pool=L.id==='rusevine'?['sword']:[...base,...(opts.extraFoes||[]).filter(t=>!base.includes(t)&&t!=='tufekdzija')];
  const floorAt=x=>{let best=null;for(const q of platforms)if(q.ground&&x>q.x+40&&x<q.x+q.w-40&&(!best||q.y<best.y))best=q;return best;};
  const foe=(type,x,y,o={})=>{const hp=FOE_HP[type]??90;enemies.push({id:5000+index*100+enemies.length,x:Math.round(x),y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.5+(enemies.length%4)*.23,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o});};
- const quiet=B.traps.filter(t=>t.kind==='sirotinja');if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
+ const quiet=B.traps.filter(t=>['sirotinja','kosovka','jezdi','avlija','arapblago','groblje','telali'].includes(t.kind));if(quiet.length)B.spots=B.spots.filter(s=>!quiet.some(t=>s.x>t.x0-120&&s.x<t.x1+120));
  let k=0,lastX=-1e9,thin=0;for(const s of B.spots.sort((a,b)=>a.x-b.x)){if(L.peace)break;if(Math.abs(s.x-B.spawn.x)<480)continue;
-  if(s.perch){foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}
+  if(s.perch){if(L.id==='rusevine')continue;foe(opts.extraFoes?.includes('tufekdzija')&&k%3===2?'tufekdzija':'archer',s.x,s.y,{perch:true});k++;continue;}   // the Arab's servants carry sabres, not bows
   // fewer and tougher (Stefan, 13. 11.): every third man of the road is left out; those who stay carry more health and work in pairs (game.js)
-  if(s.x-lastX<450)continue;lastX=s.x;if(thin++%3===2)continue;const type=pool[k%pool.length];foe(type,s.x,s.y);
+  if(s.x-lastX<450)continue;lastX=s.x;if(thin++%3===2&&L.id!=='rusevine')continue;const type=pool[k%pool.length];foe(type,s.x,s.y);
   if(variant==='storm'&&k%2===0){const t2=pool[(k+1)%pool.length];foe(t2,s.x+85,s.y);}k++;}
  for(const t of B.traps)if(t.kind==='top')foe('palikuca',t.x+80,t.y,{gunner:true});
  // the Arab's men guard each cage of wedding guests
@@ -562,6 +580,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the Turks who broke the falcon's wing hunt him in the reeds; archers lie hidden in the reeds until Marko is close
  for(const t of B.traps)if(t.kind==='soko'){foe('pas',t.x+250,t.y);foe('archer',t.x+430,t.y);foe('sword',t.x-260,t.y);}
  for(const t of B.traps)if(t.kind==='trska'){foe('archer',t.x+t.w*.45,t.y,{skriven:true});foe('archer',t.x+t.w*.8,t.y,{skriven:true});}
+ for(const t of B.traps)if(t.kind==='kolci'&&!t.arena){foe('sword',t.x-200,t.y);foe('sword',t.x+200,t.y);}   // two of the Arab's servants keep each stretch of stakes
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
  let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q&&!B.traps.some(t=>t.kind==='dunav'&&x>t.voda[0]-60&&x<t.voda[1]+60))items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2||(L.id==='pecina'&&x<(B.traps.find(t=>t.kind==='jezerce')?.pije??0))?'herb':'wine',taken:false});j++;}
  // the eagle's and the falcon's feathers are theirs to give: each waits in its hiding place only if the bird is not saved
@@ -577,6 +596,8 @@ export function makeLevel(L,index,variant='day',opts={}){
  // the keeper of each treasury key: the nearest foe, a little tougher
  for(const t of B.traps){if(t.kind!=='keydoor')continue;let h=enemies.filter(e=>!e.perch&&!e.champion&&!e.keyHolder&&e.type!=='pas'&&Math.abs(e.x-t.keeper.x)<380).sort((a,b)=>Math.abs(a.x-t.keeper.x)-Math.abs(b.x-t.keeper.x))[0];
   if(!h){const q=floorAt(t.keeper.x);foe(pool.find(k=>k!=='pas')||'sword',t.keeper.x,q?q.y:t.y);h=enemies[enemies.length-1];}h.keyHolder=true;h.hp=h.maxHp=Math.round(h.maxHp*1.4);t.holder=h.id;}
+ // „Arap ima četrdeset slugu”: every foe of the ruins is one of them (their own look, tougher than a soldier of the road)
+ if(L.id==='rusevine')for(const e of enemies){e.look='arap-sluga';e.sluga=true;e.hp=e.maxHp=Math.round(e.maxHp*1.4);}
  if(B.boss?.type==='trio'){const A=B.boss,S=BOSSES.trio;for(const dx of[-130,130])foe('sword',A.x+dx,A.y,{trioMate:true,elite:true,scale:S.scale,hp:S.hp,maxHp:S.hp,w:44,h:90,look:S.look});}
  // a land may soften its champion (bossHp): in a climbing pohod the climb is half the fight
  if(B.boss){const S=BOSSES[B.boss.type],A=B.boss,hp=Math.round(S.hp*(.62+.38*Math.min(1,index/9))*(L.bossHp??1));foe(S.type||A.type,A.x,A.y,{champion:true,scale:S.scale??1.35,hp,maxHp:hp,name:S.name,kit:S.kit,look:S.look,w:50,h:100,arena:{x0:A.x0,x1:A.x1,y:A.gy,flag:A.flag,top:A.top,topX:A.topX,deck:A.deck,deckX:A.deckX}});}

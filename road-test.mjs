@@ -53,6 +53,10 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[])if(tr.kind==='cador'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.sedi=0;p.x=tr.x1-120;p.y=tr.y;stuck.push({at:'carev čador',known:true});}
   // Marko's curse on the dry forest and the vila's answer play by themselves (pesme-test): the bot hears them out at once
   for(const tr of w.traps||[])if(tr.kind==='zedj'&&tr.ph&&tr.ph!=='kraj'){tr.pt=99;if(tr.ph==='jase')p.x=tr.marko;if(!tr.bot){tr.bot=true;stuck.push({at:'žeđ u gori',known:true});}}
+  // the song of the wedding tax (Servana, the ride, the tent, the megdan, the heads on the stakes, the burial, the heralds) is played by
+  // pesme-test and battles-test: the bot is set down on the field past the tent with those things done, and walks the ruins
+  for(const tr of w.traps||[])if(tr.kind==='kosovka'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;tr.jahao=true;const A=w.traps.find(t=>t.kind==='avlija'),G=w.traps.find(t=>t.kind==='groblje'),T=w.traps.find(t=>t.kind==='telali');
+   p.x=A.x1+220;p.y=A.y;p.vx=0;p.vy=0;for(const k of w.traps)if(k.kind==='kolci')k.skinuto=1;w.glave=77;G.ph='kraj';G.done=true;Object.assign(T,{vidjeni:1,poslati:1,narod:1,done:true});stuck.push({at:'pesma o svadbarini',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='kupa'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.sedi=0;p.x=tr.x1-120;p.y=tr.y;stuck.push({at:'kupa od dvanaest oka',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='mehana'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;tr.F=null;p.sedi=0;for(const e of w.enemies)if(e.filip)e.alive=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'nova mehana',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='okovi'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.okovan=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'Marko u okovima',known:true});}

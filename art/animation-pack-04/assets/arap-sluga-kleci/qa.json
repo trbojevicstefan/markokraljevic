@@ -1,0 +1,55 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        157,
+        197,
+        354,
+        487
+      ],
+      "height": 290,
+      "supportY": 486,
+      "safeMargin": 25
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        157,
+        194,
+        354,
+        487
+      ],
+      "height": 293,
+      "supportY": 486,
+      "safeMargin": 25
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        157,
+        189,
+        354,
+        487
+      ],
+      "height": 298,
+      "supportY": 486,
+      "safeMargin": 25
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        157,
+        199,
+        354,
+        487
+      ],
+      "height": 288,
+      "supportY": 486,
+      "safeMargin": 25
+    }
+  ],
+  "scale": 0.5430711610486891,
+  "targetHeight": 290,
+  "visualReview": "see STATUS-D133.md"
+}

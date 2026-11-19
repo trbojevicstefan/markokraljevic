@@ -84,6 +84,16 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Đemo: na doratu baca topuzinu, galop, pije, spava, u okovima | D127 ✔ |
 | Slavska sofra, vešala, riba od Orida; slika povratka na slavu | D128 ✔ |
 
+## Naručeno 20. 11. (D129–D137), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Arap prekomorac sa teškim buzdovanom: idle, run, attack, zabio, vitla, skok, bes, omamljen, hurt, death, sedi-pije | D129, D130, D131 ✔ |
+| Arapov sluga: idle, run, attack, hurt, death, krije, kleci, telal, bezi | D132, D133 ✔ (pad je alat prvo odbio; u rigu uvećan na meru ostalih) |
+| Kosovka devojka: klanja, place, pokazuje; mlada-sluzi, devojka-sluzi | D134 ✔ |
+| Arapov šator u preseku, ograda avlije sa kolcima (glave đuvegija, prazni, arapske glave), groblje đuvegija | D136 ✔ (ljubičasti rub skinut: `.tmp-edge/cisti-rub-slike.py`) |
+| Slika: Marko pod Arapovim šatorom | D137 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |

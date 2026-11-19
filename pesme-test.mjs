@@ -215,21 +215,50 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted&&cudo.y>-9000,'varadin: Miloš and the voivodes are free, the marvel lies in the open cell');
  const tov=w.breakables.filter(b=>b.tovar);ok(tov.length===3&&tov.every(b=>b.x>TM.x1),'varadin: three loads of treasure wait by the road to the last banner');
  ok(api.draw()===null,'varadin: the camp, Šarac and Miloš draw without an error');}
-// ---- Ruševine: the Kosovo maiden (Marko Kraljević ukida svadbarinu) ----
-{const w=await start('rusevine');const T=w.traps.find(t=>t.kind==='kosovka');const {p}=api.state();
- ok(T&&T.dev>T.x0&&T.dev<T.x1,'kosovka: the Kosovo maiden waits by the water at the start of the ruins');
- Object.assign(p,{x:T.dev-380,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='govor'&&T.i===1,'kosovka: „Božja pomoć, Kosovko devojko!” — Marko asks why she is grey');
+// ---- Ruševine: „Marko Kraljević ukida svadbarinu”, the whole song ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='rusevine'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();
+ const tr=k=>w.traps.find(t=>t.kind===k),at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,castLock:0});step(3);};
+ const K=tr('kosovka'),J=tr('jezdi'),A=tr('avlija'),KO=w.traps.filter(t=>t.kind==='kolci'),B=tr('arapblago'),G=tr('groblje'),T=tr('telali'),c=w.enemies.find(e=>e.champion),S=w.enemies.filter(e=>e.sluga);
+ ok(K&&J&&A&&B&&G&&T&&KO.length===7&&KO.filter(t=>t.arena).length===2&&K.x1<=J.x0+5&&J.x1<=A.x0+5&&c.look==='arap'&&c.kit==='dzelat'&&c.arena.x0>=A.x1-5&&G.x0>c.arena.x1&&T.x0>=G.x1-5,
+  'svadbarina: the water Servana, the ride, the courtyard and the tent, the megdan before it, seven stretches of stakes, the burial, the crossroads');
+ ok(S.length>=20&&S.length<=32&&S.every(e=>e.look==='arap-sluga'&&e.type==='sword')&&!w.enemies.some(e=>e.perch)&&!w.enemies.some(e=>!e.champion&&e.x<c.arena.x1),'svadbarina: every foe of the ruins is one of the Arab’s forty servants, sabre in hand, and none stands before the megdan');
+ ok(!w.traps.some(t=>t.kind==='kavez'),'svadbarina: no cages (there are none in the song)');
+ // the water Servana
+ at(K.dev-380,K.y);until(()=>K.i===1,120*3,'the greeting');ok(K.ph==='govor'&&K.poza==='klanja','kosovka: „Božja pomoć, Kosovko devojko!”, and she bows to the ground');
  const x0=p.x;press('KeyD');step(40);release('KeyD');ok(p.x>x0+20,'kosovka: Marko keeps his feet while they talk');
- until(()=>T.dukati,120*40,'thirty ducats');ok(T.i===4,'kosovka: the Arab’s wedding tax, her turn tonight, and Marko’s thirty ducats');
- until(()=>T.done,120*30,'the silk banner');ok(T.i===6&&T.odlazi!=null,'kosovka: she shows him the silk banner over the Arab’s tent and goes home');
- ok(api.draw()===null,'kosovka: the maiden draws without an error');}
-// ---- Ruševine: the duel with the Arab (Marko Kraljević ukida svadbarinu) ----
-{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='rusevine'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();
- const K=w.traps.find(t=>t.kind==='kosovka'),A=w.enemies.find(e=>e.champion&&e.kit==='arapin');for(const e of w.enemies)if(e!==A)e.alive=false;const {p}=api.state();
- ok(K&&A&&A.arena,'arapin: the Arab’s tent at the end of the ruins');
- Object.assign(p,{x:A.arena.x0+160,y:A.arena.y,vx:0,vy:0,grounded:true});step(3);step(120*10);ok(K.dukati3,'arapin: Marko throws him three ducats — „više nemam blaga”');
- p.hp=p.maxHp-20;api.update(1/120);ok(K.salis,'arapin: the first blow, and Marko laughs: „il’ se šališ, il’ od zbilje biješ?”');
- api.slay(A);step(2);ok(K.pobeda,'arapin: four servants left to tell the truth; no more wedding tax on Kosovo');}
+ until(()=>K.dukati,120*80,'thirty ducats');ok(K.i===4,'kosovka: the Arab’s wedding tax, her turn tonight, and Marko’s thirty ducats');
+ until(()=>K.done,120*80,'the silk banner');ok(K.i===7&&K.odlazi!=null,'kosovka: she warns him, shows him the silk banner over the Arab’s tent and goes home');
+ until(()=>!K.sHoda,120*12,'Šarac');ok(K.sx===K.dev-190,'kosovka: Šarac comes over the ford to Marko by himself');
+ at(K.x1+20,K.y);ok(p.x<=K.x1-39,'kosovka: not on foot down Kosovo');
+ at(K.sx-20,K.y);tap('KeyE');step(3);ok(api.state().horseMounted&&K.jase,'kosovka: „krenu Šarca, ode niz Kosovo”');
+ // the ride, the guard, the servants who dare not
+ p.x=J.x0+160;step(5);ok(J.i>=1,'jezdi: fire from the hooves, blue flame from the nostrils, tears down his face');
+ p.x=J.x0+3300;step(5);ok(J.i===4&&J.strazaBezi,'jezdi: the guard sees him and runs to the Arab');
+ p.x=A.kapija-520;step(5);ok(A.sluge?.length===6&&A.sluge[0].st==='izlaze','avlija: the servants come out to take his horse');
+ p.x=A.kapija-300;step(5);ok(A.sluge.every(s=>s.st!=='izlaze'),'avlija: „ne smedoše pred Marka izići”, they run back under the tent');
+ p.x=A.sjahi+4;step(3);ok(!api.state().horseMounted&&A.sjahao&&A.sx!=null,'avlija: he dismounts before the tent, and Šarac walks the courtyard by himself');
+ // under the tent
+ at(A.c-240,A.y);ok(A.ph==='ulazi'&&!w.enemies.includes(c),'sator: Marko walks in; the Arab sits over his wine, and the megdan waits');
+ until(()=>A.ph==='ceka3',120*150,'the greeting under the tent');ok(A.sluge.every(s=>s.st==='kriju'),'sator: the servants crouch behind him with their cloaks over their sabres');
+ tap('KeyE');step(2);ok(A.ph==='dukati'&&A.dukT,'sator: „pred Arapa tri dukata baci”');
+ until(()=>A.ph==='smeh',120*90,'the mace');ok(A.udarci===4,'sator: the Arab strikes him with the heavy mace, three or four times');
+ until(()=>A.ph==='cekaJ',120*120,'the laugh');tap('KeyJ');until(()=>A.megdan,120*6,'the blow');
+ ok(w.enemies.includes(c)&&c.hp<c.maxHp&&c.stun>0&&c.x>A.x1&&A.done,'sator: Marko’s blow throws him out on the field, and the megdan starts with him reeling');
+ // the megdan is fought in battles-test; what follows it
+ api.slay(c);until(()=>w.slugeW?.ceka!=null,120*4,'the sabre');ok(w.slugeW.svi.length+w.slugeW.ceka===36,'sluge: thirty-six of the forty are his to cut down');
+ until(()=>w.slugeW.svi.some(e=>e.talas),120*10,'the servants out of the tent');ok(w.slugeW.svi.filter(e=>e.talas).length<=5,'sluge: they come out from under the tent a few at a time');
+ until(()=>{for(const e of w.slugeW.svi)if(e.alive)api.slay(e);return w.slugeW.ceka===0&&w.slugeW.svi.every(e=>!e.alive);},120*60,'the forty');step(3);
+ ok(w.slugeW.sve&&w.slugeW.svi.length===36,'sluge: „iseče mu četrdeset slugu, a četiri ne hte pogubiti”');
+ step(120*5);at(c.arena.x1+40,c.arena.y);ok(p.x<=c.arena.x1-29,'kolci: he does not leave the heads to the eagles and ravens');
+ for(const t of KO){at(t.x-40,t.y);tap('KeyE');step(3);ok(!!t.skinuto,'kolci: the heads come down from the stakes at '+Math.round(t.x));}
+ ok(w.glave===77,'kolci: seventy-seven heroes, the sad bridegrooms of Kosovo');
+ at(B.x-30,B.y);tap('KeyE');step(3);ok(!!B.uzeto,'blago: „Arapovo blago pokupio”');
+ at(G.x1+30,G.y);ok(p.x<=G.x1-29,'groblje: the way on waits for the burial');
+ at(G.c-20,G.y);tap('KeyE');step(3);ok(G.ph==='kopa','groblje: Marko digs the graves');until(()=>G.done,120*8,'the burial');ok(!!w.nakiceno,'groblje: „pa avliju pustu nakitio”');
+ at(T.c-300,T.y);step(5);ok(!!T.vidjeni,'telali: the four spared servants wait on their knees at the crossroads');
+ at(T.c+40,T.y);tap('KeyE');step(3);ok(!!T.poslati,'telali: „opravi ih na četiri strane”');
+ until(()=>T.done,120*90,'the people');ok(!!T.narod,'telali: „Bog da živi Kraljevića Marka!”');
+ ok(api.draw()===null,'svadbarina: the ruins of the song draw without an error');}
 // ---- a scene that takes the controls starts clean: no blow left hanging, on the ground ----
 {const w=await start('reka');const T=w.traps.find(t=>t.kind==='mehana');const {p}=api.state();
  Object.assign(p,{x:T.x0+720,y:T.y,vx:0,vy:0,grounded:true,attack:.3,drink:.4});step(2);ok(T.ph==='dolazi'&&!(p.attack>0)&&!(p.drink>0)&&p.grounded,'scene: a blow or a drink in hand when the tavern scene starts is let go');}
@@ -322,5 +351,5 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>foe.air||!foe.alive,120,'the launch');ok(foe.air&&foe.vy<0,'combo: the backhand throws the foe into the air');storage.delete('marko-skills');}
 // ---- the pictures between the pohodi give nothing away ----
 {const R=api.PRELAZ_RED;ok(R.suma.filter(e=>!e.kad).every(e=>!/ustrel|strel|poter/i.test(e.text||''))&&R.suma.some(e=>e.kad==='ustreljen')&&R.suma.some(e=>e.kad==='trap:gnezdo'),'pictures: before the forest nothing of the arrows or the chase; the vila and the burning beech are shown when they happen');
- ok(R.manastir.some(e=>e.kad==='kraj'&&e.i===1)&&R.mocvara.some(e=>e.kad==='soko')&&R.rusevine.some(e=>e.kad==='kavezi'),'pictures: the judgment, the bound wing and the kolo wait for their moment');}
+ ok(R.manastir.some(e=>e.kad==='kraj'&&e.i===1)&&R.mocvara.some(e=>e.kad==='soko')&&R.rusevine.some(e=>e.kad==='sator'),'pictures: the judgment, the bound wing and the kolo wait for their moment');}
 console.log(`\n${checks} checks passed.`);

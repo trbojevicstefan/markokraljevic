@@ -1,0 +1,79 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        195,
+        159,
+        316,
+        489
+      ],
+      "height": 330,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        194,
+        166,
+        317,
+        489
+      ],
+      "height": 323,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        190,
+        173,
+        321,
+        489
+      ],
+      "height": 316,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        187,
+        160,
+        324,
+        489
+      ],
+      "height": 329,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        193,
+        159,
+        318,
+        489
+      ],
+      "height": 330,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        191,
+        165,
+        320,
+        489
+      ],
+      "height": 324,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.746606334841629,
+  "targetHeight": 330,
+  "visualReview": "see STATUS-D134.md"
+}
