@@ -792,6 +792,9 @@ D94_MODEL.update({f"delija-{k}": "sword-idle" for k in ['idle', 'run', 'attack',
 D94_MODEL.update({f"brodarica-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hurt', 'death']})
 D94_MODEL.update({"brodarica-spava": "beg-idle", "brodarica-budi": "beg-idle"})
 D94_MODEL.update({f"guja-{k}": "pas-idle" for k in ['idle', 'run', 'attack', 'death']})
+# D126, D127: the tenth pohod (Marko Kraljević i Đemo Brđanin): the guests of the slava, the servant, the mother; Đemo on his bay, drinking, asleep, in chains
+D94_MODEL.update({c: "milos-idle" for c in ['gost-patrijarh', 'gost-vladika', 'gost-pop', 'sluga-bogosav', 'majka-jevrosima']})
+D94_MODEL.update({"djemo-na-doratu": "beg-mounted", "djemo-jase": "beg-mounted", "djemo-pije": "djemo-idle", "djemo-spava": "djemo-idle", "djemo-okovan": "djemo-idle"})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')

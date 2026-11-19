@@ -1,0 +1,103 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        88,
+        147,
+        424,
+        489
+      ],
+      "height": 342,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        82,
+        146,
+        430,
+        489
+      ],
+      "height": 343,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        76,
+        158,
+        435,
+        489
+      ],
+      "height": 331,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        68,
+        181,
+        444,
+        489
+      ],
+      "height": 308,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        71,
+        152,
+        440,
+        489
+      ],
+      "height": 337,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        76,
+        150,
+        435,
+        489
+      ],
+      "height": 339,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        80,
+        144,
+        431,
+        489
+      ],
+      "height": 345,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        84,
+        144,
+        427,
+        489
+      ],
+      "height": 345,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.957983193277311,
+  "targetHeight": 342,
+  "visualReview": "see STATUS-D127.md"
+}

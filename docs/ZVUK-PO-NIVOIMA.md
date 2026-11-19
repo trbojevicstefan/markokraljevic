@@ -24,7 +24,8 @@ Stefan, 19. 11. 2026: „Dosta pesama po nivoima nema veze sa nivoima, ponavljam
 | 7 Noćna močvara | Lov Markov s Turcima | sređen 19. 11. (9); nove replike (vezir, Marko, guslar, uvod) nemaju snimak |
 | 8 Vilinska pećina | Marko Kraljević i vila brodarica | sređen 19. 11. (10); sve replike su nove i nemaju snimak |
 | 9 Pod Varadinom | (dole) | sređen ranije |
-| 10 Klisura Ibra | (dole) | **sledeći** |
+| 10 Klisura Ibra | Marko Kraljević i Đemo Brđanin | sređen 19. 11. (11): cela pesma; replike slave, ćuprije, okova i povratka su nove i nemaju snimak (okovi i kraj imaju stare snimke) |
+| 11 Ruševine | (dole) | **sledeći** |
 | 7 (isto) | Marko Kraljević i soko / Lov Markov s Turcima | nije pregledan |
 | 8 Vilinska pećina | (vila Ravijojla) | nije pregledan |
 | 9 Pod Varadinom | Marko Kraljević i Vuča dženeral | sređen 19. 11.; uvod, slika i zapis pominju Miloševu knjigu (tri puta): skratiti kad se bude snimalo |

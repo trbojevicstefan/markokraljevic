@@ -1,0 +1,6 @@
+﻿| D126 | gost-patrijarh | izvezen; pokušaj 1; k=0.78199; visine 330, 332, 339, 330, 329, 331 px (cilj oko 330); y=488; moguće sitne zelene ivice; donja margina 23 px |
+| D126 | gost-vladika | izvezen; pokušaj 1; k=0.73903; visine 320, 320, 319, 326, 321, 316 px (cilj oko 320); y=488; smer pogleda nije dosledno ulevo, mogući sitni zeleni ostaci oko čaše; donja margina 23 px |
+| D126 | gost-pop | izvezen; pokušaj 1; k=0.69042; visine 310, 300, 314, 319, 322, 322 px (cilj oko 310); y=488; sitne zelene ivice; donja margina 23 px |
+| D126 | sluga-bogosav | izvezen; pokušaj 1; k=0.84034; visine 400, 399, 400, 401, 401, 372 px (cilj oko 400; poslednji kadar naklon); y=488; moguće sitne zelene ivice; donja margina 23 px |
+| D126 | majka-jevrosima | izvezen; pokušaj 1; k=0.74398; visine 340, 340, 340, 340, 340, 340 px (cilj oko 340); y=488; moguće sitne zelene ivice; donja margina 23 px |
+`nD126 naknadna provera: konzervativni prag zelenog preliva nalazi po kadru: patrijarh 368/391/441/438/427/421; vladika 251/359/464/402/450/269; pop 255/244/318/319/345/297; Bogosav 493/522/548/479/564/562; Jevrosima 247/320/303/286/233/258 piksela. Prag obuhvata i moguće prirodne boje; potrebno ručno čišćenje ivica i provera zatvorenih praznina. qa.json zadržava visualReview=pending iz izvoznog postupka.

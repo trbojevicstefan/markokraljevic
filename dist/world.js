@@ -118,7 +118,9 @@ export const CUDA=[
 // gate on a timer), a chase, and in five lands a champion waiting in an arena at the end.
 export const RECIPES={
  selo:'uvod flat breg vasar crates stairs+ watch plate spikes stairs- jaruga ledges cellar sirotinja pillars kljuc crates terrace+ flat terrace- watch bedem ledges crates stairs+ logs flat guslar:mir gap spikes crates tajna tower flat trgovac flat boss:kopljanik',
- klisura:'flat okovi uvala terrace+ ladder+ guslar tower chase flat jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates tower kuke spikes flat bedem sator crates ledges tajna terrace+ logs flat trgovac guslar:mir boss:djemo',
+ // Klisura Ibra, by the song (19. 11.): the slava, the chains (okovi), the megdan before the tavern, Đemo chained, and the long
+ // way back through the gorge (longer and harder) with the three towns where Marko gives the treasure back
+ klisura:'slava okovi boss:djemo okuj uvala terrace+ ladder+ guslar tower chase flat vrati:vucitrn jaruga chimney lift greda crates guslar:odbrana crumble zid stairs+ watch rocks crates vrati:zvecan tower kuke spikes flat bedem sator crates ledges tajna terrace+ logs chimney spikebed flat trgovac guslar:mir vrati:orid',
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
  // Opsednuta tvrđava, by the song (19. 11.): the Marica, the white tower, the long way through the Sultan's siege camp, the sabre
@@ -261,6 +263,14 @@ export function buildLayout(L,variant='day'){
    for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
    block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
+  // ===== „Marko Kraljević i Đemo Brđanin” (Klisura Ibra): what the song has before and after the chains (19. 11.) =====
+  // the slava at Prilep: the long table with the guests, the old mother who will not have him carry arms, Šarac saddled
+  slava(){const x0=x,len=2000;ground(len);traps.push({kind:'slava',x0,x1:x0+len,y:gy,sofra:x0+820,majka:x0+1430,sarac:x0+1700,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
+  // past the megdan before the tavern: Đemo in his own chains, and Marko sits down to the wine
+  okuj(){const x0=x,len=1300;ground(len);traps.push({kind:'okuj',x0,x1:x0+len,y:gy,c:x0+560,nodecor:[[x0+200,x0+1000]]});busy.push([x0-40,x0+len]);},
+  // the way back: at Vučitrn, at Zvečan and at Orid the lords offer three loads to have Đemo hanged, and Marko gives them back
+  // the three they paid; at Orid the gallows and the fish for the slava
+  vrati(arg){const x0=x,or=arg==='orid',len=or?2600:1300;ground(len);traps.push({kind:'vrati',grad:arg,x0,x1:x0+len,y:gy,c:x0+560,...(or?{vjesala:x0+1300,ribe:x0+2050}:{}),nodecor:[[x0+150,x0+len-150]]});busy.push([x0-40,x0+len]);},
   // ===== „Marko Kraljević i vila brodarica” (Vilinska pećina): the rooms of the song, in its order (19. 11.) =====
   // the dry black forest: Marko rides in on Šarac, the wineskin empty; he curses the forest and the vila answers out of it
   zedj(){const x0=x,len=1500;ground(len);traps.push({kind:'zedj',x0,x1:x0+len,y:gy,marko:x0+560,nodecor:[[x0+200,x0+1000]]});busy.push([x0-40,x0+len]);},

@@ -135,6 +135,22 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  at(c.arena.x0+220,c.y);until(()=>c.engaged,120*8,'the megdan');step(6);ok(w.brodW?.sarac!=null,'brodarica: „od Šarca noge do kičica”: Šarac stands by the megdan');
  c.mounted=false;step(3);ok(w.enemies.filter(e=>e.guja&&e.alive).length===3,'brodarica: thrown from the stag, her three snakes come at Marko');
  ok(api.draw()===null,'brodarica: the cave of the song draws without an error');}
+// ---- „Marko Kraljević i Đemo Brđanin”: the slava, the megdan before the tavern, Đemo in chains, the way back, the fish of Orid ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='klisura'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();
+ const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});step(3);},tr=k=>w.traps.find(t=>t.kind===k),mir=()=>{for(const e of w.enemies)if(!e.champion)e.alive=false;};
+ const SL=tr('slava'),OK=tr('okovi'),OJ=tr('okuj'),V=w.traps.filter(t=>t.kind==='vrati'),c=w.enemies.find(e=>e.champion);
+ ok(SL&&OK&&OJ&&V.length===3&&SL.x1<=OK.x0+5&&c.kit==='djemo'&&c.arena.x0>=OK.x1-5&&OJ.x0>=c.arena.x1-5&&V.map(t=>t.grad).join(' ')==='vucitrn zvecan orid'&&V[0].x0>OJ.x1,
+  'djemo: the slava, the chains, the megdan before the tavern, Đemo chained, then Vučitrn, Zvečan and Orid on the way back');
+ mir();at(SL.sofra-300,SL.y);ok(SL.kaludjer&&!p.noMace,'djemo: the old monk asks for fish from Orid; Marko is still armed');
+ at(SL.majka-100,SL.y);ok(SL.majkaRec&&p.noMace,'djemo: „nemoj nosit ništa od oružja”: he leaves his mace with his mother');
+ at(SL.sarac-30,SL.y);tap('KeyE');step(3);ok(SL.jase,'djemo: he mounts Šarac and rides for Orid');
+ // Đemo falls at the megdan (played in battles-test): what follows it
+ OK.ph='kraj';OK.done=true;p.okovan=false;api.slay(c);until(()=>!w.enemies.some(e=>e.champion&&e.alive),120*4,'the megdan');mir();
+ at(OJ.c-320,OJ.y);until(()=>OJ.ph==='okovan',120*6,'the chains');ok(!p.noMace,'djemo: Đemo lies in his own chains, and Marko has a mace again');
+ step(120*5);at(OJ.c-150,OJ.y);tap('KeyE');step(3);ok(OJ.ph==='pije','djemo: Marko sits down to the wine and drinks to him');until(()=>OJ.ph==='kraj',120*10,'the wine');ok(OJ.done&&!p.sedi,'djemo: „ustan’, Đemo”: and they set off back');
+ for(const T of V){mir();at(T.c-60,T.y);step(4);ok(!!T.molba,'djemo: at '+T.grad+' the lords ask him to hang Đemo and offer three loads');tap('KeyE');step(3);ok(!!T.vraceno,'djemo: at '+T.grad+' Marko gives back the three loads they paid');}
+ const O=V[2];at(O.vjesala-150,O.y);step(4);ok(!!O.objesen,'djemo: „kod Orida načini vješala”');at(O.ribe-40,O.y);tap('KeyE');step(3);ok(O.riba&&O.done,'djemo: „pa on uze ribe od Orida”');
+ ok(api.draw()===null,'djemo: the gorge of the song draws without an error');}
 {const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='pecina'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();const J=w.traps.find(t=>t.kind==='jezerce'),Z=w.traps.find(t=>t.kind==='zedj');
  for(const e of w.enemies)if(!e.champion)e.alive=false;Object.assign(p,{x:J.pije-200,y:J.y,vx:0,vy:0,grounded:true});step(4);ok(Z.ph==='kraj'&&w.zedj.on,'brodarica: set down far from the forest, the opening is over and the thirst is on');
  // running by the boat wakes her before he has drunk: the snakes

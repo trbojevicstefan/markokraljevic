@@ -684,6 +684,23 @@ Narudžbine (GPT-6.1-Terra, sve iz prvog puta jer su deljene na najviše šest k
 
 Provera: `pesme-test.mjs` (228: ceo tok, žeđ, tiho pored čuna, rano buđenje i guje, megdan), `battles-test.mjs` (Aždaja u svom izazovu), `road-test.mjs` (18 pohoda).
 
+## 19. novembar (11): deseti pohod po celoj pesmi „Marko Kraljević i Đemo Brđanin”
+
+Stefan: „Da, deseti pohod.” Klisura Ibra je imala pesmu samo od ćuprije do mehane (soba `okovi`); početak i kraj pesme bili su ispričani u po jednoj rečenici, a megdan sa Đemom je stajao na kraju klisure, posle svega. Sada pohod (`RECIPES.klisura`) ide celom pesmom:
+
+- **Slava u Prilepu** (`slava`, početak): pred Markovom kulom duga sofra, za njom patrijarsi, vladike, pop i kaluđer; sluga Bogosav toči vino; stari kaluđer traži ribe od Orida; majka Jevrosima ne da da ponese oružje (Marko od tada nema topuz). E kod Šarca: „posjede Šarca od mejdana”.
+- **Ćuprija i okovi** (`okovi`, dopunjeno): Đemo sedi na doratu prekrštenih nogu i baca topuzinu u oblake; projaše ka Prilepu, Marko vikne za njim, pa beži na Šarcu preko polja dok ga topuzina ne stigne. Đemo ga vodi na doratu, Šarac ide na povodcu. U mehani Đemo nazdravlja i pije sam, pa zaspi (novi klipovi umesto stajanja i poze smrti).
+- **Megdan pred mehanom** (`boss:djemo`, odmah posle okova): „a na Đema Marko udaraše”. Marko je bez oružja, kao u pesmi; topuzina koju podigne je Đemova.
+- **Đemo u okovima** (`okuj`): upinje se da pokida lance; E: Marko sedne, pije i nazdravlja mu, „ali mu ne daje”.
+- **Povratak** kroz klisuru (duži i teži: još jedan dimnjak i šiljci), sa tri mesta `vrati`: u **Vučitrnu**, **Zvečanu** i **Oridu** gospoda nudi tri tovara da obesi Đema, a Marko im na E vraća tri tovara koja su platili (cilj: „Vrati blago gospodi · n/3”). Uz svako mesto stoje Šarac i okovani Đemo.
+- **Orid** (`vrati:orid`, kraj): vešala (bez prikaza vešanja: blesak i natpis), pa riba od Orida na E i snimljena replika guslara koja zatvara pesmu; na kraju slika Marka koji se sa ribom vraća na slavu.
+
+Guslari u klisuri (i odbrana guslara sa snimkom pesme o Musi) su ostali, iako ih u ovoj pesmi nema: Đemo sveti brata Musu.
+
+Narudžbine (GPT-6.1-Terra, sve iz prvog pokušaja): D126 gosti slave (patrijarh, vladika, pop), sluga Bogosav, majka Jevrosima; D127 Đemo na doratu, u galopu, pije, spava, u okovima; D128 slavska sofra, vešala, riba od Orida (sve s boka) i slika slave.
+
+Provera: `pesme-test.mjs` (244: slava, okovi, okovan Đemo, tri vraćanja, vešala, riba), megdan u `battles-test.mjs` kao i do sada.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

@@ -76,6 +76,14 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Slike: žeđ u čarnoj gori, vila zauzdava jelena | D124 ✔ |
 | Prazan čun | D125 ✔ |
 
+## Naručeno 19. 11. (D126–D128), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Gosti slave (patrijarh, vladika, pop), sluga Bogosav, majka Jevrosima | D126 ✔ (vladici zeleno vino prebojeno u crveno) |
+| Đemo: na doratu baca topuzinu, galop, pije, spava, u okovima | D127 ✔ |
+| Slavska sofra, vešala, riba od Orida; slika povratka na slavu | D128 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
