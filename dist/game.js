@@ -3431,6 +3431,7 @@ function seat2(T){return T.logor-70;}
 // Varadin: two lengths of wall at the end of the field (prop-zid-kamen, no Serbian banners on Vuča's town); Velimirovica walks its top
 const BEDEM_H=170;
 function bedemX(T){return[T.logor+330,T.logor+660];}
+const VARADIN_ZALEDJE=[['prop-bedem-srusen',-390,200],['prop-bedem-sredina',1000,BEDEM_H],['prop-bedem-kapija',1060,290],['prop-bedem-sredina',1300,BEDEM_H],['prop-bedem-kula-cetvrtasta',1470,285]];
 function drawImgTopOn(im,x,y,h,flip,frac){const B=propBounds(im),w=B.w*h/B.h;ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);ctx.drawImage(im,B.x,B.y,B.w,B.h*frac,-w/2,-h,w,h*frac);ctx.restore();}
 // the parts of each painted wall from its top down to where the feet of a man on it stand (24 px under the gap between the merlons)
 const BEDEM_NAPRED={'prop-bedem-sredina':.807,'prop-bedem-kula':.887,'prop-bedem-stepenice':655/780};
@@ -3438,6 +3439,8 @@ function napredFrac(id,h){return Math.min(.6,(h-(h*BEDEM_NAPRED[id]-24)+4)/h);}
 function drawBedemiNapred(){for(const T of world.traps||[]){if(T.kind!=='varadin'||T.x1<camera-500||T.x0>camera+VIEW_W+500)continue;const y=T.y+6,[ba,bb]=bedemX(T);
  for(const[id,x,h,fl]of[['prop-bedem-sredina',ba,BEDEM_H,false],['prop-bedem-kula',bb,300,false],['prop-bedem-stepenice',T.zid?.x,T.zid?.h,true],['prop-bedem-kula',T.kula?.x,T.kula?.h,false]]){const im=levelArt[id];if(im&&x!=null)drawImgTopOn(im,x,y,h,fl,napredFrac(id,h));}}}
 function drawBedemVaradina(T){const y=T.y+6,S=levelArt['prop-bedem-sredina'],KU=levelArt['prop-bedem-kula'],ST=levelArt['prop-bedem-stepenice'];
+ // D99: the town wall goes on behind the field (wall, the gate of Varadin, wall, the square tower) up to the stair wall; an old broken wall before the camp
+ for(const[id,dx,h]of VARADIN_ZALEDJE){const im=levelArt[id];if(im)drawImgOn(im,T.logor+dx,y,h);}
  if(T.zid&&ST)drawImgOn(ST,T.zid.x,y,T.zid.h,true);if(T.kula&&KU)drawImgOn(KU,T.kula.x,y,T.kula.h);
  {const TP=levelArt['prop-top-varadin'],BJ=levelArt['prop-barjak-varadin'];   // D103: Vuča's cannon behind the merlons, his banner on the tower
   if(TP&&T.zid)drawImgOn(TP,T.zid.x+T.zid.h*.55,y-(T.zid.h*655/780-24),105,true);if(BJ&&T.kula)drawImgOn(BJ,T.kula.x,y-(T.kula.h*830/936-24),240);}
@@ -5921,7 +5924,7 @@ const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','pro
  reka:['prop-mlin','prop-trska','prop-dzakovi','prop-tocak-vodeni','prop-cvece','prop-balvan','prop-zbun','prop-kola'],
  oranje:['prop-plast-sena','prop-snopovi','prop-seno','prop-kola-seno','prop-taraba-ravna','prop-kola','prop-zbun','prop-susara']};
 // loaded for the land but never scattered by decorate(): each stands once, where the song wants it (sumaStvari)
-const RUKOM={suma:['prop-zapis-hrast','prop-izvor','prop-koliba'],prevoj:['prop-zid-kamen','prop-bedem-sredina','prop-bedem-kula','prop-bedem-stepenice','prop-koplje-u-ledini','prop-top-varadin','prop-barjak-varadin']};
+const RUKOM={suma:['prop-zapis-hrast','prop-izvor','prop-koliba'],prevoj:['prop-zid-kamen','prop-bedem-sredina','prop-bedem-kula','prop-bedem-stepenice','prop-koplje-u-ledini','prop-top-varadin','prop-barjak-varadin','prop-bedem-kapija','prop-bedem-kula-cetvrtasta','prop-bedem-srusen']};
 const DECOR_H={'prop-zapis-hrast':400,'prop-izvor':125,'prop-koliba':270,'prop-kola-seno':150,'prop-kuca-brvnara':370,'prop-vajat':290,'prop-tezga':190,'prop-ves':150,'prop-djeram':300,'prop-most-drveni':330,'prop-most-uzad':340,'prop-dok':240,'prop-platforma-sneg':240,'prop-lanac':140,'prop-loza':130,'prop-medjas':70,'prop-kruska':300,'prop-korpe-grozdja':90,'prop-mreza-ribarska':170,'prop-tulum-ledjen':60,'prop-skela-dunav':150,'prop-top-varadin':110,'prop-barjak-varadin':260,'prop-krst-raskrsce':190,'prop-turski-sator':240,'prop-kuca':430,'prop-ambar':230,'prop-bunar':170,'prop-kola':120,'prop-taraba-ravna':110,'prop-taraba-slomljena':100,'prop-ograda-pleter':90,'prop-seno':120,'prop-snopovi':90,'prop-krcag':55,'prop-bure':70,'prop-sanduci':80,'prop-dzakovi':60,'prop-drvo-hrast':330,'prop-drvo-bukva':340,'prop-drvo-jela':330,'prop-drvo-sneg':300,'prop-panj':60,'prop-svetiliste':200,'prop-run-kamen':120,'prop-cvece':50,'prop-paprat':60,'prop-pecurke':40,'prop-korenje':130,'prop-zbun':70,'prop-stena-visoka':260,'prop-stena-luk':260,'prop-stena-mala':70,'prop-trska':110,'prop-trava':40,'prop-kamen-putokaz':110,'prop-stub-kameni':220,'prop-luk-kameni':240,'prop-svetiljka':150,'prop-klupa':50,'prop-stol':60,'prop-palisada':150,'prop-sator':240,'prop-strassarnica':340,'prop-kapija-tvrdjava':300,'prop-katapult':150,'prop-nakovanj':50,'prop-baklja-drzac':110,'prop-ognjiste':60,'prop-led':90,'prop-kristal':90,'prop-potpora-rudnik':220,'prop-vagon':90,'prop-sine':40,'prop-mlin':440,'prop-tocak-vodeni':220,'prop-susara':140,'prop-ograda-manastir':110,'prop-barjak-manastir':175,'prop-ograda-kamen-rusevina':110,'prop-vrata-slomljena':170,'prop-balvan':60,'prop-plast-sena':150,'prop-kola-seno':170};
 const decorIds=L=>DECOR[L.id]||[];
 // ---------- stakes on the hill behind the road (DOPUNA-34): Serbian knights the Ottoman army left as a warning ----------

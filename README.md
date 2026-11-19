@@ -522,6 +522,10 @@ Stefan: „kada smo na ovim zidinama neka budemo iza vrhova, ne ispred”, „da
 - **Prave merdevine (D103):** sve merdevine u igri su sada naslikane hrastove, prečke vezane konopcem (`merdevine-telo` se ponavlja u visinu, `merdevine-vrh` na vrhu; prečke ostaju na 28 px). Rekviziti Varadina: top iza zubaca na bedemu, žuto-crni barjak na kuli, korpe grožđa, ribarska mreža i mešina sa leđenom među ukrasima pohoda.
 - **Inventar za Codex:** `docs/INVENTAR-CODEX.md`, šta je nacrtano, šta je naručeno ove ture (D102 posmatrači i gard katane, D103 merdevine i rekviziti Varadina) i šta čeka nova sredstva.
 
+## 19. novembar: ceo bedem Varadina
+
+Tri slike iz D99 koje su čekale sad su u igri. Iza polja pod Varadinom bedem ide bez prekida: zid sa Velimirovicom, okrugla kula, zid sa gradskom kapijom, zid i četvrtasta kula, pa zid sa stepenicama po kome se ide (`VARADIN_ZALEDJE` u `game.js`). Srušen bedem stoji kao stara ruševina na polju pre logora. Sve je pozadina, ništa nije čvrsto. Skela na Dunavu još čeka mesto, jer u pohodu nema vode.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

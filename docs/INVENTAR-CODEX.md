@@ -12,7 +12,7 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Velimirovica, Toplica, Kosančić, knjigonoša | D96 | u igri |
 | Marko poji Šarca / pije sedeći | D97 | u igri (izvezeno ručno) |
 | Šarac se rita sa Markom | D98 | u igri |
-| Bedemi, kule, kapija, srušen bedem, bedem sa stepenicama, koplje u ledini | D99 | u igri pod Varadinom; kapija, srušen bedem i četvrtasta kula još nisu postavljeni |
+| Bedemi, kule, kapija, srušen bedem, bedem sa stepenicama, koplje u ledini | D99 | sve u igri pod Varadinom (19. 11.: iza polja zid, gradska kapija i četvrtasta kula do zida sa stepenicama; srušen bedem pre logora) |
 | Konj se rita bez jahača, Šarac se upire za rep | D100 | u igri (izvezeno ručno) |
 | Šarac se okreće sa Markom | D101 | u igri (izvezeno ručno) |
 
