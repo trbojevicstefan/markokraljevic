@@ -254,11 +254,11 @@ export function buildLayout(L,variant='day'){
   // ===== „Marko Kraljević i Vuča dženeral” (Pod Varadinom): the rooms of the song, in its order (19. 11.) =====
   // Prilep on a Sunday: the white church and its bell, the knjigonoša with Miloš's letter (the land's scroll lies by him),
   // then Marko's tower and four stones to strike in the order he armed himself; the gate of Prilep opens. No foe here.
-  prilep(){const x0=x,len=3000;ground(len);const kx=x0+1700;
+  prilep(){const x0=x,len=3450;ground(len);const kx=x0+1700;
    traps.push({kind:'prilep',x0,x1:x0+len,y:gy,crkva:x0+560,kula:kx,nodecor:[[x0,x0+len]]});
    narod.push({k:'putnica',x:x0-300,y:gy},{k:'zvoni',x:x0+230,y:gy},{k:'posta',x:x0+930,y:gy,face:-1},{k:'starica',x:x0+1090,y:gy,face:-1},{k:'seljanka',x:x0+1230,y:gy,face:-1},{k:'decak',x:x0+1360,y:gy,face:-1});
    pismo={x:x0+990,y:gy-44};crate(kx+345,'bure',{loot:{wine:1}});
-   traps.push({kind:'red',title:'OPREMA ZA MEGDAN',objs:['ТОПУЗ','САБЉА','ТУЛУМ','КОПЉЕ'].map((g,i)=>({x:kx+640+i*160,y:gy,glyph:g,small:true,h:130})),order:[1,3,2,0],tablet:{x:kx+480,y:gy},gate:{x:x0+len-70,y:gy},
+   traps.push({kind:'red',title:'OPREMA ZA MEGDAN',objs:['ТОПУЗ','САБЉА','ТУЛУМ','КОПЉЕ'].map((g,i)=>({x:kx+640+i*160,y:gy,glyph:g,small:true,h:130})),order:[1,3,2,0],tablet:{x:kx+480,y:gy},gate:{x:x0+len-480,y:gy},
     clue:'„Pa pripasa sablju okovanu, i prigrnu ćurak od kurjaka; pa uzimlje koplje ubojito, pa se spušta u podrume Šarcu; pa natoči tuluminu vina, objesi je o unkaš Šarinu, s desne strane tešku topuzinu, da ne kriva ni tamo ni amo.” Kucni topuzom u kamenove onim redom kojim se Marko opremao za megdan.',
     hint:'Kucni u četiri kamena redom kojim se Marko opremao. Zapis je kod kule.',wrong:'NIJE SE TAKO OPREMAO',win:'Sablja, koplje, tulum vina i teška topuzina: Marko je opremljen za megdan. Kapija Prilepa se otvara.'});
    busy.push([x0-40,x0+len]);},
@@ -266,16 +266,16 @@ export function buildLayout(L,variant='day'){
   // the fisherman, the ferry moored on the far side. The river is a hollow (two slopes and a bed) filled with water in front of
   // whoever is in it: Šarac wades it up to his belly. On foot nobody crosses (game.js: dunav).
   dunav(){const x0=x,y=gy,D=72,rl=Math.round(D*3.6/10)*10;ground(1400);const r0=x;ramp(D);ground(1000);const r1=x;ramp(-D);ground(240);
-   traps.push({kind:'dunav',x0,x1:x,y,kuca:x0+330,sto:x0+790,sarac:x0+1010,obala:r0,voda:[r0+Math.round(rl*.26),r1+rl-Math.round(rl*.26)],dno:y+D,skela:r1-190,nodecor:[[x0,x]]});
-   narod.push({k:'trgovac',x:x0+60,y},{k:'starac',x:x0+700,y},{k:'ribar',x:r0-60,y,face:1});busy.push([x0-40,x]);},
+   traps.push({kind:'dunav',x0,x1:x,y,kuca:x0+360,sto:x0+215,sarac:x0+655,obala:r0,voda:[r0+Math.round(rl*.26),r1+rl-Math.round(rl*.26)],dno:y+D,skela:r1-190,nodecor:[[x0,x]]});
+   narod.push({k:'trgovac',x:x0+60,y},{k:'starac',x:x0+1010,y},{k:'ribar',x:r0-60,y,face:1});busy.push([x0-40,x]);},
   // the dungeon of Varadin in the town wall by the road: a barred arch, „voda do koljena, a junačke kosti do ramena”. The
   // three voivodes stand behind the bars until Vuča has fallen and Marko opens it with his keys; the land's marvel lies in the
   // cell and is kept out of reach until then (game.js: tamnica)
   tamnica(){const x0=x,len=1500,c=x0+760;ground(len);rewards.push({x:c-60,y:gy,prio:5});
-   traps.push({kind:'tamnica',x0,x1:x0+len,y:gy,c,w:300,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
+   traps.push({kind:'tamnica',x0,x1:x0+len,y:gy,c,w:372,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
   // „i podaj im tri tovara blaga”: the ransom of Vuča and Velimir stands by the road to the last banner
-  blago(){const x0=x,len=1000;ground(len);for(const k of[.34,.52,.7]){crate(x0+len*k,'kovceg',{loot:{coins:40}});Object.assign(breakables[breakables.length-1],{tovar:true,w:112,h:104});}
-   traps.push({kind:'blago',x0,x1:x0+len,y:gy,nodecor:[[x0,x0+len]]});narod.push({k:'gradjanin',x:x0+150,y:gy,face:1},{k:'klice',x:x0+len-70,y:gy,face:-1});busy.push([x0-40,x0+len]);},
+  blago(){const x0=x,len=1300;ground(len);for(const k of[820,980,1140]){crate(x0+k,'kovceg',{loot:{coins:40}});Object.assign(breakables[breakables.length-1],{tovar:true,w:112,h:104});}
+   traps.push({kind:'blago',x0,x1:x0+len,y:gy,karuce:x0+345,nodecor:[[x0,x0+len]]});narod.push({k:'gradjanin',x:x0+670,y:gy,face:1},{k:'klice',x:x0+len-50,y:gy,face:-1});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
   mehana(){const x0=x,len=2400;ground(len);traps.push({kind:'mehana',x0,x1:x0+len,y:gy,kuca:x0+1150,sto:x0+1430,sarac:x0+1700,nodecor:[[x0+700,x0+1950]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Đemo Brđanin”: Marko led in chains past three gallows (Orid, Vučitrn, Zvečan) to Janja's tavern (game.js: okovi)

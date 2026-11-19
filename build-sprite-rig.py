@@ -771,6 +771,9 @@ D94_MODEL.update({"mounted-ritne": "mounted-idle"})
 D94_MODEL.update({c: "milos-idle" for c in ['posmatrac-seljanka', 'posmatrac-decak', 'posmatrac-starica', 'posmatrac-ribar', 'posmatrac-gradjanin']})   # D102 onlookers
 D94_MODEL.update({c: "sword-idle" for c in ['katana-gard', 'katana-gard-slomljen']})   # D102 the katana's guard   # D98: Šarac kicks with his hind legs (drawn at 0.90, given back below)
 D94_MODEL.update({c: "milos-idle" for c in ['velimirovica-idle', 'velimirovica-bezi', 'toplica-idle', 'kosancic-idle', 'knjigonosa-idle', 'knjigonosa-poklon']})
+# D105, D106 (19. 11.): Velimir (the katana's moves at the sabre-man's zoom; on his black horse like Vuča on the bedevija), the general's wife
+D94_MODEL.update({f"velimir-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'hurt', 'death', 'svezan']})
+D94_MODEL.update({"velimir-jase": "beg-mounted", "dzeneralovica-idle": "milos-idle", "dzeneralovica-otkljucava": "milos-idle"})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')

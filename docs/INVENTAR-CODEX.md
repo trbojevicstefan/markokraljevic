@@ -25,17 +25,21 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | **Merdevine** (pločica tela koja se ponavlja u visinu + vrh) | Stefan: „ove su baš jadne” | D103 ✔ (sve merdevine u igri) |
 | **Rekviziti Varadina**: skela na Dunavu, top na lafetu, žuto-crni barjak, korpe grožđa, ribarska mreža na kocu, mešina i leđen u travi | „rekvizita … lepo ih raspodeli” | D103 ✔ (top i barjak na bedemima Varadina; korpe među ukrasima; od 19. 11. skela stoji na drugoj obali Dunava, mreža kod ribara, a mešina i leđen kod Markovog koplja) |
 
+## Naručeno 19. 11. (D104–D106), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Tamnica Varadina iznutra, krčma kod Beograda, Markova kula, Vučine zlatne karuce | D104 ✔ |
+| Proba nove kapije u tri četvrtine (`kapija-34-kamen`, `kapija-34-resetka`) | D104 ✔, samo kapija Prilepa; čeka Stefanovu reč |
+| Velimir: peške (5 klipova), na vrancu, svezan | D105 ✔ |
+| Dženeralovica sa ključevima (stoji, otključava) | D106 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
 |---|---|---|
-| Velimir, mladi sin Vuče, na vrancu (kit kao beg ili jahač) | Pod Varadinom, prvi talas katana | sada se samo pominje u stihovima |
-| Dženeralovica (piše knjigu Marku, otvara tamnicu) | kraj pohoda | jedan `-idle` i jedan `-pise` |
-| Vučine zlatne karuce sa vrancima (Miloš traži da poveze starog Toplicu) | kraj pohoda, slika prelaza | jedna velika slika |
-| Tamnica Varadina iznutra (voda do kolena, rešetka) | soba `tamnica` | od 19. 11. je nacrtana kodom u luku zida (kosti, voda, rešetka); slika bi bila lepša |
-| Krčma kod Beograda sa natpisom, skeledžija koji beži | soba `dunav` | sada je krčma `prop-kuca` |
-| Markova tanka kula u Prilepu | soba `prilep` | sada je `prop-bedem-kula` |
 | Noćna i olujna verzija slojeva Varadina | varijante noć/oluja | sada se daje dan sa zatamnjenjem |
+| Nova kapija za ostale stilove (drvo, rudnik, podrum), ako proba u Prilepu prođe | svi pohodi sa kapijom | po uzoru na `kapija-34-kamen` |
 | Naslikani stari zidovi sa lukom (soba `bedem` po celoj igri) | svi pohodi sa sobom `bedem` | po uzoru na D99 |
 | Posmatrači za ostale pohode (Manastir, Oranje, Tvrđava) | | po 3 lika, kao D102 |
 | `vrac-death` | Crni vrač | jedini klip koji igra traži, a nema ga |

@@ -543,6 +543,18 @@ Ljudi iz pesme stoje tamo gde im je soba (`narod` u `world.js`, `setupRadnici`):
 
 Provera: `pesme-test.mjs` igra Prilep, zagonetku, krčmu, Dunav, tamnicu i tovare (160 provera); bot u `road-test.mjs` prelazi ceo pohod.
 
+## 19. novembar (3): naslikana tamnica, krčma, Markova kula, karuce, Velimir, dženeralovica i proba nove kapije
+
+Stefan: „Naslikaj tamnicu i sve što ti treba iz inventara”, „ugasi vetar, može da ostane, ali da nas ne pomera na 9-om nivou, i pokušaj da središ kapije”. Tri narudžbine kod Codexa (GPT-6.1-Terra), sve iz prvog pokušaja:
+
+- **D104, slike:** `prop-tamnica-varadin` (zid sa lukom, lobanje i kosti do ramena, lanci, snop svetla, zelena voda), `prop-krcma-beograd` (trem, sto, burad, tabla sa grozdom, direk i korito za konja), `prop-markova-kula` (vitka kula sa čardakom), `prop-karuce-zlatne` (zlatne karuce sa četiri vranca), `kapija-34-kamen` i `kapija-34-resetka` (proba kapije).
+- **D105, Velimir:** `velimir-idle/run/attack/hurt/death`, `velimir-jase` (na vrancu), `velimir-svezan` (leži svezan u travi). U prvom talasu dojaše na čelu katana, sjaše kad boj počne i bije se peške (`look:'velimir'`); kad padne, leži svezan kod Markovog koplja.
+- **D106, dženeralovica:** `dzeneralovica-idle` i `-otkljucava`. Kad Vuča padne, stoji kod tamnice sa ključevima; E („Pusti mene do tri pobratima”) i ona otključava.
+- **Tamnica** se crta slikom; vojvode, voda preko kolena i rešetka su i dalje iz igre (`TAM_ART`, `drawTamnica`). **Krčma** ima svoj sto pod tremom (E za vino) i Šarac pije iz korita kod direka. **Karuce** stoje kod tri tovara.
+- **Proba nove kapije** (`drawKapija34`, samo kapija Prilepa): kapija-kula gledana u tri četvrtine. Cela stoji iza Marka, a deo desno od luka crta se još jednom ispred njega, pa on ulazi u luk i izlazi iza kule (zid se proredi dok je iza njega). Rešetka se diže uz lice zida i ostaje vidljiva iznad luka. Ostale kapije u igri nisu dirane dok Stefan ne kaže da li ova valja.
+- **Vetar** na devetom pohodu se vidi i čuje, ali ne gura Marka i ne najavljuje se natpisom.
+- Slike soba devetog pohoda traže se čim pohod počne (`PREVOJ_SLIKE`), da nijedna ne iskoči tek kad Marko priđe.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

@@ -1,0 +1,111 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        89,
+        147,
+        423,
+        489
+      ],
+      "height": 342,
+      "width": 334,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        93,
+        148,
+        419,
+        489
+      ],
+      "height": 341,
+      "width": 326,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        93,
+        145,
+        418,
+        489
+      ],
+      "height": 344,
+      "width": 325,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        91,
+        160,
+        421,
+        489
+      ],
+      "height": 329,
+      "width": 330,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        75,
+        173,
+        437,
+        489
+      ],
+      "height": 316,
+      "width": 362,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        87,
+        156,
+        425,
+        489
+      ],
+      "height": 333,
+      "width": 338,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        87,
+        152,
+        424,
+        489
+      ],
+      "height": 337,
+      "width": 337,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        91,
+        153,
+        420,
+        489
+      ],
+      "height": 336,
+      "width": 329,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.9447513812154696,
+  "targetHeight": 342,
+  "visualReview": "pending"
+}

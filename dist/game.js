@@ -1347,7 +1347,7 @@ function drawPlayer(){if(!p||mode==='dead'||p.pinned||(p.lying&&!p.scena)||p.bij
  drawFairy();}
 // Distance-driven stride: no root bobbing or rotation, soles stay on the rig baseline; tw is the way to the next frame (inline: animation-tests.mjs runs it alone).
 function locomotionPose(e){const stride=e.type==='musa'?120:e.type==='shield'?76:90;const g=(e.walk||0)/stride*6,f=Math.floor(g);return{name:e.type+'-run',frame:f%6,tw:g-f};}
-function drawSoldier(e){if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)return;if(e.besan&&e.alive)halo(e.x+(e.knock||0),e.y-62,64,'rgba(255,60,40,.26)',.55+.3*Math.sin(time*9+e.id));const x=e.x+(e.knock||0);shadow(x,e.y,e.type==='shield'?36:32,.5);const atk=e.type==='archer'?(e.perch&&p.y>e.y+60&&rig?.['archer-shoot-down']?'archer-shoot-down':'archer-shoot'):e.type+'-attack';let pose={name:'cast/'+e.type,frame:0};const F=FOES[e.type];if((level||e.air)&&(e.climb||(!e.grounded&&e.air)||e.landT>0||(e.tossedT>0&&rig?.[e.type+'-launch']))&&e.mode!=='windup'&&e.mode!=='recover')pose=airPose(e);else if(e.type==='palikuca'&&e.burn>0&&rig?.['palikuca-burn'])pose={name:'palikuca-burn',...loopAt(time*10,rig['palikuca-burn'].frames.length)};else if(e.reactT>0&&rig?.[e.react]){const n=rig[e.react].frames.length;pose={name:e.react,...onceAt(Math.min(n-1,(1-e.reactT/e.reactDur)*n))};}else if(F){pose=foePose(e,F);}else if(movePose(e)){pose=movePose(e);}else if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);pose={name:atk,...onceAt(e.type==='archer'?Math.min(3,progress*4):Math.min(2,progress*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;pose={name:atk,...onceAt(e.type==='archer'?4+Math.min(1,(1-e.timer/duration)*2):3+Math.min(2,(1-e.timer/duration)*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.moveT>0&&e.stun<=0&&rig?.[e.type+'-run']){pose=locomotionPose(e);}else if(e.hurtT>0&&rig?.[e.type+'-hurt']){pose={name:e.type+'-hurt',...onceAt(Math.min(3,(1-e.hurtT/.34)*4))};}else if(rig?.[e.type+'-idle']){pose={name:e.type+'-idle',...idleAt(e.type,e.id),sy:1+Math.sin(time*2.4+e.id)*.008};}else{pose.sy=1+Math.sin(time*2.6+e.id)*.012;}
+function drawSoldier(e){if(e.jase&&e.velimir){drawVelimirJase(e);return;}if(e.grappling||e.x<camera-140||e.x>camera+VIEW_W+140)return;if(e.besan&&e.alive)halo(e.x+(e.knock||0),e.y-62,64,'rgba(255,60,40,.26)',.55+.3*Math.sin(time*9+e.id));const x=e.x+(e.knock||0);shadow(x,e.y,e.type==='shield'?36:32,.5);const atk=e.type==='archer'?(e.perch&&p.y>e.y+60&&rig?.['archer-shoot-down']?'archer-shoot-down':'archer-shoot'):e.type+'-attack';let pose={name:'cast/'+e.type,frame:0};const F=FOES[e.type];if((level||e.air)&&(e.climb||(!e.grounded&&e.air)||e.landT>0||(e.tossedT>0&&rig?.[e.type+'-launch']))&&e.mode!=='windup'&&e.mode!=='recover')pose=airPose(e);else if(e.type==='palikuca'&&e.burn>0&&rig?.['palikuca-burn'])pose={name:'palikuca-burn',...loopAt(time*10,rig['palikuca-burn'].frames.length)};else if(e.reactT>0&&rig?.[e.react]){const n=rig[e.react].frames.length;pose={name:e.react,...onceAt(Math.min(n-1,(1-e.reactT/e.reactDur)*n))};}else if(F){pose=foePose(e,F);}else if(movePose(e)){pose=movePose(e);}else if(e.mode==='windup'){const progress=1-e.timer/(e.windupDuration||.7);pose={name:atk,...onceAt(e.type==='archer'?Math.min(3,progress*4):Math.min(2,progress*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.mode==='recover'){const duration=e.type==='shield'?1.1:.85;pose={name:atk,...onceAt(e.type==='archer'?4+Math.min(1,(1-e.timer/duration)*2):3+Math.min(2,(1-e.timer/duration)*3)),keyAt:(e.type==='archer'?4.5:3.5)/6};}else if(e.moveT>0&&e.stun<=0&&rig?.[e.type+'-run']){pose=locomotionPose(e);}else if(e.hurtT>0&&rig?.[e.type+'-hurt']){pose={name:e.type+'-hurt',...onceAt(Math.min(3,(1-e.hurtT/.34)*4))};}else if(rig?.[e.type+'-idle']){pose={name:e.type+'-idle',...idleAt(e.type,e.id),sy:1+Math.sin(time*2.4+e.id)*.008};}else{pose.sy=1+Math.sin(time*2.6+e.id)*.012;}
  // the feint: raised, held a breath, then the sabre comes back down; the double cut: the plain cut, then the second (sword-drugi)
  // the akindži's rush through Marko: at full gallop (akindzija-charge, looped)
  if(e.prolaz&&rig?.['akindzija-charge']){const n=rig['akindzija-charge'].frames.length;pose={name:'akindzija-charge',...loopAt(time*16,n)};}
@@ -3365,6 +3365,9 @@ function drawKosovka(T){if(T.x1<camera-400||T.x0>camera+VIEW_W+400)return;const 
 // daje”. Velimirovica ga vidi sa bedema („nešto crno drži u zubima, kolik’ jagnje od pola godine”). Šarac kopitom upozori na
 // katane; Marko ih razbije „kako soko među golubove”, sveže Velimira, pa Vuču; dženeralovica pušta tri vojvode iz tamnice.
 let varadinScena=false;
+// Velimir at the head of the katane, on his black horse until the fight begins (D105 velimir-jase): he rides in from the town
+function drawVelimirJase(e){const T=varadinTrap(),R=rig?.['velimir-jase'];if(!R||!T)return;const t=time-(T.velT||0),k=Math.max(0,1-t/1.7),x=e.x+k*k*520;shadow(x,e.y,56,.45);
+ rigDraw('velimir-jase',k>0||Math.abs(e.vx||0)>15?loopF(time*11,R.frames.length):loopF(time*2.2,2),x,e.y,e.x>p.x?-1:1);if(k<=0)textLabel('VELIMIR',x,e.y-158,{font:'bold 12px Georgia',color:'#ffd9c0',glow:'#3a0a04'});}
 function varadinTrap(){return(world.traps||[]).find(t=>t.kind==='varadin')||null;}
 function varadinKatana(T,k,type){const hp=FOE_HP_G[type]||90,x=T.logor+620+k*85,y=groundAt(x,T.y-60)??T.y;
  const e={look:type==='sword'&&rig?.['katana-idle']?'katana':undefined,id:43000+(T.n=(T.n||0)+1),x,y,vx:0,vy:0,w:36,h:75,hp,maxHp:hp,type,zone,face:-1,mode:'idle',timer:.8+k*.15,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,katana:T.talas};
@@ -3390,17 +3393,18 @@ function updateVaradin(dt){varadinScena=false;const T=varadinTrap();if(!T||!leve
   if(Math.floor(T.pt/2.6)!==T.gutljaj){T.gutljaj=Math.floor(T.pt/2.6);if(T.gutljaj>0){const sar=T.gutljaj%2===0;label(sar?'POLA ŠARCU DAJE':'POLA PIJE',sar?T.logor+130:p.x,T.y-170,'#ffcf9a');p.pijeT=time;p.pijeK=sar?'poji':'pije';if(sar)T.saracPije=time+.45;sfx('gulp',{gain:.4,x:p.x});}}
   if(T.pt>9.5&&!T.v1){T.v1=true;speak('Pošetala Velimirovica po bedemu grada Varadina, u polju je opazila Marka: „Sjedi junak u polju širokom, konj mu nije kakvino su konji, veće šaren kako i goveče; nešto crno drži u zubima, kolik’ jagnje od pola godine.”',10,'VELIMIROVICA');}
   if(T.pt>20&&!T.v2){T.v2=true;T.talas=1;speak('„Velimire, moje čedo drago! Uzmi, sine, za trista katana, idi dole u polje široko, dovedi mi onoga junaka.”',7,'VUČA DŽENERAL');sfx('horn_call',{gain:.6});
-   ['sword','kopljanik','sword','sword','kopljanik'].forEach((t,k)=>{const e=varadinKatana(T,k,t);if(k===2){e.velimir=true;e.hp=e.maxHp=Math.round(e.maxHp*1.7);}});}
+   ['sword','kopljanik','sword','sword','kopljanik'].forEach((t,k)=>{const e=varadinKatana(T,k,t);if(k===0){e.velimir=true;e.hp=e.maxHp=Math.round(e.maxHp*1.7);
+     if(rig?.['velimir-idle']){e.look='velimir';rigClips('velimir',0);if(rig['velimir-jase']){e.jase=true;T.velT=time;}}}});}   // D105: he rides in on his black horse
   if(T.pt>23){T.ph='opkole';T.pt=0;}
   return true;}
  if(T.ph==='opkole'){p.vx=0;p.x=seat;p.face=1;
   if(Math.floor(T.pt*3)%2===0&&T.pt<14)T.lupa=time;if(Math.floor(T.pt*3)!==T.kop){T.kop=Math.floor(T.pt*3);if(T.kop%2===0)sfx('hoof',{gain:.5,x:T.logor+130});}
   if(!T.upozori){T.upozori=true;speak('Marko sjedi, pije mrko vino, al’ katane Šarac opazio: poče nogam’ o zemljicu tući, primiče se svome gospodaru.',7);label('ŠARAC TUČE KOPITOM',T.logor+130,T.y-180,'#ffe39a');}
-  if(T.pt>2.5&&tap('KeyE')||T.pt>12){T.ph='boj1';T.pt=0;p.sedi=0;horseMounted=true;p.face=1;T.koplje=false;p.x=T.logor+60;sfx('cloth',{gain:.6});sfx('hoof',{gain:.7});
+  if(T.pt>2.5&&tap('KeyE')||T.pt>12){T.ph='boj1';T.pt=0;p.sedi=0;horseMounted=true;p.face=1;T.koplje=false;p.x=T.logor+60;for(const e of world.enemies)if(e.jase&&e.velimir){e.jase=false;dust(e.x,e.y,18,2);sfx('horse',{gain:.5,x:e.x})||sfx('hoof',{gain:.6,x:e.x});}sfx('cloth',{gain:.6});sfx('hoof',{gain:.7});
    speak('Popi Marko leđenicu vina, baci leđen u zelenu travu, pa se turi na ramena Šarcu. Da je kome pogledati bilo: kad udari u katane Marko, kako soko među golubove!',8);}
   return true;}
  if(T.ph==='boj1'){if(!world.enemies.some(e=>e.alive&&e.katana===1)){T.ph='boj2pre';T.pt=0;
-   speak('Pobježe mu Velimir dijete, ćera njega na Šarinu Marko, dostiže ga, dovati ga malo topuzinom: pade dite u zelenu travu. Marko mu savezao i noge i ruke, pa g’ objesi Šarcu o unkašu.',9);label('VELIMIR SVEZAN',p.x,p.y-190,'#ffe39a');}
+   speak('Pobježe mu Velimir dijete, ćera njega na Šarinu Marko, dostiže ga, dovati ga malo topuzinom: pade dite u zelenu travu. Marko mu savezao i noge i ruke, pa g’ objesi Šarcu o unkašu.',9);label('VELIMIR SVEZAN',p.x,p.y-190,'#ffe39a');T.vezan=true;corpses=corpses.filter(c=>c.type!=='velimir');}
   return false;}
  if(T.ph==='boj2pre'){if(T.pt>6){T.ph='boj2';T.pt=0;T.talas=2;sfx('cannon',{gain:.8});shake=settings.reduced?0:5;
    speak('„Sad ćeš viđet’, dok se starac krene!” Vuča drmnu na gradu topove, sastavi katane, opkoliše Marka sa četiri strane. Sablja mu je u desnici ruci, u zubima dizgen od Šarina!',9,'VUČA DŽENERAL');
@@ -3429,7 +3433,8 @@ function drawVaradin(T){if(T.posle&&T.milos&&!T.milos.tam&&T.ph!=='kraj'){drawVo
   if(T.koplje)line(T.logor+70,y-118,T.logor+100,y-96,'#9a7a4a',2);}
  if((T.ph==='pije'||T.ph==='opkole')&&!slikaNa('prop-tulum-ledjen',seat2(T)+78,y+4,54)){ellipse(seat2(T)+50,y-8,16,10,'#6a3a1a');ellipse(seat2(T)+50,y-16,6,4,'#4a2a10');}
  if(T.ph==='opkole'&&T.pt>2.5)textLabel('E · NA ŠARCA',p.x,y-200,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
- for(const e of world.enemies)if(e.velimir&&e.alive)textLabel('VELIMIR',e.x,e.y-142,{font:'bold 12px Georgia',color:'#ffd9c0',glow:'#3a0a04'});
+ {const SV=T.vezan&&rig?.['velimir-svezan'];if(SV&&T.ph!=='kraj'){const vx=T.logor+250;rigDraw('velimir-svezan',loopF(time*2.4,SV.frames.length),vx,y+2,1);if(Math.abs(p.x-vx)<420)textLabel('VELIMIR SVEZAN',vx,y-70,{font:'bold 11px Georgia',color:'#ffd9c0',glow:'#3a0a04'});}}
+ for(const e of world.enemies)if(e.velimir&&e.alive&&!e.jase)textLabel('VELIMIR',e.x,e.y-142,{font:'bold 12px Georgia',color:'#ffd9c0',glow:'#3a0a04'});
  // Miloš, out of Vuča's dungeon, at the end
  if(T.milos&&!T.milos.tam&&rig?.['milos-idle']){const R=rig['milos-idle'];shadow(T.milos.x,y,36,.4);rigDraw('milos-idle',loopF(time*6,R.frames.length),T.milos.x,y,-1);
   if(Math.abs(p.x-T.milos.x)<800)textLabel('MILOŠ OD POCERJA',T.milos.x,y-176,{font:'bold 12px Georgia',color:'#d8ecff'});}drawVojvode(T);}
@@ -3466,8 +3471,8 @@ function drawVojvode(T){if(!T.milos||T.milos.tam)return;const y=T.y;for(const[c,
 // --- Prilep: „Stade pošta pred bijelom crkvom”; „pa on ode svojoj tankoj kuli, sjede malo, te se napi vina” ---
 function drawPrilep(T){if(T.x1<camera-700||T.x0>camera+VIEW_W+700)return;const y=T.y;
  slikaNa('prop-crkva-samodreza',T.crkva,y+2,470);if(Math.abs(p.x-T.crkva)<760)textLabel('BELA CRKVA U PRILEPU',T.crkva,y-488,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
- slikaNa('prop-bedem-kula',T.kula,y+6,430);slikaNa('prop-barjak-srpski',T.kula,y-(430*830/936-24),150);slikaNa('prop-stol',T.kula+232,y+6,62);
- if(Math.abs(p.x-T.kula)<760)textLabel('MARKOVA KULA',T.kula,y-452,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});}
+ const MK=slikaNa('prop-markova-kula',T.kula,y+6,540);if(!MK){slikaNa('prop-bedem-kula',T.kula,y+6,430);slikaNa('prop-barjak-srpski',T.kula,y-(430*830/936-24),150);}slikaNa('prop-stol',T.kula+232,y+6,62);
+ if(Math.abs(p.x-T.kula)<760)textLabel('MARKOVA KULA',T.kula+(MK?150:0),y-(MK?250:452),{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});}
 // --- Beograd and the Danube ---
 // „Kad je bio pokraj Biograda, uvrati se, te se napi vina; pa odatle poklopi Šarina, za Dunavom skela dogodi se; dvaput Marko
 // skeledžiju viknu, pa ga više ni čekati ne šće, već naćera Šarca na Dunavo.” The tavern with Šarac tied before it, a cup at
@@ -3500,10 +3505,9 @@ function updateDunav(dt){const T=dunavTrap();if(!T||!level)return;const y=T.y,V=
   // „Ili grmi, il’ se zemlja trese? … već pucaju na gradu topovi”: the šenluk of Varadin is heard from the bank
   for(const[d,g]of[[.5,.5],[1.5,.42],[2.3,.5]])sfx('cannon',{gain:g,delay:d,x:p.x+900});shake=settings.reduced?0:3;toast('Na Varadinu pucaju topovi: Vuča čini šenluk.',3.4);prelazKad('senluk');}}
 function drawDunav(T){if(T.x1<camera-700||T.x0>camera+VIEW_W+700)return;const y=T.y,nadM=horseMounted?250:190;
- slikaNa('prop-kuca',T.kuca,y+8,400);textLabel('KRČMA KOD BIOGRADA',T.kuca,y-352,{font:'bold 14px Georgia',color:'#ffe2a8',glow:'#3a0a04'});
- slikaNa('prop-bure',T.kuca+335,y+4,74);slikaNa('prop-stol',T.sto,y+6,62);slikaNa('prop-mreza-ribarska',T.obala-200,y+6,165);
- line(T.sarac-70,y,T.sarac-70,y-120,'#5e3c1e',8);
- if(!T.jase){line(T.sarac-70,y-96,T.sarac-30,y-80,'#9a7a4a',2);shadow(T.sarac,y,60,.4);saracDraw(T.sarac,y,1,{scale:.86},'sarac-stoji');}
+ const KR=slikaNa('prop-krcma-beograd',T.kuca,y+6,330);if(!KR){slikaNa('prop-kuca',T.kuca,y+8,400);slikaNa('prop-bure',T.kuca+335,y+4,74);slikaNa('prop-stol',T.sto,y+6,62);line(T.sarac-70,y,T.sarac-70,y-120,'#5e3c1e',8);}
+ textLabel('KRČMA KOD BIOGRADA',T.kuca,y-(KR?340:352),{font:'bold 14px Georgia',color:'#ffe2a8',glow:'#3a0a04'});slikaNa('prop-mreza-ribarska',T.obala-200,y+6,165);
+ if(!T.jase){if(!KR)line(T.sarac-70,y-96,T.sarac-30,y-80,'#9a7a4a',2);shadow(T.sarac,y,60,.4);saracDraw(T.sarac,y,KR?-1:1,{scale:.86},KR&&Math.sin(time*.5+2)>.2?'sarac-pije':'sarac-stoji');}
  slikaNa('prop-trska',T.obala-30,y+10,105);slikaNa('prop-dok',T.obala+70,y+52,165);
  slikaNa('prop-trska',T.voda[1]+70,y+10,105);slikaNa('prop-skela-dunav',T.skela,y+40+Math.sin(time*1.3)*2,150);
  if(!T.ph||T.done)return;
@@ -3526,7 +3530,7 @@ function drawDunavNapred(){const T=level&&dunavTrap();if(!T)return;const[a,b]=T.
 // izvadi tri vojvode mlade”), the voivodes come up to the road and a ladder leads down to what lies in the dungeon.
 function tamnicaTrap(){return(world.traps||[]).find(t=>t.kind==='tamnica')||null;}
 const vucaPao=()=>!world.enemies.some(e=>e.champion&&e.alive);
-function useTamnica(){const T=tamnicaTrap();if(!T||T.open||!vucaPao()||!p.grounded||Math.abs(p.y-T.y)>50||Math.abs(p.x-T.c)>T.w/2+150)return false;
+function useTamnica(){const T=tamnicaTrap();if(!T||T.open||!vucaPao()||!p.grounded||Math.abs(p.y-T.y)>50||Math.abs(p.x-T.c)>T.w/2+170)return false;
  T.open=time;sfx('gate',{gain:.9,x:T.c});sfx('ring',{gain:.6,rate:.8});shake=settings.reduced?0:4;addCoins(30,T.c+T.w/2+160,T.y-90);
  speak('Pa uzima od tavnice ključe, te otvori prokletu tavnicu, i izvadi tri vojvode mlade.',7);label('TAMNICA JE OTVORENA',T.c,T.y-250,'#ffe39a');return true;}
 function updateTamnica(dt){const T=tamnicaTrap();
@@ -3535,26 +3539,39 @@ function updateTamnica(dt){const T=tamnicaTrap();
    speak(vucaPao()?'Cvili junak Miloš od Pocerja, privlači se na pendžer tavnici. Otvori tamnicu Vučinim ključima.':'Cvili Miloš, kako ljuta guja, privlači se na pendžer tavnici, te on gleda junak po sokaci, ne bi l’ koga znana opazio.',8);}}
  const B=(world.traps||[]).find(t=>t.kind==='blago');if(B&&!B.rec&&(world.breakables||[]).filter(b=>b.tovar).every(b=>b.opened)&&(world.breakables||[]).some(b=>b.tovar)){B.rec=true;
   speak('A vojvode dijeliše blago, pa se rujna nakitiše vina, i u b’jelo izljubiše lice, svaki Marka u bijelu ruku.',8);label('TRI TOVARA BLAGA',p.x,p.y-190,'#ffe39a');}}
-const VOJVODE=[['toplica-idle','STARI TOPLICA',160,-88],['milos-idle','MILOŠ OD POCERJA',196,0],['kosancic-idle','KOSANČIĆ IVAN',176,88]];
-function drawTamnica(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y,c=T.c,w=T.w,H=176,x0=c-w/2,x1=c+w/2,K=worldImg('kosti-delovi'),otv=T.open?Math.min(1,(time-T.open)/1.2):0;
- // the wall of Varadin with its towers; the cell is a dark arch in it
- slikaNa('prop-bedem-sredina',c,y+6,262);slikaNa('prop-bedem-kula-cetvrtasta',c-470,y+6,340);slikaNa('prop-bedem-kula',c+470,y+6,360);
- const luk=()=>{ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x0,y-H+70);ctx.quadraticCurveTo(x0,y-H,x0+70,y-H);ctx.lineTo(x1-70,y-H);ctx.quadraticCurveTo(x1,y-H,x1,y-H+70);ctx.lineTo(x1,y);ctx.closePath();};
- ctx.save();luk();ctx.fillStyle='#14110f';ctx.fill();ctx.clip();fillWall(x0,y-H,w,H,true);const g=ctx.createLinearGradient(0,y-H,0,y);g.addColorStop(0,'rgba(0,0,0,.72)');g.addColorStop(1,'rgba(0,0,0,.34)');ctx.fillStyle=g;ctx.fillRect(x0,y-H,w,H);
- // bones heaped „do ramena” by the wall and strewn over the floor
- if(K){const B=propBounds(K),kh=22,kw=B.w*kh/B.h*.6;for(const[dx,dy,f]of[[6,0,1],[150,0,-1],[10,-16,-1],[2,-32,1],[14,-48,-1],[4,-64,1],[18,-80,-1]]){ctx.save();ctx.translate(x0+dx+(f<0?kw:0),y+dy-34);ctx.scale(f,1);ctx.drawImage(K,B.x,B.y,B.w,B.h,0,-kh,kw,kh);ctx.restore();}}
- if(otv<1)VOJVODE.forEach(([cl,,,dx],i)=>{const R=rig?.[cl];if(R){ctx.globalAlpha=1-otv;rigDraw(cl,loopF(time*5+i*1.7,R.frames.length),c+10+dx*.8,y,i===1?1:-1,{scale:.9});ctx.globalAlpha=1;}});
+const VOJVODE=[['toplica-idle','STARI TOPLICA',160,-96],['milos-idle','MILOŠ OD POCERJA',196,0],['kosancic-idle','KOSANČIĆ IVAN',176,96]];
+// D104: the dungeon is painted (prop-tamnica-varadin: the wall, the arch, the cell with its skulls, chains and water); its arch
+// spans x 390-1135, y 675-1023 of the 1536x1024 picture. The voivodes, the water over their knees and the bars are the game's.
+const TAM_ART={L:390,R:1135,V:675,D:1024,top:469,W:1536};
+function drawTamnica(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y,c=T.c,im=worldImg('prop-tamnica-varadin'),otv=T.open?Math.min(1,(time-T.open)/1.2):0,pao=vucaPao();
+ const s=im?T.w/(TAM_ART.R-TAM_ART.L):1,H=im?(TAM_ART.D-TAM_ART.V)*s:176,cc=im?c+((TAM_ART.L+TAM_ART.R)/2-TAM_ART.W/2)*s:c,w=T.w,x0=cc-w/2,x1=cc+w/2,K=worldImg('kosti-delovi');
+ slikaNa('prop-bedem-kula-cetvrtasta',c-500,y+6,340);slikaNa('prop-bedem-kula',c+500,y+6,360);
+ const luk=(u=0)=>{ctx.beginPath();ctx.moveTo(x0+u,y+2);ctx.lineTo(x0+u,y-H*.4);ctx.bezierCurveTo(x0+u,y-H*.86,cc-w*.3,y-H+u,cc,y-H+u);ctx.bezierCurveTo(cc+w*.3,y-H+u,x1-u,y-H*.86,x1-u,y-H*.4);ctx.lineTo(x1-u,y+2);ctx.closePath();};
+ if(im)ctx.drawImage(im,0,TAM_ART.top,TAM_ART.W,TAM_ART.D-TAM_ART.top,c-TAM_ART.W*s/2,y+2-(TAM_ART.D-TAM_ART.top)*s,TAM_ART.W*s,(TAM_ART.D-TAM_ART.top)*s);
+ else slikaNa('prop-bedem-sredina',c,y+6,262);
+ ctx.save();luk(im?5:0);if(!im){ctx.fillStyle='#14110f';ctx.fill();}ctx.clip();
+ if(!im){fillWall(x0,y-H,w,H,true);const g=ctx.createLinearGradient(0,y-H,0,y);g.addColorStop(0,'rgba(0,0,0,.72)');g.addColorStop(1,'rgba(0,0,0,.34)');ctx.fillStyle=g;ctx.fillRect(x0,y-H,w,H);
+  if(K){const B=propBounds(K),kh=22,kw=B.w*kh/B.h*.6;for(const[dx,dy,f]of[[6,0,1],[150,0,-1],[10,-16,-1],[2,-32,1],[14,-48,-1],[4,-64,1],[18,-80,-1]]){ctx.save();ctx.translate(x0+dx+(f<0?kw:0),y+dy-34);ctx.scale(f,1);ctx.drawImage(K,B.x,B.y,B.w,B.h,0,-kh,kw,kh);ctx.restore();}}}
+ if(otv<1)VOJVODE.forEach(([cl,,,dx],i)=>{const R=rig?.[cl];if(R){ctx.globalAlpha=1-otv;rigDraw(cl,loopF(time*5+i*1.7,R.frames.length),cc+24+dx,y+2,i===1?1:-1,{scale:.9});ctx.globalAlpha=1;}});
  // water to the knee
- ctx.fillStyle='rgba(58,104,116,.62)';ctx.fillRect(x0,y-38,w,38);ctx.beginPath();for(let x=x0;x<=x1;x+=10)ctx.lineTo(x,y-38+Math.sin(time*1.8+x*.05)*1.6);ctx.strokeStyle='rgba(200,232,230,.6)';ctx.lineWidth=1.5;ctx.stroke();
+ ctx.fillStyle=im?'rgba(52,84,62,.6)':'rgba(58,104,116,.62)';ctx.fillRect(x0,y-34,w,38);ctx.beginPath();for(let x=x0;x<=x1;x+=10)ctx.lineTo(x,y-34+Math.sin(time*1.8+x*.05)*1.6);ctx.strokeStyle='rgba(206,232,206,.55)';ctx.lineWidth=1.5;ctx.stroke();
  // the bars, raised into the arch when the dungeon is opened
- const dig=otv*(H-18);for(let x=x0+16;x<x1;x+=24)line(x,y-H,x,y-dig,'#2c2c32',5);for(const k of[.3,.68]){const yy=y-H*k-dig*(1-k);if(yy>y-H+6)line(x0,yy,x1,yy,'#24242a',6);}
- ctx.restore();ctx.save();luk();ctx.lineWidth=9;ctx.strokeStyle='#5d4f3f';ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#a89474';ctx.stroke();ctx.restore();
- if(Math.abs(p.x-c)<800)textLabel('TAMNICA VARADINA',c,y-282,{font:'bold 13px Georgia',color:'#e8dcc8',glow:'#1a0a04'});
- if(!T.open){if(Math.abs(p.x-c)<560)textLabel('„IZBAVLJAJ ME, POBRATIME MARKO!”',c,y-H-14,{font:'italic bold 12px Georgia',color:'#d8ecff',glow:'#04101a'});
-  if(vucaPao()&&p.grounded&&Math.abs(p.y-y)<50&&Math.abs(p.x-c)<w/2+150)textLabel('E · OTVORI TAMNICU',p.x,p.y-(horseMounted?250:190),{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
+ const dig=otv*(H-14);for(let x=x0+14;x<x1;x+=24){line(x,y-H,x,y+2-dig,'#17171b',6);line(x-1.5,y-H,x-1.5,y+2-dig,'rgba(150,150,160,.35)',1.2);}
+ for(const k of[.3,.68]){const yy=y-H*k-dig*(1-k);if(yy>y-H+6){line(x0,yy,x1,yy,'#17171b',7);line(x0,yy-2.5,x1,yy-2.5,'rgba(150,150,160,.3)',1.2);}}
+ ctx.restore();if(!im){ctx.save();luk();ctx.lineWidth=9;ctx.strokeStyle='#5d4f3f';ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#a89474';ctx.stroke();ctx.restore();}
+ if(Math.abs(p.x-c)<800)textLabel('TAMNICA VARADINA',c,y-(im?(TAM_ART.D-TAM_ART.top)*s+14:282),{font:'bold 13px Georgia',color:'#e8dcc8',glow:'#1a0a04'});
+ // „pa uzima od tavnice ključe”: the general's wife stands by the arch with the keys once Vuča has fallen (D106)
+ const DZ=pao&&rig?.['dzeneralovica-idle'],dzx=x1+74;
+ if(DZ){const O=rig['dzeneralovica-otkljucava'],kl=T.open&&O&&time-T.open<1.5;shadow(dzx,y,30,.4);rigDraw(kl?'dzeneralovica-otkljucava':'dzeneralovica-idle',kl?Math.min(O.frames.length-1,(time-T.open)/1.5*O.frames.length):loopF(time*4.5,DZ.frames.length),dzx,y,T.dzFace??1);
+  if(Math.abs(p.x-dzx)<700)textLabel('DŽENERALOVICA',dzx,y-150,{font:'bold 12px Georgia',color:'#ffd9e8'});}
+ if(!T.open){if(Math.abs(p.x-c)<560)textLabel('„IZBAVLJAJ ME, POBRATIME MARKO!”',cc,y-H-(im?46:14),{font:'italic bold 12px Georgia',color:'#d8ecff',glow:'#04101a'});
+  if(pao&&p.grounded&&Math.abs(p.y-y)<50&&Math.abs(p.x-c)<w/2+170)textLabel(DZ?'E · „PUSTI MENE DO TRI POBRATIMA”':'E · OTVORI TAMNICU',p.x,p.y-(horseMounted?250:190),{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
  // out of the dungeon: the three stand by the road beyond it
- if(otv>0)VOJVODE.forEach(([cl,ime,vis],i)=>{const R=rig?.[cl];if(!R)return;const x=x1+150+i*150;shadow(x,y,34,.4*otv);ctx.globalAlpha=otv;rigDraw(cl,loopF(time*5+i*1.7,R.frames.length),x,y,-1);ctx.globalAlpha=1;if(otv>=1&&Math.abs(p.x-x)<800)textLabel(ime,x,y-vis,{font:'bold 12px Georgia',color:'#d8ecff'});});}
-function drawBlago(T){if(T.x1<camera-300||T.x0>camera+VIEW_W+300)return;const n=(world.breakables||[]).filter(b=>b.tovar&&!b.opened).length;if(n&&Math.abs(p.x-(T.x0+T.x1)/2)<700)textLabel('TRI TOVARA BLAGA',(T.x0+T.x1)/2+20,T.y-150,{font:'bold 13px Georgia',color:'#ffe6a0',glow:'#3a0a04'});}
+ if(otv>0)VOJVODE.forEach(([cl,ime,vis],i)=>{const R=rig?.[cl];if(!R)return;const x=x1+(DZ?210:150)+i*150;shadow(x,y,34,.4*otv);ctx.globalAlpha=otv;rigDraw(cl,loopF(time*5+i*1.7,R.frames.length),x,y,-1);ctx.globalAlpha=1;if(otv>=1&&Math.abs(p.x-x)<800)textLabel(ime,x,y-vis,{font:'bold 12px Georgia',color:'#d8ecff'});});}
+function drawBlago(T){if(T.x1<camera-300||T.x0>camera+VIEW_W+300)return;const n=(world.breakables||[]).filter(b=>b.tovar&&!b.opened).length;
+ // „i daj mene od zlata karuce … da m’ odnesu staroga Toplicu”: Vuča's golden carriage with its black horses (D104)
+ if(slikaNa('prop-karuce-zlatne',T.karuce,T.y+6,215)&&Math.abs(p.x-T.karuce)<700)textLabel('VUČINE ZLATNE KARUCE',T.karuce,T.y-236,{font:'bold 13px Georgia',color:'#ffe6a0',glow:'#3a0a04'});
+ if(n&&Math.abs(p.x-(T.x0+980))<700)textLabel('TRI TOVARA BLAGA',T.x0+980,T.y-150,{font:'bold 13px Georgia',color:'#ffe6a0',glow:'#3a0a04'});}
 // ================= „Marko Kraljević i Filip Madžarin” (Reka): nova mehana u Karlovcu =================
 // Pesma (Vuk II): Zmaj-Despot Vuk ču Filipa gde se hvali da će kulu na ćupriji okititi Markovom glavom, i piše Marku. Marko dođe
 // u Karlovac, sveže Šarca pred novu mehanu i sedne da pije. Šarac ne pušta Filipa na vrata; Filip ga bije, Šarac zakuka, a Marko:
@@ -4389,7 +4406,8 @@ const RADNIK={moli:{clip:'putnik-kaluder-moli',fps:4,rec:'Bog te blagoslovio, Kr
  gradjanin:{clip:'posmatrac-gradjanin',fps:5,rec:'Vuča ima topove, junače, ali nema tvog Šarca.'},klice:{clip:'seljak-klice',fps:6,rec:'Eno Marka! Izbavi naše vojvode!'},
  posta:{clip:'knjigonosa-idle',fps:5,poklon:'knjigonosa-poklon',pesma:'Stade pošta pred bijelom crkvom, docle Marko iziđe iz crkve. Pošta kapu pod mišicu baci, poklanja se do zemljice Marku, pa mu dade list knjige tanane. Kad viđe šta mu knjiga kaže, udariše mu suze od očiju: „Ali tako mi moje vjere tvrde, hoće tebe pobro izbaviti, jal’ za blago, jali na junaštvo!”',rec:'KNJIGA OD MILOŠA OD POCERJA'}};
 const RADNICI_NIVO={prevoj:[['kosi',.14],['zanje',.17],['trgovac',.2],['nosi',.24],['putnica',.28],['kosi',.32],['seljanka',.36],['zanje',.4],['decak',.44],['putnica',.48],['starica',.52],['trgovac',.55]],manastir:[['moli',.14],['zvoni',.4],['moli',.66]],oranje:[['zanje',.09],['kosi',.21],['nosi',.34],['zanje',.47],['kosi',.6],['nosi',.74],['zanje',.86]]};
-function setupRadnici(){world.radnici=[];for(const n of(!level?.greybox&&world.narod)||[]){const R=RADNIK[n.k];if(R&&rig?.[R.clip])world.radnici.push({k:n.k,x:n.x,x0:n.x,y:n.y,face:n.face??(n.k==='zvoni'||R.poklon?1:-1),ph:(n.x*.013)%1,rekao:false,zv:-1});}if(level?.id==='prevoj'&&!level.greybox&&rig?.['katana-idle'])for(const e of world.enemies)if(e.type==='sword'&&!e.champion&&!e.kit&&!e.look)e.look='katana';const plan=level&&!level.greybox&&RADNICI_NIVO[level.id];if(!plan)return;const span=level.goal.x-level.spawn.x;
+const PREVOJ_SLIKE=['prop-crkva-samodreza','prop-markova-kula','prop-stol','kapija-34-kamen','kapija-34-resetka','prop-krcma-beograd','prop-mreza-ribarska','prop-trska','prop-dok','prop-skela-dunav','prop-tulum-ledjen','prop-tamnica-varadin','prop-bedem-kula-cetvrtasta','prop-bedem-kula','prop-karuce-zlatne','kosti-delovi'];
+function setupRadnici(){world.radnici=[];if(level?.id==='prevoj'&&!level.greybox&&hasDom)for(const id of PREVOJ_SLIKE)worldImg(id);for(const n of(!level?.greybox&&world.narod)||[]){const R=RADNIK[n.k];if(R&&rig?.[R.clip])world.radnici.push({k:n.k,x:n.x,x0:n.x,y:n.y,face:n.face??(n.k==='zvoni'||R.poklon?1:-1),ph:(n.x*.013)%1,rekao:false,zv:-1});}if(level?.id==='prevoj'&&!level.greybox&&rig?.['katana-idle'])for(const e of world.enemies)if(e.type==='sword'&&!e.champion&&!e.kit&&!e.look)e.look='katana';const plan=level&&!level.greybox&&RADNICI_NIVO[level.id];if(!plan)return;const span=level.goal.x-level.spawn.x;
  const busy=x=>Math.abs(x-level.spawn.x)<520||Math.abs(x-level.goal.x)<520||(world.traps||[]).some(t=>Math.abs((t.x??t.gate?.x??t.lever?.x??0)-x)<260)||(world.busy||[]).some(([a,b])=>x>a-90&&x<b+90)||world.enemies.some(o=>Math.abs(o.x-x)<180)||(world.goals||[]).some(g=>Math.abs(g.x-x)<260)||(world.ladders||[]).some(l=>Math.abs(l.x-x)<160)||world.radnici.some(r=>Math.abs(r.x-x)<420);
  for(const[k,f]of plan){const R=RADNIK[k];if(!rig?.[R.clip])continue;const want=level.spawn.x+span*f;let best=null;
   for(const q of world.platforms){if(!q.ground||q.tower||q.w<(R.hod?560:300))continue;const m=R.hod?250:k==='zvoni'?170:120;for(let x=q.x+m;x<=q.x+q.w-m;x+=40){const d=Math.abs(x-want);if(d>(k==='zvoni'?5000:2600)||busy(x)||(best&&d>=best.d))continue;best={x,y:q.y,d};}}
@@ -4623,9 +4641,9 @@ function atmTick(dt){const o=atmOsobina();if(!o||!p){ATM.cest.length=0;return;}c
  for(const c of ATM.cest){c.x+=c.vx*dt;c.y+=c.vy*dt;c.t+=dt;}ATM.cest=ATM.cest.filter(c=>c.t<c.life&&c.x>x0-300&&c.x<x1+300);
  const spawn=(n,f)=>{for(let i=0;i<n;i++)if(ATM.cest.length<(LITE?70:220)&&(!LITE||Math.random()<.5))ATM.cest.push(f());};
  if(o==='vetar'){const V=ATM.vetar;V.t-=dt;const sneg=!!level.zimski;
-  if(V.faza==='mir'&&V.t<=0&&live&&!arena){V.faza='najava';V.t=1.1;V.dir=Math.random()<.5?-1:1;sfx('whoosh',{gain:.7,rate:.6})||sfx('whoosh_heavy',{gain:.5,rate:.5});label(V.dir>0?'VETAR →':'← VETAR',p.x,p.y-190,'#e8f2ff');}
+  if(V.faza==='mir'&&V.t<=0&&live&&!arena){V.faza='najava';V.t=1.1;V.dir=Math.random()<.5?-1:1;sfx('whoosh',{gain:.7,rate:.6})||sfx('whoosh_heavy',{gain:.5,rate:.5});if(level.id!=='prevoj')label(V.dir>0?'VETAR →':'← VETAR',p.x,p.y-190,'#e8f2ff');}
   else if(V.faza==='najava'&&V.t<=0){V.faza='udar';V.t=2.6;}
-  else if(V.faza==='udar'){if(live&&!arena&&level.id!=='urvina'&&!p.climb&&!p.wall&&!(p.ledgeT>0)&&p.grounded){p.shoveV=V.dir*150;p.shoveT=.2;}if(V.t<=0){V.faza='mir';V.t=7+Math.random()*5;}}
+  else if(V.faza==='udar'){if(live&&!arena&&level.id!=='urvina'&&level.id!=='prevoj'&&!p.climb&&!p.wall&&!(p.ledgeT>0)&&p.grounded){p.shoveV=V.dir*150;p.shoveT=.2;}if(V.t<=0){V.faza='mir';V.t=7+Math.random()*5;}}
   const jak=V.faza==='udar'?1:V.faza==='najava'?.45:.12,dir=V.faza==='mir'?1:V.dir;
   spawn(Math.random()<jak*2.2?2:0,()=>({k:'crta',x:dir>0?x0-60+Math.random()*VIEW_W*.6:x1+60-Math.random()*VIEW_W*.6,y:camY+Math.random()*VIEW_H,vx:dir*(700+Math.random()*500),vy:30,t:0,life:1.4,len:40+Math.random()*60}));
   spawn(Math.random()<(sneg?.9:.25)?1:0,()=>({k:sneg?'sneg':'list',x:x0+Math.random()*(VIEW_W+400)-200,y:camY-20,vx:dir*(40+jak*520)*(.6+Math.random()*.6),vy:sneg?50+Math.random()*60:70+Math.random()*50,t:0,life:12,r:sneg?1.6+Math.random()*2.4:4,rot:Math.random()*6}));}
@@ -6025,7 +6043,7 @@ const DECOR={selo:['prop-kuca','prop-taraba-ravna','prop-seno','prop-krcag','pro
  reka:['prop-mlin','prop-trska','prop-dzakovi','prop-tocak-vodeni','prop-cvece','prop-balvan','prop-zbun','prop-kola'],
  oranje:['prop-plast-sena','prop-snopovi','prop-seno','prop-kola-seno','prop-taraba-ravna','prop-kola','prop-zbun','prop-susara']};
 // loaded for the land but never scattered by decorate(): each stands once, where the song wants it (sumaStvari)
-const RUKOM={suma:['prop-zapis-hrast','prop-izvor','prop-koliba'],prevoj:['prop-zid-kamen','prop-bedem-sredina','prop-bedem-kula','prop-bedem-stepenice','prop-koplje-u-ledini','prop-top-varadin','prop-barjak-varadin','prop-bedem-kapija','prop-bedem-kula-cetvrtasta','prop-bedem-srusen','zag-zvono','cilj-tovar-blaga','prop-mreza-ribarska','prop-tulum-ledjen','prop-trska','prop-bure']};
+const RUKOM={suma:['prop-zapis-hrast','prop-izvor','prop-koliba'],prevoj:['prop-zid-kamen','prop-bedem-sredina','prop-bedem-kula','prop-bedem-stepenice','prop-koplje-u-ledini','prop-top-varadin','prop-barjak-varadin','prop-bedem-kapija','prop-bedem-kula-cetvrtasta','prop-bedem-srusen','zag-zvono','cilj-tovar-blaga','prop-mreza-ribarska','prop-tulum-ledjen','prop-trska','prop-bure','prop-stol']};
 const DECOR_H={'prop-zapis-hrast':400,'prop-izvor':125,'prop-koliba':270,'prop-kola-seno':150,'prop-kuca-brvnara':370,'prop-vajat':290,'prop-tezga':190,'prop-ves':150,'prop-djeram':300,'prop-most-drveni':330,'prop-most-uzad':340,'prop-dok':240,'prop-platforma-sneg':240,'prop-lanac':140,'prop-loza':130,'prop-medjas':70,'prop-kruska':300,'prop-korpe-grozdja':90,'prop-mreza-ribarska':170,'prop-tulum-ledjen':60,'prop-skela-dunav':150,'prop-top-varadin':110,'prop-barjak-varadin':260,'prop-krst-raskrsce':190,'prop-turski-sator':240,'prop-kuca':430,'prop-ambar':230,'prop-bunar':170,'prop-kola':120,'prop-taraba-ravna':110,'prop-taraba-slomljena':100,'prop-ograda-pleter':90,'prop-seno':120,'prop-snopovi':90,'prop-krcag':55,'prop-bure':70,'prop-sanduci':80,'prop-dzakovi':60,'prop-drvo-hrast':330,'prop-drvo-bukva':340,'prop-drvo-jela':330,'prop-drvo-sneg':300,'prop-panj':60,'prop-svetiliste':200,'prop-run-kamen':120,'prop-cvece':50,'prop-paprat':60,'prop-pecurke':40,'prop-korenje':130,'prop-zbun':70,'prop-stena-visoka':260,'prop-stena-luk':260,'prop-stena-mala':70,'prop-trska':110,'prop-trava':40,'prop-kamen-putokaz':110,'prop-stub-kameni':220,'prop-luk-kameni':240,'prop-svetiljka':150,'prop-klupa':50,'prop-stol':60,'prop-palisada':150,'prop-sator':240,'prop-strassarnica':340,'prop-kapija-tvrdjava':300,'prop-katapult':150,'prop-nakovanj':50,'prop-baklja-drzac':110,'prop-ognjiste':60,'prop-led':90,'prop-kristal':90,'prop-potpora-rudnik':220,'prop-vagon':90,'prop-sine':40,'prop-mlin':440,'prop-tocak-vodeni':220,'prop-susara':140,'prop-ograda-manastir':110,'prop-barjak-manastir':175,'prop-ograda-kamen-rusevina':110,'prop-vrata-slomljena':170,'prop-balvan':60,'prop-plast-sena':150,'prop-kola-seno':170};
 const decorIds=L=>DECOR[L.id]||[];
 // ---------- stakes on the hill behind the road (DOPUNA-34): Serbian knights the Ottoman army left as a warning ----------
@@ -6096,7 +6114,7 @@ function drawVaults(){for(const v of world.vaults||[]){if(v.x0>camera+VIEW_W+200
 const GATE_STYLE={rudnik:'rudnik',pecina:'rudnik',san:'rudnik',podrum:'podrum',selo:'drvo',suma:'drvo',mocvara:'drvo',reka:'drvo',oranje:'drvo'};
 const gateStyle=()=>GATE_STYLE[level?.id]||'kamen';
 const gateOpenK=new Map();
-function drawSideGate(key,x,y,open,style=gateStyle()){const k0=gateOpenK.get(key)??(open?1:0),k=k0+((open?1:0)-k0)*.12;gateOpenK.set(key,k);if(x<camera-260||x>camera+VIEW_W+260)return;
+function drawSideGate(key,x,y,open,style=gateStyle()){const k0=gateOpenK.get(key)??(open?1:0),k=k0+((open?1:0)-k0)*.12;gateOpenK.set(key,k);if(kapija34()){if(x>camera-560&&x<camera+VIEW_W+360)drawKapija34(x,y,k);return;}if(x<camera-260||x>camera+VIEW_W+260)return;
  // behind Marko: the far wall of the passage, lit from the road, darker under the vault
  const x0=x-SEC_W/2,pt=y-GATE_PASS;ctx.save();ctx.beginPath();secVoid(x0,y);ctx.clip();fillWall(x0,pt-4,SEC_W,GATE_PASS+8,style==='rudnik');
  const d=ctx.createLinearGradient(0,pt,0,y);d.addColorStop(0,'rgba(10,7,5,.78)');d.addColorStop(.55,'rgba(14,10,8,.5)');d.addColorStop(1,'rgba(24,16,10,.3)');ctx.fillStyle=d;ctx.fillRect(x0,pt-4,SEC_W,GATE_PASS+8);
@@ -6348,7 +6366,19 @@ function drawSection(x,y,k,style){const [lit,dark,rim]=SEC_LOOK[style]||SEC_LOOK
  const ig=ctx.createLinearGradient(x-7,0,x+7,0);ig.addColorStop(0,'#17181b');ig.addColorStop(.5,'#6d7178');ig.addColorStop(1,'#1d1e22');ctx.fillStyle=ig;ctx.fillRect(x-6,gt,12,gb-gt-10);
  for(let by=gt+16;by<gb-14;by+=30){ctx.fillStyle='#101114';ctx.fillRect(x-9,by,18,6);ctx.fillStyle='rgba(200,204,212,.5)';ctx.fillRect(x-9,by,18,1.5);}
  poly([[x-6,gb-11],[x,gb],[x+6,gb-11]],'#8a8e96','#17181b');ctx.restore();}
-function drawGateFronts(){for(const G of gateFronts)drawSection(G.x,G.y,G.k,G.style);
+// ---------- proba nove kapije (Stefan, 19. 11.: „pokušaj da središ kapije”; D104, GPT-6.1-Terra) ----------
+// A gatehouse seen in three quarters (kapija-34-kamen): its front face with the arch on the left, its side wall running off to
+// the right. The whole of it stands behind Marko; what lies right of the arch is drawn again in front of him, so he walks into
+// the arch and comes out from behind the gatehouse (the wall thins while he is behind it). The grate (kapija-34-resetka) hangs
+// in the arch and rises along the face of the wall, where it stays in sight. On trial at the gate of Prilep only.
+const K34={s:.525,ax:468,R:541,V:574,D:1012,bx1:1298};
+const kapija34=()=>!!(level&&level.id==='prevoj'&&!level.greybox&&hasDom&&worldImg('kapija-34-kamen')&&worldImg('kapija-34-resetka'));
+function drawKapija34(x,y,k){const im=worldImg('kapija-34-kamen'),G=worldImg('kapija-34-resetka'),s=K34.s,X=x+12-K34.ax*s,Y=y+3-K34.D*s;
+ ctx.drawImage(im,X,Y,im.width*s,im.height*s);ctx.drawImage(G,X,Y-k*(K34.D-K34.V+10)*s,G.width*s,G.height*s);gateFronts.push({x,y,k,nova:true});}
+function drawKapija34Front(G){const im=worldImg('kapija-34-kamen');if(!im)return;const s=K34.s,X=G.x+12-K34.ax*s,Y=G.y+3-K34.D*s,a=X+K34.R*s,b=X+K34.bx1*s,iza=p&&p.x>a-6&&p.x<b+16&&Math.abs(p.y-G.y)<260;
+ const A=k34A.get(G.x)??1,A2=A+((iza?.42:1)-A)*.15;k34A.set(G.x,A2);ctx.save();ctx.globalAlpha=A2;ctx.drawImage(im,K34.R,0,im.width-K34.R,im.height,a,Y,(im.width-K34.R)*s,im.height*s);ctx.restore();}
+const k34A=new Map();
+function drawGateFronts(){for(const G of gateFronts)G.nova?drawKapija34Front(G):drawSection(G.x,G.y,G.k,G.style);
  gateFronts.length=0;}
 
 // labels drawn in the same frame never print over each other: a later one steps up above the earlier
