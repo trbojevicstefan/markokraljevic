@@ -526,6 +526,23 @@ Stefan: „kada smo na ovim zidinama neka budemo iza vrhova, ne ispred”, „da
 
 Tri slike iz D99 koje su čekale sad su u igri. Iza polja pod Varadinom bedem ide bez prekida: zid sa Velimirovicom, okrugla kula, zid sa gradskom kapijom, zid i četvrtasta kula, pa zid sa stepenicama po kome se ide (`VARADIN_ZALEDJE` u `game.js`). Srušen bedem stoji kao stara ruševina na polju pre logora. Sve je pozadina, ništa nije čvrsto. Skela na Dunavu još čeka mesto, jer u pohodu nema vode.
 
+## 19. novembar (2): Pod Varadinom po pesmi, soba po soba
+
+Stefan: „Sredi ceo nivo po pesmi i vodi računa o najsitnijim detaljima i placementu aseta i zanimljivih stvari tipa blaga, zagonetki.” Deveti pohod je do sada bio stari planinski prevoj sa letnjim slikama (penjao se 1300 px, sa lavinom, liftom i dimnjakom). Sada ide redom kojim ide pesma „Marko Kraljević i Vuča dženeral” (`RECIPES.prevoj` u `world.js`), po ravnici:
+
+- **Prilep, nedelja** (soba `prilep`, bez dušmana): bela crkva i zvonik sa kaluđerom koji zvoni, knjigonoša pred crkvom se klanja i predaje knjigu. Zapis pohoda leži kod njega i u njemu je Miloševo pismo zapečaćeno krvlju. Dalje je Markova kula sa barjakom, sto sa vinom i bure iz koga ispada vino.
+- **Zagonetka „Oprema za megdan”**: četiri kamena (ТОПУЗ, САБЉА, ТУЛУМ, КОПЉЕ) udaraju se redom kojim se Marko u pesmi opremao: sablja, koplje, tulum vina, topuzina. Stihovi su na zapisu kod kule. Tek tada se otvara kapija Prilepa.
+- **Drum na sever**: breg, plastovi, jarak, karaula, razvaljen zid, jaruga sa trulim mostom, guslar koji peva početak pesme („Ili grmi, il’ se zemlja trese?”), riznica sa pločom i sandukom (deo srca), skriveni podrum, kula, prolaz ispod grede, tajna odaja, granična straža pred Beogradom, trgovac.
+- **Beograd i Dunav** (soba `dunav`): krčma („uvrati se, te se napi vina”, E za stolom puni čuturu), Šarac vezan pred krčmom (E), ribar, mreža, dok, skela na drugoj obali. Sa obale se dvaput vikne skeledžija (E); skela se ne miče, pa Marko natera Šarca u reku. Dunav je udolina puna vode koja se crta ispred svih koji su u njoj, pa Šarac gazi do trbuha i ide upola sporije. Peške se ne može preći. Katana koja uđe u vodu udavi se posle dve i po sekunde („što podavi u tihom Dunavu”); u boju se Marko može povući u reku.
+- **Polje pod Varadinom**: scena kakva je bila, uz sitnice: Marko dojaše iz Dunava i zaustavi Šarca kod koplja, mešina i leđen u travi su naslikani, prvi talas vodi **Velimir** (jača katana sa imenom), a kad Marko izađe iz reke čuju se topovi sa grada.
+- **Potera**: na Šarcu preko zida i kule, pa preko brega, kolja i plastova do megdana sa Vučom pod zidinama. Megdan ima svoj uvod i savet (bačen topuz, I). Ko padne u polju, vraća se na Šarcu.
+- **Tamnica Varadina** (soba `tamnica`): luk sa rešetkom u gradskom zidu, iza nje tri vojvode u vodi do kolena, sa kostima do ramena. Dok Vuča ne padne, kroz rešetku se ne može; posle E diže rešetku, vojvode izlaze na drum, a u otvorenoj ćeliji leži čudo pohoda (Buzdovan).
+- **Tri tovara blaga** (soba `blago`): tri tovara pred poslednjim barjakom, svaki po 40 dukata.
+
+Ljudi iz pesme stoje tamo gde im je soba (`narod` u `world.js`, `setupRadnici`): putnica na samom početku, zvonar, knjigonoša, starica, seljanka i dečak kod crkve, trgovac, starac i ribar kod Beograda, građanin i seljak kod blaga. Slike „Preko Dunava” i „Šenluk na Varadinu” izlaze usred pohoda, kad se to desi (`PRELAZ_RED.prevoj`).
+
+Provera: `pesme-test.mjs` igra Prilep, zagonetku, krčmu, Dunav, tamnicu i tovare (160 provera); bot u `road-test.mjs` prelazi ceo pohod.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

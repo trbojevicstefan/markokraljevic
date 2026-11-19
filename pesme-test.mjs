@@ -85,7 +85,23 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  const x1=p.x;step(80);press('KeyA');step(60);release('KeyA');ok(p.x<x1-30,'mehana: in the duel Marko moves freely');
  api.slay(f);step(2);ok(T.done&&T.ph==='kraj','mehana: „Dobra gvožđa u loša junaka!” — the tavern is done');
  ok(api.draw()===null,'mehana: the tavern, Šarac and Filip draw without an error');}
-// ---- Zimski prevoj: under Varadin (Marko Kraljević i Vuča dženeral) ----
+// ---- Pod Varadinom, by the song: Prilep and the stones of the arming, Beograd and the Danube ----
+{const w=await start('prevoj');const {p}=api.state();const R=w.traps.find(t=>t.kind==='red'),P=w.traps.find(t=>t.kind==='prilep'),D=w.traps.find(t=>t.kind==='dunav');
+ const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});step(3);};
+ ok(P&&R&&R.order.join()==='1,3,2,0'&&w.items.some(i=>i.type==='zapis'&&i.x>P.x0&&i.x<P.x1),'prilep: the white church, Miloš’s letter by the knjigonoša, four stones before the gate');
+ ok(['zvoni','posta','ribar','starac'].every(k=>(w.radnici||[]).some(r=>r.k===k))&&!w.enemies.some(e=>e.x>P.x0&&e.x<P.x1),'prilep: the bell-ringer and the knjigonoša at the church, the fisherman and the old man at the Danube; no foe in Prilep');
+ const hit=i=>{at(R.objs[i].x-40,R.gate.y);tap('KeyJ');step(50);};
+ hit(0);ok(!R.prog&&!R.done,'prilep: the mace first is not how Marko armed himself');for(const i of[1,3,2,0])hit(i);ok(R.done,'prilep: sabre, spear, wineskin, mace: the gate of Prilep opens');
+ at(D.x0+140,D.y);ok(D.ph==='krcma','dunav: by Beograd he turns in at the tavern');at(D.sto,D.y);tap('KeyE');step(4);ok(D.popio,'dunav: „uvrati se, te se napi vina”');step(140);
+ at(D.obala-60,D.y);press('KeyD');step(360);release('KeyD');ok(p.x<=D.obala+31,'dunav: nobody wades the Danube on foot');
+ at(D.sarac,D.y);tap('KeyE');step(4);ok(api.state().horseMounted&&D.jase,'dunav: E by the post — Marko is on Šarac');
+ press('KeyD');until(()=>p.x>D.obala-120,120*8,'to the bank');step(240);release('KeyD');ok(p.x<=D.obala+31&&!D.slobodno,'dunav: the ferry is on the far bank; the river waits for the call');
+ step(10);tap('KeyE');step(320);ok(D.vika===1&&!D.slobodno,'dunav: he calls the ferryman once');tap('KeyE');step(4);ok(D.vika===2&&D.slobodno,'dunav: „dvaput Marko skeledžiju viknu, pa ga više ni čekati ne šće”');
+ press('KeyD');until(()=>p.uVodi,120*6,'into the river');const v=Math.abs(p.vx);step(120);ok(p.uVodi&&p.y>D.y+40&&Math.abs(p.vx)<300,'dunav: Šarac wades the river, slower than he gallops');
+ until(()=>D.done,120*30,'across');release('KeyD');ok(D.done&&p.x>D.voda[1],'dunav: over the Danube, under Varadin');
+ const e=w.enemies.find(e=>!e.champion&&!e.perch);e.alive=true;e.hp=e.maxHp;e.x=(D.voda[0]+D.voda[1])/2;e.y=D.dno;e.vy=0;e.grounded=true;step(120*4);ok(!e.alive,'dunav: „što podavi u tihom Dunavu” — a foe driven into the river drowns');
+ ok(api.draw()===null,'prilep, dunav: the church, the tavern, the dock and the river draw without an error');}
+// ---- Pod Varadinom: the field under Varadin (Marko Kraljević i Vuča dženeral) ----
 {const w=await start('prevoj');const T=w.traps.find(t=>t.kind==='varadin');const {p}=api.state();for(const e of w.enemies)if(e.champion)e.alive=true;
  ok(T&&T.logor>T.x0&&T.logor<T.x1,'varadin: the camp in the field under Varadin');
  Object.assign(p,{x:T.x0+400,y:T.y,vx:0,vy:0,grounded:true});step(3);ok(T.ph==='logor','varadin: Miloš’s letter sealed in blood; Marko comes under Varadin');
@@ -97,7 +113,10 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>T.ph==='boj2',120*8,'Vuča’s cannons');const wave=w.enemies.filter(e=>e.alive&&e.katana===2);ok(wave.length===7,'varadin: Vuča shakes the cannons and sends more katane');
  for(const e of wave)api.slay(e);step(3);ok(T.ph==='potera','varadin: the katane are cut down, Vuča flees on his mare');
  const V=w.enemies.find(e=>e.champion&&e.look==='vuca');ok(V&&V.kit==='beg'&&V.name==='Vuča dženeral','varadin: Vuča dženeral is the champion of the pohod, on the beg’s moves');V.alive=false;step(3);ok(T.ph==='vojvode'&&T.posle,'varadin: the thrown mace brings him down „u zelenu travu”, Vuča is bound');
- until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted,'varadin: the general’s wife opens the dungeon: Miloš and the voivodes are free');
+ const TM=w.traps.find(t=>t.kind==='tamnica'),cudo=w.items.find(i=>i.type==='cudo');step(120*16);ok(TM&&!TM.open&&T.ph==='vojvode'&&cudo.y<-9000,'varadin: the voivodes stand behind the bars; the song waits at the dungeon, the marvel is out of reach');
+ Object.assign(p,{x:TM.c-TM.w/2-90,y:TM.y,vx:0,vy:0,grounded:true});step(3);tap('KeyE');step(3);ok(TM.open,'varadin: E — „te otvori prokletu tavnicu, i izvadi tri vojvode mlade”');
+ until(()=>T.ph==='kraj',120*32,'the voivodes');ok(T.done&&T.milos&&!api.state().horseMounted&&cudo.y>-9000,'varadin: Miloš and the voivodes are free, the marvel lies in the open cell');
+ const tov=w.breakables.filter(b=>b.tovar);ok(tov.length===3&&tov.every(b=>b.x>TM.x1),'varadin: three loads of treasure wait by the road to the last banner');
  ok(api.draw()===null,'varadin: the camp, Šarac and Miloš draw without an error');}
 // ---- Ruševine: the Kosovo maiden (Marko Kraljević ukida svadbarinu) ----
 {const w=await start('rusevine');const T=w.traps.find(t=>t.kind==='kosovka');const {p}=api.state();

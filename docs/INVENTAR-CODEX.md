@@ -23,7 +23,7 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | **Posmatrači, obični ljudi** (5 likova): seljanka sa korpom grožđa, dečak koji maše, starica koja se krsti, ribar sa mrežom, građanin Varadina | Stefan: „napravi još posmatrača običnih ljudi”; pesma se priča i kroz narod | D102 ✔ (5 likova, pod Varadinom duž puta) |
 | **Katana u gardu** (sablja ukrštena za odbranu) i **katana gard slomljen** | nova mehanika borbe: gard koji se probija kombom | D102 ✔ |
 | **Merdevine** (pločica tela koja se ponavlja u visinu + vrh) | Stefan: „ove su baš jadne” | D103 ✔ (sve merdevine u igri) |
-| **Rekviziti Varadina**: skela na Dunavu, top na lafetu, žuto-crni barjak, korpe grožđa, ribarska mreža na kocu, mešina i leđen u travi | „rekvizita … lepo ih raspodeli” | D103 ✔ (top i barjak na bedemima Varadina; korpe, mreža, mešina među ukrasima; skela još nije postavljena, nema vode u nivou) |
+| **Rekviziti Varadina**: skela na Dunavu, top na lafetu, žuto-crni barjak, korpe grožđa, ribarska mreža na kocu, mešina i leđen u travi | „rekvizita … lepo ih raspodeli” | D103 ✔ (top i barjak na bedemima Varadina; korpe među ukrasima; od 19. 11. skela stoji na drugoj obali Dunava, mreža kod ribara, a mešina i leđen kod Markovog koplja) |
 
 ## Sledeće (kad bude Codexa)
 
@@ -32,7 +32,9 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Velimir, mladi sin Vuče, na vrancu (kit kao beg ili jahač) | Pod Varadinom, prvi talas katana | sada se samo pominje u stihovima |
 | Dženeralovica (piše knjigu Marku, otvara tamnicu) | kraj pohoda | jedan `-idle` i jedan `-pise` |
 | Vučine zlatne karuce sa vrancima (Miloš traži da poveze starog Toplicu) | kraj pohoda, slika prelaza | jedna velika slika |
-| Tamnica Varadina iznutra (voda do kolena, rešetka) | soba ispod bedema | sloj ili rekvizit |
+| Tamnica Varadina iznutra (voda do kolena, rešetka) | soba `tamnica` | od 19. 11. je nacrtana kodom u luku zida (kosti, voda, rešetka); slika bi bila lepša |
+| Krčma kod Beograda sa natpisom, skeledžija koji beži | soba `dunav` | sada je krčma `prop-kuca` |
+| Markova tanka kula u Prilepu | soba `prilep` | sada je `prop-bedem-kula` |
 | Noćna i olujna verzija slojeva Varadina | varijante noć/oluja | sada se daje dan sa zatamnjenjem |
 | Naslikani stari zidovi sa lukom (soba `bedem` po celoj igri) | svi pohodi sa sobom `bedem` | po uzoru na D99 |
 | Posmatrači za ostale pohode (Manastir, Oranje, Tvrđava) | | po 3 lika, kao D102 |

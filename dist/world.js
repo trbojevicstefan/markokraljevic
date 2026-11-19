@@ -104,7 +104,7 @@ export const CUDA=[
  {id:'orlovo-pero',name:'Orlovo pero',song:'Marko Kraljević i orao',perk:'Drži skok da lebdiš pri padu',land:'suma'},
  {id:'carska-knjiga',name:'Carska knjiga',song:'Uroš i Mrnjavčevići',perk:'+15 zdravlja',land:'manastir'},
  {id:'oceva-sablja',name:'Očeva sablja',song:'Marko Kraljević poznaje očinu sablju',perk:'Laki udarci jači',land:'tvrdjava'},
- {id:'buzdovan',name:'Buzdovan',song:'Marko Kraljević i Musa Kesedžija',perk:'Bačen topuz jači',land:'prevoj'},
+ {id:'buzdovan',name:'Buzdovan',song:'Marko Kraljević i Vuča dženeral',perk:'Bačen topuz jači',land:'prevoj'},
  {id:'vilino-pero',name:'Vilino pero',song:'Marko Kraljević i vila',perk:'Ravijojla se brže vraća',land:'pecina'},
  {id:'pehar-vina',name:'Pehar rujnog vina',song:'Marko pije uz ramazan vino',perk:'Čutura prima još jedno vino',land:'podrum'},
  {id:'tri-kese-dukata',name:'Tri kese dukata',song:'Smrt Marka Kraljevića',perk:'Više dukata',land:'rudnik'},
@@ -122,7 +122,10 @@ export const RECIPES={
  suma:'flat jahanje potera watch crates gnezdo logs uvala plate jaruga watch terrace+ ledges cellar spikes kljuc watch kolo stairs+ greda tajna bedem stairs- chimney flat guslar:mir logs crates spikes ledges flat trgovac flat boss:lovac',
  manastir:'flat breg stairs+ flat stairs+ crates tower lever kljuc bedem cellar greda chimney zvona zid samodreza stairs- vreme jaruga ledges lift stairs+ tower flat sirotinja crumble crates tajna guslar:mir logs ledges branik:kaluderi trgovac flat boss:dzelat',
  tvrdjava:'flat breg topnica crates tower barrels plate bedem zid chimney^ flat tower lever kljuc crates sator pillars jaruga ladder+ tower flat vreme top barut stairs+ crates tajna guslar:mir logs bedem flat spikes watch trgovac flat boss:oklopnik',
- prevoj:'flat breg stairs+ terrace+ ladder+ chase sator watch bedem top lift stairs+ chimney flat kuke rocks zid vreme terrace+ crates guslar:mir ladder+ rocks tajna flat varadin crumble watch logs crates trgovac flat boss:vuca',
+ // Pod Varadinom, by the song (19. 11.): Prilep, the road north through the summer fields, Beograd and the Danube, the field
+ // under Varadin, the chase of Vuča to his gate, the dungeon and the three loads of treasure. The first break in the road is a
+ // ditch a foe can leap (mechanics-test).
+ prevoj:'prilep flat breg crates gap watch stairs+ ledges zid jaruga guslar:mir plate terrace- uvala spikes cellar crates tower stairs- arena greda tajna trgovac dunav varadin breg spikes crates flat boss:vuca tamnica blago',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks tajna flat spikebed ledges crumble crates trgovac flat boss:azdaja',
  podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates tajna ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
  mocvara:'flat bridge watch soko crumble ferry branik:putnici bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat tajna trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
@@ -151,7 +154,7 @@ export function buildLayout(L,variant='day'){
  const R=seeded(L.id+'|'+variant),pick=a=>a[Math.floor(R()*a.length)],ri=(a,b)=>Math.floor(a+R()*(b-a+1));
  // the forks draw their sizes from their own dice, so adding one does not reshuffle the rest of the land
  const R2=seeded(L.id+'|raskrsce'),fr=(a,b)=>Math.floor(a+R2()*(b-a+1));
- const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[],tajne=[],kuke=[];let x=0,gy=590,run=null,boss=null;
+ const platforms=[],ladders=[],breakables=[],spots=[],rewards=[],towers=[],busy=[],plows=[],traps=[],cellars=[],vaults=[],tajne=[],kuke=[],narod=[];let x=0,gy=590,run=null,boss=null,pismo=null;
  const block=(x0,w,top,o={})=>{const q={x:Math.round(x0),y:Math.round(top),w:Math.round(w),h:Math.max(240,840-Math.round(top)),kind:'stone',solid:true,...o};platforms.push(q);return q;};
  // the walkable road; at a cliff the lower floor runs on under the higher one, so its end is hidden
  const ground=len=>{if(run&&run.y===gy&&run.x+run.w===x)run.w+=len;else{let x0=x,w=len;if(run&&run.x+run.w===x){if(gy<run.y)run.w+=50;else{x0-=50;w+=50;}}run=block(x0,w,gy,{ground:true});}x+=len;};
@@ -248,6 +251,31 @@ export function buildLayout(L,variant='day'){
    for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
    block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
+  // ===== „Marko Kraljević i Vuča dženeral” (Pod Varadinom): the rooms of the song, in its order (19. 11.) =====
+  // Prilep on a Sunday: the white church and its bell, the knjigonoša with Miloš's letter (the land's scroll lies by him),
+  // then Marko's tower and four stones to strike in the order he armed himself; the gate of Prilep opens. No foe here.
+  prilep(){const x0=x,len=3000;ground(len);const kx=x0+1700;
+   traps.push({kind:'prilep',x0,x1:x0+len,y:gy,crkva:x0+560,kula:kx,nodecor:[[x0,x0+len]]});
+   narod.push({k:'putnica',x:x0-300,y:gy},{k:'zvoni',x:x0+230,y:gy},{k:'posta',x:x0+930,y:gy,face:-1},{k:'starica',x:x0+1090,y:gy,face:-1},{k:'seljanka',x:x0+1230,y:gy,face:-1},{k:'decak',x:x0+1360,y:gy,face:-1});
+   pismo={x:x0+990,y:gy-44};crate(kx+345,'bure',{loot:{wine:1}});
+   traps.push({kind:'red',title:'OPREMA ZA MEGDAN',objs:['ТОПУЗ','САБЉА','ТУЛУМ','КОПЉЕ'].map((g,i)=>({x:kx+640+i*160,y:gy,glyph:g,small:true,h:130})),order:[1,3,2,0],tablet:{x:kx+480,y:gy},gate:{x:x0+len-70,y:gy},
+    clue:'„Pa pripasa sablju okovanu, i prigrnu ćurak od kurjaka; pa uzimlje koplje ubojito, pa se spušta u podrume Šarcu; pa natoči tuluminu vina, objesi je o unkaš Šarinu, s desne strane tešku topuzinu, da ne kriva ni tamo ni amo.” Kucni topuzom u kamenove onim redom kojim se Marko opremao za megdan.',
+    hint:'Kucni u četiri kamena redom kojim se Marko opremao. Zapis je kod kule.',wrong:'NIJE SE TAKO OPREMAO',win:'Sablja, koplje, tulum vina i teška topuzina: Marko je opremljen za megdan. Kapija Prilepa se otvara.'});
+   busy.push([x0-40,x0+len]);},
+  // Beograd and the Danube: the tavern where he „uvrati se, te se napi vina”, Šarac tied before it, the bank with the dock and
+  // the fisherman, the ferry moored on the far side. The river is a hollow (two slopes and a bed) filled with water in front of
+  // whoever is in it: Šarac wades it up to his belly. On foot nobody crosses (game.js: dunav).
+  dunav(){const x0=x,y=gy,D=72,rl=Math.round(D*3.6/10)*10;ground(1400);const r0=x;ramp(D);ground(1000);const r1=x;ramp(-D);ground(240);
+   traps.push({kind:'dunav',x0,x1:x,y,kuca:x0+330,sto:x0+790,sarac:x0+1010,obala:r0,voda:[r0+Math.round(rl*.26),r1+rl-Math.round(rl*.26)],dno:y+D,skela:r1-190,nodecor:[[x0,x]]});
+   narod.push({k:'trgovac',x:x0+60,y},{k:'starac',x:x0+700,y},{k:'ribar',x:r0-60,y,face:1});busy.push([x0-40,x]);},
+  // the dungeon of Varadin in the town wall by the road: a barred arch, „voda do koljena, a junačke kosti do ramena”. The
+  // three voivodes stand behind the bars until Vuča has fallen and Marko opens it with his keys; the land's marvel lies in the
+  // cell and is kept out of reach until then (game.js: tamnica)
+  tamnica(){const x0=x,len=1500,c=x0+760;ground(len);rewards.push({x:c-60,y:gy,prio:5});
+   traps.push({kind:'tamnica',x0,x1:x0+len,y:gy,c,w:300,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
+  // „i podaj im tri tovara blaga”: the ransom of Vuča and Velimir stands by the road to the last banner
+  blago(){const x0=x,len=1000;ground(len);for(const k of[.34,.52,.7]){crate(x0+len*k,'kovceg',{loot:{coins:40}});Object.assign(breakables[breakables.length-1],{tovar:true,w:112,h:104});}
+   traps.push({kind:'blago',x0,x1:x0+len,y:gy,nodecor:[[x0,x0+len]]});narod.push({k:'gradjanin',x:x0+150,y:gy,face:1},{k:'klice',x:x0+len-70,y:gy,face:-1});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
   mehana(){const x0=x,len=2400;ground(len);traps.push({kind:'mehana',x0,x1:x0+len,y:gy,kuca:x0+1150,sto:x0+1430,sarac:x0+1700,nodecor:[[x0+700,x0+1950]]});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Đemo Brđanin”: Marko led in chains past three gallows (Orid, Vučitrn, Zvečan) to Janja's tavern (game.js: okovi)
@@ -421,8 +449,8 @@ export function buildLayout(L,variant='day'){
  const hv=vaults[0],rest=free.filter(c=>c!==mid).sort((u,v)=>v.s-u.s||v.x-u.x);
  const heart=hv?{x:hv.x0+hv.w-110,y:hv.y-44}:cellars[0]?{x:cellars[0].x-40,y:cellars[0].y-44}:rest[0]||null;
  // a land with a hidden room (tajna) keeps its lore scroll there
- const zapis=tajne[0]||rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
- return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,kuke,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
+ const zapis=pismo||tajne[0]||rest.filter(c=>c!==heart&&c.x<end*.6).sort((u,v)=>v.s-u.s||u.x-v.x)[0]||rest.find(c=>c!==heart)||null;
+ return{platforms,ladders,breakables,spots,rewards,towers,busy,plows,traps,vaults,kuke,narod,letters,heart,zapis,power:mid||null,boss,spawn,goal,width,y0:Math.min(...platforms.map(q=>q.y)),pitY:Math.max(...platforms.filter(q=>q.ground).map(q=>q.y))+300};
 }
 export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina',width:7000,spawn:{x:80,y:590},goal:{x:6800,y:590},palette:'san u vilinskoj pećini',peace:true,secret:true,
  layers:[{id:'san-sky',speed:.04},{id:'san-far',speed:.16},{id:'san-mid',speed:.38},{id:'san-near',speed:.72}],
@@ -471,7 +499,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps)if(t.kind==='soko'){foe('pas',t.x+250,t.y);foe('archer',t.x+430,t.y);foe('sword',t.x-260,t.y);}
  for(const t of B.traps)if(t.kind==='trska'){foe('archer',t.x+t.w*.45,t.y,{skriven:true});foe('archer',t.x+t.w*.8,t.y,{skriven:true});}
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
- let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q)items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
+ let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q&&!B.traps.some(t=>t.kind==='dunav'&&x>t.voda[0]-60&&x<t.voda[1]+60))items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
  // the eagle's and the falcon's feathers are theirs to give: each waits in its hiding place only if the bird is not saved
  for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}const soko=r.cudo==='sokolovo-pero'&&B.traps.find(t=>t.kind==='soko');if(soko){soko.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
  // "Marko Kraljević poznaje očinu sablju": in the Turkish camp a young Turk wears Marko's father's sabre
@@ -498,7 +526,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const g of goals)if(g.kind==='gate')for(let i=B.breakables.length-1;i>=0;i--)if(Math.abs(B.breakables[i].x-g.x)<140)B.breakables.splice(i,1);
  // a guarded gate always has its guards
  for(const g of goals)if(g.guarded){const near=enemies.filter(e=>e.x>g.x-1100&&e.x<g.x+220&&!e.perch).length;for(let n=near,dx=260;n<2;n++,dx+=220){const q=floorAt(g.x-dx);if(q)foe(pool[n%pool.length],g.x-dx,q.y);}}
- return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,kuke:B.kuke,y0:B.y0,pitY:B.pitY,busy:B.busy};
+ return{platforms,enemies,items,runes:[],barriers:[],goals,level:L2,ladders:B.ladders,breakables:B.breakables,towers:B.towers,plows:B.plows,traps:B.traps,cannons:B.traps.filter(t=>t.kind==='top'),guns:B.traps.filter(t=>t.kind==='topnica'),vaults:B.vaults,kuke:B.kuke,narod:B.narod,y0:B.y0,pitY:B.pitY,busy:B.busy};
 }
 // the greybox (?greybox) builds its own rooms; game.js reaches them through this one name
 export * as greybox from './greybox.js';

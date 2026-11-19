@@ -47,6 +47,8 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[])if(tr.kind==='jahanje'&&tr.ph==='jase'&&!tr.bot){tr.bot=true;p.x=tr.x1+200;p.y=tr.y;stuck.push({at:'pesma o vili',known:true});}
   // the chase round the church of Samodreža is played by pesme-test: here the books are taken and the song counts as sung
   for(const tr of w.traps||[])if(tr.kind==='varadin'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.sedi=0;for(const e of w.enemies)if(e.katana)e.alive=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'pod Varadinom',known:true});}
+  // the Danube is waded on Šarac after two calls to the ferryman (pesme-test plays that): the bot is set down on the far bank
+  for(const tr of w.traps||[])if(tr.kind==='dunav'&&tr.ph&&!tr.done&&!tr.bot&&p.x>tr.obala-200){tr.bot=true;tr.done=true;tr.slobodno=true;p.x=tr.x1-120;p.y=tr.y;p.vx=0;p.vy=0;stuck.push({at:'Dunav',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='mehana'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;tr.F=null;p.sedi=0;for(const e of w.enemies)if(e.filip)e.alive=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'nova mehana',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='okovi'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.okovan=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'Marko u okovima',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='samodreza'&&!tr.done&&p.x>tr.x0-100&&p.x<tr.x1){tr.done=true;for(const g of w.goals||[])if(g.kind==='take')g.done=true;stuck.push({at:'crkva Samodreža',known:true});}
