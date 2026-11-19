@@ -308,7 +308,7 @@ function slay(e,launch=0){if(!e.alive)return;if(e.keyHolder)dropKey(e);bookKill(
 // the song: Marko knows his father's sabre by its three golden hilts, and takes it back
 function dropSablja(e){const have=ownedCuda().has('oceva-sablja');if(!have&&!world.items.some(i=>i.cudo==='oceva-sablja'))world.items.push({id:7049,x:e.x,y:e.y-50,type:'cudo',cudo:'oceva-sablja',taken:false});else addCoins(30,e.x,e.y-60);
  speak('Pozna Marko očinu sablju: tri balčaka, tri zlatna. Ne nosi je Turčin više.',5);label('OČEVA SABLJA',e.x,e.y-170,'#ffe2a8');}
-function drawSabljaTag(){for(const e of world.enemies)if(e.alive&&e.sablja&&Math.abs(p.x-e.x)<620)textLabel('MUSTAF-AGA · OČEVA SABLJA',e.x,e.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});}
+function drawSabljaTag(){for(const e of world.enemies)if(e.alive&&e.sablja&&Math.abs(p.x-e.x)<460)textLabel('MUSTAF-AGA',e.x,e.y-150,{font:'bold 12px Georgia',color:'#ffe2a8'});}
 // ================= harder champions =================
 // A champion shrugs off blows: only the third light blow (or a heavy one) in a short while staggers him, and during his own
 // swing it takes more. He has 15% more health. And Marko cannot hang over his head: a moment there and he is thrown off.
@@ -1263,7 +1263,7 @@ function basePose(){
  if(p.ustaje>0&&rig?.['marko-odmor-ustaje']){const n=rig['marko-odmor-ustaje'].frames.length;return{name:'marko-odmor-ustaje',frame:Math.min(n-1,Math.floor((1-p.ustaje/.6)*n))};}
  if(p.sedi>0&&rig?.['marko-odmor']){const n=rig['marko-odmor'].frames.length;
   // D97: seated, „pola pije, pola Šarcu daje”: the scene sets p.pijeT/p.pijeK; elsewhere he takes a draught every few seconds
-  if(p.sedi>=1&&!varadinScena&&rig?.['marko-sedi-pije']&&(p.pijeT==null||time-p.pijeT>6.5||p.pijeT>time)){p.pijeT=time;p.pijeK='pije';}
+  if(p.sedi>=1&&!varadinScena&&!cadorScena&&rig?.['marko-sedi-pije']&&(p.pijeT==null||time-p.pijeT>6.5||p.pijeT>time)){p.pijeT=time;p.pijeK='pije';}
   if(p.sedi>=1&&p.pijeT!=null){const k=p.pijeK==='poji'?'marko-sedi-poji':'marko-sedi-pije',R=rig?.[k];if(R){const f=(time-p.pijeT)*7;if(f>=0&&f<R.frames.length)return{name:k,frame:Math.floor(f)};}}
   return{name:'marko-odmor',frame:Math.min(n-1,Math.floor(p.sedi*(n-1)+1e-6))};}
  if(p.okovan&&rig?.['marko-okovan']){const n=rig['marko-okovan'].frames.length;return Math.abs(p.vx)>10?{name:'marko-okovan',...loopAt(p.gait||0,n)}:{name:'marko-okovan',frame:0};}
@@ -3474,36 +3474,42 @@ function drawVojvode(T){if(!T.milos||T.milos.tam)return;const y=T.y;for(const[c,
 // Stefan: „kreni na nivo 5 sve do najsitnijeg detalja”. The rooms are in world.js (marica, belakula, tabor, cador).
 // Three belts of ducats run through the pohod („kod mene su tri ćemera blaga, u svakome po trista dukata”): the girl gives
 // hers, one lies on the balcony of the white tower, the third falls with Mustaf-aga.
-const TVRDJAVA_SLIKE=['prop-platno-marica','prop-grob-junaka','prop-bela-kula-mustafa','prop-carev-cador','prop-turski-sator','prop-ognjiste'];
+const TVRDJAVA_SLIKE=['prop-perilo-marica','prop-platno-marica','prop-grob-junaka','prop-bela-kula-mustafa','prop-cador-bok','prop-cador-bok-prednji','prop-carev-cador','prop-turski-sator','prop-ognjiste'];
 function cemer(x,y){const n=world.cemeri=(world.cemeri||0)+1;addCoins(30,x,y);sfx('coins',{gain:.8,x});label(`ĆEMER BLAGA · ${n}/3`,x,y-70,'#ffe6a0');
  if(n===3){addCoins(30,x,y);toast('Sva tri ćemera blaga su kod tebe: u svakome po trista dukata.',4);}}
 // --- the Marica at dawn ---
-const MARICA_REC=[['TURKINJA ĐEVOJKA','„Do sunca mi bistra voda bila, od sunca se voda zamutila: udarila mutna i krvava, pa pronosi konje i kalpake, ispred podne ranjene junake.”',9],
- ['TURKINJA ĐEVOJKA','„Izvadih iz vode ranjena junaka: na junaku rana sedamnaest, o bedri mu sablja okovana, na sablji tri balčaka zlatna. A brat moj, aga Mustaf-aga, manu njome, odsječe mu glavu.”',10],
+const MARICA_REC=[['TURKINJA ĐEVOJKA','„Đevojka sam za Boga primila: bacih njemu jedan kraj od platna, izvadih ga vodi na obalu. Na junaku rana sedamnaest, o bedri mu sablja okovana, na sablji tri balčaka zlatna.”',10],
+ ['TURKINJA ĐEVOJKA','„A brat moj, aga Mustaf-aga, kad viđe ranjena junaka, uze gledat’ sablju okovanu: manu njome, odsječe mu glavu.”',8],
  ['TURKINJA ĐEVOJKA','„Zašto, brate, da od Boga nađeš! Na što si se, bolan, prevario, a na jednu sablju okovanu! Eda Bog da, odsjekla ti glavu!”',8],
  ['TURKINJA ĐEVOJKA','„Evo tebi, neznana delijo, ćemer blaga moga pobratima: krvavo mi blago ne treba. Brat mi ode na carevu vojsku, pripasao sablju okovanu.”',8]];
 function maricaTrap(){return(world.traps||[]).find(t=>t.kind==='marica')||null;}
 function updateMarica(dt){const T=maricaTrap();if(!T||!level)return;const V=T.vodaT||(T.vodaT={x:T.voda[0],w:T.voda[1]-T.voda[0],y:T.y+2}),mok=dunavMokar(T,p);splashIn(V,p,'wetM');p.uVodi=mok;
  if(mok&&Math.abs(p.vx)>50){T.pljus=(T.pljus||0)-dt;if(T.pljus<=0){T.pljus=.3;for(let i=0;i<4;i++)particles.push({kind:'dust',x:p.x-p.face*14+(Math.random()-.5)*30,y:T.y+14,vx:-p.face*(30+Math.random()*90),vy:-80-Math.random()*120,life:.55,max:.55,r:2+Math.random()*2,color:'#d8b8a8'});}}
  if(p.x>T.x1+200)return;
- if(!T.ph){if(Math.abs(p.x-T.devojka)<300&&Math.abs(p.y-T.y)<120){T.ph='prica';T.pt=0;T.i=0;}return;}
+ // the picture of the song (how she drew him out of the water) is shown as Marko comes to her; then she tells the rest
+ if(!T.ph){if(Math.abs(p.x-T.devojka)<280&&Math.abs(p.y-T.y)<120){T.ph='prica';T.pt=0;T.i=0;prelazKad('marica');}return;}
  if(T.ph==='prica'){scenaKorak(T,'pt',dt);if(T.i<MARICA_REC.length&&T.pt>T.i*.6+.2){const[who,txt,d]=MARICA_REC[T.i++];speak(txt,d,who);if(T.i===3)T.kune=time;if(T.i===4)T.dajeT=T.pt+1.2;}
-  if(T.dajeT&&T.pt>T.dajeT&&!T.dala){T.dala=true;cemer(T.devojka+40,T.y-70);}if(T.dala&&T.pt>T.dajeT+1)T.ph='kraj';}
- if(!T.grobRec&&Math.abs(p.x-T.grob)<260&&Math.abs(p.y-T.y)<120){T.grobRec=true;speak('Na junaku rana sedamnaest, na junaku čudno odijelo. „Kod mene su tri ćemera blaga, u svakome po trista dukata: ja ću jedan tebe pokloniti, drugi tvome bratu Mustaf-agi, a treći ću sebe ostaviti, da ja vidam moje grdne rane.”',10,'GUSLAR');}}
+  if(T.dajeT&&T.pt>T.dajeT&&!T.dala){T.dala=true;cemer(T.devojka-40,T.y-70);}if(T.dala&&T.pt>T.dajeT+1)T.ph='kraj';}
+ // at the grave: the picture of Mustaf-aga and the sabre, with the wounded hero's words of the three belts (said aloud where there is no picture)
+ if(!T.grobRec&&Math.abs(p.x-T.grob)<260&&Math.abs(p.y-T.y)<120){T.grobRec=true;if(!prelazKad('grob'))speak('Na junaku rana sedamnaest, na junaku čudno odijelo. „Kod mene su tri ćemera blaga, u svakome po trista dukata: ja ću jedan tebe pokloniti, drugi tvome bratu Mustaf-agi, a treći ću sebe ostaviti, da ja vidam moje grdne rane.”',10,'GUSLAR');}}
 function drawMarica(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;
- slikaNa('prop-platno-marica',T.platno,y+8,100);slikaNa('prop-grob-junaka',T.grob,y+6,185);
+ // the washing place stands on the bank, seen from the side (D110); she kneels at the water's edge, her linen in the stream
+ if(!slikaNa('prop-perilo-marica',T.platno,y+6,206))slikaNa('prop-platno-marica',T.platno,y+8,100);slikaNa('prop-grob-junaka',T.grob,y+6,185);
  if(Math.abs(p.x-T.grob)<520)textLabel('GROB NEZNANOG JUNAKA',T.grob,y-204,{font:'bold 12px Georgia',color:'#e8dcc8',glow:'#1a0a04'});
  const B=rig?.['turkinja-beli'],I=rig?.['turkinja-idle'],K=rig?.['turkinja-kune'];if(!B&&!I)return;const dx=T.devojka;shadow(dx,y,30,.38);
- // she kneels and beats the linen until Marko comes; then she stands and tells; she curses her brother with both arms raised
+ // she kneels facing the water and beats the linen until Marko comes; then she stands and tells; she curses her brother with both arms raised
  const kune=T.kune&&K&&time-T.kune<K.frames.length/5+1.2;
  if(kune)rigDraw('turkinja-kune',Math.min(K.frames.length-1,(time-T.kune)*5),dx,y,-1);
  else if(!T.ph&&B){const f=loopF(time*5,B.frames.length);rigDraw('turkinja-beli',f,dx,y,-1);if(Math.floor(f)===2&&T.pljes!==Math.floor(time*5/B.frames.length)&&Math.abs(p.x-dx)<620){T.pljes=Math.floor(time*5/B.frames.length);sfx('cloth',{gain:.22,rate:.8,x:dx});}}
  else if(I)rigDraw('turkinja-idle',loopF(time*4.5,I.frames.length),dx,y,p.x>dx?-1:1);
- if(Math.abs(p.x-dx)<620)textLabel('TURKINJA ĐEVOJKA',dx,y-140,{font:'bold 12px Georgia',color:'#ffd9e8'});}
+ if(Math.abs(p.x-dx)<520)textLabel('TURKINJA ĐEVOJKA',dx,y-(T.ph?150:112),{font:'bold 12px Georgia',color:'#ffd9e8'});}
 // --- Mustaf-aga's white tower ---
+// „Imam jednu ostarjelu majku, i imadem brata Mustaf-agu”: the old mother stands on the balcony and looks down the road he
+// took to the Sultan's army (D112). The tower says nothing: the girl has told it all at the river.
 function drawBelaKula(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;slikaNa('prop-bela-kula-mustafa',T.cx,y+6,560);
  if(Math.abs(p.x-T.cx)<700)textLabel('MUSTAF-AGINA BIJELA KULA',T.cx+190,y-330,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
- if(!T.rec&&Math.abs(p.x-T.cx)<420){T.rec=true;speak('Manu sabljom, odsječe mu glavu, skide s njega divno odijelo, pa on ode dvoru bijelome. Pred njega je sestra izlazila, to mu reče, uz kulu uteče.',9,'GUSLAR');}}
+ const M=rig?.['mustafagina-majka'];if(M){rigDraw('mustafagina-majka',loopF(time*4,M.frames.length),T.cx-52,T.by,p.x>T.cx-52?-1:1);
+  if(Math.abs(p.x-T.cx)<300&&Math.abs(p.y-T.by)<80)textLabel('MUSTAF-AGINA MAJKA',T.cx-52,T.by-140,{font:'bold 12px Georgia',color:'#ffd9e8'});}}
 // --- the Sultan's camp: the sabre from hand to hand ---
 // „Gleda sablju malo i veliko; nikome se izvaditi ne da: ode sablja od ruke do ruke, dođ’ u ruke Kraljeviću Marku, sama mu se
 // sablja izvadila.” Three of the camp try it in turn (janicar-vuce-sablju) while Mustaf-aga looks on; E by them and it is in
@@ -3512,7 +3518,7 @@ function taborTrap(){return(world.traps||[]).find(t=>t.kind==='tabor')||null;}
 const taborMujo=()=>world.enemies.find(e=>e.sablja);
 function useTabor(){const T=taborTrap();if(!T||T.ph!=='ruke'||!p.grounded||Math.abs(p.x-T.krug)>250||Math.abs(p.y-T.y)>60)return false;const M=taborMujo();
  T.ph='slova';T.slovaVidjena=true;sabljaSlova={t:0,tabor:true};burst(p.x,p.y-90,'#ffe39a',40,200);sfx('draw',{gain:.9,x:p.x});sfx('magic_big',{gain:.6});label('SAMA MU SE SABLJA IZVADILA',p.x,p.y-200,'#ffe39a');
- speak('Dođ’ u ruke Kraljeviću Marku, sama mu se sablja izvadila. Kad je Marko sablju zagledao, al’ na sablji tri slova rišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.',9,'GUSLAR');
+ speak('Sama mu se sablja izvadila. Kad je Marko sablju zagledao, al’ na sablji tri slova hrišćanska: jedno slovo Novaka kovača, drugo slovo Vukašina kralja, treće slovo Kraljevića Marka.',9,'GUSLAR');
  for(const e of world.enemies)if(e.tabor)e.vuce=0;if(M&&M.alive)M.face=M.x>p.x?-1:1;return true;}
 function updateTabor(dt){const T=taborTrap();if(!T||!level)return;const M=taborMujo(),ziv=M&&M.alive;
  if(T.ph==='kraj'||p.x<T.x0-900||p.x>T.x1+900)return;
@@ -3527,9 +3533,10 @@ function updateTabor(dt){const T=taborTrap();if(!T||!level)return;const M=taborM
  if(T.ph==='razgovor'){if(!ziv)T.ph='pao';else if(!(M.razgovor>.35)||M.hp<M.maxHp){T.ph='boj';M.razgovor=0;label('„DAJ AMO SABLJU OKOVANU!”',M.x,M.y-190,'#ffb09a');}return;}
  if(T.ph==='boj'){for(const e of world.enemies)if(e.tabor&&e.alive&&e.hp>=e.maxHp)e.razgovor=Math.max(e.razgovor||0,.3);if(!ziv)T.ph='pao';return;}
  if(T.ph==='pao'){T.ph='kraj';T.done=true;if(M)cemer(M.x,M.y-80);for(const e of world.enemies)if(e.tabor&&e.alive){e.razgovor=0;uplasi(e,9,true);}
-  speak('Manu sabljom od Prilipa Marko, skide glavu Turčin-Mustaf-agi. Otidoše caru kazivati; car po Marka opravio sluge.',9,'GUSLAR');label('OTIDOŠE CARU KAZIVATI',p.x,p.y-210,'#ffe39a');}}
+  label('OTIDOŠE CARU KAZIVATI',p.x,p.y-210,'#ffe39a');}}
 function drawTabor(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;
  slikaNa('prop-turski-sator',T.x0+620,y+6,250);slikaNa('prop-turski-sator',T.x0+2080,y+6,230,{face:-1});slikaNa('prop-ognjiste',T.krug+70,y+4,58);halo(T.krug+70,y-30,70,'rgba(255,170,90,.35)',.6+.2*Math.sin(time*7));
+ for(const[k,dx,f,v]of[['tabor-kuvar',860,1,5],['tabor-dervis',1840,1,4],['tabor-bubnjar',2240,1,6]]){const Rk=rig?.[k];if(Rk){shadow(T.x0+dx,y,34,.4);rigDraw(k,loopF(time*v,Rk.frames.length),T.x0+dx,y,f);}}
  if(Math.abs(p.x-T.krug)<900)textLabel('CAREV TABOR',T.krug,y-300,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
  if(T.ph==='ruke'&&p.grounded&&Math.abs(p.x-T.krug)<250&&Math.abs(p.y-y)<60)textLabel('E · UZMI SABLJU',p.x,p.y-190,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
 function drawTaborVuce(e){const R=rig['janicar-vuce-sablju'];shadow(e.x,e.y,32,.5);rigDraw('janicar-vuce-sablju',loopF(time*5,R.frames.length),e.x,e.y,e.face||1);}
@@ -3539,28 +3546,38 @@ function drawTaborVuce(e){const R=rig['janicar-vuce-sablju'];shadow(e.x,e.y,32,.
 // te izvadi stotinu dukata.” Past the megdan the tent stands open: Marko walks in and sits on the prayer rug, the Sultan backs
 // away to the wall of the tent and holds out the purse.
 let cadorScena=false;
+// the painted tent seen from the side (D110), measured from its middle: where one walks in, where the prayer rug lies, where
+// the Sultan sits and the cloth wall he is driven to
+const CADOR={H:500,ulaz:-295,sjedi:-45,car:95,zid:196,L:[19,150],D:[1418,1506]};
+const CADOR_A='Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora. Car s’ odmiče, a Marko primiče, dok doćera cara do duvara.';
+const CADOR_B='Car se maši u džepove rukom, te izvadi stotinu dukata: „Idi, Marko, napij mi se vina!” A Marko: „Ne pitaj me, care poočime! Poznao sam sablju baba mog.”';
 function cadorTrap(){return(world.traps||[]).find(t=>t.kind==='cador')||null;}
-function updateCador(dt){cadorScena=false;const T=cadorTrap();if(!T||!level||T.ph==='kraj')return false;const y=T.y,seat=T.c-80;
- if(!T.ph){if(vucaPao()&&p.grounded&&p.x>T.c-470&&p.x<T.c+300&&Math.abs(p.y-y)<120){T.ph='ulazi';T.pt=0;T.car=T.c+40;scenaPocinje(y);
-   speak('Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora.',8,'GUSLAR');}return false;}
- cadorScena=true;scenaKorak(T,'pt',dt);p.invuln=Math.max(p.invuln,.3);
- if(T.ph==='ulazi'){const dx=seat-p.x;p.vx=Math.sign(dx)*Math.min(150,Math.abs(dx)*4);p.x+=p.vx*dt;p.face=Math.abs(dx)>8?Math.sign(dx):1;p.gait=(p.gait||0)+Math.abs(p.vx)*dt/90*6;p.y=y;p.grounded=true;
-  if(Math.abs(dx)<4&&T.pt>1.2){T.ph='sjedi';T.pt=0;p.vx=0;p.x=seat;p.sedi=0;speak('Koliko se ražljutio Marko, u čizmama sjede na serdžadu, pa pogleda cara poprijeko, krvave mu suze iz očiju.',8,'GUSLAR');}return true;}
- p.vx=0;p.face=1;p.y=y;p.grounded=true;p.sedi=Math.min(1,(p.sedi||0)+dt*1.4);
- if(T.ph==='sjedi'){if(T.pt>1.5){T.ph='uzmice';T.pt=0;speak('Kad je care sagledao Marka i pred njime tešku topuzinu, car s’ odmiče, a Marko primiče, dok doćera cara do duvara.',8,'GUSLAR');}return true;}
- if(T.ph==='uzmice'){T.car=Math.min(T.c+262,T.car+46*dt);p.x=Math.min(T.c+92,p.x+46*dt*.78);if(T.car>=T.c+262&&T.pt>4.2){T.ph='daje';T.pt=0;T.dajeT=time;
-   speak('„Idi, Marko, napij mi se vina! Što su mi te tako razljutili?”',6,'CAR');}return true;}
- if(T.ph==='daje'){if(T.pt>1.4&&!T.dukati){T.dukati=true;addCoins(100,T.car-70,y-90);p.wine=p.wineMax??p.wine;sfx('coins',{gain:.8,x:T.car})||sfx('ring',{gain:.5});label('STOTINU DUKATA',T.car-70,y-190,'#ffe6a0');
-    speak('„Ne pitaj me, care poočime! Poznao sam sablju baba moga; da sam, Bog d’o, u tvojim rukama, i ti bi me ’vako razljutio.” Pa on usta i ode čadoru.',9,'MARKO');}
-  if(T.pt>4.5){T.ph='kraj';T.done=true;p.sedi=0;return false;}return true;}
+// Marko walks in, sits down on the prayer rug in his boots, RISES and steps towards the Sultan, who backs away to the cloth
+// wall; there the Sultan holds out the purse. Two recorded lines of the guslar carry it; nobody slides while seated.
+function updateCador(dt){cadorScena=false;const T=cadorTrap();if(!T||!level||T.ph==='kraj')return false;const y=T.y,C=CADOR,seat=T.c+C.sjedi,carKraj=T.c+C.zid;
+ if(!T.ph){if(vucaPao()&&p.grounded&&p.x>T.c+C.ulaz-140&&p.x<T.c+C.zid&&Math.abs(p.y-y)<120&&(!govorTraje()||p.x>T.c+C.ulaz+70)){T.ph='ulazi';T.pt=0;T.car=T.c+C.car;scenaPocinje(y);if(govorTraje())govorPrekini();speak(CADOR_A,12,'GUSLAR');}return false;}
+ cadorScena=true;T.pt+=dt;p.invuln=Math.max(p.invuln,.3);p.y=y;p.grounded=true;
+ const hod=(tx,v)=>{const dx=tx-p.x,ad=Math.abs(dx);p.vx=ad>3?Math.sign(dx)*Math.min(v,ad*4+36):0;p.x+=p.vx*dt;if(ad>3)p.face=Math.sign(dx);p.gait=(p.gait||0)+Math.abs(p.vx)*dt/90*6;return ad<=3;};
+ if(T.ph==='ulazi'){if(hod(seat,120)&&T.pt>1){T.ph='sjedi';T.pt=0;p.vx=0;p.face=1;p.sedi=0;label('U ČIZMAMA SJEDE NA SERDŽADU',p.x,y-210,'#ffe39a');}return true;}
+ if(T.ph==='sjedi'){p.vx=0;p.face=1;p.sedi=Math.min(1,(p.sedi||0)+dt*1.4);if(T.pt>3.2){T.ph='ustaje';T.pt=0;p.sedi=0;p.ustaje=.6;}return true;}
+ if(T.ph==='ustaje'){p.vx=0;p.face=1;if(T.pt>.6){T.ph='primice';T.pt=0;}return true;}
+ if(T.ph==='primice'){T.car=Math.min(carKraj,T.car+50*dt);const stigao=hod(T.car-104,62);p.face=1;
+  if(T.car>=carKraj&&stigao&&!govorTraje()){T.ph='daje';T.pt=0;T.dajeT=time+.8;p.vx=0;speak(CADOR_B,12,'GUSLAR');}return true;}
+ if(T.ph==='daje'){p.vx=0;p.face=1;if(T.pt>2.6&&!T.dukati){T.dukati=true;addCoins(100,T.car-70,y-90);p.wine=p.wineMax??p.wine;sfx('coins',{gain:.8,x:T.car})||sfx('ring',{gain:.5});label('STOTINU DUKATA',T.car-70,y-190,'#ffe6a0');}
+  if(T.pt>5&&!govorTraje()){T.ph='kraj';T.done=true;return false;}return true;}
  return false;}
-function drawCador(T){if(T.x1<camera-700||T.x0>camera+VIEW_W+700)return;const y=T.y;slikaNa('prop-carev-cador',T.c,y+6,340);
- if(Math.abs(p.x-T.c)<800)textLabel('CAREV ČADOR',T.c,y-356,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
- const S=rig?.['car-sedi'],U=rig?.['car-uzmice'],D=rig?.['car-daje'];if(!S)return;const cx=T.car??T.c+40;shadow(cx,y,34,.4);
- if(T.ph==='uzmice'&&U)rigDraw('car-uzmice',loopF(time*7,U.frames.length),cx,y,1);
- else if((T.ph==='daje'||T.ph==='kraj')&&D)rigDraw('car-daje',Math.min(D.frames.length-1,(time-(T.dajeT||0))*4.5),cx,y,1);
- else rigDraw('car-sedi',loopF(time*3.5,S.frames.length),cx,y-10,1);
- if(Math.abs(p.x-cx)<700)textLabel('CAR',cx,y-(T.ph==='uzmice'||T.ph==='daje'||T.ph==='kraj'?150:112),{font:'bold 12px Georgia',color:'#ffe6a0'});}
+function drawCador(T){if(T.x1<camera-800||T.x0>camera+VIEW_W+800)return;const y=T.y,C=CADOR;
+ if(!slikaNa('prop-cador-bok',T.c,y+6,C.H))slikaNa('prop-carev-cador',T.c,y+6,340);
+ if(Math.abs(p.x-T.c)<800)textLabel('CAREV ČADOR',T.c,y-C.H-18,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
+ const S=rig?.['car-sedi'],U=rig?.['car-uzmice'],D=rig?.['car-daje'];if(!S)return;const cx=T.car??T.c+C.car,stoji=T.ph==='primice'||T.ph==='daje'||T.ph==='kraj';shadow(cx,y,34,.4);
+ if(T.ph==='primice'&&U)rigDraw('car-uzmice',cx<T.c+C.zid?loopF(time*7,U.frames.length):0,cx,y,1);
+ else if((T.ph==='daje'||T.ph==='kraj')&&D)rigDraw('car-daje',clamp((time-(T.dajeT||0))*4.5,0,D.frames.length-1),cx,y,1);
+ else rigDraw('car-sedi',loopF(time*3.5,S.frames.length),cx,y,1);
+ if(Math.abs(p.x-cx)<620)textLabel('CAR',cx,y-(stoji?156:112),{font:'bold 12px Georgia',color:'#ffe6a0'});}
+// what of the tent hangs before whoever stands in it: the two near poles, the fringe of the roof, the horse-tail standard
+function drawCadorNapred(){const T=level&&cadorTrap();if(!T||T.x1<camera-800||T.x0>camera+VIEW_W+800)return;const im=worldImg('prop-cador-bok');if(!im)return;const b=propBounds(im),k=CADOR.H/b.h,x0=T.c-b.w*k/2,y0=T.y+6-CADOR.H;for(const[u,v]of[CADOR.L,CADOR.D])ctx.drawImage(im,u,b.y,v-u,b.h,x0+(u-b.x)*k,y0,(v-u)*k,CADOR.H);}
+// draws a second image that shares the canvas of a first one (a front layer) by the first one's bounds, so the two lie exactly on each other
+function slikaNaKao(id,kao,x,y,h){const im=worldImg(id),k=worldImg(kao);if(!im||!k)return false;const b=propBounds(k),w=b.w*h/b.h;ctx.drawImage(im,b.x,b.y,b.w,b.h,x-w/2,y-h,w,h);return true;}
 // a keg of powder in Hasan-aga's arena goes up when his charge runs into it
 function megdanBureBum(e,q){const cx=q.x+q.w/2,cy=q.y+q.h;q.off=true;q.cut=true;burst(cx,cy-40,'#ff9a3a',70,420);burst(cx,cy-30,'#5a4a3a',40,300,'dust');fx('flash','#ffd080',.18);shake=settings.reduced?0:14;rumble(1,340);
  sfx('boom',{gain:1,x:cx});sfx('cannon',{gain:.7,x:cx})||sfx('rock',{gain:1,x:cx});e.hp-=Math.round(e.maxHp*.09);e.flash=.3;label('BARUT!',cx,cy-150,'#ffcf7a');
@@ -3615,7 +3632,7 @@ function drawDunav(T){if(T.x1<camera-700||T.x0>camera+VIEW_W+700)return;const y=
  else if(!horseMounted&&Math.abs(p.x-T.sarac)<130)textLabel('E · NA ŠARCA',T.sarac,y-200,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
  else if(!T.slobodno&&p.x>T.obala-330&&p.x<T.obala+60)textLabel(T.vika?'E · VIKNI JOŠ JEDNOM':'E · VIKNI SKELEDŽIJU',p.x,p.y-nadM+30,{font:'bold 14px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
 // the Danube itself, in front of everyone who is in it
-function drawDunavNapred(){if(level)for(const T of world.traps||[])if(T.kind==='dunav'||T.kind==='marica')vodaNapred(T);}
+function drawDunavNapred(){if(level)for(const T of world.traps||[])if(T.kind==='dunav'||T.kind==='marica')vodaNapred(T);drawCadorNapred();}
 function vodaNapred(T){const M=T.kind==='marica';const[a,b]=T.voda;if(b<camera-80||a>camera+VIEW_W+80)return;const y=T.y+14,H=T.dno-y+6,wy=x=>y+Math.sin(time*1.6+x*.035)*2.2+Math.sin(time*2.3+x*.011)*1.4;
  const g=ctx.createLinearGradient(0,y,0,y+H);g.addColorStop(0,M?'rgba(158,96,78,.72)':'rgba(92,156,164,.74)');g.addColorStop(.4,M?'rgba(120,58,48,.9)':'rgba(50,106,120,.9)');g.addColorStop(1,M?'rgba(62,26,24,.97)':'rgba(20,52,66,.97)');
  ctx.beginPath();ctx.moveTo(a,y+H);for(let x=a;x<b;x+=10)ctx.lineTo(x,wy(x));ctx.lineTo(b,wy(b));ctx.lineTo(b,y+H);ctx.closePath();ctx.fillStyle=g;ctx.fill();
@@ -4249,7 +4266,7 @@ function pvCilj(){const J=level&&jahanjeTrap();if(!J||!J.ph||J.ph==='pesice'||J.
 function updatePesma(dt){const P=pesma;if(!P)return false;if(P.J!==jahanjeTrap()){pesma=null;return false;}if(P.ph==='peva')return pvTick(P,dt);if(P.ph==='strele')return pvStreleTick(P,dt);if(P.ph==='bilje')return pvBiljeTick(P,dt);if(P.ph==='leci')return pvLeciTick(P,dt);return false;}
 // in a song's set piece with two people in it (Đemo leading Marko in chains; the king chasing Marko round the church) the camera
 // holds both, centred between them, so neither stands under the skill bar
-function scenaFokus(){if(varadinScena){const T=varadinTrap();return(p.x+T.logor+260)/2;}if(mehanaScena){const T=mehanaTrap(),F=T?.F;return F&&Math.abs(F.x-p.x)<600?(p.x+F.x)/2:(p.x+T.sarac)/2;}if(okoviScena){const D=okoviTrap()?.djemo;if(D&&!D.bezi)return(p.x+D.x)/2;}const C=crkvaTrap(),V=C?.vuk;if(V&&C.state&&C.state!=='kraj'&&Math.abs(p.x-V.x)<900)return(p.x+V.x)/2;return null;}
+function scenaFokus(){if(cadorScena){const T=cadorTrap();return T.c+20;}if(varadinScena){const T=varadinTrap();return(p.x+T.logor+260)/2;}if(mehanaScena){const T=mehanaTrap(),F=T?.F;return F&&Math.abs(F.x-p.x)<600?(p.x+F.x)/2:(p.x+T.sarac)/2;}if(okoviScena){const D=okoviTrap()?.djemo;if(D&&!D.bezi)return(p.x+D.x)/2;}const C=crkvaTrap(),V=C?.vuk;if(V&&C.state&&C.state!=='kraj'&&Math.abs(p.x-V.x)<900)return(p.x+V.x)/2;return null;}
 function pesmaCam(dt){const P=pesma;if(!P?.cam)return false;camera=P.cam.x;camY+=(P.cam.y-camY)*Math.min(1,dt*4);return true;}
 function drawJahanje(J){drawSrne();const M=J.milos;if(!M)return;if(M.konj&&!(M.st==='pada'&&rig?.['milos-pada-s-konja']&&M.t<.9)){shadow(M.konj.x,M.konj.y,70,.4);const n=rig?.['milos-konj']?'milos-konj':null;if(n)rigDraw(n,loopF(time*6,rig[n].frames.length),M.konj.x,M.konj.y,1,{scale:.95});else rigDraw('cast/sarac',0,M.konj.x,M.konj.y,1,{scale:.95,filter:'sepia(1) saturate(1.5) hue-rotate(-12deg) brightness(.52)'});}
  if(M.x<camera-260||M.x>camera+VIEW_W+260)return;pvDrawMilos(M);
@@ -4419,7 +4436,7 @@ const STIHOVI=[['Mili Bože, čuda velikoga!','Kad se kreće Kraljeviću Marko',
  ['Pod njim Šarac kao gorska vila,','o ramenu topuz šestoperac,','pred njim beže Turci janjičari.'],
  ['Na kraj klisure Đemo Brđanine,','došao je brata da osveti:','udri, Marko, ne daj se Brđaninu!']];
 const LAND_STIH={selo:['Jao Šaro, moje desno krilo,','čistim ću te srebrom potkovati,','čistim srebrom i žeženim zlatom.'],manastir:['Nemoj, sine, govoriti krivo,','ni po babu, ni po stričevima,','već po pravdi Boga istinoga.'],
- oranje:['„More Marko, ne ori drumova!”','„More Turci, ne gaz’te oranja!”','„To sam tebe danas izorao.”'],tvrdjava:['Na sablji su tri slova rišćanska:','jedno slovo Novaka kovača,','drugo slovo Vukašina kralja.'],
+ oranje:['„More Marko, ne ori drumova!”','„More Turci, ne gaz’te oranja!”','„To sam tebe danas izorao.”'],tvrdjava:['O bedri mu sablja okovana,','na sablji su tri balčaka zlatna,','valja sablja tri careva grada.'],
  podrum:['Marko nosi zelenu dolamu,','Marko pije uz ramazan vino,','još nagoni odže i adžije.'],mocvara:['Teško mene i tebe, sokole,','lov loveći s Turci bez Srbalja,','lov loveći, krivo dijeleći!'],
  suma:['Ne streljajte po gori junaka','dok je glasa Kraljevića Marka','i njegova vidovita Šarca!'],pecina:['A pred Markom vila Ravijojla,','u ruke joj gusli javorove:','same gude, same udaraju.'],
  prevoj:['Ili grmi, il’ se zemlja trese?','Niti grmi, nit’ se zemlja trese,','već pucaju na gradu topovi.'],rusevine:['Odsad više nema svadbarine,','Marko za sve svadbarinu plati:','Bog da živi Kraljevića Marka!'],
@@ -4685,6 +4702,7 @@ function ckptTick(){if(!level||mode!=='play')return;
  if(!world.champSaved){world.champSaved=true;for(const e of world.enemies)if(e.champion)e.pristine=JSON.stringify({...e,pristine:undefined});}
  if(level.greybox)return;
  if(!p.grounded||p.pinned||arena||horseMounted||!p.on?.ground||grapple||finisher)return;
+ {const C=cadorTrap();if(C&&p.x>C.c-420&&p.x<C.c+320)return;}   // no banner is planted inside the Sultan's tent
  const c=world.enemies.find(e=>e.champion&&e.alive),gate=c&&p.x>c.arena.x0-520&&p.x<c.arena.x0-60&&(!ckpt||ckpt.x<c.arena.x0-900);
  if(!gate&&(ckpt?p.x<ckpt.x+1500:p.x<level.spawn.x+1100))return;
  if(world.enemies.some(e=>e.alive&&e.zone===zone&&!e.spava&&!e.champion&&Math.abs(e.x-p.x)<640&&Math.abs(e.y-p.y)<300))return;
@@ -4704,7 +4722,7 @@ const PESMA={el:null,g:null};
 // every guslar sings a real recorded song (Wikimedia Commons, see assets/music/GUSLE-LICENSE.txt): in the Ibar gorge the song
 // of Musa, elsewhere „Bolani Dojčin”, „Stari Vujadin” and Musa again, one after another along the journey
 const PESME_GUSLARA=['assets/music/gusle-dojcin.ogg','assets/music/gusle-vujadin.ogg','assets/sfx/guslar_pesma_duga.ogg'];
-function pesmaSrc(){const id=level?.id;if(id==='klisura')return'assets/sfx/guslar_pesma_duga.ogg';const i=Math.max(0,JOURNEY.indexOf(id));return PESME_GUSLARA[i%PESME_GUSLARA.length];}
+function pesmaSrc(){return level?.id==='klisura'?'assets/sfx/guslar_pesma_duga.ogg':'assets/music/gusle-svirka.ogg';}
 function pesmaStart(g){if(!hasDom||typeof Audio==='undefined')return false;try{const src=pesmaSrc();if(!PESMA.el){PESMA.el=new Audio(src);PESMA.el.loop=true;PESMA.el.preload='auto';PESMA.el.volume=0;}else if(PESMA.src!==src){PESMA.el.src=src;PESMA.el.load();PESMA.el.volume=0;}PESMA.src=src;PESMA.g=g;PESMA.el.play()?.catch?.(()=>{});return true;}catch{return false;}}
 function pesmaTick(){const el=PESMA.el;if(!el)return;const g=PESMA.g,on=g&&p&&(mode==='play'||mode==='story')&&(world.traps||[]).includes(g)&&(g.state==='peva'||g.state==='odbrana');
  // the song steps back while a recorded line is being said (as the big games lower the music under dialogue), or it covers Marko's words
@@ -6246,7 +6264,7 @@ function drawVaultDoor(t){const x=t.gate.x,y=t.gate.y;if(x<camera-260||x>camera+
 if(hasDom)for(const id of['zid-kamen','vrata-zakljucana','vrata-otkljucana'])if(!levelArt[id])loadImage(`assets/world/${id}.webp`).then(im=>{if(im&&!levelArt[id])levelArt[id]=im;});
 
 // on Junak and Epski a share of the janissaries come in pairs
-function addPartners(){const ex=D().extra;if(!ex)return;const add=[];for(const e of world.enemies){if(e.perch||e.champion||e.partner||e.trioMate)continue;if(((e.id*37)%100)/100<ex){const t=RANGED_T.has(e.type)?'shield':e.type==='shield'||e.type==='oklopnik'?'archer':e.id%2?'akindzija':'sword',hp=({shield:125,archer:65,akindzija:80})[t]||90;add.push({...e,id:e.id+30000,type:t,x:e.x+(e.id%2?95:-95),hp,maxHp:hp,partner:true,timer:e.timer+.5,hardened:false,elite:false,...(e.sablja?{sablja:false,look:undefined,scale:1}:{})});}}world.enemies.push(...add);}
+function addPartners(){const ex=D().extra;if(!ex)return;const add=[];for(const e of world.enemies){if(e.perch||e.champion||e.partner||e.trioMate||e.tabor||e.sablja)continue;if(((e.id*37)%100)/100<ex){const t=RANGED_T.has(e.type)?'shield':e.type==='shield'||e.type==='oklopnik'?'archer':e.id%2?'akindzija':'sword',hp=({shield:125,archer:65,akindzija:80})[t]||90;add.push({...e,id:e.id+30000,type:t,x:e.x+(e.id%2?95:-95),hp,maxHp:hp,partner:true,timer:e.timer+.5,hardened:false,elite:false,...(e.sablja?{sablja:false,look:undefined,scale:1}:{})});}}world.enemies.push(...add);}
 
 // a powder keg goes up: it hurts everyone near, Marko too
 function blowKeg(b){sfx('boom',{gain:1,rate:.8,x:b.x});shake=settings.reduced?0:12;rumble(.9,300);fx('flash','#ffcf8a',.12);burst(b.x,b.y-30,'#ff9a3a',50,320);addFire(b.x,b.y,2,120);
@@ -6762,6 +6780,9 @@ const PRELAZ_RED={
   {pic:'1',kad:'ustreljen',eyebrow:'Vila Ravijojla',text:'Dve bele strele iz oblaka: jedna Milošu u grlo, druga u srce. Marko se trže iza sna i pogleda u nebo nad Miročem.'},
   {pic:'2',kad:'trap:gnezdo',i:2}],
  manastir:[{pic:'1',i:0},{pic:'anim',i:2},{pic:'2',kad:'kraj',i:1}],
+ tvrdjava:[{pic:'marica-1',eyebrow:'Na Marici',text:'Rano rani Turkinja đevojka, prije zore i bijela dana, na Maricu bijeliti platno. Do sunca joj bistra voda bila, od sunca se voda zamutila: udarila mutna i krvava, pa pronosi konje i kalpake, ispred podne ranjene junake.'},
+  {pic:'marica-2',kad:'marica',eyebrow:'Ranjeni junak',text:'„Bogom sestro, lijepa đevojko! Baci mene jednu krpu platna, izvadi me iz vode Marice, čestitu ću tebe ostaviti.” Đevojka je za Boga primila.'},
+  {pic:'marica-3',kad:'grob',eyebrow:'Sablja okovana',text:'„Kod mene su tri ćemera blaga, u svakome po trista dukata: ja ću jedan tebe pokloniti, drugi tvome bratu Mustaf-agi, a treći ću sebe ostaviti, da ja vidam moje grdne rane.” Ode Ture na vodu Maricu, a kad viđe ranjena junaka, uze gledat’ sablju okovanu.'}],
  podrum:[{pic:'1',i:0},{pic:'anim',i:2}],
  mocvara:[{pic:'1',i:0},{pic:'anim',i:2},{pic:'2',kad:'soko',i:1}],
  rusevine:[{pic:'1',i:0},{pic:'2',i:1},{pic:'anim',kad:'kavezi',i:2}]};
@@ -6774,7 +6795,7 @@ function prelazPages(id,kad){if(id==='san')return kad?null:[{img:'spava',eyebrow
  const R=PRELAZ_RED[id]||[{pic:'1',i:0},{pic:'2',i:1},{pic:'anim',i:2}],pages=[];
  for(const e of R){if((e.kad||null)!==(kad||null))continue;const t=e.i!=null?T[e.i]:e;if(!t)continue;
   if(e.pic==='anim'){if(has(`prelaz-${id}-anim.webp`))pages.push({anim:`assets/world/prelaz-${id}-anim.webp`,eyebrow:t.eyebrow,text:t.text});}
-  else pages.push({src:`assets/world/prelaz-${id}-${e.pic}.webp`,eyebrow:t.eyebrow,text:t.text,kb:e.pic==='1'?'50% 40%':'50% 45%'});}
+  else if(has(`prelaz-${id}-${e.pic}.webp`))pages.push({src:`assets/world/prelaz-${id}-${e.pic}.webp`,eyebrow:t.eyebrow,text:t.text,kb:e.pic==='1'?'50% 40%':'50% 45%'});}
  return pages.length?pages:null;}
 function playPrelaz(L,then){const key='pohod-'+L.id,pages=hasDom&&(!GO||String(GO).startsWith('prelaz'))&&prelazPages(L.id);if(!pages||storySeen.has(key)){then();return;}STORY_PANELS[key]=pages;playStory(key,then);}
 let storySeen=new Set();

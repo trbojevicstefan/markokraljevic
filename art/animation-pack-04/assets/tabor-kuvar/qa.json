@@ -1,0 +1,87 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        46,
+        89,
+        465,
+        489
+      ],
+      "height": 400,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        46,
+        83,
+        465,
+        489
+      ],
+      "height": 406,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        46,
+        100,
+        465,
+        489
+      ],
+      "height": 389,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        46,
+        95,
+        465,
+        489
+      ],
+      "height": 394,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        46,
+        84,
+        465,
+        489
+      ],
+      "height": 405,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        46,
+        83,
+        465,
+        489
+      ],
+      "height": 406,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "measuredHeights": [
+    400,
+    406,
+    389,
+    394,
+    405,
+    406
+  ],
+  "scale": 0.9259259259259259,
+  "targetHeight": 400,
+  "visualReview": "Reviewed: steam and stones around fire are present."
+}

@@ -576,6 +576,25 @@ Narudžbine (GPT-6.1-Terra, sve iz prvog pokušaja): D107 slike (bijela kula, pl
 
 Provera: `pesme-test.mjs` igra Maricu, kulu, tabor, megdan i čador (178 provera).
 
+## 19. novembar (5): zvuk na svom mestu, peti pohod bez grešaka
+
+Stefan: „Dosta pesama po nivoima nema veze sa nivoima, ponavljamo ih više puta, moraš da vodiš računa gde koji audio puštamo, i za neke scene fale kadrovi i junaci. Moraš da poradiš na carevom šatoru, i ona devojka što pere veš: loša perspektiva, iskrivljeno deluju ti modeli.” I: „onaj mladi Turčin sa sabljom: piše mu iznad glave da ima sablju i svaki put trigeruje taj voice … kad car beži od nas, mi se krećemo ka njemu sedeći … ne želim da izgleda polugotovo.”
+
+**Zvuk** (pravilo i stanje po pohodima: `docs/ZVUK-PO-NIVOIMA.md`):
+
+- Guslar je u svakom pohodu pevao jedan od tri snimka redom („Bolani Dojčin”, „Stari Vujadin”, „Musa Kesedžija”), bez veze sa pesmom tog pohoda, dok su na ekranu išli stihovi druge pesme. Sada se pesma o Musi peva samo u Klisuri Ibra, gde joj je mesto; u ostalim pohodima guslar svira gusle bez reči (`gusle-svirka.ogg`) pod stihovima pesme svog pohoda (`pesmaSrc`).
+- Peti pohod: priča o sablji se čuje jednom. Mustaf-aga nosi samo svoje ime (ne „OČEVA SABLJA”); kad sablja izađe iz korica i kad on padne idu snimljene replike guslara umesto mojih nesnimljenih dvojnika; bijela kula ćuti (devojka je sve rekla na reci); guslar peva druge stihove iste pesme („o bedri mu sablja okovana”). Ljudi iz tabora i aga ne dobijaju par na težim nivoima.
+
+**Slike iz pesme** (D111): slike pre petog pohoda prikazivale su tvrđavu u plamenu i katapulte, čega u pesmi nema. Nove tri: zora na Marici (pre puta), devojka vadi ranjenog junaka platnom (kad Marko priđe devojci), Mustaf-aga zagledan u sablju nad ranjenikom (kod groba). `PRELAZ_RED.tvrdjava`; slika koje nema u `files.json` se preskače.
+
+**Marica**: devojka kleči na samoj vodi i beli platno u reci (ranije je prala na kamenom drumu, daleko od vode, a platno je bilo naslikano odozgo). Perilo sa platnom je naslikano s boka (`prop-perilo-marica`, D110).
+
+**Carev čador** (`prop-cador-bok`, D110): naslikan s boka kao pozornica, bez poda u dubinu; car i Marko su iste mere. Marko uđe, „u čizmama sjede na serdžadu”, **ustane** i korača ka caru koji uzmiče do platnenog zida; scenu nose dve snimljene replike guslara. Prednji stub sa tugom crta se ispred likova.
+
+**Junaci** (D112): Mustaf-agina ostarela majka na balkonu bijele kule; u taboru kuvar nad kazanom, bubnjar i stari derviš.
+
+Provera: `pesme-test.mjs` (180), posebno: jedan čovek nosi sablju, Marko u čadoru ustaje pre nego što krene ka caru.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

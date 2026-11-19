@@ -257,7 +257,7 @@ export function buildLayout(L,variant='day'){
   // The Marica at dawn: the Turkish girl whitens linen, the water runs muddy and bloody. A ford (a hollow full of water, drawn in
   // front of whoever wades it) and on the far bank the grave of the wounded hero her brother killed for his sabre. No foe here.
   marica(){const x0=x,y=gy,D=46,rl=Math.round(D*3.6/10)*10;ground(820);const r0=x;ramp(D);ground(520);const r1=x;ramp(-D);ground(900);
-   traps.push({kind:'marica',x0,x1:x,y,devojka:x0+250,platno:x0+470,voda:[r0+Math.round(rl*.3),r1+rl-Math.round(rl*.3)],dno:y+D,grob:r1+rl+330,nodecor:[[x0,x]]});
+   traps.push({kind:'marica',x0,x1:x,y,devojka:r0-58,platno:x0+470,voda:[r0+Math.round(rl*.3),r1+rl-Math.round(rl*.3)],dno:y+D,grob:r1+rl+330,nodecor:[[x0,x]]});
    pismo={x:r1+rl+520,y:y-44};busy.push([x0-40,x]);},
   // Mustaf-aga's white tower („pa on ode dvoru bijelome”): painted, with a balcony two men high and a ladder leaning on it; the
   // dead hero's belt of ducats lies up there, and the aga's men keep the door

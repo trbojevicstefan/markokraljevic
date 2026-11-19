@@ -42,13 +42,19 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Kapija u brvnima, steni i cigli (sa rešetkama) | D108 ✔, sve kapije u igri |
 | Turkinja devojka (3 klipa), car (3 klipa), janičar koji vuče sablju | D109 ✔ |
 
+## Naručeno 19. 11. (D110–D112), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Carev čador i perilo na Marici, gledano s boka (prednji sloj čadora nije uspeo; stub se crta iz iste slike) | D110 ✔ |
+| Tri slike iz pesme za peti pohod (Marica) | D111 ✔ |
+| Kuvar, bubnjar, derviš u taboru; Mustaf-agina majka | D112 ✔ (kuvaru očišćena zelena para) |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
 |---|---|---|
 | Noćna i olujna verzija slojeva Varadina | varijante noć/oluja | sada se daje dan sa zatamnjenjem |
-| Ranjeni junak koga voda nosi i Mustaf-agina majka | peti pohod, Marica i kula | sada se o njima samo priča |
-| Noćni i olujni slojevi nisu problem petog pohoda; fale mu ljudi u taboru (kuvar, bubnjar, derviš) | peti pohod | po 1 klip, kao D102 |
 | Naslikani stari zidovi sa lukom (soba `bedem` po celoj igri) | svi pohodi sa sobom `bedem` | po uzoru na D99 |
 | Posmatrači za ostale pohode (Manastir, Oranje, Tvrđava) | | po 3 lika, kao D102 |
 | `vrac-death` | Crni vrač | jedini klip koji igra traži, a nema ga |

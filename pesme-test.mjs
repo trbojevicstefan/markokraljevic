@@ -60,7 +60,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  const B=w.breakables.find(b=>b.cemer);ok(K&&B&&Math.abs(B.y-K.by)<2&&w.ladders.some(l=>Math.abs(l.top-K.by)<2&&Math.abs(l.x-K.cx)<200),'bela kula: a ladder to the balcony of Mustaf-aga’s white tower, the second belt on it');
  at(B.x-60,K.by);api.hitCrate(B,9);step(2);ok(w.cemeri===2,'bela kula: the second belt of ducats');
  // the camp: the sabre from hand to hand
- ok(e&&e.alive&&T&&w.enemies.filter(o=>o.tabor).length>=3,'tabor: Mustaf-aga with the sabre and three of the camp who try to draw it');
+ ok(w.enemies.filter(o=>o.sablja).length===1,'tabor: one man only carries the sabre and its name');ok(e&&e.alive&&T&&w.enemies.filter(o=>o.tabor).length>=3,'tabor: Mustaf-aga with the sabre and three of the camp who try to draw it');
  at(T.x0+420,T.y);ok(T.ph==='ruke'&&!e.pesma,'tabor: the sabre goes from hand to hand');step(120*5);ok(w.enemies.some(o=>o.tabor&&o.vuce)&&e.hp===e.maxHp,'tabor: one after another they tug at it; nobody strikes');
  at(T.krug-60,T.y);tap('KeyE');step(2);ok(T.ph==='slova'&&api.slova(),'tabor: E — it draws itself in Marko’s hand: the three letters');
  step(120*10);ok(T.ph==='razgovor'&&e.pesma&&e.razgovor>0,'tabor: Marko asks him where he got the sabre');
@@ -77,7 +77,9 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  const n0=w.enemies.length;H.causi=false;KH.phase3(H);ok(H.ks==='bes'&&w.enemies.length===n0+2,'hasan: at a third he rages and two of the Sultan’s čauši come down');
  // the Sultan’s tent
  for(const o of w.enemies)o.alive=false;Object.assign(p,{hp:p.maxHp});at(C.c-380,C.y);ok(C.ph==='ulazi','cador: past the megdan Marko goes in under the Sultan’s tent');
- until(()=>C.ph==='uzmice',120*20,'the prayer rug');ok(p.sedi>0,'cador: „u čizmama sjede na serdžadu”');const cx=C.car;until(()=>C.dukati,120*20,'the ducats');ok(C.car>cx+100,'cador: „car s’ odmiče, a Marko primiče, dok doćera cara do duvara”');
+ until(()=>C.ph==='sjedi'&&p.sedi>=1,120*20,'the prayer rug');ok(p.sedi>0&&Math.abs(p.vx)<1,'cador: „u čizmama sjede na serdžadu”');const cx=C.car,mx=p.x;
+ until(()=>C.ph==='primice',120*10,'he rises');ok(!p.sedi,'cador: Marko rises from the rug before he steps towards the Sultan');
+ until(()=>C.dukati,120*30,'the ducats');ok(C.car>cx+90&&p.x>mx+90&&!p.sedi,'cador: „car s’ odmiče, a Marko primiče, dok doćera cara do duvara”: Marko walks to him, he does not slide seated');
  until(()=>C.ph==='kraj',120*10,'out of the tent');ok(C.done&&!p.sedi,'cador: a hundred ducats for wine, and Marko rises');
  ok(api.draw()===null,'sablja: the Marica, the tower, the camp and the tent draw without an error');}
 // ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----

@@ -1,0 +1,87 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        117,
+        69,
+        395,
+        489
+      ],
+      "height": 420,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        117,
+        69,
+        394,
+        489
+      ],
+      "height": 420,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        117,
+        69,
+        394,
+        489
+      ],
+      "height": 420,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        117,
+        68,
+        394,
+        489
+      ],
+      "height": 421,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        117,
+        68,
+        394,
+        489
+      ],
+      "height": 421,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        117,
+        68,
+        394,
+        489
+      ],
+      "height": 421,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "measuredHeights": [
+    420,
+    420,
+    420,
+    421,
+    421,
+    421
+  ],
+  "scale": 0.8993576017130621,
+  "targetHeight": 420,
+  "visualReview": "Reviewed: mirrored to face left; headwear is helmet and turban rather than tall mehter hat."
+}

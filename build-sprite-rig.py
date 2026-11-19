@@ -777,6 +777,8 @@ D94_MODEL.update({"velimir-jase": "beg-mounted", "dzeneralovica-idle": "milos-id
 # D109 (19. 11., „Marko Kraljević poznaje očinu sablju”): the Turkish girl, the Sultan, the janissary who cannot draw the sabre
 D94_MODEL.update({c: "milos-idle" for c in ['turkinja-idle', 'turkinja-beli', 'turkinja-kune', 'car-sedi', 'car-uzmice', 'car-daje']})
 D94_MODEL.update({"janicar-vuce-sablju": "sword-idle"})
+# D112: people of the Sultan's camp and Mustaf-aga's old mother (fifth pohod)
+D94_MODEL.update({"tabor-kuvar": "sword-idle", "tabor-bubnjar": "sword-idle", "tabor-dervis": "milos-idle", "mustafagina-majka": "milos-idle"})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')
