@@ -638,6 +638,14 @@ Marko je u igri visok **128 px** (oko 67 px na metar). Slike iz D107–D115 bile
 
 Mesta u scenama su pomerena prema novoj meri (`CADOR`, `KUPA`). Bačve šestog pohoda se učitavaju unapred (ranije se prva bačva na tren crtala kao tamna elipsa).
 
+## 19. novembar (8): premeravanje starijih pohoda
+
+Stefan: „Da, premeri starije.”
+
+- **Likovi**: svi su izmereni iz `sprite-rig.json` (visina lika u kadru × razmera) i poređani uz Marka na istoj liniji (`.tmp-edge/likovi-mera.png`). Obični vojnici su 111–126 px, žene 111–121, deca i starci manji; to je u meri. Odskakao je **carev čauš**: 158 px, telom velik kao Marko i za glavu viši od janičara. Sada je 138 px sa visokom kapom i perjanicom (`build-sprite-rig.py`). **Guslar** koji sedi bio je 94 px, velik kao starac koji stoji; sada je 83.
+- **Megdandžije su namerno veće od Marka** i nisu dirane: Hasan-aga 180, Bajraktar 177 (sa štitom), Musa 169, Ognjeni aga 168, Kopljanik-baša 167, Janičarski aga 164, Vuča i beg oko 160, Arapin 151, Lovac-aga i baša 150, Đemo 148, Filip 144, dželat 142.
+- **Predmeti i slike**: igra je sama stala Markom uz svaku vrstu zamke, razbijača, cilja, radnika i dušmana u 14 pohoda (80 slika, `shots2.mjs` i `plan-mera.json` u scratchpadu). Kuće, kule, šatori, kola, stogovi, burad, kovčezi, zvona i kavezi su u meri čoveka; u njima nije menjano ništa.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

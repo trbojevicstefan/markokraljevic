@@ -307,7 +307,7 @@ if _have('lovac-aga-idle'):
 # DOPUNA-26: the guslar sits on his stone at the zoom of the old traveller (the stone is in the drawing)
 for name in ['guslar-svira', 'guslar-ceka']:
     if _have(name) and 'putnik-starac-idle' in SCALES:
-        SCALES[name] = (SCALES['putnik-starac-idle'][0], 'feet')
+        SCALES[name] = (SCALES['putnik-starac-idle'][0] * .88, 'feet')
 
 # DOPUNA-27: the falcon, smaller than the eagle (about 105 world px in flight); the wounded one sits on the ground
 if _have('soko-let'):
@@ -317,9 +317,9 @@ if _have('soko-let'):
             SCALES[name] = (k_, 'center')
     if _have('soko-ranjen'):
         SCALES['soko-ranjen'] = (k_, 'feet')
-# DOPUNA-27: the Sultan's herald, his tall hat a little over a janissary (idle 158 world px)
+# DOPUNA-27: the Sultan's herald, his tall hat a little over a janissary (idle 138 world px; it was 158, his body as big as Marko's)
 if _have('caus-idle'):
-    s_ = 158 / max(body_height(c) for c in _cells('caus-idle'))
+    s_ = 138 / max(body_height(c) for c in _cells('caus-idle'))
     for k in ['idle', 'walk', 'ferman', 'hurt', 'death']:
         if _have(f'caus-{k}'):
             SCALES[f'caus-{k}'] = (s_, 'center' if k == 'death' else 'feet')

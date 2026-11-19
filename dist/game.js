@@ -3608,7 +3608,7 @@ function updateJasak(dt){if(level?.id!=='podrum')return;const T=jasakTrap(),J=ja
 function drawJasak(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y=T.y;slikaNa('prop-jasak-tabla',T.tabla,y+6,200);
  const F=rig?.['caus-ferman'],I=rig?.['caus-idle'];if(!F||!I)return;shadow(T.telal,y,30,.4);
  if(!T.cita)rigDraw('caus-ferman',0,T.telal,y,-1);else if(time-T.cita<11)rigDraw('caus-ferman',loopF(time*4,F.frames.length),T.telal,y,-1);else rigDraw('caus-idle',loopF(time*4,I.frames.length),T.telal,y,p.x>T.telal?1:-1);
- if(Math.abs(p.x-T.telal)<520)textLabel('CAREV TELAL',T.telal,y-176,{font:'bold 12px Georgia',color:'#ffe6a0'});}
+ if(Math.abs(p.x-T.telal)<520)textLabel('CAREV TELAL',T.telal,y-156,{font:'bold 12px Georgia',color:'#ffe6a0'});}
 // --- the hodža and the hadžija by the second barrel ---
 function odzeTrap(){return(world.traps||[]).find(t=>t.kind==='bacva'&&t.odze)||null;}
 function useOdze(){const t=odzeTrap();if(!t||t.piju||t.state!=='popijeno'||!p.grounded||Math.abs(p.x-(t.odze+40))>170||Math.abs(p.y-t.y)>70)return false;
@@ -3686,7 +3686,7 @@ function drawKupa(T){if(T.x1<camera-800||T.x0>camera+VIEW_W+800)return;const y=T
  T.ca.forEach((x,i)=>{if(x==null)return;shadow(x,y,30,.4);const stoji=x<=T.c+(i?K.c2:K.c1)+.5&&!T.pukla;
   if(!stoji)rigDraw('caus-walk',loopF(time*(T.pukla?13:9),W.frames.length),x,y,T.pukla?1:-1);
   else if(i===0&&T.ph==='zove'&&F)rigDraw('caus-ferman',loopF(time*4,F.frames.length),x,y,-1);else rigDraw('caus-idle',loopF(time*4+i,I.frames.length),x,y,-1);});
- if(T.ca[0]!=null&&Math.abs(p.x-T.ca[0])<620)textLabel('DVA MLADA ČAUŠA',T.ca[0]+40,y-180,{font:'bold 12px Georgia',color:'#ffe6a0'});}
+ if(T.ca[0]!=null&&Math.abs(p.x-T.ca[0])<620)textLabel('DVA MLADA ČAUŠA',T.ca[0]+40,y-160,{font:'bold 12px Georgia',color:'#ffe6a0'});}
 // ================= Pod Varadinom, soba po soba (19. 11.): Prilep, Dunav, tamnica, tri tovara blaga =================
 // Stefan: „sredi ceo nivo po pesmi i vodi računa o najsitnijim detaljima”. The rooms are in world.js (prilep, dunav, tamnica,
 // blago); here is what is seen and done in them. The field itself is the scene above (varadin).
