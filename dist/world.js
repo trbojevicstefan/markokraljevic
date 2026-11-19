@@ -303,7 +303,7 @@ export function buildLayout(L,variant='day'){
   tamnica(){const x0=x,len=1500,c=x0+760;ground(len);rewards.push({x:c-60,y:gy,prio:5});
    traps.push({kind:'tamnica',x0,x1:x0+len,y:gy,c,w:372,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
   // „i podaj im tri tovara blaga”: the ransom of Vuča and Velimir stands by the road to the last banner
-  blago(){const x0=x,len=1300;ground(len);for(const k of[820,980,1140]){crate(x0+k,'kovceg',{loot:{coins:40}});Object.assign(breakables[breakables.length-1],{tovar:true,w:112,h:104});}
+  blago(){const x0=x,len=1300;ground(len);for(const k of[820,980,1140]){crate(x0+k,'kovceg',{loot:{coins:40}});Object.assign(breakables[breakables.length-1],{tovar:true,w:88,h:76});}
    traps.push({kind:'blago',x0,x1:x0+len,y:gy,karuce:x0+345,nodecor:[[x0,x0+len]]});narod.push({k:'gradjanin',x:x0+670,y:gy,face:1},{k:'klice',x:x0+len-50,y:gy,face:-1});busy.push([x0-40,x0+len]);},
   // „Marko Kraljević i Filip Madžarin”: the new tavern in Karlovac, Šarac tied at the door; Filip comes after the cup (game.js: mehana)
   mehana(){const x0=x,len=2400;ground(len);traps.push({kind:'mehana',x0,x1:x0+len,y:gy,kuca:x0+1150,sto:x0+1430,sarac:x0+1700,nodecor:[[x0+700,x0+1950]]});busy.push([x0-40,x0+len]);},

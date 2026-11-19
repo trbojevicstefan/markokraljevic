@@ -615,6 +615,29 @@ Narudžbine (GPT-6.1-Terra): D113 slike (tabla sa jasakom, zelena dolama na stal
 
 Provera: `pesme-test.mjs` igra ceo pohod (198 provera), `battles-test.mjs` (dve bačve), `road-test.mjs` (bot preskače scenu pod šatorom).
 
+## 19. novembar (7): mera stvari prema Marku
+
+Stefan: „popravi veličine aseta u odnosu na Marka: taj čiviluk je prevelik, mačevi su preveliki itd.”
+
+Marko je u igri visok **128 px** (oko 67 px na metar). Slike iz D107–D115 bile su postavljene po oku i ispale su prevelike. Nova mera (visina crtanja u px):
+
+| Šta | Bilo | Sada |
+|---|---|---|
+| Čiviluk sa zelenom dolamom (i prazan) | 262 | 124 |
+| Polica sa zaplenjenim sabljama | 214 | 88 (sablja oko 74 px) |
+| Tabla sa jasakom | 340 | 200 |
+| Markov šator | 410 | 300 |
+| Bačva (puna, prolivena) | 150, 168 | 120, 134 |
+| Hodža, hadžija, derviš (sede) | 94, 94, 91 | 73, 73, 73 |
+| Carev čador | 500 | 380 |
+| Car (stoji, sedi) | 128, 87 | 118, 75 |
+| Mustaf-agina majka | 111 | 98 |
+| Perilo na Marici | 206 | 153 |
+| Grob neznanog junaka | 185 | 132 |
+| Tovar blaga (deveti pohod) | 112×104 | 88×76 |
+
+Mesta u scenama su pomerena prema novoj meri (`CADOR`, `KUPA`). Bačve šestog pohoda se učitavaju unapred (ranije se prva bačva na tren crtala kao tamna elipsa).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

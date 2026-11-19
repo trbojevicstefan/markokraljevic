@@ -3496,8 +3496,8 @@ function updateMarica(dt){const T=maricaTrap();if(!T||!level)return;const V=T.vo
  if(!T.grobRec&&Math.abs(p.x-T.grob)<260&&Math.abs(p.y-T.y)<120){T.grobRec=true;if(!prelazKad('grob'))speak('Na junaku rana sedamnaest, na junaku čudno odijelo. „Kod mene su tri ćemera blaga, u svakome po trista dukata: ja ću jedan tebe pokloniti, drugi tvome bratu Mustaf-agi, a treći ću sebe ostaviti, da ja vidam moje grdne rane.”',10,'GUSLAR');}}
 function drawMarica(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;
  // the washing place stands on the bank, seen from the side (D110); she kneels at the water's edge, her linen in the stream
- if(!slikaNa('prop-perilo-marica',T.platno,y+6,206))slikaNa('prop-platno-marica',T.platno,y+8,100);slikaNa('prop-grob-junaka',T.grob,y+6,185);
- if(Math.abs(p.x-T.grob)<520)textLabel('GROB NEZNANOG JUNAKA',T.grob,y-204,{font:'bold 12px Georgia',color:'#e8dcc8',glow:'#1a0a04'});
+ if(!slikaNa('prop-perilo-marica',T.platno,y+6,153))slikaNa('prop-platno-marica',T.platno,y+8,100);slikaNa('prop-grob-junaka',T.grob,y+6,132);
+ if(Math.abs(p.x-T.grob)<520)textLabel('GROB NEZNANOG JUNAKA',T.grob,y-150,{font:'bold 12px Georgia',color:'#e8dcc8',glow:'#1a0a04'});
  const B=rig?.['turkinja-beli'],I=rig?.['turkinja-idle'],K=rig?.['turkinja-kune'];if(!B&&!I)return;const dx=T.devojka;shadow(dx,y,30,.38);
  // she kneels facing the water and beats the linen until Marko comes; then she stands and tells; she curses her brother with both arms raised
  const kune=T.kune&&K&&time-T.kune<K.frames.length/5+1.2;
@@ -3510,7 +3510,7 @@ function drawMarica(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y
 // took to the Sultan's army (D112). The tower says nothing: the girl has told it all at the river.
 function drawBelaKula(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;slikaNa('prop-bela-kula-mustafa',T.cx,y+6,560);
  if(Math.abs(p.x-T.cx)<700)textLabel('MUSTAF-AGINA BIJELA KULA',T.cx+190,y-330,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
- const M=rig?.['mustafagina-majka'];if(M){rigDraw('mustafagina-majka',loopF(time*4,M.frames.length),T.cx-52,T.by,p.x>T.cx-52?-1:1);
+ const M=rig?.['mustafagina-majka'];if(M){rigDraw('mustafagina-majka',loopF(time*4,M.frames.length),T.cx-52,T.by,p.x>T.cx-52?-1:1,{scale:.88});
   if(Math.abs(p.x-T.cx)<300&&Math.abs(p.y-T.by)<80)textLabel('MUSTAF-AGINA MAJKA',T.cx-52,T.by-140,{font:'bold 12px Georgia',color:'#ffd9e8'});}}
 // --- the Sultan's camp: the sabre from hand to hand ---
 // „Gleda sablju malo i veliko; nikome se izvaditi ne da: ode sablja od ruke do ruke, dođ’ u ruke Kraljeviću Marku, sama mu se
@@ -3538,7 +3538,7 @@ function updateTabor(dt){const T=taborTrap();if(!T||!level)return;const M=taborM
   label('OTIDOŠE CARU KAZIVATI',p.x,p.y-210,'#ffe39a');}}
 function drawTabor(T){if(T.x1<camera-600||T.x0>camera+VIEW_W+600)return;const y=T.y;
  slikaNa('prop-turski-sator',T.x0+620,y+6,250);slikaNa('prop-turski-sator',T.x0+2080,y+6,230,{face:-1});slikaNa('prop-ognjiste',T.krug+70,y+4,58);halo(T.krug+70,y-30,70,'rgba(255,170,90,.35)',.6+.2*Math.sin(time*7));
- for(const[k,dx,f,v]of[['tabor-kuvar',860,1,5],['tabor-dervis',1840,1,4],['tabor-bubnjar',2240,1,6]]){const Rk=rig?.[k];if(Rk){shadow(T.x0+dx,y,34,.4);rigDraw(k,loopF(time*v,Rk.frames.length),T.x0+dx,y,f);}}
+ for(const[k,dx,f,v,sc]of[['tabor-kuvar',860,1,5,1],['tabor-dervis',1840,1,4,.8],['tabor-bubnjar',2240,1,6,1]]){const Rk=rig?.[k];if(Rk){shadow(T.x0+dx,y,34,.4);rigDraw(k,loopF(time*v,Rk.frames.length),T.x0+dx,y,f,{scale:sc});}}
  if(Math.abs(p.x-T.krug)<900)textLabel('CAREV TABOR',T.krug,y-300,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
  if(T.ph==='ruke'&&p.grounded&&Math.abs(p.x-T.krug)<250&&Math.abs(p.y-y)<60)textLabel('E · UZMI SABLJU',p.x,p.y-190,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
 function drawTaborVuce(e){const R=rig['janicar-vuce-sablju'];shadow(e.x,e.y,32,.5);rigDraw('janicar-vuce-sablju',loopF(time*5,R.frames.length),e.x,e.y,e.face||1);}
@@ -3550,7 +3550,7 @@ function drawTaborVuce(e){const R=rig['janicar-vuce-sablju'];shadow(e.x,e.y,32,.
 let cadorScena=false;
 // the painted tent seen from the side (D110), measured from its middle: where one walks in, where the prayer rug lies, where
 // the Sultan sits and the cloth wall he is driven to
-const CADOR={H:500,ulaz:-295,sjedi:-45,car:95,zid:196,L:[19,150],D:[1418,1506]};
+const CADOR={H:380,ulaz:-224,sjedi:-74,car:40,zid:146,L:[19,150],D:[1418,1506]};
 const CADOR_A='Kad se Marku veće dosadilo, on prigrnu ćurak naopako, a uzima tešku topuzinu, pa otide caru pod čadora. Car s’ odmiče, a Marko primiče, dok doćera cara do duvara.';
 const CADOR_B='Car se maši u džepove rukom, te izvadi stotinu dukata: „Idi, Marko, napij mi se vina!” A Marko: „Ne pitaj me, care poočime! Poznao sam sablju baba mog.”';
 function cadorTrap(){return(world.traps||[]).find(t=>t.kind==='cador')||null;}
@@ -3572,10 +3572,10 @@ function drawCador(T){if(T.x1<camera-800||T.x0>camera+VIEW_W+800)return;const y=
  if(!slikaNa('prop-cador-bok',T.c,y+6,C.H))slikaNa('prop-carev-cador',T.c,y+6,340);
  if(Math.abs(p.x-T.c)<800)textLabel('CAREV ČADOR',T.c,y-C.H-18,{font:'bold 13px Georgia',color:'#ffe9c8',glow:'#3a0a04'});
  const S=rig?.['car-sedi'],U=rig?.['car-uzmice'],D=rig?.['car-daje'];if(!S)return;const cx=T.car??T.c+C.car,stoji=T.ph==='primice'||T.ph==='daje'||T.ph==='kraj';shadow(cx,y,34,.4);
- if(T.ph==='primice'&&U)rigDraw('car-uzmice',cx<T.c+C.zid?loopF(time*7,U.frames.length):0,cx,y,1);
- else if((T.ph==='daje'||T.ph==='kraj')&&D)rigDraw('car-daje',clamp((time-(T.dajeT||0))*4.5,0,D.frames.length-1),cx,y,1);
- else rigDraw('car-sedi',loopF(time*3.5,S.frames.length),cx,y,1);
- if(Math.abs(p.x-cx)<620)textLabel('CAR',cx,y-(stoji?156:112),{font:'bold 12px Georgia',color:'#ffe6a0'});}
+ if(T.ph==='primice'&&U)rigDraw('car-uzmice',cx<T.c+C.zid?loopF(time*7,U.frames.length):0,cx,y,1,{scale:.92});
+ else if((T.ph==='daje'||T.ph==='kraj')&&D)rigDraw('car-daje',clamp((time-(T.dajeT||0))*4.5,0,D.frames.length-1),cx,y,1,{scale:.92});
+ else rigDraw('car-sedi',loopF(time*3.5,S.frames.length),cx,y,1,{scale:.86});
+ if(Math.abs(p.x-cx)<620)textLabel('CAR',cx,y-(stoji?142:98),{font:'bold 12px Georgia',color:'#ffe6a0'});}
 // what of the tent hangs before whoever stands in it: the two near poles, the fringe of the roof, the horse-tail standard
 function drawCadorNapred(){const T=level&&cadorTrap();if(!T||T.x1<camera-800||T.x0>camera+VIEW_W+800)return;const im=worldImg('prop-cador-bok');if(!im)return;const b=propBounds(im),k=CADOR.H/b.h,x0=T.c-b.w*k/2,y0=T.y+6-CADOR.H;for(const[u,v]of[CADOR.L,CADOR.D])ctx.drawImage(im,u,b.y,v-u,b.h,x0+(u-b.x)*k,y0,(v-u)*k,CADOR.H);}
 // draws a second image that shares the canvas of a first one (a front layer) by the first one's bounds, so the two lie exactly on each other
@@ -3590,7 +3590,7 @@ function megdanBureBum(e,q){const cx=q.x+q.w/2,cy=q.y+q.h;q.off=true;q.cut=true;
 // ramazan vino, još nagoni odže i adžije da i oni s njime piju vino.” The crier reads the edict at the door of the cellar;
 // each of the four things Marko does is counted (the order is the player's), and when all four are done the guslar says it.
 const JASAK_NATPIS={vino:'MARKO PIJE UZ RAMAZAN VINO',dolama:'MARKO NOSI ZELENU DOLAMU',sablja:'MARKO PAŠE SABLJU OKOVANU',kolo:'MARKO IGRA KOLOM UZ KADUNE'};
-const PODRUM_SLIKE=['prop-jasak-tabla','prop-zelena-dolama','prop-stalak-prazan','prop-sablje-okovane','prop-markov-sator-prazna-sofra'];
+const PODRUM_SLIKE=['bacva-puna','bacva-prolivena','prop-jasak-tabla','prop-zelena-dolama','prop-stalak-prazan','prop-sablje-okovane','prop-markov-sator-prazna-sofra'];
 let kupaScena=false,koloScena=false;
 function jasakStanje(){return world.jasakS||(world.jasakS={n:0,procitan:false});}
 function jasakPrekrsen(k,x,y){if(level?.id!=='podrum')return false;const J=jasakStanje();if(J[k])return false;J[k]=true;J.n++;label(JASAK_NATPIS[k],x,y-150,'#ffcf9a');label(`JASAK POGAŽEN · ${J.n}/4`,x,y-196,'#ffe39a');addCoins(10,x,y-80);sfx('magic_big',{gain:.45})||sfx('ring',{gain:.5});
@@ -3601,11 +3601,11 @@ function jasakStraza(T,n=2){const n0=world.enemies.length;for(let k=0;k<n;k++)gu
 // --- the crier and the board ---
 function jasakTrap(){return(world.traps||[]).find(t=>t.kind==='jasak')||null;}
 function updateJasak(dt){if(level?.id!=='podrum')return;const T=jasakTrap(),J=jasakStanje();
- if(T&&!J.procitan&&Math.abs(p.x-T.telal)<430&&Math.abs(p.y-T.y)<140){J.procitan=true;T.cita=time;label('CAREV JASAK',T.tabla,T.y-350,'#ffe39a');
+ if(T&&!J.procitan&&Math.abs(p.x-T.telal)<430&&Math.abs(p.y-T.y)<140){J.procitan=true;T.cita=time;label('CAREV JASAK',T.tabla,T.y-214,'#ffe39a');
   speak('Car Sulejman jasak učinio: da s’ ne pije uz ramazan vino, da s’ ne nose zelene dolame, da s’ ne pašu sablje okovane, da s’ ne igra kolom uz kadune.',10,'ČAUŠ');}
  // the sabre girded anywhere in the cellar, once the edict is read, breaks it
  if(J.procitan&&!J.sablja&&p.sablja&&p.sabljaOut&&!(p.sabljaT>0))jasakPrekrsen('sablja',p.x,p.y);}
-function drawJasak(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y=T.y;slikaNa('prop-jasak-tabla',T.tabla,y+6,340);
+function drawJasak(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y=T.y;slikaNa('prop-jasak-tabla',T.tabla,y+6,200);
  const F=rig?.['caus-ferman'],I=rig?.['caus-idle'];if(!F||!I)return;shadow(T.telal,y,30,.4);
  if(!T.cita)rigDraw('caus-ferman',0,T.telal,y,-1);else if(time-T.cita<11)rigDraw('caus-ferman',loopF(time*4,F.frames.length),T.telal,y,-1);else rigDraw('caus-idle',loopF(time*4,I.frames.length),T.telal,y,p.x>T.telal?1:-1);
  if(Math.abs(p.x-T.telal)<520)textLabel('CAREV TELAL',T.telal,y-176,{font:'bold 12px Georgia',color:'#ffe6a0'});}
@@ -3618,19 +3618,19 @@ function updateOdze(dt){const t=level&&odzeTrap();if(!t||!t.piju)return;
  if(time-t.piju>2.6&&!t.tuzi){t.tuzi={x:t.odze+230};label('IDU TURCI CARU NA PARNICU',t.odze+230,t.y-176,'#ffe39a');}
  if(t.tuzi&&!t.tuzi.ode){t.tuzi.x+=170*dt;if(t.tuzi.x>t.x1+800)t.tuzi.ode=true;}}
 function drawOdze(t){if(t.x1<camera-500||t.x0>camera+VIEW_W+500)return;const y=t.y,pije=!!t.piju;
- for(const[k,x,ime,faza]of[['hodza',t.odze,'HODŽA',0],['hadzija',t.odze+104,'HADŽIJA',2.4]]){const n=k+(pije?'-pije':'-odbija'),Rk=rig?.[n];if(!Rk)continue;shadow(x,y,34,.4);rigDraw(n,loopF(time*(pije?5:4)+faza,Rk.frames.length),x,y,1);
-  if(Math.abs(p.x-x)<420)textLabel(ime,x,y-132,{font:'bold 12px Georgia',color:'#ffe6a0'});}
+ for(const[k,x,ime,faza]of[['hodza',t.odze,'HODŽA',0],['hadzija',t.odze+86,'HADŽIJA',2.4]]){const n=k+(pije?'-pije':'-odbija'),Rk=rig?.[n];if(!Rk)continue;shadow(x,y,34,.4);rigDraw(n,loopF(time*(pije?5:4)+faza,Rk.frames.length),x,y,1,{scale:.78});
+  if(Math.abs(p.x-x)<420)textLabel(ime,x,y-104,{font:'bold 12px Georgia',color:'#ffe6a0'});}
  if(!pije&&t.state==='popijeno'&&p.grounded&&Math.abs(p.x-(t.odze+40))<170&&Math.abs(p.y-y)<70)textLabel('E · NATERAJ IH DA PIJU',p.x,p.y-190,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});
  const Z=t.tuzi,W=rig?.['putnik-trgovac-walk'];if(Z&&!Z.ode&&W){shadow(Z.x,y,28,.4);rigDraw('putnik-trgovac-walk',loopF(time*12,W.frames.length),Z.x,y,-1);}}
 // --- the green dolama and the studded sabre ---
 function dolamaTrap(){return(world.traps||[]).find(t=>t.kind==='dolama')||null;}
 function useDolama(){const T=dolamaTrap();if(!T||!p.grounded||Math.abs(p.y-T.y)>70)return false;
  if(!world.dolama&&Math.abs(p.x-T.stalak)<120){world.dolama=true;burst(p.x,p.y-80,'#7ad06a',36,200);sfx('cloth',{gain:.8,x:p.x});jasakPrekrsen('dolama',p.x,p.y);if(!T.straza){T.straza=true;jasakStraza(T,2);}return true;}
- if(!T.sabljaUzeta&&Math.abs(p.x-T.sablje)<120){T.sabljaUzeta=true;world.sabljaJasak=true;sfx('rock',{gain:.5,rate:1.5,x:T.sablje});burst(T.sablje,T.y-90,'#d8d0c0',22,190);label('PEČAT JE SLOMLJEN',T.sablje,T.y-250,'#ffe39a');
+ if(!T.sabljaUzeta&&Math.abs(p.x-T.sablje)<120){T.sabljaUzeta=true;world.sabljaJasak=true;sfx('rock',{gain:.5,rate:1.5,x:T.sablje});burst(T.sablje,T.y-90,'#d8d0c0',22,190);label('PEČAT JE SLOMLJEN',T.sablje,T.y-150,'#ffe39a');
   if(!(p.sablja&&p.sabljaOut))toggleSablja();if(!T.straza){T.straza=true;jasakStraza(T,2);}return true;}
  return false;}
 function drawDolama(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y=T.y;
- if(!world.dolama)slikaNa('prop-zelena-dolama',T.stalak,y+6,262);else slikaNa('prop-stalak-prazan',T.stalak,y+6,262);slikaNa('prop-sablje-okovane',T.sablje,y+6,214);
+ if(!world.dolama)slikaNa('prop-zelena-dolama',T.stalak,y+6,124);else slikaNa('prop-stalak-prazan',T.stalak,y+6,124);slikaNa('prop-sablje-okovane',T.sablje,y+6,88);
  if(!p.grounded||Math.abs(p.y-y)>70)return;
  if(!world.dolama&&Math.abs(p.x-T.stalak)<120)textLabel('E · OBUCI ZELENU DOLAMU',p.x,p.y-190,{font:'bold 15px Georgia',color:'#c8ffb0',glow:'#0a2a04'});
  else if(!T.sabljaUzeta&&Math.abs(p.x-T.sablje)<120)textLabel('E · PRIPAŠI SABLJU OKOVANU',p.x,p.y-190,{font:'bold 15px Georgia',color:'#ffe9a8',glow:'#3a0a04'});}
@@ -3659,7 +3659,7 @@ function drawKadune(T){if(T.x1<camera-500||T.x0>camera+VIEW_W+500)return;const y
 // dovati onu kupu s vinom, pa udara careva čauša: pršte kupa, a pršte i glava, i proli se i krvca i vino. Ode Marko caru na
 // divana.” Past the megdan his tent stands in the last hall: he sits down to the cup, the two young čauši come down, the
 // cup bursts on the first one's head, the other runs; the divan is told by the pictures, and the hundred ducats follow.
-const KUPA={H:410,sjedi:-70,c1:34,c2:124};
+const KUPA={H:300,sjedi:-40,c1:56,c2:140};
 function kupaTrap(){return(world.traps||[]).find(t=>t.kind==='kupa')||null;}
 function updateKupa(dt){kupaScena=false;const T=level&&kupaTrap();if(!T||T.ph==='kraj')return false;const y=T.y,K=KUPA,seat=T.c+K.sjedi;
  if(!T.ph){if(vucaPao()&&p.grounded&&p.x>T.c-430&&p.x<T.c+320&&Math.abs(p.y-y)<120&&(!govorTraje()||p.x>seat-80)){T.ph='ulazi';T.pt=0;T.ca=[T.c+K.c1+820,T.c+K.c2+820];scenaPocinje(y);if(govorTraje())govorPrekini();}return false;}
@@ -5179,7 +5179,7 @@ function updateBacve(dt){for(const t of world.traps||[]){if(t.kind!=='bacva')con
   else if(G.state==='kupa'){G.drugi=(G.drugi??G.x+70)+200*dt;if(G.t>7.5){G.state='divan';G.t=0;
     playStory('podrum-divan',()=>{G.state='dukati';G.t=0;addCoins(100,p.x,p.y-90);sfx('coins',{gain:.7})||sfx('ring',{gain:.5});speak('Car se maša rukom u džepove, on izvadi stotinu dukata, pa i daje Kraljeviću Marku: „Idi, Marko, te se napij vina.”',8);});}}
   else if(G.state==='dukati'&&G.t>3)t.glasnik=null;}}}
-function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;const spilled=t.state==='prolivena',im=worldImg(spilled?'bacva-prolivena':'bacva-puna'),H=spilled?168:150;
+function drawBacva(t){if(t.x<camera-400||t.x>camera+VIEW_W+400||!t.state)return;const spilled=t.state==='prolivena',im=worldImg(spilled?'bacva-prolivena':'bacva-puna'),H=spilled?134:120;
  if(im){const b=propBounds(im),w=b.w*H/b.h;ctx.drawImage(im,b.x,b.y,b.w,b.h,t.x-w/2,t.y-H+6,w,H);}
  else{const c=spilled?'#3a2616':'#5a3a20';ellipse(t.x,t.y-58,46,56,c);for(const dy of[-92,-58,-24])line(t.x-44,t.y+dy,t.x+44,t.y+dy,'#2a1a10',4);ellipse(t.x+46,t.y-40,6,4,'#b08a40');if(spilled)ellipse(t.x+70,t.y+2,60,7,'#4a0c14');}
  if(t.state==='puna'&&Math.abs(p.x-t.x)<420)textLabel(Math.abs(p.x-t.x)<100?'E · PIJ VINO':'VINO',t.x,t.y-H-14,{font:'bold 13px Georgia',color:'#ffd6a8'});

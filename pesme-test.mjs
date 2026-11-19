@@ -76,7 +76,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  Object.assign(H,{p2:true,mode:'idle',ks:null,kc:0,stun:0,wallHit:0,x:A.x0+120});Object.assign(p,{x:A.x1-120,y:A.y});KH.step(H,1/120,p.x-H.x,Math.abs(p.x-H.x));ok(H.ks==='skok'&&H.vy<0,'hasan: from the second act he leaps at Marko who stands far off');
  const n0=w.enemies.length;H.causi=false;KH.phase3(H);ok(H.ks==='bes'&&w.enemies.length===n0+2,'hasan: at a third he rages and two of the Sultan’s čauši come down');
  // the Sultan’s tent
- for(const o of w.enemies)o.alive=false;Object.assign(p,{hp:p.maxHp});at(C.c-380,C.y);ok(C.ph==='ulazi','cador: past the megdan Marko goes in under the Sultan’s tent');
+ for(const o of w.enemies)o.alive=false;Object.assign(p,{hp:p.maxHp});at(C.c-300,C.y);ok(C.ph==='ulazi','cador: past the megdan Marko goes in under the Sultan’s tent');
  until(()=>C.ph==='sjedi'&&p.sedi>=1,120*20,'the prayer rug');ok(p.sedi>0&&Math.abs(p.vx)<1,'cador: „u čizmama sjede na serdžadu”');const cx=C.car,mx=p.x;
  until(()=>C.ph==='primice',120*10,'he rises');ok(!p.sedi,'cador: Marko rises from the rug before he steps towards the Sultan');
  until(()=>C.dukati,120*30,'the ducats');ok(C.car>cx+90&&p.x>mx+90&&!p.sedi,'cador: „car s’ odmiče, a Marko primiče, dok doćera cara do duvara”: Marko walks to him, he does not slide seated');
