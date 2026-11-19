@@ -1572,7 +1572,16 @@ function perfTick(now,gap,work){
  tweenStat.mids=0;tweenStat.drawn=0;perfHud.n=0;perfHud.sum=0;perfHud.worst=0;perfHud.work=0;perfHud.since=now;
 }
 if(hasDom)document.addEventListener('keydown',e=>{if(e.code!=='F9')return;e.preventDefault();perfHud.on=!perfHud.on;if(!perfHud.on&&perfHud.el){perfHud.el.remove();perfHud.el=null;}});
-let last=performance.now(),acc=0;function frame(now){const t0=performance.now(),gap=now-last;drawSerial++;songWatch();loadStage();let dt=Math.min(frameDt((now-last)/1000),.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){lerpSnap();update(1/120);acc-=1/120;}drawFrame(dt);perfTick(now,gap,performance.now()-t0);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+let last=performance.now(),acc=0;// Stefan, 19. 11.: „pesme i obaveštenja preklapaju se na gornjoj sredini ekrana vrlo često”. What stands at the top middle on a
+// computer (the megdan plate, the card of a new skill, the words of the song) is of no fixed height, so the notice is put
+// under whatever of them is showing instead of at a fixed place; on a phone the stylesheet keeps it at the bottom.
+const GORE_MQ=hasDom&&typeof matchMedia==='function'?matchMedia('(min-width:901px) and (pointer:fine)'):null;
+function sloziGore(){const t=$('toast'),sh=$('game-shell');if(!hasDom||!t?.style?.setProperty||!sh?.getBoundingClientRect)return;
+ if(!GORE_MQ?.matches||!t.classList.contains('visible')){if(t.dataset.gore){t.style.removeProperty('top');t.dataset.gore='';}return;}
+ const s0=sh.getBoundingClientRect().top,boss=$('boss-hud');let dno=0;
+ for(const e of[boss,$('dialogue'),...document.querySelectorAll('.uci:not(.ab)')]){if(!e||e.hidden)continue;const b=e.getBoundingClientRect();if(b.height>0&&b.top-s0<innerHeight*.5)dno=Math.max(dno,b.bottom-s0);}
+ const top=Math.round(Math.max(boss&&!boss.hidden?150:145,dno+12))+'px';if(t.dataset.gore!==top){t.style.setProperty('top',top,'important');t.dataset.gore=top;}}
+function frame(now){const t0=performance.now(),gap=now-last;drawSerial++;if(drawSerial%4===0)sloziGore();songWatch();loadStage();let dt=Math.min(frameDt((now-last)/1000),.08)*(globalThis.__slow||1);last=now;pollPads();acc+=dt;while(acc>=1/120){lerpSnap();update(1/120);acc-=1/120;}drawFrame(dt);perfTick(now,gap,performance.now()-t0);requestAnimationFrame(frame);}requestAnimationFrame(frame);
 // Read-only QA snapshot; no cheats are exposed to players.
 window.markoState=()=>({mode,zone,charge:p?.charge||0,x:p?.x,y:p?.y,hp:p?.hp,energy:p?.energy,wine:p?.wine,buff:p?.buff,horseMounted,kills,elapsed,fairyVisible:fairy.age<fairy.duration,fairyAge:fairy.age,castPending:!!pendingMagic,defense:defenses[zone],bossHp:boss?.hp,runes:world.runes.map(r=>r.active),goals:world.goals?.map(g=>({kind:g.kind,x:Math.round(g.x),y:g.y,done:g.done,label:g.label})),enemies:world.enemies.filter(e=>e.alive&&e.zone===zone).map(e=>({x:e.x,hp:e.hp,mode:e.mode,type:e.type,moving:e.moveT>0&&e.stun<=0,walk:e.walk||0,frame:locomotionPose(e).frame})),bossMode:boss?.mode,bossX:boss?.x,grounded:p?.grounded,remaining:world.enemies.filter(e=>e.alive&&e.zone===zone).length,renderer:stage?'three':'2d',rage:p.rage,guard:p.guard,blocking:p.blocking,crouching:p.crouching,playerHeight:p.h,attackKind:p.attackKind,attack:p.attack,deathSequence:endSequence,corpses:corpses.map(c=>({type:c.type,frame:deathPose(c).frame,t:c.t,grounded:c.grounded,x:Math.round(c.x),y:Math.round(c.y),launched:!!c.launched}))});
 
@@ -4683,7 +4692,7 @@ function drawNote(g,face,amt){const n=Math.round(7*amt);ctx.save();ctx.textAlign
 // the verse hangs above the guslar like a line of a songbook, one line at a time
 function drawStih(g){const T=g.state==='peva'&&!g.t0?g.pev||0:g.t-(g.t0||0),   // sung in peace the verses keep the wall clock (2.6 s a line), so they last as long as Marko listens
  n=Math.min(g.stih.length,Math.floor(T/STIH_T)+1),out=clamp((g.stih.length*STIH_T+2.5-T)/.8,0,1);if(out<=0)return;
- ctx.save();ctx.font='italic 19px Georgia';const lines=g.stih.map(s=>tr(s)),w=Math.max(...lines.map(s=>ctx.measureText?ctx.measureText(s).width:s.length*9))+44,h=lines.length*27+20,x=g.x-w/2,y=g.y-300-h/2;
+ ctx.save();ctx.font='italic 19px Georgia';const lines=g.stih.map(s=>tr(s)),w=Math.max(...lines.map(s=>ctx.measureText?ctx.measureText(s).width:s.length*9))+44,h=lines.length*27+20,x=g.x-w/2,y=g.y-256-h/2;   // under the notices at the top of the screen, over the guslar's head
  ctx.globalAlpha=.85*out;ctx.fillStyle='#160f09';ctx.fillRect(x,y,w,h);ctx.strokeStyle='#8a7448';ctx.lineWidth=2;ctx.strokeRect(x+3,y+3,w-6,h-6);
  ctx.textAlign='center';ctx.textBaseline='middle';for(let i=0;i<n;i++){const a=clamp((T-i*STIH_T)/.6,0,1);ctx.globalAlpha=a*out;ctx.fillStyle='#ead9b0';ctx.fillText(lines[i],g.x,y+22+i*27);}
  ctx.restore();}
