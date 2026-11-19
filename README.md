@@ -595,6 +595,26 @@ Stefan: „Dosta pesama po nivoima nema veze sa nivoima, ponavljamo ih više put
 
 Provera: `pesme-test.mjs` (180), posebno: jedan čovek nosi sablju, Marko u čadoru ustaje pre nego što krene ka caru.
 
+## 19. novembar (6): šesti pohod po pesmi „Marko pije uz ramazan vino”
+
+Stefan: „Pređi na sledeći nivo koji nismo radili … idemo nivo po nivo da bi sve izgledalo savršeno i bez i jedne greške.”
+
+Zaboravljeni podrum (`RECIPES.podrum`) ide redom pesme:
+
+- **Carev telal** (`jasak`) pred tablom sa četiri precrtane sličice čita jasak (snimljena replika čauša): ne pije se vino uz ramazan, ne nose se zelene dolame, ne pašu se sablje okovane, ne igra se kolom uz kadune. Od tada cilj pohoda glasi „Pogazi carev jasak · n/4”.
+- **Vino** (`vino`): čauši idu da proliju bačvu; kad ih Marko poseče, pije (1/4).
+- **Zelena dolama i sablja okovana** (`dolama`): na krojačevom stalku visi zelena dolama, na polici su zaplenjene sablje pod lancem i pečatom. E kod stalka: Marko obuče dolamu i **ostaje u zelenom do kraja pohoda** (crvena boja plašta se pretvara u zelenu kadar po kadar, `dolamaFrame`). E kod police: slomi pečat i pripaše sablju (ko nema očevu sablju iz petog pohoda, dobija je za ovaj pohod). Sablja se broji i kad je igrač sam izvuče (G). Na svaki prestup silazi careva straža.
+- **Hodža i hadžija** (`vino:odze`) sede kraj druge bačve i odmahuju; kad Marko popije, E ih natera da piju („još nagoni odže i adžije da i oni s njime piju vino”), a jedan Turčin otrči: „idu Turci caru na parnicu”.
+- **Kolo uz kadune** (`kadune`): E i Marko se uhvati u kolo za poslednju kadunu; posle kola straža upada (4/4). Kad su sva četiri jasaka pogažena, guslar izgovori snimljene stihove koji ih nabrajaju.
+- **Megdan sa Ognjenim agom** ostaje kakav je bio.
+- **Kupa od dvanaest oka** (`kupa`), posle megdana: Marko sedne pod svoj šator, pred njim kupa; dođu dva mlada čauša (snimljena replika), Marko ustane i razbije kupu o glavu prvog (nov klip `marko-udara-kupom`), drugi pobegne; divan ispričaju četiri postojeće slike, pa sto dukata.
+
+Zvuk: jasak se čuje jednom (čita ga telal, ne više prvi čauš kod prve bačve); slika pre pohoda više ne ponavlja zabranu; guslar peva tužbu Turaka („Idu Turci caru na parnicu”), a ne stihove koje scene već kažu; stara scena sa glasnikom kod treće bačve je zamenjena šatorom posle megdana.
+
+Narudžbine (GPT-6.1-Terra): D113 slike (tabla sa jasakom, zelena dolama na stalku, zaplenjene sablje, Markov šator), D114 likovi (kadune u kolu, hodža i hadžija: odbija i pije, Marko igra kolo, Marko udara kupom), D115 ispravke (prazan stalak, šator bez kupe na sofri). Zeleni ostaci ključa u klipovima čiste se sa `.tmp-edge/cisti-zeleno.py`.
+
+Provera: `pesme-test.mjs` igra ceo pohod (198 provera), `battles-test.mjs` (dve bačve), `road-test.mjs` (bot preskače scenu pod šatorom).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

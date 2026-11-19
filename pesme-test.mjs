@@ -82,6 +82,25 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>C.dukati,120*30,'the ducats');ok(C.car>cx+90&&p.x>mx+90&&!p.sedi,'cador: „car s’ odmiče, a Marko primiče, dok doćera cara do duvara”: Marko walks to him, he does not slide seated');
  until(()=>C.ph==='kraj',120*10,'out of the tent');ok(C.done&&!p.sedi,'cador: a hundred ducats for wine, and Marko rises');
  ok(api.draw()===null,'sablja: the Marica, the tower, the camp and the tent draw without an error');}
+// ---- „Marko pije uz ramazan vino”: the edict, its four breakings, the hodža and the hadžija, the cup of twelve oka ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='podrum'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();
+ const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0,drink:0});step(3);},tr=k=>w.traps.find(t=>t.kind===k),mir=()=>{for(const e of w.enemies)e.alive=false;};
+ const J=tr('jasak'),D=tr('dolama'),K=tr('kadune'),U=tr('kupa'),B=w.traps.filter(t=>t.kind==='bacva');
+ ok(J&&D&&K&&U&&B.length===2&&B[1].odze&&J.x0<B[0].x&&B[0].x<D.x0&&D.x0<B[1].x&&B[1].x<K.x0&&K.x0<U.x0,'ramazan: the crier, the wine, the dolama and the sabres, the hodža and the hadžija, the kolo and the tent stand in the order of the road');
+ ok(w.enemies.find(e=>e.champion).arena.x1<U.c-400,'ramazan: the tent stands past the megdan');
+ mir();at(J.telal-300,J.y);ok(w.jasakS?.procitan&&w.jasakS.n===0,'ramazan: the crier reads the Sultan’s edict of four things');
+ at(B[0].x0+90,B[0].y);ok(B[0].state==='napad','ramazan: the čauši march on the barrel');mir();step(3);at(B[0].x-40,B[0].y);tap('KeyE');step(3);ok(w.jasakS.vino&&w.jasakS.n===1,'ramazan: Marko drinks wine in Ramadan (1/4)');step(120);
+ at(D.stalak-30,D.y);tap('KeyE');step(3);ok(w.dolama&&w.jasakS.dolama&&w.enemies.some(e=>e.alive),'ramazan: he puts on the green dolama (2/4) and the guard comes down');mir();
+ at(D.sablje-30,D.y);tap('KeyE');step(160);ok(w.jasakS.sablja&&p.sablja&&w.sabljaJasak,'ramazan: he breaks the seal and girds a studded sabre (3/4)');
+ const O=B[1];at(O.x0+90,O.y);mir();step(3);at(O.x-40,O.y);tap('KeyE');step(140);ok(O.state==='popijeno'&&w.jasakS.n===3,'ramazan: the second barrel is drunk; a thing done once is counted once');
+ at(O.odze-40,O.y);tap('KeyE');step(3);ok(!!O.piju,'ramazan: „još nagoni odže i adžije da i oni s njime piju vino”');step(120*4);ok(!!O.tuzi,'ramazan: „idu Turci caru na parnicu”');
+ at(K.c-130,K.y);tap('KeyE');step(3);ok(K.ph==='igra','ramazan: Marko takes hands in the kolo of the ladies');until(()=>K.ph==='boj',120*8,'the kolo');ok(w.jasakS.n===4&&w.enemies.some(e=>e.alive&&e.kolo),'ramazan: all four are broken (4/4), and the guard breaks into the kolo');
+ mir();step(240);ok(K.ph==='kraj','ramazan: the guard cut down, the kolo goes on');
+ Object.assign(p,{hp:p.maxHp});at(U.c-300,U.y);ok(U.ph==='ulazi','ramazan: past the megdan Marko goes in under his tent');
+ until(()=>U.ph==='zove',120*25,'the two young čauši');ok(p.sedi>=1&&U.ca[0]<U.c+200&&U.ca[1]<U.c+300,'ramazan: he sits to the cup of twelve oka and the two young čauši come down to him');
+ until(()=>U.pukla,120*10,'the cup');ok(U.ca[0]===null,'ramazan: „pršte kupa, a pršte i glava”');
+ until(()=>U.ph==='kraj',120*12,'the divan');ok(U.done&&!p.sedi,'ramazan: after the divan, the Sultan’s hundred ducats');
+ ok(api.draw()===null,'ramazan: the cellar of the song draws without an error');}
 // ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----
 {const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
  ok(T&&T.stanice.length===3&&T.mehana>T.stanice[2],'okovi: three gallows (Orid, Vučitrn, Zvečan) and Janja’s tavern in the gorge');

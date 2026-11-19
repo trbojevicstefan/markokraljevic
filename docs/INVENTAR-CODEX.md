@@ -50,6 +50,14 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Tri slike iz pesme za peti pohod (Marica) | D111 ✔ |
 | Kuvar, bubnjar, derviš u taboru; Mustaf-agina majka | D112 ✔ (kuvaru očišćena zelena para) |
 
+## Naručeno 19. 11. (D113–D115), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Šesti pohod: tabla sa jasakom, zelena dolama na stalku, zaplenjene sablje, Markov šator | D113 ✔ |
+| Kadune u kolu, hodža i hadžija (odbija, pije), Marko igra kolo, Marko udara kupom | D114 ✔ (očišćeni zeleni ostaci) |
+| Prazan stalak, šator bez kupe na sofri | D115 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |

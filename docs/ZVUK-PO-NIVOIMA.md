@@ -20,8 +20,9 @@ Stefan, 19. 11. 2026: „Dosta pesama po nivoima nema veze sa nivoima, ponavljam
 | 3 Manastirski vis | Uroš i Mrnjavčevići | sređen ranije |
 | 4 Oranje | Oranje Marka Kraljevića | sređen ranije; megdan streljanja sa Alil-agom je iz druge pesme (ostaje kao usputna scena) |
 | 5 Opsednuta tvrđava | Marko Kraljević poznaje očinu sablju | sređen 19. 11. (5): vidi README |
-| 6 Zaboravljeni podrum | Marko pije uz ramazan vino | **sledeći** |
-| 7 Noćna močvara | Marko Kraljević i soko / Lov Markov s Turcima | nije pregledan |
+| 6 Zaboravljeni podrum | Marko pije uz ramazan vino | sređen 19. 11. (6): jasak čita telal jednom; četiri prestupa; kupa i divan posle megdana |
+| 7 Noćna močvara | (dole) | **sledeći** |
+| 7 (isto) | Marko Kraljević i soko / Lov Markov s Turcima | nije pregledan |
 | 8 Vilinska pećina | (vila Ravijojla) | nije pregledan |
 | 9 Pod Varadinom | Marko Kraljević i Vuča dženeral | sređen 19. 11.; uvod, slika i zapis pominju Miloševu knjigu (tri puta): skratiti kad se bude snimalo |
 | 10 Klisura Ibra | Marko Kraljević i Đemo Brđanin | guslari pevaju Musu (namerno: Đemo sveti brata) |
@@ -35,3 +36,7 @@ Stefan, 19. 11. 2026: „Dosta pesama po nivoima nema veze sa nivoima, ponavljam
 - Turkinja devojka, četiri replike (`MARICA_REC`): nema ženskog glasa za nju.
 - Tekst uz tri nove slike (`PRELAZ_RED.tvrdjava`).
 - Reči ranjenog junaka kod groba (kad se igra bez slika).
+
+## Šta nema snimak (šesti pohod)
+
+Sve replike šestog pohoda su postojeći snimci (telal, čauši, guslar, divan). Bez glasa su samo natpisi.

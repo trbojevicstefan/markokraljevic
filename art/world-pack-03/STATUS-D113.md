@@ -1,0 +1,8 @@
+﻿D113 | prop-jasak-tabla | 1024×1536 | oblik 620×1450 px (cilj 620×1450) | pokušaj 1 | provera bele i plave podloge: prisutan ružičasti veo; potrebno doraditi ključ, nije prihvaćeno.
+D113 | prop-zelena-dolama | izvor 1254×1254 | pokušaj 1 | prikazana vodoravna linija tla; potrebno uklanjanje, ključ i merenje; nije prihvaćeno.
+D113 | prop-sablje-okovane | izvor 1254×1254 | pokušaj 1 | tri sablje i katanac; lanac iznad sablji, ne preko njih; ključ i merenje nisu završeni, nije prihvaćeno.
+D113 | prop-markov-sator | izvor 1536×1024 | pokušaj 1 | sofra sa kupom x≈235–515, visina ≈320 px; stubovi x≈104 i 1432; unutrašnja visina ≈540 px; koža se prostire u sredinu, dekor je raskošniji nego traženo; ključ nije završen, nije prihvaćeno.
+D113 | prop-jasak-tabla | završni PNG 1024×1536; oblik 620×1450 px | bela i plava podloga pregledane: veo uklonjen, bez vidljivog ljubičastog ruba; piktogrami čitljivi.
+D113 | prop-zelena-dolama | završni PNG 1024×1024; oblik 796×760 px, stalak 760 px | bela i plava podloga pregledane, bez vidljivog ljubičastog odsjaja; ostao tanak trag linije tla, potrebno doraditi.
+D113 | prop-sablje-okovane | završni PNG 1024×1024; oblik 700×620 px | bela i plava podloga pregledane, bez vidljivog ljubičastog odsjaja; lanac je iznad sablji umesto preko njih, potrebno doraditi.
+D113 | prop-markov-sator | završni PNG 1536×1024; oblik 1400×820 px | bela i plava podloga pregledane, bez vidljivog ljubičastog odsjaja; sofra sa kupom x≈266–530, visina ≈272 px; levi stub x≈142, desni x≈1394; unutrašnja visina ispod ivice krova ≈500 px (cilj ≥520); koža ulazi u sredinu i dekor je previše raskošan, potrebno doraditi.

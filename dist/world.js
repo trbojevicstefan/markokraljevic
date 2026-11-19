@@ -129,7 +129,9 @@ export const RECIPES={
  // ditch a foe can leap (mechanics-test).
  prevoj:'prilep flat breg crates gap watch stairs+ ledges zid jaruga guslar:mir plate terrace- uvala spikes cellar crates tower stairs- arena greda tajna trgovac dunav varadin breg spikes crates flat boss:vuca tamnica blago',
  pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks tajna flat spikebed ledges crumble crates trgovac flat boss:azdaja',
- podrum:'flat crates stairs- vino greda barrels plate bedem ladder+ kljuc crates spikebed vino jaruga vreme zid chimney crates stairs+ barrels guslar:mir crumble crates tajna ladder+ logs flat tower crates vino:kraj trgovac flat boss:palikuca',
+ // Zaboravljeni podrum, by the song (19. 11.): the edict, the wine, the green dolama and the sabre, the hodža and the hadžija, the
+ // kolo with the ladies, the megdan with the aga who burns cellars, the cup of twelve oka under the tent
+ podrum:'jasak crates stairs- vino greda barrels plate bedem ladder+ kljuc dolama crates spikebed vino:odze jaruga vreme zid chimney crates stairs+ barrels guslar:mir kadune crumble crates tajna ladder+ logs flat tower crates trgovac flat boss:palikuca kupa',
  mocvara:'flat bridge watch soko crumble ferry branik:putnici bridge crates trska logs kljuc jaruga spikebed watch ledges uvala flat tajna trska bridge pillars ferry watch crates trska guslar:mir vreme bridge spikes crates jaruga ledges logs flat trgovac flat boss:tufekdzija',
  rudnik:'flat ladder+ crates rocks zid lift ledges jaruga tower lever greda chimney cellar teg crumble ladder+ barrels crates branik:rudari guslar:mir crumble flat tajna bedem kuke rocks vreme ledges spikes crates trgovac flat boss:shield',
  rusevine:'kosovka stairs+ ladder+ chimney^ crates svatovi crumble greda stairs+ tower flat bedem spikebed zid svatovi jaruga kuke ladder+ crates chimney^ logs kljuc terrace+ ladder+ watch svatovi stairs+ guslar:mir rocks tajna crates trgovac flat boss:arapin',
@@ -253,6 +255,15 @@ export function buildLayout(L,variant='day'){
    for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
    block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
+  // ===== „Marko pije uz ramazan vino” (Zaboravljeni podrum): the rooms of the song, in its order (19. 11.) =====
+  // the Sultan's crier reads the edict before its board: no wine in Ramadan, no green dolamas, no studded sabres, no kolo with the ladies
+  jasak(){const x0=x,len=1500;ground(len);traps.push({kind:'jasak',x0,x1:x0+len,y:gy,telal:x0+640,tabla:x0+800,nodecor:[[x0+380,x0+1100]]});busy.push([x0-40,x0+len]);},
+  // the tailor's stand with the green dolama and the rack of seized sabres under chain and seal
+  dolama(){const x0=x,len=1300;ground(len);traps.push({kind:'dolama',x0,x1:x0+len,y:gy,stalak:x0+520,sablje:x0+860,nodecor:[[x0+300,x0+1080]]});busy.push([x0,x0+len]);},
+  // the ladies dance the kolo in a hall of the cellar
+  kadune(){const x0=x,len=1500;ground(len);traps.push({kind:'kadune',x0,x1:x0+len,y:gy,c:x0+760,nodecor:[[x0+360,x0+1160]]});busy.push([x0,x0+len]);},
+  // past the megdan Marko drinks under his tent, the cup of twelve oka before him; the two young čauši come (game.js: kupa)
+  kupa(){const x0=x,len=1900;ground(len);traps.push({kind:'kupa',x0,x1:x0+len,y:gy,c:x0+900,nodecor:[[x0,x0+len]]});busy.push([x0-40,x0+len]);},
   // ===== „Marko Kraljević poznaje očinu sablju” (Opsednuta tvrđava): the rooms of the song, in its order (19. 11.) =====
   // The Marica at dawn: the Turkish girl whitens linen, the water runs muddy and bloody. A ford (a hollow full of water, drawn in
   // front of whoever wades it) and on the far bank the grave of the wounded hero her brother killed for his sabre. No foe here.
@@ -318,7 +329,8 @@ export function buildLayout(L,variant='day'){
   trgovac(){const x0=x,len=ri(520,580);ground(len);traps.push({kind:'trgovac',x:x0+Math.round(len*.45),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   sirotinja(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'sirotinja',x:x0+Math.round(len*.55),y:gy,x0,x1:x0+len});busy.push([x0,x0+len]);},
   trska(){const x0=x,len=ri(640,720);ground(len);traps.push({kind:'trska',x:x0,w:len,y:gy});busy.push([x0,x0+len]);},
-  vino(arg){const x0=x,len=ri(820,900);ground(len);traps.push({kind:'bacva',x:x0+Math.round(len*.42),y:gy,x0,x1:x0+len,kraj:arg==='kraj'});busy.push([x0,x0+len]);},
+  // vino:odze = the barrel by which a hodža and a hadžija sit („još nagoni odže i adžije da i oni s njime piju vino”)
+  vino(arg){const od=arg==='odze',x0=x,len=od?ri(1180,1240):ri(820,900);ground(len);const bx=x0+Math.round(len*(od?.3:.42));traps.push({kind:'bacva',x:bx,y:gy,x0,x1:x0+len,kraj:arg==='kraj',...(od?{odze:bx+250,nodecor:[[bx+120,bx+480]]}:{})});busy.push([x0,x0+len]);},
   svatovi(){const x0=x,len=ri(560,620);ground(len);traps.push({kind:'kavez',x:x0+Math.round(len*.55),y:gy,hp:4});busy.push([x0+len*.3,x0+len*.8]);},
   sator(){const x0=x,len=ri(700,780);ground(len);const tx=x0+Math.round(len*.62);traps.push({kind:'tent',x:tx,y:gy});busy.push([x0,x0+len]);spots.push({x:x0+150,y:gy});},
   // a wall with a low gap at its foot: too low to walk through — crouch (S) or slide (S while running) under it

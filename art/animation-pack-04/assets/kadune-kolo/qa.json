@@ -1,0 +1,113 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        52,
+        159,
+        460,
+        489
+      ],
+      "height": 330,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        64,
+        146,
+        448,
+        489
+      ],
+      "height": 343,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        66,
+        136,
+        445,
+        489
+      ],
+      "height": 353,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        66,
+        163,
+        445,
+        489
+      ],
+      "height": 326,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        66,
+        141,
+        446,
+        489
+      ],
+      "height": 348,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        66,
+        141,
+        445,
+        489
+      ],
+      "height": 348,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        65,
+        149,
+        447,
+        489
+      ],
+      "height": 340,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 7,
+      "bbox": [
+        66,
+        157,
+        446,
+        489
+      ],
+      "height": 332,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "measuredHeights": [
+    330,
+    343,
+    353,
+    326,
+    348,
+    348,
+    340,
+    332
+  ],
+  "scale": 1.0963455149501662,
+  "targetHeight": 330,
+  "visualReview": "pending"
+}

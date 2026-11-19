@@ -246,15 +246,11 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
 {const w=await land('mocvara');const e=w.enemies.find(e=>e.skriven);e.alive=true;const p=S().p;Object.assign(p,{x:e.x-650,y:groundY(w,e.x-650,e.y),vx:0,vy:0,grounded:true});safe();step(120);ok(e.skriven&&e.mode==='idle','reeds: an archer far off stays hidden and still');
  Object.assign(p,{x:e.x-300,y:groundY(w,e.x-300,e.y)});safe();step(3);ok(!e.skriven,'reeds: close by, the ambush rises');}
 // ---- Ramadan wine: the heralds spill an undefended barrel; cut down, Marko drinks; at the last barrel the Sultan sends ducats ----
-{const w=await land('podrum');const B=w.traps.filter(t=>t.kind==='bacva');ok(B.length===3&&B[2].kraj,'wine: the cellar has three barrels, the last one before the champion');
+{const w=await land('podrum');const B=w.traps.filter(t=>t.kind==='bacva');ok(B.length===2&&B[1].odze,'wine: the cellar has two barrels; a hodža and a hadžija sit by the second');
  const t=B[0],p=S().p;Object.assign(p,{x:t.x0+90,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='napad'&&w.enemies.filter(e=>e.alive&&e.caus).length===2,'wine: Marko comes and two heralds march on the barrel');
  Object.assign(p,{x:t.x0-900,y:groundY(w,t.x0-900,t.y)});until(()=>{safe();return t.state!=='napad';},120*30);ok(t.state==='prolivena','wine: left alone, a herald spills it');}
 {const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'),p=S().p;Object.assign(p,{x:t.x0+90,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);for(const e of w.enemies)if(e.alive)e.alive=false;step(2);ok(t.state==='puna','wine: the heralds cut down, the wine is saved');
  Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0});safe();Object.assign(p,{wine:0,rage:0,hp:40});api.pressed.add('KeyE');step(2);ok(t.state==='popijeno'&&p.rage>=100&&p.wine===p.wineMax&&p.hp>=80,'wine: Marko drinks: fury full, flask filled, health back');}
-{const w=await land('podrum');const t=w.traps.find(t=>t.kind==='bacva'&&t.kraj),p=S().p;Object.assign(p,{x:t.x-40,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);ok(t.state==='puna','wine: by the last barrel no one forbids him');
- api.pressed.add('KeyE');step(2);until(()=>{safe();return t.glasnik?.state==='zove';},120*15);ok(t.glasnik?.state==='zove','wine: two young heralds summon Marko to the divan');
- const G=t.glasnik,n0=S().coins.length;Object.assign(p,{x:G.x-120,face:1});safe();step(120*2);api.pressed.add('KeyJ');api.keys.add('KeyJ');step(3);api.keys.delete('KeyJ');step(2);ok(G.state==='kupa','wine: he strikes the herald with the cup of twelve oka');
- until(()=>{safe();return G.state==='dukati';},120*20);ok(S().coins.length>=n0+100,'wine: after the divan the Sultan gives him a hundred ducats');}
 // ---- pack 08, the rules of the megdan: bodies, the guard, the acts and the grapple ----
 {const c=armed(await arena('klisura'));const p=S().p;ok(c.kit==='djemo','megdan: Đemo waits at the end of the gorge');
  // a body: Marko cannot walk into him

@@ -779,6 +779,8 @@ D94_MODEL.update({c: "milos-idle" for c in ['turkinja-idle', 'turkinja-beli', 't
 D94_MODEL.update({"janicar-vuce-sablju": "sword-idle"})
 # D112: people of the Sultan's camp and Mustaf-aga's old mother (fifth pohod)
 D94_MODEL.update({"tabor-kuvar": "sword-idle", "tabor-bubnjar": "sword-idle", "tabor-dervis": "milos-idle", "mustafagina-majka": "milos-idle"})
+# D114: the sixth pohod (Marko pije uz ramazan vino): the ladies' kolo, the hodža and the hadžija
+D94_MODEL.update({"kadune-kolo": "svatovi-kolo", "hodza-odbija": "milos-idle", "hodza-pije": "milos-idle", "hadzija-odbija": "milos-idle", "hadzija-pije": "milos-idle"})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')
@@ -811,6 +813,12 @@ if _have('marko-odmor') and 'marko-odmor' in SCALES:
     for _n in ['marko-sedi-poji', 'marko-sedi-pije']:
         if _have(_n):
             SCALES[_n] = (_h_sedi / body_height(_cells(_n)[0]), 'feet')
+    # DOPUNA-114: Marko smashes the cup of twelve oka: he starts seated, as tall as the seated Marko
+    if _have('marko-udara-kupom'):
+        SCALES['marko-udara-kupom'] = (_h_sedi / body_height(_cells('marko-udara-kupom')[0]), 'feet')
+# DOPUNA-114: Marko dances the kolo: standing, as tall as the standing Marko of marko-pije-vodu
+if _have('marko-igra-kolo') and 'marko-pije-vodu' in SCALES:
+    SCALES['marko-igra-kolo'] = (SCALES['marko-pije-vodu'][0] * body_height(_cells('marko-pije-vodu')[0]) / body_height(_cells('marko-igra-kolo')[0]), 'feet')
 if _have('sarac-galop') and 'mounted-run' in SCALES:   # DOPUNA-46: Šarac alone, the horse of mounted-run
     SCALES['sarac-galop'] = (SCALES['mounted-run'][0], 'center')
 for name in ['soko-pogodjen', 'soko-pad']:
