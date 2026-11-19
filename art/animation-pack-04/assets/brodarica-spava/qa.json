@@ -1,0 +1,79 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        36,
+        216,
+        476,
+        489
+      ],
+      "height": 273,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        35,
+        217,
+        476,
+        489
+      ],
+      "height": 272,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        36,
+        219,
+        476,
+        489
+      ],
+      "height": 270,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        35,
+        222,
+        476,
+        489
+      ],
+      "height": 267,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        35,
+        216,
+        476,
+        489
+      ],
+      "height": 273,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        36,
+        217,
+        476,
+        489
+      ],
+      "height": 272,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.967032967032967,
+  "targetWidth": 440,
+  "visualReview": "pending"
+}

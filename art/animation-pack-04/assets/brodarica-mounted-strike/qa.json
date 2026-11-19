@@ -1,0 +1,79 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        83,
+        147,
+        429,
+        489
+      ],
+      "height": 342,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        77,
+        156,
+        434,
+        489
+      ],
+      "height": 333,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        57,
+        192,
+        454,
+        489
+      ],
+      "height": 297,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        42,
+        204,
+        469,
+        489
+      ],
+      "height": 285,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        78,
+        197,
+        434,
+        489
+      ],
+      "height": 292,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        81,
+        156,
+        431,
+        489
+      ],
+      "height": 333,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.8592964824120602,
+  "targetHeight": 342,
+  "visualReview": "Reviewed; see STATUS-D122.md for limitations."
+}

@@ -665,6 +665,25 @@ Narudžbine (GPT-6.1-Terra): D116, D119, D120 Murat vezir (peške pet klipova, n
 
 Provera: `pesme-test.mjs` (211, ceo tok jezera, previjanje, Šarac), `battles-test.mjs` (megdan i tri čete delija, 354).
 
+## 19. novembar (10): osmi pohod po pesmi „Marko Kraljević i vila brodarica”, obaveštenja bez preklapanja
+
+Stefan: „Da, osmi pohod” i usput: „vodi računa u placementu: pesme i obaveštenja preklapaju se na gornjoj sredini ekrana vrlo često”.
+
+**Obaveštenja.** Tekst pesme gore u sredini nije stalne visine, a obaveštenje je stajalo na stalnom mestu, pa je duži stih prelazio preko njega; na megdanu su oba stajala na istoj visini. Sada se obaveštenje stavlja ispod onoga što je gore prikazano (megdanska ploča, kartica veštine, tekst pesme): `sloziGore()` u `frame`. Stihovi nad guslarom su spušteni da ne ulaze u taj prostor.
+
+**Pesma.** Vilinska pećina nije imala svoju pesmu (vodila se pod „Marko Kraljević i vila”, a to je pesma drugog pohoda; Aždaje nema ni u jednoj pesmi o Marku). Stefan je izabrao „Marko Kraljević i vila brodarica” (47 stihova, `pesme/34-*.txt`, sa Vikizvornika). Pohod (`RECIPES.pecina`) sada ide njenim redom:
+
+- **Žeđ u čarnoj gori** (`zedj`): Marko ujaše na Šarcu, prokune goru („a u mešini ponestalo vina”), a vila iz gorice mu odgovori i uputi ga na jezero. Od tada je čutura prazna, vina nema na putu, a žeđ ga polako slabi (ne ubija) dok se ne napije.
+- **Put do jezera** je duži i teži (kuke, još jedan dimnjak, kamenje, više šiljaka).
+- **Jezer-voda ladna** (`jezerce`): vila brodarica spava u čunu nasred jezera. Šarac siđe do vode za Markom; E na obali: „napi se Marko i konja napoji” (zdravlje i čutura puni, žeđ prestaje). Pored čuna se mora tiho: trčanje se čuje sa cele obale, hod izbliza, udarac topuzom izdaleka (crtica budnosti nad čunom). Probuđena pre nego što se Marko napije, pusti na njega tri guje.
+- **Vila se trgne** kad Marko ode dalje: ustane u čunu, pa ide slika kako zauzdava jelena gujama; na jezeru ostaje prazan čun.
+- **Megdan sa vilom brodaricom** (`boss:brodarica`, borba konjanika, lik `brodarica`): juriša na jelenu, traži „oči čarne i od Šarca noge do kičica” (Šarac stoji uz megdan); kad je Marko obori s jelena, tri guje kojima je jelen bio zauzdan, opasan i šiban napadnu Marka, a ona se bije peške gujom kao bičem. Natpisi govore o jelenu i u ženskom rodu (`jelenRec`), a muški glas bega se ne pušta (`kitGlas`).
+- **Aždaja** je izašla iz priče i dobila svoj izazov van puta: „Aždajino jezero” (`azdaja`, `izazov`).
+
+Narudžbine (GPT-6.1-Terra, sve iz prvog puta jer su deljene na najviše šest klipova): D121 vila peške (pet klipova), D122 na jelenu (tri), D123 uspavana u čunu, buđenje i guja (šest), D124 dve slike, D125 prazan čun.
+
+Provera: `pesme-test.mjs` (228: ceo tok, žeđ, tiho pored čuna, rano buđenje i guje, megdan), `battles-test.mjs` (Aždaja u svom izazovu), `road-test.mjs` (18 pohoda).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

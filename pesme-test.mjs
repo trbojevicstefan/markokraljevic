@@ -116,6 +116,30 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  mir();at(H.sarac-40,H.y);tap('KeyE');step(3);ok(H.jase,'lov: „tada skoči Šarcu na ramena”');
  at(c.arena.x0+220,c.y);until(()=>c.engaged,120*8,'the megdan');step(6);ok(!H.jase&&H.sisao!=null,'lov: at the megdan Marko fights on foot, Šarac waits by the field');
  ok(api.draw()===null,'lov: the marsh of the song draws without an error');}
+// ---- „Marko Kraljević i vila brodarica”: thirst in the black forest, the cold lake, the sleeping vila, her toll ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='pecina'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();
+ const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});step(3);},tr=k=>w.traps.find(t=>t.kind===k),mir=()=>{for(const e of w.enemies)if(!e.champion)e.alive=false;};
+ const Z=tr('zedj'),J=tr('jezerce'),c=w.enemies.find(e=>e.champion);
+ ok(Z&&J&&Z.x0<1000&&J.x0>Z.x1&&c.look==='brodarica'&&c.kit==='beg'&&c.arena.x0>J.x1,'brodarica: the dry forest where the road begins, the cold lake far on, and past it the vila of the ford');
+ ok(!w.items.some(i=>i.type==='wine'&&i.x<J.pije)&&w.items.some(i=>i.type==='herb'&&i.x<J.pije),'brodarica: „a u mešini ponestalo vina” — no wine lies on the way to the lake');
+ mir();step(3);ok(Z.ph==='jase','brodarica: „gorom jezdi Kraljeviću Marko”');until(()=>Z.ph==='kune',120*10,'the curse');until(()=>Z.ph==='vila',120*6,'the vila of the forest');until(()=>Z.ph==='kraj',120*6,'the road');
+ ok(w.zedj?.on&&Z.sarac!=null,'brodarica: the vila has answered out of the forest; Marko goes on on foot, thirsty');
+ Object.assign(p,{wine:2,hp:p.maxHp});for(let i=0;i<120*4;i++)api.update(1/120);ok(p.wine===0&&p.hp<p.maxHp,'brodarica: thirst: the flask stays empty and he weakens');
+ at(J.pije-300,J.y);step(120*3);ok(J.sarac&&J.vila.st==='spava','brodarica: Šarac comes down to the water; the vila sleeps in her boat');
+ at(J.pije,J.y);tap('KeyE');step(3);ok(J.pio&&!w.zedj.on&&p.hp===p.maxHp&&p.wine===p.wineMax,'brodarica: „napi se Marko i konja napoji”');step(120*2);ok(J.sarac.st==='pije'||J.sarac.st==='stoji','brodarica: Šarac drinks too');
+ // quietly past her: wading does not wake her, running on the bank would
+ at(J.cun-120,J.dno);step(120);ok(J.vila.st==='spava'&&J.vila.san<.2,'brodarica: standing in the water by her boat does not wake her');
+ at(J.voda[1]+300,J.y);step(6);ok(J.vila.st==='budi','brodarica: when Marko has drunk and gone on, „al’ se trže vila iza sanka”');until(()=>J.vila.st==='otisla',120*6,'the stag');
+ ok(!w.enemies.some(e=>e.guja),'brodarica: woken in her own time she sets no snakes on him at the lake');
+ // the megdan: on her stag; her three snakes come when she is thrown from it
+ at(c.arena.x0+220,c.y);until(()=>c.engaged,120*8,'the megdan');step(6);ok(w.brodW?.sarac!=null,'brodarica: „od Šarca noge do kičica”: Šarac stands by the megdan');
+ c.mounted=false;step(3);ok(w.enemies.filter(e=>e.guja&&e.alive).length===3,'brodarica: thrown from the stag, her three snakes come at Marko');
+ ok(api.draw()===null,'brodarica: the cave of the song draws without an error');}
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='pecina'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();const J=w.traps.find(t=>t.kind==='jezerce'),Z=w.traps.find(t=>t.kind==='zedj');
+ for(const e of w.enemies)if(!e.champion)e.alive=false;Object.assign(p,{x:J.pije-200,y:J.y,vx:0,vy:0,grounded:true});step(4);ok(Z.ph==='kraj'&&w.zedj.on,'brodarica: set down far from the forest, the opening is over and the thirst is on');
+ // running by the boat wakes her before he has drunk: the snakes
+ Object.assign(p,{x:J.voda[0]-140,y:J.y,grounded:true});api.keys.add('KeyA');for(let i=0;i<120*24&&J.vila.st==='spava';i++){if(p.x<J.voda[0]-420)api.keys.delete('KeyA'),api.keys.add('KeyD');if(p.x>J.voda[0]-140)api.keys.delete('KeyD'),api.keys.add('KeyA');step();}api.keys.clear();
+ ok(J.vila.st==='budi'&&J.vila.rano,'brodarica: running on the bank wakes her before Marko has drunk');step(120*2);ok(w.enemies.filter(e=>e.guja&&e.alive).length===3,'brodarica: woken early, she sets her three snakes on him');}
 // ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----
 {const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
  ok(T&&T.stanice.length===3&&T.mehana>T.stanice[2],'okovi: three gallows (Orid, Vučitrn, Zvečan) and Janja’s tavern in the gorge');

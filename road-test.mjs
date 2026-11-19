@@ -51,6 +51,8 @@ for(let li=0;li<api.LEVELS.length;li++){const w=await start(api.LEVELS[li].id);c
   for(const tr of w.traps||[])if(tr.kind==='dunav'&&tr.ph&&!tr.done&&!tr.bot&&p.x>tr.obala-200){tr.bot=true;tr.done=true;tr.slobodno=true;p.x=tr.x1-120;p.y=tr.y;p.vx=0;p.vy=0;stuck.push({at:'Dunav',known:true});}
   // the Sultan's tent is a scene that plays by itself (pesme-test): the bot is set down past it
   for(const tr of w.traps||[])if(tr.kind==='cador'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.sedi=0;p.x=tr.x1-120;p.y=tr.y;stuck.push({at:'carev čador',known:true});}
+  // Marko's curse on the dry forest and the vila's answer play by themselves (pesme-test): the bot hears them out at once
+  for(const tr of w.traps||[])if(tr.kind==='zedj'&&tr.ph&&tr.ph!=='kraj'){tr.pt=99;if(tr.ph==='jase')p.x=tr.marko;if(!tr.bot){tr.bot=true;stuck.push({at:'žeđ u gori',known:true});}}
   for(const tr of w.traps||[])if(tr.kind==='kupa'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.sedi=0;p.x=tr.x1-120;p.y=tr.y;stuck.push({at:'kupa od dvanaest oka',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='mehana'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;tr.F=null;p.sedi=0;for(const e of w.enemies)if(e.filip)e.alive=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'nova mehana',known:true});}
   for(const tr of w.traps||[])if(tr.kind==='okovi'&&tr.ph&&tr.ph!=='kraj'&&!tr.bot){tr.bot=true;tr.ph='kraj';tr.done=true;p.okovan=false;p.x=tr.x1+120;p.y=tr.y;stuck.push({at:'Marko u okovima',known:true});}

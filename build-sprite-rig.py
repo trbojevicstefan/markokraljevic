@@ -788,6 +788,10 @@ D94_MODEL.update({"kadune-kolo": "svatovi-kolo", "hodza-odbija": "milos-idle", "
 D94_MODEL.update({f"vezir-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hurt', 'death']})
 D94_MODEL.update({"vezir-pusta-sokola": "beg-idle", "vezir-udara-sokola": "beg-idle"})
 D94_MODEL.update({f"delija-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'hurt', 'death', 'bezi']})
+# D121–D123: the eighth pohod (Marko Kraljević i vila brodarica): the vila as big as the mounted champions, on foot, on her stag and asleep in her boat; her snakes as the hounds
+D94_MODEL.update({f"brodarica-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hurt', 'death']})
+D94_MODEL.update({"brodarica-spava": "beg-idle", "brodarica-budi": "beg-idle"})
+D94_MODEL.update({f"guja-{k}": "pas-idle" for k in ['idle', 'run', 'attack', 'death']})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')

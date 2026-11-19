@@ -73,7 +73,7 @@ const GOAL_PLAN={
  manastir:{goals:[{kind:'take',at:.58,trap:'samodreza',art:['cilj-relikvija'],h:110,label:'Pronađi carsku knjigu i presudi',glow:'#ffe39a',gy:.8,done:'Knjige starostavne su u tvojim rukama.'}],finish:'Podigni manastirski barjak'},
  tvrdjava:{goals:[{kind:'use',at:.4,art:['cilj-opsadna-sprava','cilj-opsadna-sprava-srusena'],h:160,label:'Onesposobi opsadnu spravu',done:'Sprava je slomljena.',smash:true},{kind:'gate',at:.66,art:GATE,h:290,label:'Otvori tvrđavsku kapiju'}],finish:'Prođi kroz tvrđavu'},
  prevoj:{goals:[],finish:'Prati barjake do Varadina'},
- pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje Ravijojla',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao prolaz.'}],finish:'Prođi kristalnim prolazom'},
+ pecina:{goals:[{kind:'use',at:.55,art:['cilj-kristal','cilj-kristal-svetli'],h:170,label:'Probudi kristal koji pokazuje put do jezera',glow:'#8ff3ff',gy:.5,done:'Kristal je obasjao put do jezer-vode.'}],finish:'Pođi dalje gorom'},
  podrum:{goals:[],finish:'Nađi izlaz iz podruma'},
  mocvara:{goals:[.2,.4,.6,.8].map(at=>({kind:'use',at,art:['cilj-svetiljka','cilj-svetiljka-upaljena'],h:190,label:'Osvetli trag vezirovih konja',glow:'#ffcf7a',gx:.3,gy:.66,done:'Svetiljka gori: trag vodi dalje kroz goru čarnu.'})),finish:'Stigni vezira nakraj gore čarne'},
  rudnik:{goals:[{kind:'use',at:.45,art:LEVER,h:120,label:'Pronađi polugu starog okna',done:'Negde napred zaškripala je rešetka.'},{kind:'gate',at:'end',art:['cilj-rudarski-izlaz-zatvoren','cilj-rudarski-izlaz-otvoren'],h:260,label:'Otvori rudarski izlaz'}],finish:'Izađi iz rudnika'},
@@ -81,7 +81,7 @@ const GOAL_PLAN={
  reka:{goals:[{kind:'finish',art:['cilj-vodenica'],h:330,dx:-270}],finish:'Stigni do vodenice'},
  urvina:{goals:[],finish:'Popni se do dve jele i bunara'},
  san:{goals:[],finish:'Prođi četiri odaje i probudi se'},
- azak:{goals:[],finish:'Popni se na vrh kule, do sokola'}
+ azak:{goals:[],finish:'Popni se na vrh kule, do sokola'},azdaja:{goals:[],finish:'Izađi iz pećine'}
 };
 export const goalArt=L=>[...new Set((GOAL_PLAN[L.id]?.goals||[]).flatMap(g=>g.art))];
 export const goalFinish=L=>GOAL_PLAN[L.id]?.finish||'Stigni do barjaka na kraju puta';
@@ -105,7 +105,7 @@ export const CUDA=[
  {id:'carska-knjiga',name:'Carska knjiga',song:'Uroš i Mrnjavčevići',perk:'+15 zdravlja',land:'manastir'},
  {id:'oceva-sablja',name:'Očeva sablja',song:'Marko Kraljević poznaje očinu sablju',perk:'Laki udarci jači',land:'tvrdjava'},
  {id:'buzdovan',name:'Buzdovan',song:'Marko Kraljević i Vuča dženeral',perk:'Bačen topuz jači',land:'prevoj'},
- {id:'vilino-pero',name:'Vilino pero',song:'Marko Kraljević i vila',perk:'Ravijojla se brže vraća',land:'pecina'},
+ {id:'vilino-pero',name:'Vilino pero',song:'Marko Kraljević i vila brodarica',perk:'Ravijojla se brže vraća',land:'pecina'},
  {id:'pehar-vina',name:'Pehar rujnog vina',song:'Marko pije uz ramazan vino',perk:'Čutura prima još jedno vino',land:'podrum'},
  {id:'tri-kese-dukata',name:'Tri kese dukata',song:'Smrt Marka Kraljevića',perk:'Više dukata',land:'rudnik'},
  {id:'kljuc-kule',name:'Ključ arapske kule',song:'Marko Kraljević ukida svadbarinu',perk:'Kovčezi daju duplo',land:'rusevine'},
@@ -128,7 +128,9 @@ export const RECIPES={
  // under Varadin, the chase of Vuča to his gate, the dungeon and the three loads of treasure. The first break in the road is a
  // ditch a foe can leap (mechanics-test).
  prevoj:'prilep flat breg crates gap watch stairs+ ledges zid jaruga guslar:mir plate terrace- uvala spikes cellar crates tower stairs- arena greda tajna trgovac dunav varadin breg spikes crates flat boss:vuca tamnica blago',
- pecina:'flat terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks tajna flat spikebed ledges crumble crates trgovac flat boss:azdaja',
+ // Vilinska pećina, by the song (19. 11.): thirst in the black forest, the long way to the cold lake (longer and harder: hooks,
+ // more spikes, falling rocks, a second chimney), the sleeping vila, then her toll
+ pecina:'zedj terrace- crates crumble greda crates spikebed chimney jaruga ledges terrace+ cellar flat ogledala pillars zid bedem gap tower crumble crates guslar:mir stairs+ rocks tajna kuke spikebed ledges crumble rocks chimney crates jezerce crates ledges spikebed trgovac flat boss:brodarica',
  // Zaboravljeni podrum, by the song (19. 11.): the edict, the wine, the green dolama and the sabre, the hodža and the hadžija, the
  // kolo with the ladies, the megdan with the aga who burns cellars, the cup of twelve oka under the tent
  podrum:'jasak crates stairs- vino greda barrels plate bedem ladder+ kljuc dolama crates spikebed vino:odze jaruga vreme zid chimney crates stairs+ barrels guslar:mir kadune crumble crates tajna ladder+ logs flat tower crates trgovac flat boss:palikuca kupa',
@@ -148,10 +150,11 @@ export const RECIPES={
  // The climb is the challenge as much as the fight: a shaft, pillars over the abyss, arrow slits, crumbling planks and
  // moving beams, then a guard post, a hidden cellar and the Arab on top of his tower.
  azak:'guslar:mir uspon ivice predah:300 strelnice krunjenje predah straza tajna boss:arapin',
+ azdaja:'flat crates stairs+ crumble pillars crates spikebed flat boss:azdaja',
 };
 // each champion has his own way of fighting (kit) and his own ground: pillars, planks, a ledge with a banner, a tower
 export const BOSSES={oklopnik:{name:'Hasan-aga Oklopnik',hp:1980,kit:'hasan',look:'hasan-aga'},akindzija:{name:'Akindžijski beg',hp:1460,kit:'beg',look:'beg'},vuca:{type:'akindzija',name:'Vuča dženeral',hp:1460,kit:'beg',look:'vuca'},palikuca:{name:'Ognjeni aga',hp:1350,kit:'ognjeni',look:'ognjeni-aga'},shield:{name:'Bajraktar sa štitom',hp:1610,kit:'bajraktar',look:'bajraktar'},sword:{name:'Janičarski aga',hp:1400,kit:'janicar',look:'janicarski-aga'},
- arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},vezir:{type:'akindzija',name:'Murat vezir',hp:1750,kit:'beg',look:'vezir'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
+ arapin:{name:'Arapin',hp:2340,kit:'arapin',scale:1},tufekdzija:{name:'Tufekdžija-baša',hp:1250,kit:'basa',scale:1.3,look:'basa'},vezir:{type:'akindzija',name:'Murat vezir',hp:1750,kit:'beg',look:'vezir'},brodarica:{type:'akindzija',name:'Vila brodarica',hp:1650,kit:'beg',look:'brodarica'},lovac:{name:'Lovac-aga',hp:1350,kit:'lovac',type:'sword',look:'lovac-aga'},
  azdaja:{name:'Aždaja',hp:2860,kit:'azdaja',scale:1},dzelat:{name:'Dželat',hp:2030,kit:'dzelat',scale:1},djemo:{name:'Đemo Brđanin',hp:1820,kit:'djemo',scale:1},
  trio:{name:'Tri janičara',hp:830,kit:'trio',type:'sword',scale:1.15,look:'zlatni-janicar'},vrac:{name:'Crni vrač',hp:1700,kit:'vrac',type:'sword',look:'vrac',scale:1.4},kopljanik:{name:'Kopljanik-baša',hp:2000,kit:'kopljanik',scale:1.3,look:'kopljanik-basa'}};
 export const POWERS={oganj:{name:'Ognjeni topuz',color:'#ff8a3a'},grom:{name:'Gromovni topuz',color:'#9fd8ff'},vila:{name:'Vilinski topuz',color:'#9fffe0'}};
@@ -258,6 +261,13 @@ export function buildLayout(L,variant='day'){
    for(let i=0;i<n;i++){const sx=a+(b-a)*i/n;block(sx,kx+14-sx,Math.round(gy-rise*(i+1)),{kind:'step',slika:true});}
    block(kx+14,kw-28,ktop,{kind:'step',slika:true});
    T.zid={x:L+zw/2,h:ZH};T.kula={x:kx+kw/2,h:KH};rewards.push({x:kx+kw/2,y:ktop,prio:2});spots.push({x:L+zw*.82,y:top,perch:true});},
+  // ===== „Marko Kraljević i vila brodarica” (Vilinska pećina): the rooms of the song, in its order (19. 11.) =====
+  // the dry black forest: Marko rides in on Šarac, the wineskin empty; he curses the forest and the vila answers out of it
+  zedj(){const x0=x,len=1500;ground(len);traps.push({kind:'zedj',x0,x1:x0+len,y:gy,marko:x0+560,nodecor:[[x0+200,x0+1000]]});busy.push([x0-40,x0+len]);},
+  // the cold lake: the bank where Marko drinks and waters Šarac, then the ford past the boat where the vila brodarica sleeps
+  // (the water is drawn before whoever wades it), and the far bank
+  jezerce(){const x0=x,y=gy,D=44,rl=Math.round(D*3.6/10)*10;ground(1100);const r0=x;ramp(D);ground(1000);const r1=x;ramp(-D);ground(700);
+   traps.push({kind:'jezerce',x0,x1:x,y,pije:r0-30,cun:Math.round((r0+r1+rl)/2)+60,voda:[r0+Math.round(rl*.3),r1+rl-Math.round(rl*.3)],dno:y+D,nodecor:[[x0,x]]});busy.push([x0-40,x]);},
   // ===== „Lov Markov s Turcima” (Noćna močvara): the rooms of the song, in its order (19. 11.) =====
   // the green lake in the forest: the bank with vezir Murat, his twelve delije and the green fir, then a ford through the lake
   // (the water is drawn before whoever wades it) and the far bank. Marko's falcon falls under the fir: the `soko` trap is here.
@@ -448,10 +458,10 @@ export function buildLayout(L,variant='day'){
   tajna(){const x0=x,len=680,w=230,deep=180,cx=x0+250;ground(cx-x0);run=null;x=cx+w;ground(x0+len-x);
    platforms.push({x:cx,y:gy,w,h:26,kind:'cracked',solid:true});block(cx-20,w+40,gy+deep,{cellar:true});ladders.push({x:cx+26,top:gy,bottom:gy+deep,side:-1,skriven:true});
    crate(cx+190,'kovceg',{y:gy+deep,loot:{coins:ri(36,44)}});cellars.push({x:cx+w/2,y:gy+deep});tajne.push({x:cx+132,y:gy+deep-44});busy.push([cx-60,cx+w+60]);},
-  boss(type){const x0=x,len=type==='vezir'?1500:ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
+  boss(type){const x0=x,len=type==='vezir'?1500:type==='brodarica'?1300:ri(1000,1080),g0=gy;ground(len);boss={type,x:Math.round(x0+len*.68),y:g0,gy:g0,x0,x1:x0+len};busy.push([x0,x0+len]);
    const plank=(k,dy,w=150)=>platforms.push({x:Math.round(x0+len*k-w/2),y:g0-dy,w,h:18,kind:'plank',arena:true});
    ({oklopnik(){for(const k of[.13,.87])block(x0+len*k-35,70,g0-95,{pillar:true});plank(.5,175);for(const k of[.33,.67])platforms.push({x:Math.round(x0+len*k-28),y:g0-62,w:56,h:62,kind:'teret',solid:true,push:true,megdanBure:true});},   // he rams the pillars
-     akindzija(){plank(.3,140);plank(.7,140);},vezir(){plank(.22,140);plank(.5,180);plank(.78,140);},                                                    // jump up as the rider passes
+     akindzija(){plank(.3,140);plank(.7,140);},vezir(){plank(.22,140);plank(.5,180);plank(.78,140);},brodarica(){plank(.25,140);plank(.5,175);plank(.75,140);},                                                    // jump up as the rider passes
      palikuca(){plank(.2,120);plank(.5,195);plank(.8,120);},                                       // the floor burns, the planks do not
      shield(){const b=block(x0+len-250,250,g0-100,{});boss.flag={x:Math.round(b.x+150),y:b.y};plank(.45,150,130);},
      sword(){plank(.16,150);plank(.4,265,140);plank(.64,150);plank(.86,240,140);},
@@ -508,6 +518,9 @@ export const EXTRA_LEVELS=[{id:'san',name:'San Kraljevića Marka',vista:'pecina'
  // A climbing pohod in the manner of platformers where the road itself is the challenge (the measures are in buildLayout:
  // uspon, ivice, strelnice, krunjenje). It stands apart from the journey (izazov): open from the start, and Marko
  // knows every move in it, as in the dream. The double-jump secret above the pillars is described at `ivice`.
+ {id:'azdaja',name:'Aždajino jezero',vista:'pecina',width:6400,spawn:{x:80,y:590},goal:{x:6200,y:590},palette:'jezero pod planinom, plavi kristali',izazov:true,
+ layers:[{id:'pecina-sky',speed:.04},{id:'pecina-far',speed:.16},{id:'pecina-mid',speed:.38},{id:'pecina-near',speed:.72}],nightLayers:[{id:'pecina-sky-night',speed:.04},{id:'pecina-far-night',speed:.16},{id:'pecina-mid-night',speed:.38},{id:'pecina-near-night',speed:.72}],stormLayers:[{id:'pecina-sky-storm',speed:.04},{id:'pecina-far-storm',speed:.16},{id:'pecina-mid-storm',speed:.38},{id:'pecina-near-storm',speed:.72}],
+ ground:'pecina',props:[],design:{goal:'Iz jezera pod planinom izlazi aždaja. Ovde nema pesme: samo megdan.'}},
  {id:'azak',name:'Azačka kula',vista:'tvrdjava',width:10970,spawn:{x:80,y:590},goal:{x:10830,y:-580},palette:'sumrak nad Azakom, kula od kamena',
  izazov:true,bossHp:.6,soko:'Sivi soko je poneo knjigu ka Solunu, Dojčilu.',stih:['Pa dozivlje sivoga sokola:','„O sokole, pust mi ne ostao!','Nosi knjigu ka gradu Solunu.”'],
  layers:[{id:'tvrdjava-sky',speed:.04},{id:'tvrdjava-far',speed:.16},{id:'tvrdjava-mid',speed:.38},{id:'tvrdjava-near',speed:.72}],
@@ -540,7 +553,7 @@ export function makeLevel(L,index,variant='day',opts={}){
  for(const t of B.traps)if(t.kind==='soko'){foe('pas',t.x+250,t.y);foe('archer',t.x+430,t.y);foe('sword',t.x-260,t.y);}
  for(const t of B.traps)if(t.kind==='trska'){foe('archer',t.x+t.w*.45,t.y,{skriven:true});foe('archer',t.x+t.w*.8,t.y,{skriven:true});}
  for(const t of B.traps)if(t.kind==='kavez'){foe('sword',t.x-170,t.y);foe(pool.includes('shield')?'shield':'sword',t.x+170,t.y);}
- let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q&&!B.traps.some(t=>t.kind==='dunav'&&x>t.voda[0]-60&&x<t.voda[1]+60))items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2?'herb':'wine',taken:false});j++;}
+ let j=0;for(let x=900;x<B.width-300;x+=1300){const q=floorAt(x);if(q&&!B.traps.some(t=>t.kind==='dunav'&&x>t.voda[0]-60&&x<t.voda[1]+60))items.push({id:7000+index*50+j,x,y:q.y-35,type:j%2||(L.id==='pecina'&&x<(B.traps.find(t=>t.kind==='jezerce')?.pije??0))?'herb':'wine',taken:false});j++;}
  // the eagle's and the falcon's feathers are theirs to give: each waits in its hiding place only if the bird is not saved
  for(const r of B.rewards){if(!r.cudo||r.cudo==='oceva-sablja')continue;const nest=r.cudo==='orlovo-pero'&&B.traps.find(t=>t.kind==='gnezdo');if(nest){nest.pero={x:r.x,y:r.y-46};continue;}const soko=r.cudo==='sokolovo-pero'&&B.traps.find(t=>t.kind==='soko');if(soko){soko.pero={x:r.x,y:r.y-46};continue;}items.push({id:7040+index,x:r.x,y:r.y-46,type:'cudo',cudo:r.cudo,taken:false});}
  // "Marko Kraljević poznaje očinu sablju": in the Turkish camp a young Turk wears Marko's father's sabre

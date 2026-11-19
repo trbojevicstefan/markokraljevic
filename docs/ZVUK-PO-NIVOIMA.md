@@ -22,7 +22,9 @@ Stefan, 19. 11. 2026: „Dosta pesama po nivoima nema veze sa nivoima, ponavljam
 | 5 Opsednuta tvrđava | Marko Kraljević poznaje očinu sablju | sređen 19. 11. (5): vidi README |
 | 6 Zaboravljeni podrum | Marko pije uz ramazan vino | sređen 19. 11. (6): jasak čita telal jednom; četiri prestupa; kupa i divan posle megdana |
 | 7 Noćna močvara | Lov Markov s Turcima | sređen 19. 11. (9); nove replike (vezir, Marko, guslar, uvod) nemaju snimak |
-| 8 Vilinska pećina | (dole) | **sledeći** |
+| 8 Vilinska pećina | Marko Kraljević i vila brodarica | sređen 19. 11. (10); sve replike su nove i nemaju snimak |
+| 9 Pod Varadinom | (dole) | sređen ranije |
+| 10 Klisura Ibra | (dole) | **sledeći** |
 | 7 (isto) | Marko Kraljević i soko / Lov Markov s Turcima | nije pregledan |
 | 8 Vilinska pećina | (vila Ravijojla) | nije pregledan |
 | 9 Pod Varadinom | Marko Kraljević i Vuča dženeral | sređen 19. 11.; uvod, slika i zapis pominju Miloševu knjigu (tri puta): skratiti kad se bude snimalo |

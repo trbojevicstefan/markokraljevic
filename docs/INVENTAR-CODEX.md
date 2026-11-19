@@ -66,6 +66,16 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Delija (šest klipova), Marko pušta sokola, utva plovi, vezirev soko na grani | D117 ✔ |
 | Slike: lov na zelenom jezeru, divan u Jedrenu | D118 ✔ |
 
+## Naručeno 19. 11. (D121–D125), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Vila brodarica peške (idle, run, attack, hurt, death) | D121 ✔ |
+| Vila brodarica na jelenu (mounted, strike, unhorsed) | D122 ✔ |
+| Uspavana vila u čunu, buđenje, guja (idle, run, attack, death) | D123 ✔ |
+| Slike: žeđ u čarnoj gori, vila zauzdava jelena | D124 ✔ |
+| Prazan čun | D125 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
