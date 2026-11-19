@@ -646,6 +646,25 @@ Stefan: „Da, premeri starije.”
 - **Megdandžije su namerno veće od Marka** i nisu dirane: Hasan-aga 180, Bajraktar 177 (sa štitom), Musa 169, Ognjeni aga 168, Kopljanik-baša 167, Janičarski aga 164, Vuča i beg oko 160, Arapin 151, Lovac-aga i baša 150, Đemo 148, Filip 144, dželat 142.
 - **Predmeti i slike**: igra je sama stala Markom uz svaku vrstu zamke, razbijača, cilja, radnika i dušmana u 14 pohoda (80 slika, `shots2.mjs` i `plan-mera.json` u scratchpadu). Kuće, kule, šatori, kola, stogovi, burad, kovčezi, zvona i kavezi su u meri čoveka; u njima nije menjano ništa.
 
+## 19. novembar (9): sedmi pohod po pesmi „Lov Markov s Turcima”
+
+Stefan: „Pređi na sledeći nivo … da prati pesmu, da bude duži i more challenging. Da postoji svaki lik iz pesme i svaka animacija, do najsitnijeg detalja.”
+
+Noćna močvara (`RECIPES.mocvara`) ide redom pesme i duža je (oko 35.200 px, megdan na polju od 1.500 px):
+
+- **Zeleno jezero** (`jezero`, početak): na obali Murat vezir, njegovih dvanaest delija i zelena jela; po jezeru plove utve zlatokrile. Vezir pusti svog sokola, utva se digne „nebu pod oblake”, a soko „pade na jelu zelenu” i ostane na grani. Marko pita „je li testir”, pa na E pusti svog sokola (klip `marko-pusta-sokola`) i počinje lov (ranije je lov počinjao sam, bez ikoga na obali).
+- **Udar o jelu**: posle lova vezir zgrabi Markovog sokola i udari ga o stablo (klip `vezir-udara-sokola`), pa uzjaše belog ata i „obrnu kroz goru zelenu” sa delijama koje trče uz stremen. Soko leži pod jelom slomljenog krila (ranije je „pao u trsku” daleko odatle, a Turci su ga jurili strelama, čega u pesmi nema). Marko mu previje krilo i kaže stihove iz pesme.
+- **Gaz kroz jezero**, pa duga hajka kroz goru čarnu: više trske sa strelcima, trošnih greda, stubova, dimnjak. Odbrana putnika na skeli je izbačena jer je nema u pesmi. Svetiljke sada „osvetljavaju trag vezirovih konja”.
+- **Šarac nakraj gore** (`hajka`): E i Marko mu skoči na ramena; za njim ostaje pramen magle koji vezir vidi sa polja.
+- **Megdan sa Muratom vezirom** (`boss:vezir`, lik `vezir`, borba konjanika kao kod Vuče): vezir juriša na belom atu, obara se s konja, pa se bije peške. Uz njega je dvanaest delija: četiri na početku, četiri na dve trećine njegove snage, četiri na trećini. Kad vezir padne, delije se razbeže po polju; cilj broji „Delije · n/12”, a za svih dvanaest stoji „od dvanaest delija dvadeset i četiri”.
+- **Jedrene**: na kraju slika cara koji se „grotom nasmijao” i hiljadu dukata (u igri sto, kao i ostale sume iz pesama).
+
+Zvuk: uvod pohoda, stihovi guslara („Šarac ide kao gorska vila”) i slike su iz ove pesme; stari uvod o strelama i trsci je zamenjen. Nove replike nemaju snimak.
+
+Narudžbine (GPT-6.1-Terra): D116, D119, D120 Murat vezir (peške pet klipova, na konju tri, pušta sokola, udara sokola; D116 je stao posle dva klipa pa je ostatak naručen ponovo), D117 delija (šest klipova), Marko pušta sokola, utva koja plovi, vezirev soko na grani, D118 dve slike (lov na jezeru, divan u Jedrenu). Ostaci ključa čiste se sa `.tmp-edge/cisti-kljuc.py` (zeleni i ljubičasti).
+
+Provera: `pesme-test.mjs` (211, ceo tok jezera, previjanje, Šarac), `battles-test.mjs` (megdan i tri čete delija, 354).
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

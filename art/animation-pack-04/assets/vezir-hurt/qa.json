@@ -1,0 +1,55 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "bbox": [
+        124,
+        63,
+        387,
+        489
+      ],
+      "height": 426,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        106,
+        80,
+        405,
+        489
+      ],
+      "height": 409,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        124,
+        118,
+        387,
+        489
+      ],
+      "height": 371,
+      "supportY": 488,
+      "safeMargin": 23
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        121,
+        78,
+        391,
+        489
+      ],
+      "height": 411,
+      "supportY": 488,
+      "safeMargin": 23
+    }
+  ],
+  "scale": 0.79182156133829,
+  "targetHeight": 426,
+  "visualReview": "pending"
+}

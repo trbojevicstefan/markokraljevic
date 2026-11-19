@@ -101,6 +101,21 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  until(()=>U.pukla,120*10,'the cup');ok(U.ca[0]===null,'ramazan: „pršte kupa, a pršte i glava”');
  until(()=>U.ph==='kraj',120*12,'the divan');ok(U.done&&!p.sedi,'ramazan: after the divan, the Sultan’s hundred ducats');
  ok(api.draw()===null,'ramazan: the cellar of the song draws without an error');}
+// ---- „Lov Markov s Turcima”: the green lake, the two falcons, the fir, the chase, Šarac at the edge of the black forest ----
+{const w=await api.startLevel(api.LEVELS.findIndex(L=>L.id==='mocvara'),'day').then(()=>api.state().world);api.keys.clear();api.pressed.clear();const {p}=api.state();
+ const at=(x,y)=>{Object.assign(p,{x,y,vx:0,vy:0,grounded:true,face:1,attack:0,cooldown:0});step(3);},tr=k=>w.traps.find(t=>t.kind===k),mir=()=>{for(const e of w.enemies)if(!e.champion)e.alive=false;};
+ const J=tr('jezero'),H=tr('hajka'),F=tr('soko'),c=w.enemies.find(e=>e.champion);
+ ok(J&&H&&F&&J.x0<1000&&F.x>J.vezir&&F.x<J.voda[0]&&H.x0>J.x1&&c.look==='vezir'&&c.arena.x1>H.x1,'lov: the lake where the road begins, the fir under which the falcon will fall, Šarac at the far end, then the vezir in his field');
+ ok(!w.traps.some(t=>t.kind==='branik'),'lov: nothing in the marsh that is not in the song');
+ mir();at(J.vezir-400,J.y);ok(J.ph==='vezir','lov: the vezir casts off his falcon at the golden-winged duck');until(()=>J.ph==='pita',120*14,'the vezir’s falcon');ok(J.vs.sedi&&!F.state,'lov: „soko pade na jelu zelenu”; Marko’s own is not yet hurt');
+ at(J.marko,J.y);tap('KeyE');step(3);ok(J.ph==='pusta','lov: „je li testir” — E, and Marko casts off his own');
+ until(()=>J.ph==='udara',120*6,'the hunt');until(()=>J.ph==='bezi',120*6,'the fir');ok(w.lovDone&&w.sokoPao,'lov: the vezir strikes Marko’s falcon against the green fir and breaks his right wing');
+ step(60);ok(F.state==='ranjen','lov: the falcon lies under the fir');until(()=>J.ph==='kraj',120*16,'the vezir rides off');ok(J.done,'lov: „pa obrnu kroz goru zelenu sa svojijeh dvanaest delija”');
+ at(F.x-60,F.y);tap('KeyE');step(2);until(()=>F.state==='spasen',120*5,'the wing');ok(!!w.soko,'lov: the wing bound, the falcon flies with Marko');
+ at((J.voda[0]+J.voda[1])/2,J.dno);ok(p.uVodi,'lov: the ford through the green lake');
+ mir();at(H.sarac-40,H.y);tap('KeyE');step(3);ok(H.jase,'lov: „tada skoči Šarcu na ramena”');
+ at(c.arena.x0+220,c.y);until(()=>c.engaged,120*8,'the megdan');step(6);ok(!H.jase&&H.sisao!=null,'lov: at the megdan Marko fights on foot, Šarac waits by the field');
+ ok(api.draw()===null,'lov: the marsh of the song draws without an error');}
 // ---- Klisura Ibra: Marko in chains (Marko Kraljević i Đemo Brđanin) ----
 {const w=await start('klisura');const T=w.traps.find(t=>t.kind==='okovi');const {p}=api.state();
  ok(T&&T.stanice.length===3&&T.mehana>T.stanice[2],'okovi: three gallows (Orid, Vučitrn, Zvečan) and Janja’s tavern in the gorge');

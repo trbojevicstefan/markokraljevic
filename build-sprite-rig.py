@@ -394,6 +394,9 @@ for name, ref in [('marko-pocinak', 'marko-idle-2'), ('marko-okovan', 'marko-wal
 for name in ['utva-let', 'soko-vezirov-let']:
     if _have(name) and 'soko-let' in SCALES:
         SCALES[name] = (SCALES['soko-let'][0], 'center')
+for name in ['utva-plovi', 'soko-vezirov-sedi']:   # D117: the duck on the water, the vezir's falcon on its branch
+    if _have(name) and 'soko-let' in SCALES:
+        SCALES[name] = (SCALES['soko-let'][0], 'feet')
 for who, height in {'janja': 112, 'novak': 112}.items():  # Novak is broad, not taller than Marko (about 130 world px)
     if _have(who + '-idle'):
         s_ = height / max(body_height(c) for c in _cells(who + '-idle'))
@@ -781,6 +784,10 @@ D94_MODEL.update({"janicar-vuce-sablju": "sword-idle"})
 D94_MODEL.update({"tabor-kuvar": "sword-idle", "tabor-bubnjar": "sword-idle", "tabor-dervis": "milos-idle", "mustafagina-majka": "milos-idle"})
 # D114: the sixth pohod (Marko pije uz ramazan vino): the ladies' kolo, the hodža and the hadžija
 D94_MODEL.update({"kadune-kolo": "svatovi-kolo", "hodza-odbija": "milos-idle", "hodza-pije": "milos-idle", "hadzija-odbija": "milos-idle", "hadzija-pije": "milos-idle"})
+# D116–D120: the seventh pohod (Lov Markov s Turcima): vezir Murat as big as the other mounted champions, his twelve delije as the janissaries
+D94_MODEL.update({f"vezir-{k}": f"beg-{k}" for k in ['idle', 'mounted', 'mounted-strike', 'unhorsed', 'run', 'attack', 'hurt', 'death']})
+D94_MODEL.update({"vezir-pusta-sokola": "beg-idle", "vezir-udara-sokola": "beg-idle"})
+D94_MODEL.update({f"delija-{k}": "sword-idle" for k in ['idle', 'run', 'attack', 'hurt', 'death', 'bezi']})
 for _n, _m in D94_MODEL.items():
     if _have(_n) and _m in SCALES:
         SCALES[_n] = (SCALES[_m][0] / (.90 if _n == 'mounted-ritne' else 1), SCALES[_m][1] if _m.startswith('beg-') else 'feet')
@@ -817,6 +824,9 @@ if _have('marko-odmor') and 'marko-odmor' in SCALES:
     if _have('marko-udara-kupom'):
         SCALES['marko-udara-kupom'] = (_h_sedi / body_height(_cells('marko-udara-kupom')[0]), 'feet')
 # DOPUNA-114: Marko dances the kolo: standing, as tall as the standing Marko of marko-pije-vodu
+for _n in ['marko-pusta-sokola']:   # D117: Marko casts off his falcon, standing
+    if _have(_n) and 'marko-pije-vodu' in SCALES:
+        SCALES[_n] = (SCALES['marko-pije-vodu'][0] * body_height(_cells('marko-pije-vodu')[0]) / body_height(_cells(_n)[-1]), 'feet')
 if _have('marko-igra-kolo') and 'marko-pije-vodu' in SCALES:
     SCALES['marko-igra-kolo'] = (SCALES['marko-pije-vodu'][0] * body_height(_cells('marko-pije-vodu')[0]) / body_height(_cells('marko-igra-kolo')[0]), 'feet')
 if _have('sarac-galop') and 'mounted-run' in SCALES:   # DOPUNA-46: Šarac alone, the horse of mounted-run

@@ -157,8 +157,11 @@ async function arena(id){await api.startLevel(levelOf(id),'day');api.keys.clear(
  Object.assign(S().p,{x:plank.x+plank.w/2,y:plank.y,vx:0,vy:0,grounded:true});safe();c.kc=0;c.mode='idle';until(()=>c.ks==='leap',120*4);ok(c.ks==='leap','janicar: Marko on a high plank, he leaps after him');}
 {const c=await arena('rusevine');ok(c.kit==='arapin'&&c.type==='arapin','arapin: the Arab in the ruins, in his own picture');ok(Math.abs(c.y-c.arena.top)<2,'arapin: he stands on top of his tower');
  c.kc=0;c.mode='idle';until(()=>S().arrows.some(a=>a.spear),120*5);ok(S().arrows.some(a=>a.spear),'arapin: he throws spears down');}
-{const c=await arena('mocvara');ok(c.kit==='basa'&&c.perch,'basa: the musketeer captain on his watchtower');
- Object.assign(S().p,{x:c.x-100,y:c.arena.deck,vx:0,vy:0,grounded:true});safe();until(()=>c.ks==='leap',120*3);ok(c.ks==='leap','basa: Marko climbs up and he jumps down');}
+{const c=await arena('mocvara');const w=S().world,p=S().p;ok(c.kit==='beg'&&c.look==='vezir'&&c.arena.x1-c.arena.x0>=1400,'vezir: Murat the vezir waits in a wide field at the end of the marsh');
+ step(4);const D=()=>w.delijeW;ok(c.engaged&&D()&&D().svi.length===4,'vezir: four of his twelve delije are with him when Marko comes');
+ c.hp=c.maxHp*.6;step(3);ok(D().svi.length===8,'vezir: four more come at two thirds of his strength');c.hp=c.maxHp*.3;step(3);ok(D().svi.length===12,'vezir: and the last four at one third');
+ api.slay(c);until(()=>{safe();return D().kraj;},120*12);ok(D().kraj&&D().svi.some(e=>e.alive&&e.bezi),'vezir: when he falls the delije scatter over the field');
+ for(const e of D().svi)if(e.alive)api.slay(e);step(3);ok(D().pale===12&&D().sve,'vezir: of twelve delije, twenty-four');}
 {const c=await arena('suma');ok(c.kit==='lovac','lovac: the hunter in the forest');until(()=>S().world.enemies.filter(e=>e.pack).length>=2,120*4);ok(S().world.enemies.filter(e=>e.pack&&e.alive).length>=2,'lovac: his horn calls the hounds');}
 
 // ---- puzzles made by hand ----
@@ -234,7 +237,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  until(()=>{safe();e.timer=9;return e.hp<200;},120*6);ok(e.hp<=200-45,'eagle: she swoops on a Turk and wounds him');
  w.orao.state='prati';w.orao.hladCd=0;p.invuln=0;p.hp=20;step(2);ok(w.orao.state==='hlad','eagle: Marko badly hurt, she spreads her wings over him');const h0=p.hp;step(120*3);ok(p.hp>h0+20,'eagle: her shade and water heal him');}
 // ---- the wounded falcon: bound, he follows Marko, spoils an archer's shot and brings water; archers lie hidden in the reeds ----
-{const w=await land('mocvara');const t=w.traps.find(t=>t.kind==='soko');ok(!!t&&w.traps.filter(t=>t.kind==='trska').length>=2,'falcon: the marsh has the wounded falcon and reeds');
+{const w=await land('mocvara');const t=w.traps.find(t=>t.kind==='soko');w.sokoPao=true;ok(!!t&&w.traps.filter(t=>t.kind==='trska').length>=2,'falcon: the marsh has the wounded falcon and reeds');
  ok(w.enemies.filter(e=>e.skriven).length>=4,'falcon: archers lie hidden in the reeds');
  const p=S().p,foe=(type,x,o={})=>{const e={id:770+w.enemies.length,x,y:t.y,vx:0,vy:0,w:36,h:75,hp:200,maxHp:200,type,zone:S().zone??0,face:-1,mode:'idle',timer:9,stun:0,flash:0,alive:true,home:x,attackId:0,grounded:true,...o};w.enemies.push(e);return e;};
  Object.assign(p,{x:t.x-60,y:t.y,vx:0,vy:0,grounded:true});safe();step(2);const h=foe('sword',t.x+150);api.pressed.add('KeyE');step(2);ok(t.state==='ranjen','falcon: with a Turk beside him, Marko must first drive him off');
@@ -282,7 +285,7 @@ const strikeAt=(x,y,face)=>{Object.assign(S().p,{x:x-face*40,y,vx:0,vy:0,grounde
  ok(!S().p.pinned&&c.hp<hp2&&c.guardBroken>0,'megdan: he breaks free, throws the champion off and leaves him open');}
 const clamp=physics.clamp;
 // ---- the acts: every champion brings something new in his last act, and none of it breaks the fight ----
-for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['rusevine','arapin','rain'],['mocvara','basa','pots'],['pecina','azdaja','rain'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
+for(const [id,kit,kind] of [['tvrdjava','hasan','rain'],['podrum','ognjeni','pots'],['rudnik','bajraktar','rain'],['reka','janicar','combo'],['rusevine','arapin','rain'],['mocvara','beg','combo'],['pecina','azdaja','rain'],['manastir','dzelat','combo'],['klisura','djemo','combo'],['selo','kopljanik','slam'],['suma','lovac','rain']]){
  const c=armed(await arena(id));const p=S().p,w=S().world;ok(c.kit===kit,'acts: '+kit+' stands in '+id);
  c.hp=c.maxHp*.28;c.armor=0;step(3);ok(c.p3&&c.act===3,'acts: '+kit+' enters his last act below a third of his strength');
  // bring him down to the ground, idle and free, and let the act move come

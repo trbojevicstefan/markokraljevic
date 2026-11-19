@@ -58,6 +58,14 @@ Stefan (18. 11.): „obavezno napravi inventar svega što treba da naručimo Cod
 | Kadune u kolu, hodža i hadžija (odbija, pije), Marko igra kolo, Marko udara kupom | D114 ✔ (očišćeni zeleni ostaci) |
 | Prazan stalak, šator bez kupe na sofri | D115 ✔ |
 
+## Naručeno 19. 11. (D116–D120), sve stiglo i u igri
+
+| Šta | Narudžbina |
+|---|---|
+| Murat vezir: peške (idle, run, attack, hurt, death), na konju (mounted, strike, unhorsed), pušta sokola, udara sokola | D116 (stao posle dva), D119, D120 ✔ |
+| Delija (šest klipova), Marko pušta sokola, utva plovi, vezirev soko na grani | D117 ✔ |
+| Slike: lov na zelenom jezeru, divan u Jedrenu | D118 ✔ |
+
 ## Sledeće (kad bude Codexa)
 
 | Šta | Gde | Napomena |
