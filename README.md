@@ -722,6 +722,23 @@ Narudžbine (GPT-6.1-Terra, 20. 11., sve iz prvog pokušaja osim pada sluge, koj
 
 Provera: `pesme-test.mjs` (274: ceo tok pesme), `battles-test.mjs` (megdan sa buzdovanom; Arapin sa kulom se sada proverava u Azaku), `levels-test.mjs` (pohod se ne završava pre telala), `road-test.mjs` (bot preskače scene pesme i prelazi ruševine).
 
+## 24. novembar: udobnost igranja
+
+Stefan: „Uradi još jedan pas igre … quality of life pass.” Pregledani su meni, mapa, pauza, podešavanja i tok pohoda; ispravljeno je ono što igraču smeta dok igra:
+
+- **Enter preskače repliku** (`govorDalje`): replika koja se govori prekida se i dolazi sledeća iz reda, pa scena koja čeka reči ide odmah dalje. Pod replikom piše „Enter · dalje”; na telefonu je dovoljno dotaći repliku. Razgovor na Servani (sedam replika, oko 80 sekundi) prolazi za nekoliko pritisaka.
+- **Uputstvo za taster nad Markom** (`PROMPT_RE`, `drawUputstvo`): natpisi tipa „E · POSEDNI ŠARCA” vezani za Marka crtaju se poslednji, na tamnoj pločici sa tasterom na zlatnoj kapici, uvek na istom mestu iznad njega. Do sada su ih drugi natpisi scene gurali naviše, van pogleda.
+- **Putokaz** (`putokazMesto`, `drawPutokaz`): kad je mesto koje pohod sledeće traži van ekrana, a Marko mu se sedam sekundi nije primakao (ili je mesto iza njega, ili visoko iznad ili ispod), zlatna strelica na ivici ekrana pokazuje ka njemu, sa rastojanjem u metrima. Ćuti dok neko govori, u borbi i u megdanu. Gasi se u Podešavanjima („Putokaz kad zalutaš”).
+- **Pauza**: „Vrati se do barjaka” je do sada pokretalo ceo pohod iz početka; sada stvarno vraća do poslednjeg barjaka. „Pohod iz početka” je novo dugme i pita dvaput.
+- **Posle megdana**: Marko više ne mora da odstoji celu pobedu (2,7 s); posle prve sekunde ga pokreće bilo koji taster.
+- **Vino**: kad je zdravlje ispod trećine, a u čuturi ima vina, pločica nad Markom povremeno podseti „Q · POPIJ VINO”.
+- **Megdan sa Arapom posle pada**: megdandžija se, kao i ostali, vraća ceo (do sada je ostajao načet), ali i dalje počinje sa tri četvrtine snage ako je megdan otvorio Markov udarac pod šatorom.
+- **Šta je novo** (`novo.html`): dugme u glavnom meniju; strana ima pohode po pesmama sa prečicama do scena, tačan redosled pohoda i prečicu `index.html?dev` (svi pohodi otključani na Mapi; pohodi od desetog se inače otvaraju tek posle megdana sa Musom).
+
+Provera: `pesme-test.mjs` (280: povratak do barjaka, „Pohod iz početka” u dva klika, prekid pobede, Arap se pamti ceo); preskakanje replike, pločica i putokaz su provereni u pregledaču (`.tmp-edge/shots.mjs`), jer se u testovima bez pregledača ne crtaju i ne govore.
+
+Crteži od Codexa za ovu turu nisu trebali.
+
 ## Izvori
 
 - https://sr.wikisource.org/sr-el/Марко_Краљевић_и_Муса_кесеџија

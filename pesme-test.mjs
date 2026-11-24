@@ -243,6 +243,7 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  tap('KeyE');step(2);ok(A.ph==='dukati'&&A.dukT,'sator: „pred Arapa tri dukata baci”');
  until(()=>A.ph==='smeh',120*90,'the mace');ok(A.udarci===4,'sator: the Arab strikes him with the heavy mace, three or four times');
  until(()=>A.ph==='cekaJ',120*120,'the laugh');tap('KeyJ');until(()=>A.megdan,120*6,'the blow');
+ ok(!!c.pristine&&A.udaren,'sator: the Arab is remembered whole, to come back so if Marko falls in the megdan');
  ok(w.enemies.includes(c)&&c.hp<c.maxHp&&c.stun>0&&c.x>A.x1&&A.done,'sator: Marko’s blow throws him out on the field, and the megdan starts with him reeling');
  // the megdan is fought in battles-test; what follows it
  api.slay(c);until(()=>w.slugeW?.ceka!=null,120*4,'the sabre');ok(w.slugeW.svi.length+w.slugeW.ceka===36,'sluge: thirty-six of the forty are his to cut down');
@@ -259,6 +260,15 @@ const stand=x=>{const {p,world}=api.state();const t=world.traps.find(t=>t.kind==
  at(T.c+40,T.y);tap('KeyE');step(3);ok(!!T.poslati,'telali: „opravi ih na četiri strane”');
  until(()=>T.done,120*90,'the people');ok(!!T.narod,'telali: „Bog da živi Kraljevića Marka!”');
  ok(api.draw()===null,'svadbarina: the ruins of the song draw without an error');}
+// ---- comfort pass (24. 11.): back to the last banner from the pause menu, the whole pohod again asked twice, the victory pose cut short ----
+{const w=await start('selo');const {p}=api.state();const L=api.state().world.level,gy=p.y;
+ Object.assign(p,{x:L.spawn.x+1700,y:gy,vx:0,vy:0,grounded:true});const q=w.platforms.filter(q=>q.ground&&p.x>q.x+60&&p.x<q.x+q.w-60).sort((a,b)=>a.y-b.y)[0];p.y=q.y;step(240);const bx=p.x,by=p.y;
+ const q2=w.platforms.filter(q=>q.ground&&q.x>bx+500).sort((a,b)=>a.x-b.x)[0];Object.assign(p,{x:q2.x+80,y:q2.y,vx:0,vy:0,grounded:true});step(3);
+ node('restart-checkpoint').onclick();step(2);ok(api.state().world===w&&api.state().mode==='play'&&Math.abs(p.x-bx)<60&&Math.abs(p.y-by)<40,'comfort: „Vrati se do barjaka” puts Marko back at the last banner, in the same pohod');
+ const b=node('restart-level');b.dataset={};b.onclick({currentTarget:b});ok(api.state().world===w&&b.dataset.sig==='1','comfort: „Pohod iz početka” asks once more before it throws the road away');
+ await b.onclick({currentTarget:b});api.keys.clear();api.pressed.clear();ok(api.state().world!==w,'comfort: the second click starts the pohod again');}
+{const w=await start('selo');const {p}=api.state();p.celebrate=2.7;step(60);ok(p.celebrate>1.5,'comfort: the victory pose holds for its first second');
+ press('KeyD');step(90);release('KeyD');ok(!(p.celebrate>0),'comfort: after a second any key lets Marko go on');}
 // ---- a scene that takes the controls starts clean: no blow left hanging, on the ground ----
 {const w=await start('reka');const T=w.traps.find(t=>t.kind==='mehana');const {p}=api.state();
  Object.assign(p,{x:T.x0+720,y:T.y,vx:0,vy:0,grounded:true,attack:.3,drink:.4});step(2);ok(T.ph==='dolazi'&&!(p.attack>0)&&!(p.drink>0)&&p.grounded,'scene: a blow or a drink in hand when the tavern scene starts is let go');}

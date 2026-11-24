@@ -453,3 +453,7 @@
 @keyframes jn-slavi{0%{opacity:0;transform:translateY(22px) scale(.85)}14%{opacity:1;transform:none}78%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
 .jn-dukat{position:fixed;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff6cf,#f2c75a 55%,#a8781f);box-shadow:0 0 8px #ffd76acc;z-index:99;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.jn-okvir.otvara,.jn-sadrzaj>.nap-panel:not([hidden]),.jn-okvir.otvara .nap-panel .jn-slot,.jn-slot.sel,.jn-slot.moze:not(.sel),.jn-opis>*,#jn-slavi.ide{animation:none}#jn-slavi.ide{opacity:1}}
+/* ================= udobnost (24. 11.): „Enter · dalje” pod replikom; replika se može i dotaći da ode sledeća ================= */
+#dialogue{pointer-events:auto;cursor:pointer}
+#dialogue-dalje{display:block;margin-top:3px;text-align:right;font:italic 10px Georgia,serif;letter-spacing:.4px;color:#e3c27e;opacity:.6}
+@media(max-width:900px),(pointer:coarse){#dialogue-dalje{display:none}}

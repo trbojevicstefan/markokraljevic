@@ -78,7 +78,7 @@ const screenCtx=stage?null:canvas.getContext?.('2d');
 const fx=(name,...args)=>stage?.[name]?.(...args);
 // ?dev and the test hub's ?go= scenarios: the test build (markoDev handle; Marko knows every move and has his father's sabre: G draws it)
 const DEV=typeof location!=='undefined'&&/[?&](dev\b|scout\b|go=|novo=)/.test(location.search);
-$('continue').hidden=!saveState;$('difficulty').value=settings.difficulty;$('volume').value=settings.volume*100;$('vol-music').value=settings.music*100;$('vol-sfx').value=settings.sfx*100;$('vol-voice').value=settings.voice*100;$('quality').value=settings.quality;if($('raspored'))$('raspored').value=['klasicni','strelice','zxc'].includes(settings.raspored)?settings.raspored:'klasicni';$('reduced').checked=settings.reduced;$('gore').checked=settings.gore!==false;if($('psovke'))$('psovke').checked=settings.psovke!==false;
+$('continue').hidden=!saveState;$('difficulty').value=settings.difficulty;$('volume').value=settings.volume*100;$('vol-music').value=settings.music*100;$('vol-sfx').value=settings.sfx*100;$('vol-voice').value=settings.voice*100;$('quality').value=settings.quality;if($('raspored'))$('raspored').value=['klasicni','strelice','zxc'].includes(settings.raspored)?settings.raspored:'klasicni';$('reduced').checked=settings.reduced;$('gore').checked=settings.gore!==false;if($('putokaz'))$('putokaz').checked=settings.putokaz!==false;if($('psovke'))$('psovke').checked=settings.psovke!==false;
 $('loading').hidden=true;
 // ---------- audio: samples (Kenney CC0 + synthesised), ElevenLabs voices, composed music ----------
 const SND={norm:{},ready:false,buf:{},groups:{},voices:[],master:null,bus:{},speaking:{},track:null,trackName:'',duckUntil:0,lowAt:-99,last:{}};
@@ -1056,7 +1056,44 @@ function poly(points,fill,stroke,g=ctx){g.beginPath();points.forEach(([x,y],i)=>
 function ellipse(x,y,rx,ry,color,g=ctx){g.beginPath();g.ellipse(x,y,Math.max(.1,rx),Math.max(.1,ry),0,0,Math.PI*2);g.fillStyle=color;g.fill();}
 function line(x,y,x2,y2,color,width=2,g=ctx){g.beginPath();g.moveTo(x,y);g.lineTo(x2,y2);g.strokeStyle=color;g.lineWidth=width;g.stroke();}
 function halo(x,y,r,color,alpha=1){if(r<=0||alpha<=0)return;const g=gctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'rgba(0,0,0,0)');gctx.globalAlpha=alpha*.5;gctx.fillStyle=g;gctx.fillRect(x-r,y-r,r*2,r*2);gctx.globalAlpha=1;}
-function textLabel(text,x,y,{font='bold 15px Georgia',color='#fff0c8',glow=null,alpha=1}={}){text=kontrolaTekst(tr(text));ctx.save();ctx.globalAlpha=alpha;ctx.font=font;if(ctx.measureText)y=placeLabel(x,y,ctx.measureText(text).width,+(font.match(/(\d+)px/)?.[1]||15));ctx.textAlign='center';ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(12,10,8,.82)';ctx.strokeText(text,x,y);ctx.fillStyle=color==='#fff0c8'?'#eadbb4':color;ctx.fillText(text,x,y);ctx.restore();}
+// ================= udobnost igranja (Stefan, 24. 11.: „quality of life pass igre”) =================
+// Enter (or a tap on the words): the line being said is cut short and the next one in the queue comes; nothing else is lost, and a
+// scene that waits for the words goes on at once.
+function govorDalje(){if(mode!=='play'||!hasDom)return false;const kaze=!!govorA||time<govorTiho||(dialogueTime>0&&!$('dialogue').hidden);if(!kaze&&!govorRed.length)return false;
+ if(govorA){try{govorA.pause();}catch{}NARR.delete(govorA);govorA=null;}clearTimeout(govorRok);govorTekst='';govorTrenutni=null;govorTiho=0;govorTihiTekst='';slusa=null;slusaKraj=null;slusaT=0;
+ if(SND?.speaking)for(const k of['marko','vila'])if(SND.speaking[k]&&!SND.speaking[k].group)delete SND.speaking[k];if(audio&&SND)SND.duckUntil=0;
+ const q=govorRed.shift();if(q)speakSada(q[0],q[1],q[2],q[3]);else dialogueTime=.01;sfx('cloth',{gain:.2,rate:1.8});return true;}
+// A prompt for a key („E · POSEDNI ŠARCA”) that belongs to Marko is drawn last, at one place over his head, on a dark plate with the
+// key on a gold cap: the other labels of a scene used to push it up and away, out of sight. When his health is low and there is wine
+// in the flask, the same plate reminds him of it now and then.
+const PROMPT_RE=/^(E|J|K|Q|I|H|L|Space) · /;let promptCeka=null,vinoOpomena=-99;
+function drawUputstvo(){let P=promptCeka;promptCeka=null;if(!p||mode!=='play'||!ctx.measureText)return;
+ if(!P&&level&&p.hp>0&&p.hp<=p.maxHp*.3&&p.wine>0&&!(p.drink>0)&&!horseMounted&&!(p.celebrate>0)){if(time>vinoOpomena+26)vinoOpomena=time;if(time<vinoOpomena+4.5)P={text:'Q · POPIJ VINO'};}
+ if(!P)return;const t=kontrolaTekst(tr(P.text)),i=t.indexOf(' · ');if(i<1)return;const key=t.slice(0,i),rest=t.slice(i+3),h=26;
+ ctx.save();ctx.font='bold 13px Georgia';const wk=Math.max(22,ctx.measureText(key).width+12),wr=ctx.measureText(rest).width,w=wk+wr+24,
+  x0=clamp(p.x-w/2,camera+12,camera+VIEW_W-w-12),y0=clamp(p.y-(horseMounted?258:192),camY+150,camY+VIEW_H-150),rr=(x,y,ww,hh,r)=>{ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,ww,hh,r);else ctx.rect(x,y,ww,hh);};
+ ctx.globalAlpha=.88;ctx.fillStyle='#170c0a';rr(x0,y0,w,h,8);ctx.fill();ctx.globalAlpha=1;ctx.lineWidth=1.2;ctx.strokeStyle='rgba(227,194,126,.75)';rr(x0+.5,y0+.5,w-1,h-1,8);ctx.stroke();
+ const puls=.86+.14*Math.sin(time*6);ctx.globalAlpha=puls;ctx.fillStyle='#e9c779';rr(x0+5,y0+4,wk,h-8,5);ctx.fill();ctx.globalAlpha=1;
+ ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillStyle='#2a1608';ctx.fillText(key,x0+5+wk/2,y0+h/2+1);ctx.textAlign='left';ctx.fillStyle='#fbeecb';ctx.fillText(rest,x0+wk+13,y0+h/2+1);ctx.restore();}
+// The way-pointer: when the place the pohod asks for next is off the screen and Marko has not come nearer to it for a while (or it lies
+// behind him, or high above or below), a gold arrowhead at the edge of the screen points to it. It keeps quiet while someone speaks,
+// in a fight and in a megdan; Podešavanja can turn it off.
+const putokazS={id:null,d:1e9,t:0};
+function putokazMesto(){if(!level||level.greybox||arena||!p||horseMounted&&level.id!=='rusevine')return null;
+ if(level.id==='rusevine'){const K=kosovkaTrap(),A=avlijaTrap();if(K&&A){if(!K.done&&!A.megdan)return{x:K.dev,y:K.y};
+   if(!A.megdan)return!horseMounted&&!A.sjahao&&K.sx!=null?{x:K.sx,y:tloKod(K.sx,K.y)}:{x:A.c,y:A.y};if(A.cref?.alive)return null;
+   const t=kolciTraps().filter(t=>!t.skinuto).sort((a,b)=>a.x-b.x)[0];if(t)return{x:t.x,y:t.y};const G=grobljeTrap();if(G&&!G.done)return{x:G.c,y:G.y};const T=telaliTrap();if(T&&!T.poslati)return{x:T.c+60,y:T.y};}}
+ const g=pendingGoal();if(g&&g.x!=null&&g.y!=null)return{x:g.x,y:g.y};return level.goal?{x:level.goal.x,y:level.goal.y}:null;}
+function drawPutokaz(){const S=putokazS;if(settings.putokaz===false||mode!=='play'||!p||!ctx.beginPath){S.id=null;return;}const m=putokazMesto();if(!m){S.id=null;return;}
+ const id=Math.round(m.x)+':'+Math.round(m.y),dx=m.x-p.x,dy=m.y-p.y,d=Math.hypot(dx,dy);if(S.id!==id){S.id=id;S.d=d;S.t=time;}if(d<S.d-40){S.d=d;S.t=time;}
+ if(govorTraje()||uBoju()||p.celebrate>0)S.t=Math.max(S.t,time-3);
+ const ty=m.y-70,x0=camera+60,x1=camera+VIEW_W-60,y0=camY+160,y1=camY+VIEW_H-120;if(m.x>x0&&m.x<x1&&ty>y0-80&&ty<y1+60)return;
+ if(!(time-S.t>7||dx<-260||Math.abs(dy)>300&&Math.abs(dx)<1000))return;
+ const cx=(x0+x1)/2,cy=(y0+y1)/2,ax=m.x-cx,ay=ty-cy,k=Math.min((x1-x0)/2/Math.max(1,Math.abs(ax)),(y1-y0)/2/Math.max(1,Math.abs(ay))),x=cx+ax*k,y=cy+ay*k,ang=Math.atan2(ay,ax),puls=.72+.28*Math.sin(time*5),pom=Math.sin(time*5)*4;
+ ctx.save();ctx.translate(x+Math.cos(ang)*pom,y+Math.sin(ang)*pom);ctx.rotate(ang);ctx.globalAlpha=.92*puls;ctx.beginPath();ctx.moveTo(17,0);ctx.lineTo(-11,-12);ctx.lineTo(-4,0);ctx.lineTo(-11,12);ctx.closePath();
+ ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(26,14,8,.9)';ctx.stroke();ctx.fillStyle='#f0cf7a';ctx.fill();ctx.restore();
+ if(ctx.measureText){const tx=x-Math.cos(ang)*34,tyy=y-Math.sin(ang)*34+4,s=Math.max(1,Math.round(d/67))+' m';ctx.save();ctx.font='bold 11px Georgia';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='rgba(12,10,8,.85)';ctx.strokeText(s,tx,tyy);ctx.fillStyle='#f6e2ae';ctx.fillText(s,tx,tyy);ctx.restore();}}
+function textLabel(text,x,y,{font='bold 15px Georgia',color='#fff0c8',glow=null,alpha=1}={}){if(p&&mode==='play'&&PROMPT_RE.test(text)&&Math.abs(x-p.x)<3){promptCeka={text};return;}text=kontrolaTekst(tr(text));ctx.save();ctx.globalAlpha=alpha;ctx.font=font;if(ctx.measureText)y=placeLabel(x,y,ctx.measureText(text).width,+(font.match(/(\d+)px/)?.[1]||15));ctx.textAlign='center';ctx.lineJoin='round';ctx.lineWidth=4;ctx.strokeStyle='rgba(12,10,8,.82)';ctx.strokeText(text,x,y);ctx.fillStyle=color==='#fff0c8'?'#eadbb4':color;ctx.fillText(text,x,y);ctx.restore();}
 // Draws one rig frame with its sole on (x,y). Silhouettes (flash, coloured glow rims) are built on a scratch canvas.
 // Half-size copies of the sprite sheets (drawing only). A frame that lands on screen at half its size or smaller is taken
 // from a copy made at half size, decoded off the main thread: same size and place on screen, but the browser keeps a
@@ -1237,7 +1274,7 @@ function shoulderFrame(t){if(t<.5)return Math.floor(t*6);t-=.5;if(t<SHOULDER_HOL
 // Marko celebrates a fallen champion: the mace goes up (0-4), stays up while the cape flies (3-5), then rests on his shoulder (6-7)
 const CELEBRATE_TIME=2.7;
 function celebrateFrame(t){if(t<.55)return Math.min(4,Math.floor(t/.11));t-=.55;if(t<1.8)return[3,4,5,4][Math.floor(t*6)%4];return t<2.1?6:7;}
-function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.celebrate>CELEBRATE_TIME-.02)say('victory',{priority:3});p.celebrate-=dt;
+function updateCelebrate(dt){if(!(p.celebrate>0)||!p.grounded)return false;if(p.celebrate>CELEBRATE_TIME-.02)say('victory',{priority:3});p.celebrate-=dt;if(p.celebrate<CELEBRATE_TIME-1&&(pressed.size||keys.size)){p.celebrate=0;return false;}
  // the world goes on (the arena opens, the aga drops his mace); only Marko's keys rest, and come back held as they were
  const held=[...keys];keys.clear();pressed.clear();p.vx=0;updatePlayer(dt);for(const k of held)keys.add(k);p.vx=0;p.attack=0;p.idleT=0;return true;}
 function playerPose(){return bezTopuza(sabljaPose(basePose()));}
@@ -1506,13 +1543,14 @@ function draw(dt=1/60){
  for(const a of particles){const k=clamp(a.life/(a.max||1),0,1);if(a.kind==='blood'){if(a.delay>0)continue;ctx.globalAlpha=Math.min(1,k*1.6);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x-a.vx*.022,a.y-a.vy*.022);ctx.strokeStyle=a.color;ctx.lineWidth=a.r;ctx.lineCap='round';ctx.stroke();}else if(a.kind==='dust'){ctx.globalAlpha=k*.38;ellipse(a.x,a.y,a.r*(1.6-k*.6),a.r*(1.2-k*.4),a.color);}else{gctx.globalAlpha=k;ellipse(a.x,a.y,a.r,a.r,a.color,gctx);}}ctx.globalAlpha=1;gctx.globalAlpha=1;
  drawDunavNapred();drawBedemiNapred();drawPrednji(dt);
  for(const f of floating){const pop=1+Math.max(0,f.life-.95)*3;textLabel(f.text,f.x,f.y,{font:`bold ${Math.round(17*pop)}px Georgia`,color:f.color,glow:f.color,alpha:clamp(f.life,0,1)});}
+ drawUputstvo();drawPutokaz();
  if(stage){stage.render({dt:mode==='pause'?0:dt,camX:camera,camY,zone:mode==='menu'?0:zone,look:level?LEVEL_LOOK[level.id]??0:undefined,weather:level&&mode!=='menu'?levelVariant:null,mode,player:p?{x:p.x,y:p.y}:null,shake:mode==='play'?shake:0,hurt:p&&mode==='play'?p.hurt/.22*.6:0,lowHealth:p&&mode==='play'&&p.hp/p.maxHp<.3?1-p.hp/p.maxHp/.3:0,emitters});return;}
  if(screenCtx){screenCtx.setTransform(1,0,0,1,0,0);if(assets.gorge){const drawW=W+260,drawH=drawW*1024/1536;screenCtx.drawImage(assets.gorge,-130-Math.min(1,camera/29900)*180,-80,drawW,drawH);}else{screenCtx.fillStyle='#496f6b';screenCtx.fillRect(0,0,W,H);}screenCtx.drawImage(layer,0,0,W,H);screenCtx.globalCompositeOperation='lighter';screenCtx.globalAlpha=.55;screenCtx.drawImage(glowLayer,0,0,W,H);screenCtx.globalAlpha=1;screenCtx.globalCompositeOperation='source-over';}
 }
-function pause(){if(mode==='play'){showControls();mode='pause';pauseInfo();$('pause-menu').hidden=false;keys.clear();setTimeout(()=>$('resume')?.focus?.(),60);}else if(mode==='pause'){hideModals();mode='play';}}
+function pause(){if(mode==='play'){showControls();mode='pause';pauseInfo();if($('restart-level'))$('restart-level').hidden=!level;$('pause-menu').hidden=false;keys.clear();setTimeout(()=>$('resume')?.focus?.(),60);}else if(mode==='pause'){hideModals();mode='play';}}
 document.addEventListener('keydown',e=>{if(['INPUT','SELECT'].includes(document.activeElement.tagName))return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab'].includes(e.code)&&mode==='play'&&e.code!=='Tab')e.preventDefault();if(mode==='kraj'){if(['Enter','Space','Escape'].includes(e.code)){e.preventDefault();krajDalje();}return;}
 if((e.code==='KeyP'||e.code==='Tab')&&(mode==='play'||mode==='napredak')){e.preventDefault();if(mode==='play')openNapredak('play');else closeNapredak();return;}
-if(e.code==='Escape'){if($('knjiga')&&!$('knjiga').hidden&&$('napredak')&&!$('napredak').hidden){closeBook();return;}if(mode==='napredak'||$('napredak')&&!$('napredak').hidden){closeNapredak();return;}if(mode==='shop'){if(!presudaOpen)closeDucan();return;}if($('zoom')&&!$('zoom').hidden){closeZoom();return;}if(!$('intro').hidden){introEnd(true);return;}if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode==='gbDone'){greybox.gbStay(GBX);return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}{const c=kodRasporeda(e.code);if(!keys.has(c))pressed.add(c);keys.add(c);}});document.addEventListener('keyup',e=>{keys.delete(kodRasporeda(e.code));keys.delete(e.code);});window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
+if(e.code==='Escape'){if($('knjiga')&&!$('knjiga').hidden&&$('napredak')&&!$('napredak').hidden){closeBook();return;}if(mode==='napredak'||$('napredak')&&!$('napredak').hidden){closeNapredak();return;}if(mode==='shop'){if(!presudaOpen)closeDucan();return;}if($('zoom')&&!$('zoom').hidden){closeZoom();return;}if(!$('intro').hidden){introEnd(true);return;}if(!$('knjiga').hidden){closeBook();return;}if(!$('settings').hidden){closeSettings();return;}if(mode==='gbDone'){greybox.gbStay(GBX);return;}if(mode!=='play'&&mode!=='pause'&&document.querySelector('.modal:not([hidden])')){padMenu(0,0,false,true);return;}pause();return;}if((e.code==='Enter'||e.code==='NumpadEnter')&&mode==='play'&&govorDalje()){e.preventDefault();return;}{const c=kodRasporeda(e.code);if(!keys.has(c))pressed.add(c);keys.add(c);}});document.addEventListener('keyup',e=>{keys.delete(kodRasporeda(e.code));keys.delete(e.code);});window.addEventListener('blur',()=>{keys.clear();pressed.clear();if(mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode==='play')pause();});
 document.querySelectorAll('[data-key]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);keys.add(b.dataset.key);pressed.add(b.dataset.key);});for(const ev of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>keys.delete(b.dataset.key));});
 stikSetup();
 // The start screen is worked like the menu of a console game: one entry carries the gold mark (pad-focus). The arrows,
@@ -1522,10 +1560,12 @@ function menuItems(){return hasDom?[...$('menu').querySelectorAll('.menu-actions
 function menuPick(el,quiet=false){if(!el)return;document.querySelectorAll('#menu .pad-focus').forEach(o=>o.classList.remove('pad-focus'));el.classList.add('pad-focus');el.focus?.({preventScroll:true});if(!quiet)sfx('cloth',{gain:.25,rate:1.6});}
 if(hasDom){for(const b of $('menu').querySelectorAll('.menu-actions button'))b.addEventListener('mouseenter',()=>{if(!b.classList.contains('pad-focus'))menuPick(b);});
  setTimeout(()=>{if(!$('menu').hidden)menuPick(menuItems()[0],true);},0);}
-$('start').onclick=startJourney;$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level)return level.greybox?startGreybox(level.n):startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
+$('start').onclick=startJourney;$('continue').onclick=()=>start(true);$('pause').onclick=pause;$('resume').onclick=pause;$('retry').onclick=retry;$('restart-checkpoint').onclick=()=>{if(level&&!level.greybox&&ckpt){hideModals();ckptRespawn();return;}if(level)return level.greybox?startGreybox(level.n):startLevel(levelIndex);if(saveState)start(true);else start();};$('replay').onclick=()=>{start();save();};
 function mainMenu(){stopNarration();if(hasDom)setTimeout(()=>{if(!$('menu').hidden)menuPick(menuItems()[0],true);},0);if(hasDom)document.getElementById('trening-help')?.remove();if(level?.greybox)greybox.gbMapRemove();menuLedger();level=null;levelIndex=-1;stage?.setLevel?.(null);endSequence=null;corpses=[];bones=[];heads=[];limbs=[];gibs=[];booms=[];fountains=[];finisher=null;grapple=null;finGlobal=0;grappleCool=0;training=null;mode='menu';hideModals();$('menu').hidden=false;$('hud').hidden=true;$('controls').hidden=true;$('touch').hidden=true;$('dialogue').hidden=true;$('boss-hud').hidden=true;zone=0;camera=0;keys.clear();}
 $('quit').onclick=mainMenu;$('victory-menu').onclick=mainMenu;$('sound').onclick=()=>{initAudio();audioEnabled=!audioEnabled;$('sound').textContent=audioEnabled?'♫':'♪̸';$('sound').setAttribute('aria-label',audioEnabled?'Isključi zvuk':'Uključi zvuk');};
-let settingsFrom='menu';function openSettings(from){settingsFrom=from;$('settings').hidden=false;}function closeSettings(){settings.raspored=$('raspored')?.value||settings.raspored||'klasicni';abBuilt=false;settings.difficulty=$('difficulty').value;readAudioSettings();settings.quality=$('quality').value;settings.reduced=$('reduced').checked;settings.gore=$('gore').checked;if($('psovke'))settings.psovke=$('psovke').checked;try{localStorage.setItem('marko-settings',JSON.stringify(settings));}catch{}$('settings').hidden=true;}
+let settingsFrom='menu';function openSettings(from){settingsFrom=from;$('settings').hidden=false;}function closeSettings(){settings.raspored=$('raspored')?.value||settings.raspored||'klasicni';abBuilt=false;settings.difficulty=$('difficulty').value;readAudioSettings();settings.quality=$('quality').value;settings.reduced=$('reduced').checked;settings.gore=$('gore').checked;if($('putokaz'))settings.putokaz=$('putokaz').checked;if($('psovke'))settings.psovke=$('psovke').checked;try{localStorage.setItem('marko-settings',JSON.stringify(settings));}catch{}$('settings').hidden=true;}
+if($('restart-level'))$('restart-level').onclick=e=>{const b=e.currentTarget;if(!level)return;if(b.dataset.sig!=='1'){b.dataset.sig='1';b.textContent=tr('Sigurno? Klikni još jednom');setTimeout(()=>{b.dataset.sig='';b.textContent=tr('Pohod iz početka');},3500);return;}b.dataset.sig='';b.textContent=tr('Pohod iz početka');hideModals();return level.greybox?startGreybox(level.n):startLevel(levelIndex);};
+if($('novo-open'))$('novo-open').onclick=()=>{location.href='novo.html';};if($('dialogue')?.addEventListener)$('dialogue').addEventListener('pointerdown',e=>{if(mode==='play'&&govorDalje())e.preventDefault();});
 $('settings-open').onclick=()=>openSettings('menu');$('pause-settings').onclick=()=>openSettings('pause');$('settings-close').onclick=closeSettings;$('lore-open').onclick=()=>$('lore').hidden=false;$('lore-close').onclick=()=>$('lore').hidden=true;
 p=newPlayer();boss=newBoss();
 // ---------- smooth frame pacing (drawing only) ----------
@@ -3424,13 +3464,13 @@ const SATOR_POZDRAV=[['MARKO','„Božja pomoć, dragi gospodine!”',4],['ARAPI
  ['MARKO','„Nemam kade s tobom piti vina. Ja isprosih lepotu devojku, ostaše mi na drumu svatovi; došao sam, donô svadbarinu, da dam blago, da vodim devojku. Kaži meni što je svadbarine?”',10],
  ['ARAPIN','„Ta ti za to i odavno znadeš: ko s’ udaje, trideset dukata; ko se ženi, trideset i četiri. Ti se vidiš junak od mejdana, nije kvara da stotinu dadeš!”',9]];
 // the champion waits out of the world while the scene under the tent plays him
-function avlijaArap(T){if(T.cref||T.megdan)return;const i=world.enemies.findIndex(e=>e.champion&&e.look==='arap');if(i>=0){T.cref=world.enemies[i];world.enemies.splice(i,1);}}
-function avlijaMegdan(T,x){if(T.megdan)return;T.megdan=time;T.done=true;T.ph='megdan';T.sjahao??=time;T.sx??=T.c-340;const c=T.cref;if(!c||world.enemies.includes(c))return;
+function avlijaArap(T){if(T.cref||T.megdan)return;const i=world.enemies.findIndex(e=>e.champion&&e.look==='arap');if(i>=0){T.cref=world.enemies[i];T.cref.pristine??=JSON.stringify({...T.cref,pristine:undefined});world.enemies.splice(i,1);}}
+function avlijaMegdan(T,x){if(T.megdan)return;T.udaren=x!=null;T.megdan=time;T.done=true;T.ph='megdan';T.sjahao??=time;T.sx??=T.c-340;const c=T.cref;if(!c||world.enemies.includes(c))return;
  if(x!=null){c.x=x;c.home=x;c.y=c.arena.y;c.vx=0;c.face=-1;c.hp=Math.round(c.maxHp*.75);c.stun=2.6;c.mode='stun';c.kitOpen=2.6;}world.enemies.push(c);}
 function arapPao(){const A=avlijaTrap();return !!A&&!!A.megdan&&!!A.cref&&!A.cref.alive;}
 function updateAvlija(dt){avlijaScena=false;if(level?.id!=='rusevine')return false;const T=avlijaTrap();if(!T)return false;const y=T.y,C=SATOR;avlijaArap(T);
  if(!T.megdan&&p.x>T.x1+60){avlijaMegdan(T);return false;}   // set down past the tent (a test, a shortcut): the megdan stands as it is
- if(T.megdan)return false;
+ if(T.megdan){const c=T.cref;if(T.udaren&&c?.alive&&!c.engaged&&c.hp>c.maxHp*.75)c.hp=Math.round(c.maxHp*.75);return false;}
  // the servants come out „da pod Markom dobra konja prime”, and run back under the tent when they see him near
  if(!T.sluge&&p.x>T.x0-500&&p.x<T.c+300)T.sluge=[0,1,2,3,4,5].map(i=>({x:T.kapija+60+i*44,cilj:T.kapija-150-i*52,st:'izlaze',kraj:T.c+208+i*9}));
  for(const s of T.sluge||[]){if(s.st==='izlaze'){s.x=Math.max(s.cilj,s.x-110*dt);if(p.x>s.x-430){for(const o of T.sluge)o.st='beze';
